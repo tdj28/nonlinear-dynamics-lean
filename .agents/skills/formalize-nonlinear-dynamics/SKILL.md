@@ -128,6 +128,12 @@ For every new or materially changed teaching page:
   errors and zero raw delimiters, and remember that Hugo's Markdown parser runs
   before KaTeX: write `\lt` and `\gt` inside TeX instead of literal `<` and `>`
   when Goldmark could mistake them for HTML; and
+- when a patch passes through JavaScript or another escape-sensitive layer,
+  use a raw string or explicitly preserve every backslash. Afterward scan the
+  Markdown source for dropped delimiters and commands such as plain
+  `(mathbb R)`, `(lambda_i)`, `(operatorname{...})`, or `(delta_x)`;
+  a warning-free Hugo build alone does not detect prose that was never handed
+  to KaTeX; and
 - keep code-fence comparison operators literal. The TeX workaround belongs
   only in mathematical delimiters, never in Lean or shell examples.
 

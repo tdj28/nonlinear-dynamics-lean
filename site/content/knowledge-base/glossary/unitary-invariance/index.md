@@ -271,6 +271,11 @@ constraint that unitary conjugation preserves. Review
 {{< refterm "probability-law" "probability law" >}} and
 {{< refterm "pushforward-measure" "pushforward measure" >}} for the precise
 level at which invariance is stated. The chapter
+[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
+proves that ordered eigenvalues, spectral counting measures, and the
+{{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}
+are pointwise unchanged by unitary conjugation, while keeping the law-level
+measurability bridge explicitly conditional. The chapter
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
 constructs the checked finite law and marks invariance as the next separate
 symmetry theorem. [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})

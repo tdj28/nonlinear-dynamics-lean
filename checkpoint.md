@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 04:26 PDT
+Last updated: 2026-07-21 05:05 PDT
 
-Audited baseline: `main` at `10bbde4`
+Audited baseline: `main` at `c7b64ec`
 
-Active direction: measurable finite spectral data and empirical spectral measures
+Active direction: Hermitian eigenvalue perturbation, continuity, and measurability
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: measurable finite spectral data and empirical spectral measure
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,146 jobs. The integrated RMT-09 gate covers twelve
-  substantive modules, twelve complete draft Notebook companions, and 116
+- Last green Lean build: 3,154 jobs. The integrated RMT-10A gate covers thirteen
+  substantive modules, thirteen complete draft Notebook companions, and 129
   Hugo pages with warnings fatal.
-- Lean inventory: 248 public declaration lines across the twelve substantive
+- Lean inventory: 274 public declaration lines across the thirteen substantive
   modules; 18 one-line deterministic placeholders; three `.gitkeep`-only
   Random branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 65,298 words across the twelve Notebook companions and
-  66,726 words across nine Deep Dives and twenty-one glossary chapters.
+- Teaching snapshot: 72,404 words across the thirteen Notebook companions and
+  75,116 words across ten Deep Dives and twenty-two glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -53,28 +53,30 @@ Active direction: measurable finite spectral data and empirical spectral measure
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry` | Frobenius Euclidean matrix carrier, intrinsic real Hermitian subspace, trace pairing, ambient and intrinsic unitary-congruence isometries, intrinsic standard-Gaussian invariance, and measurable mass-one Hermitian support of the ambient GUE law | `gue-frobenius-geometry-and-hermitian-support` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance` | Normalized real Hermitian coordinates, Frobenius linear isometric equivalence, exact full-product decoding, scaled intrinsic standard-Gaussian representation, intrinsic probability and zero-dimensional laws, and ambient unitary-conjugation invariance | `gue-unitary-invariance-from-normalized-coordinates` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments` | Complex Bochner integrability of the first two trace-power observables and the exact finite identities `E[Tr H] = 0` and `E[Tr(H²)] = n`, uniformly including dimension zero | `gue-first-exact-trace-moments` |
+| `NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum` | Decreasingly ordered real Hermitian eigenvalues with multiplicity, trace and trace-square sums, unitary-congruence invariance, spectral counting and zero-aware empirical measures, positive-dimensional probability packaging, and conditional Giry/ambient-law bridges | `ordered-hermitian-spectra-and-empirical-measures` |
 
-The root aggregator imports all twelve modules. The proof-to-prose manifest and
+The root aggregator imports all thirteen modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twelve comprehensive Development Notebook chapters in an explicit
+- Thirteen comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Nine textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Ten textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
   *Finite GUE from Independent Gaussian Coordinates*, and *Intrinsic Hermitian
   Gaussian Symmetry and Matrix-Law Support*, followed by *From Normalized
-  Hermitian Coordinates to Gaussian Unitary Ensemble Invariance* and *First
-  Exact Finite Gaussian Unitary Ensemble Trace Moments*.
-- Twenty-one glossary chapters, now including finite matrix trace moments and
-  normalized Hermitian coordinates
+  Hermitian Coordinates to Gaussian Unitary Ensemble Invariance*, *First
+  Exact Finite Gaussian Unitary Ensemble Trace Moments*, and *Finite Hermitian
+  Spectra and Empirical Measures*.
+- Twenty-two glossary chapters, now including empirical spectral measures,
+  finite matrix trace moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Thirty-two deterministic 1200x630 social cards and nineteen accessible
+- Thirty-five deterministic 1200x630 social cards and twenty-one accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -83,46 +85,39 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-10A: algebraic finite Hermitian spectral data
+### RMT-10B: Hermitian spectral perturbation and measurability
 
-The next module is `HermitianSpectrum.lean`. Pinned Mathlib supplies an
-algebraic ordered eigenvalue API but does not yet supply continuity or
-measurability for that ordering. Land the strongest honest layer that is
-independent of that missing theorem:
+The next module is `HermitianSpectrumContinuity.lean`. Prove the missing
+analytic layer directly in the intrinsic Frobenius geometry already checked by
+RMT-07 and RMT-10A:
 
-1. Define `orderedHermitianEigenvalues` on
-   `RandomMatrix.HermitianEuclidean n` using
-   `Matrix.IsHermitian.eigenvalues₀`, transported from
-   `Fin (Fintype.card (Fin n))` to `Fin n` by the order-preserving finite
-   cast. Do not use Mathlib's arbitrarily reindexed `eigenvalues` as though it
-   were sorted.
-2. Prove antitonicity, the trace and trace-square sum identities, and exact
-   invariance under intrinsic unitary congruence.
-3. Define the spectral counting measure and prove total mass `n`, then define
-   the normalized empirical spectral measure with an explicit zero-dimensional
-   policy.
-4. At `n = 0`, both counting and empirical measures are zero. For every
-   dimension the empirical measure is zero or a probability measure; expose a
-   genuine `ProbabilityMeasure ℝ` wrapper only at dimension `n + 1`.
-5. State generic Giry-measurability and intrinsic/ambient pushforward bridges
-   conditional on coordinatewise eigenvalue measurability. These are dependency
-   interfaces, not permission to claim that a GUE empirical spectral law has
-   already been constructed.
+1. Reindex Mathlib's orthonormal Hermitian eigenbasis in the same decreasing
+   order as `orderedHermitianEigenvalues`, and keep the basis, spectral
+   subspaces, coordinate-support lemmas, and quadratic-form expansions private.
+2. Prove the matrix-vector estimate
+   `‖A *ᵥ x‖₂ ≤ ‖A‖_F ‖x‖₂` from the Frobenius multiplication bound.
+3. Use the top `i + 1` eigenspace of one matrix and the bottom `n - i`
+   eigenspace of another. Their dimensions force a nonzero intersection, which
+   supplies the finite-dimensional min-max witness for the one-sided Weyl
+   estimate.
+4. Prove
+   `|λᵢ(A) - λᵢ(B)| ≤ ‖A - B‖_F` for every ordered coordinate. Package each
+   coordinate and the full vector into exact `LipschitzWith 1` theorems. This is
+   a sup-metric vector bound, not Hoffman-Wielandt's Euclidean eigenvalue bound.
+5. Derive unconditional coordinatewise and vector continuity and measurability,
+   then discharge the conditional RMT-10A interfaces for the counting measure,
+   empirical measure, positive-dimensional probability wrapper, and ambient
+   observable.
+6. Give the unconditional ambient-versus-intrinsic GUE pushforward equality the
+   clean name
+   `map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw`; keep the
+   RMT-10A conditional theorem explicitly suffixed
+   `_of_measurable_eigenvalues`.
 
-The follow-on RMT-10B milestone must prove coordinatewise continuity or a
-reusable perturbation bound for the ordered eigenvalue vector, preferably
-through a Weyl or Courant-Fischer layer. Once that discharges the exact
-measurability blocker, RMT-10C may define the finite-GUE empirical spectral law,
-prove the intrinsic and ambient constructions agree, handle the
-zero-dimensional Dirac law, and connect the first two empirical moments to
-RMT-09.
-
-If perturbation theory grows into a larger independent slice, the safe
-measurable fallback is the vector of signed principal-minor coefficients. It is
-measurable by the Leibniz determinant formula and equals the reversed
-characteristic-polynomial coefficient vector. Its pushforward is spectral
-algebra, but it must not be called an eigenvalue law or empirical spectral
-measure.
+RMT-10C may then name the finite-GUE empirical spectral law, prove its
+zero-dimensional Dirac boundary, and identify its first two normalized spectral
+moments with RMT-09. It must not introduce a semicircle law, limiting density,
+or large-dimension convergence claim without a separate asymptotic layer.
 
 ## Dependency-Ordered Roadmap
 
@@ -164,7 +159,12 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Exact coordinate-to-intrinsic-Gaussian bridge and nontrivial unitary
   invariance of the ambient GUE law.
 - [x] Integrability and the first exact expected trace moments.
-- [ ] Eigenvalue measurability and an empirical spectral measure.
+- [x] Algebraic ordered Hermitian spectra, spectral counting measures,
+  zero-aware empirical measures, and conditional measure-valued interfaces.
+- [ ] A Hermitian eigenvalue perturbation bound, continuity, and unconditional
+  coordinatewise measurability.
+- [ ] The finite-GUE empirical spectral law and its first normalized spectral
+  moments.
 - [ ] Deterministic matrix-product inequalities, then measurable random
   products.
 - [ ] Random cocycles over a measure-preserving base and finite-time
@@ -333,6 +333,27 @@ k-invariance precedes approximation claims.
 - Dimension zero is included by the same finite sums and coordinate formulas:
   the relevant indices are empty and both exact integrals are zero. No
   positive-dimension hypothesis is hidden in the public API.
+- RMT-10A takes its ordered spectrum from Mathlib's antitone
+  `Matrix.IsHermitian.eigenvalues₀` and transports it to `Fin n` through an
+  order-preserving cast. Mathlib's generally reindexed `eigenvalues` may be
+  used inside permutation-invariant sums but must not be presented as sorted.
+- Algebraic multiplicity is represented by repeated ordered indices. The
+  spectral counting measure is the finite sum of one Dirac mass per index and
+  therefore has total mass `n`; no deduplication to a set of distinct roots is
+  allowed.
+- The zero-dimensional spectral counting and empirical measures are both the
+  zero measure. The empirical measure is zero or probabilistic in every
+  dimension, while the bundled `ProbabilityMeasure ℝ` interface is exposed
+  only for successor dimensions.
+- RMT-10A proves that coordinatewise eigenvalue measurability would imply
+  Giry measurability of the counting measure, empirical measure, positive
+  probability wrapper, and ambient observable. The hypothesis remains open;
+  these conditional theorems do not construct an unconditional GUE empirical
+  spectral law.
+- The ambient spectral observable first maps a Hermitian matrix into the
+  intrinsic carrier and sends every non-Hermitian matrix to zero. This is a
+  measurable totalization for use with ambient laws, not a spectral theory for
+  general non-Hermitian matrices.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -355,8 +376,10 @@ k-invariance precedes approximation claims.
   and zero-dimensional ledger explicit in code and prose.
 - Mathlib's `Measure.map` is total and has fallback behavior outside the
   a.e.-measurable case. Keep measurability evidence explicit.
-- Eigenvalue measurability, ordering, multiplicity, and spectral scaling remain
-  unformalized.
+- Ordered finite Hermitian eigenvalues, multiplicity, and zero-aware empirical
+  normalization are formalized algebraically. Eigenvalue perturbation,
+  continuity, measurability, and any large-dimension spectral scaling theorem
+  remain open.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -519,8 +542,30 @@ Checkpoint/skill milestone QA:
   scrollable; cards and lazy SVGs load at their intrinsic dimensions; the
   RMT-08 next link and RMT-09 previous link are exact; and the three updated
   cross-link pages remain width-clean with valid rendered mathematics.
+- RMT-10A Lean audit: all 26 public declarations and both private proof helpers
+  match the decreasing sorted spectrum, multiplicity, trace and trace-square,
+  unitary-congruence, counting-measure, zero-aware empirical-measure,
+  positive-dimensional probability, conditional Giry, ambient-totalization,
+  and conditional pushforward claims. The module and all three aggregators pass
+  warnings as errors; the full build completes 3,154 jobs; no proof holes or
+  unsafe declarations occur; and all 20 theorem audits contain only `propext`,
+  `Classical.choice`, and `Quot.sound`.
+- RMT-10A teaching audit: the 7,081-word Notebook maps every public declaration
+  and both private helpers; the 2,041-word glossary and 6,069-word Deep Dive
+  separate an ordered sample spectrum, counting measure, empirical measure,
+  and probability law over measures. All three deterministic cards reproduce
+  byte-for-byte at 1200x630 from the repository and `/private/tmp`; both
+  prose-only SVGs parse and render; and Hugo builds 129 pages with warnings
+  fatal.
+- Rendered RMT-10A QA: the Notebook, glossary, and Deep Dive render 66, 55, and
+  116 KaTeX nodes respectively with zero errors, raw delimiters, or console
+  warnings. Their desktop documents fit 1280 pixels exactly and their mobile
+  documents fit 390 pixels exactly; wide tables remain locally scrollable;
+  cards and lazy SVGs load at intrinsic dimensions; and the RMT-09/RMT-10A
+  navigation is exact. The audit also corrected the extended-nonnegative-real
+  zero inverse explanation and a reversed dependency arrow before freeze.
 - The proof-to-prose checker now recognizes declarations preceded by Lean
-  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 12-module
+  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 13-module
   audit confirms that every named declaration is visible in its Notebook.
 - The project skill now requires deterministic card verification, XML and
   rendered SVG inspection, desktop and 390-pixel browser QA, KaTeX/raw-math
@@ -528,6 +573,8 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `c7b64ec`: first two exact finite GUE trace moments, integrability, and
+  teaching layer.
 - `10bbde4`: normalized Hermitian coordinates, exact intrinsic Gaussian
   representation, finite GUE unitary invariance, and teaching layer.
 - `8774349`: intrinsic Hermitian Frobenius geometry, Gaussian symmetry, and

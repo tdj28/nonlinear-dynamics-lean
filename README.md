@@ -306,16 +306,24 @@ The first active sequence is:
     `E[Tr H] = 0` and `E[Tr(H^2)] = n`. The second identity is obtained from the
     normalized Frobenius coordinates, so it holds uniformly at dimension zero
     and requires neither a density nor eigenvalue machinery.
+13. [`RandomMatrices/HermitianSpectrum.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean)
+    packages decreasingly ordered real Hermitian eigenvalues with multiplicity,
+    proves the exact trace and trace-square sums and unitary-congruence
+    invariance, and builds spectral counting and zero-aware empirical measures.
+    It exposes a genuine probability-measure wrapper only in positive
+    dimension and keeps every measure-valued measurability theorem conditional
+    on the still-unproved coordinatewise eigenvalue measurability hypothesis.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Package ordered finite Hermitian eigenvalues, their algebraic trace
-   identities, counting measures, and the zero-aware empirical-measure
-   interface.
-2. Prove a reusable eigenvalue perturbation or continuity theorem, then
-   discharge measurability and construct the finite-GUE empirical spectral law
-   without introducing an asymptotic claim.
+1. Add `HermitianSpectrumContinuity.lean`: prove the Frobenius Weyl bound
+   `|λᵢ(A) - λᵢ(B)| ≤ ‖A - B‖_F`, package the ordered vector as 1-Lipschitz,
+   and discharge coordinatewise measurability of the ordered spectrum.
+2. Construct the unconditional finite-GUE empirical spectral law, reconcile
+   its intrinsic and ambient presentations, and connect its first two
+   normalized moments to the checked trace identities without introducing an
+   asymptotic claim.
 3. Reuse the same matrix layer for random Jacobian stability and matrix
    cocycles.
 

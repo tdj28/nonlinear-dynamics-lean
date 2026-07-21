@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420"
+     viewBox="0 0 760 420" role="img"
+     aria-labelledby="esmDeepTitle esmDeepDesc">
+  <title id="esmDeepTitle">A sample spectrum, its measure, and a law over measures</title>
+  <desc id="esmDeepDesc">One intrinsic Hermitian matrix produces a decreasing real spectrum and one empirical spectral measure. A separate coordinatewise eigenvalue-measurability gate is required before a matrix probability law can be pushed forward to a probability law whose samples are measures.</desc>
+  <rect width="760" height="420" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2}
+    .dash{fill:none;stroke:#A89B8C;stroke-width:1.5;stroke-dasharray:5 4}
+  </style>
+  <defs>
+    <marker id="esmDeepArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">One sample measure is not yet a law over measures</text>
+  <text x="24" y="48" class="t m">Finite spectral algebra reaches the upper path; random-law transport needs the lower gate.</text>
+
+  <rect x="24" y="78" width="194" height="116" rx="12" class="blue"/>
+  <text x="44" y="106" class="t h">HERMITIAN SAMPLE</text>
+  <text x="44" y="134" class="t s">One finite operator</text>
+  <text x="44" y="156" class="t s">in intrinsic geometry</text>
+  <text x="44" y="178" class="t m">Entries depend on basis</text>
+
+  <path d="M226 136 L268 136" class="arrow" marker-end="url(#esmDeepArrow)"/>
+
+  <rect x="276" y="78" width="208" height="116" rx="12" class="cream"/>
+  <text x="296" y="106" class="t h">ORDERED REAL SPECTRUM</text>
+  <text x="296" y="134" class="t s">Decreasing index slots</text>
+  <text x="296" y="156" class="t s">keep repeated levels</text>
+  <text x="296" y="178" class="t m">Invariant under basis change</text>
+
+  <path d="M492 136 L534 136" class="arrow" marker-end="url(#esmDeepArrow)"/>
+
+  <rect x="542" y="78" width="194" height="116" rx="12" class="green"/>
+  <text x="562" y="106" class="t h">EMPIRICAL MEASURE</text>
+  <text x="562" y="134" class="t s">One equal share per slot</text>
+  <text x="562" y="156" class="t s">in positive dimension</text>
+  <text x="562" y="178" class="t m">One deterministic output</text>
+
+  <path d="M639 202 L639 236" class="dash"/>
+
+  <rect x="476" y="244" width="260" height="76" rx="12" class="clay"/>
+  <text x="496" y="270" class="t h">MEASURABILITY GATE</text>
+  <text x="496" y="294" class="t s">Every ordered eigenvalue coordinate</text>
+  <text x="496" y="312" class="t s">must vary measurably with the matrix.</text>
+
+  <rect x="164" y="244" width="252" height="76" rx="12" class="gray"/>
+  <text x="184" y="270" class="t h">RANDOM MATRIX LAW</text>
+  <text x="184" y="294" class="t s">Probability on intrinsic or ambient</text>
+  <text x="184" y="312" class="t s">finite matrix samples</text>
+
+  <path d="M290 328 L290 346" class="arrow" marker-end="url(#esmDeepArrow)"/>
+  <path d="M606 328 L606 346" class="arrow" marker-end="url(#esmDeepArrow)"/>
+
+  <rect x="164" y="350" width="572" height="44" rx="10" class="green"/>
+  <text x="184" y="377" class="t h">LAW OVER MEASURES</text>
+  <text x="348" y="377" class="t s">Available only after the displayed gate is proved.</text>
+
+  <rect x="24" y="244" width="116" height="150" rx="12" class="cream"/>
+  <text x="44" y="270" class="t h">BOUNDARY</text>
+  <text x="44" y="298" class="t s">The algebraic</text>
+  <text x="44" y="318" class="t s">sample measure</text>
+  <text x="44" y="338" class="t s">is checked.</text>
+  <path d="M44 354 L120 354" class="dash"/>
+  <text x="44" y="376" class="t m">Gate unproved</text>
+</svg>

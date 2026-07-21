@@ -865,9 +865,12 @@ develops the Frobenius geometry, while
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
 fixes the entrywise Wigner law.
 
-The next formalization layer is expected to choose a measurable finite-spectrum
-interface and construct an empirical spectral measure before claiming spectral
-moments or limits.
+RMT-10A now supplies the algebraic finite-spectrum interface and a zero-aware
+empirical spectral measure. Read
+[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
+for that continuation. Its measure-valued GUE interfaces remain conditional on
+coordinatewise eigenvalue measurability, so no unconditional spectral law or
+limit is claimed.
 
 ## References
 

@@ -862,6 +862,11 @@ semicircle limit, and universality theorem all remain outside RMT-08.
 is the next checked layer. It consumes the normalized real product pushforward
 to prove integrability and evaluate the first two ordinary-trace expectations.
 
+[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
+then constructs ordered finite spectral data and compares the intrinsic and
+ambient empirical-measure pushforwards under the explicit coordinatewise
+eigenvalue-measurability premise.
+
 Use the
 {{< refterm "normalized-hermitian-coordinates" "Normalized Hermitian coordinates" >}}
 glossary entry for the compact index, decoding, and product-law ledger.

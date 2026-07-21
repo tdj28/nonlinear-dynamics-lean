@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400"
+     viewBox="0 0 760 400" role="img"
+     aria-labelledby="esmGlossTitle esmGlossDesc">
+  <title id="esmGlossTitle">From eigenvalue slots to equal spectral mass</title>
+  <desc id="esmGlossDesc">A decreasing list keeps one slot for every Hermitian eigenvalue, including repeated values. Each slot contributes one point mass. Equal weighting gives an empirical spectral measure in positive dimension, while an empty spectrum gives the zero measure.</desc>
+  <rect width="760" height="400" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2}
+  </style>
+  <defs>
+    <marker id="esmGlossArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">From eigenvalue slots to equal spectral mass</text>
+  <text x="24" y="48" class="t m">Multiplicity is preserved before normalization, and the empty case stays explicit.</text>
+
+  <rect x="24" y="72" width="218" height="236" rx="12" class="blue"/>
+  <text x="44" y="98" class="t h">DECREASING SPECTRUM</text>
+  <text x="44" y="118" class="t m">One slot per eigenvalue</text>
+  <rect x="44" y="136" width="178" height="34" rx="8" class="cream"/>
+  <text x="68" y="158" class="t s">highest spectral level</text>
+  <rect x="44" y="178" width="178" height="34" rx="8" class="clay"/>
+  <text x="70" y="200" class="t s">repeated spectral level</text>
+  <rect x="44" y="220" width="178" height="34" rx="8" class="clay"/>
+  <text x="70" y="242" class="t s">repeated spectral level</text>
+  <rect x="44" y="262" width="178" height="34" rx="8" class="cream"/>
+  <text x="72" y="284" class="t s">lowest spectral level</text>
+
+  <path d="M250 190 L282 190" class="arrow" marker-end="url(#esmGlossArrow)"/>
+
+  <rect x="290" y="72" width="202" height="236" rx="12" class="cream"/>
+  <text x="310" y="98" class="t h">COUNT EVERY SLOT</text>
+  <text x="310" y="118" class="t m">Repeated locations add mass</text>
+  <circle cx="332" cy="154" r="8" fill="#4B6787"/>
+  <text x="352" y="158" class="t s">one point mass</text>
+  <circle cx="332" cy="194" r="8" fill="#A67C52"/>
+  <text x="352" y="198" class="t s">one point mass</text>
+  <circle cx="332" cy="234" r="8" fill="#A67C52"/>
+  <text x="352" y="238" class="t s">one point mass</text>
+  <circle cx="332" cy="274" r="8" fill="#4B6787"/>
+  <text x="352" y="278" class="t s">one point mass</text>
+
+  <path d="M500 190 L532 190" class="arrow" marker-end="url(#esmGlossArrow)"/>
+
+  <rect x="540" y="72" width="196" height="144" rx="12" class="green"/>
+  <text x="560" y="98" class="t h">POSITIVE DIMENSION</text>
+  <text x="560" y="124" class="t s">Share total mass equally</text>
+  <text x="560" y="146" class="t s">across all index slots.</text>
+  <text x="560" y="180" class="t h">PROBABILITY MEASURE</text>
+
+  <rect x="540" y="228" width="196" height="80" rx="12" class="clay"/>
+  <text x="560" y="254" class="t h">EMPTY SPECTRUM</text>
+  <text x="560" y="278" class="t s">Return the zero measure.</text>
+  <text x="560" y="296" class="t m">No artificial spectral atom</text>
+
+  <rect x="24" y="328" width="712" height="48" rx="10" class="green"/>
+  <text x="44" y="349" class="t h">TAKEAWAY</text>
+  <text x="132" y="349" class="t s">Count multiplicity first, normalize only when the spectrum is nonempty.</text>
+  <text x="132" y="368" class="t m">This construction alone does not prove a measurable random spectral law.</text>
+</svg>

@@ -68,6 +68,12 @@ entry separates the analytic layers, and
 [First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
 derives both checked identities.
 
+RMT-10A now proves that the first two trace powers are also the first two
+power moments of the finite Hermitian spectral counting measure. The
+{{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}
+entry explains that bridge, its normalization, and why a random spectral law
+still needs coordinatewise eigenvalue measurability.
+
 ## In Lean
 
 The project uses:
@@ -89,8 +95,9 @@ equality is needed by the matrix identity appearing at exponent zero.
 Their relationship depends on the chosen matrix scaling.
 {{< /panel >}}
 
-Related concepts: {{< refterm "matrix-trace" "matrix trace" >}} and
-{{< refterm "random-matrix" "random matrix" >}}.
+Related concepts: {{< refterm "matrix-trace" "matrix trace" >}},
+{{< refterm "random-matrix" "random matrix" >}}, and
+{{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}.
 
 Further reading: Terence Tao's
 [Topics in Random Matrix Theory](https://doi.org/10.1090/gsm/132)

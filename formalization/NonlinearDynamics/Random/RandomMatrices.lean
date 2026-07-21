@@ -5,6 +5,7 @@ import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
 import NonlinearDynamics.Random.RandomMatrices.Hermitian
 import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum
 import NonlinearDynamics.Random.RandomMatrices.Laws
 import NonlinearDynamics.Random.RandomMatrices.Observables
 

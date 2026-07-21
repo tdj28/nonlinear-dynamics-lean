@@ -280,6 +280,14 @@ For the law being integrated, read the
 entry and
 [From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}}).
 
+The next algebraic layer is now available in the
+{{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}
+entry and
+[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}}).
+It converts the first two trace powers into moments of a finite spectral
+counting measure while keeping the unresolved eigenvalue-measurability premise
+explicit.
+
 ## References
 
 <a id="ref-gloss-mathlib-bochner"></a>**Mathlib contributors.**

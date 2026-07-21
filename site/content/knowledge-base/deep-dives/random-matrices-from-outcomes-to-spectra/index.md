@@ -36,9 +36,13 @@ instance, definition, or theorem.
 **Current continuation.** This chapter began with the foundational matrix
 modules. The project has since constructed the Wigner-scaled finite Gaussian
 unitary ensemble (GUE) coordinate and matrix laws, including exact marginals,
-independence, and the zero-dimensional Dirac boundary. Follow
-[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
-for that completed layer. Density, unitary invariance, spectra, and moments
+independence, the zero-dimensional Dirac boundary, intrinsic unitary
+invariance, and the first two integrable trace moments. RMT-10A also constructs
+the ordered finite Hermitian spectrum and zero-aware empirical spectral
+measure. Follow
+[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
+for that current layer. Coordinatewise eigenvalue measurability, an
+unconditional random spectral law, densities, and large-dimension limits
 remain later work.
 {{< /panel >}}
 

@@ -916,13 +916,16 @@ internally coherent and that the observable/integrability layer is usable.
 They also mark the boundary of what can be computed without new
 infrastructure.
 
-A natural next vertical slice is measurable Hermitian spectral data: choose an
-eigenvalue interface that records multiplicity, prove the required
-measurability, and define an empirical spectral measure. Only after that bridge
-is checked should the project identify normalized trace powers with spectral
-moments. Higher GUE trace moments require a separate combinatorial or Gaussian
-moment layer. Asymptotic semicircle claims require yet another limit layer and
-remain outside this finite module.
+[Ordered Hermitian Spectra in Lean]({{< relref "/development-notebook/2026/07/ordered-hermitian-spectra-and-empirical-measures" >}})
+now packages the decreasing eigenvalue vector with multiplicity, its first two
+trace identities, counting and zero-aware empirical measures, and the exact
+ambient/intrinsic GUE pushforward bridge under an explicit coordinatewise
+eigenvalue-measurability hypothesis. The next analytic slice must prove that
+hypothesis through a reusable perturbation or continuity theorem. Only then
+should the project identify normalized random trace powers with spectral
+moments unconditionally. Higher GUE trace moments require a separate
+combinatorial or Gaussian moment layer. Asymptotic semicircle claims require
+yet another limit layer and remain outside this finite module.
 
 ## References
 
