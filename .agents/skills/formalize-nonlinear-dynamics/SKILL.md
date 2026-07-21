@@ -66,7 +66,13 @@ missing.
    - compile boundary countermodels before freezing the API. In particular,
      test zero horizons, zero block lengths, empty index types, degenerate
      measures, and periodic bases to distinguish necessary assumptions from
-     convenient ones.
+     convenient ones;
+   - when a theorem is valid at every positive horizon but its time-zero case
+     needs normalization, expose positive-horizon and uniform variants instead
+     of forcing the time-zero premise onto the useful positive statement; and
+   - audit overloaded mathematical vocabulary against the exact definition.
+     For example, subtracting a pointwise orbit majorant is not expectation
+     centering and does not imply mean zero.
 4. For iterated dynamics, track properties of the powered map separately.
    `MeasurePreserving T μ μ` passes to `T^[b]`, but `Ergodic T μ` does not in
    general pass to `T^[b]`; never use preservation as a proxy for ergodicity.
@@ -138,6 +144,10 @@ Also run the changed Lean file directly with warnings as errors. Check that:
   present;
 - social-card dimensions and alt text are correct;
 - mathematical prose does not claim more than Lean proves.
+- totalized boundary identities are described at their true information
+  content. An equality that reduces to `0 = 0` through division by zero is
+  valid but may be vacuous and must not be narrated as a positive-time
+  averaging fact.
 
 `make check` runs the table-driven source-hygiene regression tests and
 `scripts/check_teaching_source_hygiene.py` over every teaching Markdown file.

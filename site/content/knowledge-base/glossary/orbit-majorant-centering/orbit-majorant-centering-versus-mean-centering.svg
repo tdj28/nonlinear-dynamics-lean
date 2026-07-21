@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="500"
+     viewBox="0 0 760 500" role="img"
+     aria-labelledby="orbitCenterTitle orbitCenterDesc">
+  <title id="orbitCenterTitle">Three different ways to change a finite process</title>
+  <desc id="orbitCenterDesc">Three labeled columns contrast orbit-majorant centering, expectation centering on a probability base, and time normalization. Only orbit-majorant centering subtracts the one-step orbit sum, makes positive horizons nonpositive, and preserves shifted subadditivity.</desc>
+  <rect width="760" height="500" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:20px;font-weight:700}
+    .h{font-size:15px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .orbit{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.8}
+    .mean{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.8}
+    .time{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.8}
+    .takeaway{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.8}
+    .divider{stroke:#A89B8C;stroke-width:1.4;stroke-dasharray:5 4}
+  </style>
+
+  <text x="24" y="32" class="t title">Three operations, three different conclusions</text>
+  <text x="24" y="55" class="t m">The formalized reduction uses the left column only</text>
+
+  <rect x="24" y="82" width="224" height="326" rx="13" class="orbit"/>
+  <text x="46" y="115" class="t h">Orbit-majorant centering</text>
+  <text x="46" y="141" class="t m">Subtract</text>
+  <rect x="46" y="154" width="180" height="55" rx="9" fill="#FBF9F6" stroke="#4B6787"/>
+  <text x="65" y="178" class="t s" font-weight="700">one-step orbit sum</text>
+  <text x="76" y="197" class="t m">sample-dependent</text>
+  <line x1="136" y1="218" x2="136" y2="244" stroke="#4B6787" stroke-width="2"/>
+  <polygon points="130,240 142,240 136,249" fill="#4B6787"/>
+  <text x="46" y="277" class="t h">Positive horizons</text>
+  <text x="46" y="299" class="t s">are nonpositive</text>
+  <line x1="46" y1="318" x2="226" y2="318" class="divider"/>
+  <text x="46" y="347" class="t h">Shifted subadditivity</text>
+  <text x="46" y="369" class="t s">is preserved</text>
+  <text x="46" y="393" class="t m">Finite pointwise algebra</text>
+
+  <rect x="268" y="82" width="224" height="326" rx="13" class="mean"/>
+  <text x="290" y="115" class="t h">Expectation centering</text>
+  <text x="290" y="141" class="t m">Subtract</text>
+  <rect x="290" y="154" width="180" height="55" rx="9" fill="#FBF9F6" stroke="#A67C52"/>
+  <text x="327" y="178" class="t s" font-weight="700">expected value</text>
+  <text x="332" y="197" class="t m">one scalar</text>
+  <line x1="380" y1="218" x2="380" y2="244" stroke="#A67C52" stroke-width="2"/>
+  <polygon points="374,240 386,240 380,249" fill="#A67C52"/>
+  <text x="290" y="277" class="t h">If integrable, mean zero</text>
+  <text x="290" y="299" class="t s">on a probability base</text>
+  <line x1="290" y1="318" x2="470" y2="318" class="divider"/>
+  <text x="290" y="347" class="t h">No pointwise sign</text>
+  <text x="290" y="369" class="t s">and no automatic</text>
+  <text x="290" y="389" class="t s">subadditivity</text>
+
+  <rect x="512" y="82" width="224" height="326" rx="13" class="time"/>
+  <text x="534" y="115" class="t h">Time normalization</text>
+  <text x="534" y="141" class="t m">Change scale</text>
+  <rect x="534" y="154" width="180" height="55" rx="9" fill="#FBF9F6" stroke="#7F786D"/>
+  <text x="577" y="178" class="t s" font-weight="700">divide by horizon</text>
+  <text x="576" y="197" class="t m">per-step quantity</text>
+  <line x1="624" y1="218" x2="624" y2="244" stroke="#7F786D" stroke-width="2"/>
+  <polygon points="618,240 630,240 624,249" fill="#7F786D"/>
+  <text x="534" y="277" class="t h">Changes magnitude</text>
+  <text x="534" y="299" class="t s">without centering</text>
+  <line x1="534" y1="318" x2="714" y2="318" class="divider"/>
+  <text x="534" y="347" class="t h">No sign or limit</text>
+  <text x="534" y="369" class="t s">follows from division</text>
+  <text x="534" y="393" class="t m">Zero time is totalized</text>
+
+  <rect x="24" y="430" width="712" height="52" rx="11" class="takeaway"/>
+  <text x="164" y="452" class="t h">Only the additive orbit majorant preserves this finite split</text>
+  <text x="180" y="472" class="t m">Nonpositive is not mean zero, and an identity is not a limit theorem</text>
+</svg>

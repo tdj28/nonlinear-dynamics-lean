@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="480"
+     viewBox="0 0 760 480" role="img"
+     aria-labelledby="majorantTitle majorantDesc">
+  <title id="majorantTitle">Subtracting an additive orbit majorant leaves a nonpositive residual</title>
+  <desc id="majorantDesc">A row of one-step observations forms an additive orbit majorant above a finite process value. A subtraction arrow leads to a centered residual below zero at positive horizons. A boundary note says time zero also needs the original process to start at zero.</desc>
+  <rect width="760" height="480" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .process{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .orbit{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .residual{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{stroke:#A67C52;stroke-width:2;fill:none}
+  </style>
+
+  <text x="24" y="28" class="t title">Subtract the orbit majorant, keep the finite slack</text>
+  <text x="24" y="48" class="t m">Shifted subadditivity compares one long value with the sum of its one-step pieces.</text>
+
+  <rect x="24" y="76" width="244" height="116" rx="12" class="process"/>
+  <text x="44" y="105" class="t h">FINITE PROCESS VALUE</text>
+  <text x="44" y="130" class="t s">One value for the whole horizon</text>
+  <text x="44" y="153" class="t m">May lie strictly below the additive route</text>
+  <rect x="44" y="166" width="186" height="8" rx="4" fill="#4B6787"/>
+
+  <path d="M278 134 L322 134" class="arrow"/>
+  <polygon points="322,134 312,129 312,139" fill="#A67C52"/>
+  <text x="282" y="119" class="t m">bounded by</text>
+
+  <rect x="332" y="76" width="404" height="116" rx="12" class="orbit"/>
+  <text x="352" y="105" class="t h">ADDITIVE ONE-STEP ORBIT MAJORANT</text>
+  <text x="352" y="128" class="t m">Sample one-step values successively along the base orbit</text>
+  <rect x="352" y="146" width="78" height="28" rx="7" class="neutral"/>
+  <rect x="438" y="146" width="78" height="28" rx="7" class="neutral"/>
+  <rect x="524" y="146" width="78" height="28" rx="7" class="neutral"/>
+  <rect x="610" y="146" width="96" height="28" rx="7" class="neutral"/>
+  <text x="373" y="165" class="t m">first</text>
+  <text x="459" y="165" class="t m">next</text>
+  <text x="545" y="165" class="t m">next</text>
+  <text x="626" y="165" class="t m">continue</text>
+
+  <path d="M534 204 L534 246" class="arrow"/>
+  <polygon points="534,246 529,236 539,236" fill="#A67C52"/>
+  <text x="548" y="229" class="t m">subtract this majorant</text>
+
+  <rect x="184" y="256" width="392" height="112" rx="12" class="residual"/>
+  <text x="212" y="288" class="t h">CENTERED RESIDUAL</text>
+  <text x="212" y="314" class="t s">The unused slack in the additive upper bound</text>
+  <line x1="212" y1="339" x2="548" y2="339" stroke="#7F786D" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="212" y="358" class="t m">At positive horizons the residual cannot rise above zero.</text>
+
+  <rect x="24" y="390" width="712" height="70" rx="10" class="neutral"/>
+  <text x="48" y="418" class="t h">TIME-ZERO BOUNDARY</text>
+  <text x="48" y="441" class="t s">Uniform nonpositivity includes time zero only when the original process starts exactly at zero.</text>
+</svg>

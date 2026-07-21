@@ -1333,9 +1333,14 @@ Related compact entries include the
 {{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}, and the
 {{< refterm "forward-matrix-product" "forward matrix product" >}}.
 
-The next asymptotic milestone must formalize a precise measure-theoretic theorem
-before introducing a samplewise exponent. Finite block notation is a route to
-that work, not authorization to skip it.
+[Orbit-Majorant Centering for Subadditive Processes]({{< relref "/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes" >}})
+is the immediate successor. It specializes the finite block majorant to one
+step, subtracts that additive orbit sum, and keeps the resulting subadditive
+slack explicit.
+
+Beyond that finite centering step, an asymptotic milestone must formalize a
+precise measure-theoretic theorem before introducing a samplewise exponent.
+Finite block notation is a route to that work, not authorization to skip it.
 
 ## References
 

@@ -4,6 +4,7 @@ import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
 import NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
 
 /-!
 # Random cocycles
@@ -22,6 +23,12 @@ integrability while packaging the log-positive family as an integrable
 subadditive-process candidate. The shifted subadditive inequality alone then
 gives finite block bounds by Birkhoff sums of a fixed block observable plus a
 short remainder, while preservation of the chosen block map gives
-integrability of each finite sum. This layer deliberately stops before
-Kingman's theorem or any samplewise exponent claim.
+integrability of each finite sum. Subtracting the one-step Birkhoff sum then
+produces a shifted-subadditive process that is nonpositive at positive
+horizons, and uniformly nonpositive under exact time-zero normalization. It
+also gives an exact normalized decomposition into a centered term plus a
+Birkhoff average. Here centering is pointwise compensation by an additive
+majorant, not subtraction of an expectation. This layer deliberately stops
+before a pointwise Birkhoff theorem, Kingman's theorem, or any samplewise
+exponent claim.
 -/

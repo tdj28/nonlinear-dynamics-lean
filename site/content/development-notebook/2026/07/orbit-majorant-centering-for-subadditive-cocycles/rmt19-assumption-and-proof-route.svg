@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="680"
+     viewBox="0 0 920 680" role="img"
+     aria-labelledby="centeringRouteTitle centeringRouteDesc">
+  <title id="centeringRouteTitle">Assumption-separated route through orbit-majorant centering</title>
+  <desc id="centeringRouteDesc">A finite process value and its additive one-step orbit majorant enter three proof lanes. The pointwise lane gives a nonpositive residual at positive horizons and uses exact time-zero normalization only for a uniform statement. The algebra lane preserves shifted subadditivity without analytic assumptions. The analytic lane adds one-step measure preservation to package finite-horizon integrability. A final cocycle row distinguishes results that use the cocycle directly from candidate packaging that needs generator integrability.</desc>
+  <rect width="920" height="680" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .tiny{font-size:11px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .point{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .algebra{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .analytic{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warning{fill:#F5EBCF;stroke:#A98845;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2;marker-end:url(#arrowhead)}
+    .dash{fill:none;stroke:#A89B8C;stroke-width:1.4;stroke-dasharray:5 4}
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="28" y="34" class="t title">Subtract one additive orbit budget, then keep the proof gates separate</text>
+  <text x="28" y="57" class="t m">The operation is pointwise compensation. It is not subtraction of an expectation and does not produce mean zero.</text>
+
+  <rect x="28" y="82" width="864" height="108" rx="12" class="neutral"/>
+  <rect x="50" y="111" width="238" height="52" rx="10" class="point"/>
+  <text x="78" y="133" class="t h">FINITE PROCESS VALUE</text>
+  <text x="76" y="151" class="t tiny">one value at the chosen horizon</text>
+  <text x="314" y="145" class="t title">minus</text>
+  <rect x="390" y="111" width="316" height="52" rx="10" class="algebra"/>
+  <text x="429" y="133" class="t h">ADDITIVE ONE-STEP ORBIT BUDGET</text>
+  <text x="438" y="151" class="t tiny">finite samples along the base orbit</text>
+  <path d="M718 137 L774 137" class="arrow"/>
+  <rect x="782" y="105" width="88" height="64" rx="10" class="warning"/>
+  <text x="826" y="131" text-anchor="middle" class="t h">RESIDUAL</text>
+  <text x="826" y="150" text-anchor="middle" class="t tiny">new process</text>
+
+  <path d="M826 190 L826 220" class="arrow"/>
+  <path d="M826 220 L170 220 L170 247" class="arrow"/>
+  <path d="M826 220 L460 220 L460 247" class="arrow"/>
+  <path d="M826 220 L750 220 L750 247" class="arrow"/>
+
+  <rect x="28" y="258" width="274" height="226" rx="12" class="point"/>
+  <text x="50" y="289" class="t h">POINTWISE SIGN LANE</text>
+  <line x1="50" y1="305" x2="280" y2="305" class="dash"/>
+  <rect x="50" y="326" width="230" height="54" rx="9" class="neutral"/>
+  <text x="68" y="348" class="t s">Positive horizon</text>
+  <text x="68" y="366" class="t tiny">shifted subadditivity alone</text>
+  <rect x="50" y="394" width="230" height="54" rx="9" class="neutral"/>
+  <text x="68" y="416" class="t s">Uniform through time zero</text>
+  <text x="68" y="434" class="t tiny">add exact zero-time normalization</text>
+  <text x="50" y="469" class="t m">Output: a nonpositive residual.</text>
+
+  <rect x="323" y="258" width="274" height="226" rx="12" class="algebra"/>
+  <text x="345" y="289" class="t h">ALGEBRA LANE</text>
+  <line x1="345" y1="305" x2="575" y2="305" class="dash"/>
+  <rect x="345" y="326" width="230" height="54" rx="9" class="neutral"/>
+  <text x="363" y="348" class="t s">Exact orbit-sum splitting</text>
+  <text x="363" y="366" class="t tiny">later samples start after the shift</text>
+  <rect x="345" y="394" width="230" height="54" rx="9" class="neutral"/>
+  <text x="363" y="416" class="t s">Raw process inequality</text>
+  <text x="363" y="434" class="t tiny">no analytic package is consumed</text>
+  <text x="345" y="469" class="t m">Output: shifted subadditivity survives.</text>
+
+  <rect x="618" y="258" width="274" height="226" rx="12" class="analytic"/>
+  <text x="640" y="289" class="t h">FINITE INTEGRABILITY LANE</text>
+  <line x1="640" y1="305" x2="870" y2="305" class="dash"/>
+  <rect x="640" y="326" width="230" height="54" rx="9" class="neutral"/>
+  <text x="658" y="348" class="t s">Each process horizon integrable</text>
+  <text x="658" y="366" class="t tiny">stored by the candidate</text>
+  <rect x="640" y="394" width="230" height="54" rx="9" class="neutral"/>
+  <text x="658" y="416" class="t s">One-step map preserves measure</text>
+  <text x="658" y="434" class="t tiny">finite orbit terms stay integrable</text>
+  <text x="640" y="469" class="t m">Output: another finite candidate.</text>
+
+  <path d="M165 484 L165 520" class="arrow"/>
+  <path d="M460 484 L460 520" class="arrow"/>
+  <path d="M755 484 L755 520" class="arrow"/>
+
+  <rect x="28" y="531" width="864" height="78" rx="12" class="neutral"/>
+  <text x="50" y="558" class="t h">MATRIX COCYCLE SPECIALIZATION</text>
+  <text x="50" y="580" class="t s">Pointwise sign and shifted subadditivity use the cocycle directly.</text>
+  <text x="500" y="580" class="t s">Only integrable candidate packaging needs generator integrability.</text>
+
+  <rect x="28" y="624" width="864" height="34" rx="10" class="warning"/>
+  <text x="460" y="646" text-anchor="middle" class="t s">FINITE RESULTS ONLY: NO MEAN-ZERO CLAIM, BIRKHOFF LIMIT, KINGMAN THEOREM, OR LYAPUNOV EXPONENT</text>
+</svg>

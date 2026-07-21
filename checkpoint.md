@@ -3,12 +3,12 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 12:20 PDT
+Last updated: 2026-07-21 13:07 PDT
 
-Audited baseline: `main` at `b40e424`
+Audited baseline: `main` at `8aac7f9`
 
-Active direction: centering normalized subadditive processes by one-step
-Birkhoff sums
+Active direction: finite phase averaging for nonpositive shifted-subadditive
+processes
 
 ## How to Use This Checkpoint
 
@@ -24,15 +24,15 @@ Birkhoff sums
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,174 jobs. The integrated RMT-18 gate covers twenty-three
-  substantive modules, twenty-three complete draft Notebook companions, and 246
+- Last green Lean build: 3,176 jobs. The integrated RMT-19 gate covers twenty-four
+  substantive modules, twenty-four complete draft Notebook companions, and 253
   Hugo pages with warnings fatal.
-- Lean inventory: 414 public named declarations across the twenty-three substantive
+- Lean inventory: 432 public named declarations across the twenty-four substantive
   modules; 18 one-line deterministic placeholders; one `.gitkeep`-only
   Random branch; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 138,873 words across the twenty-three Notebook companions
-  and 153,609 words across twenty Deep Dives and thirty-three glossary
+- Teaching snapshot: 147,692 words across the twenty-four Notebook companions
+  and 164,051 words across twenty-one Deep Dives and thirty-four glossary
   chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
@@ -66,16 +66,17 @@ Birkhoff sums
 | `NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth` | Raw-measure integrals of every finite-horizon log-positive envelope, shifted-integral invariance, an exact orbit-sum integral, a linear one-step bound, scalar subadditivity, positive-time normalization, and deterministic Fekete convergence | `integrated-log-positive-growth-and-deterministic-fekete-limit` |
 | `NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase` | A generic integrable shifted-subadditive-process candidate, deterministic Fekete-rate bounds, probability-guarded expectation terminology, and native ergodic rigidity for invariant events and real observables, with no samplewise-limit claim | `probability-and-ergodic-base-interfaces-for-matrix-cocycles` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks` | Both finite block-plus-remainder orientations, quotient/remainder forms, the exact time-zero normalization boundary, fixed-block Birkhoff-sum integrability under block-map preservation alone, and cocycle log-positive specializations without probability, ergodicity, or convergence claims | `finite-block-birkhoff-bounds-for-subadditive-cocycles` |
+| `NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering` | Orbit-majorant centering, positive-horizon and time-zero-aware nonpositivity, preserved shifted subadditivity, finite-horizon integrability under one-step preservation, an exact normalized split, and direct log-positive cocycle specializations without a limit claim | `orbit-majorant-centering-for-subadditive-cocycles` |
 
-The root aggregator imports all twenty-three modules. The proof-to-prose manifest and
+The root aggregator imports all twenty-four modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twenty-three comprehensive Development Notebook chapters in an explicit
+- Twenty-four comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Twenty textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Twenty-one textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -93,8 +94,9 @@ declaration visibility.
   Log-Positive Cocycle Integrability*, *Integrated Log-Positive Cocycle
   Growth and Its Deterministic Fekete Limit*, and *Probability Normalization
   and Ergodic Rigidity Before Kingman*, followed by *Finite Block
-  Decomposition for Subadditive Processes*.
-- Thirty-three glossary chapters, now including the Birkhoff sum, the ergodic probability base,
+  Decomposition for Subadditive Processes* and *Orbit-Majorant Centering for
+  Subadditive Processes*.
+- Thirty-four glossary chapters, now including orbit-majorant centering, the Birkhoff sum, the ergodic probability base,
   the integrated log-positive growth rate, the log-positive integrability
   envelope, the extended log-norm
   observable, one-sided discrete matrix
@@ -105,7 +107,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Sixty-six deterministic 1200x630 social cards and fifty accessible
+- Sixty-nine deterministic 1200x630 social cards and fifty-four accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -114,52 +116,53 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-19: center a subadditive process by its one-step Birkhoff sum
+### RMT-20: phase-average a nonpositive shifted-subadditive process
 
-The next module is provisionally
-`Random/RandomCocycles/SubadditiveCentering.lean`. A warning-fatal prototype
-already compiles the intended core reduction. Freeze the smallest
-assumption-tight public API before writing its teaching layer:
+The next module is
+`Random/RandomCocycles/SubadditivePhaseAveraging.lean`. A 289-line
+warning-fatal prototype at `/private/tmp/RMT20Prototype.lean` establishes the
+intended finite API. Freeze that API without importing analytic hypotheses:
 
-1. Define
-   `centeredProcess T X n ω = X n ω - birkhoffSum T (X 1) n ω` and keep that
-   definition independent of measurable or probabilistic structure.
-2. Prove the finite one-step majorant
-   `X n ω ≤ birkhoffSum T (X 1) n ω` first for `n ≠ 0` without time-zero
-   normalization, then uniformly under the exact premise `X 0 = 0`. Derive
-   the corresponding positive-horizon and uniform nonpositivity theorems for
-   the centered process. Retain a raw algebraic helper so the proof records
-   which bundled fields it actually consumes.
-3. Prove directly from `birkhoffSum_add` that the centered process remains
-   shifted-subadditive. This algebraic theorem needs neither normalization,
-   measure preservation, probability, nor ergodicity.
-4. Under an explicit `MeasurePreserving T μ μ` premise, prove every centered
-   horizon integrable by combining candidate integrability with RMT-18's
-   finite Birkhoff-sum theorem at block length one. Package the centered family
-   as another `IsIntegrableSubadditiveProcessCandidate` without adding a
-   probability or ergodicity premise.
-5. Prove the exact normalized identity expressing `X n / n` as the normalized
-   centered term plus `birkhoffAverage ℝ T (X 1) n`. Audit the totalized
-   `n = 0` branch explicitly and state no limit consequence.
-6. Add the thin cocycle layer that identifies the one-step Birkhoff sum with
-   the existing `orbitLogPlusSum`, defines the centered log-positive
-   observable, proves its pointwise nonpositivity and subadditivity directly
-   from `C`, packages it as a candidate only under `hC`, and specializes the
-   normalized identity. Do not duplicate RMT-15's existing pointwise majorant
-   or add a redundant integrability wrapper. Compile boundary probes for the
-   constant-one process, zero horizon, zero measure, identity base, and an
-   empty matrix index, then pair every frozen declaration with a comprehensive
-   Notebook, glossary chapter, Deep Dive, deterministic cards, and prose-only
-   conceptual figures.
+1. Prove the pure finite reindexing identity
+   `sum_phase_birkhoffSum T g b q ω` for any additive commutative monoid:
+   summing the `q`-term `T^[b]` Birkhoff sums over all phases `s < b` is exactly
+   the `b * q`-term `T` Birkhoff sum. Use induction on `q`, the pinned iterate
+   identities, and existing finite Birkhoff-sum recursion.
+2. Add the boundary-retaining candidate method
+   `le_phase_birkhoffSum_add_boundaries`. For `s < b`, it bounds
+   `X (b*q+b+r) ω` by `q` complete `b`-blocks beginning at phase `s`, plus the
+   prefix `X s ω` and terminal gap `X (b+r-s)`. This theorem consumes only the
+   shifted-subadditive inequality.
+3. Add `le_phase_birkhoffSum` under precisely
+   `∀ n, n ≠ 0 → ∀ ω, X n ω ≤ 0`. Drop both boundary values without assuming
+   `X 0 = 0`: handle `s = 0` by the terminal-remainder theorem, and for
+   `0 < s < b` observe that both boundary lengths are positive.
+4. Sum over phases to prove the total zero-block-safe inequality
+   `(b : ℝ) * X (b*q+b+r) ω ≤ birkhoffSum T (X b) (b*q) ω`, then give the
+   division form only under `b ≠ 0`. Keep `r` unrestricted; any later
+   asymptotic use must separately establish a bound such as `r < b`.
+5. Specialize both phase-average forms to RMT-19's `centeredProcess` using its
+   positive-horizon nonpositivity theorem. These declarations need neither
+   `X 0 = 0` nor measure preservation. Add the thin centered log-positive
+   cocycle specialization directly from `C`, without `hC`, probability,
+   ergodicity, or a nonempty matrix index.
+6. Compile edge probes for `b = 0`, `q = 0`, `b = 1`, identity base, zero
+   measure, empty matrix index, and a shifted-subadditive example with
+   `X 0 = 1` but negative positive-time values. Pair the frozen declarations
+   with a comprehensive Notebook, glossary chapter, Deep Dive, deterministic
+   cards, and prose-only conceptual figures.
 
-This is a finite centering identity, not a pointwise Birkhoff theorem or a
-subadditive ergodic theorem. Here "centered" means subtracting an additive
-orbit majorant, not subtracting an expectation or producing mean zero. In
-particular, nonpositivity of the centered process does not imply its normalized
-value converges, and the exact identity does not supply convergence of the
-Birkhoff average. RMT-19 must prove no almost-everywhere limit, invariant limit
-field, limit-integral interchange, Lyapunov exponent, maximal inequality, or
-Oseledets splitting.
+The teaching layer must state one source correction explicitly. Lalley's
+phase-averaging display combines `n` blocks of length `m` with `m + k`
+boundary positions, which has total horizon `(n+1)m+k`, not the printed
+`nm+k`; its subsequent remainder count is incompatible with that same display.
+The checked theorem uses `b*q+b+r` and exactly `b*q` sliding-block starts. This
+is a finite arithmetic repair, not a silent quotation. RMT-20 proves no
+pointwise or mean Birkhoff theorem, almost-everywhere or `L¹` convergence,
+Kingman upper estimate, limsup passage, invariant integral, probability or
+ergodicity result, maximal inequality, interval packing, Lyapunov exponent, or
+Oseledets splitting. RMT-21 should add the separate ordered-disjoint-interval
+packing layer needed for the complementary finite lower estimate.
 
 ## Dependency-Ordered Roadmap
 
@@ -223,6 +226,10 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Exact finite block and quotient/remainder Birkhoff bounds, including both
   remainder orientations, the time-zero boundary, block-map-only finite-sum
   integrability, and log-positive cocycle specializations.
+- [x] Orbit-majorant centering by the one-step Birkhoff sum, with the exact
+  positive-horizon/time-zero boundary, preserved shifted subadditivity,
+  finite-horizon integrability, normalized splitting, and cocycle
+  specializations.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -616,6 +623,26 @@ k-invariance precedes approximation claims.
 - RMT-18 is finite algebra and finite integrability only. It proves no
   Birkhoff-average convergence, maximal inequality, Kingman theorem,
   samplewise growth limit, Lyapunov exponent, or Oseledets splitting.
+- RMT-19 defines `centeredProcess T X n ω` by subtracting the finite one-step
+  Birkhoff orbit majorant from `X n ω`. The word *centered* therefore names
+  pointwise orbit-majorant compensation, not subtraction of an expectation;
+  the residual need not have integral or expectation zero.
+- The one-step majorant and centered nonpositivity need no time-zero premise at
+  positive horizons. Their uniform versions through `n = 0` require exactly
+  `X 0 = 0`. The totalized normalized identity is unconditional, but its
+  zero-time branch is the vacuous field identity `0 = 0` and carries no
+  information about `X 0`.
+- Centered shifted subadditivity is raw finite algebra. Integrability of every
+  centered horizon and candidate packaging additionally require only
+  `MeasurePreserving T μ μ`; probability and ergodicity remain irrelevant.
+- RMT-19's cocycle nonpositivity, subadditivity, and normalized split take the
+  cocycle directly. Only the integrable-candidate packaging consumes
+  `HasIntegrableGeneratorLogPlus`. All declarations remain valid for an empty
+  matrix index.
+- RMT-19 proves an exact finite normalized decomposition, not convergence of
+  either term. It supplies no pointwise Birkhoff theorem, maximal inequality,
+  Kingman theorem, samplewise growth rate, Lyapunov exponent, or Oseledets
+  splitting.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -656,9 +683,11 @@ k-invariance precedes approximation claims.
   limits remain open. Probability-guarded expectation terminology and native
   invariant-event and invariant-observable rigidity are now formalized, as are
   both finite block/remainder orientations and fixed-block Birkhoff-sum
-  integrability. Those interfaces do not produce the missing pointwise
-  Birkhoff theorem, maximal inequality, subadditive ergodic theorem, or
-  samplewise limit.
+  integrability. Orbit-majorant centering, its positive-time nonpositive
+  residual, preserved subadditivity, finite-horizon integrability, and exact
+  normalized split are now formalized as well. Those interfaces do not
+  produce the missing pointwise Birkhoff theorem, maximal inequality,
+  subadditive ergodic theorem, or samplewise limit.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -1147,9 +1176,40 @@ Checkpoint/skill milestone QA:
   dimensions, the canonical disclosure renders exactly once on the new
   Notebook and Deep Dive, all predecessor/successor and reciprocal Knowledge
   Base links are exact, and desktop plus mobile screenshots pass visual review.
+- RMT-19 Lean audit: all 18 public declarations and two private raw helpers
+  implement the one-step orbit majorant, positive-horizon and uniform centered
+  nonpositivity, preserved shifted subadditivity, finite-horizon integrability,
+  candidate packaging, exact normalized splitting, and log-positive cocycle
+  specializations. The leaf, aggregators, root import, and public smoke pass
+  warnings as errors; the complete build finishes 3,176 jobs across 24
+  substantive modules and 432 public named declarations. Smokes cover constant
+  one, zero horizon, zero measure, identity base, and empty matrix dimension.
+  No proof holes, unsafe declarations, or custom axioms occur; theorem audits
+  contain only `propext`, `Classical.choice`, and `Quot.sound` where needed.
+- RMT-19 static teaching audit: the 8,733-word Notebook, 2,707-word glossary,
+  and 7,664-word Deep Dive cover every public declaration and private helper in
+  source order, distinguish positive-time from time-zero interfaces, separate
+  orbit-majorant from expectation centering, and state exhaustive convergence
+  nonclaims. Source hygiene passes 84 Markdown files, coverage passes 24/24
+  modules, and Hugo builds 253 pages with warnings fatal. All three
+  deterministic cards reproduce byte-for-byte at 1200x630 from both the
+  repository and `/private/tmp`; all four prose-only SVGs parse, render, and
+  carry accessible title and description wiring. Claim-local primary and
+  pinned-Mathlib citations pass their anchor audit.
+- Rendered RMT-19 QA: the Notebook, glossary, and Deep Dive render 301, 110,
+  and 310 KaTeX nodes respectively at both 1,280- and 390-pixel widths. The
+  amended RMT-18 Notebook, glossary, and Deep Dive render 264, 108, and 340.
+  All six pages have one article heading, zero KaTeX errors, raw delimiters,
+  page-level overflow, broken assets, or browser console failures. Cards and
+  explicitly scrolled lazy SVGs load at their intrinsic dimensions, canonical
+  disclosures render exactly once on the new Notebook and Deep Dive and not on
+  the glossary, all predecessor/successor and reciprocal Knowledge Base links
+  are present, and desktop plus mobile screenshots pass visual review.
 
 ## Recent Pushes
 
+- `8aac7f9`: finite subadditive block and remainder bounds, fixed-block
+  Birkhoff-sum integrability, cocycle specializations, and teaching layer.
 - `b40e424`: probability normalization, integrable subadditive-process
   packaging, ergodic rigidity interfaces, and teaching layer.
 - `cdda319`: integrated log-positive cocycle growth, deterministic Fekete

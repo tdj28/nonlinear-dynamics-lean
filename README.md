@@ -394,23 +394,33 @@ The first active sequence is:
     interfaces to cocycle log-positive growth. The pointwise cocycle bounds
     require no integrability premise; the entire layer requires neither
     probability nor ergodicity and makes no convergence claim.
+24. [`RandomCocycles/SubadditiveCentering.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean)
+    subtracts the one-step Birkhoff orbit sum from a finite subadditive
+    process. The residual is nonpositive at every positive horizon without a
+    time-zero premise, and uniformly nonpositive under exactly `X 0 = 0`.
+    Raw finite algebra preserves shifted subadditivity; one-step measure
+    preservation transports integrability and repackages the residual as a
+    new candidate. An exact normalized identity then separates the original
+    value into a normalized residual plus a finite Birkhoff average. The
+    cocycle pointwise layer needs no generator-integrability witness; only its
+    candidate packaging does. This is orbit-majorant compensation, not
+    expectation centering, mean zero, or an ergodic limit theorem.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add `RandomCocycles/SubadditiveCentering.lean`: subtract the one-step
-   Birkhoff sum from a normalized subadditive process, prove the resulting
-   centered process is nonpositive and remains shifted-subadditive, propagate
-   its finite-horizon integrability under a measure-preserving base, and state
-   the exact normalized identity involving `birkhoffAverage`. Keep the
-   time-zero premise attached only where the uniform one-step majorant needs
-   it; positive horizons require no such premise. Specialize the reduction to
-   the cocycle log-positive observable without duplicating its existing
-   one-step orbit-sum majorant.
-2. Develop the finite phase-averaging layer that reconciles block-map sums
-   with the one-step base without assuming that every power of an ergodic map
-   is ergodic. Freeze its finite identities and error terms before using any
-   limiting theorem.
+1. Add `RandomCocycles/SubadditivePhaseAveraging.lean`: reindex the sum over
+   block phases as one finite Birkhoff sum, retain and then discard the two
+   boundary process values under positive-horizon nonpositivity, and prove the
+   zero-block-safe phase-average inequality. Specialize it to the centered
+   process without assuming `X 0 = 0` or measure preservation, and then to the
+   centered cocycle observable without integrability, probability, or
+   ergodicity assumptions. Record the repaired finite horizon
+   `b * q + b + r` explicitly rather than importing an inconsistent printed
+   index from the motivating notes.
+2. Add a separate finite interval-packing layer over an explicit ordered family
+   of disjoint intervals. Keep its combinatorics independent of measure theory,
+   and use it only after its coverage and boundary bookkeeping are checked.
 3. Design and prove the missing Kingman-style infrastructure from its exact
    measurable, integrable, stationary, finite-measure, maximal-inequality, and
    almost-everywhere hypotheses. The pinned Mathlib release supplies finite

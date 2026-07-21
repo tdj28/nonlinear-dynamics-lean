@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420"
+     viewBox="0 0 760 420" role="img"
+     aria-labelledby="splitTitle splitDesc">
+  <title id="splitTitle">An exact normalized split does not prove convergence</title>
+  <desc id="splitDesc">A normalized finite process value branches into a normalized centered residual and a one-step orbit average. Each branch carries an unresolved convergence question. A footer says that an exact identity at every finite horizon is not a limit theorem.</desc>
+  <rect width="760" height="420" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .source{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .left{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .right{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .question{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.3;stroke-dasharray:5 4}
+    .arrow{stroke:#A67C52;stroke-width:2;fill:none}
+  </style>
+
+  <text x="24" y="28" class="t title">One finite identity, two separate asymptotic questions</text>
+  <text x="24" y="48" class="t m">Dividing by the horizon reorganizes the same finite quantities. It creates no convergence.</text>
+
+  <rect x="214" y="72" width="332" height="72" rx="12" class="source"/>
+  <text x="252" y="101" class="t h">NORMALIZED FINITE PROCESS VALUE</text>
+  <text x="267" y="125" class="t s">The quantity whose later behavior is still open</text>
+
+  <path d="M380 146 L232 202" class="arrow"/>
+  <polygon points="232,202 240,193 244,204" fill="#A67C52"/>
+  <path d="M380 146 L528 202" class="arrow"/>
+  <polygon points="528,202 516,204 520,193" fill="#A67C52"/>
+
+  <rect x="48" y="212" width="300" height="112" rx="12" class="left"/>
+  <text x="74" y="242" class="t h">NORMALIZED CENTERED RESIDUAL</text>
+  <text x="74" y="267" class="t s">Finite subadditive slack after compensation</text>
+  <rect x="74" y="282" width="248" height="26" rx="7" class="question"/>
+  <text x="102" y="300" class="t m">Does this branch converge?</text>
+
+  <rect x="412" y="212" width="300" height="112" rx="12" class="right"/>
+  <text x="444" y="242" class="t h">ONE-STEP ORBIT AVERAGE</text>
+  <text x="444" y="267" class="t s">Average of the sampled one-step observable</text>
+  <rect x="438" y="282" width="248" height="26" rx="7" class="question"/>
+  <text x="466" y="300" class="t m">Does this branch converge?</text>
+
+  <rect x="24" y="348" width="712" height="52" rx="10" fill="#EDE8E1" stroke="#7F786D" stroke-width="1.5"/>
+  <text x="80" y="380" class="t s">Exact equality at every finite horizon does not answer either convergence question.</text>
+</svg>

@@ -482,6 +482,12 @@ argument. The
 entry explains the deterministic Fekete limit of the already integrated
 sequence. Neither entry turns the present finite sum into a samplewise limit.
 
+The
+{{< refterm "orbit-majorant-centering" "orbit-majorant centering" >}}
+entry specializes the finite sum to the one-step observable, subtracts it as
+an additive pointwise majorant, and keeps the resulting nonpositive
+shifted-subadditive remainder distinct from expectation centering.
+
 ## References
 
 <a id="ref-birkhoff-mathlib-basic"></a>**Mathlib contributors.**

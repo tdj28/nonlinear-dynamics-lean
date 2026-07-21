@@ -103,6 +103,11 @@ This is the proof-to-prose companion for
 It covers all twelve public declarations and all three private proof helpers
 in exact source order. The immediate predecessor is
 [Probability and Ergodic Bases in Lean: Three Gates Before Kingman]({{< relref "/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles" >}}).
+The immediate successor is
+[Subtract the Orbit Majorant: Centering Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/orbit-majorant-centering-for-subadditive-cocycles" >}}).
+It specializes the exact-block majorant to one-step blocks, subtracts that
+additive orbit budget, and preserves shifted subadditivity and finite-horizon
+integrability without calling the residual mean zero or claiming a limit.
 Reusable foundations include
 {{< refterm "one-sided-discrete-matrix-cocycle" "one-sided discrete matrix cocycle" >}},
 {{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}},
@@ -1288,17 +1293,22 @@ passes required by the Development Notebook guide.
 
 ## The next ridge
 
-RMT-18 leaves the project at an honest boundary. We can tile every finite
+RMT-18 leaves the project at an honest finite boundary. We can tile every
 horizon, orient the remainder either way, and integrate every finite block
-sum under the exact preservation premise. Those facts are reusable inputs to
-asymptotic reasoning, but they do not choose or prove that reasoning.
+sum under the exact preservation premise. The immediate RMT-19 successor
+subtracts the additive one-step orbit majorant, proves the residual
+nonpositive at positive horizons, preserves shifted subadditivity, and records
+an exact normalized identity. That centering is pointwise compensation, not
+expectation subtraction or a mean-zero construction.
 
-A future Kingman layer must select a precise theorem statement compatible
-with the project's indexing and shifted orientation. It must decide whether
-subadditivity holds everywhere or almost everywhere, what negative-part or
-lower-bound assumptions are needed, what kind of convergence is claimed, how
-the invariant sigma-algebra enters, and when ergodicity is used. It must also
-avoid applying ergodicity directly to \(T^b\) without justification.
+The next layer after centering should also remain finite: phase averaging must
+reconcile block-map sums with the one-step base without assuming that
+ergodicity passes from \(T\) to \(T^b\). Only then should a future Kingman
+layer select a precise theorem statement compatible with the project's
+indexing and shifted orientation. It must decide whether subadditivity holds
+everywhere or almost everywhere, what negative-part or lower-bound assumptions
+are needed, what kind of convergence is claimed, how the invariant
+sigma-algebra enters, and when ergodicity is used.
 
 For matrix products, a further design choice remains. The log-positive
 observable is ideal for upper-tail integrability but clips negative logarithmic
