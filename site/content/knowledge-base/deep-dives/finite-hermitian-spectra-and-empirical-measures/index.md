@@ -50,18 +50,29 @@ The second is the {{< refterm "empirical-spectral-measure" "empirical spectral m
 The module explicitly defines \(L_H=0\) at \(n=0\), so the all-dimensions
 object is zero or probabilistic rather than always probabilistic.
 
-This is a strong algebraic layer, but it is not yet a random spectral law.
-Pinned Mathlib supplies a canonical ordered Hermitian eigenvalue enumeration
-and the finite spectral theorem. It does not currently supply the continuity
-or measurability theorem for those ordered coordinates that this project needs.
-Every theorem that maps a matrix law into a law on spectral measures therefore
-takes coordinatewise eigenvalue measurability as an explicit hypothesis.
+This is a strong algebraic layer, but within RMT-10A it is not yet a random
+spectral law. Pinned Mathlib supplies a canonical ordered Hermitian eigenvalue
+enumeration and the finite spectral theorem. It does not directly supply the
+continuity or measurability theorem for those ordered coordinates that this
+project needs. Every RMT-10A theorem that maps a matrix law into a law on
+spectral measures therefore takes coordinatewise eigenvalue measurability as
+an explicit hypothesis.
 
 That boundary is the chapter's central lesson. Pointwise spectral algebra,
 measure-valued measurability, and a pushforward probability law are different
 summits. RMT-10A reaches the first, builds conditional bridges toward the
 second and third, and does not pretend that the missing bridge has already been
 crossed.
+
+{{< panel "info" >}}
+**Successor layer.** RMT-10B now proves a Frobenius
+{{< refterm "weyl-eigenvalue-bound" "Weyl eigenvalue bound" >}}, packages the
+ordered spectrum as 1-Lipschitz, and discharges these coordinatewise
+measurability hypotheses.
+[Hermitian Spectral Perturbation, Continuity, and Measurability]({{< relref "/knowledge-base/deep-dives/hermitian-spectral-perturbation-continuity-and-measurability" >}})
+develops that proof and the resulting unconditional GUE pushforward bridge.
+This chapter continues to document the exact RMT-10A boundary.
+{{< /panel >}}
 
 ## Choose a route up
 
@@ -147,8 +158,8 @@ distribution*:
    variability.
 
 In a deterministic theorem, the first two levels need no probability space.
-The third level is where the Giry measurable structure and the current open
-eigenvalue-measurability obligation enter.
+The third level is where the Giry measurable structure and RMT-10A's displayed
+eigenvalue-measurability obligation enter. RMT-10B later discharges it.
 
 {{< checkpoint stage="Orientation" title="The theorem boundary in one sentence" >}}
 RMT-10A defines finite spectra and empirical measures unconditionally for each
@@ -1088,10 +1099,13 @@ bridge can consume.
 constructs the intrinsic law and ambient pushforward identity used by the
 conditional comparison.
 
-The next formal milestone must prove coordinatewise continuity or measurability
-of the ordered Hermitian eigenvalues. Only then can the project remove the
-hypotheses from its Giry interfaces and define an unconditional finite-GUE
-empirical spectral law.
+The successor formal milestone now proves coordinatewise continuity and
+measurability of the ordered Hermitian eigenvalues:
+[Hermitian Spectral Perturbation, Continuity, and Measurability]({{< relref "/knowledge-base/deep-dives/hermitian-spectral-perturbation-continuity-and-measurability" >}}).
+It removes the hypotheses from the Giry interfaces and proves the
+ambient-versus-intrinsic GUE pushforward equality unconditionally. A separately
+named finite-GUE empirical spectral law and its normalized moments remain for
+the next layer.
 
 ## References
 

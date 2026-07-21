@@ -92,6 +92,11 @@ those trace powers into moments of an empirical spectral measure. The broader
 textbook ascent is introduced in
 [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}}).
 
+Its immediate successor,
+[Hermitian Spectral Stability in Lean]({{< relref "/development-notebook/2026/07/hermitian-spectral-perturbation-and-measurability" >}}),
+proves the missing Frobenius perturbation bound and discharges every
+coordinatewise eigenvalue-measurability hypothesis kept visible here.
+
 Reusable background appears under
 {{< refterm "empirical-spectral-measure" >}},
 {{< refterm "hermitian-matrix" >}},
@@ -1130,12 +1135,15 @@ ordered Hermitian eigenvalues. A Weyl or Courant-Fischer layer should give a
 coordinate bound strong enough to prove continuity, hence measurability, of
 `orderedHermitianEigenvalues`.
 
-Once that theorem exists, the conditional suffixes in this module can be
-discharged without changing the spectral interfaces. A later vertical slice
-may then define the finite-GUE empirical spectral law unconditionally, prove
-its intrinsic and ambient constructions agree, audit its zero-dimensional
-law, and connect its first two normalized moments to RMT-09. Joint densities,
-higher moments, and asymptotic semicircle behavior remain later ridges.
+That dependency is carried by the next chapter,
+[Hermitian Spectral Stability in Lean]({{< relref "/development-notebook/2026/07/hermitian-spectral-perturbation-and-measurability" >}}),
+which proves the coordinatewise Frobenius bound and closes the conditional
+measurability interfaces without changing their design.
+
+With that theorem in place, a later vertical slice may now define the
+finite-GUE empirical spectral law, audit its zero-dimensional law, and connect
+its first two normalized moments to RMT-09. Joint densities, higher moments,
+and asymptotic semicircle behavior remain later ridges.
 
 ## References
 

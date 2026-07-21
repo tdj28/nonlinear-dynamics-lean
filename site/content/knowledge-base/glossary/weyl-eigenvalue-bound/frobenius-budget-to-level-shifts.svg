@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="350"
+     viewBox="0 0 760 350" role="img"
+     aria-labelledby="weylBudgetTitle weylBudgetDesc">
+  <title id="weylBudgetTitle">One matrix perturbation budget controls every ordered spectral level</title>
+  <desc id="weylBudgetDesc">A first Hermitian matrix and a second Hermitian matrix feed a shared Frobenius perturbation budget. Decreasing ordering pairs the first, middle, and last spectral levels, and every pair stays within the same budget. The diagram makes no claim about eigenvectors or full-spectrum Euclidean distance.</desc>
+  <rect width="760" height="350" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .matrix{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .budget{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .levels{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .takeaway{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.4}
+    .link{fill:none;stroke:#A67C52;stroke-width:2}
+    .pair{fill:none;stroke:#4B6787;stroke-width:1.7;stroke-dasharray:5 4}
+  </style>
+  <defs>
+    <marker id="weylArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">One perturbation budget, every ordered level</text>
+  <text x="24" y="48" class="t m">Hermitian ordering supplies the correspondence before the bound is applied.</text>
+
+  <rect x="24" y="76" width="160" height="72" rx="11" class="matrix"/>
+  <text x="104" y="105" text-anchor="middle" class="t h">First Hermitian matrix</text>
+  <text x="104" y="127" text-anchor="middle" class="t m">intrinsic Frobenius geometry</text>
+
+  <rect x="24" y="168" width="160" height="72" rx="11" class="matrix"/>
+  <text x="104" y="197" text-anchor="middle" class="t h">Second Hermitian matrix</text>
+  <text x="104" y="219" text-anchor="middle" class="t m">same dimension and ordering</text>
+
+  <path d="M184 112 H224 V137" class="link" marker-end="url(#weylArrow)"/>
+  <path d="M184 204 H224 V179" class="link" marker-end="url(#weylArrow)"/>
+
+  <rect x="232" y="116" width="190" height="84" rx="12" class="budget"/>
+  <text x="327" y="148" text-anchor="middle" class="t h">Shared Frobenius budget</text>
+  <text x="327" y="171" text-anchor="middle" class="t s">one matrix-level allowance</text>
+  <text x="327" y="189" text-anchor="middle" class="t m">deterministic, not probabilistic</text>
+
+  <path d="M422 158 H457" class="link" marker-end="url(#weylArrow)"/>
+
+  <rect x="468" y="76" width="268" height="164" rx="12" class="levels"/>
+  <text x="602" y="101" text-anchor="middle" class="t h">Decreasingly ordered spectral levels</text>
+  <text x="490" y="128" class="t s">first level</text>
+  <line x1="563" y1="124" x2="692" y2="124" class="pair"/>
+  <text x="490" y="160" class="t s">middle level</text>
+  <line x1="574" y1="156" x2="681" y2="156" class="pair"/>
+  <text x="490" y="192" class="t s">last level</text>
+  <line x1="560" y1="188" x2="695" y2="188" class="pair"/>
+  <text x="602" y="220" text-anchor="middle" class="t m">each index pair stays inside the same budget</text>
+
+  <rect x="24" y="278" width="712" height="48" rx="10" class="takeaway"/>
+  <text x="380" y="307" text-anchor="middle" class="t s">The conclusion controls eigenvalue locations, not eigenvector directions or random tails.</text>
+</svg>

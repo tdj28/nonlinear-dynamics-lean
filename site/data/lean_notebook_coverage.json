@@ -43,6 +43,10 @@
     "module": "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum",
     "notebook": "site/content/development-notebook/2026/07/ordered-hermitian-spectra-and-empirical-measures/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity",
+    "notebook": "site/content/development-notebook/2026/07/hermitian-spectral-perturbation-and-measurability/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Laws",
     "notebook": "site/content/development-notebook/2026/07/from-random-matrices-to-laws/index.md"
