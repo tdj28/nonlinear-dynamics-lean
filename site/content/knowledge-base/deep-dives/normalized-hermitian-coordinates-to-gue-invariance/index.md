@@ -858,6 +858,10 @@ semicircle limit, and universality theorem all remain outside RMT-08.
 
 ## Where to continue
 
+[First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
+is the next checked layer. It consumes the normalized real product pushforward
+to prove integrability and evaluate the first two ordinary-trace expectations.
+
 Use the
 {{< refterm "normalized-hermitian-coordinates" "Normalized Hermitian coordinates" >}}
 glossary entry for the compact index, decoding, and product-law ledger.

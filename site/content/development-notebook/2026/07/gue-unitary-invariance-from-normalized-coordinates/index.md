@@ -1147,12 +1147,15 @@ With this bridge checked, the finite GUE law finally justifies the adjective
 *unitary* at the measure level. That is a structural summit, not the end of
 random-matrix theory.
 
-The next mathematically honest directions include finite trace moments,
-covariance identities, spectral measurability, and eventually eigenvalue laws.
-Each should consume the invariant law proved here rather than reconstructing
-coordinate symmetry from scratch. Asymptotic statements such as the
-semicircle law require an additional limit architecture and must remain
-separate from this exact finite-dimensional theorem.
+[The First Exact GUE Trace Moments in Lean: Centering, Energy, and Wigner
+Scale]({{< relref "/development-notebook/2026/07/gue-first-exact-trace-moments" >}})
+now proves the first two integrable trace moments from this bridge. The next
+mathematically honest ridge is a measurable finite-spectrum interface and an
+empirical spectral measure. Those layers should consume the invariant law
+proved here rather than reconstructing coordinate symmetry from scratch.
+Asymptotic statements such as the semicircle law require an additional limit
+architecture and must remain separate from this exact finite-dimensional
+theorem.
 
 ## References
 

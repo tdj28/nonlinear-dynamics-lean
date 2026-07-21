@@ -261,11 +261,16 @@ implementation detail. Follow-up modules have since discharged three of them:
 RMT-07 proves that the ambient law gives the measurable Hermitian locus mass
 one and proves intrinsic standard-Gaussian symmetry; RMT-08 proves the exact
 coordinate-to-intrinsic Gaussian comparison and unitary invariance of
-<code>GUE.matrixLaw</code>. Density and Jacobian formulas, measurable
-eigenvalues, integrability and trace moments, empirical spectral measures,
-and all large-dimension claims remain unchecked.
+<code>GUE.matrixLaw</code>. RMT-09 proves Bochner integrability and evaluates
+the first two ordinary-trace moments exactly. Density and Jacobian formulas,
+measurable eigenvalues, higher trace moments, empirical spectral measures, and
+all large-dimension claims remain unchecked.
 
 ## Where to continue
+
+[First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
+uses the normalized real product law to prove the first two integrable complex
+trace expectations, including dimension zero.
 
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
 derives the factor-of-two geometry, builds the product probability space in

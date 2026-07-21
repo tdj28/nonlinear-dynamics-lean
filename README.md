@@ -300,13 +300,22 @@ The first active sequence is:
     standard Gaussian, and then pushes intrinsic congruence symmetry through
     the Hermitian inclusion to prove unitary-conjugation invariance of the
     ambient finite GUE law in every dimension, including zero.
+12. [`RandomMatrices/GaussianUnitaryEnsembleMoments.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean)
+    proves that the first two trace-power observables are complex Bochner
+    integrable under the finite GUE law and evaluates their exact expectations:
+    `E[Tr H] = 0` and `E[Tr(H^2)] = n`. The second identity is obtained from the
+    normalized Frobenius coordinates, so it holds uniformly at dimension zero
+    and requires neither a density nor eigenvalue machinery.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Establish integrability and check the first exact expected trace moments.
-2. Make Hermitian eigenvalues measurable and define the empirical spectral
-   measure without introducing an asymptotic claim.
+1. Package ordered finite Hermitian eigenvalues, their algebraic trace
+   identities, counting measures, and the zero-aware empirical-measure
+   interface.
+2. Prove a reusable eigenvalue perturbation or continuity theorem, then
+   discharge measurability and construct the finite-GUE empirical spectral law
+   without introducing an asymptotic claim.
 3. Reuse the same matrix layer for random Jacobian stability and matrix
    cocycles.
 

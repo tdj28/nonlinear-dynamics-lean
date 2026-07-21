@@ -61,6 +61,13 @@ The corresponding expected trace moment, when it exists, is
 That expectation needs a probability measure and an integrability argument,
 neither of which is part of the elementary observable definition.
 
+RMT-09 now discharges those obligations for the first two powers of the
+project's finite Wigner-scaled Gaussian unitary ensemble law. The
+{{< refterm "finite-matrix-trace-moment" "finite matrix trace moment" >}}
+entry separates the analytic layers, and
+[First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
+derives both checked identities.
+
 ## In Lean
 
 The project uses:

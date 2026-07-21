@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 03:50 PDT
+Last updated: 2026-07-21 04:26 PDT
 
-Audited baseline: `main` at `8774349`
+Audited baseline: `main` at `10bbde4`
 
-Active direction: exact integrability and first trace moments of finite GUE
+Active direction: measurable finite spectral data and empirical spectral measures
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: exact integrability and first trace moments of finite GUE
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,145 jobs. The integrated RMT-08 gate covers eleven
-  substantive modules, eleven complete draft Notebook companions, and 103
+- Last green Lean build: 3,146 jobs. The integrated RMT-09 gate covers twelve
+  substantive modules, twelve complete draft Notebook companions, and 116
   Hugo pages with warnings fatal.
-- Lean inventory: 244 public declaration lines across the eleven substantive
+- Lean inventory: 248 public declaration lines across the twelve substantive
   modules; 18 one-line deterministic placeholders; three `.gitkeep`-only
   Random branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 59,587 words across the eleven Notebook companions and
-  59,219 words across eight Deep Dives and twenty glossary chapters.
+- Teaching snapshot: 65,298 words across the twelve Notebook companions and
+  66,726 words across nine Deep Dives and twenty-one glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -52,26 +52,29 @@ Active direction: exact integrability and first trace moments of finite GUE
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble` | Explicit Wigner variance ledger, canonical independent Gaussian coordinate law, block/scalar laws and independence, measurable Hermitian pushforward matrix law, exact diagonal and strict-upper marginals, and coordinate/matrix Dirac laws at `n = 0` | `finite-gue-law-from-coordinates` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry` | Frobenius Euclidean matrix carrier, intrinsic real Hermitian subspace, trace pairing, ambient and intrinsic unitary-congruence isometries, intrinsic standard-Gaussian invariance, and measurable mass-one Hermitian support of the ambient GUE law | `gue-frobenius-geometry-and-hermitian-support` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance` | Normalized real Hermitian coordinates, Frobenius linear isometric equivalence, exact full-product decoding, scaled intrinsic standard-Gaussian representation, intrinsic probability and zero-dimensional laws, and ambient unitary-conjugation invariance | `gue-unitary-invariance-from-normalized-coordinates` |
+| `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments` | Complex Bochner integrability of the first two trace-power observables and the exact finite identities `E[Tr H] = 0` and `E[Tr(H²)] = n`, uniformly including dimension zero | `gue-first-exact-trace-moments` |
 
-The root aggregator imports all eleven modules. The proof-to-prose manifest and
+The root aggregator imports all twelve modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Eleven comprehensive Development Notebook chapters in an explicit
+- Twelve comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Eight textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Nine textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
   *Finite GUE from Independent Gaussian Coordinates*, and *Intrinsic Hermitian
   Gaussian Symmetry and Matrix-Law Support*, followed by *From Normalized
-  Hermitian Coordinates to Gaussian Unitary Ensemble Invariance*.
-- Twenty glossary chapters, now including normalized Hermitian coordinates
+  Hermitian Coordinates to Gaussian Unitary Ensemble Invariance* and *First
+  Exact Finite Gaussian Unitary Ensemble Trace Moments*.
+- Twenty-one glossary chapters, now including finite matrix trace moments and
+  normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Twenty-nine deterministic 1200x630 social cards and seventeen accessible
+- Thirty-two deterministic 1200x630 social cards and nineteen accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -80,35 +83,46 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-09: integrability and the first exact finite-GUE trace moments
+### RMT-10A: algebraic finite Hermitian spectral data
 
-The next module is `GaussianUnitaryEnsembleMoments.lean`. Read-only API
-reconnaissance produced a complete warning-clean prototype; the durable
-repository slice must now turn that design into a documented, audited public
-interface with four theorems:
+The next module is `HermitianSpectrum.lean`. Pinned Mathlib supplies an
+algebraic ordered eigenvalue API but does not yet supply continuity or
+measurability for that ordering. Land the strongest honest layer that is
+independent of that missing theorem:
 
-1. `GUE.integrable_tracePower_one`: the ambient observable
-   `RandomMatrix.tracePower id 1` is Bochner integrable under `GUE.matrixLaw n`.
-2. `GUE.integral_tracePower_one`: its complex integral is exactly zero.
-3. `GUE.integrable_tracePower_two`: `RandomMatrix.tracePower id 2` is Bochner
-   integrable under the same law.
-4. `GUE.integral_tracePower_two`: its complex integral is exactly `(n : ℂ)`.
+1. Define `orderedHermitianEigenvalues` on
+   `RandomMatrix.HermitianEuclidean n` using
+   `Matrix.IsHermitian.eigenvalues₀`, transported from
+   `Fin (Fintype.card (Fin n))` to `Fin n` by the order-preserving finite
+   cast. Do not use Mathlib's arbitrarily reindexed `eigenvalues` as though it
+   were sorted.
+2. Prove antitonicity, the trace and trace-square sum identities, and exact
+   invariance under intrinsic unitary congruence.
+3. Define the spectral counting measure and prove total mass `n`, then define
+   the normalized empirical spectral measure with an explicit zero-dimensional
+   policy.
+4. At `n = 0`, both counting and empirical measures are zero. For every
+   dimension the empirical measure is zero or a probability measure; expose a
+   genuine `ProbabilityMeasure ℝ` wrapper only at dimension `n + 1`.
+5. State generic Giry-measurability and intrinsic/ambient pushforward bridges
+   conditional on coordinatewise eigenvalue measurability. These are dependency
+   interfaces, not permission to claim that a GUE empirical spectral law has
+   already been constructed.
 
-The proof must hold for every natural dimension, including zero. The first
-moment may sum the exact centered diagonal laws. The second should consume
-RMT-08's normalized real product representation and prove pointwise that
-`Tr(H^2)` equals the Frobenius norm squared and hence the sum of the `n²`
-normalized real coordinate squares. Each coordinate has exact second moment
-`varianceScale n`; cardinality through
-`hermitianRealIndexEquivMatrixIndex n` and the explicit zero/successor split
-then give `n² / n = n` without a density or eigenvalue argument.
+The follow-on RMT-10B milestone must prove coordinatewise continuity or a
+reusable perturbation bound for the ordered eigenvalue vector, preferably
+through a Weyl or Courant-Fischer layer. Once that discharges the exact
+measurability blocker, RMT-10C may define the finite-GUE empirical spectral law,
+prove the intrinsic and ambient constructions agree, handle the
+zero-dimensional Dirac law, and connect the first two empirical moments to
+RMT-09.
 
-The public statements are complex Bochner integrals. Because `GUE.matrixLaw n`
-is already a probability measure, they are the corresponding expectations.
-The Notebook must explain the integrability transfer through measurable
-pushforwards, the distinction between pointwise trace algebra and measure-level
-integration, the Wigner normalization check, and why off-diagonal independence
-is not needed once the normalized Euclidean representation is available.
+If perturbation theory grows into a larger independent slice, the safe
+measurable fallback is the vector of signed principal-minor coefficients. It is
+measurable by the Leibniz determinant formula and equals the reversed
+characteristic-polynomial coefficient vector. Its pushforward is spectral
+algebra, but it must not be called an eigenvalue law or empirical spectral
+measure.
 
 ## Dependency-Ordered Roadmap
 
@@ -149,8 +163,8 @@ unresolved convention or depend on an unproved earlier interface.
   canonical Hermitian standard Gaussian.
 - [x] Exact coordinate-to-intrinsic-Gaussian bridge and nontrivial unitary
   invariance of the ambient GUE law.
-- [ ] First exact expected trace moments, then eigenvalue measurability and an
-  empirical spectral measure.
+- [x] Integrability and the first exact expected trace moments.
+- [ ] Eigenvalue measurability and an empirical spectral measure.
 - [ ] Deterministic matrix-product inequalities, then measurable random
   products.
 - [ ] Random cocycles over a measure-preserving base and finite-time
@@ -305,9 +319,20 @@ k-invariance precedes approximation claims.
 - The original ambient `GUE.matrixLaw n` is exactly the pushforward of
   `GUE.intrinsicLaw n` through `hermitianToMatrix`. It is now formally invariant
   under every deterministic unitary conjugation.
-- The next moment statements use complex Bochner integrals of the already
+- The RMT-09 moment statements use complex Bochner integrals of the already
   measurable `tracePower` observables. Integrability remains a separate theorem
   and must precede each exact integral identity.
+- RMT-09 proves `tracePower id 1` and `tracePower id 2` Bochner integrable under
+  the ambient probability measure `GUE.matrixLaw n`; their exact complex
+  integrals are zero and `(n : ℂ)`. The trace is ordinary and unnormalized.
+- The first trace calculation needs only centered diagonal marginals. The
+  second consumes RMT-08's whole normalized product-law pushforward, the
+  Hermitian identity `Tr(H²) = ‖H‖_F²`, and the `n²`-coordinate variance sum.
+  Independence is part of the source construction but is not used to factor
+  any expectation in this two-moment proof.
+- Dimension zero is included by the same finite sums and coordinate formulas:
+  the relevant indices are empty and both exact integrals are zero. No
+  positive-dimension hypothesis is hidden in the public API.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -474,8 +499,28 @@ Checkpoint/skill milestone QA:
   now makes all three documents fit 390 pixels exactly while tables, Mermaid
   figures, and code remain locally scrollable. Lazy SVGs load at their declared
   dimensions, and RMT-07/RMT-08 previous/next navigation is exact.
+- RMT-09 Lean audit: exactly four public theorems prove Bochner integrability
+  and the exact complex integrals of trace powers one and two. The changed
+  module and both aggregators pass warnings as errors; the full build completes
+  3,146 jobs; no proof holes or unsafe declarations occur; and all four theorem
+  audits contain only `propext`, `Classical.choice`, and `Quot.sound`.
+- RMT-09 teaching audit: the 5,685-word Notebook covers all four public
+  declarations and twelve private proof helpers; the new 1,934-word glossary
+  and 5,451-word Deep Dive separate integrability, pointwise Hermitian algebra,
+  product-law transport, normalization, and exact expectation from unproved
+  density or asymptotic claims. All three deterministic cards reproduce
+  byte-for-byte at 1200x630 from both the repository and an unrelated working
+  directory; both prose-only SVGs parse and render; and Hugo builds 116 pages
+  with warnings fatal.
+- Rendered RMT-09 QA: the Notebook, glossary, and Deep Dive render 102, 53, and
+  138 KaTeX nodes respectively with zero errors, raw delimiters, or console
+  warnings. Their desktop documents fit 1280 pixels exactly and their mobile
+  documents fit 390 pixels exactly; wide code and tables remain locally
+  scrollable; cards and lazy SVGs load at their intrinsic dimensions; the
+  RMT-08 next link and RMT-09 previous link are exact; and the three updated
+  cross-link pages remain width-clean with valid rendered mathematics.
 - The proof-to-prose checker now recognizes declarations preceded by Lean
-  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 11-module
+  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 12-module
   audit confirms that every named declaration is visible in its Notebook.
 - The project skill now requires deterministic card verification, XML and
   rendered SVG inspection, desktop and 390-pixel browser QA, KaTeX/raw-math
@@ -483,6 +528,8 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `10bbde4`: normalized Hermitian coordinates, exact intrinsic Gaussian
+  representation, finite GUE unitary invariance, and teaching layer.
 - `8774349`: intrinsic Hermitian Frobenius geometry, Gaussian symmetry, and
   mass-one measurable support with teaching layer.
 - `716c0a9`: finite GUE coordinate and ambient matrix laws with teaching layer.
