@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520"
+     viewBox="0 0 800 520" role="img"
+     aria-labelledby="finiteRandomProductTitle finiteRandomProductDesc">
+  <title id="finiteRandomProductTitle">A finite random matrix product is built sample first and transported second</title>
+  <desc id="finiteRandomProductDesc">A top row moves from a time-indexed factor family through one selected outcome and a finite chronological product. A certificate box states that exactly the factors in the selected prefix are measurable. The certified product and a chosen source measure then enter a transport step that produces the product law. A footer says that independence and long-time growth are not supplied.</desc>
+  <rect width="800" height="520" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="finiteRandomProductArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Build the sample product before transporting probability</text>
+  <text x="24" y="53" class="t m">Only the finite prefix selected by the horizon enters the construction.</text>
+
+  <rect x="24" y="88" width="184" height="100" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="116" y="121" text-anchor="middle" class="t h">TIME-INDEXED</text>
+  <text x="116" y="143" text-anchor="middle" class="t h">MATRIX FACTORS</text>
+  <text x="116" y="169" text-anchor="middle" class="t m">one map at each time</text>
+
+  <path d="M210 138 L244 138" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#finiteRandomProductArrow)"/>
+
+  <rect x="250" y="88" width="134" height="100" rx="12"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="317" y="121" text-anchor="middle" class="t h">SELECT ONE</text>
+  <text x="317" y="143" text-anchor="middle" class="t h">OUTCOME</text>
+  <text x="317" y="169" text-anchor="middle" class="t m">ordinary matrices</text>
+
+  <path d="M386 138 L420 138" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#finiteRandomProductArrow)"/>
+
+  <rect x="426" y="88" width="216" height="100" rx="12"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="534" y="121" text-anchor="middle" class="t h">MULTIPLY THE</text>
+  <text x="534" y="143" text-anchor="middle" class="t h">FINITE PREFIX</text>
+  <text x="534" y="169" text-anchor="middle" class="t m">chronological action order</text>
+
+  <path d="M644 138 L678 138" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#finiteRandomProductArrow)"/>
+
+  <rect x="684" y="88" width="92" height="100" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="730" y="121" text-anchor="middle" class="t h">ONE</text>
+  <text x="730" y="143" text-anchor="middle" class="t h">PRODUCT</text>
+  <text x="730" y="169" text-anchor="middle" class="t m">matrix value</text>
+
+  <rect x="96" y="236" width="282" height="108" rx="14"
+        fill="#16243A"/>
+  <text x="237" y="270" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">EXACT PREFIX CERTIFICATE</text>
+  <text x="237" y="296" text-anchor="middle" class="t s"
+        style="fill:#FFFDF8">every used factor is measurable</text>
+  <text x="237" y="320" text-anchor="middle" class="t m"
+        style="fill:#D9E1EA">future factors are irrelevant</text>
+
+  <rect x="422" y="236" width="282" height="108" rx="14"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="563" y="270" text-anchor="middle" class="t h">CHOSEN SOURCE MEASURE</text>
+  <text x="563" y="296" text-anchor="middle" class="t s">records outcome weights</text>
+  <text x="563" y="320" text-anchor="middle" class="t m">kept explicit in the law</text>
+
+  <path d="M237 346 L237 382 L380 382" fill="none" stroke="#A67C52"
+        stroke-width="2.5"/>
+  <path d="M563 346 L563 382 L420 382" fill="none" stroke="#A67C52"
+        stroke-width="2.5"/>
+  <path d="M400 382 L400 405" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#finiteRandomProductArrow)"/>
+
+  <rect x="236" y="412" width="328" height="62" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="400" y="439" text-anchor="middle" class="t h">PUSHFORWARD PRODUCT LAW</text>
+  <text x="400" y="460" text-anchor="middle" class="t m">sample values become weighted matrix outcomes</text>
+
+  <text x="24" y="503" class="t m">No independence, stationarity, cocycle, or long-time growth follows from this finite construction.</text>
+</svg>

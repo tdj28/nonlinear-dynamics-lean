@@ -282,6 +282,12 @@ definition proves those hypotheses or conclusions.
 develops all thirteen public declarations in the module, including the exact
 assumption ledger and finite-horizon product, power, and orbit bounds.
 
+The next checked layer evaluates the factors at one outcome, proves exact
+finite-prefix measurability, and forms a pushforward law. Begin with the
+{{< refterm "finite-random-matrix-product" "finite random-matrix product" >}}
+entry, then climb
+[Measurable Finite Random-Matrix Products and Proof-Carrying Pushforward Laws]({{< relref "/knowledge-base/deep-dives/measurable-finite-random-matrix-products-and-pushforward-laws" >}}).
+
 Read the
 {{< refterm "induced-infinity-operator-norm" "induced infinity operator norm" >}}
 entry before interpreting those bounds. The

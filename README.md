@@ -336,14 +336,22 @@ The first active sequence is:
     vector-action recursions. Over real or complex scalars in positive finite
     dimension, it proves product, geometric, and vector-orbit bounds in
     Mathlib's maximum-row-sum norm induced by the vector supremum norm.
+17. [`MatrixProducts/MeasurableFiniteProducts.lean`](formalization/NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean)
+    lifts that ordered product pointwise to time-indexed matrix-valued sample
+    maps. The semiring algebra remains general; the complex measurable layer
+    derives product measurability from exactly the finite prefix in use and
+    exposes only proof-carrying pushforward laws. Probability sources give both
+    a raw mass-one theorem and a bundled probability law, including empty
+    matrix dimension and the zero-horizon Dirac boundary.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Prove measurability and pushforward-law interfaces for finite products of
-   complex random matrices, without introducing an asymptotic exponent.
-2. Reuse the finite-product layer for random Jacobian stability, measurable
-   cocycles, and later Lyapunov-growth interfaces.
+1. Build a measurable discrete matrix cocycle over an explicitly
+   measure-preserving base transformation, reusing the same newest-factor-left
+   product convention.
+2. Add finite-time norm and log-norm observables before any asymptotic
+   Lyapunov-growth or multiplicative-ergodic claim.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

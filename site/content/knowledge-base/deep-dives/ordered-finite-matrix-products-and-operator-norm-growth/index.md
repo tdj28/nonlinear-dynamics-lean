@@ -874,7 +874,12 @@ powers. The
 entry derives the maximum-row-sum formula, explains the matrix norm scope, and
 contrasts it with Frobenius geometry.
 
-For the probability layer that random factors will eventually require, read
+The next checked probability layer is now developed in
+[Measurable Finite Random-Matrix Products and Proof-Carrying Pushforward Laws]({{< relref "/knowledge-base/deep-dives/measurable-finite-random-matrix-products-and-pushforward-laws" >}}).
+Its companion
+{{< refterm "finite-random-matrix-product" "finite random-matrix product" >}}
+entry gives the compact sample-map, exact-prefix-measurability, and law-level
+picture. For the broader probability vocabulary, read
 {{< refterm "random-matrix" "random matrix" >}} and
 [Random Matrices from Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}}).
 [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
@@ -886,9 +891,10 @@ not the same construction.
 For the alternative entrywise Euclidean norm used in the random-matrix branch,
 continue to
 {{< refterm "hermitian-frobenius-geometry" "Hermitian Frobenius geometry" >}}.
-Future chapters can build a measurable random cocycle, connect derivative
-products to nonlinear dynamics, and then ask for long-time growth. Those
-bridges are not silently supplied by this finite module.
+Future chapters can build a measurable random cocycle above the new finite-law
+layer, connect derivative products to nonlinear dynamics, and then ask for
+long-time growth. Those bridges are not silently supplied by this finite
+module.
 
 ## References
 

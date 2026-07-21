@@ -931,6 +931,13 @@ multiplicative ergodic theorem needs still more, including a base dynamical
 system and the hypotheses that support invariant asymptotic subspaces. None of
 those layers should be inferred from the four bounds proved here.
 
+The immediate successor,
+[Measurable Finite Matrix Products in Lean]({{< relref "/development-notebook/2026/07/measurable-finite-matrix-products-and-pushforward-laws" >}}),
+lifts this convention outcome by outcome, proves measurability from exactly the
+used factor prefix, and defines proof-carrying pushforward laws with a
+mass-one probability wrapper. It remains finite-time and introduces no
+independence, factorization, cocycle, or asymptotic claim.
+
 ## References
 
 The links below were checked on 2026-07-21. The pinned local Mathlib 4.32.0

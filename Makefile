@@ -20,7 +20,7 @@ lean: ## Build the Lean formalization
 	cd formalization && . "$$HOME/.elan/env" && lake build
 
 checkpoint: ## Show the current verified state and next formalization milestone
-	@sed -n '1,320p' checkpoint.md
+	@cat checkpoint.md
 
 checkpoint-check: ## Validate the checkpoint and project research skill
 	$(PYTHON) scripts/check_checkpoint.py

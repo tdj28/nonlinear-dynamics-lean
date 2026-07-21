@@ -15,6 +15,10 @@
     "module": "NonlinearDynamics.Random.MatrixProducts.FiniteProducts",
     "notebook": "site/content/development-notebook/2026/07/ordered-finite-matrix-products-and-growth-bounds/index.md"
   },
+  "formalization/NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean": {
+    "module": "NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts",
+    "notebook": "site/content/development-notebook/2026/07/measurable-finite-matrix-products-and-pushforward-laws/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"
