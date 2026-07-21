@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 16:19 PDT
+Last updated: 2026-07-21 16:34 PDT
 
-Audited baseline: `main` at `f50315e`
+Audited baseline: `main` at `2a059b9`
 
 Active direction: RMT-21 is committed and pushed; the next slice is RMT-22, a
 conditional Birkhoff convergence-event bridge
@@ -187,34 +187,38 @@ any orbit average converges:
    integrable `g`, use `hg.aestronglyMeasurable.mk g` to obtain the honest
    null-measurable event rather than silently strengthening integrability to
    ordinary measurability.
-3. Prove the missing pointwise shift lemma: convergence of the averages at
-   `ω` implies convergence at `T ω` to the same limit. The proof uses
-   `birkhoffSum_succ'` and the positive-index identity
-   `A n (T ω) = ((n + 1) / n) * A (n + 1) ω - g ω / n`; it requires neither
-   boundedness nor a convergence-existence hypothesis beyond the point at hand.
-4. Deduce only the one-sided event relation
-   `birkhoffConvergenceSet T g ⊆ T ⁻¹' birkhoffConvergenceSet T g`. Under
-   `[IsFiniteMeasure μ]` and `Ergodic T μ`, apply
-   `Ergodic.ae_empty_or_univ_of_ae_le_preimage` to obtain an a.e.-empty/full
-   dichotomy. Under `[IsProbabilityMeasure μ]`, derive the corresponding
-   probability-zero-or-one corollary.
+3. Prove both missing pointwise shift lemmas. Convergence at `ω` implies
+   convergence at `T ω` to the same limit through
+   `A n (T ω) = ((n + 1) / n) * A (n + 1) ω - g ω / n`. Conversely,
+   convergence at `T ω` implies convergence at `ω` through
+   `A (n + 1) ω = (n / (n + 1)) * A n (T ω) + g ω / (n + 1)` and the
+   irrelevance of a finite prefix. Neither direction needs boundedness,
+   measurability, invertibility, or a global convergence-existence theorem.
+4. Deduce the exact relation
+   `T ⁻¹' birkhoffConvergenceSet T g = birkhoffConvergenceSet T g`. For an
+   ordinarily measurable event, apply `PreErgodic.ae_empty_or_univ`; for a
+   merely null-measurable event, apply `QuasiErgodic.ae_empty_or_univ₀` through
+   `Ergodic.quasiErgodic`. Exact invariance removes the provisional
+   finite-measure assumption. Under `[IsProbabilityMeasure μ]`, derive the
+   corresponding probability-zero-or-one corollary.
 5. Add a thin specialization to the one-step observable used by the
    subadditive-process/cocycle interfaces. It may identify the convergence
    event and its conditional rigidity; it must not assert membership or
    almost-everywhere convergence.
 6. Compile probes for `n = 0` totalization, constant and zero observables,
    identity dynamics, nonmeasurable representatives replaced a.e., a zero
-   finite measure, one-sided rather than two-sided invariance, and the project
-   cocycle specialization. Pair the frozen source with declaration-complete
+   measure, exact invariance under a noninvertible map, and the project cocycle
+   specialization. Pair the frozen source with declaration-complete
    Notebook and textbook coverage, deterministic visuals, coverage mapping,
    checkpoint update, full validation, commit, and push.
 
 The boundary ledger is fixed. `birkhoffAverage ... 0 = 0` says nothing about a
 separate process value `X 0`. `Integrable g μ` supplies only a.e. strong
-measurability. Forward invariance does not become equality without an
-invertibility argument. A finite measure may be the zero measure. Ergodicity of
-`T` must not be transferred to `T^[b]`; the earlier phase reindexing to the base
-map remains essential. Mathlib's `MeasureTheory.maximal_ineq` is Doob's
+measurability. Exact event invariance comes from adding or deleting one finite
+orbit prefix, not from invertibility of `T`, and it still proves no point lies
+in the event. The zero-measure a.e. dichotomy is valid but vacuous. Ergodicity
+of `T` must not be transferred to `T^[b]`; the earlier phase reindexing to the
+base map remains essential. Mathlib's `MeasureTheory.maximal_ineq` is Doob's
 martingale inequality, not Hopf's maximal ergodic theorem, and its Hilbert-space
 mean-ergodic declarations are not pointwise a.e. convergence. RMT-22 proves no
 convergence existence, density, maximal inequality, pointwise Birkhoff theorem,
