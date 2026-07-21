@@ -350,14 +350,21 @@ The first active sequence is:
     ordinarily measurable complex generator, then exposes measurable finite
     cocycle values and preservation of every base iterate without requiring a
     probability measure or a positive matrix dimension.
+19. [`RandomCocycles/NormObservables.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/NormObservables.lean)
+    selects the maximum absolute row-sum operator norm, proves finite-time
+    norm measurability and cocycle submultiplicativity, and defines an
+    extended-real log norm whose value is exactly bottom at a zero cocycle
+    matrix. Positive dimension is required only for the normalized time-zero
+    identities; explicit theorems record norm zero and log bottom for the
+    empty matrix dimension.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add finite-time norm and extended log-norm observables with explicit
-   zero-time, zero-norm, and positive-dimension policies.
-2. Prove their measurability and basic cocycle inequalities before introducing
-   integrability, normalized growth, or any asymptotic Lyapunov claim.
+1. Add an integrability-ready real log-positive generator observable without
+   erasing the extended log norm's exact zero-matrix boundary.
+2. State the separate probability, integrability, and ergodicity hypotheses
+   needed before normalized growth or any asymptotic Lyapunov claim.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

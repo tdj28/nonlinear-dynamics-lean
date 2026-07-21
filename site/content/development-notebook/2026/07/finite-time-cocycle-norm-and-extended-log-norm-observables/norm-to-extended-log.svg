@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470"
+     viewBox="0 0 760 470" role="img" aria-labelledby="titleNormLog descNormLog">
+  <title id="titleNormLog">Finite cocycle values become norm and extended-log-norm observables</title>
+  <desc id="descNormLog">A finite cocycle matrix passes through absolute row totals and a largest-row selection. The resulting norm then follows a labeled nonzero branch to a finite extended-real logarithm or a zero branch to extended-real bottom.</desc>
+  <rect width="760" height="470" fill="#F7F4F0"/>
+  <style>
+    .base{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .select{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .zero{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .muted{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .dash{stroke:#A89B8C;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+
+  <text x="24" y="28" class="t title">A finite cocycle value becomes an honest logarithmic growth observable</text>
+  <text x="24" y="48" class="t m">Take absolute row totals, keep the largest, then preserve zero as a separate endpoint.</text>
+
+  <rect x="24" y="82" width="154" height="210" rx="12" class="data"/>
+  <text x="45" y="111" class="t h">FINITE COCYCLE VALUE</text>
+  <text x="47" y="135" class="t m">one complex matrix</text>
+  <rect x="45" y="154" width="112" height="30" rx="7" class="base"/>
+  <rect x="45" y="194" width="112" height="30" rx="7" class="base"/>
+  <rect x="45" y="234" width="112" height="30" rx="7" class="base"/>
+  <text x="78" y="174" class="t s">matrix row</text>
+  <text x="78" y="214" class="t s">matrix row</text>
+  <text x="78" y="254" class="t s">matrix row</text>
+
+  <line x1="186" y1="187" x2="212" y2="187" class="arrow"/>
+  <polygon points="222,187 209,179 209,195" fill="#A67C52"/>
+
+  <rect x="230" y="82" width="154" height="210" rx="12" class="base"/>
+  <text x="252" y="111" class="t h">ABSOLUTE ROW TOTALS</text>
+  <text x="254" y="135" class="t m">add entry magnitudes</text>
+  <rect x="251" y="154" width="112" height="30" rx="7" class="muted"/>
+  <rect x="251" y="194" width="112" height="30" rx="7" class="muted"/>
+  <rect x="251" y="234" width="112" height="30" rx="7" class="muted"/>
+  <text x="278" y="174" class="t s">first total</text>
+  <text x="272" y="214" class="t s">second total</text>
+  <text x="278" y="254" class="t s">third total</text>
+
+  <line x1="392" y1="187" x2="418" y2="187" class="arrow"/>
+  <polygon points="428,187 415,179 415,195" fill="#A67C52"/>
+
+  <rect x="436" y="82" width="132" height="210" rx="12" class="select"/>
+  <text x="463" y="111" class="t h">KEEP LARGEST</text>
+  <text x="461" y="135" class="t m">finite-time norm</text>
+  <rect x="457" y="174" width="90" height="66" rx="10" class="base"/>
+  <text x="477" y="202" class="t h">MAXIMUM</text>
+  <text x="473" y="225" class="t s">row total</text>
+  <text x="457" y="267" class="t m">measurable value</text>
+
+  <line x1="576" y1="187" x2="602" y2="187" class="arrow"/>
+  <polygon points="612,187 599,179 599,195" fill="#A67C52"/>
+
+  <rect x="620" y="82" width="116" height="210" rx="12" class="data"/>
+  <text x="640" y="111" class="t h">EXTENDED LOG</text>
+  <text x="646" y="135" class="t m">two endpoints</text>
+  <rect x="638" y="158" width="80" height="46" rx="8" class="select"/>
+  <text x="653" y="178" class="t h">NONZERO</text>
+  <text x="651" y="195" class="t m">finite value</text>
+  <rect x="638" y="222" width="80" height="46" rx="8" class="zero"/>
+  <text x="657" y="242" class="t h">ZERO</text>
+  <text x="650" y="259" class="t m">bottom value</text>
+
+  <path d="M 502 304 L 502 329 L 678 329 L 678 304" class="dash"/>
+  <rect x="174" y="342" width="412" height="62" rx="12" class="base"/>
+  <text x="214" y="368" class="t h">FINITE-TIME SUBMULTIPLICATIVITY BECOMES SUBADDITIVITY</text>
+  <text x="226" y="389" class="t m">The later shifted block and the earlier prefix remain in their checked roles.</text>
+
+  <rect x="24" y="422" width="712" height="30" rx="10" class="select"/>
+  <text x="73" y="442" class="t s">Zero is preserved as bottom; no average, time normalization, limit, or Lyapunov exponent is asserted.</text>
+</svg>

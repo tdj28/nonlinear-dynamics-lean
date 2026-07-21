@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="650"
+     viewBox="0 0 800 650" role="img"
+     aria-labelledby="normLogSubadditivityTitle normLogSubadditivityDesc">
+  <title id="normLogSubadditivityTitle">A cocycle split becomes an extended-log-norm subadditivity statement</title>
+  <desc id="normLogSubadditivityDesc">An early cocycle block beginning at the initial environment and a later block beginning at the shifted environment combine with the later block acting second. The full matrix value passes to the maximum absolute row-sum norm, whose product upper bound passes through a zero-aware extended logarithm and becomes an additive upper bound. A lower branch separates nonempty coordinates, where the time-zero norm is one and log value zero, from empty coordinates, where every norm is zero and every log value is bottom. A footer states that no integrability or limiting exponent is supplied.</desc>
+  <rect width="800" height="650" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="normLogSubadditivityArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Turn the finite cocycle split into a zero-safe additive growth budget</text>
+  <text x="24" y="53" class="t m">The shift controls where the later block begins; the norm and extended logarithm control how its size combines.</text>
+
+  <rect x="24" y="88" width="330" height="96" rx="14"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="189" y="120" text-anchor="middle" class="t h">EARLY COCYCLE BLOCK</text>
+  <text x="189" y="146" text-anchor="middle" class="t s">begins at the initial environment and acts first</text>
+  <text x="189" y="168" text-anchor="middle" class="t m">written on the right in the matrix product</text>
+
+  <rect x="446" y="88" width="330" height="96" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="611" y="120" text-anchor="middle" class="t h">SHIFTED LATER COCYCLE BLOCK</text>
+  <text x="611" y="146" text-anchor="middle" class="t s">begins where the early base orbit ends and acts second</text>
+  <text x="611" y="168" text-anchor="middle" class="t m">written on the left in the matrix product</text>
+
+  <path d="M189 186 L189 218 L366 218" fill="none"
+        stroke="#4B6787" stroke-width="2.5"/>
+  <path d="M611 186 L611 218 L434 218" fill="none"
+        stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M400 218 L400 244" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#normLogSubadditivityArrow)"/>
+
+  <rect x="120" y="250" width="560" height="72" rx="14"
+        fill="#16243A"/>
+  <text x="400" y="280" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">FULL FINITE MATRIX VALUE</text>
+  <text x="400" y="304" text-anchor="middle" class="t s"
+        style="fill:#FFFDF8">later block after early block, with no commutativity assumption</text>
+
+  <path d="M400 324 L400 350" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#normLogSubadditivityArrow)"/>
+
+  <rect x="64" y="356" width="300" height="84" rx="14"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="214" y="386" text-anchor="middle" class="t h">MAXIMUM ABSOLUTE ROW-SUM NORM</text>
+  <text x="214" y="412" text-anchor="middle" class="t s">the full norm is at most the product of block norms</text>
+  <text x="214" y="431" text-anchor="middle" class="t m">finite row sums also expose measurability</text>
+
+  <path d="M366 398 L428 398" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#normLogSubadditivityArrow)"/>
+
+  <rect x="434" y="356" width="302" height="84" rx="14"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="585" y="386" text-anchor="middle" class="t h">ZERO-AWARE EXTENDED LOGARITHM</text>
+  <text x="585" y="412" text-anchor="middle" class="t s">the product budget becomes an additive budget</text>
+  <text x="585" y="431" text-anchor="middle" class="t m">an exact zero matrix maps to bottom</text>
+
+  <path d="M585 442 L585 470 L230 470 L230 494" fill="none"
+        stroke="#4B6787" stroke-width="2.5"
+        marker-end="url(#normLogSubadditivityArrow)"/>
+  <path d="M585 442 L585 494" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#normLogSubadditivityArrow)"/>
+
+  <rect x="54" y="500" width="352" height="92" rx="14"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="230" y="530" text-anchor="middle" class="t h">NONEMPTY MATRIX COORDINATES</text>
+  <text x="230" y="554" text-anchor="middle" class="t s">time-zero identity norm is one</text>
+  <text x="230" y="576" text-anchor="middle" class="t m">time-zero extended log value is zero</text>
+
+  <rect x="430" y="500" width="316" height="92" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="588" y="530" text-anchor="middle" class="t h">EMPTY MATRIX COORDINATES</text>
+  <text x="588" y="554" text-anchor="middle" class="t s">every finite matrix norm is zero</text>
+  <text x="588" y="576" text-anchor="middle" class="t m">every extended log value is bottom</text>
+
+  <text x="24" y="628" class="t m">Finite-time only: no probability normalization, integrability, normalized growth, limiting exponent, or invariant splitting is supplied.</text>
+</svg>

@@ -1064,6 +1064,14 @@ must separately prove that its Jacobian generator fits this interface.
 The present module is the algebraic and measurable hinge. It makes those later
 questions stateable without answering them prematurely.
 
+The immediate successor,
+[Finite-Time Cocycle Norms in Lean]({{< relref "/development-notebook/2026/07/finite-time-cocycle-norm-and-extended-log-norm-observables" >}}),
+selects the maximum absolute row-sum norm, proves its coordinate formula and
+ordinary measurability, and defines an extended-real log norm that sends a zero
+cocycle value exactly to bottom. It proves finite-time submultiplicativity and
+subadditivity, including the empty-dimensional branch, while adding no
+integrability, normalized limit, Lyapunov exponent, or Oseledets conclusion.
+
 ## References
 
 The links below were checked on 2026-07-21. The pinned local Mathlib 4.32.0

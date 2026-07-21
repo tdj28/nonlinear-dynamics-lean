@@ -306,6 +306,13 @@ one-sided cocycle identity.
 
 ## Where to continue
 
+[Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables" >}})
+is the immediate analytic successor. It applies the maximum absolute row-sum
+norm to each finite cocycle value, proves entrywise measurability, and uses a
+zero-aware extended logarithm to derive finite-time subadditivity. The compact
+{{< refterm "extended-log-norm-observable" "extended log-norm observable" >}}
+entry explains its bottom-at-zero policy.
+
 [Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}})
 derives all sixteen public declarations and separates every assumption layer.
 

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="570"
+     viewBox="0 0 800 570" role="img"
+     aria-labelledby="extendedLogNormTitle extendedLogNormDesc">
+  <title id="extendedLogNormTitle">A finite cocycle matrix becomes a zero-aware extended log-norm observable</title>
+  <desc id="extendedLogNormDesc">A four-stage teaching path begins with a finite cocycle matrix, forms every absolute row total, keeps the largest row total as the operator norm, and applies an extended logarithm. The final stage branches: a positive norm keeps an ordinary finite logarithm, while a zero matrix maps exactly to the bottom extended-real value. A footer states that the construction is finite-time, measurable, and subadditive but supplies no limiting exponent.</desc>
+  <rect width="800" height="570" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="extendedLogNormArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Measure finite matrix growth without erasing the zero case</text>
+  <text x="24" y="53" class="t m">The largest absolute row sum gives the norm; an extended logarithm reserves bottom for exact collapse.</text>
+
+  <rect x="24" y="88" width="164" height="88" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="106" y="121" text-anchor="middle" class="t h">FINITE COCYCLE</text>
+  <text x="106" y="144" text-anchor="middle" class="t h">MATRIX VALUE</text>
+  <text x="106" y="164" text-anchor="middle" class="t m">one horizon, one base state</text>
+
+  <path d="M190 132 L218 132" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#extendedLogNormArrow)"/>
+
+  <rect x="224" y="88" width="164" height="88" rx="12"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="306" y="121" text-anchor="middle" class="t h">ABSOLUTE ENTRY</text>
+  <text x="306" y="144" text-anchor="middle" class="t h">TOTAL IN EACH ROW</text>
+  <text x="306" y="164" text-anchor="middle" class="t m">finite sums are nonnegative</text>
+
+  <path d="M390 132 L418 132" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#extendedLogNormArrow)"/>
+
+  <rect x="424" y="88" width="164" height="88" rx="12"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="506" y="121" text-anchor="middle" class="t h">KEEP THE LARGEST</text>
+  <text x="506" y="144" text-anchor="middle" class="t h">ROW TOTAL</text>
+  <text x="506" y="164" text-anchor="middle" class="t m">the chosen operator norm</text>
+
+  <path d="M590 132 L618 132" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#extendedLogNormArrow)"/>
+
+  <rect x="624" y="88" width="152" height="88" rx="12"
+        fill="#16243A"/>
+  <text x="700" y="121" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">APPLY THE</text>
+  <text x="700" y="144" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">EXTENDED LOG</text>
+  <text x="700" y="164" text-anchor="middle" class="t m"
+        style="fill:#D9E1EA">zero stays visible</text>
+
+  <path d="M700 178 L700 220 L230 220 L230 246" fill="none"
+        stroke="#4B6787" stroke-width="2.5"
+        marker-end="url(#extendedLogNormArrow)"/>
+  <path d="M700 178 L700 246" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#extendedLogNormArrow)"/>
+
+  <rect x="60" y="252" width="340" height="112" rx="14"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="230" y="287" text-anchor="middle" class="t h">POSITIVE NORM</text>
+  <text x="230" y="314" text-anchor="middle" class="t s">the extended value agrees with the usual real logarithm</text>
+  <text x="230" y="340" text-anchor="middle" class="t m">finite expansion and contraction remain ordinary numbers</text>
+
+  <rect x="424" y="252" width="316" height="112" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="582" y="287" text-anchor="middle" class="t h">ZERO MATRIX</text>
+  <text x="582" y="314" text-anchor="middle" class="t s">the norm is zero and the extended value is bottom</text>
+  <text x="582" y="340" text-anchor="middle" class="t m">exact collapse is not mislabeled as neutral growth</text>
+
+  <path d="M230 366 L230 402 L368 402" fill="none"
+        stroke="#4B6787" stroke-width="2.5"/>
+  <path d="M582 366 L582 402 L432 402" fill="none"
+        stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M400 402 L400 430" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#extendedLogNormArrow)"/>
+
+  <rect x="100" y="436" width="600" height="74" rx="14"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="400" y="466" text-anchor="middle" class="t h">FINITE-TIME ANALYTIC INTERFACE</text>
+  <text x="400" y="491" text-anchor="middle" class="t s">measurable at each horizon and subadditive across every cocycle split</text>
+
+  <text x="24" y="548" class="t m">No integrability, normalized growth, limiting exponent, or invariant splitting follows from this diagram.</text>
+</svg>

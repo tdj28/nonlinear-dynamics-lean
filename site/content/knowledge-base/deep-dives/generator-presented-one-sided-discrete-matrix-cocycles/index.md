@@ -949,6 +949,13 @@ growth, or asymptotic theory.
 
 ## Where to continue
 
+[Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables" >}})
+is the immediate successor. It keeps this chapter's finite, one-sided cocycle
+and adds a measurable maximum-row-sum norm observable, a zero-aware extended
+log norm, and subadditivity across the shifted split. The
+{{< refterm "extended-log-norm-observable" "extended log-norm observable" >}}
+entry is the compact guide to the new endpoint and dimension policy.
+
 The
 {{< refterm "one-sided-discrete-matrix-cocycle" "one-sided discrete matrix cocycle" >}}
 glossary entry is the compact guide to the base orbit, generator presentation,
@@ -959,10 +966,10 @@ develops the immediate product and measurability layer below this cocycle.
 [Ordered Finite Matrix Products and Operator-Norm Growth]({{< relref "/knowledge-base/deep-dives/ordered-finite-matrix-products-and-operator-norm-growth" >}})
 develops the deterministic chronology and a specific finite norm bound.
 
-Future work can define finite norm and log-norm observables without yet
-claiming asymptotic exponents. Only after their norm choice, zero policy,
-measurability, and integrability assumptions are explicit should the project
-approach subadditive or multiplicative ergodic theorems.
+RMT-14 now defines the finite norm and extended-log-norm observables without
+claiming asymptotic exponents. Integrability, normalized growth, and the
+hypotheses of subadditive or multiplicative ergodic theorems remain later
+layers.
 
 ## References
 
