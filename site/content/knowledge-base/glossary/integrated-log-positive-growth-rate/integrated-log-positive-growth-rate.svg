@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="690"
+     viewBox="0 0 800 690" role="img"
+     aria-labelledby="integratedGrowthTitle integratedGrowthDesc">
+  <title id="integratedGrowthTitle">Integrate finite positive growth before taking a deterministic Fekete limit</title>
+  <desc id="integratedGrowthDesc">Five numbered stages begin with a state-dependent finite positive-log envelope, integrate it against a preserved raw measure, form a subadditive sequence of real numbers, divide at positive horizons, and reach a deterministic Fekete limit. A separate time-zero box calls zero a formal boundary value. A crossed side route says that samplewise normalization and a samplewise limit are not established.</desc>
+  <rect width="800" height="690" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .n{font-size:12px;font-weight:700;fill:#FFFDF8}
+  </style>
+  <defs>
+    <marker id="integratedGrowthArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Integrate first, normalize over positive time, then apply Fekete</text>
+  <text x="24" y="53" class="t m">The checked limit belongs to a sequence of real numbers, not to individual base outcomes.</text>
+
+  <circle cx="52" cy="110" r="18" fill="#16243A"/>
+  <text x="52" y="114" text-anchor="middle" class="t n">1</text>
+  <rect x="84" y="78" width="460" height="72" rx="14"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="314" y="106" text-anchor="middle" class="t h">STATE-DEPENDENT FINITE ENVELOPE</text>
+  <text x="314" y="130" text-anchor="middle" class="t s">positive logarithmic norm at one horizon and one base outcome</text>
+
+  <path d="M314 152 L314 176" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#integratedGrowthArrow)"/>
+
+  <circle cx="52" cy="214" r="18" fill="#16243A"/>
+  <text x="52" y="218" text-anchor="middle" class="t n">2</text>
+  <rect x="84" y="182" width="460" height="72" rx="14"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="314" y="210" text-anchor="middle" class="t h">INTEGRATE AGAINST THE PRESERVED RAW MEASURE</text>
+  <text x="314" y="234" text-anchor="middle" class="t s">explicit integrability certifies the ordinary finite integral</text>
+
+  <path d="M314 256 L314 280" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#integratedGrowthArrow)"/>
+
+  <circle cx="52" cy="318" r="18" fill="#16243A"/>
+  <text x="52" y="322" text-anchor="middle" class="t n">3</text>
+  <rect x="84" y="286" width="460" height="72" rx="14"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="314" y="314" text-anchor="middle" class="t h">A SUBADDITIVE REAL SEQUENCE</text>
+  <text x="314" y="338" text-anchor="middle" class="t s">one value per horizon; no independence is used</text>
+
+  <path d="M314 360 L314 384" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#integratedGrowthArrow)"/>
+
+  <circle cx="52" cy="422" r="18" fill="#16243A"/>
+  <text x="52" y="426" text-anchor="middle" class="t n">4</text>
+  <rect x="84" y="390" width="460" height="72" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="314" y="418" text-anchor="middle" class="t h">DIVIDE BY TIME AT POSITIVE HORIZONS</text>
+  <text x="314" y="442" text-anchor="middle" class="t s">time zero stays outside the infimum used for the rate</text>
+
+  <path d="M314 464 L314 488" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#integratedGrowthArrow)"/>
+
+  <circle cx="52" cy="526" r="18" fill="#16243A"/>
+  <text x="52" y="530" text-anchor="middle" class="t n">5</text>
+  <rect x="84" y="494" width="460" height="72" rx="14"
+        fill="#16243A"/>
+  <text x="314" y="522" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">DETERMINISTIC FEKETE LIMIT</text>
+  <text x="314" y="546" text-anchor="middle" class="t s"
+        style="fill:#D9E1EA">positive-time ratios converge to their infimum</text>
+
+  <rect x="580" y="78" width="196" height="126" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="678" y="106" text-anchor="middle" class="t h">RAW-MEASURE WARNING</text>
+  <text x="678" y="132" text-anchor="middle" class="t s">not automatically an expectation</text>
+  <text x="678" y="156" text-anchor="middle" class="t s">finite rescaling rescales the rate</text>
+  <text x="678" y="178" text-anchor="middle" class="t m">time-normalized</text>
+  <text x="678" y="194" text-anchor="middle" class="t m">not measure-normalized</text>
+
+  <rect x="580" y="232" width="196" height="106" rx="14"
+        fill="#EDE8E1" stroke="#7F786D" stroke-width="1.5"/>
+  <text x="678" y="260" text-anchor="middle" class="t h">TIME ZERO</text>
+  <text x="678" y="286" text-anchor="middle" class="t s">formal boundary value is zero</text>
+  <text x="678" y="310" text-anchor="middle" class="t m">not a zero-time average</text>
+
+  <rect x="580" y="366" width="196" height="200" rx="14"
+        fill="#FFF9F5" stroke="#A55445" stroke-width="2"/>
+  <text x="678" y="396" text-anchor="middle" class="t h">SEPARATE ROUTE</text>
+  <text x="678" y="426" text-anchor="middle" class="t s">normalize each base outcome</text>
+  <path d="M622 443 L734 443" fill="none" stroke="#A55445" stroke-width="2"/>
+  <path d="M678 447 L678 476" fill="none" stroke="#A55445"
+        stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M632 450 L724 486" fill="none" stroke="#A55445" stroke-width="3"/>
+  <path d="M724 450 L632 486" fill="none" stroke="#A55445" stroke-width="3"/>
+  <text x="678" y="516" text-anchor="middle" class="t s">take a samplewise limit</text>
+  <text x="678" y="546" text-anchor="middle" class="t h">NOT ESTABLISHED</text>
+
+  <rect x="24" y="604" width="752" height="56" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="400" y="628" text-anchor="middle" class="t h">THE RATIOS MAY FLUCTUATE BEFORE CONVERGING</text>
+  <text x="400" y="648" text-anchor="middle" class="t m">No ergodic theorem, almost-sure limit, limit-interchange, or Lyapunov exponent is claimed.</text>
+
+  <text x="24" y="681" class="t m">Positive clipping keeps upper expansion and discards contraction and exact collapse.</text>
+</svg>

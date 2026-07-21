@@ -366,17 +366,25 @@ The first active sequence is:
     requiring a probability measure. The envelope deliberately forgets
     contraction and exact collapse, so it is not the extended log norm or a
     Lyapunov exponent.
+21. [`RandomCocycles/IntegratedLogPlusGrowth.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean)
+    integrates every finite-horizon log-positive envelope against the preserved
+    raw measure and proves invariance of those totalized integrals under every
+    base iterate. Under RMT-15's explicit one-step integrability hypothesis, it
+    evaluates the finite orbit-sum integral, obtains a linear one-step bound
+    and a subadditive real sequence, and proves that the normalized sequence
+    converges to Mathlib's deterministic Fekete limit. The integral is not
+    called an expectation without a probability measure, and the result is
+    neither almost-sure nor a Lyapunov limit.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Integrate the log-positive envelope over the preserved measure, prove the
-   resulting real sequence is subadditive, and use Fekete's lemma for its
-   normalized deterministic limit. Without a probability measure this is not
-   an expectation, and it is never an almost-sure or Lyapunov limit.
-2. Use Mathlib's native `[IsProbabilityMeasure μ]` and `Ergodic C.base μ`
-   assumptions explicitly before attempting a checked Kingman-style theorem
-   or any Lyapunov conclusion.
+1. Add explicit probability and ergodicity interfaces using Mathlib's native
+   `[IsProbabilityMeasure μ]` and `Ergodic C.base μ` assumptions, while
+   keeping raw-measure and probability statements visibly distinct.
+2. Audit the exact hypotheses and available Mathlib infrastructure for a
+   Kingman-style subadditive ergodic theorem before introducing any
+   almost-sure limit or Lyapunov terminology.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

@@ -285,6 +285,13 @@ negative endpoint needed for a full Lyapunov analysis.
 
 ## Where to continue
 
+[The integrated log-positive growth rate]({{< relref "/knowledge-base/glossary/integrated-log-positive-growth-rate" >}})
+is the RMT-16 successor. It integrates each finite-horizon envelope, proves
+under the same explicit one-step integrability hypothesis that the resulting
+real sequence is subadditive, and applies deterministic Fekete convergence over
+positive horizons. The successor still assumes no probability normalization or
+ergodicity and proves no samplewise or Lyapunov limit.
+
 [Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
 derives the complete sixteen-declaration Lean layer, including the orbit-sum
 recurrence, measure-preserving pullbacks, finite-sum integrability, and the

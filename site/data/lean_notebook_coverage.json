@@ -23,6 +23,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.Discrete",
     "notebook": "site/content/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth",
+    "notebook": "site/content/development-notebook/2026/07/integrated-log-positive-growth-and-deterministic-fekete-limit/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability",
     "notebook": "site/content/development-notebook/2026/07/finite-horizon-log-positive-cocycle-integrability/index.md"

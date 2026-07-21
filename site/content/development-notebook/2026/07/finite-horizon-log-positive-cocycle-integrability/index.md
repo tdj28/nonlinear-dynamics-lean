@@ -121,6 +121,12 @@ and
 {{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}}.
 The parallel textbook treatment is
 [Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}}).
+The immediate successor,
+[Integrated Log-Positive Growth in Lean]({{< relref "/development-notebook/2026/07/integrated-log-positive-growth-and-deterministic-fekete-limit" >}}),
+integrates these envelopes against the raw measure, proves scalar
+subadditivity under the same explicit one-step hypothesis, and applies
+Mathlib's deterministic Fekete theorem. That next result is still neither a
+samplewise theorem nor a Lyapunov exponent.
 
 ## Choose a route up
 

@@ -848,6 +848,13 @@ explicit orbit-sum proof.
 
 ## Where to continue
 
+[Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
+is the immediate RMT-16 successor. It integrates the finite-horizon envelopes,
+uses preservation under the same explicit one-step integrability hypothesis to
+obtain a subadditive real sequence, and proves convergence of its positive-time
+normalized values by Mathlib's deterministic Fekete theorem. It still makes no
+probability, ergodic, samplewise, or Lyapunov claim.
+
 The
 {{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}}
 glossary entry is the compact guide to clipping, the orbit majorant, and the

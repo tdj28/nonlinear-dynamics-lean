@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620"
+     viewBox="0 0 920 620" role="img"
+     aria-labelledby="titleIntegrateNormalize descIntegrateNormalize">
+  <title id="titleIntegrateNormalize">Integrate first for the checked deterministic limit</title>
+  <desc id="descIntegrateNormalize">A prose-only flow diagram with two branches. The checked upper branch starts from a finite-horizon expansion envelope, integrates against the raw measure, forms a subadditive scalar sequence, normalizes at positive time, and reaches a deterministic Fekete limit. A dashed lower branch fixes one outcome and asks about samplewise or Lyapunov growth; that branch is explicitly marked as not proved here. A support band says that explicit one-step integrability and a measure-preserving base justify the checked branch. The footer says there is no expectation claim without probability normalization.</desc>
+  <rect width="920" height="620" fill="#F7F4F0"/>
+  <style>
+    .paper{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .rust{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gold{fill:#F5EBCF;stroke:#A98845;stroke-width:1.7}
+    .muted{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .unproved{stroke:#9B6D67;stroke-width:2;stroke-dasharray:7 5;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .warn{font-size:11px;fill:#7E4238;font-weight:700}
+  </style>
+
+  <text x="30" y="34" class="t title">Integrate first: the checked road to a deterministic limit</text>
+  <text x="30" y="56" class="t m">The samplewise fork is a different theorem and remains outside this module.</text>
+
+  <rect x="30" y="100" width="170" height="116" rx="14" class="rust"/>
+  <text x="55" y="130" class="t h">FINITE-HORIZON</text>
+  <text x="49" y="147" class="t h">EXPANSION ENVELOPE</text>
+  <rect x="51" y="166" width="128" height="29" rx="7" class="paper"/>
+  <text x="67" y="185" class="t m">base point still varies</text>
+
+  <line x1="208" y1="158" x2="236" y2="158" class="arrow"/>
+  <polygon points="246,158 233,150 233,166" fill="#A67C52"/>
+
+  <rect x="254" y="100" width="146" height="116" rx="14" class="blue"/>
+  <text x="281" y="130" class="t h">RAW-MEASURE</text>
+  <text x="299" y="147" class="t h">INTEGRAL</text>
+  <rect x="275" y="166" width="104" height="29" rx="7" class="paper"/>
+  <text x="295" y="185" class="t m">one real number</text>
+
+  <line x1="408" y1="158" x2="436" y2="158" class="arrow"/>
+  <polygon points="446,158 433,150 433,166" fill="#A67C52"/>
+
+  <rect x="454" y="100" width="146" height="116" rx="14" class="green"/>
+  <text x="485" y="130" class="t h">SUBADDITIVE</text>
+  <text x="475" y="147" class="t h">SCALAR SEQUENCE</text>
+  <rect x="475" y="166" width="104" height="29" rx="7" class="paper"/>
+  <text x="492" y="185" class="t m">horizon remains</text>
+
+  <line x1="608" y1="158" x2="636" y2="158" class="arrow"/>
+  <polygon points="646,158 633,150 633,166" fill="#A67C52"/>
+
+  <rect x="654" y="100" width="118" height="116" rx="14" class="gold"/>
+  <text x="675" y="130" class="t h">POSITIVE-TIME</text>
+  <text x="675" y="147" class="t h">NORMALIZATION</text>
+  <rect x="673" y="166" width="80" height="29" rx="7" class="paper"/>
+  <text x="690" y="185" class="t m">divide last</text>
+
+  <line x1="780" y1="158" x2="808" y2="158" class="arrow"/>
+  <polygon points="818,158 805,150 805,166" fill="#A67C52"/>
+
+  <rect x="826" y="100" width="64" height="116" rx="14" class="green"/>
+  <text x="839" y="130" class="t h">FEKETE</text>
+  <text x="842" y="147" class="t h">LIMIT</text>
+  <text x="839" y="178" class="t m">one</text>
+  <text x="831" y="193" class="t m">number</text>
+
+  <rect x="160" y="246" width="600" height="54" rx="12" class="paper"/>
+  <text x="270" y="269" class="t h">SUPPORT FOR THE CHECKED UPPER PATH</text>
+  <text x="230" y="287" class="t s">explicit one-step integrability and a measure-preserving base</text>
+
+  <path d="M 115 224 L 115 360 L 247 360" class="unproved"/>
+  <polygon points="257,360 244,352 244,368" fill="#9B6D67"/>
+
+  <rect x="265" y="324" width="158" height="88" rx="13" class="muted"/>
+  <text x="307" y="353" class="t h">FIX ONE OUTCOME</text>
+  <text x="298" y="376" class="t m">sample dependence remains</text>
+  <text x="299" y="393" class="t m">before any integration</text>
+
+  <line x1="431" y1="368" x2="469" y2="368" class="unproved"/>
+  <polygon points="479,368 466,360 466,376" fill="#9B6D67"/>
+
+  <rect x="487" y="324" width="158" height="88" rx="13" class="muted"/>
+  <text x="518" y="353" class="t h">NORMALIZE SAMPLE</text>
+  <text x="515" y="376" class="t m">signed growth would need</text>
+  <text x="527" y="393" class="t m">a richer observable</text>
+
+  <line x1="653" y1="368" x2="691" y2="368" class="unproved"/>
+  <polygon points="701,368 688,360 688,376" fill="#9B6D67"/>
+
+  <rect x="709" y="324" width="181" height="88" rx="13" class="rust"/>
+  <text x="736" y="353" class="t h">ALMOST-SURE OR</text>
+  <text x="741" y="370" class="t h">LYAPUNOV QUESTION</text>
+  <text x="751" y="396" class="t warn">NOT PROVED HERE</text>
+
+  <rect x="30" y="458" width="860" height="118" rx="14" class="paper"/>
+  <text x="56" y="487" class="t h">READ THE BOUNDARY LITERALLY</text>
+  <rect x="56" y="506" width="384" height="44" rx="9" class="green"/>
+  <text x="83" y="526" class="t s">Checked: a deterministic limit of raw-measure integrals</text>
+  <text x="143" y="542" class="t m">after explicit integrability</text>
+  <rect x="460" y="506" width="404" height="44" rx="9" class="rust"/>
+  <text x="487" y="526" class="t s">Not checked: expectation without probability normalization,</text>
+  <text x="532" y="542" class="t m">samplewise convergence, or a Lyapunov exponent</text>
+</svg>
