@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 09:07 PDT
+Last updated: 2026-07-21 09:48 PDT
 
-Audited baseline: `main` at `2cd2d67`
+Audited baseline: `main` at `a18d568`
 
-Active direction: finite-horizon log-positive cocycle integrability
+Active direction: integrated log-positive growth and its deterministic Fekete limit
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: finite-horizon log-positive cocycle integrability
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,165 jobs. The integrated RMT-14 gate covers nineteen
-  substantive modules, nineteen complete draft Notebook companions, and 204
+- Last green Lean build: 3,167 jobs. The integrated RMT-15 gate covers twenty
+  substantive modules, twenty complete draft Notebook companions, and 215
   Hugo pages with warnings fatal.
-- Lean inventory: 363 public named declarations across the nineteen substantive
+- Lean inventory: 379 public named declarations across the twenty substantive
   modules; 18 one-line deterministic placeholders; one `.gitkeep`-only
   Random branch; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 109,443 words across the nineteen Notebook companions and
-  121,142 words across sixteen Deep Dives and twenty-nine glossary chapters.
+- Teaching snapshot: 115,361 words across the twenty Notebook companions and
+  127,777 words across seventeen Deep Dives and thirty glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -60,16 +60,17 @@ Active direction: finite-horizon log-positive cocycle integrability
 | `NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts` | Semiring-valued pointwise sample products, exact finite-prefix measurability for complex random matrices, proof-carrying pushforward laws, zero/one-horizon identities, raw mass-one evidence, and bundled probability laws without a positive-dimension restriction | `measurable-finite-matrix-products-and-pushforward-laws` |
 | `NonlinearDynamics.Random.RandomCocycles.Discrete` | Generator-presented one-sided cocycles, forward-orbit factors, zero/successor/one/add identities, exact later-block-left cocycle law, complex measurability, and measure-preserving natural iterates without probability, invertibility, or positive-dimension assumptions | `one-sided-discrete-matrix-cocycles-over-measure-preserving-bases` |
 | `NonlinearDynamics.Random.RandomCocycles.NormObservables` | Maximum absolute row-sum finite-time norm, exact row-sum formula, entrywise measurability, cocycle submultiplicativity, zero-faithful extended log norm, extended-real subadditivity, and explicit positive/empty-dimension branches | `finite-time-cocycle-norm-and-extended-log-norm-observables` |
+| `NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability` | Real log-positive finite-time envelope, nonnegativity, measurability, subadditivity, finite orbit-sum domination, an explicit one-step integrability hypothesis, and propagation through preserved base iterates, finite sums, and every finite horizon | `finite-horizon-log-positive-cocycle-integrability` |
 
-The root aggregator imports all nineteen modules. The proof-to-prose manifest and
+The root aggregator imports all twenty modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Nineteen comprehensive Development Notebook chapters in an explicit
+- Twenty comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Sixteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Seventeen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -83,8 +84,10 @@ declaration visibility.
   Products and Operator-Norm Growth*, and *Measurable Finite Random-Matrix
   Products and Proof-Carrying Pushforward Laws*, and *Generator-Presented
   One-Sided Discrete Matrix Cocycles*, and *Finite-Time Norm and
-  Extended-Log-Norm Observables for Matrix Cocycles*.
-- Twenty-nine glossary chapters, now including the extended log-norm
+  Extended-Log-Norm Observables for Matrix Cocycles*, and *Finite-Horizon
+  Log-Positive Cocycle Integrability*.
+- Thirty glossary chapters, now including the log-positive integrability
+  envelope, the extended log-norm
   observable, one-sided discrete matrix
   cocycles, finite random-matrix products,
   forward matrix products, and the induced infinity operator norm, as well as
@@ -93,7 +96,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Fifty-four deterministic 1200x630 social cards and thirty-eight accessible
+- Fifty-seven deterministic 1200x630 social cards and forty-one accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -102,36 +105,37 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-15: finite-horizon log-positive integrability
+### RMT-16: integrated log-positive growth and a Fekete limit
 
-The next module is `Random/RandomCocycles/LogPlusIntegrability.lean`. An
-independently audited, warnings-fatal sixteen-declaration prototype has fixed
-the smallest honest integrability layer above RMT-14:
+The next module is `Random/RandomCocycles/IntegratedLogPlusGrowth.lean`. An
+independently audited, warnings-fatal thirteen-declaration prototype has fixed
+the smallest deterministic limit layer above RMT-15:
 
-1. Define the real observable `log⁺ ‖C.value k ω‖`, prove nonnegativity,
-   zero-time and one-step identities, measurability, finite-time
-   subadditivity, and its zero value in empty matrix dimension.
-2. Define the finite orbit sum of the one-step log-positive observable along
-   the base iterates, with exact zero and successor recursions and ordinary
-   measurability.
-3. Bound every finite-horizon log-positive norm by that orbit sum. Preserve
-   the shifted cocycle order already fixed by RMT-13 and the norm inequality
-   checked in RMT-14.
-4. Package the one-step integrability assumption explicitly as
-   `HasIntegrableGeneratorLogPlus`. Do not infer it from measurability or from
-   measure preservation.
-5. Use preservation of the raw source measure to prove integrability after
-   every base iterate, of every finite orbit sum, and of every finite-horizon
-   log-positive observable by domination.
-6. Pair the full API with its Notebook, Knowledge Base chapters, coverage,
-   checkpoint update, rendered browser audit, and a green push.
+1. Integrate each finite-horizon log-positive envelope against the preserved
+   raw measure, with exact time-zero and pointwise-nonnegativity consequences.
+2. Prove that pulling any integrable finite-horizon envelope back by any base
+   iterate preserves its integral. Reuse RMT-15's propagated integrability and
+   RMT-13's measure-preserving iterate theorem.
+3. Evaluate the finite orbit-sum integral exactly as the horizon times the
+   one-step integral, then bound every integrated finite-horizon envelope by
+   that quantity.
+4. Prove the integrated real sequence is subadditive. The shifted block
+   becomes an equal integral by measure preservation; no independence or
+   ergodicity is involved.
+5. Define the normalized integrated envelope, prove its range is bounded
+   below, define Mathlib's Fekete limit, and prove convergence to that limit.
+6. Pair the API with complete Notebook and Knowledge Base teaching, coverage,
+   checkpoint, rendered browser audit, and a green push.
 
-The log-positive observable is an integrability envelope, not the Lyapunov
-observable itself. It maps every norm at most one, including contraction and
-singular collapse, to zero. RMT-15 must not claim integrability of the
-extended log norm, negative or inverse growth control, normalized growth,
-almost-sure convergence, a subadditive ergodic theorem, a Lyapunov exponent,
-an Oseledets splitting, probability normalization, or ergodicity.
+This is a deterministic limit of integrals of the log-positive envelope. The
+integral is not an expectation unless the measure is probabilistic, and it
+scales with the total measure. Mathlib's Bochner integral is totalized, but all
+meaningful bounds and limits here require the explicit RMT-15 integrability
+hypothesis. Time-zero normalization uses Lean's division-by-zero convention;
+Fekete's limit uses positive indices. The slice assumes no ergodicity and
+proves no almost-sure limit, extended-log integrability, negative or inverse
+growth control, Lyapunov exponent, Oseledets splitting, Kingman theorem, or
+random-Jacobian representation.
 
 ## Dependency-Ordered Roadmap
 
@@ -186,8 +190,9 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Generator-presented one-sided random cocycles over a measure-preserving
   base, including the later-block-left finite-time cocycle law.
 - [x] Finite-time maximum-row-sum norm and extended-log-norm observables.
-- [ ] Finite-horizon log-positive envelope and explicit one-step
+- [x] Finite-horizon log-positive envelope and explicit one-step
   integrability propagation.
+- [ ] Integrated log-positive subadditivity and deterministic Fekete limit.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -494,6 +499,27 @@ k-invariance precedes approximation claims.
   Measurability and subadditivity alone do not supply probability,
   integrability, ergodicity, normalized limits, Lyapunov exponents, or an
   Oseledets splitting.
+- RMT-15 uses Mathlib's real `log⁺`, which is zero exactly when the nonnegative
+  norm is at most one. It retains expanding size but deliberately identifies
+  neutral size, contraction, and exact collapse at zero. It therefore cannot
+  replace RMT-14's zero-faithful `EReal` log norm.
+- Time-zero log-positive growth is zero in every finite dimension. The proof
+  splits positive dimension, where the identity norm is one, from empty
+  dimension, where the identity matrix norm is zero; no global `Nonempty ι`
+  assumption is added.
+- The finite orbit sum uses indices `0` through `k - 1` and appends the term at
+  base iterate `k` in its successor recursion. It is a pointwise majorant for
+  the whole-product envelope, not an equality or a product-law factorization.
+- `HasIntegrableGeneratorLogPlus` is exactly the integrability of the one-step
+  real envelope. It is explicit evidence, not a consequence of measurability,
+  measure preservation, finite matrix dimension, or any probability premise.
+- Measure preservation carries that one-step integrability through each
+  natural base iterate. Finite sums are integrable, and pointwise domination
+  then gives integrability at every fixed finite horizon.
+- RMT-15 proves no integrability for the extended-real log norm, no control of
+  its negative tail or of inverse matrices, and no probability, expectation,
+  ergodicity, normalized limit, Lyapunov exponent, Oseledets splitting, or
+  random-Jacobian statement.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -526,9 +552,11 @@ k-invariance precedes approximation claims.
   bounds, exact finite-prefix measurability, proof-carrying product laws, their
   probability packaging, generator-presented one-sided cocycles over
   measure-preserving bases, and finite-time norm and zero-faithful extended-log
-  observables are formalized. Log-positive and extended-log integrability,
-  negative growth control, normalized growth, Lyapunov exponents, and ergodic
-  limits remain open.
+  observables are formalized. The real log-positive envelope and propagation of
+  an explicit one-step integrability hypothesis through every finite horizon
+  are also formalized. Integrated growth, extended-log and negative-tail
+  integrability, inverse control, normalized sample growth, Lyapunov exponents,
+  and ergodic limits remain open.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -887,9 +915,42 @@ Checkpoint/skill milestone QA:
   explicitly scrolled lazy SVGs load at their intrinsic dimensions, the new
   Notebook and Deep Dive render their AI-use disclosure exactly once, and all
   Notebook and reciprocal Knowledge Base links are exact.
+- RMT-15 Lean audit: all 16 public declarations implement the real
+  log-positive finite-time envelope, its nonnegativity, time-zero/one-step and
+  empty-dimension identities, measurability and subadditivity, exact finite
+  orbit sums, pointwise domination, an explicit one-step integrability
+  hypothesis, and its propagation through base iterates, sums, and finite
+  horizons. The module and import chain pass warnings as errors; the root build
+  completes 3,167 jobs; edge tests distinguish extended-log bottom from
+  log-positive zero and confirm all norms at most one map to zero; no proof
+  holes or unsafe declarations occur; and all 13 theorem audits contain only
+  `propext`, `Classical.choice`, and `Quot.sound`.
+- RMT-15 static teaching audit: the 5,846-word Notebook maps all 16 public
+  declarations in source order; the new glossary and Deep Dive contain 1,554
+  and 4,956 words and preserve the envelope-versus-observable distinction,
+  finite orbit indexing, explicit integrability evidence, raw-measure scope,
+  and exhaustive nonclaims. All three deterministic cards reproduce
+  byte-for-byte at 1200x630 from both the repository and `/private/tmp`; all
+  three accessible prose-only SVGs parse and render; source hygiene passes 72
+  Markdown files; coverage passes 20/20 modules; and Hugo builds 215 pages with
+  warnings fatal. A visual pre-freeze pass replaced an unexplained `L1` card
+  acronym with the self-contained phrase `integrability hypothesis`.
+- Rendered RMT-15 QA: the Notebook article body, glossary, and Deep Dive render
+  222, 65, and 133 KaTeX nodes respectively at both desktop and mobile widths.
+  The Notebook table of contents intentionally repeats one heading formula, so
+  its full document contains 223 nodes. The amended RMT-14 Notebook, glossary,
+  and Deep Dive remain stable at 91, 46, and 85. All six pages have zero KaTeX
+  errors, raw delimiters, malformed equality headings, page overflow, or
+  browser console failures; desktop documents fit 1,280 pixels and mobile
+  documents fit 390 pixels exactly. Cards and explicitly scrolled lazy SVGs
+  load at their intrinsic dimensions, the new Notebook and Deep Dive render
+  their AI-use disclosure exactly once, and all Notebook and reciprocal
+  Knowledge Base links are exact.
 
 ## Recent Pushes
 
+- `a18d568`: finite-time maximum-row-sum cocycle norms, zero-faithful
+  extended-log observables, and teaching layer.
 - `2cd2d67`: generator-presented one-sided matrix cocycles over
   measure-preserving bases, exact finite-time identities, and teaching layer.
 - `349665d`: measurable finite matrix products, proof-carrying pushforward

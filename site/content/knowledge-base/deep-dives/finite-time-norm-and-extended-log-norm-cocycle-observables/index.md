@@ -991,6 +991,14 @@ visible as bottom, and every time split obeys a zero-safe additive upper bound.
 
 ## Where to continue
 
+[Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
+is the immediate successor. It defines the real nonnegative
+{{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}},
+majorizes every finite horizon by shifted one-step terms, and propagates an
+explicit generator integrability assumption through that finite sum. It does
+not make this chapter's contraction-sensitive extended log norm integrable and
+does not prove a Lyapunov exponent.
+
 The
 {{< refterm "extended-log-norm-observable" "extended log-norm observable" >}}
 glossary entry is the compact guide to the type ladder, bottom convention, and

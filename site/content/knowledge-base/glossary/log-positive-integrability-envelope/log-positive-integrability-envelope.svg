@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="610"
+     viewBox="0 0 800 610" role="img"
+     aria-labelledby="logPositiveEnvelopeTitle logPositiveEnvelopeDesc">
+  <title id="logPositiveEnvelopeTitle">The positive logarithm keeps expansion and merges all nonexpanding norm regimes</title>
+  <desc id="logPositiveEnvelopeDesc">Four labeled finite-norm regimes enter a positive-log gate. Exact collapse, strict contraction, and unit scale all leave as zero, while expansion above unit scale leaves as a positive logarithmic value. Shifted one-step outputs then enter a finite orbit sum that majorizes finite-horizon positive growth. A footer says that contraction information and limiting exponents are not recovered.</desc>
+  <rect width="800" height="610" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="logPositiveEnvelopeArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Keep the expanding tail, but label the information that was discarded</text>
+  <text x="24" y="53" class="t m">The positive logarithm is a nonnegative integrability envelope, not the full logarithmic observable.</text>
+
+  <rect x="24" y="88" width="166" height="68" rx="12"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="107" y="116" text-anchor="middle" class="t h">EXACT COLLAPSE</text>
+  <text x="107" y="140" text-anchor="middle" class="t m">zero matrix norm</text>
+
+  <rect x="214" y="88" width="166" height="68" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="297" y="116" text-anchor="middle" class="t h">CONTRACTION</text>
+  <text x="297" y="140" text-anchor="middle" class="t m">positive norm below one</text>
+
+  <rect x="404" y="88" width="166" height="68" rx="12"
+        fill="#EDE8E1" stroke="#7F786D" stroke-width="1.5"/>
+  <text x="487" y="116" text-anchor="middle" class="t h">UNIT SCALE</text>
+  <text x="487" y="140" text-anchor="middle" class="t m">matrix norm equals one</text>
+
+  <rect x="594" y="88" width="182" height="68" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="685" y="116" text-anchor="middle" class="t h">EXPANSION</text>
+  <text x="685" y="140" text-anchor="middle" class="t m">matrix norm above one</text>
+
+  <path d="M107 158 L107 200 L400 200" fill="none" stroke="#A67C52"
+        stroke-width="2.5"/>
+  <path d="M297 158 L297 192 L400 192 L400 200" fill="none" stroke="#4B6787"
+        stroke-width="2.5"/>
+  <path d="M487 158 L487 184 L400 184 L400 200" fill="none" stroke="#7F786D"
+        stroke-width="2.5"/>
+  <path d="M685 158 L685 176 L400 176 L400 200" fill="none" stroke="#6F8D5E"
+        stroke-width="2.5"/>
+  <path d="M400 200 L400 230" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#logPositiveEnvelopeArrow)"/>
+
+  <rect x="180" y="236" width="440" height="78" rx="14"
+        fill="#16243A"/>
+  <text x="400" y="267" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">POSITIVE-LOG GATE</text>
+  <text x="400" y="292" text-anchor="middle" class="t s"
+        style="fill:#FFFDF8">clip nonexpansion to zero and retain positive logarithmic growth</text>
+
+  <path d="M320 316 L320 350 L228 350 L228 374" fill="none"
+        stroke="#A67C52" stroke-width="2.5"
+        marker-end="url(#logPositiveEnvelopeArrow)"/>
+  <path d="M480 316 L480 350 L572 350 L572 374" fill="none"
+        stroke="#6F8D5E" stroke-width="2.5"
+        marker-end="url(#logPositiveEnvelopeArrow)"/>
+
+  <rect x="60" y="380" width="336" height="92" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="228" y="411" text-anchor="middle" class="t h">THREE REGIMES BECOME ZERO</text>
+  <text x="228" y="437" text-anchor="middle" class="t s">collapse, contraction, and unit scale are merged</text>
+  <text x="228" y="457" text-anchor="middle" class="t m">negative growth cannot be reconstructed</text>
+
+  <rect x="420" y="380" width="320" height="92" rx="14"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="580" y="411" text-anchor="middle" class="t h">EXPANSION STAYS POSITIVE</text>
+  <text x="580" y="437" text-anchor="middle" class="t s">the ordinary positive logarithm is retained</text>
+  <text x="580" y="457" text-anchor="middle" class="t m">a real nonnegative tail remains</text>
+
+  <path d="M228 474 L228 502 L400 502" fill="none" stroke="#A67C52"
+        stroke-width="2.5"/>
+  <path d="M580 474 L580 494 L400 494 L400 502" fill="none" stroke="#6F8D5E"
+        stroke-width="2.5"/>
+  <path d="M400 502 L400 526" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#logPositiveEnvelopeArrow)"/>
+
+  <rect x="116" y="532" width="568" height="48" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="400" y="552" text-anchor="middle" class="t h">FINITE ORBIT-SUM ENVELOPE</text>
+  <text x="400" y="570" text-anchor="middle" class="t m">shifted one-step terms majorize every checked finite horizon</text>
+
+  <text x="24" y="600" class="t m">Useful for finite integrability; not a contraction record, normalized limit, or Lyapunov exponent.</text>
+</svg>

@@ -357,14 +357,26 @@ The first active sequence is:
     matrix. Positive dimension is required only for the normalized time-zero
     identities; explicit theorems record norm zero and log bottom for the
     empty matrix dimension.
+20. [`RandomCocycles/LogPlusIntegrability.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean)
+    defines the real log-positive finite-time norm as a nonnegative
+    integrability envelope, proves its measurability and subadditivity, and
+    bounds it by the finite sum of one-step values along the base orbit. An
+    explicit one-step integrability hypothesis propagates through every base
+    iterate, orbit sum, and finite horizon under measure preservation, without
+    requiring a probability measure. The envelope deliberately forgets
+    contraction and exact collapse, so it is not the extended log norm or a
+    Lyapunov exponent.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add an integrability-ready real log-positive generator observable without
-   erasing the extended log norm's exact zero-matrix boundary.
-2. State the separate probability, integrability, and ergodicity hypotheses
-   needed before normalized growth or any asymptotic Lyapunov claim.
+1. Integrate the log-positive envelope over the preserved measure, prove the
+   resulting real sequence is subadditive, and use Fekete's lemma for its
+   normalized deterministic limit. Without a probability measure this is not
+   an expectation, and it is never an almost-sure or Lyapunov limit.
+2. Use Mathlib's native `[IsProbabilityMeasure μ]` and `Ergodic C.base μ`
+   assumptions explicitly before attempting a checked Kingman-style theorem
+   or any Lyapunov conclusion.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

@@ -970,6 +970,15 @@ a differentiable nonlinear system generate this cocycle and then import the
 finite-time estimates. Until that bridge is checked, RMT-14 should be read as
 abstract complex matrix dynamics.
 
+The immediate successor,
+[Finite-Horizon Log-Positive Cocycle Integrability in Lean]({{< relref "/development-notebook/2026/07/finite-horizon-log-positive-cocycle-integrability" >}}),
+defines the real positive-log envelope, bounds each finite horizon by a sum of
+one-step costs along the measure-preserving base orbit, and propagates one
+explicit generator integrability hypothesis to every fixed finite time. It
+also makes the information loss explicit: contraction and singular collapse
+both map to zero, so the envelope is not the Lyapunov observable and supplies
+no asymptotic limit.
+
 ## References
 
 The links below were checked on 2026-07-21. The pinned local Mathlib 4.32.0

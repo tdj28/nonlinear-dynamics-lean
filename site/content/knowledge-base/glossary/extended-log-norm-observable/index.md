@@ -326,6 +326,14 @@ conclusions of a subadditive or multiplicative ergodic theorem.
 
 ## Where to continue
 
+[Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
+is the immediate analytic successor. It applies the real positive logarithm
+to the same cocycle norm to obtain a nonnegative
+{{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}},
+builds a shifted one-step orbit-sum majorant, and propagates one explicit
+generator integrability assumption to every finite horizon. That envelope
+forgets contraction and exact collapse, so it is not a Lyapunov observable.
+
 [Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables" >}})
 derives the fourteen-declaration Lean interface, including the entrywise
 measurability proof, zero-safe subadditivity, and the positive-versus-empty
