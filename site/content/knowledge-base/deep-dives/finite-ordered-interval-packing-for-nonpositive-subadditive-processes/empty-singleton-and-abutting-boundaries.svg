@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="600"
+     viewBox="0 0 820 600" role="img" aria-labelledby="titleBoundaries descBoundaries">
+  <title id="titleBoundaries">Three boundary cases for finite ordered interval packing</title>
+  <desc id="descBoundaries">Three panels compare an empty marked set, a one-point interval, and two abutting half-open intervals. Captions explain that the empty case supports a weak theorem only at positive enlarged horizon, that positive length includes singletons, and that abutment remains disjoint.</desc>
+  <rect width="820" height="600" fill="#F7F4F0"/>
+  <style>
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.7}
+    .axis{stroke:#7F786D;stroke-width:2;fill:none}
+    .dash{stroke:#7F786D;stroke-width:1.5;stroke-dasharray:5 5;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+  </style>
+
+  <text x="32" y="38" class="t title">Small cases reveal the exact theorem boundary</text>
+  <text x="32" y="62" class="t m">These are mathematical cases, not implementation accidents.</text>
+
+  <rect x="32" y="99" width="236" height="434" rx="15" class="cream"/>
+  <text x="55" y="136" class="t h">EMPTY MARKED SET</text>
+  <line x1="58" y1="229" x2="242" y2="229" class="axis"/>
+  <text x="82" y="203" class="t m">no marks to cover</text>
+  <rect x="55" y="282" width="190" height="93" rx="10" class="gray"/>
+  <text x="72" y="315" class="t h">WEAK STATEMENT</text>
+  <text x="72" y="341" class="t s">At positive horizon,</text>
+  <text x="72" y="363" class="t s">the RHS is zero.</text>
+  <rect x="55" y="394" width="190" height="105" rx="10" class="clay"/>
+  <text x="72" y="427" class="t h">STRICT STATEMENT</text>
+  <text x="72" y="453" class="t s">Needs a nonempty</text>
+  <text x="72" y="475" class="t s">marked set.</text>
+
+  <rect x="292" y="99" width="236" height="434" rx="15" class="cream"/>
+  <text x="315" y="136" class="t h">ONE-POINT INTERVAL</text>
+  <line x1="318" y1="229" x2="502" y2="229" class="axis"/>
+  <rect x="394" y="193" width="34" height="72" rx="7" class="blue"/>
+  <circle cx="411" cy="229" r="7" fill="#4B6787"/>
+  <rect x="315" y="282" width="190" height="93" rx="10" class="blue"/>
+  <text x="332" y="315" class="t h">POSITIVE LENGTH</text>
+  <text x="332" y="341" class="t s">The smallest allowed</text>
+  <text x="332" y="363" class="t s">length is one.</text>
+  <rect x="315" y="394" width="190" height="105" rx="10" class="green"/>
+  <text x="332" y="427" class="t h">REAL COVERAGE</text>
+  <text x="332" y="453" class="t s">The single start is</text>
+  <text x="332" y="475" class="t s">included and covered.</text>
+
+  <rect x="552" y="99" width="236" height="434" rx="15" class="cream"/>
+  <text x="575" y="136" class="t h">ABUTTING INTERVALS</text>
+  <line x1="578" y1="229" x2="762" y2="229" class="axis"/>
+  <rect x="594" y="193" width="77" height="72" rx="7" class="green"/>
+  <rect x="671" y="193" width="77" height="72" rx="7" class="clay"/>
+  <line x1="671" y1="183" x2="671" y2="275" class="dash"/>
+  <rect x="575" y="282" width="190" height="93" rx="10" class="green"/>
+  <text x="592" y="315" class="t h">SHARED BOUNDARY</text>
+  <text x="592" y="341" class="t s">The next interval may</text>
+  <text x="592" y="363" class="t s">begin where the first ends.</text>
+  <rect x="575" y="394" width="190" height="105" rx="10" class="blue"/>
+  <text x="592" y="427" class="t h">STILL DISJOINT</text>
+  <text x="592" y="449" class="t s">The earlier interval</text>
+  <text x="592" y="471" class="t s">is half-open, so it</text>
+  <text x="592" y="493" class="t s">excludes the boundary.</text>
+
+  <rect x="32" y="553" width="756" height="28" rx="8" class="gray"/>
+  <text x="52" y="573" class="t m">Correct endpoint translation preserves all three cases.</text>
+</svg>

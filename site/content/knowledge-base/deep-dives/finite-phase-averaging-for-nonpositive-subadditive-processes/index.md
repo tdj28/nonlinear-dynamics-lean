@@ -1214,10 +1214,15 @@ finite orbit-sum convention.
 is the Development Notebook companion with the declaration-by-declaration
 implementation narrative and milestone audit.
 
-The next ridge is finite ordered disjoint-interval packing. That layer must
-state its interval order, coverage, gap, and endpoint conventions explicitly.
-No link is supplied until that successor page exists. A later Kingman layer
-must then choose and prove its exact measurable, integrable,
+The immediate successor is
+[Finite Ordered Interval Packing for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-ordered-interval-packing-for-nonpositive-subadditive-processes" >}}).
+It states interval order, coverage, gap, endpoint, empty-mark, and strictness
+conventions explicitly. The compact
+{{< refterm "ordered-interval-packing" "ordered interval packing" >}}
+chapter and the
+[RMT-21 Development Notebook]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}})
+give the shorter routes. A later Kingman layer must then choose and prove its
+exact measurable, integrable,
 maximal-inequality, stationarity, and almost-everywhere hypotheses rather than infer a
 limit from the shape of the finite formula.
 

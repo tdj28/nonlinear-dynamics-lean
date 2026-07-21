@@ -6,6 +6,7 @@ import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
 import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
 
 /-!
 # Random cocycles
@@ -38,6 +39,13 @@ multiplication form remains total, but vacuous, at `b = 0`; division requires
 positive block length. The phase proofs add no time-zero normalization,
 measure-preservation, probability, or ergodicity hypothesis, although their
 candidate and cocycle inputs retain the fields bundled by those interfaces.
-They deliberately stop before a pointwise or mean Birkhoff theorem, Kingman's
-subadditive ergodic theorem, interval packing, or any samplewise exponent claim.
+An ordered interval-packing layer then encodes positive-length half-open
+natural intervals by successive gaps, chooses a left-to-right disjoint cover
+of finitely many marked starts inside an enlarged horizon, and turns weak or
+strict per-start estimates into finite marked-cardinality bounds. At positive
+enlarged horizon, the empty marked set retains only the weak conclusion; the
+strict conclusion requires a marked start and derives horizon positivity.
+These finite layers deliberately stop before a pointwise or mean
+Birkhoff theorem, Kingman's subadditive ergodic theorem, or any samplewise
+exponent claim.
 -/

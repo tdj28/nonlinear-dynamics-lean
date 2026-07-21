@@ -416,15 +416,23 @@ The first active sequence is:
     generator-integrability witness. The public wrappers retain their bundled
     fields, but the proofs consume only finite algebra and nonpositivity. This
     is a finite phase estimate, not a Birkhoff or Kingman convergence theorem.
+26. [`RandomCocycles/SubadditiveIntervalPacking.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean)
+    encodes positive-length half-open natural intervals by successive gaps, so
+    chronological order, disjointness, abutment, containment, and exact
+    covered cardinality are structural. A leftmost greedy selector produces a
+    disjoint cover of marked starts inside the enlarged horizon `H + m` and
+    records both coverage and the exact origin and length of every selected
+    interval. Weak and strict favorable-cost estimates then give finite bounds
+    by the number of marked starts; the weak result handles empty marks when
+    the enlarged horizon is positive, while the strict result requires a
+    nonempty marked set and derives that positivity. The process proof uses
+    only shifted subadditivity and positive-horizon nonpositivity and makes no
+    density, maximal, ergodic, convergence, or Lyapunov claim.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
-spectral laws or quantum-chaos observables. The next milestones are:
+spectral laws or quantum-chaos observables. The next major milestone is:
 
-1. Add a separate finite interval-packing layer over an explicit ordered family
-   of disjoint intervals. Keep its combinatorics independent of measure theory,
-   formalize the checked coverage and gap bookkeeping, and expose the finite
-   lower-estimate inequality without smuggling in a limit argument.
-2. Design and prove the missing pointwise Birkhoff and Kingman-style
+1. Design and prove the missing pointwise Birkhoff and Kingman-style
    infrastructure from its exact measurable, integrable, stationary,
    finite-measure, maximal-inequality, and almost-everywhere hypotheses. The
    pinned Mathlib release supplies finite

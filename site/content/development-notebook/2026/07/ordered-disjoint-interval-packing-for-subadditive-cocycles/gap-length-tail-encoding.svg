@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="640"
+     viewBox="0 0 920 640" role="img" aria-labelledby="titleGapEncoding descGapEncoding">
+  <title id="titleGapEncoding">Gap, length, and tail data encode an ordered interval packing</title>
+  <desc id="descGapEncoding">A finite horizon is split into uncovered gaps, positive interval lengths, and a final tail. A second row shows how those pieces reconstruct ordered, disjoint half-open intervals without exceeding the horizon.</desc>
+  <rect width="920" height="640" fill="#F7F4F0"/>
+  <style>
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.7}
+    .line{stroke:#7F786D;stroke-width:2;fill:none}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+  </style>
+
+  <text x="34" y="38" class="t title">One finite list carries the whole packing</text>
+  <text x="34" y="62" class="t m">Read from left to right: skip a gap, place a positive interval, then continue.</text>
+
+  <text x="34" y="111" class="t h">ENCODING DATA</text>
+  <rect x="34" y="132" width="126" height="92" rx="12" class="gray"/>
+  <text x="73" y="169" class="t h">GAP</text>
+  <text x="53" y="195" class="t m">uncovered time</text>
+  <rect x="160" y="132" width="210" height="92" rx="12" class="blue"/>
+  <text x="222" y="169" class="t h">INTERVAL</text>
+  <text x="198" y="195" class="t m">positive length</text>
+  <rect x="370" y="132" width="92" height="92" rx="12" class="gray"/>
+  <text x="392" y="169" class="t h">GAP</text>
+  <text x="388" y="195" class="t m">may be zero</text>
+  <rect x="462" y="132" width="250" height="92" rx="12" class="green"/>
+  <text x="545" y="169" class="t h">INTERVAL</text>
+  <text x="521" y="195" class="t m">positive length</text>
+  <rect x="712" y="132" width="174" height="92" rx="12" class="clay"/>
+  <text x="778" y="169" class="t h">TAIL</text>
+  <text x="745" y="195" class="t m">unused horizon</text>
+
+  <line x1="265" y1="236" x2="265" y2="273" class="arrow"/>
+  <polygon points="265,285 257,270 273,270" fill="#A67C52"/>
+  <line x1="587" y1="236" x2="587" y2="273" class="arrow"/>
+  <polygon points="587,285 579,270 595,270" fill="#A67C52"/>
+
+  <text x="34" y="313" class="t h">RECONSTRUCTED HORIZON</text>
+  <line x1="34" y1="388" x2="886" y2="388" class="line"/>
+  <line x1="34" y1="374" x2="34" y2="402" class="line"/>
+  <line x1="886" y1="374" x2="886" y2="402" class="line"/>
+  <rect x="160" y="337" width="210" height="102" rx="8" class="blue"/>
+  <rect x="462" y="337" width="250" height="102" rx="8" class="green"/>
+  <text x="200" y="370" class="t h">FIRST INTERVAL</text>
+  <text x="189" y="413" class="t m">left endpoint included</text>
+  <text x="507" y="370" class="t h">SECOND INTERVAL</text>
+  <text x="503" y="413" class="t m">right endpoint excluded</text>
+  <text x="46" y="464" class="t m">horizon begins</text>
+  <text x="788" y="464" class="t m">horizon ends</text>
+
+  <rect x="34" y="504" width="258" height="99" rx="12" class="cream"/>
+  <text x="55" y="537" class="t h">GAPS CONTROL ORDER</text>
+  <text x="55" y="562" class="t s">Nonnegative gaps prevent</text>
+  <text x="55" y="584" class="t s">overlap and allow abutment.</text>
+  <rect x="331" y="504" width="258" height="99" rx="12" class="cream"/>
+  <text x="352" y="537" class="t h">LENGTHS CREATE SETS</text>
+  <text x="352" y="562" class="t s">Positive lengths include</text>
+  <text x="352" y="584" class="t s">one-point intervals.</text>
+  <rect x="628" y="504" width="258" height="99" rx="12" class="cream"/>
+  <text x="649" y="537" class="t h">THE TAIL CERTIFIES FIT</text>
+  <text x="649" y="562" class="t s">The final unused piece keeps</text>
+  <text x="649" y="584" class="t s">every endpoint in range.</text>
+</svg>

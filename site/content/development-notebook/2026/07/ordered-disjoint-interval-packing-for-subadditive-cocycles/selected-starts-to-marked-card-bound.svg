@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="720"
+     viewBox="0 0 920 720" role="img" aria-labelledby="titleMarkedBound descMarkedBound">
+  <title id="titleMarkedBound">Coverage and a nonpositive coefficient give the marked-cardinality bound</title>
+  <desc id="descMarkedBound">Marked starts lie on a finite timeline, and three disjoint selected intervals cover all of them. Three labeled steps explain that local estimates sum to a coefficient times total covered length, coverage bounds marked cardinality by covered length, and a nonpositive coefficient reverses that comparison.</desc>
+  <rect width="920" height="720" fill="#F7F4F0"/>
+  <style>
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.7}
+    .axis{stroke:#7F786D;stroke-width:2;fill:none}
+    .guide{stroke:#A67C52;stroke-width:1.5;stroke-dasharray:5 5;fill:none}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .mark{fill:#FBF9F6;stroke:#2C2924;stroke-width:2}
+    .selected{fill:#A67C52;stroke:#2C2924;stroke-width:2}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+  </style>
+
+  <text x="34" y="38" class="t title">Covered length becomes a marked-cardinality bound</text>
+  <text x="34" y="62" class="t m">Each filled diamond is a selected start. Each outlined circle is another marked start.</text>
+
+  <text x="34" y="108" class="t h">MARKED STARTS AND THEIR COVERING INTERVALS</text>
+  <line x1="52" y1="208" x2="868" y2="208" class="axis"/>
+  <line x1="52" y1="195" x2="52" y2="221" class="axis"/>
+  <line x1="868" y1="195" x2="868" y2="221" class="axis"/>
+
+  <rect x="92" y="139" width="206" height="94" rx="10" class="blue"/>
+  <rect x="336" y="139" width="224" height="94" rx="10" class="green"/>
+  <rect x="606" y="139" width="204" height="94" rx="10" class="clay"/>
+  <text x="142" y="164" class="t h">FIRST INTERVAL</text>
+  <text x="392" y="164" class="t h">SECOND INTERVAL</text>
+  <text x="652" y="164" class="t h">THIRD INTERVAL</text>
+
+  <polygon points="112,190 122,208 112,226 102,208" class="selected"/>
+  <circle cx="164" cy="208" r="9" class="mark"/>
+  <circle cx="230" cy="208" r="9" class="mark"/>
+  <polygon points="354,190 364,208 354,226 344,208" class="selected"/>
+  <circle cx="420" cy="208" r="9" class="mark"/>
+  <circle cx="518" cy="208" r="9" class="mark"/>
+  <polygon points="624,190 634,208 624,226 614,208" class="selected"/>
+  <circle cx="695" cy="208" r="9" class="mark"/>
+  <circle cx="774" cy="208" r="9" class="mark"/>
+
+  <line x1="112" y1="239" x2="112" y2="278" class="guide"/>
+  <line x1="354" y1="239" x2="354" y2="278" class="guide"/>
+  <line x1="624" y1="239" x2="624" y2="278" class="guide"/>
+  <text x="74" y="302" class="t m">selected start</text>
+  <text x="316" y="302" class="t m">selected start</text>
+  <text x="586" y="302" class="t m">selected start</text>
+  <text x="710" y="277" class="t m">every mark is covered</text>
+
+  <rect x="34" y="344" width="242" height="174" rx="14" class="blue"/>
+  <text x="58" y="380" class="t h">STEP ONE</text>
+  <text x="58" y="410" class="t s">Local interval estimates</text>
+  <text x="58" y="434" class="t s">sum to the coefficient</text>
+  <text x="58" y="458" class="t s">times total covered</text>
+  <text x="58" y="482" class="t s">length.</text>
+
+  <line x1="285" y1="431" x2="317" y2="431" class="arrow"/>
+  <polygon points="329,431 314,423 314,439" fill="#A67C52"/>
+
+  <rect x="339" y="344" width="242" height="174" rx="14" class="green"/>
+  <text x="363" y="380" class="t h">STEP TWO</text>
+  <text x="363" y="410" class="t s">Coverage proves the</text>
+  <text x="363" y="434" class="t s">number of marked starts</text>
+  <text x="363" y="458" class="t s">is no larger than total</text>
+  <text x="363" y="482" class="t s">covered length.</text>
+
+  <line x1="590" y1="431" x2="622" y2="431" class="arrow"/>
+  <polygon points="634,431 619,423 619,439" fill="#A67C52"/>
+
+  <rect x="644" y="344" width="242" height="174" rx="14" class="clay"/>
+  <text x="668" y="380" class="t h">STEP THREE</text>
+  <text x="668" y="410" class="t s">A nonpositive coefficient</text>
+  <text x="668" y="434" class="t s">reverses that comparison,</text>
+  <text x="668" y="458" class="t s">yielding the marked-card</text>
+  <text x="668" y="482" class="t s">upper bound.</text>
+
+  <rect x="34" y="558" width="852" height="124" rx="14" class="cream"/>
+  <text x="58" y="594" class="t h">THE LOGICAL BOUNDARY</text>
+  <text x="58" y="622" class="t s">At positive enlarged horizon, empty marks make covering vacuous and the weak bound valid.</text>
+  <text x="58" y="649" class="t s">A strict conclusion needs at least one marked start; otherwise strictness would collapse at zero.</text>
+  <text x="747" y="667" class="t m">finite time only</text>
+</svg>

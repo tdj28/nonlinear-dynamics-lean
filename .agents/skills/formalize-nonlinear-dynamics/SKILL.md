@@ -201,6 +201,34 @@ For every new or materially changed teaching page:
 Use a separate read-only reviewer for high-risk mathematics, normalization,
 or law-versus-sample distinctions.
 
+## Scale Builds Safely
+
+When the local workstation is memory-constrained, an explicitly authorized
+remote builder may run the same repository gates. Keep this an acceleration
+layer, not a second source of truth:
+
+- keep secrets in ignored `.env` and never print, copy into the repository,
+  stage, or commit them;
+- use a dedicated SSH key and a dedicated known-hosts file for the builder;
+- transfer the source tree without `.env`, generated Hugo output, or local
+  `.lake` artifacts, and do not copy broad home-directory credentials;
+- build on the provider's fast ephemeral disk, because Lean and Lake create
+  many small files and are poorly matched to a metadata-slow network mount;
+- use persistent network storage for sequential compressed snapshots of the
+  exact Elan toolchain and project `.lake` cache, written through a temporary
+  filename and renamed only after archive validation;
+- pin the same `lean-toolchain`, `lake-manifest.json`, Hugo version, and source
+  commit on both machines;
+- record cold setup, build, and full-gate timings separately from cached
+  incremental timings; and
+- treat a remote green build as additional evidence. The committed source,
+  deterministic artifacts, browser inspection, checkpoint, and final local or
+  reproducibly remote `make check` still define the milestone.
+
+Resolve and terminate only exact obsolete compute resources after a read-only
+inventory. Preserve any active builder or persistent volume the user has asked
+to retain, and report its continuing hourly or monthly cost.
+
 ## Publish Frequently to Main
 
 The user has authorized frequent direct pushes to `main` for this repository.

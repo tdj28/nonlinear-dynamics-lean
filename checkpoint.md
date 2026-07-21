@@ -3,42 +3,51 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 14:34 PDT
+Last updated: 2026-07-21 16:15 PDT
 
-Audited baseline: `main` at `ebb29fb`
+Audited baseline: `main` at `6296103`
 
-Active direction: paused before RMT-21, finite ordered interval packing for
-nonpositive shifted-subadditive processes
+Active direction: RMT-21 is complete in the working tree; the next slice is
+RMT-22, a conditional Birkhoff convergence-event bridge
 
 ## Restart Handoff
 
-- RMT-20 is complete, committed, and pushed to `main` at `ebb29fb`. The Lean
-  module, aggregator and coverage wiring, comprehensive Notebook, glossary
-  chapter, Deep Dive, three deterministic cards, five conceptual SVGs,
-  predecessor links, README, skill, and checkpoint all received independent
-  clean audits before that push.
-- Pause snapshot at 2026-07-21 14:34 PDT: the worktree is clean, local `main`
-  and `origin/main` both resolve to `ebb29fb`, no RMT-21 repository file has
-  been created, and all three RMT-20/RMT-21 audit agents have completed. This
-  checkpoint-only restart handoff is the sole change made after that snapshot.
-- The last complete Lean build passed 3,177 jobs. No Lean source changed after
-  that green build. The final prose corrections subsequently passed checkpoint
-  synchronization, proof-to-prose coverage, source hygiene, unit tests, Hugo's
-  264-page warnings-fatal build, card verification, SVG validation, browser QA,
-  and `git diff --check`.
-- Disk pressure required `lake clean`, which removed only generated build
-  artifacts. An initial cold rebuild hit two transient missing-output races in
-  upstream Mathlib/Aesop; its immediate retry progressed without errors through
-  2,440 of 3,071 then-required targets before the user-requested pause. On
-  restart, run `source "$HOME/.elan/env" && make check`; Lake will resume from
-  the rebuilt cache rather than starting from zero.
-- After the resumed gate is green, continue with RMT-21 exactly as specified in
-  **Exact Next Milestone**. Its 565-line warning-fatal prototype remains at
-  `/private/tmp/RMT21Prototype.lean` in this machine state. Its SHA-256 is
-  `4c403d7e2412f42e9c0482dce82c2d26b99fe1444176f5dd7525409e185cfe89`.
-  The representation, bookkeeping, finite process inequality, favorable-cost
-  bounds, and project wrappers compile there; the greedy selector existence
-  theorem remains the only designed theorem absent from the prototype.
+- RMT-21 is integrated in the working tree. Its 1,131-line substantive module
+  adds an indexed gap-length-tail representation of ordered positive-length
+  half-open intervals, exact decoding and covered cardinality, a leftmost
+  greedy selector with separate coverage and provenance certificates, weak and
+  strict favorable-cost bounds, the exact positive-horizon/time-zero boundary,
+  and candidate, centered-process, and matrix-cocycle wrappers.
+- The final source has SHA-256
+  `732187ce77b5efa14df3a992f194d5dce4dfc8d9f5fa6dbaf658c5ed41ef4f4d`.
+  It contains 54 public named declarations when the inductive packing type is
+  included, 13 private named declarations, and 35 compiled anonymous probes.
+  Direct warning-fatal checks, the branch/root build, and an independent
+  theorem audit are green. The axiom prints contain only `propext`,
+  `Classical.choice`, and `Quot.sound`.
+- The teaching layer is integrated: an 8,500-word declaration-complete
+  Development Notebook, a 2,800-word glossary chapter, an 8,500-word textbook
+  Deep Dive with 44 solved exercises, three deterministic cards, and five
+  accessible conceptual SVGs. The source corrects the motivating inclusive
+  endpoint display to half-open intervals, preserves singleton and abutting
+  cases, and keeps every asymptotic nonclaim explicit.
+- Proof-to-prose coverage passes 26/26 substantive modules; source hygiene
+  passes 90 Markdown files; Hugo renders 277 pages with warnings fatal; all
+  cards reproduce byte-for-byte at 1200x630; all SVGs parse and pass visual
+  review. Desktop and 390-pixel browser QA reports zero page-level overflow,
+  KaTeX errors, raw delimiters, broken assets, or console failures. Wide tables
+  and code blocks scroll locally.
+- The active RunPod builder remains up at the user's request. The fast local
+  disk holds the active Lean/Mathlib build tree. The attached persistent
+  network volume now holds integrity-tested sequential zstd snapshots of Elan
+  and Lean 4.32.0 (`736571369` bytes) and the pinned Mathlib/Lake tree
+  (`2633278693` bytes); it is not used as a live metadata-heavy `.lake` tree.
+  The two obsolete stopped test pods were terminated. No API key, private SSH
+  key, pod address, or account-specific resource identifier belongs in the
+  repository.
+- On the active builder, the complete cached `make check` gate passes all
+  3,178 Lean jobs, checkpoint/coverage/hygiene checks, and the 277-page Hugo
+  render in 7.666 seconds after the final audited source synchronization.
 
 ## How to Use This Checkpoint
 
@@ -54,15 +63,17 @@ nonpositive shifted-subadditive processes
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,177 jobs. The integrated RMT-20 gate covers twenty-five
-  substantive modules, twenty-five complete draft Notebook companions, and 264
-  Hugo pages with warnings fatal.
-- Lean inventory: 440 public named declarations across the twenty-five substantive
-  modules; 18 one-line deterministic placeholders; one `.gitkeep`-only
-  Random branch; five `.gitkeep`-only Quantum Chaos branches.
+- Last green Lean build: 3,178 jobs. The integrated RMT-21 gate covers
+  twenty-six substantive modules, twenty-six complete draft Notebook
+  companions, and 277 Hugo pages with warnings fatal.
+- Lean inventory: 493 public named declarations counted by the proof-to-prose
+  checker across the twenty-six substantive modules. Including RMT-21's public
+  inductive packing type gives 54 public names in that module. The tree also
+  has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
+  branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 155,690 words across the twenty-five Notebook companions
-  and 174,220 words across twenty-two Deep Dives and thirty-five glossary
+- Teaching snapshot: 164,342 words across the twenty-six Notebook companions
+  and 185,687 words across twenty-three Deep Dives and thirty-six glossary
   chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
@@ -98,16 +109,17 @@ nonpositive shifted-subadditive processes
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks` | Both finite block-plus-remainder orientations, quotient/remainder forms, the exact time-zero normalization boundary, fixed-block Birkhoff-sum integrability under block-map preservation alone, and cocycle log-positive specializations without probability, ergodicity, or convergence claims | `finite-block-birkhoff-bounds-for-subadditive-cocycles` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering` | Orbit-majorant centering, positive-horizon and time-zero-aware nonpositivity, preserved shifted subadditivity, finite-horizon integrability under one-step preservation, an exact normalized split, and direct log-positive cocycle specializations without a limit claim | `orbit-majorant-centering-for-subadditive-cocycles` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging` | Exact residue-phase reindexing, prefix/block/tail bounds, deletion of positive-time gaps, total multiplication and positive-block division forms, centered-process phase bounds, and a direct cocycle specialization without any convergence claim | `phase-averaged-sliding-block-bounds-for-subadditive-cocycles` |
+| `NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking` | Gap-indexed ordered positive-length half-open interval packings, exact covered cardinality, a leftmost greedy cover with separate coverage and provenance, weak arbitrary-mark and strict nonempty-mark favorable-cost bounds, exact time-zero boundaries, and finite candidate/centered/cocycle wrappers without a density or limit claim | `ordered-disjoint-interval-packing-for-subadditive-cocycles` |
 
-The root aggregator imports all twenty-five modules. The proof-to-prose manifest and
+The root aggregator imports all twenty-six modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twenty-five comprehensive Development Notebook chapters in an explicit
+- Twenty-six comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Twenty-two textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Twenty-three textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -126,9 +138,10 @@ declaration visibility.
   Growth and Its Deterministic Fekete Limit*, and *Probability Normalization
   and Ergodic Rigidity Before Kingman*, followed by *Finite Block
   Decomposition for Subadditive Processes*, *Orbit-Majorant Centering for
-  Subadditive Processes*, and *Finite Phase Averaging for Nonpositive
-  Subadditive Processes*.
-- Thirty-five glossary chapters, now including phase averaging,
+  Subadditive Processes*, *Finite Phase Averaging for Nonpositive Subadditive
+  Processes*, and *Finite Ordered Interval Packing for Nonpositive Subadditive
+  Processes*.
+- Thirty-six glossary chapters, now including ordered interval packing, phase averaging,
   orbit-majorant centering, the Birkhoff sum, the ergodic probability base,
   the integrated log-positive growth rate, the log-positive integrability
   envelope, the extended log-norm
@@ -140,7 +153,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Seventy-two deterministic 1200x630 social cards and fifty-nine accessible
+- Seventy-five deterministic 1200x630 social cards and sixty-four accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -149,69 +162,65 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-21: pack ordered disjoint intervals for the complementary finite bound
+### RMT-22: isolate the Birkhoff convergence event and its ergodic rigidity
 
 The next module is
-`Random/RandomCocycles/SubadditiveIntervalPacking.lean`. A 565-line
-warning-fatal prototype at `/private/tmp/RMT21Prototype.lean` compiles the
-representation, gap bookkeeping, process inequality, favorable-cost bounds,
-and project specializations. Freeze that finite layer, then close its remaining
-greedy existence theorem:
+`Random/RandomCocycles/BirkhoffConvergence.lean`. Pinned Mathlib 4.32.0 has
+finite Birkhoff-sum/average algebra, finite a.e.-representative transport, and
+ergodic rigidity, but no measure-theoretic pointwise Birkhoff theorem, Hopf
+maximal ergodic inequality, Kingman theorem, or subadditive ergodic theorem.
+RMT-22 therefore builds an honest conditional bridge without asserting that
+any orbit average converges:
 
-1. Define `OrderedNatIntervalPacking : ℕ → Type` inductively. Its empty
-   constructor retains a horizon. Its cons constructor stores a prefix gap, a
-   strictly positive interval length, and a recursively shifted tail at total
-   horizon `gap + length + tail`. This structure must guarantee ordering,
-   disjointness, half-open containment, abutting intervals, and zero-sized
-   initial, intermediate, or terminal gaps by construction.
-2. Expose `intervalCount`, `coveredLength`, `intervals`, `coveredFinset`,
-   `Covers`, `cost`, and the weak and strict per-interval cost predicates.
-   Prove interval containment and pairwise disjointness, covered-set containment
-   in `Finset.range`, exact covered cardinality, coverage-to-cardinality, and
-   `coveredLength ≤ horizon`.
-3. Prove the finite process inequality by induction on the packing under the
-   exact boundary `horizon ≠ 0`; a nonempty packing may instead derive positive
-   horizon internally. A zero gap must not create an `X 0` summand. Split and
-   discard only positive gaps, so `X 0` remains unrestricted even when the
-   first interval begins at zero or the last interval ends exactly at the
-   horizon. Do not totalize the false empty-packing, horizon-zero case.
-4. Derive weak `cost ≤ c * coveredLength` and strict
-   `cost < c * coveredLength` bounds from per-interval estimates. Keep strict
-   conclusions conditional on a nonempty packing; use the weak result for the
-   empty case. Combine these with the process inequality to obtain the finite
-   favorable-interval estimates.
-5. Add thin methods for `IsIntegrableSubadditiveProcessCandidate`, its centered
-   process, and `DiscreteMatrixCocycle.centeredLogPlusNormObservable`. Preserve
-   the distinction between bundled receiver premises and proof-consumed fields.
-   Add no `X 0 = 0`, extra preservation witness, generator-integrability
-   witness, probability, ergodicity, or nonempty matrix-index premise.
-6. Prove a greedy selector, tentatively `exists_orderedPacking_covering`, from
-   marked starts in `Finset.range H` and a choice with
-   `0 < length j ≤ m`. Produce a packing at the explicit enlarged horizon
-   `H + m`. Every selected interval must begin at a marked position `j`, have
-   exactly the chosen length `length j`, remain ordered and disjoint, and the
-   selected union must cover every marked start. This is the one part not yet
-   present in the compiled prototype.
-7. Compile boundary probes for the empty packing at positive horizon, failure
-   of an unconditional empty-packing theorem at horizon zero with `X 0 = 1`,
-   zero and positive gaps, abutting intervals, a final endpoint at the horizon,
-   singleton intervals, exact covered cardinality, weak and strict costs, the
-   positive-time process `X 0 = 1`, and an empty-index cocycle specialization.
-8. Pair the frozen declarations with a comprehensive Notebook, glossary
-   chapter, Deep Dive, deterministic cards, prose-only conceptual figures,
-   coverage mapping, checkpoint update, full validation, commit, and push.
+1. Reuse Mathlib's `birkhoffSum` and totalized `birkhoffAverage`; define neither
+   again. Prove missing real-valued measurability and finite-horizon
+   integrability lemmas from `Measurable.iterate`, `Finset.measurable_sum`,
+   `MeasurePreserving.iterate`, `MeasurePreserving.integrable_comp_of_integrable`,
+   and `integrable_finsetSum`. These finite statements need no finite measure,
+   probability, or ergodicity.
+2. Define `birkhoffConvergenceSet T g` as the points where the real Birkhoff
+   averages converge to some real limit. Prove exact measurability for measurable
+   `g` with `MeasureTheory.measurableSet_exists_tendsto`. Prove a.e.-congruence
+   under a quasi-measure-preserving map using
+   `QuasiMeasurePreserving.birkhoffAverage_ae_eq_of_ae_eq`; for merely
+   integrable `g`, use `hg.aestronglyMeasurable.mk g` to obtain the honest
+   null-measurable event rather than silently strengthening integrability to
+   ordinary measurability.
+3. Prove the missing pointwise shift lemma: convergence of the averages at
+   `ω` implies convergence at `T ω` to the same limit. The proof uses
+   `birkhoffSum_succ'` and the positive-index identity
+   `A n (T ω) = ((n + 1) / n) * A (n + 1) ω - g ω / n`; it requires neither
+   boundedness nor a convergence-existence hypothesis beyond the point at hand.
+4. Deduce only the one-sided event relation
+   `birkhoffConvergenceSet T g ⊆ T ⁻¹' birkhoffConvergenceSet T g`. Under
+   `[IsFiniteMeasure μ]` and `Ergodic T μ`, apply
+   `Ergodic.ae_empty_or_univ_of_ae_le_preimage` to obtain an a.e.-empty/full
+   dichotomy. Under `[IsProbabilityMeasure μ]`, derive the corresponding
+   probability-zero-or-one corollary.
+5. Add a thin specialization to the one-step observable used by the
+   subadditive-process/cocycle interfaces. It may identify the convergence
+   event and its conditional rigidity; it must not assert membership or
+   almost-everywhere convergence.
+6. Compile probes for `n = 0` totalization, constant and zero observables,
+   identity dynamics, nonmeasurable representatives replaced a.e., a zero
+   finite measure, one-sided rather than two-sided invariance, and the project
+   cocycle specialization. Pair the frozen source with declaration-complete
+   Notebook and textbook coverage, deterministic visuals, coverage mapping,
+   checkpoint update, full validation, commit, and push.
 
-The source audit must preserve two finite details. Lalley's equation (6),
-translated from inclusive integer intervals `[jᵢ, jᵢ+kᵢ-1]` to half-open
-intervals `[jᵢ, jᵢ+kᵢ)`, gives exactly the packed-process upper bound. Its
-displayed strict endpoint chain excludes length-one intervals even though the
-following greedy selection allows `1 ≤ k ≤ m`; the Lean representation
-correctly admits every positive length. Steele's integer-interval algorithm
-supports the explicit gap encoding but does not replace the theorem that must
-be checked here. RMT-21 is
-finite combinatorics and a finite subadditive inequality. It proves no density
-estimate, maximal inequality, Birkhoff theorem, Kingman theorem, almost-everywhere
-limit, Lyapunov exponent, or Oseledets splitting.
+The boundary ledger is fixed. `birkhoffAverage ... 0 = 0` says nothing about a
+separate process value `X 0`. `Integrable g μ` supplies only a.e. strong
+measurability. Forward invariance does not become equality without an
+invertibility argument. A finite measure may be the zero measure. Ergodicity of
+`T` must not be transferred to `T^[b]`; the earlier phase reindexing to the base
+map remains essential. Mathlib's `MeasureTheory.maximal_ineq` is Doob's
+martingale inequality, not Hopf's maximal ergodic theorem, and its Hilbert-space
+mean-ergodic declarations are not pointwise a.e. convergence. RMT-22 proves no
+convergence existence, density, maximal inequality, pointwise Birkhoff theorem,
+Kingman theorem, limit-integral interchange, Lyapunov exponent, or Oseledets
+splitting. Natural successors are a finite Hopf maximal inequality, then a
+pointwise Birkhoff development, and only afterward the density input needed to
+connect RMT-20/RMT-21 to Kingman.
 
 ## Dependency-Ordered Roadmap
 
@@ -282,6 +291,10 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Finite residue-phase averaging, including exact sliding-sum reindexing,
   boundary retention and deletion, zero-block totalization, positive-block
   division, centered-process bounds, and a direct cocycle specialization.
+- [x] Finite ordered interval packing, including gap-indexed half-open
+  geometry, exact covered cardinality, leftmost greedy selection with coverage
+  and provenance, weak empty-mark and strict nonempty-mark favorable-cost
+  bounds, time-zero countermodels, and finite cocycle specializations.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -719,9 +732,35 @@ k-invariance precedes approximation claims.
   horizon and a mutually incompatible averaged boundary count. RMT-20 keeps
   the complete-block count and records the resulting finite arithmetic repair;
   this does not dispute the asymptotic theorem.
-- RMT-20 proves no pointwise or mean Birkhoff theorem, almost-everywhere or
-  `L¹` convergence, Kingman upper estimate, invariant integral, maximal
+- RMT-20 itself proves no pointwise or mean Birkhoff theorem, almost-everywhere
+  or `L¹` convergence, Kingman upper estimate, invariant integral, maximal
   inequality, interval packing, Lyapunov exponent, or Oseledets splitting.
+- RMT-21 represents each selected interval by a nonnegative preceding gap and
+  a strictly positive length. Recursive tails make chronological order,
+  half-open disjointness, zero gaps, abutment, singleton intervals, and a
+  terminal gap structural rather than auxiliary propositions.
+- `Covers` and `SelectedFrom` are intentionally separate. Coverage yields
+  `marked.card ≤ coveredLength`; selection provenance transports hypotheses at
+  marked starts to the actual interval costs. Neither predicate implies the
+  other, and the selector theorem returns both.
+- The selector target is `H + m`: starts lie below `H`, while their positive
+  prescribed lengths are at most `m`. Generic packings may end exactly at
+  their horizon, but selected endpoints are strictly below the enlarged
+  horizon. The leftmost filter keeps a start equal to the prior excluded
+  endpoint, so abutting output is legal.
+- Weak packing and greedy marked-card bounds require a nonzero horizon because
+  positive-time nonpositivity does not control `X 0`. Strict marked-card bounds
+  instead require `marked.Nonempty`; coverage then forces a nonempty
+  positive-length packing and derives horizon positivity. Empty strict local
+  hypotheses are vacuous and cannot imply `0 < 0`.
+- Coverage gives a lower bound on total covered length. The final marked-card
+  upper bound therefore needs `c ≤ 0`, which reverses multiplication. Packing
+  cost is a sum of variable-horizon process values at selected starts, not a
+  Birkhoff sum of one-step values.
+- RMT-21 proves finite selection, coverage, cardinality, and process algebra
+  only. It supplies no marked-set density, maximal inequality, pointwise
+  Birkhoff theorem, Kingman theorem, almost-everywhere limit, signed Lyapunov
+  exponent, or Oseledets splitting.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -767,9 +806,11 @@ k-invariance precedes approximation claims.
   normalized split are now formalized as well. Finite residue-phase averaging
   now turns all powered-map block rows into one consecutive Birkhoff sum while
   retaining the exact gap arithmetic and the block-length-zero boundary.
-  Ordered interval packing, the required greedy coverage theorem, and all
-  asymptotic passages remain open. The existing interfaces do not produce the
-  missing pointwise Birkhoff theorem, maximal inequality, subadditive ergodic
+  Ordered interval packing and its greedy marked-start cover are now
+  formalized too, including exact covered cardinality, local-cost provenance,
+  weak empty-mark and strict nonempty-mark bounds, and the false horizon-zero
+  countermodel. The existing interfaces still do not produce a marked-set
+  density, pointwise Birkhoff theorem, maximal inequality, subadditive ergodic
   theorem, or samplewise limit.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
@@ -1310,6 +1351,32 @@ Checkpoint/skill milestone QA:
   one AI-use disclosure while the glossary renders none, reciprocal and
   continuation links resolve, and desktop plus mobile screenshots pass visual
   review.
+- RMT-21 Lean audit: the 1,131-line module has 54 public named declarations
+  including its inductive packing type, 13 private named declarations, and 35
+  compiled anonymous probes. It checks the representation, decoders, exact
+  covered cardinality, geometric order/disjointness, selector coverage and
+  provenance, weak/strict cost transport, raw process inequality, marked-card
+  bounds, and project wrappers. Leaf, branch, root, and full builds pass with
+  3,178 jobs; no proof hole, unsafe declaration, or custom axiom occurs, and
+  theorem prints contain only `propext`, `Classical.choice`, and `Quot.sound`.
+- RMT-21 teaching audit: the 8,571-word Notebook maps all 67 named declarations
+  in exact source order; the 2,834-word glossary fixes the reusable convention;
+  and the 8,566-word Deep Dive supplies a textbook ascent with 44 solved
+  exercises. The pages distinguish coverage from provenance, covered length
+  from interval count, weak empty marks from strict nonempty marks, generic
+  horizon containment from selector endpoint slack, and finite packing from
+  every ergodic or Lyapunov claim. Three cards reproduce byte-for-byte at
+  1200x630; five accessible SVGs parse, render, and pass visual review; source
+  hygiene covers 90 Markdown files; and Hugo renders 277 pages with warnings
+  fatal.
+- Rendered RMT-21 QA: the Notebook, glossary, and Deep Dive render 238, 99, and
+  311 KaTeX nodes. At desktop and 390-pixel widths, all three pages have zero
+  KaTeX errors, raw delimiters, page-level overflow, broken assets, or console
+  failures. Cards load at 1200x630, lazy SVGs load at intrinsic dimensions,
+  tables and code scroll locally on mobile, Open Graph and Twitter metadata are
+  complete, the Notebook and Deep Dive render their canonical AI disclosures,
+  and the glossary renders none. All five figures and six page-level desktop
+  and mobile views passed visual inspection.
 
 ## Recent Pushes
 

@@ -510,6 +510,13 @@ maps the complete Lean implementation and its edge probes. The
 builds a longer textbook route through the proof geometry, source correction,
 and future analytic dependencies.
 
+The complementary finite construction is
+{{< refterm "ordered-interval-packing" "ordered interval packing" >}}. Its
+[Development Notebook]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}})
+maps the Lean selector and marked-card bounds, while
+[Finite Ordered Interval Packing for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-ordered-interval-packing-for-nonpositive-subadditive-processes" >}})
+develops the textbook route through the leftmost cover and boundary cases.
+
 ## References
 
 <a id="ref-phase-mathlib-birkhoff"></a>**Mathlib contributors.**

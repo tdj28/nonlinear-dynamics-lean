@@ -116,6 +116,9 @@ It covers all eight public declarations and all seven private named helpers
 and smoke declarations in exact source order. Its immediate predecessor is
 [Subtract the Orbit Majorant: Centering Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/orbit-majorant-centering-for-subadditive-cocycles" >}}),
 which proves the positive-horizon nonpositivity consumed here.
+Its immediate successor is
+[Pack the Marked Starts: Ordered Disjoint Intervals for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}}),
+which formalizes the complementary finite interval-selection mechanism.
 
 The reusable term introduced by this chapter is
 [phase averaging](/knowledge-base/glossary/phase-averaging/). The parallel
@@ -1241,8 +1244,9 @@ argument?
 
 **Solution.** One needs an ordered-disjoint-interval packing or covering
 layer that selects favorable finite blocks along the orbit while controlling
-uncovered positions. Phase averaging proves the upper finite estimate, not
-that packing theorem.
+uncovered positions. Phase averaging itself proves the upper finite estimate,
+not that packing theorem. RMT-21 now supplies the separate finite layer in
+[Pack the Marked Starts]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}}).
 
 ### Exercise 33: write the referee correction
 
@@ -1323,20 +1327,26 @@ mathematical, source, accessibility, and editorial review.
 
 ## The next ridge
 
-RMT-20 has supplied the corrected finite upper mechanism. Every residue phase
+RMT-20 supplied the corrected finite upper mechanism. Every residue phase
 gives a complete-block inequality at one common horizon, and the sum of those
 powered-map rows becomes one ordinary sliding Birkhoff sum. The proof has kept
 its zero-block and time-zero boundaries visible.
 
-The complementary finite direction requires a different geometry. One must
+RMT-21 now freezes the complementary finite direction, whose geometry is
+different. One must
 choose favorable finite intervals along a long orbit, make them ordered and
-disjoint, and control the positions that remain uncovered. Lalley's
+disjoint, and cover every marked start. Lalley's
 lower-estimate discussion describes such a leftmost-interval selection in
 prose ([Lalley](#ref-rmt20-lalley)). Steele gives a separate conceptually
 algorithmic interval decomposition in a proof of Kingman's theorem
-([Steele, 1989](#ref-rmt20-steele)). RMT-21 should isolate the needed finite
-packing combinatorics before any asymptotic passage rather than importing
-either complete limit proof wholesale.
+([Steele, 1989](#ref-rmt20-steele)). The checked successor
+[packs the marked starts]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}})
+by a leftmost greedy rule, keeps the weak empty-mark boundary separate from
+the strict nonempty-mark theorem, and imports neither complete limit proof.
+Its compact term is
+{{< refterm "ordered-interval-packing" "ordered interval packing" >}}, and
+its textbook treatment is
+[Finite Ordered Interval Packing for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-ordered-interval-packing-for-nonpositive-subadditive-processes" >}}).
 
 Only after both finite directions exist should the project choose and encode
 the analytic convergence route. That later layer must distinguish pointwise

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="680"
+     viewBox="0 0 820 680" role="img" aria-labelledby="titleLeftmost descLeftmost">
+  <title id="titleLeftmost">Repeated leftmost selection covers every marked start</title>
+  <desc id="descLeftmost">Three snapshots show a greedy finite construction. In each round the leftmost uncovered mark is selected, its interval covers nearby marks, and the procedure repeats on the remaining marks. The final row contains ordered disjoint intervals covering every original mark.</desc>
+  <rect width="820" height="680" fill="#F7F4F0"/>
+  <style>
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.7}
+    .axis{stroke:#7F786D;stroke-width:2;fill:none}
+    .mark{fill:#FBF9F6;stroke:#2C2924;stroke-width:2}
+    .covered{fill:#EDE8E1;stroke:#7F786D;stroke-width:2}
+    .selected{fill:#A67C52;stroke:#2C2924;stroke-width:2}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+  </style>
+
+  <text x="32" y="38" class="t title">Select the leftmost uncovered mark, then jump past its interval</text>
+  <text x="32" y="62" class="t m">Outlined circles are waiting marks. Filled diamonds are selected starts. Gray circles are already covered.</text>
+
+  <text x="32" y="112" class="t h">ROUND ONE: SELECT THE FIRST MARK</text>
+  <line x1="58" y1="180" x2="772" y2="180" class="axis"/>
+  <rect x="92" y="139" width="194" height="82" rx="9" class="blue"/>
+  <polygon points="110,163 120,180 110,197 100,180" class="selected"/>
+  <circle cx="174" cy="180" r="9" class="mark"/>
+  <circle cx="253" cy="180" r="9" class="mark"/>
+  <circle cx="346" cy="180" r="9" class="mark"/>
+  <circle cx="401" cy="180" r="9" class="mark"/>
+  <circle cx="523" cy="180" r="9" class="mark"/>
+  <circle cx="575" cy="180" r="9" class="mark"/>
+  <circle cx="698" cy="180" r="9" class="mark"/>
+  <text x="129" y="242" class="t m">this interval covers three marks</text>
+
+  <line x1="410" y1="246" x2="410" y2="275" class="arrow"/>
+  <polygon points="410,287 402,272 418,272" fill="#A67C52"/>
+
+  <text x="32" y="320" class="t h">ROUND TWO: IGNORE COVERED MARKS AND REPEAT</text>
+  <line x1="58" y1="388" x2="772" y2="388" class="axis"/>
+  <rect x="92" y="347" width="194" height="82" rx="9" class="gray"/>
+  <circle cx="110" cy="388" r="9" class="covered"/>
+  <circle cx="174" cy="388" r="9" class="covered"/>
+  <circle cx="253" cy="388" r="9" class="covered"/>
+  <rect x="328" y="347" width="276" height="82" rx="9" class="green"/>
+  <polygon points="346,371 356,388 346,405 336,388" class="selected"/>
+  <circle cx="401" cy="388" r="9" class="mark"/>
+  <circle cx="523" cy="388" r="9" class="mark"/>
+  <circle cx="575" cy="388" r="9" class="mark"/>
+  <circle cx="698" cy="388" r="9" class="mark"/>
+  <text x="387" y="450" class="t m">the next interval starts at the leftmost survivor</text>
+
+  <line x1="410" y1="457" x2="410" y2="486" class="arrow"/>
+  <polygon points="410,498 402,483 418,483" fill="#A67C52"/>
+
+  <text x="32" y="531" class="t h">FINISH: SELECT AGAIN UNTIL NO MARK REMAINS</text>
+  <line x1="58" y1="599" x2="772" y2="599" class="axis"/>
+  <rect x="92" y="558" width="194" height="82" rx="9" class="blue"/>
+  <rect x="328" y="558" width="276" height="82" rx="9" class="green"/>
+  <rect x="680" y="558" width="70" height="82" rx="9" class="clay"/>
+  <polygon points="110,582 120,599 110,616 100,599" class="selected"/>
+  <polygon points="346,582 356,599 346,616 336,599" class="selected"/>
+  <polygon points="698,582 708,599 698,616 688,599" class="selected"/>
+  <text x="105" y="664" class="t s">The selected intervals are ordered, disjoint, and cover every original marked start.</text>
+</svg>
