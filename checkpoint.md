@@ -3,19 +3,24 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 14:30 PDT
+Last updated: 2026-07-21 14:34 PDT
 
-Audited baseline: `main` at `deeb964`
+Audited baseline: `main` at `ebb29fb`
 
-Active direction: finite ordered interval packing for nonpositive
-shifted-subadditive processes
+Active direction: paused before RMT-21, finite ordered interval packing for
+nonpositive shifted-subadditive processes
 
 ## Restart Handoff
 
-- RMT-20 is complete and commit-ready: the Lean module, aggregator and coverage
-  wiring, comprehensive Notebook, glossary chapter, Deep Dive, three
-  deterministic cards, five conceptual SVGs, predecessor links, README, skill,
-  and this checkpoint have all received independent clean audits.
+- RMT-20 is complete, committed, and pushed to `main` at `ebb29fb`. The Lean
+  module, aggregator and coverage wiring, comprehensive Notebook, glossary
+  chapter, Deep Dive, three deterministic cards, five conceptual SVGs,
+  predecessor links, README, skill, and checkpoint all received independent
+  clean audits before that push.
+- Pause snapshot at 2026-07-21 14:34 PDT: the worktree is clean, local `main`
+  and `origin/main` both resolve to `ebb29fb`, no RMT-21 repository file has
+  been created, and all three RMT-20/RMT-21 audit agents have completed. This
+  checkpoint-only restart handoff is the sole change made after that snapshot.
 - The last complete Lean build passed 3,177 jobs. No Lean source changed after
   that green build. The final prose corrections subsequently passed checkpoint
   synchronization, proof-to-prose coverage, source hygiene, unit tests, Hugo's
@@ -29,7 +34,11 @@ shifted-subadditive processes
   the rebuilt cache rather than starting from zero.
 - After the resumed gate is green, continue with RMT-21 exactly as specified in
   **Exact Next Milestone**. Its 565-line warning-fatal prototype remains at
-  `/private/tmp/RMT21Prototype.lean` in this machine state.
+  `/private/tmp/RMT21Prototype.lean` in this machine state. Its SHA-256 is
+  `4c403d7e2412f42e9c0482dce82c2d26b99fe1444176f5dd7525409e185cfe89`.
+  The representation, bookkeeping, finite process inequality, favorable-cost
+  bounds, and project wrappers compile there; the greedy selector existence
+  theorem remains the only designed theorem absent from the prototype.
 
 ## How to Use This Checkpoint
 
@@ -1304,6 +1313,8 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `ebb29fb`: finite subadditive phase averaging, exact boundary bookkeeping,
+  centered-process and cocycle wrappers, and teaching layer.
 - `deeb964`: orbit-majorant centering, exact normalized splitting, cocycle
   specializations, and teaching layer.
 - `8aac7f9`: finite subadditive block and remainder bounds, fixed-block
