@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="650"
+     viewBox="0 0 920 650" role="img"
+     aria-labelledby="titleAssumptionMap descAssumptionMap">
+  <title id="titleAssumptionMap">Three assumptions have different formal jobs</title>
+  <desc id="descAssumptionMap">A prose-only dependency diagram. Integrability leads to a finite-time subadditive-process candidate and deterministic rate bounds. Probability normalization joins integrability to license an expectation name. Probability normalization joins ergodicity to give a zero-one law for strictly invariant measurable events. Ergodicity alone makes almost-everywhere invariant measurable real observables almost everywhere constant. A footer states that no combination shown constructs a samplewise limit.</desc>
+  <rect width="920" height="650" fill="#F7F4F0"/>
+  <style>
+    .paper{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .rust{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gold{fill:#F5EBCF;stroke:#A98845;stroke-width:1.7}
+    .muted{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+    .line{stroke:#A67C52;stroke-width:2.2;fill:none}
+    .join{fill:#A67C52}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .warn{font-size:12px;fill:#7E4238;font-weight:700}
+  </style>
+
+  <text x="30" y="34" class="t title">Three gates, three jobs, no automatic samplewise limit</text>
+  <text x="30" y="56" class="t m">Read each connector as a theorem dependency, not as a hierarchy of stronger assumptions.</text>
+
+  <rect x="30" y="88" width="250" height="104" rx="14" class="blue"/>
+  <text x="92" y="119" class="t h">INTEGRABILITY</text>
+  <text x="57" y="143" class="t s">finite-horizon positive-log costs</text>
+  <text x="66" y="162" class="t s">are genuine finite integrals</text>
+  <text x="67" y="180" class="t m">analytic gate from the prior module</text>
+
+  <rect x="335" y="88" width="250" height="104" rx="14" class="gold"/>
+  <text x="373" y="119" class="t h">PROBABILITY NORMALIZATION</text>
+  <text x="397" y="143" class="t s">the whole space has mass one</text>
+  <text x="381" y="162" class="t s">so probability language is licensed</text>
+  <text x="391" y="180" class="t m">scale gate, not a limit theorem</text>
+
+  <rect x="640" y="88" width="250" height="104" rx="14" class="rust"/>
+  <text x="714" y="119" class="t h">ERGODICITY</text>
+  <text x="676" y="143" class="t s">invariant measurable information</text>
+  <text x="690" y="162" class="t s">is trivial up to null sets</text>
+  <text x="682" y="180" class="t m">rigidity gate, not independence</text>
+
+  <path d="M 155 192 L 155 226" class="line"/>
+  <polygon points="155,236 147,223 163,223" class="join"/>
+  <rect x="30" y="244" width="250" height="84" rx="12" class="green"/>
+  <text x="63" y="274" class="t h">PROCESS CANDIDATE</text>
+  <text x="54" y="296" class="t s">all horizons integrable, plus the</text>
+  <text x="68" y="314" class="t s">shifted pointwise inequality</text>
+
+  <path d="M 155 328 L 155 352" class="line"/>
+  <polygon points="155,362 147,349 163,349" class="join"/>
+  <rect x="30" y="370" width="250" height="84" rx="12" class="green"/>
+  <text x="57" y="400" class="t h">DETERMINISTIC RATE FACTS</text>
+  <text x="54" y="422" class="t s">nonnegative, infimum description,</text>
+  <text x="62" y="440" class="t s">and positive-horizon upper bounds</text>
+
+  <path d="M 230 192 L 230 218 L 395 218 L 395 234" class="line"/>
+  <path d="M 460 192 L 460 218 L 395 218" class="line"/>
+  <polygon points="395,244 387,231 403,231" class="join"/>
+  <rect x="305" y="244" width="250" height="84" rx="12" class="blue"/>
+  <text x="357" y="274" class="t h">EXPECTATION ALIAS</text>
+  <text x="332" y="296" class="t s">same integral, now exposed only when</text>
+  <text x="349" y="314" class="t s">mass one and integrability both hold</text>
+
+  <path d="M 520 192 L 520 344 L 555 344 L 555 360" class="line"/>
+  <path d="M 700 192 L 700 344 L 555 344" class="line"/>
+  <polygon points="555,370 547,357 563,357" class="join"/>
+  <rect x="305" y="370" width="250" height="84" rx="12" class="gold"/>
+  <text x="356" y="400" class="t h">INVARIANT EVENT</text>
+  <text x="356" y="422" class="t s">strictly invariant and measurable</text>
+  <text x="350" y="440" class="t s">implies probability zero or one</text>
+
+  <path d="M 765 192 L 765 238" class="line"/>
+  <polygon points="765,248 757,235 773,235" class="join"/>
+  <rect x="640" y="256" width="250" height="118" rx="12" class="rust"/>
+  <text x="676" y="286" class="t h">INVARIANT REAL OBSERVABLE</text>
+  <text x="671" y="310" class="t s">strongly measurable almost everywhere</text>
+  <text x="674" y="329" class="t s">and invariant almost everywhere</text>
+  <text x="673" y="353" class="t h">ALMOST EVERYWHERE CONSTANT</text>
+
+  <rect x="30" y="500" width="860" height="108" rx="14" class="paper"/>
+  <text x="56" y="531" class="t h">THE BOUNDARY IS PART OF THE RESULT</text>
+  <rect x="56" y="548" width="808" height="38" rx="9" class="muted"/>
+  <text x="107" y="572" class="t warn">No connector above constructs a pointwise limit, an almost-sure growth rate, or a Lyapunov exponent.</text>
+</svg>

@@ -112,6 +112,10 @@ and
 {{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}.
 The parallel textbook treatment is
 [Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}}).
+The immediate successor is
+[Probability and Ergodic-Base Interfaces for Matrix Cocycles in Lean]({{< relref "/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles" >}}),
+which keeps probability normalization, ergodic rigidity, and finite-time
+integrability separate while stopping before a samplewise limit theorem.
 
 ## Choose a route up
 
@@ -1193,6 +1197,12 @@ does not rename the present theorem. Introduce a normalized measure assumption
 explicitly, decide whether the goal is a samplewise positive-envelope limit
 or signed logarithmic matrix growth, and match the exact hypotheses of the
 selected theorem.
+
+That interface is now developed in
+[Probability and Ergodic-Base Interfaces for Matrix Cocycles in Lean]({{< relref "/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles" >}}).
+It supplies expectation terminology and invariant-object rigidity, but it
+also verifies that the pinned Mathlib release contains no ready-made Kingman
+theorem. The samplewise summit therefore remains later work.
 
 For a Kingman-style path, the project needs the subadditive measurable process
 before integration, the relevant finite-measure or probability assumptions,

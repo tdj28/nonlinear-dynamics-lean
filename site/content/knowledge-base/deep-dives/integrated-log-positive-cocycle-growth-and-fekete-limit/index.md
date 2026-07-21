@@ -900,6 +900,14 @@ infimum.
 
 ## Where to continue
 
+[Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
+is the immediate successor. It packages the finite-time process, introduces
+probability-specialized expectation terminology, and exposes native invariant
+event and invariant-observable rigidity without claiming that an almost-sure
+limit exists. Its compact companion is the
+{{< refterm "ergodic-probability-base" "ergodic probability base" >}}
+entry.
+
 The
 {{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}
 entry is the compact definition and caveat ledger for this chapter.

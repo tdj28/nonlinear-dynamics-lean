@@ -35,6 +35,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.NormObservables",
     "notebook": "site/content/development-notebook/2026/07/finite-time-cocycle-norm-and-extended-log-norm-observables/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase",
+    "notebook": "site/content/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"

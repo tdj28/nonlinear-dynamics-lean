@@ -285,6 +285,16 @@ sequence of real numbers.
 
 ## Where to continue
 
+The
+{{< refterm "ergodic-probability-base" "ergodic probability base" >}}
+entry separates the unit-mass, invariant-rigidity, and finite-time
+integrability roles that the present raw-measure rate intentionally leaves
+apart.
+
+[Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
+develops that next interface and explains why it still does not construct a
+samplewise limit.
+
 [Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
 derives all thirteen declarations, explains the two proof strands entering
 Fekete's theorem, and audits every assumption and nonclaim.

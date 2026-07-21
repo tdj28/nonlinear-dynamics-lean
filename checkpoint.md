@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 10:45 PDT
+Last updated: 2026-07-21 11:35 PDT
 
-Audited baseline: `main` at `d07d18d`
+Audited baseline: `main` at `cdda319`
 
-Active direction: probability and ergodicity interfaces for random cocycles
+Active direction: finite block decomposition for subadditive cocycle processes
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: probability and ergodicity interfaces for random cocycles
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,169 jobs. The integrated RMT-16 gate covers twenty-one
-  substantive modules, twenty-one complete draft Notebook companions, and 222
+- Last green Lean build: 3,172 jobs. The integrated RMT-17 gate covers twenty-two
+  substantive modules, twenty-two complete draft Notebook companions, and 237
   Hugo pages with warnings fatal.
-- Lean inventory: 392 public named declarations across the twenty-one substantive
+- Lean inventory: 402 public named declarations across the twenty-two substantive
   modules; 18 one-line deterministic placeholders; one `.gitkeep`-only
   Random branch; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 122,538 words across the twenty-one Notebook companions
-  and 134,876 words across eighteen Deep Dives and thirty-one glossary
+- Teaching snapshot: 131,118 words across the twenty-two Notebook companions
+  and 143,632 words across nineteen Deep Dives and thirty-two glossary
   chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
@@ -63,16 +63,17 @@ Active direction: probability and ergodicity interfaces for random cocycles
 | `NonlinearDynamics.Random.RandomCocycles.NormObservables` | Maximum absolute row-sum finite-time norm, exact row-sum formula, entrywise measurability, cocycle submultiplicativity, zero-faithful extended log norm, extended-real subadditivity, and explicit positive/empty-dimension branches | `finite-time-cocycle-norm-and-extended-log-norm-observables` |
 | `NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability` | Real log-positive finite-time envelope, nonnegativity, measurability, subadditivity, finite orbit-sum domination, an explicit one-step integrability hypothesis, and propagation through preserved base iterates, finite sums, and every finite horizon | `finite-horizon-log-positive-cocycle-integrability` |
 | `NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth` | Raw-measure integrals of every finite-horizon log-positive envelope, shifted-integral invariance, an exact orbit-sum integral, a linear one-step bound, scalar subadditivity, positive-time normalization, and deterministic Fekete convergence | `integrated-log-positive-growth-and-deterministic-fekete-limit` |
+| `NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase` | A generic integrable shifted-subadditive-process candidate, deterministic Fekete-rate bounds, probability-guarded expectation terminology, and native ergodic rigidity for invariant events and real observables, with no samplewise-limit claim | `probability-and-ergodic-base-interfaces-for-matrix-cocycles` |
 
-The root aggregator imports all twenty-one modules. The proof-to-prose manifest and
+The root aggregator imports all twenty-two modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twenty-one comprehensive Development Notebook chapters in an explicit
+- Twenty-two comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Eighteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Nineteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -87,10 +88,12 @@ declaration visibility.
   Products and Proof-Carrying Pushforward Laws*, and *Generator-Presented
   One-Sided Discrete Matrix Cocycles*, and *Finite-Time Norm and
   Extended-Log-Norm Observables for Matrix Cocycles*, and *Finite-Horizon
-  Log-Positive Cocycle Integrability*, and *Integrated Log-Positive Cocycle
-  Growth and Its Deterministic Fekete Limit*.
-- Thirty-one glossary chapters, now including the integrated log-positive
-  growth rate, the log-positive integrability envelope, the extended log-norm
+  Log-Positive Cocycle Integrability*, *Integrated Log-Positive Cocycle
+  Growth and Its Deterministic Fekete Limit*, and *Probability Normalization
+  and Ergodic Rigidity Before Kingman*.
+- Thirty-two glossary chapters, now including the ergodic probability base,
+  the integrated log-positive growth rate, the log-positive integrability
+  envelope, the extended log-norm
   observable, one-sided discrete matrix
   cocycles, finite random-matrix products,
   forward matrix products, and the induced infinity operator norm, as well as
@@ -99,7 +102,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Sixty deterministic 1200x630 social cards and forty-four accessible
+- Sixty-three deterministic 1200x630 social cards and forty-seven accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -108,40 +111,41 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-17: native probability and ergodic-base interfaces
+### RMT-18: finite block decomposition for subadditive processes
 
 The next module is provisionally
-`Random/RandomCocycles/ProbabilityErgodicBase.lean`. It should build the
-smallest honest interface needed before any subadditive ergodic theorem:
+`Random/RandomCocycles/SubadditiveFiniteBlocks.lean`. It should prove the
+finite algebraic estimates that precede any Kingman argument, using the RMT-17
+process candidate and Mathlib's finite Birkhoff sums:
 
-1. Work on the existing cocycle with Mathlib's native
-   `[IsProbabilityMeasure μ]` and `Ergodic C.base μ` assumptions. Do not hide
-   probability in raw-measure definitions or duplicate the
-   measure-preservation data already contained in `Ergodic`.
-2. Record the nonnegative and one-step upper bounds for the deterministic
-   RMT-16 Fekete rate, and expose its positive-index infimum characterization
-   without calling it a samplewise exponent.
-3. Make expectation terminology available only inside the probability
-   specialization, where total mass one is explicit. Keep the underlying raw
-   integral theorem available and visibly distinct.
-4. Expose the native zero-one law for invariant measurable events and the
-   a.e.-constancy result for a.e.-invariant strongly measurable observables.
-   These are future tools for turning an invariant limit into a constant, not
-   a proof that a limit exists.
-5. Package the RMT-15 log-positive family as an integrable subadditive process
-   candidate with its exact shifted inequality and finite-horizon
-   integrability, still without asserting Kingman's conclusion.
-6. Audit the pinned Mathlib tree for the precise missing Kingman
-   infrastructure, compile a warnings-fatal prototype, and pair the final API
-   with Notebook and Knowledge Base teaching before the next push.
+1. Prove that the shifted subadditive inequality forces
+   `0 ≤ X 0 ω`, and isolate the exact extra normalization `X 0 = 0` needed for
+   block-count-zero formulas. Keep the compiled constant-one counterexample
+   visible in the audit so that assumption cannot be erased later.
+2. For block length `b`, block count `q`, and remainder `r`, bound
+   `X (b * q + r) ω` by the Birkhoff sum of `X b` under `T^[b]` plus the shifted
+   remainder. Derive the corresponding `n / b` and `n % b` statement without
+   inventing an asymptotic conclusion.
+3. Add the complementary remainder-first form under `X 0 = 0`, placing the
+   short remainder at the original sample and the full-block Birkhoff sum at
+   the shifted sample. State exactly which variants need a nonzero block count
+   and which remain tautologically valid at block length zero.
+4. Prove finite Birkhoff-sum integrability from the candidate together with an
+   explicit `MeasurePreserving T μ μ` hypothesis. Require neither probability
+   nor ergodicity for this finite-time result.
+5. Specialize the most useful block bounds and integrability result to
+   `C.logPlusNormObservable`, using its checked time-zero identity and the
+   cocycle's stored measure preservation. Preserve the empty matrix-index
+   boundary.
+6. Audit the iterate and Birkhoff-sum orientations warning-fatally, then pair
+   the frozen Lean API with complete Notebook and Knowledge Base teaching.
 
-The probability and ergodicity assumptions must remain separate: probability
-normalizes the measure, while ergodicity controls invariant objects. Neither
-implies independence, invertibility, negative-log integrability, samplewise
-convergence, or a Lyapunov exponent. The pinned Mathlib tree contains the
-native probability and ergodic interfaces but no ready-made Kingman theorem,
-so RMT-17 must stop at checked prerequisites unless that theorem is formally
-implemented.
+This is finite-block infrastructure, not a pointwise ergodic theorem. The
+pinned Mathlib tree provides Birkhoff-sum algebra but no measure-theoretic
+pointwise Birkhoff theorem, maximal ergodic inequality, or Kingman theorem.
+In particular, `Ergodic T μ` does not generally make every power `T^[b]`
+ergodic. RMT-18 must prove no almost-everywhere convergence, invariant limit,
+limit-integral interchange, Lyapunov exponent, or Oseledets splitting.
 
 ## Dependency-Ordered Roadmap
 
@@ -199,6 +203,9 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Finite-horizon log-positive envelope and explicit one-step
   integrability propagation.
 - [x] Integrated log-positive subadditivity and deterministic Fekete limit.
+- [x] Native probability normalization and ergodic-base rigidity interfaces,
+  with the finite-horizon family packaged as an integrable
+  shifted-subadditive-process candidate.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -546,6 +553,29 @@ k-invariance precedes approximation claims.
   in-probability, distributional, or `L¹` convergence, performs no
   limit-integral interchange, and supplies no Lyapunov exponent, Kingman
   theorem, Oseledets splitting, inverse control, or random-Jacobian statement.
+- RMT-17 keeps three logically independent gates visible. The generic
+  `IsIntegrableSubadditiveProcessCandidate` stores finite-horizon
+  integrability and the exact shifted pointwise inequality, but stores no
+  probability, measure-preservation, ergodicity, stationarity, or limit field.
+- The RMT-17 deterministic rate facts retain only
+  `HasIntegrableGeneratorLogPlus`. Nonnegativity, the positive-index infimum,
+  and every-positive-horizon upper bound require neither probability nor
+  ergodicity. Time zero remains excluded from the infimum and upper-bound
+  interface.
+- `finiteHorizonLogPlusExpectation` is definitionally the existing raw
+  integral. Its `[IsProbabilityMeasure μ]` and explicit integrability witness
+  are semantic and analytic gates; the definition performs no rescaling and
+  no limit-integral interchange.
+- The invariant-event wrapper uses strict measurable-set invariance and needs
+  both probability normalization and `Ergodic C.base μ`. The invariant-real-
+  observable wrapper uses almost-everywhere invariance and ergodicity but no
+  probability typeclass. Both deliberately omit irrelevant finite matrix-index
+  assumptions.
+- The pinned Mathlib 4.32.0 tree supplies probability typeclasses, ergodic
+  structures, invariant-event rigidity, invariant-function constancy, and
+  finite Birkhoff-sum algebra, but no ready-made Kingman or pointwise Birkhoff
+  theorem. RMT-17 therefore constructs no samplewise limit, Lyapunov exponent,
+  or Oseledets splitting.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -583,7 +613,9 @@ k-invariance precedes approximation claims.
   are also formalized, as are integrated scalar subadditivity and its
   deterministic Fekete limit. Extended-log and negative-tail integrability,
   inverse control, normalized sample growth, Lyapunov exponents, and ergodic
-  limits remain open.
+  limits remain open. Probability-guarded expectation terminology and native
+  invariant-event and invariant-observable rigidity are now formalized, but
+  those interfaces do not produce the missing samplewise limit.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -1012,9 +1044,41 @@ Checkpoint/skill milestone QA:
   disclosure once; all eight Notebook citation links reach their seven unique
   reference anchors; and all Notebook and reciprocal Knowledge Base
   predecessor and successor links are exact.
+- RMT-17 Lean audit: all 10 source-level public declarations implement the
+  integrable shifted-subadditive-process candidate, its cocycle instance,
+  deterministic rate bounds, the guarded finite-horizon expectation alias,
+  and native ergodic rigidity for invariant events and real observables. The
+  exported interface has 12 names when the structure's two generated
+  projections are counted. The leaf, all aggregators, the actual-import smoke,
+  and adversarial empty-dimension and assumption-omission checks pass with
+  warnings fatal; the full build completes 3,172 jobs across 22 substantive
+  modules and 402 public named declarations. No proof holes, unsafe
+  declarations, or custom axioms occur, and theorem audits contain only
+  `propext`, `Classical.choice`, and `Quot.sound` where needed.
+- RMT-17 static teaching audit: the 8,501-word Notebook maps every declaration
+  and both generated projections in source order; the new 1,780-word glossary
+  and 6,875-word Deep Dive separate probability normalization, ergodic
+  rigidity, finite-horizon integrability, and the deterministic Fekete rate
+  without importing a samplewise theorem. All three deterministic cards
+  reproduce byte-for-byte at 1200x630 from both the repository and
+  `/private/tmp`; the 920x650, 800x620, and 800x720 prose-only SVGs parse and
+  render. Source hygiene passes 78 Markdown teaching files, coverage passes
+  22/22 modules, and Hugo builds 237 pages with warnings fatal.
+- Rendered RMT-17 QA: the Notebook, glossary, and Deep Dive render 112, 36,
+  and 120 KaTeX nodes respectively at both 1,280- and 390-pixel widths. The
+  amended RMT-16 Notebook, glossary, and Deep Dive remain stable at 171, 73,
+  and 171. All six pages have one article heading, zero KaTeX errors, raw
+  delimiters, page-level overflow, broken assets, or browser console failures.
+  Cards and explicitly scrolled lazy SVGs load at their declared intrinsic
+  dimensions, canonical disclosures render exactly once on the new Notebook
+  and Deep Dive, and the Notebook sequence and reciprocal Knowledge Base
+  crosslinks are exact. Visual review also corrected finite-only wording for
+  the fourth assumption-separation example before freeze.
 
 ## Recent Pushes
 
+- `cdda319`: integrated log-positive cocycle growth, deterministic Fekete
+  convergence, and teaching layer.
 - `d07d18d`: finite-horizon log-positive cocycle integrability and teaching
   layer.
 - `a18d568`: finite-time maximum-row-sum cocycle norms, zero-faithful

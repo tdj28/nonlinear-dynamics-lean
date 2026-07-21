@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="720"
+     viewBox="0 0 800 720" role="img"
+     aria-labelledby="assumptionMatrixTitle assumptionMatrixDesc">
+  <title id="assumptionMatrixTitle">Assumption matrix for the four checked theorem families</title>
+  <desc id="assumptionMatrixDesc">Four rows show which of three assumptions each theorem family requires. Deterministic rate facts use integrability only. Finite-horizon expectation uses probability and integrability. The invariant-event zero-one law uses probability and ergodicity. Almost-everywhere constancy of invariant observables uses ergodicity only. A separate blocked bridge states that no row proves samplewise convergence.</desc>
+  <rect width="800" height="720" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .yes{font-size:10px;font-weight:700;fill:#315F55}
+    .no{font-size:10px;font-weight:700;fill:#5A544C}
+  </style>
+
+  <text x="24" y="32" class="t title">Every checked output uses only the assumptions it needs</text>
+  <text x="24" y="53" class="t m">Required and not used are printed directly, so color is not carrying the relationship.</text>
+
+  <rect x="24" y="78" width="286" height="56" rx="12" fill="#16243A"/>
+  <text x="167" y="111" text-anchor="middle" class="t h" style="fill:#FFFDF8">CHECKED OUTPUT</text>
+  <rect x="322" y="78" width="138" height="56" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="391" y="103" text-anchor="middle" class="t h">PROBABILITY</text>
+  <text x="391" y="121" text-anchor="middle" class="t m">mass one</text>
+  <rect x="472" y="78" width="138" height="56" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="541" y="103" text-anchor="middle" class="t h">ERGODICITY</text>
+  <text x="541" y="121" text-anchor="middle" class="t m">invariant rigidity</text>
+  <rect x="622" y="78" width="154" height="56" rx="12"
+        fill="#F7E9DA" stroke="#C16F2C" stroke-width="1.4"/>
+  <text x="699" y="103" text-anchor="middle" class="t h">INTEGRABILITY</text>
+  <text x="699" y="121" text-anchor="middle" class="t m">finite moments</text>
+
+  <rect x="24" y="154" width="752" height="82" rx="13"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.4"/>
+  <text x="44" y="185" class="t h">DETERMINISTIC RATE FACTS</text>
+  <text x="44" y="208" class="t s">nonnegative, exact infimum, horizon bounds</text>
+  <rect x="338" y="174" width="106" height="42" rx="10" fill="#EDE8E1"/>
+  <text x="391" y="199" text-anchor="middle" class="t no">NOT USED</text>
+  <rect x="488" y="174" width="106" height="42" rx="10" fill="#EDE8E1"/>
+  <text x="541" y="199" text-anchor="middle" class="t no">NOT USED</text>
+  <rect x="638" y="174" width="122" height="42" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.2"/>
+  <text x="699" y="199" text-anchor="middle" class="t yes">REQUIRED</text>
+
+  <rect x="24" y="250" width="752" height="82" rx="13"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.4"/>
+  <text x="44" y="281" class="t h">FINITE-HORIZON EXPECTATION</text>
+  <text x="44" y="304" class="t s">a justified name for the raw integral</text>
+  <rect x="338" y="270" width="106" height="42" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.2"/>
+  <text x="391" y="295" text-anchor="middle" class="t yes">REQUIRED</text>
+  <rect x="488" y="270" width="106" height="42" rx="10" fill="#EDE8E1"/>
+  <text x="541" y="295" text-anchor="middle" class="t no">NOT USED</text>
+  <rect x="638" y="270" width="122" height="42" rx="10"
+        fill="#F7E9DA" stroke="#C16F2C" stroke-width="1.2"/>
+  <text x="699" y="295" text-anchor="middle" class="t yes">REQUIRED</text>
+
+  <rect x="24" y="346" width="752" height="82" rx="13"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.4"/>
+  <text x="44" y="377" class="t h">INVARIANT-EVENT ZERO-ONE LAW</text>
+  <text x="44" y="397" class="t s">strictly invariant measurable event</text>
+  <text x="44" y="414" class="t m">has mass zero or one</text>
+  <rect x="338" y="366" width="106" height="42" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.2"/>
+  <text x="391" y="391" text-anchor="middle" class="t yes">REQUIRED</text>
+  <rect x="488" y="366" width="106" height="42" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.2"/>
+  <text x="541" y="391" text-anchor="middle" class="t yes">REQUIRED</text>
+  <rect x="638" y="366" width="122" height="42" rx="10" fill="#EDE8E1"/>
+  <text x="699" y="391" text-anchor="middle" class="t no">NOT USED</text>
+
+  <rect x="24" y="442" width="752" height="82" rx="13"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.4"/>
+  <text x="44" y="473" class="t h">INVARIANT OBSERVABLE IS CONSTANT</text>
+  <text x="44" y="493" class="t s">invariant measurable observable</text>
+  <text x="44" y="510" class="t m">is constant almost everywhere</text>
+  <rect x="338" y="462" width="106" height="42" rx="10" fill="#EDE8E1"/>
+  <text x="391" y="487" text-anchor="middle" class="t no">NOT USED</text>
+  <rect x="488" y="462" width="106" height="42" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.2"/>
+  <text x="541" y="487" text-anchor="middle" class="t yes">REQUIRED</text>
+  <rect x="638" y="462" width="122" height="42" rx="10" fill="#EDE8E1"/>
+  <text x="699" y="487" text-anchor="middle" class="t no">NOT USED</text>
+
+  <rect x="112" y="552" width="576" height="62" rx="14"
+        fill="#16243A"/>
+  <text x="400" y="579" text-anchor="middle" class="t h" style="fill:#FFFDF8">CHECKED PRE-LIMIT INTERFACES</text>
+  <text x="400" y="599" text-anchor="middle" class="t s" style="fill:#D9E1EA">the assumptions remain modular and auditable</text>
+
+  <line x1="112" y1="636" x2="688" y2="636" stroke="#A55445"
+        stroke-width="3" stroke-dasharray="9 6"/>
+  <rect x="162" y="650" width="476" height="48" rx="12"
+        fill="#F3E8E0" stroke="#A55445" stroke-width="1.8"/>
+  <text x="400" y="672" text-anchor="middle" class="t h">NO KINGMAN THEOREM IN THE PINNED LIBRARY</text>
+  <text x="400" y="690" text-anchor="middle" class="t m">No row establishes a samplewise normalized limit.</text>
+
+  <text x="24" y="714" class="t m">Probability fixes scale. Ergodicity fixes invariant information. Integrability fixes finite moments.</text>
+</svg>

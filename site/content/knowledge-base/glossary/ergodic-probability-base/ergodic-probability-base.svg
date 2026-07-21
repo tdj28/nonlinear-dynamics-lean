@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620"
+     viewBox="0 0 800 620" role="img"
+     aria-labelledby="ergodicProbabilityTitle ergodicProbabilityDesc">
+  <title id="ergodicProbabilityTitle">Three independent gates before a samplewise theorem</title>
+  <desc id="ergodicProbabilityDesc">Probability fixes total measure mass at one and licenses expectation language. Ergodicity makes invariant events null or full and invariant observables almost everywhere constant. Integrability certifies finite moments at every finite horizon. All three are distinct, and their conjunction does not itself prove a samplewise limit.</desc>
+  <rect width="800" height="620" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .n{font-size:13px;font-weight:700;fill:#FFFDF8}
+  </style>
+  <defs>
+    <marker id="ergodicProbabilityArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Three gates answer three different questions</text>
+  <text x="24" y="53" class="t m">Scale, invariant information, and finite moments must remain separate.</text>
+
+  <circle cx="138" cy="102" r="20" fill="#16243A"/>
+  <text x="138" y="107" text-anchor="middle" class="t n" style="fill:#FFFDF8">1</text>
+  <circle cx="400" cy="102" r="20" fill="#315F55"/>
+  <text x="400" y="107" text-anchor="middle" class="t n" style="fill:#FFFDF8">2</text>
+  <circle cx="662" cy="102" r="20" fill="#9B5523"/>
+  <text x="662" y="107" text-anchor="middle" class="t n" style="fill:#FFFDF8">3</text>
+
+  <rect x="24" y="132" width="228" height="282" rx="15"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="138" y="164" text-anchor="middle" class="t h">PROBABILITY</text>
+  <text x="138" y="189" text-anchor="middle" class="t s">total mass is one</text>
+  <line x1="54" y1="210" x2="222" y2="210" stroke="#4B6787" stroke-width="1"/>
+  <text x="138" y="242" text-anchor="middle" class="t h">FIXES SCALE</text>
+  <text x="138" y="270" text-anchor="middle" class="t s">raw integrals may be called</text>
+  <text x="138" y="290" text-anchor="middle" class="t s">expectations when integrable</text>
+  <rect x="48" y="324" width="180" height="62" rx="11"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.2"/>
+  <text x="138" y="350" text-anchor="middle" class="t s">does not imply</text>
+  <text x="138" y="372" text-anchor="middle" class="t h">ERGODICITY</text>
+
+  <rect x="286" y="132" width="228" height="282" rx="15"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="400" y="164" text-anchor="middle" class="t h">ERGODICITY</text>
+  <text x="400" y="189" text-anchor="middle" class="t s">invariant sets are null or full</text>
+  <line x1="316" y1="210" x2="484" y2="210" stroke="#6F8D5E" stroke-width="1"/>
+  <text x="400" y="242" text-anchor="middle" class="t h">FIXES INVARIANT INFORMATION</text>
+  <text x="400" y="270" text-anchor="middle" class="t s">invariant real observables are</text>
+  <text x="400" y="290" text-anchor="middle" class="t s">almost everywhere constant</text>
+  <rect x="310" y="324" width="180" height="62" rx="11"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.2"/>
+  <text x="400" y="350" text-anchor="middle" class="t s">does not imply</text>
+  <text x="400" y="372" text-anchor="middle" class="t h">MIXING</text>
+
+  <rect x="548" y="132" width="228" height="282" rx="15"
+        fill="#F7E9DA" stroke="#C16F2C" stroke-width="1.5"/>
+  <text x="662" y="164" text-anchor="middle" class="t h">INTEGRABILITY</text>
+  <text x="662" y="189" text-anchor="middle" class="t s">finite moments are certified</text>
+  <line x1="578" y1="210" x2="746" y2="210" stroke="#C16F2C" stroke-width="1"/>
+  <text x="662" y="242" text-anchor="middle" class="t h">FIXES ANALYTIC LEGITIMACY</text>
+  <text x="662" y="270" text-anchor="middle" class="t s">one-step control propagates</text>
+  <text x="662" y="290" text-anchor="middle" class="t s">to every finite horizon</text>
+  <rect x="572" y="324" width="180" height="62" rx="11"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.2"/>
+  <text x="662" y="350" text-anchor="middle" class="t s">does not imply</text>
+  <text x="662" y="372" text-anchor="middle" class="t h">PROBABILITY</text>
+
+  <path d="M138 416 L138 448 L350 474" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#ergodicProbabilityArrow)"/>
+  <path d="M400 416 L400 468" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#ergodicProbabilityArrow)"/>
+  <path d="M662 416 L662 448 L450 474" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#ergodicProbabilityArrow)"/>
+
+  <rect x="148" y="480" width="504" height="76" rx="15"
+        fill="#16243A"/>
+  <text x="400" y="509" text-anchor="middle" class="t h" style="fill:#FFFDF8">A CLEAN FINITE-TIME INTERFACE</text>
+  <text x="400" y="534" text-anchor="middle" class="t s" style="fill:#D9E1EA">still needs an actual ergodic theorem for a samplewise limit</text>
+
+  <rect x="24" y="574" width="752" height="30" rx="10"
+        fill="#F3E8E0" stroke="#A55445" stroke-width="1.5"/>
+  <text x="400" y="594" text-anchor="middle" class="t h">NO INDEPENDENCE, MIXING, OR SAMPLEWISE CONVERGENCE FOLLOWS AUTOMATICALLY</text>
+</svg>

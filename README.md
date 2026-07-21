@@ -375,16 +375,32 @@ The first active sequence is:
     converges to Mathlib's deterministic Fekete limit. The integral is not
     called an expectation without a probability measure, and the result is
     neither almost-sure nor a Lyapunov limit.
+22. [`RandomCocycles/ProbabilityErgodicBase.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean)
+    keeps probability normalization, ergodicity, and finite-horizon
+    integrability as separate interfaces. It packages the log-positive family
+    as an integrable subadditive-process candidate, exposes the deterministic
+    Fekete rate's nonnegativity, positive-index infimum, and finite-horizon
+    upper bounds, and gives probability-specialized expectation terminology.
+    Native ergodic results provide a zero-one law for strictly invariant
+    measurable events and almost-everywhere constancy for almost-everywhere
+    invariant real observables. None of these declarations constructs a
+    samplewise limit or a Lyapunov exponent.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add explicit probability and ergodicity interfaces using Mathlib's native
-   `[IsProbabilityMeasure μ]` and `Ergodic C.base μ` assumptions, while
-   keeping raw-measure and probability statements visibly distinct.
-2. Audit the exact hypotheses and available Mathlib infrastructure for a
-   Kingman-style subadditive ergodic theorem before introducing any
-   almost-sure limit or Lyapunov terminology.
+1. Add `RandomCocycles/SubadditiveFiniteBlocks.lean`: prove the exact finite
+   block-plus-remainder inequalities, their quotient/remainder forms, and
+   finite Birkhoff-sum integrability. Keep the time-zero normalization and
+   measure-preservation assumptions visible, and make no convergence claim.
+2. Design the missing Kingman-style subadditive ergodic infrastructure from
+   its exact measurable, integrable, stationary, finite-measure, and
+   almost-everywhere hypotheses. The pinned Mathlib release supplies finite
+   Birkhoff-sum algebra and probability/ergodic primitives, but no ready-made
+   Kingman theorem.
+3. Prove the required general theorem in independently auditable layers before
+   applying it to matrix cocycles or introducing any samplewise-limit or
+   Lyapunov terminology.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.
