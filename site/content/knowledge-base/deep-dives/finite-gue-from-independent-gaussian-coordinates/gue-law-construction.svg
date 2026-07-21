@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"
+     viewBox="0 0 800 500" role="img"
+     aria-labelledby="guePipelineTitle guePipelineDesc">
+  <title id="guePipelineTitle">Finite Gaussian unitary ensemble law construction</title>
+  <desc id="guePipelineDesc">The Wigner normalization ledger feeds a real diagonal Gaussian product and a Cartesian complex strict-upper Gaussian product. Their product measure supplies exact block and scalar laws plus independence. A measurable three-branch Hermitian assembly map pushes this measure to a probability law on ambient complex matrices, with exact diagonal and upper marginals. Density, support, unitary invariance, spectra, and moments remain later theorems.</desc>
+  <rect width="800" height="500" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="guePipelineArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">A finite Gaussian unitary ensemble law, step by step</text>
+  <text x="24" y="48" class="t m">Every solid arrow is checked; the gray ridge names separate later obligations.</text>
+
+  <rect x="26" y="76" width="178" height="128" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="115" y="104" text-anchor="middle" class="t h">NORMALIZATION</text>
+  <text x="115" y="130" text-anchor="middle" class="t s">diagonal variance 1 / n</text>
+  <text x="115" y="154" text-anchor="middle" class="t s">upper parts 1 / (2n)</text>
+  <text x="115" y="180" text-anchor="middle" class="t m">explicit zero branch</text>
+
+  <rect x="232" y="76" width="252" height="128" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="358" y="104" text-anchor="middle" class="t h">CANONICAL COORDINATE MEASURE</text>
+  <text x="358" y="130" text-anchor="middle" class="t s">finite real Gaussian product</text>
+  <text x="358" y="154" text-anchor="middle" class="t s">times finite complex Gaussian product</text>
+  <text x="358" y="180" text-anchor="middle" class="t m">a probability measure in every dimension</text>
+
+  <rect x="512" y="76" width="262" height="128" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="643" y="104" text-anchor="middle" class="t h">EXACT COORDINATE ARCHITECTURE</text>
+  <text x="643" y="130" text-anchor="middle" class="t s">block laws and block independence</text>
+  <text x="643" y="154" text-anchor="middle" class="t s">scalar laws and mutual independence</text>
+  <text x="643" y="180" text-anchor="middle" class="t m">cross-block coordinates are independent</text>
+
+  <path d="M204 140 L226 140" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#guePipelineArrow)"/>
+  <path d="M484 140 L506 140" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#guePipelineArrow)"/>
+
+  <path d="M643 206 C643 238,526 240,480 266" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#guePipelineArrow)"/>
+  <rect x="216" y="270" width="368" height="94" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="400" y="300" text-anchor="middle" class="t h">MEASURABLE THREE-BRANCH ASSEMBLY</text>
+  <text x="400" y="326" text-anchor="middle" class="t s">real diagonal + complex upper + conjugate lower</text>
+  <text x="400" y="349" text-anchor="middle" class="t m">pushforward through the checked Hermitian coordinate map</text>
+
+  <path d="M400 366 L400 398" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#guePipelineArrow)"/>
+  <rect x="246" y="402" width="308" height="60" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="400" y="428" text-anchor="middle" class="t h">GUE MATRIX PROBABILITY LAW</text>
+  <text x="400" y="449" text-anchor="middle" class="t m">exact diagonal and strict-upper marginals</text>
+
+  <rect x="588" y="278" width="186" height="176" rx="12" fill="#EFEDE9" stroke="#8A837A" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="681" y="306" text-anchor="middle" class="t h">LATER RIDGE</text>
+  <text x="681" y="334" text-anchor="middle" class="t s">density and support</text>
+  <text x="681" y="358" text-anchor="middle" class="t s">unitary invariance</text>
+  <text x="681" y="382" text-anchor="middle" class="t s">eigenvalue laws</text>
+  <text x="681" y="406" text-anchor="middle" class="t s">trace moments</text>
+  <text x="681" y="430" text-anchor="middle" class="t s">semicircle limits</text>
+
+  <text x="24" y="486" class="t m">Dimension zero follows the solid path and ends at a Dirac mass on the unique empty matrix.</text>
+</svg>

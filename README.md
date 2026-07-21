@@ -279,15 +279,22 @@ The first active sequence is:
    diagonal, proves the entry formulas and measurability of the assembly map,
    bundles coordinate processes as Hermitian random matrices, and makes the
    zero-dimensional result explicitly equal to the empty zero matrix.
+9. [`RandomMatrices/GaussianUnitaryEnsemble.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean)
+   fixes the Wigner-scaled GUE convention, constructs the independent real
+   diagonal and Cartesian complex strict-upper coordinate law, pushes it
+   through measurable Hermitian assembly, proves exact entry marginals and
+   the relevant independence interfaces, and reduces dimension zero to Dirac
+   laws on the unique empty coordinate point and matrix.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Encode the approved Wigner-scaled normalization ledger and push the
-   canonical Gaussian coordinate product through the assembly map to define a
-   finite GUE ensemble, including its explicit zero-dimensional Dirac law.
-2. Use the law-level interface to prove unitary invariance of GUE at the level
-   of probability laws.
+1. Build the Frobenius Euclidean carrier and intrinsic real Hermitian subspace,
+   prove the trace/Frobenius identity and unitary congruence isometry, and
+   package almost-everywhere Hermitian support of the finite GUE law.
+2. Identify the coordinate-product construction with the corresponding
+   isotropic Gaussian measure on Hermitian space, then derive nontrivial
+   unitary-conjugation invariance at the level of probability laws.
 3. Establish integrability and check the first exact expected trace moments.
 4. Reuse the same matrix layer for random Jacobian stability and matrix
    cocycles.

@@ -2,7 +2,7 @@
 title: "Random Matrices: From Outcomes to Spectra"
 slug: "random-matrices-from-outcomes-to-spectra"
 date: 2026-07-20
-summary: "A guided ascent from probability spaces and measurable coordinates to Hermitian symmetry, spectral observables, and the runway toward GUE."
+summary: "A guided ascent from probability spaces and measurable coordinates to Hermitian symmetry, spectral observables, and the foundations consumed by a finite Gaussian unitary ensemble law."
 lead: "Start with one random number. Add a second index. By the summit, the object is a random operator whose eigenvalues encode collective structure that no entry reveals alone."
 draft: true
 pro_reviewed: false
@@ -32,6 +32,16 @@ and measurable functions, then reaches Hermitian matrices and spectra. The Lean
 path follows the same ascent, exposing each hidden assumption as a type,
 instance, definition, or theorem.
 
+{{< panel "info" >}}
+**Current continuation.** This chapter began with the foundational matrix
+modules. The project has since constructed the Wigner-scaled finite Gaussian
+unitary ensemble (GUE) coordinate and matrix laws, including exact marginals,
+independence, and the zero-dimensional Dirac boundary. Follow
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+for that completed layer. Density, unitary invariance, spectra, and moments
+remain later work.
+{{< /panel >}}
+
 ## Choose a route up the mountain
 
 | Route | Begin here | Destination |
@@ -40,7 +50,7 @@ instance, definition, or theorem.
 | Probability reader | Coordinate measurability | See why entrywise arguments are enough in finite dimensions |
 | Linear algebra reader | Hermitian symmetry | Connect matrix structure to real spectra |
 | Lean reader | The project encoding | Read every declaration in `RandomMatrices.Basic` |
-| Research horizon | Beyond the current file | See the path to GUE, trace moments, and random stability |
+| Research horizon | Beyond the current file | See the path through finite GUE toward trace moments and random stability |
 
 ### Learning objectives
 
@@ -52,7 +62,8 @@ By the end, you should be able to:
 3. derive the conjugate-transpose, addition, multiplication, and symmetrization closure results;
 4. explain why Hermitian matrices are the finite-dimensional gateway to spectral physics;
 5. read the core Lean proofs without treating typeclass inference as magic; and
-6. identify exactly what remains before the project can honestly claim a formal Gaussian unitary ensemble.
+6. identify how the checked finite GUE law extends this foundation and which
+   density, symmetry, spectral, and moment theorems remain.
 
 ## The complete ascent in one picture
 
@@ -67,7 +78,7 @@ flowchart LR
   H[Symmetry and normalization] -. define an ensemble .-> C
 {{< /mermaid >}}
 
-<p class="figure-note"><strong>Reading the map.</strong> An outcome selects a matrix. Measurability lets probability reach that matrix, and the checked law layer now records the resulting pushforward measure. Hermitian symmetry makes spectral questions physically and mathematically well behaved. A specific ensemble such as GUE still needs Gaussian, dependence, and normalization data that the project does not yet provide.</p>
+<p class="figure-note"><strong>Reading the map.</strong> An outcome selects a matrix. Measurability lets probability reach that matrix, and the checked law layer records the resulting pushforward measure. Hermitian symmetry makes spectral questions physically and mathematically well behaved. The later RMT-06 module now supplies Gaussian, dependence, and normalization data for one finite GUE law; its invariant and spectral analysis remain beyond this map.</p>
 
 ## Base camp: from events to random variables
 
@@ -159,10 +170,10 @@ Once \(z\) is chosen, the reflected entry is forced to be
 \(\overline z\). Those coordinates are maximally dependent. They are still
 individually measurable, and therefore the matrix-valued map is measurable.
 
-This distinction will matter when GUE arrives. The independent primitive
-variables live on one triangle and the real diagonal. Hermitian reflection
-then determines the rest. Saying "all entries are independent" would destroy
-the defining symmetry.
+This distinction is now implemented by the finite GUE constructor. The
+independent primitive variables live on one triangle and the real diagonal.
+Hermitian reflection then determines the rest. Saying "all entries are
+independent" would destroy the defining symmetry.
 
 ## The Lean representation: a matrix is a two-index function
 
@@ -489,14 +500,15 @@ chapter.
 
 ## What is not proved yet
 
-The checked stack does not yet define or prove:
+The checked stack now includes one joint probability measure for the real
+diagonal and complex strict upper coordinates, the Wigner-scaled finite GUE
+matrix law, and its exact entry marginals and independence architecture. It
+does not yet define or prove:
 
-- one joint probability measure for the real diagonal and complex strict
-  upper coordinates of a matrix;
-- a Gaussian orthogonal ensemble (GOE) or Gaussian unitary ensemble (GUE);
-- a selected matrix normalization convention;
+- a Gaussian orthogonal ensemble (GOE);
+- a Hermitian-space density or support theorem for GUE;
 - eigenvalue measurability;
-- unitary invariance for any nontrivial random-matrix ensemble;
+- unitary invariance for the nontrivial GUE law;
 - integrability or expected trace moments;
 - a semicircle law; or
 - any claim about quantum chaos in a physical system.
@@ -505,23 +517,18 @@ This list is not a disclaimer pasted onto a finished theory. It is the module
 boundary. Each missing concept will become a new formal interface with its own
 paired notebook entry.
 
-## The route from here to GUE
+## The route beyond the finite GUE law
 
-A defensible finite Gaussian unitary ensemble definition still needs several
-law-level layers. The finite index type, exact Gaussian primitives, direct
-Hermitian coordinate assembly, and measurability are now checked. The
+RMT-06 has now completed the first four law-construction steps: it states the
+variance ledger, defines the complete joint coordinate measure, chooses the
+zero-dimensional policy, and pushes the measure through checked assembly. The
 remaining route is:
 
-1. state the diagonal and off-diagonal variance ledger exactly;
-2. define one complete joint coordinate probability measure, including the
-   real diagonal family and the complex strict-upper family;
-3. choose an explicit zero-dimensional policy for any dimension-dependent
-   scale;
-4. push the coordinate measure through the checked assembly map;
-5. prove Hermitian support at the law level;
-6. prove that unitary conjugation preserves the
+1. prove Hermitian support at the law level;
+2. prove that unitary conjugation preserves the
    {{< refterm "probability-law" "law" >}}; and
-7. compute small trace moments before attempting asymptotic spectral laws.
+3. establish integrability and compute small trace moments before attempting
+   asymptotic spectral laws.
 
 The order matters. If normalization is vague, two mathematically legitimate
 GUE conventions can produce different moment formulas. If the law is not
@@ -529,7 +536,7 @@ separated from the sample function, unitary invariance is easy to state at the
 wrong level. If small moments are not checked first, an asymptotic theorem can
 hide a finite-dimensional mismatch.
 
-Every future ensemble page will therefore carry a normalization ledger:
+Every ensemble page therefore carries a normalization ledger:
 
 | Convention field | Question that must have one answer |
 |---|---|

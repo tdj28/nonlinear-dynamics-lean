@@ -214,8 +214,10 @@ the reflection operation and {{< refterm "random-matrix" "random matrix" >}}
 for the later sample-map layer.
 
 [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
-supplies one possible future source of primitive complex coordinates. It does
-not choose the diagonal coordinates, their scales, or a matrix law.
+supplies the primitive finite product machinery. The next completed layer,
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}}),
+chooses the diagonal and upper laws, their scales and independence, and pushes
+the resulting coordinate measure through this assembly map.
 
 ## References
 

@@ -189,11 +189,12 @@ unitary action. Different normalization conventions change variances and
 spectral scales, even though they preserve the same symmetry principle.
 
 {{< panel "warning" >}}
-**Current project boundary.** This project has not defined a Gaussian unitary
-ensemble law and has not proved any GUE invariance theorem. It now defines
-law-level unitary-conjugation invariance and proves it for the zero measure and
-the point mass at the zero matrix. Those are interface checks, not nontrivial
-random-matrix ensembles.
+**Current project boundary.** The project now defines a finite GUE matrix law
+from Wigner-scaled independent Gaussian coordinates and measurable Hermitian
+assembly. It has **not** proved that this law is invariant under unitary
+conjugation. The earlier law layer defines the invariance predicate and proves
+it only for the zero measure and the point mass at the zero matrix. Those
+remain interface checks, not the nontrivial GUE symmetry theorem.
 {{< /panel >}}
 
 ## Lean-facing interpretation
@@ -226,11 +227,12 @@ for every U : Matrix.unitaryGroup ι ℂ,
 law (X.conjugateBy (U : Matrix ι ι ℂ)) μ = law X μ.
 ~~~
 
-The API deliberately accepts an arbitrary measure. The module proves the
+The API deliberately accepts an arbitrary measure. The law module proves the
 predicate for the zero measure, which is not a probability law, and for the
 Dirac probability law at the zero matrix. It does not claim that an arbitrary
-<code>HermitianRandomMatrix</code> has the property, and it does not yet
-construct a GUE law.
+<code>HermitianRandomMatrix</code> has the property. The later RMT-06 module
+constructs the finite GUE coordinate and matrix laws but does not close this
+invariance obligation.
 
 ## Distinctions and failure modes
 
@@ -264,9 +266,10 @@ constraint that unitary conjugation preserves. Review
 {{< refterm "probability-law" "probability law" >}} and
 {{< refterm "pushforward-measure" "pushforward measure" >}} for the precise
 level at which invariance is stated. The chapter
-[Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
-explains why a nontrivial ensemble theorem, especially GUE invariance, still
-lies beyond the current Lean modules.
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+constructs the checked finite law and marks invariance as the next separate
+symmetry theorem. [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
+provides the broader probability-to-spectrum path.
 
 ## References
 

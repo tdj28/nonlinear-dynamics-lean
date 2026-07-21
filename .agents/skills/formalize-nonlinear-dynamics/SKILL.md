@@ -117,6 +117,20 @@ Also run the changed Lean file directly with warnings as errors. Check that:
 - social-card dimensions and alt text are correct;
 - mathematical prose does not claim more than Lean proves.
 
+For every new or materially changed teaching page:
+
+- run each page-bundle card generator with `--verify` and validate conceptual
+  SVGs with `xmllint` plus a rendered visual inspection;
+- inspect the built page in a browser at the default desktop width and at 390
+  pixels, checking page-level overflow, locally scrollable wide content,
+  lazy-loaded asset dimensions, navigation, and console-visible failures;
+- compare source math delimiters with rendered KaTeX, require zero KaTeX
+  errors and zero raw delimiters, and remember that Hugo's Markdown parser runs
+  before KaTeX: write `\lt` and `\gt` inside TeX instead of literal `<` and `>`
+  when Goldmark could mistake them for HTML; and
+- keep code-fence comparison operators literal. The TeX workaround belongs
+  only in mathematical delimiters, never in Lean or shell examples.
+
 Use a separate read-only reviewer for high-risk mathematics, normalization,
 or law-versus-sample distinctions.
 

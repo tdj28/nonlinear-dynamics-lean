@@ -792,7 +792,7 @@ For individual concepts, use the linked glossary:
 The earlier chapter
 [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
 provides the matrix-measurability, Hermitian, law, and observable foundations
-that the future constructor will consume.
+that the later finite GUE constructor consumes.
 
 Continue directly to
 [Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
@@ -803,6 +803,11 @@ Then continue to
 [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
 for the finite complex product law, canonical sample space, real scaling, and
 the empty-index boundary.
+
+The resulting matrix constructor is now checked in
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}}),
+which selects the Wigner ledger, joins the diagonal and upper blocks under one
+product measure, and pushes that measure through Hermitian assembly.
 
 ## References
 

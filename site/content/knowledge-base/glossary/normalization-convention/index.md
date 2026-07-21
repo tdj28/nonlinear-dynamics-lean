@@ -191,8 +191,9 @@ The deterministic
 now places a real diagonal and complex strict upper triangle into a matrix
 without changing either input. Direct assembly is intentionally not
 \(X+X^*\), because that expression would double a supplied real diagonal.
-This normalization-free map makes the remaining scale choices easier to
-audit; it does not select them.
+This normalization-free map made the remaining scale choices easier to audit.
+The later GUE module now selects diagonal variance \(1/n\) and each upper
+Cartesian variance \(1/(2n)\) for positive \(n\), with a separate zero branch.
 
 ## Edge cases and nonclaims
 
@@ -206,10 +207,11 @@ audit; it does not select them.
 - Setting \(n=0\) can make dimension-dependent factors undefined. A
   formal constructor needs an explicit policy.
 - The project has formalized an explicit two-variance Cartesian complex
-  Gaussian family. It has not approved an unqualified "standard" complex scale
-  or a named Gaussian matrix normalization.
-- Nothing on this page proves a Gaussian unitary ensemble law, unitary
-  invariance, an eigenvalue density, or an asymptotic spectral result.
+  Gaussian family. No unqualified "standard complex Gaussian" convention is
+  adopted outside a named model.
+- The finite GUE module now fixes one named matrix normalization and constructs
+  its law. Nothing on this glossary page proves unitary invariance, an
+  eigenvalue density, or an asymptotic spectral result.
 
 ## Where to continue
 
@@ -230,6 +232,12 @@ tracks those functions through real coordinatewise scaling without selecting a
 matrix normalization. [Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
 then assembles free coordinates unchanged and identifies the exact boundary
 before a matrix law is chosen.
+
+The selected ledger and resulting matrix law are now developed in
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+and summarized by the
+{{< refterm "gaussian-unitary-ensemble" "Gaussian unitary ensemble" >}}
+entry.
 
 ## References
 

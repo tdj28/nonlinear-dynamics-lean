@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460"
+     viewBox="0 0 760 460" role="img"
+     aria-labelledby="gueLedgerTitle gueLedgerDesc">
+  <title id="gueLedgerTitle">Wigner-scaled Gaussian unitary ensemble coordinate ledger</title>
+  <desc id="gueLedgerDesc">A real diagonal Gaussian block with variance one over n and a complex strict-upper Gaussian block whose real and imaginary components each have variance one over two n enter a product measure. Measurable Hermitian assembly pushes that coordinate measure to a matrix law. At dimension zero the output is a Dirac mass at the empty matrix.</desc>
+  <rect width="760" height="460" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="gueLedgerArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">The ensemble begins with a complete coordinate ledger</text>
+  <text x="24" y="48" class="t m">For positive n, every displayed variance is dimension dependent; dimension zero is a separate branch.</text>
+
+  <rect x="28" y="78" width="250" height="130" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="153" y="106" text-anchor="middle" class="t h">REAL DIAGONAL BLOCK</text>
+  <text x="153" y="132" text-anchor="middle" class="t s">one centered coordinate per row</text>
+  <line x1="54" y1="147" x2="252" y2="147" stroke="#6F8D5E" stroke-width="1"/>
+  <text x="153" y="174" text-anchor="middle" class="t h">VARIANCE 1 / n</text>
+  <text x="153" y="195" text-anchor="middle" class="t m">mutually independent</text>
+
+  <rect x="28" y="228" width="250" height="130" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="153" y="256" text-anchor="middle" class="t h">COMPLEX UPPER BLOCK</text>
+  <text x="153" y="282" text-anchor="middle" class="t s">real part plus imaginary part</text>
+  <line x1="54" y1="297" x2="252" y2="297" stroke="#4B6787" stroke-width="1"/>
+  <text x="153" y="324" text-anchor="middle" class="t h">EACH VARIANCE 1 / (2n)</text>
+  <text x="153" y="345" text-anchor="middle" class="t m">mutually independent coordinates</text>
+
+  <path d="M278 143 C298 143,306 190,322 210" fill="none" stroke="#A67C52" stroke-width="2"/>
+  <path d="M278 293 C298 293,306 250,322 230" fill="none" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="338" cy="220" r="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="338" y="224" text-anchor="middle" class="t h">x</text>
+  <text x="338" y="249" text-anchor="middle" class="t m">product</text>
+  <path d="M356 220 L384 220" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#gueLedgerArrow)"/>
+
+  <rect x="390" y="130" width="340" height="130" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="560" y="160" text-anchor="middle" class="t h">COORDINATE PRODUCT LAW</text>
+  <text x="560" y="188" text-anchor="middle" class="t s">the two input blocks are independent</text>
+  <line x1="424" y1="203" x2="696" y2="203" stroke="#C4B8A8" stroke-width="1"/>
+  <text x="560" y="228" text-anchor="middle" class="t h">PROBABILITY MEASURE</text>
+  <text x="560" y="249" text-anchor="middle" class="t m">all primitive laws stated exactly</text>
+
+  <path d="M560 262 L560 286" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#gueLedgerArrow)"/>
+  <rect x="390" y="292" width="340" height="70" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="560" y="320" text-anchor="middle" class="t h">MEASURABLE HERMITIAN ASSEMBLY</text>
+  <text x="560" y="345" text-anchor="middle" class="t s">push the coordinate measure to ambient matrices</text>
+
+  <path d="M560 364 L560 388" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#gueLedgerArrow)"/>
+  <rect x="370" y="394" width="380" height="46" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="560" y="423" text-anchor="middle" class="t h">MATRIX LAW; n = 0 IS DIRAC AT EMPTY ZERO</text>
+</svg>

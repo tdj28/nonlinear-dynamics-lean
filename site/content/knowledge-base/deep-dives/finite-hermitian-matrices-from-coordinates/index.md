@@ -648,8 +648,9 @@ identity in this module, or establish invariance under unitary conjugation.
 
 ## The ridge toward a finite Gaussian matrix law
 
-The deterministic map makes a later probability construction possible without
-making it automatic. A law-level module would still need to:
+At the RMT-05 boundary, the deterministic map made a later probability
+construction possible without making it automatic. That law-level module
+still needed to:
 
 1. choose real random coordinates for the diagonal;
 2. choose complex random coordinates for the strict upper triangle;
@@ -673,6 +674,12 @@ The lower triangle will never be an independent primitive family in this
 route. Its entries are deterministic functions of upper coordinates. This
 does not prevent the full matrix from having a rich law; it identifies the
 correct primitive building blocks before assembly.
+
+RMT-06 has now completed items 1 through 7 with a Wigner-scale coordinate
+product law and an explicit zero branch. Measure-level Hermitian support,
+unitary invariance, and moments remain separate. Continue to
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+for the completed probability bridge.
 
 ## Common wrong turns
 
@@ -775,6 +782,11 @@ Read {{< refterm "probability-law" "probability law" >}} and
 a coordinate measure. Read
 {{< refterm "unitary-invariance" "unitary invariance" >}} for the separate
 law-level symmetry claim that direct assembly does not prove.
+
+The next checked layer is
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}}),
+which supplies the Wigner ledger, canonical product measure, exact
+independence architecture, and matrix pushforward.
 
 ## References
 

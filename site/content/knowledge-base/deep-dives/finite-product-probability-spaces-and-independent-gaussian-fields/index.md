@@ -618,8 +618,8 @@ make check
 
 ## The ridge toward a Gaussian matrix law
 
-A finite independent complex field is useful raw material for the planned
-entrywise random-matrix construction, but it is not yet a matrix ensemble. A
+At the RMT-04 boundary, a finite independent complex field was useful raw
+material but not yet a matrix ensemble. A
 Hermitian matrix has two primitive coordinate roles and one determined region:
 
 1. diagonal entries are real;
@@ -666,6 +666,13 @@ the project must approve:
 
 RMT-04 fills the finite complex-family and canonical-product slots. It chooses
 none of the numerical values in this matrix ledger.
+
+The later RMT-06 module now fills the ledger with diagonal variance \(1/n\),
+upper Cartesian variances \(1/(2n)\), a separate zero branch, and one product
+measure joining the diagonal and upper blocks. It then transports that measure
+through checked Hermitian assembly. Read
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+for the completed bridge.
 
 ### Construction is not invariance
 
@@ -781,6 +788,10 @@ for the checked deterministic map from a real diagonal and complex strict
 upper triangle to a measurable Hermitian matrix. That map does not assert that
 the present complex family provides the diagonal coordinates, and it chooses
 no ensemble law.
+
+Then continue to
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+for the checked Wigner-scale coordinate product and matrix pushforward laws.
 
 ## References
 

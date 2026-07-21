@@ -193,11 +193,12 @@ especially important for a {{< refterm "hermitian-matrix" "Hermitian matrix" >}}
 whose reflected off-diagonal entries are linked by complex conjugation.
 
 {{< panel "warning" >}}
-**Boundary of the current formalization.** The project now defines matrix laws,
-their basic pushforward rules, and a predicate for unitary-conjugation
-invariance. It does not yet define Gaussian entry laws or a Gaussian unitary
-ensemble law, prove a nontrivial ensemble invariant, establish integrability,
-or compute expected moments.
+**Boundary of the current formalization.** The project now defines Gaussian
+entry laws, a Wigner-scaled finite Gaussian unitary ensemble matrix law, its
+coordinate product law, and exact diagonal and strict-upper marginals. It also
+defines the law-level unitary-conjugation predicate. It has not proved
+nontrivial GUE invariance, matrix-entry integrability, or expected trace
+moments.
 {{< /panel >}}
 
 ## Where to continue
@@ -209,6 +210,8 @@ construction \(X_*\mathbb P\) itself. The
 {{< refterm "measurable-space" "measurable space" >}} page explains why
 measurability must come before a law. For the full learning path, continue to
 [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}}).
+The first complete named ensemble construction is developed in
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}}).
 
 ## References
 

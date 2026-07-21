@@ -265,6 +265,9 @@ of transporting a probability measure through a random object. Read
 the project's first examples. The chapter
 [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
 places the construction in the full probability-to-spectrum ascent.
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+is the first project chapter to use this bridge on a complete Gaussian
+coordinate probability measure and obtain a named matrix law.
 
 ## References
 

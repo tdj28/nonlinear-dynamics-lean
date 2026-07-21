@@ -15,6 +15,10 @@
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble",
+    "notebook": "site/content/development-notebook/2026/07/finite-gue-law-from-coordinates/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Hermitian",
     "notebook": "site/content/development-notebook/2026/07/hermitian-random-matrices/index.md"

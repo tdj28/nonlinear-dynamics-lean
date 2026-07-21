@@ -248,7 +248,7 @@ It does not establish any of the following:
 - equal real and imaginary variances;
 - circular symmetry, properness, or a planar density;
 - a dimension-dependent matrix normalization;
-- a Gaussian unitary ensemble (GUE) law;
+- a Gaussian unitary ensemble (GUE) law within this module;
 - independence of every entry of a Hermitian matrix, whose lower triangle is
   determined by conjugate reflection; or
 - unitary invariance, eigenvalue laws, trace moments, or asymptotics.
@@ -273,6 +273,10 @@ The next deterministic bridge is the
 shows how complex strict-upper coordinates enter a Hermitian matrix without
 claiming that this family supplies the real diagonal or fixes a Gaussian
 matrix normalization.
+
+[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+then supplies the real diagonal block, selects the Wigner variances, joins both
+blocks under one product measure, and transports them to the matrix law.
 
 ## References
 
