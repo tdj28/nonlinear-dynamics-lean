@@ -248,6 +248,12 @@ Until that bridge is checked, it would be incorrect to cite intrinsic
 <code>stdGaussian</code> invariance as a proof that the coordinate-built matrix
 law is unitarily invariant.
 
+The subsequent RMT-08 module now discharges that obligation. It introduces
+{{< refterm "normalized-hermitian-coordinates" "normalized Hermitian coordinates" >}},
+proves the full product-measure comparison, and transports the intrinsic
+symmetry to <code>GUE.matrixLaw</code>. The paragraph above remains the exact
+boundary of RMT-07 itself.
+
 ## Support is a separate statement
 
 RMT-07 also defines the measurable subset
@@ -284,11 +290,16 @@ It does not check a coordinate-to-intrinsic Gaussian equivalence, invariance of
 <code>GUE.matrixLaw</code>, a density or Jacobian formula, eigenvalues, moments,
 spectral statistics, a semicircle limit, or universality.
 
+RMT-08 now checks the first two omitted items. The density, spectral, moment,
+and asymptotic items remain outside the project boundary.
+
 ## Where to continue
 
 [Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
 derives the geometry, separates the two checked theorem paths, and audits every
-RMT-07 declaration. The
+RMT-07 declaration.
+[From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}})
+continues through the exact comparison and ambient invariance theorem. The
 {{< refterm "gaussian-unitary-ensemble" "Gaussian unitary ensemble" >}}
 entry records the coordinate variance ledger, while
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})

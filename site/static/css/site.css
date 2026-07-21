@@ -866,6 +866,7 @@ h1, h2, h3 { text-wrap: balance; }
 }
 .key-result > span { color: var(--amber-deep); font-family: var(--mono); font-size: 9px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .key-result > div { margin-top: 8px; font-family: var(--serif); font-size: 19px; }
+.key-result code { overflow-wrap: anywhere; word-break: break-word; }
 .key-result p:first-child { margin-top: 0; }
 .key-result p:last-child { margin-bottom: 0; }
 .article-footer {

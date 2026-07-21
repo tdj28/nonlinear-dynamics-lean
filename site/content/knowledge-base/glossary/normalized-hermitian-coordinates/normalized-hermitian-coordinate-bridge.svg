@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520"
+     viewBox="0 0 800 520" role="img"
+     aria-labelledby="normalizedCoordinatesTitle normalizedCoordinatesDesc">
+  <title id="normalizedCoordinatesTitle">Normalized Hermitian coordinates align entry data with Euclidean geometry</title>
+  <desc id="normalizedCoordinatesDesc">The entry ledger begins with real diagonal values and complex strict-upper values. The normalized real ledger separates diagonal, upper-real, and upper-imaginary slots, with the upper slots corrected for the fact that reflected entries are counted twice. Decoding gives the intrinsic Hermitian Euclidean space, where every normalized direction receives one common Gaussian variance. This alignment enables an exact comparison of coordinate and intrinsic probability laws.</desc>
+  <rect width="800" height="520" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="normalizedArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="30" class="t title">Normalized coordinates make the metric and the Gaussian ledger agree</text>
+  <text x="24" y="50" class="t m">The correction belongs to the coordinate map, not to an informal change of convention.</text>
+
+  <rect x="24" y="78" width="210" height="156" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="129" y="107" text-anchor="middle" class="t h">HERMITIAN ENTRY LEDGER</text>
+  <text x="129" y="142" text-anchor="middle" class="t s">real diagonal entries</text>
+  <text x="129" y="169" text-anchor="middle" class="t s">complex strict-upper entries</text>
+  <text x="129" y="207" text-anchor="middle" class="t m">natural for matrix assembly</text>
+
+  <path d="M236 156 L270 156" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#normalizedArrow)"/>
+
+  <rect x="276" y="78" width="244" height="156" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="398" y="107" text-anchor="middle" class="t h">NORMALIZED REAL LEDGER</text>
+  <text x="398" y="137" text-anchor="middle" class="t s">diagonal slots</text>
+  <text x="398" y="162" text-anchor="middle" class="t s">upper-real slots</text>
+  <text x="398" y="187" text-anchor="middle" class="t s">upper-imaginary slots</text>
+  <text x="398" y="214" text-anchor="middle" class="t m">one finite index, one real coordinate family</text>
+
+  <path d="M522 156 L556 156" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#normalizedArrow)"/>
+
+  <rect x="562" y="78" width="214" height="156" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="669" y="107" text-anchor="middle" class="t h">INTRINSIC HERMITIAN SPACE</text>
+  <text x="669" y="142" text-anchor="middle" class="t s">orthonormal real directions</text>
+  <text x="669" y="169" text-anchor="middle" class="t s">one common Gaussian scale</text>
+  <text x="669" y="207" text-anchor="middle" class="t m">natural for isometries and symmetry</text>
+
+  <rect x="68" y="278" width="300" height="116" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="218" y="307" text-anchor="middle" class="t h">THE METRIC REASON</text>
+  <text x="218" y="339" text-anchor="middle" class="t s">every strict-upper value is reflected</text>
+  <text x="218" y="364" text-anchor="middle" class="t s">the Frobenius norm counts both entries</text>
+
+  <rect x="432" y="278" width="300" height="116" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="582" y="307" text-anchor="middle" class="t h">THE PROBABILITY REASON</text>
+  <text x="582" y="339" text-anchor="middle" class="t s">all normalized real directions</text>
+  <text x="582" y="364" text-anchor="middle" class="t s">must carry the same variance</text>
+
+  <path d="M218 396 C218 424,342 424,384 440" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#normalizedArrow)"/>
+  <path d="M582 396 C582 424,458 424,416 440" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#normalizedArrow)"/>
+  <rect x="176" y="444" width="448" height="52" rx="12" fill="#16243A" stroke="#16243A" stroke-width="1.5"/>
+  <text x="400" y="476" text-anchor="middle" class="t h" style="fill:#FFFDF8">EXACT COORDINATE AND INTRINSIC LAW COMPARISON</text>
+
+  <text x="24" y="514" class="t m">Normalization is the bridge from entrywise independence to basis-neutral Gaussian geometry.</text>
+</svg>

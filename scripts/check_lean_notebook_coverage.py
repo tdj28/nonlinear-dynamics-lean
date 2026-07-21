@@ -15,13 +15,16 @@ LEAN_ROOT = ROOT / "formalization" / "NonlinearDynamics"
 COVERAGE_PATH = ROOT / "site" / "data" / "lean_notebook_coverage.json"
 
 DECLARATION = re.compile(
-    r"^\s*(?:(?:noncomputable|protected)\s+)*(?:abbrev|def|structure|class|instance|theorem|lemma)\b",
+    r"^\s*(?:@\[[^\]]+\]\s*)*"
+    r"(?:(?:noncomputable|protected)\s+)*"
+    r"(?:abbrev|def|structure|class|instance|theorem|lemma)\b",
     re.MULTILINE,
 )
 NAMED_DECLARATION = re.compile(
-    r"^\s*(?:(?:noncomputable|protected)\s+)*"
-    r"(?:abbrev|def|structure|class|theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_'.]*)"
-    r"|^\s*instance\s+([A-Za-z_][A-Za-z0-9_'.]*)\s",
+    r"^\s*(?:@\[[^\]]+\]\s*)*"
+    r"(?:(?:noncomputable|protected)\s+)*"
+    r"(?:(?:abbrev|def|structure|class|theorem|lemma)\s+"
+    r"([A-Za-z_][A-Za-z0-9_'.]*)|instance\s+([A-Za-z_][A-Za-z0-9_'.]*)\s)",
     re.MULTILINE,
 )
 FRONT_MATTER_END = re.compile(r"\A---\s*\n.*?\n---\s*\n", re.DOTALL)

@@ -293,14 +293,20 @@ The first active sequence is:
     measurable Hermitian locus mass one. It deliberately keeps that intrinsic
     Gaussian distinct from `GUE.matrixLaw` until their normalized coordinate
     presentations are proved equal.
+11. [`RandomMatrices/GaussianUnitaryEnsembleInvariance.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean)
+    builds an explicit normalized real coordinate system for Hermitian
+    matrices, proves that its assembly map is a Frobenius linear isometry,
+    transports the full independent Gaussian product law to a scaled intrinsic
+    standard Gaussian, and then pushes intrinsic congruence symmetry through
+    the Hermitian inclusion to prove unitary-conjugation invariance of the
+    ambient finite GUE law in every dimension, including zero.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Identify the coordinate-product construction with the corresponding
-   isotropic Gaussian measure on Hermitian space, then derive nontrivial
-   unitary-conjugation invariance at the level of probability laws.
-2. Establish integrability and check the first exact expected trace moments.
+1. Establish integrability and check the first exact expected trace moments.
+2. Make Hermitian eigenvalues measurable and define the empirical spectral
+   measure without introducing an asymptotic claim.
 3. Reuse the same matrix layer for random Jacobian stability and matrix
    cocycles.
 

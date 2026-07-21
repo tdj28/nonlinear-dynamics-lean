@@ -38,16 +38,19 @@ coordinates under one explicit Wigner-scale convention. For positive size
 The checked Lean module in the sixth random-matrix-theory milestone (RMT-06)
 proves this coordinate law, its exact marginal and
 independence architecture, the measurable pushforward matrix law, and the
-zero-dimensional Dirac boundary. It does **not** yet prove the classical
-unitary-invariance theorem. Here, "GUE" identifies the explicit standard
-coordinate presentation that has been encoded; the symmetry named by the
-acronym remains a separate formal obligation.
+zero-dimensional Dirac boundary. That module by itself does **not** prove the
+classical unitary-invariance theorem. At the RMT-06 milestone, "GUE"
+identified the explicit standard coordinate presentation that had been
+encoded, while the symmetry named by the acronym remained a separate formal
+obligation.
 
-RMT-07 now proves that this matrix law has Hermitian support. It also proves
-unitary-congruence invariance of the intrinsic standard Gaussian on Hermitian
-Frobenius space. Identifying the coordinate-built law with the correctly
-scaled intrinsic Gaussian (and hence proving invariance of this matrix law) is
-the separate RMT-08 bridge.
+RMT-07 proves that this matrix law assigns the measurable Hermitian locus mass
+one. It also proves unitary-congruence invariance of the intrinsic standard
+Gaussian on Hermitian Frobenius space. RMT-08 identifies the coordinate-built
+law with the correctly scaled intrinsic Gaussian and transports that symmetry
+to prove unitary invariance of <code>GUE.matrixLaw</code>. See
+[From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}})
+for the exact measure bridge.
 
 ## The normalization ledger
 
@@ -242,7 +245,7 @@ probability status and eight law/independence interfaces, construct the matrix
 law, expose its exact pushforward identity, prove its probability status and
 two exact matrix-entry laws, and prove both zero-dimensional Dirac identities.
 
-It does not yet prove:
+That RMT-06 module by itself does not prove:
 
 - a density with respect to a chosen Lebesgue measure on Hermitian space;
 - measure-level support on the Hermitian subset;
@@ -253,12 +256,14 @@ It does not yet prove:
 - an empirical spectral measure or the semicircle law; or
 - any large-dimension universality statement.
 
-Those omissions are not qualifications hidden in implementation detail. They
-are the next mathematical layers.
-
-The follow-up RMT-07 geometry module has since discharged the support item and
-proved intrinsic standard-Gaussian symmetry. The density, comparison theorem,
-and unitary invariance of <code>GUE.matrixLaw</code> remain unchecked.
+Those were explicit module boundaries, not qualifications hidden in
+implementation detail. Follow-up modules have since discharged three of them:
+RMT-07 proves that the ambient law gives the measurable Hermitian locus mass
+one and proves intrinsic standard-Gaussian symmetry; RMT-08 proves the exact
+coordinate-to-intrinsic Gaussian comparison and unitary invariance of
+<code>GUE.matrixLaw</code>. Density and Jacobian formulas, measurable
+eigenvalues, integrability and trace moments, empirical spectral measures,
+and all large-dimension claims remain unchecked.
 
 ## Where to continue
 
@@ -277,7 +282,8 @@ for the finite product machinery and
 [Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
 for the two-variance complex law. The
 {{< refterm "unitary-invariance" "unitary invariance" >}} entry explains the
-separate symmetry theorem that remains ahead.
+law-level symmetry now checked in RMT-08 and the commuting pushforward route
+that proves it.
 
 ## References
 
@@ -289,7 +295,8 @@ in *Proceedings of the International Congress of Mathematicians 2022*, volume
 pp. 1008-1052. Section 1.1.1
 states the GUE entry variances \(1/n\) and \(1/(2n)\), the Gaussian-ensemble
 density convention, and unitary invariance. This project uses the entry
-normalization but has not yet formalized the density or invariance statements.
+normalization and now formalizes the finite-law invariance statement; it has
+not formalized the density statement.
 
 **Freeman J. Dyson.**
 [Statistical Theory of the Energy Levels of Complex Systems. I](https://doi.org/10.1063/1.1703773),

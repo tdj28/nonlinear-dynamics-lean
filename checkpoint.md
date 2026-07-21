@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 03:01 PDT
+Last updated: 2026-07-21 03:50 PDT
 
-Audited baseline: `main` at `716c0a9`
+Audited baseline: `main` at `8774349`
 
-Active direction: normalized coordinate-to-intrinsic Gaussian bridge and GUE invariance
+Active direction: exact integrability and first trace moments of finite GUE
 
 ## How to Use This Checkpoint
 
@@ -23,14 +23,15 @@ Active direction: normalized coordinate-to-intrinsic Gaussian bridge and GUE inv
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green build: 3,144 Lean jobs; ten substantive modules; ten complete
-  draft Notebook companions; 96 Hugo pages with warnings fatal.
-- Lean inventory: 209 public declaration lines across the ten substantive
+- Last green Lean build: 3,145 jobs. The integrated RMT-08 gate covers eleven
+  substantive modules, eleven complete draft Notebook companions, and 103
+  Hugo pages with warnings fatal.
+- Lean inventory: 244 public declaration lines across the eleven substantive
   modules; 18 one-line deterministic placeholders; three `.gitkeep`-only
   Random branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 52,989 words across the ten Notebook companions and
-  51,898 words across seven Deep Dives and nineteen glossary chapters.
+- Teaching snapshot: 59,587 words across the eleven Notebook companions and
+  59,219 words across eight Deep Dives and twenty glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -50,25 +51,27 @@ Active direction: normalized coordinate-to-intrinsic Gaussian bridge and GUE inv
 | `NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates` | Finite strict-upper indices, real-diagonal/complex-upper coordinate space, direct three-branch Hermitian assembly, exact entry formulas, Hermiticity, measurability, bundled construction, and the `n = 0` zero matrix | `hermitian-coordinate-assembly` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble` | Explicit Wigner variance ledger, canonical independent Gaussian coordinate law, block/scalar laws and independence, measurable Hermitian pushforward matrix law, exact diagonal and strict-upper marginals, and coordinate/matrix Dirac laws at `n = 0` | `finite-gue-law-from-coordinates` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry` | Frobenius Euclidean matrix carrier, intrinsic real Hermitian subspace, trace pairing, ambient and intrinsic unitary-congruence isometries, intrinsic standard-Gaussian invariance, and measurable mass-one Hermitian support of the ambient GUE law | `gue-frobenius-geometry-and-hermitian-support` |
+| `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance` | Normalized real Hermitian coordinates, Frobenius linear isometric equivalence, exact full-product decoding, scaled intrinsic standard-Gaussian representation, intrinsic probability and zero-dimensional laws, and ambient unitary-conjugation invariance | `gue-unitary-invariance-from-normalized-coordinates` |
 
-The root aggregator imports all ten modules. The proof-to-prose manifest and
+The root aggregator imports all eleven modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Ten comprehensive Development Notebook chapters in an explicit
+- Eleven comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Seven textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Eight textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
   *Finite GUE from Independent Gaussian Coordinates*, and *Intrinsic Hermitian
-  Gaussian Symmetry and Matrix-Law Support*.
-- Nineteen glossary chapters, now including Hermitian Frobenius geometry
-  alongside GUE, scalar Gaussian, independence, normalization, and matrix and
-  measure-theory foundations.
-- Twenty-six deterministic 1200x630 social cards and fifteen accessible
+  Gaussian Symmetry and Matrix-Law Support*, followed by *From Normalized
+  Hermitian Coordinates to Gaussian Unitary Ensemble Invariance*.
+- Twenty glossary chapters, now including normalized Hermitian coordinates
+  alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
+  normalization, and matrix and measure-theory foundations.
+- Twenty-nine deterministic 1200x630 social cards and seventeen accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -77,48 +80,35 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-08: normalized Hermitian coordinates and ambient GUE invariance
+### RMT-09: integrability and the first exact finite-GUE trace moments
 
-The next module will build the exact comparison that RMT-07 deliberately left
-open. It must avoid an unformalized density or Jacobian argument and instead
-transport the already checked finite product measures:
+The next module is `GaussianUnitaryEnsembleMoments.lean`. Read-only API
+reconnaissance produced a complete warning-clean prototype; the durable
+repository slice must now turn that design into a documented, audited public
+interface with four theorems:
 
-1. Introduce one finite real coordinate index containing the diagonal slots
-   and two displayed real slots for every strict-upper position. Package its
-   `L²` carrier as a real Euclidean space.
-2. Map those real coordinates to `RandomMatrix.HermitianEuclidean n`: insert a
-   diagonal coordinate unchanged and combine each upper pair as
-   `(x + iy) / √2`, reflecting its conjugate below the diagonal. Prove the
-   entry formulas, inverse extraction formulas, and the factor-two Frobenius
-   identity, then bundle the map as a real linear isometric equivalence.
-3. Put independent `gaussianReal 0 (GUE.varianceScale n)` laws on every
-   normalized real coordinate. Prove that decoding the diagonal and divided
-   upper pairs gives exactly `GUE.coordinateMeasure n`, including its full
-   block product structure rather than only matching scalar marginals.
-4. Use Mathlib's `map_pi_eq_stdGaussian` and the scalar Gaussian map theorem to
-   identify the normalized real product measure with the image of
-   `stdGaussian` under uniform multiplication by
-   `√(GUE.varianceScale n)`. Keep the `n = 0` Dirac behavior explicit even if
-   the uniform transport theorem subsumes it.
-5. Prove the commuting square: normalized real decoding followed by the
-   earlier `RandomMatrix.hermitianCoordinateMap` equals intrinsic encoding
-   followed by `RandomMatrix.hermitianToMatrix`. Conclude an exact ambient
-   equality between `GUE.matrixLaw n` and the inclusion of the scaled
-   intrinsic standard Gaussian.
-6. Prove that uniform real scaling and intrinsic-to-ambient inclusion commute
-   with unitary congruence. Transport RMT-07's intrinsic
-   `stdGaussian` symmetry across the comparison and finally establish
-   `RandomMatrix.IsUnitaryConjugationInvariant (GUE.matrixLaw n)`.
-7. Pair every public declaration with a comprehensive Notebook chapter and a
-   textbook Knowledge Base extension. Record the coordinate normalization,
-   all measurable-map compositions, the zero-dimensional branch, and the
-   exact point where the classical GUE name becomes a checked symmetry claim.
+1. `GUE.integrable_tracePower_one`: the ambient observable
+   `RandomMatrix.tracePower id 1` is Bochner integrable under `GUE.matrixLaw n`.
+2. `GUE.integral_tracePower_one`: its complex integral is exactly zero.
+3. `GUE.integrable_tracePower_two`: `RandomMatrix.tracePower id 2` is Bochner
+   integrable under the same law.
+4. `GUE.integral_tracePower_two`: its complex integral is exactly `(n : ℂ)`.
 
-The essential metric identity remains
-`‖H‖_F² = Σᵢ dᵢ² + 2 Σ_{i<j} |uᵢⱼ|²`; therefore the orthonormal real
-coordinates are `dᵢ`, `√2 Re uᵢⱼ`, and `√2 Im uᵢⱼ`. Matching their individual
-variances is only reconnaissance. RMT-08 is complete only after the full joint
-measure equality and the ambient law-invariance predicate compile.
+The proof must hold for every natural dimension, including zero. The first
+moment may sum the exact centered diagonal laws. The second should consume
+RMT-08's normalized real product representation and prove pointwise that
+`Tr(H^2)` equals the Frobenius norm squared and hence the sum of the `n²`
+normalized real coordinate squares. Each coordinate has exact second moment
+`varianceScale n`; cardinality through
+`hermitianRealIndexEquivMatrixIndex n` and the explicit zero/successor split
+then give `n² / n = n` without a density or eigenvalue argument.
+
+The public statements are complex Bochner integrals. Because `GUE.matrixLaw n`
+is already a probability measure, they are the corresponding expectations.
+The Notebook must explain the integrability transfer through measurable
+pushforwards, the distinction between pointwise trace algebra and measure-level
+integration, the Wigner normalization check, and why off-diagonal independence
+is not needed once the normalized Euclidean representation is available.
 
 ## Dependency-Ordered Roadmap
 
@@ -157,7 +147,7 @@ unresolved convention or depend on an unproved earlier interface.
   normalization ledger and explicit `n = 0` Dirac policy.
 - [x] Hermitian support, intrinsic Frobenius geometry, and invariance of the
   canonical Hermitian standard Gaussian.
-- [ ] Exact coordinate-to-intrinsic-Gaussian bridge and nontrivial unitary
+- [x] Exact coordinate-to-intrinsic-Gaussian bridge and nontrivial unitary
   invariance of the ambient GUE law.
 - [ ] First exact expected trace moments, then eigenvalue measurability and an
   empirical spectral measure.
@@ -290,7 +280,8 @@ k-invariance precedes approximation claims.
   linear isometry on the ambient Frobenius carrier and a real linear isometry
   on the intrinsic Hermitian carrier.
 - Mathlib's intrinsic `stdGaussian (HermitianEuclidean n)` is invariant under
-  that real isometry. This is not yet invariance of `GUE.matrixLaw n`.
+  that real isometry. RMT-08 now identifies the coordinate-built law with the
+  correctly scaled intrinsic Gaussian before transferring this symmetry.
 - The ambient Hermitian set is entrywise measurable, and `GUE.matrixLaw n`
   gives it mass one, is Hermitian almost everywhere, and gives its complement
   mass zero. "Support" here is measure-theoretic full mass, not an equality
@@ -299,12 +290,24 @@ k-invariance precedes approximation claims.
   different but extensionally identical real-module instances on the
   Hermitian subtype. This is a checked Mathlib API/typeclass workaround, not a
   mathematical assumption.
-- GUE construction still has one open representation gate: independent entries
-  are convenient for coordinates, while an isotropic Gaussian measure on the
-  real Hermitian space makes unitary invariance cleaner. RMT-08 must prove their
-  exact scaled pushforward equality before transferring symmetry.
-- The required orthonormal free coordinates are `dᵢ`, `√2 Re uᵢⱼ`, and
+- RMT-08 uses the finite real index `Fin n ⊕ (StrictUpperIndex n ⊕
+  StrictUpperIndex n)`, proves it equivalent to all `Fin n × Fin n` matrix
+  positions, and packages normalized assembly as a real linear isometric
+  equivalence onto intrinsic Hermitian space.
+- The checked orthonormal free coordinates are `dᵢ`, `√2 Re uᵢⱼ`, and
   `√2 Im uᵢⱼ`, because `‖H‖_F² = Σᵢ dᵢ² + 2 Σ_{i<j} |uᵢⱼ|²`.
+- RMT-08 proves equality of the whole normalized finite product law with the
+  earlier diagonal/complex-upper coordinate measure. Equality of scalar
+  marginals alone would not have justified the law comparison.
+- `GUE.intrinsicLaw n` is a probability measure, equals the image of intrinsic
+  `stdGaussian` under multiplication by `√(varianceScale n)`, and is Dirac at
+  the unique zero Hermitian point when `n = 0`.
+- The original ambient `GUE.matrixLaw n` is exactly the pushforward of
+  `GUE.intrinsicLaw n` through `hermitianToMatrix`. It is now formally invariant
+  under every deterministic unitary conjugation.
+- The next moment statements use complex Bochner integrals of the already
+  measurable `tracePower` observables. Integrability remains a separate theorem
+  and must precede each exact integral identity.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -448,12 +451,40 @@ Checkpoint/skill milestone QA:
   KaTeX errors or raw delimiters; desktop and 390-pixel documents fit their
   viewports exactly; wide tables remain locally scrollable; lazy SVGs load at
   their declared dimensions; and RMT-06/RMT-07 navigation is exact.
+- RMT-08 Lean audit: all 35 public declarations implement the `n²` real
+  coordinate index, normalized Hermitian analysis and assembly, Frobenius
+  linear isometric equivalence, exact common-variance product decoding,
+  intrinsic probability and scaled-standard-Gaussian laws, explicit
+  zero-dimensional Dirac boundary, and ambient unitary-conjugation invariance.
+  The module and all three aggregators pass warnings as errors; the full build
+  completes 3,145 jobs; no proof holes or unsafe declarations occur; and all
+  22 theorem audits contain only `propext`, `Classical.choice`, and
+  `Quot.sound`.
+- RMT-08 teaching audit: the 6,598-word Notebook maps all 35 declarations; the
+  new 1,692-word glossary and 5,425-word Deep Dive develop the factor-two
+  normalization, full joint-product transport, intrinsic/ambient commuting
+  square, zero-dimensional branch, and exact nonclaims. All three deterministic
+  cards reproduce byte-for-byte at 1200x630 from both the repository and an
+  unrelated working directory; both accessible prose-only SVGs parse and
+  render; and the warning-fatal Hugo build produces 103 pages.
+- Rendered RMT-08 QA: the Notebook, glossary, and Deep Dive render 153, 37, and
+  100 KaTeX nodes respectively with zero errors or raw delimiters. Desktop
+  documents fit 1280 pixels exactly. A mobile pass found a long theorem name in
+  the key-result panel widening the Notebook; the reusable code-wrapping rule
+  now makes all three documents fit 390 pixels exactly while tables, Mermaid
+  figures, and code remain locally scrollable. Lazy SVGs load at their declared
+  dimensions, and RMT-07/RMT-08 previous/next navigation is exact.
+- The proof-to-prose checker now recognizes declarations preceded by Lean
+  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 11-module
+  audit confirms that every named declaration is visible in its Notebook.
 - The project skill now requires deterministic card verification, XML and
   rendered SVG inspection, desktop and 390-pixel browser QA, KaTeX/raw-math
   checks, and Markdown-safe `\lt`/`\gt` only inside TeX delimiters.
 
 ## Recent Pushes
 
+- `8774349`: intrinsic Hermitian Frobenius geometry, Gaussian symmetry, and
+  mass-one measurable support with teaching layer.
 - `716c0a9`: finite GUE coordinate and ambient matrix laws with teaching layer.
 - `957bc4a`: deterministic Hermitian coordinate assembly and teaching layer.
 - `ec96e0b`: independent complex Gaussian families and teaching layer.

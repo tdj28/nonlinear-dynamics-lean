@@ -23,6 +23,10 @@
     "module": "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry",
     "notebook": "site/content/development-notebook/2026/07/gue-frobenius-geometry-and-hermitian-support/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance",
+    "notebook": "site/content/development-notebook/2026/07/gue-unitary-invariance-from-normalized-coordinates/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Hermitian",
     "notebook": "site/content/development-notebook/2026/07/hermitian-random-matrices/index.md"

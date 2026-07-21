@@ -7,6 +7,10 @@
 **/.lake/
 **/.lean/
 
+# Python validation caches
+**/__pycache__/
+*.py[cod]
+
 # Hugo output and generated resources
 /public/
 /site/resources/_gen/

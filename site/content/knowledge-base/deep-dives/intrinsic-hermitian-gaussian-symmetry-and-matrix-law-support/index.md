@@ -48,6 +48,14 @@ invariant. That final implication needs a comparison theorem identifying the
 coordinate law with a scaled intrinsic standard Gaussian. RMT-07 exposes the
 two endpoints of that comparison; RMT-08 must build the bridge.
 
+{{< panel "info" >}}
+**Subsequent milestone.** RMT-08 now builds that normalized-coordinate
+isometry, proves the full product-measure equality, and transports the
+intrinsic symmetry to the ambient matrix law. Continue to
+[From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}}).
+The remainder of this chapter preserves the exact boundary visible at RMT-07.
+{{< /panel >}}
+
 ## Choose a route up
 
 | Route | Begin with | Destination |

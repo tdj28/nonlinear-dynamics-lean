@@ -176,7 +176,7 @@ density
 p(H)=Z^{-1}\exp\bigl(-c\,\operatorname{tr}(H^2)\bigr).
 \]
 
-Here \(c>0\) sets the scale and \(Z\) is the normalizing constant for the
+Here \(c\gt 0\) sets the scale and \(Z\) is the normalizing constant for the
 chosen reference volume measure on Hermitian matrix space. Because
 
 \[
@@ -191,13 +191,15 @@ spectral scales, even though they preserve the same symmetry principle.
 {{< panel "warning" >}}
 **Current project boundary.** The project now defines a finite GUE matrix law
 from Wigner-scaled independent Gaussian coordinates and measurable Hermitian
-assembly, proves that this law has Hermitian support, and proves that unitary
-congruence preserves the intrinsic standard Gaussian on Hermitian Frobenius
-space. It has **not** proved that the coordinate-built GUE law equals the
-correctly scaled intrinsic Gaussian, so invariance of <code>GUE.matrixLaw</code>
-remains RMT-08. See
-[Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
-for the checked geometry and the exact missing bridge.
+assembly, proves that this law assigns the measurable Hermitian locus mass
+one, and proves that unitary congruence preserves the intrinsic standard
+Gaussian on Hermitian Frobenius space. RMT-08 now proves the coordinate-built
+law equals the correctly scaled
+intrinsic Gaussian and checks
+<code>GUE.matrixLaw_isUnitaryConjugationInvariant</code> in every dimension.
+See
+[From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}})
+for the product-measure comparison and commuting pushforwards.
 {{< /panel >}}
 
 ## Lean-facing interpretation
