@@ -5,6 +5,7 @@ import NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
+import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
 
 /-!
 # Random cocycles
@@ -29,6 +30,14 @@ horizons, and uniformly nonpositive under exact time-zero normalization. It
 also gives an exact normalized decomposition into a centered term plus a
 Birkhoff average. Here centering is pointwise compensation by an additive
 majorant, not subtraction of an expectation. This layer deliberately stops
-before a pointwise Birkhoff theorem, Kingman's theorem, or any samplewise
-exponent claim.
+short of an asymptotic theorem. Finite phase averaging reindexes fixed-block
+Birkhoff sums over every residue phase and, after positive-horizon
+nonpositivity removes the two gap terms, bounds a centered value at horizon
+`b * q + b + r` by a sliding Birkhoff sum with `b * q` starts. The
+multiplication form remains total, but vacuous, at `b = 0`; division requires
+positive block length. The phase proofs add no time-zero normalization,
+measure-preservation, probability, or ergodicity hypothesis, although their
+candidate and cocycle inputs retain the fields bundled by those interfaces.
+They deliberately stop before a pointwise or mean Birkhoff theorem, Kingman's
+subadditive ergodic theorem, interval packing, or any samplewise exponent claim.
 -/

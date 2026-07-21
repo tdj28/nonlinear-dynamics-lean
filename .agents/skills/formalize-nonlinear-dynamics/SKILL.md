@@ -32,6 +32,11 @@ missing.
   scientific claims. For technical searches, rely on primary sources.
 - Record definitions, assumptions, normalization conventions, and negative
   results before designing the Lean interface.
+- Audit every imported finite index, interval, and remainder count before
+  encoding a displayed formula from the literature. If a source's horizon and
+  summand counts are incompatible, formalize the corrected arithmetic, keep
+  the repair explicit in prose, and never silently quote the inconsistent
+  display as though Lean had verified it.
 - Keep a normalization ledger for every ensemble or physics convention:
   dimension, diagonal variance, off-diagonal real/imaginary variance, density
   exponent, spectral scale, and trace normalization.
@@ -60,6 +65,9 @@ missing.
    - separate algebra from topology, measurability, probability, and limits;
    - separate pointwise statements from almost-everywhere and law-level ones;
    - audit which fields of a bundled hypothesis the proof actually consumes;
+     distinguish those proof dependencies from the stronger structure still
+     present in the public receiver type, so prose never calls a theorem
+     premise-free merely because its body projects only one field;
      when a public specialization needs only raw algebra, take the underlying
      object directly and discharge the algebra through a private helper rather
      than requiring an integrability or probability package; and

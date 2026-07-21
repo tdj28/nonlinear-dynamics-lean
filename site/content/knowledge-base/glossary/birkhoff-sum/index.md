@@ -424,7 +424,12 @@ of probability zero, under additional hypotheses
 ([Kingman, 1968](#ref-birkhoff-kingman)). Lalley's short proof notes show how
 finite block estimates participate in that much longer argument, including
 the need to handle the nonergodicity of powers rather than assume it away
-([Lalley](#ref-birkhoff-lalley)).
+([Lalley](#ref-birkhoff-lalley)). Their page 2 phase display is not adopted
+literally here: its right side counts one more complete block than its printed
+left-side horizon. The
+{{< refterm "phase-averaging" "phase averaging" >}}
+entry states the corrected finite horizon and explains why that indexing
+repair does not change the asymptotic theorem.
 
 Accordingly, the RMT-18 Birkhoff-sum layer establishes none of the following:
 
@@ -448,6 +453,7 @@ sum and the project-level block interfaces:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
+import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
 
 open NonlinearDynamics.Random.RandomCocycles
 
@@ -457,6 +463,7 @@ open NonlinearDynamics.Random.RandomCocycles
 #check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_div_add_mod
 #check IsIntegrableSubadditiveProcessCandidate.le_mod_add_birkhoffSum_div
 #check IsIntegrableSubadditiveProcessCandidate.integrable_birkhoffSum_blocks
+#check sum_phase_birkhoffSum
 ~~~
 
 Read the long theorem names literally. <code>div_add_mod</code> signals the
@@ -487,6 +494,14 @@ The
 entry specializes the finite sum to the one-step observable, subtracts it as
 an additive pointwise majorant, and keeps the resulting nonpositive
 shifted-subadditive remainder distinct from expectation centering.
+
+The
+{{< refterm "phase-averaging" "phase averaging" >}}
+entry explains how summing powered-map block sums over every residue phase
+becomes one consecutive finite Birkhoff sum. The
+[finite phase-averaging Deep Dive]({{< relref "/knowledge-base/deep-dives/finite-phase-averaging-for-nonpositive-subadditive-processes" >}})
+develops the boundary geometry, positive-time sign argument, zero-block
+vacuity, and corrected source indexing without asserting a limit theorem.
 
 ## References
 

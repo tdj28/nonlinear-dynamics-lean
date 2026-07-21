@@ -457,6 +457,12 @@ entry develops the finite orbit-sum definition, successor and addition laws,
 powered-map sampling, and the zero-count boundary used here.
 
 The
+{{< refterm "phase-averaging" "Phase averaging" >}}
+entry is the next finite layer. It sums fixed-block bounds across every
+residue phase, keeps the two boundary gaps explicit, and reindexes the phase
+grid as one consecutive sliding Birkhoff sum without claiming convergence.
+
+The
 [Development Notebook]({{< relref "/development-notebook/2026/07/orbit-majorant-centering-for-subadditive-cocycles" >}})
 maps every declaration to its checked Lean proof. The
 [full Deep Dive]({{< relref "/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes" >}})

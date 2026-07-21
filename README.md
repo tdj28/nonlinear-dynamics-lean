@@ -405,25 +405,29 @@ The first active sequence is:
     cocycle pointwise layer needs no generator-integrability witness; only its
     candidate packaging does. This is orbit-majorant compensation, not
     expectation centering, mean zero, or an ergodic limit theorem.
+25. [`RandomCocycles/SubadditivePhaseAveraging.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean)
+    reindexes all residue-phase block sums as one finite sliding Birkhoff sum,
+    retains the exact prefix and terminal gaps, and discards those gaps under
+    positive-horizon nonpositivity. Summing the phase bounds proves a
+    zero-block-safe multiplication inequality at the corrected horizon
+    `b * q + b + r`; division requires `b ≠ 0`, while `r` is unrestricted.
+    Centered-process specializations add no time-zero or preservation premise,
+    and the cocycle theorem takes the cocycle directly without the
+    generator-integrability witness. The public wrappers retain their bundled
+    fields, but the proofs consume only finite algebra and nonpositivity. This
+    is a finite phase estimate, not a Birkhoff or Kingman convergence theorem.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add `RandomCocycles/SubadditivePhaseAveraging.lean`: reindex the sum over
-   block phases as one finite Birkhoff sum, retain and then discard the two
-   boundary process values under positive-horizon nonpositivity, and prove the
-   zero-block-safe phase-average inequality. Specialize it to the centered
-   process without assuming `X 0 = 0` or measure preservation, and then to the
-   centered cocycle observable without integrability, probability, or
-   ergodicity assumptions. Record the repaired finite horizon
-   `b * q + b + r` explicitly rather than importing an inconsistent printed
-   index from the motivating notes.
-2. Add a separate finite interval-packing layer over an explicit ordered family
+1. Add a separate finite interval-packing layer over an explicit ordered family
    of disjoint intervals. Keep its combinatorics independent of measure theory,
-   and use it only after its coverage and boundary bookkeeping are checked.
-3. Design and prove the missing Kingman-style infrastructure from its exact
-   measurable, integrable, stationary, finite-measure, maximal-inequality, and
-   almost-everywhere hypotheses. The pinned Mathlib release supplies finite
+   formalize the checked coverage and gap bookkeeping, and expose the finite
+   lower-estimate inequality without smuggling in a limit argument.
+2. Design and prove the missing pointwise Birkhoff and Kingman-style
+   infrastructure from its exact measurable, integrable, stationary,
+   finite-measure, maximal-inequality, and almost-everywhere hypotheses. The
+   pinned Mathlib release supplies finite
    Birkhoff-sum algebra and probability/ergodic primitives, but no ready-made
    pointwise Birkhoff or Kingman theorem. Only after those layers are audited
    may the project introduce a samplewise limit or Lyapunov terminology.

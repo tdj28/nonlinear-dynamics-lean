@@ -1229,11 +1229,20 @@ glossary chapter is the compact operational definition and counterexample
 reference. The {{< refterm "birkhoff-sum" "Birkhoff sum" >}} chapter isolates
 the finite orbit-sum convention used throughout.
 
-The next finite layer should investigate phase averaging across shifted block
-decompositions. That work may prepare a later subadditive ergodic proof, but it
-must remain explicit about finite boundary terms. A pointwise or
-almost-everywhere theorem belongs only after the required measure-theoretic
-infrastructure is formalized.
+[Finite Phase Averaging for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-phase-averaging-for-nonpositive-subadditive-processes" >}})
+is the immediate successor. It sums the shifted block bounds over every
+residue phase, keeps the exact horizon \(bq+b+r\), and turns the powered-map
+sums into one finite sliding Birkhoff sum along the original base map. The
+{{< refterm "phase-averaging" "phase averaging" >}} glossary chapter gives
+the compact definition, while
+[Average the Phases: Sliding-Block Bounds for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}})
+maps that successor's checked Lean implementation.
+
+The successor also documents a finite indexing inconsistency in the
+motivating phase display from [Lalley's notes](#ref-centering-lalley) and states
+the repaired count explicitly. It remains a finite theorem. A pointwise or
+almost-everywhere result still belongs only after the required
+measure-theoretic infrastructure is formalized.
 
 ## References
 

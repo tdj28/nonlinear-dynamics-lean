@@ -1338,9 +1338,18 @@ is the immediate successor. It specializes the finite block majorant to one
 step, subtracts that additive orbit sum, and keeps the resulting subadditive
 slack explicit.
 
-Beyond that finite centering step, an asymptotic milestone must formalize a
-precise measure-theoretic theorem before introducing a samplewise exponent.
-Finite block notation is a route to that work, not authorization to skip it.
+[Finite Phase Averaging for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-phase-averaging-for-nonpositive-subadditive-processes" >}})
+is the next finite successor. It combines all residue phases into one sliding
+base-orbit sum and records the exact horizon \(bq+b+r\). Its companion
+[Development Notebook]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}})
+also gives a neutral finite count audit of the motivating phase display in
+[Lalley's notes](#ref-finite-blocks-lalley): retaining \(q\) complete blocks
+in every phase requires the extra block in the common horizon.
+
+RMT-18 itself proves no phase-averaged estimate. Beyond the two finite
+successors, an asymptotic milestone must formalize a precise measure-theoretic
+theorem before introducing a samplewise exponent. Finite block notation is a
+route to that work, not authorization to skip it.
 
 ## References
 

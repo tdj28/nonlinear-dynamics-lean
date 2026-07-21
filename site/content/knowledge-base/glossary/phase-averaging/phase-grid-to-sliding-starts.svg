@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="760"
+     viewBox="0 0 760 760" role="img"
+     aria-labelledby="phaseGridTitle phaseGridDesc">
+  <title id="phaseGridTitle">Four phase rows become twelve consecutive sliding starts</title>
+  <desc id="phaseGridDesc">A toy grid has four residue phases and three complete-block samples in each phase. Phase zero contains starts zero, four, and eight; phase one contains one, five, and nine; phase two contains two, six, and ten; phase three contains three, seven, and eleven. Reordering by orbit time gives every start from zero through eleven exactly once. A separate strip shows an initial gap, three complete blocks, and a terminal gap. Positive-time nonpositivity removes the gaps, while the zero phase uses a proof that never inserts a time-zero prefix.</desc>
+  <rect width="760" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:20px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .phase{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .start{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gap{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.3;marker-end:url(#arrowhead)}
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">A phase grid is one consecutive run in disguise</text>
+  <text x="24" y="55" class="t m">Toy instance: four residue phases, three complete-block samples per phase</text>
+
+  <rect x="24" y="78" width="712" height="286" rx="14" class="neutral"/>
+  <text x="44" y="108" class="t h">Group the starts by phase</text>
+  <text x="201" y="136" class="t m">block round one</text>
+  <text x="372" y="136" class="t m">block round two</text>
+  <text x="542" y="136" class="t m">block round three</text>
+
+  <rect x="44" y="151" width="130" height="40" rx="8" class="phase"/>
+  <text x="76" y="176" class="t h">phase zero</text>
+  <rect x="194" y="151" width="146" height="40" rx="8" class="start"/>
+  <text x="231" y="176" class="t s">start zero</text>
+  <rect x="365" y="151" width="146" height="40" rx="8" class="start"/>
+  <text x="401" y="176" class="t s">start four</text>
+  <rect x="536" y="151" width="176" height="40" rx="8" class="start"/>
+  <text x="583" y="176" class="t s">start eight</text>
+
+  <rect x="44" y="203" width="130" height="40" rx="8" class="phase"/>
+  <text x="76" y="228" class="t h">phase one</text>
+  <rect x="194" y="203" width="146" height="40" rx="8" class="start"/>
+  <text x="234" y="228" class="t s">start one</text>
+  <rect x="365" y="203" width="146" height="40" rx="8" class="start"/>
+  <text x="403" y="228" class="t s">start five</text>
+  <rect x="536" y="203" width="176" height="40" rx="8" class="start"/>
+  <text x="586" y="228" class="t s">start nine</text>
+
+  <rect x="44" y="255" width="130" height="40" rx="8" class="phase"/>
+  <text x="76" y="280" class="t h">phase two</text>
+  <rect x="194" y="255" width="146" height="40" rx="8" class="start"/>
+  <text x="234" y="280" class="t s">start two</text>
+  <rect x="365" y="255" width="146" height="40" rx="8" class="start"/>
+  <text x="405" y="280" class="t s">start six</text>
+  <rect x="536" y="255" width="176" height="40" rx="8" class="start"/>
+  <text x="587" y="280" class="t s">start ten</text>
+
+  <rect x="44" y="307" width="130" height="40" rx="8" class="phase"/>
+  <text x="70" y="332" class="t h">phase three</text>
+  <rect x="194" y="307" width="146" height="40" rx="8" class="start"/>
+  <text x="230" y="332" class="t s">start three</text>
+  <rect x="365" y="307" width="146" height="40" rx="8" class="start"/>
+  <text x="398" y="332" class="t s">start seven</text>
+  <rect x="536" y="307" width="176" height="40" rx="8" class="start"/>
+  <text x="576" y="332" class="t s">start eleven</text>
+
+  <path d="M380 370 L380 399" class="arrow"/>
+
+  <rect x="24" y="409" width="712" height="128" rx="14" class="neutral"/>
+  <text x="44" y="438" class="t h">Read the same starts in orbit order</text>
+  <rect x="44" y="454" width="652" height="32" rx="8" class="start"/>
+  <text x="71" y="475" class="t s">zero</text>
+  <text x="171" y="475" class="t s">one</text>
+  <text x="269" y="475" class="t s">two</text>
+  <text x="363" y="475" class="t s">three</text>
+  <text x="473" y="475" class="t s">four</text>
+  <text x="572" y="475" class="t s">five</text>
+  <rect x="44" y="493" width="652" height="32" rx="8" class="start"/>
+  <text x="75" y="514" class="t s">six</text>
+  <text x="164" y="514" class="t s">seven</text>
+  <text x="266" y="514" class="t s">eight</text>
+  <text x="370" y="514" class="t s">nine</text>
+  <text x="474" y="514" class="t s">ten</text>
+  <text x="569" y="514" class="t s">eleven</text>
+
+  <rect x="24" y="558" width="712" height="118" rx="14" class="neutral"/>
+  <text x="44" y="587" class="t h">Each phase bound also carries two gaps</text>
+  <rect x="44" y="604" width="174" height="52" rx="9" class="gap"/>
+  <text x="88" y="626" class="t h">initial gap</text>
+  <text x="77" y="646" class="t m">length is the phase</text>
+  <rect x="228" y="604" width="282" height="52" rx="9" class="phase"/>
+  <text x="294" y="626" class="t h">three complete blocks</text>
+  <text x="284" y="646" class="t m">the sampled block costs</text>
+  <rect x="520" y="604" width="192" height="52" rx="9" class="gap"/>
+  <text x="564" y="626" class="t h">terminal gap</text>
+  <text x="550" y="646" class="t m">always positive here</text>
+
+  <rect x="24" y="698" width="712" height="46" rx="11" class="start"/>
+  <text x="123" y="718" class="t h">Positive-time nonpositivity removes the gaps</text>
+  <text x="121" y="736" class="t m">The zero phase uses a proof that never inserts a time-zero prefix</text>
+</svg>

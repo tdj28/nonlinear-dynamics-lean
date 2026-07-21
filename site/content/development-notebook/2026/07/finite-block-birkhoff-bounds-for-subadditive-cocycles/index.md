@@ -1301,14 +1301,19 @@ nonpositive at positive horizons, preserves shifted subadditivity, and records
 an exact normalized identity. That centering is pointwise compensation, not
 expectation subtraction or a mean-zero construction.
 
-The next layer after centering should also remain finite: phase averaging must
-reconcile block-map sums with the one-step base without assuming that
-ergodicity passes from \(T\) to \(T^b\). Only then should a future Kingman
-layer select a precise theorem statement compatible with the project's
-indexing and shifted orientation. It must decide whether subadditivity holds
-everywhere or almost everywhere, what negative-part or lower-bound assumptions
-are needed, what kind of convergence is claimed, how the invariant
-sigma-algebra enters, and when ergodicity is used.
+That next finite layer is now
+[Average the Phases: Sliding-Block Bounds for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}}).
+It reconciles block-map sums with the one-step base without assuming that
+ergodicity passes from \(T\) to \(T^b\). It also records the finite index
+repair explicitly: the displayed phase decomposition with \(q\) complete
+blocks and both boundary gaps has horizon \(bq+b+r\), not \(bq+r\).
+
+Only after the complementary finite interval-packing layer should a future
+Kingman layer select a precise theorem statement compatible with the
+project's indexing and shifted orientation. It must decide whether
+subadditivity holds everywhere or almost everywhere, what negative-part or
+lower-bound assumptions are needed, what kind of convergence is claimed, how
+the invariant sigma-algebra enters, and when ergodicity is used.
 
 For matrix products, a further design choice remains. The log-positive
 observable is ideal for upper-tail integrability but clips negative logarithmic

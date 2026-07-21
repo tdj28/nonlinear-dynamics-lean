@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="540"
+     viewBox="0 0 820 540" role="img"
+     aria-labelledby="zeroDivisionTitle zeroDivisionDesc">
+  <title id="zeroDivisionTitle">Zero block length is total but vacuous, while positive block length permits division</title>
+  <desc id="zeroDivisionDesc">The left panel shows that block length zero has no phases and no samples, so the multiplication form is valid but says only zero is at most zero. The right panel shows that positive block length creates genuine phases, gives a positive scalar, and permits division to an informative finite bound. A lower note distinguishes zero repetitions from zero block length.</desc>
+  <rect width="820" height="540" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .subtitle{font-size:12px;fill:#5A544C}
+    .head{font-size:14px;font-weight:700}
+    .body{font-size:12px}
+    .small{font-size:11px;fill:#5A544C}
+    .warning{font-family:Inter,Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;fill:#FFFDF8}
+    .zero{fill:#F3E8E0;stroke:#A55445;stroke-width:2}
+    .positive{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .phase{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .arrow{stroke:#A67C52;stroke-width:2;fill:none}
+    .footer{fill:#16243A}
+  </style>
+
+  <text x="24" y="34" class="t title">Total multiplication and positive division are different interfaces</text>
+  <text x="24" y="56" class="t subtitle">The edge case is defined everywhere, but only the positive case carries averaging information</text>
+
+  <rect x="24" y="84" width="364" height="314" rx="16" class="zero"/>
+  <text x="52" y="120" class="t head">BLOCK LENGTH ZERO</text>
+  <text x="52" y="148" class="t body">No residue phases</text>
+  <text x="52" y="171" class="t body">No sampled starts</text>
+  <text x="52" y="194" class="t body">No finite average to interpret</text>
+
+  <rect x="52" y="222" width="308" height="68" rx="10" class="neutral"/>
+  <text x="79" y="249" class="t head">MULTIPLICATION FORM</text>
+  <text x="105" y="274" class="t body">valid but vacuous</text>
+
+  <rect x="52" y="312" width="308" height="58" rx="10" fill="#A55445"/>
+  <text x="127" y="347" class="warning">DO NOT DIVIDE</text>
+
+  <rect x="432" y="84" width="364" height="314" rx="16" class="positive"/>
+  <text x="460" y="120" class="t head">POSITIVE BLOCK LENGTH</text>
+  <text x="460" y="148" class="t body">Residue phases exist</text>
+
+  <rect x="460" y="168" width="61" height="42" rx="8" class="phase"/>
+  <rect x="529" y="168" width="61" height="42" rx="8" class="phase"/>
+  <rect x="598" y="168" width="61" height="42" rx="8" class="phase"/>
+  <rect x="667" y="168" width="61" height="42" rx="8" class="phase"/>
+  <text x="474" y="194" class="t small">phase</text>
+  <text x="543" y="194" class="t small">phase</text>
+  <text x="612" y="194" class="t small">phase</text>
+  <text x="681" y="194" class="t small">phase</text>
+
+  <path d="M594 220 L594 250" class="arrow"/>
+  <polygon points="594,250 589,240 599,240" fill="#A67C52"/>
+  <text x="617" y="239" class="t small">combine</text>
+
+  <rect x="460" y="260" width="308" height="54" rx="10" class="neutral"/>
+  <text x="520" y="292" class="t head">ONE SLIDING SUM</text>
+
+  <path d="M594 320 L594 344" class="arrow"/>
+  <polygon points="594,344 589,334 599,334" fill="#A67C52"/>
+  <text x="610" y="337" class="t small">positive scalar</text>
+
+  <text x="494" y="374" class="t head">DIVISION IS PERMITTED</text>
+
+  <rect x="24" y="420" width="772" height="82" rx="12" class="neutral"/>
+  <text x="48" y="452" class="t head">ZERO REPETITIONS ARE DIFFERENT</text>
+  <text x="48" y="478" class="t body">With positive block length, the phases still exist, but every phase sum is empty.</text>
+  <text x="48" y="494" class="t small">The result is a correct positive-time sign bound, not repeated-block evidence.</text>
+
+  <rect x="0" y="518" width="820" height="22" class="footer"/>
+</svg>

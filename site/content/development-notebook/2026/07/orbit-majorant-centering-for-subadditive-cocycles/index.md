@@ -1506,14 +1506,16 @@ normalization. The residual remains integrable under the exact finite analytic
 gate, and the cocycle layer exposes the same split without strengthening its
 pointwise assumptions.
 
-The next milestone should remain finite. Block arguments sample \(X_b\) under
-the powered map \(T^b\), while the present centering uses \(X_1\) under \(T\).
-A phase-averaging layer can compare the different starting residues and
-powered-map sums. It must do so without assuming that ergodicity of \(T\)
-passes to \(T^b\), which is false in general.
+The next finite layer is now
+[Average the Phases: Sliding-Block Bounds for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}}).
+Block arguments sample \(X_b\) under the powered map \(T^b\), while the
+present centering uses \(X_1\) under \(T\). RMT-20 compares every residue
+phase, reindexes the resulting powered-map sums as one ordinary sliding
+Birkhoff sum, and does so without assuming that ergodicity of \(T\) passes to
+\(T^b\), which is false in general.
 
-Only after those finite identities and their remainder terms are frozen
-should the project design the missing measure-theoretic convergence
+Only after that shipped finite identity and the complementary interval-packing
+layer are frozen should the project design the missing measure-theoretic convergence
 infrastructure. That later work must state exact almost-everywhere,
 integrability, stationarity, maximal-inequality, and limit-identification
 hypotheses. The present Birkhoff average notation is not permission to skip

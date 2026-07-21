@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="620"
+     viewBox="0 0 820 620" role="img"
+     aria-labelledby="phaseHorizonTitle phaseHorizonDesc">
+  <title id="phaseHorizonTitle">Four residue phases share one exact finite horizon</title>
+  <desc id="phaseHorizonDesc">Four horizontal rows each span eighteen steps. From phase zero through phase three, the prefix grows from no steps to three steps, three complete four-step blocks shift right, and the terminal gap shrinks from six steps to three. Every row keeps the same total length.</desc>
+  <rect width="820" height="620" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .subtitle{font-size:12px;fill:#5A544C}
+    .label{font-size:12px;font-weight:700}
+    .small{font-size:10px;fill:#5A544C}
+    .inside{font-size:10px;font-weight:700}
+    .footerText{font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;fill:#FFFDF8}
+    .prefix{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .blockA{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .blockB{fill:#DCE8F2;stroke:#4B6787;stroke-width:1.5}
+    .tail{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .guide{stroke:#C4B8A8;stroke-width:1;stroke-dasharray:4 4}
+    .total{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .finding{fill:#16243A}
+  </style>
+
+  <text x="24" y="34" class="t title">One extra block makes every residue phase fit</text>
+  <text x="24" y="56" class="t subtitle">Worked finite horizon: four-step blocks, three blocks per phase, and two extra terminal steps</text>
+
+  <rect x="176" y="82" width="18" height="12" rx="3" class="prefix"/>
+  <text x="202" y="92" class="t small">prefix</text>
+  <rect x="294" y="82" width="18" height="12" rx="3" class="blockA"/>
+  <text x="320" y="92" class="t small">complete block</text>
+  <rect x="450" y="82" width="18" height="12" rx="3" class="tail"/>
+  <text x="476" y="92" class="t small">terminal gap</text>
+
+  <line x1="176" y1="111" x2="176" y2="476" class="guide"/>
+  <line x1="788" y1="111" x2="788" y2="476" class="guide"/>
+  <text x="176" y="124" class="t small">common start</text>
+  <text x="718" y="124" class="t small">common end</text>
+
+  <text x="24" y="175" class="t label">PHASE ZERO</text>
+  <text x="24" y="195" class="t small">no prefix</text>
+  <rect x="176" y="146" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="312" y="146" width="136" height="64" rx="8" class="blockB"/>
+  <rect x="448" y="146" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="584" y="146" width="204" height="64" rx="8" class="tail"/>
+  <text x="228" y="183" class="t inside">BLOCK</text>
+  <text x="364" y="183" class="t inside">BLOCK</text>
+  <text x="500" y="183" class="t inside">BLOCK</text>
+  <text x="645" y="183" class="t inside">TERMINAL SIX</text>
+
+  <text x="24" y="263" class="t label">PHASE ONE</text>
+  <text x="24" y="283" class="t small">prefix one</text>
+  <rect x="176" y="234" width="34" height="64" rx="8" class="prefix"/>
+  <rect x="210" y="234" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="346" y="234" width="136" height="64" rx="8" class="blockB"/>
+  <rect x="482" y="234" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="618" y="234" width="170" height="64" rx="8" class="tail"/>
+  <text x="262" y="271" class="t inside">BLOCK</text>
+  <text x="398" y="271" class="t inside">BLOCK</text>
+  <text x="534" y="271" class="t inside">BLOCK</text>
+  <text x="666" y="271" class="t inside">TERMINAL FIVE</text>
+
+  <text x="24" y="351" class="t label">PHASE TWO</text>
+  <text x="24" y="371" class="t small">prefix two</text>
+  <rect x="176" y="322" width="68" height="64" rx="8" class="prefix"/>
+  <rect x="244" y="322" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="380" y="322" width="136" height="64" rx="8" class="blockB"/>
+  <rect x="516" y="322" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="652" y="322" width="136" height="64" rx="8" class="tail"/>
+  <text x="296" y="359" class="t inside">BLOCK</text>
+  <text x="432" y="359" class="t inside">BLOCK</text>
+  <text x="568" y="359" class="t inside">BLOCK</text>
+  <text x="675" y="359" class="t inside">TERMINAL FOUR</text>
+
+  <text x="24" y="439" class="t label">PHASE THREE</text>
+  <text x="24" y="459" class="t small">prefix three</text>
+  <rect x="176" y="410" width="102" height="64" rx="8" class="prefix"/>
+  <rect x="278" y="410" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="414" y="410" width="136" height="64" rx="8" class="blockB"/>
+  <rect x="550" y="410" width="136" height="64" rx="8" class="blockA"/>
+  <rect x="686" y="410" width="102" height="64" rx="8" class="tail"/>
+  <text x="330" y="447" class="t inside">BLOCK</text>
+  <text x="466" y="447" class="t inside">BLOCK</text>
+  <text x="602" y="447" class="t inside">BLOCK</text>
+  <text x="703" y="447" class="t inside">TAIL THREE</text>
+
+  <rect x="176" y="504" width="612" height="48" rx="10" class="total"/>
+  <text x="367" y="534" class="t label">EVERY ROW: EIGHTEEN STEPS</text>
+
+  <rect x="0" y="576" width="820" height="44" class="finding"/>
+  <text x="121" y="604" class="footerText">PREFIX GROWS / BLOCKS SHIFT / TERMINAL GAP SHRINKS</text>
+</svg>

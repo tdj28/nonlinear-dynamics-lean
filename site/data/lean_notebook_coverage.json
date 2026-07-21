@@ -47,6 +47,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering",
     "notebook": "site/content/development-notebook/2026/07/orbit-majorant-centering-for-subadditive-cocycles/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging",
+    "notebook": "site/content/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"
