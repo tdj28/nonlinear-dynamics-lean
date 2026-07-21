@@ -6,6 +6,8 @@ separate build targets:
 
 ```text
 .
+├── .agents/skills/ Project-local Codex research and formalization workflow
+├── checkpoint.md  Living verified state, decisions, and exact next milestone
 ├── formalization/   Lean 4 definitions, theorem statements, and proofs
 ├── site/            Hugo source for the public learning site
 └── public/          Generated site output, ignored by Git
@@ -18,6 +20,26 @@ The site has two main collections:
   reproducible commands.
 - **Knowledge Base:** stable glossary entries and longer deep dives that can be
   reused across notebook entries.
+
+## Project memory and research workflow
+
+Read [`checkpoint.md`](checkpoint.md) at the start of a work session. It records
+the last verified state, completed vertical slices, explicit nonclaims,
+dependency-ordered roadmap, and exact next milestone. Update it before every
+coherent milestone commit.
+
+The checked-in
+[`formalize-nonlinear-dynamics` skill](.agents/skills/formalize-nonlinear-dynamics/SKILL.md)
+captures the project's research-to-Lean workflow: local Mathlib reconnaissance,
+primary-source discipline, normalization ledgers, proof-to-prose pairing,
+strict validation, checkpoint maintenance, and frequent pushes to `main`.
+
+Useful checkpoint commands are:
+
+```sh
+make checkpoint
+make checkpoint-check
+```
 
 ## Requirements
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Formalize Nonlinear Dynamics"
+  short_description: "Research-to-Lean workflow for nonlinear dynamics"
+  default_prompt: "Use $formalize-nonlinear-dynamics to advance the next checked Lean and textbook milestone."

@@ -7,7 +7,7 @@ BLOG_PORT ?= 1333
 
 .DEFAULT_GOAL := help
 
-.PHONY: help setup lean content-coverage site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale check clean
+.PHONY: help setup lean checkpoint checkpoint-check content-coverage site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale check clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z0-9_-]+:.*## / {printf "  %-24s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -18,6 +18,12 @@ setup: ## Download the pinned Mathlib dependencies and compiled cache
 
 lean: ## Build the Lean formalization
 	cd formalization && . "$$HOME/.elan/env" && lake build
+
+checkpoint: ## Show the current verified state and next formalization milestone
+	@sed -n '1,320p' checkpoint.md
+
+checkpoint-check: ## Validate the checkpoint and project research skill
+	$(PYTHON) scripts/check_checkpoint.py
 
 content-coverage: ## Check that every substantive Lean module has a comprehensive notebook page
 	$(PYTHON) scripts/check_lean_notebook_coverage.py
@@ -71,7 +77,7 @@ blog-serve-tailscale: ## Serve drafts privately on Tailscale port 1333
 
 site-serve-tailscale: blog-serve-tailscale ## Alias for blog-serve-tailscale
 
-check: lean content-coverage site-check ## Validate Lean, notebook coverage, and all Hugo content
+check: lean checkpoint-check content-coverage site-check ## Validate Lean, checkpoint, notebook coverage, and Hugo
 
 clean: ## Remove generated Lean and Hugo build output
 	cd formalization && . "$$HOME/.elan/env" && lake clean
