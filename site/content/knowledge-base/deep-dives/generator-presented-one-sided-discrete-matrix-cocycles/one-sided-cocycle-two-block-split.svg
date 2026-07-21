@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"
+     viewBox="0 0 800 600" role="img"
+     aria-labelledby="twoBlockCocycleTitle twoBlockCocycleDesc">
+  <title id="twoBlockCocycleTitle">The one-sided cocycle law splits an orbit into an early block and a shifted later block</title>
+  <desc id="twoBlockCocycleDesc">A forward base timeline begins at an initial environment, crosses an early segment, reaches a marked split environment, then crosses a later segment. The early matrix block begins at the initial environment. The later matrix block begins at the shifted split environment. A composition row places the later block on the left and the early block on the right. A side card states that every natural base iterate preserves the same measure, while probability normalization and ergodicity are not supplied.</desc>
+  <rect width="800" height="600" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="twoBlockCocycleArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="32" class="t title">Split elapsed base time, then restart the later matrix block at the shifted state</text>
+  <text x="24" y="53" class="t m">Base iteration and matrix multiplication agree only when the later block uses the environment reached at the split.</text>
+
+  <rect x="24" y="88" width="152" height="72" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="100" y="117" text-anchor="middle" class="t h">INITIAL</text>
+  <text x="100" y="140" text-anchor="middle" class="t h">ENVIRONMENT</text>
+
+  <path d="M178 124 L294 124" fill="none" stroke="#A67C52"
+        stroke-width="3" marker-end="url(#twoBlockCocycleArrow)"/>
+  <text x="236" y="108" text-anchor="middle" class="t m">early base steps</text>
+
+  <rect x="300" y="88" width="180" height="72" rx="12"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="390" y="117" text-anchor="middle" class="t h">SHIFT</text>
+  <text x="390" y="140" text-anchor="middle" class="t h">ENVIRONMENT</text>
+
+  <path d="M482 124 L598 124" fill="none" stroke="#A67C52"
+        stroke-width="3" marker-end="url(#twoBlockCocycleArrow)"/>
+  <text x="540" y="108" text-anchor="middle" class="t m">later base steps</text>
+
+  <rect x="604" y="88" width="172" height="72" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="690" y="117" text-anchor="middle" class="t h">FINAL FORWARD</text>
+  <text x="690" y="140" text-anchor="middle" class="t h">ENVIRONMENT</text>
+
+  <path d="M100 162 L100 218" fill="none" stroke="#4B6787"
+        stroke-width="2.5" marker-end="url(#twoBlockCocycleArrow)"/>
+  <path d="M390 162 L390 218" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#twoBlockCocycleArrow)"/>
+
+  <rect x="24" y="224" width="352" height="104" rx="14"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="200" y="258" text-anchor="middle" class="t h">EARLY MATRIX BLOCK</text>
+  <text x="200" y="284" text-anchor="middle" class="t s">sample the generator from the initial environment</text>
+  <text x="200" y="307" text-anchor="middle" class="t m">acts first on a column state</text>
+
+  <rect x="424" y="224" width="352" height="104" rx="14"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="600" y="258" text-anchor="middle" class="t h">SHIFTED LATER MATRIX BLOCK</text>
+  <text x="600" y="284" text-anchor="middle" class="t s">restart sampling at the split environment</text>
+  <text x="600" y="307" text-anchor="middle" class="t m">acts second on the intermediate state</text>
+
+  <path d="M200 330 L200 372 L362 372" fill="none"
+        stroke="#4B6787" stroke-width="2.5"/>
+  <path d="M600 330 L600 372 L438 372" fill="none"
+        stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M400 372 L400 402" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#twoBlockCocycleArrow)"/>
+
+  <rect x="106" y="408" width="588" height="76" rx="14"
+        fill="#16243A"/>
+  <text x="400" y="438" text-anchor="middle" class="t h"
+        style="fill:#FFFDF8">THE COCYCLE COMPOSITION ORDER</text>
+  <text x="400" y="463" text-anchor="middle" class="t s"
+        style="fill:#FFFDF8">LATER BLOCK ON THE LEFT  /  EARLY BLOCK ON THE RIGHT</text>
+
+  <rect x="106" y="510" width="588" height="58" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="400" y="535" text-anchor="middle" class="t h">EVERY NATURAL BASE ITERATE PRESERVES THE SAME MEASURE</text>
+  <text x="400" y="556" text-anchor="middle" class="t m">this does not add probability normalization, ergodicity, mixing, or invertibility</text>
+
+  <text x="24" y="590" class="t m">The construction is forward only; no negative-time environment or inverse matrix is present.</text>
+</svg>

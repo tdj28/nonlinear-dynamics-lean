@@ -19,6 +19,10 @@
     "module": "NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts",
     "notebook": "site/content/development-notebook/2026/07/measurable-finite-matrix-products-and-pushforward-laws/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.Discrete",
+    "notebook": "site/content/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"

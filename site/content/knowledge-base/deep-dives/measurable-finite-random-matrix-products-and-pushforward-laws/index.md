@@ -878,10 +878,13 @@ studies finite product measures and independence. That is a different product:
 it combines coordinate probability spaces, while the present chapter
 multiplies matrices in chronological order and assumes no independence.
 
-The next formal layers can introduce a measurable base transformation and
-random cocycle, then add stationary or invariant probability structure,
-logarithmic integrability, and asymptotic growth theorems. Each addition should
-remain a separate checked interface.
+The next checked layer is
+[Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}}),
+with a compact companion entry on the
+{{< refterm "one-sided-discrete-matrix-cocycle" "one-sided discrete matrix cocycle" >}}.
+It introduces a measure-preserving forward base and the finite cocycle law.
+Later layers can add norm observables, logarithmic integrability, and
+asymptotic growth theorems as separate interfaces.
 
 ## References
 

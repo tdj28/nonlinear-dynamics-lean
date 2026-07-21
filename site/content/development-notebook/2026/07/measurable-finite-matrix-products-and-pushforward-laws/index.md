@@ -1097,6 +1097,15 @@ where a checked result actually consumes it.
 Nothing in the present probability wrapper shortcuts those steps. It gives the
 next module a sound finite law to consume, not a long-time theorem in disguise.
 
+The immediate successor,
+[One-Sided Discrete Matrix Cocycles in Lean]({{< relref "/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases" >}}),
+uses one base map and one measurable matrix generator to produce the factor
+sequence. It proves the exact later-block-left cocycle identity, bundles a
+measure-preserving base, and shows that every finite value is measurable while
+every natural base iterate preserves the same raw measure. It adds no
+ergodicity, independence, invertibility, logarithmic growth, or asymptotic
+claim.
+
 ## References
 
 The links below were checked on 2026-07-21. The pinned local Mathlib 4.32.0

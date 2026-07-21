@@ -317,6 +317,12 @@ sample map, its exact finite measurability proof, and its law.
 derives all twelve checked declarations, explains their proof architecture,
 and follows the empty-dimensional boundary.
 
+The next checked layer obtains every factor from one generator along a
+measure-preserving base orbit. Begin with the
+{{< refterm "one-sided-discrete-matrix-cocycle" "one-sided discrete matrix cocycle" >}}
+entry, then continue to
+[Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}}).
+
 For the underlying order convention, read
 {{< refterm "forward-matrix-product" "forward matrix product" >}}. For the
 three measure-theoretic ingredients, continue to

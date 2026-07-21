@@ -343,15 +343,21 @@ The first active sequence is:
     exposes only proof-carrying pushforward laws. Probability sources give both
     a raw mass-one theorem and a bundled probability law, including empty
     matrix dimension and the zero-horizon Dirac boundary.
+18. [`RandomCocycles/Discrete.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean)
+    samples a matrix generator along natural-number iterates of a base map and
+    proves the one-sided cocycle identity with the shifted later block on the
+    left. Its measurable bundle records a measure-preserving base and an
+    ordinarily measurable complex generator, then exposes measurable finite
+    cocycle values and preservation of every base iterate without requiring a
+    probability measure or a positive matrix dimension.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Build a measurable discrete matrix cocycle over an explicitly
-   measure-preserving base transformation, reusing the same newest-factor-left
-   product convention.
-2. Add finite-time norm and log-norm observables before any asymptotic
-   Lyapunov-growth or multiplicative-ergodic claim.
+1. Add finite-time norm and extended log-norm observables with explicit
+   zero-time, zero-norm, and positive-dimension policies.
+2. Prove their measurability and basic cocycle inequalities before introducing
+   integrability, normalized growth, or any asymptotic Lyapunov claim.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

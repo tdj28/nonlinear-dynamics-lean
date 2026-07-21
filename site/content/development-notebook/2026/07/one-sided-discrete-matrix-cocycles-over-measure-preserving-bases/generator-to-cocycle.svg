@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420"
+     viewBox="0 0 760 420" role="img" aria-labelledby="titleCocycle descCocycle">
+  <title id="titleCocycle">One generator along a base orbit creates an exact finite cocycle</title>
+  <desc id="descCocycle">A forward base orbit passes three environment states through the same matrix generator. The observed matrices form a finite value, and a lower split places the shifted later block to the left of the earlier prefix.</desc>
+  <rect width="760" height="420" fill="#F7F4F0"/>
+  <style>
+    .base{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .observe{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .later{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .result{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .dash{stroke:#A89B8C;stroke-width:1.5;stroke-dasharray:5 4}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <text x="24" y="28" class="t title">One generator turns a base orbit into a finite matrix cocycle</text>
+  <text x="24" y="48" class="t m">Advance the environment, observe with the same rule, then preserve chronological action.</text>
+
+  <rect x="24" y="82" width="132" height="126" rx="12" class="base"/>
+  <text x="52" y="112" class="t h">STARTING POINT</text>
+  <text x="49" y="148" class="t s">current environment</text>
+  <text x="52" y="180" class="t m">earliest observation</text>
+
+  <line x1="164" y1="145" x2="190" y2="145" class="arrow"/>
+  <polygon points="200,145 187,137 187,153" fill="#A67C52"/>
+
+  <rect x="208" y="82" width="132" height="126" rx="12" class="base"/>
+  <text x="245" y="112" class="t h">ADVANCE</text>
+  <text x="231" y="148" class="t s">next environment</text>
+  <text x="239" y="180" class="t m">middle observation</text>
+
+  <line x1="348" y1="145" x2="374" y2="145" class="arrow"/>
+  <polygon points="384,145 371,137 371,153" fill="#A67C52"/>
+
+  <rect x="392" y="82" width="132" height="126" rx="12" class="base"/>
+  <text x="429" y="112" class="t h">ADVANCE</text>
+  <text x="415" y="148" class="t s">later environment</text>
+  <text x="421" y="180" class="t m">newest observation</text>
+
+  <line x1="532" y1="145" x2="558" y2="145" class="arrow"/>
+  <polygon points="568,145 555,137 555,153" fill="#A67C52"/>
+
+  <rect x="576" y="82" width="160" height="126" rx="12" class="observe"/>
+  <text x="610" y="112" class="t h">SAME GENERATOR</text>
+  <text x="603" y="148" class="t s">reads every visited point</text>
+  <text x="603" y="180" class="t m">one rule, changing inputs</text>
+
+  <line x1="90" y1="220" x2="90" y2="242" class="dash"/>
+  <line x1="274" y1="220" x2="274" y2="242" class="dash"/>
+  <line x1="458" y1="220" x2="458" y2="242" class="dash"/>
+  <line x1="656" y1="220" x2="656" y2="242" class="dash"/>
+
+  <rect x="24" y="254" width="300" height="102" rx="12" class="base"/>
+  <text x="48" y="284" class="t h">EARLIER PREFIX</text>
+  <text x="48" y="312" class="t s">begins at the starting environment</text>
+  <text x="48" y="338" class="t m">acts first and remains on the right</text>
+
+  <line x1="332" y1="305" x2="358" y2="305" class="arrow"/>
+  <polygon points="368,305 355,297 355,313" fill="#A67C52"/>
+
+  <rect x="376" y="254" width="360" height="102" rx="12" class="later"/>
+  <text x="400" y="284" class="t h">LATER BLOCK AT THE SHIFTED BASE POINT</text>
+  <text x="400" y="312" class="t s">continues from the environment reached by the prefix</text>
+  <text x="400" y="338" class="t m">acts afterward and is written on the left</text>
+
+  <rect x="24" y="374" width="712" height="30" rx="10" class="result"/>
+  <text x="48" y="394" class="t s">Exact finite splitting; one-sided time only; no independence, ergodicity, or asymptotic exponent.</text>
+</svg>

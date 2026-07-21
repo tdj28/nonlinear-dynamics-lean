@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 08:05 PDT
+Last updated: 2026-07-21 08:23 PDT
 
-Audited baseline: `main` at `23e49a3`
+Audited baseline: `main` at `349665d`
 
-Active direction: one-sided discrete matrix cocycles over measure-preserving bases
+Active direction: finite-time norm and extended-log-norm cocycle observables
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: one-sided discrete matrix cocycles over measure-preserving bas
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,159 jobs. The integrated RMT-12 gate covers seventeen
-  substantive modules, seventeen complete draft Notebook companions, and 182
+- Last green Lean build: 3,161 jobs. The integrated RMT-13 gate covers eighteen
+  substantive modules, eighteen complete draft Notebook companions, and 193
   Hugo pages with warnings fatal.
-- Lean inventory: 333 public named declarations across the seventeen substantive
-  modules; 18 one-line deterministic placeholders; two `.gitkeep`-only
-  Random branches; five `.gitkeep`-only Quantum Chaos branches.
+- Lean inventory: 349 public named declarations across the eighteen substantive
+  modules; 18 one-line deterministic placeholders; one `.gitkeep`-only
+  Random branch; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 96,868 words across the seventeen Notebook companions and
-  107,037 words across fourteen Deep Dives and twenty-seven glossary chapters.
+- Teaching snapshot: 103,054 words across the eighteen Notebook companions and
+  113,706 words across fifteen Deep Dives and twenty-eight glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -58,16 +58,17 @@ Active direction: one-sided discrete matrix cocycles over measure-preserving bas
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum` | Named finite-GUE empirical spectral law, all-dimensional outer probability packaging, successor-dimensional probability-measure-valued law, intrinsic/ambient agreement, zero-dimensional Dirac boundary, Giry mean measure, sample moments as normalized trace powers, integrability, and exact expected first and second moments | `finite-gue-empirical-spectral-laws-and-moments` |
 | `NonlinearDynamics.Random.MatrixProducts.FiniteProducts` | Semiring-valued ordered forward products, zero/successor/one-step/constant/split identities, chronological vector action, and finite-time induced infinity operator-norm product and uniform-power bounds in positive dimension | `ordered-finite-matrix-products-and-growth-bounds` |
 | `NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts` | Semiring-valued pointwise sample products, exact finite-prefix measurability for complex random matrices, proof-carrying pushforward laws, zero/one-horizon identities, raw mass-one evidence, and bundled probability laws without a positive-dimension restriction | `measurable-finite-matrix-products-and-pushforward-laws` |
+| `NonlinearDynamics.Random.RandomCocycles.Discrete` | Generator-presented one-sided cocycles, forward-orbit factors, zero/successor/one/add identities, exact later-block-left cocycle law, complex measurability, and measure-preserving natural iterates without probability, invertibility, or positive-dimension assumptions | `one-sided-discrete-matrix-cocycles-over-measure-preserving-bases` |
 
-The root aggregator imports all seventeen modules. The proof-to-prose manifest and
+The root aggregator imports all eighteen modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Seventeen comprehensive Development Notebook chapters in an explicit
+- Eighteen comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Fourteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Fifteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -79,15 +80,17 @@ declaration visibility.
   Continuity, and Measurability*, and *Finite Gaussian Unitary Ensemble
   Empirical Spectral Laws and Normalized Moments*, and *Ordered Finite Matrix
   Products and Operator-Norm Growth*, and *Measurable Finite Random-Matrix
-  Products and Proof-Carrying Pushforward Laws*.
-- Twenty-seven glossary chapters, now including finite random-matrix products,
+  Products and Proof-Carrying Pushforward Laws*, and *Generator-Presented
+  One-Sided Discrete Matrix Cocycles*.
+- Twenty-eight glossary chapters, now including one-sided discrete matrix
+  cocycles, finite random-matrix products,
   forward matrix products, and the induced infinity operator norm, as well as
   empirical spectral laws, Weyl
   eigenvalue perturbation, empirical spectral measures, finite matrix trace
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Forty-eight deterministic 1200x630 social cards and thirty-two accessible
+- Fifty-one deterministic 1200x630 social cards and thirty-five accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -96,38 +99,38 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-13: one-sided discrete matrix cocycles over measure-preserving bases
+### RMT-14: finite-time norm and extended-log-norm cocycle observables
 
-The next module is `Random/RandomCocycles/Discrete.lean`. A warning-clean
-sixteen-declaration prototype has stabilized the smallest generator-presented
-cocycle interface above RMT-12:
+The next module is `Random/RandomCocycles/NormObservables.lean`. An independently
+audited, warnings-fatal fourteen-declaration prototype has stabilized the
+smallest analytic layer above RMT-13:
 
-1. Over an arbitrary scalar semiring, define the matrix generator observed
-   along the forward iterates of a base map and its newest-factor-left finite
-   product.
-2. Prove the zero, successor, and one-step identities and the pointwise
-   one-sided cocycle law
-   `Φ(m + k, ω) = Φ(k, T^[m] ω) * Φ(m, ω)`. The later block must stay on the
-   left, exactly as in RMT-11 and RMT-12.
-3. In a measurable sample space, specialize the analytic carrier to complex
-   matrices and prove measurability of every orbit factor and finite cocycle
-   value from measurability of the base and generator.
-4. Bundle a generator-presented `DiscreteMatrixCocycle μ` with a
-   measure-preserving base, a complex matrix generator, and explicit generator
-   measurability. Expose `value` with zero, one, successor, add, and
-   measurability theorems.
-5. Prove that every natural-number iterate of the bundled base remains
-   measure-preserving.
-6. Add the `Random.RandomCocycles` aggregator and pair the complete public API
-   with a Notebook, Knowledge Base teaching, coverage, and checkpoint update.
+1. Select Mathlib's maximum absolute row-sum matrix norm, the operator norm
+   induced by the vector supremum norm, and expose its exact finite row-sum
+   formula.
+2. Define the finite-time norm observable, prove its positive-dimensional
+   time-zero normalization, one-step generator identity, cocycle
+   submultiplicativity, and ordinary measurability.
+3. Prove norm measurability entrywise through complex entry norms, finite row
+   sums, and finite suprema. Do not silently identify the project-owned matrix
+   measurable space with a Borel structure supplied by the scoped norm.
+4. Define the extended log norm through `ENNReal.log ‖C.value k ω‖ₑ`, so a zero
+   cocycle value maps exactly to `⊥` rather than to the artificial real
+   convention `Real.log 0 = 0`.
+5. Prove the exact bottom criterion, positive-dimensional time-zero and
+   one-step identities, measurability, and unconditional extended-real
+   subadditivity across the RMT-13 cocycle split.
+6. Keep empty matrix dimension valid. Prove explicitly that every finite-time
+   norm is zero and every extended log norm is bottom in that branch; require
+   `Nonempty ι` only for the normalizations `‖1‖ = 1` and `log 1 = 0`.
+7. Pair the complete API with a Notebook, Knowledge Base teaching, coverage,
+   checkpoint update, rendered browser audit, and a green push.
 
-This is a one-sided finite-time interface. It asserts no probability
-normalization, ergodicity, mixing, independence, identical distribution,
-invertibility, negative-time extension, skew-product invariance, law
-factorization, norm or log-norm integrability, Lyapunov exponent, Oseledets
-theorem, asymptotic limit, or random-Jacobian bridge. Norm and log-norm
-observables are deferred to RMT-14 because they introduce separate zero-norm,
-zero-time, normalization, integrability, and norm-choice policies.
+RMT-14 remains finite-time. It asserts no integrability of either observable,
+no normalized growth rate, no subadditive ergodic limit, no Lyapunov exponent,
+no Oseledets splitting, no ergodicity or probability normalization, and no
+random-Jacobian bridge. Those require a separate assumption and asymptotic
+policy after the observable layer is checked.
 
 ## Dependency-Ordered Roadmap
 
@@ -179,8 +182,9 @@ unresolved convention or depend on an unproved earlier interface.
   inequalities.
 - [x] Measurable finite random matrix products and proof-carrying pushforward
   laws.
-- [ ] One-sided random cocycles over a measure-preserving base, then separate
-  finite-time norm and log-norm observables.
+- [x] Generator-presented one-sided random cocycles over a measure-preserving
+  base, including the later-block-left finite-time cocycle law.
+- [ ] Finite-time maximum-row-sum norm and extended-log-norm observables.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -440,6 +444,30 @@ k-invariance precedes approximation claims.
 - The pointwise shifted split is not a factorization of the product law.
   Independence, a joint-law interface, and additional hypotheses would be
   required before any such measure identity could be stated honestly.
+- RMT-13 is generator-presented: one base map `T` advances an environment and
+  one generator `A` supplies the factor at each forward iterate. It does not
+  package an arbitrary time-indexed random sequence as a cocycle.
+- Natural-time iteration uses Mathlib's `Function.iterate` convention. The
+  orbit factor at index `j` is `A ((T^[j]) ω)`, and the finite product reuses
+  RMT-11's newest-factor-left ordering without redefining multiplication.
+- The checked cocycle split is
+  `Φ(m + k, ω) = Φ(k, (T^[m]) ω) * Φ(m, ω)`. The shifted later block remains on
+  the left because it acts after the earlier prefix; commuting the factors is
+  neither assumed nor permitted.
+- RMT-13 keeps its orbit and product algebra over an arbitrary semiring and
+  specializes only the measurable layer and bundle to complex matrices. The
+  bundle stores a base, generator, `MeasurePreserving base μ μ`, and ordinary
+  generator measurability.
+- `MeasurePreserving` supplies base measurability and preservation of the
+  chosen measure, and its iterate theorem proves preservation at every natural
+  time. It does not supply probability normalization, ergodicity, mixing,
+  independence, invertibility, or negative-time dynamics.
+- Empty matrix dimension remains valid throughout RMT-13. No `Nonempty ι`
+  assumption is needed for values, identities, measurability, or base-iterate
+  preservation.
+- RMT-13 is one-sided and finite-time. It proves no skew-product invariant law,
+  law factorization, norm or log-norm integrability, Lyapunov exponent,
+  Oseledets splitting, asymptotic limit, or random-Jacobian representation.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -469,10 +497,11 @@ k-invariance precedes approximation claims.
   eigenvalue densities, higher moments, moment/barycenter interchange, and
   every large-dimension scaling theorem remain open.
 - Ordered deterministic finite matrix products, induced infinity operator-norm
-  bounds, exact finite-prefix measurability, proof-carrying product laws, and
-  their probability packaging are formalized. Random cocycles, norm and
-  log-norm integrability, finite-time logarithmic growth, Lyapunov exponents,
-  and ergodic limits remain open.
+  bounds, exact finite-prefix measurability, proof-carrying product laws, their
+  probability packaging, and generator-presented one-sided cocycles over
+  measure-preserving bases are formalized. Finite-time norm and extended-log
+  observables, their integrability, normalized growth, Lyapunov exponents, and
+  ergodic limits remain open.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -777,9 +806,40 @@ Checkpoint/skill milestone QA:
   browser console warnings; cards and lazy SVGs load at intrinsic dimensions;
   the Notebook and Deep Dive disclosures render exactly once; and
   RMT-11/RMT-12 Notebook navigation is exact.
+- RMT-13 Lean audit: all 16 public declarations implement forward-orbit
+  generator factors, zero/successor/one/add product identities, the exact
+  later-block-left one-sided cocycle law, finite-value measurability, the
+  four-field measure-preserving bundle, and preservation by every natural base
+  iterate. The module and aggregators pass warnings as errors; the full build
+  completes 3,161 jobs; empty matrix dimension compiles; no proof holes,
+  unsafe declarations, or custom axioms occur; and the axiom audit contains
+  only `propext`, `Classical.choice`, and `Quot.sound` where needed.
+- RMT-13 static teaching audit: the 6,113-word Notebook body maps all 16 public
+  declarations in source order; the new glossary and Deep Dive contain 1,629
+  and 5,040 words and preserve the semiring/measurable/bundled assumption
+  layers, iterate convention, product order, empty-dimension boundary, and
+  exhaustive nonclaims. All three deterministic cards reproduce byte-for-byte
+  at 1200x630 from both the repository and `/private/tmp`; all three accessible
+  prose-only SVGs parse and render; source hygiene passes 66 Markdown files;
+  coverage passes 18/18 modules; and Hugo builds 193 pages with warnings fatal.
+- Rendered RMT-13 QA: the Notebook, glossary, and Deep Dive render 120, 63, and
+  114 KaTeX nodes respectively at both desktop and mobile widths. The amended
+  RMT-12 Notebook, glossary, and Deep Dive remain stable at 88, 51, and 108.
+  All six pages have zero KaTeX errors, raw delimiters, malformed equality
+  headings, page overflow, or browser console warnings; desktop documents fit
+  1,280 pixels and mobile documents fit 390 pixels exactly. Cards and
+  explicitly scrolled lazy SVGs load at their declared intrinsic dimensions;
+  canonical disclosures render exactly once where required; and all Notebook
+  and reciprocal RMT-12 Knowledge Base links are exact. Independent review
+  caught and repaired an over-strong Notebook assumption ledger before freeze:
+  the orbit sequence needs no typeclasses, product declarations two through
+  six use the finite-semiring floor, and the cocycle structure itself needs
+  only the sample measurable space.
 
 ## Recent Pushes
 
+- `349665d`: measurable finite matrix products, proof-carrying pushforward
+  laws, bundled probability laws, and teaching layer.
 - `23e49a3`: ordered deterministic finite matrix products, induced infinity
   operator-norm bounds, automated teaching-source hygiene, and teaching layer.
 - `0a496e7`: finite GUE empirical spectral laws, normalized expected moments,
