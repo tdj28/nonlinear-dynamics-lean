@@ -32,7 +32,7 @@ second argument is a variance \(v\) or a standard deviation
 
 ## The exact probability law
 
-When \(v>0\), the Gaussian law has density
+When \(v\gt 0\), the Gaussian law has density
 
 \[
 f_{m,v}(x)
@@ -169,7 +169,7 @@ parameters only after establishing the exact real law.
 
 ## Edge cases and nonclaims
 
-- A Gaussian density formula applies directly only for \(v>0\). At
+- A Gaussian density formula applies directly only for \(v\gt 0\). At
   \(v=0\), the law is a point mass.
 - Equal means and variances do not determine an arbitrary probability law.
   They determine a law inside the Gaussian family.

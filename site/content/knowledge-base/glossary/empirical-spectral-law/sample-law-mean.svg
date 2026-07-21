@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390"
+     viewBox="0 0 760 390" role="img"
+     aria-labelledby="eslTitle eslDesc">
+  <title id="eslTitle">A sample measure, its law, and its mean are different objects</title>
+  <desc id="eslDesc">One random Hermitian matrix produces one empirical spectral measure. Repeated samples produce a probability law on measures. A separate averaging step produces the mean measure. The empty-dimensional branch is a law concentrated at the zero measure.</desc>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .sample{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .measure{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .law{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{stroke:#A67C52;stroke-width:2;fill:none}
+    .dash{stroke:#A89B8C;stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+  </style>
+  <defs>
+    <marker id="eslArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">The law lives one level above each sampled measure</text>
+  <text x="24" y="48" class="t m">Averaging the outcomes creates another measure, not another name for the law.</text>
+
+  <rect x="24" y="78" width="190" height="94" rx="12" class="sample"/>
+  <text x="119" y="107" text-anchor="middle" class="t h">Random matrix sample</text>
+  <text x="119" y="132" text-anchor="middle" class="t s">One Hermitian matrix</text>
+  <text x="119" y="151" text-anchor="middle" class="t m">Entries vary across trials</text>
+
+  <path d="M214,125 L276,125" class="arrow" marker-end="url(#eslArrow)"/>
+  <text x="245" y="112" text-anchor="middle" class="t m">spectrum</text>
+
+  <rect x="280" y="78" width="200" height="94" rx="12" class="measure"/>
+  <text x="380" y="107" text-anchor="middle" class="t h">Sample spectral measure</text>
+  <text x="380" y="132" text-anchor="middle" class="t s">One measure on the real line</text>
+  <text x="380" y="151" text-anchor="middle" class="t m">Probability only in positive size</text>
+
+  <path d="M480,125 L542,125" class="arrow" marker-end="url(#eslArrow)"/>
+  <text x="511" y="112" text-anchor="middle" class="t m">repeat</text>
+
+  <rect x="546" y="78" width="190" height="94" rx="12" class="law"/>
+  <text x="641" y="107" text-anchor="middle" class="t h">Empirical spectral law</text>
+  <text x="641" y="132" text-anchor="middle" class="t s">Probability law on measures</text>
+  <text x="641" y="151" text-anchor="middle" class="t m">Mass one in every dimension</text>
+
+  <path d="M641,172 L641,222 L482,222" class="dash" marker-end="url(#eslArrow)"/>
+  <text x="565" y="208" text-anchor="middle" class="t m">average measure-valued outcomes</text>
+
+  <rect x="280" y="200" width="200" height="82" rx="12" class="neutral"/>
+  <text x="380" y="229" text-anchor="middle" class="t h">Mean spectral measure</text>
+  <text x="380" y="253" text-anchor="middle" class="t s">One averaged measure</text>
+  <text x="380" y="270" text-anchor="middle" class="t m">It does not retain trial variation</text>
+
+  <rect x="24" y="206" width="190" height="70" rx="10" class="neutral"/>
+  <text x="119" y="232" text-anchor="middle" class="t h">Empty dimension</text>
+  <text x="119" y="254" text-anchor="middle" class="t s">Zero sample measure</text>
+  <text x="119" y="270" text-anchor="middle" class="t m">Its law is still a probability law</text>
+
+  <rect x="24" y="316" width="712" height="50" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="380" y="346" text-anchor="middle" class="t s">
+    Keep the sample measure, its law, and its mean separate before asking for moments or limits.
+  </text>
+</svg>

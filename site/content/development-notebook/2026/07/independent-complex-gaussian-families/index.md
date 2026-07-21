@@ -842,7 +842,7 @@ variances would establish unitary invariance.
 | Case | Checked behavior | Boundary |
 |---|---|---|
 | \(c_i=0\) | Scaled coordinate is deterministic zero with both variances zero | Other coordinates and their laws remain present |
-| \(c_i<0\) | Mean is reflected and both variances scale by \(c_i^2\) | No sign enters a variance |
+| \(c_i\lt 0\) | Mean is reflected and both variances scale by \(c_i^2\) | No sign enters a variance |
 | Exactly one of \(v_{\mathrm{Re},i}\), \(v_{\mathrm{Im},i}\) is zero | Exact Cartesian law remains valid | Line-supported geometry has no separate family theorem |
 | Both variances zero | Coordinate law is Dirac at its mean through the one-variable layer | The family may contain deterministic coordinates |
 | Empty \(\iota\) | Canonical product law is Dirac at the unique empty function | This does not choose a zero-dimensional matrix policy |

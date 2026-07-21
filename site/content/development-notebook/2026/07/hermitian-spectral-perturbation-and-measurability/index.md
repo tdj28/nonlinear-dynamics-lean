@@ -98,6 +98,12 @@ supplies exactly the missing theorem. Reusable background appears under
 {{< refterm "pushforward-measure" >}}, and
 {{< refterm "probability-law" >}}.
 
+Its immediate successor,
+[Finite Gaussian Unitary Ensemble Spectral Laws in Lean]({{< relref "/development-notebook/2026/07/finite-gue-empirical-spectral-laws-and-moments" >}}),
+uses the completed measurability bridge to name the law of the random
+empirical measure, construct its Giry barycenter, and transport the first two
+exact normalized GUE moments.
+
 ## Choose a route up
 
 | Route | Begin | Destination |
@@ -251,7 +257,7 @@ means nothing unless basis index \(j\) carries ordered eigenvalue
 `orderedHermitianEigenvectorBasis_repr_mulVec` proves
 \[
   \operatorname{repr}_H(Hx)_i
-  =
+  {} =
   \lambda_i(H)\operatorname{repr}_H(x)_i.
 \]
 Lean represents vectors in `EuclideanSpace ℂ (Fin n)` with an `Lp` wrapper,
@@ -271,9 +277,9 @@ representation, and the finite `PiLp` formula,
 `hermitian_quadratic_eq_weighted_sum` obtains
 \[
   q_H(x)
-  =
+  {} =
   \operatorname{Re}\langle x,Hx\rangle
-  =
+  {} =
   \sum_j\lambda_j(H)
     \left|\operatorname{repr}_H(x)_j\right|^2.
 \]
@@ -433,7 +439,7 @@ The private definition `hermitianQuadratic` names
 For fixed \(x\), subtraction and linearity give
 \[
   q_A(x)-q_B(x)
-  =
+  {} =
   \operatorname{Re}\langle x,(A-B)x\rangle.
 \]
 
@@ -493,7 +499,7 @@ two constant-one theorems.
 codomain is \(\mathbb R\), so distance is absolute difference:
 \[
   d\bigl(\lambda_i(A),\lambda_i(B)\bigr)
-  =
+  {} =
   \left|\lambda_i(A)-\lambda_i(B)\right|
   \le d(A,B).
 \]
@@ -502,7 +508,7 @@ codomain is \(\mathbb R\), so distance is absolute difference:
 `Fin n → ℝ`. This finite function space carries the product sup metric:
 \[
   d_\infty(\lambda(A),\lambda(B))
-  =
+  {} =
   \max_i\left|\lambda_i(A)-\lambda_i(B)\right|.
 \]
 The proof uses `dist_pi_le_iff` and applies the coordinate theorem at every
@@ -608,7 +614,7 @@ real-line measures agree:
   \operatorname{map}\!
     \left(\operatorname{GUE.matrixLaw}(n),
       \operatorname{ambientEmpiricalSpectralMeasure}(n)\right)
-  =
+  {} =
   \operatorname{map}\!
     \left(\operatorname{GUE.intrinsicLaw}(n),
       \operatorname{empiricalSpectralMeasure}\right).
@@ -960,16 +966,18 @@ limit.
 ## The next ridge
 
 RMT-10B turns the finite Hermitian spectrum into an unconditional measurable
-observable. The next vertical slice can define the finite-GUE empirical
-spectral law, give its ambient and intrinsic presentations, prove its
-zero-dimensional Dirac boundary, and connect its first two normalized spectral
-moments to the exact trace identities from RMT-09.
+observable. Its completed successor,
+[Finite Gaussian Unitary Ensemble Spectral Laws in Lean]({{< relref "/development-notebook/2026/07/finite-gue-empirical-spectral-laws-and-moments" >}}),
+defines the finite-GUE empirical spectral law, gives its ambient and intrinsic
+presentations, proves its zero-dimensional Dirac boundary, constructs its
+mean measure, and connects its first two normalized spectral moments to the
+exact trace identities from RMT-09.
 
-That successor must keep three layers separate: one sample empirical measure,
-a probability law over empirical measures, and any averaged spectral measure.
-It must preserve the approved Wigner normalization. A semicircle law, joint
+That chapter keeps three layers separate: one sample empirical measure, a
+probability law over empirical measures, and the averaged spectral measure.
+It preserves the approved Wigner normalization. A semicircle law, joint
 eigenvalue density, Vandermonde formula, local spacing statistic, or
-large-\(n\) convergence theorem needs additional mathematics.
+large-\(n\) convergence theorem still needs additional mathematics.
 
 ## References
 

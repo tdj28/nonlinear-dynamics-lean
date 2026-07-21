@@ -321,18 +321,22 @@ The first active sequence is:
     empirical-measure, and intrinsic/ambient GUE bridges into unconditional
     theorems. The whole-vector target uses the finite sup metric; this is not a
     Hoffman-Wielandt Euclidean eigenvalue-vector theorem.
+15. [`RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean)
+    names the finite-GUE law of zero-aware empirical spectral measures, proves
+    its intrinsic and ambient presentations agree, packages both the raw law
+    and its positive-dimensional probability-measure-valued form, and builds
+    the mean empirical measure by Giry join. It connects the first two sample
+    spectral moments to normalized trace powers and proves their exact GUE
+    expectations, with second moment zero at dimension zero and one in every
+    positive dimension.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add `GaussianUnitaryEnsembleSpectrum.lean`: construct the unconditional
-   finite-GUE law on empirical spectral measures, reconcile its intrinsic and
-   ambient presentations, package positive-dimensional laws on
-   `ProbabilityMeasure ℝ`, and connect the first two normalized empirical
-   moments to the checked trace identities without introducing an asymptotic
-   claim.
-2. Reuse the same matrix layer for random Jacobian stability and matrix
-   cocycles.
+1. Prove deterministic matrix-product inequalities before introducing
+   measurable random products or asymptotic growth.
+2. Reuse the matrix layer for random Jacobian stability, finite-time cocycles,
+   and later Lyapunov-growth interfaces.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

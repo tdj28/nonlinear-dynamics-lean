@@ -210,7 +210,7 @@ The two nonnegative variances form a complete branch table for this family.
 
 ### Both variances positive: a planar density
 
-When \(v_{\mathrm R}>0\) and \(v_{\mathrm I}>0\), multiply the two
+When \(v_{\mathrm R}\gt 0\) and \(v_{\mathrm I}\gt 0\), multiply the two
 one-dimensional Gaussian densities. The coordinate map \(\Phi\) has unit
 Jacobian, so with \(z=x+iy\),
 
@@ -236,7 +236,7 @@ component variance produces the longer axis.
 
 ### Equal positive variances: isotropic contours
 
-If \(v_{\mathrm R}=v_{\mathrm I}=q>0\), then
+If \(v_{\mathrm R}=v_{\mathrm I}=q\gt 0\), then
 
 \[
 f(z)
@@ -251,7 +251,7 @@ a total complex second moment are different normalization slots.
 
 ### Exactly one variance zero: a Gaussian line
 
-Suppose \(v_{\mathrm R}=0\) and \(v_{\mathrm I}>0\). The real coordinate
+Suppose \(v_{\mathrm R}=0\) and \(v_{\mathrm I}\gt 0\). The real coordinate
 equals \(m_{\mathrm R}\) almost surely, while the imaginary coordinate remains
 Gaussian. The law is supported on the vertical line
 

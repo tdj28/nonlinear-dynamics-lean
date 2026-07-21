@@ -137,7 +137,7 @@ are
 \frac{1}{n-1}\sum_{k=1}^{n}(x_k-\bar{x})^2,
 \]
 
-where \(\bar{x}\) is the sample mean. The second expression requires \(n>1\).
+where \(\bar{x}\) is the sample mean. The second expression requires \(n\gt 1\).
 They answer different questions and use different denominators. Neither
 denominator belongs silently in the measure-theoretic definition of
 \(\operatorname{Var}_{\mathbb P}(X)\).

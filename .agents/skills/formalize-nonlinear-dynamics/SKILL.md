@@ -37,6 +37,11 @@ missing.
   exponent, spectral scale, and trace normalization.
 - Distinguish a sample map, measurability, almost-everywhere properties,
   pushforward law, integrability, expectation, and asymptotic claims.
+- For random measure-valued objects, keep a typed object ledger: a sample
+  measure, a law on raw measures, a law valued in bundled probability
+  measures, and a Giry barycenter are different constructions. Never infer an
+  expectation/barycenter or integral-interchange identity without a checked
+  theorem and its measurability and integrability hypotheses.
 - Mark conjectures and physics heuristics as such. Never upgrade evidence or a
   standard expectation into a theorem.
 - Use independent subagents for source gathering, API reconnaissance, and
@@ -82,6 +87,9 @@ For every Lean file containing substantive declarations:
    working directory.
 7. Cite official Lean/Mathlib sources and primary mathematical or physics
    references. Do not use noncompiling Lean ellipses in executable code fences.
+8. Expand technical acronyms on each standalone summary surface, including
+   cards and conceptual figures, or replace them there with self-contained
+   plain language.
 
 Never let the Lean tree outrun its public explanation.
 
@@ -127,7 +135,10 @@ For every new or materially changed teaching page:
 - compare source math delimiters with rendered KaTeX, require zero KaTeX
   errors and zero raw delimiters, and remember that Hugo's Markdown parser runs
   before KaTeX: write `\lt` and `\gt` inside TeX instead of literal `<` and `>`
-  when Goldmark could mistake them for HTML; and
+  when Goldmark could mistake them for HTML; scan for lines consisting only of
+  optional whitespace and `=`, because Goldmark can parse those as Setext
+  heading underlines and silently hide a display from KaTeX, and write `{} =`
+  or keep the equality on an adjacent TeX line instead; and
 - when a patch passes through JavaScript or another escape-sensitive layer,
   use a raw string or explicitly preserve every backslash. Afterward scan the
   Markdown source for dropped delimiters and commands such as plain

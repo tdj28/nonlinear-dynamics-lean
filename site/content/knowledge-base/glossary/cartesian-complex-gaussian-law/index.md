@@ -115,8 +115,8 @@ The variance pair controls the support geometry.
 
 | Variance branch | Geometry of the law |
 |---|---|
-| \(v_{\mathrm R}>0\) and \(v_{\mathrm I}>0\) | a two-dimensional Gaussian measure with axis-aligned elliptical contours |
-| \(v_{\mathrm R}=v_{\mathrm I}>0\) | the ellipse becomes a circle around \(m\) |
+| \(v_{\mathrm R}\gt 0\) and \(v_{\mathrm I}\gt 0\) | a two-dimensional Gaussian measure with axis-aligned elliptical contours |
+| \(v_{\mathrm R}=v_{\mathrm I}\gt 0\) | the ellipse becomes a circle around \(m\) |
 | exactly one variance is zero | the law is supported on a horizontal or vertical line through \(m\) |
 | \(v_{\mathrm R}=v_{\mathrm I}=0\) | the law is the Dirac point mass \(\delta_m\) |
 

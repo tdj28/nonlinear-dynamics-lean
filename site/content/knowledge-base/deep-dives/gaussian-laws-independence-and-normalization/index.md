@@ -117,14 +117,14 @@ bell shape into a theorem that the underlying law is Gaussian.
 {{< checkpoint stage="Base camp" title="Name the object before proving with it" >}}
 If a statement says "the Gaussian," ask whether it means a measure
 \(\gamma_{m,v}\), a random variable \(X\) with that law, the density of that
-measure when \(v>0\), or a sample from an experiment. Formalization begins by
+measure when \(v\gt 0\), or a sample from an experiment. Formalization begins by
 choosing one.
 {{< /checkpoint >}}
 
 ## Camp one: the exact real Gaussian measure
 
 Write \(\gamma_{m,v}\) for the real Gaussian probability law with mean
-\(m\in\mathbb R\) and variance \(v\ge0\). When \(v>0\), it has density
+\(m\in\mathbb R\) and variance \(v\ge0\). When \(v\gt 0\), it has density
 
 \[
 f_{m,v}(x)

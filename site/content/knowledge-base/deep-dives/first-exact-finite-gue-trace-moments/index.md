@@ -131,9 +131,10 @@ Both routes end in a complex Bochner integral. The codomain does not change
 merely because the values happen to be real on Hermitian matrices.
 
 {{< checkpoint stage="Orientation" title="Finite expectation before spectral interpretation" >}}
-The checked result is an exact identity for one finite probability measure at
-each dimension. It is not yet a moment of a formalized empirical spectral
-measure, and it does not assert convergence as the dimension grows.
+The checked RMT-09 result is an exact identity for one finite probability
+measure at each dimension. Successor RMT-10C now transports it to the first two
+moments of a formalized sample empirical spectral measure. Neither milestone
+asserts convergence as the dimension grows.
 {{< /checkpoint >}}
 
 ## Base camp zero: fix every object and convention
@@ -865,12 +866,13 @@ develops the Frobenius geometry, while
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
 fixes the entrywise Wigner law.
 
-RMT-10A now supplies the algebraic finite-spectrum interface and a zero-aware
+RMT-10A supplies the algebraic finite-spectrum interface and a zero-aware
 empirical spectral measure. Read
 [Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
-for that continuation. Its measure-valued GUE interfaces remain conditional on
-coordinatewise eigenvalue measurability, so no unconditional spectral law or
-limit is claimed.
+for that continuation. RMT-10B discharges its measurability premise, and
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}})
+then constructs the unconditional law and transports the two exact trace
+expectations into normalized sample moments. No spectral limit is claimed.
 
 ## References
 

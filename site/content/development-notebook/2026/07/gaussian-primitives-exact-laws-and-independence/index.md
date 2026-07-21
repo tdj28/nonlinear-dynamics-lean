@@ -199,7 +199,7 @@ Its local contribution is an interface shaped for later random matrices:
 
 ## Base camp: a bell curve is not yet a random variable
 
-For positive variance \(v>0\), the familiar real Gaussian density with mean
+For positive variance \(v\gt 0\), the familiar real Gaussian density with mean
 \(m\) and variance \(v\) is
 
 \[
@@ -351,9 +351,9 @@ In symbols,
 
 \[
   \int_\Omega X(\omega)\,dP(\omega)
-  =
+  {} =
   \int_{\mathbb R}x\,d\operatorname{gaussianReal}(m,v)(x)
-  =
+  {} =
   m.
 \]
 
@@ -377,9 +377,9 @@ The mean does not appear in the final expression because variance is centered:
 
 \[
   \operatorname{Var}_P(X)
-  =
+  {} =
   \int_\Omega\!\left(X-\mathbb E_PX\right)^2\,dP
-  =
+  {} =
   v.
 \]
 
@@ -427,7 +427,7 @@ natural exponents.
 For each positive natural \(k\), choose \(p=k\). Then
 
 \[
-  \int_\Omega |X(\omega)|^k\,dP(\omega)<\infty.
+  \int_\Omega |X(\omega)|^k\,dP(\omega)\lt\infty.
 \]
 
 This is the integrability foundation later polynomial matrix entries and trace
@@ -459,7 +459,7 @@ mathematical interpretation still keeps both: `mean_eq` gives the value, and
 
 ## Camp two: the mountain includes zero variance
 
-A robust API should not force every later theorem to split into \(v>0\) and
+A robust API should not force every later theorem to split into \(v\gt 0\) and
 \(v=0\) unless a density argument truly requires it. Two declarations make
 the degenerate boundary explicit.
 
@@ -534,7 +534,7 @@ pushforward law for scalar multiplication.
 
 Three boundary checks are built into the same statement:
 
-- If \(c<0\), the mean changes sign as appropriate while the variance uses
+- If \(c\lt 0\), the mean changes sign as appropriate while the variance uses
   \(c^2\).
 - If \(c=0\), the output law is the zero-variance Dirac law at zero.
 - If \(v=0\), scaling a deterministic Gaussian remains deterministic.
@@ -560,7 +560,7 @@ coordinate laws. `gaussianReal_conv_gaussianReal` evaluates the convolution:
 
 \[
   \mathcal N(m_X,v_X)*\mathcal N(m_Y,v_Y)
-  =
+  {} =
   \mathcal N(m_X+m_Y,v_X+v_Y).
 \]
 
@@ -954,7 +954,7 @@ of an exact law:
   P\mathbin{\mathrm{map}}X=\mu
   \quad\Longrightarrow\quad
   \text{distributional functionals of }X
-  =
+  {} =
   \text{those of the identity under }\mu.
 \]
 
@@ -1021,7 +1021,7 @@ conceptual teaching figure and contains no empirical data.
 |---|---|---|
 | \(v=0\) | Uses a Dirac law and proves a.e. constancy | "Gaussian" must have a density |
 | \(c=0\) in `const_mul` or `scale` | Produces a zero-variance coordinate | Scaling theorem needs `c ≠ 0` |
-| \(c<0\) | Mean changes by \(c\), variance by \(c^2\) | Variance changes sign |
+| \(c\lt 0\) | Mean changes by \(c\), variance by \(c^2\) | Variance changes sign |
 | `p = ∞` | `memLp` theorem intentionally does not apply | Gaussian variables are essentially bounded |
 | A null-set modification of `X` | Exact law can remain unchanged | Equality in law gives pointwise equality |
 | Empty finite index type | Product measure and family exist; the evaluation theorem cannot be instantiated because no `i : ι` exists | Empty product has mass zero |

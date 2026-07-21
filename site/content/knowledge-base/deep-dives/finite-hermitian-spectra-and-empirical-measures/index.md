@@ -391,8 +391,10 @@ diagonal formula. It then reindexes Mathlib's diagonal eigenvalues to
 
 These identities are deterministic. They do not assert integrability under a
 random-matrix law. RMT-09 separately proved integrability and expected values
-for the first two ambient GUE trace powers. Combining those layers at the level
-of empirical spectral laws remains later work.
+for the first two ambient Gaussian unitary ensemble (GUE) trace powers.
+RMT-10C now combines those layers into normalized sample moments and their
+exact finite GUE expectations in
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}}).
 
 ## Camp three: unitary congruence changes coordinates, not spectrum
 
@@ -976,7 +978,7 @@ They do not prove tightness, convergence, a semicircle law, or universality.
 
 ## What has and has not been proved
 
-| Topic | Checked status after RMT-10A |
+| Topic | Current repository status from RMT-10A onward |
 |---|---|
 | Real eigenvalues of an intrinsic finite Hermitian matrix | Checked through Mathlib's finite spectral API |
 | Decreasing eigenvalue vector on <code>Fin n</code> | Defined and antitonicity checked |
@@ -991,11 +993,11 @@ They do not prove tightness, convergence, a semicircle law, or universality.
 | Positive-dimensional probability property | Checked |
 | Positive-dimensional <code>ProbabilityMeasure</code> wrapper | Defined |
 | Measurable Hermitian-or-zero ambient totalization | Checked |
-| Coordinatewise ordered-eigenvalue measurability | **Not checked; explicit hypothesis** |
-| Unconditional measure-valued GUE observable | Not checked |
-| Unconditional GUE empirical spectral law | Not constructed |
-| Conditional intrinsic/ambient GUE pushforward agreement | Checked under the displayed hypothesis |
-| Empirical-moment bridge to RMT-09 expectations | Not yet checked |
+| Coordinatewise ordered-eigenvalue measurability | Checked in successor RMT-10B |
+| Unconditional measure-valued GUE observable | Checked in successor RMT-10B |
+| Unconditional GUE empirical spectral law | Constructed in successor RMT-10C |
+| Intrinsic/ambient GUE pushforward agreement | Checked conditionally here and unconditionally in RMT-10B/RMT-10C |
+| Empirical-moment bridge to RMT-09 expectations | Checked for the first two moments in successor RMT-10C |
 | Joint eigenvalue density | Not checked |
 | Semicircle law or any large-dimension convergence | Not checked |
 | Concentration, rigidity, or extreme-eigenvalue limits | Not checked |
@@ -1046,13 +1048,13 @@ They do not prove tightness, convergence, a semicircle law, or universality.
 13. State a continuity or perturbation theorem that would imply coordinatewise
     eigenvalue measurability. Be precise about the matrix norm and eigenvalue
     ordering.
-14. Assuming the missing measurability theorem, design an unconditional named
-    GUE empirical spectral law and state its dimension-zero behavior without
+14. Reconstruct the successor RMT-10C definition of the unconditional named
+    GUE empirical spectral law and derive its dimension-zero behavior without
     inventing a probability measure on an empty spectrum.
 15. Assuming positive dimension, combine the counting-measure moments with
-    RMT-09 to predict the expected first two empirical moments under the
-    project's Wigner-scaled GUE. Mark which steps are already checked and
-    which would require new integrability or pushforward lemmas.
+    RMT-09 to derive the expected first two empirical moments under the
+    project's Wigner-scaled GUE. Compare your route with RMT-10C and mark which
+    steps belong to deterministic algebra, integrability, and law transport.
 
 ## Reproduce the checked slice
 
@@ -1103,9 +1105,11 @@ The successor formal milestone now proves coordinatewise continuity and
 measurability of the ordered Hermitian eigenvalues:
 [Hermitian Spectral Perturbation, Continuity, and Measurability]({{< relref "/knowledge-base/deep-dives/hermitian-spectral-perturbation-continuity-and-measurability" >}}).
 It removes the hypotheses from the Giry interfaces and proves the
-ambient-versus-intrinsic GUE pushforward equality unconditionally. A separately
-named finite-GUE empirical spectral law and its normalized moments remain for
-the next layer.
+ambient-versus-intrinsic GUE pushforward equality unconditionally. The next
+layer is now available:
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}})
+names the law, packages it as a probability measure, forms its Giry mean, and
+checks the first two normalized expected sample moments.
 
 ## References
 

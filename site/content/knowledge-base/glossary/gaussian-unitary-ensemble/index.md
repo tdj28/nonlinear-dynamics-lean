@@ -265,9 +265,12 @@ coordinate-to-intrinsic Gaussian comparison and unitary invariance of
 the first two ordinary-trace moments exactly. RMT-10A defines ordered finite
 Hermitian spectra and zero-aware empirical spectral measures, then states the
 intrinsic/ambient GUE pushforward comparison under an explicit coordinatewise
-eigenvalue-measurability hypothesis. Density and Jacobian formulas,
-eigenvalue measurability, an unconditional GUE empirical spectral law, higher
-trace moments, and all large-dimension claims remain unchecked.
+eigenvalue-measurability hypothesis. RMT-10B proves that measurability and the
+unconditional pushforward comparison. RMT-10C constructs the
+{{< refterm "empirical-spectral-law" "empirical spectral law" >}}, its Giry
+mean, and its first two normalized expected sample moments. Density and
+Jacobian formulas, higher trace moments, moment interchange for the Giry mean,
+and all large-dimension claims remain unchecked.
 
 ## Where to continue
 
@@ -278,6 +281,11 @@ trace expectations, including dimension zero.
 [Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
 continues from trace moments to ordered finite spectra, counting measures, the
 explicit empty-spectrum policy, and the conditional measure-valued GUE bridge.
+
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}})
+continues through measurable pushforward to the unconditional finite law, its
+probability packaging and Giry mean, and the first two normalized expected
+sample moments.
 
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
 derives the factor-of-two geometry, builds the product probability space in

@@ -672,10 +672,11 @@ The intrinsic law starts at the upper left. The ambient matrix law is its
 pushforward across the top. The new theorem says that pushing down either side
 produces the same measure on the space of measures.
 
-This is an unconditional equality of two existing pushforwards. The module
-does not yet introduce a dedicated name for the finite-GUE empirical spectral
-law, prove a new density for it, or compute its normalized moments. Those are
-separate next-layer tasks.
+This is an unconditional equality of two existing pushforwards. RMT-10B does
+not itself introduce a dedicated name for the finite Gaussian unitary ensemble
+(GUE) empirical spectral law, prove a new density for it, or compute its
+normalized moments. Successor RMT-10C now names the law and checks its first
+two normalized expected sample moments, while the density remains unproved.
 
 ## Physics camp: energy levels under a Hamiltonian perturbation
 
@@ -856,7 +857,7 @@ results are interchangeable.
 
 ## What has and has not been proved
 
-| Topic | Checked status after RMT-10B |
+| Topic | Current repository status from RMT-10B onward |
 |---|---|
 | Generic complex matrix-vector Frobenius bound | Checked |
 | Ordered orthonormal Hermitian eigenbasis for the proof | Constructed privately |
@@ -873,8 +874,8 @@ results are interchangeable.
 | Positive-dimensional probability-wrapper measurability | Checked |
 | Ambient empirical spectral observable measurability | Checked |
 | Ambient/intrinsic GUE empirical-spectral pushforward equality | Checked unconditionally |
-| Dedicated named finite-GUE empirical spectral law | Not yet defined |
-| First normalized moments of that law | Not yet connected |
+| Dedicated named finite-GUE empirical spectral law | Defined in successor RMT-10C |
+| First normalized expected sample moments | Connected in successor RMT-10C |
 | Operator-norm Weyl bound | Not checked |
 | Hoffman-Wielandt \(\ell^2\) spectrum bound | Not checked |
 | Eigenvector or invariant-subspace perturbation | Not checked |
@@ -925,8 +926,8 @@ results are interchangeable.
     coordinates, measurable Dirac embedding, and finite addition.
 13. Draw the ambient/intrinsic GUE pushforward square and derive the equality
     using composition of measurable maps.
-14. Design the next named finite-GUE empirical spectral law. State its
-    zero-dimensional boundary without falsely calling the zero measure a
+14. Reconstruct the successor RMT-10C finite-GUE empirical spectral law. State
+    its zero-dimensional boundary without falsely calling the zero measure a
     probability measure.
 15. State a Davis-Kahan-style question that would require a gap. Explain why
     no theorem in RMT-10B answers it.
@@ -981,11 +982,13 @@ builds the intrinsic carrier and its measurable ambient inclusion.
 proves the intrinsic-to-ambient GUE law identity consumed by the final
 pushforward theorem.
 
-The next spectral-law milestone can now name the finite-GUE empirical spectral
-law, prove its exact dimension-zero behavior, and connect its first two
-normalized moments to the already checked finite trace expectations. It still
-must not claim a density, semicircle law, concentration estimate, or
-large-dimension convergence without additional formal layers.
+The spectral-law successor is now available:
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}}).
+It names the finite-GUE law, proves its exact dimension-zero behavior, and
+connects its first two normalized sample moments to the checked finite trace
+expectations. It does not claim a density, semicircle law, concentration
+estimate, large-dimension convergence, or an interchange theorem for moments
+of its Giry mean.
 
 ## References
 

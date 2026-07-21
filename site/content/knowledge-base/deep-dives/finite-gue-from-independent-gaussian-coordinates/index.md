@@ -123,7 +123,7 @@ The deterministic assembly map \(A_n:\mathcal C_n\to\mathcal M_n\) is
 
 \[
 (A_n(d,u))_{ij}
-=
+{} =
 \begin{cases}
 u_{ij},&i\lt j,\\
 d_i,&i=j,\\

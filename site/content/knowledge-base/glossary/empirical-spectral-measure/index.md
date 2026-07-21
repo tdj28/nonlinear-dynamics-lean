@@ -191,10 +191,12 @@ first two complex-valued moments of the counting measure are
 \]
 
 For positive dimension, dividing by \(n\) yields the corresponding empirical
-moments. The checked module states the counting-measure identities directly.
-It does not yet add separate empirical-moment declarations or combine them
-with the expected finite Gaussian unitary ensemble (GUE) trace moments from
-RMT-09.
+moments. RMT-10A states the counting-measure identities directly. The
+successor RMT-10C layer now defines those normalized sample moments and
+combines their first two cases with the expected finite Gaussian unitary
+ensemble (GUE) trace moments from RMT-09. See the
+{{< refterm "empirical-spectral-law" "empirical spectral law" >}} entry and
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}}).
 
 ## Unitary changes of basis do not move spectral mass
 

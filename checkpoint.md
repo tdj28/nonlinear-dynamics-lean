@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 05:34 PDT
+Last updated: 2026-07-21 06:36 PDT
 
-Audited baseline: `main` at `143f4fc`
+Audited baseline: `main` at `c36903d`
 
-Active direction: finite-GUE empirical spectral laws and normalized moments
+Active direction: ordered finite matrix products and operator-norm growth
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: finite-GUE empirical spectral laws and normalized moments
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,155 jobs. The integrated RMT-10B gate covers fourteen
-  substantive modules, fourteen complete draft Notebook companions, and 140
+- Last green Lean build: 3,156 jobs. The integrated RMT-10C gate covers fifteen
+  substantive modules, fifteen complete draft Notebook companions, and 151
   Hugo pages with warnings fatal.
-- Lean inventory: 288 public declaration lines across the fourteen substantive
+- Lean inventory: 309 public declaration lines across the fifteen substantive
   modules; 18 one-line deterministic placeholders; three `.gitkeep`-only
   Random branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 78,109 words across the fourteen Notebook companions and
-  82,008 words across eleven Deep Dives and twenty-three glossary chapters.
+- Teaching snapshot: 84,871 words across the fifteen Notebook companions and
+  91,839 words across twelve Deep Dives and twenty-four glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -55,16 +55,17 @@ Active direction: finite-GUE empirical spectral laws and normalized moments
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments` | Complex Bochner integrability of the first two trace-power observables and the exact finite identities `E[Tr H] = 0` and `E[Tr(H²)] = n`, uniformly including dimension zero | `gue-first-exact-trace-moments` |
 | `NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum` | Decreasingly ordered real Hermitian eigenvalues with multiplicity, trace and trace-square sums, unitary-congruence invariance, spectral counting and zero-aware empirical measures, positive-dimensional probability packaging, and conditional Giry/ambient-law bridges | `ordered-hermitian-spectra-and-empirical-measures` |
 | `NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity` | Frobenius control of every ordered Hermitian eigenvalue through a dimension-forced min-max witness, coordinate and finite-sup-vector `LipschitzWith 1`, continuity, unconditional measurability of the spectral measure maps, and the unconditional ambient/intrinsic GUE pushforward bridge | `hermitian-spectral-perturbation-and-measurability` |
+| `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum` | Named finite-GUE empirical spectral law, all-dimensional outer probability packaging, successor-dimensional probability-measure-valued law, intrinsic/ambient agreement, zero-dimensional Dirac boundary, Giry mean measure, sample moments as normalized trace powers, integrability, and exact expected first and second moments | `finite-gue-empirical-spectral-laws-and-moments` |
 
-The root aggregator imports all fourteen modules. The proof-to-prose manifest and
+The root aggregator imports all fifteen modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Fourteen comprehensive Development Notebook chapters in an explicit
+- Fifteen comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Eleven textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Twelve textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -72,13 +73,15 @@ declaration visibility.
   Gaussian Symmetry and Matrix-Law Support*, followed by *From Normalized
   Hermitian Coordinates to Gaussian Unitary Ensemble Invariance*, *First
   Exact Finite Gaussian Unitary Ensemble Trace Moments*, and *Finite Hermitian
-  Spectra and Empirical Measures*, and *Hermitian Spectral Perturbation,
-  Continuity, and Measurability*.
-- Twenty-three glossary chapters, now including Weyl eigenvalue perturbation,
-  empirical spectral measures, finite matrix trace moments, and normalized Hermitian coordinates
+  Spectra and Empirical Measures*, *Hermitian Spectral Perturbation,
+  Continuity, and Measurability*, and *Finite Gaussian Unitary Ensemble
+  Empirical Spectral Laws and Normalized Moments*.
+- Twenty-four glossary chapters, now including empirical spectral laws, Weyl
+  eigenvalue perturbation, empirical spectral measures, finite matrix trace
+  moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Thirty-eight deterministic 1200x630 social cards and twenty-three accessible
+- Forty-one deterministic 1200x630 social cards and twenty-five accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -87,35 +90,34 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-10C: finite-GUE empirical spectral law and normalized moments
+### RMT-11: ordered finite matrix products and growth bounds
 
-The next module is `GaussianUnitaryEnsembleSpectrum.lean`. A warning-clean
-prototype has already validated the following interface; integrate and audit
-its smallest honest law-and-moment layer:
+The next module is `Random/MatrixProducts/FiniteProducts.lean`. A warning-clean
+prototype has validated the core recursion and inequalities. Integrate the
+smallest deterministic layer needed before random products and cocycles:
 
-1. Define `RandomMatrix.empiricalSpectralMoment k H` as the complex integral of
-   `x ^ k` against the sample empirical spectral measure. Prove the
-   zero-dimensional value and integral boundary explicitly.
-2. In successor dimension, identify sample moments one and two with
-   `Tr(H) / (n + 1)` and `Tr(H^2) / (n + 1)` using the RMT-10A spectral sum
-   identities.
-3. Transfer the RMT-09 trace-power integrability and expectation theorems from
-   the ambient GUE law to `GUE.intrinsicLaw`. Prove the normalized expectations
-   `E[m_1] = 0` and `E[m_2] = 1` for every positive dimension.
-4. Define `GUE.empiricalSpectralLaw n` on `Measure ℝ`, bundle its mass-one law,
-   and give the positive-dimensional law on `ProbabilityMeasure ℝ`. Prove the
-   coercion compatibility, the unconditional ambient presentation, and the
-   dimension-zero Dirac law.
-5. Define the mean empirical spectral measure as the Giry join. Prove its zero
-   boundary and positive-dimensional probability property without claiming a
-   density or closed-form finite-dimensional distribution.
-6. Pair the module with a declaration-complete Notebook chapter plus textbook
-   explanations of laws of random measures, barycenters, and normalized
-   spectral moments.
+1. Define the forward-time convention
+   `P_A(k) = A(k - 1) * ... * A(1) * A(0)`, with `P_A(0) = 1`. The newest
+   factor acts on the left so matrix action agrees with chronological
+   composition.
+2. Prove the zero, successor, one-step, constant-identity, and time-splitting
+   identities. The split theorem must expose the shifted later block on the
+   left of the earlier prefix.
+3. Prove the corresponding vector-action recursion with `Matrix.mulVec`.
+4. Use Mathlib's induced `ℓ∞` operator norm under
+   `Matrix.Norms.Operator`. In positive finite dimension, prove that the norm of
+   the product is bounded by the product of factor norms and by `C ^ k` under a
+   uniform prefix bound.
+5. Transfer both estimates to vector orbits. Keep the positive-dimension
+   hypothesis visible because normalization of the identity operator is used
+   at time zero.
+6. Add the `Random.MatrixProducts` aggregator and root import, then pair the
+   module with declaration-complete Notebook and Knowledge Base teaching.
 
-This milestone must not introduce a semicircle law, joint eigenvalue density,
-concentration, limiting moments, or large-dimension convergence claim. Those
-require separate finite-density and asymptotic layers.
+This milestone is deterministic and finite-time. It must not introduce random
+measurability, independence, logarithmic growth, Lyapunov exponents,
+subadditive limits, or a multiplicative ergodic theorem. Those are later
+vertical slices built on this convention.
 
 ## Dependency-Ordered Roadmap
 
@@ -161,7 +163,7 @@ unresolved convention or depend on an unproved earlier interface.
   zero-aware empirical measures, and conditional measure-valued interfaces.
 - [x] A Hermitian eigenvalue perturbation bound, continuity, and unconditional
   coordinatewise measurability.
-- [ ] The finite-GUE empirical spectral law and its first normalized spectral
+- [x] The finite-GUE empirical spectral law and its first normalized spectral
   moments.
 - [ ] Deterministic matrix-product inequalities, then measurable random
   products.
@@ -361,9 +363,28 @@ k-invariance precedes approximation claims.
   measurable totalization for use with ambient laws, not a spectral theory for
   general non-Hermitian matrices.
 - RMT-10B proves unconditional equality between the existing ambient and
-  intrinsic GUE pushforwards of the empirical spectral observable. It does not
-  yet name that common probability law or prove a density, concentration
-  estimate, or limiting theorem.
+  intrinsic GUE pushforwards of the empirical spectral observable. RMT-10C
+  names that common law `GUE.empiricalSpectralLaw` and proves the intrinsic and
+  ambient presentations agree.
+- `GUE.empiricalSpectralLaw n` is a probability law on raw `Measure ℝ` values
+  in every dimension. At `n = 0` it is `Measure.dirac 0`: the sampled empirical
+  measure is zero, but its outer law still has mass one.
+- `GUE.empiricalSpectralLawProbability n` bundles that all-dimensional outer
+  law as `ProbabilityMeasure (Measure ℝ)`. The different
+  `GUE.empiricalSpectralProbabilityLaw n` has outcomes in
+  `ProbabilityMeasure ℝ` and therefore samples matrices of size `n + 1`.
+- `GUE.meanEmpiricalSpectralMeasure n` is the Giry join of the raw law. It is
+  zero at dimension zero and probabilistic in positive dimension. RMT-10C does
+  not prove that integrating an unbounded moment against this mean measure
+  equals the expected sample moment.
+- Sample moments one and two are normalized trace and trace square in every
+  dimension. In the raw `ℝ≥0∞` normalization, zero inverse is infinity and
+  infinity scaled by the zero measure is zero; after `toReal`, the exposed field
+  normalization uses `0⁻¹ = 0`.
+- Under intrinsic finite GUE, the first sample moment has expectation zero in
+  every dimension. The second has expectation `n⁻¹ * n`, hence zero at
+  dimension zero and exactly one in positive dimension. These are finite exact
+  identities, not a density or limit theorem.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -388,8 +409,10 @@ k-invariance precedes approximation claims.
   a.e.-measurable case. Keep measurability evidence explicit.
 - Ordered finite Hermitian eigenvalues, multiplicity, zero-aware empirical
   normalization, Frobenius perturbation, continuity, and measure-valued
-  measurability are formalized. A named finite-GUE empirical spectral law, its
-  normalized moments, and every large-dimension scaling theorem remain open.
+  measurability are formalized, as are the named finite-GUE empirical spectral
+  law, its first two normalized expected moments, and the Giry mean. Joint
+  eigenvalue densities, higher moments, moment/barycenter interchange, and
+  every large-dimension scaling theorem remain open.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -590,22 +613,65 @@ Checkpoint/skill milestone QA:
   `/private/tmp`; both prose-only SVGs parse and render; and Hugo builds 140
   pages with warnings fatal. Independent review corrected first-use acronym and
   sample-map-versus-law wording before freeze.
-- Rendered RMT-10B QA: the Notebook, glossary, and Deep Dive render 99, 35, and
+- Rendered RMT-10B QA: the Notebook, glossary, and Deep Dive render 105, 35, and
   120 KaTeX nodes respectively with zero errors, raw delimiters, or browser
   warnings. Their desktop documents fit 1280 pixels exactly and their mobile
   documents fit 390 pixels exactly; wide equations, tables, diagrams, and code
   scroll locally; every card and lazy SVG loads at its intrinsic dimensions;
   the three predecessor crosslink pages remain width- and math-clean; and the
   RMT-10A/RMT-10B previous/next navigation is exact.
+- RMT-10C Lean audit: all 21 public declarations and the private
+  `ambientTracePower` helper implement sample empirical spectral moments, the
+  named law and two probability wrappers, intrinsic/ambient equality, the
+  zero-dimensional Dirac law, the Giry mean, integrability transport, and exact
+  first and second normalized expectations. The module and all three
+  aggregators pass warnings as errors; the full build completes 3,156 jobs; no
+  proof holes, unsafe declarations, or custom axioms occur; and every public
+  declaration audit contains only `propext`, `Classical.choice`, and
+  `Quot.sound`.
+- RMT-10C teaching audit: the 6,700-word Notebook maps all 21 public
+  declarations and the private helper; the 2,219-word glossary and 7,388-word
+  Deep Dive keep the sample measure, raw law, probability-valued law, Giry mean,
+  and expected sample moments type-correctly separate. All three deterministic
+  cards reproduce byte-for-byte at 1200x630 from both the repository and
+  `/private/tmp`; both prose-only SVGs parse and render; and Hugo builds 151
+  pages with warnings fatal. Independent review corrected a spectral-radius
+  misnomer, first-use terminology, citation attribution and use, and card-level
+  expected-moment wording before freeze.
+- Rendered RMT-10C QA: the Notebook, glossary, and Deep Dive render 106, 71,
+  and 165 KaTeX nodes respectively with zero errors, raw delimiters, or browser
+  warnings. Their desktop documents fit 1,280 pixels exactly and their mobile
+  documents fit 390 pixels exactly; wide tables and displays scroll locally;
+  all cards and lazy SVGs load at 1,200x630 and their declared intrinsic
+  dimensions; the six amended predecessor pages remain width- and math-clean;
+  and the RMT-10B/RMT-10C Notebook navigation is exact.
+- Responsive QA exposed a Goldmark/KaTeX integration hazard: a mathematical
+  line containing only optional whitespace and `=` can be parsed as a Setext
+  heading underline before KaTeX runs. The three affected RMT-10C Notebook
+  displays and fourteen older displays were rewritten with `{} =`; the full
+  teaching tree now contains no such lines, and the three older affected pages
+  re-render at 117, 105, and 144 KaTeX nodes at both desktop and mobile widths
+  with zero raw mathematics, page overflow, console failures, or bad headings.
+- A full teaching-tree TeX source scan also replaced eighteen legacy literal
+  comparison signs with `\lt` or `\gt` across seven older chapters. All seven
+  re-render at both 1,280- and 390-pixel widths with stable KaTeX counts, zero
+  KaTeX errors, raw delimiters, bad headings, page overflow, or browser console
+  failures; the teaching tree now has no literal angle signs inside TeX.
 - The proof-to-prose checker now recognizes declarations preceded by Lean
-  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 14-module
+  attributes such as `@[simp]` and `@[fun_prop]`; its strengthened 15-module
   audit confirms that every named declaration is visible in its Notebook.
 - The project skill now requires deterministic card verification, XML and
   rendered SVG inspection, desktop and 390-pixel browser QA, KaTeX/raw-math
-  checks, and Markdown-safe `\lt`/`\gt` only inside TeX delimiters.
+  checks, Markdown-safe `\lt`/`\gt` only inside TeX delimiters, a typed ledger
+  for random measures and their laws, explicit interchange theorems, and
+  self-contained acronym use on standalone summary surfaces. It also requires
+  a source scan for lone equality lines that Goldmark could consume as Setext
+  headings before KaTeX sees them.
 
 ## Recent Pushes
 
+- `c36903d`: Hermitian eigenvalue perturbation, continuity, unconditional
+  spectral measurability, and teaching layer.
 - `143f4fc`: decreasing ordered Hermitian spectra, empirical spectral measures,
   conditional Giry interfaces, and teaching layer.
 - `c7b64ec`: first two exact finite GUE trace moments, integrability, and
