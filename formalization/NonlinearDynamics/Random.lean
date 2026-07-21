@@ -1,4 +1,5 @@
 import NonlinearDynamics.Random.ComplexGaussian
+import NonlinearDynamics.Random.ComplexGaussianFamilies
 import NonlinearDynamics.Random.GaussianPrimitives
 import NonlinearDynamics.Random.RandomMatrices
 

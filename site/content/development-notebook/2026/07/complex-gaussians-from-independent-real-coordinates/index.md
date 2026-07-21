@@ -2,6 +2,7 @@
 title: "Complex Gaussian Coordinates in Lean: Cartesian Laws Without Hidden Symmetry"
 slug: "complex-gaussians-from-independent-real-coordinates"
 date: 2026-07-21
+weight: 20
 author: "tdj28"
 summary: "A declaration-by-declaration ascent from two exact independent real Gaussian laws to a complex law with explicit coordinate variances, finite moments, degenerate cases, and no unearned circular or GUE convention."
 lead: |

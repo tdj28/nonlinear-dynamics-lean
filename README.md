@@ -268,15 +268,21 @@ The first active sequence is:
    their independence, and proves integrability, the exact mean, and the
    double-zero Dirac boundary. "Cartesian" does not imply circularity or
    properness.
+7. [`ComplexGaussianFamilies.lean`](formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean)
+   bundles ordinarily measurable, mutually independent complex coordinates,
+   proves their exact finite product law and qualitative joint Gaussianity,
+   supports coordinatewise real scaling, and realizes the interface on a
+   canonical product sample space, including its empty-index Dirac boundary.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Bundle finite independent Cartesian complex Gaussian families and their
-   canonical product sample space, retaining coordinatewise variance splits,
-   real scaling, and the empty-index boundary.
-2. Approve a visible normalization and representation ledger, then define a
-   finite GUE ensemble from the exact Gaussian primitives.
+1. Assemble a Hermitian matrix deterministically from a real diagonal and a
+   complex strict upper triangle, proving entry formulas, measurability,
+   Hermiticity, and the exact zero-dimensional boundary before choosing a law.
+2. Approve a visible normalization and representation ledger, then push the
+   canonical Gaussian coordinate product through that assembly map to define
+   a finite GUE ensemble.
 3. Use the law-level interface to prove unitary invariance of GUE at the level
    of probability laws.
 4. Establish integrability and check the first exact expected trace moments.

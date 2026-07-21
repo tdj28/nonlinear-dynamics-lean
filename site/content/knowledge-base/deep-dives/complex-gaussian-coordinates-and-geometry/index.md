@@ -188,8 +188,7 @@ recovered:
 
 \[
 (\operatorname{Re},\operatorname{Im})_*
-\Gamma^{\mathrm{cart}}_{m;v_{\mathrm R},v_{\mathrm I}}
-=
+\Gamma^{\mathrm{cart}}_{m;v_{\mathrm R},v_{\mathrm I}} =
 \gamma_{m_{\mathrm R},v_{\mathrm R}}
 \otimes
 \gamma_{m_{\mathrm I},v_{\mathrm I}}.
@@ -731,9 +730,9 @@ make check
 The commands check the file that exists in the repository. No ellipses in this
 chapter are presented as executable Lean.
 
-## The deliberate boundary before a matrix ensemble
+## The deliberate RMT-03 boundary before a family
 
-The current layer now provides:
+The single-coordinate layer provides:
 
 - an exact complex probability measure with explicit component variances;
 - exact real, imaginary, and joint coordinate laws;
@@ -744,7 +743,7 @@ The current layer now provides:
 - line-supported and point-mass degeneracies; and
 - no hidden selection between the two common circular scales.
 
-It does not provide:
+It does not itself provide:
 
 - a preferred symmetric variance pair;
 - a formal pseudocovariance or properness predicate;
@@ -758,10 +757,19 @@ It does not provide:
 - expected trace moments; or
 - an asymptotic spectral theorem.
 
+{{< panel "info" >}}
+**Current continuation.** The subsequent
+<code>NonlinearDynamics.Random.ComplexGaussianFamilies</code> module now
+provides mutually independent finite complex coordinates, their exact product
+law, coordinatewise real scaling, a canonical product sample space, and the
+empty-index Dirac boundary. It still does not choose a matrix normalization or
+construct a Gaussian unitary ensemble.
+{{< /panel >}}
+
 A complex matrix law adds diagonal and off-diagonal roles, conjugate
 reflection, dimension scaling, and a zero-size policy. In a Hermitian matrix,
-the lower-triangular entries are determined by the upper triangle, so all
-matrix entries cannot be declared mutually independent. A later constructor
+the lower-triangular entries are not independent primitive degrees of freedom:
+conjugate symmetry determines them from the upper triangle. A later constructor
 must select primitive coordinates first and reflect them second.
 
 The normalization ledger must then state, at minimum:
@@ -816,6 +824,8 @@ Use the linked glossary as a concept map:
 
 - {{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
   for the compact exact definition and branch table;
+- {{< refterm "independent-cartesian-complex-gaussian-family" "Independent Cartesian complex Gaussian family" >}}
+  for the checked indexed bundle and dependence contract;
 - {{< refterm "gaussian-distribution" "Gaussian distribution" >}} for each
   real coordinate and its zero-variance Dirac branch;
 - {{< refterm "independence" "independence" >}} for product-law
@@ -831,6 +841,9 @@ Use the linked glossary as a concept map:
 The earlier chapter
 [Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}})
 constructs the exact real laws and finite product machinery used here.
+[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
+continues from one complex coordinate to exact finite field laws, canonical
+sample spaces, scaling, and the cross-family independence audit.
 [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
 explains the measurable matrix, Hermitian, law, and trace-observable layers that
 a future Gaussian matrix constructor must join.

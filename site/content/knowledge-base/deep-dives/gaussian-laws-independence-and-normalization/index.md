@@ -782,6 +782,8 @@ For individual concepts, use the linked glossary:
   the complex and matrix ledgers;
 - {{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
   for the now-checked independent real-imaginary construction;
+- {{< refterm "independent-cartesian-complex-gaussian-family" "Independent Cartesian complex Gaussian family" >}}
+  for mutually independent indexed complex blocks and their exact joint law;
 - {{< refterm "probability-law" "probability law" >}} for the sample-map versus
   measure distinction; and
 - {{< refterm "random-matrix" "random matrix" >}} for the later matrix-valued
@@ -796,6 +798,11 @@ Continue directly to
 [Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
 for the exact complex law, degeneracy map, second-order geometry, normalization
 conversion, and twenty checked Lean declarations.
+
+Then continue to
+[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
+for the finite complex product law, canonical sample space, real scaling, and
+the empty-index boundary.
 
 ## References
 

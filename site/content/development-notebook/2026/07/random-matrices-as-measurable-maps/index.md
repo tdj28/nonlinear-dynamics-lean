@@ -2,6 +2,7 @@
 title: "When Randomness Becomes a Matrix"
 slug: "random-matrices-as-measurable-maps"
 date: 2026-07-20
+weight: 70
 author: "tdj28"
 summary: "The first substantive Lean module turns matrix-valued maps into measurable objects one coordinate at a time, then builds the operations needed for Hermitian random matrices."
 lead: |

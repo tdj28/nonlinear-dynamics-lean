@@ -2,6 +2,7 @@
 title: "Hermitian Random Matrices in Lean: From Symmetry to a Usable Interface"
 slug: "hermitian-random-matrices"
 date: 2026-07-20
+weight: 60
 author: "tdj28"
 summary: "A declaration-by-declaration ascent through pointwise Hermitian symmetry, almost-sure reasoning, measurable trace, bundling, and congruence transforms in Lean."
 lead: |

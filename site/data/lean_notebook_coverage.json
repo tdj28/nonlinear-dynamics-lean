@@ -1,4 +1,8 @@
 {
+  "formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean": {
+    "module": "NonlinearDynamics.Random.ComplexGaussianFamilies",
+    "notebook": "site/content/development-notebook/2026/07/independent-complex-gaussian-families/index.md"
+  },
   "formalization/NonlinearDynamics/Random/ComplexGaussian.lean": {
     "module": "NonlinearDynamics.Random.ComplexGaussian",
     "notebook": "site/content/development-notebook/2026/07/complex-gaussians-from-independent-real-coordinates/index.md"

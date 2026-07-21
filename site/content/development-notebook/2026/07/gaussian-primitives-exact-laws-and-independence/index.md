@@ -2,6 +2,7 @@
 title: "Gaussian Primitives in Lean: Exact Laws and Independence"
 slug: "gaussian-primitives-exact-laws-and-independence"
 date: 2026-07-20
+weight: 30
 author: "tdj28"
 summary: "A declaration-by-declaration ascent from one exact real Gaussian law to finite independent families, joint product laws, coordinatewise scaling, and a canonical product sample space."
 lead: |

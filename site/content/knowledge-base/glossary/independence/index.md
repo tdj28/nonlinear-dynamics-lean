@@ -203,7 +203,12 @@ shows how finite product measures and exact Lean laws fit together. The next
 chapter,
 [Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}}),
 turns one independent real pair into an exact complex law and then separates
-properness from circular symmetry.
+properness from circular symmetry. Continue with the
+{{< refterm "independent-cartesian-complex-gaussian-family" "Independent Cartesian complex Gaussian family" >}}
+for mutual independence across indexed complex blocks. The Deep Dive
+[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
+shows why pairwise independence, within-pair independence, and separate source
+families do not replace one exact field product law.
 
 ## References
 

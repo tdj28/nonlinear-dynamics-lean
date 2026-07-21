@@ -214,7 +214,12 @@ builds a complete finite real product law. The
 fills the independent-coordinate ledger without choosing a symmetric scale,
 and
 [Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
-develops its geometry and symmetry boundaries.
+develops its geometry and symmetry boundaries. The
+{{< refterm "independent-cartesian-complex-gaussian-family" "Independent Cartesian complex Gaussian family" >}}
+then promotes both variance parameters to index-dependent functions, and
+[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
+tracks those functions through real coordinatewise scaling without selecting a
+matrix normalization.
 
 ## References
 

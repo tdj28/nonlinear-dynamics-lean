@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="scopeTitle scopeDesc">
+  <title id="scopeTitle">Independence must be proved at three different scopes</title>
+  <desc id="scopeDesc">The first row joins real and imaginary axes inside one complex coordinate. The second row joins complex coordinates through mutual independence. The third row shows that separate independence within a real family and an imaginary family leaves cross-family dependence unknown.</desc>
+  <rect width="760" height="470" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .real{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .imag{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .ok{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .unknown{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.8;stroke-dasharray:6 4}
+    .arrow{fill:none;stroke:#7F786D;stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#7F786D"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">Three scopes of independence</text>
+  <text x="24" y="48" class="t m">A proof at one scope does not silently fill a gap at another.</text>
+
+  <text x="24" y="87" class="t h">Inside one coordinate</text>
+  <rect x="205" y="65" width="90" height="54" rx="10" class="real"/>
+  <text x="223" y="97" class="t s">real law</text>
+  <text x="302" y="99" class="t h">+</text>
+  <rect x="320" y="65" width="110" height="54" rx="10" class="imag"/>
+  <text x="331" y="97" class="t s">imaginary law</text>
+  <text x="437" y="99" class="t h">+</text>
+  <rect x="456" y="65" width="114" height="54" rx="10" class="neutral"/>
+  <text x="481" y="87" class="t s">within-pair</text>
+  <text x="477" y="105" class="t s">independence</text>
+  <path d="M570 92 L591 92" class="arrow"/>
+  <rect x="595" y="65" width="141" height="54" rx="10" class="ok"/>
+  <text x="613" y="88" class="t h">exact Cartesian</text>
+  <text x="648" y="107" class="t m">block</text>
+
+  <line x1="24" y1="137" x2="736" y2="137" stroke="#D9D0C4" stroke-width="1"/>
+
+  <text x="24" y="174" class="t h">Across complex coordinates</text>
+  <rect x="205" y="151" width="135" height="56" rx="10" class="neutral"/>
+  <text x="226" y="184" class="t s">complex blocks</text>
+  <text x="348" y="186" class="t h">+</text>
+  <rect x="369" y="151" width="173" height="56" rx="10" class="neutral"/>
+  <text x="386" y="174" class="t h">mutual independence</text>
+  <text x="409" y="195" class="t m">across all blocks</text>
+  <path d="M542 179 L572 179" class="arrow"/>
+  <rect x="576" y="151" width="160" height="56" rx="10" class="ok"/>
+  <text x="597" y="174" class="t h">exact field product</text>
+  <text x="614" y="195" class="t m">one joint measure</text>
+
+  <line x1="24" y1="225" x2="736" y2="225" stroke="#D9D0C4" stroke-width="1"/>
+
+  <text x="24" y="263" class="t h">Unsafe shortcut</text>
+  <rect x="210" y="242" width="188" height="58" rx="10" class="real"/>
+  <text x="232" y="265" class="t h">real family independent</text>
+  <text x="244" y="287" class="t m">relations inside this row</text>
+  <rect x="210" y="315" width="188" height="58" rx="10" class="imag"/>
+  <text x="220" y="338" class="t h">imaginary family independent</text>
+  <text x="244" y="360" class="t m">relations inside this row</text>
+  <path d="M398 271 C445 271 448 300 487 306" class="arrow"/>
+  <path d="M398 344 C445 344 448 315 487 309" class="arrow"/>
+  <rect x="491" y="268" width="245" height="82" rx="10" class="unknown"/>
+  <text x="516" y="297" class="t h">cross-family dependence unknown</text>
+  <text x="516" y="321" class="t s">the two rows may reuse randomness</text>
+  <text x="516" y="340" class="t m">pair the blocks before claiming a product</text>
+
+  <rect x="24" y="400" width="712" height="46" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="44" y="428" class="t s">Use exact pair laws within coordinates and mutual independence across pair-vectors to close every gap.</text>
+</svg>

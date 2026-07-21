@@ -89,8 +89,7 @@ The joint law is the product
 
 \[
 \mathcal L_{\mathbb P}
-  (\operatorname{Re}Z,\operatorname{Im}Z)
-=
+  (\operatorname{Re}Z,\operatorname{Im}Z) =
 \gamma_{m_{\mathrm R},v_{\mathrm R}}
 \otimes
 \gamma_{m_{\mathrm I},v_{\mathrm I}},
@@ -312,6 +311,14 @@ derives the law, densities, moments, symmetry distinctions, degeneracies, and
 Lean proof architecture in full. The earlier
 [Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}})
 chapter builds the real primitives and finite product laws used here.
+
+The
+{{< refterm "independent-cartesian-complex-gaussian-family" "Independent Cartesian complex Gaussian family" >}}
+entry lifts this exact law to mutually independent indexed coordinates. Its
+textbook companion,
+[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}}),
+explains the exact joint product law, cross-family independence trap, canonical
+sample space, real scaling, and empty-index boundary.
 
 Use {{< refterm "gaussian-distribution" "Gaussian distribution" >}} for
 the one-dimensional measure, {{< refterm "independence" "independence" >}}

@@ -2,6 +2,7 @@
 title: "Trace-Power Observables: From Matrices to Moments"
 slug: "trace-power-observables"
 date: 2026-07-20
+weight: 40
 author: "tdj28"
 summary: "A line-by-line ascent through the Lean module that turns powers of finite random matrices into measurable scalar observables and proves those observables are real on Hermitian samples."
 lead: |

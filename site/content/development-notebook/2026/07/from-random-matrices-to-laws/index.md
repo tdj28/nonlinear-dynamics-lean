@@ -2,6 +2,7 @@
 title: "From Random Matrices to Laws"
 slug: "from-random-matrices-to-laws"
 date: 2026-07-20
+weight: 50
 author: "tdj28"
 summary: "A declaration-by-declaration climb from measurable matrix-valued maps to pushforward laws, congruence actions, probability preservation, and the exact statement of unitary invariance."
 lead: |
