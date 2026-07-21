@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330"
+     viewBox="0 0 760 330" role="img"
+     aria-labelledby="varianceTitle varianceDesc">
+  <title id="varianceTitle">Variance as average squared distance from the mean</title>
+  <desc id="varianceDesc">An exact two-point law assigns equal probability to minus one and three. The mean is one, each deviation has magnitude two, each squared deviation is four, and their average is four.</desc>
+  <rect width="760" height="330" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .value{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .mean{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .square{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .result{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Square each deviation, then average</text>
+  <text x="24" y="48" class="t m">Exact toy law: two values, each with probability one half.</text>
+
+  <line x1="82" y1="122" x2="678" y2="122" stroke="#7F786D" stroke-width="2"/>
+  <line x1="146" y1="112" x2="146" y2="132" stroke="#4B6787" stroke-width="3"/>
+  <line x1="380" y1="105" x2="380" y2="139" stroke="#A67C52" stroke-width="4"/>
+  <line x1="614" y1="112" x2="614" y2="132" stroke="#4B6787" stroke-width="3"/>
+  <text x="146" y="98" text-anchor="middle" class="t h">value -1</text>
+  <text x="380" y="89" text-anchor="middle" class="t h">mean 1</text>
+  <text x="614" y="98" text-anchor="middle" class="t h">value 3</text>
+  <line x1="154" y1="154" x2="372" y2="154" stroke="#4B6787" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="388" y1="154" x2="606" y2="154" stroke="#4B6787" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="263" y="177" text-anchor="middle" class="t s">deviation -2</text>
+  <text x="497" y="177" text-anchor="middle" class="t s">deviation +2</text>
+
+  <rect x="88" y="202" width="244" height="64" rx="10" class="square"/>
+  <text x="210" y="228" text-anchor="middle" class="t h">left contribution</text>
+  <text x="210" y="250" text-anchor="middle" class="t s">(-2) squared = 4</text>
+  <rect x="428" y="202" width="244" height="64" rx="10" class="square"/>
+  <text x="550" y="228" text-anchor="middle" class="t h">right contribution</text>
+  <text x="550" y="250" text-anchor="middle" class="t s">(+2) squared = 4</text>
+
+  <rect x="24" y="286" width="712" height="32" rx="10" class="result"/>
+  <text x="380" y="307" text-anchor="middle" class="t s">Average contribution: one half times 4 plus one half times 4 = variance 4.</text>
+</svg>

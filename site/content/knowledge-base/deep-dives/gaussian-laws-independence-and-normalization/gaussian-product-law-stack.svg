@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430"
+     viewBox="0 0 760 430" role="img"
+     aria-labelledby="gaussianStackTitle gaussianStackDesc">
+  <title id="gaussianStackTitle">Dependency stack from one Gaussian law to a normalization ledger</title>
+  <desc id="gaussianStackDesc">Four ascending stages show an exact scalar Gaussian law, a measurable mutually independent family, its finite product joint law, and an unresolved normalization ledger. The last stage marks a deliberate stop before complex Gaussian variables and GUE matrices.</desc>
+  <rect width="760" height="430" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .step{font-size:12px;font-weight:700;fill:#FFFDF8}
+    .scalar{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .family{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .product{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .ledger{fill:#FFF3D6;stroke:#C16F2C;stroke-width:2}
+    .badge{fill:#284E72}
+    .arrow{stroke:#4D5B6B;stroke-width:2;fill:none}
+    .boundary{fill:#16243A}
+  </style>
+
+  <text x="24" y="28" class="t title">Every level adds information the level below cannot supply</text>
+  <text x="24" y="48" class="t m">Each coordinate has a named mean and a nonnegative variance.</text>
+
+  <rect x="70" y="66" width="558" height="62" rx="10" class="scalar"/>
+  <circle cx="48" cy="97" r="17" class="badge"/>
+  <text x="48" y="101" text-anchor="middle" class="t step">1</text>
+  <text x="92" y="91" class="t h">One exact real Gaussian law</text>
+  <text x="92" y="112" class="t s">The exact law records both the mean and the variance.</text>
+
+  <path d="M349 128 V148" class="arrow"/>
+  <path d="M342 140 L349 149 L356 140" class="arrow"/>
+
+  <rect x="104" y="151" width="558" height="62" rx="10" class="family"/>
+  <circle cx="82" cy="182" r="17" class="badge"/>
+  <text x="82" y="186" text-anchor="middle" class="t step">2</text>
+  <text x="126" y="176" class="t h">A measurable, mutually independent family</text>
+  <text x="126" y="197" class="t s">Every coordinate has its stated law, and independence is a separate field.</text>
+
+  <path d="M383 213 V233" class="arrow"/>
+  <path d="M376 225 L383 234 L390 225" class="arrow"/>
+
+  <rect x="138" y="236" width="558" height="62" rx="10" class="product"/>
+  <circle cx="116" cy="267" r="17" class="badge"/>
+  <text x="116" y="271" text-anchor="middle" class="t step">3</text>
+  <text x="160" y="261" class="t h">The finite joint law is the product of the marginals</text>
+  <text x="160" y="282" class="t s">Mutual independence turns the coordinate laws into one finite product law.</text>
+
+  <path d="M417 298 V318" class="arrow"/>
+  <path d="M410 310 L417 319 L424 310" class="arrow"/>
+
+  <rect x="172" y="321" width="558" height="62" rx="10" class="ledger"/>
+  <circle cx="150" cy="352" r="17" fill="#C16F2C"/>
+  <text x="150" y="356" text-anchor="middle" class="t step">4</text>
+  <text x="194" y="346" class="t h">Normalization ledger: unresolved choices stay visible</text>
+  <text x="194" y="367" class="t s">Real and imaginary variances, entry scaling, and matrix size policy.</text>
+
+  <rect x="24" y="397" width="712" height="24" rx="9" class="boundary"/>
+  <text x="380" y="414" text-anchor="middle" fill="#FFFDF8"
+        font-family="Inter,Arial,Helvetica,sans-serif" font-size="11">
+    Deliberate boundary: no complex Gaussian law or GUE ensemble is defined here.
+  </text>
+</svg>

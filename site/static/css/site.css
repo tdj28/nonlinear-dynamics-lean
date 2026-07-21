@@ -847,6 +847,12 @@ h1, h2, h3 { text-wrap: balance; }
 .toc a:hover,
 .toc a[aria-current="location"] { border-left: 3px solid var(--amber); padding-left: 10px; color: var(--ink); }
 .article-main { min-width: 0; }
+.article-body {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 .key-result {
   position: relative;
   margin-bottom: 38px;

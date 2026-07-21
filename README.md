@@ -257,12 +257,17 @@ The first active sequence is:
    defines trace powers, proves their measurability, and proves that they are
    real-valued for Hermitian realizations. It deliberately stops before
    expectation and integrability.
+5. [`GaussianPrimitives.lean`](formalization/NonlinearDynamics/Random/GaussianPrimitives.lean)
+   gives real Gaussian variables exact mean and variance parameters, preserves
+   the zero-variance Dirac case, proves finite-exponent `MemLp` and
+   integrability, bundles measurable mutually independent families, and
+   identifies their finite joint law with a Gaussian product measure.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Construct real and complex Gaussian primitive variables with explicit
-   independence and covariance conventions.
+1. Construct Cartesian complex Gaussian primitive variables from independent
+   exact real laws, keeping real-part and imaginary-part variances explicit.
 2. Define finite GOE/GUE ensembles with a visible normalization ledger.
 3. Use the law-level interface to prove unitary invariance of GUE at the level
    of probability laws.
