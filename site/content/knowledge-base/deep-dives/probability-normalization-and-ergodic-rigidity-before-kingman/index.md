@@ -1224,6 +1224,11 @@ process-candidate constructor.
 [Probability and Ergodic Base Interfaces for Matrix Cocycles]({{< relref "/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles" >}})
 is the proof-to-prose Research Note paired directly with the Lean module.
 
+[Finite Block Decomposition for Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-block-decomposition-for-subadditive-processes" >}})
+is the immediate successor. It turns shifted subadditivity into two finite
+block-and-remainder Birkhoff bounds while keeping every asymptotic claim
+outside the theorem boundary.
+
 The next asymptotic milestone must either formalize an exact subadditive
 ergodic theorem or choose another dependency-ordered roadmap item. It must not
 rename the RMT-17 candidate as Kingman convergence.

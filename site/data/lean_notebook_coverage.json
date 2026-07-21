@@ -39,6 +39,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase",
     "notebook": "site/content/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks",
+    "notebook": "site/content/development-notebook/2026/07/finite-block-birkhoff-bounds-for-subadditive-cocycles/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"

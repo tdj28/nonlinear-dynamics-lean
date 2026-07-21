@@ -305,6 +305,10 @@ Accordingly, RMT-17 proves none of the following:
 
 ## Where to continue
 
+[The Birkhoff sum]({{< relref "/knowledge-base/glossary/birkhoff-sum" >}})
+is the next finite-time concept: it packages powered-orbit block costs without
+claiming that their normalized values converge.
+
 [Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
 derives the ten-declaration interface, works all finite examples, and maps the
 remaining theorem gap.

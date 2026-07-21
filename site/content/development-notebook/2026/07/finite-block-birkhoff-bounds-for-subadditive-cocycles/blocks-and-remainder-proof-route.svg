@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="650"
+     viewBox="0 0 920 650" role="img"
+     aria-labelledby="blocksTitle blocksDesc">
+  <title id="blocksTitle">Finite blocks and remainder proof route</title>
+  <desc id="blocksDesc">A seventeen-step horizon is divided into a two-step remainder and three five-step blocks. One route uses shifted subadditivity for pointwise bounds. A separate route combines block-observable integrability with preservation by the block map to prove only finite-sum integrability. A warning states that no limit theorem has been crossed.</desc>
+  <rect width="920" height="650" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .tiny{font-size:11px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .block{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .remainder{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .analytic{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warning{fill:#F5EBCF;stroke:#A98845;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2;marker-end:url(#arrowhead)}
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="28" y="34" class="t title">One finite horizon, two honest proof lanes</text>
+  <text x="28" y="57" class="t m">First tile the time interval. Then ask separately what pointwise algebra and measure theory permit.</text>
+
+  <rect x="28" y="82" width="864" height="128" rx="12" class="neutral"/>
+  <text x="48" y="111" class="t h">Worked horizon: seventeen steps in blocks of five</text>
+  <text x="48" y="132" class="t m">The short piece has two steps. The remaining fifteen steps make three complete blocks.</text>
+
+  <rect x="48" y="153" width="140" height="37" rx="8" class="remainder"/>
+  <text x="63" y="176" class="t s">two-step remainder</text>
+  <rect x="200" y="153" width="216" height="37" rx="8" class="block"/>
+  <text x="235" y="176" class="t s">first five-step block</text>
+  <rect x="428" y="153" width="216" height="37" rx="8" class="block"/>
+  <text x="455" y="176" class="t s">second five-step block</text>
+  <rect x="656" y="153" width="216" height="37" rx="8" class="block"/>
+  <text x="686" y="176" class="t s">third five-step block</text>
+
+  <path d="M270 210 L270 244" class="arrow"/>
+  <path d="M650 210 L650 244" class="arrow"/>
+
+  <rect x="28" y="255" width="418" height="246" rx="12" class="block"/>
+  <text x="50" y="286" class="t h">Pointwise lane</text>
+  <text x="50" y="309" class="t s">Input: the shifted-subadditive inequality</text>
+  <line x1="50" y1="326" x2="424" y2="326" stroke="#4B6787" stroke-dasharray="5 4"/>
+  <rect x="50" y="347" width="374" height="50" rx="9" class="neutral"/>
+  <text x="68" y="369" class="t s">Terminal route: complete blocks first,</text>
+  <text x="68" y="387" class="t s">then the short remainder at the far end</text>
+  <rect x="50" y="412" width="374" height="50" rx="9" class="neutral"/>
+  <text x="68" y="434" class="t s">Remainder-first route: short piece first,</text>
+  <text x="68" y="452" class="t s">then complete blocks from the shifted sample</text>
+  <text x="50" y="485" class="t m">No probability. No ergodicity. No integrability premise.</text>
+
+  <rect x="474" y="255" width="418" height="246" rx="12" class="analytic"/>
+  <text x="496" y="286" class="t h">Finite integrability lane</text>
+  <text x="496" y="309" class="t s">Input: two analytic facts about the chosen block</text>
+  <line x1="496" y1="326" x2="870" y2="326" stroke="#6F8D5E" stroke-dasharray="5 4"/>
+  <rect x="496" y="347" width="374" height="50" rx="9" class="neutral"/>
+  <text x="514" y="369" class="t s">The block observable is integrable</text>
+  <text x="514" y="387" class="t tiny">supplied by the process candidate</text>
+  <rect x="496" y="412" width="374" height="50" rx="9" class="neutral"/>
+  <text x="514" y="434" class="t s">The block map preserves the measure</text>
+  <text x="514" y="452" class="t tiny">each finite iterate then preserves it too</text>
+  <text x="496" y="485" class="t m">Output: integrability of one finite block sum.</text>
+
+  <path d="M237 501 L237 535" class="arrow"/>
+  <path d="M683 501 L683 535" class="arrow"/>
+  <rect x="28" y="546" width="864" height="76" rx="12" class="warning"/>
+  <text x="49" y="575" class="t h">Stop at the finite boundary</text>
+  <text x="49" y="598" class="t s">These lanes prove finite bounds and finite-sum integrability, not convergence, a Kingman theorem, or a Lyapunov exponent.</text>
+</svg>

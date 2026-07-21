@@ -385,22 +385,38 @@ The first active sequence is:
     measurable events and almost-everywhere constancy for almost-everywhere
     invariant real observables. None of these declarations constructs a
     samplewise limit or a Lyapunov exponent.
+23. [`RandomCocycles/SubadditiveFiniteBlocks.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean)
+    proves both terminal-remainder and remainder-first finite block bounds,
+    their exact quotient-and-remainder forms, and finite Birkhoff-sum
+    integrability under preservation of the fixed block map. It isolates the
+    exact time-zero normalization needed only for the uniform exact-block
+    statement, then specializes the useful pointwise and integrability
+    interfaces to cocycle log-positive growth. The pointwise cocycle bounds
+    require no integrability premise; the entire layer requires neither
+    probability nor ergodicity and makes no convergence claim.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Add `RandomCocycles/SubadditiveFiniteBlocks.lean`: prove the exact finite
-   block-plus-remainder inequalities, their quotient/remainder forms, and
-   finite Birkhoff-sum integrability. Keep the time-zero normalization and
-   measure-preservation assumptions visible, and make no convergence claim.
-2. Design the missing Kingman-style subadditive ergodic infrastructure from
-   its exact measurable, integrable, stationary, finite-measure, and
+1. Add `RandomCocycles/SubadditiveCentering.lean`: subtract the one-step
+   Birkhoff sum from a normalized subadditive process, prove the resulting
+   centered process is nonpositive and remains shifted-subadditive, propagate
+   its finite-horizon integrability under a measure-preserving base, and state
+   the exact normalized identity involving `birkhoffAverage`. Keep the
+   time-zero premise attached only where the uniform one-step majorant needs
+   it; positive horizons require no such premise. Specialize the reduction to
+   the cocycle log-positive observable without duplicating its existing
+   one-step orbit-sum majorant.
+2. Develop the finite phase-averaging layer that reconciles block-map sums
+   with the one-step base without assuming that every power of an ergodic map
+   is ergodic. Freeze its finite identities and error terms before using any
+   limiting theorem.
+3. Design and prove the missing Kingman-style infrastructure from its exact
+   measurable, integrable, stationary, finite-measure, maximal-inequality, and
    almost-everywhere hypotheses. The pinned Mathlib release supplies finite
    Birkhoff-sum algebra and probability/ergodic primitives, but no ready-made
-   Kingman theorem.
-3. Prove the required general theorem in independently auditable layers before
-   applying it to matrix cocycles or introducing any samplewise-limit or
-   Lyapunov terminology.
+   pointwise Birkhoff or Kingman theorem. Only after those layers are audited
+   may the project introduce a samplewise limit or Lyapunov terminology.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

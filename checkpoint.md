@@ -3,11 +3,12 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 11:35 PDT
+Last updated: 2026-07-21 12:20 PDT
 
-Audited baseline: `main` at `cdda319`
+Audited baseline: `main` at `b40e424`
 
-Active direction: finite block decomposition for subadditive cocycle processes
+Active direction: centering normalized subadditive processes by one-step
+Birkhoff sums
 
 ## How to Use This Checkpoint
 
@@ -23,15 +24,15 @@ Active direction: finite block decomposition for subadditive cocycle processes
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,172 jobs. The integrated RMT-17 gate covers twenty-two
-  substantive modules, twenty-two complete draft Notebook companions, and 237
+- Last green Lean build: 3,174 jobs. The integrated RMT-18 gate covers twenty-three
+  substantive modules, twenty-three complete draft Notebook companions, and 246
   Hugo pages with warnings fatal.
-- Lean inventory: 402 public named declarations across the twenty-two substantive
+- Lean inventory: 414 public named declarations across the twenty-three substantive
   modules; 18 one-line deterministic placeholders; one `.gitkeep`-only
   Random branch; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 131,118 words across the twenty-two Notebook companions
-  and 143,632 words across nineteen Deep Dives and thirty-two glossary
+- Teaching snapshot: 138,873 words across the twenty-three Notebook companions
+  and 153,609 words across twenty Deep Dives and thirty-three glossary
   chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
@@ -64,16 +65,17 @@ Active direction: finite block decomposition for subadditive cocycle processes
 | `NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability` | Real log-positive finite-time envelope, nonnegativity, measurability, subadditivity, finite orbit-sum domination, an explicit one-step integrability hypothesis, and propagation through preserved base iterates, finite sums, and every finite horizon | `finite-horizon-log-positive-cocycle-integrability` |
 | `NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth` | Raw-measure integrals of every finite-horizon log-positive envelope, shifted-integral invariance, an exact orbit-sum integral, a linear one-step bound, scalar subadditivity, positive-time normalization, and deterministic Fekete convergence | `integrated-log-positive-growth-and-deterministic-fekete-limit` |
 | `NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase` | A generic integrable shifted-subadditive-process candidate, deterministic Fekete-rate bounds, probability-guarded expectation terminology, and native ergodic rigidity for invariant events and real observables, with no samplewise-limit claim | `probability-and-ergodic-base-interfaces-for-matrix-cocycles` |
+| `NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks` | Both finite block-plus-remainder orientations, quotient/remainder forms, the exact time-zero normalization boundary, fixed-block Birkhoff-sum integrability under block-map preservation alone, and cocycle log-positive specializations without probability, ergodicity, or convergence claims | `finite-block-birkhoff-bounds-for-subadditive-cocycles` |
 
-The root aggregator imports all twenty-two modules. The proof-to-prose manifest and
+The root aggregator imports all twenty-three modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twenty-two comprehensive Development Notebook chapters in an explicit
+- Twenty-three comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Nineteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Twenty textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -90,8 +92,9 @@ declaration visibility.
   Extended-Log-Norm Observables for Matrix Cocycles*, and *Finite-Horizon
   Log-Positive Cocycle Integrability*, *Integrated Log-Positive Cocycle
   Growth and Its Deterministic Fekete Limit*, and *Probability Normalization
-  and Ergodic Rigidity Before Kingman*.
-- Thirty-two glossary chapters, now including the ergodic probability base,
+  and Ergodic Rigidity Before Kingman*, followed by *Finite Block
+  Decomposition for Subadditive Processes*.
+- Thirty-three glossary chapters, now including the Birkhoff sum, the ergodic probability base,
   the integrated log-positive growth rate, the log-positive integrability
   envelope, the extended log-norm
   observable, one-sided discrete matrix
@@ -102,7 +105,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Sixty-three deterministic 1200x630 social cards and forty-seven accessible
+- Sixty-six deterministic 1200x630 social cards and fifty accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -111,41 +114,52 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-18: finite block decomposition for subadditive processes
+### RMT-19: center a subadditive process by its one-step Birkhoff sum
 
 The next module is provisionally
-`Random/RandomCocycles/SubadditiveFiniteBlocks.lean`. It should prove the
-finite algebraic estimates that precede any Kingman argument, using the RMT-17
-process candidate and Mathlib's finite Birkhoff sums:
+`Random/RandomCocycles/SubadditiveCentering.lean`. A warning-fatal prototype
+already compiles the intended core reduction. Freeze the smallest
+assumption-tight public API before writing its teaching layer:
 
-1. Prove that the shifted subadditive inequality forces
-   `0 ≤ X 0 ω`, and isolate the exact extra normalization `X 0 = 0` needed for
-   block-count-zero formulas. Keep the compiled constant-one counterexample
-   visible in the audit so that assumption cannot be erased later.
-2. For block length `b`, block count `q`, and remainder `r`, bound
-   `X (b * q + r) ω` by the Birkhoff sum of `X b` under `T^[b]` plus the shifted
-   remainder. Derive the corresponding `n / b` and `n % b` statement without
-   inventing an asymptotic conclusion.
-3. Add the complementary remainder-first form under `X 0 = 0`, placing the
-   short remainder at the original sample and the full-block Birkhoff sum at
-   the shifted sample. State exactly which variants need a nonzero block count
-   and which remain tautologically valid at block length zero.
-4. Prove finite Birkhoff-sum integrability from the candidate together with an
-   explicit `MeasurePreserving T μ μ` hypothesis. Require neither probability
-   nor ergodicity for this finite-time result.
-5. Specialize the most useful block bounds and integrability result to
-   `C.logPlusNormObservable`, using its checked time-zero identity and the
-   cocycle's stored measure preservation. Preserve the empty matrix-index
-   boundary.
-6. Audit the iterate and Birkhoff-sum orientations warning-fatally, then pair
-   the frozen Lean API with complete Notebook and Knowledge Base teaching.
+1. Define
+   `centeredProcess T X n ω = X n ω - birkhoffSum T (X 1) n ω` and keep that
+   definition independent of measurable or probabilistic structure.
+2. Prove the finite one-step majorant
+   `X n ω ≤ birkhoffSum T (X 1) n ω` first for `n ≠ 0` without time-zero
+   normalization, then uniformly under the exact premise `X 0 = 0`. Derive
+   the corresponding positive-horizon and uniform nonpositivity theorems for
+   the centered process. Retain a raw algebraic helper so the proof records
+   which bundled fields it actually consumes.
+3. Prove directly from `birkhoffSum_add` that the centered process remains
+   shifted-subadditive. This algebraic theorem needs neither normalization,
+   measure preservation, probability, nor ergodicity.
+4. Under an explicit `MeasurePreserving T μ μ` premise, prove every centered
+   horizon integrable by combining candidate integrability with RMT-18's
+   finite Birkhoff-sum theorem at block length one. Package the centered family
+   as another `IsIntegrableSubadditiveProcessCandidate` without adding a
+   probability or ergodicity premise.
+5. Prove the exact normalized identity expressing `X n / n` as the normalized
+   centered term plus `birkhoffAverage ℝ T (X 1) n`. Audit the totalized
+   `n = 0` branch explicitly and state no limit consequence.
+6. Add the thin cocycle layer that identifies the one-step Birkhoff sum with
+   the existing `orbitLogPlusSum`, defines the centered log-positive
+   observable, proves its pointwise nonpositivity and subadditivity directly
+   from `C`, packages it as a candidate only under `hC`, and specializes the
+   normalized identity. Do not duplicate RMT-15's existing pointwise majorant
+   or add a redundant integrability wrapper. Compile boundary probes for the
+   constant-one process, zero horizon, zero measure, identity base, and an
+   empty matrix index, then pair every frozen declaration with a comprehensive
+   Notebook, glossary chapter, Deep Dive, deterministic cards, and prose-only
+   conceptual figures.
 
-This is finite-block infrastructure, not a pointwise ergodic theorem. The
-pinned Mathlib tree provides Birkhoff-sum algebra but no measure-theoretic
-pointwise Birkhoff theorem, maximal ergodic inequality, or Kingman theorem.
-In particular, `Ergodic T μ` does not generally make every power `T^[b]`
-ergodic. RMT-18 must prove no almost-everywhere convergence, invariant limit,
-limit-integral interchange, Lyapunov exponent, or Oseledets splitting.
+This is a finite centering identity, not a pointwise Birkhoff theorem or a
+subadditive ergodic theorem. Here "centered" means subtracting an additive
+orbit majorant, not subtracting an expectation or producing mean zero. In
+particular, nonpositivity of the centered process does not imply its normalized
+value converges, and the exact identity does not supply convergence of the
+Birkhoff average. RMT-19 must prove no almost-everywhere limit, invariant limit
+field, limit-integral interchange, Lyapunov exponent, maximal inequality, or
+Oseledets splitting.
 
 ## Dependency-Ordered Roadmap
 
@@ -206,6 +220,9 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Native probability normalization and ergodic-base rigidity interfaces,
   with the finite-horizon family packaged as an integrable
   shifted-subadditive-process candidate.
+- [x] Exact finite block and quotient/remainder Birkhoff bounds, including both
+  remainder orientations, the time-zero boundary, block-map-only finite-sum
+  integrability, and log-positive cocycle specializations.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -576,6 +593,29 @@ k-invariance precedes approximation claims.
   finite Birkhoff-sum algebra, but no ready-made Kingman or pointwise Birkhoff
   theorem. RMT-17 therefore constructs no samplewise limit, Lyapunov exponent,
   or Oseledets splitting.
+- RMT-18 proves both finite remainder placements directly from the shifted
+  subadditive inequality. The terminal-remainder and remainder-first bounds,
+  including their quotient/remainder forms, need no normalization of `X 0`.
+  At block count zero the uniform exact-block estimate is equivalent to the
+  extra normalization `X 0 = 0`; shifted subadditivity alone forces only
+  pointwise nonnegativity of `X 0`.
+- The terminal quotient/remainder formula remains reflexive at block length
+  zero under Lean's total natural division. A remainder is known to be shorter
+  than its block only when the block length is positive; the generic
+  three-parameter theorem intentionally assumes no such relation.
+- Finite integrability of the block Birkhoff sum consumes only
+  `MeasurePreserving (T^[b]) μ μ` together with integrability of the fixed
+  block observable. Preservation of `T` is sufficient but not necessary for
+  that theorem. Ergodicity is irrelevant, and ergodicity of `T` must not be
+  transferred to every power `T^[b]`.
+- The two RMT-18 cocycle pointwise bounds take the cocycle `C` directly and use
+  no `HasIntegrableGeneratorLogPlus` premise. Only the finite block-sum
+  integrability specialization takes that witness. All three specializations
+  retain the empty matrix-index boundary and require neither probability nor
+  ergodicity.
+- RMT-18 is finite algebra and finite integrability only. It proves no
+  Birkhoff-average convergence, maximal inequality, Kingman theorem,
+  samplewise growth limit, Lyapunov exponent, or Oseledets splitting.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -614,8 +654,11 @@ k-invariance precedes approximation claims.
   deterministic Fekete limit. Extended-log and negative-tail integrability,
   inverse control, normalized sample growth, Lyapunov exponents, and ergodic
   limits remain open. Probability-guarded expectation terminology and native
-  invariant-event and invariant-observable rigidity are now formalized, but
-  those interfaces do not produce the missing samplewise limit.
+  invariant-event and invariant-observable rigidity are now formalized, as are
+  both finite block/remainder orientations and fixed-block Birkhoff-sum
+  integrability. Those interfaces do not produce the missing pointwise
+  Birkhoff theorem, maximal inequality, subadditive ergodic theorem, or
+  samplewise limit.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -1074,9 +1117,41 @@ Checkpoint/skill milestone QA:
   and Deep Dive, and the Notebook sequence and reciprocal Knowledge Base
   crosslinks are exact. Visual review also corrected finite-only wording for
   the fourth assumption-separation example before freeze.
+- RMT-18 Lean audit: all 12 public declarations and three private raw helpers
+  implement the two finite block/remainder orientations, quotient/remainder
+  corollaries, the exact-block time-zero boundary, fixed-block Birkhoff-sum
+  integrability, and three log-positive cocycle specializations. The leaf,
+  aggregators, root import, and adversarial smokes pass warnings as errors; the
+  complete build finishes 3,174 jobs across 23 substantive modules and 414
+  public named declarations. Smokes cover `b = 0`, `q = 0`, a constant-one
+  countermodel, preservation of the block map alone, both pointwise cocycle
+  bounds without an integrability witness, and empty matrix dimension. No
+  proof holes, unsafe declarations, or custom axioms occur; theorem audits
+  contain only `propext`, `Classical.choice`, and `Quot.sound` where needed.
+- RMT-18 static teaching audit: the final 7,710-word Notebook, 2,578-word
+  glossary, and 7,344-word Deep Dive cover every declaration in source order,
+  both orientations, all exact assumption boundaries, the two-cycle
+  power-ergodicity counterexample, and exhaustive convergence nonclaims.
+  Source hygiene passes 81 Markdown files, coverage passes 23/23 modules, and
+  Hugo builds 246 pages with warnings fatal. All three deterministic cards
+  reproduce byte-for-byte at 1200x630 from both the repository and
+  `/private/tmp`; the 920x650, 600x940, and 760x420 prose-only SVGs parse and
+  render. Citation audit links iterate alignment, integrability transport, and
+  finite-sum integrability to their exact pinned Mathlib interfaces.
+- Rendered RMT-18 QA: the Notebook, glossary, and Deep Dive render 263, 108,
+  and 340 KaTeX nodes respectively at both 1,280- and 390-pixel widths. The
+  amended RMT-17 Notebook, glossary, and Deep Dive remain stable at 112, 36,
+  and 120. All six pages have one article heading, zero KaTeX errors, raw
+  delimiters, page-level overflow, broken assets, or browser console failures.
+  Cards and explicitly scrolled lazy SVGs load at their declared intrinsic
+  dimensions, the canonical disclosure renders exactly once on the new
+  Notebook and Deep Dive, all predecessor/successor and reciprocal Knowledge
+  Base links are exact, and desktop plus mobile screenshots pass visual review.
 
 ## Recent Pushes
 
+- `b40e424`: probability normalization, integrable subadditive-process
+  packaging, ergodic rigidity interfaces, and teaching layer.
 - `cdda319`: integrated log-positive cocycle growth, deterministic Fekete
   convergence, and teaching layer.
 - `d07d18d`: finite-horizon log-positive cocycle integrability and teaching

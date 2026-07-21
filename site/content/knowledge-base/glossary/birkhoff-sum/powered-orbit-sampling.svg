@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="940"
+     viewBox="0 0 600 940" role="img"
+     aria-labelledby="poweredOrbitTitle poweredOrbitDesc">
+  <title id="poweredOrbitTitle">Powered-orbit sampling for finite blocks</title>
+  <desc id="poweredOrbitDesc">A seventeen-step horizon is split into a two-step remainder and three five-step blocks. After the remainder, the powered base advances by five steps between block starts at orbit times two, seven, and twelve. The diagram states that this is finite bookkeeping, not a convergence theorem.</desc>
+  <rect width="600" height="940" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:23px;font-weight:700}
+    .h{font-size:19px;font-weight:700}
+    .s{font-size:17px}
+    .m{font-size:16px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.8}
+    .remainder{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .block{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .sample{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.5;marker-end:url(#arrowhead)}
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="38" class="t title">Powered-orbit sampling finds every block start</text>
+  <text x="24" y="66" class="t m">Worked finite example: seventeen steps, five-step blocks, remainder first</text>
+
+  <rect x="24" y="92" width="552" height="144" rx="14" class="neutral"/>
+  <text x="48" y="124" class="t h">Decompose the horizon</text>
+  <rect x="48" y="146" width="188" height="66" rx="11" class="remainder"/>
+  <text x="72" y="174" class="t s" font-weight="700">two-step remainder</text>
+  <text x="68" y="199" class="t m">pay at original sample</text>
+  <text x="249" y="184" class="t s">then</text>
+  <rect x="298" y="146" width="254" height="66" rx="11" class="block"/>
+  <text x="321" y="174" class="t h">three complete blocks</text>
+  <text x="337" y="199" class="t m">five steps in each block</text>
+
+  <path d="M300 241 L300 276" class="arrow"/>
+
+  <rect x="24" y="286" width="552" height="428" rx="14" class="neutral"/>
+  <text x="48" y="320" class="t h">Sample the complete-block cost at each start</text>
+
+  <rect x="70" y="344" width="460" height="82" rx="12" class="sample"/>
+  <text x="211" y="377" class="t h">first block cost</text>
+  <text x="215" y="405" class="t s">starts at orbit time two</text>
+
+  <path d="M300 431 L300 469" class="arrow"/>
+  <text x="318" y="455" class="t m">powered map advances five steps</text>
+
+  <rect x="70" y="478" width="460" height="82" rx="12" class="sample"/>
+  <text x="197" y="511" class="t h">second block cost</text>
+  <text x="205" y="539" class="t s">starts at orbit time seven</text>
+
+  <path d="M300 565 L300 603" class="arrow"/>
+  <text x="318" y="589" class="t m">powered map advances five steps</text>
+
+  <rect x="70" y="612" width="460" height="82" rx="12" class="sample"/>
+  <text x="208" y="645" class="t h">third block cost</text>
+  <text x="201" y="673" class="t s">starts at orbit time twelve</text>
+
+  <path d="M300 719 L300 756" class="arrow"/>
+
+  <rect x="48" y="765" width="504" height="92" rx="13" class="block"/>
+  <text x="96" y="801" class="t h">The finite Birkhoff sum adds all three block costs</text>
+  <text x="132" y="831" class="t s">The powered base spaces the sampled starts.</text>
+
+  <rect x="24" y="876" width="552" height="52" rx="11" class="sample"/>
+  <text x="199" y="899" class="t h">Finite orbit bookkeeping only</text>
+  <text x="119" y="919" class="t m">No convergence or powered-map ergodicity follows</text>
+</svg>

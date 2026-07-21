@@ -3,6 +3,7 @@ import NonlinearDynamics.Random.RandomCocycles.NormObservables
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
 import NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
 
 /-!
 # Random cocycles
@@ -18,6 +19,9 @@ has a deterministic Fekete limit, without assuming probability or ergodicity
 and without an almost-sure or Lyapunov conclusion. A final interface layer
 separates probability normalization, ergodic rigidity, and finite-time
 integrability while packaging the log-positive family as an integrable
-subadditive-process candidate. It deliberately stops before Kingman's theorem
-or any samplewise exponent claim.
+subadditive-process candidate. The shifted subadditive inequality alone then
+gives finite block bounds by Birkhoff sums of a fixed block observable plus a
+short remainder, while preservation of the chosen block map gives
+integrability of each finite sum. This layer deliberately stops before
+Kingman's theorem or any samplewise exponent claim.
 -/

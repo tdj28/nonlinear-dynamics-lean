@@ -58,16 +58,27 @@ missing.
 3. Keep assumptions visible and weak:
    - prefer general finite index types until dimension arithmetic needs `Fin n`;
    - separate algebra from topology, measurability, probability, and limits;
-   - separate pointwise statements from almost-everywhere and law-level ones.
-4. Add the module to the nearest aggregator.
-5. Compile early with:
+   - separate pointwise statements from almost-everywhere and law-level ones;
+   - audit which fields of a bundled hypothesis the proof actually consumes;
+     when a public specialization needs only raw algebra, take the underlying
+     object directly and discharge the algebra through a private helper rather
+     than requiring an integrability or probability package; and
+   - compile boundary countermodels before freezing the API. In particular,
+     test zero horizons, zero block lengths, empty index types, degenerate
+     measures, and periodic bases to distinguish necessary assumptions from
+     convenient ones.
+4. For iterated dynamics, track properties of the powered map separately.
+   `MeasurePreserving T μ μ` passes to `T^[b]`, but `Ergodic T μ` does not in
+   general pass to `T^[b]`; never use preservation as a proxy for ergodicity.
+5. Add the module to the nearest aggregator.
+6. Compile early with:
 
    ```sh
    cd formalization
    lake env lean -DwarningAsError=true path/to/Module.lean
    ```
 
-6. Use no `sorry`, `admit`, hidden axioms, guessed APIs, or unsupported
+7. Use no `sorry`, `admit`, hidden axioms, guessed APIs, or unsupported
    normalization.
 
 ## Maintain the Proof-to-Prose Pair

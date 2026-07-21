@@ -109,6 +109,13 @@ and
 The parallel textbook treatment is
 [Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}}).
 
+The immediate successor is
+[Finite Blocks Before Limits: Birkhoff Bounds for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/finite-block-birkhoff-bounds-for-subadditive-cocycles" >}}).
+It turns the candidate's shifted inequality into exact finite
+block-and-remainder bounds, keeps the zero-count normalization obstruction
+visible, and proves finite block-sum integrability without claiming a limit
+theorem.
+
 ## Choose a route up
 
 | Route | Begin | Destination |
