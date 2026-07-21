@@ -3,20 +3,21 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 16:15 PDT
+Last updated: 2026-07-21 16:19 PDT
 
-Audited baseline: `main` at `6296103`
+Audited baseline: `main` at `f50315e`
 
-Active direction: RMT-21 is complete in the working tree; the next slice is
-RMT-22, a conditional Birkhoff convergence-event bridge
+Active direction: RMT-21 is committed and pushed; the next slice is RMT-22, a
+conditional Birkhoff convergence-event bridge
 
 ## Restart Handoff
 
-- RMT-21 is integrated in the working tree. Its 1,131-line substantive module
-  adds an indexed gap-length-tail representation of ordered positive-length
-  half-open intervals, exact decoding and covered cardinality, a leftmost
-  greedy selector with separate coverage and provenance certificates, weak and
-  strict favorable-cost bounds, the exact positive-horizon/time-zero boundary,
+- RMT-21 is committed and pushed to `main` at `f50315e`. Its 1,131-line
+  substantive module adds an indexed gap-length-tail representation of
+  ordered positive-length half-open intervals, exact decoding and covered
+  cardinality, and a leftmost greedy selector with separate coverage and
+  provenance certificates, weak and strict favorable-cost bounds, the exact
+  positive-horizon/time-zero boundary,
   and candidate, centered-process, and matrix-cocycle wrappers.
 - The final source has SHA-256
   `732187ce77b5efa14df3a992f194d5dce4dfc8d9f5fa6dbaf658c5ed41ef4f4d`.
@@ -1380,6 +1381,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `f50315e`: ordered disjoint interval packing, leftmost marked-start cover,
+  weak/strict finite cost bounds, exact time-zero boundaries, and teaching
+  layer.
 - `ebb29fb`: finite subadditive phase averaging, exact boundary bookkeeping,
   centered-process and cocycle wrappers, and teaching layer.
 - `deeb964`: orbit-majorant centering, exact normalized splitting, cocycle
