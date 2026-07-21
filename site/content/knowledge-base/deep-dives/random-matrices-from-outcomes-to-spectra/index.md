@@ -447,9 +447,9 @@ The current foundation establishes:
 
 Every item above is checked by Lean 4.32.0 against Mathlib 4.32.0.
 
-## Three more checked ridges
+## Four more checked ridges
 
-The project now builds three modules on top of that base.
+The project now builds four modules on top of that base.
 
 `RandomMatrices.Hermitian` separates pointwise, almost-everywhere, and
 measurable Hermitian conditions. It bundles a measurable matrix that is
@@ -476,14 +476,25 @@ Dirac law at the zero matrix invariant, and proves
 the complete declaration-by-declaration account in
 [From Random Matrices to Laws]({{< relref "/development-notebook/2026/07/from-random-matrices-to-laws" >}}).
 
+<code>RandomMatrices.HermitianCoordinates</code> defines the finite strict
+upper triangle, pairs it with a real diagonal, and assembles both directly
+into a Hermitian matrix. It proves the diagonal, upper, and lower entry
+formulas, pointwise Hermiticity, coordinatewise measurability, the canonical
+coordinate map, and the exact zero-dimensional boundary. It does not use
+\(X+X^*\), which would double a supplied real diagonal. Read the compact
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+entry and the full
+[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+chapter.
+
 ## What is not proved yet
 
-The checked modules do not yet define or prove:
+The checked stack does not yet define or prove:
 
-- independent or identically distributed entries;
-- real or complex Gaussian random variables;
-- GOE or GUE;
-- a normalization convention;
+- one joint probability measure for the real diagonal and complex strict
+  upper coordinates of a matrix;
+- a Gaussian orthogonal ensemble (GOE) or Gaussian unitary ensemble (GUE);
+- a selected matrix normalization convention;
 - eigenvalue measurability;
 - unitary invariance for any nontrivial random-matrix ensemble;
 - integrability or expected trace moments;
@@ -496,17 +507,21 @@ paired notebook entry.
 
 ## The route from here to GUE
 
-A defensible finite Gaussian unitary ensemble definition needs several layers:
+A defensible finite Gaussian unitary ensemble definition still needs several
+law-level layers. The finite index type, exact Gaussian primitives, direct
+Hermitian coordinate assembly, and measurability are now checked. The
+remaining route is:
 
-1. specialize index types to `Fin n` so the dimension is explicit;
-2. define the Hermitian matrix-valued random variable or its law;
-3. specify independent real Gaussian primitive variables;
-4. assemble diagonal and off-diagonal entries with conjugate symmetry;
-5. state the variance and dimension normalization exactly;
-6. prove measurability of the construction;
-7. prove that unitary conjugation preserves the
+1. state the diagonal and off-diagonal variance ledger exactly;
+2. define one complete joint coordinate probability measure, including the
+   real diagonal family and the complex strict-upper family;
+3. choose an explicit zero-dimensional policy for any dimension-dependent
+   scale;
+4. push the coordinate measure through the checked assembly map;
+5. prove Hermitian support at the law level;
+6. prove that unitary conjugation preserves the
    {{< refterm "probability-law" "law" >}}; and
-8. compute small trace moments before attempting asymptotic spectral laws.
+7. compute small trace moments before attempting asymptotic spectral laws.
 
 The order matters. If normalization is vague, two mathematically legitimate
 GUE conventions can produce different moment formulas. If the law is not

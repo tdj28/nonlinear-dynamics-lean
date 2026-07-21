@@ -71,7 +71,10 @@ then reduces to the ordinary transpose.
 {{< /panel >}}
 
 Related concepts: {{< refterm "random-matrix" "random matrix" >}} and
-{{< refterm "hermitian-matrix" "Hermitian matrix" >}}.
+{{< refterm "hermitian-matrix" "Hermitian matrix" >}}. The
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+uses conjugation only on the reflected lower triangle, so every free complex
+coordinate is supplied once.
 
 Further reading: Mathlib's
 [Hermitian-matrix module](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/Matrix/Hermitian.html)

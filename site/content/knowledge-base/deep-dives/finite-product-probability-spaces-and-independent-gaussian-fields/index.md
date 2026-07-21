@@ -774,6 +774,14 @@ for measurable matrix maps, Hermiticity, pushforward matrix laws, and trace
 observables. Read {{< refterm "normalization-convention" "normalization convention" >}}
 before attaching any dimension-dependent scale.
 
+Then use the
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}} and
+[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+for the checked deterministic map from a real diagonal and complex strict
+upper triangle to a measurable Hermitian matrix. That map does not assert that
+the present complex family provides the diagonal coordinates, and it chooses
+no ensemble law.
+
 ## References
 
 **Mathlib contributors.**

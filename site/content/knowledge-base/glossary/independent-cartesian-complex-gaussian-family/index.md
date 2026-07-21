@@ -267,6 +267,13 @@ The Deep Dive
 builds the product-space machinery, dependence audit, empty boundary, and
 future matrix bridge in full.
 
+The next deterministic bridge is the
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}.
+[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+shows how complex strict-upper coordinates enter a Hermitian matrix without
+claiming that this family supplies the real diagonal or fixes a Gaussian
+matrix normalization.
+
 ## References
 
 **Mathlib contributors.**

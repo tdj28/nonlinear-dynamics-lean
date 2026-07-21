@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 01:07 PDT
+Last updated: 2026-07-21 01:45 PDT
 
-Audited baseline: `main` at `8df3b33`
+Audited baseline: `main` at `ec96e0b`
 
 Active direction: finite random-matrix foundations toward an explicit GUE law
 
@@ -23,14 +23,14 @@ Active direction: finite random-matrix foundations toward an explicit GUE law
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green build: 3,140 Lean jobs; seven substantive modules; seven complete
-  draft Notebook companions; 73 Hugo pages with warnings fatal.
-- Lean inventory: 139 declaration lines across the seven substantive modules;
+- Last green build: 3,141 Lean jobs; eight substantive modules; eight complete
+  draft Notebook companions; 78 Hugo pages with warnings fatal.
+- Lean inventory: 156 declaration lines across the eight substantive modules;
   18 one-line deterministic placeholders; three `.gitkeep`-only Random
   branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 36,788 words across the seven Notebook companions and
-  32,092 words across four Deep Dives and sixteen glossary chapters.
+- Teaching snapshot: 41,368 words across the eight Notebook companions and
+  38,332 words across five Deep Dives and seventeen glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -47,23 +47,25 @@ Active direction: finite random-matrix foundations toward an explicit GUE law
 | `NonlinearDynamics.Random.GaussianPrimitives` | Exact real Gaussian laws, moments and integrability, zero-variance behavior, scaling and independent sums, measurable independent families, finite joint product laws, and a canonical product sample space | `gaussian-primitives-exact-laws-and-independence` |
 | `NonlinearDynamics.Random.ComplexGaussian` | Exact Cartesian complex Gaussian laws with explicit coordinate variances, product and marginal laws, coordinate independence, real-Banach Gaussianity, moments and integrability, exact mean, the double-zero Dirac boundary, and construction from independent exact real coordinates | `complex-gaussians-from-independent-real-coordinates` |
 | `NonlinearDynamics.Random.ComplexGaussianFamilies` | Ordinarily measurable mutually independent Cartesian complex coordinates, exact real and imaginary laws and variances, coordinate means and integrability, honest construction from independent pair-vectors, real scaling, finite joint product and qualitative Gaussian laws, a canonical product family, and the empty-index Dirac boundary | `independent-complex-gaussian-families` |
+| `NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates` | Finite strict-upper indices, real-diagonal/complex-upper coordinate space, direct three-branch Hermitian assembly, exact entry formulas, Hermiticity, measurability, bundled construction, and the `n = 0` zero matrix | `hermitian-coordinate-assembly` |
 
-The root aggregator imports all seven modules. The proof-to-prose manifest and
+The root aggregator imports all eight modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Seven comprehensive Development Notebook chapters in an explicit
+- Eight comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Four textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Five textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, and *Finite Product Probability Spaces and
-  Independent Gaussian Fields*.
-- Sixteen glossary chapters, now including independent Cartesian complex
-  Gaussian family alongside the scalar Gaussian, independence, normalization,
-  and matrix and measure-theory foundations.
-- Seventeen deterministic 1200x630 social cards and nine accessible conceptual
+  Independent Gaussian Fields*, plus *Finite Hermitian Matrices from
+  Coordinates*.
+- Seventeen glossary chapters, now including Hermitian coordinate space
+  alongside the scalar Gaussian, independence, normalization, and matrix and
+  measure-theory foundations.
+- Twenty deterministic 1200x630 social cards and eleven accessible conceptual
   SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -72,42 +74,44 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-05: deterministic Hermitian coordinate assembly
+### RMT-06: the finite-dimensional GUE coordinate and matrix laws
 
 The next module is
-`NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates`. It must isolate
-the algebraic and measurable bridge from primitive coordinates to a Hermitian
-matrix before any Gaussian or GUE normalization is chosen:
+`NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble`, in namespace
+`NonlinearDynamics.Random.GUE`. It will make the first dimension-dependent
+normalization choice and push one canonical product measure through the checked
+RMT-05 assembly map:
 
-1. Define the opaque finite subtype
-   `StrictUpperIndex n := {ij : Fin n × Fin n // ij.1 < ij.2}` with explicit
-   `Fintype`, `DecidableEq`, and zero-dimensional emptiness instances. Define
-   `HermitianCoordinateSpace n` as a real diagonal paired with a complex
-   strict upper triangle.
-2. Define `RandomMatrix.hermitianFromCoordinates d u` by a direct three-way
-   branch: use `u` above the diagonal, its complex conjugate below the
-   diagonal, and the real value `d i` on the diagonal. Do not implement this as
-   `X + Xᴴ`, which would double the diagonal and introduce a hidden scale.
-3. Prove named diagonal, upper, and lower entry simplification theorems and
-   `hermitianFromCoordinates_isHermitian` using entrywise Hermiticity and
-   trichotomy of the finite indices.
-4. Prove `measurable_hermitianFromCoordinates` from measurable diagonal and
-   upper-coordinate processes. Define the canonical `hermitianCoordinateMap`,
-   prove it measurable, and bundle measurable processes with
-   `HermitianRandomMatrix.ofCoordinates` and its application theorem.
-5. Make dimension zero executable in the API: both primitive index types are
-   empty, assembly is the unique zero `0 × 0` matrix, and the canonical map is
-   zero. This remains normalization-free and prepares the later Dirac matrix
-   law without dividing by a dimension.
-6. Import the module through `RandomMatrices`, pair all declarations with a
-   complete Notebook chapter and Knowledge Base integration, run strict
-   validation, update this checkpoint, commit, and push to `main`.
+1. Define a total, explicit variance scale by pattern matching:
+   `varianceScale 0 = 0` and `varianceScale (n + 1) = (n + 1)⁻¹` in `ℝ≥0`.
+   Set diagonal variance to `1 / n` and each displayed real/imaginary
+   strict-upper variance to `1 / (2n)` for positive `n`. Prove named zero and
+   successor formulas instead of reasoning through division by zero.
+2. Define `GUE.coordinateMeasure n` as the product of the finite real Gaussian
+   diagonal law and the finite Cartesian complex Gaussian strict-upper law.
+   Prove it is a probability measure and expose exact laws for both blocks.
+3. Prove independence of the two blocks, exact scalar diagonal and upper laws,
+   mutual independence within each block, and cross-block coordinate
+   independence. Keep ordinary measurability and exact `HasLaw` evidence
+   explicit throughout.
+4. Define `GUE.matrixLaw n` as the measurable pushforward of
+   `coordinateMeasure n` through `hermitianCoordinateMap n`. Prove its map
+   formula and probability instance, then transfer exact diagonal and
+   strict-upper entry marginals to the assembled matrix.
+5. Make `n = 0` executable: prove the coordinate law is Dirac at the unique
+   empty coordinate point and the matrix law is Dirac at the unique zero
+   matrix.
+6. Pair every public declaration with a complete Notebook chapter and extend
+   the Knowledge Base with the normalization ledger, product-space
+   construction, independence architecture, pushforward law, and explicit
+   nonclaims. Run strict validation, update this checkpoint, commit, and push.
 
-This slice will make no Gaussian-coordinate, independence, matrix-law, GUE,
-density, unitary-invariance, eigenvalue, expectation, trace-moment, or
-asymptotic claim. RMT-06 will choose an approved dimension-dependent ledger,
-put the diagonal and upper coordinates on one canonical product probability
-space, and push that measure through this assembly map.
+For positive `n`, this convention corresponds to the unnormalized matrix-trace
+density `exp (-n * Tr(H^2) / 2)` and order-one Wigner spectral scale. RMT-06
+will not claim a density theorem, Hermitian support at the measure level,
+unitary invariance, eigenvalue measurability, semicircle behavior, expectation,
+or trace moments. RMT-07 will build the real-linear Hermitian geometry needed
+for density, support, and nontrivial unitary-conjugation invariance.
 
 ## Dependency-Ordered Roadmap
 
@@ -140,7 +144,7 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Complex Gaussian primitives with explicit variance splitting.
 - [x] Finite independent Cartesian complex Gaussian families, real scaling,
   and a canonical product law.
-- [ ] Deterministic Hermitian assembly from real diagonal and complex strict
+- [x] Deterministic Hermitian assembly from real diagonal and complex strict
   upper-triangular coordinates, including the `n = 0` boundary.
 - [ ] Finite-dimensional GUE constructor under an approved normalization
   ledger and an explicit `n = 0` policy.
@@ -249,19 +253,25 @@ k-invariance precedes approximation claims.
   covariance-aware bookkeeping.
 - The empty Cartesian complex Gaussian product is Dirac at the unique empty
   coordinate function. This still does not select a matrix normalization.
-- Hermitian coordinate assembly will use real diagonal values and complex
+- Hermitian coordinate assembly uses real diagonal values and complex
   strict-upper values directly, reflecting the latter below the diagonal.
   Reusing unnormalized `X + Xᴴ` would double the diagonal and is forbidden for
   that constructor.
-- No GOE/GUE normalization has been selected yet.
+- At `n = 0`, both Hermitian coordinate blocks are empty and direct assembly is
+  the unique zero matrix. RMT-05 intentionally adds no inverse map or dimension
+  theorem.
+- The approved RMT-06 GUE convention is Wigner scaled: diagonal variance
+  `1 / n`, displayed off-diagonal real and imaginary variances `1 / (2n)`,
+  unnormalized matrix trace, density exponent `-n Tr(H^2) / 2`, and an
+  order-one spectrum. Its total zero-dimensional scale is defined explicitly
+  as zero.
 - GUE construction has an open representation gate: independent entries are
   convenient for coordinates, while an isotropic Gaussian measure on the real
   Hermitian space makes unitary invariance cleaner. If both are used, their
   equivalence must be proved.
-- The candidate Wigner-scaled convention, still unapproved, has diagonal
-  variance `1 / n`, off-diagonal real and imaginary variances `1 / (2n)`, and
-  an order-one empirical spectrum. The density, trace normalization, and
-  zero-dimensional case must agree with that choice.
+- The density identity and order-one spectral interpretation remain explanatory
+  context until their prerequisites are formalized. RMT-06 proves only the
+  exact coordinate and matrix laws induced by the approved variance ledger.
 - The deterministic layer must choose point versus invariant-set stability,
   forward versus two-sided time, and metric versus neighborhood formulations.
 - Devaney chaos must record whether sensitivity is assumed or derived under a
@@ -277,8 +287,8 @@ k-invariance precedes approximation claims.
 
 ## Open Risks and Nonclaims
 
-- GUE conventions differ. Do not choose variances or dimension scaling
-  implicitly.
+- GUE conventions differ. Keep the approved variance, trace, density-exponent,
+  and zero-dimensional ledger explicit in code and prose.
 - Mathlib's `Measure.map` is total and has fallback behavior outside the
   a.e.-measurable case. Keep measurability evidence explicit.
 - Eigenvalue measurability, ordering, multiplicity, and spectral scaling remain
@@ -341,9 +351,24 @@ Checkpoint/skill milestone QA:
   page-level overflow; wide tables and Mermaid figures scroll locally; lazy
   assets load at their intended dimensions; and the seven Notebook chapters
   follow the dependency order through explicit navigation weights.
+- RMT-05 Lean audit: all 17 public declarations implement the direct
+  real-diagonal/complex-upper coordinate model; exact diagonal, upper, and
+  lower entry formulas, Hermiticity, measurability, bundling, and the `n = 0`
+  boundary pass warnings-as-errors; the build completes 3,141 jobs; and the
+  axiom audit contains only Mathlib's standard classical axioms.
+- RMT-05 teaching audit: the 4,580-word Notebook covers all declarations; the
+  new 1,333-word glossary and 4,388-word Deep Dive explain the `n²` real
+  coordinates, three-branch assembly, Hermiticity, measurability, physics
+  context, and zero-dimensional boundary without promoting nonformalized
+  claims; all three cards reproduce byte-for-byte and both SVGs parse/render.
+- Rendered RMT-05 QA: all source equations render with no KaTeX errors or raw
+  delimiters after replacing Markdown-sensitive literal inequalities; desktop
+  and 390-pixel layouts have no page-level overflow; wide content remains
+  locally contained; and lazy figures load at their declared dimensions.
 
 ## Recent Pushes
 
+- `ec96e0b` — independent complex Gaussian families and teaching layer.
 - `8df3b33` — exact Cartesian complex Gaussian laws and teaching layer.
 - `e36c177` — exact real Gaussian primitives, product laws, and teaching layer.
 - `dded074` — living checkpoint and project research/formalization skill.

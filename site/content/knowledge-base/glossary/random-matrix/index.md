@@ -49,6 +49,11 @@ must satisfy
 by the upper triangle, so treating every coordinate as independent would
 contradict the symmetry.
 
+The {{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+makes the nonredundant primitive positions explicit: real diagonal values and
+complex strict-upper values are supplied, while the lower triangle is filled
+by conjugate reflection.
+
 ## In Lean
 
 The first project definition deliberately contains only the underlying
@@ -73,7 +78,9 @@ particular ensemble.
 
 Related concepts: {{< refterm "measurable-space" "measurable space" >}},
 {{< refterm "conjugate-transpose" "conjugate transpose" >}}, and
-{{< refterm "almost-everywhere" "almost everywhere" >}}.
+{{< refterm "almost-everywhere" "almost everywhere" >}}. For the deterministic
+assembly bridge, continue to
+[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}}).
 
 Further reading: Terence Tao's
 [Topics in Random Matrix Theory](https://doi.org/10.1090/gsm/132)

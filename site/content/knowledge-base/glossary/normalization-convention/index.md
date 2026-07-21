@@ -186,6 +186,14 @@ coordinate independence, finite moments, integrability, mean, and the
 double-zero Dirac branch. It does not select equal variances or formalize a
 complex density, pseudocovariance, properness, or circular symmetry.
 
+The deterministic
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+now places a real diagonal and complex strict upper triangle into a matrix
+without changing either input. Direct assembly is intentionally not
+\(X+X^*\), because that expression would double a supplied real diagonal.
+This normalization-free map makes the remaining scale choices easier to
+audit; it does not select them.
+
 ## Edge cases and nonclaims
 
 - A normalization does not make a probability measure integrate to one unless
@@ -219,7 +227,9 @@ develops its geometry and symmetry boundaries. The
 then promotes both variance parameters to index-dependent functions, and
 [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
 tracks those functions through real coordinatewise scaling without selecting a
-matrix normalization.
+matrix normalization. [Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+then assembles free coordinates unchanged and identifies the exact boundary
+before a matrix law is chosen.
 
 ## References
 

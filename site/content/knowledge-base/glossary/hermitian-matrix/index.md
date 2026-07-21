@@ -64,6 +64,16 @@ H^*=(A+A^*)^*=A^*+A=H.
 This calculation is the mathematical heart of the project's first Hermitian
 symmetrization theorem.
 
+When a construction already begins with the free matrix coordinates,
+\(A+A^*\) is unnecessarily indirect and doubles a supplied real diagonal. The
+project's newer
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+stores a real diagonal and complex strict upper triangle, then fills the lower
+triangle by conjugate reflection. The Deep Dive
+[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+proves why that direct map is Hermitian and measurable without selecting a
+probability law or scale.
+
 ## In Lean
 
 Mathlib defines `Matrix.IsHermitian A` by the equality `Aᴴ = A`. The
@@ -78,7 +88,8 @@ spectral scale. An eventual Gaussian unitary ensemble definition must state
 that convention explicitly.
 {{< /panel >}}
 
-Related concept: {{< refterm "random-matrix" "random matrix" >}}.
+Related concepts: {{< refterm "random-matrix" "random matrix" >}} and
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}.
 
 Further reading: Mathlib documents
 [`Matrix.IsHermitian`](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/Matrix/Hermitian.html)

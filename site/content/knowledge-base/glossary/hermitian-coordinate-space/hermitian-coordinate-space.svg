@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430"
+     viewBox="0 0 760 430" role="img"
+     aria-labelledby="hermitianCoordinateTitle hermitianCoordinateDesc">
+  <title id="hermitianCoordinateTitle">The three regions of Hermitian coordinate space</title>
+  <desc id="hermitianCoordinateDesc">A square matrix grid separates real diagonal inputs, complex strict-upper inputs, and lower entries filled by conjugate reflection. A legend explains that only the first two regions are supplied coordinates.</desc>
+  <rect width="760" height="430" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .cell{stroke-width:1.5}
+  </style>
+
+  <text x="24" y="28" class="t title">One Hermitian matrix, three entry regions</text>
+  <text x="24" y="48" class="t m">Supply the diagonal and strict upper triangle; conjugate reflection determines the lower triangle.</text>
+
+  <rect x="28" y="76" width="284" height="272" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="48" y="101" class="t h">MATRIX COORDINATE MAP</text>
+
+  <g transform="translate(62 120)">
+    <rect class="cell" x="0" y="0" width="68" height="68" rx="6" fill="#EAF1E5" stroke="#6F8D5E"/>
+    <rect class="cell" x="68" y="0" width="68" height="68" rx="6" fill="#E8F0F7" stroke="#4B6787"/>
+    <rect class="cell" x="136" y="0" width="68" height="68" rx="6" fill="#E8F0F7" stroke="#4B6787"/>
+    <rect class="cell" x="0" y="68" width="68" height="68" rx="6" fill="#F3E8E0" stroke="#A67C52" stroke-dasharray="5 3"/>
+    <rect class="cell" x="68" y="68" width="68" height="68" rx="6" fill="#EAF1E5" stroke="#6F8D5E"/>
+    <rect class="cell" x="136" y="68" width="68" height="68" rx="6" fill="#E8F0F7" stroke="#4B6787"/>
+    <rect class="cell" x="0" y="136" width="68" height="68" rx="6" fill="#F3E8E0" stroke="#A67C52" stroke-dasharray="5 3"/>
+    <rect class="cell" x="68" y="136" width="68" height="68" rx="6" fill="#F3E8E0" stroke="#A67C52" stroke-dasharray="5 3"/>
+    <rect class="cell" x="136" y="136" width="68" height="68" rx="6" fill="#EAF1E5" stroke="#6F8D5E"/>
+
+    <text x="34" y="31" text-anchor="middle" class="t h">REAL</text>
+    <text x="34" y="49" text-anchor="middle" class="t m">input</text>
+    <text x="102" y="31" text-anchor="middle" class="t h">COMPLEX</text>
+    <text x="102" y="49" text-anchor="middle" class="t m">input</text>
+    <text x="170" y="31" text-anchor="middle" class="t h">COMPLEX</text>
+    <text x="170" y="49" text-anchor="middle" class="t m">input</text>
+
+    <text x="34" y="99" text-anchor="middle" class="t h">MIRROR</text>
+    <text x="34" y="117" text-anchor="middle" class="t m">conjugate</text>
+    <text x="102" y="99" text-anchor="middle" class="t h">REAL</text>
+    <text x="102" y="117" text-anchor="middle" class="t m">input</text>
+    <text x="170" y="99" text-anchor="middle" class="t h">COMPLEX</text>
+    <text x="170" y="117" text-anchor="middle" class="t m">input</text>
+
+    <text x="34" y="167" text-anchor="middle" class="t h">MIRROR</text>
+    <text x="34" y="185" text-anchor="middle" class="t m">conjugate</text>
+    <text x="102" y="167" text-anchor="middle" class="t h">MIRROR</text>
+    <text x="102" y="185" text-anchor="middle" class="t m">conjugate</text>
+    <text x="170" y="167" text-anchor="middle" class="t h">REAL</text>
+    <text x="170" y="185" text-anchor="middle" class="t m">input</text>
+  </g>
+
+  <line x1="336" y1="98" x2="336" y2="334" stroke="#A89B8C" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+  <rect x="364" y="78" width="368" height="76" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="384" y="105" class="t h">REAL DIAGONAL</text>
+  <text x="384" y="128" class="t s">One freely supplied real value in each diagonal slot.</text>
+
+  <rect x="364" y="170" width="368" height="76" rx="10" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="384" y="197" class="t h">COMPLEX STRICT UPPER TRIANGLE</text>
+  <text x="384" y="220" class="t s">One freely supplied complex value above the diagonal.</text>
+
+  <rect x="364" y="262" width="368" height="76" rx="10" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="384" y="289" class="t h">CONJUGATE LOWER TRIANGLE</text>
+  <text x="384" y="312" class="t s">Determined from the reflected upper slot, not supplied again.</text>
+
+  <rect x="24" y="372" width="712" height="38" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="380" y="396" text-anchor="middle" class="t s">Supply each free coordinate once; Hermitian symmetry fills every remaining entry.</text>
+</svg>

@@ -273,20 +273,23 @@ The first active sequence is:
    proves their exact finite product law and qualitative joint Gaussianity,
    supports coordinatewise real scaling, and realizes the interface on a
    canonical product sample space, including its empty-index Dirac boundary.
+8. [`RandomMatrices/HermitianCoordinates.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean)
+   defines the real-diagonal and complex-strict-upper coordinate space,
+   assembles it directly into a Hermitian matrix without doubling the
+   diagonal, proves the entry formulas and measurability of the assembly map,
+   bundles coordinate processes as Hermitian random matrices, and makes the
+   zero-dimensional result explicitly equal to the empty zero matrix.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Assemble a Hermitian matrix deterministically from a real diagonal and a
-   complex strict upper triangle, proving entry formulas, measurability,
-   Hermiticity, and the exact zero-dimensional boundary before choosing a law.
-2. Approve a visible normalization and representation ledger, then push the
-   canonical Gaussian coordinate product through that assembly map to define
-   a finite GUE ensemble.
-3. Use the law-level interface to prove unitary invariance of GUE at the level
+1. Encode the approved Wigner-scaled normalization ledger and push the
+   canonical Gaussian coordinate product through the assembly map to define a
+   finite GUE ensemble, including its explicit zero-dimensional Dirac law.
+2. Use the law-level interface to prove unitary invariance of GUE at the level
    of probability laws.
-4. Establish integrability and check the first exact expected trace moments.
-5. Reuse the same matrix layer for random Jacobian stability and matrix
+3. Establish integrability and check the first exact expected trace moments.
+4. Reuse the same matrix layer for random Jacobian stability and matrix
    cocycles.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,

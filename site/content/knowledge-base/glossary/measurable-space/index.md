@@ -49,6 +49,13 @@ exactly when every scalar entry is measurable.
 That coordinate principle is the bridge used in the formalization. It turns a
 large target object into a family of ordinary scalar proof obligations.
 
+For direct Hermitian assembly, each output entry is either a measurable real
+diagonal coordinate embedded in \(\mathbb C\), a measurable strict-upper
+coordinate, or the conjugate of a measurable reflected coordinate. The
+[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+chapter follows all three branches and explains why the result still says
+nothing about a probability law.
+
 {{< panel "info" >}}
 **What this does not say.** A measurable matrix-valued function need not have
 independent entries, Gaussian entries, finite moments, or any particular
@@ -72,7 +79,8 @@ The accompanying theorem `measurable_iff_entries` then exposes the intended
 coordinate criterion.
 
 Related concepts: {{< refterm "random-matrix" "random matrix" >}} and
-{{< refterm "almost-everywhere" "almost everywhere" >}}.
+{{< refterm "almost-everywhere" "almost everywhere" >}}. See also the
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}.
 
 Further reading: Mathlib's
 [measurable-space documentation](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/MeasurableSpace/Basic.html)

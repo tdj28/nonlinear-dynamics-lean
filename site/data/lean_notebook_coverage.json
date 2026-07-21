@@ -19,6 +19,10 @@
     "module": "NonlinearDynamics.Random.RandomMatrices.Hermitian",
     "notebook": "site/content/development-notebook/2026/07/hermitian-random-matrices/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates",
+    "notebook": "site/content/development-notebook/2026/07/hermitian-coordinate-assembly/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Laws",
     "notebook": "site/content/development-notebook/2026/07/from-random-matrices-to-laws/index.md"
