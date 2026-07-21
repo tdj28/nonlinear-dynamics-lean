@@ -191,10 +191,13 @@ spectral scales, even though they preserve the same symmetry principle.
 {{< panel "warning" >}}
 **Current project boundary.** The project now defines a finite GUE matrix law
 from Wigner-scaled independent Gaussian coordinates and measurable Hermitian
-assembly. It has **not** proved that this law is invariant under unitary
-conjugation. The earlier law layer defines the invariance predicate and proves
-it only for the zero measure and the point mass at the zero matrix. Those
-remain interface checks, not the nontrivial GUE symmetry theorem.
+assembly, proves that this law has Hermitian support, and proves that unitary
+congruence preserves the intrinsic standard Gaussian on Hermitian Frobenius
+space. It has **not** proved that the coordinate-built GUE law equals the
+correctly scaled intrinsic Gaussian, so invariance of <code>GUE.matrixLaw</code>
+remains RMT-08. See
+[Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
+for the checked geometry and the exact missing bridge.
 {{< /panel >}}
 
 ## Lean-facing interpretation

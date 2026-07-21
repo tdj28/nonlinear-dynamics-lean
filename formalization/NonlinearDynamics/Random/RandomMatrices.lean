@@ -1,5 +1,6 @@
 import NonlinearDynamics.Random.RandomMatrices.Basic
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry
 import NonlinearDynamics.Random.RandomMatrices.Hermitian
 import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
 import NonlinearDynamics.Random.RandomMatrices.Laws

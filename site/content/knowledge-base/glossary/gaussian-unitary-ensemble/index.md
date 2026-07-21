@@ -43,6 +43,12 @@ unitary-invariance theorem. Here, "GUE" identifies the explicit standard
 coordinate presentation that has been encoded; the symmetry named by the
 acronym remains a separate formal obligation.
 
+RMT-07 now proves that this matrix law has Hermitian support. It also proves
+unitary-congruence invariance of the intrinsic standard Gaussian on Hermitian
+Frobenius space. Identifying the coordinate-built law with the correctly
+scaled intrinsic Gaussian (and hence proving invariance of this matrix law) is
+the separate RMT-08 bridge.
+
 ## The normalization ledger
 
 The following table is the complete scale specification used by the project.
@@ -250,11 +256,18 @@ It does not yet prove:
 Those omissions are not qualifications hidden in implementation detail. They
 are the next mathematical layers.
 
+The follow-up RMT-07 geometry module has since discharged the support item and
+proved intrinsic standard-Gaussian symmetry. The density, comparison theorem,
+and unitary invariance of <code>GUE.matrixLaw</code> remain unchecked.
+
 ## Where to continue
 
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
 derives the factor-of-two geometry, builds the product probability space in
 dependency order, and maps every checked declaration to its precise claim.
+[Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
+continues with the Frobenius geometry, support theorem, and intrinsic Gaussian
+symmetry while keeping the RMT-08 comparison explicit.
 [Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
 develops the deterministic assembly map that receives this coordinate law.
 

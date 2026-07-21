@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="590"
+     viewBox="0 0 820 590" role="img"
+     aria-labelledby="hermitianSymmetryTitle hermitianSymmetryDesc">
+  <title id="hermitianSymmetryTitle">Two checked RMT-07 paths and the unproved RMT-08 bridge</title>
+  <desc id="hermitianSymmetryDesc">The upper path starts with the existing coordinate Gaussian law, applies measurable Hermitian assembly, and proves the resulting ambient matrix law has mass one on the Hermitian set. The lower path equips Hermitian matrices with Frobenius Euclidean geometry, proves unitary congruence is a real linear isometry, and therefore proves the intrinsic standard Gaussian is invariant. A dashed bridge from the coordinate matrix law to a scaled intrinsic standard Gaussian is explicitly reserved for RMT-08.</desc>
+  <rect width="820" height="590" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="symmetryArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <marker id="futureArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#8A837A"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="30" class="t title">Support and intrinsic symmetry are checked separately</text>
+  <text x="24" y="50" class="t m">The dashed comparison theorem is the exact missing bridge to invariance of the coordinate-built matrix law.</text>
+
+  <rect x="24" y="78" width="186" height="92" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="117" y="106" text-anchor="middle" class="t h">RMT-06 COORDINATE LAW</text>
+  <text x="117" y="133" text-anchor="middle" class="t s">independent Gaussian</text>
+  <text x="117" y="153" text-anchor="middle" class="t s">free entries</text>
+
+  <path d="M212 124 L248 124" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#symmetryArrow)"/>
+  <rect x="254" y="78" width="224" height="92" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="366" y="106" text-anchor="middle" class="t h">MEASURABLE ASSEMBLY</text>
+  <text x="366" y="133" text-anchor="middle" class="t s">diagonal + upper</text>
+  <text x="366" y="153" text-anchor="middle" class="t s">+ conjugate lower</text>
+
+  <path d="M480 124 L516 124" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#symmetryArrow)"/>
+  <rect x="522" y="78" width="274" height="92" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="659" y="106" text-anchor="middle" class="t h">AMBIENT MATRIX-LAW SUPPORT</text>
+  <text x="659" y="133" text-anchor="middle" class="t s">Hermitian set is measurable</text>
+  <text x="659" y="153" text-anchor="middle" class="t s">mass one / complement mass zero</text>
+
+  <text x="24" y="202" class="t m">CHECKED SUPPORT PATH</text>
+  <line x1="24" y1="211" x2="796" y2="211" stroke="#C4B8A8" stroke-width="1"/>
+
+  <rect x="24" y="246" width="214" height="104" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="131" y="274" text-anchor="middle" class="t h">FROBENIUS MATRIX SPACE</text>
+  <text x="131" y="301" text-anchor="middle" class="t s">Frobenius trace pairing</text>
+  <text x="131" y="325" text-anchor="middle" class="t m">finite complex Euclidean array</text>
+
+  <path d="M240 298 L276 298" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#symmetryArrow)"/>
+  <rect x="282" y="246" width="230" height="104" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="397" y="274" text-anchor="middle" class="t h">HERMITIAN REAL SUBSPACE</text>
+  <text x="397" y="301" text-anchor="middle" class="t s">two-sided unitary congruence</text>
+  <text x="397" y="325" text-anchor="middle" class="t m">real linear inner-product isometry</text>
+
+  <path d="M514 298 L550 298" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#symmetryArrow)"/>
+  <rect x="556" y="246" width="240" height="104" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="676" y="274" text-anchor="middle" class="t h">INTRINSIC STANDARD GAUSSIAN</text>
+  <text x="676" y="301" text-anchor="middle" class="t s">unchanged by every unitary</text>
+  <text x="676" y="325" text-anchor="middle" class="t m">Mathlib stdGaussian_map</text>
+
+  <text x="24" y="382" class="t m">CHECKED INTRINSIC-SYMMETRY PATH</text>
+  <line x1="24" y1="391" x2="796" y2="391" stroke="#C4B8A8" stroke-width="1"/>
+
+  <path d="M796 170 C812 280,812 414,500 448" fill="none" stroke="#8A837A" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#futureArrow)"/>
+  <path d="M676 352 C676 420,523 418,380 448" fill="none" stroke="#8A837A" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#futureArrow)"/>
+  <rect x="210" y="450" width="400" height="92" rx="12" fill="#EFEDE9" stroke="#8A837A" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="410" y="478" text-anchor="middle" class="t h">RMT-08 COMPARISON BRIDGE: NOT YET CHECKED</text>
+  <text x="410" y="505" text-anchor="middle" class="t s">coordinate-built law must match the scaled intrinsic Gaussian</text>
+  <text x="410" y="527" text-anchor="middle" class="t m">then invariance of the actual GUE matrix law can be transported</text>
+
+  <text x="24" y="574" class="t m">RMT-07 proves geometry, support, and intrinsic symmetry, not a density, coordinate-law equivalence, or GUE matrix-law invariance.</text>
+</svg>

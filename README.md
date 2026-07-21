@@ -285,18 +285,23 @@ The first active sequence is:
    through measurable Hermitian assembly, proves exact entry marginals and
    the relevant independence interfaces, and reduces dimension zero to Dirac
    laws on the unique empty coordinate point and matrix.
+10. [`RandomMatrices/GaussianUnitaryEnsembleGeometry.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean)
+    flattens matrices into Frobenius Euclidean space, cuts out the Hermitian
+    matrices as an intrinsic real subspace, packages unitary congruence as an
+    isometry, proves invariance of Mathlib's standard Gaussian on that
+    intrinsic space, and proves the coordinate-built ambient GUE law gives the
+    measurable Hermitian locus mass one. It deliberately keeps that intrinsic
+    Gaussian distinct from `GUE.matrixLaw` until their normalized coordinate
+    presentations are proved equal.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Build the Frobenius Euclidean carrier and intrinsic real Hermitian subspace,
-   prove the trace/Frobenius identity and unitary congruence isometry, and
-   package almost-everywhere Hermitian support of the finite GUE law.
-2. Identify the coordinate-product construction with the corresponding
+1. Identify the coordinate-product construction with the corresponding
    isotropic Gaussian measure on Hermitian space, then derive nontrivial
    unitary-conjugation invariance at the level of probability laws.
-3. Establish integrability and check the first exact expected trace moments.
-4. Reuse the same matrix layer for random Jacobian stability and matrix
+2. Establish integrability and check the first exact expected trace moments.
+3. Reuse the same matrix layer for random Jacobian stability and matrix
    cocycles.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,

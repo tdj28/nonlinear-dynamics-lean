@@ -521,6 +521,11 @@ That missing support declaration does not invalidate the construction. It
 marks the difference between a sample map whose outputs satisfy a property and
 a named theorem about the support of its pushforward law.
 
+The follow-up RMT-07 module now supplies that named support theorem. It also
+proves symmetry of the intrinsic standard Gaussian on Hermitian Frobenius
+space, while leaving the coordinate-to-intrinsic comparison for RMT-08; see
+[Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}}).
+
 ## Camp seven: transfer matrix-entry laws
 
 The diagonal and upper entry maps composed with assembly reduce to coordinate
