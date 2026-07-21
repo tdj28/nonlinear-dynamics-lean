@@ -1,0 +1,11 @@
+{{ $url := "" }}
+{{ $alt := .Params.og_image_alt | default "" }}
+{{ with .Params.og_image }}
+  {{ $resource := $.Resources.GetMatch . }}
+  {{ if $resource }}
+    {{ $url = $resource.Permalink }}
+  {{ else }}
+    {{ $url = (. | absURL) }}
+  {{ end }}
+{{ end }}
+{{ return (dict "url" $url "alt" $alt) }}

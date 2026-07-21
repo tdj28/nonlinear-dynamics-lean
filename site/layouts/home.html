@@ -1,0 +1,65 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">A proof-oriented field notebook</p>
+      <h1>Nonlinear dynamics,<br><span>made formal.</span></h1>
+      <p class="hero-lead">We are building a machine-checked path from physical intuition to precise mathematics to Lean proofs, with every important design decision explained in public.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="{{ "/development-notebook/" | relURL }}">Open the notebook</a>
+        <a class="button secondary" href="{{ "/knowledge-base/" | relURL }}">Explore concepts</a>
+      </div>
+    </div>
+    <div class="phase-portrait" aria-label="Conceptual trajectory approaching a nonlinear attractor">
+      <div class="phase-grid" aria-hidden="true"></div>
+      <span class="orbit orbit-one" aria-hidden="true"></span>
+      <span class="orbit orbit-two" aria-hidden="true"></span>
+      <span class="orbit orbit-three" aria-hidden="true"></span>
+      <span class="fixed-point" aria-hidden="true"></span>
+      <div class="phase-caption"><span>state space</span><strong>trajectory -> invariant structure</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="status-band" aria-label="Project status">
+  <div class="shell status-grid">
+    <div><span>Formal system</span><strong>Lean 4.32.0</strong></div>
+    <div><span>Library</span><strong>Mathlib</strong></div>
+    <div><span>Method</span><strong>Definitions -> proofs -> models</strong></div>
+  </div>
+</section>
+
+<section class="shell pathways" aria-labelledby="pathways-title">
+  <div class="section-heading">
+    <p class="eyebrow">Two ways into the work</p>
+    <h2 id="pathways-title">Follow the construction or study the foundations.</h2>
+  </div>
+  <div class="pathway-grid">
+    <a class="pathway-card notebook-card" href="{{ "/development-notebook/" | relURL }}">
+      <span class="card-index">01 / evolving record</span>
+      <h3>Development Notebook</h3>
+      <p>Chronological entries joining the physics, derivations, Lean architecture, proof state, and exact commands used along the way.</p>
+      <span class="card-action">Trace the work <b aria-hidden="true">-></b></span>
+    </a>
+    <a class="pathway-card knowledge-card" href="{{ "/knowledge-base/" | relURL }}">
+      <span class="card-index">02 / stable reference</span>
+      <h3>Knowledge Base</h3>
+      <p>Glossary entries and deep dives for the concepts that recur across dynamical systems, analysis, physics, and formal proof.</p>
+      <span class="card-action">Build the foundation <b aria-hidden="true">-></b></span>
+    </a>
+  </div>
+</section>
+
+<section class="shell proof-chain" aria-labelledby="proof-chain-title">
+  <div class="section-heading compact">
+    <p class="eyebrow">The working chain</p>
+    <h2 id="proof-chain-title">One phenomenon, four connected views.</h2>
+  </div>
+  <ol class="chain-list">
+    <li><span>01</span><div><strong>Physical picture</strong><p>What trajectories, equilibria, forcing, and instability mean in the modeled world.</p></div></li>
+    <li><span>02</span><div><strong>Mathematical statement</strong><p>The spaces, maps, flows, assumptions, and quantifiers that make the claim exact.</p></div></li>
+    <li><span>03</span><div><strong>Lean encoding</strong><p>The definitions and reusable interfaces that expose the right proof obligations.</p></div></li>
+    <li><span>04</span><div><strong>Checked artifact</strong><p>A theorem whose dependencies, remaining assumptions, and build command are inspectable.</p></div></li>
+  </ol>
+</section>
+{{ end }}

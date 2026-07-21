@@ -1,0 +1,22 @@
+{{ define "main" }}
+<header class="section-hero knowledge-hero">
+  <div class="shell">
+    <p class="eyebrow">Reference layer</p>
+    <h1>Knowledge <span>Base</span></h1>
+    <p>{{ .Params.summary }}</p>
+  </div>
+</header>
+<div class="shell section-body">
+  <div class="section-intro prose">{{ .Content }}</div>
+  <nav class="collection-grid" aria-label="Knowledge Base collections">
+    {{ range .Sections.ByWeight }}
+    <a class="collection-card" href="{{ .RelPermalink }}">
+      <span class="card-index">{{ .Params.card_index }} / {{ .Params.card_label }}</span>
+      <h2>{{ .Title }}</h2>
+      <p>{{ .Params.summary }}</p>
+      <span class="card-action">{{ .Params.card_action }} <b aria-hidden="true">-></b></span>
+    </a>
+    {{ end }}
+  </nav>
+</div>
+{{ end }}

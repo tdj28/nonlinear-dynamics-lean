@@ -1,0 +1,4 @@
+{{ $kind := .Get 0 | default "info" }}
+<aside class="panel panel-{{ $kind }}">
+  {{ .Inner | markdownify }}
+</aside>

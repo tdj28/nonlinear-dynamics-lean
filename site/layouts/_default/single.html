@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="article shell">
+  <header class="article-header">
+    <a class="back-link" href="{{ if eq .Section "knowledge-base" }}{{ "/knowledge-base/" | relURL }}{{ else }}{{ "/development-notebook/" | relURL }}{{ end }}"><span aria-hidden="true"><-</span> {{ if eq .Section "knowledge-base" }}Knowledge Base{{ else }}Development Notebook{{ end }}</a>
+    <p class="eyebrow">{{ if eq .Section "knowledge-base" }}Knowledge Base{{ else }}Development Notebook{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lead }}<div class="article-lead">{{ . | markdownify }}</div>{{ end }}
+    <div class="article-meta">
+      {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "January 2, 2006" }}</time>{{ end }}
+      {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+      {{ if .Draft }}<span class="draft-badge">Draft</span>{{ end }}
+    </div>
+  </header>
+  {{ if and (ne .Params.toc false) (gt (len .TableOfContents) 50) }}
+  <aside class="toc" aria-label="On this page"><strong>On this page</strong>{{ .TableOfContents }}</aside>
+  {{ end }}
+  <div class="prose article-body">
+    {{ with .Params.ai_disclosure }}
+    <aside class="panel panel-info">{{ . | markdownify }}</aside>
+    {{ end }}
+    {{ .Content }}
+  </div>
+  <footer class="article-footer">
+    <p>This page is part of a public, version-controlled formalization record.</p>
+    {{ with .File }}<a href="{{ $.Site.Params.repository }}/commits/main/site/content/{{ .Path }}" rel="noopener">View edit history</a>{{ end }}
+  </footer>
+</article>
+{{ end }}

@@ -1,0 +1,47 @@
+baseURL: '/'
+languageCode: 'en-us'
+title: 'Nonlinear Dynamics, Formally'
+description: 'Physics, mathematics, and machine-checked proofs of nonlinear dynamics.'
+publishDir: '../public'
+enableRobotsTXT: true
+
+ignoreFiles:
+  - '(^|/)AGENTS[.]md$'
+  - '\.venv/'
+  - 'node_modules/'
+  - '__pycache__/'
+
+params:
+  description: 'A development notebook and knowledge base for formalizing nonlinear dynamics in Lean.'
+  repository: 'https://github.com/tdj28/nonlinear-dynamics-lean'
+
+permalinks:
+  development-notebook: '/development-notebook/:year/:month/:slug/'
+
+taxonomies:
+  tag: 'tags'
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ['\[', '\]']
+          inline:
+            - ['\(', '\)']
+  highlight:
+    noClasses: false
+    codeFences: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+
+outputs:
+  home: ['HTML', 'RSS']
+  page: ['HTML']
+  section: ['HTML', 'RSS']

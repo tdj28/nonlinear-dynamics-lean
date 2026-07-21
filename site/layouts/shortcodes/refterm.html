@@ -1,0 +1,4 @@
+{{ $slug := .Get 0 }}
+{{ $label := .Get 1 | default $slug }}
+{{ $target := .Site.GetPage (printf "/knowledge-base/glossary/%s" $slug) }}
+{{ if $target }}<a class="term-link" href="{{ $target.RelPermalink }}">{{ $label }}</a>{{ else }}{{ errorf "refterm target not found: %s" $slug }}{{ end }}

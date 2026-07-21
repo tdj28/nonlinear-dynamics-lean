@@ -1,0 +1,22 @@
+{{ define "main" }}
+<header class="section-hero">
+  <div class="shell">
+    <p class="eyebrow">{{ .Site.Title }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+  </div>
+</header>
+<div class="shell section-body">
+  {{ with .Content }}<div class="section-intro prose">{{ . }}</div>{{ end }}
+  <div class="entry-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <a class="entry-row" href="{{ .RelPermalink }}">
+      <div><h2>{{ .Title }}</h2><p>{{ .Params.summary | default .Summary | plainify }}</p></div>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
+    </a>
+    {{ else }}
+    <div class="empty-state"><span>Collection / forming</span><h2>The first entries are being prepared.</h2><p>Drafts will appear after their mathematical and editorial scaffolds are ready.</p></div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,19 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Lean and Lake build artifacts
+**/.lake/
+**/.lean/
+
+# Hugo output and generated resources
+/public/
+/site/resources/_gen/
+/site/.hugo_build.lock
+
+# Private review artifacts
+/.cache/
+
+# macOS metadata
+.DS_Store

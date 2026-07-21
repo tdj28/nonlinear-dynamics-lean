@@ -1,0 +1,12 @@
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $caption := .Get "caption" }}
+{{ $resource := .Page.Resources.GetMatch $src }}
+<figure class="reference-figure">
+  {{ if $resource }}
+  <img src="{{ $resource.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  {{ else }}
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  {{ end }}
+  {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

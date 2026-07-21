@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="{{ .Site.Language.LanguageCode | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ $description := .Params.summary | default .Site.Params.description }}
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ $description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ .Title | default .Site.Title }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ $featured := partial "featured-image.html" . }}
+  {{ if $featured.url }}
+  <meta property="og:image" content="{{ $featured.url }}">
+  <meta property="og:image:alt" content="{{ $featured.alt }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ $featured.url }}">
+  <meta name="twitter:image:alt" content="{{ $featured.alt }}">
+  {{ else }}
+  <meta name="twitter:card" content="summary">
+  {{ end }}
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+  {{ if .IsPage }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'strict' });
+  </script>
+  {{ end }}
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="site-mark" href="{{ "/" | relURL }}" aria-label="Nonlinear Dynamics, Formally home">
+        <span class="mark-glyph" aria-hidden="true">N</span>
+        <span class="mark-copy"><strong>Nonlinear Dynamics</strong><small>formally</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="{{ "/development-notebook/" | relURL }}"{{ if eq .Section "development-notebook" }} aria-current="page"{{ end }}>Development Notebook</a>
+        <a href="{{ "/knowledge-base/" | relURL }}"{{ if eq .Section "knowledge-base" }} aria-current="page"{{ end }}>Knowledge Base</a>
+        <a href="{{ .Site.Params.repository }}" rel="noopener">Lean source</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <p>Physics, mathematics, and machine-checked proofs.</p>
+      <nav aria-label="Footer navigation">
+        <a href="{{ "/development-notebook/" | relURL }}">Notebook</a>
+        <a href="{{ "/knowledge-base/" | relURL }}">Knowledge Base</a>
+        <a href="{{ .Site.Params.repository }}" rel="noopener">Repository</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="{{ "js/site.js" | relURL }}"></script>
+</body>
+</html>
