@@ -843,7 +843,9 @@ h1, h2, h3 { text-wrap: balance; }
   font-size: 11px;
   line-height: 1.35;
   text-decoration: none;
+  overflow-wrap: anywhere;
 }
+.toc code { overflow-wrap: anywhere; }
 .toc a:hover,
 .toc a[aria-current="location"] { border-left: 3px solid var(--amber); padding-left: 10px; color: var(--ink); }
 .article-main { min-width: 0; }

@@ -695,9 +695,9 @@ An entrywise constructor, an ambient Hermitian-space density, and a symmetry
 description may eventually define the same law. Formal equivalence between
 them is a theorem, not a naming convention.
 
-## The deliberate stop before GUE
+## The deliberate RMT-02 stop before complex coordinates
 
-At this point we have:
+At the verified stopping point represented by this chapter, we had:
 
 - exact real Gaussian laws, including zero variance;
 - probability, mean, variance, finite-moment, scaling, and independent-sum
@@ -708,7 +708,7 @@ At this point we have:
 - qualitative joint Gaussianity; and
 - a canonical finite product sample space.
 
-We do not yet have:
+At that stopping point, we did not yet have:
 
 - a project definition of a complex Gaussian random variable;
 - an approved variance split between real and imaginary parts;
@@ -722,10 +722,11 @@ We do not yet have:
 - an asymptotic spectral theorem.
 
 {{< panel "warning" >}}
-**Boundary of the current formalization.** The scalar and finite-product
-probability foundations are checked. The phrase "Gaussian unitary ensemble"
-would currently outrun the Lean code because the complex and matrix
-normalization ledger is intentionally unresolved.
+**Historical boundary and current continuation.** The scalar and finite-product
+probability foundations in this chapter are checked. The subsequent
+<code>NonlinearDynamics.Random.ComplexGaussian</code> module now defines an
+exact two-variance Cartesian complex law. It still does not choose a named
+matrix normalization or prove a Gaussian unitary ensemble law.
 {{< /panel >}}
 
 This pause protects every later theorem. If the variance convention changes
@@ -779,6 +780,8 @@ For individual concepts, use the linked glossary:
   mutual families;
 - {{< refterm "normalization-convention" "normalization convention" >}} for
   the complex and matrix ledgers;
+- {{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
+  for the now-checked independent real-imaginary construction;
 - {{< refterm "probability-law" "probability law" >}} for the sample-map versus
   measure distinction; and
 - {{< refterm "random-matrix" "random matrix" >}} for the later matrix-valued
@@ -788,6 +791,11 @@ The earlier chapter
 [Random Matrices: From Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
 provides the matrix-measurability, Hermitian, law, and observable foundations
 that the future constructor will consume.
+
+Continue directly to
+[Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
+for the exact complex law, degeneracy map, second-order geometry, normalization
+conversion, and twenty checked Lean declarations.
 
 ## References
 

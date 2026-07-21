@@ -262,13 +262,21 @@ The first active sequence is:
    the zero-variance Dirac case, proves finite-exponent `MemLp` and
    integrability, bundles measurable mutually independent families, and
    identifies their finite joint law with a Gaussian product measure.
+6. [`ComplexGaussian.lean`](formalization/NonlinearDynamics/Random/ComplexGaussian.lean)
+   transports a product of exact real Gaussian laws to `ℂ`, keeps the real
+   and imaginary coordinate variances explicit, recovers both marginals and
+   their independence, and proves integrability, the exact mean, and the
+   double-zero Dirac boundary. "Cartesian" does not imply circularity or
+   properness.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Construct Cartesian complex Gaussian primitive variables from independent
-   exact real laws, keeping real-part and imaginary-part variances explicit.
-2. Define finite GOE/GUE ensembles with a visible normalization ledger.
+1. Bundle finite independent Cartesian complex Gaussian families and their
+   canonical product sample space, retaining coordinatewise variance splits,
+   real scaling, and the empty-index boundary.
+2. Approve a visible normalization and representation ledger, then define a
+   finite GUE ensemble from the exact Gaussian primitives.
 3. Use the law-level interface to prove unitary invariance of GUE at the level
    of probability laws.
 4. Establish integrability and check the first exact expected trace moments.

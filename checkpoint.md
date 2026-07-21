@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 00:04 PDT
+Last updated: 2026-07-21 00:33 PDT
 
-Audited baseline: `main` at `dded074`
+Audited baseline: `main` at `e36c177`
 
 Active direction: finite random-matrix foundations toward an explicit GUE law
 
@@ -23,14 +23,14 @@ Active direction: finite random-matrix foundations toward an explicit GUE law
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green build: 3,138 Lean jobs; five substantive modules; five complete
-  draft Notebook companions; 61 Hugo pages with warnings fatal.
-- Lean inventory: 98 declaration lines across the five substantive modules;
+- Last green build: 3,139 Lean jobs; six substantive modules; six complete
+  draft Notebook companions; 68 Hugo pages with warnings fatal.
+- Lean inventory: 118 declaration lines across the six substantive modules;
   18 one-line deterministic placeholders; three `.gitkeep`-only Random
   branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 25,112 words across the five Notebook companions and
-  18,858 words across two Deep Dives and fourteen glossary chapters.
+- Teaching snapshot: 31,251 words across the six Notebook companions and
+  25,356 words across three Deep Dives and fifteen glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -45,20 +45,22 @@ Active direction: finite random-matrix foundations toward an explicit GUE law
 | `NonlinearDynamics.Random.RandomMatrices.Laws` | Pushforward laws, composition, probability/Dirac rules, measurable congruence, unitary-invariance interface | `from-random-matrices-to-laws` |
 | `NonlinearDynamics.Random.RandomMatrices.Observables` | Measurable matrix powers and trace powers, Hermitian reality pointwise and a.e. | `trace-power-observables` |
 | `NonlinearDynamics.Random.GaussianPrimitives` | Exact real Gaussian laws, moments and integrability, zero-variance behavior, scaling and independent sums, measurable independent families, finite joint product laws, and a canonical product sample space | `gaussian-primitives-exact-laws-and-independence` |
+| `NonlinearDynamics.Random.ComplexGaussian` | Exact Cartesian complex Gaussian laws with explicit coordinate variances, product and marginal laws, coordinate independence, real-Banach Gaussianity, moments and integrability, exact mean, the double-zero Dirac boundary, and construction from independent exact real coordinates | `complex-gaussians-from-independent-real-coordinates` |
 
-The root aggregator imports all five modules. The proof-to-prose manifest and
+The root aggregator imports all six modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Five comprehensive Development Notebook chapters.
-- Two textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*
-  and *Gaussian Laws, Independence, and Normalization*.
-- Fourteen glossary chapters, now including Gaussian distribution, variance,
-  independence, and normalization convention alongside the matrix and
-  measure-theory foundations.
-- Eleven deterministic 1200x630 social cards and five accessible conceptual
+- Six comprehensive Development Notebook chapters.
+- Three textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+  *Gaussian Laws, Independence, and Normalization*, and *Complex Gaussian
+  Coordinates and Geometry*.
+- Fifteen glossary chapters, now including Cartesian complex Gaussian law
+  alongside Gaussian distribution, variance, independence, normalization
+  convention, and the matrix and measure-theory foundations.
+- Fourteen deterministic 1200x630 social cards and seven accessible conceptual
   SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -67,37 +69,40 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-03: complex Gaussian primitives with an explicit variance split
+### RMT-04: independent Cartesian complex Gaussian families
 
-The next module is `NonlinearDynamics.Random.ComplexGaussian`. It must build a
-complex law from two exact real Gaussian laws rather than rely on an ambiguous
-phrase such as "standard complex Gaussian":
+The next module is `NonlinearDynamics.Random.ComplexGaussianFamilies`. It must
+lift the checked one-variable law to finite independent coordinates without
+quietly assuming missing cross-family independence:
 
-1. Define `cartesianComplexGaussian m vRe vIm` on `ℂ` by mapping the product of
-   `gaussianReal m.re vRe` and `gaussianReal m.im vIm` through the measurable
-   equivalence from `ℝ × ℝ` to `ℂ`.
-2. Define an exact `HasCartesianComplexGaussianLaw Z m vRe vIm P` predicate
-   around that measure. "Cartesian" records independent coordinate axes; it
-   does not claim circular symmetry or properness. Keep ordinary measurability
-   separate from the a.e. measurability carried by `HasLaw`, as in the real
-   layer.
-3. Prove the probability-measure fact and exact real-part and imaginary-part
-   laws, means, variances, and independence. State only moment or qualitative
-   Gaussian consequences that compile against the pinned Mathlib API.
-4. Construct the complex variable `X + Y * I` from ordinarily measurable,
-   independent real variables with exact Gaussian laws, and prove its exact
-   complex law.
-5. Keep `vRe` and `vIm` visible in every public interface. Record the two
-   common symmetric choices, component variance `1/2` versus `1`, in prose,
-   but do not bless either as the GUE convention yet.
-6. Import the module through `NonlinearDynamics.Random`, pair it with a complete
-   Notebook chapter and textbook integration, run strict validation, update
-   this checkpoint, commit, and push to `main`.
+1. Define `IndependentCartesianComplexGaussianFamily Z m vRe vIm P` with
+   ordinary measurability for every coordinate, its exact Cartesian complex
+   Gaussian law, and `iIndepFun Z P`. Keep both variance functions visible.
+2. Expose coordinate a.e. measurability, the probability-measure consequence,
+   real and imaginary exact laws and variances, exact complex means, `MemLp`,
+   and integrability through the bundle.
+3. First prove real scalar multiplication for one exact complex law, then lift
+   it coordinatewise. A real scale multiplies both coordinate variances by its
+   square and avoids the covariance rotation caused by a general complex
+   scale.
+4. For finite `ι`, prove the joint law is
+   `Measure.pi (fun i ↦ cartesianComplexGaussian (m i) (vRe i) (vIm i))`.
+   Define that canonical product measure, prove its probability instance,
+   evaluation laws, coordinate independence, and the bundled canonical family.
+5. State the empty-index boundary explicitly using `Measure.pi_of_empty`: the
+   product is the Dirac mass at the unique empty function. This is still not a
+   decision about a zero-dimensional matrix ensemble.
+6. Do not construct complex coordinates by pairing two separately independent
+   real families: those hypotheses do not supply independence between the two
+   families. A later constructor must start from joint block independence.
+7. Pair the module with a complete Notebook chapter and Knowledge Base links,
+   run strict validation, update this checkpoint, commit, and push to `main`.
 
-This slice will still make no matrix-ensemble, GUE, density,
-unitary-invariance, eigenvalue, matrix-observable expectation, trace-moment, or
-asymptotic claim. The normalization ledger and zero-dimensional policy must be
-approved before a GUE constructor is named.
+This slice will still make no circularity, properness, density,
+matrix-ensemble, GUE, unitary-invariance, eigenvalue, matrix-observable
+expectation, trace-moment, or asymptotic claim. The GUE normalization,
+representation, and zero-dimensional ledgers remain gates after this family
+layer.
 
 ## Dependency-Ordered Roadmap
 
@@ -127,8 +132,9 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Pushforward laws and unitary-invariance interface.
 - [x] Trace-power observables before expectation.
 - [x] Gaussian real primitives with exact laws and independence.
-- [ ] Complex Gaussian primitives with explicit variance splitting.
-- [ ] Finite independent Gaussian families and scaled-entry integrability.
+- [x] Complex Gaussian primitives with explicit variance splitting.
+- [ ] Finite independent Cartesian complex Gaussian families, real scaling,
+  and a canonical product law.
 - [ ] Finite-dimensional GUE constructor under an approved normalization
   ledger and an explicit `n = 0` policy.
 - [ ] Hermitian support and nontrivial unitary invariance of the GUE law.
@@ -210,6 +216,20 @@ k-invariance precedes approximation claims.
   separately.
 - The empty scalar Gaussian product is the Dirac mass at the unique empty
   tuple. This does not decide the later zero-dimensional matrix policy.
+- A Cartesian complex Gaussian law is the product of independent real and
+  imaginary Gaussian coordinates. It does not by itself mean circular or
+  proper complex Gaussianity.
+- Complex Gaussian coordinate variances remain a visible pair `vRe`, `vIm`.
+  No single undifferentiated "complex variance" is used, and no symmetric
+  choice has been selected as the GUE normalization.
+- Qualitative `IsGaussian` for the complex law is over the underlying real
+  Banach space. It does not encode circularity, a density, or a matrix law.
+- When both coordinate variances vanish, the complex law is Dirac at its mean.
+  The one-zero line-supported case is explained in prose but has no named Lean
+  theorem yet.
+- Separate independence of a real family and an imaginary family is
+  insufficient to pair them coordinatewise; the missing cross-family
+  independence must never be inferred.
 - No GOE/GUE normalization has been selected yet.
 - GUE construction has an open representation gate: independent entries are
   convenient for coordinates, while an isotropic Gaussian measure on the real
@@ -273,9 +293,20 @@ Checkpoint/skill milestone QA:
   parse, KaTeX delimiters balance, Hugo renders 61 pages with warnings fatal,
   and desktop plus mobile browser QA reports no page-level overflow or broken
   rendered assets.
+- RMT-03 Lean audit: all 20 public declarations match their exact-law and
+  edge-case claims, warnings-as-errors passes for the module and both
+  aggregators, the build completes 3,139 jobs, and only Mathlib's standard
+  classical axioms appear in the audit.
+- RMT-03 teaching audit: the 6,139-word Notebook covers every declaration; the
+  new glossary and Deep Dive accurately separate checked Lean from density,
+  support, covariance, pseudocovariance, properness, and circularity
+  derivations; all three new cards reproduce byte-for-byte; both SVGs parse;
+  KaTeX renders; and desktop plus 390-pixel mobile QA reports no page-level
+  overflow, broken assets, or browser warnings.
 
 ## Recent Pushes
 
+- `e36c177` — exact real Gaussian primitives, product laws, and teaching layer.
 - `dded074` — living checkpoint and project research/formalization skill.
 - `ab28b91` — random-matrix formalization and guided learning-path milestone.
 - `dcbb45e` — initial blog structure.

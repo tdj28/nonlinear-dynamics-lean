@@ -197,9 +197,14 @@ The {{< refterm "gaussian-distribution" "Gaussian distribution" >}} uses
 variance as its exact spread parameter. The
 {{< refterm "normalization-convention" "normalization convention" >}} page
 explains why scaling choices must be written down before real coordinates are
-assembled into a complex variable or matrix. For the complete construction,
-continue to
-[Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}}).
+assembled into a complex variable or matrix. The
+{{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
+keeps both component variances explicit, while
+[Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
+derives their sum, difference, support geometry, and symmetry boundary. The
+earlier
+[Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}})
+builds the real finite-product foundation.
 
 ## References
 

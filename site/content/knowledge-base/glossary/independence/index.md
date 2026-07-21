@@ -187,7 +187,9 @@ not merely an existence claim.
   equal marginals.
 - Zero covariance is not independence in general.
 - Independent real and imaginary parts are one possible ingredient of a
-  complex Gaussian convention. Their variances still have to be declared.
+  complex Gaussian convention. The
+  {{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
+  uses exactly this ingredient while keeping both variances declared.
 - This page constructs no matrix ensemble and proves no unitary invariance.
 
 ## Where to continue
@@ -197,7 +199,11 @@ defines each coordinate law. The
 {{< refterm "normalization-convention" "normalization convention" >}} page
 explains what must be fixed before scaling those coordinates. The Deep Dive
 [Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}})
-shows how finite product measures and exact Lean laws fit together.
+shows how finite product measures and exact Lean laws fit together. The next
+chapter,
+[Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}}),
+turns one independent real pair into an exact complex law and then separates
+properness from circular symmetry.
 
 ## References
 

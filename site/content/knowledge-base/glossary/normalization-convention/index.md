@@ -89,9 +89,10 @@ ambiguous.
   caption="**Finding:** a complex Gaussian label does not determine scale. The two branches use the same exact primitive laws but produce total second moments one and two. These are symbolic constructions, not empirical estimates, and neither branch is yet the project's matrix-ensemble convention."
 >}}
 
-## The minimum ledger for a future complex Gaussian
+## The minimum ledger for a Cartesian complex Gaussian
 
-Before defining a complex Gaussian variable \(Z=X+iY\), record at least:
+To define a complex Gaussian variable \(Z=X+iY\) without hiding its scale,
+record at least:
 
 | Ledger field | Question that must have one answer |
 |---|---|
@@ -105,9 +106,10 @@ Before defining a complex Gaussian variable \(Z=X+iY\), record at least:
 | Naming | Does the scale parameter denote a component variance, total variance, or standard deviation? |
 
 Equal component variances plus independence for centered real Gaussian parts
-supports a rotationally symmetric complex law, but that fact belongs in the
-later complex-Gaussian module with its proof. A ledger entry is a specification,
-not a substitute for a theorem.
+supports a rotationally symmetric complex law. That statement is a
+mathematical consequence of the full Gaussian product law, not a symmetry
+theorem in the current Lean module. A ledger entry is a specification, not a
+substitute for a theorem.
 
 ## The minimum ledger before a Gaussian matrix ensemble
 
@@ -175,6 +177,15 @@ facts: ordinary coordinate measurability, each exact Gaussian law, and mutual
 independence. This is enough to prepare coordinates for a later complex
 construction without committing to a matrix normalization.
 
+The checked <code>cartesianComplexGaussian m vRe vIm</code> measure now uses
+the same exact-law ingredients. It maps the product of two exact real Gaussian
+laws into \(\mathbb C\), while
+<code>HasCartesianComplexGaussianLaw</code> keeps <code>vRe</code> and
+<code>vIm</code> visible. The module proves the exact joint and marginal laws,
+coordinate independence, finite moments, integrability, mean, and the
+double-zero Dirac branch. It does not select equal variances or formalize a
+complex density, pseudocovariance, properness, or circular symmetry.
+
 ## Edge cases and nonclaims
 
 - A normalization does not make a probability measure integrate to one unless
@@ -186,8 +197,9 @@ construction without committing to a matrix normalization.
 - Raw trace and normalized trace are different observables.
 - Setting \(n=0\) can make dimension-dependent factors undefined. A
   formal constructor needs an explicit policy.
-- The project has not yet approved a complex-Gaussian or named Gaussian matrix
-  normalization. The ledger above records the decision slots only.
+- The project has formalized an explicit two-variance Cartesian complex
+  Gaussian family. It has not approved an unqualified "standard" complex scale
+  or a named Gaussian matrix normalization.
 - Nothing on this page proves a Gaussian unitary ensemble law, unitary
   invariance, an eigenvalue density, or an asymptotic spectral result.
 
@@ -197,8 +209,12 @@ Read {{< refterm "variance" "variance" >}} for the scaling square and
 {{< refterm "independence" "independence" >}} for the joint-law obligation.
 The Deep Dive
 [Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}})
-builds a complete finite real product law and then stops at the boundary where
-the complex and matrix ledgers must be approved.
+builds a complete finite real product law. The
+{{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
+fills the independent-coordinate ledger without choosing a symmetric scale,
+and
+[Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
+develops its geometry and symmetry boundaries.
 
 ## References
 

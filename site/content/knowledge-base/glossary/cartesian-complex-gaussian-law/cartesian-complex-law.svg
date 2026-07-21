@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="cartesianTitle cartesianDesc">
+  <title id="cartesianTitle">Two real Gaussian coordinates assemble one complex law</title>
+  <desc id="cartesianDesc">Separate real-coordinate and imaginary-coordinate Gaussian laws enter a product-law stage, then an ordered-pair-to-complex map produces an exact complex law while retaining both coordinate variances.</desc>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .real{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .imag{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.6}
+    .joint{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.6}
+    .complex{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.8}
+    .arrow{fill:none;stroke:#7F786D;stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#7F786D"/>
+    </marker>
+  </defs>
+  <text x="24" y="28" class="t title">A complex law needs a joint coordinate law</text>
+  <text x="24" y="48" class="t m">Marginals enter separately; independence enters at the product stage.</text>
+
+  <rect x="24" y="78" width="196" height="82" rx="12" class="real"/>
+  <text x="42" y="106" class="t h">Real-coordinate law</text>
+  <text x="42" y="129" class="t s">mean: real part of center</text>
+  <text x="42" y="149" class="t s">spread: real variance</text>
+
+  <rect x="24" y="183" width="196" height="82" rx="12" class="imag"/>
+  <text x="42" y="211" class="t h">Imaginary-coordinate law</text>
+  <text x="42" y="234" class="t s">mean: imaginary part</text>
+  <text x="42" y="254" class="t s">spread: imaginary variance</text>
+
+  <path d="M220 119 C254 119 256 151 282 158" class="arrow"/>
+  <path d="M220 224 C254 224 256 192 282 184" class="arrow"/>
+
+  <rect x="286" y="116" width="190" height="112" rx="12" class="joint"/>
+  <text x="310" y="147" class="t h">Product law</text>
+  <text x="310" y="171" class="t s">both exact marginals</text>
+  <text x="310" y="193" class="t s">plus independence</text>
+  <text x="310" y="215" class="t m">an ordered real pair</text>
+
+  <path d="M476 172 L526 172" class="arrow"/>
+  <text x="488" y="157" class="t m">join</text>
+
+  <rect x="530" y="104" width="206" height="136" rx="12" class="complex"/>
+  <text x="552" y="136" class="t h">Exact complex law</text>
+  <line x1="632" y1="153" x2="632" y2="216" stroke="#7F786D" stroke-width="1.2"/>
+  <line x1="578" y1="185" x2="694" y2="185" stroke="#7F786D" stroke-width="1.2"/>
+  <ellipse cx="650" cy="173" rx="39" ry="22" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="650" cy="173" r="4" fill="#A67C52"/>
+  <text x="552" y="228" class="t m">both variances stay visible</text>
+
+  <rect x="24" y="310" width="712" height="52" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="44" y="341" class="t s">Exact coordinate laws plus independence determine the complex law. They do not select circularity or scale.</text>
+</svg>

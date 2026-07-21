@@ -179,7 +179,10 @@ parameters only after establishing the exact real law.
   alone does not imply Gaussianity or integrability.
 - This definition is real-valued. A complex Gaussian variable requires a
   declared joint law for its real and imaginary parts and a declared
-  {{< refterm "normalization-convention" "normalization convention" >}}.
+  {{< refterm "normalization-convention" "normalization convention" >}}. The
+  project records one exact independent-coordinate construction in the
+  {{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
+  entry.
 - This page does not define a matrix ensemble or a Gaussian unitary ensemble.
 
 ## Where to continue
@@ -188,7 +191,9 @@ Read {{< refterm "variance" "variance" >}} for the exact squared-spread
 calculation and {{< refterm "independence" "independence" >}} before combining
 several Gaussian coordinates. The
 [Gaussian Laws, Independence, and Normalization]({{< relref "/knowledge-base/deep-dives/gaussian-laws-independence-and-normalization" >}})
-Deep Dive assembles those concepts into finite product laws. The
+Deep Dive assembles those concepts into finite product laws. Continue to
+[Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
+to join two exact real coordinates without hiding their variance split. The
 {{< refterm "probability-law" "probability law" >}} and
 {{< refterm "pushforward-measure" "pushforward measure" >}} entries explain
 the measure-theoretic layer beneath the notation.
