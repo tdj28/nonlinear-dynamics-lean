@@ -1,0 +1,18 @@
+{{ $stage := "Checkpoint" }}
+{{ $title := "Pause and make this yours" }}
+{{ if .IsNamedParams }}
+  {{ with .Get "stage" }}{{ $stage = . }}{{ end }}
+  {{ with .Get "title" }}{{ $title = . }}{{ end }}
+{{ else }}
+  {{ with .Get 0 }}{{ $stage = . }}{{ end }}
+  {{ with .Get 1 }}{{ $title = . }}{{ end }}
+{{ end }}
+{{ $id := printf "checkpoint-%d" .Ordinal }}
+<aside class="learning-checkpoint" aria-labelledby="{{ $id }}">
+  <div class="checkpoint-marker" aria-hidden="true"><span></span></div>
+  <div class="checkpoint-content">
+    <span class="checkpoint-stage">{{ $stage }}</span>
+    <h2 id="{{ $id }}">{{ $title }}</h2>
+    <div>{{ .Inner | markdownify }}</div>
+  </div>
+</aside>

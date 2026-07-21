@@ -1,20 +1,41 @@
 {{ define "main" }}
 {{ $terms := .RegularPages.ByTitle }}
-<header class="section-hero">
+<header class="section-hero glossary-hero">
   <div class="shell">
-    <p class="eyebrow">Knowledge Base / Definitions</p>
+    <p class="eyebrow">Knowledge Base / precise language</p>
     <h1>Glossary</h1>
     <p>{{ .Params.summary }}</p>
   </div>
 </header>
 <div class="shell section-body">
-  <div class="section-toolbar"><a class="back-link" href="{{ "/knowledge-base/" | relURL }}"><span aria-hidden="true"><-</span> Knowledge Base</a><span>{{ len $terms }} terms</span></div>
-  <div class="entry-list glossary-list">
+  <div class="section-toolbar glossary-toolbar">
+    <a class="back-link" href="{{ "/knowledge-base/" | relURL }}"><span aria-hidden="true">&lt;-</span> Knowledge Base</a>
+    <span data-term-count>{{ len $terms }} {{ if eq (len $terms) 1 }}term{{ else }}terms{{ end }}</span>
+  </div>
+  {{ with .Content }}<div class="section-intro prose">{{ . }}</div>{{ end }}
+  {{ if $terms }}
+  <div class="glossary-filter">
+    <label for="glossary-search">Find a concept</label>
+    <div class="glossary-filter-control">
+      <input id="glossary-search" type="search" placeholder="Try: flow, eigenvalue, Lyapunov..." autocomplete="off" data-glossary-search>
+      <span aria-hidden="true">A-Z</span>
+    </div>
+    <p id="glossary-search-status" class="visually-hidden" aria-live="polite"></p>
+  </div>
+  {{ end }}
+  <div class="glossary-grid" data-glossary-list>
     {{ range $terms }}
-    <a class="entry-row" href="{{ .RelPermalink }}"><div><h2>{{ .Title }}</h2><p>{{ .Params.summary }}</p></div></a>
+    <article class="glossary-card" data-glossary-item data-search-text="{{ printf "%s %s" .Title .Params.summary | plainify | lower }}">
+      <a href="{{ .RelPermalink }}">
+        <span class="glossary-letter" aria-hidden="true">{{ substr .Title 0 1 | upper }}</span>
+        <div><h2>{{ .Title }}</h2><p>{{ .Params.summary }}</p></div>
+        <span class="glossary-arrow" aria-hidden="true">-&gt;</span>
+      </a>
+    </article>
     {{ else }}
-    <div class="empty-state"><span>Glossary / forming</span><h2>Definitions will grow with the formalization.</h2><p>A term is added when it becomes foundational or recurring, not merely to fill a list.</p></div>
+    <div class="empty-state empty-state-card"><span>Glossary / forming</span><h2>Definitions will grow with the formalization.</h2><p>A term is added when it becomes foundational or recurring, not merely to fill a list.</p></div>
     {{ end }}
   </div>
+  <p class="glossary-no-results" data-glossary-empty hidden>No matching term yet. The notebook may still define it in context.</p>
 </div>
 {{ end }}

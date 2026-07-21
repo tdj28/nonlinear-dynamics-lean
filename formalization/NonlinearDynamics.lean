@@ -1,4 +1,5 @@
 import NonlinearDynamics.Deterministic
+import NonlinearDynamics.Random
 
 /-!
 # Nonlinear Dynamics

@@ -1,0 +1,18 @@
+{
+  "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
+    "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"
+  },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.Hermitian",
+    "notebook": "site/content/development-notebook/2026/07/hermitian-random-matrices/index.md"
+  },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.Laws",
+    "notebook": "site/content/development-notebook/2026/07/from-random-matrices-to-laws/index.md"
+  },
+  "formalization/NonlinearDynamics/Random/RandomMatrices/Observables.lean": {
+    "module": "NonlinearDynamics.Random.RandomMatrices.Observables",
+    "notebook": "site/content/development-notebook/2026/07/trace-power-observables/index.md"
+  }
+}

@@ -2,15 +2,15 @@
 <section class="hero">
   <div class="shell hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow">A proof-oriented field notebook</p>
+      <p class="eyebrow">A guided ascent through nonlinear dynamics</p>
       <h1>Nonlinear dynamics,<br><span>made formal.</span></h1>
-      <p class="hero-lead">We are building a machine-checked path from physical intuition to precise mathematics to Lean proofs, with every important design decision explained in public.</p>
+      <p class="hero-lead">Begin with a trajectory you can picture. Finish with mathematics you can prove and Lean code you can run. Every rung of the climb is explained.</p>
       <div class="hero-actions">
-        <a class="button primary" href="{{ "/development-notebook/" | relURL }}">Open the notebook</a>
-        <a class="button secondary" href="{{ "/knowledge-base/" | relURL }}">Explore concepts</a>
+        <a class="button primary" href="#learning-path">Start the ascent</a>
+        <a class="button secondary" href="{{ "/development-notebook/" | relURL }}">Open the notebook</a>
       </div>
     </div>
-    <div class="phase-portrait" aria-label="Conceptual trajectory approaching a nonlinear attractor">
+    <div class="phase-portrait" role="img" aria-label="Conceptual trajectory approaching a nonlinear attractor">
       <div class="phase-grid" aria-hidden="true"></div>
       <span class="orbit orbit-one" aria-hidden="true"></span>
       <span class="orbit orbit-two" aria-hidden="true"></span>
@@ -21,30 +21,76 @@
   </div>
 </section>
 
+<section id="learning-path" class="learning-path" aria-labelledby="learning-path-title">
+  <div class="shell">
+    <div class="section-heading learning-path-heading">
+      <div>
+        <p class="eyebrow">The learning path</p>
+        <span class="route-marker">Trailhead <b aria-hidden="true">-&gt;</b> frontier</span>
+      </div>
+      <div>
+        <h2 id="learning-path-title">We hold your hand at sea level, then climb all the way to the research ridge.</h2>
+        <p class="section-deck">Each stage supplies the intuition, notation, examples, and proof architecture needed by the next. Specialists can jump ahead; first-time readers always have a route upward.</p>
+      </div>
+    </div>
+    <ol class="climb-route">
+      <li class="climb-stage stage-trailhead">
+        <span class="stage-number">01</span>
+        <div><span class="stage-altitude">Trailhead</span><h3>See the motion</h3><p>Phase portraits, equilibria, recurrence, and the physical question before the symbols arrive.</p></div>
+        <span class="stage-skill">intuition</span>
+      </li>
+      <li class="climb-stage stage-foundations">
+        <span class="stage-number">02</span>
+        <div><span class="stage-altitude">Base camp</span><h3>Build the language</h3><p>Metric spaces, measures, matrices, maps, flows, and the definitions that make dynamics exact.</p></div>
+        <span class="stage-skill">foundations</span>
+      </li>
+      <li class="climb-stage stage-formal">
+        <span class="stage-number">03</span>
+        <div><span class="stage-altitude">The ridge</span><h3>Translate into Lean</h3><p>Types, structures, hypotheses, and small reusable lemmas assembled into checked arguments.</p></div>
+        <span class="stage-skill">formal proof</span>
+      </li>
+      <li class="climb-stage stage-research">
+        <span class="stage-number">04</span>
+        <div><span class="stage-altitude">High camp</span><h3>Enter random dynamics</h3><p>Random matrices, Gaussian ensembles, cocycles, Lyapunov exponents, and stochastic stability.</p></div>
+        <span class="stage-skill">advanced</span>
+      </li>
+      <li class="climb-stage stage-frontier">
+        <span class="stage-number">05</span>
+        <div><span class="stage-altitude">Research frontier</span><h3>Connect to quantum chaos</h3><p>Spectral statistics, the Gaussian unitary ensemble, form factors, and invariance at the edge of the map.</p></div>
+        <span class="stage-skill">frontier</span>
+      </li>
+    </ol>
+    <div class="learning-path-actions">
+      <a class="text-link" href="{{ "/knowledge-base/" | relURL }}">Study the textbook layer <span aria-hidden="true">-&gt;</span></a>
+      <a class="text-link" href="{{ "/development-notebook/" | relURL }}">Follow the proof as it grows <span aria-hidden="true">-&gt;</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="status-band" aria-label="Project status">
   <div class="shell status-grid">
     <div><span>Formal system</span><strong>Lean 4.32.0</strong></div>
     <div><span>Library</span><strong>Mathlib</strong></div>
-    <div><span>Method</span><strong>Definitions -> proofs -> models</strong></div>
+    <div><span>Current focus</span><strong>Matrix laws -> GUE -> stability</strong></div>
   </div>
 </section>
 
 <section class="shell pathways" aria-labelledby="pathways-title">
   <div class="section-heading">
-    <p class="eyebrow">Two ways into the work</p>
+    <p class="eyebrow">Choose your reading mode</p>
     <h2 id="pathways-title">Follow the construction or study the foundations.</h2>
   </div>
   <div class="pathway-grid">
     <a class="pathway-card notebook-card" href="{{ "/development-notebook/" | relURL }}">
       <span class="card-index">01 / evolving record</span>
       <h3>Development Notebook</h3>
-      <p>Chronological entries joining the physics, derivations, Lean architecture, proof state, and exact commands used along the way.</p>
+      <p>Chronological entries pairing each Lean module with the physics, derivation, proof decisions, exact commands, and honest open questions behind it.</p>
       <span class="card-action">Trace the work <b aria-hidden="true">-></b></span>
     </a>
     <a class="pathway-card knowledge-card" href="{{ "/knowledge-base/" | relURL }}">
       <span class="card-index">02 / stable reference</span>
       <h3>Knowledge Base</h3>
-      <p>Glossary entries and deep dives for the concepts that recur across dynamical systems, analysis, physics, and formal proof.</p>
+      <p>A connected textbook of definitions and long-form chapters, designed to take a curious beginner to specialist-level mathematics without skipping steps.</p>
       <span class="card-action">Build the foundation <b aria-hidden="true">-></b></span>
     </a>
   </div>

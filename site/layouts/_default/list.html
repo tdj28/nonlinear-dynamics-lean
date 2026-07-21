@@ -1,21 +1,27 @@
 {{ define "main" }}
 <header class="section-hero">
   <div class="shell">
-    <p class="eyebrow">{{ .Site.Title }}</p>
+    <p class="eyebrow">Field record / every checked step explained</p>
     <h1>{{ .Title }}</h1>
     {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+    <div class="hero-facts" aria-label="Notebook guide">
+      <span><b>Begin at</b> physical intuition</span>
+      <span><b>Climb through</b> mathematics</span>
+      <span><b>Arrive at</b> checked Lean</span>
+    </div>
   </div>
 </header>
 <div class="shell section-body">
   {{ with .Content }}<div class="section-intro prose">{{ . }}</div>{{ end }}
-  <div class="entry-list">
+  <div class="section-toolbar">
+    <div><span class="toolbar-label">Expedition log</span><strong>{{ len .RegularPages }} {{ if eq (len .RegularPages) 1 }}entry{{ else }}entries{{ end }}</strong></div>
+    <span>Newest first</span>
+  </div>
+  <div class="entry-grid notebook-entry-grid">
     {{ range .Pages.ByDate.Reverse }}
-    <a class="entry-row" href="{{ .RelPermalink }}">
-      <div><h2>{{ .Title }}</h2><p>{{ .Params.summary | default .Summary | plainify }}</p></div>
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
-    </a>
+      {{ partial "page-card.html" . }}
     {{ else }}
-    <div class="empty-state"><span>Collection / forming</span><h2>The first entries are being prepared.</h2><p>Drafts will appear after their mathematical and editorial scaffolds are ready.</p></div>
+    <div class="empty-state empty-state-card"><span>Collection / forming</span><h2>The first ascent is being mapped.</h2><p>Each notebook entry will appear with its corresponding Lean module, conceptual path, proof state, and exact build instructions.</p></div>
     {{ end }}
   </div>
 </div>

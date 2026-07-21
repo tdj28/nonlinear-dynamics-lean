@@ -1,0 +1,26 @@
+{{ $page := . }}
+{{ $readingTime := printf "%d min read" $page.ReadingTime }}
+{{ with $page.Params.reading_time }}{{ $readingTime = printf "%v" . }}{{ end }}
+{{ $action := cond (eq $page.Section "development-notebook") "Open the notebook entry" "Read the chapter" }}
+<article class="entry-card{{ if $page.Draft }} is-draft{{ end }}">
+  <a class="entry-card-link" href="{{ $page.RelPermalink }}">
+    <div class="entry-card-topline">
+      {{ with $page.Params.level }}<span class="level-badge level-{{ . | urlize }}">{{ . }}</span>{{ end }}
+      {{ if $page.Draft }}<span class="draft-badge">Working draft</span>{{ end }}
+    </div>
+    <div class="entry-card-copy">
+      <h2>{{ $page.Title }}</h2>
+      <p>{{ $page.Params.summary | default $page.Summary | plainify | truncate 220 }}</p>
+    </div>
+    <footer class="entry-card-meta">
+      <div class="entry-card-details">
+        {{ if not $page.Date.IsZero }}
+        <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "02 Jan 2006" }}</time>
+        {{ end }}
+        <span>{{ $readingTime }}</span>
+        {{ with $page.Params.lean_module }}<code>{{ . }}</code>{{ end }}
+      </div>
+      <span class="entry-card-action">{{ $action }} <b aria-hidden="true">-&gt;</b></span>
+    </footer>
+  </a>
+</article>

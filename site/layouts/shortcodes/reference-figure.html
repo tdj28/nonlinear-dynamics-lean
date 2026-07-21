@@ -1,12 +1,16 @@
 {{ $src := .Get "src" }}
 {{ $alt := .Get "alt" }}
 {{ $caption := .Get "caption" }}
+{{ if not $src }}{{ errorf "reference-figure requires src in %s" .Page.File.Path }}{{ end }}
+{{ if not $alt }}{{ errorf "reference-figure requires finding-led alt text in %s" .Page.File.Path }}{{ end }}
 {{ $resource := .Page.Resources.GetMatch $src }}
 <figure class="reference-figure">
-  {{ if $resource }}
-  <img src="{{ $resource.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async">
-  {{ else }}
-  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
-  {{ end }}
-  {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+  <div class="reference-figure-frame">
+    {{ if $resource }}
+    <img src="{{ $resource.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    {{ else }}
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    {{ end }}
+  </div>
+  {{ with $caption }}<figcaption><span>Figure</span>{{ . | markdownify }}</figcaption>{{ end }}
 </figure>

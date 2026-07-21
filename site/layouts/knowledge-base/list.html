@@ -1,20 +1,47 @@
 {{ define "main" }}
 <header class="section-hero knowledge-hero">
   <div class="shell">
-    <p class="eyebrow">Reference layer</p>
+    <p class="eyebrow">The textbook layer</p>
     <h1>Knowledge <span>Base</span></h1>
     <p>{{ .Params.summary }}</p>
+    <div class="hero-facts" aria-label="Knowledge Base approach">
+      <span><b>Look up</b> one exact term</span>
+      <span><b>Study</b> a connected chapter</span>
+      <span><b>Return</b> to the Lean proof</span>
+    </div>
   </div>
 </header>
 <div class="shell section-body">
-  <div class="section-intro prose">{{ .Content }}</div>
+  <div class="knowledge-intro-grid">
+    <div class="section-intro prose">{{ .Content }}</div>
+    <aside class="reader-promise">
+      <span class="card-index">Our teaching promise</span>
+      <p>No unexplained symbols. No missing middle. Every advanced chapter keeps a visible route back to first principles.</p>
+    </aside>
+  </div>
+
+  <section class="textbook-route" aria-labelledby="textbook-route-title">
+    <div class="compact-heading">
+      <p class="eyebrow">Choose your altitude</p>
+      <h2 id="textbook-route-title">Enter where you are. Leave higher.</h2>
+    </div>
+    <ol>
+      <li><span>01</span><div><strong>Orient</strong><p>Use the glossary to make one unfamiliar word precise.</p></div></li>
+      <li><span>02</span><div><strong>Connect</strong><p>Follow a Deep Dive from physical picture through derivation.</p></div></li>
+      <li><span>03</span><div><strong>Formalize</strong><p>Carry the mathematical statement into its Lean architecture.</p></div></li>
+    </ol>
+  </section>
+
   <nav class="collection-grid" aria-label="Knowledge Base collections">
     {{ range .Sections.ByWeight }}
     <a class="collection-card" href="{{ .RelPermalink }}">
       <span class="card-index">{{ .Params.card_index }} / {{ .Params.card_label }}</span>
       <h2>{{ .Title }}</h2>
       <p>{{ .Params.summary }}</p>
-      <span class="card-action">{{ .Params.card_action }} <b aria-hidden="true">-></b></span>
+      <div class="collection-card-footer">
+        <span>{{ len .RegularPagesRecursive }} {{ if eq (len .RegularPagesRecursive) 1 }}chapter{{ else }}chapters{{ end }}</span>
+        <span class="card-action">{{ .Params.card_action }} <b aria-hidden="true">-&gt;</b></span>
+      </div>
     </a>
     {{ end }}
   </nav>

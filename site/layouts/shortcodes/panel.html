@@ -1,4 +1,27 @@
-{{ $kind := .Get 0 | default "info" }}
-<aside class="panel panel-{{ $kind }}">
-  {{ .Inner | markdownify }}
+{{ $kind := "info" }}
+{{ $customLabel := "" }}
+{{ if .IsNamedParams }}
+  {{ with .Get "kind" }}{{ $kind = . }}{{ end }}
+  {{ with .Get "title" }}{{ $customLabel = . }}{{ end }}
+{{ else }}
+  {{ with .Get 0 }}{{ $kind = . }}{{ end }}
+  {{ with .Get 1 }}{{ $customLabel = . }}{{ end }}
+{{ end }}
+{{ $labels := dict
+  "info" "Orientation"
+  "warning" "Watch the edge"
+  "quote" "Source note"
+  "definition" "Definition"
+  "theorem" "Theorem"
+  "proof" "Proof"
+  "intuition" "Physical intuition"
+  "exercise" "Try it"
+  "checkpoint" "Checkpoint"
+}}
+{{ if not (isset $labels $kind) }}{{ errorf "panel kind %q is not supported in %s" $kind .Page.File.Path }}{{ end }}
+{{ $label := index $labels $kind }}
+{{ with $customLabel }}{{ $label = . }}{{ end }}
+<aside class="panel panel-{{ $kind }}" aria-label="{{ $label }}">
+  <div class="panel-label"><span>{{ $label }}</span></div>
+  <div class="panel-body">{{ .Inner | markdownify }}</div>
 </aside>

@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="{{ .Site.Language.LanguageCode | default "en" }}">
+<html class="no-js" lang="{{ .Site.Language.LanguageCode | default "en" }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ $description := .Params.summary | default .Site.Params.description }}
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ $description }}">
+  <meta name="theme-color" content="#f3efe6">
   <link rel="canonical" href="{{ .Permalink }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:title" content="{{ .Title | default .Site.Title }}">
@@ -22,18 +23,34 @@
   <meta name="twitter:card" content="summary">
   {{ end }}
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
   {{ if .IsPage }}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"></script>
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'strict' });
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      securityLevel: 'strict',
+      themeVariables: {
+        background: '#fffdf8',
+        primaryColor: '#dce8ee',
+        primaryBorderColor: '#315d75',
+        primaryTextColor: '#16243a',
+        lineColor: '#8c694b',
+        secondaryColor: '#f0dbc3',
+        tertiaryColor: '#e2eadf',
+        fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif'
+      }
+    });
   </script>
   {{ end }}
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
+  {{ if .IsPage }}<div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>{{ end }}
   <header class="site-header">
     <div class="shell header-inner">
       <a class="site-mark" href="{{ "/" | relURL }}" aria-label="Nonlinear Dynamics, Formally home">
@@ -42,6 +59,7 @@
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="{{ "/" | relURL }}"{{ if .IsHome }} aria-current="page"{{ end }}>Start here</a>
         <a href="{{ "/development-notebook/" | relURL }}"{{ if eq .Section "development-notebook" }} aria-current="page"{{ end }}>Development Notebook</a>
         <a href="{{ "/knowledge-base/" | relURL }}"{{ if eq .Section "knowledge-base" }} aria-current="page"{{ end }}>Knowledge Base</a>
         <a href="{{ .Site.Params.repository }}" rel="noopener">Lean source</a>
@@ -55,8 +73,12 @@
 
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <p>Physics, mathematics, and machine-checked proofs.</p>
+      <div class="footer-statement">
+        <span class="footer-kicker">From trailhead to frontier</span>
+        <p>Physics, mathematics, and machine-checked proofs, built as one continuous climb.</p>
+      </div>
       <nav aria-label="Footer navigation">
+        <a href="{{ "/" | relURL }}">Start here</a>
         <a href="{{ "/development-notebook/" | relURL }}">Notebook</a>
         <a href="{{ "/knowledge-base/" | relURL }}">Knowledge Base</a>
         <a href="{{ .Site.Params.repository }}" rel="noopener">Repository</a>
