@@ -164,9 +164,9 @@ The downloads happen in distinct stages:
 3. `make setup` then runs `lake exe cache get`, which downloads Mathlib's
    precompiled Lean artifacts so the whole library does not need to be rebuilt
    locally.
-4. `make check` builds this project's Lean modules, verifies that every
-   substantive Lean module has a comprehensive Development Notebook page, and
-   validates all Hugo content.
+4. `make check` builds this project's Lean modules, verifies the living
+   checkpoint and proof-to-prose coverage, runs the context-aware teaching
+   source tests and scan, and validates all Hugo content.
 
 The first setup is the largest download. Later builds reuse the toolchain and
 Mathlib cache.
@@ -329,14 +329,21 @@ The first active sequence is:
     spectral moments to normalized trace powers and proves their exact GUE
     expectations, with second moment zero at dimension zero and one in every
     positive dimension.
+16. [`MatrixProducts/FiniteProducts.lean`](formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean)
+    fixes the forward-time product `A (k - 1) * ... * A 0`, with the newest
+    factor on the left so vectors evolve chronologically. Its algebraic layer
+    works over any semiring and proves splitting, constant-system powers, and
+    vector-action recursions. Over real or complex scalars in positive finite
+    dimension, it proves product, geometric, and vector-orbit bounds in
+    Mathlib's maximum-row-sum norm induced by the vector supremum norm.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The next milestones are:
 
-1. Prove deterministic matrix-product inequalities before introducing
-   measurable random products or asymptotic growth.
-2. Reuse the matrix layer for random Jacobian stability, finite-time cocycles,
-   and later Lyapunov-growth interfaces.
+1. Prove measurability and pushforward-law interfaces for finite products of
+   complex random matrices, without introducing an asymptotic exponent.
+2. Reuse the finite-product layer for random Jacobian stability, measurable
+   cocycles, and later Lyapunov-growth interfaces.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.
@@ -354,8 +361,22 @@ and `make content-coverage` checks that:
 - each entry includes references, exact run instructions, and a substantial
   teaching treatment.
 
-`make check` runs this gate automatically. This prevents the formalization from
-silently outrunning its public explanation.
+`make check` runs this coverage gate, `make content-hygiene-test`, and
+`make content-hygiene` automatically. The context-aware source gate masks YAML
+front matter, fenced and inline code, HTML comments, `code`/`pre` HTML, and
+Hugo shortcode tags while preserving source offsets and newlines. Markdown
+bodies inside ordinary shortcodes remain checked; raw Mermaid bodies are
+masked.
+
+In rendered regions, the gate rejects unbalanced, mismatched, or nested TeX
+delimiters; double-escaped delimiter candidates outside active math; literal
+angle signs inside TeX; bare-dollar math; lone equality lines that Goldmark can
+treat as headings; and C0 controls or high-signal dropped TeX backslashes.
+Valid TeX line-break spacing such as `\\[4pt]` inside math remains allowed. A
+separate style view retains metadata and shortcode attributes and rejects em
+dashes everywhere except rendered Markdown blockquotes or rendered same-line
+paired quotation marks; literal code and comments remain ignored. Browser
+inspection stays a separate rendered-layout check.
 
 ## Optional OpenAI API key
 

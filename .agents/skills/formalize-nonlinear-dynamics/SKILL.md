@@ -80,14 +80,17 @@ For every Lean file containing substantive declarations:
    modes, and explicit nonclaims.
 4. Set `draft: true` and `pro_reviewed: false` until the human author completes
    the required reviews.
-5. Add or update Knowledge Base glossary pages and Deep Dives when the module
+5. Give every new Deep Dive the canonical multiline `ai_disclosure` front
+   matter consumed by the Deep Dive template; a prose warning panel is not a
+   substitute for the rendered disclosure field.
+6. Add or update Knowledge Base glossary pages and Deep Dives when the module
    introduces reusable concepts.
-6. Generate a deterministic 1200x630 page-bundle card for each Research Note
+7. Generate a deterministic 1200x630 page-bundle card for each Research Note
    or Deep Dive that requires one. Make generators independent of the caller's
    working directory.
-7. Cite official Lean/Mathlib sources and primary mathematical or physics
+8. Cite official Lean/Mathlib sources and primary mathematical or physics
    references. Do not use noncompiling Lean ellipses in executable code fences.
-8. Expand technical acronyms on each standalone summary surface, including
+9. Expand technical acronyms on each standalone summary surface, including
    cards and conceptual figures, or replace them there with self-contained
    plain language.
 
@@ -124,6 +127,24 @@ Also run the changed Lean file directly with warnings as errors. Check that:
   present;
 - social-card dimensions and alt text are correct;
 - mathematical prose does not claim more than Lean proves.
+
+`make check` runs the table-driven source-hygiene regression tests and
+`scripts/check_teaching_source_hygiene.py` over every teaching Markdown file.
+The checker preserves offsets and newlines while masking YAML front matter,
+fenced and inline code, HTML comments, `code`/`pre` HTML, Hugo shortcode tags,
+and raw Mermaid bodies. It still checks Markdown bodies inside ordinary
+shortcodes.
+
+In rendered regions, require balanced, matched, non-nested `\(...\)` and
+`\[...\]`; reject double-escaped delimiter candidates outside active math,
+literal angle signs inside TeX, bare-dollar math, lone equality lines, C0
+controls, and high-signal dropped TeX backslashes. The style view retains
+metadata and shortcode attributes: allow em dashes only inside rendered
+Markdown blockquotes or rendered same-line paired quotation marks, while
+ignoring literal code and comments.
+Valid TeX line-break spacing such as `\\[4pt]` inside math is not a delimiter
+candidate. Keep the browser checks below as a separate rendered-output gate;
+the source checker cannot judge layout.
 
 For every new or materially changed teaching page:
 

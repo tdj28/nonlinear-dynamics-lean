@@ -11,6 +11,10 @@
     "module": "NonlinearDynamics.Random.GaussianPrimitives",
     "notebook": "site/content/development-notebook/2026/07/gaussian-primitives-exact-laws-and-independence/index.md"
   },
+  "formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean": {
+    "module": "NonlinearDynamics.Random.MatrixProducts.FiniteProducts",
+    "notebook": "site/content/development-notebook/2026/07/ordered-finite-matrix-products-and-growth-bounds/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean": {
     "module": "NonlinearDynamics.Random.RandomMatrices.Basic",
     "notebook": "site/content/development-notebook/2026/07/random-matrices-as-measurable-maps/index.md"

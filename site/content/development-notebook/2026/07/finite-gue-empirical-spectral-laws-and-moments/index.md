@@ -1076,8 +1076,13 @@ choose the stricter positive-dimensional probability-valued package when
 needed, and consume exact normalized moments without rebuilding trace
 transport.
 
-The dependency-ordered project roadmap next returns to deterministic
-matrix-product inequalities before measurable random products and cocycles.
+Its immediate successor,
+[Ordered Finite Matrix Products in Lean]({{< relref "/development-notebook/2026/07/ordered-finite-matrix-products-and-growth-bounds" >}}),
+returns to the dependency-ordered deterministic branch. It fixes the
+newest-factor-left time convention, proves shifted splitting and chronological
+vector action, and establishes finite-time product and power bounds in the
+maximum-row-sum operator norm before measurable random products and cocycles.
+
 Within spectral theory, later self-contained milestones may add higher finite
 trace moments, a rigorously derived finite-dimensional eigenvalue density, or
 an integration-through-barycenter theorem. Any semicircle law must remain a

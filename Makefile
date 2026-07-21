@@ -7,7 +7,7 @@ BLOG_PORT ?= 1333
 
 .DEFAULT_GOAL := help
 
-.PHONY: help setup lean checkpoint checkpoint-check content-coverage site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale check clean
+.PHONY: help setup lean checkpoint checkpoint-check content-coverage content-hygiene-test content-hygiene site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale check clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z0-9_-]+:.*## / {printf "  %-24s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -27,6 +27,12 @@ checkpoint-check: ## Validate the checkpoint and project research skill
 
 content-coverage: ## Check that every substantive Lean module has a comprehensive notebook page
 	$(PYTHON) scripts/check_lean_notebook_coverage.py
+
+content-hygiene-test: ## Run regression tests for the context-aware source gate
+	$(PYTHON) -m unittest discover -s scripts -p 'test_check_teaching_source_hygiene.py'
+
+content-hygiene: ## Check rendered teaching prose for Markdown and TeX source hazards
+	$(PYTHON) scripts/check_teaching_source_hygiene.py
 
 site: ## Build the publication-ready Hugo site into public/
 	$(HUGO) --source site --config hugo.yaml --cleanDestinationDir
@@ -77,7 +83,7 @@ blog-serve-tailscale: ## Serve drafts privately on Tailscale port 1333
 
 site-serve-tailscale: blog-serve-tailscale ## Alias for blog-serve-tailscale
 
-check: lean checkpoint-check content-coverage site-check ## Validate Lean, checkpoint, notebook coverage, and Hugo
+check: lean checkpoint-check content-coverage content-hygiene-test content-hygiene site-check ## Validate Lean, checkpoint, teaching source, coverage, and Hugo
 
 clean: ## Remove generated Lean and Hugo build output
 	cd formalization && . "$$HOME/.elan/env" && lake clean

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560"
+     viewBox="0 0 800 560" role="img"
+     aria-labelledby="orderedProductsTitle orderedProductsDesc">
+  <title id="orderedProductsTitle">Proof ladder for ordered products and vector growth</title>
+  <desc id="orderedProductsDesc">A central ladder rises from chronological recursion to multiplying one-step norm budgets, then to a uniform geometric envelope, and finally to control of every vector orbit. A left branch says that finite algebra includes empty coordinate types. A right branch says that the normalized norm layer uses positive coordinate dimension.</desc>
+  <rect width="800" height="560" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="orderedProductsArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="31" class="t title">The finite growth proof climbs one reusable inequality at a time</text>
+  <text x="24" y="52" class="t m">The side branches record exactly where the dimension boundary enters.</text>
+
+  <rect x="258" y="82" width="284" height="70" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="400" y="111" text-anchor="middle" class="t h">CHRONOLOGICAL RECURSION</text>
+  <text x="400" y="134" text-anchor="middle" class="t m">prepend the newest matrix action</text>
+
+  <path d="M400 154 L400 184" fill="none" stroke="#A67C52" stroke-width="2.5" marker-end="url(#orderedProductsArrow)"/>
+
+  <rect x="258" y="190" width="284" height="70" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="400" y="219" text-anchor="middle" class="t h">MULTIPLY ONE-STEP BUDGETS</text>
+  <text x="400" y="242" text-anchor="middle" class="t m">submultiplicativity at each successor</text>
+
+  <path d="M400 262 L400 292" fill="none" stroke="#A67C52" stroke-width="2.5" marker-end="url(#orderedProductsArrow)"/>
+
+  <rect x="258" y="298" width="284" height="70" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="400" y="327" text-anchor="middle" class="t h">UNIFORM GEOMETRIC ENVELOPE</text>
+  <text x="400" y="350" text-anchor="middle" class="t m">replace every factor budget by one bound</text>
+
+  <path d="M400 370 L400 400" fill="none" stroke="#A67C52" stroke-width="2.5" marker-end="url(#orderedProductsArrow)"/>
+
+  <rect x="258" y="406" width="284" height="70" rx="12" fill="#16243A"/>
+  <text x="400" y="435" text-anchor="middle" class="t h" style="fill:#FFFDF8">CONTROL EVERY VECTOR ORBIT</text>
+  <text x="400" y="458" text-anchor="middle" class="t m" style="fill:#D9E1EA">apply the induced action inequality</text>
+
+  <rect x="24" y="190" width="184" height="178" rx="14" fill="#FBF9F6" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="116" y="222" text-anchor="middle" class="t h">FINITE ALGEBRA</text>
+  <text x="116" y="254" text-anchor="middle" class="t s">EMPTY COORDINATE</text>
+  <text x="116" y="276" text-anchor="middle" class="t s">TYPE INCLUDED</text>
+  <text x="116" y="311" text-anchor="middle" class="t m">identity product</text>
+  <text x="116" y="331" text-anchor="middle" class="t m">shifted split</text>
+  <text x="116" y="351" text-anchor="middle" class="t m">constant powers</text>
+  <path d="M210 278 L250 278" fill="none" stroke="#4B6787" stroke-width="2"/>
+
+  <rect x="592" y="190" width="184" height="178" rx="14" fill="#FBF9F6" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="684" y="222" text-anchor="middle" class="t h">NORM LAYER</text>
+  <text x="684" y="254" text-anchor="middle" class="t s">POSITIVE COORDINATE</text>
+  <text x="684" y="276" text-anchor="middle" class="t s">DIMENSION</text>
+  <text x="684" y="311" text-anchor="middle" class="t m">identity norm one</text>
+  <text x="684" y="331" text-anchor="middle" class="t m">row-sum action bound</text>
+  <text x="684" y="351" text-anchor="middle" class="t m">finite growth envelope</text>
+  <path d="M550 278 L590 278" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+
+  <text x="24" y="526" class="t m">The ladder proves upper bounds only; it does not create a limit, exponent, invariant splitting, or stability classification.</text>
+</svg>

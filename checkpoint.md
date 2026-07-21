@@ -3,11 +3,11 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 06:36 PDT
+Last updated: 2026-07-21 07:38 PDT
 
-Audited baseline: `main` at `c36903d`
+Audited baseline: `main` at `0a496e7`
 
-Active direction: ordered finite matrix products and operator-norm growth
+Active direction: measurable finite matrix products and pushforward laws
 
 ## How to Use This Checkpoint
 
@@ -23,15 +23,15 @@ Active direction: ordered finite matrix products and operator-norm growth
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,156 jobs. The integrated RMT-10C gate covers fifteen
-  substantive modules, fifteen complete draft Notebook companions, and 151
+- Last green Lean build: 3,158 jobs. The integrated RMT-11 gate covers sixteen
+  substantive modules, sixteen complete draft Notebook companions, and 167
   Hugo pages with warnings fatal.
-- Lean inventory: 309 public declaration lines across the fifteen substantive
-  modules; 18 one-line deterministic placeholders; three `.gitkeep`-only
+- Lean inventory: 321 public named declarations across the sixteen substantive
+  modules; 18 one-line deterministic placeholders; two `.gitkeep`-only
   Random branches; five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 84,871 words across the fifteen Notebook companions and
-  91,839 words across twelve Deep Dives and twenty-four glossary chapters.
+- Teaching snapshot: 90,126 words across the sixteen Notebook companions and
+  100,191 words across thirteen Deep Dives and twenty-six glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -56,16 +56,17 @@ Active direction: ordered finite matrix products and operator-norm growth
 | `NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum` | Decreasingly ordered real Hermitian eigenvalues with multiplicity, trace and trace-square sums, unitary-congruence invariance, spectral counting and zero-aware empirical measures, positive-dimensional probability packaging, and conditional Giry/ambient-law bridges | `ordered-hermitian-spectra-and-empirical-measures` |
 | `NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity` | Frobenius control of every ordered Hermitian eigenvalue through a dimension-forced min-max witness, coordinate and finite-sup-vector `LipschitzWith 1`, continuity, unconditional measurability of the spectral measure maps, and the unconditional ambient/intrinsic GUE pushforward bridge | `hermitian-spectral-perturbation-and-measurability` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum` | Named finite-GUE empirical spectral law, all-dimensional outer probability packaging, successor-dimensional probability-measure-valued law, intrinsic/ambient agreement, zero-dimensional Dirac boundary, Giry mean measure, sample moments as normalized trace powers, integrability, and exact expected first and second moments | `finite-gue-empirical-spectral-laws-and-moments` |
+| `NonlinearDynamics.Random.MatrixProducts.FiniteProducts` | Semiring-valued ordered forward products, zero/successor/one-step/constant/split identities, chronological vector action, and finite-time induced infinity operator-norm product and uniform-power bounds in positive dimension | `ordered-finite-matrix-products-and-growth-bounds` |
 
-The root aggregator imports all fifteen modules. The proof-to-prose manifest and
+The root aggregator imports all sixteen modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Fifteen comprehensive Development Notebook chapters in an explicit
+- Sixteen comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Twelve textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Thirteen textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -75,13 +76,15 @@ declaration visibility.
   Exact Finite Gaussian Unitary Ensemble Trace Moments*, and *Finite Hermitian
   Spectra and Empirical Measures*, *Hermitian Spectral Perturbation,
   Continuity, and Measurability*, and *Finite Gaussian Unitary Ensemble
-  Empirical Spectral Laws and Normalized Moments*.
-- Twenty-four glossary chapters, now including empirical spectral laws, Weyl
+  Empirical Spectral Laws and Normalized Moments*, and *Ordered Finite Matrix
+  Products and Operator-Norm Growth*.
+- Twenty-six glossary chapters, now including forward matrix products and the
+  induced infinity operator norm, as well as empirical spectral laws, Weyl
   eigenvalue perturbation, empirical spectral measures, finite matrix trace
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Forty-one deterministic 1200x630 social cards and twenty-five accessible
+- Forty-five deterministic 1200x630 social cards and twenty-nine accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -90,34 +93,42 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-11: ordered finite matrix products and growth bounds
+### RMT-12: measurable finite matrix products and pushforward laws
 
-The next module is `Random/MatrixProducts/FiniteProducts.lean`. A warning-clean
-prototype has validated the core recursion and inequalities. Integrate the
-smallest deterministic layer needed before random products and cocycles:
+The next module is
+`Random/MatrixProducts/MeasurableFiniteProducts.lean`. A warning-clean
+prototype has stabilized the interface. Build the first measurable and
+law-level layer above the ordered deterministic product:
 
-1. Define the forward-time convention
-   `P_A(k) = A(k - 1) * ... * A(1) * A(0)`, with `P_A(0) = 1`. The newest
-   factor acts on the left so matrix action agrees with chronological
-   composition.
-2. Prove the zero, successor, one-step, constant-identity, and time-splitting
-   identities. The split theorem must expose the shifted later block on the
-   left of the earlier prefix.
-3. Prove the corresponding vector-action recursion with `Matrix.mulVec`.
-4. Use Mathlib's induced `ℓ∞` operator norm under
-   `Matrix.Norms.Operator`. In positive finite dimension, prove that the norm of
-   the product is bounded by the product of factor norms and by `C ^ k` under a
-   uniform prefix bound.
-5. Transfer both estimates to vector orbits. Keep the positive-dimension
-   hypothesis visible because normalization of the identity operator is used
-   at time zero.
-6. Add the `Random.MatrixProducts` aggregator and root import, then pair the
-   module with declaration-complete Notebook and Knowledge Base teaching.
+1. Define `sampleForwardProduct` pointwise for matrix sequences over an
+   arbitrary scalar semiring. Prove its zero, successor, one-step, and shifted
+   add-split identities. Preserve the RMT-11 convention: the newest factor and
+   the shifted later block remain on the left.
+2. In a measurable sample space, specialize to complex random matrices and use
+   `RandomMatrix.measurable_const` and `RandomMatrix.measurable_mul` to prove
+   ordinary measurability at horizon `k` from exactly
+   `∀ j < k, Measurable (A j)`.
+3. Define `forwardProductLaw` only with explicit prefix-measurability evidence,
+   through the existing `RandomMatrix.law` interface. Do not expose a
+   proof-free object called a law: Mathlib defines `Measure.map` to be zero
+   when its map is not almost-everywhere measurable.
+4. Prove that the zero-horizon law is `Measure.dirac 1` under a probability
+   source and that the one-step law is the law of `A 0`. Keep empty matrix
+   dimension valid; no `Nonempty ι` hypothesis belongs in this module.
+5. Prove that a probability source gives the raw forward-product law total mass
+   one, bundle it as `ProbabilityMeasure (Matrix ι ι ℂ)`, and add a simp
+   coercion theorem recovering the raw law.
+6. Add the module to the `Random.MatrixProducts` aggregator and pair all public
+   declarations with declaration-complete Notebook and Knowledge Base teaching.
 
-This milestone is deterministic and finite-time. It must not introduce random
-measurability, independence, logarithmic growth, Lyapunov exponents,
-subadditive limits, or a multiplicative ergodic theorem. Those are later
-vertical slices built on this convention.
+This milestone remains finite-time. The sample split is a pointwise identity,
+not a factorization of laws. Do not introduce or claim independence,
+stationarity, identical distribution, product-law convolution, a base
+transformation, a cocycle over a shift, invertibility, negative time,
+integrability of norm or log norm, expected growth, Lyapunov exponents,
+subadditive limits, or a multiplicative ergodic theorem. The
+`ProbabilityMeasure` wrapper asserts total mass one only; it supplies no
+density, support, moment, or asymptotic result.
 
 ## Dependency-Ordered Roadmap
 
@@ -165,8 +176,9 @@ unresolved convention or depend on an unproved earlier interface.
   coordinatewise measurability.
 - [x] The finite-GUE empirical spectral law and its first normalized spectral
   moments.
-- [ ] Deterministic matrix-product inequalities, then measurable random
-  products.
+- [x] Deterministic finite matrix products and induced infinity operator-norm
+  inequalities.
+- [ ] Measurable random matrix products and proof-carrying pushforward laws.
 - [ ] Random cocycles over a measure-preserving base and finite-time
   Lyapunov-growth interfaces.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
@@ -385,6 +397,25 @@ k-invariance precedes approximation claims.
   every dimension. The second has expectation `n⁻¹ * n`, hence zero at
   dimension zero and exactly one in positive dimension. These are finite exact
   identities, not a density or limit theorem.
+- RMT-11 fixes the forward product by `P_A(0) = 1` and
+  `P_A(k + 1) = A(k) P_A(k)`. New factors act on the left, and a time split
+  places the shifted later block on the left of the earlier prefix. This is the
+  convention future random products and cocycles must reuse.
+- RMT-11 keeps the recursive product and vector-action identities over an
+  arbitrary semiring. Its analytic layer specializes to real or complex
+  scalars and Mathlib's maximum absolute row-sum norm, the operator norm
+  induced by the vector supremum norm. It is not the Frobenius norm, Euclidean
+  spectral norm, or entrywise maximum norm.
+- The RMT-11 algebraic layer permits an empty matrix index. `Nonempty ι`
+  appears only on the four analytic bounds because their normalized time-zero
+  proof uses `‖1‖ = 1` for the chosen operator norm.
+- The uniform bound theorem does not request `0 ≤ C`. At positive horizons its
+  factor hypothesis already forces the needed sign information; at horizon
+  zero, `C ^ 0 = 1` independently of the sign of `C`.
+- RMT-11 is deterministic and finite-time. Its product and vector estimates do
+  not establish measurability, independence, expected or logarithmic growth,
+  a Lyapunov exponent, a subadditive limit, or a multiplicative ergodic
+  theorem.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -413,6 +444,10 @@ k-invariance precedes approximation claims.
   law, its first two normalized expected moments, and the Giry mean. Joint
   eigenvalue densities, higher moments, moment/barycenter interchange, and
   every large-dimension scaling theorem remain open.
+- Ordered deterministic finite matrix products and their induced infinity
+  operator-norm bounds are formalized. Measurable product laws, random
+  cocycles, integrability, finite-time logarithmic growth, Lyapunov exponents,
+  and ergodic limits remain open.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -665,11 +700,40 @@ Checkpoint/skill milestone QA:
   checks, Markdown-safe `\lt`/`\gt` only inside TeX delimiters, a typed ledger
   for random measures and their laws, explicit interchange theorems, and
   self-contained acronym use on standalone summary surfaces. It also requires
-  a source scan for lone equality lines that Goldmark could consume as Setext
-  headings before KaTeX sees them.
+  the regression-tested, context-aware source gate for delimiter corruption,
+  dropped TeX backslashes, literal math angles, bare dollars, C0 controls, em
+  dashes outside identifiable quotations, and lone equality lines that
+  Goldmark could consume as Setext headings before KaTeX sees them.
+- RMT-11 Lean audit: all 13 public declarations implement the forward-product
+  convention, shifted concatenation, constant-system powers, chronological
+  vector action, and four induced infinity operator-norm estimates. The module
+  and both aggregators pass warnings as errors; the full build completes 3,158
+  jobs; no proof holes, unsafe declarations, or custom axioms occur; and every
+  declaration audit contains only `propext`, `Classical.choice`, and
+  `Quot.sound` where needed.
+- RMT-11 static teaching audit: the 5,222-word Notebook maps all 13 public
+  declarations; two new glossary chapters contain 1,523 and 1,730 words; and
+  the 5,099-word Deep Dive develops the algebraic and analytic interfaces,
+  empty-dimension boundary, complete assumption ledger, and exact nonclaims.
+  All four deterministic cards reproduce byte-for-byte at 1200x630 from both
+  the repository and `/private/tmp`; all four accessible prose-only SVGs parse
+  and render; the context-aware source gate's 56 regression cases pass; and
+  Hugo builds 167 pages with warnings fatal.
+- Rendered RMT-11 QA: the Notebook, two glossary chapters, and Deep Dive render
+  142, 43, 45, and 114 KaTeX nodes respectively at both desktop and mobile
+  widths, while the amended RMT-10C predecessor remains stable at 106. All five
+  pages have zero KaTeX errors, raw delimiters, malformed equality headings,
+  page overflow, or browser console warnings; their cards and lazy SVGs load at
+  intrinsic dimensions; the canonical Deep Dive AI disclosure renders exactly
+  once at both widths; and RMT-10C/RMT-11 Notebook navigation is exact. The
+  visual pass caught a leaked thick stroke on the Notebook card's final label;
+  the generator and checked artifact were repaired and reverified from both
+  working directories before freeze.
 
 ## Recent Pushes
 
+- `0a496e7`: finite GUE empirical spectral laws, normalized expected moments,
+  Giry mean measure, source-hygiene repairs, and teaching layer.
 - `c36903d`: Hermitian eigenvalue perturbation, continuity, unconditional
   spectral measurability, and teaching layer.
 - `143f4fc`: decreasing ordered Hermitian spectra, empirical spectral measures,
