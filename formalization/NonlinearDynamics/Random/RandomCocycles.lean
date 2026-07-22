@@ -16,6 +16,7 @@ import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
 import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
 
 /-!
 # Random cocycles
@@ -107,7 +108,12 @@ each marked start, invokes the ordered greedy packing, and integrates the
 result under finite measure and preservation. It bounds each finite bad-block
 set by a centered integral-rate ratio and specializes that ratio to the
 log-positive cocycle Fekete offset without assuming probability or ergodicity.
-It still proves neither a lower liminf nor samplewise convergence, equality
-with the integrated rate, limit integrability, a Lyapunov exponent, or an
-Oseledets splitting.
+The increasing union over all finite length caps then records the existence of
+one strict bad block at some positive length. Extended measures converge to
+the union without a finiteness premise; real measures require an explicit
+finite-mass gate, after which the same uniform ratio passes to the union. The
+raw once-bad event is not generally invariant, as a finite measure-preserving
+countermodel records. This layer still proves neither a lower liminf nor
+samplewise convergence, equality with the integrated rate, limit
+integrability, a Lyapunov exponent, or an Oseledets splitting.
 -/

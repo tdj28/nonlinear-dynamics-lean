@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" role="img" aria-labelledby="ratioTitle ratioDesc">
+  <title id="ratioTitle">A uniform finite ratio survives the cap limit</title>
+  <desc id="ratioDesc">Several finite caps sit below one common ceiling supplied by RMT-30. Real convergence under finite mass leads to the all-length event, and le_of_tendsto' keeps the same ceiling with no loss.</desc>
+  <defs><marker id="ratioArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}</style>
+  <rect width="760" height="360" fill="#F7F4F0"/>
+  <text x="24" y="28" class="t title">The same finite-cap ceiling reaches the all-length union without loss</text>
+  <text x="24" y="48" class="t m">RMT-30 proves uniformity; RMT-31 supplies convergence and closed-order transport.</text>
+  <line x1="58" y1="104" x2="702" y2="104" stroke="#8B3E33" stroke-width="3"/>
+  <text x="480" y="92" class="t h">COMMON RATIO CEILING</text>
+  <rect x="62" y="140" width="112" height="64" rx="10" class="data"/><text x="85" y="178" class="t h">CAP ONE</text>
+  <rect x="202" y="140" width="112" height="64" rx="10" class="data"/><text x="225" y="178" class="t h">CAP TWO</text>
+  <rect x="342" y="140" width="112" height="64" rx="10" class="data"/><text x="365" y="178" class="t h">LATER CAP</text>
+  <line x1="466" y1="172" x2="522" y2="172" stroke="#A67C52" stroke-width="3" marker-end="url(#ratioArrow)"/>
+  <rect x="534" y="128" width="166" height="88" rx="12" class="keep"/><text x="561" y="158" class="t h">ALL LENGTHS</text><text x="559" y="181" class="t s">same ceiling</text><text x="559" y="201" class="t m">no loss term</text>
+  <rect x="86" y="246" width="588" height="54" rx="10" class="neutral"/>
+  <text x="112" y="268" class="t h">FINITE MASS: REAL CAP MEASURES CONVERGE</text>
+  <text x="112" y="288" class="t s">le_of_tendsto' transfers the common upper bound to the limit</text>
+  <rect x="24" y="322" width="712" height="24" rx="8" class="keep"/>
+  <text x="123" y="339" class="t m">No new packing, no samplewise limit, and no limit-integral interchange.</text>
+</svg>

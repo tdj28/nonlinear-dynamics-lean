@@ -548,6 +548,16 @@ The first active sequence is:
     The cocycle specialization uses the integrated log-positive Fekete rate
     minus its one-step integral. Probability and ergodicity are absent, and
     the module still claims no lower liminf or samplewise convergence.
+36. [`RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean)
+    removes the finite witness cap by taking the increasing union over all
+    natural caps. Membership means that one strict centered bad block occurs
+    at some positive finite length, not that failures occur infinitely often.
+    Countable null measurability and extended-measure continuity need no
+    finite-mass premise; the real-measure convergence theorem exposes the
+    finite-target gate forced by `Measure.real`. On a finite measure space the
+    uniform RMT-30 ratio passes unchanged to the union, including the
+    log-positive cocycle specialization. A compiled preserving two-state
+    countermodel shows that the raw once-bad event need not be invariant.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
@@ -561,13 +571,17 @@ mass, and probability normalization. The additive finite-measure Birkhoff
 track is therefore complete at the correctly normalized ergodic constant.
 The first subadditive asymptotic stage now connects finite phase averaging to
 the additive ergodic theorem and proves the normalized upper-limsup estimate.
-The next finite layer now converts centered short-block failures into an exact
-real-measure ratio through visit counting and ordered interval packing.
+The finite bad-block layer converts centered short-block failures into an
+exact real-measure ratio through visit counting and ordered interval packing.
+The next checked layer passes that uniform estimate through the increasing
+union of every finite cap, while keeping the resulting once-bad event separate
+from an invariant or asymptotic lower-deviation event.
 The pinned Mathlib release supplies finite Birkhoff algebra and ergodic
 primitives, but no ready-made pointwise Birkhoff or Kingman theorem. A matching
-lower-liminf mechanism and a full convergence proof remain before any samplewise
-cocycle-growth limit. A signed Lyapunov exponent or Oseledets splitting needs
-further multiplicative infrastructure beyond that endpoint.
+almost-invariance mechanism for an arbitrarily-late lower-deviation event, a
+lower-liminf estimate, and a full convergence proof remain before any
+samplewise cocycle-growth limit. A signed Lyapunov exponent or Oseledets
+splitting needs further multiplicative infrastructure beyond that endpoint.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

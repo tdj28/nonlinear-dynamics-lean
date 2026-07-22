@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="350" viewBox="0 0 760 350" role="img" aria-labelledby="invariantTitle invariantDesc">
+  <title id="invariantTitle">The raw all-length event need not be invariant</title>
+  <desc id="invariantDesc">Both Boolean states map to true. False has one strict bad witness at length two and belongs to the event, while true does not. The event is the false singleton, but its preimage is empty, even though the map preserves the Dirac mass at true.</desc>
+  <rect width="760" height="350" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.4}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.good{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">A single witness can disappear after one base-map step</text>
+  <text x="24" y="48" class="t m">The compiled process is integrable and shifted-subadditive; its finite measure is preserved.</text>
+  <rect x="40" y="80" width="205" height="82" rx="12" class="warn"/>
+  <text x="60" y="108" class="t h">State false</text>
+  <text x="60" y="132" class="t s">Strict bad witness at length two</text>
+  <text x="60" y="151" class="t s">Inside the raw event</text>
+  <rect x="515" y="80" width="205" height="82" rx="12" class="blue"/>
+  <text x="535" y="108" class="t h">State true</text>
+  <text x="535" y="132" class="t s">No bad witness</text>
+  <text x="535" y="151" class="t s">Outside the raw event</text>
+  <path d="M250 110 C350 62 424 62 510 110" fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M510 110 l-11 -2 6 10 z" fill="#A67C52"/>
+  <rect x="330" y="66" width="100" height="24" rx="8" class="neutral"/>
+  <text x="380" y="82" text-anchor="middle" class="t s">collapse map</text>
+  <path d="M616 74 C680 34 713 60 700 82" fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M700 82 l-10 -5 1 11 z" fill="#A67C52"/>
+  <text x="670" y="42" text-anchor="middle" class="t s">true stays true</text>
+  <rect x="40" y="196" width="318" height="78" rx="10" class="warn"/>
+  <text x="60" y="224" class="t h">Raw event</text>
+  <text x="60" y="249" class="t s">Contains exactly the false state</text>
+  <rect x="402" y="196" width="318" height="78" rx="10" class="neutral"/>
+  <text x="422" y="224" class="t h">Preimage of the raw event</text>
+  <text x="422" y="249" class="t s">Empty because every state maps to true</text>
+  <rect x="24" y="299" width="712" height="32" rx="9" class="good"/>
+  <text x="380" y="320" text-anchor="middle" class="t s">Dirac mass at true is preserved, but the two sets are not equal.</text>
+</svg>

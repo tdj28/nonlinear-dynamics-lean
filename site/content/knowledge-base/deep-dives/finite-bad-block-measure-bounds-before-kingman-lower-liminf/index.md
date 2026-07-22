@@ -783,6 +783,17 @@ cocycle has each finite centered strict bad-block set bounded in real measure
 by the integrated Fekete offset divided by any strictly lower threshold, with
 no ergodicity or samplewise convergence conclusion.
 
+## Continue from finite caps to every positive length
+
+This chapter supplies a bound for each fixed length cap. The next textbook
+step proves that the caps form an increasing family, identifies their union
+with the existence of one positive finite witness, and passes the same
+uniform ratio through continuity from below. Read
+[From Finite Centered Bad-Block Bounds to All-Positive-Length Control]({{< relref "/knowledge-base/deep-dives/from-finite-centered-bad-block-bounds-to-all-positive-length-control" >}})
+for that measure-theoretic bridge, or use the paired
+[RMT-31 Development Notebook]({{< relref "/development-notebook/2026/07/all-positive-length-centered-bad-block-control-in-lean" >}})
+for the exact Lean declaration and countermodel ledger.
+
 ## Proof reproduction
 
 From the repository root, run:

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="335" viewBox="0 0 760 335" role="img" aria-labelledby="ratioTitle ratioDesc">
+  <title id="ratioTitle">A uniform finite-cap ratio survives the union</title>
+  <desc id="ratioDesc">Assuming the all-length target has finite extended measure, four increasing finite-cap real measures converge to its real measure while all remain below one common ratio ceiling. The limit stays below the same ceiling with no sum and no extra constant.</desc>
+  <rect width="760" height="335" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.4}.good{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">At a finite target, one ceiling controls every cap and its limit</text>
+  <text x="24" y="48" class="t m">Finite target mass gives real convergence; the proof never adds the capwise estimates.</text>
+  <line x1="82" y1="86" x2="710" y2="86" stroke="#A67C52" stroke-width="2.5"/>
+  <text x="82" y="78" class="t h">Uniform ratio ceiling</text>
+  <line x1="82" y1="236" x2="710" y2="236" stroke="#7F786D" stroke-width="1.5"/>
+  <rect x="112" y="190" width="76" height="46" rx="8" class="blue"/>
+  <rect x="232" y="161" width="76" height="75" rx="8" class="blue"/>
+  <rect x="352" y="132" width="76" height="104" rx="8" class="blue"/>
+  <rect x="472" y="110" width="76" height="126" rx="8" class="blue"/>
+  <text x="150" y="260" text-anchor="middle" class="t s">small cap</text>
+  <text x="270" y="260" text-anchor="middle" class="t s">larger cap</text>
+  <text x="390" y="260" text-anchor="middle" class="t s">later cap</text>
+  <text x="510" y="260" text-anchor="middle" class="t s">finite caps</text>
+  <path d="M555 173 H592" stroke="#A67C52" stroke-width="2.5" stroke-dasharray="5 4"/><path d="M592 173 l-9 -6 v12 z" fill="#A67C52"/>
+  <rect x="602" y="98" width="108" height="138" rx="10" class="good"/>
+  <text x="656" y="134" text-anchor="middle" class="t h">All-length</text>
+  <text x="656" y="155" text-anchor="middle" class="t h">limit</text>
+  <text x="656" y="193" text-anchor="middle" class="t s">same ceiling</text>
+  <rect x="24" y="291" width="712" height="25" rx="9" class="good"/>
+  <text x="380" y="308" text-anchor="middle" class="t s">Finite-target convergence plus closed order gives no loss, no sum, and no new constant.</text>
+</svg>

@@ -635,7 +635,7 @@ boundary and would require separate proof work.
 
 The theorem controls a finite union. Passing to all lengths requires an
 increasing-union argument and a correctly identified limiting set. That is a
-future theorem, not notation hidden inside RMT-30.
+separate theorem now supplied by RMT-31, not notation hidden inside RMT-30.
 
 ### Reading the auxiliary limit as process convergence
 
@@ -831,7 +831,7 @@ What must happen before this result can contribute to a lower-liminf theorem?
 **Solution.** One must pass from the increasing family of finite bad sets to
 the all-length bad event with the correct measure-continuity argument, then
 connect absence or smallness of that event to an eventual samplewise lower
-bound. RMT-30 proves neither step.
+bound. RMT-31 now proves the first bridge; the asymptotic bridge remains open.
 
 ## Reproduction and audit
 
@@ -889,19 +889,19 @@ offset uses log-positive norms and is not a signed Lyapunov exponent. Thus
 RMT-30 advances one finite-measure component of a Kingman route while leaving
 the lower liminf, equality, and convergence layers open.
 
-## Navigation: previous and future milestones
+## Navigation: previous and next milestones
 
 **Previous, RMT-29:**
 [Subadditive Upper Limsup Bounds from Phase Averaging in Lean]({{< relref "/development-notebook/2026/07/subadditive-upper-limsup-from-phase-averaging-in-lean" >}})
 proves the complementary samplewise upper-limsup ceiling and supplies the
 centered-integral identity reused in the cocycle specialization.
 
-**Future, RMT-31:** the planned next milestone is the finite-to-infinite
-bad-set bridge. It must identify the increasing union over length caps,
-justify real-measure continuity at finite total mass, and state exactly what
-the resulting all-length event does and does not imply. No RMT-31 Notebook is
-published yet, so this is forward navigation to a planned result rather than
-a live theorem link.
+**Next, RMT-31:**
+[All-Positive-Length Centered Bad-Block Control in Lean]({{< relref "/development-notebook/2026/07/all-positive-length-centered-bad-block-control-in-lean" >}})
+identifies the increasing union over length caps, proves extended-measure and
+finite-real-measure continuity, and passes this chapter's uniform ratio to the
+uncapped event. Its compiled countermodel also shows why that raw once-bad
+event must not be called invariant.
 
 ## References
 

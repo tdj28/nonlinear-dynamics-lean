@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="340" viewBox="0 0 760 340" role="img" aria-labelledby="measureTitle measureDesc">
+  <title id="measureTitle">Extended measure precedes the real-measure gate</title>
+  <desc id="measureDesc">Nested finite-cap sets converge unconditionally in extended measure. Real-measure convergence follows only after checking that the target union has finite extended mass, because infinite mass is totalized to zero by real measure.</desc>
+  <rect width="760" height="340" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.4}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.good{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Two codomains, one explicit gate</text>
+  <text x="24" y="48" class="t m">Continuity is unconditional in extended measure and conditional after real totalization.</text>
+  <rect x="24" y="78" width="180" height="76" rx="10" class="blue"/>
+  <text x="44" y="106" class="t h">Nested finite caps</text>
+  <text x="44" y="131" class="t s">No set measurability needed</text>
+  <path d="M210 116 H254" stroke="#A67C52" stroke-width="2.5"/><path d="M254 116 l-9 -6 v12 z" fill="#A67C52"/>
+  <rect x="264" y="70" width="230" height="92" rx="10" class="blue"/>
+  <text x="284" y="100" class="t h">Extended-measure limit</text>
+  <text x="284" y="125" class="t s">The target may have infinite mass</text>
+  <path d="M500 116 H544" stroke="#A67C52" stroke-width="2.5"/><path d="M544 116 l-9 -6 v12 z" fill="#A67C52"/>
+  <rect x="554" y="70" width="182" height="92" rx="10" class="warn"/>
+  <text x="574" y="100" class="t h">Local gate</text>
+  <text x="574" y="124" class="t s">Target union mass</text>
+  <text x="574" y="143" class="t s">must be finite</text>
+  <path d="M645 168 V205" stroke="#A67C52" stroke-width="2.5"/><path d="M645 205 l-6 -9 h12 z" fill="#A67C52"/>
+  <rect x="420" y="216" width="316" height="62" rx="10" class="good"/>
+  <text x="440" y="243" class="t h">Real-measure convergence</text>
+  <text x="440" y="263" class="t s">Finite total mass is sufficient, not locally necessary.</text>
+  <rect x="24" y="198" width="356" height="80" rx="10" class="neutral"/>
+  <text x="44" y="226" class="t h">Why the gate matters</text>
+  <text x="44" y="250" class="t s">Real measure sends infinite extended mass to zero.</text>
+  <text x="44" y="268" class="t s">That totalization cannot be treated as continuous here.</text>
+  <rect x="24" y="299" width="712" height="25" rx="9" class="good"/>
+  <text x="380" y="316" text-anchor="middle" class="t s">Prove the extended limit first; cross to real values only at a finite target.</text>
+</svg>
