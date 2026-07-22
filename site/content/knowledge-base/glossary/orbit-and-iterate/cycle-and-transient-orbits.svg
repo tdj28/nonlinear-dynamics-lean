@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="650"
+     viewBox="0 0 960 650" role="img"
+     aria-labelledby="orbitTitle orbitDesc">
+  <title id="orbitTitle">A four-cycle compared with a transient state feeding a two-cycle</title>
+  <desc id="orbitDesc">The left map has arrows A to B to C to D to A, so the orbit from A visits all four states and repeats every four steps. The right map sends u to a, a to b, and b back to a, while c maps to itself. The orbit from u visits u, a, and b but never c. Both u and b point to a, showing that the right map is not invertible.</desc>
+  <defs>
+    <linearGradient id="orbitPaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EEE5D6"/>
+    </linearGradient>
+    <pattern id="periodicPattern" width="10" height="10" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#EAF1E5"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#315F55" stroke-width="3"/>
+    </pattern>
+    <pattern id="transientPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F3E8E0"/>
+      <circle cx="5" cy="5" r="2" fill="#9B3F2B"/>
+    </pattern>
+    <pattern id="fixedPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#E8F0F7"/>
+      <path d="M0 5 H10 M5 0 V10" stroke="#4B6787" stroke-width="1.5"/>
+    </pattern>
+    <marker id="orbitArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#7F786D"/>
+    </marker>
+  </defs>
+  <rect width="960" height="650" fill="url(#orbitPaper)"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-family:Georgia,serif;font-size:25px;font-weight:700;fill:#16243A}
+    .sub{font-size:14px;fill:#536070}
+    .cap{font-size:13px;font-weight:700;letter-spacing:1.4px;fill:#1F5A68}
+    .h{font-size:16px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#536070}
+    .state{stroke:#766B5D;stroke-width:2}
+    .label{font-size:22px;font-weight:700;fill:#16243A}
+    .arrow{fill:none;stroke:#7F786D;stroke-width:2.5;marker-end:url(#orbitArrow)}
+    .timeline{font-size:15px;font-weight:700;fill:#315F55}
+  </style>
+
+  <text x="34" y="40" class="title">Repeated updates reveal cycles, transients, and unreachable states</text>
+  <text x="34" y="65" class="t sub">Two exact four-state maps; arrows are the complete update rules.</text>
+
+  <rect x="34" y="92" width="430" height="344" rx="15" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="1.8"/>
+  <text x="56" y="123" class="t cap">FOUR-CYCLE T</text>
+  <text x="56" y="146" class="t m">Start at A; every state is periodic with minimal period 4.</text>
+
+  <circle cx="150" cy="210" r="38" fill="url(#periodicPattern)" class="state"/>
+  <text x="150" y="218" text-anchor="middle" class="t label">A</text>
+  <circle cx="348" cy="210" r="38" fill="url(#periodicPattern)" class="state"/>
+  <text x="348" y="218" text-anchor="middle" class="t label">B</text>
+  <circle cx="348" cy="342" r="38" fill="url(#periodicPattern)" class="state"/>
+  <text x="348" y="350" text-anchor="middle" class="t label">C</text>
+  <circle cx="150" cy="342" r="38" fill="url(#periodicPattern)" class="state"/>
+  <text x="150" y="350" text-anchor="middle" class="t label">D</text>
+  <path d="M190 210 H302" class="arrow"/>
+  <path d="M348 250 V296" class="arrow"/>
+  <path d="M308 342 H196" class="arrow"/>
+  <path d="M150 302 V256" class="arrow"/>
+  <text x="249" y="194" text-anchor="middle" class="t m">one update</text>
+  <text x="249" y="404" text-anchor="middle" class="t h">A, B, C, D, A, ...</text>
+  <text x="249" y="424" text-anchor="middle" class="t m">return after four steps</text>
+
+  <rect x="496" y="92" width="430" height="344" rx="15" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="1.8"/>
+  <text x="518" y="123" class="t cap">TRANSIENT-TO-CYCLE MAP S</text>
+  <text x="518" y="146" class="t m">Start at u; enter the a-b cycle. State c is fixed but unvisited.</text>
+
+  <circle cx="560" cy="222" r="34" fill="url(#transientPattern)" class="state"/>
+  <text x="560" y="230" text-anchor="middle" class="t label">u</text>
+  <circle cx="700" cy="222" r="34" fill="url(#periodicPattern)" class="state"/>
+  <text x="700" y="230" text-anchor="middle" class="t label">a</text>
+  <circle cx="850" cy="222" r="34" fill="url(#periodicPattern)" class="state"/>
+  <text x="850" y="230" text-anchor="middle" class="t label">b</text>
+  <path d="M596 222 H658" class="arrow"/>
+  <path d="M736 210 C770 185 812 185 826 210" class="arrow"/>
+  <path d="M826 238 C790 269 750 269 726 238" class="arrow"/>
+  <text x="775" y="177" text-anchor="middle" class="t m">two-cycle</text>
+  <text x="618" y="204" class="t m">transient</text>
+
+  <circle cx="700" cy="342" r="34" fill="url(#fixedPattern)" class="state"/>
+  <text x="700" y="350" text-anchor="middle" class="t label">c</text>
+  <path d="M730 326 C780 285 792 375 734 361" class="arrow"/>
+  <text x="755" y="343" class="t m">fixed</text>
+  <text x="518" y="404" class="t h">u, a, b, a, b, ...</text>
+  <text x="706" y="404" class="t m">c is not in this orbit</text>
+  <text x="518" y="424" class="t m">not invertible: u and b both map to a</text>
+
+  <rect x="34" y="464" width="892" height="82" rx="13" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.8"/>
+  <text x="56" y="493" class="t h">Time table from each highlighted start</text>
+  <text x="56" y="520" class="t timeline">n:       0     1     2     3     4     5     6</text>
+  <text x="430" y="493" class="t timeline">T from A:  A, B, C, D, A, B, C</text>
+  <text x="430" y="520" class="t timeline">S from u:  u, a, b, a, b, a, b</text>
+
+  <rect x="34" y="570" width="892" height="48" rx="12" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="1.8"/>
+  <text x="56" y="600" class="t s">orbit set from A = {A, B, C, D}</text>
+  <text x="500" y="600" class="t s">orbit set from u = {u, a, b}; state c remains outside</text>
+</svg>

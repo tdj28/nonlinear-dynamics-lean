@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="630"
+     viewBox="0 0 920 630" role="img"
+     aria-labelledby="integrabilityTitle integrabilityDesc">
+  <title id="integrabilityTitle">Finite absolute expectation versus a normalized heavy tail with infinite absolute expectation</title>
+  <desc id="integrabilityDesc">A three-outcome variable takes values minus one, two, and five with probabilities one half, one third, and one sixth. Its absolute contributions are one half, two thirds, and five sixths, totaling two, so it is integrable. In the contrast, positive integer n has probability two to the minus n and value two to the n. The probabilities sum to one, but every absolute contribution equals one, so the infinite sum diverges and the variable is not integrable.</desc>
+  <rect width="920" height="630" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:17px;font-weight:700}
+    .h{font-size:13px;font-weight:700;letter-spacing:.35px}
+    .body{font-size:13px}
+    .small{font-size:12px}
+    .muted{font-size:11px;fill:#5A544C}
+    .panel{fill:#FBF9F6;stroke:#A89C8E;stroke-width:1.6}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .clay{fill:#F3E8E0;stroke:#95653E;stroke-width:1.6}
+    .green{fill:#EAF1E5;stroke:#5F7F50;stroke-width:1.7}
+    .gold{fill:#F5EDD9;stroke:#9A772F;stroke-width:1.6}
+    .bad{fill:url(#integrabilityHatch);stroke:#8A3E38;stroke-width:1.8}
+    .arrow{fill:none;stroke:#95653E;stroke-width:2.1}
+  </style>
+  <defs>
+    <pattern id="integrabilityHatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#F7E9E7"/>
+      <path d="M-2 2 L2 -2 M0 8 L8 0 M6 10 L10 6" stroke="#CF9C97" stroke-width="1"/>
+    </pattern>
+    <marker id="integrabilityArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#95653E"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="30" class="t title">Integrability counts absolute size before cancellation</text>
+  <text x="24" y="51" class="t muted">A probability distribution can have total mass one while assigning enough mass to large values that expected absolute size diverges.</text>
+
+  <rect x="24" y="76" width="872" height="236" rx="14" class="panel"/>
+  <text x="44" y="103" class="t h">FINITE EXAMPLE: THREE EXACT WEIGHTED ABSOLUTE VALUES</text>
+  <rect x="44" y="126" width="178" height="142" rx="11" class="blue"/>
+  <text x="62" y="151" class="t h">OUTCOME L</text>
+  <text x="62" y="177" class="t body">probability = 1/2</text>
+  <text x="62" y="202" class="t body">X = -1, so |X| = 1</text>
+  <text x="62" y="236" class="t h">absolute part = 1/2</text>
+
+  <rect x="238" y="126" width="178" height="142" rx="11" class="clay"/>
+  <text x="256" y="151" class="t h">OUTCOME M</text>
+  <text x="256" y="177" class="t body">probability = 1/3</text>
+  <text x="256" y="202" class="t body">X = 2, so |X| = 2</text>
+  <text x="256" y="236" class="t h">absolute part = 2/3</text>
+
+  <rect x="432" y="126" width="178" height="142" rx="11" class="gold"/>
+  <text x="450" y="151" class="t h">OUTCOME H</text>
+  <text x="450" y="177" class="t body">probability = 1/6</text>
+  <text x="450" y="202" class="t body">X = 5, so |X| = 5</text>
+  <text x="450" y="236" class="t h">absolute part = 5/6</text>
+
+  <path d="M610 197 L642 197" class="arrow" marker-end="url(#integrabilityArrow)"/>
+  <rect x="652" y="126" width="224" height="142" rx="11" class="green"/>
+  <text x="670" y="151" class="t h">ADD ABSOLUTE PARTS</text>
+  <text x="670" y="181" class="t body">3/6 + 4/6 + 5/6</text>
+  <text x="716" y="210" class="t h">= 12/6 = 2</text>
+  <text x="670" y="240" class="t h">FINITE: INTEGRABLE</text>
+  <text x="44" y="292" class="t muted">The signed expectation is 1, but integrability first checks the absolute expectation 2.</text>
+
+  <rect x="24" y="338" width="872" height="268" rx="14" class="bad"/>
+  <text x="44" y="366" class="t h">HEAVY-TAIL CONTRAST: EACH RARER OUTCOME IS EXACTLY OFFSET BY A LARGER VALUE</text>
+  <text x="44" y="391" class="t body">Outcomes are n = 1,2,3,... with probability 2^-n and value X(n) = 2^n.</text>
+
+  <rect x="44" y="411" width="568" height="132" rx="11" class="panel"/>
+  <text x="62" y="438" class="t h">n</text>
+  <text x="166" y="438" class="t h">1</text>
+  <text x="268" y="438" class="t h">2</text>
+  <text x="370" y="438" class="t h">3</text>
+  <text x="478" y="438" class="t h">...</text>
+  <text x="62" y="468" class="t body">P(N=n)</text>
+  <text x="153" y="468" class="t body">1/2</text>
+  <text x="255" y="468" class="t body">1/4</text>
+  <text x="357" y="468" class="t body">1/8</text>
+  <text x="470" y="468" class="t body">2^-n</text>
+  <text x="62" y="497" class="t body">|X(n)|</text>
+  <text x="164" y="497" class="t body">2</text>
+  <text x="266" y="497" class="t body">4</text>
+  <text x="368" y="497" class="t body">8</text>
+  <text x="470" y="497" class="t body">2^n</text>
+  <text x="62" y="526" class="t h">product</text>
+  <text x="164" y="526" class="t h">1</text>
+  <text x="266" y="526" class="t h">1</text>
+  <text x="368" y="526" class="t h">1</text>
+  <text x="478" y="526" class="t h">1</text>
+
+  <rect x="636" y="411" width="240" height="132" rx="11" class="bad"/>
+  <text x="654" y="438" class="t h">NORMALIZATION PASSES</text>
+  <text x="654" y="466" class="t body">1/2 + 1/4 + 1/8 + ... = 1</text>
+  <text x="654" y="497" class="t h">ABSOLUTE SUM FAILS</text>
+  <text x="654" y="525" class="t body">1 + 1 + 1 + ... = infinity</text>
+
+  <text x="44" y="574" class="t h">THE VARIABLE IS MEASURABLE BUT NOT INTEGRABLE</text>
+  <text x="44" y="598" class="t muted">Every weighted absolute contribution equals one, so infinitely many contributions diverge.</text>
+</svg>

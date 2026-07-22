@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="route-title route-desc">
+  <title id="route-title">Probability foundations learning route</title>
+  <desc id="route-desc">Three horizontal bands organize twelve glossary chapters. The first band runs from measurable space to event to measure to probability measure. The second runs from measurable function to random variable, then branches through pushforward measure to probability law. The third runs from expectation to integrability to null set to almost everywhere. Arrows connect probability measure to random variable, probability law to expectation, and integrability to almost everywhere.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4d5f67"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2b2925" flood-opacity="0.14"/>
+    </filter>
+    <style>
+      .text{font-family:Inter,Arial,Helvetica,sans-serif;fill:#282621}
+      .title{font-size:28px;font-weight:750}
+      .subtitle{font-size:15px;fill:#5a554e}
+      .band-title{font-size:14px;font-weight:750;letter-spacing:1.1px}
+      .node-title{font-size:17px;font-weight:750}
+      .node-note{font-size:13px;fill:#4f4a43}
+      .arrow{fill:none;stroke:#4d5f67;stroke-width:2.4;marker-end:url(#arrow)}
+      .soft-arrow{fill:none;stroke:#7b878c;stroke-width:2;stroke-dasharray:7 7;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1200" height="760" rx="28" fill="#f7f1e7"/>
+  <text class="text title" x="54" y="52">From possible outcomes to “almost everywhere”</text>
+  <text class="text subtitle" x="54" y="80">One reading route through the probability language used by dynamics and random matrices</text>
+
+  <rect x="36" y="108" width="1128" height="178" rx="22" fill="#e8f0f3" stroke="#88a5b0" stroke-width="1.5"/>
+  <text class="text band-title" x="58" y="136" fill="#335d6b">1 · WHICH QUESTIONS EXIST, AND HOW MUCH MASS DO THEY HAVE?</text>
+
+  <g filter="url(#shadow)">
+    <rect x="60" y="158" width="230" height="94" rx="16" fill="#fffdfa" stroke="#5e8491" stroke-width="2"/>
+    <rect x="340" y="158" width="230" height="94" rx="16" fill="#fffdfa" stroke="#5e8491" stroke-width="2"/>
+    <rect x="620" y="158" width="230" height="94" rx="16" fill="#fffdfa" stroke="#5e8491" stroke-width="2"/>
+    <rect x="900" y="158" width="230" height="94" rx="16" fill="#fffdfa" stroke="#5e8491" stroke-width="2"/>
+  </g>
+  <text class="text node-title" x="175" y="193" text-anchor="middle">Measurable space</text>
+  <text class="text node-note" x="175" y="220" text-anchor="middle">Which subsets may we ask about?</text>
+  <text class="text node-title" x="455" y="193" text-anchor="middle">Event</text>
+  <text class="text node-note" x="455" y="220" text-anchor="middle">Which outcomes satisfy a question?</text>
+  <text class="text node-title" x="735" y="193" text-anchor="middle">Measure</text>
+  <text class="text node-note" x="735" y="220" text-anchor="middle">How much mass does a set carry?</text>
+  <text class="text node-title" x="1015" y="193" text-anchor="middle">Probability measure</text>
+  <text class="text node-note" x="1015" y="220" text-anchor="middle">Is the total mass exactly one?</text>
+  <path class="arrow" d="M290 205 H330"/><path class="arrow" d="M570 205 H610"/><path class="arrow" d="M850 205 H890"/>
+
+  <rect x="36" y="306" width="1128" height="196" rx="22" fill="#f0eadc" stroke="#b59a62" stroke-width="1.5"/>
+  <text class="text band-title" x="58" y="334" fill="#765c27">2 · SEND OUTCOMES TO VALUES, THEN MOVE THEIR MASS</text>
+  <g filter="url(#shadow)">
+    <rect x="60" y="356" width="230" height="104" rx="16" fill="#fffdfa" stroke="#a58035" stroke-width="2"/>
+    <rect x="340" y="356" width="230" height="104" rx="16" fill="#fffdfa" stroke="#a58035" stroke-width="2"/>
+    <rect x="620" y="356" width="230" height="104" rx="16" fill="#fffdfa" stroke="#a58035" stroke-width="2"/>
+    <rect x="900" y="356" width="230" height="104" rx="16" fill="#fffdfa" stroke="#a58035" stroke-width="2"/>
+  </g>
+  <text class="text node-title" x="175" y="393" text-anchor="middle">Measurable function</text>
+  <text class="text node-note" x="175" y="420" text-anchor="middle">Do target events pull back</text><text class="text node-note" x="175" y="439" text-anchor="middle">to allowed source events?</text>
+  <text class="text node-title" x="455" y="393" text-anchor="middle">Random variable</text>
+  <text class="text node-note" x="455" y="420" text-anchor="middle">What number does each</text><text class="text node-note" x="455" y="439" text-anchor="middle">outcome produce?</text>
+  <text class="text node-title" x="735" y="393" text-anchor="middle">Pushforward measure</text>
+  <text class="text node-note" x="735" y="420" text-anchor="middle">Where does source mass land</text><text class="text node-note" x="735" y="439" text-anchor="middle">in the target?</text>
+  <text class="text node-title" x="1015" y="393" text-anchor="middle">Probability law</text>
+  <text class="text node-note" x="1015" y="420" text-anchor="middle">How likely is every</text><text class="text node-note" x="1015" y="439" text-anchor="middle">possible value?</text>
+  <path class="arrow" d="M290 408 H330"/><path class="arrow" d="M570 408 H610"/><path class="arrow" d="M850 408 H890"/>
+  <path class="soft-arrow" d="M1015 252 C1015 295 500 294 468 346"/>
+
+  <rect x="36" y="522" width="1128" height="196" rx="22" fill="#e9efe5" stroke="#85a176" stroke-width="1.5"/>
+  <text class="text band-title" x="58" y="550" fill="#4d6f42">3 · SUMMARIZE SIZE, THEN CONTROL EXCEPTIONS</text>
+  <g filter="url(#shadow)">
+    <rect x="60" y="572" width="230" height="104" rx="16" fill="#fffdfa" stroke="#67865a" stroke-width="2"/>
+    <rect x="340" y="572" width="230" height="104" rx="16" fill="#fffdfa" stroke="#67865a" stroke-width="2"/>
+    <rect x="620" y="572" width="230" height="104" rx="16" fill="#fffdfa" stroke="#67865a" stroke-width="2"/>
+    <rect x="900" y="572" width="230" height="104" rx="16" fill="#fffdfa" stroke="#67865a" stroke-width="2"/>
+  </g>
+  <text class="text node-title" x="175" y="609" text-anchor="middle">Expectation</text>
+  <text class="text node-note" x="175" y="636" text-anchor="middle">What is the probability-</text><text class="text node-note" x="175" y="655" text-anchor="middle">weighted average?</text>
+  <text class="text node-title" x="455" y="609" text-anchor="middle">Integrability</text>
+  <text class="text node-note" x="455" y="636" text-anchor="middle">Is the expected absolute</text><text class="text node-note" x="455" y="655" text-anchor="middle">size finite?</text>
+  <text class="text node-title" x="735" y="609" text-anchor="middle">Null set</text>
+  <text class="text node-note" x="735" y="636" text-anchor="middle">Which exceptional outcomes</text><text class="text node-note" x="735" y="655" text-anchor="middle">carry zero mass?</text>
+  <text class="text node-title" x="1015" y="609" text-anchor="middle">Almost everywhere</text>
+  <text class="text node-note" x="1015" y="636" text-anchor="middle">Does the claim fail only</text><text class="text node-note" x="1015" y="655" text-anchor="middle">on a null set?</text>
+  <path class="arrow" d="M290 624 H330"/><path class="arrow" d="M570 624 H610"/><path class="arrow" d="M850 624 H890"/>
+  <path class="soft-arrow" d="M1015 460 C1015 513 214 499 184 562"/>
+</svg>

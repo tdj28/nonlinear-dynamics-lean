@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 15:36 PDT
+Last updated: 2026-07-22 15:44 PDT
 
-Audited baseline: `main` at `bb29161`
+Audited baseline: `main` at `391a086`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -77,11 +77,11 @@ commits. They are not instructions for future work.
   single-slash-rooted `href` or `src` attributes.
 - The workflow is deliberately production-only: it does not pass
   `--buildDrafts`. The owner explicitly authorized open publication on
-  2026-07-22, so all 134 existing content pages now opt in with `draft: false`:
-  39 Development Notebook entries, 36 Deep Dives, and 59 glossary chapters.
-  The production and draft-inclusive renders both contain 412 pages.
+  2026-07-22, so all 137 existing content pages now opt in with `draft: false`:
+  39 Development Notebook entries, 36 Deep Dives, and 62 glossary chapters.
+  The production and draft-inclusive renders both contain 415 pages.
 - Publication exposes work in progress; it does not manufacture review. All
-  134 pages retain `pro_reviewed: false`, and the Notebook entries retain their
+  137 pages retain `pro_reviewed: false`, and the Notebook entries retain their
   visible pending-review status language. The site-wide
   `open_working_notes` publication mode adds an **Open working note** badge to
   articles and collection cards without rendering the private review metadata.
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `391a086`: add the measurable-function, random-variable, and expectation
+  foundations with fair-die and exact three-outcome models, accessible diagrams,
+  explicit human/paper/Lean bridges, and copyable tiny local Lean worksheets.
 - `bb29161`: add the event, measure, and probability-measure foundations with
   exact finite models and visual mass ledgers, and rebuild conjugate transpose
   around an entry-by-entry complex example and copyable Lean worksheet.
