@@ -29,6 +29,14 @@ human publication review and the configured external Pro review remain
 pending. The checked Lean source is authoritative.
 {{< /panel >}}
 
+{{< panel "info" >}}
+**Successor chapter.** The maximal-closure step missing at RMT-25 is now
+formalized. Continue with
+[Pointwise Birkhoff from Maximal Control and Dense Good Functions]({{< relref "/knowledge-base/deep-dives/pointwise-birkhoff-from-maximal-control-and-dense-good-functions" >}}),
+which carries this core through \(L^1\) density to full-sequence convergence
+almost everywhere without yet identifying the limit.
+{{< /panel >}}
+
 A dynamical system moves states. Ergodic theory asks what long orbit averages
 reveal. Functional analysis changes the viewpoint: instead of following a
 state through time, it lets time act on every observable at once. The resulting

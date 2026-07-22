@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="430" viewBox="0 0 800 430" role="img" aria-labelledby="theoremBoundaryTitle theoremBoundaryDesc">
+  <title id="theoremBoundaryTitle">The boundary of the formal theorem</title>
+  <desc id="theoremBoundaryDesc">A green proved region lists finite preserved measure, every real integrable observable, the full sequence, and almost every state. A neutral frontier lists conclusions not yet established, including a limit formula and ergodic identification.</desc>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <rect width="800" height="430" fill="#F7F4F0"/>
+  <text x="26" y="30" class="t title">The formal theorem has a deliberate boundary</text>
+  <text x="26" y="50" class="t m">Separate the closure result from stronger identifications that require more mathematics.</text>
+
+  <rect x="26" y="82" width="354" height="276" rx="18" class="green"/>
+  <text x="203" y="112" text-anchor="middle" class="t h">PROVED INSIDE THE BOUNDARY</text>
+  <circle cx="62" cy="151" r="11" fill="#FBF9F6" stroke="#6F8D5E" stroke-width="2"/>
+  <path d="M56 151 L61 156 L69 146" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="88" y="155" class="t s">finite preserved measure</text>
+  <circle cx="62" cy="199" r="11" fill="#FBF9F6" stroke="#6F8D5E" stroke-width="2"/>
+  <path d="M56 199 L61 204 L69 194" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="88" y="203" class="t s">every real integrable observable</text>
+  <circle cx="62" cy="247" r="11" fill="#FBF9F6" stroke="#6F8D5E" stroke-width="2"/>
+  <path d="M56 247 L61 252 L69 242" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="88" y="251" class="t s">the full sequence of averages</text>
+  <circle cx="62" cy="295" r="11" fill="#FBF9F6" stroke="#6F8D5E" stroke-width="2"/>
+  <path d="M56 295 L61 300 L69 290" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="88" y="299" class="t s">convergence for almost every state</text>
+  <text x="203" y="335" text-anchor="middle" class="t m">the closure theorem</text>
+
+  <path d="M400 98 V342" stroke="#A67C52" stroke-width="2" stroke-dasharray="7 6"/>
+  <rect x="420" y="82" width="354" height="276" rx="18" class="neutral"/>
+  <text x="597" y="112" text-anchor="middle" class="t h">BEYOND THIS RESULT</text>
+  <rect x="452" y="137" width="16" height="16" rx="3" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="484" y="150" class="t s">an explicit formula for the limit</text>
+  <rect x="452" y="185" width="16" height="16" rx="3" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="484" y="198" class="t s">identification as an ergodic constant</text>
+  <rect x="452" y="233" width="16" height="16" rx="3" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="484" y="246" class="t s">integrable-norm convergence</text>
+  <rect x="452" y="281" width="16" height="16" rx="3" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="484" y="294" class="t s">the subadditive ergodic theorem</text>
+  <text x="597" y="335" text-anchor="middle" class="t m">future layers, not hidden assumptions</text>
+
+  <rect x="128" y="380" width="544" height="34" rx="12" class="clay"/>
+  <text x="400" y="402" text-anchor="middle" class="t s">The theorem proves existence of a pointwise limit, not its identity.</text>
+</svg>

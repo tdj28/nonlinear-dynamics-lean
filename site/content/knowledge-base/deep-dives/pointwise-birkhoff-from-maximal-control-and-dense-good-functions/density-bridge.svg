@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="410" viewBox="0 0 800 410" role="img" aria-labelledby="densityBridgeTitle densityBridgeDesc">
+  <title id="densityBridgeTitle">The two-step density bridge</title>
+  <desc id="densityBridgeDesc">An arbitrary integrable target is approximated by a finite-range representative, then by a square-integrable pointwise-good observable, with finite total mass supporting the passage between the two spaces.</desc>
+  <defs>
+    <marker id="densityBridgeArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#densityBridgeArrow)}
+  </style>
+  <rect width="800" height="410" fill="#F7F4F0"/>
+  <text x="26" y="30" class="t title">The two-step density bridge</text>
+  <text x="26" y="50" class="t m">Finite-range functions make the analytic and topological sides meet cleanly.</text>
+
+  <rect x="26" y="94" width="170" height="154" rx="16" class="neutral"/>
+  <text x="111" y="122" text-anchor="middle" class="t h">TARGET</text>
+  <text x="111" y="157" text-anchor="middle" class="t s">arbitrary integrable</text>
+  <text x="111" y="175" text-anchor="middle" class="t s">observable</text>
+  <path d="M66 207 C83 186 96 223 111 201 C128 177 141 219 157 194" fill="none" stroke="#5A544C" stroke-width="2.4"/>
+  <text x="111" y="231" text-anchor="middle" class="t m">the theorem target</text>
+
+  <path d="M200 171 H239" class="arrow"/>
+  <text x="219" y="153" text-anchor="middle" class="t m">first density step</text>
+
+  <rect x="246" y="82" width="196" height="178" rx="16" class="clay"/>
+  <text x="344" y="111" text-anchor="middle" class="t h">FINITE-RANGE BRIDGE</text>
+  <rect x="281" y="138" width="28" height="62" rx="4" fill="#FBF9F6" stroke="#A67C52"/>
+  <rect x="330" y="155" width="28" height="45" rx="4" fill="#FBF9F6" stroke="#A67C52"/>
+  <rect x="379" y="123" width="28" height="77" rx="4" fill="#FBF9F6" stroke="#A67C52"/>
+  <text x="344" y="225" text-anchor="middle" class="t s">simple enough to control</text>
+  <text x="344" y="243" text-anchor="middle" class="t m">still close to the target</text>
+
+  <path d="M446 171 H485" class="arrow"/>
+  <text x="465" y="153" text-anchor="middle" class="t m">second density step</text>
+
+  <rect x="492" y="94" width="282" height="154" rx="16" class="blue"/>
+  <text x="633" y="122" text-anchor="middle" class="t h">DENSE GOOD CORE</text>
+  <text x="633" y="151" text-anchor="middle" class="t s">square-integrable observables</text>
+  <text x="633" y="169" text-anchor="middle" class="t s">with known pointwise convergence</text>
+  <circle cx="579" cy="204" r="7" fill="#4B6787"/>
+  <circle cx="611" cy="193" r="7" fill="#4B6787"/>
+  <circle cx="644" cy="207" r="7" fill="#4B6787"/>
+  <circle cx="677" cy="190" r="7" fill="#4B6787"/>
+  <text x="633" y="231" text-anchor="middle" class="t m">the closure input</text>
+
+  <rect x="166" y="300" width="468" height="72" rx="14" class="green"/>
+  <text x="400" y="326" text-anchor="middle" class="t h">FINITE TOTAL MASS</text>
+  <text x="400" y="347" text-anchor="middle" class="t s">square-integrable control also gives integrable control</text>
+  <text x="400" y="364" text-anchor="middle" class="t m">the two density steps compose inside the needed error metric</text>
+  <path d="M344 264 V294" class="arrow"/>
+
+  <text x="400" y="396" text-anchor="middle" class="t m">The bridge works with equivalence classes; no canonical pointwise representative is required.</text>
+</svg>

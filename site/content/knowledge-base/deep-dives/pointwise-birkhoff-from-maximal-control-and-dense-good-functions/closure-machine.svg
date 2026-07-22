@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="470" viewBox="0 0 820 470" role="img" aria-labelledby="closureMachineTitle closureMachineDesc">
+  <title id="closureMachineTitle">The two-input closure machine</title>
+  <desc id="closureMachineDesc">Analytic maximal control and a topological dense pointwise-good class enter from separate sides, meet at fixed-scale closure, pass through countable scales, and yield pointwise convergence.</desc>
+  <defs>
+    <marker id="closureMachineArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#closureMachineArrow)}
+  </style>
+  <rect width="820" height="470" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">The two-input closure machine</text>
+  <text x="28" y="51" class="t m">Analysis controls error events; topology supplies nearby observables that already converge.</text>
+
+  <rect x="32" y="86" width="226" height="104" rx="14" class="clay"/>
+  <text x="145" y="112" text-anchor="middle" class="t h">ANALYTIC INPUT</text>
+  <text x="145" y="138" text-anchor="middle" class="t s">weak maximal control</text>
+  <text x="145" y="157" text-anchor="middle" class="t m">turns average error into</text>
+  <text x="145" y="173" text-anchor="middle" class="t m">an exceptional-set budget</text>
+
+  <rect x="32" y="228" width="226" height="104" rx="14" class="blue"/>
+  <text x="145" y="254" text-anchor="middle" class="t h">TOPOLOGICAL INPUT</text>
+  <text x="145" y="280" text-anchor="middle" class="t s">dense pointwise-good class</text>
+  <text x="145" y="299" text-anchor="middle" class="t m">puts a convergent observable</text>
+  <text x="145" y="315" text-anchor="middle" class="t m">arbitrarily near the target</text>
+
+  <path d="M262 138 C314 138 315 193 357 201" class="arrow"/>
+  <path d="M262 280 C314 280 315 225 357 217" class="arrow"/>
+
+  <rect x="364" y="146" width="196" height="126" rx="16" class="green"/>
+  <text x="462" y="175" text-anchor="middle" class="t h">FIXED-SCALE CLOSURE</text>
+  <path d="M418 195 H506" stroke="#6F8D5E" stroke-width="2.4"/>
+  <circle cx="418" cy="195" r="6" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <circle cx="506" cy="195" r="6" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="462" y="222" text-anchor="middle" class="t s">each persistent tail failure</text>
+  <text x="462" y="239" text-anchor="middle" class="t s">is forced into a null set</text>
+  <text x="462" y="258" text-anchor="middle" class="t m">both inputs are used here</text>
+
+  <path d="M564 209 H603" class="arrow"/>
+  <rect x="610" y="119" width="178" height="180" rx="16" class="neutral"/>
+  <text x="699" y="148" text-anchor="middle" class="t h">COUNTABLE SCALES</text>
+  <rect x="642" y="171" width="114" height="16" rx="8" fill="#F3E8E0" stroke="#A67C52"/>
+  <rect x="654" y="198" width="90" height="16" rx="8" fill="#E8F0F7" stroke="#4B6787"/>
+  <rect x="666" y="225" width="66" height="16" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="699" y="267" text-anchor="middle" class="t s">a Cauchy tail remains</text>
+  <text x="699" y="284" text-anchor="middle" class="t m">outside one null union</text>
+
+  <path d="M699 303 V342" class="arrow"/>
+  <rect x="610" y="350" width="178" height="68" rx="14" class="blue"/>
+  <text x="699" y="378" text-anchor="middle" class="t h">POINTWISE LIMIT</text>
+  <text x="699" y="399" text-anchor="middle" class="t s">for almost every state</text>
+
+  <rect x="32" y="374" width="528" height="44" rx="12" class="neutral"/>
+  <text x="296" y="401" text-anchor="middle" class="t s">Neither input closes the theorem alone.</text>
+</svg>

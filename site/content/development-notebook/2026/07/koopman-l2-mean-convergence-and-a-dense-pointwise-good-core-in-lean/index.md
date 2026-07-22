@@ -52,6 +52,14 @@ for every theorem statement.
 {{< /panel >}}
 
 {{< panel "info" >}}
+**Successor milestone.** RMT-26 now combines this dense pointwise-good core
+with absolute weak maximal control to prove full-sequence convergence almost
+everywhere for every real integrable observable on a finite measure-preserving
+system. Continue with
+[The Missing Step Closes: Pointwise Birkhoff by Maximal Control in Lean]({{< relref "/development-notebook/2026/07/finite-measure-pointwise-birkhoff-by-maximal-closure-in-lean" >}}).
+{{< /panel >}}
+
+{{< panel "info" >}}
 **Abstract.** Let \(T:\Omega\to\Omega\) preserve a measure \(\mu\). On the real
 square-integrable space \(L^2(\mu)\), define the Koopman operator by
 

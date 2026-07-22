@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="maximalClosureTitle maximalClosureDesc">
+  <title id="maximalClosureTitle">The maximal closure pipeline</title>
+  <desc id="maximalClosureDesc">Five labeled stages move from an arbitrary integrable observable through dense approximation and maximal error control to null Cauchy failures and full-sequence almost-everywhere convergence.</desc>
+  <defs>
+    <marker id="maximalClosureArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#maximalClosureArrow)}
+  </style>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <text x="24" y="28" class="t title">The maximal closure pipeline</text>
+  <text x="24" y="48" class="t m">Density supplies candidates; maximal control makes approximation stable.</text>
+
+  <rect x="18" y="82" width="132" height="188" rx="12" class="neutral"/>
+  <text x="84" y="111" text-anchor="middle" class="t h">START</text>
+  <text x="84" y="145" text-anchor="middle" class="t s">arbitrary</text>
+  <text x="84" y="162" text-anchor="middle" class="t s">integrable</text>
+  <text x="84" y="179" text-anchor="middle" class="t s">observable</text>
+  <path d="M52 211 H116" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="84" y="238" text-anchor="middle" class="t m">full sequence</text>
+  <text x="84" y="253" text-anchor="middle" class="t m">still unknown</text>
+
+  <path d="M153 176 H160" class="arrow"/>
+
+  <rect x="166" y="82" width="132" height="188" rx="12" class="blue"/>
+  <text x="232" y="111" text-anchor="middle" class="t h">APPROXIMATE</text>
+  <text x="232" y="145" text-anchor="middle" class="t s">choose a nearby</text>
+  <text x="232" y="162" text-anchor="middle" class="t s">pointwise-good</text>
+  <text x="232" y="179" text-anchor="middle" class="t s">observable</text>
+  <circle cx="205" cy="221" r="5" fill="#4B6787"/>
+  <circle cx="232" cy="211" r="5" fill="#4B6787"/>
+  <circle cx="259" cy="226" r="5" fill="#4B6787"/>
+  <text x="232" y="253" text-anchor="middle" class="t m">dense good class</text>
+
+  <path d="M301 176 H308" class="arrow"/>
+
+  <rect x="314" y="82" width="132" height="188" rx="12" class="clay"/>
+  <text x="380" y="111" text-anchor="middle" class="t h">CONTROL</text>
+  <text x="380" y="145" text-anchor="middle" class="t s">large average</text>
+  <text x="380" y="162" text-anchor="middle" class="t s">error is confined</text>
+  <text x="380" y="179" text-anchor="middle" class="t s">to a rare set</text>
+  <path d="M340 219 H420" stroke="#A67C52" stroke-width="7" stroke-linecap="round"/>
+  <path d="M354 235 H406" stroke="#A67C52" stroke-width="3" stroke-linecap="round"/>
+  <text x="380" y="253" text-anchor="middle" class="t m">weak maximal bound</text>
+
+  <path d="M449 176 H456" class="arrow"/>
+
+  <rect x="462" y="82" width="132" height="188" rx="12" class="green"/>
+  <text x="528" y="111" text-anchor="middle" class="t h">CLOSE</text>
+  <text x="528" y="145" text-anchor="middle" class="t s">each fixed</text>
+  <text x="528" y="162" text-anchor="middle" class="t s">Cauchy-failure</text>
+  <text x="528" y="179" text-anchor="middle" class="t s">scale is null</text>
+  <circle cx="497" cy="222" r="9" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+  <path d="M491 222 L496 227 L506 215" fill="none" stroke="#6F8D5E" stroke-width="2.2"/>
+  <text x="528" y="253" text-anchor="middle" class="t m">density drives error away</text>
+
+  <path d="M597 176 H604" class="arrow"/>
+
+  <rect x="610" y="82" width="132" height="188" rx="12" class="blue"/>
+  <text x="676" y="111" text-anchor="middle" class="t h">CONVERGE</text>
+  <text x="676" y="145" text-anchor="middle" class="t s">countable scales</text>
+  <text x="676" y="162" text-anchor="middle" class="t s">give a Cauchy</text>
+  <text x="676" y="179" text-anchor="middle" class="t s">tail and a limit</text>
+  <path d="M642 230 C654 203 668 238 681 211 C691 193 704 201 715 193" fill="none" stroke="#4B6787" stroke-width="2.4"/>
+  <text x="676" y="253" text-anchor="middle" class="t m">almost every state</text>
+
+  <rect x="24" y="310" width="712" height="56" rx="12" class="green"/>
+  <text x="380" y="334" text-anchor="middle" class="t h">THE CLOSURE STEP</text>
+  <text x="380" y="353" text-anchor="middle" class="t s">A dense good class becomes a theorem for every integrable observable.</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="430" viewBox="0 0 780 430" role="img" aria-labelledby="oscillationScalesTitle oscillationScalesDesc">
+  <title id="oscillationScalesTitle">From fixed oscillation scales to a Cauchy tail</title>
+  <desc id="oscillationScalesDesc">A nested ladder of smaller tolerance bands shows that avoiding persistent failure at every scale leaves all sufficiently late averages inside every band, which is the Cauchy property.</desc>
+  <defs>
+    <marker id="oscillationArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#oscillationArrow)}
+  </style>
+  <rect width="780" height="430" fill="#F7F4F0"/>
+  <text x="26" y="30" class="t title">From fixed scales to a Cauchy tail</text>
+  <text x="26" y="50" class="t m">Each row removes one persistent kind of late-time separation.</text>
+
+  <rect x="26" y="82" width="524" height="238" rx="16" class="neutral"/>
+  <text x="48" y="108" class="t h">LATER AVERAGES</text>
+  <path d="M72 283 H518" stroke="#C4B8A8" stroke-width="2"/>
+  <circle cx="112" cy="202" r="7" fill="#A67C52"/>
+  <circle cx="181" cy="246" r="7" fill="#A67C52"/>
+  <circle cx="257" cy="218" r="7" fill="#4B6787"/>
+  <circle cx="329" cy="229" r="7" fill="#4B6787"/>
+  <circle cx="397" cy="222" r="7" fill="#6F8D5E"/>
+  <circle cx="458" cy="225" r="7" fill="#6F8D5E"/>
+  <circle cx="500" cy="223" r="7" fill="#6F8D5E"/>
+  <path d="M244 178 H520 V266 H244 Z" fill="#E8F0F7" fill-opacity="0.58" stroke="#4B6787" stroke-dasharray="5 4"/>
+  <path d="M382 203 H520 V244 H382 Z" fill="#EAF1E5" fill-opacity="0.72" stroke="#6F8D5E" stroke-dasharray="4 3"/>
+  <text x="284" y="170" class="t m">broad tolerance band</text>
+  <text x="387" y="197" class="t m">finer band</text>
+  <text x="112" y="301" text-anchor="middle" class="t m">early</text>
+  <text x="500" y="301" text-anchor="middle" class="t m">later</text>
+
+  <path d="M556 202 H594" class="arrow"/>
+  <rect x="602" y="82" width="152" height="238" rx="16" class="green"/>
+  <text x="678" y="110" text-anchor="middle" class="t h">OUTSIDE THE</text>
+  <text x="678" y="127" text-anchor="middle" class="t h">NULL UNION</text>
+  <rect x="628" y="156" width="100" height="20" rx="10" fill="#FBF9F6" stroke="#6F8D5E"/>
+  <rect x="640" y="191" width="76" height="20" rx="10" fill="#FBF9F6" stroke="#6F8D5E"/>
+  <rect x="652" y="226" width="52" height="20" rx="10" fill="#FBF9F6" stroke="#6F8D5E"/>
+  <text x="678" y="277" text-anchor="middle" class="t s">every scale has</text>
+  <text x="678" y="294" text-anchor="middle" class="t s">a stable tail</text>
+
+  <path d="M678 324 V350" class="arrow"/>
+  <rect x="476" y="358" width="278" height="48" rx="12" class="blue"/>
+  <text x="615" y="379" text-anchor="middle" class="t h">CAUCHY CONCLUSION</text>
+  <text x="615" y="396" text-anchor="middle" class="t s">late averages become mutually close</text>
+
+  <rect x="26" y="350" width="422" height="56" rx="12" class="clay"/>
+  <text x="237" y="374" text-anchor="middle" class="t h">COUNTABILITY IS THE BRIDGE</text>
+  <text x="237" y="392" text-anchor="middle" class="t s">a cofinal ladder replaces all positive tolerances</text>
+</svg>

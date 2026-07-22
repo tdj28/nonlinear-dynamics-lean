@@ -35,6 +35,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean",
     "notebook": "site/content/development-notebook/2026/07/koopman-l2-mean-convergence-and-a-dense-pointwise-good-core-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff",
+    "notebook": "site/content/development-notebook/2026/07/finite-measure-pointwise-birkhoff-by-maximal-closure-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.Discrete",
     "notebook": "site/content/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases/index.md"

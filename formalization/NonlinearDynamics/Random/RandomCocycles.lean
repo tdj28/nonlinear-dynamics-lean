@@ -11,6 +11,7 @@ import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
 import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
 import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
 import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
 
 /-!
 # Random cocycles
@@ -72,7 +73,13 @@ Neumann mean convergence, and builds a dense set of fixed vectors plus
 simple-function coboundaries whose chosen representatives have almost-everywhere
 convergent pointwise averages. Norm convergence is kept distinct from
 full-sequence pointwise convergence: in general it supplies only an
-almost-everywhere convergent subsequence. These layers deliberately stop before
-the full `L¹` pointwise Birkhoff theorem, Kingman's subadditive ergodic theorem,
+almost-everywhere convergent subsequence. On a finite-measure base, the weak
+maximal estimate then closes this dense pointwise-good core in real `L¹`:
+fixed-scale Cauchy failures are null, reciprocal natural scales make the
+argument countable, and completeness of the reals gives full-sequence
+almost-everywhere convergence for every integrable observable. This final
+convergence theorem needs neither probability normalization nor ergodicity and
+does not identify the limit. These layers deliberately stop before
+conditional-expectation identification, Kingman's subadditive ergodic theorem,
 or a samplewise exponent claim.
 -/

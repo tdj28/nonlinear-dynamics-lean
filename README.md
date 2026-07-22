@@ -481,21 +481,35 @@ The first active sequence is:
     convergent subsequence. The module assumes measure preservation only for
     its square-integrable geometry and makes no probability, ergodicity,
     invertibility, full pointwise-Birkhoff, or limit-identification claim.
+31. [`RandomCocycles/PointwiseBirkhoff.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean)
+    closes the finite-measure real pointwise Birkhoff theorem. It defines
+    absolute positive-time maximal-error events and fixed-scale Cauchy
+    exceptional events, proves their measurable-representative interfaces,
+    and confines each Cauchy failure to a maximal approximation-error event
+    plus the approximant's null bad set. Arbitrarily close pointwise-good
+    approximants make every positive reciprocal-scale failure event null.
+    Completeness of the reals then gives full-sequence almost-everywhere
+    convergence. A continuous finite-measure inclusion with dense range sends
+    the RMT-25 fixed-plus-simple-coboundary core from real `L²` into a dense
+    real `L¹` core, supplying the required approximants. The final theorem
+    assumes finite total mass, measure preservation, and integrability, but
+    no probability normalization, ergodicity, injectivity, surjectivity, or
+    invertibility. It proves convergence-event membership without identifying
+    the limit.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
 passed from the infinite-horizon weak maximal inequality through Koopman
-square-integrable mean convergence and a dense pointwise-good core. The next
-stage combines that density with absolute weak maximal control and
-oscillation or Cauchy exceptional sets to build an honest finite-measure
-pointwise Birkhoff theorem for integrable observables. Every measurability,
-integrability, invariance, finite-measure, approximation, and limit premise
-will remain visible. Only after that should the finite packing machinery be
-connected to a Kingman-style subadditive theorem. The pinned Mathlib release
-supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
-pointwise Birkhoff or Kingman theorem. A samplewise growth limit, Lyapunov
-exponent, or Oseledets splitting remains unavailable until those dependencies
-are checked.
+square-integrable mean convergence, a dense pointwise-good core, and the
+maximal-closure proof of full-sequence almost-everywhere convergence for every
+real integrable observable on a finite measure-preserving base. The next
+additive stage must identify that limit through the invariant sigma algebra
+without silently adding ergodicity or probability normalization. Only after
+that should the finite packing machinery be connected to a Kingman-style
+subadditive theorem. The pinned Mathlib release supplies finite Birkhoff
+algebra and ergodic primitives, but no ready-made pointwise Birkhoff or
+Kingman theorem. A samplewise growth limit, Lyapunov exponent, or Oseledets
+splitting remains unavailable until those dependencies are checked.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

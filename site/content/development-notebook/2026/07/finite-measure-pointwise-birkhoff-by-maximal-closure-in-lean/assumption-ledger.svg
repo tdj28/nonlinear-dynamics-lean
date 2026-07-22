@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="assumptionLedgerTitle assumptionLedgerDesc">
+  <title id="assumptionLedgerTitle">Assumption and conclusion ledger</title>
+  <desc id="assumptionLedgerDesc">Three labeled columns separate the theorem's required hypotheses, assumptions it does not need, and stronger conclusions it does not prove.</desc>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .required{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .absent{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .boundary{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .rule{stroke:#A89B8C;stroke-width:1.4;stroke-dasharray:5 4}
+  </style>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <text x="24" y="28" class="t title">Assumption and conclusion ledger</text>
+  <text x="24" y="48" class="t m">The checked theorem keeps its inputs and nonclaims visible.</text>
+
+  <rect x="24" y="78" width="220" height="226" rx="14" class="required"/>
+  <text x="134" y="109" text-anchor="middle" class="t h">REQUIRED</text>
+  <line x1="50" y1="124" x2="218" y2="124" class="rule"/>
+  <circle cx="54" cy="153" r="5" fill="#6F8D5E"/>
+  <text x="70" y="157" class="t s">finite total measure</text>
+  <circle cx="54" cy="190" r="5" fill="#6F8D5E"/>
+  <text x="70" y="194" class="t s">measure preservation</text>
+  <circle cx="54" cy="227" r="5" fill="#6F8D5E"/>
+  <text x="70" y="231" class="t s">real integrable observable</text>
+  <text x="134" y="278" text-anchor="middle" class="t m">all hypotheses are explicit</text>
+
+  <rect x="270" y="78" width="220" height="226" rx="14" class="absent"/>
+  <text x="380" y="109" text-anchor="middle" class="t h">NOT REQUIRED</text>
+  <line x1="296" y1="124" x2="464" y2="124" class="rule"/>
+  <rect x="298" y="146" width="10" height="10" fill="none" stroke="#4B6787" stroke-width="2"/>
+  <text x="320" y="157" class="t s">probability normalization</text>
+  <rect x="298" y="183" width="10" height="10" fill="none" stroke="#4B6787" stroke-width="2"/>
+  <text x="320" y="194" class="t s">ergodicity</text>
+  <rect x="298" y="220" width="10" height="10" fill="none" stroke="#4B6787" stroke-width="2"/>
+  <text x="320" y="231" class="t s">invertible dynamics</text>
+  <text x="380" y="278" text-anchor="middle" class="t m">no hidden structural gate</text>
+
+  <rect x="516" y="78" width="220" height="226" rx="14" class="boundary"/>
+  <text x="626" y="109" text-anchor="middle" class="t h">NOT CONCLUDED</text>
+  <line x1="542" y1="124" x2="710" y2="124" class="rule"/>
+  <path d="M544 151 H554" stroke="#A67C52" stroke-width="3"/>
+  <text x="566" y="157" class="t s">a named limit formula</text>
+  <path d="M544 188 H554" stroke="#A67C52" stroke-width="3"/>
+  <text x="566" y="194" class="t s">an ergodic constant</text>
+  <path d="M544 225 H554" stroke="#A67C52" stroke-width="3"/>
+  <text x="566" y="231" class="t s">integrable norm convergence</text>
+  <text x="626" y="278" text-anchor="middle" class="t m">subadditive theory remains later</text>
+
+  <rect x="24" y="328" width="712" height="40" rx="11" class="required"/>
+  <text x="380" y="353" text-anchor="middle" class="t s">Proved: full-sequence convergence for almost every starting state.</text>
+</svg>
