@@ -27,6 +27,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal",
     "notebook": "site/content/development-notebook/2026/07/finite-hopf-maximal-ergodic-lemma-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal",
+    "notebook": "site/content/development-notebook/2026/07/infinite-horizon-birkhoff-average-exceedance-bounds-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.Discrete",
     "notebook": "site/content/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases/index.md"

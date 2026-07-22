@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620" role="img" aria-labelledby="infinite-event-title infinite-event-desc">
+  <title id="infinite-event-title">Finite average-exceedance events form the infinite-horizon event</title>
+  <desc id="infinite-event-desc">A positive-time average that strictly crosses the threshold has a finite witness time. Choosing that same time as the finite horizon places the point in one finite event. Conversely, every finite witness is already an infinite witness. The events are nested with the horizon and never lose earlier witnesses, while time zero contributes no witness.</desc>
+  <defs>
+    <marker id="infinite-event-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+  </style>
+  <rect width="920" height="620" rx="18" fill="#F7F4F0"/>
+  <text class="t title" x="24" y="28">One finite witness builds the infinite-horizon event</text>
+  <text class="t m" x="24" y="48">Strict crossing occurs at a positive natural time, so every witness already lives at a finite horizon.</text>
+
+  <rect x="36" y="82" width="238" height="190" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
+  <text class="t h" x="58" y="112">ONE ORBIT POINT</text>
+  <line x1="66" y1="211" x2="242" y2="211" stroke="#7F786D" stroke-width="1.6"/>
+  <line x1="66" y1="139" x2="66" y2="230" stroke="#7F786D" stroke-width="1.6"/>
+  <line x1="66" y1="175" x2="242" y2="175" stroke="#A89B8C" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <polyline points="72,211 104,201 136,189 168,153 200,168 232,143" fill="none" stroke="#4B6787" stroke-width="3.5"/>
+  <circle cx="168" cy="153" r="7" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text class="t m" x="77" y="246">time zero</text>
+  <text class="t m" x="146" y="135">strict crossing</text>
+  <text class="t m" x="174" y="225">positive witness time</text>
+
+  <line x1="286" y1="177" x2="348" y2="177" stroke="#A67C52" stroke-width="3" marker-end="url(#infinite-event-arrow)"/>
+  <text class="t m" x="289" y="160">choose the</text>
+  <text class="t m" x="291" y="195">same horizon</text>
+
+  <rect x="360" y="82" width="524" height="190" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.6"/>
+  <text class="t h" x="382" y="112">NESTED FINITE EVENTS</text>
+  <rect x="394" y="139" width="450" height="103" rx="46" fill="#EDE8E1" stroke="#7F786D" stroke-width="1.3"/>
+  <rect x="438" y="151" width="356" height="79" rx="38" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.3"/>
+  <rect x="485" y="162" width="256" height="57" rx="28" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.3"/>
+  <text class="t s" x="505" y="196">earlier horizon</text>
+  <text class="t m" x="748" y="196">later</text>
+  <text class="t m" x="803" y="196">all finite</text>
+  <text class="t m" x="382" y="258">Each later horizon retains every earlier positive-time witness.</text>
+
+  <rect x="36" y="304" width="848" height="214" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
+  <text class="t h" x="58" y="337">THE TWO INCLUSIONS</text>
+  <rect x="62" y="362" width="350" height="114" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text class="t h" x="84" y="392">INFINITE TO FINITE</text>
+  <text class="t s" x="84" y="419">Recover the positive witness time.</text>
+  <text class="t s" x="84" y="442">Use that time as the finite horizon.</text>
+  <text class="t m" x="84" y="462">No topology, measure, or measurability is used.</text>
+  <rect x="508" y="362" width="350" height="114" rx="10" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.4"/>
+  <text class="t h" x="530" y="392">FINITE TO INFINITE</text>
+  <text class="t s" x="530" y="419">Forget the upper horizon bound.</text>
+  <text class="t s" x="530" y="442">The same strict positive-time witness remains.</text>
+  <text class="t m" x="530" y="462">The equality is exact, not only almost everywhere.</text>
+  <line x1="424" y1="419" x2="493" y2="419" stroke="#A67C52" stroke-width="3" marker-end="url(#infinite-event-arrow)"/>
+  <line x1="496" y1="449" x2="427" y2="449" stroke="#A67C52" stroke-width="3" marker-end="url(#infinite-event-arrow)"/>
+
+  <rect x="24" y="548" width="872" height="48" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text class="t s" x="48" y="577">Takeaway: the infinite event means that one finite positive-time average crosses strictly; it does not mean the averages converge.</text>
+</svg>

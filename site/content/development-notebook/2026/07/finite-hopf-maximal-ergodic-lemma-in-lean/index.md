@@ -1382,12 +1382,13 @@ historical, accessibility, and editorial review.
 ## The next ridge
 
 The finite events \(E_{N,a}\) are increasing in \(N\), and their measure has a
-right-hand bound independent of \(N\) when \(a\gt0\). Those are the right raw
-ingredients for an increasing-event passage to an infinite-horizon maximal
-inequality. The next step must still be proved: define the infinite event,
-establish its measurable or null-measurable presentation, identify it with the
-union of the finite events, and pass the finite bound through measure
-continuity without losing the exact assumptions.
+right-hand bound independent of \(N\) when \(a\gt0\). Their increasing-event
+passage is now formalized in the successor chapter,
+[From Every Finite Horizon to One Infinite Event in Lean]({{< relref "/development-notebook/2026/07/infinite-horizon-birkhoff-average-exceedance-bounds-in-lean" >}}).
+That chapter defines the infinite event, proves its measurable and
+null-measurable presentations, identifies it with the union of the finite
+events, and passes the finite bound through extended and real measure
+continuity with the explicit sufficient finiteness premise visible.
 
 An infinite maximal inequality would still not finish the pointwise Birkhoff
 theorem. A complete route needs a dense class on which convergence is already

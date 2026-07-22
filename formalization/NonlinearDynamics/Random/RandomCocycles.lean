@@ -9,6 +9,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
 import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
+import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
 
 /-!
 # Random cocycles
@@ -58,8 +59,13 @@ through a fixed horizon, proves that the integral of the observable over the
 strict positivity event is nonnegative, and derives an average-exceedance
 integral inequality at every real threshold. This needs neither finite total
 mass nor probability for the core theorem, and no positivity assumption on
-the threshold for the finite-measure corollary. These layers deliberately stop
-before an infinite-horizon maximal inequality or any pointwise or mean
-Birkhoff theorem, Kingman's subadditive ergodic theorem, or samplewise
-exponent claim.
+the threshold for the finite-measure corollary. The increasing union of those
+finite events next gives the positive-time infinite exceedance event. Measure
+preservation and one-step integrability make it null measurable without a
+finite-mass assumption. Continuity from below is exposed unconditionally for
+extended nonnegative real measure; under finite total mass, it yields an
+infinite weak maximal bound. The real-measure corollary exposes finiteness
+because `Measure.real` totalizes infinite mass to zero. These layers
+deliberately stop before any pointwise or mean Birkhoff theorem, Kingman's
+subadditive ergodic theorem, or samplewise exponent claim.
 -/

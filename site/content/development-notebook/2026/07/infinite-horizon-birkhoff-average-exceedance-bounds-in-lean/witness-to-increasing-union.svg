@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="witnessTitle witnessDesc">
+  <title id="witnessTitle">A positive-time witness enters one finite event and therefore the infinite union</title>
+  <desc id="witnessDesc">A four-stage conceptual diagram. A point has a positive-time average above the threshold. Choosing that time as a finite horizon places the point in a finite exceedance event. Nested finite events retain it at every later horizon. Their increasing union is exactly the infinite event. The reverse route reads any finite-event witness directly as an infinite-event witness.</desc>
+  <rect width="920" height="520" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.5}
+  </style>
+  <text x="24" y="28" class="t title">One witness makes the finite-to-infinite identity exact</text>
+  <text x="24" y="48" class="t m">No limiting maximum is invented. The event is built from a positive natural-time witness.</text>
+
+  <rect class="blue" x="24" y="88" width="190" height="170" rx="12"/>
+  <text x="46" y="120" class="t h">POSITIVE-TIME WITNESS</text>
+  <text x="46" y="150" class="t s">Some orbit average is</text>
+  <text x="46" y="170" class="t s">strictly above the chosen</text>
+  <text x="46" y="190" class="t s">threshold.</text>
+  <rect class="cream" x="46" y="211" width="146" height="28" rx="7"/>
+  <text x="68" y="230" class="t m">time is positive</text>
+
+  <path class="arrow" d="M 222 172 L 268 172"/>
+  <polygon points="280,172 266,164 266,180" fill="#A67C52"/>
+
+  <rect class="clay" x="280" y="88" width="190" height="170" rx="12"/>
+  <text x="311" y="120" class="t h">CHOOSE THAT HORIZON</text>
+  <text x="302" y="150" class="t s">Use the witnessing time</text>
+  <text x="302" y="170" class="t s">itself as the finite cutoff.</text>
+  <text x="302" y="200" class="t s">The witness is automatically</text>
+  <text x="302" y="220" class="t s">at or below this horizon.</text>
+
+  <path class="arrow" d="M 478 172 L 524 172"/>
+  <polygon points="536,172 522,164 522,180" fill="#A67C52"/>
+
+  <rect class="cream" x="536" y="88" width="168" height="170" rx="12"/>
+  <text x="561" y="120" class="t h">FINITE EVENT</text>
+  <text x="558" y="150" class="t s">The point belongs at</text>
+  <text x="558" y="170" class="t s">that finite stage.</text>
+  <text x="558" y="200" class="t s">Horizon monotonicity</text>
+  <text x="558" y="220" class="t s">retains it thereafter.</text>
+
+  <path class="arrow" d="M 712 172 L 758 172"/>
+  <polygon points="770,172 756,164 756,180" fill="#A67C52"/>
+
+  <rect class="green" x="770" y="88" width="126" height="170" rx="12"/>
+  <text x="792" y="120" class="t h">UNION</text>
+  <text x="790" y="150" class="t s">All finite</text>
+  <text x="790" y="170" class="t s">stages together</text>
+  <text x="790" y="190" class="t s">give exactly</text>
+  <text x="790" y="210" class="t s">the infinite</text>
+  <text x="790" y="230" class="t s">event.</text>
+
+  <rect class="cream" x="24" y="292" width="872" height="128" rx="12"/>
+  <text x="48" y="325" class="t h">THE REVERSE INCLUSION IS EVEN SHORTER</text>
+  <text x="48" y="354" class="t s">Membership in a finite event already carries a positive time, a horizon bound, and strict threshold exceedance.</text>
+  <text x="48" y="378" class="t s">Discarding only the horizon bound leaves the exact witness required by the infinite event.</text>
+  <text x="48" y="402" class="t m">The equality is witness bookkeeping, not a convergence theorem.</text>
+
+  <rect class="green" x="24" y="446" width="872" height="50" rx="10"/>
+  <text x="47" y="477" class="t s">Takeaway: every infinite-event member appears at a finite stage, and every finite-stage member is already an infinite-event member.</text>
+</svg>

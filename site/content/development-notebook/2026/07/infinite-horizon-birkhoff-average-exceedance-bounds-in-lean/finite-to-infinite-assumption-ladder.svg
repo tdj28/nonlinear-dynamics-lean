@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="640" viewBox="0 0 920 640" role="img" aria-labelledby="ladderTitle ladderDesc">
+  <title id="ladderTitle">Assumptions enter in separate layers from event algebra to the divided weak bound</title>
+  <desc id="ladderDesc">A five-rung ladder. Event membership, finite inclusion, and union equality use only orbit algebra. Ordinary event measurability uses measurable dynamics and observable. Null measurability uses measure preservation and integrability but not finite mass. Extended-measure continuity uses only nested events. The real positive-part bound adds finite total mass, and positive threshold is added only for division. Probability, ergodicity, and invertibility appear outside the ladder as unnecessary.</desc>
+  <rect width="920" height="640" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Assumptions arrive only when the next operation consumes them</text>
+  <text x="24" y="48" class="t m">Read upward from witness algebra to the divided infinite-horizon estimate.</text>
+
+  <rect class="blue" x="60" y="470" width="620" height="82" rx="12"/>
+  <text x="84" y="498" class="t h">EVENT ALGEBRA AND EXACT UNION</text>
+  <text x="84" y="523" class="t s">Positive-time witness, finite inclusion, horizon monotonicity</text>
+  <text x="84" y="544" class="t m">No measure, measurability, probability, or dynamics hypothesis</text>
+
+  <rect class="cream" x="100" y="374" width="620" height="82" rx="12"/>
+  <text x="124" y="402" class="t h">TWO REGULARITY ROUTES</text>
+  <text x="124" y="427" class="t s">Ordinary: measurable map and observable</text>
+  <text x="124" y="448" class="t m">Null route: measure preservation and integrability, still no finite mass</text>
+
+  <rect class="gray" x="140" y="278" width="620" height="82" rx="12"/>
+  <text x="164" y="306" class="t h">EXTENDED-MEASURE CONTINUITY</text>
+  <text x="164" y="331" class="t s">Nested finite events converge in measure to their union</text>
+  <text x="164" y="352" class="t m">No event measurability and no finite-mass premise</text>
+
+  <rect class="clay" x="180" y="182" width="620" height="82" rx="12"/>
+  <text x="204" y="210" class="t h">REAL POSITIVE-PART BOUND</text>
+  <text x="204" y="235" class="t s">Measure preservation, integrable observable, finite total mass</text>
+  <text x="204" y="256" class="t m">Every real threshold is allowed before division</text>
+
+  <rect class="green" x="220" y="86" width="620" height="82" rx="12"/>
+  <text x="244" y="114" class="t h">DIVIDED WEAK MAXIMAL BOUND</text>
+  <text x="244" y="139" class="t s">Add a strictly positive threshold exactly here</text>
+  <text x="244" y="160" class="t m">The denominator sign protects the inequality direction</text>
+
+  <rect class="cream" x="706" y="470" width="166" height="82" rx="12"/>
+  <text x="727" y="498" class="t h">NEVER ADDED</text>
+  <text x="727" y="522" class="t m">probability</text>
+  <text x="727" y="539" class="t m">ergodicity or inverse</text>
+
+  <rect class="green" x="24" y="580" width="872" height="40" rx="10"/>
+  <text x="47" y="605" class="t s">Takeaway: finite mass belongs to the real weak-bound layer, while threshold positivity belongs only to division.</text>
+</svg>

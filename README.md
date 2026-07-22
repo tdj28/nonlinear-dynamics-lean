@@ -453,14 +453,31 @@ The first active sequence is:
     sigma-finiteness, ergodicity, nor invertibility. The average-threshold
     layer uses a finite measure only to make the constant centering observable
     integrable.
+29. [`RandomCocycles/InfiniteHopfMaximal.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean)
+    defines the positive-time infinite Birkhoff-average exceedance event and
+    identifies it exactly with the increasing union of the finite events.
+    Ordinary measurability and integrable/null-measurable routes remain
+    separate. Continuity from below is first stated without a finiteness gate
+    for extended nonnegative real measure, then passes the horizon-uniform
+    positive-part estimate to the infinite event under finite total mass.
+    Division by a positive threshold gives the weak maximal bound. The
+    real-measure convergence corollary uses an explicit local finiteness
+    premise because `Measure.real` maps infinite extended mass to zero. A
+    paired boundary probe records that this premise is a clean sufficient
+    route, not a necessary condition for every particular sequence: no
+    ungated general conversion theorem is valid, although some infinite-mass
+    families do converge after totalization. The result requires neither
+    probability, ergodicity, nor invertibility and makes no pointwise
+    convergence claim.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
-spectral laws or quantum-chaos observables. The next asymptotic route passes
-from the increasing finite exceedance events to an infinite-horizon maximal
-inequality, then builds an honest pointwise Birkhoff theorem with every
-measurability, integrability, invariance, finite-measure, approximation, and
-limit premise visible. Only after that should the finite packing machinery be
-connected to a Kingman-style subadditive theorem. The pinned Mathlib release
+spectral laws or quantum-chaos observables. The current asymptotic route has
+passed from the increasing finite exceedance events to an infinite-horizon
+weak maximal inequality. The next stage builds an honest pointwise Birkhoff
+theorem with every measurability, integrability, invariance, finite-measure,
+approximation, and limit premise visible. Only after that should the finite
+packing machinery be connected to a Kingman-style subadditive theorem. The
+pinned Mathlib release
 supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
 pointwise Birkhoff or Kingman theorem. A samplewise growth limit, Lyapunov
 exponent, or Oseledets splitting remains unavailable until those dependencies
