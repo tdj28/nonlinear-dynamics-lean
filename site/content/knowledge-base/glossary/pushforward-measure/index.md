@@ -5,6 +5,9 @@ summary: "A pushforward measure transports mass through a measurable function by
 draft: false
 pro_reviewed: false
 toc: true
+lean_module: "NonlinearDynamics.Random.RandomMatrices.Laws"
+og_image: "pushforward-measure-card.png"
+og_image_alt: "Three source atoms flow through a many-to-one map, combining masses one half and one third into target mass five sixths."
 ---
 
 {{< panel "warning" >}}
@@ -15,8 +18,8 @@ review remains pending.
 {{< /panel >}}
 
 A **pushforward measure** transports mass from one measurable space to another
-through a function. The central rule is simple: to measure a target set, look
-back at all source points that the function sends into it.
+through a function. The central rule is simple: points move forward, but to
+measure a target set we look backward at all source points that land in it.
 
 Let \((S,\mathcal A)\) and \((T,\mathcal B)\) be measurable spaces. Here \(S\)
 and \(T\) are sets, while \(\mathcal A\) and \(\mathcal B\) are their
@@ -26,7 +29,9 @@ collections of measurable subsets. Let \(\mu\) be a measure on \(S\), and let
 f:S\longrightarrow T
 \]
 
-be measurable. The **pushforward of** \(\mu\) **by** \(f\) is the measure
+be measurable. This means that for every measurable target set
+\(B\in\mathcal B\), its preimage \(f^{-1}(B)\) belongs to the source collection
+\(\mathcal A\). The **pushforward of** \(\mu\) **by** \(f\) is the measure
 \(f_*\mu\) on \(T\) defined by
 
 \[
@@ -38,7 +43,9 @@ for every measurable set \(B\in\mathcal B\). Other common notations are
 
 The inverse image is essential. Measures consume sets, while \(f\) sends points
 forward. To learn how much source mass arrives in \(B\), we collect the source
-points that land there and measure that collection with \(\mu\).
+points that land there and measure that collection with \(\mu\). Measurability
+is exactly the guarantee that this collected source set is an event to which
+the source measure applies in the ordinary measure-space sense.
 
 ## The transport picture
 
@@ -48,9 +55,9 @@ points that land there and measure that collection with \(\mu\).
 | Map | A measurable function \(f:S\to T\) | Send each source point to one target point |
 | Target | The measure \(f_*\mu\) on \(T\) | Assign each target set the mass of its preimage |
 
-This table is the teaching picture for the construction. It exposes the two
-opposite directions that are easy to mix up: points travel forward through
-\(f\), but sets travel backward through \(f^{-1}\).
+The two directions are easy to mix up: points travel forward through \(f\),
+but target-set questions travel backward through \(f^{-1}\). The next example
+makes both directions explicit.
 
 ## A finite example with collisions
 
@@ -74,6 +81,10 @@ f(b)=1,
 f(c)=0.
 \]
 
+Give both finite sets the measurable structure in which every subset is
+measurable. Then \(f\) is automatically measurable: the preimage of any target
+subset is a source subset.
+
 Two source points collide at the target value \(0\). Therefore
 
 \[
@@ -90,9 +101,19 @@ Two source points collide at the target value \(0\). Therefore
 \end{aligned}
 \]
 
+{{< reference-figure
+  wide="true"
+  src="finite-mass-flow.svg"
+  alt="Source points a, b, and c carry three sixths, one sixth, and two sixths. Arrows send a and c to target zero and b to target one. Six equal target cells show five sixths at zero and one sixth at one."
+  caption="**Finding:** the map sends points forward, while the target queries pull back to source sets. The target event \(\{0\}\) has preimage \(\{a,c\}\), so its three sixths and two sixths combine into \(5/6\). The target event \(\{1\}\) has preimage \(\{b\}\), so it receives \(1/6\). The six equal cells encode the exact weights, and their hatch patterns retain the source contribution after the collision. This is an exact finite example, not six sampled observations."
+>}}
+
 The total mass remains one. The pushforward combines mass when several source
 points have the same image. It does not remember whether \(a\) or \(c\)
-produced the target value \(0\).
+produced the target value \(0\) if all we retain is the target value. The
+colored and patterned cells in the teaching figure remember that provenance
+only so the arithmetic can be inspected; the pushforward measure itself stores
+the total \(5/6\), not a source label on each part.
 
 ## Probability laws are pushforwards
 
@@ -194,51 +215,106 @@ hypotheses are also required. This is the abstract form of "sample first, then
 average": averaging a target observable under the transported law equals
 averaging its composition with the original random object.
 
-## Lean-facing interpretation
+## In Lean: the preimage remains visible
 
-Mathlib names pushforward <code>Measure.map</code>:
+Mathlib names pushforward <code>Measure.map</code>. The project uses that
+construction to define the law of a measurable random matrix. Here is the core
+statement in the three languages a reader must be able to translate between.
+
+{{< lean-bridge
+  human="For every measurable set s of matrix values, the law of X assigns s exactly the source mass of the outcomes that X sends into s."
+  math="\(\mathcal L_\mu(X)(s)=\mu\!\left(X^{-1}(s)\right)\)."
+  lean="RandomMatrix.law X hX μ s = μ (X ⁻¹' s)"
+>}}
+
+- <code>RandomMatrix.law X hX μ</code> is the target-space measure
+  <code>Measure.map X μ</code>.
+- <code>X</code> sends source outcomes to matrix values.
+- <code>hX : Measurable X</code> proves that measurable target sets have
+  measurable source preimages.
+- <code>μ</code> is the source measure. Changing it can change the pushforward
+  even when <code>X</code> stays fixed.
+- <code>s</code> is the target set being queried. The checked theorem also takes
+  <code>hs : MeasurableSet s</code>, which certifies that this query is
+  measurable.
+- <code>X ⁻¹' s</code> is Lean's set-preimage notation. Read it from right to
+  left: start with target set <code>s</code>, then collect the source outcomes
+  whose <code>X</code>-values land there.
+- The equality says the target measure and source-preimage calculation return
+  exactly the same extended nonnegative real number.
+{{< /lean-bridge >}}
+
+The following definition and theorem are an exact excerpt from the checked
+project source. The measurability proof is an explicit argument of
+<code>law</code>, even though the definition's body is simply
+<code>Measure.map X μ</code>.
 
 ~~~lean
-Measure.map f μ
+noncomputable def law (X : RandomMatrix Ω ι ι ℂ) (_hX : Measurable X)
+    (μ : Measure Ω) : Measure (Matrix ι ι ℂ) :=
+  Measure.map X μ
+
+theorem law_apply (X : RandomMatrix Ω ι ι ℂ) (hX : Measurable X)
+    (μ : Measure Ω) {s : Set (Matrix ι ι ℂ)} (hs : MeasurableSet s) :
+    law X hX μ s = μ (X ⁻¹' s) := by
+  exact Measure.map_apply hX hs
 ~~~
 
-For a measurable map <code>f</code> and measurable set <code>B</code>, the
-theorem <code>Measure.map_apply</code> has the mathematical content
+The final proof line hands Mathlib the two gates its evaluation theorem needs:
+<code>hX</code> proves the map measurable, and <code>hs</code> proves the target
+set measurable. The conclusion then computes the pushforward by a preimage.
 
-~~~text
-(Measure.map f μ) B = μ (f ⁻¹' B).
-~~~
-
-The composition theorem is <code>Measure.map_map</code>. These names make the
-direction easy to remember: the **measure** is mapped forward, even though the
-formula uses the function's inverse image on sets.
-
-There is one implementation boundary to keep visible. Mathlib defines
-<code>Measure.map f μ</code> to be the zero measure if <code>f</code> is not
-almost-everywhere measurable with respect to <code>μ</code>. This makes the
-operation total, but it is not a license to omit measurability proofs. A
-probability-law interface should require the map's measurability before using
-the expected identities.
-
-The checked <code>RandomMatrices.Laws</code> module uses this interface
-directly. <code>RandomMatrix.law</code> is <code>Measure.map X μ</code> with an
-explicit measurability argument, and <code>RandomMatrix.law_comp</code> proves
-that measurable matrix maps compose with laws in the expected way.
-
-For the deterministic congruence map
-\(C_A(H)=AHA^*\), the module proves <code>measurable_congruence</code>. Its
-bundled transport theorem is
+The same module proves composition without hiding either measurability proof:
 
 ~~~lean
-theorem HermitianRandomMatrix.law_conjugateBy
-    [Fintype ι] (A : Matrix ι ι ℂ)
-    (X : HermitianRandomMatrix Ω ι) (μ : Measure Ω) :
-    law (X.conjugateBy A) μ =
-      Measure.map (RandomMatrix.congruence A) (law X μ)
+theorem law_comp {X : RandomMatrix Ω ι ι ℂ} (hX : Measurable X)
+    {f : Matrix ι ι ℂ → Matrix ι ι ℂ} (hf : Measurable f) (μ : Measure Ω) :
+    law (f ∘ X) (hf.comp hX) μ = Measure.map f (law X hX μ) := by
+  exact (Measure.map_map hf hX).symm
 ~~~
 
-This is a checked pushforward identity. It says what the transformed law is.
-It does not say that the transformed law equals the original law.
+This is the Lean form of
+\((f\circ X)_*\mu=f_*(X_*\mu)\). The proof needs
+<code>hf : Measurable f</code> and <code>hX : Measurable X</code> separately;
+the composition proof <code>hf.comp hX</code> certifies the left-hand map.
+
+There is one implementation boundary to keep visible. Mathlib makes
+<code>Measure.map</code> a total operation: it is the zero measure when the map
+is not {{< refterm "almost-everywhere" "almost-everywhere" >}} measurable
+with respect to the source measure. When the map is almost-everywhere
+measurable, Mathlib chooses a measurable representative. This is useful library
+engineering, but it is not permission to invent a probability law from an
+unproved function. The project's public <code>RandomMatrix.law</code> interface
+asks for the stronger, simpler certificate <code>Measurable X</code> before it
+uses <code>Measure.map</code>.
+
+For the deterministic congruence map \(C_A(H)=AHA^*\), the module proves
+<code>measurable_congruence</code>. Its checked
+<code>HermitianRandomMatrix.law_conjugateBy</code> theorem says that the law of
+\(A X A^*\) is the congruence pushforward of the law of \(X\). It identifies
+the transformed law; it does not assert that the transformed law equals the
+original one.
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean).
+A human can type the following worksheet in a scratch buffer on a deliberately
+provisioned copy of the project:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.Laws
+
+#print NonlinearDynamics.Random.RandomMatrix.law
+#check NonlinearDynamics.Random.RandomMatrix.law_apply
+#check NonlinearDynamics.Random.RandomMatrix.law_comp
+#check NonlinearDynamics.Random.HermitianRandomMatrix.law_conjugateBy
+~~~
+
+<code>#print</code> reveals the checked definition behind a name.
+<code>#check</code> asks Lean to elaborate a declaration and display its type;
+it does not assume or prove an extra theorem. The guarded command below checks
+the complete module containing the exact excerpts above.
+{{< /repo-check >}}
 
 ## Distinctions and failure modes
 
@@ -246,21 +322,26 @@ It does not say that the transformed law equals the original law.
 |---|---|---|
 | "Push \(\mu\) forward by measuring \(f(A)\)" | Images of measurable sets are not the sets in the defining formula | Measure \(f^{-1}(B)\) for target sets \(B\) |
 | "Every function gives the intended pushforward" | Measurability is needed for the preimage formula and probability interpretation | Prove measurable or almost-everywhere measurable first |
+| "The inverse-image symbol means an inverse function" | A preimage exists even when the function is many-to-one or has no inverse function | Read the preimage as all source points that land in the target set |
 | "Pushforward is a conditional distribution" | Conditioning changes mass using information; pushforward transports it through a function | Treat these as separate constructions |
 | "The pushforward remembers the source outcome" | Different source points can merge at one target point | Keep the original coupling when source-level information matters |
 | "Equal observable pushforwards imply equal matrix laws" | One observable can discard most matrix information | Use a separating family of observables or prove equality of the full laws |
 
 {{< panel "warning" >}}
-**A single statistic is not the whole law.** Two matrix laws can have the same
-trace distribution while differing in their eigenvalues, eigenvectors, or
-entry dependence. Pushing forward is deliberately information-losing whenever
-the map is not injective.
+**What pushforward does not prove.** Two matrix laws can have the same trace
+distribution while differing in their eigenvalues, eigenvectors, or entry
+dependence. Pushing forward is information-losing whenever the map is not
+injective. The construction also proves no density, independence,
+integrability, symmetry, or invariance of the resulting measure. Each is a
+separate statement with its own hypotheses.
 {{< /panel >}}
 
 ## Where to continue
 
 Read {{< refterm "probability-law" "probability law" >}} for the special case
 of transporting a probability measure through a random object. Read
+{{< refterm "measurable-space" "measurable space" >}} for the source and
+target structures that make the preimage rule legal. Read
 {{< refterm "random-matrix" "random matrix" >}} and
 {{< refterm "trace-power" "trace power" >}} for the source and observable in
 the project's first examples. The chapter

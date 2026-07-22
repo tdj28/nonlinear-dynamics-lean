@@ -5,7 +5,7 @@
 
 Last updated: 2026-07-22 15:18 PDT
 
-Audited baseline: `main` at `d50742f`
+Audited baseline: `main` at `1fd3657`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -77,11 +77,11 @@ commits. They are not instructions for future work.
   single-slash-rooted `href` or `src` attributes.
 - The workflow is deliberately production-only: it does not pass
   `--buildDrafts`. The owner explicitly authorized open publication on
-  2026-07-22, so all 127 existing content pages now opt in with `draft: false`:
-  39 Development Notebook entries, 36 Deep Dives, and 52 glossary chapters.
-  The production and draft-inclusive renders both contain 405 pages.
+  2026-07-22, so all 128 existing content pages now opt in with `draft: false`:
+  39 Development Notebook entries, 36 Deep Dives, and 53 glossary chapters.
+  The production and draft-inclusive renders both contain 406 pages.
 - Publication exposes work in progress; it does not manufacture review. All
-  127 pages retain `pro_reviewed: false`, and the Notebook entries retain their
+  128 pages retain `pro_reviewed: false`, and the Notebook entries retain their
   visible pending-review status language. The site-wide
   `open_working_notes` publication mode adds an **Open working note** badge to
   articles and collection cards without rendering the private review metadata.
@@ -3038,6 +3038,11 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `1fd3657`: codify the educational ladder and dual resource boundary, add the
+  shared human/paper/Lean and repository-check components, rebuild “Almost
+  everywhere” and “Probability distribution (law)” around exact examples and
+  accessible SVGs, and add the new “Null set” foundation with shrinking-cover
+  proof and social cards.
 - `9042de6`: add the production-only GitHub Pages workflow, repository-subpath
   URL handling, publication documentation, and static deployment QA policy.
 - `bf25c66`: enforce a permanent cloud-only Lean/Mathlib build policy with

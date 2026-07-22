@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="600"
+     viewBox="0 0 920 600" role="img"
+     aria-labelledby="randomMatrixTitle randomMatrixDesc">
+  <title id="randomMatrixTitle">A two-outcome matrix map and the structures added around it</title>
+  <desc id="randomMatrixDesc">Heads maps to the diagonal matrix A H and tails maps to the shear matrix A T. Acting on the vector one comma one gives two comma one half or two comma one. The project RandomMatrix type stores only this outcome-to-matrix function. Measurable spaces, a measurability proof, a source probability measure, and the resulting law are separate later layers.</desc>
+  <rect width="920" height="600" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:17px;font-weight:700}
+    .h{font-size:13px;font-weight:700;letter-spacing:.35px}
+    .body{font-size:13px}
+    .small{font-size:12px}
+    .muted{font-size:11px;fill:#5A544C}
+    .source{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .value{fill:#FBF9F6;stroke:#8C8174;stroke-width:1.5}
+    .bare{fill:#EAF1E5;stroke:#5F7F50;stroke-width:1.8}
+    .later{fill:url(#randomMatrixHatch);stroke:#95653E;stroke-width:1.5;stroke-dasharray:6 4}
+    .result{fill:#F3E8E0;stroke:#95653E;stroke-width:1.6}
+    .arrow{fill:none;stroke:#95653E;stroke-width:2.1}
+  </style>
+  <defs>
+    <pattern id="randomMatrixHatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#FBF7F2"/>
+      <path d="M-2 2 L2 -2 M0 8 L8 0 M6 10 L10 6" stroke="#D7C8B9" stroke-width="1"/>
+    </pattern>
+    <marker id="randomMatrixArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#95653E"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="30" class="t title">A coin outcome selects one ordinary linear map</text>
+  <text x="24" y="51" class="t muted">First define the function X. Probability and its law are additional structure, not fields hidden inside X.</text>
+
+  <rect x="24" y="76" width="192" height="252" rx="14" class="source"/>
+  <text x="44" y="102" class="t h">OUTCOME SPACE</text>
+  <text x="44" y="121" class="t muted">Omega = {H, T}</text>
+  <rect x="44" y="145" width="152" height="62" rx="10" class="value"/>
+  <text x="64" y="172" class="t h">H: HEADS</text>
+  <text x="64" y="192" class="t small">one possible outcome</text>
+  <rect x="44" y="227" width="152" height="62" rx="10" class="value"/>
+  <text x="64" y="254" class="t h">T: TAILS</text>
+  <text x="64" y="274" class="t small">one possible outcome</text>
+  <text x="44" y="314" class="t muted">No probabilities are stored here.</text>
+
+  <text x="235" y="134" class="t muted">X(H)</text>
+  <path d="M216 176 C244 176 253 161 283 161" class="arrow" marker-end="url(#randomMatrixArrow)"/>
+  <text x="235" y="242" class="t muted">X(T)</text>
+  <path d="M216 258 C244 258 253 251 283 251" class="arrow" marker-end="url(#randomMatrixArrow)"/>
+
+  <rect x="292" y="76" width="298" height="252" rx="14" fill="#FBF9F6" stroke="#A89C8E" stroke-width="1.6"/>
+  <text x="312" y="102" class="t h">MATRIX VALUES</text>
+  <text x="312" y="121" class="t muted">Two concrete 2 by 2 real matrices</text>
+  <rect x="312" y="141" width="258" height="78" rx="10" class="value"/>
+  <text x="330" y="167" class="t h">A_H</text>
+  <text x="390" y="164" class="t body">[ 2    0 ]</text>
+  <text x="390" y="191" class="t body">[ 0   1/2 ]</text>
+  <text x="500" y="180" class="t small">stretch</text>
+  <rect x="312" y="231" width="258" height="78" rx="10" class="value"/>
+  <text x="330" y="257" class="t h">A_T</text>
+  <text x="390" y="254" class="t body">[ 1   1 ]</text>
+  <text x="390" y="281" class="t body">[ 0   1 ]</text>
+  <text x="500" y="270" class="t small">shear</text>
+
+  <path d="M590 202 L625 202" class="arrow" marker-end="url(#randomMatrixArrow)"/>
+  <rect x="636" y="76" width="260" height="252" rx="14" class="result"/>
+  <text x="656" y="102" class="t h">CHECK ON v = (1, 1)</text>
+  <text x="656" y="132" class="t body">If the outcome is H:</text>
+  <text x="676" y="157" class="t h">A_H v = (2, 1/2)</text>
+  <text x="656" y="198" class="t body">If the outcome is T:</text>
+  <text x="676" y="223" class="t h">A_T v = (2, 1)</text>
+  <rect x="656" y="251" width="220" height="52" rx="9" class="value"/>
+  <text x="674" y="274" class="t small">A realization is A_H or A_T,</text>
+  <text x="674" y="293" class="t small">not the whole rule X.</text>
+
+  <rect x="24" y="354" width="872" height="216" rx="14" fill="#FBF9F6" stroke="#A89C8E" stroke-width="1.6"/>
+  <text x="44" y="381" class="t h">THE TYPE LEDGER: WHAT IS STORED, AND WHAT IS ADDED LATER</text>
+
+  <rect x="44" y="405" width="236" height="126" rx="11" class="bare"/>
+  <text x="62" y="431" class="t h">BARE PROJECT TYPE</text>
+  <text x="62" y="458" class="t body">RandomMatrix = function</text>
+  <text x="62" y="481" class="t body">Omega -&gt; Matrix</text>
+  <text x="62" y="509" class="t small">Stores X(H) and X(T) only</text>
+
+  <path d="M280 468 L307 468" class="arrow" marker-end="url(#randomMatrixArrow)"/>
+  <rect x="316" y="405" width="184" height="126" rx="11" class="later"/>
+  <text x="334" y="431" class="t h">MEASURABILITY</text>
+  <text x="334" y="458" class="t body">measurable spaces</text>
+  <text x="334" y="481" class="t body">hX : Measurable X</text>
+  <text x="334" y="509" class="t small">separate proof</text>
+
+  <path d="M500 468 L527 468" class="arrow" marker-end="url(#randomMatrixArrow)"/>
+  <rect x="536" y="405" width="146" height="126" rx="11" class="later"/>
+  <text x="554" y="431" class="t h">SOURCE MASS</text>
+  <text x="554" y="458" class="t body">measure mu</text>
+  <text x="554" y="481" class="t body">mu(H) = 1/2</text>
+  <text x="554" y="504" class="t body">mu(T) = 1/2</text>
+
+  <path d="M682 468 L709 468" class="arrow" marker-end="url(#randomMatrixArrow)"/>
+  <rect x="718" y="405" width="158" height="126" rx="11" class="later"/>
+  <text x="736" y="431" class="t h">LAW</text>
+  <text x="736" y="458" class="t body">Measure.map X mu</text>
+  <text x="736" y="485" class="t small">mass 1/2 at A_H</text>
+  <text x="736" y="508" class="t small">mass 1/2 at A_T</text>
+
+  <text x="44" y="553" class="t muted">Dashed cards are mathematical structure supplied after the bare function type; the arrows do not mean those fields are stored inside X.</text>
+</svg>

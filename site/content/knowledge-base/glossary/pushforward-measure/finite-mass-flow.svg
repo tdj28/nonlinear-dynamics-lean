@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620"
+     viewBox="0 0 960 620" role="img"
+     aria-labelledby="pushMassTitle pushMassDesc">
+  <title id="pushMassTitle">Three source masses flow to two target values under a many-to-one map</title>
+  <desc id="pushMassDesc">Source point a carries three sixths and maps to zero, b carries one sixth and maps to one, and c carries two sixths and maps to zero. Target zero has a six-cell bar with three a-pattern cells and two c-pattern cells filled, totaling five sixths. Target one has one b-pattern cell filled, totaling one sixth. A footer states that the preimage of zero is a and c, while the preimage of one is b.</desc>
+  <defs>
+    <linearGradient id="pushPaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EEE5D6"/>
+    </linearGradient>
+    <pattern id="sourceA" width="9" height="9" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="9" height="9" fill="#E8F0F7"/>
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#4B6787" stroke-width="3"/>
+    </pattern>
+    <pattern id="sourceB" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F3E8E0"/>
+      <circle cx="5" cy="5" r="2" fill="#9B3F2B"/>
+    </pattern>
+    <pattern id="sourceC" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#EAF1E5"/>
+      <path d="M0 5 H10 M5 0 V10" stroke="#6F8D5E" stroke-width="1.5"/>
+    </pattern>
+    <marker id="pushArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#7F786D"/>
+    </marker>
+  </defs>
+  <rect width="960" height="620" fill="url(#pushPaper)"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-family:Georgia,serif;font-size:25px;font-weight:700;fill:#16243A}
+    .sub{font-size:14px;fill:#536070}
+    .cap{font-size:13px;font-weight:700;letter-spacing:1.5px;fill:#1F5A68}
+    .point{font-size:24px;font-weight:700;fill:#16243A}
+    .h{font-size:16px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#536070}
+    .cell{stroke:#766B5D;stroke-width:1.3}
+    .empty{fill:#FFFDF8}
+    .arrow{fill:none;stroke:#7F786D;stroke-width:2.3;marker-end:url(#pushArrow)}
+  </style>
+
+  <text x="34" y="40" class="title">Push points forward; pull target questions backward</text>
+  <text x="34" y="65" class="t sub">Exact finite model: all weights share denominator six, and every subset is measurable.</text>
+  <text x="42" y="103" class="t cap">SOURCE MASS</text>
+  <text x="384" y="103" class="t cap">MEASURABLE MAP</text>
+  <text x="665" y="103" class="t cap">PUSHFORWARD MASS</text>
+
+  <g aria-label="Source point a has mass three sixths">
+    <rect x="34" y="124" width="280" height="102" rx="13" fill="#FFFDF8" stroke="#4B6787" stroke-width="1.8"/>
+    <text x="56" y="160" class="t point">a</text>
+    <text x="92" y="157" class="t h">mass 3/6 = 1/2</text>
+    <g transform="translate(92 176)">
+      <rect x="0" y="0" width="30" height="26" class="cell" fill="url(#sourceA)"/>
+      <rect x="30" y="0" width="30" height="26" class="cell" fill="url(#sourceA)"/>
+      <rect x="60" y="0" width="30" height="26" class="cell" fill="url(#sourceA)"/>
+      <rect x="90" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="120" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="150" y="0" width="30" height="26" class="cell empty"/>
+    </g>
+  </g>
+
+  <g aria-label="Source point b has mass one sixth">
+    <rect x="34" y="250" width="280" height="102" rx="13" fill="#FFFDF8" stroke="#9B3F2B" stroke-width="1.8"/>
+    <text x="56" y="286" class="t point">b</text>
+    <text x="92" y="283" class="t h">mass 1/6</text>
+    <g transform="translate(92 302)">
+      <rect x="0" y="0" width="30" height="26" class="cell" fill="url(#sourceB)"/>
+      <rect x="30" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="60" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="90" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="120" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="150" y="0" width="30" height="26" class="cell empty"/>
+    </g>
+  </g>
+
+  <g aria-label="Source point c has mass two sixths">
+    <rect x="34" y="376" width="280" height="102" rx="13" fill="#FFFDF8" stroke="#6F8D5E" stroke-width="1.8"/>
+    <text x="56" y="412" class="t point">c</text>
+    <text x="92" y="409" class="t h">mass 2/6 = 1/3</text>
+    <g transform="translate(92 428)">
+      <rect x="0" y="0" width="30" height="26" class="cell" fill="url(#sourceC)"/>
+      <rect x="30" y="0" width="30" height="26" class="cell" fill="url(#sourceC)"/>
+      <rect x="60" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="90" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="120" y="0" width="30" height="26" class="cell empty"/>
+      <rect x="150" y="0" width="30" height="26" class="cell empty"/>
+    </g>
+  </g>
+
+  <path d="M314 175 C430 175 495 170 635 170" class="arrow"/>
+  <text x="418" y="156" class="t s">f(a) = 0</text>
+  <path d="M314 301 C440 301 500 357 635 357" class="arrow"/>
+  <text x="420" y="318" class="t s">f(b) = 1</text>
+  <path d="M314 427 C430 427 492 218 635 218" class="arrow"/>
+  <text x="430" y="405" class="t s">f(c) = 0</text>
+
+  <g aria-label="Target value zero receives five sixths from a and c">
+    <rect x="650" y="124" width="276" height="150" rx="14" fill="#FFFDF8" stroke="#315F55" stroke-width="2"/>
+    <circle cx="688" cy="164" r="24" fill="#DCE8EE" stroke="#1F5A68" stroke-width="2"/>
+    <text x="688" y="172" text-anchor="middle" class="t point">0</text>
+    <text x="726" y="158" class="t h">target mass 5/6</text>
+    <text x="726" y="180" class="t m">3/6 from a plus 2/6 from c</text>
+    <g transform="translate(688 209)">
+      <rect x="0" y="0" width="32" height="30" class="cell" fill="url(#sourceA)"/>
+      <rect x="32" y="0" width="32" height="30" class="cell" fill="url(#sourceA)"/>
+      <rect x="64" y="0" width="32" height="30" class="cell" fill="url(#sourceA)"/>
+      <rect x="96" y="0" width="32" height="30" class="cell" fill="url(#sourceC)"/>
+      <rect x="128" y="0" width="32" height="30" class="cell" fill="url(#sourceC)"/>
+      <rect x="160" y="0" width="32" height="30" class="cell empty"/>
+    </g>
+    <text x="688" y="258" class="t m">five of six equal mass cells are filled</text>
+  </g>
+
+  <g aria-label="Target value one receives one sixth from b">
+    <rect x="650" y="302" width="276" height="150" rx="14" fill="#FFFDF8" stroke="#9B3F2B" stroke-width="2"/>
+    <circle cx="688" cy="342" r="24" fill="#F6E4DA" stroke="#9B3F2B" stroke-width="2"/>
+    <text x="688" y="350" text-anchor="middle" class="t point">1</text>
+    <text x="726" y="336" class="t h">target mass 1/6</text>
+    <text x="726" y="358" class="t m">1/6 from b</text>
+    <g transform="translate(688 387)">
+      <rect x="0" y="0" width="32" height="30" class="cell" fill="url(#sourceB)"/>
+      <rect x="32" y="0" width="32" height="30" class="cell empty"/>
+      <rect x="64" y="0" width="32" height="30" class="cell empty"/>
+      <rect x="96" y="0" width="32" height="30" class="cell empty"/>
+      <rect x="128" y="0" width="32" height="30" class="cell empty"/>
+      <rect x="160" y="0" width="32" height="30" class="cell empty"/>
+    </g>
+    <text x="688" y="436" class="t m">one of six equal mass cells is filled</text>
+  </g>
+
+  <rect x="34" y="510" width="892" height="76" rx="13" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.8"/>
+  <text x="58" y="540" class="t h">Target queries move backward through the preimage</text>
+  <text x="58" y="568" class="t s">preimage of {0} = {a, c}, so mass = 3/6 + 2/6 = 5/6</text>
+  <text x="520" y="568" class="t s">preimage of {1} = {b}, so mass = 1/6</text>
+</svg>

@@ -47,8 +47,9 @@ make checkpoint-check
 This project deliberately separates the two development hosts:
 
 - **macOS workstation:** Git, research, source editing, checkpoint/static
-  validation, Hugo authoring, and browser QA. It does not download or build a
-  Mathlib compiled cache and does not compile the project.
+  validation, Hugo authoring, browser QA, and small standalone Lean tutorials.
+  It does not download or build a Mathlib compiled cache and does not compile
+  the project.
 - **human-approved Linux cloud builder:** Elan, Lean, Lake, Mathlib dependency
   and cache setup, warning-fatal module checks, and the complete repository
   gate. Set `CLOUD_LEAN_BUILD=1` only on that approved host.
@@ -94,13 +95,40 @@ source "$HOME/.elan/env"
 This installs `elan`, the Lean toolchain manager. The project-specific Lean
 compiler is downloaded separately after cloning the repository, as described
 below. Keeping the pinned compiler locally is useful for version inspection,
-but it does not authorize a local project build or Mathlib cache download.
+and it also supports small files that import only Lean core or `Std`; it does
+not authorize a local project build or Mathlib cache download.
 
 Install Hugo Extended with Homebrew:
 
 ```sh
 brew install hugo python
 ```
+
+### Run one small Lean tutorial locally
+
+After installing the pinned compiler, create a file named `TinyTutorial.lean`
+in any scratch directory with these exact contents:
+
+```lean
+import Std
+
+#eval (List.range 5).map (fun n => n * n)
+
+example : (2 + 3 : Nat) = 5 := by
+  decide
+```
+
+Then ask the pinned compiler to elaborate and run it:
+
+```sh
+elan run leanprover/lean4:v4.32.0 lean TinyTutorial.lean
+```
+
+Lean should print `[0, 1, 4, 9, 16]` and exit without an error. This is a
+small compiler-and-`Std` exercise, not a Mathlib or project build. The
+Knowledge Base uses exercises like this to teach syntax locally, then labels
+the exact Mathlib-backed project command separately for a provisioned Linux
+builder.
 
 ## Install Lean on Linux
 
@@ -312,7 +340,7 @@ supports manual dispatch for exactly this case.
 
 The deployment intentionally omits Hugo drafts, but the complete existing
 corpus is now opted into publication: 39 Development Notebook entries, 36
-Knowledge Base Deep Dives, and 52 glossary chapters have `draft: false`. They
+Knowledge Base Deep Dives, and 53 glossary chapters have `draft: false`. They
 are public working notes, not a claim that every editorial or technical review
 is complete. Their `pro_reviewed: false` metadata and visible pending-review
 status language remain unchanged. Future pages can still begin as drafts, and
