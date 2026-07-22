@@ -3,12 +3,12 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 20:41 PDT
+Last updated: 2026-07-21 20:42 PDT
 
-Audited baseline: `main` at `260cb51`
+Audited baseline: `main` at `5a7c96f`
 
-Active direction: RMT-24 is implementation- and teaching-complete in the
-audited worktree; RMT-25 is the Koopman-`L²` mean-ergodic and dense
+Active direction: RMT-24 is implementation- and teaching-complete on `main`;
+RMT-25 is the Koopman-`L²` mean-ergodic and dense
 pointwise-good-core bridge toward the pointwise Birkhoff theorem
 
 ## Restart Handoff
@@ -1617,6 +1617,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `5a7c96f`: formalize the infinite-horizon Birkhoff-average exceedance event,
+  extended and real continuity interfaces, the weak maximal estimate, paired
+  infinite-mass boundaries, and the complete teaching layer.
 - `260cb51`: checkpoint the complete RMT-23 milestone and the exact RMT-24
   infinite-horizon weak-maximal plan.
 - `764d247`: formalize the finite Hopf maximal ergodic lemma and its exact
