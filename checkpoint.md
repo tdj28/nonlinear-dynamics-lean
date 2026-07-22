@@ -3,12 +3,12 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 17:53 PDT
+Last updated: 2026-07-21 17:58 PDT
 
-Audited baseline: `main` at `5cac6af`
+Audited baseline: `main` at `e6c6c17`
 
-Active direction: RMT-22 is implementation- and teaching-complete pending its
-final milestone push; RMT-23 is a finite Hopf-style maximal ergodic lemma
+Active direction: RMT-22 is implementation- and teaching-complete on `main`;
+RMT-23 is a finite Hopf-style maximal ergodic lemma
 
 ## Restart Handoff
 
@@ -1452,6 +1452,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `e6c6c17`: formalize Birkhoff convergence events and their exact one-step
+  preimage invariance, add the complete teaching layer, and record the
+  transparent-discovery and human-approved RunPod workflows.
 - `5cac6af`: correct the RMT-22 invariance boundary in the post-RMT-21
   checkpoint.
 - `2a059b9`: record the complete RMT-21 checkpoint and exact RMT-22 plan.
