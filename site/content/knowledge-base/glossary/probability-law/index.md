@@ -1,10 +1,13 @@
 ---
-title: "Probability law"
+title: "Probability distribution (law)"
 slug: "probability-law"
-summary: "The probability law of a random object records how probability is distributed over its possible values."
+summary: "A probability distribution, or law, is the probability measure induced on the possible values of a random object."
 draft: false
 pro_reviewed: false
 toc: true
+lean_module: "NonlinearDynamics.Random.RandomMatrices.Laws"
+og_image: "probability-distribution-card.png"
+og_image_alt: "Two weighted outcomes map to two matrices, and their weights become point masses in the probability distribution on matrix space."
 ---
 
 {{< panel "warning" >}}
@@ -14,64 +17,14 @@ pending. The page is publicly available as an open working note while that
 review remains pending.
 {{< /panel >}}
 
-The **probability law** of a random object records the probabilities of its
-possible values while forgetting which underlying outcomes produced them. It
-is also called the object's **distribution**.
+The **probability distribution**, or **law**, of a random object tells us how
+probability is spread over its possible values. It is a probability measure on
+the value space, not the random object itself. The two names mean the same
+thing on this site.
 
-Suppose \(\Omega\) is the set of outcomes, \(\mathcal F\) is a collection of
-measurable events in \(\Omega\), and \(\mathbb P\) is a probability measure on
-those events. Let \(S\) be a measurable space of possible values. A measurable
-function
+## Start with two possible matrices
 
-\[
-X:(\Omega,\mathcal F)\longrightarrow S
-\]
-
-is a random element with values in \(S\). Its law, written
-\(\mathcal L(X)\) or \(X_*\mathbb P\), is the probability measure on \(S\)
-defined by
-
-\[
-\mathcal L(X)(B)
-=\mathbb P\bigl(X^{-1}(B)\bigr)
-=\mathbb P\{\omega\in\Omega:X(\omega)\in B\}
-\]
-
-for every measurable set \(B\subseteq S\). Here \(X^{-1}(B)\) is the set of
-outcomes whose values land in \(B\). This construction is the
-{{< refterm "pushforward-measure" "pushforward measure" >}}
-\(X_*\mathbb P\).
-
-## What the law keeps, and what it forgets
-
-The law keeps every probability statement that depends only on the value of
-\(X\). It forgets the names and internal structure of the outcomes in
-\(\Omega\).
-
-| Layer | Question it answers | Matrix example |
-|---|---|---|
-| Outcome \(\omega\) | What happened in the underlying experiment? | A particular noise realization |
-| Random object \(X\) | What value does that outcome produce? | The function that returns \(X(\omega)\) |
-| Realization \(X(\omega)\) | Which value appeared this time? | One ordinary matrix |
-| Law \(\mathcal L(X)\) | How is probability distributed across possible values? | A measure on matrix space |
-
-Two random objects can live on completely different probability spaces and
-still have the same law. If \(X\) and \(Y\) both take values in the same
-measurable space \(S\), then
-
-\[
-X\mathrel{\overset{d}{=}}Y
-\quad\Longleftrightarrow\quad
-\mathcal L(X)=\mathcal L(Y).
-\]
-
-The notation \(X\mathrel{\overset{d}{=}}Y\) is read "equal in distribution."
-It does not say that \(X=Y\) pointwise, or even that \(X\) and \(Y\) share a
-sample space.
-
-## A finite matrix example
-
-Let the outcome space contain two points, \(\omega_0\) and \(\omega_1\), with
+Let the outcome space be \(\Omega=\{\omega_0,\omega_1\}\), with
 
 \[
 \mathbb P\{\omega_0\}=\frac14,
@@ -118,8 +71,109 @@ second does not, so
 \mathcal L(X)(B)=\frac14.
 \]
 
-The numbers are exact toy probabilities, not empirical measurements. Their
-job is to make the definition directly checkable.
+The calculation can be checked directly from the source outcomes:
+
+\[
+X^{-1}(B)=\{\omega_0\},
+\qquad
+\mathbb P\bigl(X^{-1}(B)\bigr)=\mathbb P\{\omega_0\}=\frac14.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="two-outcome-matrix-law.svg"
+  alt="The outcome omega zero has probability one quarter and maps to matrix A zero, while omega one has probability three quarters and maps to matrix A one. The induced law assigns those masses to the two matrices. The trace-zero set contains only A zero, so its law is one quarter."
+  caption="**Finding:** the map \(X\) moves probability mass from outcomes to matrix values. Outcome \(\omega_0\) has mass \(1/4\) and maps to \(A_0\), while \(\omega_1\) has mass \(3/4\) and maps to \(A_1\). The target strip has one part for \(A_0\) and three equal parts for \(A_1\), encoding the exact ratio \(1:3\). For the set \(B\) of trace-zero matrices, only \(A_0\) is inside, so \(\mathcal L(X)(B)=1/4\). The four strip segments represent assigned probability mass, not four observed trials."
+>}}
+
+The numbers are exact toy probabilities, not empirical measurements. Renaming
+\(\omega_0\) and \(\omega_1\) without changing their masses or matrix values
+does not change the law. Changing a mass does. If both outcomes mapped to
+\(A_0\), their masses would combine and the law would put total mass one at
+\(A_0\).
+
+## The general definition
+
+Suppose \(\Omega\) is the set of outcomes, \(\mathcal F\) is the collection of
+events to which probabilities may be assigned, and \(\mathbb P\) is a
+probability measure on those events. Let \(S\) be a
+{{< refterm "measurable-space" "measurable space" >}} of possible values. A
+measurable function
+
+\[
+X:(\Omega,\mathcal F)\longrightarrow S
+\]
+
+is a random element with values in \(S\). Its law, written
+\(\mathcal L(X)\) or \(X_*\mathbb P\), is the probability measure on \(S\)
+defined by
+
+\[
+\mathcal L(X)(B)
+{} =
+\mathbb P\bigl(X^{-1}(B)\bigr)
+{} =
+\mathbb P\{\omega\in\Omega:X(\omega)\in B\}
+\]
+
+for every measurable set \(B\subseteq S\). Here \(X^{-1}(B)\) is the event
+consisting of outcomes whose values land in \(B\). This construction is the
+{{< refterm "pushforward-measure" "pushforward measure" >}}
+\(X_*\mathbb P\).
+
+Measurability is what ensures that the preimage \(X^{-1}(B)\) is an allowed
+event whenever \(B\) is a measurable target set. Without that condition, the
+displayed probability may not be defined.
+
+## What the law keeps, and what it forgets
+
+The law keeps every probability statement that depends only on the value of
+\(X\). It forgets the names and internal structure of the outcomes in
+\(\Omega\).
+
+| Layer | Question it answers | Two-matrix example |
+|---|---|---|
+| Outcome \(\omega\) | What happened in the underlying experiment? | Either \(\omega_0\) or \(\omega_1\) |
+| Random object \(X\) | Which value does each outcome produce? | The map sending \(\omega_0\) to \(A_0\) and \(\omega_1\) to \(A_1\) |
+| Realization \(X(\omega)\) | Which value appeared for this outcome? | One ordinary matrix, \(A_0\) or \(A_1\) |
+| Law \(\mathcal L(X)\) | How is probability distributed across all values? | Mass \(1/4\) at \(A_0\) and \(3/4\) at \(A_1\) |
+
+Two random objects can live on different probability spaces and still have
+the same law. If \(X\) and \(Y\) both take values in the same measurable space
+\(S\), then
+
+\[
+X\mathrel{\overset{d}{=}}Y
+\quad\Longleftrightarrow\quad
+\mathcal L(X)=\mathcal L(Y).
+\]
+
+The notation \(X\mathrel{\overset{d}{=}}Y\) is read "equal in distribution."
+It does not say that \(X=Y\) pointwise, or even that \(X\) and \(Y\) share a
+sample space.
+
+## A law is not automatically a density
+
+The law is the probability measure itself. A probability mass function, a
+density, or a cumulative distribution function is a way to describe certain
+laws when additional structure is available.
+
+| Object | What it records | Does every law have one? | In the example |
+|---|---|---|---|
+| Law \(\mathcal L(X)\) | A probability for every measurable target set | Yes, once \(X\) is measurable | \(\frac14\delta_{A_0}+\frac34\delta_{A_1}\) |
+| Probability mass function (PMF) \(p(a)=\mathbb P\{X=a\}\) | Mass at each value of a discrete random object | No; it is a discrete representation | \(p(A_0)=1/4\), \(p(A_1)=3/4\) |
+| Density \(f\) relative to a reference measure \(\lambda\) | \(\mathcal L(X)(B)=\int_B f\,d\lambda\) | No; some laws have atoms and no density relative to Lebesgue measure | The two-atom law has no ordinary Lebesgue density on matrix coordinates |
+| Cumulative distribution function (CDF) \(F(t)=\mathbb P\{X\le t\}\) | Probabilities of lower half-lines for a real-valued object | Only for an ordered real-valued setting | Not the natural description of a matrix-valued object |
+
+The finite law does have a PMF on its two-point support. Equivalently, that
+PMF can be viewed as a density relative to counting measure, but this does not
+turn it into a density relative to every other reference measure. Always name
+the reference measure when saying "density."
+
+The distinction between a random object and its law is equally important.
+The random object \(X\) is a function of an outcome. Its law
+\(\mathcal L(X)\) is a measure on the possible values. Knowing the law does not
+reconstruct which outcome produced which value.
 
 ## From a matrix law to an observable law
 
@@ -144,25 +198,45 @@ norms, and other matrix statistics become ordinary probability distributions.
 Measurability of the observable is a real proof obligation. A formula alone
 does not automatically define a random variable.
 
-## Lean-facing interpretation
+## In Lean
 
-Mathlib represents the pushforward with <code>Measure.map</code>. The checked
-<code>RandomMatrices.Laws</code> module now makes the matrix law explicit:
+Mathlib writes a pushforward as <code>Measure.map</code>. The project wraps that
+construction in <code>RandomMatrix.law</code> while keeping the measurability
+proof visible.
+
+{{< lean-bridge
+  human="If a random matrix \(X\) is measurable, then the probability that its value lies in a measurable matrix set \(s\) equals the source probability of the outcomes that \(X\) sends into \(s\)."
+  math="\(\mathcal L_\mu(X)(s)=\mu\!\left(X^{-1}(s)\right)\) for every measurable set \(s\)."
+  lean="RandomMatrix.law X hX μ s = μ (X ⁻¹' s)"
+>}}
+
+- <code>RandomMatrix.law X hX μ</code> is the target-space measure
+  <code>Measure.map X μ</code>.
+- <code>X</code> is the matrix-valued function, and
+  <code>hX : Measurable X</code> is the proof that preimages of measurable
+  target sets are measurable source events.
+- <code>μ</code> is the source measure. The same map can have different laws
+  under different source measures.
+- <code>s</code> is a target set, with a separate hypothesis
+  <code>hs : MeasurableSet s</code> in the theorem.
+- <code>X ⁻¹' s</code> is Lean's notation for the set-theoretic preimage of
+  <code>s</code> under <code>X</code>. It is the Lean counterpart of
+  \(X^{-1}(s)\).
+{{< /lean-bridge >}}
+
+The following is an exact excerpt from the checked project module. The
+definition exposes the pushforward, and the theorem reduces its value on a
+measurable set to the preimage calculation used in the example.
 
 ~~~lean
-noncomputable def RandomMatrix.law
-    (X : RandomMatrix Ω ι ι ℂ) (_hX : Measurable X)
+noncomputable def law (X : RandomMatrix Ω ι ι ℂ) (_hX : Measurable X)
     (μ : Measure Ω) : Measure (Matrix ι ι ℂ) :=
   Measure.map X μ
-~~~
 
-The measurability proof is an explicit argument. This prevents the name
-"law" from hiding the condition under which the usual pushforward equations
-hold. For a measurable target set <code>s</code>, the checked theorem
-<code>RandomMatrix.law_apply</code> states
-
-~~~text
-RandomMatrix.law X hX μ s = μ (X ⁻¹' s).
+theorem law_apply (X : RandomMatrix Ω ι ι ℂ) (hX : Measurable X)
+    (μ : Measure Ω) {s : Set (Matrix ι ι ℂ)} (hs : MeasurableSet s) :
+    law X hX μ s = μ (X ⁻¹' s) := by
+  exact Measure.map_apply hX hs
 ~~~
 
 The same module proves <code>law_comp</code> for measurable matrix
@@ -173,18 +247,38 @@ field already stored in a Hermitian random matrix.
 
 The source measure remains an explicit argument rather than a field of
 <code>RandomMatrix</code>. That makes the dependence of the law on the chosen
-measure visible. Mathlib's underlying <code>Measure.map</code> is defined as
-the zero measure when its map is not almost-everywhere measurable, but the
-project's <code>RandomMatrix.law</code> requires measurability and does not
-silently use that fallback as a probabilistic assumption.
+measure visible. Mathlib's underlying <code>Measure.map</code> is totalized to
+the zero measure when its map is not almost-everywhere measurable. The
+project's <code>RandomMatrix.law</code> requires measurability and does not use
+that fallback as a hidden probabilistic assumption.
+
+{{< repo-check >}}
+The authoritative source is
+[`formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean`](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean).
+A learner can put these lines in a temporary scratch file on an approved Linux
+builder to ask Lean for the checked declaration and its type:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.Laws
+
+#print NonlinearDynamics.Random.RandomMatrix.law
+#check NonlinearDynamics.Random.RandomMatrix.law_apply
+~~~
+
+<code>#print</code> shows the definition behind the name. <code>#check</code>
+asks Lean to elaborate the following identifier and report its type; it does
+not create a new theorem. The command below checks the authoritative project
+module itself.
+{{< /repo-check >}}
 
 ## Distinctions that prevent common mistakes
 
 | Do not confuse | With | Why the difference matters |
 |---|---|---|
-| A random matrix \(X\) | Its law \(\mathcal L(X)\) | One is a function; the other is a measure on matrix space |
+| A {{< refterm "random-matrix" "random matrix" >}} \(X\) | Its law \(\mathcal L(X)\) | One is a function; the other is a measure on matrix space |
 | Equal laws | Pointwise equality | Different functions, even on different spaces, can have the same law |
 | A marginal entry law | The joint matrix law | Marginals do not record dependence among entries |
+| A law | A density, PMF, or CDF | The law is a measure; the other objects are representations available in particular settings |
 | Support on Hermitian matrices | {{< refterm "unitary-invariance" "unitary invariance" >}} | Hermiticity restricts possible values; invariance is a symmetry of their probabilities |
 | Measurability | Integrability | A measurable observable need not have a finite expectation |
 
@@ -194,12 +288,12 @@ especially important for a {{< refterm "hermitian-matrix" "Hermitian matrix" >}}
 whose reflected off-diagonal entries are linked by complex conjugation.
 
 {{< panel "warning" >}}
-**Boundary of the current formalization.** The project now defines Gaussian
-entry laws, a Wigner-scaled finite Gaussian unitary ensemble matrix law, its
-coordinate product law, and exact diagonal and strict-upper marginals. It also
-defines the law-level unitary-conjugation predicate. It has not proved
-nontrivial GUE invariance, matrix-entry integrability, or expected trace
-moments.
+**What this definition does not prove.** Constructing a law proves neither
+that it has a density nor that its coordinates are independent, integrable,
+Gaussian, or invariant under a symmetry. Those are separate properties with
+separate hypotheses and proofs. The checked <code>Laws.lean</code> bridge
+defines matrix laws and proves general pushforward facts; later ensemble
+modules add only the properties they prove explicitly.
 {{< /panel >}}
 
 ## Where to continue

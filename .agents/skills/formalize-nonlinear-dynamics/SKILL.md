@@ -16,11 +16,11 @@ commit.
 2. Read the complete nearest `AGENTS.md` before editing Development Notebook or
    Knowledge Base content.
 3. Run `git status -sb` and preserve unrelated user changes.
-4. Identify the host before touching Lean. On macOS, version-only inspection
-   with `elan show` or `lean --version` is allowed, but do not invoke project
-   compilation, Lake, or a Mathlib cache operation. For proof probes or builds,
-   obtain approval for a Linux cloud builder and use the guarded workflow
-   below.
+4. Identify the host before touching Lean. On macOS, version inspection and
+   genuinely small teaching files that import only Lean core or `Std` are
+   allowed. Do not invoke project compilation, Lake, a Mathlib import, or a
+   Mathlib cache operation there. For proof probes or project builds, obtain
+   approval for a Linux cloud builder and use the guarded workflow below.
 5. Select the first unblocked dependency-ordered item in `checkpoint.md`.
 
 Do not start a later theorem because it looks exciting if an earlier
@@ -260,12 +260,12 @@ or law-versus-sample distinctions.
 
 ## Scale Builds Safely
 
-The macOS workstation is permanently a source, research, Hugo, and static-QA
-host for this project. It must not run Lean or Lake commands that download,
-restore, compile, or regenerate a Mathlib cache. Every proof probe, dependency
-setup, module compile, and full repository build runs on explicitly authorized
-Linux cloud compute. Keep this separation mandatory, not an optional response
-to memory pressure:
+The macOS workstation is permanently a source, research, Hugo, static-QA, and
+small standalone Lean-tutorial host for this project. It must not run Lean or
+Lake commands that download, restore, compile, or regenerate a Mathlib cache.
+Every Mathlib-backed proof probe, dependency setup, project module compile, and
+full repository build runs on explicitly authorized Linux cloud compute. Keep
+this separation mandatory, not an optional response to memory pressure:
 
 - keep secrets in ignored `.env` and never print, copy into the repository,
   stage, or commit them;

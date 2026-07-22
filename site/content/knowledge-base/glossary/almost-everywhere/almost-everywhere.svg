@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="ae-title ae-desc">
+  <title id="ae-title">One exceptional point under two different measures</title>
+  <desc id="ae-desc">On the left, the interval from zero to one carries uniform measure. The point one half is marked as the only failure, and its measure is zero, so the property holds almost everywhere. On the right, a fair die has face six as the only failure, but that face has probability one sixth, so the property does not hold almost surely.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffdf8"/>
+      <stop offset="1" stop-color="#eee5d6"/>
+    </linearGradient>
+    <pattern id="failure-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#9b3f2b" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#paper)"/>
+  <text x="70" y="68" fill="#16243a" font-family="Georgia, serif" font-size="34" font-weight="700">One exception, two different answers</text>
+  <text x="70" y="102" fill="#536070" font-family="Arial, sans-serif" font-size="18">Almost everywhere depends on the mass of the failure set, not the number of points in it.</text>
+
+  <rect x="60" y="140" width="520" height="500" rx="18" fill="#fffdf8" stroke="#766b5d" stroke-width="2"/>
+  <text x="92" y="186" fill="#1f5a68" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">UNIFORM INTERVAL</text>
+  <text x="92" y="224" fill="#16243a" font-family="Georgia, serif" font-size="25" font-weight="700">Property: x is not 1/2</text>
+  <line x1="120" y1="330" x2="520" y2="330" stroke="#277082" stroke-width="12" stroke-linecap="round"/>
+  <line x1="120" y1="312" x2="120" y2="348" stroke="#16243a" stroke-width="3"/>
+  <line x1="520" y1="312" x2="520" y2="348" stroke="#16243a" stroke-width="3"/>
+  <text x="114" y="378" fill="#16243a" font-family="Arial, sans-serif" font-size="18">0</text>
+  <text x="508" y="378" fill="#16243a" font-family="Arial, sans-serif" font-size="18">1</text>
+  <circle cx="320" cy="330" r="24" fill="#fffdf8" stroke="#9b3f2b" stroke-width="5" stroke-dasharray="6 5"/>
+  <line x1="307" y1="317" x2="333" y2="343" stroke="#9b3f2b" stroke-width="5"/>
+  <line x1="333" y1="317" x2="307" y2="343" stroke="#9b3f2b" stroke-width="5"/>
+  <text x="304" y="386" fill="#9b3f2b" font-family="Arial, sans-serif" font-size="18" font-weight="700">1/2</text>
+  <path d="M320 288 C320 260 360 250 396 250" fill="none" stroke="#9b3f2b" stroke-width="2"/>
+  <text x="365" y="242" fill="#9b3f2b" font-family="Arial, sans-serif" font-size="16" font-weight="700">one failure</text>
+  <rect x="92" y="430" width="456" height="76" rx="10" fill="#e4f0ec" stroke="#2e6b59" stroke-width="2"/>
+  <text x="116" y="461" fill="#2e6b59" font-family="Arial, sans-serif" font-size="17" font-weight="700">failure set = {1/2}</text>
+  <text x="116" y="489" fill="#16243a" font-family="Arial, sans-serif" font-size="19">uniform measure = 0</text>
+  <text x="92" y="557" fill="#2e6b59" font-family="Georgia, serif" font-size="27" font-weight="700">Holds almost everywhere</text>
+  <text x="92" y="589" fill="#536070" font-family="Arial, sans-serif" font-size="15">The exception exists, but carries no mass.</text>
+
+  <rect x="620" y="140" width="520" height="500" rx="18" fill="#fffdf8" stroke="#766b5d" stroke-width="2"/>
+  <text x="652" y="186" fill="#1f5a68" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">FAIR SIX-SIDED DIE</text>
+  <text x="652" y="224" fill="#16243a" font-family="Georgia, serif" font-size="25" font-weight="700">Property: roll is not 6</text>
+  <g font-family="Arial, sans-serif" font-size="26" font-weight="700" text-anchor="middle">
+    <circle cx="700" cy="310" r="40" fill="#dce8ee" stroke="#1f5a68" stroke-width="3"/><text x="700" y="319" fill="#16243a">1</text>
+    <circle cx="790" cy="310" r="40" fill="#dce8ee" stroke="#1f5a68" stroke-width="3"/><text x="790" y="319" fill="#16243a">2</text>
+    <circle cx="880" cy="310" r="40" fill="#dce8ee" stroke="#1f5a68" stroke-width="3"/><text x="880" y="319" fill="#16243a">3</text>
+    <circle cx="970" cy="310" r="40" fill="#dce8ee" stroke="#1f5a68" stroke-width="3"/><text x="970" y="319" fill="#16243a">4</text>
+    <circle cx="745" cy="395" r="40" fill="#dce8ee" stroke="#1f5a68" stroke-width="3"/><text x="745" y="404" fill="#16243a">5</text>
+    <circle cx="925" cy="395" r="40" fill="url(#failure-hatch)" stroke="#9b3f2b" stroke-width="4"/><text x="925" y="404" fill="#16243a">6</text>
+  </g>
+  <text x="983" y="402" fill="#9b3f2b" font-family="Arial, sans-serif" font-size="16" font-weight="700">one failure</text>
+  <rect x="652" y="456" width="456" height="76" rx="10" fill="#f6e4da" stroke="#9b3f2b" stroke-width="2"/>
+  <text x="676" y="487" fill="#9b3f2b" font-family="Arial, sans-serif" font-size="17" font-weight="700">failure set = {6}</text>
+  <text x="676" y="515" fill="#16243a" font-family="Arial, sans-serif" font-size="19">probability = 1/6</text>
+  <text x="652" y="577" fill="#9b3f2b" font-family="Georgia, serif" font-size="27" font-weight="700">Does not hold almost surely</text>
+  <text x="652" y="609" fill="#536070" font-family="Arial, sans-serif" font-size="15">The exception carries positive probability.</text>
+
+  <line x1="580" y1="164" x2="580" y2="624" stroke="#c9bcaa" stroke-width="2" stroke-dasharray="6 8"/>
+  <text x="600" y="687" fill="#536070" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">Same cardinality of failures. Different measure. Different almost-everywhere verdict.</text>
+</svg>

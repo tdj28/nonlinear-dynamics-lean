@@ -1,79 +1,254 @@
 ---
 title: "Almost everywhere"
 slug: "almost-everywhere"
-summary: "A property holds almost everywhere when its failures are confined to a set of measure zero."
+summary: "A property holds almost everywhere when the set where it fails has measure zero, even if that exceptional set is not empty."
 draft: false
 pro_reviewed: false
-toc: false
+toc: true
+lean_module: "NonlinearDynamics.Random.RandomMatrices.Basic"
+og_image: "almost-everywhere-card.png"
+og_image_alt: "A uniform interval and a fair die show why one exceptional point can have measure zero in one model and positive probability in another."
 ---
 
-A statement holds **almost everywhere** with respect to a measure \(\mu\)
-when the outcomes where it fails form a set of \(\mu\)-measure zero.
-Analysts abbreviate this as **a.e.**
-
-For a property \(P(\omega)\), the statement
-
-\[
-P(\omega) \text{ for }\mu\text{-almost every }\omega
-\]
-
-allows exceptional outcomes, but only inside a null set. In probability, where
-\(\mu=\mathbb P\), the same idea is often called **almost sure** and
-abbreviated **a.s.**
-
-## Pointwise versus almost everywhere
-
-| Claim | Meaning | Strength |
-|---|---|---|
-| \(\forall\omega,\ P(\omega)\) | No exceptions | Pointwise |
-| \(P(\omega)\) for \(\mu\)-a.e. \(\omega\) | Exceptions may lie in a null set | Almost everywhere |
-
-Every pointwise theorem immediately gives an almost-everywhere theorem. The
-reverse implication generally fails because a null set can still contain
-points.
-
-For continuous probability distributions, a single outcome usually has
-probability zero. That does not make the outcome impossible in a logical
-sense. It means the probability measure assigns no mass to that singleton.
-
-## In Lean
-
-Lean writes an almost-everywhere quantifier using filter notation:
-
-```lean
-∀ᵐ ω ∂μ, P ω
-```
-
-The project's predicate for an almost-surely Hermitian random matrix is:
-
-```lean
-def IsHermitianAE (X : RandomMatrix Ω ι ι ℂ) (μ : Measure Ω) : Prop :=
-  ∀ᵐ ω ∂μ, (X ω).IsHermitian
-```
-
-Because Hermitian symmetrization is proved pointwise, Lean can lift it with
-`Filter.Eventually.of_forall` without any additional probabilistic argument.
-
 {{< panel "warning" >}}
-**Do not erase the measure.** A property can hold almost everywhere for one
-measure and fail for another. The symbol \(\mu\) is part of the claim.
+**Editorial status.** This is an AI-assisted working draft. Human review of the
+mathematics, Lean interpretation, sources, figure, and accessibility remains
+pending. The page is public so readers can follow the work while that review is
+still open.
 {{< /panel >}}
 
-Related concepts: {{< refterm "measurable-space" "measurable space" >}},
-{{< refterm "random-matrix" "random matrix" >}}, and
-{{< refterm "hermitian-matrix" "Hermitian matrix" >}}. The
-{{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
-entry uses almost-everywhere equality twice: first to transport an observable
-to a measurable representative, and then to compare the resulting convergence
-events.
+A property holds **almost everywhere** with respect to a measure \(\mu\) when
+the set of points where it fails has \(\mu\)-measure zero. Analysts abbreviate
+this as **a.e.** The word “almost” does real work: exceptions may exist. What
+matters is the amount of measure they carry.
 
-The
+## See it with one real exception
+
+Use the interval \(\Omega=[0,1]\) with the uniform probability measure. For an
+interval \([a,b]\subseteq[0,1]\), this measure assigns probability \(b-a\).
+Consider the property
+
+\[
+P(x):\quad x\ne \frac12.
+\]
+
+There is exactly one failure: \(P(1/2)\) is false. Its failure set is
+
+\[
+N=\left\{\frac12\right\}.
+\]
+
+A single point has length, and therefore uniform measure, zero:
+
+\[
+\mu(N)=\mu\left(\left\{\frac12\right\}\right)=0.
+\]
+
+So \(x\ne 1/2\) holds for \(\mu\)-almost every \(x\in[0,1]\), even though it
+does not hold for every \(x\). This is the smallest useful example because the
+exception is visible and the answer can be checked exactly.
+
+{{< reference-figure
+  src="almost-everywhere.svg"
+  alt="The property x is not one half has one exceptional point. Under uniform measure on the interval that point has measure zero, so the property holds almost everywhere. Under a fair die, one exceptional face has probability one sixth, so the analogous property does not hold almost surely."
+  caption="**Finding:** an exceptional set is allowed only when the chosen measure assigns it zero mass. The singleton \(\{1/2\}\) has uniform measure zero on \([0,1]\), so \(x\ne1/2\) holds almost everywhere. The singleton \(\{6\}\) has probability \(1/6\) for a fair die, so 'the roll is not six' does not hold almost surely. The picture compares two exact models; it does not claim that every singleton is null."
+>}}
+
+## Why the same-looking exception can fail
+
+Now roll a fair six-sided die and let \(Q(k)\) mean \(k\ne6\). The failure set
+is again a singleton, \(\{6\}\), but the measure has changed:
+
+\[
+\mathbb P(\{6\})=\frac16\ne0.
+\]
+
+Therefore \(Q\) does **not** hold almost surely. On a finite probability space
+where every outcome has positive probability, the only
+{{< refterm "null-set" "null set" >}} is the empty set. “One exceptional
+point” is not enough information; the measure is part of the statement.
+
+## The definition on paper
+
+Let \(\Omega\) be a set, let \(\mu\) be a measure on it, and let
+\(P:\Omega\to\mathrm{Prop}\) be a property. Define the failure set
+
+\[
+F_P=\{\omega\in\Omega:\neg P(\omega)\}.
+\]
+
+Then
+
+\[
+P(\omega)\text{ for }\mu\text{-almost every }\omega
+\quad\Longleftrightarrow\quad
+\mu(F_P)=0.
+\]
+
+Equivalently, there is a null set \(N\) such that \(P(\omega)\) holds at every
+\(\omega\notin N\). The null set need not be unique: any larger null set that
+contains all failures works as well.
+
+For two functions \(f,g:\Omega\to S\), analysts write
+
+\[
+f=g\quad\mu\text{-a.e.}
+\]
+
+when the equality \(f(\omega)=g(\omega)\) holds outside a null set. This is
+weaker than equality as functions. Two representatives may disagree at
+\(1/2\) in the interval example and still be equal almost everywhere.
+
+## In Lean: read the quantifier, not just the symbols
+
+{{< lean-bridge
+  human="For almost every outcome omega with respect to mu, the property P omega holds."
+  math="\(\mu\{\omega:\neg P(\omega)\}=0\)."
+  lean="∀ᵐ ω ∂μ, P ω"
+>}}
+
+- <code>∀ᵐ</code> is the **almost-everywhere quantifier**, not Lean's ordinary
+  <code>∀</code>.
+- <code>ω</code> is the bound outcome; it is local to the statement.
+- <code>∂μ</code> says which measure determines which exceptions may be
+  ignored.
+- <code>P ω</code> is the property tested at that outcome.
+- The whole expression is a proposition. It can be used as an assumption,
+  theorem conclusion, or field in a larger definition.
+{{< /lean-bridge >}}
+
+The notation is filter-based: Lean interprets <code>∀ᵐ ω ∂μ, P ω</code> as
+saying that the set of outcomes satisfying \(P\) belongs to the
+almost-everywhere filter generated by \(\mu\). The filter interface lets a
+proof combine several almost-everywhere facts without repeatedly rebuilding
+unions of null sets.
+
+The project uses the notation in the checked definition
+
+~~~lean
+def IsHermitianAE (X : RandomMatrix Ω ι ι ℂ) (μ : Measure Ω) : Prop :=
+  ∀ᵐ ω ∂μ, (X ω).IsHermitian
+~~~
+
+Read it aloud as: “with respect to \(\mu\), the realized matrix \(X(\omega)\)
+is Hermitian for almost every outcome \(\omega\).” The function \(X\), its
+realized value \(X(\omega)\), the Hermitian predicate, and the measure are all
+visible in the type.
+
+Here is a complete small worksheet a human can type. Its final example uses
+the same pointwise-to-almost-everywhere proof step as the checked project
+theorem for Hermitian symmetrization.
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.Basic
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.IsHermitianAE
+#check RandomMatrix.hermitianSymmetrization_isHermitianAE
+
+example {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
+    (P : Ω → Prop) (hP : ∀ ω, P ω) : ∀ᵐ ω ∂μ, P ω :=
+  Filter.Eventually.of_forall hP
+~~~
+
+The <code>example</code> is pedagogical; the two <code>#check</code> lines
+point at declarations in the named project file.
+<code>Filter.Eventually.of_forall</code> performs the safe one-way conversion:
+if there are no exceptions, then certainly all failures are confined to a null
+set.
+
+{{< repo-check >}}
+The exact checked source is
+<code>formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean</code>.
+Put the worksheet in that approved Linux environment, or inspect the two named
+declarations directly in the source file.
+{{< /repo-check >}}
+
+## Pointwise implies almost everywhere, not conversely
+
+The logical relationship is
+
+\[
+\bigl[\forall\omega,\ P(\omega)\bigr]
+\quad\Longrightarrow\quad
+\bigl[P(\omega)\text{ for }\mu\text{-a.e. }\omega\bigr].
+\]
+
+The interval example proves that the reverse arrow is invalid. This matters in
+formalization: an almost-everywhere hypothesis cannot be passed to a theorem
+that expects a pointwise hypothesis without an additional argument or a change
+of representative.
+
+| Statement | Allowed failure set | Interval verdict for \(x\ne1/2\) |
+|---|---|---|
+| \(\forall x,\ P(x)\) | none | false |
+| \(P(x)\) for \(\mu\)-a.e. \(x\) | any \(\mu\)-null set | true |
+| \(P(x)\) with probability at least \(0.99\) | failures of mass at most \(0.01\) | true, but weaker than the exact a.e. fact |
+
+Almost everywhere is not shorthand for “very high probability.” It means the
+failure probability is exactly zero.
+
+## Almost sure is the probability-language name
+
+When the measure is a probability measure \(\mathbb P\), the same definition is
+usually read **almost surely** and abbreviated **a.s.** Thus
+
+\[
+P\text{ holds almost surely}
+\quad\Longleftrightarrow\quad
+P\text{ holds }\mathbb P\text{-almost everywhere}.
+\]
+
+There is no mathematical difference in the quantifier. The phrase changes to
+emphasize that the measure has total mass one. This does not make a null event
+logically impossible: the uniform experiment can produce the value \(1/2\),
+yet the event \(\{1/2\}\) has probability zero.
+
+## Changing the measure can reverse the answer
+
+Keep the same interval and the same property \(P(x):x\ne1/2\), but replace the
+uniform measure by the Dirac probability measure \(\delta_{1/2}\), which puts
+all mass at \(1/2\). Then
+
+\[
+\delta_{1/2}\left(\left\{\frac12\right\}\right)=1.
+\]
+
+The property now fails almost surely. This is why Lean keeps <code>∂μ</code>
+inside the notation and why a mathematical statement should never say merely
+“almost everywhere” when the governing measure is ambiguous.
+
+{{< panel "warning" >}}
+**What this phrase does not prove.** An a.e. statement does not by itself say
+that the property is measurable, continuous, integrable, independent, or true
+at a particular named point. It also does not identify the exceptional set.
+Each of those is a separate obligation.
+{{< /panel >}}
+
+## Where to continue
+
+Read {{< refterm "null-set" "null set" >}} next for the shrinking-cover idea
+behind measure zero. The {{< refterm "measurable-space" "measurable space" >}}
+entry explains which sets a measure is designed to observe. The
+{{< refterm "probability-law" "probability distribution (law)" >}} entry
+separates a random object from the probability measure carried by its values.
+
+The {{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
+entry uses almost-everywhere equality to transport convergence between
+representatives. The
 {{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
-entry uses the same distinction more locally: integrability supplies an
-almost-everywhere measurable finite maximum, so its strict event is null
-measurable even when the original representative of the observable is not
-ordinarily measurable.
+entry shows why a finite maximum may be only almost-everywhere measurable
+before its exceedance event is measured.
 
-Further reading: Mathlib's
-[measure-space foundations](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html)
-define the almost-everywhere filter and associated notation.
+## References
+
+**Mathlib contributors.**
+[Measure-space foundations](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html).
+This is the official reference for Mathlib's almost-everywhere filter and
+notation.
+
+**Project source.**
+[RandomMatrices.Basic](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean)
+contains the checked <code>IsHermitianAE</code> definition and the pointwise
+lifting theorem used above.

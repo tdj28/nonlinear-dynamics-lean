@@ -9,8 +9,8 @@ Git and command output.
 ## Separate the workstation from the build host
 
 The Mac workstation is for source editing, research, Git, checkpoint work,
-Hugo authoring, static content checks, and browser QA. It is not a Lean or
-Mathlib build host.
+Hugo authoring, static content checks, browser QA, and genuinely small Lean
+tutorials. It is not a full project or Mathlib build host.
 
 - On macOS, never run `lake update`, `lake exe cache get`, `lake build`,
   `lake env lean`, a project `lean` command, or any other operation that can
@@ -20,6 +20,11 @@ Mathlib build host.
   intact.
 - Reading the existing Mathlib source with `rg` is allowed. Do not restore or
   compile its local cache.
+- Tiny self-contained teaching files that import only Lean core or `Std` may be
+  run directly with `lean` on macOS when their memory and disk use are plainly
+  bounded. Stop if they begin dependency compilation. Project imports, Mathlib
+  imports, proof probes, leaf-module checks, cache restoration, and parallel or
+  whole-project builds stay on approved Linux compute.
 - Safe workstation targets include `make checkpoint`,
   `make checkpoint-check`, `make workstation-check`, `make site-check`,
   `make blog-serve`, and `make blog-serve-tailscale`. These do not compile
@@ -58,3 +63,35 @@ On an approved Linux cloud builder:
 
 Never weaken SSH host verification, copy broad home-directory credentials, or
 touch unrelated cloud resources.
+
+## Treat the teaching layer as an educational product
+
+The public site must teach a motivated newcomer, not merely archive correct
+prose beside checked Lean. For every Knowledge Base glossary page and Deep
+Dive, follow the complete educational contract in
+`site/content/knowledge-base/AGENTS.md`.
+
+- Begin with a small, real, checkable example before climbing into general
+  notation or library interfaces.
+- Use accessible conceptual SVGs to show the objects, transformation, and
+  boundary cases that prose asks the reader to imagine. Decorative figures do
+  not satisfy this requirement.
+- Whenever a page says **In Lean**, pair the human statement, paper
+  mathematics, exact Lean syntax, and a literal repository command the reader
+  can type. Explain the important syntax token by token and label the resource
+  profile: small standalone tutorials may run on a normal Mac or Linux host;
+  exact project/Mathlib checks use the guarded Linux workflow. Do not remove
+  useful Lean tutorials merely because this particular workstation avoids
+  heavyweight builds.
+- Introduce prerequisite vocabulary before use. Recurring foundations such as
+  null sets, probability distributions, events, measures, random variables,
+  and measurable functions require substantive glossary entries and links,
+  not unexplained specialist shorthand.
+- Audit the whole connected corpus after changing this contract. Do not repair
+  one flagship page while leaving the same teaching gap throughout neighboring
+  glossary entries and Deep Dives.
+
+Keep publication and review separate. Owner-authorized public working notes
+may use `draft: false` while retaining `pro_reviewed: false`, visible review
+status, and honest limitations. Only the configured review process may change
+`pro_reviewed` to true.

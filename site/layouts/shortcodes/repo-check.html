@@ -1,0 +1,16 @@
+{{ $module := .Get "module" | default .Page.Params.lean_module }}
+{{ if not $module }}{{ errorf "repo-check requires module or lean_module front matter in %s" .Page.File.Path }}{{ end }}
+{{ $file := printf "%s.lean" (replace $module "." "/") }}
+<section class="repo-check" aria-label="Try this Lean code in the repository">
+  <div class="repo-check-heading">
+    <span>Try it in the repository</span>
+    <strong>{{ $file }}</strong>
+  </div>
+  {{ with .Inner }}<div class="repo-check-body">{{ . | markdownify }}</div>{{ end }}
+  <div class="repo-check-command">
+    <span>On an approved Linux builder, from the repository root</span>
+    <pre><code>CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE={{ $file }}</code></pre>
+  </div>
+  <p class="repo-check-boundary"><strong>Resource boundary:</strong> small standalone Lean-core or <code>Std</code> tutorials may run on an ordinary Mac or Linux machine. This exact file imports the pinned project and Mathlib, so use the guarded command on approved Linux compute or another deliberately provisioned build host. Do not trigger a Mathlib cache build on this workstation.</p>
+</section>

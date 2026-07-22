@@ -29,8 +29,10 @@ The path mapping above and the local Makefile are authoritative.
 
 The underlying technical-review, citation, provenance, accessibility, visual
 QA, and human-signoff obligations still apply. Perform and document them
-manually when no local helper exists, and keep the page a draft whenever a
-required review cannot yet be completed.
+manually when no local helper exists. When a required review is incomplete,
+leave `pro_reviewed: false` and state what remains pending. Use `draft: true` by
+default; an owner-authorized public working note may use `draft: false` without
+implying that review is complete.
 
 ## Human-approved RunPod acceleration gate
 
@@ -110,6 +112,123 @@ Before review, scan the complete page from a newcomer's perspective and list
 every acronym, symbol, and specialized noun that appears before its definition.
 Resolve the list rather than relying on reviewer familiarity.
 
+## Required educational ladder for every glossary entry and Deep Dive
+
+The Knowledge Base is a guided course, not a reference dump. Every glossary
+entry and Deep Dive must carry a reader through the same ladder while giving
+each concept its own examples and visual language.
+
+### 1. Start with one small, real situation
+
+- Put a concrete, checkable example before sustained abstraction. Good starting
+  objects include a fair die, a two-state system, a short orbit, a finite
+  matrix, or a named measurable subset of a familiar space.
+- Name the space, function, set, measure, assumptions, and claimed result that
+  the example actually uses. Work out the decisive arithmetic or logical step;
+  do not stop at “imagine that.”
+- Put a nearby non-example, boundary case, or common misconception beside the
+  example whenever it sharpens the rule.
+- Keep a glossary example compact. Give each Deep Dive a running example and
+  revisit it as the mathematics and Lean become more sophisticated.
+
+### 2. Show the idea visually
+
+- Every glossary entry needs at least one concept-specific, accessible teaching
+  SVG unless a written exception explains why an exact equation, table, or
+  executable example is clearer.
+- Every Deep Dive needs a visual narrative. At minimum show the concrete model,
+  the main transformation or proof architecture, and the decisive comparison
+  or boundary case. One figure may do more than one job when it remains clear.
+- Make all labels, values, arrows, colors, and set boundaries agree exactly with
+  the worked example. A diagram is part of the mathematical claim.
+- Decorative mountains, title cards, and generic pipelines do not satisfy the
+  visual requirement. Captions must be complete text alternatives rather than
+  merely repeating the title.
+
+### 3. Translate human language, paper mathematics, and Lean
+
+Every **In Lean** section must show all four of these layers together:
+
+1. the statement a mathematician would say aloud;
+2. the same statement in conventional paper notation;
+3. exact Lean syntax that compiles in the pinned project environment; and
+4. a short syntax map explaining the important identifiers and symbols.
+
+For example, do not present `∀ᵐ ω ∂μ, P ω` alone. Explain that a human reads it
+as “for almost every outcome `ω` with respect to `μ`, `P ω` holds,” connect it
+to the complement of a null set in paper notation, and identify what `∀ᵐ`,
+`∂μ`, `ω`, and `P ω` mean.
+
+### 4. Show exactly what a human types and where
+
+End every **In Lean** section with **Try it in the repository**:
+
+- name the relevant `.lean` file;
+- show the import plus the useful `#check`, `#print`, `example`, or `theorem`
+  text a reader can type;
+- distinguish a pedagogical excerpt from the exact checked project source; and
+- give the literal repository command used to check the named file.
+
+The standard single-file command is:
+
+```sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/path/to/Module.lean
+```
+
+That exact-project command belongs on an approved Linux builder or another
+machine deliberately provisioned with the pinned project cache. Small,
+self-contained Lean-core or `Std` tutorials may also include a local Mac/Linux
+command. Label the difference and never let a “small tutorial” silently trigger
+a Mathlib cache download or project compilation on this workstation. When
+teaching Mathlib syntax, link it to a real project module and show the guarded
+project command rather than leaving the reader with an isolated snippet and no
+way to check it.
+
+Use the shared `lean-bridge` shortcode to present the human, paper, and Lean
+forms together, with a page-specific syntax map in its body. Use `repo-check`
+after the copyable import and example block; it derives the file path from
+`lean_module` front matter unless an explicit `module` parameter is needed.
+These components enforce a recognizable teaching rhythm, but their text and
+code must remain specific to the page.
+
+### 5. Build the prerequisite vocabulary graph
+
+Create substantive glossary entries, then link them at first use, for recurring
+foundations including sample spaces, events, measures, probability measures,
+null sets, measurable functions, random variables, probability distributions
+or laws, almost-everywhere and almost-sure statements, integrability, and
+expectation as they enter the project.
+
+Keep neighboring ideas distinct. In particular, teach:
+
+- a probability distribution is not necessarily a density;
+- measure zero is not the same assertion as logical impossibility;
+- almost everywhere is weaker than pointwise everywhere;
+- a random variable is a measurable map, while its law is a pushed-forward
+  probability measure;
+- measurability and integrability answer different questions.
+
+Do not create thin link targets. After adding a foundational term, scan every
+glossary entry and Deep Dive for first uses that need a local definition and a
+canonical `relref` link.
+
+### 6. Audit the reader's climb
+
+For every page, record and verify:
+
+- its concrete example and computed result;
+- each visual's teaching job and agreement with that example;
+- the human-language, paper-math, and Lean versions of its core statement;
+- its Lean syntax map and literal check command;
+- prerequisite definitions and first-use links;
+- its misconception or boundary case; and
+- what the page does **not** claim.
+
+Keep corpus-wide evidence for this audit. Headings and reusable components can
+make the pattern legible, but examples, figures, translations, and limitations
+must be bespoke enough to teach the actual concept rather than boilerplate.
+
 ## Definition of a good entry
 
 A glossary entry is a compact teaching page, not a miniature paper. It should
@@ -135,20 +254,14 @@ or redirect aliases to a glossary page: the bundle path defines its public URL.
 When a route changes, update source links to the canonical route. Search the
 existing titles, slugs, and related terms before creating a page; extend an
 existing entry instead of adding a near duplicate. Keep a new page in draft
-until the review gate is complete.
+unless the owner has explicitly authorized public working notes; publication
+does not waive the review gate.
 
-Use the smallest structure that teaches the concept well. Include these when
-they add value, rather than as boilerplate:
-
-1. A direct plain-language definition in the opening paragraph.
-2. The precise operational or mathematical definition.
-3. A teaching visualization that acts out the central relationship.
-4. A concrete worked example whose arithmetic can be checked.
-5. A short code snippet when code clarifies the rule or a boundary case.
-6. The assumptions, edge cases, or implementation choices that change the
-   result.
-7. An explicit statement of what the term does not establish or imply.
-8. Links to related glossary entries with Hugo `relref` links.
+Use the smallest structure that teaches the concept well. The concrete worked
+example, concept-specific visual, human-to-math-to-Lean translation, literal
+repository command, prerequisite links, boundary case, and nonclaim required
+above are part of the definition of done. Add second visuals, additional
+examples, or supporting code only when they advance the reader's climb.
 
 Keep equations and code consistent with the prose. Test executable snippets or
 manually check them against every displayed example. State conventions such as

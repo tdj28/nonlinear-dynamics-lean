@@ -1,0 +1,32 @@
+{{ $human := .Get "human" }}
+{{ $math := .Get "math" }}
+{{ $lean := .Get "lean" }}
+{{ if not $human }}{{ errorf "lean-bridge requires human in %s" .Page.File.Path }}{{ end }}
+{{ if not $math }}{{ errorf "lean-bridge requires math in %s" .Page.File.Path }}{{ end }}
+{{ if not $lean }}{{ errorf "lean-bridge requires lean in %s" .Page.File.Path }}{{ end }}
+<section class="lean-bridge" aria-label="The same statement in human language, paper mathematics, and Lean">
+  <header class="lean-bridge-header">
+    <span>One idea, three languages</span>
+    <strong>Read across, then read the syntax map</strong>
+  </header>
+  <div class="lean-bridge-grid">
+    <article class="lean-bridge-layer lean-bridge-human">
+      <span class="lean-bridge-kicker">A human says</span>
+      <div>{{ $human | markdownify }}</div>
+    </article>
+    <article class="lean-bridge-layer lean-bridge-paper">
+      <span class="lean-bridge-kicker">On paper</span>
+      <div>{{ $math | markdownify }}</div>
+    </article>
+    <article class="lean-bridge-layer lean-bridge-code">
+      <span class="lean-bridge-kicker">In Lean</span>
+      <pre><code>{{ $lean }}</code></pre>
+    </article>
+  </div>
+  {{ with .Inner }}
+  <div class="lean-bridge-map">
+    <span class="lean-bridge-kicker">Syntax map</span>
+    <div>{{ . | markdownify }}</div>
+  </div>
+  {{ end }}
+</section>

@@ -3,13 +3,14 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 14:00 PDT
+Last updated: 2026-07-22 15:18 PDT
 
-Audited baseline: `main` at `9042de6`
+Audited baseline: `main` at `d50742f`
 
-Active direction: **paused at the user's request so the existing work can be
-reviewed over the next few days. Do not resume autonomous expansion until the
-user explicitly asks to continue.** RMT-34 remains a complete released
+Active direction: **Lean formalization expansion remains paused while the owner
+learns and sculpts the public educational site. The owner explicitly authorized
+a corpus-wide glossary and Deep Dive teaching rebuild on 2026-07-22.** RMT-34
+remains a complete released
 vertical slice. RMT-35 is now source-complete enough to compile as an
 integrated Lean milestone: it defines the finite signed Fekete rate and proves
 pre-ergodic probability almost-everywhere convergence of normalized real-log
@@ -20,16 +21,21 @@ listed below for the next session.
 
 ## Durable Build-Host Policy
 
-Effective 2026-07-22, the Mac workstation is no longer a Lean or Mathlib build
-host. This is a permanent project workflow decision, not a temporary response
-to the last low-disk event.
+Effective 2026-07-22, the Mac workstation is no longer a full project or
+Mathlib build host. It may run genuinely small standalone Lean tutorials that
+import only Lean core or `Std`; this is a permanent resource boundary, not a
+ban on teaching readers how to run Lean.
 
 - Keep the Mac for research, source editing, Git, checkpoint/static validation,
-  Hugo authoring, deterministic asset work, and browser QA. Reading the pinned
-  Mathlib source with `rg` is allowed.
+  Hugo authoring, deterministic asset work, browser QA, and small bounded Lean
+  tutorials. Reading the pinned Mathlib source with `rg` is allowed.
 - Never run a project `lean` command, `lake update`, `lake exe cache get`,
   `lake build`, `lake env lean`, or any command that can restore or regenerate
   `formalization/.lake/packages/*/.lake/build` on macOS.
+- A self-contained tutorial file may run directly with `lean` when it imports
+  only Lean core or `Std` and plainly cannot trigger project or dependency
+  compilation. Exact Mathlib-backed examples and project modules remain cloud
+  checks. Deep Dives should teach both levels and label their resource needs.
 - The guarded `make setup`, `make lean`, `make lean-file`, `make lean-clean`,
   and `make check` targets reject macOS. They run only on Linux with the
   explicit `CLOUD_LEAN_BUILD=1` acknowledgement. Do not bypass the guard.
@@ -105,6 +111,46 @@ commits. They are not instructions for future work.
   including when the source repository itself is private. If this milestone's
   push runs before enablement, rerun its failed workflow or use its manual
   dispatch after selecting the Pages source.
+
+## Active Educational Rebuild
+
+The owner reviewed the published “Almost everywhere” glossary page on
+2026-07-22 and correctly identified a corpus-wide teaching gap. Correct prose
+and isolated Lean identifiers are not enough. Every glossary entry and Deep
+Dive must now climb through a concrete checkable example, a concept-specific
+accessible SVG, human language, paper mathematics, exact Lean syntax, a syntax
+map, and commands that show a reader how to try it. Foundational vocabulary
+must be introduced before advanced probability and ergodic arguments use it.
+
+The first complete structural audit found:
+
+- **52 glossary entries.** The two half-corpus audits found no page with a
+  complete file-plus-command workflow. Forty-two entries have a concept SVG,
+  but ten do not; five have no worked example and six more have only a partial
+  one; only twenty-seven have a strong direct paper-to-Lean bridge. The
+  highest-priority vocabulary
+  gaps are null set, measure/probability measure, event, random variable,
+  measurable function, expectation, and integrability. The existing
+  `probability-law` route should teach the synonymous title “Probability
+  distribution (law)” instead of creating a duplicate page.
+- **36 Deep Dives, 41,491 Markdown lines, and 90 referenced conceptual SVGs.**
+  No chapter opens with a complete checkable example before abstraction, and
+  no chapter has the full human/paper/Lean/file/command ladder. Ten have no
+  fenced Lean snippet. Nineteen have only one figure and
+  `random-matrices-from-outcomes-to-spectra` has none. Existing commands need
+  resource labels: small standalone tutorials may run locally, while exact
+  project/Mathlib checks use a provisioned Linux host and the guarded Make
+  target.
+
+Repository and Knowledge Base `AGENTS.md` now encode this educational contract.
+Shared `lean-bridge` and `repo-check` shortcodes provide the visual translation
+and reproducible-command rhythm without replacing page-specific explanations.
+The first exemplar wave upgrades “Almost everywhere,” retitles and rebuilds
+“Probability distribution (law),” and adds the missing “Null set” foundation.
+All remain public working notes with `pro_reviewed: false`. Continue through
+all glossary entries before beginning the Deep Dive pass, validate and push
+small coherent batches, and do not resume RMT-35 formalization while this
+reader-catch-up phase is active.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
