@@ -1,23 +1,32 @@
 HUGO ?= hugo
 PYTHON ?= python3
 TAILSCALE ?= tailscale
+CLOUD_LEAN_BUILD ?= 0
+LEAN_FILE ?=
+export CLOUD_LEAN_BUILD LEAN_FILE
+override CLOUD_LEAN_RUNNER := scripts/run_cloud_lean_target.sh
 
 # Hugo preview port. Override with, for example, BLOG_PORT=1444.
 BLOG_PORT ?= 1333
 
 .DEFAULT_GOAL := help
 
-.PHONY: help setup lean checkpoint checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale check clean
+.PHONY: help setup lean lean-file lean-clean checkpoint checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale workstation-check check clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z0-9_-]+:.*## / {printf "  %-24s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-setup: ## Download the pinned Mathlib dependencies and compiled cache
-	cd formalization && . "$$HOME/.elan/env" && lake update
-	cd formalization && . "$$HOME/.elan/env" && lake exe cache get
+setup: ## Cloud/Linux only: download pinned dependencies and compiled cache
+	@$(CLOUD_LEAN_RUNNER) setup
 
-lean: ## Build the Lean formalization
-	cd formalization && . "$$HOME/.elan/env" && lake build
+lean: ## Cloud/Linux only: build the Lean formalization
+	@$(CLOUD_LEAN_RUNNER) build
+
+lean-file: ## Cloud/Linux only: warning-fatal compile of LEAN_FILE
+	@$(CLOUD_LEAN_RUNNER) file
+
+lean-clean: ## Cloud/Linux only: remove generated Lean build output
+	@$(CLOUD_LEAN_RUNNER) clean
 
 checkpoint: ## Show the current verified state and next formalization milestone
 	@cat checkpoint.md
@@ -86,8 +95,9 @@ blog-serve-tailscale: ## Serve drafts privately on Tailscale port 1333
 
 site-serve-tailscale: blog-serve-tailscale ## Alias for blog-serve-tailscale
 
-check: lean checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check ## Validate Lean, checkpoint, teaching source, coverage, and Hugo
+workstation-check: checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check ## Validate all non-Lean repository gates
 
-clean: ## Remove generated Lean and Hugo build output
-	cd formalization && . "$$HOME/.elan/env" && lake clean
+check: lean checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check ## Cloud/Linux only: run the complete repository gate
+
+clean: ## Remove generated Hugo output without invoking Lean or Lake
 	rm -rf public site/resources/_gen

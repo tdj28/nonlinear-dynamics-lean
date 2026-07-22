@@ -30,9 +30,10 @@ coherent milestone commit.
 
 The checked-in
 [`formalize-nonlinear-dynamics` skill](.agents/skills/formalize-nonlinear-dynamics/SKILL.md)
-captures the project's research-to-Lean workflow: local Mathlib reconnaissance,
-primary-source discipline, normalization ledgers, proof-to-prose pairing,
-strict validation, checkpoint maintenance, and frequent pushes to `main`.
+captures the project's research-to-Lean workflow: pinned Mathlib source
+reconnaissance, primary-source discipline, normalization ledgers,
+proof-to-prose pairing, strict validation, checkpoint maintenance, the
+workstation/cloud build split, and frequent pushes to `main`.
 
 Useful checkpoint commands are:
 
@@ -41,21 +42,33 @@ make checkpoint
 make checkpoint-check
 ```
 
-## Requirements
+## Requirements and host roles
 
-- macOS (Apple Silicon or Intel) or a recent Linux distribution
-- Git, `curl`, Python 3, and
-  [Hugo Extended](https://gohugo.io/installation/) 0.153.0 or newer
-- At least 12 GB of free disk space for Lean, Mathlib, caches, and build
-  artifacts; 15 GB is recommended for comfortable rebuild headroom
+This project deliberately separates the two development hosts:
+
+- **macOS workstation:** Git, research, source editing, checkpoint/static
+  validation, Hugo authoring, and browser QA. It does not download or build a
+  Mathlib compiled cache and does not compile the project.
+- **human-approved Linux cloud builder:** Elan, Lean, Lake, Mathlib dependency
+  and cache setup, warning-fatal module checks, and the complete repository
+  gate. Set `CLOUD_LEAN_BUILD=1` only on that approved host.
+
+Both roles need Git, `curl`, Python 3, and
+[Hugo Extended](https://gohugo.io/installation/) 0.153.0 or newer. The cloud
+builder should have at least 12 GB of fast ephemeral/local free space; 15 GB is
+recommended for rebuild headroom. Persistent network storage is suitable for
+compressed, integrity-checked cache snapshots, not for a live `.lake` tree.
+For each release gate, record the workstation's exact `hugo version` output and
+use the same Hugo release on the cloud builder; the compatibility floor is not
+permission to mix versions within one release.
 
 Lean versions are managed by [`elan`](https://github.com/leanprover/elan). The
 formalization pins Lean and Mathlib to version 4.32.0.
 
-For scale, the current macOS Apple Silicon setup occupies about 10.3 GB after
-setup: roughly 2.6 GB for the Lean 4.32.0 toolchain and 7.7 GB under
-`formalization/.lake`, including about 6.9 GB for the Mathlib checkout and its
-compiled cache. Exact sizes vary by platform and filesystem.
+The optional Lean 4.32.0 compiler already installed on the current Apple
+Silicon workstation occupies roughly 2.6 GB. The former local Mathlib compiled
+tree consumed about 7.3 GB and was removed on 2026-07-22; project policy is not
+to restore or regenerate it. Exact sizes vary by platform and filesystem.
 
 ## Install Lean on macOS
 
@@ -80,7 +93,8 @@ source "$HOME/.elan/env"
 
 This installs `elan`, the Lean toolchain manager. The project-specific Lean
 compiler is downloaded separately after cloning the repository, as described
-below.
+below. Keeping the pinned compiler locally is useful for version inspection,
+but it does not authorize a local project build or Mathlib cache download.
 
 Install Hugo Extended with Homebrew:
 
@@ -142,18 +156,53 @@ blog:
 tailscale status
 ```
 
-## Clone, download the Lean toolchain, and build everything
+## Clone and use the split workstation/cloud workflow
+
+Clone the repository on the Mac workstation:
 
 ```sh
 git clone https://github.com/tdj28/nonlinear-dynamics-lean.git
 cd nonlinear-dynamics-lean
 source "$HOME/.elan/env"
 elan toolchain install leanprover/lean4:v4.32.0
-make setup
-make check
 ```
 
-The downloads happen in distinct stages:
+The last command downloads only the exact compiler named by
+[`formalization/lean-toolchain`](formalization/lean-toolchain). Elan stores it
+under `~/.elan/toolchains/`; it does not download Mathlib. On macOS, do not run
+`make setup`, `make lean`, `make check`, `lake update`, `lake exe cache get`,
+`lake build`, or `lake env lean`. Those operations can regenerate the compiled
+Mathlib tree. The guarded Make targets, including `make lean-file`, refuse to
+run on macOS even if
+`CLOUD_LEAN_BUILD=1` is supplied.
+
+The workstation can run all non-Lean gates:
+
+```sh
+make workstation-check
+git diff --check
+```
+
+`workstation-check` validates the checkpoint, teaching-source contract,
+proof-to-prose coverage, and warning-fatal Hugo render without invoking Lean or
+Lake. It may fail intentionally while a source-only milestone is missing its
+teaching companion; that is an honest completeness signal, not a reason to
+build locally.
+
+On a newly provisioned Linux cloud builder, first obtain the owner's explicit
+approval for the proposed compute specifications and cost. Then clone or
+source-only synchronize the repository. A fresh cloud clone may have its own
+clean `.git`; never copy the workstation's Git metadata to the builder. Install
+the exact compiler and run:
+
+```sh
+source "$HOME/.elan/env"
+elan toolchain install leanprover/lean4:v4.32.0
+CLOUD_LEAN_BUILD=1 make setup
+CLOUD_LEAN_BUILD=1 make check
+```
+
+The cloud downloads happen in distinct stages:
 
 1. `elan toolchain install leanprover/lean4:v4.32.0` downloads the exact Lean
    compiler named by [`formalization/lean-toolchain`](formalization/lean-toolchain).
@@ -161,25 +210,36 @@ The downloads happen in distinct stages:
 2. `make setup` runs `lake update` in `formalization/`, which downloads the
    Mathlib revision pinned in
    [`formalization/lakefile.toml`](formalization/lakefile.toml) and records the
-   resolved dependencies in `lake-manifest.json`.
+   resolved dependencies in `lake-manifest.json`. The cloud runner verifies
+   [`lake-manifest.sha256`](formalization/lake-manifest.sha256) both before and
+   after this step, so setup fails if dependency resolution drifts.
 3. `make setup` then runs `lake exe cache get`, which downloads Mathlib's
    precompiled Lean artifacts so the whole library does not need to be rebuilt
-   locally.
+   from source on the cloud builder.
 4. `make check` builds this project's Lean modules, verifies the living
    checkpoint and proof-to-prose coverage, runs the context-aware teaching
    source tests and scan, and validates all Hugo content.
 
-The first setup is the largest download. Later builds reuse the toolchain and
-Mathlib cache.
+The first cloud setup is the largest download. Later cloud builds may restore
+the project's integrity-checked toolchain and Lake-cache snapshots from its
+preserved network volume onto fast ephemeral/local disk. The network volume
+must never serve as a live `.lake` tree.
 
-To perform the Lean dependency steps manually instead of using `make setup`:
+An intentional dependency refresh is a separate reviewed milestone: update the
+manifest on approved cloud compute, review every revision change, update its
+checked digest, and commit both files together before treating any build as
+authoritative. Routine work must use the guarded targets rather than raw Lake
+commands:
 
 ```sh
-cd formalization
-lake update
-lake exe cache get
-lake build
+CLOUD_LEAN_BUILD=1 make setup
+CLOUD_LEAN_BUILD=1 make lean
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/path/to/Module.lean
 ```
+
+Each build and warning-fatal leaf compile checks the manifest digest before it
+invokes Lake; setup also checks again after dependency resolution.
 
 Verify that the repository selected the intended compiler:
 
@@ -192,7 +252,7 @@ lean --version
 Build only the Lean formalization:
 
 ```sh
-make lean
+CLOUD_LEAN_BUILD=1 make lean
 ```
 
 Build only the site:
@@ -666,12 +726,12 @@ and `make content-coverage` checks that:
 - when an entry freezes a site-hosted Lean snapshot, its module, snapshot path,
   and SHA-256 agree and still identify the checked source byte for byte.
 
-`make check` runs this coverage gate, its snapshot-contract regression tests,
-`make content-hygiene-test`, and `make content-hygiene` automatically. The
-context-aware source gate masks YAML front matter, fenced and inline code,
-HTML comments, `code`/`pre` HTML, and Hugo shortcode tags while preserving
-source offsets and newlines. Markdown bodies inside ordinary shortcodes remain
-checked; raw Mermaid bodies are masked.
+The cloud-only `make check` runs this coverage gate, its snapshot-contract
+regression tests, `make content-hygiene-test`, and `make content-hygiene`
+automatically. The context-aware source gate masks YAML front matter, fenced
+and inline code, HTML comments, `code`/`pre` HTML, and Hugo shortcode tags while
+preserving source offsets and newlines. Markdown bodies inside ordinary
+shortcodes remain checked; raw Mermaid bodies are masked.
 
 In rendered regions, the gate rejects unbalanced, mismatched, or nested TeX
 delimiters; double-escaped delimiter candidates outside active math; literal
@@ -727,4 +787,7 @@ elan show
 ```
 
 Elan stores toolchains under `~/.elan`. Lake stores project dependencies and
-build artifacts under `formalization/.lake`.
+build artifacts under `formalization/.lake` on the cloud builder. Do not
+restore, download, or compile the Mathlib cache on macOS. The repository-root
+[`AGENTS.md`](AGENTS.md) contains the durable host-separation and cloud
+approval policy.

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 12:35 PDT
+Last updated: 2026-07-22 12:52 PDT
 
-Audited baseline: `main` at `5d30d0f`
+Audited baseline: `main` at `90576e9`
 
 Active direction: **paused at the user's request so the existing work can be
 reviewed over the next few days. Do not resume autonomous expansion until the
@@ -15,8 +15,48 @@ integrated Lean milestone: it defines the finite signed Fekete rate and proves
 pre-ergodic probability almost-everywhere convergence of normalized real-log
 cocycle growth. It is not yet a complete proof-to-prose release. Boundary
 models, paired teaching, source snapshot/coverage metadata, rendered QA, and
-the final local/RunPod release replay remain deliberately unfinished and are
+the final cloud release replay remain deliberately unfinished and are
 listed below for the next session.
+
+## Durable Build-Host Policy
+
+Effective 2026-07-22, the Mac workstation is no longer a Lean or Mathlib build
+host. This is a permanent project workflow decision, not a temporary response
+to the last low-disk event.
+
+- Keep the Mac for research, source editing, Git, checkpoint/static validation,
+  Hugo authoring, deterministic asset work, and browser QA. Reading the pinned
+  Mathlib source with `rg` is allowed.
+- Never run a project `lean` command, `lake update`, `lake exe cache get`,
+  `lake build`, `lake env lean`, or any command that can restore or regenerate
+  `formalization/.lake/packages/*/.lake/build` on macOS.
+- The guarded `make setup`, `make lean`, `make lean-file`, `make lean-clean`,
+  and `make check` targets reject macOS. They run only on Linux with the
+  explicit `CLOUD_LEAN_BUILD=1` acknowledgement. Do not bypass the guard.
+- Run non-Lean gates locally with `make workstation-check` or their individual
+  checkpoint, content, Hugo, and browser commands. An expected coverage
+  failure during the paused RMT-35 source-only state must remain visible.
+- Every future Lean probe, dependency setup, warning-fatal compile, and full
+  gate runs on freshly human-approved Linux cloud compute. State the proposed
+  specifications and cost before creation. Credentials alone are not approval.
+- Attach the preserved project network volume when useful, restore its
+  integrity-checked snapshots onto fast ephemeral/local builder storage, and
+  never use the volume as a live `.lake` tree. Source synchronization excludes
+  `.env`, `.git`, `.lake`, generated Hugo output, credentials, and private
+  review files; a fresh remote clone at the exact commit may create its own
+  clean Git metadata, but the workstation's `.git` is never transferred.
+- Every guarded cloud setup, build, and warning-fatal leaf compile verifies the
+  committed `lake-manifest.json` SHA-256; setup checks before and after
+  `lake update`. Raw Lake commands are not release paths, and dependency drift
+  is a separate reviewed milestone. Record the workstation Hugo version and
+  match it on the cloud gate.
+- Record the exact source revision and cloud validation result, then terminate
+  the exact compute resource unless the owner explicitly approves retaining
+  it. Preserve the network volume unless the owner explicitly requests its
+  deletion. Keep addresses and resource identifiers out of the repository.
+
+Historical local build results below remain valid evidence for their recorded
+commits. They are not instructions for future work.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -56,8 +96,8 @@ listed below for the next session.
 - The new module, changed RMT-29 leaf, and cocycle aggregator each pass direct
   `-DwarningAsError=true` compilation. `lake build
   NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman` and `lake build
-  NonlinearDynamics` pass, and a final local `lake build` completes all 3,218
-  jobs. Every recorded axiom footprint is exactly
+  NonlinearDynamics` pass, and the last pre-policy local `lake build` completed
+  all 3,218 jobs. Every recorded axiom footprint is exactly
   `propext`, `Classical.choice`, and `Quot.sound`; no `sorry` or `admit` occurs
   in the changed Lean sources.
 - An independent read-only semantic audit found no missing assumption in the
@@ -83,8 +123,8 @@ listed below for the next session.
   generated audit/build directories with no Git metadata. Ambiguous temporary
   directories containing nested repositories were preserved. APFS-reported
   free space rose from 3 GiB to 25 GiB; the repository shrank from 8.8 GB to
-  1.4 GB while Mathlib source and the project's 98 MB build remained. A future
-  local Lean build must restore or rebuild the removed Mathlib artifacts.
+  1.4 GB while Mathlib source and the project's 98 MB build remained. Those
+  removed Mathlib artifacts must not be restored or rebuilt on the Mac.
 
 ### Deliberately unfinished at the pause
 
@@ -121,10 +161,11 @@ listed below for the next session.
    `.agents/skills/formalize-nonlinear-dynamics/SKILL.md` and the nearest
    teaching `AGENTS.md` files before editing prose. Inspect the actual Git
    status and latest commits; do not assume temporary files survived.
-2. Re-run the warning-fatal RMT-29 and RMT-35 leaves. Complete the scalar
-   boundary atlas and, if proof cost remains proportionate, the two recommended
-   countermodels. Keep the theorem scoped to signed top growth in the selected
-   matrix norm.
+2. After obtaining approval for a Linux cloud builder, re-run the warning-fatal
+   RMT-29 and RMT-35 leaves there. Complete the scalar boundary atlas and, if
+   proof cost remains proportionate, the two recommended countermodels. Keep
+   the theorem scoped to signed top growth in the selected matrix norm. Never
+   probe or compile these files on the Mac.
 3. Create the Notebook bundle at
    `site/content/development-notebook/2026/07/signed-real-log-kingman-convergence-in-lean/`,
    the Deep Dive at
@@ -142,16 +183,15 @@ listed below for the next session.
    Stochastic Processes*, JRSS Series B 30(3), 499–510 (1968), DOI
    `10.1111/j.2517-6161.1968.tb00749.x`. Do not reuse the previously suggested
    Annals DOI without separate verification.
-6. Run warning-fatal leaf/aggregator/root Lean checks, snapshot identity,
-   coverage and hygiene tests, deterministic card verification, XML/raster
-   inspection, Hugo warnings-fatal rendering, and literal desktop/mobile
-   browser QA. Then run local `make -j1 check`. If the owner explicitly
-   approves fresh remote compute after resuming, create a new project builder,
-   attach the preserved `nonlinear-dynamics-lean-cache` network volume,
-   establish its server host key through the authenticated control plane,
-   synchronize source-only without `.env`, Git metadata, caches, or generated
-   output, and replay the exact gate remotely. Never disable host verification
-   to make the gate pass.
+6. Run snapshot identity, coverage and hygiene tests, deterministic card
+   verification, XML/raster inspection, Hugo warnings-fatal rendering, and
+   literal desktop/mobile browser QA on the Mac. On the approved Linux cloud
+   builder, establish its server host key through the authenticated control
+   plane, synchronize source-only without `.env`, Git metadata, caches, or
+   generated output, restore caches onto fast ephemeral/local disk, run the
+   warning-fatal leaf/aggregator/root Lean checks, and finish with
+   `CLOUD_LEAN_BUILD=1 make -j1 check`. Never disable host verification or run
+   that full gate locally. Terminate the compute after recording the result.
 7. Only after all of that, replace this pause state with a complete RMT-35
    release checkpoint, commit a coherent milestone, and push `main`.
 
@@ -766,14 +806,19 @@ bridge, or stable-manifold theorem.
 
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
-- Full validation command: `make check`.
+- Workstation Hugo QA version at this policy checkpoint: Hugo Extended 0.160.1;
+  the next cloud release gate must use the same version.
+- Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
+  approved Linux cloud builder only. Workstation validation uses
+  `make workstation-check` and never invokes Lean or Lake.
 - Last fully green repository build: 3,217 Lean jobs on the integrated RMT-34
   tree. Its changed leaf, cocycle aggregator, Random root, and project root
   compile warning-fatally; 39/39 coverage, seventeen snapshot-contract tests,
   four hygiene regression tests, and the 132-file teaching scan pass; Hugo
   renders 405 pages and 65 static files with warnings fatal. The complete
-  checkpoint-inclusive gate takes 7.38 seconds locally and 4.58 seconds on the
-  checksum-identical retained RunPod tree.
+  checkpoint-inclusive gate historically took 7.38 seconds on the Mac and
+  4.58 seconds on the checksum-identical retained RunPod tree before the new
+  cloud-only build policy.
 - Lean inventory: 735 public named declarations counted by the proof-to-prose
   checker across the thirty-nine substantive modules. The tree also
   has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
@@ -921,8 +966,8 @@ finish this same vertical slice without scope drift:
 3. freeze and verify the hosted Lean snapshot and coverage manifest;
 4. complete source, semantic, prose, card, SVG, Hugo, and literal browser
    audits; and
-5. replay the exact local and approved RunPod release gates before marking the
-   slice complete.
+5. replay the exact workstation non-Lean gates and the approved Linux cloud
+   `make check` release gate before marking the slice complete.
 
 Do not begin singular values, conorms, Lyapunov spectra, Oseledets splittings,
 derivative cocycles, or stable manifolds until this release contract is green.
@@ -1675,10 +1720,10 @@ k-invariance precedes approximation claims.
   for nonlinear-dynamics mathematics.
 - RunPod compute and storage remain behind a human approval gate even when an
   API key is present. The owner granted project-scoped approval on 2026-07-21
-  for the active formalization goal. Keep exact resource inventory and costs
-  visible, keep secrets and resource identifiers out of the repository, and
-  treat the remote builder as reproducible acceleration rather than a second
-  source of truth.
+  for the now-terminated builder; fresh compute requires fresh approval. Keep
+  specifications and costs visible, keep secrets and resource identifiers out
+  of the repository, and treat the Linux cloud gate as the exclusive Lean
+  build path. Committed source remains the source of truth.
 - The density identity and order-one spectral interpretation remain explanatory
   context until their prerequisites are formalized. RMT-06 proves only the
   exact coordinate and matrix laws induced by the approved variance ledger.
@@ -1802,27 +1847,56 @@ k-invariance precedes approximation claims.
 
 ## Validation Snapshot
 
-Run before every push:
+Run before every documentation or workstation-only push:
 
 ```sh
-make check
+make checkpoint-check
+make workstation-check  # may expose known source/prose debt
 git diff --check
 ```
 
-For each changed module, also run:
+For a formalization milestone, obtain approval for Linux cloud compute and run:
 
 ```sh
-cd formalization
-lake env lean -DwarningAsError=true path/to/Module.lean
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/path/to/Module.lean
+CLOUD_LEAN_BUILD=1 make check
 ```
+
+The Lean commands above are forbidden on macOS. A policy/documentation-only
+milestone does not justify provisioning paid compute by itself; record which
+non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
-- official project-skill structural validator: passed;
-- fresh-agent forward test: recovered RMT-02, the local API-first workflow,
-  proof-to-prose contract, validation gates, and safe push procedure;
-- independent repository audit: matched the substantive/placeholder inventory
-  and exposed the decision gates now recorded above.
+- Build-host policy QA on 2026-07-22: `make lean`,
+  `CLOUD_LEAN_BUILD=1 make setup`, `CLOUD_LEAN_BUILD=1 make lean-file ...`,
+  and `CLOUD_LEAN_BUILD=1 make check` each refused on macOS before invoking
+  Lake. The single-process cloud runner also remained safe under Make's
+  ignore-errors option and a command-line attempt to replace the runner
+  variable. POSIX shell syntax, ShellCheck, Make help,
+  `make checkpoint-check`, seventeen coverage regression tests, four hygiene
+  regression tests, the 132-file hygiene scan, the 405-page warning-fatal Hugo
+  render, and `git diff --check` passed without invoking Lean. The removed
+  local Mathlib `.lake/build` directory remained absent.
+- The official project-skill structural validator passed after the cloud-only
+  rewrite. A context-minimal fresh-agent forward test independently recovered
+  the macOS command prohibitions, human approval boundary, source-only sync,
+  ephemeral-disk build, network-volume snapshot role, exact cloud gate, and
+  post-gate compute termination policy.
+- An independent adversarial policy audit confirmed that no documented Make
+  path reaches Lean or Lake on macOS. It also exposed and drove repairs for
+  three reproducibility ambiguities: fresh clone versus source-only Git
+  handling, manifest drift across `lake update`, and matching the exact Hugo
+  release between workstation and cloud. Follow-up review closed two smaller
+  holes by requiring the digest before builds and leaf probes and by
+  canonicalizing leaf paths beneath `formalization/NonlinearDynamics`. The
+  checked manifest SHA-256 ledger and enhanced checkpoint validator now make
+  the dependency pin executable.
+- `make workstation-check` stops at exactly the two already recorded RMT-35
+  source-checkpoint debts: the missing `RealLogNormKingman.lean` Notebook
+  mapping and the new RMT-29 declaration absent from its stale companion.
+  No cloud compute was provisioned for this policy-only milestone.
 - RMT-02 Lean audit: exact-law and edge-case claims match the checked module,
   every named declaration has paired prose, warnings-as-errors checks pass,
   and no nonstandard axioms or proof holes were introduced.
@@ -2848,6 +2922,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `90576e9`: record termination of the exact project RunPod compute resource,
+  preservation of its 100 GB cache-snapshot volume, conservative local disk
+  cleanup, and the paused RMT-35 resume handoff.
 - `c0080d4`: generalize RMT-29's upper-limsup theorem to an honest eventual
   lower-bound gate, formalize the compile-checked RMT-35 signed Fekete and
   pre-ergodic real-log convergence core, and record the deliberate pause and

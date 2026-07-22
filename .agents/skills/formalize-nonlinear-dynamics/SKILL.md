@@ -16,8 +16,11 @@ commit.
 2. Read the complete nearest `AGENTS.md` before editing Development Notebook or
    Knowledge Base content.
 3. Run `git status -sb` and preserve unrelated user changes.
-4. Load Lean with `source "$HOME/.elan/env"` when the shell has not already done
-   so.
+4. Identify the host before touching Lean. On macOS, version-only inspection
+   with `elan show` or `lean --version` is allowed, but do not invoke project
+   compilation, Lake, or a Mathlib cache operation. For proof probes or builds,
+   obtain approval for a Linux cloud builder and use the guarded workflow
+   below.
 5. Select the first unblocked dependency-ordered item in `checkpoint.md`.
 
 Do not start a later theorem because it looks exciting if an earlier
@@ -26,8 +29,10 @@ missing.
 
 ## Research Before Encoding
 
-- Search the pinned local Mathlib checkout first with `rg`. Treat exact local
-  declarations as the API authority.
+- Search the pinned Mathlib source first with `rg`; an existing source checkout
+  may be read on the workstation. Treat exact pinned declarations plus
+  warning-fatal cloud compilation as the API authority. Never regenerate the
+  workstation's compiled Mathlib cache for reconnaissance.
 - Use official documentation, original papers, or standard monographs for
   scientific claims. For technical searches, rely on primary sources.
 - Record the exact source version, theorem/section/page anchor, persistent
@@ -130,12 +135,17 @@ output, not incidental cleanup.
    `MeasurePreserving T μ μ` passes to `T^[b]`, but `Ergodic T μ` does not in
    general pass to `T^[b]`; never use preservation as a proxy for ergodicity.
 5. Add the module to the nearest aggregator.
-6. Compile early with:
+6. Compile early on an explicitly approved Linux cloud builder from the
+   repository root with:
 
    ```sh
-   cd formalization
-   lake env lean -DwarningAsError=true path/to/Module.lean
+   CLOUD_LEAN_BUILD=1 make lean-file \
+     LEAN_FILE=NonlinearDynamics/path/to/Module.lean
    ```
+
+   Do not run this command on macOS. Source-only editing and `rg` searches may
+   happen there, but every Lean probe belongs on the cloud builder. Do not use
+   a raw Lake command to bypass the target's manifest-digest check.
 
 7. Use no `sorry`, `admit`, hidden axioms, guessed APIs, or unsupported
    normalization.
@@ -182,14 +192,16 @@ required structure and substantive-module inventory.
 
 ## Validate the Milestone
 
-Run from the repository root:
+Run the complete gate from the approved Linux cloud builder:
 
 ```sh
-make check
-git diff --check
+CLOUD_LEAN_BUILD=1 make check
 ```
 
-Also run the changed Lean file directly with warnings as errors. Check that:
+On the macOS workstation, run `make workstation-check`, `git diff --check`,
+deterministic asset verification, and browser QA as applicable. Do not bypass
+the Makefile host guard or invoke Lean directly. On the cloud builder, also run
+the changed Lean file directly with warnings as errors. Check that:
 
 - every substantive module has notebook coverage;
 - Hugo builds all drafts with warnings fatal;
@@ -202,12 +214,12 @@ Also run the changed Lean file directly with warnings as errors. Check that:
   valid but may be vacuous and must not be narrated as a positive-time
   averaging fact.
 
-`make check` runs the table-driven source-hygiene regression tests and
-`scripts/check_teaching_source_hygiene.py` over every teaching Markdown file.
-The checker preserves offsets and newlines while masking YAML front matter,
-fenced and inline code, HTML comments, `code`/`pre` HTML, Hugo shortcode tags,
-and raw Mermaid bodies. It still checks Markdown bodies inside ordinary
-shortcodes.
+The cloud-only `make check` runs the table-driven source-hygiene regression
+tests and `scripts/check_teaching_source_hygiene.py` over every teaching
+Markdown file. The checker preserves offsets and newlines while masking YAML
+front matter, fenced and inline code, HTML comments, `code`/`pre` HTML, Hugo
+shortcode tags, and raw Mermaid bodies. It still checks Markdown bodies inside
+ordinary shortcodes.
 
 In rendered regions, require balanced, matched, non-nested `\(...\)` and
 `\[...\]`; reject double-escaped delimiter candidates outside active math,
@@ -248,31 +260,46 @@ or law-versus-sample distinctions.
 
 ## Scale Builds Safely
 
-When the local workstation is memory-constrained, an explicitly authorized
-remote builder may run the same repository gates. Keep this an acceleration
-layer, not a second source of truth:
+The macOS workstation is permanently a source, research, Hugo, and static-QA
+host for this project. It must not run Lean or Lake commands that download,
+restore, compile, or regenerate a Mathlib cache. Every proof probe, dependency
+setup, module compile, and full repository build runs on explicitly authorized
+Linux cloud compute. Keep this separation mandatory, not an optional response
+to memory pressure:
 
 - keep secrets in ignored `.env` and never print, copy into the repository,
   stage, or commit them;
+- before creating or restarting paid compute, obtain human approval for the
+  provider, CPU/RAM/storage, estimated hourly cost, and intended work; existing
+  credentials do not imply approval;
+- on the approved Linux host, set `CLOUD_LEAN_BUILD=1` for `make setup`,
+  `make lean`, `make lean-file`, `make lean-clean`, and `make check`; the guard
+  must reject every non-Linux host and must not be bypassed;
 - use a dedicated SSH key and a dedicated known-hosts file for the builder;
-- transfer the source tree without `.env`, generated Hugo output, or local
-  `.lake` artifacts, and do not copy broad home-directory credentials;
+- use either a fresh remote clone at the exact approved commit or a source-only
+  transfer without `.env`, generated Hugo output, local `.lake` artifacts, Git
+  metadata, or private review files. Never transfer the workstation's `.git`
+  directory or broad home-directory credentials;
 - build on the provider's fast ephemeral disk, because Lean and Lake create
   many small files and are poorly matched to a metadata-slow network mount;
 - use persistent network storage for sequential compressed snapshots of the
   exact Elan toolchain and project `.lake` cache, written through a temporary
   filename and renamed only after archive validation;
-- pin the same `lean-toolchain`, `lake-manifest.json`, Hugo version, and source
-  commit on both machines;
+- pin `lean-toolchain`, the checked `lake-manifest.json` digest, and the exact
+  source commit/checksum. Every setup, build, and leaf compile must use the
+  guarded Make target so the digest is checked. Record the exact Hugo version
+  used for workstation QA and use that same release for the cloud gate;
 - record cold setup, build, and full-gate timings separately from cached
   incremental timings; and
-- treat a remote green build as additional evidence. The committed source,
-  deterministic artifacts, browser inspection, checkpoint, and final local or
-  reproducibly remote `make check` still define the milestone.
+- treat the cloud `make check` result as the authoritative build evidence. The
+  committed source, deterministic artifacts, workstation browser inspection,
+  checkpoint, and reproducible cloud gate together define the milestone.
 
 Resolve and terminate only exact obsolete compute resources after a read-only
-inventory. Preserve any active builder or persistent volume the user has asked
-to retain, and report its continuing hourly or monthly cost.
+inventory. Terminate the exact builder after the gate unless the owner has
+explicitly approved keeping it active. Preserve the project network volume
+unless the owner explicitly requests deletion, and report its continuing
+monthly cost. Keep resource identifiers and addresses out of the repository.
 
 ## Publish Frequently to Main
 
@@ -298,5 +325,7 @@ A roadmap item is complete only when:
 - the paired Notebook chapter covers every declaration;
 - reusable concepts are integrated into the Knowledge Base;
 - `checkpoint.md` reflects reality;
-- `make check` passes; and
+- `CLOUD_LEAN_BUILD=1 make check` passes on the approved Linux cloud builder;
+- applicable workstation static, deterministic-asset, and browser checks pass;
+  and
 - the milestone is committed and pushed to `main`.
