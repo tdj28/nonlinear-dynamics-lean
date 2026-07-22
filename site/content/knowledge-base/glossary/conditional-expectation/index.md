@@ -194,9 +194,10 @@ For identity dynamics, the {{< refterm "invariant-sigma-algebra" "invariant sigm
 is the full ambient sigma algebra. Therefore the Birkhoff
 target is \(f\) itself almost everywhere, exactly as positive-time identity
 averages suggest. For ergodic dynamics on a positive finite measure space, a
-later theorem may show that the invariant field is trivial modulo null sets
-and then derive the normalized constant. That ergodic specialization is not
-part of RMT-27.
+RMT-28 shows that the invariant field is trivial modulo null sets and derives
+the normalized constant as a separate specialization; see
+[Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}}).
+It does not retroactively add ergodicity to RMT-27.
 
 ## Why the Birkhoff limit qualifies
 
@@ -382,6 +383,11 @@ for downstream users.
 
 ## Related concepts
 
+- {{< refterm "ergodicity" "Ergodicity" >}} collapses the invariant target
+  almost everywhere without claiming that the exact invariant sigma algebra
+  is literally bottom.
+- {{< refterm "normalized-space-average" "Normalized space average" >}} is
+  the finite nonzero constant identified by the RMT-28 specialization.
 - {{< refterm "invariant-sigma-algebra" "Invariant sigma algebra" >}} is the
   exact information field used as the RMT-27 conditioning target.
 - {{< refterm "uniform-integrability" "Uniform integrability" >}} upgrades

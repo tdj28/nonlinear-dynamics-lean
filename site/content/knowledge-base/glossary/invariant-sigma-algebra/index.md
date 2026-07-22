@@ -311,7 +311,8 @@ The project module adds:
   between invariant components.
 - **Ergodicity is additional.** It concerns the measures of invariant events.
   RMT-27 assumes no ergodicity and proves no collapse to the trivial sigma
-  algebra.
+  algebra. RMT-28 adds the weaker pre-ergodic rigidity gate where constancy is
+  all that is needed.
 - **No inverse map is required.** The definition uses set preimages. It does
   not require injectivity, surjectivity, invertibility, or a measurable
   inverse.
@@ -329,6 +330,11 @@ exponent or an Oseledets splitting.
 
 ## Related concepts
 
+- {{< refterm "ergodicity" "Ergodicity" >}} makes exact invariant information
+  trivial modulo null sets, not literally absent.
+- {{< refterm "normalized-space-average" "Normalized space average" >}} is
+  the constant obtained after that modulo-null collapse on finite nonzero
+  mass.
 - {{< refterm "conditional-expectation" "Conditional expectation" >}}
   extracts exactly the integrable information visible to a chosen sub-sigma
   algebra.

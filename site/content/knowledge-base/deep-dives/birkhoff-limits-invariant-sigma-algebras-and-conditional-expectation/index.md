@@ -1087,11 +1087,13 @@ It does not prove:
 - a random-matrix Lyapunov exponent; or
 - an Oseledets invariant splitting.
 
-The next ergodic specialization must still distinguish zero mass from
-positive finite mass and probability normalization. The later random-cocycle
-roadmap must also move from additive Birkhoff averages to subadditive growth
-without pretending that the present conditional-expectation theorem already
-supplies that machinery.
+RMT-28 now performs the separate ergodic specialization while preserving this
+chapter's theorem boundary:
+[Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
+distinguishes zero mass, positive finite mass, and probability normalization.
+The later random-cocycle roadmap must still move from additive Birkhoff
+averages to subadditive growth without pretending that either additive theorem
+already supplies that machinery.
 
 ## Thirty solved exercises
 

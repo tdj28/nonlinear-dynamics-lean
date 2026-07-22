@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460"
+     viewBox="0 0 760 460" role="img"
+     aria-labelledby="normalizedScalingTitle normalizedScalingDesc">
+  <title id="normalizedScalingTitle">Scaling a measure changes mass and integral together, not the normalized average</title>
+  <desc id="normalizedScalingDesc">A labeled toy example compares an original finite measure with a measure scaled by five. The original has total mass three and integral total six, producing normalized average two. The scaled measure has mass fifteen and integral total thirty, again producing average two. A probability branch notes that mass one makes the normalized average equal the ordinary integral. Row labels, repeated average values, borders, and position carry the comparison in addition to color.</desc>
+  <rect width="760" height="460" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}.tag{font-size:10px;font-weight:700;letter-spacing:.5px}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#scalingArrow)}
+  </style>
+  <defs>
+    <marker id="scalingArrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">A normalized space average ignores measure scale</text>
+  <text x="24" y="48" class="t m">Toy example: divide the integral total by total mass in each row.</text>
+
+  <rect x="24" y="74" width="712" height="112" rx="12" class="cream"/>
+  <rect x="42" y="92" width="118" height="22" rx="11" fill="#7F786D"/>
+  <text x="101" y="107" text-anchor="middle" class="t tag" style="fill:#FFFDF8">ORIGINAL MEASURE</text>
+  <rect x="42" y="128" width="140" height="40" rx="8" class="blue"/>
+  <text x="112" y="153" text-anchor="middle" class="t s">TOTAL MASS 3</text>
+  <rect x="210" y="128" width="168" height="40" rx="8" class="clay"/>
+  <text x="294" y="153" text-anchor="middle" class="t s">INTEGRAL TOTAL 6</text>
+  <path d="M 386 148 L 488 148" class="arrow"/>
+  <text x="398" y="134" class="t m">divide by mass</text>
+  <rect x="500" y="120" width="210" height="56" rx="10" class="green"/>
+  <text x="605" y="143" text-anchor="middle" class="t tag">NORMALIZED AVERAGE</text>
+  <text x="605" y="164" text-anchor="middle" class="t h">2</text>
+
+  <rect x="24" y="202" width="712" height="112" rx="12" class="blue"/>
+  <rect x="42" y="220" width="176" height="22" rx="11" fill="#4B6787"/>
+  <text x="130" y="235" text-anchor="middle" class="t tag" style="fill:#FFFDF8">FIVE TIMES THE MEASURE</text>
+  <rect x="42" y="256" width="140" height="40" rx="8" class="cream"/>
+  <text x="112" y="281" text-anchor="middle" class="t s">TOTAL MASS 15</text>
+  <rect x="210" y="256" width="168" height="40" rx="8" class="clay"/>
+  <text x="294" y="281" text-anchor="middle" class="t s">INTEGRAL TOTAL 30</text>
+  <path d="M 386 276 L 488 276" class="arrow"/>
+  <text x="398" y="262" class="t m">divide by mass</text>
+  <rect x="500" y="248" width="210" height="56" rx="10" class="green"/>
+  <text x="605" y="271" text-anchor="middle" class="t tag">SAME NORMALIZED AVERAGE</text>
+  <text x="605" y="292" text-anchor="middle" class="t h">2</text>
+
+  <rect x="24" y="332" width="712" height="54" rx="10" class="green"/>
+  <text x="44" y="355" class="t h">PROBABILITY BRANCH</text>
+  <text x="222" y="355" class="t s">Total mass is one, so the normalized average is the ordinary integral.</text>
+  <text x="44" y="374" class="t m">The finite positive mass assumption keeps division meaningful.</text>
+
+  <rect x="24" y="404" width="712" height="36" rx="10" class="clay"/>
+  <text x="44" y="427" class="t s">Takeaway: scaling changes both inputs together and leaves their normalized ratio unchanged.</text>
+</svg>

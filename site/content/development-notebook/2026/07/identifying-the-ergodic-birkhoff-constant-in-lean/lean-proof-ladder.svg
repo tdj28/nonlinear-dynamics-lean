@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="810"
+     viewBox="0 0 760 810" role="img"
+     aria-labelledby="leanLadderTitle leanLadderDesc">
+  <title id="leanLadderTitle">Six public Lean declarations and one private constancy helper</title>
+  <desc id="leanLadderDesc">A vertical proof ladder begins with exact conditional-expectation invariance, passes through one dashed private helper using PreErgodic invariant-set rigidity, and reaches three public identification theorems. A separate lower band adds Ergodic measure preservation before the two final Birkhoff convergence theorems. Every exact compiled declaration name is wrapped below its numbered public or private badge.</desc>
+  <rect width="760" height="810" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}.badge{font-size:9.5px;font-weight:700;letter-spacing:.45px}
+    .code{font-family:SFMono-Regular,Consolas,Liberation Mono,monospace;font-size:10.5px;font-weight:700;fill:#2C2924}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .private{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5;stroke-dasharray:5 4}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2;marker-end:url(#ladderArrow)}
+    .branch{fill:none;stroke:#A89B8C;stroke-width:1.6}
+  </style>
+  <defs>
+    <marker id="ladderArrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">The Lean proof ladder keeps the assumption split explicit</text>
+  <text x="24" y="48" class="t m">PreErgodic identifies invariant values; Ergodic also supplies preservation for convergence.</text>
+
+  <rect x="24" y="68" width="712" height="66" rx="12" class="blue"/>
+  <rect x="616" y="82" width="96" height="22" rx="11" fill="#4B6787"/>
+  <text x="635" y="97" class="t badge" style="fill:#FFFDF8">PUBLIC ONE</text>
+  <text x="44" y="94" class="code">condExp_invariants_comp</text>
+  <text x="44" y="116" class="t s">Exact invariance at every point; no dynamics assumption.</text>
+
+  <path d="M 380 138 L 380 150" class="arrow"/>
+  <rect x="90" y="156" width="580" height="84" rx="12" class="private"/>
+  <rect x="548" y="170" width="98" height="22" rx="11" fill="#7F786D"/>
+  <text x="566" y="185" class="t badge" style="fill:#FFFDF8">PRIVATE</text>
+  <text x="110" y="182" class="code">condExp_invariants_ae_eq_</text>
+  <text x="110" y="198" class="code">const_of_preErgodic</text>
+  <text x="110" y="222" class="t s">PreErgodic invariant-set rigidity gives one value almost everywhere.</text>
+
+  <path d="M 380 244 L 380 254" class="arrow"/>
+  <rect x="24" y="260" width="712" height="94" rx="12" class="green"/>
+  <rect x="616" y="274" width="96" height="22" rx="11" fill="#6F8D5E"/>
+  <text x="633" y="289" class="t badge" style="fill:#FFFDF8">PUBLIC TWO</text>
+  <text x="44" y="286" class="code">condExp_invariants_ae_eq_</text>
+  <text x="44" y="302" class="code">average_of_preErgodic</text>
+  <text x="44" y="326" class="t s">Positive finite mass and integrability identify the Mathlib space average.</text>
+  <text x="44" y="344" class="t m">Assumption layer: PreErgodic only</text>
+
+  <path d="M 380 358 L 380 366" class="branch"/>
+  <path d="M 196 366 L 564 366" class="branch"/>
+  <path d="M 196 366 L 196 374" class="arrow"/>
+  <path d="M 564 366 L 564 374" class="arrow"/>
+
+  <rect x="24" y="380" width="344" height="112" rx="12" class="blue"/>
+  <rect x="258" y="394" width="86" height="22" rx="11" fill="#4B6787"/>
+  <text x="271" y="409" class="t badge" style="fill:#FFFDF8">PUBLIC THREE</text>
+  <text x="44" y="420" class="code">condExp_invariants_</text>
+  <text x="44" y="436" class="code">ae_eq_normalizedIntegral_</text>
+  <text x="44" y="452" class="code">of_preErgodic</text>
+  <text x="44" y="478" class="t s">The average written as integral divided by mass.</text>
+
+  <rect x="392" y="380" width="344" height="112" rx="12" class="green"/>
+  <rect x="626" y="394" width="86" height="22" rx="11" fill="#6F8D5E"/>
+  <text x="640" y="409" class="t badge" style="fill:#FFFDF8">PUBLIC FOUR</text>
+  <text x="412" y="420" class="code">condExp_invariants_</text>
+  <text x="412" y="436" class="code">ae_eq_integral_</text>
+  <text x="412" y="452" class="code">of_preErgodic</text>
+  <text x="412" y="478" class="t s">Probability mass turns the average into the integral.</text>
+
+  <rect x="24" y="512" width="712" height="58" rx="12" class="clay"/>
+  <text x="44" y="536" class="t h">FINAL CONVERGENCE LAYER</text>
+  <text x="44" y="556" class="t s">Ergodic adds measure preservation to invariant-set rigidity for the RMT-27 limit.</text>
+
+  <path d="M 380 574 L 380 582" class="branch"/>
+  <path d="M 196 582 L 564 582" class="branch"/>
+  <path d="M 196 582 L 196 590" class="arrow"/>
+  <path d="M 564 582 L 564 590" class="arrow"/>
+
+  <rect x="24" y="596" width="344" height="130" rx="12" class="clay"/>
+  <rect x="258" y="610" width="86" height="22" rx="11" fill="#A67C52"/>
+  <text x="271" y="625" class="t badge" style="fill:#FFFDF8">PUBLIC FIVE</text>
+  <text x="44" y="642" class="code">ae_tendsto_</text>
+  <text x="44" y="658" class="code">birkhoffAverage_</text>
+  <text x="44" y="674" class="code">normalizedIntegral_of_ergodic</text>
+  <text x="44" y="700" class="t s">Finite positive mass, full-sequence limit.</text>
+  <text x="44" y="718" class="t m">Assumption layer: Ergodic</text>
+
+  <rect x="392" y="596" width="344" height="130" rx="12" class="green"/>
+  <rect x="626" y="610" width="86" height="22" rx="11" fill="#6F8D5E"/>
+  <text x="640" y="625" class="t badge" style="fill:#FFFDF8">PUBLIC SIX</text>
+  <text x="412" y="642" class="code">ae_tendsto_</text>
+  <text x="412" y="658" class="code">birkhoffAverage_</text>
+  <text x="412" y="674" class="code">integral_of_ergodic</text>
+  <text x="412" y="700" class="t s">Probability specialization, full-sequence limit.</text>
+  <text x="412" y="718" class="t m">Assumption layer: Ergodic</text>
+
+  <rect x="24" y="746" width="712" height="46" rx="10" class="green"/>
+  <text x="44" y="774" class="t s">Six public declarations, one private helper, and two clearly separated assumption layers.</text>
+</svg>

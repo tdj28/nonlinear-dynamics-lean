@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="510"
+     viewBox="0 0 760 510" role="img"
+     aria-labelledby="timeSpaceTitle timeSpaceDesc">
+  <title id="timeSpaceTitle">Time averages reach normalized space averages through two bridges</title>
+  <desc id="timeSpaceDesc">A vertical flow sends a long-orbit time average to invariant conditional expectation by Birkhoff convergence. Pre-ergodic invariant-set rigidity, meaning every exactly invariant measurable set is null or conull, then gives one constant almost everywhere. Finite positive mass identifies that constant as the normalized space average, while probability mass removes the normalization. Labels, position, borders, and color distinguish every step.</desc>
+  <rect width="760" height="510" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}.tag{font-size:10px;font-weight:700;letter-spacing:.5px}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#timeSpaceArrow)}
+  </style>
+  <defs>
+    <marker id="timeSpaceArrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">Time and space meet through two different bridges</text>
+  <text x="24" y="48" class="t m">Convergence creates an invariant target; rigidity and mass identify its one value.</text>
+
+  <rect x="24" y="70" width="712" height="66" rx="12" class="blue"/>
+  <rect x="42" y="86" width="108" height="22" rx="11" fill="#4B6787"/>
+  <text x="96" y="101" text-anchor="middle" class="t tag" style="fill:#FFFDF8">ORBIT TIME</text>
+  <text x="172" y="100" class="t h">LONG-ORBIT BIRKHOFF AVERAGE</text>
+  <text x="172" y="120" class="t s">One initial state records an observable along successive iterates.</text>
+
+  <path d="M 380 140 L 380 160" class="arrow"/>
+  <text x="398" y="155" class="t m">finite measure, preservation, and integrability</text>
+
+  <rect x="24" y="166" width="712" height="70" rx="12" class="cream"/>
+  <rect x="42" y="182" width="108" height="22" rx="11" fill="#7F786D"/>
+  <text x="96" y="197" text-anchor="middle" class="t tag" style="fill:#FFFDF8">LIMIT TARGET</text>
+  <text x="172" y="196" class="t h">INVARIANT CONDITIONAL EXPECTATION</text>
+  <text x="172" y="218" class="t s">It may still remember positive-mass invariant sectors.</text>
+
+  <path d="M 380 240 L 380 256" class="arrow"/>
+  <rect x="128" y="262" width="504" height="66" rx="12" class="clay"/>
+  <text x="148" y="286" class="t h">PRE-ERGODIC INVARIANT-SET RIGIDITY</text>
+  <text x="148" y="308" class="t s">Every measurable exactly invariant set is null or conull.</text>
+
+  <path d="M 380 332 L 380 350" class="arrow"/>
+  <rect x="24" y="356" width="340" height="72" rx="12" class="green"/>
+  <text x="44" y="384" class="t h">ONE CONSTANT ALMOST EVERYWHERE</text>
+  <text x="44" y="406" class="t s">Invariant information can no longer split the space.</text>
+
+  <path d="M 368 392 L 444 392" class="arrow"/>
+  <text x="374" y="378" class="t m">positive mass</text>
+
+  <rect x="452" y="356" width="284" height="72" rx="12" class="blue"/>
+  <text x="472" y="384" class="t h">NORMALIZED SPACE AVERAGE</text>
+  <text x="472" y="406" class="t s">Integrate the constant, then divide by total mass.</text>
+
+  <rect x="24" y="446" width="412" height="42" rx="10" class="clay"/>
+  <text x="44" y="472" class="t m">No convergence rate, mixing, or thermalization is claimed.</text>
+  <rect x="452" y="446" width="284" height="42" rx="10" class="green"/>
+  <text x="472" y="463" class="t tag">PROBABILITY BRANCH</text>
+  <text x="604" y="463" class="t m">mass one</text>
+  <text x="472" y="480" class="t s">Normalized average equals ordinary integral.</text>
+</svg>

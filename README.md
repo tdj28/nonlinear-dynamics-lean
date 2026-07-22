@@ -509,6 +509,18 @@ The first active sequence is:
     the identification for the original integrable representative. The final
     theorem assumes neither probability normalization nor ergodicity and
     accepts zero mass, noninjective, nonsurjective, and noninvertible dynamics.
+33. [`RandomCocycles/ErgodicBirkhoffLimit.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean)
+    specializes the identified invariant target to a constant. Exact
+    invariant measurability makes the selected conditional expectation
+    literally fixed by composition with the base map. The weaker
+    `PreErgodic` rigidity interface already makes it almost everywhere
+    constant; finite nonzero mass and integrability identify the constant as
+    Mathlib's integral average, equivalently the total-mass-normalized
+    integral. Full `Ergodic` enters only when this identification is combined
+    with the RMT-27 measure-preserving Birkhoff theorem. Probability
+    normalization then reduces the target to the ordinary integral. The
+    module adds no injectivity, surjectivity, invertibility, mixing, rate, or
+    powered-map ergodicity assumption.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
@@ -516,13 +528,15 @@ passed from the infinite-horizon weak maximal inequality through Koopman
 square-integrable mean convergence, a dense pointwise-good core, and the
 maximal-closure proof of full-sequence almost-everywhere convergence for every
 real integrable observable on a finite measure-preserving base. The next
-additive stage must identify that limit through the invariant sigma algebra
-without silently adding ergodicity or probability normalization. Only after
-that should the finite packing machinery be connected to a Kingman-style
-subadditive theorem. The pinned Mathlib release supplies finite Birkhoff
-algebra and ergodic primitives, but no ready-made pointwise Birkhoff or
-Kingman theorem. A samplewise growth limit, Lyapunov exponent, or Oseledets
-splitting remains unavailable until those dependencies are checked.
+identification stage first found the general conditional-expectation target,
+then isolated pre-ergodic rigidity from measure preservation, positive total
+mass, and probability normalization. The additive finite-measure Birkhoff
+track is therefore complete at the correctly normalized ergodic constant.
+The next asymptotic stage connects the finite packing machinery to a
+Kingman-style subadditive theorem. The pinned Mathlib release supplies finite
+Birkhoff algebra and ergodic primitives, but no ready-made pointwise Birkhoff
+or Kingman theorem. A samplewise cocycle-growth limit, Lyapunov exponent, or
+Oseledets splitting remains unavailable until those dependencies are checked.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

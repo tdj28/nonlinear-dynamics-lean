@@ -1213,6 +1213,11 @@ The
 entry is the compact definition, finite-example set, and caveat ledger for this
 chapter.
 
+[Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
+is the later additive endpoint. It uses pre-ergodicity to identify invariant
+conditional expectation and full ergodicity to obtain orbit convergence. That
+success does not fill this chapter's separate Kingman and cocycle-growth gap.
+
 [Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
 is the immediate predecessor. It constructs the raw integrated sequence and
 proves deterministic Fekete convergence.

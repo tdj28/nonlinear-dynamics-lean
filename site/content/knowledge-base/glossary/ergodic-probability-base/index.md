@@ -305,6 +305,14 @@ Accordingly, RMT-17 proves none of the following:
 
 ## Where to continue
 
+The standalone {{< refterm "ergodicity" >}} entry separates Mathlib's
+<code>PreErgodic</code> rigidity field from the measure-preserving field of
+full <code>Ergodic</code>. The
+[RMT-28 Deep Dive]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
+then composes that distinction with the additive pointwise Birkhoff theorem
+and identifies the {{< refterm "normalized-space-average" "normalized space average" >}}.
+It still proves no subadditive cocycle-growth limit.
+
 [The Birkhoff sum]({{< relref "/knowledge-base/glossary/birkhoff-sum" >}})
 is the next finite-time concept: it packages powered-orbit block costs without
 claiming that their normalized values converge.

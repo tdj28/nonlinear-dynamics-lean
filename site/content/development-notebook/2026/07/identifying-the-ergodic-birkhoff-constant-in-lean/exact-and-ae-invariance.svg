@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390"
+     viewBox="0 0 760 390" role="img"
+     aria-labelledby="exactAeTitle exactAeDesc">
+  <title id="exactAeTitle">Exact invariance enters and almost-everywhere constancy exits</title>
+  <desc id="exactAeDesc">A left-to-right three-step flow shows an exact invariant representative at every point, invariant-set rigidity, and a constant value outside a null set. Labels, badges, position, and color distinguish exact and almost-everywhere statements.</desc>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}.badge{font-size:10px;font-weight:700;letter-spacing:.6px}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#exactArrow)}
+  </style>
+  <defs>
+    <marker id="exactArrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="28" class="t title">Keep exact invariance and almost-everywhere equality distinct</text>
+  <text x="24" y="48" class="t m">The selected conditional-expectation representative is exactly invariant before rigidity is applied.</text>
+
+  <rect x="24" y="84" width="210" height="208" rx="12" class="blue"/>
+  <rect x="42" y="102" width="86" height="24" rx="12" fill="#4B6787"/>
+  <text x="56" y="118" class="t badge" fill="#FFFDF8" style="fill:#FFFDF8">EVERY POINT</text>
+  <text x="44" y="158" class="t h">EXACT REPRESENTATIVE</text>
+  <text x="44" y="184" class="t s">One base step leaves</text>
+  <text x="44" y="203" class="t s">the chosen value unchanged.</text>
+  <line x1="66" y1="236" x2="190" y2="236" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="82" cy="236" r="9" fill="#4B6787"/>
+  <circle cx="174" cy="236" r="9" fill="#4B6787"/>
+  <text x="64" y="266" class="t m">same value at both positions</text>
+
+  <path d="M 242 188 L 268 188" class="arrow"/>
+
+  <rect x="276" y="84" width="208" height="208" rx="12" class="cream"/>
+  <rect x="294" y="102" width="114" height="24" rx="12" fill="#A67C52"/>
+  <text x="307" y="118" class="t badge" fill="#FFFDF8" style="fill:#FFFDF8">RIGIDITY INPUT</text>
+  <text x="296" y="158" class="t h">INVARIANT-SET TEST</text>
+  <text x="296" y="184" class="t s">Exact equality is stronger</text>
+  <text x="296" y="203" class="t s">than the equality needed</text>
+  <text x="296" y="222" class="t s">for an almost-everywhere result.</text>
+  <rect x="306" y="246" width="148" height="24" rx="8" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="328" y="262" class="t m">no information is added</text>
+
+  <path d="M 492 188 L 518 188" class="arrow"/>
+
+  <rect x="526" y="84" width="210" height="208" rx="12" class="green"/>
+  <rect x="544" y="102" width="142" height="24" rx="12" fill="#6F8D5E"/>
+  <text x="557" y="118" class="t badge" fill="#FFFDF8" style="fill:#FFFDF8">ALMOST EVERYWHERE</text>
+  <text x="546" y="158" class="t h">CONSTANT OUTPUT</text>
+  <text x="546" y="184" class="t s">One constant agrees with</text>
+  <text x="546" y="203" class="t s">the representative outside</text>
+  <text x="546" y="222" class="t s">a null set.</text>
+  <circle cx="578" cy="254" r="9" fill="#6F8D5E"/>
+  <circle cx="614" cy="254" r="9" fill="#6F8D5E"/>
+  <circle cx="650" cy="254" r="9" fill="#6F8D5E"/>
+
+  <rect x="24" y="316" width="712" height="50" rx="10" class="green"/>
+  <text x="44" y="346" class="t s">Takeaway: exact invariance is the input; constancy is asserted only almost everywhere.</text>
+</svg>

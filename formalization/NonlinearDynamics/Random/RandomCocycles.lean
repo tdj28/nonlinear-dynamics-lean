@@ -13,6 +13,7 @@ import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
 import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
+import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
 
 /-!
 # Random cocycles
@@ -85,7 +86,12 @@ to `L¹`, and matches integrals on every exactly invariant measurable set.
 Conditional-expectation uniqueness identifies the full-sequence limit with
 the conditional expectation onto `MeasurableSpace.invariants T`. This theorem
 still needs neither probability normalization nor ergodicity, and it does not
-assume the base map is injective, surjective, or invertible. These layers
-deliberately stop before ergodic constant identification, Kingman's
-subadditive ergodic theorem, or a samplewise exponent claim.
+assume the base map is injective, surjective, or invertible. An additive
+specialization then uses the pre-ergodic rigidity component to make this target
+almost everywhere constant. On a finite nonzero measure it is the normalized
+integral average; on a probability measure it is the ordinary integral. Full
+ergodicity supplies measure preservation only when this identification is
+combined with the pointwise theorem. The specialization adds no bijectivity,
+mixing, or powered-map hypothesis. These layers deliberately stop before
+Kingman's subadditive ergodic theorem or a samplewise exponent claim.
 -/

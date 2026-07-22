@@ -842,10 +842,12 @@ named, and the resulting API makes the scientific boundary clearer.
 
 ## The next ridge
 
-The immediate additive corollary can add ergodicity. For finite positive mass,
-the invariant conditional expectation becomes the normalized global integral;
-on a probability space this simplifies to \(\int f\,d\mu\). That corollary must
-keep the zero-measure case separate.
+RMT-28 now adds the separate ergodic specialization in
+[When Invariant Information Becomes One Number]({{< relref "/development-notebook/2026/07/identifying-the-ergodic-birkhoff-constant-in-lean" >}}).
+For finite positive mass, it identifies the invariant conditional expectation
+with the normalized global integral; on a probability space this simplifies
+to \(\int f\,d\mu\). Its explicit nonzero-measure gate keeps the vacuous
+zero-measure boundary separate.
 
 The main random-cocycle program then returns to subadditivity. Kingman's
 theorem needs more than the additive result proved here: it needs block
