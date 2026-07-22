@@ -503,6 +503,14 @@ becomes one consecutive finite Birkhoff sum. The
 develops the boundary geometry, positive-time sign argument, zero-block
 vacuity, and corrected source indexing without asserting a limit theorem.
 
+The
+{{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
+entry adds the next logical layer: it packages the points where the normalized
+finite sums converge, proves exact one-step preimage invariance, and preserves
+the distinction between event structure and convergence existence. The
+[companion Deep Dive]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}})
+develops that boundary as a full textbook chapter.
+
 ## References
 
 <a id="ref-birkhoff-mathlib-basic"></a>**Mathlib contributors.**

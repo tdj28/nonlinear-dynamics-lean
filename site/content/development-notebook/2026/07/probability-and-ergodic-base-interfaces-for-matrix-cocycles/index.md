@@ -116,6 +116,13 @@ block-and-remainder bounds, keeps the zero-count normalization obstruction
 visible, and proves finite block-sum integrability without claiming a limit
 theorem.
 
+A later analytic successor is
+[Convergence Without Existence: Birkhoff Events and Ergodic Rigidity in Lean]({{< relref "/development-notebook/2026/07/birkhoff-convergence-events-and-ergodic-rigidity-in-lean" >}}).
+It isolates the one-step Birkhoff convergence event, proves exact
+finite-prefix invariance, and derives conditional null-or-conull and
+probability-zero-or-one laws. It still proves no convergence existence or
+Kingman theorem.
+
 ## Choose a route up
 
 | Route | Begin | Destination |
@@ -1266,11 +1273,19 @@ signed exponent would need.
 
 ## The next ridge
 
-The prerequisite interfaces are now explicit. The next samplewise step must
-either formalize a genuine subadditive ergodic theorem or deliberately leave
-this branch and advance another dependency-ordered part of the nonlinear
-dynamics roadmap. Another alias or assumption package would not substitute for
-the missing theorem.
+The prerequisite interfaces are now explicit. The later RMT-22 chapter,
+[Convergence Without Existence: Birkhoff Events and Ergodic Rigidity in Lean]({{< relref "/development-notebook/2026/07/birkhoff-convergence-events-and-ergodic-rigidity-in-lean" >}}),
+uses them to make one analytic bridge precise: the finite-real convergence
+event of one-step Birkhoff averages is measurable or null-measurable, exactly
+invariant under a one-term orbit shift, and therefore conditionally null or
+conull under the matching ergodic interface.
+
+That bridge does not close the samplewise gap. RMT-22 proves no point belongs
+to the event, no almost-everywhere convergence, and no Kingman theorem. The
+next existence step must formalize suitable maximal and pointwise ergodic
+machinery, or deliberately leave this branch and advance another
+dependency-ordered part of the nonlinear dynamics roadmap. Another alias or
+assumption package would not substitute for the missing theorem.
 
 A Kingman-style formalization must first choose an exact statement. Versions
 differ in their indexing conventions, integrability hypotheses, invariant

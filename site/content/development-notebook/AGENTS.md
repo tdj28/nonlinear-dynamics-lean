@@ -32,6 +32,32 @@ accessibility, and human-signoff obligations still apply. Perform and document
 them manually when no local helper exists, and keep the page a draft whenever
 a required review cannot yet be completed.
 
+## Human-approved RunPod acceleration gate
+
+RunPod is an optional acceleration layer for memory-heavy Lean builds and full
+repository validation. It is never a second source of truth: committed source,
+the pinned toolchain, reproducible artifacts, and the repository checks remain
+authoritative.
+
+- Possession of `RUNPOD_API_KEY` is not permission to incur cost or mutate a
+  resource. Creating, starting, restarting, resizing, stopping, terminating,
+  or deliberately retaining billed compute or storage requires explicit human
+  approval for this project. Read-only inventory may precede that decision.
+- The owner granted full project-scoped RunPod approval on 2026-07-21 for the
+  active nonlinear-dynamics formalization goal. Until that approval is revoked,
+  the gate is satisfied for managing the compute, persistent storage, and
+  replacements reasonably needed to complete this goal. It does not extend to
+  another project, another owner's resources, or disclosure of account data.
+- Report the active specification and continuing hourly or monthly cost when
+  it changes materially. Resolve exact targets before destructive operations,
+  preserve any builder or volume the owner asked to retain, and terminate only
+  resources that are confirmed obsolete.
+- Keep API keys in ignored `.env`, use a dedicated SSH key and known-hosts
+  file, transfer no broad home-directory credentials, and never commit pod
+  identifiers, addresses, account metadata, secrets, or private review output.
+- Build on fast ephemeral disk. Use persistent network storage for validated,
+  sequential cache snapshots rather than as a live metadata-heavy Lake tree.
+
 ## What the guide covers (orientation only)
 
 - Levels of obligation: blockers vs strong defaults vs house conventions (§0)

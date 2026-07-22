@@ -1229,9 +1229,15 @@ is the immediate successor. It turns shifted subadditivity into two finite
 block-and-remainder Birkhoff bounds while keeping every asymptotic claim
 outside the theorem boundary.
 
-The next asymptotic milestone must either formalize an exact subadditive
-ergodic theorem or choose another dependency-ordered roadmap item. It must not
-rename the RMT-17 candidate as Kingman convergence.
+[Birkhoff Convergence Events Before the Pointwise Ergodic Theorem]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}})
+returns to this chapter's rigidity interface after the intervening finite
+block, centering, phase, and packing milestones. It builds the exact invariant
+event where ordinary Birkhoff averages converge, then stops before selecting
+the conull branch.
+
+The remaining asymptotic milestones must supply pointwise and then
+subadditive convergence infrastructure. They must not rename the RMT-17
+candidate or the later convergence-event dichotomy as Kingman convergence.
 
 ## References
 

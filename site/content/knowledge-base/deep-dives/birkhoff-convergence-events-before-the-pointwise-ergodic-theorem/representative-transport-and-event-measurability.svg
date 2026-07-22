@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410"
+     viewBox="0 0 760 410" role="img"
+     aria-labelledby="repTitle repDesc">
+  <title id="repTitle">From an almost-everywhere representative to a null-measurable convergence event</title>
+  <desc id="repDesc">Four labeled stages run from an almost-everywhere measurable observable to an ordinary measurable representative, through quasi-measure-preserving equality at every finite horizon, to almost-everywhere equality of convergence events and null measurability of the original event.</desc>
+  <rect width="760" height="410" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .kept{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gate{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <defs>
+    <marker id="repArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <text x="24" y="28" class="t title">Representative transport has four separate bridges</text>
+  <text x="24" y="48" class="t m">Each arrow carries a premise that must remain visible.</text>
+
+  <rect class="data" x="24" y="82" width="158" height="190" rx="12"/>
+  <text x="44" y="110" class="t h">RAW OBSERVABLE</text>
+  <text x="44" y="139" class="t s">Measurable outside</text>
+  <text x="44" y="157" class="t s">one null exception</text>
+  <circle cx="70" cy="205" r="22" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <circle cx="70" cy="205" r="7" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="104" y="202" class="t m">exception may</text>
+  <text x="104" y="219" class="t m">be nonmeasurable</text>
+  <text x="44" y="237" class="t m">premise:</text>
+  <text x="44" y="251" class="t m">almost-everywhere</text>
+  <text x="44" y="265" class="t m">measurable</text>
+
+  <line x1="184" y1="177" x2="208" y2="177" stroke="#A67C52" stroke-width="2" marker-end="url(#repArrow)"/>
+
+  <rect class="neutral" x="216" y="82" width="158" height="190" rx="12"/>
+  <text x="236" y="110" class="t h">REPRESENTATIVE</text>
+  <text x="236" y="139" class="t s">Ordinarily measurable</text>
+  <text x="236" y="157" class="t m">and equal almost everywhere</text>
+  <rect x="240" y="185" width="110" height="45" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="295" y="213" text-anchor="middle" class="t s">mk observable</text>
+  <text x="236" y="251" class="t m">bridge: measurable mk</text>
+
+  <line x1="376" y1="177" x2="400" y2="177" stroke="#A67C52" stroke-width="2" marker-end="url(#repArrow)"/>
+
+  <rect class="gate" x="408" y="82" width="158" height="190" rx="12"/>
+  <text x="428" y="110" class="t h">ORBIT TRANSPORT</text>
+  <text x="428" y="139" class="t s">Equal averages at</text>
+  <text x="428" y="157" class="t s">every finite horizon</text>
+  <line x1="438" y1="200" x2="536" y2="200" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="442" cy="200" r="5" fill="#4B6787"/>
+  <circle cx="472" cy="200" r="5" fill="#4B6787"/>
+  <circle cx="502" cy="200" r="5" fill="#4B6787"/>
+  <circle cx="532" cy="200" r="5" fill="#4B6787"/>
+  <text x="428" y="251" class="t m">gate: quasi-preservation</text>
+
+  <line x1="568" y1="177" x2="592" y2="177" stroke="#A67C52" stroke-width="2" marker-end="url(#repArrow)"/>
+
+  <rect class="kept" x="600" y="82" width="136" height="190" rx="12"/>
+  <text x="620" y="110" class="t h">EVENT</text>
+  <text x="620" y="139" class="t s">Equal almost</text>
+  <text x="620" y="157" class="t s">everywhere to a</text>
+  <text x="620" y="175" class="t s">measurable event</text>
+  <rect x="624" y="185" width="88" height="45" rx="22" fill="#E8F0F7" stroke="#4B6787"/>
+  <text x="668" y="213" text-anchor="middle" class="t s">null measurable</text>
+  <text x="620" y="251" class="t m">not necessarily raw</text>
+
+  <rect x="24" y="296" width="712" height="48" rx="10" fill="#EDE8E1" stroke="#7F786D" stroke-width="1.5"/>
+  <text x="44" y="317" class="t h">COUNTABLE ALL-HORIZON STEP</text>
+  <text x="44" y="336" class="t s">Fixed-horizon equality becomes equality of complete sequences outside one null set.</text>
+
+  <rect x="24" y="360" width="712" height="34" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="380" y="382" text-anchor="middle" class="t s">Integrability is one route into the first box; it is not ordinary measurability of the raw function.</text>
+</svg>

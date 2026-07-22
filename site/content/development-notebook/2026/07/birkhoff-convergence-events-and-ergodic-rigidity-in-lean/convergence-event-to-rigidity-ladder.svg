@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="700"
+     viewBox="0 0 920 700" role="img"
+     aria-labelledby="titleRigidityLadder descRigidityLadder">
+  <title id="titleRigidityLadder">From finite Birkhoff averages to conditional ergodic rigidity</title>
+  <desc id="descRigidityLadder">A five-rung ladder begins with measurable finite averages, forms a measurable or null-measurable convergence event, proves exact preimage invariance, derives null-or-conull rigidity under an ergodic interface, and derives probability zero or one only when the measure is normalized. A blocked side branch says the ladder does not establish that convergence occurs.</desc>
+  <rect width="920" height="700" fill="#F7F4F0"/>
+  <style>
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.7}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .blocked{stroke:#934F1F;stroke-width:3;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .warn{font-size:13px;font-weight:700;fill:#934F1F}
+  </style>
+
+  <text x="34" y="38" class="t title">The event can be rigid before it is known to be inhabited</text>
+  <text x="34" y="62" class="t m">Each rung adds a precise assumption. The right branch marks the missing existence theorem.</text>
+
+  <rect x="58" y="96" width="538" height="82" rx="12" class="blue"/>
+  <text x="82" y="126" class="t h">1. FINITE AVERAGES</text>
+  <text x="82" y="151" class="t s">Ordinary measurability gives a measurable function at every horizon.</text>
+
+  <line x1="327" y1="178" x2="327" y2="202" class="arrow"/>
+  <polygon points="327,214 319,199 335,199" fill="#A67C52"/>
+
+  <rect x="58" y="214" width="538" height="82" rx="12" class="cream"/>
+  <text x="82" y="244" class="t h">2. CONVERGENCE EVENT</text>
+  <text x="82" y="267" class="t s">Measurable input gives measurability;</text>
+  <text x="82" y="286" class="t s">an almost-everywhere representative gives null-measurability.</text>
+
+  <line x1="327" y1="296" x2="327" y2="320" class="arrow"/>
+  <polygon points="327,332 319,317 335,317" fill="#A67C52"/>
+
+  <rect x="58" y="332" width="538" height="82" rx="12" class="green"/>
+  <text x="82" y="362" class="t h">3. EXACT PREIMAGE INVARIANCE</text>
+  <text x="82" y="387" class="t s">Deleting or adding one finite prefix preserves convergence and the limit.</text>
+
+  <line x1="327" y1="414" x2="327" y2="438" class="arrow"/>
+  <polygon points="327,450 319,435 335,435" fill="#A67C52"/>
+
+  <rect x="58" y="450" width="538" height="82" rx="12" class="clay"/>
+  <text x="82" y="480" class="t h">4. ERGODIC RIGIDITY</text>
+  <text x="82" y="505" class="t s">The event is null or conull under the matching ergodic interface.</text>
+
+  <line x1="327" y1="532" x2="327" y2="556" class="arrow"/>
+  <polygon points="327,568 319,553 335,553" fill="#A67C52"/>
+
+  <rect x="58" y="568" width="538" height="82" rx="12" class="green"/>
+  <text x="82" y="598" class="t h">5. PROBABILITY ZERO OR ONE</text>
+  <text x="82" y="623" class="t s">Mass one converts null-or-conull into the numerical alternatives zero and one.</text>
+
+  <rect x="644" y="214" width="230" height="318" rx="14" class="gray"/>
+  <text x="672" y="251" class="t warn">BLOCKED BRANCH</text>
+  <text x="672" y="289" class="t h">NOT ESTABLISHED</text>
+  <text x="672" y="321" class="t s">No point is proved</text>
+  <text x="672" y="344" class="t s">to enter the event.</text>
+  <text x="672" y="384" class="t s">No almost-everywhere</text>
+  <text x="672" y="407" class="t s">convergence is proved.</text>
+  <text x="672" y="447" class="t s">No maximal inequality</text>
+  <text x="672" y="470" class="t s">or Kingman theorem</text>
+  <text x="672" y="493" class="t s">is imported.</text>
+  <line x1="824" y1="236" x2="852" y2="264" class="blocked"/>
+  <line x1="852" y1="236" x2="824" y2="264" class="blocked"/>
+
+  <rect x="644" y="568" width="230" height="82" rx="12" class="cream"/>
+  <text x="671" y="598" class="t h">LOGICAL SHAPE</text>
+  <text x="671" y="623" class="t s">conditional dichotomy,</text>
+  <text x="671" y="643" class="t s">not convergence existence</text>
+
+  <text x="58" y="679" class="t m">Exact invariance itself needs no measurability, boundedness, probability, ergodicity, or invertibility.</text>
+</svg>

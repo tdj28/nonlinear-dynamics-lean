@@ -496,6 +496,11 @@ is the declaration-complete implementation narrative.
 is the textbook route through the geometry, selector induction, cost bridge,
 and exact stopping point.
 
+The {{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
+entry is the next analytic interface. It explains how to name, measure, and
+prove invariance of an orbit-average convergence event without claiming that
+the event is nonempty or conull.
+
 ## References
 
 All links below were checked on 2026-07-21. The pinned Mathlib checkout at

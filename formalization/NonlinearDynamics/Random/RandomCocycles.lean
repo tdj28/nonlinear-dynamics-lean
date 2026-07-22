@@ -7,6 +7,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
 import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
+import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
 
 /-!
 # Random cocycles
@@ -45,7 +46,13 @@ of finitely many marked starts inside an enlarged horizon, and turns weak or
 strict per-start estimates into finite marked-cardinality bounds. At positive
 enlarged horizon, the empty marked set retains only the weak conclusion; the
 strict conclusion requires a marked start and derives horizon positivity.
-These finite layers deliberately stop before a pointwise or mean
-Birkhoff theorem, Kingman's subadditive ergodic theorem, or any samplewise
+The next layer isolates the event where real Birkhoff averages converge. It
+proves finite-horizon measurability and integrability, invariance of that event
+under adding or deleting one orbit prefix, and conditional null/conull and
+probability zero-one consequences under the appropriate ergodic hypotheses.
+It also specializes the event to the one-step subadditive-process observable
+and to the cocycle generator's log-positive norm without claiming that either
+event has full measure. These layers deliberately stop before a pointwise or
+mean Birkhoff theorem, Kingman's subadditive ergodic theorem, or any samplewise
 exponent claim.
 -/

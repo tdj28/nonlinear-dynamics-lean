@@ -30,8 +30,9 @@ missing.
   declarations as the API authority.
 - Use official documentation, original papers, or standard monographs for
   scientific claims. For technical searches, rely on primary sources.
-- Record definitions, assumptions, normalization conventions, and negative
-  results before designing the Lean interface.
+- Record the exact source version, theorem/section/page anchor, persistent
+  identifier, relevant errata, definitions, assumptions, normalization
+  conventions, and negative results before designing the Lean interface.
 - Audit every imported finite index, interval, and remainder count before
   encoding a displayed formula from the literature. If a source's horizon and
   summand counts are incompatible, formalize the corrected arithmetic, keep
@@ -53,6 +54,50 @@ missing.
   adversarial review when work can proceed in parallel.
 - Consult an OpenAI model only through optional local tooling when useful. Read
   the key from ignored `.env`; never print, commit, or expose it.
+
+## Run Formal Discovery Transparently
+
+Use the workflow documented by van Doorn, Judin, Monticone, and Morrison in
+[On Some Problems from the Kourovka Notebook](https://arxiv.org/abs/2607.17477)
+as a methodological precedent, not as mathematical authority for nonlinear
+dynamics:
+
+1. Preserve four distinguishable artifacts: the sourced mathematical problem,
+   its exact Lean statement, the exploratory proof, and the canonized
+   proof-to-prose result. Keep material failed approaches and discarded
+   assumptions in `checkpoint.md`; keep raw scratch proofs outside the public
+   tree, and never push a broken proof state merely to preserve exploration.
+2. Audit definitions and the formal statement before searching for a proof.
+   Check competing meanings, hidden assumptions, boundary countermodels, and
+   whether a logically equivalent low-level expansion would obstruct reusable
+   theory. Prove an explicit equivalence or implication bridge to the sourced
+   definition when feasible; otherwise label the result as an adaptation. Do
+   not treat type-correctness as confirmation of intended meaning.
+3. When a goal is difficult, request a proof outline, isolate intermediate
+   lemmas, compile-probe the hard API boundaries, and try equivalent
+   formulations without silently weakening the claim. Record partial progress
+   and honest blockers instead of abandoning an “open-looking” theorem.
+4. Informalize only from a checked formal proof. Then independently audit the
+   prose against the declarations and seek domain-expert review before calling
+   a genuinely new mathematical result established.
+5. Run canonization as a separate pass: extract and generalize reusable lemmas,
+   minimize assumptions, improve names, organization, documentation, and
+   performance, identify upstream Mathlib candidates, and rerun every gate.
+   Upstream acceptance is valuable but does not block a checked repository
+   milestone unless the user explicitly makes it a requirement.
+6. Record a provenance ledger for material discoveries: who selected and
+   clarified the problem, supplied definitions or infrastructure, proposed
+   proof steps, found the argument, checked the formalization, and wrote the
+   exposition. Use “autonomous” only when no human supplied mathematical proof
+   strategy. Keep this in `checkpoint.md` until a project-level manifest is
+   introduced; a future machine-readable `formalization.yaml` should also
+   record pinned versions, sources, main declarations and axioms, automation
+   runs and costs, fidelity divergences, review status, and source-to-Lean
+   alignment.
+
+Feed reusable definitions and lemmas back into the repository before starting
+the next discovery attempt; infrastructure growth is part of the research
+output, not incidental cleanup.
 
 ## Design the Lean Slice
 

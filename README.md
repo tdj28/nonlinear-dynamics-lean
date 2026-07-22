@@ -428,17 +428,29 @@ The first active sequence is:
     nonempty marked set and derives that positivity. The process proof uses
     only shifted subadditivity and positive-horizon nonpositivity and makes no
     density, maximal, ergodic, convergence, or Lyapunov claim.
+27. [`RandomCocycles/BirkhoffConvergence.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean)
+    proves finite-horizon measurability and integrability for real Birkhoff
+    sums and averages, then names the points where those averages converge.
+    Ordinary measurability gives a measurable event; an almost-everywhere
+    measurable representative and quasi-measure preservation give a
+    null-measurable event. Two positive-index prefix identities prove that
+    convergence and its limit are unchanged by applying the base map once,
+    hence the event is exactly preimage-invariant without invertibility or
+    even measurability of the map. Pre-ergodic and quasi-ergodic rigidity then
+    yield conditional null-or-conull conclusions, and probability
+    normalization turns those into zero-one laws. Thin process and cocycle
+    wrappers assert neither membership nor convergence existence.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
-spectral laws or quantum-chaos observables. The next major milestone is:
-
-1. Design and prove the missing pointwise Birkhoff and Kingman-style
-   infrastructure from its exact measurable, integrable, stationary,
-   finite-measure, maximal-inequality, and almost-everywhere hypotheses. The
-   pinned Mathlib release supplies finite
-   Birkhoff-sum algebra and probability/ergodic primitives, but no ready-made
-   pointwise Birkhoff or Kingman theorem. Only after those layers are audited
-   may the project introduce a samplewise limit or Lyapunov terminology.
+spectral laws or quantum-chaos observables. The next asymptotic route is to
+formalize the missing Hopf maximal-ergodic estimate, use it to build an honest
+pointwise Birkhoff theorem with every measurability, integrability, invariance,
+and finite-measure premise visible, and only then connect the finite packing
+machinery to a Kingman-style subadditive theorem. The pinned Mathlib release
+supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
+pointwise Birkhoff or Kingman theorem. A samplewise growth limit, Lyapunov
+exponent, or Oseledets splitting remains unavailable until those dependencies
+are checked.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

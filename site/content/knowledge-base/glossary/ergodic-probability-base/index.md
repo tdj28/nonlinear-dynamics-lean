@@ -319,6 +319,13 @@ entry explains the deterministic Fekete rate inherited from RMT-16.
 [Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
 is the immediate asymptotic predecessor.
 
+The
+{{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
+entry now applies the invariant-event interface to the set where one real
+Birkhoff-average sequence converges. Its null-or-conull and probability
+zero-one conclusions remain conditional: ergodicity cannot choose the conull
+branch without a separate pointwise convergence theorem.
+
 ## References
 
 <a id="ref-ergodic-probability-mathlib-probability"></a>**Mathlib contributors.**

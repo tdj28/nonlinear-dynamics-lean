@@ -1614,10 +1614,13 @@ chapters explain the finite upper estimate and positive-horizon sign reduction.
 gives the complete declaration-by-declaration source tour and boundary-smoke
 ledger.
 
-The next ridge is the missing analytic infrastructure. It must formalize the
-exact measurable marked event, the theorem producing its orbit frequency, the
-measure and preservation hypotheses, and every almost-everywhere and limit
-step. No successor link is supplied until that checked layer exists.
+The next checked ridge is
+[Birkhoff Convergence Events Before the Pointwise Ergodic Theorem]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}}).
+It constructs a measurable, representative-safe, exactly invariant event for
+ordinary Birkhoff-average convergence and proves conditional ergodic rigidity.
+It does not yet produce membership, orbit frequency for the marked set, or the
+pointwise and subadditive limit theorems still needed after this finite packing
+layer.
 
 ## References
 

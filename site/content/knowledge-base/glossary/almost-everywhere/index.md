@@ -61,7 +61,11 @@ measure and fail for another. The symbol \(\mu\) is part of the claim.
 
 Related concepts: {{< refterm "measurable-space" "measurable space" >}},
 {{< refterm "random-matrix" "random matrix" >}}, and
-{{< refterm "hermitian-matrix" "Hermitian matrix" >}}.
+{{< refterm "hermitian-matrix" "Hermitian matrix" >}}. The
+{{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
+entry uses almost-everywhere equality twice: first to transport an observable
+to a measurable representative, and then to compare the resulting convergence
+events.
 
 Further reading: Mathlib's
 [measure-space foundations](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html)

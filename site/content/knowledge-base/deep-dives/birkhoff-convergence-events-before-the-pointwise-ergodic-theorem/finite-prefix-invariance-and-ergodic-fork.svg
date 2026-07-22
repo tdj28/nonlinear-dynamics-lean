@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430"
+     viewBox="0 0 760 430" role="img"
+     aria-labelledby="shiftTitle shiftDesc">
+  <title id="shiftTitle">Finite-prefix invariance leads to an ergodic fork, not convergence existence</title>
+  <desc id="shiftDesc">Two orbit rows differ by one deleted first value. Arrows in both directions say their averages have the same finite limit. This gives exact preimage invariance of the convergence event. An ergodic fork then leads to null or conull branches, and the diagram stops without selecting either branch.</desc>
+  <rect width="760" height="430" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .kept{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+  </style>
+  <defs>
+    <marker id="shiftArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <text x="24" y="28" class="t title">One deleted orbit value preserves the exact finite limit</text>
+  <text x="24" y="48" class="t m">The consequence is preimage invariance, followed by a two-branch ergodic conclusion.</text>
+
+  <rect class="neutral" x="24" y="72" width="474" height="190" rx="12"/>
+  <text x="44" y="98" class="t h">ORIGINAL ORBIT</text>
+  <rect class="warn" x="44" y="116" width="62" height="42" rx="8"/>
+  <text x="75" y="142" text-anchor="middle" class="t s">first value</text>
+  <rect class="data" x="118" y="116" width="62" height="42" rx="8"/>
+  <rect class="data" x="192" y="116" width="62" height="42" rx="8"/>
+  <rect class="data" x="266" y="116" width="62" height="42" rx="8"/>
+  <rect class="data" x="340" y="116" width="62" height="42" rx="8"/>
+  <text x="445" y="142" class="t s">...</text>
+
+  <text x="44" y="190" class="t h">ORBIT AFTER ONE BASE STEP</text>
+  <rect class="data" x="118" y="205" width="62" height="42" rx="8"/>
+  <rect class="data" x="192" y="205" width="62" height="42" rx="8"/>
+  <rect class="data" x="266" y="205" width="62" height="42" rx="8"/>
+  <rect class="data" x="340" y="205" width="62" height="42" rx="8"/>
+  <text x="445" y="231" class="t s">...</text>
+  <line x1="75" y1="166" x2="75" y2="208" stroke="#A67C52" stroke-width="2" stroke-dasharray="5 4"/>
+
+  <rect class="kept" x="522" y="72" width="214" height="190" rx="12"/>
+  <text x="542" y="99" class="t h">SAME-LIMIT EQUIVALENCE</text>
+  <text x="542" y="128" class="t s">original averages converge</text>
+  <line x1="568" y1="151" x2="690" y2="151" stroke="#A67C52" stroke-width="2" marker-end="url(#shiftArrow)"/>
+  <line x1="690" y1="177" x2="568" y2="177" stroke="#A67C52" stroke-width="2" marker-end="url(#shiftArrow)"/>
+  <text x="542" y="206" class="t s">shifted averages converge</text>
+  <text x="542" y="231" class="t m">same finite real limit</text>
+  <text x="542" y="249" class="t m">no boundedness or inverse map</text>
+
+  <line x1="380" y1="272" x2="380" y2="298" stroke="#A67C52" stroke-width="2" marker-end="url(#shiftArrow)"/>
+  <rect class="data" x="198" y="300" width="364" height="68" rx="10"/>
+  <text x="380" y="325" text-anchor="middle" class="t h">EXACT PREIMAGE INVARIANCE</text>
+  <text x="380" y="343" text-anchor="middle" class="t m">a point belongs exactly when its one-step image belongs</text>
+  <text x="380" y="360" text-anchor="middle" class="t m">ergodicity still leaves both branches open</text>
+
+  <line x1="380" y1="370" x2="380" y2="376" stroke="#A67C52" stroke-width="2"/>
+  <line x1="380" y1="376" x2="196" y2="389" stroke="#A67C52" stroke-width="2" marker-end="url(#shiftArrow)"/>
+  <line x1="380" y1="376" x2="564" y2="389" stroke="#A67C52" stroke-width="2" marker-end="url(#shiftArrow)"/>
+  <rect class="warn" x="74" y="386" width="244" height="36" rx="10"/>
+  <text x="196" y="409" text-anchor="middle" class="t h">ERGODIC BRANCH: NULL</text>
+  <rect class="kept" x="442" y="386" width="244" height="36" rx="10"/>
+  <text x="564" y="409" text-anchor="middle" class="t h">ERGODIC BRANCH: CONULL</text>
+</svg>

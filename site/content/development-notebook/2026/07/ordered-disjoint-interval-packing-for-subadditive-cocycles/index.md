@@ -126,6 +126,12 @@ definition here is the
 glossary entry. The parallel textbook treatment is
 [Finite Ordered Interval Packing for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-ordered-interval-packing-for-nonpositive-subadditive-processes" >}}).
 
+Its immediate successor is
+[Convergence Without Existence: Birkhoff Events and Ergodic Rigidity in Lean]({{< relref "/development-notebook/2026/07/birkhoff-convergence-events-and-ergodic-rigidity-in-lean" >}}).
+That chapter isolates a measurable or null-measurable convergence event for
+one-step Birkhoff averages and proves its exact finite-prefix invariance and
+conditional ergodic rigidity. It does not yet make the marked set here large.
+
 ## Choose a route up
 
 | Route | Begin | Destination |
@@ -1449,6 +1455,16 @@ events, probability or finite-measure assumptions, measure preservation,
 integrability, stationarity, maximal or Birkhoff machinery, almost-everywhere
 quantifiers, and limit-identification steps. The current module does not allow
 any one of those assumptions to be inferred from notation.
+
+The immediate successor,
+[Convergence Without Existence: Birkhoff Events and Ergodic Rigidity in Lean]({{< relref "/development-notebook/2026/07/birkhoff-convergence-events-and-ergodic-rigidity-in-lean" >}}),
+supplies the first event-level bridge. It proves that convergence of one-step
+Birkhoff averages is an exactly invariant measurable or null-measurable event,
+then derives conditional null-or-conull and probability-zero-or-one laws.
+It supplies no convergence existence, marked-set density or frequency, maximal
+inequality, pointwise Birkhoff theorem, or Kingman theorem. Those analytic
+inputs remain the next ridge between this finite packing and asymptotic
+subadditive dynamics.
 
 For matrix cocycles, the observable remains log-positive and therefore clips
 contraction. Signed Lyapunov exponents, singular-value rates, exterior powers,
