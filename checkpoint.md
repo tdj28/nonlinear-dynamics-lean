@@ -3,44 +3,51 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 17:58 PDT
+Last updated: 2026-07-21 19:20 PDT
 
-Audited baseline: `main` at `e6c6c17`
+Audited baseline: `main` at `764d247`
 
-Active direction: RMT-22 is implementation- and teaching-complete on `main`;
-RMT-23 is a finite Hopf-style maximal ergodic lemma
+Active direction: RMT-23 is implementation- and teaching-complete on `main`;
+RMT-24 is the increasing-event passage to an infinite-horizon weak maximal
+inequality
 
 ## Restart Handoff
 
-- RMT-22 adds the 602-line
-  `Random/RandomCocycles/BirkhoffConvergence.lean`. Its SHA-256 is
-  `cec39333cd0751ca7b52283049cf11ec8a8a8870eff3dbeaf32bfda81d111fbd`.
-  The module has 37 public declarations and 12 compiled anonymous probes. It
-  proves finite-horizon measurability and integrability, representative
-  transport, exact one-step preimage invariance of the convergence event,
-  conditional null-or-conull rigidity, probability zero-one consequences,
-  and thin process/cocycle wrappers. It proves no event membership or
-  convergence-existence theorem.
+- RMT-23 adds the 509-line
+  `Random/RandomCocycles/FiniteHopfMaximal.lean`. Its frozen SHA-256 is
+  `3f385c36fae5d0483ea592468d4d79d197e74a4e241b63f859b0aaace03a8b58`.
+  The module has 25 documented public declarations, one private integration
+  helper, and 11 compiled anonymous probes. It constructs the finite running
+  maximum of real Birkhoff sums, its strict positivity event, the finite Hopf
+  integral inequality, and centered finite-horizon average-exceedance bounds.
+- The core theorem needs only `MeasurePreserving T μ μ` and `Integrable g μ`:
+  it assumes neither finite total mass, probability, σ-finiteness,
+  ergodicity, injectivity, surjectivity, nor invertibility. The centered event
+  integral and positive-part estimates accept every real threshold under
+  `[IsFiniteMeasure μ]`; only the final division into a weak measure estimate
+  requires `0 < a`.
 - Direct warning-fatal leaf, branch, and root checks are green. The root build
-  completes 3,180 jobs. The printed axiom footprint is exactly `propext`,
+  completes 3,181 jobs. The printed axiom footprint is exactly `propext`,
   `Classical.choice`, and `Quot.sound`; no proof hole, unsafe declaration, or
   project axiom occurs. An independent theorem audit found no blocker.
-- The teaching layer adds an 8,376-word declaration- and probe-complete
-  Development Notebook, a 1,908-word glossary chapter, and a 7,025-word
-  textbook Deep Dive with 30 solved exercises. Three deterministic 1200x630
-  cards and five accessible conceptual SVGs are integrated. Visual inspection
-  caught and repaired a stroked-text collision on the Deep Dive card.
-- Proof-to-prose coverage passes 27/27 substantive modules; source hygiene
-  passes 93 Markdown files; Hugo renders 286 pages with warnings fatal. Card
+- The teaching layer adds a 9,143-body-token declaration- and probe-complete
+  Development Notebook with 20 solved exercises, a 2,141-token glossary
+  chapter, and a 7,475-token textbook Deep Dive with 32 solved exercises.
+  Here and below “token” means the deterministic body-only regex
+  `\b[\w'-]+\b`, not a model tokenizer. Three deterministic 1200x630 cards and
+  six accessible conceptual SVGs are integrated.
+- Proof-to-prose coverage passes 28/28 substantive modules; source hygiene
+  passes 96 Markdown files; Hugo renders 293 pages with warnings fatal. Card
   reproduction, ShellCheck, XML parsing, and desktop/390-pixel browser QA are
   green. The three pages have zero page-level overflow, KaTeX errors, raw
-  delimiters, broken assets, or console failures; wide math and code scroll
-  locally on mobile.
-- The project skill now records the formal-discovery, informalization,
-  canonization, and provenance workflow described in arXiv:2607.17477. It
-  treats that group-theory paper as a process precedent, not nonlinear-
-  dynamics authority, and does not create a redundant Aristotle-specific
-  skill. The skill passes its structural validator and a fresh forward test.
+  delimiters, broken or alt-less assets, or console failures; wide math,
+  tables, and code scroll locally on mobile.
+- Independent review corrected the historical journal metadata and separated
+  the Yosida–Kakutani infinite-horizon theorem from this finite cancellation
+  proof. It also repaired every finite-measure and positive-threshold gate,
+  the superlevel terminology, the zero-threshold explanation, and the visual
+  labels before the source and generated cards were frozen. No RMT-23 math,
+  prose, or visual blocker remains.
 - The active RunPod builder remains up at the user's request. The fast local
   disk holds the active Lean/Mathlib build tree. The attached persistent
   network volume now holds integrity-tested sequential zstd snapshots of Elan
@@ -50,10 +57,10 @@ RMT-23 is a finite Hopf-style maximal ergodic lemma
   key, pod address, or account-specific resource identifier belongs in the
   repository.
 - On the active builder, the final synchronized `make check` gate passes all
-  3,180 Lean jobs, checkpoint/coverage/hygiene checks, and the 286-page Hugo
-  render in 3.460 seconds as a cached replay. The immediately preceding run,
-  which rebuilt the new module inside the warm pinned toolchain/cache, passed
-  in 10.381 seconds.
+  3,181 Lean jobs, checkpoint/coverage/hygiene checks, and the 293-page Hugo
+  render in 3.545 seconds as a cached replay. The immediately preceding source
+  build completed the same 3,181 jobs in 7.236 seconds and failed only because
+  the checkpoint validator correctly rejected the then-stale handoff.
 
 ## How to Use This Checkpoint
 
@@ -69,17 +76,17 @@ RMT-23 is a finite Hopf-style maximal ergodic lemma
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,180 jobs. The integrated RMT-22 gate covers
-  twenty-seven substantive modules, twenty-seven complete draft Notebook
-  companions, and 286 Hugo pages with warnings fatal.
-- Lean inventory: 530 public named declarations counted by the proof-to-prose
-  checker across the twenty-seven substantive modules. The tree also
+- Last green Lean build: 3,181 jobs. The integrated RMT-23 gate covers
+  twenty-eight substantive modules, twenty-eight complete draft Notebook
+  companions, and 293 Hugo pages with warnings fatal.
+- Lean inventory: 555 public named declarations counted by the proof-to-prose
+  checker across the twenty-eight substantive modules. The tree also
   has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
   branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot: 172,967 words across the twenty-seven Notebook companions
-  and 194,844 words across twenty-four Deep Dives and thirty-seven glossary
-  chapters.
+- Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
+  180,144 tokens across the twenty-eight Notebook companions and 208,060
+  tokens across twenty-five Deep Dives and thirty-eight glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -116,16 +123,17 @@ RMT-23 is a finite Hopf-style maximal ergodic lemma
 | `NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging` | Exact residue-phase reindexing, prefix/block/tail bounds, deletion of positive-time gaps, total multiplication and positive-block division forms, centered-process phase bounds, and a direct cocycle specialization without any convergence claim | `phase-averaged-sliding-block-bounds-for-subadditive-cocycles` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking` | Gap-indexed ordered positive-length half-open interval packings, exact covered cardinality, a leftmost greedy cover with separate coverage and provenance, weak arbitrary-mark and strict nonempty-mark favorable-cost bounds, exact time-zero boundaries, and finite candidate/centered/cocycle wrappers without a density or limit claim | `ordered-disjoint-interval-packing-for-subadditive-cocycles` |
 | `NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence` | Measurable and integrable finite real Birkhoff sums/averages, the convergence event and representative transport, exact one-prefix preimage invariance, conditional ergodic null/conull and probability zero-one consequences, and process/cocycle wrappers without a convergence-existence claim | `birkhoff-convergence-events-and-ergodic-rigidity-in-lean` |
+| `NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal` | Finite Birkhoff-sum maxima, strict Hopf events, the core integral nonnegativity theorem without finite mass, centered finite average-exceedance integral and positive-part bounds, and a positive-threshold weak measure estimate | `finite-hopf-maximal-ergodic-lemma-in-lean` |
 
-The root aggregator imports all twenty-seven modules. The proof-to-prose manifest and
+The root aggregator imports all twenty-eight modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twenty-seven comprehensive Development Notebook chapters in an explicit
+- Twenty-eight comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Twenty-four textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Twenty-five textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -146,9 +154,11 @@ declaration visibility.
   Decomposition for Subadditive Processes*, *Orbit-Majorant Centering for
   Subadditive Processes*, *Finite Phase Averaging for Nonpositive Subadditive
   Processes*, and *Finite Ordered Interval Packing for Nonpositive Subadditive
-  Processes*, and *Birkhoff Convergence Events Before the Pointwise Ergodic
-  Theorem*.
-- Thirty-seven glossary chapters, now including the Birkhoff convergence event,
+  Processes*, *Birkhoff Convergence Events Before the Pointwise Ergodic
+  Theorem*, and *Finite Maximal Ergodic Inequalities: From Orbit Maxima to
+  Threshold Events*.
+- Thirty-eight glossary chapters, now including the finite maximal ergodic
+  inequality, the Birkhoff convergence event,
   ordered interval packing, phase averaging,
   orbit-majorant centering, the Birkhoff sum, the ergodic probability base,
   the integrated log-positive growth rate, the log-positive integrability
@@ -161,7 +171,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Seventy-eight deterministic 1200x630 social cards and sixty-nine accessible
+- Eighty-one deterministic 1200x630 social cards and seventy-five accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -170,70 +180,70 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-23: a finite Hopf-style maximal ergodic lemma
+### RMT-24: the infinite-horizon average-exceedance weak maximal bound
 
 The next module is
-`Random/RandomCocycles/FiniteHopfMaximal.lean`. A 228-line compile probe against
-pinned Mathlib 4.32.0 establishes that the complete finite proof is
-implementation-ready. For
-
-```text
-Sₖ g(ω) = birkhoffSum T g k ω,
-M_N g(ω) = max {Sₖ g(ω) | 0 ≤ k ≤ N},
-E_N(g) = {ω | 0 < M_N g(ω)},
-```
-
-the core target is
+`Random/RandomCocycles/InfiniteHopfMaximal.lean`, importing only RMT-23 unless
+the checked Mathlib API forces a narrower additional import. Define the event
+directly by a positive-time witness,
 
 ```lean
-theorem integral_finiteHopfEvent_nonneg
+def birkhoffAverageExceedanceSet
+    (T : Ω → Ω) (g : Ω → ℝ) (a : ℝ) : Set Ω :=
+  {ω | ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω}
+```
+
+rather than inventing a real-valued infinite running maximum. The target weak
+estimate is
+
+```lean
+theorem measureReal_birkhoffAverageExceedanceSet_le
+    [IsFiniteMeasure μ]
     (hT : MeasurePreserving T μ μ)
     (hg : Integrable g μ)
-    (N : ℕ) :
-    0 ≤ ∫ ω in finiteHopfEvent T g N, g ω ∂μ
+    {a : ℝ} (ha : 0 < a) :
+    μ.real (birkhoffAverageExceedanceSet T g a) ≤
+      (∫ ω, max (g ω) 0 ∂μ) / a
 ```
 
 The dependency-ordered implementation is:
 
-1. Define `finiteBirkhoffSumMax` with
-   `(Finset.range (N + 1)).sup' Finset.nonempty_range_add_one`. Prove that every
-   finite sum lies below it, that it is nonnegative because time zero is
-   present, and that it is measurable and integrable under the exact finite-
-   horizon hypotheses.
-2. Define `finiteHopfEvent` by strict positivity. Prove its measurable and
-   null-measurable routes and the positive-index witness equivalence
-   `ω ∈ E_N(g) ↔ ∃ k, 1 ≤ k ∧ k ≤ N ∧ 0 < birkhoffSum T g k ω`.
-3. Prove the key pointwise indicator inequality
-   `M_N g ω - M_N g (T ω) ≤ (E_N(g).indicator g) ω`. On the event, a positive
-   maximizing index cannot be zero and the successor Birkhoff-sum identity
-   gives the bound; off the event, the left maximum is zero and the shifted
-   maximum is nonnegative.
-4. Integrate the inequality. Use `integral_map` and `hT.map_eq` in a private
-   helper to cancel the two maximal-function integrals. Do not assume
-   injectivity, invertibility, finite total measure, probability, σ-finiteness,
-   or ergodicity. Ordinary measurability of `g` is not required beyond what
-   `Integrable g μ` supplies for the null-measurable event.
-5. Define `finiteBirkhoffAverageExceedanceSet` through the centered observable
-   `g - a`. Under `[IsFiniteMeasure μ]`, prove
-   `a * μ.real E ≤ ∫ ω in E, g ω ∂μ`. This integral inequality needs no sign
-   assumption on `a`; any later division into a weak-type measure estimate
-   must expose `0 < a`.
-6. Compile boundary probes for `N = 0`, `N = 1`, `g = 0`, identity dynamics,
-   zero and infinite measures, and noninvertible measure-preserving maps. Pair
-   the canonized source with declaration-complete Notebook and textbook
-   coverage, deterministic visuals, full validation, checkpoint update, and a
-   frequent push to `main`.
+1. Prove the membership interface and the exact increasing union
+   `E(g,a) = ⋃ N, E_N(g,a)`, with the witness `N = k`; prove the finite events
+   embed in the infinite event. These facts need no measurable-space
+   assumptions.
+2. Prove ordinary measurability from `Measurable T` and `Measurable g`. Also
+   prove a weaker null-measurable route from `MeasurePreserving T μ μ` and
+   `Integrable g μ`, using countable unions and finite-average integrability;
+   do not add finite mass to this event-level result.
+3. Expose a real-measure continuity theorem for the finite events only under
+   the local hypothesis
+   `μ (birkhoffAverageExceedanceSet T g a) ≠ ∞`. Use
+   `tendsto_measure_iUnion_atTop` and `ENNReal.tendsto_toReal` rather than
+   silently treating `Measure.real` as faithful at infinity.
+4. Pass the RMT-23 positive-part inequalities to the increasing union with
+   `le_of_tendsto'`. Under `[IsFiniteMeasure μ]`, prove
+   `a * μ.real E(g,a) ≤ ∫ ω, max (g ω) 0 ∂μ` for every real `a`; expose
+   `0 < a` only when dividing to obtain the weak estimate.
+5. Compile boundary probes for exact witness recovery, horizon zero, the zero
+   observable at nonnegative and negative thresholds, the zero measure,
+   noninvertible measure-preserving dynamics, and positive-threshold division.
+   Include an explicit count-measure countermodel: increasing finite subsets
+   of `ℕ` have real measures tending upward while the union has infinite
+   extended measure and therefore totalized `Measure.real = 0`.
+6. Canonize the proof and pair it with a declaration-complete Development
+   Notebook, textbook Deep Dive, glossary integration, deterministic cards and
+   figures, source audit, browser QA, full validation, checkpoint update, and
+   a push to `main`.
 
-Call the result a finite Hopf-style maximal ergodic lemma and record the
-historical priority carefully: Yosida–Kakutani introduced the maximal ergodic
-theorem for point transformations in 1939; Hopf developed the broader operator
-form in 1954; Garsia supplied a short proof in 1965. The strict event
-`0 < M_N` is essential because `S₀ = 0`; replacing it by `0 ≤ M_N` would include
-every point. RMT-23 must not claim an infinite-horizon supremum theorem,
-pointwise convergence, Kingman, a Lyapunov exponent, or an Oseledets splitting.
-After RMT-23, audit the increasing-event passage to an infinite-horizon maximal
-theorem; the Koopman-\(L^2\), density, and weak-maximal transfer needed for pointwise
-Birkhoff remain a separate larger milestone.
+The primary exposition should distinguish the probability-space presentation
+in Keane and Petersen from this finite-measure interface, and it must keep the
+finite-to-infinite continuity argument separate from the finite Hopf
+cancellation proof. RMT-24 proves no pointwise or almost-everywhere convergence,
+conditional-expectation identification, strong `Lᵖ` estimate, Koopman density
+theorem, Kingman theorem, Lyapunov exponent, or Oseledets splitting. The
+Koopman-`L²`, density, and weak-maximal transfer needed for pointwise Birkhoff
+remain a later, larger milestone.
 
 ## Dependency-Ordered Roadmap
 
@@ -308,6 +318,12 @@ unresolved convention or depend on an unproved earlier interface.
   geometry, exact covered cardinality, leftmost greedy selection with coverage
   and provenance, weak empty-mark and strict nonempty-mark favorable-cost
   bounds, time-zero countermodels, and finite cocycle specializations.
+- [x] Real Birkhoff convergence-event measurability, representative transport,
+  exact one-prefix preimage invariance, and conditional ergodic null/conull and
+  probability zero-one consequences, without a convergence-existence claim.
+- [x] Finite Birkhoff-sum maxima, strict Hopf events, integral nonnegativity,
+  centered finite average-exceedance bounds, and the exact finite-mass and
+  positive-threshold gates for weak measure estimates.
 - [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
   exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
@@ -853,10 +869,15 @@ k-invariance precedes approximation claims.
   weak empty-mark and strict nonempty-mark bounds, and the false horizon-zero
   countermodel. The real Birkhoff convergence event is now formalized with
   representative transport, exact preimage invariance, conditional ergodic
-  rigidity, and probability zero-one consequences. The existing interfaces
-  still do not prove event membership, a marked-set density, a maximal
-  inequality, a pointwise Birkhoff theorem, a subadditive ergodic theorem, or
-  a samplewise limit.
+  rigidity, and probability zero-one consequences. Finite Birkhoff-sum maxima,
+  the strict Hopf event, its integral nonnegativity theorem, and finite-horizon
+  average-exceedance weak estimates are formalized too. The existing
+  interfaces still do not prove convergence-event membership, a marked-set
+  density, an infinite-horizon maximal inequality, a pointwise Birkhoff
+  theorem, a subadditive ergodic theorem, or a samplewise limit. In particular,
+  `Measure.real` totalizes infinite extended measure to zero, so the RMT-24
+  finite-to-infinite passage must retain an explicit finiteness premise until
+  finite total mass discharges it.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -1444,6 +1465,31 @@ Checkpoint/skill milestone QA:
   broken assets, or console failures; wide displays and code scroll locally.
   Visual review caught and fixed an inherited thick stroke and collision on
   the Deep Dive card before the deterministic artifact was frozen.
+- RMT-23 Lean audit: the 509-line frozen module has SHA-256
+  `3f385c36fae5d0483ea592468d4d79d197e74a4e241b63f859b0aaace03a8b58`,
+  25 documented public declarations, one private integration helper, and 11
+  compiled anonymous probes. Leaf, cocycle aggregator, and root warning-fatal
+  checks pass; the root build completes 3,181 jobs. No proof hole, unsafe
+  declaration, or project axiom occurs, and theorem prints contain only
+  `propext`, `Classical.choice`, and `Quot.sound`. An independent premise,
+  boundary, and countermodel audit found no Lean blocker.
+- RMT-23 teaching audit: the body-only regex counts 9,143 tokens in the
+  Notebook, 2,141 in the glossary, and 7,475 in the Deep Dive. The Notebook
+  covers all 25 public declarations, the private helper, and all 11 probes in
+  source order, with 20 solved exercises; the Deep Dive has 32 solved
+  exercises. Three cards reproduce byte-for-byte at 1200x630, six SVGs parse,
+  ShellCheck is green, source hygiene passes 96 Markdown files, proof-to-prose
+  coverage passes 28/28 modules, and Hugo renders 293 pages with warnings
+  fatal. Independent source/prose review repaired historical scope, journal
+  metadata, superlevel terminology, measure and threshold gates, and the
+  visual assumption labels before commit.
+- Rendered RMT-23 QA: the Notebook, glossary, and Deep Dive render 234, 89, and
+  292 KaTeX nodes after the final repairs. At desktop and 390-pixel widths, all
+  three pages have one article heading and zero KaTeX errors, raw delimiters,
+  page-level overflow, broken or alt-less assets, or console failures. Cards
+  load at 1200x630, all six conceptual figures pass visual inspection, and
+  wide tables, math, and code scroll locally on mobile. The Notebook and Deep
+  Dive each render one canonical AI-use disclosure; the glossary renders none.
 - Research-workflow skill audit: the project skill now incorporates the
   source-to-statement, exploratory-proof, informalization, canonization, and
   human/AI provenance lessons from arXiv:2607.17477 without creating a
@@ -1452,6 +1498,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `764d247`: formalize the finite Hopf maximal ergodic lemma and its exact
+  finite-mass and positive-threshold corollaries, with the complete teaching
+  layer and independent source, theorem, prose, and visual audits.
 - `e6c6c17`: formalize Birkhoff convergence events and their exact one-step
   preimage invariance, add the complete teaching layer, and record the
   transparent-discovery and human-approved RunPod workflows.
