@@ -3,14 +3,13 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 22:11 PDT
+Last updated: 2026-07-21 22:13 PDT
 
-Audited baseline: `main` at `9f0ee23`
+Audited baseline: `main` at `6e136bc`
 
 Active direction: RMT-25 is implementation-, teaching-, audit-, and
-full-validation-complete in the milestone worktree; RMT-26 is the
-finite-measure `L¹` maximal-closure bridge to the full pointwise Birkhoff
-theorem
+full-validation-complete on `main`; RMT-26 is the finite-measure `L¹`
+maximal-closure bridge to the full pointwise Birkhoff theorem
 
 ## Restart Handoff
 
@@ -1646,6 +1645,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `6e136bc`: formalize Koopman square-integrable mean convergence, the dense
+  fixed-plus-simple-coboundary pointwise-good core, and the complete paired
+  teaching layer.
 - `9f0ee23`: checkpoint the complete RMT-24 milestone and the exact RMT-25
   Koopman mean-ergodic and dense pointwise-good-core plan.
 - `5a7c96f`: formalize the infinite-horizon Birkhoff-average exceedance event,
