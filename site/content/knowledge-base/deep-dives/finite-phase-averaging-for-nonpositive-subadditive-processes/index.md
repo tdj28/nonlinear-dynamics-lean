@@ -1226,6 +1226,11 @@ exact measurable, integrable,
 maximal-inequality, stationarity, and almost-everywhere hypotheses rather than infer a
 limit from the shape of the finite formula.
 
+[Subadditive Upper Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}})
+is the later upper-asymptotic consumer. It uses this finite phase estimate and
+ordinary-map Birkhoff convergence, and explicitly stops before a matching
+lower bound or a samplewise limit.
+
 ## References
 
 All links below were checked on 2026-07-21. The pinned local Mathlib checkout

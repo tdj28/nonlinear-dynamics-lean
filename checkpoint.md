@@ -3,17 +3,62 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 02:01 PDT
+Last updated: 2026-07-22 02:49 PDT
 
-Audited baseline: `main` at `8b1da2c`
+Audited baseline: `main` at `7da572a`
 
-Active direction: RMT-28 has identified the finite-measure ergodic Birkhoff
-constant in checked Lean and paired that result with its complete teaching
-slice. Full local and checksum-identical RunPod gates are green; commit and
-push are the active release steps. RMT-29 will begin the Kingman-style
-subadditive upper bound without assuming ergodicity of powered maps.
+Active direction: RMT-29 has proved the Kingman-style subadditive upper-limsup
+bound in checked Lean and paired it with its complete teaching slice. Full
+local and checksum-identical RunPod gates are green; commit and push are the
+active release steps. RMT-30 will build the finite bad-block measure bridge
+required before a lower-liminf theorem.
 
 ## Restart Handoff
+
+- RMT-29 adds the 411-line
+  `NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup` module at
+  `Random/RandomCocycles/SubadditiveUpperLimsup.lean`. Its current SHA-256 is
+  `396662e201627c84e59aafd94476187ca280a00812d4df14af90994c5d5cc77a`.
+  The public surface has four documented theorems. One private block-prefix
+  definition and three private cofinality/coefficient lemmas isolate the
+  asymptotic arithmetic; ten private boundary-support items support three
+  compiled anonymous examples, followed by four source axiom prints.
+- `integral_birkhoffSum_eq_nat_mul` integrates every finite Birkhoff sum under
+  measure preservation, including horizon zero. The centered integral identity
+  then cancels the one-step mean exactly. The fixed-block theorem combines
+  RMT-20 phase averaging with two RMT-28 Birkhoff limits under the original
+  map and proves, for every positive block `b`, the almost-everywhere bound
+  `limsup (fun n ↦ X n ω / (n : ℝ)) atTop ≤ (∫ x, X b x ∂μ) / (b : ℝ)`.
+- The generic endpoint assumes an ergodic probability base, integrability,
+  shifted subadditivity, and pointwise nonnegativity. Nonnegativity supplies
+  the lower-coboundedness needed by Mathlib's conditionally complete real
+  `limsup`; the negative-quadratic singleton explains why deleting it makes
+  the totalized real statement false. The cocycle endpoint intersects all
+  positive-block events and applies the existing deterministic Fekete `sInf`
+  identity to reach `integratedLogPlusGrowthRate`.
+- The proof never assumes ergodicity of `T^[b]`. A uniform Bool flip compiles
+  with an ergodic original map and a nonergodic square, while the block-two
+  upper bound still applies. All four public axiom reports are exactly
+  `propext`, `Classical.choice`, and `Quot.sound`; no proof hole, unsafe
+  declaration, project axiom, powered-map premise, or convergence claim is
+  present.
+- The teaching slice adds a 4,327-word declaration-complete Development
+  Notebook with twenty-four solved exercises, a 3,628-word textbook Deep Dive
+  with thirty-two solved exercises, and a 562-word limit-superior glossary.
+  Three deterministic 1200x630 cards and twelve accessible conceptual SVGs
+  accompany the page bundles. All remain `draft: true` and
+  `pro_reviewed: false` pending the configured human and publication reviews.
+- Warning-fatal leaf and cocycle-aggregator compilation, 34/34 proof-to-prose
+  coverage, the 119-file teaching-source gate, all three caller-independent
+  card reproductions, ShellCheck, XML validation, and a 366-page warning-fatal
+  Hugo render are green. Independent 1440x1000 and 390x844 browser checks of
+  the three routes find one article heading per page, exact source-to-KaTeX
+  counts, all twelve lazy figures loaded, and zero page overflow, broken
+  images, raw delimiters, KaTeX errors, HTTP failures, or console failures.
+  Full `make check` completes all 3,210 Lean jobs and repository gates in 6.85
+  seconds on the Mac. Checksum-identical approved RunPod passes took 10.29
+  seconds on the first full replay and 8.40 seconds after the final content
+  corrections.
 
 - RMT-28 adds the 367-line
   `NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit` module at
@@ -272,21 +317,21 @@ subadditive upper bound without assuming ergodicity of powered maps.
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last fully green local repository build: 3,209 Lean jobs on the integrated
-  RMT-28 tree. The changed leaf, cocycle aggregator, and project root compile
-  warning-fatally; 33/33 coverage and every teaching gate pass; Hugo renders
-  359 pages with warnings fatal. The complete warm local `make check` took
-  8.67 seconds, and a checksum-identical source-only replay passed on the
-  retained RunPod builder in 10.14 seconds.
-- Lean inventory: 639 public named declarations counted by the proof-to-prose
-  checker across the thirty-three substantive modules. The tree also
+- Last fully green repository build: 3,210 Lean jobs on the integrated RMT-29
+  tree. Its leaf, cocycle aggregator, and project root compile warning-fatally;
+  34/34 coverage and every teaching gate pass; Hugo renders 366 pages with
+  warnings fatal. The complete warm local `make check` took 6.85 seconds.
+  Checksum-identical source-only replays passed on the retained RunPod builder
+  in 10.29 seconds initially and 8.40 seconds after the final content fixes.
+- Lean inventory: 643 public named declarations counted by the proof-to-prose
+  checker across the thirty-four substantive modules. The tree also
   has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
   branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
-  219,050 tokens across the thirty-three Notebook companions and 266,003
-  tokens across thirty Deep Dives (184,925) and forty-eight glossary chapters
-  (81,078).
+  223,456 tokens across the thirty-four Notebook companions and 270,309
+  tokens across thirty-one Deep Dives (188,669) and forty-nine glossary
+  chapters (81,640).
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -329,16 +374,17 @@ subadditive upper bound without assuming ergodicity of powered maps.
 | `NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff` | Absolute positive-time weak maximal control, measurable fixed-scale Cauchy exceptional events, the dense-good maximal-closure theorem, a finite-measure continuous and dense `L² → L¹` bridge, and full-sequence almost-everywhere convergence for every real integrable observable without identifying the limit | `finite-measure-pointwise-birkhoff-by-maximal-closure-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit` | One exact-invariant total limit representative, identical orbit laws, uniform integrability, finite-measure Vitali `L¹` convergence, noninvertible invariant-set integral transport, and identification with conditional expectation | `identifying-the-finite-measure-birkhoff-limit-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit` | Exact invariance of the conditional-expectation representative, pre-ergodic almost-everywhere constancy, finite nonzero normalized-integral identification, and full ergodic Birkhoff convergence to the ordinary integral on probability spaces | `identifying-the-ergodic-birkhoff-constant-in-lean` |
+| `NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup` | Exact finite Birkhoff-sum and centered-block integration, original-map phase-averaged fixed-block upper-limsup control, and the all-block log-positive cocycle bound by the deterministic integrated Fekete rate | `subadditive-upper-limsup-from-phase-averaging-in-lean` |
 
-The root aggregator imports all thirty-three modules. The proof-to-prose manifest and
+The root aggregator imports all thirty-four modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Thirty-three comprehensive Development Notebook chapters in an explicit
+- Thirty-four comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Thirty textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Thirty-one textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -366,8 +412,9 @@ declaration visibility.
   Coboundaries, and the Missing Maximal Step*, *Pointwise Birkhoff
   from Maximal Control and Dense Good Functions*, and *Birkhoff Limits,
   Invariant Sigma Algebras, and Conditional Expectation*, followed by
-  *Ergodic Birkhoff Limits and Normalized Space Averages*.
-- Forty-eight glossary chapters, now including ergodicity, normalized space
+  *Ergodic Birkhoff Limits and Normalized Space Averages*, followed by
+  *Subadditive Upper Limsup Bounds Before Kingman Convergence*.
+- Forty-nine glossary chapters, now including limit superior, ergodicity, normalized space
   averages, the invariant sigma algebra,
   conditional expectation, uniform integrability, the Birkhoff Cauchy exceptional
   set and weak-type (1,1) maximal bound, the Koopman operator and Koopman
@@ -386,7 +433,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- One hundred one deterministic 1200x630 social cards and 130 accessible
+- One hundred four deterministic 1200x630 social cards and 142 accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -395,68 +442,72 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-29: a Kingman-style subadditive upper limsup
+### RMT-30: finite centered bad-block measure control
 
-The next module is provisionally
-`Random/RandomCocycles/SubadditiveUpperLimsup.lean`. A warning-fatal scratch
-probe already compiles the proposed theorem architecture against the frozen
-RMT-20 phase-averaging and RMT-28 ergodic-Birkhoff APIs. The first target is
-the upper half of a pointwise subadditive theorem on an ergodic probability
-space: for a nonnegative integrable shifted-subadditive process `X` and every
-positive block length `b`, prove almost everywhere
+The next module is
+`Random/RandomCocycles/SubadditiveBadBlockMeasure.lean`. It should import
+`SubadditiveIntervalPacking` and `SubadditiveUpperLimsup`. This is deliberately
+not yet the lower-liminf theorem: it isolates the finite measure-theoretic
+bridge between RMT-21's greedy interval packing and the later ergodic
+zero-one argument.
 
-`limsup (fun n ↦ X n ω / (n : ℝ)) atTop ≤ (∫ x, X b x ∂μ) / (b : ℝ)`.
+The intended public surface is:
 
-The cocycle specialization will intersect these fixed-block conclusions and
-use the existing deterministic `sInf` characterization to bound the samplewise
-log-positive upper limsup by `integratedLogPlusGrowthRate`. Probability is
-essential here because that rate is defined from raw integrals; rescaling a
-general finite measure would rescale the integral without changing a
-samplewise normalized orbit value.
+1. `finiteOrbitVisitCount`, counting visits to a set before a finite horizon;
+2. `natCast_finiteOrbitVisitCount_eq_birkhoffSum_indicator`, identifying its
+   real cast with a Birkhoff sum of the set indicator;
+3. `integral_finiteOrbitVisitCount`, proving under finite measure, preservation,
+   and null measurability that its integral is `H * μ.real s`;
+4. `finiteCenteredBadBlockSet`, the finite union of points admitting some
+   length `n ∈ Finset.Icc 1 m` with
+   `centeredProcess T X n ω < c * (n : ℝ)`;
+5. `IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_finiteCenteredBadBlockSet`;
+6. `IsIntegrableSubadditiveProcessCandidate.centeredProcess_le_badBlockVisitCount`,
+   the pointwise greedy-packing estimate; and
+7. `IsIntegrableSubadditiveProcessCandidate.measureReal_finiteCenteredBadBlockSet_le_rateRatio`,
+   whose generic endpoint accepts a real lower rate `δ` satisfying
+   `δ ≤ (∫ ω, centeredProcess T X n ω ∂μ) / (n : ℝ)` for every positive `n`
+   and proves, for `c < δ`,
+   `μ.real (finiteCenteredBadBlockSet T X m c) ≤ δ / c`.
+
+The hypothesis at `n = 1` forces `δ ≤ 0`, since the centered one-step process
+is zero. Thus `c < 0` follows rather than becoming a redundant premise. The
+cocycle specialization should define `centeredLogPlusBadBlockSet` and use
+`δ = integratedLogPlusGrowthRate hC - integratedLogPlusNorm 1`. The existing
+Fekete lower bound on every normalized integrated block and RMT-29's centered
+integral identity should discharge the generic lower-rate premise. RMT-30
+needs finite measure and preservation but no ergodicity.
 
 The dependency-ordered implementation is:
 
-1. Canonize the scratch-compiled integral identity
-   `integral_birkhoffSum_eq_nat_mul` under `MeasurePreserving T μ μ` and
-   `Integrable f μ`. Derive the corresponding centered-process identity
-   `∫ Xᶜ_b = ∫ X_b - b * ∫ X_1`; do not hide preservation inside a powered-map
-   premise.
-2. Reuse RMT-20's phase-averaged inequality for the centered process. For a
-   fixed `b > 0`, write all sufficiently large horizons as `b*q + b + r` and
-   keep the exact quotient, remainder, and horizon-zero exclusions visible.
-3. Rearrange the finite inequality into a normalized bound involving the
-   ordinary-base average of `centeredProcess T X b` over `b*q` steps. Use
-   `Eventually.atTop_of_arithmetic` for the arithmetic progression and prove
-   the coefficient `b*q / (b*q+b+r)` tends to one.
-4. Apply RMT-28 to the centered block observable and to `X 1`. Their limits,
-   together with the centered integral identity, cancel the one-step mean and
-   leave exactly `(∫ X b)/(b : ℝ)`. This use of ordinary `T` is the reason no
-   unjustified ergodicity claim for `T^[b]` is needed.
-5. Expose a generic fixed-block almost-everywhere upper-limsup theorem for
-   `IsIntegrableSubadditiveProcessCandidate T μ X` on an ergodic probability
-   space. Retain pointwise nonnegativity as an explicit hypothesis: it gives
-   the real sequence the lower bound required by the conditionally complete
-   `limsup` API and matches the log-positive cocycle application.
-6. Take a countable almost-everywhere intersection over positive `b`, combine
-   the fixed-block bounds with
-   `integratedLogPlusGrowthRate_eq_sInf`, and expose the direct
-   `DiscreteMatrixCocycle` theorem. Audit the set-image and `csInf` side
-   conditions instead of treating the infimum as automatic.
-7. Compile boundaries for horizon zero, a one-point additive process attaining
-   equality, the two-cycle ergodic-but-nonmixing base, and the explicit failure
-   of powered-map ergodicity. Audit that no injectivity, surjectivity,
-   invertibility, mixing, or convergence-rate assumption appears.
-8. Pair every substantive declaration with one comprehensive Development
-   Notebook, extend the textbook Knowledge Base, create deterministic cards
-   and accessible figures, run independent theorem/prose/source/visual audits
-   and responsive browser QA, replay the full gate locally and on RunPod,
-   update this checkpoint, and push the coherent milestone to `main`.
+1. define finite visit counts and prove their indicator-Birkhoff identity;
+2. integrate the count exactly using preservation and `integral_indicator₀`;
+3. define the finite bad-block set with lengths starting at one;
+4. prove null measurability from centered-process integrability and finite
+   unions;
+5. privately select one witnessing length at each marked start, with a safe
+   default on the empty branch;
+6. invoke RMT-21's `le_mul_card_of_greedy_cover` to obtain the pointwise
+   visit-count bound;
+7. integrate that bound and substitute the centered-integral identity;
+8. let the ambient horizon tend to infinity in
+   `δ * (H + m) ≤ c * H * μ.real badSet` and audit division by negative `c`;
+9. expose the generic finite bad-block measure ratio; and
+10. specialize it to the log-positive cocycle rate without introducing an
+    ergodicity premise.
 
-RMT-29 is an upper-limsup milestone, not yet the full Kingman theorem. It must
-not claim a matching lower bound, existence of the normalized process limit,
-a raw-log cocycle limit, a Lyapunov exponent, an Oseledets splitting, or
-ergodicity of any powered map. Those conclusions require the later lower-bound
-and extended-log bridges.
+Compile explicit boundaries for `m = 0`, `H = 0` with positive `m`, the zero
+process, a process positive only at time zero, zero measure, a nonergodic
+preserved identity system, equality at the strict threshold, finite-measure
+rescaling, and an empty matrix index. Keep `NullMeasurableSet` rather than
+silently upgrading almost-everywhere measurability to ordinary measurability.
+
+RMT-31 can then use one-sided almost invariance and ergodic zero-one rigidity
+to prove the lower-liminf endpoint, specialize it to cocycles, and combine it
+with RMT-29. RMT-30 itself must not claim a lower liminf, samplewise
+convergence, equality with the integrated rate, full Kingman convergence,
+`L¹` convergence, limit-integral interchange, powered-map ergodicity, a
+signed logarithmic rate, a Lyapunov exponent, or an Oseledets splitting.
 
 ## Dependency-Ordered Roadmap
 
@@ -554,8 +605,11 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Positive-finite-mass and probability ergodic specializations identifying
   the invariant target with the correctly normalized constant, with
   pre-ergodic rigidity kept separate from measure-preserving convergence.
-- [ ] Subadditive or multiplicative-ergodic infrastructure before asymptotic
-  exponents.
+- [x] Kingman-style upper-limsup control from finite phase averaging and
+  original-map Birkhoff limits, including the all-block log-positive cocycle
+  bound by the integrated Fekete rate.
+- [ ] Finite bad-block measure control, the complementary lower-liminf theorem,
+  and full log-positive Kingman convergence before asymptotic exponents.
 - [ ] One explicitly selected meaning of stochastic stability.
 
 ### Deterministic discrete dynamics
@@ -1179,14 +1233,19 @@ k-invariance precedes approximation claims.
   averages, finite-measure Vitali `L¹` convergence, noninvertible
   restricted-measure integral transport, and identification of the full
   pointwise limit as conditional expectation onto the exact invariant sigma
-  algebra.
+  algebra. RMT-28 now identifies that invariant target with the correctly
+  total-mass-normalized constant under positive finite mass and with the raw
+  integral under probability normalization. RMT-29 now adds the generic
+  nonnegative subadditive upper-limsup estimate and the all-block log-positive
+  cocycle bound by the integrated Fekete rate, using only Birkhoff averages
+  under the original map.
   `Measure.real` still totalizes infinite extended measure
   to zero: local finiteness is a sufficient conversion gate, not a necessary
   condition for every individual projected limit, and no unconditional general
   real-continuity theorem is available. The existing interfaces still do not
-  prove the positive-finite-mass or probability ergodic constant formula,
-  prove a marked-set density theorem, prove a subadditive ergodic theorem, or
-  obtain a samplewise cocycle-growth limit.
+  prove the finite bad-block measure ratio, a complementary lower-liminf
+  estimate, full subadditive convergence, a signed log-growth limit, or a
+  samplewise Lyapunov exponent.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -1985,6 +2044,44 @@ Checkpoint/skill milestone QA:
   proved identity and the same gate passed there in 10.14 seconds. The
   32-vCPU, 128-GB billed-memory builder remains running under the owner's
   continuing approval.
+- RMT-29 Lean audit: the 411-line module has SHA-256
+  `396662e201627c84e59aafd94476187ca280a00812d4df14af90994c5d5cc77a`,
+  four documented public declarations, four private analytic helpers, ten
+  private boundary-support items, three compiled anonymous examples, and four
+  source axiom prints. Two independent read-only reviews recompiled the leaf
+  and aggregator and audited the finite integral transport, coefficient
+  asymptotic, real-limsup boundedness gates, residue recombination, centered
+  cancellation, almost-everywhere countable intersection, `sInf` direction,
+  time-zero totalization, and the ergodic-flip/nonergodic-square boundary. No
+  theorem, assumption, proof-hole, unsafe-declaration, or axiom blocker
+  remains; every printed footprint is exactly `propext`, `Classical.choice`,
+  and `Quot.sound`.
+- RMT-29 teaching audit: the deterministic body-only regex counts 4,327 words
+  in the Notebook, 3,628 in the Deep Dive, and 562 in the limit-superior
+  glossary. The Notebook maps the complete 25-item source order and includes
+  twenty-four solved exercises; the Deep Dive has thirty-two. Three
+  deterministic cards reproduce byte-for-byte at 1200x630, all twelve SVGs
+  parse and pass direct visual inspection, and all generators pass ShellCheck.
+  An independent source-to-prose audit corrected the negative-quadratic real
+  `limsup` countermodel, positive-mass normalization, successor induction,
+  compiled-versus-explanatory labels, source citations, and asset callsites.
+- Rendered RMT-29 QA: the Notebook, Deep Dive, and glossary routes each expose
+  exactly one article heading at 1440x1000 and 390x844. Source math matches the
+  rendered 15+83, 27+117, and 4+11 display-plus-inline KaTeX counts at both
+  widths. All twelve lazy figures load; there are zero KaTeX errors, raw
+  delimiters, page-level overflow, broken images, failed HTTP responses, or
+  console failures. The rendered pass found and fixed one Goldmark-swallowed
+  display whose continuation had begun with a plus sign.
+- RMT-29 full repository gate: local `make check` completes all 3,210 Lean
+  jobs, checkpoint and 34/34 coverage checks, four hygiene regression tests,
+  the 119-file teaching scan, and the 366-page warning-fatal Hugo render in
+  6.85 seconds. The exact source-only tree was synchronized to the approved
+  retained RunPod builder without `.env`, Git metadata, local `.lake`,
+  generated Hugo output, or private review files; every replay proved identity.
+  The first full gate passed there in 10.29 seconds, the final-content replay
+  passed in 8.40 seconds, and the final checkpoint-only synchronization also
+  replayed green. The 32-vCPU, 128-GB billed-memory builder and 100-GB
+  persistent volume remain retained under the owner's continuing approval.
 - Research-workflow skill audit: the project skill now incorporates the
   source-to-statement, exploratory-proof, informalization, canonization, and
   human/AI provenance lessons from arXiv:2607.17477 without creating a
@@ -1993,6 +2090,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `7da572a`: identify finite-measure ergodic Birkhoff constants, including the
+  probability-integral endpoint, complete teaching layer, and exact RMT-29
+  upper-limsup plan.
 - `8b1da2c`: identify the finite-measure pointwise Birkhoff limit as
   conditional expectation onto the exact invariant sigma algebra, with its
   complete Notebook, textbook Deep Dive, and glossary layer.

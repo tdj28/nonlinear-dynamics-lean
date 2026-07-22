@@ -14,6 +14,7 @@ import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
 import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup
 
 /-!
 # Random cocycles
@@ -92,6 +93,14 @@ almost everywhere constant. On a finite nonzero measure it is the normalized
 integral average; on a probability measure it is the ordinary integral. Full
 ergodicity supplies measure preservation only when this identification is
 combined with the pointwise theorem. The specialization adds no bijectivity,
-mixing, or powered-map hypothesis. These layers deliberately stop before
-Kingman's subadditive ergodic theorem or a samplewise exponent claim.
+mixing, or powered-map hypothesis. A final one-sided asymptotic layer combines
+finite phase averaging with the ordinary ergodic Birkhoff theorem to bound the
+almost-everywhere normalized upper limsup of every nonnegative integrable
+shifted-subadditive candidate by every normalized positive-block integral.
+For cocycle log-positive growth, taking the infimum over blocks gives the
+deterministic integrated Fekete rate. The Birkhoff averages remain along the
+original base map, so no ergodicity of a powered map is assumed. This is only
+Kingman's upper-bound half: it proves neither samplewise convergence nor
+equality with the integrated rate, limit integrability, a Lyapunov exponent,
+or an Oseledets splitting.
 -/

@@ -1427,6 +1427,12 @@ Lyapunov exponents and Oseledets splittings require further integrability,
 measurability, invariant-subspace, and multiplicative structure. Those remain
 later milestones.
 
+[RMT-29]({{< relref "/development-notebook/2026/07/subadditive-upper-limsup-from-phase-averaging-in-lean" >}})
+now takes the next checked step: it combines the RMT-28 probability-integral
+Birkhoff endpoint with finite phase averaging to prove the upper limsup bound
+for nonnegative subadditive processes. It still makes no lower-bound or
+samplewise-convergence claim.
+
 ## References
 
 <a id="ref-rmt28-birkhoff"></a>**George D. Birkhoff.**

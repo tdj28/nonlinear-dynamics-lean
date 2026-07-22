@@ -215,7 +215,9 @@ make blog-serve-tailscale
 
 The target binds only the machine's Tailscale IPv4 interface, prints its
 MagicDNS URL, and does not enable Funnel or publish the preview to the public
-internet. Tailnet access rules still apply. Override the port when needed with
+internet. The Hugo site is mounted at that URL's root, so use the printed URL
+as-is and do not append `/blog`. Tailnet access rules still apply. Override the
+port when needed with
 `make blog-serve-tailscale BLOG_PORT=1444`. Stop either server with `Ctrl+C`.
 
 ## Formalization layout
@@ -521,6 +523,18 @@ The first active sequence is:
     normalization then reduces the target to the ordinary integral. The
     module adds no injectivity, surjectivity, invertibility, mixing, rate, or
     powered-map ergodicity assumption.
+34. [`RandomCocycles/SubadditiveUpperLimsup.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean)
+    proves the upper half of a Kingman-style pointwise estimate. Exact finite
+    Birkhoff-sum integration and centered-process cancellation connect the
+    finite phase-average inequality to the ergodic Birkhoff limit under the
+    original map. Every positive block then bounds the almost-everywhere
+    normalized upper limsup of a nonnegative integrable shifted-subadditive
+    process. The cocycle specialization intersects all block events and uses
+    the deterministic Fekete infimum to reach the integrated log-positive
+    growth rate. A compiled two-cycle records why no ergodicity of a powered
+    map may be smuggled into the proof. This remains one-sided: it proves no
+    lower liminf bound, samplewise convergence, signed Lyapunov exponent, or
+    Oseledets splitting.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
@@ -532,11 +546,13 @@ identification stage first found the general conditional-expectation target,
 then isolated pre-ergodic rigidity from measure preservation, positive total
 mass, and probability normalization. The additive finite-measure Birkhoff
 track is therefore complete at the correctly normalized ergodic constant.
-The next asymptotic stage connects the finite packing machinery to a
-Kingman-style subadditive theorem. The pinned Mathlib release supplies finite
-Birkhoff algebra and ergodic primitives, but no ready-made pointwise Birkhoff
-or Kingman theorem. A samplewise cocycle-growth limit, Lyapunov exponent, or
-Oseledets splitting remains unavailable until those dependencies are checked.
+The first subadditive asymptotic stage now connects finite phase averaging to
+the additive ergodic theorem and proves the normalized upper-limsup estimate.
+The pinned Mathlib release supplies finite Birkhoff algebra and ergodic
+primitives, but no ready-made pointwise Birkhoff or Kingman theorem. A matching
+lower mechanism and a full convergence proof remain before any samplewise
+cocycle-growth limit. A signed Lyapunov exponent or Oseledets splitting needs
+further multiplicative infrastructure beyond that endpoint.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

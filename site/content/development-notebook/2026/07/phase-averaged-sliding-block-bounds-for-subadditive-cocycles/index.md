@@ -1355,6 +1355,12 @@ identify where ergodicity is used, and justify every limit, integral, and
 invariance step. RMT-20's finite Birkhoff sum is infrastructure for that work,
 not a substitute for it.
 
+[RMT-29]({{< relref "/development-notebook/2026/07/subadditive-upper-limsup-from-phase-averaging-in-lean" >}})
+is the later checked consumer of this upper mechanism. It combines phase
+averaging with ordinary-map ergodic Birkhoff convergence to obtain an upper
+limsup estimate, while retaining the separate lower-bound and convergence
+gap.
+
 For matrix cocycles, the signed-growth program remains farther away. The
 current observable is log-positive and therefore controls an expansion
 envelope. Signed Lyapunov exponents, singular values, exterior powers, and

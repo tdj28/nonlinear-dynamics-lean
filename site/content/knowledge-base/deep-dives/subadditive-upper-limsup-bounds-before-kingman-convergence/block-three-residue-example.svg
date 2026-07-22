@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="560" viewBox="0 0 760 560" role="img" aria-labelledby="blockThreeTitle blockThreeDesc">
+  <title id="blockThreeTitle">A block-three example covers all residue classes</title>
+  <desc id="blockThreeDesc">Three rows show horizons with remainders zero, one, and two for block length three. The available complete-block prefix can be one block shorter near a boundary. The phase-averaging coefficient already includes division by block length and approaches one third.</desc>
+  <rect width="760" height="560" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:18px;font-weight:700}.h{font-size:14px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}</style>
+  <text x="24" y="30" class="t title">Worked example: block length three</text><text x="24" y="51" class="t m">These are schematic horizons, not empirical observations.</text>
+  <rect x="24" y="78" width="712" height="88" rx="12" class="blue"/><text x="46" y="107" class="t h">LANE ZERO</text><text x="168" y="107" class="t s">3, 6, 9, 12</text><text x="168" y="136" class="t m">complete blocks align with the horizon</text>
+  <rect x="24" y="182" width="712" height="88" rx="12" class="cream"/><text x="46" y="211" class="t h">LANE ONE</text><text x="168" y="211" class="t s">4, 7, 10, 13</text><text x="168" y="240" class="t m">one boundary step remains</text>
+  <rect x="24" y="286" width="712" height="88" rx="12" class="clay"/><text x="46" y="315" class="t h">LANE TWO</text><text x="168" y="315" class="t s">5, 8, 11, 14</text><text x="168" y="344" class="t m">two boundary steps remain</text>
+  <rect x="24" y="396" width="344" height="116" rx="13" class="clay"/><text x="48" y="426" class="t h">PREFIX EFFECT</text><text x="48" y="454" class="t s">Near a boundary, the complete-block</text><text x="48" y="474" class="t s">prefix may be one block shorter.</text><text x="48" y="497" class="t m">This loss vanishes after normalization.</text>
+  <rect x="392" y="396" width="344" height="116" rx="13" class="green"/><text x="416" y="426" class="t h">COEFFICIENT CHECK</text><text x="416" y="454" class="t s">Division by block length is already included.</text><text x="416" y="477" class="t h">THE LIMITING SHARE IS ONE THIRD</text><text x="416" y="497" class="t m">It does not tend to one.</text>
+  <text x="24" y="542" class="t s">All three lanes recombine into one complete-sequence upper limsup bound.</text>
+</svg>

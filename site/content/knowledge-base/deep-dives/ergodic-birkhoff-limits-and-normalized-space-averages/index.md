@@ -93,6 +93,10 @@ The immediate predecessor is
 [Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}}).
 The earlier assumption-separation chapter is
 [Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}}).
+The later subadditive consumer is
+[Subadditive Upper Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}}),
+which applies this probability-integral endpoint only under the original map
+and proves an upper estimate rather than full Kingman convergence.
 The compact companion is {{< refterm "ergodicity" >}}.
 
 ## Choose a route up

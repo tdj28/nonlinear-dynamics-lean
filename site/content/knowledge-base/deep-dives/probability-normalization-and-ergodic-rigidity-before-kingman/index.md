@@ -1244,6 +1244,11 @@ The remaining asymptotic milestones must supply pointwise and then
 subadditive convergence infrastructure. They must not rename the RMT-17
 candidate or the later convergence-event dichotomy as Kingman convergence.
 
+[Subadditive Upper Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}})
+now supplies one such later layer. It uses the probability and ergodic gates
+to prove the upper limsup half for a nonnegative process and preserves the
+missing lower-bound and convergence boundary.
+
 ## References
 
 <a id="ref-prob-erg-deep-probability"></a>**Mathlib contributors.**

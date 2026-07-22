@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="650" viewBox="0 0 760 650" role="img" aria-labelledby="rmt29LadderTitle rmt29LadderDesc">
+  <title id="rmt29LadderTitle">RMT-29 proves a one-sided upper limsup bound</title>
+  <desc id="rmt29LadderDesc">A five-rung ladder passes from centering through finite phase averaging, ordinary-map Birkhoff limits, every positive block, and the deterministic infimum. A separate blocked rung says that the lower bound and convergence remain unproved.</desc>
+  <rect width="760" height="650" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:18px;font-weight:700}.h{font-size:14px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#ladderArrow)}</style>
+  <defs><marker id="ladderArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#A67C52"/></marker></defs>
+  <text x="24" y="30" class="t title">The checked ladder reaches an upper ceiling, not a limit</text>
+  <text x="24" y="51" class="t m">All asymptotic averaging stays under the original transformation.</text>
+  <rect x="120" y="76" width="520" height="70" rx="12" class="blue"/><text x="144" y="104" class="t h">ONE. CENTER THE PROCESS</text><text x="144" y="128" class="t s">Subtract the one-step orbit majorant.</text>
+  <path d="M380 149V171" class="arrow"/>
+  <rect x="120" y="178" width="520" height="70" rx="12" class="cream"/><text x="144" y="206" class="t h">TWO. AVERAGE EVERY RESIDUE PHASE</text><text x="144" y="230" class="t s">The finite bound covers the complete sequence.</text>
+  <path d="M380 251V273" class="arrow"/>
+  <rect x="120" y="280" width="520" height="70" rx="12" class="blue"/><text x="144" y="308" class="t h">THREE. USE ORDINARY-MAP BIRKHOFF LIMITS</text><text x="144" y="332" class="t s">No ergodicity of a powered map is assumed.</text>
+  <path d="M380 353V375" class="arrow"/>
+  <rect x="120" y="382" width="520" height="70" rx="12" class="green"/><text x="144" y="410" class="t h">FOUR. CAP BY EACH POSITIVE BLOCK</text><text x="144" y="434" class="t s">Probability mass makes the raw integral the right scale.</text>
+  <path d="M380 455V477" class="arrow"/>
+  <rect x="120" y="484" width="520" height="70" rx="12" class="green"/><text x="144" y="512" class="t h">FIVE. TAKE THE DETERMINISTIC INFIMUM</text><text x="144" y="536" class="t s">The cocycle corollary reaches the log-positive Fekete rate.</text>
+  <rect x="24" y="576" width="712" height="50" rx="11" class="clay"/><text x="44" y="599" class="t h">STOP LINE: LOWER BOUND STILL MISSING</text><text x="44" y="617" class="t s">Upper limsup only. No convergence, equality, or signed Lyapunov claim.</text>
+</svg>
