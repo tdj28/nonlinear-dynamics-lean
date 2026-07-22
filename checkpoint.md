@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 16:39 PDT
+Last updated: 2026-07-22 16:49 PDT
 
-Audited baseline: `main` at `cf9401e`
+Audited baseline: `main` at `be3d962`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `be3d962`: rebuild the induced infinity operator norm around one exact
+  two-by-two row-sum calculation, a column-sum near-miss, an equality-attaining
+  vector, finite-product growth, and an executed standalone `Std` worksheet.
 - `cf9401e`: rebuild realized empirical spectral measures, their outer laws,
   finite random-matrix products, and deterministic forward products; execute
   all four local worksheets and preserve the law-versus-mean type boundary.

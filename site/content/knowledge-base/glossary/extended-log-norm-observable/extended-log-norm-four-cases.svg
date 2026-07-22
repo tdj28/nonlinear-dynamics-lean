@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1040"
+     viewBox="0 0 1200 1040" role="img"
+     aria-labelledby="fourCasesTitle fourCasesDesc">
+  <title id="fourCasesTitle">Four matrices compared by extended log norm and log-positive norm</title>
+  <desc id="fourCasesDesc">Four diagonal two by two matrices have infinity norms zero, one half, one, and e squared. Their extended log norms are respectively bottom or negative infinity, negative log two, zero, and two. Their real log-positive values are zero, zero, zero, and two. A number-line panel distinguishes bottom from finite negative values and from top or positive infinity, which no finite matrix norm reaches. A final cocycle strip shows how norm submultiplicativity becomes log subadditivity.</desc>
+  <defs>
+    <pattern id="dotPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#315B73" opacity="0.32"/>
+    </pattern>
+    <pattern id="slashPattern" width="10" height="10" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#9A5A35" stroke-width="2" opacity="0.3"/>
+    </pattern>
+    <marker id="caseArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#8D6B47"/>
+    </marker>
+    <style>
+      .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#202A33}
+      .title{font-size:27px;font-weight:750}
+      .sub{font-size:15px;fill:#53616C}
+      .h{font-size:18px;font-weight:750}
+      .label{font-size:14px;font-weight:700;letter-spacing:.3px}
+      .body{font-size:14px}
+      .small{font-size:12px;fill:#53616C}
+      .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:20px;fill:#162936}
+      .mathBig{font-family:"STIX Two Text","Times New Roman",serif;font-size:24px;font-weight:700;fill:#162936}
+      .mono{font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;fill:#243641}
+    </style>
+  </defs>
+
+  <rect width="1200" height="1040" fill="#F7F5F0"/>
+  <rect x="32" y="28" width="1136" height="82" rx="18" fill="#E7EEF1" stroke="#315B73" stroke-width="1.5"/>
+  <text x="62" y="66" class="t title">One finite norm, two logarithmic observables</text>
+  <text x="62" y="92" class="t sub">The signed extended log preserves contraction and exact collapse; log⁺ keeps only expansion above one.</text>
+
+  <!-- Four fully worked matrix cards. -->
+  <g transform="translate(32,138)">
+    <rect width="266" height="370" rx="18" fill="#F8E9E2" stroke="#9A5A35" stroke-width="2"/>
+    <rect width="266" height="48" rx="18" fill="url(#slashPattern)"/>
+    <text x="18" y="31" class="t h">A₀ — exact collapse</text>
+    <text x="133" y="92" text-anchor="middle" class="t mathBig">[ 0   0 ]</text>
+    <text x="133" y="120" text-anchor="middle" class="t mathBig">[ 0   0 ]</text>
+    <line x1="18" y1="143" x2="248" y2="143" stroke="#D6B6A5"/>
+    <text x="18" y="171" class="t label">ROW TOTALS</text>
+    <text x="18" y="196" class="t math">0, 0  →  ‖A₀‖∞ = 0</text>
+    <text x="18" y="231" class="t label">EXTENDED LOG</text>
+    <text x="18" y="258" class="t mathBig">Log_ext 0 = ⊥</text>
+    <text x="18" y="280" class="t small">bottom = negative infinity</text>
+    <text x="18" y="313" class="t label">REAL LOG-POSITIVE</text>
+    <text x="18" y="340" class="t mathBig">log⁺ 0 = 0</text>
+    <text x="18" y="360" class="t small">collapse is erased by the envelope</text>
+  </g>
+
+  <g transform="translate(322,138)">
+    <rect width="266" height="370" rx="18" fill="#FFFDF9" stroke="#8D6B47" stroke-width="2"/>
+    <rect width="266" height="48" rx="18" fill="url(#dotPattern)"/>
+    <text x="18" y="31" class="t h">A½ — contraction</text>
+    <text x="133" y="92" text-anchor="middle" class="t mathBig">[ ½   0 ]</text>
+    <text x="133" y="120" text-anchor="middle" class="t mathBig">[ 0   0 ]</text>
+    <line x1="18" y1="143" x2="248" y2="143" stroke="#D5C7B4"/>
+    <text x="18" y="171" class="t label">ROW TOTALS</text>
+    <text x="18" y="196" class="t math">½, 0  →  ‖A½‖∞ = ½</text>
+    <text x="18" y="231" class="t label">EXTENDED LOG</text>
+    <text x="18" y="258" class="t mathBig">Log_ext ½ = −log 2</text>
+    <text x="18" y="280" class="t small">a finite negative real value</text>
+    <text x="18" y="313" class="t label">REAL LOG-POSITIVE</text>
+    <text x="18" y="340" class="t mathBig">log⁺ ½ = 0</text>
+    <text x="18" y="360" class="t small">contraction is clamped to zero</text>
+  </g>
+
+  <g transform="translate(612,138)">
+    <rect width="266" height="370" rx="18" fill="#E9F1E5" stroke="#5D7A52" stroke-width="2"/>
+    <rect width="266" height="48" rx="18" fill="url(#dotPattern)"/>
+    <text x="18" y="31" class="t h">I — neutral norm</text>
+    <text x="133" y="92" text-anchor="middle" class="t mathBig">[ 1   0 ]</text>
+    <text x="133" y="120" text-anchor="middle" class="t mathBig">[ 0   1 ]</text>
+    <line x1="18" y1="143" x2="248" y2="143" stroke="#B8CDAF"/>
+    <text x="18" y="171" class="t label">ROW TOTALS</text>
+    <text x="18" y="196" class="t math">1, 1  →  ‖I‖∞ = 1</text>
+    <text x="18" y="231" class="t label">EXTENDED LOG</text>
+    <text x="18" y="258" class="t mathBig">Log_ext 1 = 0</text>
+    <text x="18" y="280" class="t small">zero means norm one, not collapse</text>
+    <text x="18" y="313" class="t label">REAL LOG-POSITIVE</text>
+    <text x="18" y="340" class="t mathBig">log⁺ 1 = 0</text>
+    <text x="18" y="360" class="t small">the observables agree here</text>
+  </g>
+
+  <g transform="translate(902,138)">
+    <rect width="266" height="370" rx="18" fill="#E5EEF4" stroke="#315B73" stroke-width="2"/>
+    <rect width="266" height="48" rx="18" fill="url(#slashPattern)"/>
+    <text x="18" y="31" class="t h">Aₑ² — expansion</text>
+    <text x="133" y="92" text-anchor="middle" class="t mathBig">[ e²   0 ]</text>
+    <text x="133" y="120" text-anchor="middle" class="t mathBig">[ 0    0 ]</text>
+    <line x1="18" y1="143" x2="248" y2="143" stroke="#B5CBD8"/>
+    <text x="18" y="171" class="t label">ROW TOTALS</text>
+    <text x="18" y="196" class="t math">e², 0  →  ‖Aₑ²‖∞ = e²</text>
+    <text x="18" y="231" class="t label">EXTENDED LOG</text>
+    <text x="18" y="258" class="t mathBig">Log_ext e² = 2</text>
+    <text x="18" y="280" class="t small">a finite positive real value</text>
+    <text x="18" y="313" class="t label">REAL LOG-POSITIVE</text>
+    <text x="18" y="340" class="t mathBig">log⁺ e² = 2</text>
+    <text x="18" y="360" class="t small">expansion above one is retained</text>
+  </g>
+
+  <!-- Extended-real line versus the positive-part clamp. -->
+  <rect x="32" y="536" width="1136" height="222" rx="18" fill="#FFFDF9" stroke="#B8AC9C" stroke-width="1.5"/>
+  <text x="58" y="570" class="t h">Do not merge the two infinities—or the two zeros</text>
+  <text x="58" y="595" class="t small">The top row is the extended-real output. The bottom row is the real-valued log-positive envelope.</text>
+
+  <line x1="130" y1="650" x2="1080" y2="650" stroke="#315B73" stroke-width="3" marker-end="url(#caseArrow)"/>
+  <circle cx="146" cy="650" r="8" fill="#9A5A35"/>
+  <circle cx="420" cy="650" r="8" fill="#8D6B47"/>
+  <circle cx="650" cy="650" r="8" fill="#5D7A52"/>
+  <circle cx="850" cy="650" r="8" fill="#315B73"/>
+  <text x="146" y="627" text-anchor="middle" class="t math">⊥ = −∞</text>
+  <text x="420" y="627" text-anchor="middle" class="t math">−log 2</text>
+  <text x="650" y="627" text-anchor="middle" class="t math">0</text>
+  <text x="850" y="627" text-anchor="middle" class="t math">2</text>
+  <text x="1080" y="627" text-anchor="middle" class="t math">⊤ = +∞</text>
+  <text x="146" y="680" text-anchor="middle" class="t small">zero matrix</text>
+  <text x="420" y="680" text-anchor="middle" class="t small">norm ½</text>
+  <text x="650" y="680" text-anchor="middle" class="t small">norm 1</text>
+  <text x="850" y="680" text-anchor="middle" class="t small">norm e²</text>
+  <text x="1080" y="680" text-anchor="middle" class="t small">unreachable here</text>
+
+  <path d="M146 702 C260 742, 480 728, 650 716" fill="none" stroke="#9A5A35" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M420 702 C500 730, 570 725, 650 716" fill="none" stroke="#8D6B47" stroke-width="2" stroke-dasharray="6 5"/>
+  <path d="M650 702 L650 716" fill="none" stroke="#5D7A52" stroke-width="2"/>
+  <path d="M850 702 L850 716" fill="none" stroke="#315B73" stroke-width="2"/>
+  <text x="58" y="730" class="t label">AFTER log⁺</text>
+  <text x="650" y="733" text-anchor="middle" class="t mathBig">0</text>
+  <text x="850" y="733" text-anchor="middle" class="t mathBig">2</text>
+  <text x="1080" y="733" text-anchor="middle" class="t small">codomain is ℝ, so no endpoints</text>
+
+  <!-- Cocycle and measurability strip. -->
+  <rect x="32" y="786" width="1136" height="222" rx="18" fill="#162936"/>
+  <text x="58" y="824" class="t h" style="fill:#FFFDF8">Why this is the raw cocycle-growth observable</text>
+  <rect x="58" y="850" width="300" height="86" rx="12" fill="#E5EEF4"/>
+  <text x="208" y="880" text-anchor="middle" class="t label">COCYCLE SPLIT</text>
+  <text x="208" y="910" text-anchor="middle" class="t math">C(m+k,ω)=C(k,Tᵐω)C(m,ω)</text>
+  <path d="M360 893 L414 893" fill="none" stroke="#D2B37C" stroke-width="3" marker-end="url(#caseArrow)"/>
+  <rect x="420" y="850" width="300" height="86" rx="12" fill="#F3E8E0"/>
+  <text x="570" y="880" text-anchor="middle" class="t label">NORM BUDGET</text>
+  <text x="570" y="910" text-anchor="middle" class="t math">N(m+k) ≤ N(k)∘Tᵐ · N(m)</text>
+  <path d="M722 893 L776 893" fill="none" stroke="#D2B37C" stroke-width="3" marker-end="url(#caseArrow)"/>
+  <rect x="782" y="850" width="360" height="86" rx="12" fill="#E9F1E5"/>
+  <text x="962" y="880" text-anchor="middle" class="t label">EXTENDED LOG BUDGET</text>
+  <text x="962" y="910" text-anchor="middle" class="t math">L(m+k) ≤ L(k)∘Tᵐ + L(m)</text>
+  <text x="58" y="972" class="t body" style="fill:#E4EBEF">Measurable entries → finite row sums → finite maximum → measurable norm → measurable extended log.</text>
+  <text x="1142" y="972" text-anchor="end" class="t small" style="fill:#BFCBD2">No integral, normalization, or long-time limit has been taken.</text>
+</svg>
