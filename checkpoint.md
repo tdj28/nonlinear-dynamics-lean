@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 12:52 PDT
+Last updated: 2026-07-22 13:24 PDT
 
-Audited baseline: `main` at `90576e9`
+Audited baseline: `main` at `bf25c66`
 
 Active direction: **paused at the user's request so the existing work can be
 reviewed over the next few days. Do not resume autonomous expansion until the
@@ -57,6 +57,35 @@ to the last low-disk event.
 
 Historical local build results below remain valid evidence for their recorded
 commits. They are not instructions for future work.
+
+## GitHub Pages Publication Policy
+
+- `.github/workflows/pages.yml` is the public-site release path. A relevant
+  push to `main` installs pinned Hugo Extended 0.160.1, runs only
+  workstation-safe checkpoint/content/Hugo checks, builds with the Pages
+  action's repository-aware base URL, and deploys through the `github-pages`
+  environment. It never invokes Lean, Lake, Mathlib, or paid cloud compute.
+- `canonifyURLs: true` is required because the project is served beneath
+  `/nonlinear-dynamics-lean/`, while the layouts contain root-relative
+  navigation. Production validation must scan rendered HTML for any remaining
+  single-slash-rooted `href` or `src` attributes.
+- The workflow is deliberately production-only: it does not pass
+  `--buildDrafts`. At this checkpoint, a production render contains 14 pages;
+  the draft-inclusive local review render contains 405. The substantive
+  Development Notebook and Knowledge Base corpus remains excluded from Pages
+  until explicit editorial publication decisions are made. Draft source may
+  still be readable through the repository, depending on repository visibility.
+- Hugo mounts checked `.lean` files from
+  `formalization/NonlinearDynamics/` into the public artifact. Those source
+  files are therefore public even when paired articles remain drafts. Secrets,
+  `.env`, Git metadata, build caches, cloud identifiers, and private review
+  material remain outside both mounted publication roots.
+- The repository owner must select **Settings → Pages → Build and deployment →
+  Source → GitHub Actions** once. The expected URL is
+  `https://tdj28.github.io/nonlinear-dynamics-lean/`. GitHub Pages is public,
+  including when the source repository itself is private. If this milestone's
+  push runs before enablement, rerun its failed workflow or use its manual
+  dispatch after selecting the Pages source.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -1869,6 +1898,17 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
+- GitHub Pages publication QA on 2026-07-22: the production-only Hugo build
+  rendered 14 pages and the draft-inclusive local review build rendered 405
+  pages with warnings fatal under Hugo Extended 0.160.1. The repository-subpath
+  production artifact contains no single-slash-rooted HTML `href` or `src`,
+  retains its site CSS/JavaScript, and includes all 63 mounted checked Lean
+  sources byte-for-byte.
+  `make checkpoint-check`, all seventeen coverage-contract regression tests,
+  all four content-hygiene regression tests, the 132-file hygiene scan,
+  `make site-check`, workflow syntax inspection, and `git diff --check` pass
+  without invoking Lean. The local Mathlib compiled build tree remains absent.
+
 - Build-host policy QA on 2026-07-22: `make lean`,
   `CLOUD_LEAN_BUILD=1 make setup`, `CLOUD_LEAN_BUILD=1 make lean-file ...`,
   and `CLOUD_LEAN_BUILD=1 make check` each refused on macOS before invoking
@@ -2922,6 +2962,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `bf25c66`: enforce a permanent cloud-only Lean/Mathlib build policy with
+  guarded Make targets, exact manifest verification, source-only cloud sync,
+  and a workstation-safe validation path.
 - `90576e9`: record termination of the exact project RunPod compute resource,
   preservation of its 100 GB cache-snapshot volume, conservative local disk
   cleanup, and the paused RMT-35 resume handoff.

@@ -289,6 +289,46 @@ content page, derives the exact URL from the module name, and verifies that the
 recorded SHA-256 still matches the checked source. No `.env`, build cache, Git
 metadata, or other formalization artifact is published by this mount.
 
+## Publish with GitHub Pages
+
+The repository includes a GitHub Actions workflow at
+`.github/workflows/pages.yml`. On each relevant push to `main`, it installs the
+pinned Hugo Extended 0.160.1 release, runs the workstation-safe checkpoint and
+site checks, builds the production site for the repository subpath, and deploys
+the result to GitHub Pages. It does **not** invoke Lean, Lake, Mathlib, or any
+cloud builder.
+
+To activate it, open the repository on GitHub and select **Settings → Pages →
+Build and deployment → Source → GitHub Actions**. The expected project URL is:
+
+```text
+https://tdj28.github.io/nonlinear-dynamics-lean/
+```
+
+This first push may start the workflow before Pages is enabled and fail during
+the configuration step. After selecting **GitHub Actions**, rerun that failed
+workflow from the **Actions** tab or choose **Run workflow**; the workflow also
+supports manual dispatch for exactly this case.
+
+The deployment intentionally omits Hugo drafts. At the current checkpoint that
+means the production artifact contains the public site shell and indexes, while
+the substantive Development Notebook and Knowledge Base chapters remain
+excluded from Pages until their `draft: true` flags are deliberately removed.
+The draft Markdown may still be readable in the GitHub repository, depending on
+repository visibility. Local preview targets continue to include drafts. The
+mounted `.lean` sources are static publication assets and therefore **are
+public** under the Pages URL even while their paired articles remain drafts.
+
+GitHub Pages sites are publicly accessible even when their source repository is
+private. Never put `.env`, API keys, credentials, cloud identifiers, private
+review material, or generated build caches beneath `site/` or
+`formalization/NonlinearDynamics/`. To publish drafts in the future, make that a
+separate reviewed publication decision instead of adding `--buildDrafts` to the
+workflow casually. See the
+[GitHub Pages custom-workflow guide](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
+and the [Hugo deployment guide](https://gohugo.io/host-and-deploy/host-on-github-pages/)
+for the underlying deployment model.
+
 ## Formalization layout
 
 ```text

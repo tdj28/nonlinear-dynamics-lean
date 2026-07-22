@@ -1,4 +1,5 @@
 baseURL: '/'
+canonifyURLs: true
 languageCode: 'en-us'
 title: 'Nonlinear Dynamics, Formally'
 description: 'Physics, mathematics, and machine-checked proofs of nonlinear dynamics.'
