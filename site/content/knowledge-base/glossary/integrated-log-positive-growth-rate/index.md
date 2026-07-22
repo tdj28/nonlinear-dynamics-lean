@@ -299,6 +299,12 @@ samplewise limit.
 derives all thirteen declarations, explains the two proof strands entering
 Fekete's theorem, and audits every assumption and nonclaim.
 
+[The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
+shows how a later milestone proves that the samplewise normalized log-positive
+observable converges almost everywhere to this already-defined deterministic
+rate. That theorem adds substantial ergodic and lower-deviation hypotheses; it
+does not turn any RMT-16 declaration into a samplewise or signed-growth claim.
+
 [Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
 develops the RMT-15 predecessor. The
 {{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}}

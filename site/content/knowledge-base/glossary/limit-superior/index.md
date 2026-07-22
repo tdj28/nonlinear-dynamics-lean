@@ -91,7 +91,8 @@ complete real `Filter.limsup` instead totalizes this sequence to
 set whose infimum is taken is all of \(\mathbb R\). This is why an argument
 cannot silently move between extended-real intuition and the real-valued API.
 
-Related concepts: {{< refterm "almost-everywhere" "almost everywhere" >}},
+Related concepts: {{< refterm "limit-inferior" "limit inferior" >}},
+{{< refterm "almost-everywhere" "almost everywhere" >}},
 {{< refterm "birkhoff-sum" "Birkhoff sums" >}},
 {{< refterm "phase-averaging" "phase averaging" >}}, and
 {{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rates" >}}.
@@ -101,3 +102,7 @@ Further reading: Mathlib's pinned
 defines the filter operators and their order lemmas. The pinned
 [real order source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Algebra/Order/Archimedean/Real/Basic.lean)
 contains `Real.sInf_univ`.
+
+The paired lower-limit gate and its use in the completed log-positive
+convergence proof are developed in
+[The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}}).

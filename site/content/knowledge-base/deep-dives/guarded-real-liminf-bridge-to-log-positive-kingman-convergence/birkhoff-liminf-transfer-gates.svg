@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="birkhoff-gates-title birkhoff-gates-desc">
+  <title id="birkhoff-gates-title">Four order gates license the liminf transfer through addition</title>
+  <desc id="birkhoff-gates-desc">The centered normalized sequence supplies eventual lower boundedness from the rational null cover and upper boundedness from nonpositivity. The Birkhoff average supplies lower boundedness and the required coboundedness from convergence. These four gates enter the liminf-of-sum theorem, and the exact sum equals the original normalized process.</desc>
+  <defs>
+    <marker id="birkhoff-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16243A"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="700" fill="#F7F4F0"/>
+  <text x="70" y="62" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">CENTERED PLUS ADDITIVE TRANSFER</text>
+  <text x="70" y="105" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">The liminf-of-sum theorem has four gates</text>
+
+  <rect x="70" y="150" width="460" height="235" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="105" y="190" fill="#284E72" font-family="Arial, sans-serif" font-size="19" font-weight="700">CENTERED NORMALIZED SEQUENCE u(n)</text>
+  <rect x="105" y="220" width="390" height="58" rx="12" fill="#FFFDF8" stroke="#4B6787" stroke-width="2"/>
+  <text x="130" y="256" fill="#16243A" font-family="Arial, sans-serif" font-size="16" font-weight="700">Gate 1: eventually bounded below</text>
+  <rect x="105" y="298" width="390" height="58" rx="12" fill="#FFFDF8" stroke="#4B6787" stroke-width="2"/>
+  <text x="130" y="334" fill="#16243A" font-family="Arial, sans-serif" font-size="16" font-weight="700">Gate 2: globally at most zero</text>
+  <text x="105" y="374" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">Sources: rational null cover and centering</text>
+
+  <rect x="670" y="150" width="460" height="235" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="705" y="190" fill="#315F55" font-family="Arial, sans-serif" font-size="19" font-weight="700">BIRKHOFF AVERAGE v(n)</text>
+  <rect x="705" y="220" width="390" height="58" rx="12" fill="#FFFDF8" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="730" y="256" fill="#16243A" font-family="Arial, sans-serif" font-size="16" font-weight="700">Gate 3: eventually bounded below</text>
+  <rect x="705" y="298" width="390" height="58" rx="12" fill="#FFFDF8" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="730" y="334" fill="#16243A" font-family="Arial, sans-serif" font-size="16" font-weight="700">Gate 4: required coboundedness</text>
+  <text x="705" y="374" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">Source: convergence to the one-step integral</text>
+
+  <path d="M 300 385 C 310 430, 430 445, 500 470" fill="none" stroke="#4B6787" stroke-width="4" marker-end="url(#birkhoff-arrow)"/>
+  <path d="M 900 385 C 890 430, 770 445, 700 470" fill="none" stroke="#6F8D5E" stroke-width="4" marker-end="url(#birkhoff-arrow)"/>
+
+  <rect x="365" y="475" width="470" height="92" rx="18" fill="#16243A"/>
+  <text x="600" y="512" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">le_liminf_add</text>
+  <text x="600" y="542" text-anchor="middle" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="16">liminf u + liminf v is at most liminf of u + v</text>
+
+  <path d="M 600 568 L 600 605" stroke="#16243A" stroke-width="4" marker-end="url(#birkhoff-arrow)"/>
+  <rect x="250" y="615" width="700" height="58" rx="29" fill="#8B3E33"/>
+  <text x="600" y="651" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="700">Exact identity: u(n) + v(n) = original normalized process</text>
+</svg>

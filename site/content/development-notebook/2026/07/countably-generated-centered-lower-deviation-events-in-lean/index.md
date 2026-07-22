@@ -862,9 +862,10 @@ a hidden logical input to those two proofs.
 
 ### Calling \(D_c\) a liminf event already
 
-Its quantifiers are designed for that future bridge, but no theorem in this
-module equates it with a library-level real `liminf`. RMT-33 must state and
-prove the bridge explicitly.
+Its quantifiers are designed for a lower-limit bridge, but no theorem in this
+module equates it with a library-level real `liminf`. The later
+[RMT-33 Notebook]({{< relref "/development-notebook/2026/07/log-positive-kingman-convergence-from-rational-lower-deviations-in-lean" >}})
+states and proves the guarded bridge explicitly.
 
 ### Reading log-positive growth as signed asymptotic growth
 
@@ -1095,19 +1096,19 @@ event and its exact formal interface are this project's adaptation.
 
 What equivalence remains before \(D_c\) can prove a lower-liminf statement?
 
-**Solution.** RMT-33 must connect membership in \(D_c\) with the event that
-the real lower limit of \(Y_n(\omega)/n\) lies strictly below \(c\), including
-the exact filter and positive-time conventions.
+**Solution.** The later RMT-33 module connects membership in \(D_c\) with
+frequent strict threshold crossings and then with a real lower-limit failure,
+including the exact filter, boundedness, and positive-time conventions.
 
 ### Exercise 29: reject a full Kingman claim
 
 Why does nullity of \(D_c\) for every \(c\lt\delta\) not yet finish samplewise
 Kingman convergence?
 
-**Solution.** The event-to-liminf bridge is still absent, and a complete
+**Solution.** The event-to-liminf bridge is absent from RMT-32, and a complete
 convergence theorem must combine the lower bound with the earlier upper
 limsup bound at the same deterministic rate. The present module proves only
-the null-event component.
+the null-event component; RMT-33 later supplies those additional theorems.
 
 ### Exercise 30: read the cocycle threshold
 
@@ -1180,13 +1181,13 @@ bound below one also holds. Probability is therefore not decorative notation
 around the final theorem. It changes which numerical value represents the
 full branch.
 
-RMT-32 reaches the last event-level step of the lower-bound route. The next
-milestone must connect this hand-built countable event to the exact real
-`liminf` formulation and combine it with the upper-limsup machinery. That
-bridge must be checked, not inferred from the suggestive name
-`centeredStrictLowerDeviationSet`.
+RMT-32 reaches the last event-level step of the lower-bound route. The
+subsequent RMT-33 milestone connects this hand-built countable event to a
+guarded real `liminf` formulation and combines it with the upper-limsup
+machinery. That bridge is checked rather than inferred from the suggestive
+name `centeredStrictLowerDeviationSet`.
 
-## Navigation: previous and future milestones
+## Navigation: adjacent milestones
 
 **Previous, RMT-31:**
 [All-Positive-Length Centered Bad-Block Control in Lean]({{< relref "/development-notebook/2026/07/all-positive-length-centered-bad-block-control-in-lean" >}})
@@ -1200,10 +1201,11 @@ develops the mathematics as a textbook ascent, with the event design,
 one-sided shift geometry, and measure-theoretic rigidity separated into
 reusable conceptual layers.
 
-**Future scope, RMT-33:** identify the countably generated event with the
-appropriate strict real-liminf event, derive the almost-sure centered lower
-bound, and combine it with the checked upper-limsup route toward the exact
-samplewise Kingman statement. RMT-32 does not pre-claim any of those results.
+**Next, RMT-33:**
+[Log-Positive Kingman Convergence from Rational Lower Deviations in Lean]({{< relref "/development-notebook/2026/07/log-positive-kingman-convergence-from-rational-lower-deviations-in-lean" >}})
+builds the guarded real-liminf bridge, derives the almost-everywhere centered
+and uncentered lower bounds, and combines them with the checked upper-limsup
+route. RMT-32 itself does not pre-claim any of those later results.
 
 ## References
 

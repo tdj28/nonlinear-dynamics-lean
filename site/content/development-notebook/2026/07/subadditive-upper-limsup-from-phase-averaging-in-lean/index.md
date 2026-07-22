@@ -596,6 +596,12 @@ It does not establish:
 - mixing, independence, stationarity beyond the preserved dynamical base; or
 - a quantitative convergence rate.
 
+Those are the boundaries of RMT-29 itself. The later
+[RMT-33 Notebook]({{< relref "/development-notebook/2026/07/log-positive-kingman-convergence-from-rational-lower-deviations-in-lean" >}})
+supplies the guarded lower-liminf half and obtains convergence for the
+log-positive cocycle observable without retroactively strengthening any
+declaration in this module.
+
 ## Twenty-four solved exercises
 
 ### Exercise 1: integrate one iterate
@@ -758,7 +764,8 @@ What is the next analytic ridge toward Kingman convergence?
 
 **Solution.** A complementary lower-liminf mechanism strong enough to meet
 the upper bound and establish the samplewise limit, with its own exact
-integrability and invariance obligations.
+integrability and invariance obligations. RMT-33 later discharges that ridge
+for the log-positive cocycle observable.
 
 ## Reproduction and audit
 

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="final-squeeze-title final-squeeze-desc">
+  <title id="final-squeeze-title">Four inputs close the real convergence squeeze</title>
+  <desc id="final-squeeze-desc">The integrated log-positive rate lies below the samplewise liminf, and the samplewise limsup lies below the same rate. Nonnegativity supplies eventual lower boundedness, while a convergent Birkhoff majorant supplies eventual upper boundedness. A central convergence node receives all four inputs.</desc>
+  <defs>
+    <marker id="squeeze-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B3E33"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="650" fill="#F7F4F0"/>
+  <text x="70" y="62" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">FINAL CONDITIONAL-COMPLETENESS GATE</text>
+  <text x="70" y="105" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">A squeeze needs two inequalities and two bounds</text>
+
+  <rect x="70" y="155" width="360" height="120" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="105" y="195" fill="#284E72" font-family="Arial, sans-serif" font-size="18" font-weight="700">LOWER ENDPOINT</text>
+  <text x="105" y="232" fill="#16243A" font-family="Arial, sans-serif" font-size="17">rate is at most samplewise liminf</text>
+  <text x="105" y="257" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">new in milestone 33</text>
+
+  <rect x="770" y="155" width="360" height="120" rx="18" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="805" y="195" fill="#8B3E33" font-family="Arial, sans-serif" font-size="18" font-weight="700">UPPER ENDPOINT</text>
+  <text x="805" y="232" fill="#16243A" font-family="Arial, sans-serif" font-size="17">samplewise limsup is at most rate</text>
+  <text x="805" y="257" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">proved in milestone 29</text>
+
+  <rect x="70" y="365" width="360" height="120" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="105" y="405" fill="#315F55" font-family="Arial, sans-serif" font-size="18" font-weight="700">LOWER BOUNDEDNESS</text>
+  <text x="105" y="442" fill="#16243A" font-family="Arial, sans-serif" font-size="17">log-positive normalization is nonnegative</text>
+  <text x="105" y="467" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">global witness: zero</text>
+
+  <rect x="770" y="365" width="360" height="120" rx="18" fill="#FBF9F6" stroke="#8B3E33" stroke-width="2" stroke-dasharray="9 6"/>
+  <text x="805" y="405" fill="#8B3E33" font-family="Arial, sans-serif" font-size="18" font-weight="700">UPPER BOUNDEDNESS</text>
+  <text x="805" y="442" fill="#16243A" font-family="Arial, sans-serif" font-size="17">convergent Birkhoff average majorizes</text>
+  <text x="805" y="467" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">eventual witness from convergence</text>
+
+  <path d="M 430 215 C 500 235, 505 275, 535 303" fill="none" stroke="#4B6787" stroke-width="4" marker-end="url(#squeeze-arrow)"/>
+  <path d="M 770 215 C 700 235, 695 275, 665 303" fill="none" stroke="#A67C52" stroke-width="4" marker-end="url(#squeeze-arrow)"/>
+  <path d="M 430 425 C 500 405, 505 365, 535 337" fill="none" stroke="#6F8D5E" stroke-width="4" marker-end="url(#squeeze-arrow)"/>
+  <path d="M 770 425 C 700 405, 695 365, 665 337" fill="none" stroke="#8B3E33" stroke-width="4" marker-end="url(#squeeze-arrow)"/>
+
+  <circle cx="600" cy="320" r="104" fill="#16243A" stroke="#A67C52" stroke-width="5"/>
+  <text x="600" y="294" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">ONE FINITE LIMIT</text>
+  <text x="600" y="328" text-anchor="middle" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="16">normalized log-positive</text>
+  <text x="600" y="354" text-anchor="middle" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="16">growth converges to rate</text>
+
+  <rect x="275" y="535" width="650" height="72" rx="36" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="600" y="566" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="16" font-weight="700">tendsto_of_le_liminf_of_limsup_le</text>
+  <text x="600" y="591" text-anchor="middle" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">all four facts hold on the same almost-everywhere sample</text>
+</svg>

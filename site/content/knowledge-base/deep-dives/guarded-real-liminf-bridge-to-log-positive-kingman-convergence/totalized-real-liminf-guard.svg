@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="liminf-guard-title liminf-guard-desc">
+  <title id="liminf-guard-title">The eventual-lower-bound guard separates honest and totalized real liminf</title>
+  <desc id="liminf-guard-desc">The upper lane has a nonempty set of eventual real lower bounds and an informative supremum. The lower lane uses one minus n, has no eventual real lower bound, and receives the totalized real supremum of the empty set, zero. A guard blocks the lower lane from being interpreted as an extended lower limit.</desc>
+  <defs>
+    <marker id="guard-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B6787"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="680" fill="#F7F4F0"/>
+  <text x="70" y="62" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">CONDITIONALLY COMPLETE REAL ORDER</text>
+  <text x="70" y="105" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">A total value is not always an asymptotic value</text>
+
+  <rect x="70" y="145" width="1060" height="190" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <rect x="70" y="375" width="1060" height="190" rx="18" fill="#FBF9F6" stroke="#8B3E33" stroke-width="3" stroke-dasharray="10 7"/>
+
+  <rect x="95" y="174" width="245" height="130" rx="14" fill="#FFFDF8" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="120" y="209" fill="#315F55" font-family="Arial, sans-serif" font-size="17" font-weight="700">HONEST BRANCH</text>
+  <text x="120" y="244" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">late values stay</text>
+  <text x="120" y="270" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">above one real floor</text>
+
+  <path d="M 350 239 L 430 239" stroke="#4B6787" stroke-width="4" marker-end="url(#guard-arrow)"/>
+  <rect x="445" y="174" width="280" height="130" rx="14" fill="#FFFDF8" stroke="#4B6787" stroke-width="2"/>
+  <text x="475" y="211" fill="#16243A" font-family="Arial, sans-serif" font-size="17" font-weight="700">EVENTUAL LOWER BOUNDS</text>
+  <text x="475" y="247" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">nonempty set</text>
+  <text x="475" y="274" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">bounded above by late values</text>
+
+  <path d="M 735 239 L 815 239" stroke="#4B6787" stroke-width="4" marker-end="url(#guard-arrow)"/>
+  <rect x="830" y="174" width="265" height="130" rx="14" fill="#315F55" stroke="#315F55" stroke-width="2"/>
+  <text x="860" y="211" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="700">INFORMATIVE SUPREMUM</text>
+  <text x="860" y="247" fill="#EAF1E5" font-family="Arial, sans-serif" font-size="16">finite real liminf</text>
+  <text x="860" y="274" fill="#EAF1E5" font-family="Arial, sans-serif" font-size="16">with intended meaning</text>
+
+  <rect x="95" y="404" width="245" height="130" rx="14" fill="#FFFDF8" stroke="#8B3E33" stroke-width="2"/>
+  <text x="120" y="439" fill="#8B3E33" font-family="Arial, sans-serif" font-size="17" font-weight="700">ESCAPE BRANCH</text>
+  <text x="120" y="474" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">sequence: 1 minus n</text>
+  <text x="120" y="500" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">falls below every real floor</text>
+
+  <path d="M 350 469 L 430 469" stroke="#8B3E33" stroke-width="4" marker-end="url(#guard-arrow)"/>
+  <rect x="445" y="404" width="280" height="130" rx="14" fill="#FFFDF8" stroke="#8B3E33" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="465" y="441" fill="#16243A" font-family="Arial, sans-serif" font-size="15" font-weight="700">NO EVENTUAL LOWER BOUND</text>
+  <text x="475" y="477" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">the defining set is empty</text>
+  <text x="475" y="504" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">extended limit would be minus infinity</text>
+
+  <path d="M 735 469 L 815 469" stroke="#8B3E33" stroke-width="4" marker-end="url(#guard-arrow)"/>
+  <rect x="830" y="404" width="265" height="130" rx="14" fill="#8B3E33" stroke="#8B3E33" stroke-width="2"/>
+  <text x="860" y="441" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="700">TOTALIZED SUPREMUM</text>
+  <text x="860" y="477" fill="#F7EDEA" font-family="Arial, sans-serif" font-size="16">real sSup empty equals 0</text>
+  <text x="860" y="504" fill="#F7EDEA" font-family="Arial, sans-serif" font-size="16">not an extended lower limit</text>
+
+  <rect x="370" y="590" width="460" height="54" rx="27" fill="#16243A"/>
+  <text x="600" y="624" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">GUARD: prove eventual lower boundedness first</text>
+</svg>

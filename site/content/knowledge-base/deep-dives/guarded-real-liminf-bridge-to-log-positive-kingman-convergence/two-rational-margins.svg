@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="rational-margins-title rational-margins-desc">
+  <title id="rational-margins-title">Two rational margins have two logical jobs</title>
+  <desc id="rational-margins-desc">An order line places the samplewise lower limit before an inner rational q, then an outer rational c, then the deterministic target delta. The inner interval creates frequent crossings and event membership, while the outer interval places the event strictly inside the range where the prior nullity theorem applies.</desc>
+  <defs>
+    <marker id="margin-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16243A"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="600" fill="#F7F4F0"/>
+  <text x="70" y="62" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">STRICT DENSITY, USED TWICE</text>
+  <text x="70" y="105" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">Do not spend the same rational margin twice</text>
+
+  <line x1="135" y1="265" x2="1065" y2="265" stroke="#16243A" stroke-width="5" marker-end="url(#margin-arrow)"/>
+  <line x1="235" y1="235" x2="235" y2="295" stroke="#16243A" stroke-width="4"/>
+  <line x1="475" y1="235" x2="475" y2="295" stroke="#284E72" stroke-width="5"/>
+  <line x1="755" y1="235" x2="755" y2="295" stroke="#8B3E33" stroke-width="5"/>
+  <line x1="995" y1="235" x2="995" y2="295" stroke="#315F55" stroke-width="5"/>
+
+  <circle cx="235" cy="265" r="13" fill="#16243A"/>
+  <circle cx="475" cy="265" r="13" fill="#284E72"/>
+  <circle cx="755" cy="265" r="13" fill="#8B3E33"/>
+  <circle cx="995" cy="265" r="13" fill="#315F55"/>
+
+  <text x="235" y="210" text-anchor="middle" fill="#16243A" font-family="Georgia, serif" font-size="24" font-weight="700">lower limit L</text>
+  <text x="475" y="210" text-anchor="middle" fill="#284E72" font-family="Georgia, serif" font-size="24" font-weight="700">inner q</text>
+  <text x="755" y="210" text-anchor="middle" fill="#8B3E33" font-family="Georgia, serif" font-size="24" font-weight="700">outer c</text>
+  <text x="995" y="210" text-anchor="middle" fill="#315F55" font-family="Georgia, serif" font-size="24" font-weight="700">target delta</text>
+
+  <rect x="300" y="335" width="350" height="155" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="330" y="375" fill="#284E72" font-family="Arial, sans-serif" font-size="18" font-weight="700">INNER JOB: MEMBERSHIP</text>
+  <text x="330" y="412" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">L below q gives frequent values below q.</text>
+  <text x="330" y="442" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">q below c places the sample in event D(c).</text>
+  <text x="330" y="472" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">q is a rational witness slope.</text>
+
+  <rect x="690" y="335" width="350" height="155" rx="18" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="720" y="375" fill="#8B3E33" font-family="Arial, sans-serif" font-size="18" font-weight="700">OUTER JOB: NULLITY</text>
+  <text x="720" y="412" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">c below delta preserves the strict gap.</text>
+  <text x="720" y="442" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="16">The prior theorem makes event D(c) null.</text>
+  <text x="720" y="472" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">c indexes the countable outer cover.</text>
+
+  <text x="600" y="550" text-anchor="middle" fill="#5A544C" font-family="Arial, sans-serif" font-size="15">Positions encode order only. Distances between marks have no quantitative meaning.</text>
+</svg>

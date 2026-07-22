@@ -704,6 +704,11 @@ develops the next checked layer. It turns visits to strict centered short-block
 failures into a finite real-measure ratio through ordered interval packing.
 That chapter still stops before the ergodic lower-liminf conclusion.
 
+[The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
+continues through the later rational null-event layer, exposes Mathlib's exact
+real-boundedness gates, and completes the log-positive convergence assembly.
+This later result does not change the one-sided scope of RMT-29 itself.
+
 ## Proof reproduction
 
 From the repository root, run:

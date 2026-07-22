@@ -91,6 +91,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation",
     "notebook": "site/content/development-notebook/2026/07/countably-generated-centered-lower-deviation-events-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman",
+    "notebook": "site/content/development-notebook/2026/07/log-positive-kingman-convergence-from-rational-lower-deviations-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup",
     "notebook": "site/content/development-notebook/2026/07/subadditive-upper-limsup-from-phase-averaging-in-lean/index.md"

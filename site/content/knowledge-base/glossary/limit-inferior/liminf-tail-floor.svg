@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="450" viewBox="0 0 760 450" role="img" aria-labelledby="tailFloorTitle tailFloorDesc">
+  <title id="tailFloorTitle">Limit inferior is the rising floor of sequence tails</title>
+  <desc id="tailFloorDesc">Three progressively later tail windows discard more of the finite prefix. Their infimum floors rise or stay level. An oscillating sequence can keep returning near the eventual lower edge while also moving above it, so the lower edge alone does not imply convergence.</desc>
+  <rect width="760" height="450" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:18px;font-weight:700}.h{font-size:14px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.floor{stroke:#A67C52;stroke-width:2;stroke-dasharray:7 5}</style>
+  <text x="24" y="30" class="t title">Move the tail forward and watch its floor rise</text>
+  <text x="24" y="51" class="t m">Conceptual order sketch: vertical position shows relative level, not measured data.</text>
+
+  <rect x="24" y="82" width="214" height="220" rx="13" class="blue"/>
+  <text x="44" y="112" class="t h">EARLY TAIL</text>
+  <polyline points="48,164 75,255 102,184 129,247 156,198 183,238 212,210" fill="none" stroke="#4B6787" stroke-width="2.3"/>
+  <line x1="44" y1="272" x2="218" y2="272" class="floor"/>
+  <text x="44" y="291" class="t m">lower tail floor</text>
+
+  <rect x="273" y="82" width="214" height="220" rx="13" class="cream"/>
+  <text x="293" y="112" class="t h">LATER TAIL</text>
+  <polyline points="297,170 324,235 351,190 378,230 405,201 432,225 461,210" fill="none" stroke="#7F786D" stroke-width="2.3"/>
+  <line x1="293" y1="250" x2="467" y2="250" class="floor"/>
+  <text x="293" y="269" class="t m">floor has risen</text>
+
+  <rect x="522" y="82" width="214" height="220" rx="13" class="green"/>
+  <text x="542" y="112" class="t h">EVENTUAL TAILS</text>
+  <polyline points="546,170 573,217 600,183 627,215 654,190 681,212 710,198" fill="none" stroke="#6F8D5E" stroke-width="2.3"/>
+  <line x1="542" y1="228" x2="716" y2="228" class="floor"/>
+  <text x="542" y="247" class="t m">eventual lower edge</text>
+
+  <rect x="24" y="326" width="344" height="92" rx="13" class="green"/>
+  <text x="48" y="356" class="t h">WHAT LIMINF REMEMBERS</text>
+  <text x="48" y="383" class="t s">The lowest level approached arbitrarily late.</text>
+  <text x="48" y="403" class="t m">Every finite prefix has disappeared.</text>
+
+  <rect x="392" y="326" width="344" height="92" rx="13" class="clay"/>
+  <text x="416" y="356" class="t h">WHAT IT DOES NOT PROVE</text>
+  <text x="416" y="383" class="t s">The upper edge may remain separated.</text>
+  <text x="416" y="403" class="t m">Lower control alone is not convergence.</text>
+</svg>

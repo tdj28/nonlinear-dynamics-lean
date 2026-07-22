@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="rmt33AddTitle rmt33AddDesc">
+  <title id="rmt33AddTitle">Transferring the centered lower limit through Birkhoff addition</title>
+  <desc id="rmt33AddDesc">A centered sequence and a convergent Birkhoff average each supply lower and upper one-sided bounds to an addition gate. Their lower limits combine and the exact pointwise identity identifies the result with the original normalized process.</desc>
+  <rect width="760" height="470" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+  </style>
+  <text x="24" y="30" class="t title">Adding back the orbit average spends four boundedness certificates</text>
+  <rect x="42" y="80" width="284" height="126" rx="14" class="blue"/>
+  <text x="68" y="111" class="t h">CENTERED NORMALIZED SEQUENCE</text>
+  <text x="68" y="139" class="t s">Lower: recovered off the null cover</text>
+  <text x="68" y="164" class="t s">Upper: pointwise ceiling at zero</text>
+  <text x="68" y="188" class="t m">Carries the Fekete-offset endpoint</text>
+  <rect x="434" y="80" width="284" height="126" rx="14" class="green"/>
+  <text x="460" y="111" class="t h">ONE-STEP BIRKHOFF AVERAGE</text>
+  <text x="460" y="139" class="t s">Lower: follows from convergence</text>
+  <text x="460" y="164" class="t s">Upper: follows from convergence</text>
+  <text x="460" y="188" class="t m">Limit equals the one-step integral</text>
+  <path d="M184 211 L313 267" stroke="#4B6787" stroke-width="3"/>
+  <path d="M576 211 L447 267" stroke="#6F8D5E" stroke-width="3"/>
+  <rect x="274" y="254" width="212" height="76" rx="14" class="clay"/>
+  <text x="318" y="284" class="t h">LOWER-LIMIT ADDITION</text>
+  <text x="311" y="308" class="t m">Sum of endpoints bounds sum below.</text>
+  <path d="M380 334 L380 363" stroke="#A67C52" stroke-width="3"/>
+  <path d="M373 356 L380 369 L387 356" fill="#A67C52"/>
+  <rect x="116" y="374" width="528" height="67" rx="14" class="neutral"/>
+  <text x="147" y="402" class="t h">EXACT POINTWISE IDENTITY</text>
+  <text x="147" y="426" class="t s">Centered normalization plus orbit average equals original normalization.</text>
+  <text x="24" y="459" class="t m">The algebraic identity and the lower-limit theorem are separate proof obligations.</text>
+</svg>

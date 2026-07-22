@@ -18,6 +18,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
 
 /-!
 # Random cocycles
@@ -124,7 +125,14 @@ density closes it at the target event. Preservation and finite mass upgrade
 that one-sided inclusion to almost invariance, finite-measure ergodicity gives
 the null-or-conull fork, and probability normalization lets the strict RMT-31
 ratio select the null branch. The cocycle endpoint uses the reusable centered
-Fekete-offset lower bound and retains the empty matrix-index boundary. The
-event is not yet identified with a real liminf, so full samplewise Kingman
-convergence remains a later theorem.
+Fekete-offset lower bound and retains the empty matrix-index boundary. A final
+real-liminf layer then identifies the exact guarded bridge from those rational
+events, uses a second countable rational exhaustion to obtain the
+almost-everywhere lower bound, and adds back the convergent one-step Birkhoff
+average.
+For the log-positive cocycle process, that lower liminf and the earlier upper
+limsup squeeze the normalized sequence to the integrated Fekete rate almost
+everywhere. Every real-liminf and real-limsup boundedness gate remains explicit,
+and the theorem still proves no signed logarithmic limit, limit-integral
+interchange, Lyapunov exponent, inverse control, or Oseledets splitting.
 -/

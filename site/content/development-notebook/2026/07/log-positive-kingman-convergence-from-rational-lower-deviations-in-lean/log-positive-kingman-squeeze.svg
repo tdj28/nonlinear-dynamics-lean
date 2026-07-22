@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="rmt33SqueezeTitle rmt33SqueezeDesc">
+  <title id="rmt33SqueezeTitle">Final log-positive Kingman convergence squeeze</title>
+  <desc id="rmt33SqueezeDesc">Lower-limit and upper-limit inequalities meet at the integrated log-positive growth rate. Nonnegativity supplies a lower bound and a convergent Birkhoff majorant supplies an upper bound, allowing the real sequence to converge.</desc>
+  <rect width="760" height="470" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.red{fill:#F4E5E2;stroke:#8B3E33;stroke-width:1.5}
+  </style>
+  <text x="24" y="30" class="t title">The limit is squeezed only after both real boundedness gates are checked</text>
+  <rect x="40" y="82" width="210" height="102" rx="14" class="blue"/>
+  <text x="66" y="112" class="t h">LOWER ENDPOINT</text>
+  <text x="66" y="139" class="t s">Integrated rate is no larger</text>
+  <text x="66" y="160" class="t s">than the real lower limit.</text>
+  <rect x="275" y="82" width="210" height="102" rx="14" class="green"/>
+  <text x="301" y="112" class="t h">COMMON RATE</text>
+  <text x="301" y="139" class="t s">Integrated log-positive</text>
+  <text x="301" y="160" class="t s">Fekete growth rate</text>
+  <rect x="510" y="82" width="210" height="102" rx="14" class="blue"/>
+  <text x="536" y="112" class="t h">UPPER ENDPOINT</text>
+  <text x="536" y="139" class="t s">Real upper limit is no larger</text>
+  <text x="536" y="160" class="t s">than the integrated rate.</text>
+  <path d="M254 133 L270 133" stroke="#A67C52" stroke-width="3"/>
+  <path d="M263 126 L274 133 L263 140" fill="#A67C52"/>
+  <path d="M490 133 L506 133" stroke="#A67C52" stroke-width="3"/>
+  <path d="M497 126 L508 133 L497 140" fill="#A67C52"/>
+  <rect x="70" y="237" width="278" height="104" rx="14" class="clay"/>
+  <text x="96" y="267" class="t h">LOWER BOUNDEDNESS GATE</text>
+  <text x="96" y="295" class="t s">Log-positive values are nonnegative.</text>
+  <text x="96" y="320" class="t m">Time zero is totalized to zero.</text>
+  <rect x="412" y="237" width="278" height="104" rx="14" class="red"/>
+  <text x="438" y="267" class="t h">UPPER BOUNDEDNESS GATE</text>
+  <text x="438" y="295" class="t s">A convergent Birkhoff average</text>
+  <text x="438" y="320" class="t m">eventually majorizes the sequence.</text>
+  <path d="M209 346 L329 388" stroke="#6F8D5E" stroke-width="3"/>
+  <path d="M551 346 L431 388" stroke="#6F8D5E" stroke-width="3"/>
+  <rect x="244" y="374" width="272" height="62" rx="14" class="green"/>
+  <text x="284" y="401" class="t h">ALMOST-EVERYWHERE TENDSTO</text>
+  <text x="300" y="423" class="t m">The normalized observable converges.</text>
+  <text x="24" y="459" class="t m">This is the log-positive envelope endpoint, not a signed Lyapunov exponent theorem.</text>
+</svg>

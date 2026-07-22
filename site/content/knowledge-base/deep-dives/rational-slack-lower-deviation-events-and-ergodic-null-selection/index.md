@@ -263,9 +263,11 @@ Second, the rational numbers are countable. A union over all real
 closed under arbitrary uncountable unions. Rational density keeps the semantic
 resolution while supplying the countable syntax needed by measure theory.
 
-RMT-32 does **not** yet prove an equality between \(D_c\) and a Mathlib
-expression involving <code>liminf</code>. The countersequence above validates
-the design; the exact formal bridge belongs to RMT-33.
+RMT-32 does **not** prove an equality between \(D_c\) and a Mathlib expression
+involving <code>liminf</code>. The countersequence above validates the design.
+The exact guarded bridge is proved in `SubadditiveKingman.lean` and explained in
+the later
+[RMT-33 Deep Dive]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}}).
 
 ## Pull a shifted witness back one step
 
@@ -730,18 +732,19 @@ statement into the final asymptotic theorem.
 
 {{< reference-figure
   src="rmt32-to-rmt33-handoff.svg"
-  alt="The completed RMT-32 side ends with nullity of the rationally generated strict event. A guarded bridge assigned to RMT-33 connects an exact lower-liminf exceptional set to that event, then combines the lower bound with the prior upper-limsup and additive Birkhoff results. Signed logarithms, Lyapunov exponents, and Oseledets splittings remain farther away."
-  caption="**Finding:** RMT-32 completes event construction, almost-invariance, ergodic dichotomy, and null-branch selection. RMT-33 owns the exact real-liminf bridge and final log-positive Kingman assembly with the existing upper-limsup and additive Birkhoff theorems. The farther topics are explicit nonclaims, not implied consequences of the arrow."
+  alt="The completed RMT-32 side ends with nullity of the rationally generated strict event. The now-completed guarded bridge in RMT-33 connects a lower-liminf exceptional set to that event, then combines the lower bound with the prior upper-limsup and additive Birkhoff results. Signed logarithms, Lyapunov exponents, and Oseledets splittings remain farther away."
+  caption="**Finding:** RMT-32 completes event construction, almost-invariance, ergodic dichotomy, and null-branch selection. RMT-33 subsequently closes the guarded real-liminf bridge and final log-positive Kingman assembly with the existing upper-limsup and additive Birkhoff theorems. The farther topics are explicit nonclaims, not implied consequences of the arrow."
 >}}
 
-The next milestone must prove an exact bridge of the following mathematical
-kind. For positive-time normalized slopes, strict lower-limit deviation below
-\(c\) must produce one rational \(q\lt c\) with witnesses beyond every
-cutoff, and conversely the rational event must imply the matching strict
-lower-limit statement. That equivalence must be expressed with the actual
-pinned Mathlib lower-limit API, including any extended-real or filter details.
+The subsequent milestone proves a guarded bridge of the following
+mathematical kind. For positive-time normalized slopes, strict lower-limit
+deviation below \(c\) produces one rational \(q\lt c\) with witnesses beyond
+every cutoff, and conversely the rational event implies the matching strict
+lower-limit statement when the real sequence has the required eventual lower
+bound. The pinned Mathlib lower-limit API makes those boundedness gates part of
+the theorem rather than silent paper notation.
 
-After that bridge, RMT-33 can combine:
+RMT-33 then combines:
 
 1. the RMT-32 null lower-deviation events;
 2. RMT-29's normalized upper-limsup estimate; and
@@ -1049,11 +1052,11 @@ values equal \(-1/n\) and approach zero. No fixed rational slope below
 
 What remains before a lower-liminf theorem can use RMT-32?
 
-**Solution.** RMT-33 must prove the exact equivalence or implication bridge
+**Solution.** RMT-33 proves the guarded implication and equivalence bridges
 between strict lower-limit deviation and the rationally generated event using
-the pinned Mathlib filter and lower-limit APIs. It must then combine the null
-event with the existing upper-limsup and additive Birkhoff results. RMT-32
-itself proves neither step.
+the pinned Mathlib filter and lower-limit APIs. It then combines the null event
+with the existing upper-limsup and additive Birkhoff results. RMT-32 itself
+proves neither step.
 
 ## Reproduce the checked interface
 
@@ -1081,8 +1084,9 @@ explains the RMT-31 once-bad union and finite-target measure projection.
 derives the finite-cap ratio that selects the RMT-32 null branch.
 
 [Subadditive Upper-Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}})
-develops the upper half that RMT-33 will eventually combine with this lower
-event architecture.
+develops the upper half later combined with this event architecture. Continue
+to [The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
+for that completed assembly.
 
 {{< refterm "ergodicity" "Ergodicity" >}} reviews invariant-event rigidity,
 and {{< refterm "ergodic-probability-base" "ergodic probability base" >}}

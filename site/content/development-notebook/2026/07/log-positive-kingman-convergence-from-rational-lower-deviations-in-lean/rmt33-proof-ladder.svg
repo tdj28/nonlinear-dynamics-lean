@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="rmt33LadderTitle rmt33LadderDesc">
+  <title id="rmt33LadderTitle">Five-stage proof ladder for milestone 33</title>
+  <desc id="rmt33LadderDesc">Five connected stages show total normalization, the guarded real lower-limit bridge, a rational null cover, Birkhoff addition, and the final log-positive convergence squeeze.</desc>
+  <rect width="760" height="470" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:12px;font-weight:700}.s{font-size:11px}.m{font-size:10px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.red{fill:#F4E5E2;stroke:#8B3E33;stroke-width:1.5}
+  </style>
+  <text x="24" y="30" class="t title">Milestone 33: from event nullity to samplewise convergence</text>
+  <text x="24" y="51" class="t m">Each stage exposes the condition consumed by the next one.</text>
+  <rect x="28" y="86" width="128" height="116" rx="13" class="neutral"/>
+  <text x="48" y="116" class="t h">1  NORMALIZE</text>
+  <text x="48" y="141" class="t s">Time zero is total.</text>
+  <text x="48" y="160" class="t s">Finite prefixes fade.</text>
+  <text x="48" y="181" class="t m">Pointwise interface</text>
+  <path d="M160 144 L181 144" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M175 137 L185 144 L175 151" fill="#A67C52"/>
+  <rect x="187" y="86" width="128" height="116" rx="13" class="red"/>
+  <text x="207" y="116" class="t h">2  GUARD</text>
+  <text x="207" y="141" class="t s">Frequent crossing</text>
+  <text x="207" y="160" class="t s">meets real liminf.</text>
+  <text x="207" y="181" class="t m">Lower bound visible</text>
+  <path d="M319 144 L340 144" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M334 137 L344 144 L334 151" fill="#A67C52"/>
+  <rect x="346" y="86" width="128" height="116" rx="13" class="blue"/>
+  <text x="366" y="116" class="t h">3  COVER</text>
+  <text x="366" y="141" class="t s">Use rational targets</text>
+  <text x="366" y="160" class="t s">strictly below rate.</text>
+  <text x="366" y="181" class="t m">Countable and null</text>
+  <path d="M478 144 L499 144" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M493 137 L503 144 L493 151" fill="#A67C52"/>
+  <rect x="505" y="86" width="128" height="116" rx="13" class="clay"/>
+  <text x="525" y="116" class="t h">4  ADD BACK</text>
+  <text x="525" y="141" class="t s">Centered process</text>
+  <text x="525" y="160" class="t s">plus orbit average.</text>
+  <text x="525" y="181" class="t m">Four bound gates</text>
+  <path d="M637 144 L658 144" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M652 137 L662 144 L652 151" fill="#A67C52"/>
+  <rect x="664" y="86" width="68" height="116" rx="13" class="green"/>
+  <text x="680" y="116" class="t h">5</text>
+  <text x="678" y="141" class="t h">SQUEEZE</text>
+  <text x="671" y="164" class="t m">almost</text>
+  <text x="667" y="178" class="t m">everywhere</text>
+  <text x="678" y="192" class="t m">limit</text>
+  <rect x="60" y="247" width="640" height="128" rx="16" class="green"/>
+  <text x="86" y="280" class="t h">THE CENTRAL REUSE</text>
+  <text x="86" y="309" class="t s">The rational null cover removes strict lower-limit failure.</text>
+  <text x="86" y="334" class="t s">Its complement also gives one fixed eventual lower bound.</text>
+  <text x="86" y="356" class="t m">That certificate makes later real lower-limit algebra semantically honest.</text>
+  <rect x="20" y="414" width="720" height="34" rx="10" class="blue"/>
+  <text x="48" y="436" class="t s">Endpoint: normalized log-positive cocycle growth converges to the integrated Fekete rate.</text>
+</svg>

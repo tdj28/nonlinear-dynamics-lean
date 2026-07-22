@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="proof-roadmap-title proof-roadmap-desc">
+  <title id="proof-roadmap-title">Five bridges to log-positive convergence</title>
+  <desc id="proof-roadmap-desc">A numbered route begins with arbitrarily late centered bad blocks, translates them into frequent inequalities, covers low real liminf by countably many rational events, extracts an eventual lower bound, adds back the Birkhoff average, and closes with matching liminf and limsup bounds.</desc>
+  <defs>
+    <marker id="road-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B3E33"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="680" fill="#F7F4F0"/>
+  <text x="70" y="62" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">MILESTONE 33 PROOF ROADMAP</text>
+  <text x="70" y="105" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">Each bridge changes the language of the claim</text>
+
+  <path d="M 250 230 L 285 230" stroke="#8B3E33" stroke-width="4" marker-end="url(#road-arrow)"/>
+  <path d="M 485 230 L 520 230" stroke="#8B3E33" stroke-width="4" marker-end="url(#road-arrow)"/>
+  <path d="M 720 230 L 755 230" stroke="#8B3E33" stroke-width="4" marker-end="url(#road-arrow)"/>
+  <path d="M 955 230 L 990 230" stroke="#8B3E33" stroke-width="4" marker-end="url(#road-arrow)"/>
+
+  <rect x="55" y="150" width="195" height="160" rx="16" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="86" cy="181" r="19" fill="#284E72"/>
+  <text x="86" y="188" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">1</text>
+  <text x="83" y="225" fill="#16243A" font-family="Arial, sans-serif" font-size="17" font-weight="700">BAD BLOCKS</text>
+  <text x="83" y="254" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">arbitrarily late</text>
+  <text x="83" y="278" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">becomes frequent</text>
+
+  <rect x="290" y="150" width="195" height="160" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="321" cy="181" r="19" fill="#8B3E33"/>
+  <text x="321" y="188" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">2</text>
+  <text x="318" y="225" fill="#16243A" font-family="Arial, sans-serif" font-size="17" font-weight="700">TWO MARGINS</text>
+  <text x="318" y="254" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">inner witness</text>
+  <text x="318" y="278" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">outer null target</text>
+
+  <rect x="525" y="150" width="195" height="160" rx="16" fill="#FBF9F6" stroke="#8B3E33" stroke-width="2"/>
+  <circle cx="556" cy="181" r="19" fill="#8B3E33"/>
+  <text x="556" y="188" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">3</text>
+  <text x="553" y="225" fill="#16243A" font-family="Arial, sans-serif" font-size="17" font-weight="700">NULL COVER</text>
+  <text x="553" y="254" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">liminf inequality</text>
+  <text x="553" y="278" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">and lower bound</text>
+
+  <rect x="760" y="150" width="195" height="160" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <circle cx="791" cy="181" r="19" fill="#315F55"/>
+  <text x="791" y="188" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">4</text>
+  <text x="788" y="225" fill="#16243A" font-family="Arial, sans-serif" font-size="17" font-weight="700">BIRKHOFF</text>
+  <text x="788" y="254" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">add the orbit</text>
+  <text x="788" y="278" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">average back</text>
+
+  <rect x="995" y="150" width="150" height="160" rx="16" fill="#16243A" stroke="#16243A" stroke-width="2"/>
+  <circle cx="1026" cy="181" r="19" fill="#A67C52"/>
+  <text x="1026" y="188" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="20" font-weight="700">5</text>
+  <text x="1023" y="225" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="700">SQUEEZE</text>
+  <text x="1023" y="254" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="15">liminf meets</text>
+  <text x="1023" y="278" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="15">limsup at rate</text>
+
+  <rect x="115" y="380" width="970" height="210" rx="20" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="155" y="427" fill="#16243A" font-family="Georgia, serif" font-size="24" font-weight="700">The semantic checkpoint sits in stage 3</text>
+  <line x1="155" y1="452" x2="1045" y2="452" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="155" y="491" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="17">Output A: the deterministic target is below the samplewise real liminf.</text>
+  <text x="155" y="528" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="17">Output B: one fixed real number lies below all sufficiently late centered values.</text>
+  <text x="155" y="565" fill="#8B3E33" font-family="Arial, sans-serif" font-size="17" font-weight="700">Both outputs are required before real liminf algebra is honest.</text>
+  <text x="70" y="642" fill="#5A544C" font-family="Arial, sans-serif" font-size="15">Dependency diagram. Box size does not encode proof length or difficulty.</text>
+</svg>

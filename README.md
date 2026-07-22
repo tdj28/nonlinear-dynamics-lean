@@ -568,7 +568,24 @@ The first active sequence is:
     normalization and the strict RMT-31 ratio select the null branch. The
     cocycle endpoint reuses a named centered Fekete-offset lower bound and
     remains valid for an empty matrix index. The exact bridge to a real
-    `liminf` and full samplewise Kingman convergence remain later steps.
+    `liminf` and the full samplewise convergence theorem for the log-positive
+    envelope are supplied only by the following module.
+38. [`RandomCocycles/SubadditiveKingman.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean)
+    completes the log-positive Kingman endpoint. It defines total normalized
+    original and centered processes, proves that time zero does not affect the
+    lower limit, and identifies rational lower-deviation membership with
+    frequent strict threshold crossings under the exact real-boundedness gates
+    required by Mathlib's conditionally complete `liminf`. A two-level rational
+    exhaustion turns every strict lower-liminf failure into a countable union
+    of RMT-32 null events and simultaneously supplies the eventual lower bound
+    needed to interpret the real lower limit honestly. The exact normalized
+    centering identity and the ergodic Birkhoff limit then lift the centered
+    estimate to the original process. For matrix cocycles, this lower bound
+    meets RMT-29's upper-limsup bound and yields almost-everywhere convergence
+    of the normalized finite real `log+` norm observable to its integrated
+    Fekete rate, including an empty matrix index. The theorem does not concern
+    the signed logarithm, `L¹` convergence, interchange of limit and integral,
+    inverse cocycles, Lyapunov exponents, or Oseledets splittings.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
@@ -590,12 +607,14 @@ from an asymptotic lower-deviation event. The countably generated layer then
 uses arbitrarily-late witnesses and one durable rational margin to build that
 strict event, proves its one-sided shift law and almost invariance, and selects
 the null branch on an ergodic probability base.
-The pinned Mathlib release supplies finite Birkhoff algebra and ergodic
-primitives, but no ready-made pointwise Birkhoff or Kingman theorem. A matching
-exact real-`liminf` bridge, the resulting lower-liminf estimate, and a full
-convergence proof remain before any samplewise cocycle-growth limit. A signed
-Lyapunov exponent or Oseledets splitting needs further multiplicative
-infrastructure beyond that endpoint.
+The guarded real-`liminf` layer now converts those null events into the
+complementary lower estimate, restores the one-step Birkhoff majorant, and
+combines the result with the upper `limsup` theorem. The pinned Mathlib release
+supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
+pointwise Birkhoff or Kingman theorem; the repository now closes that gap for
+the cocycle's finite real log-positive norm observable. A signed Lyapunov
+exponent or Oseledets splitting still needs negative-tail, zero-collapse, and
+further multiplicative infrastructure beyond this endpoint.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.

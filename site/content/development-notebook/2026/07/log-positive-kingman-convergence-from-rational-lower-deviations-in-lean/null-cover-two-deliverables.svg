@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="450" viewBox="0 0 760 450" role="img" aria-labelledby="rmt33CoverTitle rmt33CoverDesc">
+  <title id="rmt33CoverTitle">A rational null cover produces two almost-everywhere outputs</title>
+  <desc id="rmt33CoverDesc">A central countable union of rational lower-deviation events is null. On its complement, one branch produces a fixed eventual lower bound and another excludes strict lower-limit deviation. The branches combine into a paired theorem.</desc>
+  <rect width="760" height="450" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <text x="24" y="30" class="t title">The rational exhaustion is more than a measure-zero wrapper</text>
+  <rect x="190" y="76" width="380" height="98" rx="15" class="blue"/>
+  <text x="220" y="107" class="t h">COUNTABLE RATIONAL EXHAUSTION</text>
+  <text x="220" y="135" class="t s">Every target is strictly below the integral offset.</text>
+  <text x="220" y="157" class="t m">Milestone 32 makes every member null, so the union is null.</text>
+  <path d="M300 176 L220 226" stroke="#A67C52" stroke-width="3"/>
+  <path d="M226 216 L216 229 L231 227" fill="#A67C52"/>
+  <path d="M460 176 L540 226" stroke="#A67C52" stroke-width="3"/>
+  <path d="M529 227 L544 229 L534 216" fill="#A67C52"/>
+  <rect x="45" y="236" width="300" height="104" rx="14" class="clay"/>
+  <text x="70" y="266" class="t h">DELIVERABLE A</text>
+  <text x="70" y="293" class="t s">No frequent crossing of one fixed rational.</text>
+  <text x="70" y="317" class="t h">EVENTUAL LOWER BOUND</text>
+  <rect x="415" y="236" width="300" height="104" rx="14" class="green"/>
+  <text x="440" y="266" class="t h">DELIVERABLE B</text>
+  <text x="440" y="293" class="t s">No strict lower-limit deviation at target.</text>
+  <text x="440" y="317" class="t h">LOWER-LIMIT INEQUALITY</text>
+  <path d="M195 344 L310 382" stroke="#6F8D5E" stroke-width="3"/>
+  <path d="M565 344 L450 382" stroke="#6F8D5E" stroke-width="3"/>
+  <rect x="216" y="366" width="328" height="58" rx="13" class="green"/>
+  <text x="247" y="391" class="t h">PUBLIC ALMOST-EVERYWHERE PAIR</text>
+  <text x="258" y="412" class="t m">Certificate and numerical endpoint travel together.</text>
+</svg>
