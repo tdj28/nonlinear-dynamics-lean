@@ -1,51 +1,116 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390"
-     viewBox="0 0 760 390" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="640"
+     viewBox="0 0 920 640" role="img"
      aria-labelledby="independenceTitle independenceDesc">
-  <title id="independenceTitle">Joint probabilities factor under independence</title>
-  <desc id="independenceDesc">A two by two exact probability grid has four cells of one quarter. Each row margin and column margin is one half, so every cell is the product of its margins.</desc>
-  <rect width="760" height="390" fill="#F7F4F0"/>
+  <title id="independenceTitle">The same fair coordinate bits can be independent or dependent under different probability measures</title>
+  <desc id="independenceDesc">Two side-by-side probability tables use the same coordinate maps and have the same one-half row and column margins. Under the uniform measure all four cells have probability one quarter, so every cell factors. Under the diagonal measure the matching cells have probability one half and the other cells have probability zero, so the cell where both bits equal one does not equal the product of its margins.</desc>
+  <rect width="920" height="640" fill="#F7F4F0"/>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
-    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
-    .cellA{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .cellB{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .margin{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .result{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .title{font-size:17px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .body{font-size:13px}
+    .small{font-size:12px}
+    .muted{font-size:11px;fill:#5A544C}
+    .panel{fill:#FBF9F6;stroke:#A89C8E;stroke-width:1.6}
+    .cell{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .zero{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.6}
+    .diag{fill:url(#dependentHatch);stroke:#8A3E38;stroke-width:1.8}
+    .margin{fill:#F3E8E0;stroke:#95653E;stroke-width:1.6}
+    .pass{fill:#EAF1E5;stroke:#5F7F50;stroke-width:1.8}
+    .fail{fill:#F7E9E7;stroke:#8A3E38;stroke-width:1.8}
+    .footer{fill:#EAF1E5;stroke:#5F7F50;stroke-width:1.8}
   </style>
-  <text x="24" y="28" class="t title">Independence fills the joint grid by multiplying margins</text>
-  <text x="24" y="48" class="t m">Exact toy law: X and Y are fair bits.</text>
+  <defs>
+    <pattern id="dependentHatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#F7E9E7"/>
+      <path d="M-2 2 L2 -2 M0 8 L8 0 M6 10 L10 6"
+            stroke="#CF9C97" stroke-width="1"/>
+    </pattern>
+  </defs>
 
-  <text x="306" y="82" text-anchor="middle" class="t h">X = 0</text>
-  <text x="442" y="82" text-anchor="middle" class="t h">X = 1</text>
-  <text x="548" y="82" text-anchor="middle" class="t h">row margin</text>
-  <text x="180" y="137" text-anchor="middle" class="t h">Y = 0</text>
-  <text x="180" y="239" text-anchor="middle" class="t h">Y = 1</text>
+  <text x="24" y="30" class="t title">Independence belongs to the maps together with the probability measure</text>
+  <text x="24" y="52" class="t muted">The coordinate questions and their fair margins stay fixed; only the weights on the four outcomes change.</text>
 
-  <rect x="238" y="96" width="136" height="82" rx="8" class="cellA"/>
-  <rect x="374" y="96" width="136" height="82" rx="8" class="cellB"/>
-  <rect x="238" y="198" width="136" height="82" rx="8" class="cellB"/>
-  <rect x="374" y="198" width="136" height="82" rx="8" class="cellA"/>
-  <text x="306" y="130" text-anchor="middle" class="t s">joint outcome</text>
-  <text x="306" y="154" text-anchor="middle" class="t h">probability 1/4</text>
-  <text x="442" y="130" text-anchor="middle" class="t s">joint outcome</text>
-  <text x="442" y="154" text-anchor="middle" class="t h">probability 1/4</text>
-  <text x="306" y="232" text-anchor="middle" class="t s">joint outcome</text>
-  <text x="306" y="256" text-anchor="middle" class="t h">probability 1/4</text>
-  <text x="442" y="232" text-anchor="middle" class="t s">joint outcome</text>
-  <text x="442" y="256" text-anchor="middle" class="t h">probability 1/4</text>
+  <rect x="24" y="76" width="428" height="492" rx="14" class="panel"/>
+  <text x="44" y="104" class="t h">UNIFORM MEASURE: INDEPENDENT</text>
+  <text x="44" y="126" class="t muted">Each of the four bit pairs has probability 1/4.</text>
 
-  <rect x="528" y="96" width="112" height="82" rx="8" class="margin"/>
-  <rect x="528" y="198" width="112" height="82" rx="8" class="margin"/>
-  <text x="584" y="143" text-anchor="middle" class="t h">1/2</text>
-  <text x="584" y="245" text-anchor="middle" class="t h">1/2</text>
+  <text x="151" y="163" text-anchor="middle" class="t h">X = 0</text>
+  <text x="243" y="163" text-anchor="middle" class="t h">X = 1</text>
+  <text x="354" y="153" text-anchor="middle" class="t small">row</text>
+  <text x="354" y="168" text-anchor="middle" class="t small">margin</text>
+  <text x="72" y="219" text-anchor="middle" class="t h">Y = 0</text>
+  <text x="72" y="294" text-anchor="middle" class="t h">Y = 1</text>
 
-  <text x="180" y="318" text-anchor="middle" class="t h">column margin</text>
-  <rect x="238" y="294" width="136" height="46" rx="8" class="margin"/>
-  <rect x="374" y="294" width="136" height="46" rx="8" class="margin"/>
-  <text x="306" y="323" text-anchor="middle" class="t h">1/2</text>
-  <text x="442" y="323" text-anchor="middle" class="t h">1/2</text>
+  <rect x="105" y="180" width="92" height="72" rx="8" class="cell"/>
+  <rect x="197" y="180" width="92" height="72" rx="8" class="cell"/>
+  <rect x="105" y="252" width="92" height="72" rx="8" class="cell"/>
+  <rect x="197" y="252" width="92" height="72" rx="8" class="cell"/>
+  <text x="151" y="222" text-anchor="middle" class="t h">1/4</text>
+  <text x="243" y="222" text-anchor="middle" class="t h">1/4</text>
+  <text x="151" y="294" text-anchor="middle" class="t h">1/4</text>
+  <text x="243" y="294" text-anchor="middle" class="t h">1/4</text>
 
-  <rect x="24" y="354" width="712" height="26" rx="10" class="result"/>
-  <text x="380" y="372" text-anchor="middle" class="t s">Every cell: one quarter = one half times one half.</text>
+  <rect x="305" y="180" width="98" height="72" rx="8" class="margin"/>
+  <rect x="305" y="252" width="98" height="72" rx="8" class="margin"/>
+  <text x="354" y="222" text-anchor="middle" class="t h">1/2</text>
+  <text x="354" y="294" text-anchor="middle" class="t h">1/2</text>
+
+  <text x="67" y="355" text-anchor="middle" class="t small">column</text>
+  <text x="67" y="370" text-anchor="middle" class="t small">margin</text>
+  <rect x="105" y="338" width="92" height="48" rx="8" class="margin"/>
+  <rect x="197" y="338" width="92" height="48" rx="8" class="margin"/>
+  <rect x="305" y="338" width="98" height="48" rx="8" class="margin"/>
+  <text x="151" y="368" text-anchor="middle" class="t h">1/2</text>
+  <text x="243" y="368" text-anchor="middle" class="t h">1/2</text>
+  <text x="354" y="368" text-anchor="middle" class="t h">total 1</text>
+
+  <rect x="44" y="414" width="388" height="126" rx="12" class="pass"/>
+  <text x="64" y="441" class="t h">ALL FOUR CELLS PASS</text>
+  <text x="64" y="470" class="t body">Joint cell: one quarter</text>
+  <text x="64" y="496" class="t body">Product of its two margins: one quarter</text>
+  <text x="64" y="522" class="t h">THE JOINT TABLE FACTORS</text>
+
+  <rect x="468" y="76" width="428" height="492" rx="14" class="panel"/>
+  <text x="488" y="104" class="t h">DIAGONAL MEASURE: DEPENDENT</text>
+  <text x="488" y="126" class="t muted">Only matching bit pairs receive probability: 1/2 each.</text>
+
+  <text x="595" y="163" text-anchor="middle" class="t h">X = 0</text>
+  <text x="687" y="163" text-anchor="middle" class="t h">X = 1</text>
+  <text x="798" y="153" text-anchor="middle" class="t small">row</text>
+  <text x="798" y="168" text-anchor="middle" class="t small">margin</text>
+  <text x="516" y="219" text-anchor="middle" class="t h">Y = 0</text>
+  <text x="516" y="294" text-anchor="middle" class="t h">Y = 1</text>
+
+  <rect x="549" y="180" width="92" height="72" rx="8" class="diag"/>
+  <rect x="641" y="180" width="92" height="72" rx="8" class="zero"/>
+  <rect x="549" y="252" width="92" height="72" rx="8" class="zero"/>
+  <rect x="641" y="252" width="92" height="72" rx="8" class="diag"/>
+  <text x="595" y="222" text-anchor="middle" class="t h">1/2</text>
+  <text x="687" y="222" text-anchor="middle" class="t h">0</text>
+  <text x="595" y="294" text-anchor="middle" class="t h">0</text>
+  <text x="687" y="294" text-anchor="middle" class="t h">1/2</text>
+
+  <rect x="749" y="180" width="98" height="72" rx="8" class="margin"/>
+  <rect x="749" y="252" width="98" height="72" rx="8" class="margin"/>
+  <text x="798" y="222" text-anchor="middle" class="t h">1/2</text>
+  <text x="798" y="294" text-anchor="middle" class="t h">1/2</text>
+
+  <text x="511" y="355" text-anchor="middle" class="t small">column</text>
+  <text x="511" y="370" text-anchor="middle" class="t small">margin</text>
+  <rect x="549" y="338" width="92" height="48" rx="8" class="margin"/>
+  <rect x="641" y="338" width="92" height="48" rx="8" class="margin"/>
+  <rect x="749" y="338" width="98" height="48" rx="8" class="margin"/>
+  <text x="595" y="368" text-anchor="middle" class="t h">1/2</text>
+  <text x="687" y="368" text-anchor="middle" class="t h">1/2</text>
+  <text x="798" y="368" text-anchor="middle" class="t h">total 1</text>
+
+  <rect x="488" y="414" width="388" height="126" rx="12" class="fail"/>
+  <text x="508" y="441" class="t h">ONE CELL ALREADY FAILS</text>
+  <text x="508" y="470" class="t body">Joint cell where both bits are 1: one half</text>
+  <text x="508" y="496" class="t body">Product of its two margins: one quarter</text>
+  <text x="508" y="522" class="t h">SAME MARGINS, DIFFERENT JOINT LAW</text>
+
+  <rect x="24" y="592" width="872" height="32" rx="10" class="footer"/>
+  <text x="460" y="613" text-anchor="middle" class="t small">Same coordinate maps and same fair marginals; changing the measure changes independence.</text>
 </svg>

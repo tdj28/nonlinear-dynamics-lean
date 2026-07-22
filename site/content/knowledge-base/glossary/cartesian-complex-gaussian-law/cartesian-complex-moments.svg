@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="complex-law-title complex-law-desc">
+  <title id="complex-law-title">Cartesian complex Gaussian coordinates, moments, symmetry, and degenerate supports</title>
+  <desc id="complex-law-desc">Independent real Gaussian X with mean two and variance four and Y with mean minus one and variance one combine as Z equals X plus iY. The complex mean is two minus i, the centered squared magnitude has expectation five, and the pseudovariance is three. An axis-aligned ellipse depicts this anisotropic law. A circular comparison with both component variances five halves has the same total variance five but pseudovariance zero. Four lower cards show full-plane support when both variances are positive, vertical-line support when real variance is zero, horizontal-line support when imaginary variance is zero, and a point mass at the mean when both vanish.</desc>
+  <defs>
+    <pattern id="complex-re" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#f5daa1"/>
+      <rect width="4" height="12" fill="#9d662f"/>
+    </pattern>
+    <pattern id="complex-im" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#dcebe3"/>
+      <circle cx="4" cy="4" r="2.4" fill="#39715f"/>
+      <circle cx="11" cy="11" r="2.4" fill="#39715f"/>
+    </pattern>
+    <pattern id="complex-circle" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#e1e8f2"/>
+      <path d="M 0 7 H 14 M 7 0 V 14" stroke="#46678b" stroke-width="2"/>
+    </pattern>
+    <filter id="complex-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#332921" flood-opacity="0.13"/>
+    </filter>
+    <marker id="complex-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#705846"/>
+    </marker>
+    <style>
+      .ink { fill: #29231e; }
+      .muted { fill: #675c52; }
+      .title { font: 700 31px Georgia, serif; }
+      .heading { font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .body { font: 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .small { font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .equation { font: 700 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .center { text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="920" rx="24" fill="#f7f0e3"/>
+  <text x="48" y="52" class="title ink">Two real coordinate laws determine one complex law</text>
+  <text x="48" y="82" class="body muted">Means add by coordinates; component variances control total spread, pseudovariance, and support.</text>
+
+  <rect x="40" y="108" width="1120" height="210" rx="22" fill="#fffaf1" stroke="#997859" stroke-width="2" filter="url(#complex-shadow)"/>
+  <text x="68" y="148" class="heading ink">Concrete law: independent X and Y</text>
+
+  <rect x="68" y="172" width="260" height="104" rx="16" fill="url(#complex-re)" stroke="#915c2c" stroke-width="2"/>
+  <text x="198" y="208" class="heading ink center">X ~ N(2, 4)</text>
+  <text x="198" y="241" class="body ink center">mean 2, variance 4</text>
+  <text x="198" y="265" class="small ink center">real coordinate</text>
+
+  <text x="352" y="233" class="equation ink">independent</text>
+  <path d="M 345 252 H 463" stroke="#705846" stroke-width="3" marker-end="url(#complex-arrow)"/>
+
+  <rect x="480" y="172" width="260" height="104" rx="16" fill="url(#complex-im)" stroke="#39715f" stroke-width="2"/>
+  <text x="610" y="208" class="heading ink center">Y ~ N(-1, 1)</text>
+  <text x="610" y="241" class="body ink center">mean -1, variance 1</text>
+  <text x="610" y="265" class="small ink center">imaginary coordinate</text>
+
+  <path d="M 757 224 H 822" stroke="#705846" stroke-width="3" marker-end="url(#complex-arrow)"/>
+
+  <rect x="840" y="164" width="278" height="122" rx="16" fill="#fff2ef" stroke="#ad4036" stroke-width="2"/>
+  <text x="979" y="199" class="heading ink center">Z = X + iY</text>
+  <text x="979" y="235" class="equation ink center">E[Z] = 2 - i</text>
+  <text x="979" y="264" class="small muted center">product law, then coordinate pairing</text>
+  <text x="68" y="304" class="small muted">The variance parameter in N(mean, variance) is not a standard deviation.</text>
+
+  <rect x="40" y="342" width="1120" height="330" rx="22" fill="#fffaf1" stroke="#997859" stroke-width="2" filter="url(#complex-shadow)"/>
+  <text x="68" y="382" class="heading ink">Same total spread, different geometry</text>
+
+  <rect x="68" y="408" width="500" height="226" rx="18" fill="#fff7e9" stroke="#915c2c" stroke-width="2"/>
+  <text x="94" y="441" class="heading ink">Anisotropic Cartesian law</text>
+  <line x1="125" y1="541" x2="330" y2="541" stroke="#74685e" stroke-width="2"/>
+  <line x1="227" y1="466" x2="227" y2="616" stroke="#74685e" stroke-width="2"/>
+  <ellipse cx="227" cy="541" rx="84" ry="42" fill="url(#complex-re)" fill-opacity="0.75" stroke="#915c2c" stroke-width="3"/>
+  <circle cx="227" cy="541" r="5" fill="#29231e"/>
+  <text x="239" y="531" class="small ink">m = 2 - i</text>
+  <text x="348" y="483" class="body ink">vRe = 4, vIm = 1</text>
+  <text x="348" y="522" class="equation ink">C = E|Z-m|² = 5</text>
+  <text x="348" y="561" class="equation ink">P = E[(Z-m)²] = 3</text>
+  <text x="348" y="596" class="small muted">axis-aligned ellipse; not circular</text>
+
+  <rect x="592" y="408" width="526" height="226" rx="18" fill="#eef3f9" stroke="#46678b" stroke-width="2"/>
+  <text x="618" y="441" class="heading ink">Circular Gaussian comparison</text>
+  <line x1="650" y1="541" x2="855" y2="541" stroke="#74685e" stroke-width="2"/>
+  <line x1="752" y1="466" x2="752" y2="616" stroke="#74685e" stroke-width="2"/>
+  <circle cx="752" cy="541" r="62" fill="url(#complex-circle)" fill-opacity="0.76" stroke="#46678b" stroke-width="3"/>
+  <circle cx="752" cy="541" r="5" fill="#29231e"/>
+  <text x="764" y="531" class="small ink">m = 2 - i</text>
+  <text x="875" y="483" class="body ink">vRe = vIm = 5/2</text>
+  <text x="875" y="522" class="equation ink">C = E|Z-m|² = 5</text>
+  <text x="875" y="561" class="equation ink">P = E[(Z-m)²] = 0</text>
+  <text x="875" y="596" class="small muted">isotropic circle about the mean</text>
+
+  <text x="68" y="660" class="small muted">Equal total variance C does not fix the law. Pseudovariance P detects the Cartesian imbalance in this Gaussian family.</text>
+
+  <rect x="40" y="700" width="1120" height="180" rx="20" fill="#fffaf1" stroke="#997859" stroke-width="2"/>
+  <text x="68" y="739" class="heading ink">Zero-variance support ledger at mean m = 2 - i</text>
+
+  <rect x="68" y="760" width="250" height="94" rx="14" fill="#f5f0e7" stroke="#796e64" stroke-width="2"/>
+  <text x="193" y="791" class="body ink center">vRe &gt; 0, vIm &gt; 0</text>
+  <rect x="104" y="807" width="178" height="20" rx="10" fill="url(#complex-circle)" stroke="#46678b"/>
+  <text x="193" y="847" class="small muted center">two-dimensional support</text>
+
+  <rect x="334" y="760" width="250" height="94" rx="14" fill="#f1f7f3" stroke="#39715f" stroke-width="2"/>
+  <text x="459" y="791" class="body ink center">vRe = 0, vIm &gt; 0</text>
+  <line x1="459" y1="806" x2="459" y2="834" stroke="#39715f" stroke-width="7"/>
+  <text x="459" y="847" class="small muted center">vertical line Re(z) = 2</text>
+
+  <rect x="600" y="760" width="250" height="94" rx="14" fill="#fff7e9" stroke="#915c2c" stroke-width="2"/>
+  <text x="725" y="791" class="body ink center">vRe &gt; 0, vIm = 0</text>
+  <line x1="681" y1="820" x2="769" y2="820" stroke="#915c2c" stroke-width="7"/>
+  <text x="725" y="847" class="small muted center">horizontal line Im(z) = -1</text>
+
+  <rect x="866" y="760" width="252" height="94" rx="14" fill="#fff2ef" stroke="#ad4036" stroke-width="2"/>
+  <text x="992" y="791" class="body ink center">vRe = 0, vIm = 0</text>
+  <circle cx="992" cy="820" r="8" fill="#ad4036"/>
+  <text x="992" y="847" class="small muted center">point mass delta at 2 - i</text>
+
+  <rect x="40" y="896" width="1120" height="8" rx="4" fill="#e8dcc9"/>
+</svg>

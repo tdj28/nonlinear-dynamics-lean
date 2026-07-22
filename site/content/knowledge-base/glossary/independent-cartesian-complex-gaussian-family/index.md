@@ -7,7 +7,7 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.ComplexGaussianFamilies"
 og_image: "independent-complex-family-card.png"
-og_image_alt: "Several measurable complex Gaussian coordinates, each with a visible real and imaginary variance, feed one mutual-independence layer and an exact finite product law."
+og_image_alt: "Four fresh real Gaussian sources form two independent complex coordinates and a one-sixteenth joint quadrant event, contrasted with a dependent source-reuse construction."
 ---
 
 {{< panel "warning" >}}
@@ -16,6 +16,57 @@ mathematics, Lean interpretation, sources, figure, and accessibility remains
 pending. The page is publicly available as an open working note while that
 review remains pending.
 {{< /panel >}}
+
+## Start with two complex coordinates
+
+Take four mutually independent real Gaussian variables
+
+\[
+X_1,Y_1,X_2,Y_2\sim \mathcal N(0,\tfrac12)
+\]
+
+and combine them in pairs:
+
+\[
+Z_1=X_1+iY_1,
+\qquad
+Z_2=X_2+iY_2.
+\]
+
+Each complex coordinate has mean zero and total centered squared magnitude
+
+\[
+\mathbb E|Z_j|^2
+=\mathbb E[X_j^2]+\mathbb E[Y_j^2]
+=\frac12+\frac12
+=1.
+\]
+
+The family statement adds more than these two marginal calculations. Because
+all four real sources are mutually independent, the two complex blocks are
+independent. Symmetry gives a checkable event calculation: each component is
+positive with probability \(1/2\), so
+
+\[
+\mathbb P\!\left(
+  \operatorname{Re}Z_1\gt 0,\operatorname{Im}Z_1\gt 0,
+  \operatorname{Re}Z_2\gt 0,\operatorname{Im}Z_2\gt 0
+\right)
+=\left(\frac12\right)^4
+=\frac1{16}.
+\]
+
+If instead \(Z_2=i\overline{Z_1}\), both coordinates still have the same
+centered Cartesian Gaussian marginal law, but the second is determined by the
+first. The joint law is then not a product. Correct coordinate laws are not a
+substitute for family independence.
+
+{{< reference-figure
+  wide="true"
+  src="two-coordinate-independent-family.svg"
+  alt="Four independent centered real Gaussians with variance one half combine into two complex coordinates. Each complex coordinate has total centered squared magnitude one, and the event that all four real components are positive has probability one sixteenth. A contrasting construction reuses the first pair and makes the second complex coordinate a deterministic transform of the first."
+  caption="**Finding:** the local calculation \(\mathbb E|Z_j|^2=1\) belongs to each coordinate law. The joint quadrant probability \(1/16\) uses the separate mutual-independence layer. Reusing the same two real sources preserves the marginals but destroys the product joint law."
+>}}
 
 An **independent Cartesian complex Gaussian family** is an indexed collection
 of complex-valued random variables in which every coordinate has a named exact
@@ -49,6 +100,28 @@ records three different obligations:
 >}}
 
 ## The exact project definition
+
+{{< lean-bridge
+  human="Every indexed complex variable has its stated Cartesian Gaussian law, and the whole indexed family is mutually independent under P."
+  math="\(\forall i,\ \mathcal L_P(Z_i)=\Gamma^{\mathrm{cart}}_{m_i;v_{\mathrm R,i},v_{\mathrm I,i}},\qquad (Z_i)_{i\in\iota}\ \text{mutually independent}.\)"
+  lean="IndependentCartesianComplexGaussianFamily Z m vRe vIm P"
+>}}
+
+- <code>IndependentCartesianComplexGaussianFamily</code> is the project
+  structure collecting the obligations; the name itself proves nothing until
+  a term of that type is constructed.
+- <code>Z : ι → Ω → ℂ</code> is a family of sample maps. Supplying an index
+  <code>i</code> chooses one random variable, and supplying
+  <code>ω</code> then chooses its realized value.
+- <code>m : ι → ℂ</code> records one complex mean per coordinate.
+- <code>vRe vIm : ι → ℝ≥0</code> retain two nonnegative component variances
+  at every index.
+- <code>P : Measure Ω</code> is the one source measure under which the laws
+  and independence statement are interpreted.
+- The complete structure below reveals the three proof fields Lean will demand:
+  ordinary measurability, an exact law at every index, and
+  <code>iIndepFun Z P</code>.
+{{< /lean-bridge >}}
 
 In Lean, the structure is parameterized by four functions and a base measure:
 
@@ -111,6 +184,61 @@ The two complex variables are deterministically related, so they are not
 independent. The checked constructor therefore asks for mutually independent
 **pair-vectors** \((X_i,Y_i)\), each with the exact product law. It never
 infers a missing cross-family hypothesis.
+
+### Type a finite independence skeleton locally
+
+The continuous Gaussian proof belongs to Mathlib and the project. A much
+smaller <code>Std</code>-only worksheet lets a beginner verify the combinatorial
+factorization behind the \(1/16\) calculation. Save this as
+<code>FourIndependentSigns.lean</code> outside the project:
+
+~~~lean
+import Std
+
+structure FourSigns where
+  x1Positive : Bool
+  y1Positive : Bool
+  x2Positive : Bool
+  y2Positive : Bool
+deriving Repr, DecidableEq
+
+def signs : List Bool := [false, true]
+
+def outcomes : List FourSigns :=
+  signs.flatMap fun x1 =>
+  signs.flatMap fun y1 =>
+  signs.flatMap fun x2 =>
+  signs.map fun y2 =>
+    { x1Positive := x1, y1Positive := y1,
+      x2Positive := x2, y2Positive := y2 }
+
+def firstQuadrantZ1 (ω : FourSigns) : Bool :=
+  ω.x1Positive && ω.y1Positive
+
+def bothFirstQuadrants (ω : FourSigns) : Bool :=
+  firstQuadrantZ1 ω && ω.x2Positive && ω.y2Positive
+
+#eval outcomes.length
+#eval (outcomes.filter firstQuadrantZ1).length
+#eval (outcomes.filter bothFirstQuadrants).length
+
+example : outcomes.length = 16 := by decide
+example : (outcomes.filter firstQuadrantZ1).length = 4 := by decide
+example : (outcomes.filter bothFirstQuadrants).length = 1 := by decide
+~~~
+
+Run the file with the already-installed pinned compiler:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean FourIndependentSigns.lean
+~~~
+
+Lean prints \(16\), \(4\), and \(1\). Under the uniform law on the sixteen
+rows, the first complex coordinate lands in its first quadrant with probability
+\(4/16=1/4\), and both do so with probability \(1/16\). The worksheet models
+four independent signs, not Gaussian magnitudes; it isolates the finite
+factorization step instead of pretending to formalize continuous probability
+with a list.
 
 ## Finite families have an exact product joint law
 
@@ -236,6 +364,33 @@ this boundary. It does not decide what a zero-dimensional matrix ensemble
 should mean.
 
 ## Checked consequences and explicit nonclaims
+
+### Inspect the exact project interface
+
+On an approved Linux builder, a human can type:
+
+~~~lean
+import NonlinearDynamics.Random.ComplexGaussianFamilies
+
+#print NonlinearDynamics.Random.IndependentCartesianComplexGaussianFamily
+#check NonlinearDynamics.Random.IndependentCartesianComplexGaussianFamily.jointHasLaw
+#check NonlinearDynamics.Random.IndependentCartesianComplexGaussianFamily.jointHasGaussianLaw
+#check NonlinearDynamics.Random.IndependentCartesianComplexGaussianFamily.scale
+#check NonlinearDynamics.Random.cartesianComplexGaussianProductMeasure_independentFamily
+#check NonlinearDynamics.Random.cartesianComplexGaussianProductMeasure_eq_dirac_of_isEmpty
+~~~
+
+<code>#print</code> exposes the complete structure rather than only its name.
+The first two <code>#check</code> lines distinguish the exact product law from
+the qualitative Gaussian consequence. The remaining checks inspect scaling,
+the canonical finite product witness, and the empty-index boundary.
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean).
+This project-backed check imports Mathlib and therefore belongs on the approved
+Linux builder, not in the tiny local tutorial above.
+{{< /repo-check >}}
 
 The Lean module exposes each coordinate's exact real and imaginary laws,
 means, variances, finite-exponent `MemLp`, and integrability. It also checks
