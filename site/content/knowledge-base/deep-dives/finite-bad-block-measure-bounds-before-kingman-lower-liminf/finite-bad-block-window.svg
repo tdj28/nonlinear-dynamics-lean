@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="fbwTitle fbwDesc">
+  <title id="fbwTitle">Finite positive block window</title>
+  <desc id="fbwDesc">Length zero is excluded. Positive candidate blocks through the fixed cap are tested, and any strict failure marks the starting point as bad.</desc>
+  <rect width="760" height="330" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}</style>
+  <text x="24" y="28" class="t title">A bad point needs one strict short-block witness</text>
+  <text x="24" y="48" class="t m">Test only positive lengths, and stop at the fixed cap.</text>
+  <rect x="24" y="76" width="120" height="142" rx="12" class="neutral" stroke-dasharray="5 4"/>
+  <text x="48" y="109" class="t h">LENGTH ZERO</text>
+  <text x="47" y="143" class="t s">not tested</text>
+  <text x="47" y="168" class="t m">time zero can</text>
+  <text x="47" y="187" class="t m">remain positive</text>
+  <rect x="166" y="76" width="134" height="142" rx="12" class="data"/>
+  <text x="195" y="109" class="t h">SHORT BLOCK</text>
+  <text x="196" y="143" class="t s">above line</text>
+  <text x="198" y="171" class="t h">UNMARKED</text>
+  <rect x="322" y="76" width="134" height="142" rx="12" class="neutral"/>
+  <text x="351" y="109" class="t h">SHORT BLOCK</text>
+  <text x="348" y="143" class="t s">equal to line</text>
+  <text x="354" y="171" class="t h">UNMARKED</text>
+  <rect x="478" y="76" width="134" height="142" rx="12" class="warn"/>
+  <text x="507" y="109" class="t h">SHORT BLOCK</text>
+  <text x="506" y="143" class="t s">strictly below</text>
+  <text x="516" y="171" class="t h">WITNESS</text>
+  <path d="M616 147 H666" fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M666 147 L655 140 L655 154 Z" fill="#A67C52"/>
+  <rect x="672" y="108" width="64" height="80" rx="12" class="keep"/>
+  <text x="687" y="139" class="t h">POINT</text>
+  <text x="687" y="160" class="t h">IS BAD</text>
+  <rect x="24" y="262" width="712" height="44" rx="10" class="keep"/>
+  <text x="54" y="289" class="t s">Membership is existential: one strict witness among the positive candidate lengths is enough.</text>
+</svg>

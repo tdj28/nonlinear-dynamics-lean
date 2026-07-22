@@ -697,6 +697,13 @@ integrable one-step log-positive envelope, the samplewise normalized
 log-positive norm has limsup at most the integrated log-positive Fekete rate
 almost everywhere.
 
+## Continue to the finite lower-bound bridge
+
+[Finite Bad-Block Measure Bounds Before Kingman's Lower Liminf]({{< relref "/knowledge-base/deep-dives/finite-bad-block-measure-bounds-before-kingman-lower-liminf" >}})
+develops the next checked layer. It turns visits to strict centered short-block
+failures into a finite real-measure ratio through ordered interval packing.
+That chapter still stops before the ergodic lower-liminf conclusion.
+
 ## Proof reproduction
 
 From the repository root, run:

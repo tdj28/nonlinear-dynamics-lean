@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="610" viewBox="0 0 760 610" role="img" aria-labelledby="gridTitle gridDesc">
+  <title id="gridTitle">Nine compiled boundary probes for RMT-30</title>
+  <desc id="gridDesc">A three by three labeled grid records the zero cap, zero horizon with positive cap, zero process, false joint zero corner, zero measure, nonergodic identity, strict equality boundary, mass-two finite measure, and empty matrix index.</desc>
+  <rect width="760" height="610" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:18px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:11px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}</style>
+  <text x="24" y="31" class="t title">Nine executable boundaries</text>
+  <text x="24" y="52" class="t m">Eight supported edges and one genuine failure at the joint zero corner.</text>
+  <g>
+    <rect x="26" y="82" width="222" height="138" rx="13" class="cream"/><text x="44" y="109" class="t h">ONE. ZERO CAP</text><text x="44" y="137" class="t s">Witness window is empty.</text><text x="44" y="158" class="t s">Bad set is empty.</text><text x="44" y="198" class="t m">SUPPORTED</text>
+    <rect x="269" y="82" width="222" height="138" rx="13" class="blue"/><text x="287" y="109" class="t h">TWO. ZERO HORIZON</text><text x="287" y="137" class="t s">Positive cap remains valid.</text><text x="287" y="158" class="t s">Visit count is zero.</text><text x="287" y="198" class="t m">SUPPORTED</text>
+    <rect x="512" y="82" width="222" height="138" rx="13" class="green"/><text x="530" y="109" class="t h">THREE. ZERO PROCESS</text><text x="530" y="137" class="t s">Negative threshold marks</text><text x="530" y="158" class="t s">no positive length.</text><text x="530" y="198" class="t m">SUPPORTED</text>
+    <rect x="26" y="238" width="222" height="138" rx="13" class="clay"/><text x="44" y="265" class="t h">FOUR. JOINT ZERO</text><text x="44" y="293" class="t s">Positive time-zero value</text><text x="44" y="314" class="t s">refutes the inequality.</text><text x="44" y="354" class="t m">GENUINE FAILURE</text>
+    <rect x="269" y="238" width="222" height="138" rx="13" class="cream"/><text x="287" y="265" class="t h">FIVE. ZERO MEASURE</text><text x="287" y="293" class="t s">Every real set measure</text><text x="287" y="314" class="t s">vanishes.</text><text x="287" y="354" class="t m">SUPPORTED</text>
+    <rect x="512" y="238" width="222" height="138" rx="13" class="blue"/><text x="530" y="265" class="t h">SIX. NONERGODIC ID</text><text x="530" y="293" class="t s">Preservation suffices.</text><text x="530" y="314" class="t s">Ergodicity is absent.</text><text x="530" y="354" class="t m">SUPPORTED</text>
+    <rect x="26" y="394" width="222" height="138" rx="13" class="green"/><text x="44" y="421" class="t h">SEVEN. EQUALITY</text><text x="44" y="449" class="t s">Strict threshold leaves</text><text x="44" y="470" class="t s">equality unmarked.</text><text x="44" y="510" class="t m">SUPPORTED</text>
+    <rect x="269" y="394" width="222" height="138" rx="13" class="cream"/><text x="287" y="421" class="t h">EIGHT. MASS TWO</text><text x="287" y="449" class="t s">Finite measure need not</text><text x="287" y="470" class="t s">have mass one.</text><text x="287" y="510" class="t m">SUPPORTED</text>
+    <rect x="512" y="394" width="222" height="138" rx="13" class="gray"/><text x="530" y="421" class="t h">NINE. EMPTY INDEX</text><text x="530" y="449" class="t s">No matrix coordinate</text><text x="530" y="470" class="t s">must be chosen.</text><text x="530" y="510" class="t m">SUPPORTED</text>
+  </g>
+  <rect x="26" y="556" width="708" height="30" rx="10" fill="#16243A"/>
+  <text x="380" y="576" text-anchor="middle" style="font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;fill:#FFFDF8">FINITE MEASURE CONTROL ONLY. NO LOWER LIMINF OR CONVERGENCE.</text>
+</svg>

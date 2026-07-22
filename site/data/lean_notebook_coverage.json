@@ -79,6 +79,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging",
     "notebook": "site/content/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure",
+    "notebook": "site/content/development-notebook/2026/07/finite-centered-bad-block-measure-control-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup",
     "notebook": "site/content/development-notebook/2026/07/subadditive-upper-limsup-from-phase-averaging-in-lean/index.md"

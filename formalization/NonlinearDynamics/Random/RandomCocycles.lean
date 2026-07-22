@@ -15,6 +15,7 @@ import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
 import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
 
 /-!
 # Random cocycles
@@ -100,7 +101,13 @@ shifted-subadditive candidate by every normalized positive-block integral.
 For cocycle log-positive growth, taking the infimum over blocks gives the
 deterministic integrated Fekete rate. The Birkhoff averages remain along the
 original base map, so no ergodicity of a powered map is assumed. This is only
-Kingman's upper-bound half: it proves neither samplewise convergence nor
-equality with the integrated rate, limit integrability, a Lyapunov exponent,
-or an Oseledets splitting.
+Kingman's upper-bound half. A complementary finite bad-block layer counts
+visits to strict centered sublevel sets, selects one bounded witness length at
+each marked start, invokes the ordered greedy packing, and integrates the
+result under finite measure and preservation. It bounds each finite bad-block
+set by a centered integral-rate ratio and specializes that ratio to the
+log-positive cocycle Fekete offset without assuming probability or ergodicity.
+It still proves neither a lower liminf nor samplewise convergence, equality
+with the integrated rate, limit integrability, a Lyapunov exponent, or an
+Oseledets splitting.
 -/

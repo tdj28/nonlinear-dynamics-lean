@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="340" viewBox="0 0 760 340" role="img" aria-labelledby="bhzTitle bhzDesc">
+  <title id="bhzTitle">Buffered packing horizon and the joint zero exception</title>
+  <desc id="bhzDesc">Marked starts lie in a counting prefix and selected blocks can extend into a fixed buffer. Either a positive prefix or a positive cap gives a positive horizon, but their joint zero corner can fail.</desc>
+  <rect width="760" height="340" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}</style>
+  <text x="24" y="28" class="t title">A fixed buffer contains blocks that start before the counting cutoff</text>
+  <text x="24" y="48" class="t m">Positive-time nonpositivity controls empty gaps, but not the joint zero horizon.</text>
+  <rect x="34" y="78" width="490" height="92" rx="12" class="data"/>
+  <rect x="524" y="78" width="202" height="92" rx="12" class="warn"/>
+  <text x="54" y="104" class="t h">COUNTING PREFIX</text><text x="544" y="104" class="t h">LENGTH BUFFER</text>
+  <path d="M82 142 H666" fill="none" stroke="#7F786D" stroke-width="2"/>
+  <rect x="410" y="124" width="216" height="32" rx="8" class="keep"/>
+  <text x="449" y="145" class="t s">latest selected block</text>
+  <text x="54" y="188" class="t m">marks begin here</text><text x="550" y="188" class="t m">blocks may finish here</text>
+  <rect x="34" y="220" width="210" height="70" rx="12" class="keep"/>
+  <text x="65" y="247" class="t h">ZERO PREFIX</text><text x="65" y="271" class="t s">positive cap is valid</text>
+  <rect x="275" y="220" width="210" height="70" rx="12" class="keep"/>
+  <text x="308" y="247" class="t h">ZERO CAP</text><text x="308" y="271" class="t s">positive prefix is valid</text>
+  <rect x="516" y="220" width="210" height="70" rx="12" class="warn"/>
+  <text x="545" y="247" class="t h">BOTH ZERO</text><text x="545" y="271" class="t s">time-zero value may fail</text>
+  <rect x="24" y="306" width="712" height="24" rx="8" class="neutral"/>
+  <text x="91" y="323" class="t m">The public pointwise theorem explicitly excludes only the joint zero ambient horizon.</text>
+</svg>

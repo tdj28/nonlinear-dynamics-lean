@@ -535,6 +535,19 @@ The first active sequence is:
     map may be smuggled into the proof. This remains one-sided: it proves no
     lower liminf bound, samplewise convergence, signed Lyapunov exponent, or
     Oseledets splitting.
+35. [`RandomCocycles/SubadditiveBadBlockMeasure.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean)
+    builds the finite measure-theoretic bridge needed by the complementary
+    Kingman argument. It counts visits to a set before a finite horizon,
+    identifies the real count with a Birkhoff sum of an indicator, and
+    integrates that count exactly under finite measure and preservation. A
+    finite strict centered bad-block set supplies one bounded witness length
+    at every marked orbit start; the RMT-21 greedy packing then bounds the
+    enlarged-horizon centered process by the marked visit count. A lower bound
+    on all positive normalized centered integrals yields the bad-set estimate
+    `μ.real badSet ≤ δ / c`, with the negative-threshold reversal explicit.
+    The cocycle specialization uses the integrated log-positive Fekete rate
+    minus its one-step integral. Probability and ergodicity are absent, and
+    the module still claims no lower liminf or samplewise convergence.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
@@ -548,9 +561,11 @@ mass, and probability normalization. The additive finite-measure Birkhoff
 track is therefore complete at the correctly normalized ergodic constant.
 The first subadditive asymptotic stage now connects finite phase averaging to
 the additive ergodic theorem and proves the normalized upper-limsup estimate.
+The next finite layer now converts centered short-block failures into an exact
+real-measure ratio through visit counting and ordered interval packing.
 The pinned Mathlib release supplies finite Birkhoff algebra and ergodic
 primitives, but no ready-made pointwise Birkhoff or Kingman theorem. A matching
-lower mechanism and a full convergence proof remain before any samplewise
+lower-liminf mechanism and a full convergence proof remain before any samplewise
 cocycle-growth limit. A signed Lyapunov exponent or Oseledets splitting needs
 further multiplicative infrastructure beyond that endpoint.
 

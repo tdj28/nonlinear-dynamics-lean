@@ -805,11 +805,20 @@ outrun the formal artifact.
 
 ## The next ridge
 
-The next layer must supply the complementary lower-bound mechanism without
-undoing the assumption discipline achieved here. A full Kingman endpoint
-would need to identify the liminf, prove equality with the deterministic rate
-under the intended hypotheses, and state any integrability or convergence-in-
-mean consequences separately. Only after a signed cocycle observable and its
+The next checked layer is
+[Finite Centered Bad-Block Measure Control in Lean]({{< relref "/development-notebook/2026/07/finite-centered-bad-block-measure-control-in-lean" >}}).
+It counts visits to finite strict centered sublevel sets, feeds one witnessing
+length per visit into RMT-21's greedy interval packing, and integrates the
+result into a real-measure ratio. That bridge still does not prove a lower
+liminf.
+
+The following layers must first pass to the all-length bad set, then define an
+asymptotic lower-deviation event with the correct one-sided almost invariance
+and apply ergodic zero-one rigidity. The raw all-length union is not silently
+declared invariant. A full Kingman endpoint would then need to identify the
+liminf, prove equality with the deterministic rate under the intended
+hypotheses, and state any integrability or convergence-in-mean consequences
+separately. Only after a signed cocycle observable and its
 samplewise limit are established should the development speak about ordinary
 Lyapunov exponents. Oseledets splittings require still more multiplicative and
 invariant-subspace structure.

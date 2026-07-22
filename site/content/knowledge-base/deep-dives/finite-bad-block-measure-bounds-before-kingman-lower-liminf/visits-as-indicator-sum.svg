@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="320" viewBox="0 0 760 320" role="img" aria-labelledby="vaiTitle vaiDesc">
+  <title id="vaiTitle">Orbit visits become an indicator sum</title>
+  <desc id="vaiDesc">A finite orbit prefix contains labeled visited and unvisited starts. Visited starts contribute one and unvisited starts contribute zero, so their sum is the visit count.</desc>
+  <rect width="760" height="320" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}</style>
+  <text x="24" y="28" class="t title">A finite visit count is an additive orbit object</text>
+  <text x="24" y="48" class="t m">Every start contributes a labeled zero or one.</text>
+  <path d="M68 120 H688" fill="none" stroke="#7F786D" stroke-width="2"/>
+  <g class="t s" text-anchor="middle">
+    <circle cx="92" cy="120" r="22" class="data"/><text x="92" y="125">0</text><text x="92" y="161" class="m">outside</text>
+    <rect x="176" y="98" width="44" height="44" rx="8" class="warn"/><text x="198" y="125">1</text><text x="198" y="161" class="m">visit</text>
+    <rect x="282" y="98" width="44" height="44" rx="8" class="warn"/><text x="304" y="125">1</text><text x="304" y="161" class="m">visit</text>
+    <circle cx="410" cy="120" r="22" class="data"/><text x="410" y="125">0</text><text x="410" y="161" class="m">outside</text>
+    <rect x="494" y="98" width="44" height="44" rx="8" class="warn"/><text x="516" y="125">1</text><text x="516" y="161" class="m">visit</text>
+    <circle cx="622" cy="120" r="22" class="data"/><text x="622" y="125">0</text><text x="622" y="161" class="m">outside</text>
+  </g>
+  <path d="M360 188 V220" fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M360 220 L353 209 H367 Z" fill="#A67C52"/>
+  <rect x="181" y="225" width="358" height="42" rx="10" class="keep"/>
+  <text x="219" y="251" class="t h">INDICATOR SUM = NATURAL VISIT COUNT</text>
+  <rect x="24" y="282" width="712" height="26" rx="8" class="data"/>
+  <text x="65" y="300" class="t m">Preservation later makes every translated indicator have the same integral.</text>
+</svg>

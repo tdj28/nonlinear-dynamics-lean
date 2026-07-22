@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="350" viewBox="0 0 760 350" role="img" aria-labelledby="wgpTitle wgpDesc">
+  <title id="wgpTitle">Witness selection feeds greedy interval packing</title>
+  <desc id="wgpDesc">Marked starts offer admissible block lengths. One witness is selected at each mark, and a left-to-right greedy procedure retains disjoint intervals that cover every mark.</desc>
+  <rect width="760" height="350" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}</style>
+  <text x="24" y="28" class="t title">Existence becomes geometry after choosing one witness per mark</text>
+  <text x="24" y="48" class="t m">The greedy cover keeps disjoint intervals, not every proposed interval.</text>
+  <text x="30" y="88" class="t h">MARKED STARTS</text>
+  <path d="M160 82 H714" fill="none" stroke="#7F786D" stroke-width="2"/>
+  <g class="warn"><rect x="198" y="66" width="32" height="32" rx="6"/><rect x="286" y="66" width="32" height="32" rx="6"/><rect x="374" y="66" width="32" height="32" rx="6"/><rect x="550" y="66" width="32" height="32" rx="6"/></g>
+  <text x="30" y="151" class="t h">CHOSEN WITNESSES</text>
+  <g class="data"><rect x="198" y="126" width="142" height="36" rx="9"/><rect x="286" y="174" width="94" height="36" rx="9"/><rect x="374" y="126" width="182" height="36" rx="9"/><rect x="550" y="174" width="110" height="36" rx="9"/></g>
+  <text x="214" y="149" class="t s">chosen block</text><text x="302" y="197" class="t s">chosen block</text><text x="390" y="149" class="t s">chosen block</text><text x="566" y="197" class="t s">chosen block</text>
+  <path d="M360 222 V244" fill="none" stroke="#A67C52" stroke-width="2.5"/><path d="M360 244 L353 233 H367 Z" fill="#A67C52"/>
+  <text x="30" y="276" class="t h">GREEDY DISJOINT COVER</text>
+  <rect x="198" y="252" width="142" height="38" rx="9" class="keep"/>
+  <rect x="374" y="252" width="182" height="38" rx="9" class="keep"/>
+  <text x="214" y="276" class="t s">kept interval</text><text x="421" y="276" class="t s">kept interval</text>
+  <rect x="24" y="310" width="712" height="26" rx="8" class="keep"/>
+  <text x="62" y="328" class="t m">Every mark is covered; a mark inside an earlier interval does not need another retained interval.</text>
+</svg>
