@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="trace-moment-title trace-moment-desc">
+  <title id="trace-moment-title">A two-point matrix law and its second trace moment</title>
+  <desc id="trace-moment-desc">A law gives probability one half to the zero two-by-two matrix and one half to the diagonal matrix with entries one and three. The trace of each squared matrix is zero and ten. Multiplying by the probabilities and adding gives raw second trace moment five. A separate normalized-trace branch divides by dimension two and gives five halves.</desc>
+  <defs>
+    <marker id="moment-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#59666b"/>
+    </marker>
+    <pattern id="moment-zero" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#edf0ed"/>
+      <circle cx="6" cy="6" r="1.6" fill="#889088"/>
+    </pattern>
+    <pattern id="moment-ten" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#e3edf3"/>
+      <rect width="4" height="12" fill="#587e91"/>
+    </pattern>
+    <filter id="moment-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2b2925" flood-opacity=".14"/>
+    </filter>
+    <style>
+      .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#292722}
+      .title{font-size:28px;font-weight:750}
+      .sub{font-size:14px;fill:#5a554e}
+      .band{font-size:14px;font-weight:750;letter-spacing:1px}
+      .node{font-size:19px;font-weight:750}
+      .body{font-size:15px}
+      .small{font-size:12px;fill:#5a554e}
+      .matrix{font-size:23px;font-weight:700}
+      .arrow{fill:none;stroke:#59666b;stroke-width:2.5;marker-end:url(#moment-arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="760" rx="28" fill="#f7f1e7"/>
+  <text class="t title" x="48" y="50">A matrix law → an observable → a weighted moment</text>
+  <text class="t sub" x="48" y="78">Every arrow names a separate mathematical obligation</text>
+
+  <rect x="34" y="108" width="1132" height="420" rx="24" fill="#eaf0f2" stroke="#87a2ac" stroke-width="1.6"/>
+  <text class="t band" x="58" y="140" fill="#426672">TWO EQUALLY LIKELY MATRICES</text>
+
+  <g filter="url(#moment-shadow)">
+    <rect x="62" y="176" width="250" height="270" rx="18" fill="#fffdfa" stroke="#7b8786" stroke-width="2"/>
+    <rect x="352" y="176" width="250" height="270" rx="18" fill="#fffdfa" stroke="#547c8e" stroke-width="2"/>
+  </g>
+  <text class="t node" x="187" y="211" text-anchor="middle">outcome H₀</text>
+  <rect x="103" y="236" width="168" height="92" rx="12" fill="url(#moment-zero)" stroke="#7b8786" stroke-width="1.5"/>
+  <text class="t matrix" x="187" y="274" text-anchor="middle">[ 0  0 ]</text>
+  <text class="t matrix" x="187" y="306" text-anchor="middle">[ 0  0 ]</text>
+  <text class="t body" x="187" y="356" text-anchor="middle">probability ½</text>
+  <text class="t body" x="187" y="389" text-anchor="middle">Tr(H₀²) = 0</text>
+  <text class="t small" x="187" y="419" text-anchor="middle">finite value → integrable</text>
+
+  <text class="t node" x="477" y="211" text-anchor="middle">outcome H₁</text>
+  <rect x="393" y="236" width="168" height="92" rx="12" fill="url(#moment-ten)" stroke="#547c8e" stroke-width="1.5"/>
+  <text class="t matrix" x="477" y="274" text-anchor="middle">[ 1  0 ]</text>
+  <text class="t matrix" x="477" y="306" text-anchor="middle">[ 0  3 ]</text>
+  <text class="t body" x="477" y="356" text-anchor="middle">probability ½</text>
+  <text class="t body" x="477" y="389" text-anchor="middle">Tr(H₁²) = 1² + 3² = 10</text>
+  <text class="t small" x="477" y="419" text-anchor="middle">finite value → integrable</text>
+
+  <path class="arrow" d="M312 310 C654 310 643 256 690 256"/>
+  <path class="arrow" d="M602 310 C655 310 654 334 690 334"/>
+
+  <g filter="url(#moment-shadow)">
+    <rect x="704" y="184" width="422" height="248" rx="20" fill="#fffdfa" stroke="#67865a" stroke-width="2"/>
+  </g>
+  <text class="t node" x="915" y="222" text-anchor="middle">ordinary trace convention</text>
+  <text class="t body" x="750" y="270">weighted value from H₀</text>
+  <text class="t body" x="1082" y="270" text-anchor="end">½ · 0</text>
+  <text class="t body" x="750" y="310">weighted value from H₁</text>
+  <text class="t body" x="1082" y="310" text-anchor="end">½ · 10</text>
+  <line x1="750" y1="333" x2="1082" y2="333" stroke="#8b8479" stroke-width="1.5"/>
+  <text class="t body" x="750" y="369">expected trace square</text>
+  <text class="t node" x="1082" y="369" text-anchor="end">5</text>
+  <text class="t small" x="915" y="406" text-anchor="middle">law + observable + finite average</text>
+
+  <rect x="34" y="554" width="1132" height="164" rx="24" fill="#f1e8dc" stroke="#ad8956" stroke-width="1.6"/>
+  <text class="t band" x="58" y="586" fill="#7a5b2e">CHANGE ONLY THE TRACE NORMALIZATION</text>
+  <rect x="80" y="616" width="325" height="70" rx="15" fill="#fffdfa" stroke="#ad8956" stroke-width="2"/>
+  <text class="t node" x="242" y="645" text-anchor="middle">raw moment = 5</text>
+  <text class="t small" x="242" y="671" text-anchor="middle">ordinary Tr(H²)</text>
+  <path class="arrow" d="M405 651 H500"/>
+  <rect x="516" y="616" width="258" height="70" rx="15" fill="#fffdfa" stroke="#ad8956" stroke-width="2"/>
+  <text class="t node" x="645" y="645" text-anchor="middle">divide by n = 2</text>
+  <text class="t small" x="645" y="671" text-anchor="middle">new observable</text>
+  <path class="arrow" d="M774 651 H869"/>
+  <rect x="885" y="616" width="235" height="70" rx="15" fill="#e8efe3" stroke="#67865a" stroke-width="2"/>
+  <text class="t node" x="1002" y="645" text-anchor="middle">normalized = 5⁄2</text>
+  <text class="t small" x="1002" y="671" text-anchor="middle">not the same convention</text>
+</svg>

@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="980"
+     viewBox="0 0 1200 980" role="img"
+     aria-labelledby="hermitianRoundTripTitle hermitianRoundTripDesc">
+  <title id="hermitianRoundTripTitle">A concrete three by three Hermitian coordinate round trip</title>
+  <desc id="hermitianRoundTripDesc">Three real diagonal coordinates and three complex strict-upper coordinates, totaling nine real degrees of freedom, assemble into a three by three Hermitian matrix. The diagonal and upper triangle recover the six supplied coordinates. A near-miss independently chooses a lower entry that disagrees with the required conjugate and therefore is not Hermitian.</desc>
+  <defs>
+    <pattern id="upperGrid" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#EAF2F8"/>
+      <path d="M0 0H14M0 7H14M0 14H14M0 0V14M7 0V14M14 0V14"
+            fill="none" stroke="#7390AB" stroke-width="1"/>
+    </pattern>
+    <pattern id="lowerStripe" width="12" height="12" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#FFF1DD"/>
+      <path d="M0 0V12" stroke="#B87931" stroke-width="4"/>
+    </pattern>
+    <pattern id="warningStripe" width="10" height="10" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#FFF0EE"/>
+      <path d="M0 0V10" stroke="#D14B40" stroke-width="3"/>
+    </pattern>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#372D25" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#66584B"/>
+    </marker>
+    <style>
+      .ink { fill: #2E2924; font-family: Inter, Arial, Helvetica, sans-serif; }
+      .serif { fill: #2E2924; font-family: Georgia, 'Times New Roman', serif; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { fill: #685E55; font-size: 17px; }
+      .panel-title { font-size: 22px; font-weight: 700; }
+      .label { font-size: 17px; font-weight: 700; }
+      .body { font-size: 16px; }
+      .small { fill: #685E55; font-size: 14px; }
+      .math { font-size: 19px; font-weight: 600; }
+      .cell { stroke-width: 1.6; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="980" rx="24" fill="#F6EFE3"/>
+  <text x="48" y="54" class="serif title">Six free coordinates determine the whole matrix</text>
+  <text x="48" y="84" class="ink subtitle">A 3 × 3 example: three real diagonal values plus three complex upper values contain 9 real degrees of freedom.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="112" width="360" height="364" rx="20" fill="#FFFDFC" stroke="#A67B50" stroke-width="2"/>
+  </g>
+  <text x="68" y="151" class="ink panel-title">1. Supply only the free data</text>
+  <text x="68" y="181" class="ink label">Real diagonal</text>
+  <g class="ink body">
+    <rect x="68" y="198" width="92" height="54" rx="10" fill="#EDF6EA" stroke="#5E8660" stroke-width="1.5"/>
+    <rect x="174" y="198" width="92" height="54" rx="10" fill="#EDF6EA" stroke="#5E8660" stroke-width="1.5"/>
+    <rect x="280" y="198" width="92" height="54" rx="10" fill="#EDF6EA" stroke="#5E8660" stroke-width="1.5"/>
+    <text x="114" y="231" text-anchor="middle">d₀ = 2</text>
+    <text x="220" y="231" text-anchor="middle">d₁ = −1</text>
+    <text x="326" y="231" text-anchor="middle">d₂ = 4</text>
+  </g>
+  <text x="68" y="291" class="ink label">Complex strict upper: row &lt; column</text>
+  <g class="ink body">
+    <rect x="68" y="308" width="304" height="46" rx="10" fill="url(#upperGrid)" stroke="#4D7197" stroke-width="1.5"/>
+    <rect x="68" y="362" width="304" height="46" rx="10" fill="url(#upperGrid)" stroke="#4D7197" stroke-width="1.5"/>
+    <rect x="68" y="416" width="304" height="46" rx="10" fill="url(#upperGrid)" stroke="#4D7197" stroke-width="1.5"/>
+    <text x="220" y="337" text-anchor="middle">u₀₁ = 1 + 2i</text>
+    <text x="220" y="391" text-anchor="middle">u₀₂ = −3 + i</text>
+    <text x="220" y="445" text-anchor="middle">u₁₂ = 5 − 2i</text>
+  </g>
+
+  <path d="M414 292H468" fill="none" stroke="#66584B" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="441" y="278" text-anchor="middle" class="ink small">assemble</text>
+
+  <g filter="url(#shadow)">
+    <rect x="484" y="112" width="676" height="364" rx="20" fill="#FFFDFC" stroke="#A67B50" stroke-width="2"/>
+  </g>
+  <text x="512" y="151" class="ink panel-title">2. Fill the three matrix regions</text>
+  <text x="512" y="178" class="ink small">Green is supplied real data, blue grid is supplied complex data, orange stripe is forced reflection.</text>
+
+  <g transform="translate(512 202)" class="ink math">
+    <path d="M16 0H0V232H16M328 0H344V232H328" fill="none" stroke="#3E3934" stroke-width="3"/>
+    <rect class="cell" x="24" y="12" width="96" height="64" rx="8" fill="#EDF6EA" stroke="#5E8660"/>
+    <rect class="cell" x="124" y="12" width="96" height="64" rx="8" fill="url(#upperGrid)" stroke="#4D7197"/>
+    <rect class="cell" x="224" y="12" width="96" height="64" rx="8" fill="url(#upperGrid)" stroke="#4D7197"/>
+    <rect class="cell" x="24" y="84" width="96" height="64" rx="8" fill="url(#lowerStripe)" stroke="#A86627"/>
+    <rect class="cell" x="124" y="84" width="96" height="64" rx="8" fill="#EDF6EA" stroke="#5E8660"/>
+    <rect class="cell" x="224" y="84" width="96" height="64" rx="8" fill="url(#upperGrid)" stroke="#4D7197"/>
+    <rect class="cell" x="24" y="156" width="96" height="64" rx="8" fill="url(#lowerStripe)" stroke="#A86627"/>
+    <rect class="cell" x="124" y="156" width="96" height="64" rx="8" fill="url(#lowerStripe)" stroke="#A86627"/>
+    <rect class="cell" x="224" y="156" width="96" height="64" rx="8" fill="#EDF6EA" stroke="#5E8660"/>
+    <text x="72" y="52" text-anchor="middle">2</text>
+    <text x="172" y="52" text-anchor="middle">1 + 2i</text>
+    <text x="272" y="52" text-anchor="middle">−3 + i</text>
+    <text x="72" y="124" text-anchor="middle">1 − 2i</text>
+    <text x="172" y="124" text-anchor="middle">−1</text>
+    <text x="272" y="124" text-anchor="middle">5 − 2i</text>
+    <text x="72" y="196" text-anchor="middle">−3 − i</text>
+    <text x="172" y="196" text-anchor="middle">5 + 2i</text>
+    <text x="272" y="196" text-anchor="middle">4</text>
+  </g>
+
+  <g class="ink">
+    <rect x="892" y="208" width="238" height="70" rx="12" fill="#EDF6EA" stroke="#5E8660" stroke-width="1.5"/>
+    <text x="1011" y="234" text-anchor="middle" class="label">Diagonal</text>
+    <text x="1011" y="259" text-anchor="middle" class="body">Hᵢᵢ = dᵢ is real</text>
+    <rect x="892" y="292" width="238" height="70" rx="12" fill="url(#upperGrid)" stroke="#4D7197" stroke-width="1.5"/>
+    <text x="1011" y="318" text-anchor="middle" class="label">Above diagonal</text>
+    <text x="1011" y="343" text-anchor="middle" class="body">Hᵢⱼ = uᵢⱼ when i &lt; j</text>
+    <rect x="892" y="376" width="238" height="70" rx="12" fill="url(#lowerStripe)" stroke="#A86627" stroke-width="1.5"/>
+    <text x="1011" y="402" text-anchor="middle" class="label">Below diagonal</text>
+    <text x="1011" y="427" text-anchor="middle" class="body">Hⱼᵢ = conjugate(uᵢⱼ)</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="504" width="1120" height="190" rx="20" fill="#FFFDFC" stroke="#527496" stroke-width="2"/>
+  </g>
+  <text x="68" y="544" class="ink panel-title">3. Read the supplied coordinates straight back</text>
+  <path d="M68 566H1132" stroke="#D7CABB" stroke-width="1.5"/>
+  <g class="ink">
+    <text x="78" y="602" class="label">Diagonal recovery</text>
+    <text x="78" y="634" class="math">(H₀₀, H₁₁, H₂₂) = (2, −1, 4)</text>
+    <text x="78" y="667" class="small">These are real because the assembler inserted real d-values.</text>
+    <line x1="553" y1="582" x2="553" y2="670" stroke="#D7CABB" stroke-width="1.5"/>
+    <text x="585" y="602" class="label">Strict-upper recovery</text>
+    <text x="585" y="634" class="math">(H₀₁, H₀₂, H₁₂) = (1 + 2i, −3 + i, 5 − 2i)</text>
+    <text x="585" y="667" class="small">No division, averaging, or rescaling is needed.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="722" width="1120" height="212" rx="20" fill="#FFF9F8" stroke="#C84C43" stroke-width="2"/>
+  </g>
+  <text x="68" y="762" class="ink panel-title">Near-miss: treating the reflected lower triangle as fresh data</text>
+  <rect x="68" y="787" width="410" height="116" rx="14" fill="url(#warningStripe)" stroke="#C84C43" stroke-width="1.5"/>
+  <text x="273" y="820" text-anchor="middle" class="ink label">Independently choose ℓ₁₀ = 7 + i</text>
+  <text x="273" y="852" text-anchor="middle" class="ink body">but Hermitian symmetry requires</text>
+  <text x="273" y="882" text-anchor="middle" class="ink math">H₁₀ = conjugate(H₀₁) = 1 − 2i</text>
+  <path d="M504 845H574" fill="none" stroke="#C84C43" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="539" y="828" text-anchor="middle" class="ink label">fails</text>
+  <rect x="596" y="787" width="536" height="116" rx="14" fill="#F6EFE3" stroke="#A67B50" stroke-width="1.5"/>
+  <text x="622" y="819" class="ink label">The accounting exposes the mistake</text>
+  <text x="622" y="851" class="ink body">Correct: 3 real + 3 complex × 2 real each = 9 real degrees.</text>
+  <text x="622" y="881" class="ink body">Double-counted: 3 real + 6 complex × 2 = 15 stored reals.</text>
+  <text x="600" y="959" class="ink small" text-anchor="middle">The lower triangle is a consequence of the coordinates, not another coordinate block.</text>
+</svg>

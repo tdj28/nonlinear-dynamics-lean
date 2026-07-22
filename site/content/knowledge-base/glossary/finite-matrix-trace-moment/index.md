@@ -7,7 +7,7 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments"
 og_image: "finite-matrix-trace-moment-card.png"
-og_image_alt: "A matrix law passes through a trace-power observable and a separate integrability gate before its complex Bochner integral can be read as a finite expected trace moment."
+og_image_alt: "A two-point matrix law maps trace-square values zero and ten to raw moment five, while normalized trace gives five halves."
 ---
 
 {{< panel "warning" >}}
@@ -16,6 +16,63 @@ mathematics, Lean interpretation, sources, figure, and accessibility remains
 pending. The page is publicly available as an open working note while that
 review remains pending.
 {{< /panel >}}
+
+## Start with a two-matrix probability law
+
+Before introducing Gaussian coordinates, put equal probability on two
+deterministic Hermitian matrices:
+
+\[
+H_0=
+\begin{pmatrix}
+0&0\\
+0&0
+\end{pmatrix},
+\qquad
+H_1=
+\begin{pmatrix}
+1&0\\
+0&3
+\end{pmatrix},
+\qquad
+\mathbb P(H=H_0)=\mathbb P(H=H_1)=\frac12.
+\]
+
+For the second trace power,
+
+\[
+\operatorname{Tr}(H_0^2)=0,
+\qquad
+\operatorname{Tr}(H_1^2)=1^2+3^2=10.
+\]
+
+The finite trace moment is therefore
+
+\[
+\mathbb E[\operatorname{Tr}(H^2)]
+=\frac12\cdot0+\frac12\cdot10
+=5.
+\]
+
+Everything is visible in this finite model. The law supplies the two weights,
+the observable turns each matrix into one number, integrability is automatic
+because only two finite values occur, and expectation performs the weighted
+average. If we instead use normalized trace for these two-by-two matrices, the
+answer is
+
+\[
+\mathbb E\!\left[\frac12\operatorname{Tr}(H^2)\right]
+=\frac52.
+\]
+
+That factor of two is a convention change, not an algebra mistake.
+
+{{< reference-figure
+  wide="true"
+  src="two-point-trace-moment.svg"
+  alt="A probability law assigns mass one half to the zero two-by-two matrix and mass one half to the diagonal matrix with entries one and three. Squaring and taking traces gives zero and ten. The weighted raw trace moment is five, while dividing each trace by dimension two gives normalized moment five halves."
+  caption="**Finding:** a matrix moment is an average of an observable under a law. The two matrices, their probabilities, the trace-square values, and the normalization divisor are four separate pieces of data. Changing only the final divisor changes \(5\) to \(5/2\)."
+>}}
 
 A **finite matrix trace moment** is the expected value of the trace of a fixed
 power of a finite random matrix. Three words in that sentence carry separate
@@ -206,6 +263,27 @@ convention.
 
 ## In Lean
 
+{{< lean-bridge
+  human="Under the finite GUE matrix law in dimension n, the expected ordinary trace of H squared is n."
+  math="\(\displaystyle \int \operatorname{Tr}(H^2)\,d\mu_n(H)=n.\)"
+  lean="GUE.integral_tracePower_two n"
+>}}
+
+- <code>GUE</code> is the project namespace for the chosen finite Gaussian
+  unitary ensemble convention.
+- <code>integral_tracePower_two</code> names the theorem; the word
+  <code>integral</code> keeps the operation explicit, while
+  <code>tracePower_two</code> fixes both observable and exponent.
+- <code>n : ℕ</code> is the matrix dimension. The theorem deliberately includes
+  <code>n = 0</code>.
+- The full elaborated conclusion below contains
+  <code>∂GUE.matrixLaw n</code>, so the measure is not inferred from prose.
+- The right side is coerced to <code>ℂ</code> because the trace-power observable
+  and Bochner integral are complex-valued.
+- This theorem uses the ordinary trace. It does not hide the divisor
+  \(1/n\).
+{{< /lean-bridge >}}
+
 The RMT-09 module states four theorems for every natural dimension:
 
 ~~~lean
@@ -235,6 +313,71 @@ space. It makes <code>tracePower id k</code> the observable
 \(H\mapsto\operatorname{Tr}(H^k)\). The first and third declarations are not auxiliary
 noise: they are the analytic licenses for reading the following integral
 identities as finite expectations.
+
+### Type the two-point calculation locally
+
+The following worksheet imports only <code>Std</code> and checks the finite law
+from the opening example with exact rational arithmetic. Save it as
+<code>TwoPointTraceMoment.lean</code>:
+
+~~~lean
+import Std
+
+structure Diagonal2 where
+  d0 : Int
+  d1 : Int
+deriving Repr
+
+def traceSquare (H : Diagonal2) : Int :=
+  H.d0 * H.d0 + H.d1 * H.d1
+
+def H0 : Diagonal2 := { d0 := 0, d1 := 0 }
+def H1 : Diagonal2 := { d0 := 1, d1 := 3 }
+
+def rawSecondMoment : Rat :=
+  (1 : Rat) / 2 * traceSquare H0 +
+  (1 : Rat) / 2 * traceSquare H1
+
+def normalizedSecondMoment : Rat :=
+  rawSecondMoment / 2
+
+#eval traceSquare H0
+#eval traceSquare H1
+#eval rawSecondMoment
+#eval normalizedSecondMoment
+
+example : rawSecondMoment = 5 := by native_decide
+example : normalizedSecondMoment = (5 : Rat) / 2 := by native_decide
+~~~
+
+Run it on a Mac or Linux machine with the pinned toolchain already installed:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean TwoPointTraceMoment.lean
+~~~
+
+Lean should print \(0\), \(10\), \(5\), and \(5/2\), then certify both exact
+equalities. This worksheet formalizes a finite arithmetic model, not the
+continuous GUE law.
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean).
+On an approved Linux builder, a human can make a scratch file containing:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
+
+#check NonlinearDynamics.Random.GUE.integrable_tracePower_one
+#check NonlinearDynamics.Random.GUE.integral_tracePower_one
+#check NonlinearDynamics.Random.GUE.integrable_tracePower_two
+#check NonlinearDynamics.Random.GUE.integral_tracePower_two
+~~~
+
+The first and third checks expose the integrability licenses. The second and
+fourth expose the corresponding exact integral identities. The guarded command
+below checks the full pinned module and its Mathlib dependencies in the cloud.
+{{< /repo-check >}}
 
 ## What these moments do not establish
 

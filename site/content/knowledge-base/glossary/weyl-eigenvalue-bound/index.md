@@ -7,7 +7,7 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity"
 og_image: "weyl-eigenvalue-bound-card.png"
-og_image_alt: "A perturbation between two Hermitian matrices creates one Frobenius-size budget, and every corresponding slot in their decreasingly ordered spectra stays within that same budget."
+og_image_alt: "Ordered eigenvalue shifts one and two fit inside a square-root-five Frobenius budget, while a crossed shift four is rejected as the wrong matching."
 ---
 
 {{< panel "warning" >}}
@@ -16,6 +16,70 @@ mathematics, Lean interpretation, sources, figure, and accessibility remains
 pending. The page is publicly available as an open working note while that
 review remains pending.
 {{< /panel >}}
+
+## Start with two diagonal matrices
+
+Take
+
+\[
+A=
+\begin{pmatrix}
+3&0\\
+0&1
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+4&0\\
+0&-1
+\end{pmatrix}.
+\]
+
+Their decreasingly ordered eigenvalues are
+
+\[
+\lambda(A)=(3,1),
+\qquad
+\lambda(B)=(4,-1).
+\]
+
+Match equal positions in those ordered lists. The two shifts are
+
+\[
+|3-4|=1,
+\qquad
+|1-(-1)|=2.
+\]
+
+Meanwhile,
+
+\[
+A-B=
+\begin{pmatrix}
+-1&0\\
+0&2
+\end{pmatrix},
+\qquad
+\lVert A-B\rVert_F
+=\sqrt{(-1)^2+2^2}
+=\sqrt5.
+\]
+
+Both \(1\le\sqrt5\) and \(2\le\sqrt5\), so the Frobenius Weyl bound holds at
+both indices. The sharper operator norm is \(2\), which also works.
+
+Now make the tempting wrong comparison: pair the largest eigenvalue \(3\) of
+\(A\) with the smallest eigenvalue \(-1\) of \(B\). The apparent shift is
+\(4\), which exceeds \(\sqrt5\). This does not contradict Weyl's theorem; it
+demonstrates why the common ordering and equal-index pairing are part of the
+statement.
+
+{{< reference-figure
+  wide="true"
+  src="ordered-eigenvalue-budget-example.svg"
+  alt="The ordered spectra three and one for matrix A and four and minus one for matrix B are paired by rank. Their shifts one and two both fit inside the Frobenius budget square root five. A crossed wrong pairing from three to minus one has shift four and is explicitly rejected."
+  caption="**Finding:** the perturbation budget belongs to the matrices, while the matching comes from sorting both spectra in the same direction. Equal-rank shifts \(1\) and \(2\) fit inside \(\sqrt5\); the crossed shift \(4\) is not a theorem input."
+>}}
 
 A **Weyl eigenvalue bound** controls how far the ordered eigenvalues of a
 Hermitian matrix can move when the matrix is perturbed. Write the real
@@ -176,6 +240,28 @@ universality, eigenvalue rigidity, local spacing, or a large-dimension limit.
 
 ## Lean interface
 
+{{< lean-bridge
+  human="At the same ordered index i, the eigenvalues of A and B differ by at most the Frobenius norm of A minus B."
+  math="\(\left|\lambda_i(A)-\lambda_i(B)\right|\le \lVert A-B\rVert_F.\)"
+  lean="abs_orderedHermitianEigenvalues_sub_le_frobenius A B i"
+>}}
+
+- <code>abs_..._sub_le_...</code> spells the inequality shape into the theorem
+  name: absolute value of a subtraction is less than or equal to a bound.
+- <code>orderedHermitianEigenvalues</code> is the project's decreasing
+  eigenvalue enumeration, so the matching rule is already built into the
+  function being compared.
+- <code>A B : HermitianEuclidean n</code> are intrinsically Hermitian matrices
+  equipped with the Frobenius geometry.
+- <code>i : Fin n</code> is one valid ordered position. It cannot name an index
+  outside the matrix dimension.
+- The norm notation in the theorem conclusion is the norm on
+  <code>HermitianEuclidean n</code>, proved by the project to agree with the
+  Frobenius entry norm.
+- Applying the theorem returns a proof of the inequality; it does not
+  numerically diagonalize either matrix.
+{{< /lean-bridge >}}
+
 The central checked declarations are:
 
 ~~~lean
@@ -192,6 +278,63 @@ theorem lipschitzWith_orderedHermitianEigenvalues_apply (i : Fin n) :
 The norm on <code>HermitianEuclidean n</code> is the intrinsic Frobenius norm.
 The numeral <code>1</code> records a valid Lipschitz constant; the theorem does
 not assert that no smaller constant could work on a restricted domain.
+
+### Type the squared budget check locally
+
+Square roots are unnecessary for the concrete comparison because all
+quantities are nonnegative. Save this <code>Std</code>-only worksheet as
+<code>WeylBudget2.lean</code>:
+
+~~~lean
+import Std
+
+def orderedA : List Int := [3, 1]
+def orderedB : List Int := [4, -1]
+
+def square (z : Int) : Int := z * z
+
+def frobeniusBudgetSquared : Int :=
+  square (-1) + square 2
+
+#eval frobeniusBudgetSquared
+#eval square (3 - 4)
+#eval square (1 - (-1))
+#eval square (3 - (-1))
+
+example : square (3 - 4) ≤ frobeniusBudgetSquared := by decide
+example : square (1 - (-1)) ≤ frobeniusBudgetSquared := by decide
+example : ¬ square (3 - (-1)) ≤ frobeniusBudgetSquared := by decide
+~~~
+
+Run it with the installed pinned toolchain:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean WeylBudget2.lean
+~~~
+
+Lean should print \(5\), \(1\), \(4\), and \(16\). The first two theorems
+certify the correct ordered pairings after squaring. The third certifies that
+the crossed pairing fails this budget. This finite worksheet checks integer
+arithmetic; the project theorem below proves the general spectral statement.
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean).
+On an approved Linux builder, a human can type:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+#check NonlinearDynamics.Random.abs_orderedHermitianEigenvalues_sub_le_frobenius
+#check NonlinearDynamics.Random.lipschitzWith_orderedHermitianEigenvalues_apply
+#check NonlinearDynamics.Random.continuous_orderedHermitianEigenvalues_apply
+#check NonlinearDynamics.Random.measurable_orderedHermitianEigenvalues_apply
+~~~
+
+These checks expose the perturbation, Lipschitz, continuity, and measurability
+layers in order. The guarded command below checks the complete pinned module
+and its Mathlib dependencies in the cloud.
+{{< /repo-check >}}
 
 ## Where to continue
 

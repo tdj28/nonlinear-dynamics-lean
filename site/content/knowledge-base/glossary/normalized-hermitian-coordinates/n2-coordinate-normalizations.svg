@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720"
+     viewBox="0 0 960 720" role="img"
+     aria-labelledby="n2CoordinatesTitle n2CoordinatesDesc">
+  <title id="n2CoordinatesTitle">Three different normalizations in one two-by-two Hermitian example</title>
+  <desc id="n2CoordinatesDesc">The free-entry ledger has diagonal values one and one and upper entry real part one, imaginary part zero. Its unweighted square sum is three, but the represented all-ones Hermitian matrix has Frobenius squared norm four because the upper entry is reflected below the diagonal. The orthonormal coordinate ledger therefore stores square root of two in its upper-real slot and has norm two. Dividing the whole coordinate vector by two gives a unit-norm matrix with every entry one half. Separate lower cards explain that coordinate normalization changes the ledger but not the matrix, whole-object scaling changes both coordinates and matrix, and trace normalization reports one scalar without changing the matrix. Zero-vector and zero-dimensional boundaries are stated at the bottom.</desc>
+  <defs>
+    <linearGradient id="coordinatePaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EEE5D6"/>
+    </linearGradient>
+    <pattern id="entryPattern" width="10" height="10" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#E8F0F7"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#4B6787" stroke-width="2"/>
+    </pattern>
+    <pattern id="normalizedPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#EAF1E5"/>
+      <path d="M0 10 L10 0" stroke="#6F8D5E" stroke-width="1.8"/>
+    </pattern>
+    <pattern id="edgePattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F3E8E0"/>
+      <circle cx="5" cy="5" r="1.8" fill="#9B3F2B"/>
+    </pattern>
+    <marker id="coordinateArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#7F786D"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="720" fill="url(#coordinatePaper)"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-family:Georgia,serif;font-size:24px;font-weight:700;fill:#16243A}
+    .sub{font-size:14px;fill:#536070}
+    .cap{font-size:12px;font-weight:700;letter-spacing:1.15px;fill:#1F5A68}
+    .h{font-size:15px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#536070}
+    .num{font-size:18px;font-weight:700;fill:#16243A}
+    .panel{fill:#FFFDF8;stroke:#C4B8A8;stroke-width:1.7}
+    .arrow{fill:none;stroke:#7F786D;stroke-width:2.3;marker-end:url(#coordinateArrow)}
+    .good{fill:#315F55}
+    .warn{fill:#8B3022}
+  </style>
+
+  <text x="28" y="39" class="title">Three normalizations, three different operations</text>
+  <text x="28" y="64" class="t sub">A two-by-two Hermitian example separates coordinate correction, whole-object scaling, and normalized trace.</text>
+
+  <rect x="28" y="88" width="904" height="350" rx="15" class="panel"/>
+
+  <rect x="46" y="111" width="188" height="295" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.6"/>
+  <text x="140" y="139" text-anchor="middle" class="t cap">FREE-ENTRY LEDGER</text>
+  <text x="65" y="171" class="t s">diagonal 0:</text>
+  <text x="205" y="171" text-anchor="end" class="t h">1</text>
+  <text x="65" y="197" class="t s">diagonal 1:</text>
+  <text x="205" y="197" text-anchor="end" class="t h">1</text>
+  <text x="65" y="223" class="t s">upper real:</text>
+  <text x="205" y="223" text-anchor="end" class="t h">1</text>
+  <text x="65" y="249" class="t s">upper imaginary:</text>
+  <text x="205" y="249" text-anchor="end" class="t h">0</text>
+  <rect x="64" y="276" width="152" height="54" rx="8" fill="#FFFDF8" stroke="#4B6787" stroke-width="1.2"/>
+  <text x="140" y="298" text-anchor="middle" class="t s">unweighted squares</text>
+  <text x="140" y="320" text-anchor="middle" class="t h">sum to 3</text>
+  <text x="140" y="353" text-anchor="middle" class="t m">misses the reflected copy</text>
+  <text x="140" y="378" text-anchor="middle" class="t m">of the upper entry</text>
+
+  <path d="M242 247 H276" class="arrow"/>
+  <text x="259" y="224" text-anchor="middle" class="t m">weight</text>
+  <text x="259" y="237" text-anchor="middle" class="t m">upper slot</text>
+
+  <rect x="284" y="111" width="190" height="295" rx="12" fill="url(#normalizedPattern)" stroke="#6F8D5E" stroke-width="1.6"/>
+  <text x="379" y="139" text-anchor="middle" class="t cap">ORTHONORMAL LEDGER</text>
+  <text x="303" y="171" class="t s">diagonal 0:</text>
+  <text x="445" y="171" text-anchor="end" class="t h">1</text>
+  <text x="303" y="197" class="t s">diagonal 1:</text>
+  <text x="445" y="197" text-anchor="end" class="t h">1</text>
+  <text x="303" y="223" class="t s">upper real:</text>
+  <text x="445" y="223" text-anchor="end" class="t h">sqrt(2)</text>
+  <text x="303" y="249" class="t s">upper imaginary:</text>
+  <text x="445" y="249" text-anchor="end" class="t h">0</text>
+  <rect x="302" y="276" width="154" height="54" rx="8" fill="#FFFDF8" stroke="#6F8D5E" stroke-width="1.2"/>
+  <text x="379" y="298" text-anchor="middle" class="t s">coordinate squares</text>
+  <text x="379" y="320" text-anchor="middle" class="t h good">sum to 4; norm is 2</text>
+  <text x="379" y="353" text-anchor="middle" class="t m">decoding divides the</text>
+  <text x="379" y="371" text-anchor="middle" class="t m">upper slots by sqrt(2)</text>
+
+  <path d="M482 247 H516" class="arrow"/>
+  <text x="499" y="224" text-anchor="middle" class="t m">assemble</text>
+
+  <rect x="524" y="111" width="180" height="295" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.6"/>
+  <text x="614" y="139" text-anchor="middle" class="t cap">ASSEMBLED MATRIX</text>
+  <rect x="564" y="166" width="100" height="100" rx="5" fill="url(#entryPattern)" stroke="#4B6787" stroke-width="1.6"/>
+  <path d="M614 166 V266 M564 216 H664" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="589" y="204" text-anchor="middle" class="t num">1</text>
+  <text x="639" y="204" text-anchor="middle" class="t num">1</text>
+  <text x="589" y="254" text-anchor="middle" class="t num">1</text>
+  <text x="639" y="254" text-anchor="middle" class="t num">1</text>
+  <text x="614" y="295" text-anchor="middle" class="t h">Frobenius norm: 2</text>
+  <text x="614" y="319" text-anchor="middle" class="t s">trace: 2</text>
+  <text x="614" y="350" text-anchor="middle" class="t m">same matrix represented</text>
+  <text x="614" y="368" text-anchor="middle" class="t m">by both ledgers at left</text>
+
+  <path d="M712 247 H746" class="arrow"/>
+  <text x="729" y="218" text-anchor="middle" class="t m">divide whole</text>
+  <text x="729" y="232" text-anchor="middle" class="t m">object by 2</text>
+
+  <rect x="754" y="111" width="160" height="295" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.6"/>
+  <text x="834" y="139" text-anchor="middle" class="t cap">UNIT-NORM RESULT</text>
+  <rect x="784" y="166" width="100" height="100" rx="5" fill="url(#normalizedPattern)" stroke="#6F8D5E" stroke-width="1.6"/>
+  <path d="M834 166 V266 M784 216 H884" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="809" y="204" text-anchor="middle" class="t h">1/2</text>
+  <text x="859" y="204" text-anchor="middle" class="t h">1/2</text>
+  <text x="809" y="254" text-anchor="middle" class="t h">1/2</text>
+  <text x="859" y="254" text-anchor="middle" class="t h">1/2</text>
+  <text x="834" y="295" text-anchor="middle" class="t h good">Frobenius norm: 1</text>
+  <text x="834" y="319" text-anchor="middle" class="t s">trace: 1</text>
+  <text x="834" y="350" text-anchor="middle" class="t m">the matrix changed</text>
+  <text x="834" y="368" text-anchor="middle" class="t m">because every entry scaled</text>
+
+  <rect x="28" y="462" width="286" height="153" rx="13" class="panel"/>
+  <text x="48" y="491" class="t cap">COORDINATE NORMALIZATION</text>
+  <text x="48" y="518" class="t h good">Changes the ledger</text>
+  <text x="48" y="541" class="t s">The upper-real coordinate becomes</text>
+  <text x="48" y="561" class="t s">square root of 2.</text>
+  <text x="48" y="586" class="t h">Does not change the matrix</text>
+  <text x="48" y="604" class="t m">It chooses an orthonormal basis.</text>
+
+  <rect x="337" y="462" width="286" height="153" rx="13" class="panel"/>
+  <text x="357" y="491" class="t cap">COORDINATE OR MATRIX SCALING</text>
+  <text x="357" y="518" class="t h good">The two scalings agree</text>
+  <text x="357" y="541" class="t s">Linearity sends half the coordinate</text>
+  <text x="357" y="561" class="t s">vector to half the matrix.</text>
+  <text x="357" y="586" class="t h">Norm and trace both change</text>
+  <text x="357" y="604" class="t m">Here they change from 2 to 1.</text>
+
+  <rect x="646" y="462" width="286" height="153" rx="13" class="panel"/>
+  <text x="666" y="491" class="t cap">TRACE NORMALIZATION</text>
+  <text x="666" y="518" class="t h good">Reports one scalar</text>
+  <text x="666" y="541" class="t s">Trace divided by dimension is 1</text>
+  <text x="666" y="561" class="t s">for the original matrix.</text>
+  <text x="666" y="586" class="t h">Does not change the matrix</text>
+  <text x="666" y="604" class="t m">It is an observable, not a rescaling.</text>
+
+  <rect x="28" y="640" width="904" height="52" rx="12" fill="url(#edgePattern)" stroke="#A67C52" stroke-width="1.6"/>
+  <text x="48" y="662" class="t h warn">Boundary policies</text>
+  <text x="48" y="682" class="t s">The zero vector assembles to the zero matrix but has no unit direction. At dimension zero, both coordinate and matrix spaces have one empty zero point.</text>
+</svg>

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 16:02 PDT
+Last updated: 2026-07-22 16:13 PDT
 
-Audited baseline: `main` at `a535c65`
+Audited baseline: `main` at `98ca4cb`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `98ca4cb`: rebuild independence, real Gaussian laws, and Cartesian complex
+  Gaussian laws around exact examples; add a two-coordinate independent-family
+  lesson; execute all four tiny local worksheets and regenerate their cards.
 - `a535c65`: rebuild Hermitian matrices, trace powers, unitary invariance, and
   normalization as computed visual tutorials; add the full variance Lean
   bridge; execute all five tiny local worksheets and repair the decidability
