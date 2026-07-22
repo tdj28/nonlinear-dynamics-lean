@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="expectation-title expectation-desc">
+  <title id="expectation-title">Expectation combines every possible payoff with its probability</title>
+  <desc id="expectation-desc">A three-outcome experiment has payoffs minus one, two, and five with probabilities one half, one third, and one sixth. One realized draw selects only the middle payoff two, while the law retains all three weighted possibilities. Their contributions are minus three sixths, four sixths, and five sixths, which add to expectation one, even though one is not a possible payoff. Doubling the measure gives total mass two and raw integral two; dividing by that total restores normalized expectation one. A final card shows linearity for Y equal to two X plus three.</desc>
+  <defs>
+    <pattern id="expect-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#f5d99b"/>
+      <rect width="4" height="12" fill="#9a632f"/>
+    </pattern>
+    <pattern id="expect-dots" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#dcebe3"/>
+      <circle cx="4" cy="4" r="2.4" fill="#3a7562"/>
+      <circle cx="11" cy="11" r="2.4" fill="#3a7562"/>
+    </pattern>
+    <pattern id="expect-grid" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#e1e8f2"/>
+      <path d="M 0 7 H 14 M 7 0 V 14" stroke="#46688f" stroke-width="2"/>
+    </pattern>
+    <filter id="expect-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#332921" flood-opacity="0.13"/>
+    </filter>
+    <marker id="expect-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6d5543"/>
+    </marker>
+    <style>
+      .ink { fill: #28221d; }
+      .muted { fill: #665b51; }
+      .cream { fill: #fffaf1; }
+      .title { font: 700 31px Georgia, serif; }
+      .heading { font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .body { font: 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .small { font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .equation { font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .center { text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="920" rx="24" fill="#f7f0e3"/>
+  <text x="48" y="52" class="title ink">Expectation sees the whole weighted experiment</text>
+  <text x="48" y="82" class="body muted">A realization chooses one payoff. The law keeps every payoff and its probability.</text>
+
+  <rect x="40" y="108" width="1120" height="236" rx="22" class="cream" stroke="#967556" stroke-width="2" filter="url(#expect-shadow)"/>
+  <text x="68" y="148" class="heading ink">One experiment, two different views</text>
+
+  <rect x="68" y="170" width="190" height="105" rx="14" fill="url(#expect-hatch)" stroke="#83552b" stroke-width="2"/>
+  <text x="163" y="202" class="body ink center">outcome L</text>
+  <text x="163" y="232" class="equation ink center">X = -1</text>
+  <text x="163" y="260" class="small ink center">probability 1/2</text>
+
+  <rect x="278" y="170" width="190" height="105" rx="14" fill="url(#expect-dots)" stroke="#356654" stroke-width="4"/>
+  <text x="373" y="202" class="body ink center">outcome M</text>
+  <text x="373" y="232" class="equation ink center">X = 2</text>
+  <text x="373" y="260" class="small ink center">probability 1/3</text>
+
+  <rect x="488" y="170" width="190" height="105" rx="14" fill="url(#expect-grid)" stroke="#3e5d82" stroke-width="2"/>
+  <text x="583" y="202" class="body ink center">outcome H</text>
+  <text x="583" y="232" class="equation ink center">X = 5</text>
+  <text x="583" y="260" class="small ink center">probability 1/6</text>
+
+  <path d="M 373 278 V 294 H 755" fill="none" stroke="#6d5543" stroke-width="3" marker-end="url(#expect-arrow)"/>
+  <rect x="775" y="166" width="350" height="130" rx="16" fill="#f1f7f3" stroke="#356654" stroke-width="2"/>
+  <text x="800" y="201" class="heading ink">This realization</text>
+  <text x="800" y="235" class="equation ink">ω = M, so X(ω) = 2</text>
+  <text x="800" y="266" class="small muted">The draw does not replace the three-branch law.</text>
+  <text x="68" y="329" class="small muted">The bold border marks the realized middle outcome. The patterned cards remain the complete law.</text>
+
+  <rect x="40" y="368" width="1120" height="244" rx="22" class="cream" stroke="#967556" stroke-width="2" filter="url(#expect-shadow)"/>
+  <text x="68" y="408" class="heading ink">Probability-weighted contributions</text>
+  <text x="68" y="438" class="small muted">Multiply each payoff by its probability, then add all three branches.</text>
+
+  <rect x="68" y="462" width="255" height="92" rx="14" fill="#fff3dc" stroke="#83552b" stroke-width="2"/>
+  <text x="195" y="494" class="body ink center">L contribution</text>
+  <text x="195" y="530" class="equation ink center">1/2 × (-1) = -3/6</text>
+
+  <text x="343" y="518" class="equation ink">+</text>
+
+  <rect x="375" y="462" width="255" height="92" rx="14" fill="#eff8f2" stroke="#356654" stroke-width="2"/>
+  <text x="502" y="494" class="body ink center">M contribution</text>
+  <text x="502" y="530" class="equation ink center">1/3 × 2 = 4/6</text>
+
+  <text x="650" y="518" class="equation ink">+</text>
+
+  <rect x="682" y="462" width="255" height="92" rx="14" fill="#f0f4fa" stroke="#3e5d82" stroke-width="2"/>
+  <text x="809" y="494" class="body ink center">H contribution</text>
+  <text x="809" y="530" class="equation ink center">1/6 × 5 = 5/6</text>
+
+  <text x="958" y="518" class="equation ink">=</text>
+
+  <rect x="990" y="450" width="135" height="116" rx="16" fill="#fff4ef" stroke="#a54037" stroke-width="3"/>
+  <text x="1057" y="486" class="body ink center">expectation</text>
+  <text x="1057" y="525" class="equation ink center">E[X] = 1</text>
+  <text x="1057" y="551" class="small ink center">not a payoff</text>
+  <text x="68" y="590" class="small muted">Exact sum: -3/6 + 4/6 + 5/6 = 6/6 = 1, although X only takes -1, 2, or 5.</text>
+
+  <rect x="40" y="636" width="540" height="160" rx="20" class="cream" stroke="#967556" stroke-width="2"/>
+  <text x="68" y="674" class="heading ink">Raw integral under total mass 2</text>
+  <text x="68" y="707" class="body ink">ν = 2P doubles every branch mass.</text>
+  <text x="68" y="743" class="equation ink">∫ X dν = 2 × 1 = 2</text>
+  <text x="68" y="774" class="small muted">A raw integral scales with mass; this is not yet probability expectation.</text>
+
+  <rect x="600" y="636" width="560" height="160" rx="20" fill="#f1f7f3" stroke="#356654" stroke-width="2"/>
+  <text x="628" y="674" class="heading ink">Normalize before saying expectation</text>
+  <text x="628" y="707" class="body ink">total mass ν(Ω) = 2</text>
+  <text x="628" y="743" class="equation ink">normalized average = 2 / 2 = 1</text>
+  <text x="628" y="774" class="small muted">The probability measure P = ν / 2 restores total mass one.</text>
+
+  <rect x="40" y="820" width="1120" height="66" rx="18" fill="#fff4ef" stroke="#a54037" stroke-width="2"/>
+  <text x="68" y="849" class="heading ink">Linearity</text>
+  <text x="205" y="849" class="body ink">If Y = 2X + 3, then E[Y] = 2E[X] + 3 = 5.</text>
+  <text x="205" y="875" class="small muted">Direct check: 1/2 × 1 + 1/3 × 7 + 1/6 × 13 = 5.</text>
+</svg>

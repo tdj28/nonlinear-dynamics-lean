@@ -5,7 +5,7 @@
 
 Last updated: 2026-07-22 15:36 PDT
 
-Audited baseline: `main` at `16c8eb4`
+Audited baseline: `main` at `bb29161`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -77,11 +77,11 @@ commits. They are not instructions for future work.
   single-slash-rooted `href` or `src` attributes.
 - The workflow is deliberately production-only: it does not pass
   `--buildDrafts`. The owner explicitly authorized open publication on
-  2026-07-22, so all 131 existing content pages now opt in with `draft: false`:
-  39 Development Notebook entries, 36 Deep Dives, and 56 glossary chapters.
-  The production and draft-inclusive renders both contain 409 pages.
+  2026-07-22, so all 134 existing content pages now opt in with `draft: false`:
+  39 Development Notebook entries, 36 Deep Dives, and 59 glossary chapters.
+  The production and draft-inclusive renders both contain 412 pages.
 - Publication exposes work in progress; it does not manufacture review. All
-  131 pages retain `pro_reviewed: false`, and the Notebook entries retain their
+  134 pages retain `pro_reviewed: false`, and the Notebook entries retain their
   visible pending-review status language. The site-wide
   `open_working_notes` publication mode adds an **Open working note** badge to
   articles and collection cards without rendering the private review metadata.
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `bb29161`: add the event, measure, and probability-measure foundations with
+  exact finite models and visual mass ledgers, and rebuild conjugate transpose
+  around an entry-by-entry complex example and copyable Lean worksheet.
 - `16c8eb4`: rebuild measurable space, random matrix, pushforward measure, and
   matrix trace as example-first teaching chapters; add four accessible concept
   diagrams and social cards; document a genuinely small local Lean/`Std`
