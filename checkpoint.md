@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 16:49 PDT
+Last updated: 2026-07-22 16:54 PDT
 
-Audited baseline: `main` at `be3d962`
+Audited baseline: `main` at `975c5a3`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `975c5a3`: rebuild the one-sided matrix-cocycle and zero-aware extended-log
+  chapters around exact finite matrix calculations; execute both standalone
+  `Std` worksheets and make their example diagrams the reproducible cards.
 - `be3d962`: rebuild the induced infinity operator norm around one exact
   two-by-two row-sum calculation, a column-sum near-miss, an equality-attaining
   vector, finite-product growth, and an executed standalone `Std` worksheet.

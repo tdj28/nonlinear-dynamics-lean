@@ -1,21 +1,109 @@
 ---
 title: "Log-positive integrability envelope"
 slug: "log-positive-integrability-envelope"
-summary: "A log-positive integrability envelope keeps only the expanding part of finite cocycle norm growth, making a real nonnegative majorant whose one-step integrability propagates to every finite horizon."
+summary: "Log-positive growth clips contraction at zero, leaving a nonnegative finite-horizon observable that one integrable generator bound can control along every finite orbit."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability"
 og_image: "log-positive-integrability-envelope-card.png"
-og_image_alt: "A finite cocycle norm enters a positive-log gate: collapse, contraction, and unit scale merge at zero while expansion remains positive, after which an explicit one-step integrability hypothesis is transported along a measure-preserving base to build an integrable finite orbit sum."
+og_image_alt: "A four-state cycle has generator norms one half, four, one quarter, and eight. Their product has positive log two log two, while the orbit envelope is five log two and the one-step probability average is five fourths log two."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+**Editorial status.** This is an AI-assisted working note. Human review of the
+mathematics, Lean interpretation, examples, sources, figures, and accessibility
+remains pending. The page is public so readers can follow the work while that
+review is still open.
 {{< /panel >}}
+
+Start with a four-state clock:
+
+\[
+\Omega=\{0,1,2,3\},
+\qquad
+T(i)=i+1\pmod 4.
+\]
+
+Give \(\Omega\) the discrete measurable structure, in which every subset is
+an allowed event, and define
+
+\[
+\mu(\{i\})=\frac14\qquad(i=0,1,2,3).
+\]
+
+This is a {{< refterm "probability-measure" "probability measure" >}} because
+the four masses add to one. The map \(T\) merely rotates those equal masses,
+so it preserves \(\mu\).
+
+At the four states, let a one-dimensional matrix cocycle use the positive
+scalar generators
+
+\[
+A(0)=\begin{bmatrix}1/2\end{bmatrix},\quad
+A(1)=\begin{bmatrix}4\end{bmatrix},\quad
+A(2)=\begin{bmatrix}1/4\end{bmatrix},\quad
+A(3)=\begin{bmatrix}8\end{bmatrix}.
+\]
+
+A one-by-one matrix is still a matrix. Its induced infinity norm is the
+absolute value of its only entry. Starting at state \(0\), the chronological
+norms are therefore
+
+\[
+\frac12,\qquad4,\qquad\frac14,\qquad8.
+\]
+
+The exact four-step product norm is
+
+\[
+N_4(0)
+=\frac12\cdot4\cdot\frac14\cdot8
+=4.
+\]
+
+Its positive logarithmic growth is
+
+\[
+P_4(0)=\log^+4=\log4=2\log2.
+\]
+
+Now clip every one-step contraction before adding:
+
+\[
+\begin{aligned}
+S_4(0)
+&=\log^+\!\left(\frac12\right)
+  +\log^+(4)
+  +\log^+\!\left(\frac14\right)
+  +\log^+(8)\\
+&=0+2\log2+0+3\log2\\
+&=5\log2.
+\end{aligned}
+\]
+
+Thus
+
+\[
+\boxed{P_4(0)=2\log2\leq5\log2=S_4(0)}.
+\]
+
+The gap is the whole point. The product remembers that the factors \(1/2\)
+and \(1/4\) cancel some expansion. The **envelope** deletes those negative
+logarithms, so it is easier to integrate but intentionally less precise.
+
+{{< reference-figure
+  wide="true"
+  src="log-positive-envelope-worked-example.svg"
+  alt="Four equally weighted states form a cycle. Their one-step matrix norms are one half, four, one quarter, and eight, with log-positive coefficients zero, two, zero, and three in units of log two. The exact product norm is four, so its positive log is two log two. The orbit envelope is five log two, and the one-step probability average is five fourths log two."
+  caption="**One complete finite model:** the base map rotates four equal atoms. Two contractions disappear at the positive-log gate, while the two expansions contribute \(2\log2\) and \(3\log2\). The actual four-step positive log is \(2\log2\), below the orbit envelope \(5\log2\). The finite one-step average \(5\log2/4\) makes the integrability hypothesis visible rather than implicit."
+>}}
+
+This scalar model was chosen to expose the bookkeeping. General matrices need
+not commute, but their norms still satisfy the submultiplicative inequality
+that drives the same envelope estimate.
+
+## Define the observable
 
 A **log-positive integrability envelope** is a real-valued upper-growth
 observable for a matrix cocycle. It keeps positive logarithmic expansion and
@@ -25,8 +113,7 @@ clips everything else to zero. If
 N_k(\omega)=\lVert C(k,\omega)\rVert_\infty
 \]
 
-is the finite-time maximum absolute row-sum norm from RMT-14, then RMT-15
-defines
+is the finite-time maximum absolute row-sum norm, define
 
 \[
 P_k(\omega)
@@ -37,7 +124,7 @@ P_k(\omega)
 \]
 
 Here \(C(k,\omega)\) is the cocycle matrix after \(k\) steps from base state
-\(\omega\), and \(\log^+\), read “log positive,” is Mathlib's
+\(\omega\). The notation \(\log^+\), read “log positive,” is Mathlib's
 <code>Real.posLog</code>. The result \(P_k:\Omega\to\mathbb R\) is measurable
 and nonnegative.
 
@@ -153,14 +240,17 @@ def HasIntegrableGeneratorLogPlus
   Integrable (C.logPlusNormObservable 1) μ
 ~~~
 
-For a real-valued function, Mathlib's <code>Integrable</code> is absolute
-Bochner integrability with respect to the stated measure. Because \(P_1\) is
+For a real-valued function, Mathlib's
+{{< refterm "integrability" "Integrable" >}} predicate is absolute Bochner
+integrability with respect to the stated measure. Because \(P_1\) is
 nonnegative, this asks for a finite integral of its expanding tail. The
 measure \(\mu\) may be arbitrary. The definition does not assert
 \(\mu(\Omega)=1\), so the integral is not automatically an expectation.
 
-The bundled base map preserves \(\mu\). Every natural iterate therefore also
-preserves \(\mu\), and integrability survives pullback:
+The bundled base map is a
+{{< refterm "measure-preserving-transformation" "measure-preserving transformation" >}}.
+Every natural iterate therefore also preserves \(\mu\), and integrability
+survives pullback:
 
 \[
 P_1\text{ integrable}
@@ -201,6 +291,97 @@ Fourth, the three declarations in the
 to base iterates, orbit sums, and finally finite-horizon envelopes. This order
 makes the proof auditable: transport, finite addition, then domination.
 
+## In Lean: define the clipped observable
+
+{{< lean-bridge
+  human="At outcome omega and horizon k, measure the cocycle matrix, take its infinity norm, apply the real logarithm, and replace any negative result by zero."
+  math="\(P_k(\omega)=\log^+\!\bigl(\lVert C(k,\omega)\rVert_\infty\bigr).\)"
+  lean="C.logPlusNormObservable k ω = log⁺ (C.normObservable k ω)"
+>}}
+
+- <code>C</code> is the bundled one-sided discrete matrix cocycle.
+- <code>k : ℕ</code> is the number of generator matrices in the finite product.
+- <code>ω : Ω</code> is one starting state in the base space.
+- <code>C.normObservable k ω</code> is the selected induced infinity norm of the
+  realized <code>k</code>-step cocycle matrix.
+- <code>log⁺</code> is the notation for <code>Real.posLog</code> after opening
+  <code>Real</code> as a scoped namespace. It returns an ordinary real number.
+- The equality is definitional: unfolding <code>logPlusNormObservable</code>
+  exposes the right-hand side.
+{{< /lean-bridge >}}
+
+The exact project definition is:
+
+~~~lean
+def logPlusNormObservable
+    (C : DiscreteMatrixCocycle (ι := ι) μ) (k : ℕ) : Ω → ℝ :=
+  fun ω ↦ log⁺ (C.normObservable k ω)
+~~~
+
+Read <code>fun ω ↦ ...</code> as “the function that sends \(\omega\) to
+...”. The result type <code>Ω → ℝ</code> is a real-valued observable, not a
+measure and not yet an integral.
+
+## In Lean: dominate a horizon by one-step terms
+
+{{< lean-bridge
+  human="The positive log of the whole k-step product is no larger than the sum of the one-step positive logs encountered along the first k base states."
+  math="\(P_k(\omega)\leq\displaystyle\sum_{j=0}^{k-1}P_1(T^j\omega)=S_k(\omega).\)"
+  lean="C.logPlusNormObservable_le_orbitLogPlusSum k ω"
+>}}
+
+- The theorem is called with the cocycle <code>C</code> before the dot.
+- <code>orbitLogPlusSum</code> expands to a <code>Finset</code> sum over
+  <code>Finset.range k</code>, which contains exactly
+  <code>0, 1, ..., k - 1</code>.
+- <code>C.base^[j]</code> is Lean's notation for the <code>j</code>-fold iterate
+  of the base map. Applying it to <code>ω</code> gives \(T^j\omega\).
+- The conclusion is pointwise. It requires neither an integral nor a
+  probability measure.
+{{< /lean-bridge >}}
+
+The definition being bounded is:
+
+~~~lean
+def orbitLogPlusSum
+    (C : DiscreteMatrixCocycle (ι := ι) μ) (k : ℕ) : Ω → ℝ :=
+  fun ω ↦ ∑ j ∈ Finset.range k,
+    C.logPlusNormObservable 1 (C.base^[j] ω)
+~~~
+
+At <code>k = 0</code>, <code>Finset.range 0</code> is empty, so this sum is
+zero. At <code>k + 1</code>, the new term has index <code>k</code>. That is the
+same half-open indexing convention used in the paper sum.
+
+## In Lean: propagate the integrability certificate
+
+{{< lean-bridge
+  human="If the one-step positive-log generator is integrable, then the positive-log norm at every finite horizon k is integrable."
+  math="\(P_1\in L^1(\mu)\Longrightarrow P_k\in L^1(\mu)\quad\text{for every finite }k.\)"
+  lean="hC.integrable_logPlusNormObservable k"
+>}}
+
+- <code>hC</code> has type
+  <code>C.HasIntegrableGeneratorLogPlus</code>. After unfolding, that is proof
+  evidence for <code>Integrable (C.logPlusNormObservable 1) μ</code>.
+- The dot notation asks Lean to use <code>hC</code> as the theorem's first
+  explicit argument.
+- <code>k</code> is arbitrary but finite because its type is <code>ℕ</code>.
+- The conclusion is <code>Integrable (C.logPlusNormObservable k) μ</code>.
+  It does not say that the sequence converges as <code>k → ∞</code>.
+{{< /lean-bridge >}}
+
+The proof travels through two reusable intermediate certificates:
+
+~~~lean
+hC.integrable_at_base_iterate j
+hC.integrable_orbitLogPlusSum k
+hC.integrable_logPlusNormObservable k
+~~~
+
+They correspond, in order, to preservation under the shift, closure under a
+finite sum, and domination of the target observable by that sum.
+
 ## Three common misreads
 
 **“Zero positive log means no dynamics.”** False. It can mean exact
@@ -216,34 +397,196 @@ Preservation says that pulling an integrable function along the base does not
 destroy integrability. Only a separately supplied probability normalization
 would justify expectation language.
 
-## A scalar calculation
+## Read the four-state integrability ledger
 
-Consider a one-dimensional cocycle whose four chronological generator norms
-are
+In the opening model, the one-step observable has four values:
 
-\[
-\frac12,\qquad 3,\qquad \frac14,\qquad 4.
-\]
+| State \(i\) | Generator norm \(\lVert A(i)\rVert_\infty\) | \(P_1(i)=\log^+\lVert A(i)\rVert_\infty\) | Probability |
+|---:|---:|---:|---:|
+| \(0\) | \(1/2\) | \(0\) | \(1/4\) |
+| \(1\) | \(4\) | \(2\log2\) | \(1/4\) |
+| \(2\) | \(1/4\) | \(0\) | \(1/4\) |
+| \(3\) | \(8\) | \(3\log2\) | \(1/4\) |
 
-The exact scalar product has norm \(3/2\). Its finite-horizon positive log is
-
-\[
-P_4=\log\!\left(\frac32\right).
-\]
-
-The orbit envelope discards both contracting factors and gives
+Every function on this finite space is measurable. All four displayed values
+are finite, so the function is integrable. Its integral is
 
 \[
-S_4
-{} =
-0+\log 3+0+\log 4
-{} =
-\log 12.
+\int_\Omega P_1\,d\mu
+=\frac14\bigl(0+2\log2+0+3\log2\bigr)
+=\frac54\log2.
 \]
 
-Therefore \(P_4\le S_4\), with substantial slack. That slack is the price of a
-simple nonnegative majorant. The example is algebraic, not an empirical
-measurement.
+Because \(\mu\) is a probability measure, this integral may also be called the
+{{< refterm "expectation" "expectation" >}} of \(P_1\). The project definition
+does not assume probability, so its general theorem correctly says
+“integrable” rather than “has finite expectation.”
+
+Composing with the rotation only permutes the value list. For example,
+
+\[
+(P_1\circ T)(0,1,2,3)
+=\bigl(2\log2,0,3\log2,0\bigr).
+\]
+
+The integral remains \(5\log2/4\). The same holds for every iterate
+\(P_1\circ T^j\). Adding four such shifted functions gives an integrable orbit
+sum. The theorem then uses
+
+\[
+0\le P_4\le S_4
+\]
+
+and measurability of \(P_4\) to transfer integrability from \(S_4\) to
+\(P_4\). This last step is a domination argument, not another appeal to
+measure preservation.
+
+## Exact source excerpts
+
+**Resource label: pinned project plus Mathlib.** The checked implementation is
+in [<code>LogPlusIntegrability.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean).
+Its pointwise finite-horizon split first combines norm submultiplicativity,
+monotonicity of positive log, and the positive-log product inequality:
+
+~~~lean
+theorem logPlusNormObservable_add_le
+    (C : DiscreteMatrixCocycle (ι := ι) μ) (m k : ℕ) (ω : Ω) :
+    C.logPlusNormObservable (m + k) ω ≤
+      C.logPlusNormObservable k (C.base^[m] ω) +
+        C.logPlusNormObservable m ω := by
+  calc
+    log⁺ (C.normObservable (m + k) ω) ≤
+        log⁺ (C.normObservable k (C.base^[m] ω) * C.normObservable m ω) :=
+      Real.posLog_le_posLog (norm_nonneg _) (C.normObservable_add_le m k ω)
+    _ ≤ log⁺ (C.normObservable k (C.base^[m] ω)) +
+        log⁺ (C.normObservable m ω) := Real.posLog_mul
+~~~
+
+The first line after <code>calc</code> replaces the whole-product norm by a
+product of block norms. The second turns positive log of that product into a
+sum. No integration occurs in this theorem.
+
+The final integrability theorem makes the proof order explicit:
+
+~~~lean
+theorem HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable
+    {C : DiscreteMatrixCocycle (ι := ι) μ}
+    (hC : C.HasIntegrableGeneratorLogPlus) (k : ℕ) :
+    Integrable (C.logPlusNormObservable k) μ := by
+  apply (hC.integrable_orbitLogPlusSum k).mono'
+    (C.measurable_logPlusNormObservable k).aestronglyMeasurable
+  filter_upwards with ω
+  rw [Real.norm_eq_abs, abs_of_nonneg (C.logPlusNormObservable_nonneg k ω)]
+  exact C.logPlusNormObservable_le_orbitLogPlusSum k ω
+~~~
+
+The <code>mono'</code> domination principle asks for an integrable majorant,
+an almost-everywhere strongly measurable target, and an almost-everywhere norm
+bound. The project has a pointwise bound, so it is strong enough to discharge
+the almost-everywhere obligation.
+
+## Tiny local Lean/Std arithmetic worksheet
+
+**Resource label: tiny standalone check.** The real logarithm is analytic, but
+the opening example uses powers of two. We can therefore record every log size
+exactly by its coefficient of \(\log2\). This complete program imports only
+<code>Std</code>; it does not import Mathlib or the project.
+
+Save it as <code>LogPositiveEnvelopeScratch.lean</code>:
+
+~~~lean
+import Std
+
+namespace LogPositiveEnvelopeScratch
+
+-- A value e represents the scalar generator norm 2^e.
+def exponents : List Int := [-1, 2, -2, 3]
+
+-- log⁺(2^e) = max(0, e) · log 2.
+def positiveLogCoeff (e : Int) : Nat :=
+  e.toNat
+
+def productExponent : Int :=
+  exponents.foldl (fun total e => total + e) 0
+
+def finiteLogPlusCoeff : Nat :=
+  positiveLogCoeff productExponent
+
+def orbitEnvelopeCoeff : Nat :=
+  (exponents.map positiveLogCoeff).sum
+
+def envelopeBoundHolds : Bool :=
+  decide (finiteLogPlusCoeff ≤ orbitEnvelopeCoeff)
+
+#eval exponents.map positiveLogCoeff
+#eval productExponent
+#eval finiteLogPlusCoeff
+#eval orbitEnvelopeCoeff
+#eval envelopeBoundHolds
+#eval (orbitEnvelopeCoeff, exponents.length)
+
+end LogPositiveEnvelopeScratch
+~~~
+
+Run exactly this small file on macOS or Linux with the pinned Lean toolchain:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean LogPositiveEnvelopeScratch.lean
+~~~
+
+The outputs should be
+<code>[0, 2, 0, 3]</code>, <code>2</code>, <code>2</code>, <code>5</code>,
+<code>true</code>, and <code>(5, 4)</code>. They encode
+
+\[
+P_4=2\log2,
+\qquad
+S_4=5\log2,
+\qquad
+\int P_1\,d\mu=\frac54\log2.
+\]
+
+The worksheet checks the finite arithmetic only. It does not pretend that a
+list of integer exponents is Mathlib's matrix cocycle, measure-preserving map,
+or Bochner-integrability proof.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
+copy of this repository, a reader can place these probes after the module
+import:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
+
+open Matrix MeasureTheory
+open scoped Matrix.Norms.Operator Real
+open NonlinearDynamics.Random.RandomCocycles
+
+#check Real.posLog
+#check Real.posLog_nonneg
+#check Real.posLog_mul
+#check DiscreteMatrixCocycle.logPlusNormObservable
+#check DiscreteMatrixCocycle.logPlusNormObservable_nonneg
+#check DiscreteMatrixCocycle.logPlusNormObservable_zero
+#check DiscreteMatrixCocycle.logPlusNormObservable_one
+#check DiscreteMatrixCocycle.measurable_logPlusNormObservable
+#check DiscreteMatrixCocycle.logPlusNormObservable_add_le
+#check DiscreteMatrixCocycle.orbitLogPlusSum
+#check DiscreteMatrixCocycle.orbitLogPlusSum_zero
+#check DiscreteMatrixCocycle.orbitLogPlusSum_succ
+#check DiscreteMatrixCocycle.logPlusNormObservable_le_orbitLogPlusSum
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_at_base_iterate
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_orbitLogPlusSum
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for the exact type already
+proved in the repository. It does not rerun the proof in the browser. The
+guarded command below checks the complete module on approved Linux compute.
+{{< /repo-check >}}
 
 ## Empty matrix dimension
 

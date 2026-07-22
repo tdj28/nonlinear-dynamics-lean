@@ -1,50 +1,29 @@
 #!/bin/sh
 set -eu
 
-script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+script_dir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
+source_svg="$script_dir/log-positive-envelope-worked-example.svg"
 checked="$script_dir/log-positive-integrability-envelope-card.png"
+fit=""
+temporary=""
+
+cleanup() {
+  test -z "$fit" || rm -f "$fit"
+  test -z "$temporary" || rm -f "$temporary"
+}
+trap cleanup EXIT HUP INT TERM
 
 generate() {
   output="$1"
-  magick -size 1200x630 xc:'#F3EFE6' \
-    -fill '#16243A' -draw 'rectangle 0,0 1200,22 rectangle 0,535 1200,630' \
-    -fill '#C16F2C' -font Helvetica -pointsize 22 \
-    -annotate +72+96 'KNOWLEDGE BASE / RANDOM DYNAMICS' \
-    -fill '#16243A' -font Palatino-Roman -pointsize 43 \
-    -annotate +72+165 'Log-positive' \
-    -annotate +72+220 'integrability envelope' \
-    -fill '#4D5B6B' -font Helvetica -pointsize 19 \
-    -annotate +76+282 'Keep expansion; name what the envelope forgets' \
-    -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 3 \
-    -draw 'roundrectangle 704,54 1148,482 22,22' \
-    -fill '#F3E8E0' -stroke '#A67C52' -strokewidth 3 \
-    -draw 'roundrectangle 740,84 1112,146 14,14' \
-    -fill '#934F1F' -stroke none -font Helvetica-Bold -pointsize 14 \
-    -annotate +805+122 'COLLAPSE / CONTRACTION / UNIT' \
-    -fill none -stroke '#A67C52' -strokewidth 3 \
-    -draw 'line 926,150 926,174 polygon 919,167 933,167 926,178' \
-    -fill '#16243A' -stroke none \
-    -draw 'roundrectangle 740,184 1112,246 14,14' \
-    -fill '#FFFDF8' -font Helvetica-Bold -pointsize 15 \
-    -annotate +850+222 'POSITIVE-LOG GATE' \
-    -fill none -stroke '#A67C52' -strokewidth 3 \
-    -draw 'line 926,250 926,274 polygon 919,267 933,267 926,278' \
-    -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 3 \
-    -draw 'roundrectangle 740,284 1112,346 14,14' \
-    -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 14 \
-    -annotate +794+309 'NONEXPANSION BECOMES ZERO' \
-    -annotate +823+331 'EXPANSION STAYS POSITIVE' \
-    -fill none -stroke '#A67C52' -strokewidth 3 \
-    -draw 'line 926,350 926,374 polygon 919,367 933,367 926,378' \
-    -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 3 \
-    -draw 'roundrectangle 740,384 1112,448 14,14' \
-    -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 14 \
-    -annotate +822+411 'FINITE ORBIT-SUM MAJORANT' \
-    -annotate +832+434 'INTEGRABLE IF ONE STEP IS' \
-    -fill '#FFFDF8' -font Helvetica -pointsize 17 \
-    -annotate +72+578 'EXPANSION ENVELOPE  /  FINITE INTEGRABILITY  /  NOT A LYAPUNOV EXPONENT' \
-    -strip -define png:exclude-chunk=date,time \
-    "PNG:$output"
+  fit="$(mktemp /tmp/log-positive-integrability-envelope-fit.XXXXXX)"
+  rsvg-convert -w 756 -h 630 -b '#f7f1e7' \
+    -o "$fit" "$source_svg"
+  magick "$fit" -background '#f7f1e7' -gravity center \
+    -extent 1200x630 -alpha off -strip \
+    -define png:exclude-chunk=date,time "PNG:$output"
+  rm -f "$fit"
+  fit=""
+
   dimensions="$(magick identify -format '%wx%h' "$output")"
   test "$dimensions" = "1200x630" || {
     echo "unexpected card dimensions: $dimensions" >&2
@@ -53,8 +32,7 @@ generate() {
 }
 
 if test "$#" -gt 0 && test "$1" = "--verify"; then
-  temporary="$(mktemp "/tmp/log-positive-integrability-envelope-card.XXXXXX")"
-  trap 'rm -f "$temporary"' EXIT HUP INT TERM
+  temporary="$(mktemp /tmp/log-positive-integrability-envelope-card.XXXXXX)"
   generate "$temporary"
   cmp -s "$temporary" "$checked" || {
     echo "log-positive-integrability-envelope-card.png is stale; regenerate it" >&2

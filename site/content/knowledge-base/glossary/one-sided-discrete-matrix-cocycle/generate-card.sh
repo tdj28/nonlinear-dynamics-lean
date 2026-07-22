@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+script_dir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
 source_svg="$script_dir/one-sided-discrete-matrix-cocycle.svg"
 checked="$script_dir/one-sided-discrete-matrix-cocycle-card.png"
 fit=""
@@ -19,7 +19,8 @@ generate() {
   rsvg-convert -w 756 -h 630 -b '#f7f1e7' \
     -o "$fit" "$source_svg"
   magick "$fit" -background '#f7f1e7' -gravity center \
-    -extent 1200x630 -alpha off "PNG:$output"
+    -extent 1200x630 -alpha off -strip \
+    -define png:exclude-chunk=date,time "PNG:$output"
   rm -f "$fit"
   fit=""
 
