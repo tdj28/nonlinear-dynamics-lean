@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 15:44 PDT
+Last updated: 2026-07-22 15:52 PDT
 
-Audited baseline: `main` at `391a086`
+Audited baseline: `main` at `962dd93`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `962dd93`: add integrability, measure-preserving transformation, and
+  orbit-and-iterate chapters with exact examples and diagrams; turn the
+  glossary landing page into a visual dependency-ordered learning route.
 - `391a086`: add the measurable-function, random-variable, and expectation
   foundations with fair-die and exact three-outcome models, accessible diagrams,
   explicit human/paper/Lean bridges, and copyable tiny local Lean worksheets.

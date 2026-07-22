@@ -5,6 +5,7 @@ summary: "Variance is the expected squared distance from a random variable to it
 draft: false
 pro_reviewed: false
 toc: true
+lean_module: "NonlinearDynamics.Random.GaussianPrimitives"
 og_image: "variance-card.png"
 og_image_alt: "Two equally likely values lie two units from their mean, so both squared deviations are four and the variance is four."
 ---
@@ -143,7 +144,110 @@ They answer different questions and use different denominators. Neither
 denominator belongs silently in the measure-theoretic definition of
 \(\operatorname{Var}_{\mathbb P}(X)\).
 
-## The pinned Lean representation has an important totalization
+## In Lean: write the variable and the measure explicitly
+
+{{< lean-bridge
+  human="The variance of X under probability measure P is four."
+  math="\(\operatorname{Var}_{P}(X)=4.\)"
+  lean="Var[X; P] = 4"
+>}}
+
+- <code>Var[</code> opens Mathlib's scoped notation for real-valued variance.
+- <code>X</code> is the whole function from outcomes to real values. It is not
+  one sampled number.
+- The semicolon separates the random variable from the measure governing its
+  outcomes.
+- <code>P</code> is the measure. Lean will not silently guess a data table, a
+  sampling convention, or a denominator.
+- <code>]</code> closes the notation, and <code>= 4</code> is the proposition a
+  proof must establish.
+- A human literally types <code>Var[X; P] = 4</code> after importing a module
+  that opens the probability notation. The project worksheet below supplies
+  the import, types, and hypotheses that give each token meaning.
+{{< /lean-bridge >}}
+
+For an almost-everywhere measurable \(X\), the integral formula appears as:
+
+{{< lean-bridge
+  human="Variance is the integral of the squared deviation from the mean."
+  math="\(\operatorname{Var}_{P}(X)=\int_\Omega (X(\omega)-\mathbb E_P[X])^2\,dP(\omega).\)"
+  lean="ProbabilityTheory.variance_eq_integral hX"
+>}}
+
+- <code>ProbabilityTheory</code> is the namespace containing Mathlib's variance
+  API.
+- <code>variance_eq_integral</code> is a theorem name, not a request for Lean
+  to numerically integrate a distribution.
+- <code>hX : AEMeasurable X P</code> supplies the measurability gate.
+- Its conclusion contains <code>P[X]</code> for the integral mean and
+  <code>∫ ω, (X ω - P[X]) ^ 2 ∂P</code> for the squared-deviation integral.
+- The theorem unfolds the mathematical meaning under its hypothesis; it does
+  not erase the infinite-variance totalization caveat in the next section.
+{{< /lean-bridge >}}
+
+### Type the two-point arithmetic on this Mac or on Linux
+
+This first worksheet imports only Lean's small <code>Std</code> library. It
+checks the arithmetic of the \(-1,3\) example without restoring Mathlib or
+building this repository. Create a scratch file named
+<code>VarianceTiny.lean</code>:
+
+~~~lean
+import Std
+
+def square (z : Int) : Int := z * z
+
+#eval [(-1 : Int), 3].map (fun x => square (x - 1))
+
+example :
+    square ((-1 : Int) - 1) + square (3 - 1) = 2 * 4 := by
+  decide
+~~~
+
+Then type:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean VarianceTiny.lean
+~~~
+
+With the pinned Lean 4.32.0 toolchain, the evaluator prints
+<code>[4, 4]</code>. The theorem proves that the
+sum of the two squared deviations is \(2\cdot4\); dividing by the two equal
+probability weights gives variance \(4\). Change the claimed right-hand side
+to <code>2 * 5</code> and Lean should reject the file. That deliberate failure
+is the quickest way to feel the difference between evaluation and proof.
+
+### Inspect the exact project interface on approved Linux compute
+
+On the provisioned project builder, a human can put this in a scratch Lean file:
+
+~~~lean
+import NonlinearDynamics.Random.GaussianPrimitives
+
+open MeasureTheory ProbabilityTheory
+open scoped ProbabilityTheory
+
+#check ProbabilityTheory.evariance
+#check ProbabilityTheory.variance
+#check ProbabilityTheory.variance_eq_integral
+#check ProbabilityTheory.variance_const_mul
+#check ProbabilityTheory.IndepFun.variance_add
+#check NonlinearDynamics.Random.HasRealGaussianLaw.variance_eq
+#check NonlinearDynamics.Random.HasRealGaussianLaw.ae_eq_const_of_variance_zero
+~~~
+
+The first two checks expose both codomains. The next three inspect the integral,
+scaling, and independent-sum rules. The final two are project theorems: an exact
+Gaussian has the stated variance, and zero Gaussian variance yields equality
+with the mean almost everywhere.
+
+{{< repo-check >}}
+The authoritative project source is
+[<code>formalization/NonlinearDynamics/Random/GaussianPrimitives.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/GaussianPrimitives.lean).
+The command below builds that exact module against the pinned Mathlib checkout.
+{{< /repo-check >}}
+
+## Why the pinned real-valued notation needs care
 
 Mathlib 4.32.0 defines two related quantities:
 

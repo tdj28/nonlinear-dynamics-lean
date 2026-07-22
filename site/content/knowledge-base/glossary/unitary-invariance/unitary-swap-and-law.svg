@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720"
+     viewBox="0 0 960 720" role="img"
+     aria-labelledby="unitaryTitle unitaryDesc">
+  <title id="unitaryTitle">A unitary basis swap preserves a spectrum and can preserve a law without fixing a matrix</title>
+  <desc id="unitaryDesc">The top left shows matrix H with entries two, one, one, zero changing under a unitary coordinate swap to entries zero, one, one, two. The matrices differ, but the top right records equal trace, determinant, characteristic polynomial, and eigenvalues. The lower left shows that swapping two equal probability masses preserves a balanced two-point law while a point mass at H moves to a different point mass. The lower right shows a non-unitary stretch producing entries eight, two, two, zero and changing trace and determinant.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EEE5D6"/>
+    </linearGradient>
+    <pattern id="matrixPattern" width="10" height="10" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#E8F0F7"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#4B6787" stroke-width="2"/>
+    </pattern>
+    <pattern id="keptPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#EAF1E5"/>
+      <path d="M0 10 L10 0" stroke="#6F8D5E" stroke-width="1.8"/>
+    </pattern>
+    <pattern id="warningPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F3E8E0"/>
+      <circle cx="5" cy="5" r="1.8" fill="#9B3F2B"/>
+    </pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#7F786D"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="720" fill="url(#paper)"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-family:Georgia,serif;font-size:24px;font-weight:700;fill:#16243A}
+    .sub{font-size:14px;fill:#536070}
+    .cap{font-size:13px;font-weight:700;letter-spacing:1.25px;fill:#1F5A68}
+    .h{font-size:16px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#536070}
+    .num{font-size:20px;font-weight:700;fill:#16243A}
+    .panel{fill:#FFFDF8;stroke:#C4B8A8;stroke-width:1.8}
+    .grid{fill:url(#matrixPattern);stroke:#4B6787;stroke-width:1.8}
+    .arrow{fill:none;stroke:#7F786D;stroke-width:2.5;marker-end:url(#arrow)}
+    .bad{fill:#8B3022}
+    .good{fill:#315F55}
+  </style>
+
+  <text x="30" y="38" class="title">One basis swap, three different meanings of "unchanged"</text>
+  <text x="30" y="63" class="t sub">Entries move; spectral data stay; a law stays only when its probability masses also match the symmetry.</text>
+
+  <rect x="28" y="88" width="570" height="260" rx="15" class="panel"/>
+  <text x="50" y="117" class="t cap">ONE HERMITIAN MATRIX</text>
+  <text x="50" y="140" class="t m">The unitary swap exchanges coordinate labels 1 and 2.</text>
+
+  <rect x="54" y="157" width="158" height="145" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.7"/>
+  <text x="133" y="180" text-anchor="middle" class="t h">matrix H</text>
+  <rect x="88" y="193" width="90" height="90" rx="4" class="grid"/>
+  <path d="M133 193 V283 M88 238 H178" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="111" y="226" text-anchor="middle" class="t num">2</text>
+  <text x="156" y="226" text-anchor="middle" class="t num">1</text>
+  <text x="111" y="271" text-anchor="middle" class="t num">1</text>
+  <text x="156" y="271" text-anchor="middle" class="t num">0</text>
+
+  <path d="M231 230 H363" class="arrow"/>
+  <text x="297" y="207" text-anchor="middle" class="t h">unitary swap</text>
+  <text x="297" y="251" text-anchor="middle" class="t m">exchange both rows</text>
+  <text x="297" y="268" text-anchor="middle" class="t m">and both columns</text>
+
+  <rect x="382" y="157" width="190" height="145" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.7"/>
+  <text x="477" y="180" text-anchor="middle" class="t h">transformed H prime</text>
+  <rect x="432" y="193" width="90" height="90" rx="4" class="grid"/>
+  <path d="M477 193 V283 M432 238 H522" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="455" y="226" text-anchor="middle" class="t num">0</text>
+  <text x="500" y="226" text-anchor="middle" class="t num">1</text>
+  <text x="455" y="271" text-anchor="middle" class="t num">1</text>
+  <text x="500" y="271" text-anchor="middle" class="t num">2</text>
+
+  <rect x="54" y="313" width="518" height="23" rx="8" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.2"/>
+  <text x="313" y="329" text-anchor="middle" class="t s">The entry arrays differ: the transformed matrix is not equal to H.</text>
+
+  <rect x="620" y="88" width="312" height="260" rx="15" class="panel"/>
+  <text x="642" y="117" class="t cap">SPECTRAL CHECKS STAY</text>
+  <text x="642" y="140" class="t m">These are sample-by-sample facts.</text>
+
+  <rect x="642" y="157" width="268" height="43" rx="9" fill="url(#keptPattern)" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="660" y="176" class="t h good">trace</text>
+  <text x="660" y="193" class="t s">2 before, 2 after</text>
+
+  <rect x="642" y="210" width="268" height="43" rx="9" fill="url(#keptPattern)" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="660" y="229" class="t h good">determinant</text>
+  <text x="660" y="246" class="t s">minus 1 before, minus 1 after</text>
+
+  <rect x="642" y="263" width="268" height="63" rx="9" fill="url(#keptPattern)" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="660" y="282" class="t h good">full spectrum</text>
+  <text x="660" y="300" class="t s">same characteristic polynomial</text>
+  <text x="660" y="317" class="t s">same two eigenvalues</text>
+
+  <rect x="28" y="372" width="570" height="230" rx="15" class="panel"/>
+  <text x="50" y="401" class="t cap">PROBABILITY LAW UNDER THE SAME SWAP</text>
+  <text x="50" y="424" class="t m">Law invariance concerns where all the mass goes, not whether each sample is fixed.</text>
+
+  <rect x="52" y="441" width="180" height="64" rx="11" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <circle cx="91" cy="468" r="18" fill="url(#matrixPattern)" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="91" y="473" text-anchor="middle" class="t h">H</text>
+  <circle cx="172" cy="468" r="18" fill="url(#matrixPattern)" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="172" y="473" text-anchor="middle" class="t h">H'</text>
+  <text x="91" y="497" text-anchor="middle" class="t m">one half</text>
+  <text x="172" y="497" text-anchor="middle" class="t m">one half</text>
+
+  <path d="M248 473 H329" class="arrow"/>
+  <text x="289" y="456" text-anchor="middle" class="t m">swap both</text>
+
+  <rect x="348" y="441" width="180" height="64" rx="11" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <circle cx="387" cy="468" r="18" fill="url(#matrixPattern)" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="387" y="473" text-anchor="middle" class="t h">H'</text>
+  <circle cx="468" cy="468" r="18" fill="url(#matrixPattern)" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="468" y="473" text-anchor="middle" class="t h">H</text>
+  <text x="387" y="497" text-anchor="middle" class="t m">one half</text>
+  <text x="468" y="497" text-anchor="middle" class="t m">one half</text>
+  <text x="438" y="521" text-anchor="middle" class="t h good">same balanced law</text>
+
+  <rect x="52" y="535" width="476" height="50" rx="10" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <circle cx="92" cy="560" r="17" fill="url(#warningPattern)" stroke="#8B3022" stroke-width="1.5"/>
+  <text x="92" y="565" text-anchor="middle" class="t h">H</text>
+  <path d="M126 560 H208" class="arrow"/>
+  <circle cx="244" cy="560" r="17" fill="url(#warningPattern)" stroke="#8B3022" stroke-width="1.5"/>
+  <text x="244" y="565" text-anchor="middle" class="t h">H'</text>
+  <text x="286" y="556" class="t h bad">point mass moves</text>
+  <text x="286" y="576" class="t s">the two point-mass laws differ</text>
+
+  <rect x="620" y="372" width="312" height="230" rx="15" class="panel"/>
+  <text x="642" y="401" class="t cap">NON-UNITARY CONTRAST</text>
+  <text x="642" y="424" class="t m">Stretch coordinate 1 by a factor of 2.</text>
+
+  <rect x="644" y="447" width="66" height="66" rx="9" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="677" y="475" text-anchor="middle" class="t h">input</text>
+  <text x="677" y="496" text-anchor="middle" class="t h">H</text>
+  <path d="M722 480 H770" class="arrow"/>
+
+  <rect x="786" y="437" width="100" height="90" rx="6" class="grid"/>
+  <path d="M836 437 V527 M786 482 H886" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="811" y="470" text-anchor="middle" class="t num">8</text>
+  <text x="861" y="470" text-anchor="middle" class="t num">2</text>
+  <text x="811" y="515" text-anchor="middle" class="t num">2</text>
+  <text x="861" y="515" text-anchor="middle" class="t num">0</text>
+
+  <rect x="642" y="542" width="268" height="42" rx="9" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="659" y="559" class="t s bad">trace changes: 2 to 8</text>
+  <text x="659" y="577" class="t s bad">determinant changes: minus 1 to minus 4</text>
+
+  <rect x="28" y="630" width="904" height="62" rx="13" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.8"/>
+  <text x="50" y="656" class="t h good">Pointwise fact: unitary conjugation preserves the spectrum.</text>
+  <text x="50" y="679" class="t s">Extra law-level condition: the pushed-forward probability measure must equal the original measure for every unitary.</text>
+</svg>
