@@ -20,6 +20,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasu
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
 import NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
+import NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman
 
 /-!
 # Random cocycles
@@ -148,7 +149,20 @@ strictly positive log-positive growth forces eventual agreement with the real
 logarithm and hence almost-everywhere normalized real-log convergence without
 invertibility or inverse-tail integrability. The empty-dimensional instance of
 that last statement is vacuous because its strict positive-rate premise cannot
-hold. This layer proves neither the general signed Kingman theorem nor an
-inverse-cocycle exponent identity, singular-value limit, Lyapunov spectrum,
-invariant splitting, or Oseledets theorem.
+hold. A signed Fekete layer then integrates the real logarithmic norm, derives
+subadditivity under two-sided generator-tail integrability, and uses the
+inverse-generator integral as a finite linear lower bound. The resulting
+normalized signed integrals converge to their positive-horizon infimum. On a
+pre-ergodic probability base, the generic lower-deviation rail supplies the
+samplewise lower liminf, while the generalized phase-averaging upper theorem
+uses an actual eventual lower bound supplied by the inverse-generator
+Birkhoff rail. Their squeeze proves almost-everywhere normalized signed
+real-log convergence to the deterministic Fekete rate, including rate zero in
+empty dimension. Strictly positive log-positive growth identifies the signed
+and log-positive rates afterward by uniqueness of samplewise limits, not by
+interchanging a limit and an integral. This layer proves no `L¹` convergence,
+uniform integrability, limit-integral interchange, convergence rate,
+concentration estimate, inverse-cocycle exponent identity, singular-value or
+conorm limit, Lyapunov spectrum, invariant splitting, Oseledets theorem,
+derivative-cocycle theorem, or stable-manifold theorem.
 -/

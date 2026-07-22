@@ -5,8 +5,8 @@ import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
 # A subadditive upper limsup from phase averaging
 
 This module proves the upper half of a Kingman-style pointwise estimate for
-the repository's nonnegative real shifted-subadditive processes.  It combines
-three earlier layers:
+real shifted-subadditive processes whose normalized paths are almost
+everywhere genuinely bounded below.  It combines three earlier layers:
 
 * orbit-majorant centering splits `X n / n` into a nonpositive centered term
   and the Birkhoff average of `X 1`;
@@ -31,9 +31,10 @@ also essential for the final comparison with the raw-integral Fekete rate.
 This is not the full subadditive ergodic theorem.  No matching lower bound,
 samplewise limit, equality with the deterministic rate, limit-integral
 interchange, signed log-norm limit, Lyapunov exponent, or Oseledets splitting
-is claimed.  The generic theorem retains pointwise nonnegativity because it
-supplies the lower bound required by the real-valued `limsup` API and exactly
-matches the cocycle log-positive application.
+is claimed.  The generic theorem exposes the actual almost-everywhere lower
+bound required by the real-valued `limsup` API.  A compatibility wrapper
+derives that gate from pointwise nonnegativity for the cocycle log-positive
+application.
 -/
 
 open MeasureTheory Set Filter Topology Finset Function
@@ -135,14 +136,16 @@ theorem integral_centeredProcess
   rw [integral_sub (hX.integrable b) hsum]
   rw [integral_birkhoffSum_eq_nat_mul hT (hX.integrable 1) b]
 
-/-- Fixed-block upper half of a Kingman-style estimate.  On an ergodic
-probability space, every nonnegative integrable shifted-subadditive process has
-almost-everywhere normalized upper limsup at most the normalized integral of
-each positive block observable. -/
-theorem ae_limsup_normalized_le_blockIntegral
+/-- Fixed-block upper half of a Kingman-style estimate under an honest
+almost-everywhere lower-boundedness hypothesis for the normalized process.
+On an ergodic probability space, its normalized upper limsup is at most the
+normalized integral of each positive block observable. -/
+theorem ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge
     [IsProbabilityMeasure μ]
     (hX : IsIntegrableSubadditiveProcessCandidate T μ X)
-    (hT : Ergodic T μ) (hXnonneg : ∀ n ω, 0 ≤ X n ω)
+    (hT : Ergodic T μ)
+    (hXlower : ∀ᵐ ω ∂μ,
+      IsBoundedUnder (· ≥ ·) atTop (fun n ↦ X n ω / (n : ℝ)))
     (b : ℕ) (hb : b ≠ 0) :
     ∀ᵐ ω ∂μ,
       limsup (fun n ↦ X n ω / (n : ℝ)) atTop ≤
@@ -151,13 +154,10 @@ theorem ae_limsup_normalized_le_blockIntegral
   have hYint : Integrable (Y b) μ :=
     hX.integrable_centeredProcess hT.toMeasurePreserving b
   filter_upwards
-      [ae_tendsto_birkhoffAverage_integral_of_ergodic hT hYint,
+      [hXlower,
+        ae_tendsto_birkhoffAverage_integral_of_ergodic hT hYint,
         ae_tendsto_birkhoffAverage_integral_of_ergodic hT (hX.integrable 1)]
-      with ω hYavg hOneAvg
-  have hlower :
-    IsCoboundedUnder (· ≤ ·) atTop (fun n ↦ X n ω / (n : ℝ)) :=
-    isCoboundedUnder_le_of_le atTop fun n ↦
-      div_nonneg (hXnonneg n ω) (Nat.cast_nonneg n)
+      with ω hnormLower hYavg hOneAvg
   have hnorm_le_avg :
       (fun n ↦ X n ω / (n : ℝ)) ≤ᶠ[atTop]
         (fun n ↦ birkhoffAverage ℝ T (X 1) n ω) := by
@@ -168,7 +168,7 @@ theorem ae_limsup_normalized_le_blockIntegral
   have hupper :
       IsBoundedUnder (· ≤ ·) atTop (fun n ↦ X n ω / (n : ℝ)) :=
     hOneAvg.isBoundedUnder_le.mono_le hnorm_le_avg
-  rw [limsup_le_iff hlower hupper]
+  rw [limsup_le_iff hnormLower.isCoboundedUnder_le hupper]
   intro z hz
   apply Eventually.atTop_of_arithmetic hb
   intro r _hr
@@ -241,6 +241,22 @@ theorem ae_limsup_normalized_le_blockIntegral
   simpa only [div_eq_mul_inv, mul_assoc, add_comm, Nat.cast_add, Nat.cast_mul]
     using add_le_add_right hcenter
       (birkhoffAverage ℝ T (X 1) (b * a + r) ω)
+
+/-- Nonnegative candidates satisfy the lower-boundedness gate automatically,
+recovering the original fixed-block upper estimate. -/
+theorem ae_limsup_normalized_le_blockIntegral
+    [IsProbabilityMeasure μ]
+    (hX : IsIntegrableSubadditiveProcessCandidate T μ X)
+    (hT : Ergodic T μ) (hXnonneg : ∀ n ω, 0 ≤ X n ω)
+    (b : ℕ) (hb : b ≠ 0) :
+    ∀ᵐ ω ∂μ,
+      limsup (fun n ↦ X n ω / (n : ℝ)) atTop ≤
+        (∫ x, X b x ∂μ) / (b : ℝ) := by
+  apply hX.ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge
+    hT ?_ b hb
+  exact Filter.Eventually.of_forall fun ω ↦
+    isBoundedUnder_of ⟨0, fun n ↦
+      div_nonneg (hXnonneg n ω) (Nat.cast_nonneg n)⟩
 
 end IsIntegrableSubadditiveProcessCandidate
 
@@ -405,6 +421,7 @@ end BoundaryProbes
 
 #print axioms integral_birkhoffSum_eq_nat_mul
 #print axioms IsIntegrableSubadditiveProcessCandidate.integral_centeredProcess
+#print axioms IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge
 #print axioms IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral
 #print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate
 

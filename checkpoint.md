@@ -3,22 +3,157 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 10:11 PDT
+Last updated: 2026-07-22 10:38 PDT
 
-Audited baseline: `main` at `624c727`
+Baseline before this pause checkpoint: `main` at `e0d28e6`
 
-Active direction: RMT-34 has formalized the finite-time signed logarithmic
-interface needed after log-positive Kingman convergence. Pointwise generator
-units propagate to every cocycle value; a measurable total inverse envelope
-controls contraction; forward and inverse generator tails sandwich every
-finite real log norm between integrable rails; and the resulting family is an
-integrable shifted-subadditive candidate. A geometric probability-space model
-proves that the forward moment alone cannot supply the missing tail, while a
-separate positive-rate theorem unclamps RMT-33 without invertibility. The Lean
-source milestone is pushed at `624c727`; its complete teaching, source-hosting,
-checkpoint, and final local/RunPod release replays now form the RMT-34 release.
-RMT-35 is the exact next milestone: integrate the signed family and prove its
-general real-log Kingman convergence theorem.
+Active direction: **paused at the user's request so the existing work can be
+reviewed over the next few days. Do not resume autonomous expansion until the
+user explicitly asks to continue.** RMT-34 remains a complete released
+vertical slice. RMT-35 is now source-complete enough to compile as an
+integrated Lean milestone: it defines the finite signed Fekete rate and proves
+pre-ergodic probability almost-everywhere convergence of normalized real-log
+cocycle growth. It is not yet a complete proof-to-prose release. Boundary
+models, paired teaching, source snapshot/coverage metadata, rendered QA, and
+the final local/RunPod release replay remain deliberately unfinished and are
+listed below for the next session.
+
+## Pause Handoff: RMT-35 Source Milestone
+
+### What is checked now
+
+- `RealLogNormKingman.lean` is a new 576-line module with thirty-three public
+  named declarations and seven source axiom prints. Its current pre-commit
+  SHA-256 is
+  `ab262f7695330c30fe8f2fdf1d4831e22dcf394ddced6414ce40d27533a3669a`.
+  Recompute this hash after any edit; it is not yet a frozen teaching-source
+  snapshot.
+- The deterministic half defines `integratedRealLogNorm`,
+  `normalizedIntegratedRealLogNorm`,
+  `integratedInverseGeneratorLogPlusNorm`, and
+  `integratedRealLogGrowthRate`. Preservation turns pointwise signed
+  subadditivity into scalar subadditivity. The integrable inverse-generator
+  envelope gives a concrete finite lower floor, so Mathlib's real-valued
+  Fekete theorem applies and identifies the rate with the infimum over
+  positive horizons.
+- The samplewise lower rail reuses RMT-33's centered rational-deviation
+  theorem. The upper rail uses an honest eventual lower-boundedness premise:
+  the negative inverse-generator Birkhoff average lies below normalized
+  signed growth, and finite-measure pointwise Birkhoff convergence makes that
+  comparison bounded almost everywhere. On a pre-ergodic probability base,
+  the lower liminf and upper limsup squeeze prove
+  `HasIntegrableGeneratorLogTails.ae_tendsto_normalizedRealLogNormObservable`.
+- The module also proves empty-dimensional rate zero and identifies the signed
+  and log-positive rates when the latter is strictly positive by uniqueness
+  of samplewise limits. It does not use limit-integral interchange.
+- RMT-29's `SubadditiveUpperLimsup.lean` now exposes
+  `ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge`, whose input
+  is an actual almost-everywhere eventual lower bound on the normalized
+  process. Its former nonnegative theorem remains as a compatibility wrapper.
+  This generalization is mathematically necessary: for `X n = -n²`, the
+  normalized real sequence is not lower bounded, and Mathlib's totalized real
+  `limsup` prevents the desired fixed-block inequality.
+- The new module, changed RMT-29 leaf, and cocycle aggregator each pass direct
+  `-DwarningAsError=true` compilation. `lake build
+  NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman` and `lake build
+  NonlinearDynamics` pass, and a final local `lake build` completes all 3,218
+  jobs. Every recorded axiom footprint is exactly
+  `propext`, `Classical.choice`, and `Quot.sound`; no `sorry` or `admit` occurs
+  in the changed Lean sources.
+- An independent read-only semantic audit found no missing assumption in the
+  deterministic Fekete argument, lower endpoint, upper endpoint, or final
+  squeeze. It also drove three last source improvements before the pause:
+  minimal assumptions on inverse-orbit-sum integration, explicit target names
+  for the three inverse-tail inequalities, and a one-step rate upper bound.
+- The retained approved RunPod builder has exactly one running pod. It was
+  observed at zero CPU and about two percent memory while warm-idle. A fresh
+  source-only synchronization then passed the warning-fatal generalized
+  RMT-29 leaf and the pre-RMT-35 full 3,217-job Lean build. The RMT-35 tree has
+  not yet received its final checksum-identical remote release replay. A final
+  attempt resolved a rotated public SSH endpoint through the authenticated
+  RunPod API, but that endpoint presented a different ED25519 server host key
+  from the retained trust record. Strict verification stopped the sync before
+  any remote write. Do not bypass this mismatch: re-establish the pod's server
+  fingerprint through the RunPod control plane or an explicit human-approved
+  trust reset before the next SSH synchronization. Keep resource identifiers
+  and addresses out of this repository. The owner asked that the one approved
+  pod remain up; expect it to idle between compile bursts because proof
+  authoring is not continuously CPU-bound.
+
+### Deliberately unfinished at the pause
+
+- No RMT-35 scalar boundary atlas is checked yet. The next source pass should
+  add one-dimensional Dirac models for contraction, neutrality, and expansion
+  with exact signed rates `-1`, `0`, and `1`, plus the already proved empty-
+  dimensional zero boundary. The promising generator is the constant
+  `Fin 1` matrix with entry `Real.exp λ`; use `forwardProduct_const`,
+  `Matrix.linfty_opNorm_def`, `Complex.norm_exp_ofReal`, and limit uniqueness.
+- Recommended countermodels are still absent: a nonergodic two-atom identity
+  base with slopes `-1` and `1`, and a mass-two Dirac model showing why raw
+  integrated rates on a merely finite measure space are not probability-
+  normalized sample rates.
+- RMT-35 has no Development Notebook, Deep Dive, glossary chapter, social
+  card, conceptual figures, hosted Lean snapshot, or proof-to-prose manifest
+  entry. Therefore this is a source checkpoint, **not a green vertical-slice
+  release**, and the complete `make check` contract is not yet claimed.
+- RMT-29's existing Notebook and Deep Dive are now semantically stale: they
+  still describe nonnegativity as the generic upper-limsup premise and count
+  four public declarations/axiom prints. They must explain the new lower-
+  bounded generic theorem, retain the nonnegative wrapper, and count five.
+  Update their `limsup-boundedness-gates.svg` and
+  `generic-to-cocycle-ladder.svg` accordingly.
+- RMT-34 teaching has future-tense handoff language that should link forward
+  to RMT-35 without weakening RMT-34's own nonclaims. Update its Notebook,
+  Deep Dive, and `integrable-generator-log-tails` glossary page.
+- No browser or visual QA was attempted for this partial slice. No claim is
+  made about cards, SVG accessibility, KaTeX, desktop/mobile layout, Hugo page
+  counts, or served source identity for RMT-35.
+
+### Note to the next Codex session
+
+1. Read this section first, then reread
+   `.agents/skills/formalize-nonlinear-dynamics/SKILL.md` and the nearest
+   teaching `AGENTS.md` files before editing prose. Inspect the actual Git
+   status and latest commits; do not assume temporary files survived.
+2. Re-run the warning-fatal RMT-29 and RMT-35 leaves. Complete the scalar
+   boundary atlas and, if proof cost remains proportionate, the two recommended
+   countermodels. Keep the theorem scoped to signed top growth in the selected
+   matrix norm.
+3. Create the Notebook bundle at
+   `site/content/development-notebook/2026/07/signed-real-log-kingman-convergence-in-lean/`,
+   the Deep Dive at
+   `site/content/knowledge-base/deep-dives/integrated-real-log-growth-and-signed-kingman-convergence/`,
+   and the glossary bundle at
+   `site/content/knowledge-base/glossary/integrated-real-log-growth-rate/`.
+   Follow the exact declaration/source-order/axiom ledgers, disclosure panels,
+   solved-exercise, deterministic-card, and accessible-SVG conventions.
+4. Update the stale RMT-29 and forward-looking RMT-34 pages described above.
+   Add `RealLogNormKingman.lean` to
+   `site/data/lean_notebook_coverage.json` and publish a byte-identical source
+   snapshot under `site/static/lean/NonlinearDynamics/Random/RandomCocycles/`.
+5. Before citing the historical source, independently verify this candidate
+   primary record: J. F. C. Kingman, *The Ergodic Theory of Subadditive
+   Stochastic Processes*, JRSS Series B 30(3), 499–510 (1968), DOI
+   `10.1111/j.2517-6161.1968.tb00749.x`. Do not reuse the previously suggested
+   Annals DOI without separate verification.
+6. Run warning-fatal leaf/aggregator/root Lean checks, snapshot identity,
+   coverage and hygiene tests, deterministic card verification, XML/raster
+   inspection, Hugo warnings-fatal rendering, and literal desktop/mobile
+   browser QA. Then run local `make -j1 check`, synchronize source-only to the
+   approved RunPod without `.env`, Git metadata, caches, or generated output,
+   and replay the exact gate remotely. Before SSH, resolve the recorded
+   rotated-host-key mismatch through the authenticated RunPod control plane or
+   an explicit human-approved trust reset; never disable host verification to
+   make the gate pass.
+7. Only after all of that, replace this pause state with a complete RMT-35
+   release checkpoint, commit a coherent milestone, and push `main`.
+
+RMT-35 still proves no `L¹` convergence, uniform integrability of normalized
+signed growth, limit-integral interchange, sample-rate equality on arbitrary
+finite mass, convergence rate, concentration inequality, singular-value or
+conorm asymptotic, inverse-cocycle exponent identity, Lyapunov spectrum,
+invariant filtration or splitting, Oseledets theorem, derivative-cocycle
+bridge, or stable-manifold theorem.
 
 ## Restart Handoff
 
@@ -766,57 +901,25 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-35: integrated signed growth and real-log Kingman convergence
+### Finish and release RMT-35 after the user resumes
 
-The next module should consume RMT-34's
-`HasIntegrableGeneratorLogTails.isIntegrableSubadditiveProcessCandidate` and
-prove the first general almost-everywhere limit for the signed finite-time
-real log norm. The target is still a scalar top-growth theorem in the selected
-maximum-row-sum norm. It is not a Lyapunov spectrum or Oseledets theorem.
+The RMT-35 core surface described in the pause handoff is implemented and
+compile-checked. The next milestone is not another theorem family; it is to
+finish this same vertical slice without scope drift:
 
-The dependency-ordered surface should be:
+1. add the exact scalar contraction, neutral, expansion, and empty-dimension
+   boundaries, then decide whether the two recommended normalization and
+   ergodicity countermodels remain proportionate;
+2. perform the complete proof-to-prose work for RMT-35 and repair the now-
+   stale RMT-29 and forward-looking RMT-34 teaching pages;
+3. freeze and verify the hosted Lean snapshot and coverage manifest;
+4. complete source, semantic, prose, card, SVG, Hugo, and literal browser
+   audits; and
+5. replay the exact local and approved RunPod release gates before marking the
+   slice complete.
 
-1. define the finite-horizon signed integral
-   `integratedRealLogNorm C n := ∫ ω, C.realLogNormObservable n ω ∂μ` and its
-   total positive-time normalization;
-2. prove scalar subadditivity from RMT-34's pointwise signed subadditivity and
-   finite-horizon integrability;
-3. integrate the forward upper rail and inverse-orbit lower rail to obtain
-   explicit linear upper and lower bounds on every signed integral;
-4. use that normalized lower bound to construct a finite deterministic Fekete
-   limit `integratedRealLogGrowthRate`, including exact positive-index infimum,
-   finite-horizon upper bounds, and the empty-dimensional zero boundary;
-5. identify the centered signed integral offset needed by RMT-33's generic
-   rational lower-deviation theorem;
-6. generalize the RMT-29 upper-limsup endpoint beyond pointwise nonnegative
-   processes by supplying an honest eventual lower bound. For the cocycle,
-   that bound should come from the normalized inverse-orbit rail and the
-   Birkhoff theorem for the integrable inverse-generator observable;
-7. combine the generic RMT-33 lower endpoint with that signed upper endpoint
-   to prove, on a pre-ergodic probability base, almost-everywhere convergence
-   of `C.realLogNormObservable n ω / n` to
-   `C.integratedRealLogGrowthRate hC`; and
-8. connect the strictly positive-rate shortcut already proved in RMT-34 to the
-   signed rate without using it as a substitute for the zero and negative
-   regimes.
-
-Boundary proofs should include an invertible scalar contraction with a
-strictly negative signed rate but zero log-positive rate, a neutral scalar
-system, an expanding scalar system, and empty matrix dimension with signed
-rate zero. The RMT-34 geometric probability example must continue to explain
-why forward log-positive integrability alone cannot enter the signed theorem.
-Pointwise units are an algebraic guard, not a quantitative condition-number
-bound. The inverse orbit sum remains a lower majorant, not an equality and not
-a same-base inverse cocycle. In higher dimension its growth can see the
-strongest contraction rather than the negative top exponent.
-
-RMT-35 should prove no `L¹` convergence, uniform integrability of normalized
-real-log growth, limit-integral interchange, equality between the samplewise
-limit's integral and the deterministic rate, convergence rate, concentration
-estimate, smallest-singular-value theorem, conorm identity, full Lyapunov
-spectrum, invariant filtration, invariant splitting, derivative-cocycle
-bridge, or stable-manifold theorem. Each later multiplicative conclusion
-requires its own checked interface.
+Do not begin singular values, conorms, Lyapunov spectra, Oseledets splittings,
+derivative cocycles, or stable manifolds until this release contract is green.
 
 ## Dependency-Ordered Roadmap
 
@@ -1609,9 +1712,10 @@ k-invariance precedes approximation claims.
   unit-guarded signed subadditivity, measurable inverse-envelope control,
   separate integrable forward and inverse generator tails, finite-horizon
   signed integrability, and an integrable signed subadditive candidate.
-  General signed sample growth, Lyapunov exponents, and Oseledets limits remain
-  open; normalized log-positive sample growth now converges almost everywhere
-  on an ergodic probability base. Probability-guarded
+  Normalized log-positive sample growth converges almost everywhere on an
+  ergodic probability base; RMT-35's source checkpoint now proves the signed
+  analogue under the explicit two-tail package. Lyapunov spectra and Oseledets
+  limits remain open. Probability-guarded
   expectation terminology and native
   invariant-event and invariant-observable rigidity are now formalized, as are
   both finite block/remainder orientations and fixed-block Birkhoff-sum
@@ -1645,10 +1749,11 @@ k-invariance precedes approximation claims.
   pointwise limit as conditional expectation onto the exact invariant sigma
   algebra. RMT-28 now identifies that invariant target with the correctly
   total-mass-normalized constant under positive finite mass and with the raw
-  integral under probability normalization. RMT-29 now adds the generic
-  nonnegative subadditive upper-limsup estimate and the all-block log-positive
-  cocycle bound by the integrated Fekete rate, using only Birkhoff averages
-  under the original map. RMT-30 now adds exact finite orbit-visit integration,
+  integral under probability normalization. RMT-29 now adds a generic
+  lower-bounded subadditive upper-limsup estimate, retains its original
+  nonnegative theorem as a compatibility wrapper, and proves the all-block
+  log-positive cocycle bound by the integrated Fekete rate using only
+  Birkhoff averages under the original map. RMT-30 now adds exact finite orbit-visit integration,
   strict finite centered bad-block sets, greedy packed pointwise control, and
   the generic and cocycle finite bad-block rate ratios without probability or
   ergodicity. RMT-31 now identifies their all-positive-length increasing
@@ -1672,16 +1777,20 @@ k-invariance precedes approximation claims.
   exports the signed family as a generic integrable shifted-subadditive
   candidate. It separately proves positive-rate unclipping without units and
   compiles a geometric probability model showing that the forward moment does
-  not imply the inverse or signed moment.
+  not imply the inverse or signed moment. RMT-35's source checkpoint integrates
+  that signed family, constructs its finite deterministic Fekete rate from the
+  inverse-tail lower floor, obtains the lower and upper sample endpoints, and
+  proves the pre-ergodic probability almost-everywhere signed limit. Its
+  proof-to-prose release remains unfinished at this pause.
   `Measure.real` still totalizes infinite extended measure
   to zero: local finiteness is a sufficient conversion gate, not a necessary
   condition for every individual projected limit, and no unconditional general
   real-continuity theorem is available. The existing interfaces now give an
-  integrable finite-horizon real logarithmic norm under the explicit two-tail
-  package. They still do not integrate that signed family into its finite
-  deterministic Fekete rate, prove its full samplewise signed-growth limit,
-  identify a limit integral, or produce a Lyapunov spectrum or Oseledets
-  splitting.
+  integrable finite-horizon real logarithmic norm, its finite signed Fekete
+  rate, and its pre-ergodic probability almost-everywhere normalized limit
+  under the explicit two-tail package. They still do not identify a limit
+  integral, prove `L¹` convergence or uniform integrability, or produce a
+  Lyapunov spectrum or Oseledets splitting.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
