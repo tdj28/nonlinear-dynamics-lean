@@ -19,6 +19,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
+import NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
 
 /-!
 # Random cocycles
@@ -133,6 +134,21 @@ average.
 For the log-positive cocycle process, that lower liminf and the earlier upper
 limsup squeeze the normalized sequence to the integrated Fekete rate almost
 everywhere. Every real-liminf and real-limsup boundedness gate remains explicit,
-and the theorem still proves no signed logarithmic limit, limit-integral
-interchange, Lyapunov exponent, inverse control, or Oseledets splitting.
+and that theorem still proves no signed logarithmic limit, limit-integral
+interchange, Lyapunov exponent, or Oseledets splitting. A finite signed layer
+then defines the total real logarithmic norm, propagates pointwise generator
+invertibility to every cocycle value, and uses the forward-orbit sum of
+inverse-generator log-positive norms as a negative-tail majorant. An explicit
+two-sided one-step integrability package makes every finite real-log observable
+integrable and packages the family as a shifted-subadditive candidate. The
+extended-to-real logarithm bridge alone requires nonempty matrix dimension;
+the real subadditivity, inverse-tail sandwich, integrability, and candidate
+remain dimension-uniform through explicit empty branches. Independently,
+strictly positive log-positive growth forces eventual agreement with the real
+logarithm and hence almost-everywhere normalized real-log convergence without
+invertibility or inverse-tail integrability. The empty-dimensional instance of
+that last statement is vacuous because its strict positive-rate premise cannot
+hold. This layer proves neither the general signed Kingman theorem nor an
+inverse-cocycle exponent identity, singular-value limit, Lyapunov spectrum,
+invariant splitting, or Oseledets theorem.
 -/
