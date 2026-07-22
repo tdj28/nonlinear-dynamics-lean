@@ -2,7 +2,7 @@
 title: "Gaussian unitary ensemble"
 slug: "gaussian-unitary-ensemble"
 summary: "The Gaussian unitary ensemble is a probability law on finite complex Hermitian matrices obtained from centered independent Gaussian free coordinates with an explicit dimension-dependent scale."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble"
@@ -13,7 +13,8 @@ og_image_alt: "A real Gaussian diagonal block and complex Gaussian strict-upper 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 The **Gaussian unitary ensemble (GUE)** is a probability law on finite complex

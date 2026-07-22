@@ -16,7 +16,7 @@ key_result: |
   strongest useful combination, then makes entries, traces, symmetrization,
   and deterministic congruence transforms available without reopening the
   foundational proofs.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial and technical review"
 level: "Base camp to proof summit"
@@ -41,8 +41,9 @@ og_image_alt: "Warm-paper conceptual card showing three Hermitian truth levels b
 **Editorial status.** This is an AI-assisted working draft. The human author
 has not yet inspected and accepted the exposition, source interpretations,
 equations, exercises, or visual. The canonical author disclosure is therefore
-intentionally pending, and this page must remain a draft until human editorial
-review and the required scientific and reader reviews are complete.
+intentionally pending. This page is published as an open working note while
+human editorial review and the required scientific and reader reviews remain
+pending.
 {{< /panel >}}
 
 This entry is the code companion to

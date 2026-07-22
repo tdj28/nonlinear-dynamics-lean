@@ -2,7 +2,7 @@
 title: "Integrable generator log tails"
 slug: "integrable-generator-log-tails"
 summary: "Integrable generator log tails combine pointwise matrix invertibility with separate integrable budgets for one-step expansion and contraction, placing every finite signed log norm between two integrable bounds."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability"
@@ -15,7 +15,8 @@ og_image_alt: "Three labeled gates for pointwise units, the forward expansion ta
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 **Integrable generator log tails** are a three-part hypothesis for a

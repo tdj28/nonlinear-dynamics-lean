@@ -2,7 +2,7 @@
 title: "Induced infinity operator norm"
 slug: "induced-infinity-operator-norm"
 summary: "The induced infinity operator norm measures the largest amplification of a vector's supremum norm and, for a finite matrix, equals the largest absolute row sum."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.MatrixProducts.FiniteProducts"
@@ -13,7 +13,8 @@ og_image_alt: "A teaching card turns absolute matrix entries into row totals, ke
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 The **induced infinity operator norm** of a finite matrix is the largest factor

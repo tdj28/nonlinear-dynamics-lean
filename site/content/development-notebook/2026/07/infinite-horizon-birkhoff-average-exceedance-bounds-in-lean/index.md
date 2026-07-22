@@ -9,7 +9,7 @@ lead: |
   A finite maximal estimate controls every fixed orbit horizon, but a point can wait arbitrarily long before its first threshold crossing. This twenty-fourth random-matrix-theory milestone (RMT-24) gathers all finite crossings into one positive-time event and proves that the event is exactly their increasing union. Extended nonnegative real measure follows that union without a finiteness assumption. That convergence does not automatically survive the real-valued projection, which sends infinite mass to zero, so the reusable real-limit theorem exposes local finiteness as a clean sufficient premise. Under finite total mass, measure preservation, and integrability, the uniform finite estimate survives the limit; only division by the threshold requires that threshold to be positive. No pointwise convergence theorem is claimed.
 key_result: |
   Let E_N(a) be the set where some Birkhoff average at a positive time no later than N exceeds a, and let E(a) allow every positive time. RMT-24 proves E(a) is the increasing union of the E_N(a). Their extended nonnegative real measures converge to the measure of E(a) with no measurable-set or finite-mass premise. If E(a) has finite extended measure, their real measures also converge by direct composition with ENNReal.tendsto_toReal. That premise is sufficient rather than necessary for every particular family: paired infinite-mass probes show both a failed real limit and an event family whose totalized real measures do converge. On a finite measure space, the RMT-23 positive-part bound passes to E(a), and a positive threshold can then be divided out to give the infinite-horizon weak maximal estimate.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Positive-time Birkhoff-average exceedance events, exact increasing unions, ordinary and null measurability, continuity from below in extended and real codomains, finite-to-infinite order limits, and weak maximal bounds"
@@ -45,7 +45,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1442,8 +1443,8 @@ real limit respectively succeeds and fails.
 The exposition was informalized only after the Lean interface compiled and was
 canonized.
 
-This page remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Deterministic builds, source coverage, axiom
+This page publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Deterministic builds, source coverage, axiom
 printing, and visual inspection do not substitute for the pending human
 mathematical, historical, accessibility, and editorial reviews.
 

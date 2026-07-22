@@ -4,7 +4,7 @@ slug: "birkhoff-convergence-events-before-the-pointwise-ergodic-theorem"
 date: 2026-07-21
 summary: "A textbook development of finite real Birkhoff averages, measurable convergence events, almost-everywhere representative transport, boundedness-free finite-prefix invariance, conditional ergodic zero-one laws, and the exact gap left for a pointwise ergodic theorem."
 lead: "Before proving that orbit averages converge, one can formalize the set on which convergence would occur. That set has real mathematical structure: it is measurable under ordinary measurability, null measurable for almost-everywhere representatives under quasi-measure preservation, exactly invariant under deleting one finite orbit prefix, and therefore conditionally rigid under ergodicity. None of those facts places a single point in the set. This chapter develops that distinction from finite sums to the edge of the pointwise theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Measure theory, filters and limits, finite orbit sums, quasi-measure-preserving dynamics, pre-ergodicity, quasi-ergodicity, and integrable subadditive-process interfaces"
 reading_time: "140 to 200 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematics,
 Lean declaration map, figures, sources, and accessibility have not yet passed
-the required human and Pro reviews. The page remains a draft until those gates
-are complete.
+the required human and Pro reviews. The page is publicly available as an open
+working note while those reviews remain pending.
 {{< /panel >}}
 
 There is a seductive but invalid shortcut in ergodic formalization. Define the

@@ -2,7 +2,7 @@
 title: "Measurable space"
 slug: "measurable-space"
 summary: "A measurable space specifies which questions about an outcome count as observable events."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

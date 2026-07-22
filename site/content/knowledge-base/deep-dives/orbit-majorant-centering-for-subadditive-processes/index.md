@@ -4,7 +4,7 @@ slug: "orbit-majorant-centering-for-subadditive-processes"
 date: 2026-07-21
 summary: "A textbook treatment of subtracting the additive one-step orbit majorant from a subadditive process, preserving subadditivity and, under one-step measure preservation, finite-horizon integrability."
 lead: "At every positive horizon, a subadditive process never exceeds the sum of its one-step costs along the orbit. Subtract that majorant and the residual is nonpositive, uniformly including time zero when the process starts exactly at zero. The split is finite algebra, not expectation centering or a limit theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite Birkhoff sums, shifted subadditivity, measure preservation, integrability, normalized finite-time identities, and one-sided discrete matrix cocycles"
 reading_time: "125 to 170 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematics,
 Lean declaration map, sources, figures, and accessibility have not yet passed
-the required human and Pro reviews. The page remains a draft until those gates
-are complete.
+the required human and Pro reviews. The page is publicly available as an open
+working note while those reviews remain pending.
 {{< /panel >}}
 
 The word *centering* usually suggests subtracting an expectation. That is not
@@ -1136,7 +1136,8 @@ make site-check
 The repository-wide gate is <code>make check</code>. A successful build proves
 that Lean accepted the declarations and that the site source passed its
 automated checks. It does not perform the pending human mathematical,
-accessibility, source, or editorial review, so this page remains a draft.
+accessibility, source, or editorial review. This page is publicly available as
+an open working note while those reviews remain pending.
 
 ## What the milestone establishes
 

@@ -8,10 +8,16 @@ import unittest
 from pathlib import Path
 
 try:
-    from scripts.check_lean_notebook_coverage import snapshot_contract_errors
+    from scripts.check_lean_notebook_coverage import (
+        notebook_publication_metadata_errors,
+        snapshot_contract_errors,
+    )
 except ModuleNotFoundError:
     # ``unittest discover -s scripts`` puts scripts/ itself on sys.path.
-    from check_lean_notebook_coverage import snapshot_contract_errors
+    from check_lean_notebook_coverage import (
+        notebook_publication_metadata_errors,
+        snapshot_contract_errors,
+    )
 
 
 class LeanSnapshotContractTests(unittest.TestCase):
@@ -188,6 +194,56 @@ class LeanSnapshotContractTests(unittest.TestCase):
         )
         errors = self.errors(article)
         self.assertTrue(any("standalone top-level" in error for error in errors), errors)
+
+
+class NotebookPublicationMetadataTests(unittest.TestCase):
+    @staticmethod
+    def article(front_matter: str, body: str = "Body.\n") -> str:
+        return f"---\n{front_matter}\n---\n{body}"
+
+    def errors(self, article: str) -> list[str]:
+        return notebook_publication_metadata_errors(
+            article,
+            "site/content/example/index.md",
+        )
+
+    def test_accepts_every_explicit_boolean_state(self) -> None:
+        for draft in ("true", "false"):
+            for pro_reviewed in ("true", "false"):
+                with self.subTest(draft=draft, pro_reviewed=pro_reviewed):
+                    article = self.article(
+                        f"draft: {draft}\npro_reviewed: {pro_reviewed}"
+                    )
+                    self.assertEqual([], self.errors(article))
+
+    def test_rejects_missing_draft_state(self) -> None:
+        errors = self.errors(self.article("pro_reviewed: false"))
+        self.assertTrue(any("must declare draft" in error for error in errors), errors)
+
+    def test_rejects_missing_review_state(self) -> None:
+        errors = self.errors(self.article("draft: false"))
+        self.assertTrue(
+            any("must declare pro_reviewed" in error for error in errors), errors
+        )
+
+    def test_rejects_quoted_boolean_states(self) -> None:
+        errors = self.errors(
+            self.article('draft: "false"\npro_reviewed: "false"')
+        )
+        self.assertEqual(2, len(errors), errors)
+        self.assertTrue(all("explicit unquoted boolean" in error for error in errors))
+
+    def test_rejects_nonboolean_states(self) -> None:
+        errors = self.errors(
+            self.article("draft: ready\npro_reviewed: pending")
+        )
+        self.assertEqual(2, len(errors), errors)
+        self.assertTrue(all("explicit unquoted boolean" in error for error in errors))
+
+    def test_body_examples_do_not_supply_metadata(self) -> None:
+        article = "Body.\n```yaml\ndraft: false\npro_reviewed: false\n```\n"
+        errors = self.errors(article)
+        self.assertEqual(2, len(errors), errors)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 title: "Weyl eigenvalue bound"
 slug: "weyl-eigenvalue-bound"
 summary: "A Weyl eigenvalue bound says that a small Hermitian matrix perturbation can move no ordered eigenvalue coordinate by more than a controlled matrix-norm budget."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity"
@@ -13,7 +13,8 @@ og_image_alt: "A perturbation between two Hermitian matrices creates one Frobeni
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **Weyl eigenvalue bound** controls how far the ordered eigenvalues of a

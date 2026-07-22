@@ -2,7 +2,7 @@
 title: "Normalized Hermitian coordinates"
 slug: "normalized-hermitian-coordinates"
 summary: "Normalized Hermitian coordinates place diagonal, upper-real, and upper-imaginary data in one real Euclidean ledger whose decoding is an isometry and whose product Gaussian law matches the scaled intrinsic Hermitian Gaussian."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance"
@@ -13,7 +13,8 @@ og_image_alt: "A Hermitian entry ledger becomes one normalized real coordinate f
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 **Normalized Hermitian coordinates** are real coordinates for a finite

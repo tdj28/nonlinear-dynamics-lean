@@ -2,7 +2,7 @@
 title: "Conditional expectation"
 slug: "conditional-expectation"
 summary: "Conditional expectation is the almost-everywhere unique integrable function visible to a chosen sub-sigma algebra that preserves the original function's integral on every event visible there."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit"

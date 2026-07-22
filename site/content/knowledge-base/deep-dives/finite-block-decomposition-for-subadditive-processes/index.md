@@ -4,7 +4,7 @@ slug: "finite-block-decomposition-for-subadditive-processes"
 date: 2026-07-21
 summary: "A textbook derivation of two finite block-and-remainder bounds, their Birkhoff-sum form, the exact time-zero boundary, and the minimal assumptions needed for integrability before any Kingman theorem."
 lead: "Cut a long finite horizon into equal blocks and one short remainder. Shifted subadditivity turns that arithmetic cut into a Birkhoff-sum upper bound. The result is powerful finite infrastructure, but it is not yet a convergence theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Natural-number quotient and remainder, function iterates, finite Birkhoff sums, measure preservation, integrability, subadditive processes, and discrete matrix cocycles"
 reading_time: "105 to 145 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 Suppose a process assigns a real number \(X_n(\omega)\) to every finite time
@@ -1267,8 +1267,8 @@ make site-check
 ~~~
 
 The repository-wide gate is <code>make check</code>. Automated success does not
-publish this page. Human mathematical, source, accessibility, and editorial
-reviews remain separate publication gates.
+complete review of this public working note. Human mathematical, source,
+accessibility, and editorial reviews remain pending.
 
 ## What is established and what is not
 

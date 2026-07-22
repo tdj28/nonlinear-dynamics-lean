@@ -9,7 +9,7 @@ lead: |
   A finite-cap theorem asks whether one bad centered block appears among lengths one through m. RMT-31 lets m grow without changing the question into an asymptotic one. Membership in the resulting union still means one finite witness, not infinitely many witnesses. Extended measure is continuous along the nested caps with no finiteness premise; converting that limit to real-valued measure needs the union itself to have finite extended mass. On a finite measure space, the uniform RMT-30 ratio survives unchanged.
 key_result: |
   Let every finite centered bad-block set have the same real-measure upper bound delta divided by c. Because the caps are nested, their extended measures converge to the measure of the all-positive-length union. If the union has finite extended mass, the real measures converge too, and le_of_tendsto' transfers the uniform bound to the limit. The cocycle specialization uses the integrated log-positive Fekete offset. The raw once-bad event is not generally invariant, even over a measure-preserving base, so this is not a lower-liminf or Kingman convergence theorem.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Increasing unions, extended nonnegative real measure, local finiteness, centered subadditive processes, and Lean limit architecture"
@@ -78,8 +78,9 @@ even when the base map preserves the chosen finite measure.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and the separate scientific-integrity
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and the separate
+scientific-integrity
 and zero-context expert-reader reviews are pending. The warning-fatal checked
 Lean source is authoritative for every statement and assumption.
 {{< /panel >}}

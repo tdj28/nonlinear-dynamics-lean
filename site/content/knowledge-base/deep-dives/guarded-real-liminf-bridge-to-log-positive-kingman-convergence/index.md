@@ -4,7 +4,7 @@ slug: "guarded-real-liminf-bridge-to-log-positive-kingman-convergence"
 date: 2026-07-22
 summary: "A concept-first ascent from rational lower-deviation events through totalized real liminf, a two-margin null cover, centered Birkhoff transfer, and the final almost-everywhere convergence of normalized log-positive cocycle growth."
 lead: "Random-matrix-theory milestone 33 (RMT-33) closes the first samplewise subadditive convergence theorem in this project. The delicate step is not an algebraic squeeze. It is proving that Mathlib's total real liminf carries its intended asymptotic meaning on almost every sample. A countable rational null cover supplies both the lower-liminf inequality and the missing eventual lower bound. Centering and the pointwise Birkhoff theorem then transfer the estimate to the original process, where the prior upper-limsup theorem completes convergence."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Advanced measure-theoretic dynamics, subadditive processes, filters and real liminf, ergodic theory, random matrix cocycles, and intermediate Lean theorem engineering"
 reading_time: "320 to 480 minutes"
@@ -23,12 +23,12 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The checked Lean
-source is authoritative. Human publication review and the configured external
-Pro review remain pending. The endpoint proved here concerns the normalized
-real-valued log-positive envelope \(\log^+\lVert C_n\rVert\). It is not a
-theorem about the signed logarithm, a negative Lyapunov exponent, convergence
-in \(L^1\), or an Oseledets splitting.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note while human publication review and the configured external Pro
+review remain pending. The checked Lean source is authoritative. The endpoint
+proved here concerns the normalized real-valued log-positive envelope
+\(\log^+\lVert C_n\rVert\). It is not a theorem about the signed logarithm, a
+negative Lyapunov exponent, convergence in \(L^1\), or an Oseledets splitting.
 {{< /panel >}}
 
 The last step of a long proof is often described as a squeeze:

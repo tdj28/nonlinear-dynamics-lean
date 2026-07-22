@@ -2,7 +2,7 @@
 title: "Unitary invariance"
 slug: "unitary-invariance"
 summary: "A matrix law is unitarily invariant when conjugating every matrix by any fixed unitary matrix leaves the law unchanged."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 ---
@@ -10,7 +10,8 @@ toc: true
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 prose, equations, examples, references, and Lean interpretation is still
-pending. The page must remain a draft until that review occurs.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 **Unitary invariance** is a symmetry of a measure on matrix space. When that

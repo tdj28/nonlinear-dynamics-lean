@@ -4,7 +4,7 @@ slug: "birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation"
 date: 2026-07-21
 summary: "A textbook derivation of the finite-measure pointwise Birkhoff theorem with its limit identified as conditional expectation onto the exact invariant sigma-algebra."
 lead: "Almost-everywhere convergence says that a long orbit settles, but not what value it settles on. This chapter builds the missing identification bridge: one total invariant limit representative, exact invariant measurability, uniform integrability, Vitali L1 convergence, restricted-measure integral transport, and the uniqueness principle for conditional expectation. A computed four-point system keeps every abstraction visible while the Lean proof climbs to the full finite-measure, possibly noninvertible theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite measure theory, pointwise and L1 convergence, invariant sigma-algebras, conditional expectation, uniform integrability, and intermediate Lean theorem reading"
 reading_time: "230 to 340 minutes"
@@ -23,10 +23,11 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This chapter is an AI-assisted working draft. Its
-mathematical claims and declaration names have been reconciled with the
-RMT-27 Lean source, but human publication review and the configured external
-Pro review remain pending. The checked Lean module is authoritative.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its mathematical claims and declaration names have been
+reconciled with the RMT-27 Lean source, while human publication review and the
+configured external Pro review remain pending. The checked Lean module is
+authoritative.
 {{< /panel >}}
 
 An orbit can forget its starting phase without forgetting which part of the

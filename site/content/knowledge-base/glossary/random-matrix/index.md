@@ -2,7 +2,7 @@
 title: "Random matrix"
 slug: "random-matrix"
 summary: "A random matrix is a measurable rule that assigns a matrix to each outcome of a probability experiment."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

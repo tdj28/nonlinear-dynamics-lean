@@ -2,7 +2,7 @@
 title: "Hermitian coordinate space"
 slug: "hermitian-coordinate-space"
 summary: "A Hermitian coordinate space stores one real value on each diagonal position and one complex value at each strict-upper position, with the lower triangle determined by conjugation."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates"
@@ -13,7 +13,8 @@ og_image_alt: "A real diagonal and a complex strict upper triangle enter a deter
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **Hermitian coordinate space** is a nonredundant way to describe a finite

@@ -2,7 +2,7 @@
 title: "Limit superior"
 slug: "limit-superior"
 summary: "The limit superior is the eventual upper envelope of a sequence: the limit of the suprema of its tails, recording the largest value approached infinitely often."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup"

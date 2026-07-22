@@ -2,7 +2,7 @@
 title: "Ergodicity"
 slug: "ergodicity"
 summary: "Ergodicity says a measure-preserving system has no measurable strictly invariant distinction of intermediate measure, so invariant observables are constant almost everywhere."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit"

@@ -4,7 +4,7 @@ slug: "finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events
 date: 2026-07-21
 summary: "A textbook construction of the finite Hopf maximal ergodic lemma: running maxima of orbit sums, the strict time-zero boundary, positive-maximizer peeling, measure-preserving integral cancellation, centered average-threshold events, and a horizon-uniform positive-threshold weak estimate on a finite measure space."
 lead: "A maximal ergodic argument turns a pathwise question, whether one finite orbit sum ever becomes positive, into an integral inequality. The mechanism is surprisingly small: include time zero, select strict positivity, peel the first term from a positive maximizing sum, and use measure preservation to cancel the maximum against its one-step shift. This chapter develops that mechanism from finite algebra through the finite-measure weak threshold estimate, while keeping the infinite-horizon and pointwise convergence steps visibly outside the theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite orbit sums, measurable functions and sets, integrability, set integrals, measure-preserving transformations, and elementary real inequalities"
 reading_time: "150 to 220 minutes"
@@ -23,10 +23,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This chapter is an AI-assisted working draft. Its Lean
-correspondence and sources have been checked against the frozen RMT-23 module,
-but human publication review and the configured external Pro review remain
-pending.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its Lean correspondence and sources have been checked against
+the frozen RMT-23 module, while human publication review and the configured
+external Pro review remain pending.
 {{< /panel >}}
 
 Suppose a real observable is read along an orbit. At each finite time one can

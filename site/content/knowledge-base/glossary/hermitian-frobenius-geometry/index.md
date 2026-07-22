@@ -2,7 +2,7 @@
 title: "Hermitian Frobenius geometry"
 slug: "hermitian-frobenius-geometry"
 summary: "Hermitian Frobenius geometry treats complex Hermitian matrices as a finite-dimensional real Euclidean space whose off-diagonal coordinates carry the factor of two required by unitary symmetry and Gaussian normalization."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry"
@@ -13,7 +13,8 @@ og_image_alt: "An ambient Frobenius matrix space restricts to a Hermitian real s
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 **Hermitian Frobenius geometry** is the Euclidean geometry obtained by placing

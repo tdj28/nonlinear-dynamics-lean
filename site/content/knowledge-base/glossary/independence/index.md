@@ -2,7 +2,7 @@
 title: "Independence"
 slug: "independence"
 summary: "Independence says that joint probabilities factor into products of marginal probabilities for every measurable choice of events."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 og_image: "independence-card.png"
@@ -12,7 +12,8 @@ og_image_alt: "A two-by-two probability grid has four equally weighted joint out
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 Two random variables are **independent** when learning the value of one does

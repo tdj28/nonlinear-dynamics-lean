@@ -2,7 +2,7 @@
 title: "Koopman coboundary"
 slug: "koopman-coboundary"
 summary: "A Koopman coboundary is a one-step potential difference whose orbit sum cancels internally and leaves only its final and initial endpoint values."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean"

@@ -9,7 +9,7 @@ lead: |
   RMT-26 reached pointwise convergence but deliberately left the limit unnamed. RMT-27 answers the harder structural question: what information survives an infinitely long orbit average? The answer is neither automatically a constant nor automatically the global mean. It is precisely the part of the observable visible to invariant measurable events. This chapter follows the checked Lean proof from one total limit representative through identical orbit laws, uniform integrability, a finite-measure Vitali argument, invariant-set integral identities, and conditional-expectation uniqueness. The theorem remains valid for finite nonprobability measures and possibly noninvertible dynamics.
 key_result: |
   Let T preserve a finite measure μ and let f be a real integrable observable. Then, for μ-almost every initial state ω, the complete sequence of Birkhoff averages Aₙf(ω) converges to `μ[f | MeasurableSpace.invariants T] ω`. No probability normalization, ergodicity, nonzero-mass condition, injectivity, surjectivity, or invertibility is assumed. The target is generally an invariant function, not a constant. The checked module also proves integrability of one total limit representative and genuine L1 convergence of the averages to it.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite measure spaces, Birkhoff averages, exact invariant sigma algebras, conditional expectation, identical distributions, uniform integrability, Vitali convergence, restricted measures, almost-everywhere representatives, and Lean proof architecture"
@@ -45,7 +45,8 @@ sources and released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete chapter remains a draft while
+**Editorial status.** This declaration-complete chapter is published as an
+open working note while
 human editorial acceptance and the separate scientific-integrity and
 zero-context expert-reader reviews are pending. The warning-fatal checked Lean
 source is authoritative for every theorem statement and assumption.
@@ -100,8 +101,8 @@ A_nf(\omega)\longrightarrow
 
 **Milestone status.** RMT-27's Lean implementation is warning-fatal clean and
 adds no axiom class beyond the standard Mathlib footprint
-`propext`, `Classical.choice`, and `Quot.sound`. The prose and figures remain
-draft-scoped pending human review.
+`propext`, `Classical.choice`, and `Quot.sound`. The prose and figures are
+published as part of this open working note while human review remains pending.
 
 For a slower ascent with a fully computed finite model, read
 [Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}}).

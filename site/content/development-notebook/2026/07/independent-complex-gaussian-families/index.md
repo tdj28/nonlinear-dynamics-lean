@@ -9,7 +9,7 @@ lead: |
   One exact complex Gaussian variable is a point. A random matrix needs a coordinated family. This module records what every coordinate is, proves how the family fits together as one finite product law, and refuses to infer cross-family independence that the hypotheses do not contain.
 key_result: |
   Lean now bundles ordinarily measurable complex coordinates with exact means, separate real and imaginary variances, and mutual independence. For a finite index type, the full vector has exactly the product of those coordinate laws. A canonical product sample space realizes the same interface, including the empty family as a Dirac mass at the unique empty function.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Independent random variables to finite random-matrix coordinates"
@@ -37,8 +37,8 @@ has not yet inspected and accepted the exposition, sources, equations, Lean
 artifacts, exercises, or generated social card. The canonical teaching-only
 AI-use disclosure is therefore intentionally pending because its human-
 inspection clause is not yet true. Scientific-integrity and zero-context
-expert-reader reviews are also pending. This page must remain a draft until
-those gates are complete.
+expert-reader reviews are also pending. This page is published as an open
+working note while all named reviews remain pending.
 {{< /panel >}}
 
 {{< panel "info" >}}

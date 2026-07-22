@@ -4,7 +4,7 @@ slug: "random-matrices-from-outcomes-to-spectra"
 date: 2026-07-20
 summary: "A guided ascent from probability spaces and measurable coordinates to Hermitian symmetry, spectral observables, and the foundations consumed by a finite Gaussian unitary ensemble law."
 lead: "Start with one random number. Add a second index. By the summit, the object is a random operator whose eigenvalues encode collective structure that no entry reveals alone."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Base camp to advanced"
 reading_time: "35 to 50 minutes"
@@ -17,8 +17,8 @@ og_image_alt: "A warm-paper teaching card showing an outcome becoming a structur
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The canonical
 author disclosure is intentionally pending until the human author has
-inspected the prose, cited sources, equations, and Lean artifacts. The page
-must remain a draft until that review occurs.
+inspected the prose, cited sources, equations, and Lean artifacts. The page is
+publicly available as an open working note while that review remains pending.
 {{< /panel >}}
 
 Random matrix theory begins with an object that sounds almost trivial: a

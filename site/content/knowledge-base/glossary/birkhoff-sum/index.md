@@ -2,7 +2,7 @@
 title: "Birkhoff sum"
 slug: "birkhoff-sum"
 summary: "A Birkhoff sum adds one observable along a finite orbit; in finite-block arguments, the orbit map is a power of the base map and the observable is one complete block cost."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks"
@@ -13,7 +13,8 @@ og_image_alt: "Warm-paper teaching card showing a base orbit sampled at fixed bl
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **Birkhoff sum** adds the values of one observable along the first finitely

@@ -4,7 +4,7 @@ slug: "measurable-finite-random-matrix-products-and-pushforward-laws"
 date: 2026-07-21
 summary: "A textbook ascent from semiring-valued pointwise matrix products through exact finite-prefix measurability to raw pushforward laws, mass-one proofs, and bundled probability measures."
 lead: "An ordered product of random matrices is not yet a probability law. First it is a function of one outcome, then it needs a finite-prefix measurability proof, and only then can its source measure be transported without hiding Mathlib's zero-measure fallback."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite random dynamics, measurable maps, and law-level interfaces"
 reading_time: "70 to 95 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 Consider a time-indexed family of random square matrices
@@ -818,8 +818,8 @@ make site-check
 ~~~
 
 The repository-wide technical gate is <code>make check</code>. Passing it does
-not publish this draft. Human mathematical, source, accessibility, and
-editorial reviews remain separate publication gates.
+not complete human review. This page is published as an open working note while
+mathematical, source, accessibility, and editorial reviews remain pending.
 
 ## Summit: what has and has not been proved
 

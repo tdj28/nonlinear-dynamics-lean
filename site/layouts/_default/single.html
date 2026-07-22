@@ -5,6 +5,7 @@
 {{ $readingTime := printf "%d min read" .ReadingTime }}
 {{ with .Params.reading_time }}{{ $readingTime = printf "%v" . }}{{ end }}
 {{ $level := .Params.level | default "Guided ascent" }}
+{{ $openWorkingNotes := .Site.Params.open_working_notes | default false }}
 <article class="article shell" data-reading-article>
   <header class="article-header">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -16,7 +17,11 @@
     </nav>
     <div class="article-kicker-row">
       <p class="eyebrow">{{ $sectionLabel }}</p>
-      {{ if .Draft }}<span class="draft-badge">Working draft</span>{{ end }}
+      {{ if .Draft }}
+        <span class="draft-badge">Working draft</span>
+      {{ else if $openWorkingNotes }}
+        <span class="draft-badge">Open working note</span>
+      {{ end }}
     </div>
     <h1>{{ .Title }}</h1>
     {{ with .Params.lead }}

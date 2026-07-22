@@ -2,11 +2,17 @@
 {{ $readingTime := printf "%d min read" $page.ReadingTime }}
 {{ with $page.Params.reading_time }}{{ $readingTime = printf "%v" . }}{{ end }}
 {{ $action := cond (eq $page.Section "development-notebook") "Open the notebook entry" "Read the chapter" }}
-<article class="entry-card{{ if $page.Draft }} is-draft{{ end }}">
+{{ $openWorkingNotes := $page.Site.Params.open_working_notes | default false }}
+{{ $isWorkingNote := or $page.Draft $openWorkingNotes }}
+<article class="entry-card{{ if $isWorkingNote }} is-working-note{{ end }}">
   <a class="entry-card-link" href="{{ $page.RelPermalink }}">
     <div class="entry-card-topline">
       {{ with $page.Params.level }}<span class="level-badge level-{{ . | urlize }}">{{ . }}</span>{{ end }}
-      {{ if $page.Draft }}<span class="draft-badge">Working draft</span>{{ end }}
+      {{ if $page.Draft }}
+        <span class="draft-badge">Working draft</span>
+      {{ else if $openWorkingNotes }}
+        <span class="draft-badge">Open working note</span>
+      {{ end }}
     </div>
     <div class="entry-card-copy">
       <h2>{{ $page.Title }}</h2>

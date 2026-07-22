@@ -2,7 +2,7 @@
 title: "Koopman operator"
 slug: "koopman-operator"
 summary: "The Koopman operator turns forward state evolution into linear pullback of observables by composition, even when the state map itself is nonlinear."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean"

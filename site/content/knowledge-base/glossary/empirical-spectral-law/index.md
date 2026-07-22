@@ -2,7 +2,7 @@
 title: "Empirical spectral law"
 slug: "empirical-spectral-law"
 summary: "An empirical spectral law is the probability distribution of the empirical spectral measure produced by a random matrix, not the measure from one sample and not its mean."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum"
@@ -13,7 +13,8 @@ og_image_alt: "A random Hermitian matrix produces one empirical spectral measure
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 An **empirical spectral law** is the probability distribution of the

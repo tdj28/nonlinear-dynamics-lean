@@ -9,7 +9,7 @@ lead: |
   A point is marked when some centered block of length at most m falls below the line of slope c. RMT-30 turns those local witnesses into a global measure estimate: if every positive normalized centered integral stays above delta and c is strictly below delta, then the real measure of the finite bad-block set is at most delta divided by c. The proof is finite-measure and measure-preserving, but neither probabilistic nor ergodic.
 key_result: |
   For an integrable subadditive-process candidate on a finite measure-preserving system, assume delta is a lower bound for every positive normalized centered integral and c < delta. Then the finite set of points admitting a witness length 1 <= n <= m with centeredProcess n < c n has real measure at most delta / c. Time one forces c < delta <= 0, so the negative divisor reverses the final inequality. The cocycle specialization uses the integrated log-positive Fekete offset. No lower liminf, convergence, equality, Kingman theorem, signed rate, Lyapunov exponent, or Oseledets splitting is proved.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite orbit counts, centered subadditive processes, null measurability, ordered interval packing, finite measures, and Lean proof architecture"
@@ -83,8 +83,9 @@ not the lower half of Kingman's theorem.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and the separate scientific-integrity
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and the separate
+scientific-integrity
 and zero-context expert-reader reviews are pending. The warning-fatal checked
 Lean source is authoritative for every theorem statement and assumption.
 {{< /panel >}}

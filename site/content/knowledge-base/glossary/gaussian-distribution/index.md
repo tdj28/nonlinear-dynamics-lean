@@ -2,7 +2,7 @@
 title: "Gaussian distribution"
 slug: "gaussian-distribution"
 summary: "A Gaussian distribution is the real probability law determined by a mean and a nonnegative variance, including a point mass when the variance is zero."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 og_image: "gaussian-distribution-card.png"
@@ -12,7 +12,8 @@ og_image_alt: "A standard Gaussian law passes through a variance scaling step an
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **Gaussian distribution**, also called a **normal distribution**, is a

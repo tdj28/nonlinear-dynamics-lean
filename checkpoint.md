@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 13:24 PDT
+Last updated: 2026-07-22 14:00 PDT
 
-Audited baseline: `main` at `bf25c66`
+Audited baseline: `main` at `9042de6`
 
 Active direction: **paused at the user's request so the existing work can be
 reviewed over the next few days. Do not resume autonomous expansion until the
@@ -70,16 +70,35 @@ commits. They are not instructions for future work.
   navigation. Production validation must scan rendered HTML for any remaining
   single-slash-rooted `href` or `src` attributes.
 - The workflow is deliberately production-only: it does not pass
-  `--buildDrafts`. At this checkpoint, a production render contains 14 pages;
-  the draft-inclusive local review render contains 405. The substantive
-  Development Notebook and Knowledge Base corpus remains excluded from Pages
-  until explicit editorial publication decisions are made. Draft source may
-  still be readable through the repository, depending on repository visibility.
+  `--buildDrafts`. The owner explicitly authorized open publication on
+  2026-07-22, so all 127 existing content pages now opt in with `draft: false`:
+  39 Development Notebook entries, 36 Deep Dives, and 52 glossary chapters.
+  The production and draft-inclusive renders both contain 405 pages.
+- Publication exposes work in progress; it does not manufacture review. All
+  127 pages retain `pro_reviewed: false`, and the Notebook entries retain their
+  visible pending-review status language. The site-wide
+  `open_working_notes` publication mode adds an **Open working note** badge to
+  articles and collection cards without rendering the private review metadata.
+  Legacy body text that said a page had to remain draft-gated now describes the
+  owner-authorized public working-note state while preserving every pending
+  human, editorial, scientific-integrity, accessibility, and Pro review.
+  Future pages remain draft-gated by default until the owner explicitly chooses
+  private incubation or open working publication.
+- The coverage checker is publication-neutral: mapped Notebook pages must
+  declare explicit unquoted boolean `draft` and `pro_reviewed` states, but the
+  checker does not force either value. Publication status and review completion
+  are separate axes.
+- Open publication makes existing teaching debt visible. RMT-29's Notebook and
+  Deep Dive remain semantically stale after the lower-bounded upper-limsup
+  generalization; RMT-34's Notebook, Deep Dive, and integrable-tail glossary
+  still contain future-tense handoff language; and RMT-35 has no teaching bundle
+  yet even though its Lean source is mounted publicly. The formalization pause
+  and the repair plan below remain in force.
 - Hugo mounts checked `.lean` files from
   `formalization/NonlinearDynamics/` into the public artifact. Those source
-  files are therefore public even when paired articles remain drafts. Secrets,
-  `.env`, Git metadata, build caches, cloud identifiers, and private review
-  material remain outside both mounted publication roots.
+  files are therefore public regardless of paired-article publication state.
+  Secrets, `.env`, Git metadata, build caches, cloud identifiers, and private
+  review material remain outside both mounted publication roots.
 - The repository owner must select **Settings → Pages → Build and deployment →
   Source → GitHub Actions** once. The expected URL is
   `https://tdj28.github.io/nonlinear-dynamics-lean/`. GitHub Pages is public,
@@ -1898,13 +1917,24 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
-- GitHub Pages publication QA on 2026-07-22: the production-only Hugo build
-  rendered 14 pages and the draft-inclusive local review build rendered 405
-  pages with warnings fatal under Hugo Extended 0.160.1. The repository-subpath
-  production artifact contains no single-slash-rooted HTML `href` or `src`,
-  retains its site CSS/JavaScript, and includes all 63 mounted checked Lean
-  sources byte-for-byte.
-  `make checkpoint-check`, all seventeen coverage-contract regression tests,
+- GitHub Pages open-corpus QA on 2026-07-22: after the owner authorized public
+  working notes, both the production-only Hugo build and the draft-inclusive
+  local review build rendered 405 pages with warnings fatal under Hugo Extended
+  0.160.1. The repository-subpath production artifact contains all 127 opted-in
+  content pages, no single-slash-rooted HTML `href` or `src`, its site
+  CSS/JavaScript, and all 63 mounted checked Lean sources byte-for-byte.
+  Notebook, Deep Dive, glossary, root, and RMT-35 Lean-source HTTP probes return
+  200. All 444 page-bundle resources are emitted at their corresponding public
+  routes: 210 SVG figures, 117 PNG cards, and 117 card-generator shell scripts.
+  A targeted scan of the public roots finds no credential variable, private-key
+  marker, API-key-shaped token, or workstation absolute path. The
+  publication-neutral coverage checker reports only the two pre-existing
+  RMT-35/RMT-29 proof-to-prose debts, not the 39 published Notebook states.
+  Literal 1440x1000 and 390x844 browser checks of representative Notebook,
+  Deep Dive, and glossary pages show the public working-note badge, exactly one
+  article heading, no page-level overflow, broken images, KaTeX errors, or
+  console warnings/errors.
+  `make checkpoint-check`, all twenty-three coverage-contract regression tests,
   all four content-hygiene regression tests, the 132-file hygiene scan,
   `make site-check`, workflow syntax inspection, and `git diff --check` pass
   without invoking Lean. The local Mathlib compiled build tree remains absent.
@@ -2962,6 +2992,8 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `9042de6`: add the production-only GitHub Pages workflow, repository-subpath
+  URL handling, publication documentation, and static deployment QA policy.
 - `bf25c66`: enforce a permanent cloud-only Lean/Mathlib build policy with
   guarded Make targets, exact manifest verification, source-only cloud sync,
   and a workstation-safe validation path.

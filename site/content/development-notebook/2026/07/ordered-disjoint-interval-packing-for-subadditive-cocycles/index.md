@@ -9,7 +9,7 @@ lead: |
   A long orbit may contain many starts with a favorable short interval, but those intervals can overlap. RMT-21 chooses them from left to right, keeps an ordered disjoint subfamily whose union still covers every marked start, and charges a nonpositive shifted-subadditive process to the chosen intervals. The result is finite combinatorics and finite algebra: singleton intervals and zero gaps are legal, empty marks retain a weak conclusion at positive enlarged horizon, and no density or limit theorem is invoked.
 key_result: |
   From marks below H and prescribed positive lengths at most m, the checked selector returns a packing in the enlarged horizon H+m. SelectedFrom certifies the origin and exact length of every chosen interval; Covers certifies that no marked start is missed. Those separate facts lift per-marked-start cost bounds to packing costs and then to bounds in terms of the number of marked starts. The weak marked-card result covers the empty set when H+m is nonzero; the strict result requires marked.Nonempty and derives that positivity. The raw process inequality excludes the empty packing at horizon zero because no premise controls the process at time zero.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite half-open intervals, gap-indexed recursion, greedy covering, exact cardinality, shifted subadditivity, favorable costs, and matrix-cocycle specialization"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1437,8 +1438,8 @@ aggregator/root builds pass. The axiom audit reports only Lean and Mathlib's
 standard logical dependencies, with no <code>sorry</code>, <code>admit</code>,
 <code>unsafe</code> declaration, or custom axiom.
 
-This article remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Automated checks do not replace human
+This article publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Automated checks do not replace human
 mathematical, source, accessibility, and editorial review.
 
 ## The next ridge

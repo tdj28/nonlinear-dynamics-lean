@@ -4,7 +4,7 @@ slug: "ordered-finite-matrix-products-and-operator-norm-growth"
 date: 2026-07-21
 summary: "A textbook ascent through chronological noncommutative products, shifted time blocks, constant powers, the maximum-row-sum operator norm, and checked finite-horizon bounds for matrices and vector orbits."
 lead: "Before random cocycles can have Lyapunov exponents, their finite products need an unambiguous order, an honest zero-time identity, and a norm interface whose dimensional assumptions are visible."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Linear algebra trailhead to random-dynamics base camp"
 reading_time: "60 to 80 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 Suppose a column state changes by a different linear map at each discrete
@@ -827,8 +827,9 @@ make site-check
 ~~~
 
 The repository-wide technical gate is <code>make check</code>. Passing the
-technical gate does not publish this page. Human mathematical, source,
-accessibility, and editorial review remain separate draft gates.
+technical gate does not complete human review. This page is published as an
+open working note while mathematical, source, accessibility, and editorial
+reviews remain pending.
 
 ## What has and has not been proved
 

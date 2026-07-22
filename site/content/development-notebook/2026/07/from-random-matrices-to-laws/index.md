@@ -9,7 +9,7 @@ lead: |
   A realized matrix tells us what happened once. A probability law tells us how all possible realized matrices are distributed. This module crosses that bridge with pushforward measures, then states unitary invariance at the only level where an ensemble symmetry belongs: equality of laws.
 key_result: |
   The law of a measurable random matrix is its pushforward measure. Measurable transformations compose at the level of laws, probability mass stays normalized, and a Dirac input gives a Dirac output. The module then defines unitary-conjugation invariance as equality of measures, while proving no Gaussian ensemble and making no GUE claim.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial and technical review"
 level: "Beginner to research frontier"
@@ -35,7 +35,8 @@ og_image_alt: "Warm-paper teaching card showing a sample-space measure transport
 has not yet inspected and accepted the exposition, source interpretations,
 equations, exercises, references, or social card. The canonical author
 disclosure is therefore intentionally pending. Scientific-integrity and
-zero-context reader reviews are also pending, so this page must remain a draft.
+zero-context reader reviews are also pending. This page is published as an open
+working note while those reviews remain pending.
 {{< /panel >}}
 
 {{< panel "info" >}}

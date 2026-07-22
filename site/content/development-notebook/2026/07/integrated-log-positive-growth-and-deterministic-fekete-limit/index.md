@@ -9,7 +9,7 @@ lead: |
   RMT-15 controlled the positive logarithm of every fixed cocycle product. RMT-16 now integrates those finite-horizon observables, proves that the resulting real sequence is subadditive, divides by positive time, and applies Mathlib's deterministic Fekete theorem. The result is a genuine asymptotic limit, but it is a limit of raw-measure integrals. It is not an expectation without probability normalization, not a samplewise theorem, and not a Lyapunov exponent.
 key_result: |
   Write G_k(ω) = log⁺ ‖Φ(k,ω)‖ and I_k = ∫ G_k dμ. Under the explicit one-step hypothesis Integrable(G_1, μ), Lean proves I_{m+k} ≤ I_m + I_k and I_k ≤ k I_1. It defines Q_k = I_k/k and the integrated log-positive growth rate as Mathlib's Fekete infimum over positive indices, then proves Q_k converges to that rate. The measure μ is arbitrary: its integral is not automatically an expectation, and the construction depends linearly on finite scalar rescaling of the measure. The positive logarithm still erases contraction and singular collapse, so the limit is neither a samplewise logarithmic growth rate nor a Lyapunov exponent.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Integrated finite-horizon cocycle growth, scalar subadditivity, normalization, and deterministic Fekete convergence"
@@ -47,7 +47,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

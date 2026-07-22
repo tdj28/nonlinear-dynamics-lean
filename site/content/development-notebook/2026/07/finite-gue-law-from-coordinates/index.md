@@ -9,7 +9,7 @@ lead: |
   A random Hermitian matrix becomes a precise probability object only after every scale and independence choice is visible. This chapter builds the finite Gaussian unitary ensemble in two checked moves: put an exact product Gaussian law on the free Hermitian coordinates, then push that law through the measurable assembly map. The result is a probability measure on ambient complex matrices with exact diagonal and strict-upper entry laws, including a deliberate dimension-zero branch.
 key_result: |
   Lean now defines a finite Wigner-scaled GUE matrix law in every natural dimension. For positive dimension, diagonal coordinates have variance 1/n and each real and imaginary part above the diagonal has variance 1/(2n); the two coordinate blocks and their finite families carry explicit independence theorems. The assembled matrix law is a measurable pushforward and its diagonal and strict-upper marginals are checked exactly. Density, Hermitian support as a measure theorem, unitary invariance, spectra, expectations, and asymptotics remain future work.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite probability measures, exact Gaussian laws, and random-matrix normalization"
@@ -42,7 +42,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

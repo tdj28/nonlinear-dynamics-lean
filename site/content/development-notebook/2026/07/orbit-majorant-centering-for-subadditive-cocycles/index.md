@@ -9,7 +9,7 @@ lead: |
   Centering often means subtracting an expectation. Not here. RMT-19 subtracts the additive orbit sum of the one-step observable from each finite-horizon process value. The residual is nonpositive at every positive horizon, remains shifted-subadditive, and splits the normalized process exactly into a residual term and a finite Birkhoff average. It need not have mean zero, and no convergence theorem is proved.
 key_result: |
   Eighteen public declarations and two private algebraic helpers now formalize orbit-majorant centering. Positive horizons need no time-zero normalization; a uniform statement through time zero needs X(0) = 0. Shifted subadditivity survives by finite algebra, while integrability of the centered family needs only one-step measure preservation. The cocycle pointwise layer uses the cocycle directly; the generator-integrability hypothesis enters only when packaging the centered cocycle family as an integrable candidate.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Shifted subadditivity, Birkhoff sums and averages, finite-horizon integrability, and matrix-cocycle compensation"
@@ -45,7 +45,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1493,8 +1494,8 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.logPlusNormObservable_normalized_eq_centered_add_birkhoffAverage
 ~~~
 
-The article remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Automated checks do not replace human
+The article publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Automated checks do not replace human
 mathematical, source, accessibility, and editorial review.
 
 ## The next ridge

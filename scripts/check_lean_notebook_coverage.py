@@ -226,6 +226,36 @@ def snapshot_contract_errors(
     return errors
 
 
+def notebook_publication_metadata_errors(
+    article: str,
+    article_label: str,
+) -> list[str]:
+    """Require explicit publication/review booleans without fixing their values."""
+    front_matter = extract_front_matter(article)
+    errors: list[str] = []
+
+    for key in ("draft", "pro_reviewed"):
+        present, _, scalar_error = front_matter_scalar(front_matter, key)
+        if scalar_error:
+            errors.append(f"{article_label} {scalar_error}")
+            continue
+        if not present:
+            errors.append(
+                f"{article_label} must declare {key} as an explicit unquoted boolean"
+            )
+            continue
+        if front_matter is None or not re.search(
+            rf"^{re.escape(key)}[ \t]*:[ \t]*(?:true|false)[ \t]*(?:#.*)?$",
+            front_matter,
+            re.MULTILINE,
+        ):
+            errors.append(
+                f"{article_label} must declare {key} as an explicit unquoted boolean"
+            )
+
+    return errors
+
+
 def png_dimensions(path: Path) -> tuple[int, int] | None:
     """Read PNG dimensions from the IHDR header without an image dependency."""
     with path.open("rb") as image:
@@ -294,10 +324,7 @@ def main() -> None:
             errors.append(
                 f"{notebook_value} does not declare lean_module {expected_module!r}"
             )
-        if not re.search(r"^draft:\s*true\s*$", article, re.MULTILINE):
-            errors.append(f"new notebook coverage page is not safely draft-scoped: {notebook_value}")
-        if not re.search(r"^pro_reviewed:\s*false\s*$", article, re.MULTILINE):
-            errors.append(f"notebook is not marked as pending Pro review: {notebook_value}")
+        errors.extend(notebook_publication_metadata_errors(article, notebook_value))
         if f'lean_source: "{lean_path}"' not in article:
             errors.append(f"{notebook_value} does not point to exact Lean source {lean_path!r}")
 
@@ -359,7 +386,7 @@ def main() -> None:
 
     print(
         f"Lean/notebook coverage complete: {len(substantive)} substantive modules, "
-        f"{len(coverage)} comprehensive draft pages"
+        f"{len(coverage)} comprehensive notebook pages"
     )
 
 

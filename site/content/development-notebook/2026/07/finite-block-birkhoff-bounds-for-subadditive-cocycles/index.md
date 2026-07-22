@@ -9,7 +9,7 @@ lead: |
   A long trajectory can be tiled by equal blocks plus one short remainder. Shifted subadditivity turns that elementary picture into a rigorous upper bound: the long-horizon cost is no larger than a Birkhoff sum of block costs and one remainder cost. RMT-18 formalizes both possible remainder placements, makes the zero-block obstruction explicit, and specializes the result to matrix-cocycle log-positive growth. It is the finite algebra used near the entrance to subadditive ergodic arguments, not the limit theorem at their summit.
 key_result: |
   Twelve public declarations now expose the complete finite-block layer. Generic process bounds need only the stored shifted-subadditive inequality, even for a zero block length and even without time-zero normalization. Only the uniform exact-block statement at block count zero needs X(0) = 0. Finite Birkhoff-sum integrability needs integrability of the block observable and measure preservation of the block map itself. The two pointwise cocycle bounds need no generator-integrability hypothesis, while the cocycle integrability result does.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite block decomposition, Birkhoff sums, shifted subadditivity, integrability, and cocycle specialization"
@@ -47,7 +47,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1286,8 +1287,8 @@ python3 scripts/check_teaching_source_hygiene.py
 make site-check
 ```
 
-The article remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Automated source and render checks do not
+The article publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Automated source and render checks do not
 replace the pending human editorial decision or the two separate review
 passes required by the Development Notebook guide.
 

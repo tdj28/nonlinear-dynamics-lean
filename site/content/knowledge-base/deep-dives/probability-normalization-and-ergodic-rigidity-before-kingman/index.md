@@ -4,7 +4,7 @@ slug: "probability-normalization-and-ergodic-rigidity-before-kingman"
 date: 2026-07-21
 summary: "A textbook separation of probability scale, ergodic invariant rigidity, and finite-horizon integrability for matrix cocycles, together with the exact Lean interfaces available before a subadditive ergodic theorem."
 lead: "Mass one licenses expectation language. Ergodicity destroys nontrivial invariant information. Integrability controls finite moments. The current Lean milestone wires those roles together without pretending that a samplewise limit theorem has already been formalized."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Probability measures, measure-preserving dynamics, ergodicity, invariant events and observables, Bochner integrability, subadditive cocycle processes, and deterministic Fekete rates"
 reading_time: "105 to 145 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 The sixteenth random-matrix-theory milestone (RMT-16) ended with a
@@ -1171,8 +1171,8 @@ make site-check
 ~~~
 
 The repository-wide gate is <code>make check</code>. Automated success does not
-publish this draft. Human mathematical, source, accessibility, and editorial
-reviews remain separate publication gates.
+complete review of this public working note. Human mathematical, source,
+accessibility, and editorial reviews remain pending.
 
 ## What is established and what is not
 

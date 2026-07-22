@@ -2,7 +2,7 @@
 title: "Conjugate transpose"
 slug: "conjugate-transpose"
 summary: "The conjugate transpose flips a complex matrix across its diagonal and conjugates every entry."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

@@ -9,7 +9,7 @@ lead: |
   A random matrix sequence is not yet a random matrix product. First the factors must be multiplied in the right time order for every outcome. Then that sample product must be proved measurable. Only then can its pushforward distribution be named without hiding Mathlib's zero-measure fallback. This chapter builds those three floors and keeps every boundary visible.
 key_result: |
   Lean now lifts the newest-factor-left finite product to matrix-valued sample maps, proves ordinary measurability from exactly the factors before the chosen horizon, and defines the product law only when that certificate is supplied. Under a probability source, the zero-step law is the Dirac mass at the identity and every finite product law has total mass one. A bundled ProbabilityMeasure interface remembers only that mass-one fact. No independence, stationarity, factorization, cocycle, logarithmic growth, or asymptotic conclusion is claimed.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite random products, measurable maps, pushforward measures, and Lean proof-carrying interfaces"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

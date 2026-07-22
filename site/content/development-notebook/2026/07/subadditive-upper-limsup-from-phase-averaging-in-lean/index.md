@@ -9,7 +9,7 @@ lead: |
   A fixed-block proof of the subadditive ergodic theorem faces a subtle trap: an ergodic map can have a nonergodic power. RMT-29 avoids that trap by centering the process, averaging every block phase at finite time, and applying Birkhoff convergence only under the original transformation. The result is the upper half of a Kingman-style argument, formalized with its true probability, integrability, nonnegativity, and positive-block boundaries visible.
 key_result: |
   On an ergodic probability system, every pointwise nonnegative integrable subadditive-process candidate satisfies, almost everywhere, limsup X_n(omega)/n at most the normalized integral of any fixed positive block X_b. For a discrete matrix cocycle with an integrable one-step log-positive envelope, the same samplewise limsup is at most the deterministic integrated log-positive Fekete rate. The module does not prove convergence, a matching lower bound, equality with the rate, a signed Lyapunov exponent, or an Oseledets splitting.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Subadditive processes, phase averaging, Birkhoff convergence, limit superior, probability normalization, Fekete rates, and Lean proof architecture"
@@ -44,8 +44,9 @@ sources and released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and the separate scientific-integrity
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and the separate
+scientific-integrity
 and zero-context expert-reader reviews are pending. The warning-fatal checked
 Lean source is authoritative for every theorem statement and assumption.
 {{< /panel >}}

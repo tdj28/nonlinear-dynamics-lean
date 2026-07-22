@@ -4,7 +4,7 @@ slug: "finite-ordered-interval-packing-for-nonpositive-subadditive-processes"
 date: 2026-07-21
 summary: "A textbook construction of gap-coded ordered half-open interval packings, a leftmost greedy cover of marked starts, exact coverage-to-cardinality bounds, and finite favorable-cost estimates for positive-horizon nonpositive shifted-subadditive processes."
 lead: "Attach one positive bounded interval to every marked orbit start. Choosing all of them can create overlaps. The leftmost rule keeps one interval, removes the starts it already covers, and repeats. The selected intervals are ordered and disjoint, yet their union covers every original mark. This chapter develops that finite geometry, explains the empty, singleton, and abutting boundaries, and then derives weak and strict process bounds without an ergodic limit."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite sets, half-open intervals, strong induction, shifted subadditivity, positive-horizon nonpositivity, orbit-majorant centering, and one-sided matrix cocycles"
 reading_time: "145 to 205 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematics,
 Lean declaration map, source correction, figures, and accessibility have not
-yet passed the required human and Pro reviews. The page remains a draft until
-those gates are complete.
+yet passed the required human and Pro reviews. The page is publicly available
+as an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A finite subadditive argument often reaches the following situation. Along an

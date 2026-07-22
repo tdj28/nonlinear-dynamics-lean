@@ -9,7 +9,7 @@ lead: |
   A measurable observable is not automatically an expectation. RMT-09 closes that gap for the first two trace powers of the finite Wigner-scaled GUE law: it proves both functions are Bochner integrable, then computes their integrals exactly by combining centered diagonal Gaussians with normalized Hermitian Frobenius geometry.
 key_result: |
   For the checked ambient probability measure `GUE.matrixLaw n`, Lean proves that the complex observables `RandomMatrix.tracePower id 1` and `RandomMatrix.tracePower id 2` are integrable. Their integrals are exactly zero and `(n : ℂ)`, respectively, for every natural dimension. The statements include `n = 0` and use no matrix density, eigenvalue enumeration, or asymptotic limit.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite random matrices, Bochner integration, Gaussian moments, and Frobenius geometry"
@@ -43,7 +43,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

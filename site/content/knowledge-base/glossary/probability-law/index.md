@@ -2,7 +2,7 @@
 title: "Probability law"
 slug: "probability-law"
 summary: "The probability law of a random object records how probability is distributed over its possible values."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 ---
@@ -10,7 +10,8 @@ toc: true
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 prose, equations, examples, references, and Lean interpretation is still
-pending. The page must remain a draft until that review occurs.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 The **probability law** of a random object records the probabilities of its

@@ -4,7 +4,7 @@ slug: "first-exact-finite-gue-trace-moments"
 date: 2026-07-21
 summary: "A textbook derivation of Bochner integrability and the first two exact ordinary-trace moments of the finite Wigner-scaled Gaussian unitary ensemble, including dimension zero."
 lead: "Before moments can predict a spectrum, they must first exist. This chapter proves that analytic gate and evaluates the first two finite Gaussian unitary ensemble trace powers without eigenvalues, densities, or asymptotics."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite matrix probability through exact integrable observables"
 reading_time: "75 to 95 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figure, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 The finite **Gaussian unitary ensemble (GUE)** law is now fully constructed in
@@ -821,9 +821,9 @@ cd ..
 make site-check
 ~~~
 
-The repository-wide milestone gate is <code>make check</code>. The page remains
-a draft even when the technical gate passes because human mathematical and
-editorial review are separate publication requirements.
+The repository-wide milestone gate is <code>make check</code>. The page is
+publicly available as an open working note. Passing the technical gate does not
+complete the pending human mathematical and editorial reviews.
 
 ## What has and has not been proved
 

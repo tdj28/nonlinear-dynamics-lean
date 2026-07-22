@@ -310,21 +310,24 @@ the configuration step. After selecting **GitHub Actions**, rerun that failed
 workflow from the **Actions** tab or choose **Run workflow**; the workflow also
 supports manual dispatch for exactly this case.
 
-The deployment intentionally omits Hugo drafts. At the current checkpoint that
-means the production artifact contains the public site shell and indexes, while
-the substantive Development Notebook and Knowledge Base chapters remain
-excluded from Pages until their `draft: true` flags are deliberately removed.
-The draft Markdown may still be readable in the GitHub repository, depending on
-repository visibility. Local preview targets continue to include drafts. The
-mounted `.lean` sources are static publication assets and therefore **are
-public** under the Pages URL even while their paired articles remain drafts.
+The deployment intentionally omits Hugo drafts, but the complete existing
+corpus is now opted into publication: 39 Development Notebook entries, 36
+Knowledge Base Deep Dives, and 52 glossary chapters have `draft: false`. They
+are public working notes, not a claim that every editorial or technical review
+is complete. Their `pro_reviewed: false` metadata and visible pending-review
+status language remain unchanged. Future pages can still begin as drafts, and
+local preview targets continue to include them.
+
+The mounted `.lean` sources are static publication assets and are also public
+under the Pages URL. Publishing an article does not change the mathematical
+scope, axiom ledger, proof status, or explicit nonclaims recorded in it.
 
 GitHub Pages sites are publicly accessible even when their source repository is
 private. Never put `.env`, API keys, credentials, cloud identifiers, private
 review material, or generated build caches beneath `site/` or
-`formalization/NonlinearDynamics/`. To publish drafts in the future, make that a
-separate reviewed publication decision instead of adding `--buildDrafts` to the
-workflow casually. See the
+`formalization/NonlinearDynamics/`. Keep future unfinished pages draft-gated
+unless the owner explicitly chooses to publish them as open working notes;
+there is no need to add `--buildDrafts` to the workflow. See the
 [GitHub Pages custom-workflow guide](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 and the [Hugo deployment guide](https://gohugo.io/host-and-deploy/host-on-github-pages/)
 for the underlying deployment model.
@@ -760,7 +763,8 @@ and `make content-coverage` checks that:
 
 - no substantive Lean module is missing from the mapping;
 - every mapped notebook bundle exists and names the correct Lean module;
-- new entries remain draft-scoped until human review;
+- every mapped notebook records explicit boolean publication and external-review
+  states without confusing publication with review completion;
 - each entry includes references, exact run instructions, and a substantial
   teaching treatment;
 - when an entry freezes a site-hosted Lean snapshot, its module, snapshot path,
@@ -807,9 +811,11 @@ API key or paste one into an issue, pull request, or chat.
 - [`site/content/knowledge-base/AGENTS.md`](site/content/knowledge-base/AGENTS.md)
   governs Knowledge Base glossary entries and deep dives.
 
-The guides now live at the roots of the content trees they govern. New public
-content remains a draft until the required technical, editorial, and human
-review gates are complete.
+The guides now live at the roots of the content trees they govern. New content
+begins draft-gated by default. The owner may explicitly publish it earlier as
+an open working note by setting `draft: false` while leaving
+`pro_reviewed: false`; the site labels that publication mode visibly. Set
+`pro_reviewed: true` only after the configured review gate actually completes.
 
 ## Troubleshooting
 

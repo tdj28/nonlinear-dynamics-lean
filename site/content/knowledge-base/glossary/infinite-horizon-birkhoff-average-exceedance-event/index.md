@@ -2,7 +2,7 @@
 title: "Infinite-horizon Birkhoff-average exceedance event"
 slug: "infinite-horizon-birkhoff-average-exceedance-event"
 summary: "The infinite-horizon Birkhoff-average exceedance event is the set of starting points for which at least one strictly positive finite time has an orbit average strictly above a fixed threshold."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal"

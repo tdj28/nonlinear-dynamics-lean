@@ -2,7 +2,7 @@
 title: "Finite orbit visit count"
 slug: "finite-orbit-visit-count"
 summary: "A finite orbit visit count is the natural number of times a chosen finite orbit prefix lands in a set."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure"

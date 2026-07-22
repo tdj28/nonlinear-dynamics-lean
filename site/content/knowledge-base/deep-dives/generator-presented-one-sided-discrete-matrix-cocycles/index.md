@@ -4,7 +4,7 @@ slug: "generator-presented-one-sided-discrete-matrix-cocycles"
 date: 2026-07-21
 summary: "A textbook construction of finite matrix cocycles from one measurable generator along a measure-preserving base, including Function.iterate, the later-block-left cocycle law, exact assumption layers, and every finite-time boundary."
 lead: "A time-indexed random product becomes a cocycle when its factors come from one generator observed along a moving base environment. The shift in that environment is what turns an ordinary product split into the cocycle law."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Discrete random dynamics, semigroup cocycles, measurable iteration, and measure-preserving bases"
 reading_time: "80 to 105 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A sequence of arbitrary random matrices gives one factor map at every time. A
@@ -908,8 +908,8 @@ make site-check
 ~~~
 
 The repository-wide technical gate is <code>make check</code>. Passing it does
-not publish this draft. Human mathematical, source, accessibility, and
-editorial reviews remain separate publication gates.
+not complete human review. This page is published as an open working note while
+mathematical, source, accessibility, and editorial reviews remain pending.
 
 ## Summit: what has and has not been proved
 

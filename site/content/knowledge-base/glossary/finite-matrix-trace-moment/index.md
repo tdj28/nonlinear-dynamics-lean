@@ -2,7 +2,7 @@
 title: "Finite matrix trace moment"
 slug: "finite-matrix-trace-moment"
 summary: "A finite matrix trace moment is the expectation of a trace-power observable under a specified matrix law, after measurability, integrability, and normalization have each been made explicit."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments"
@@ -13,7 +13,8 @@ og_image_alt: "A matrix law passes through a trace-power observable and a separa
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **finite matrix trace moment** is the expected value of the trace of a fixed

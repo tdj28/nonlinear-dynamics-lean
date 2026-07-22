@@ -2,7 +2,7 @@
 title: "Phase averaging"
 slug: "phase-averaging"
 summary: "Phase averaging sums fixed-block estimates across every residue phase, turning a rectangular grid of powered-map samples into one consecutive finite Birkhoff sum while keeping boundary and zero-block cases explicit."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging"

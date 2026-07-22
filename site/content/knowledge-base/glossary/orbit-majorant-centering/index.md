@@ -2,7 +2,7 @@
 title: "Orbit-majorant centering"
 slug: "orbit-majorant-centering"
 summary: "Orbit-majorant centering subtracts the additive orbit sum of a process's one-step observable, leaving a shifted-subadditive remainder that is nonpositive at positive horizons, without claiming mean zero or convergence."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering"
@@ -13,7 +13,8 @@ og_image_alt: "Warm-paper teaching card showing a finite process minus its one-s
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 **Orbit-majorant centering** is this project's name for subtracting a finite

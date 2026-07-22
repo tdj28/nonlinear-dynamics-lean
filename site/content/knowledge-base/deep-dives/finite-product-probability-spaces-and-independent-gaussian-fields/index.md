@@ -4,7 +4,7 @@ slug: "finite-product-probability-spaces-and-independent-gaussian-fields"
 date: 2026-07-21
 summary: "A textbook ascent from indexed complex Gaussian coordinates to mutual independence, exact finite product laws, canonical sample spaces, real scaling, and the boundary before a Gaussian matrix ensemble."
 lead: "A list of correct Gaussian marginals does not specify an independent field's joint law. The missing object is the joint law, and the missing proof is mutual independence at the right level."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Probability foundations to random-matrix high camp"
 reading_time: "55 to 75 minutes"
@@ -18,8 +18,8 @@ og_image_alt: "A warm-paper teaching card shows a finite grid of complex Gaussia
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A single complex Gaussian variable is a two-dimensional real object. A finite

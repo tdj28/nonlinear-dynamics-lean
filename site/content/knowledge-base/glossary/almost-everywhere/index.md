@@ -2,7 +2,7 @@
 title: "Almost everywhere"
 slug: "almost-everywhere"
 summary: "A property holds almost everywhere when its failures are confined to a set of measure zero."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

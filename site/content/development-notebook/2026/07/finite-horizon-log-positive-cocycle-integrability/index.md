@@ -9,7 +9,7 @@ lead: |
   Long products can expand, contract, or collapse to zero. The positive part of the logarithm keeps only the expansion burden that an integrability theorem must control. This chapter follows that burden along a measure-preserving base, builds a finite orbit-sum envelope, and proves in Lean that one-step integrability reaches every finite horizon. It also explains why this useful envelope is not the logarithmic growth observable itself.
 key_result: |
   Write G_k(ω) = log⁺ ‖Φ(k,ω)‖ and S_k(ω) = ∑_{j<k} G_1(T^jω). Lean proves that G_k is nonnegative and measurable, obeys the shifted cocycle inequality G_{m+k}(ω) ≤ G_k(T^mω) + G_m(ω), and satisfies G_k(ω) ≤ S_k(ω). If G_1 is integrable with respect to the raw base measure μ, measure preservation makes every orbit pullback integrable, finite summation makes S_k integrable, and domination makes G_k integrable. The result is finite-horizon infrastructure only. It assumes no probability normalization or ergodicity and proves no normalized limit, Lyapunov exponent, Oseledets splitting, inverse estimate, or Jacobian interpretation.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-horizon cocycle growth, positive logarithms, measure-preserving pullbacks, and integrability by domination"
@@ -47,7 +47,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

@@ -4,7 +4,7 @@ slug: "subadditive-upper-limsup-bounds-before-kingman-convergence"
 date: 2026-07-22
 summary: "A textbook derivation of how centering, finite phase averaging, ordinary-map Birkhoff convergence, and deterministic Fekete rates produce a samplewise subadditive upper limsup bound without yet proving Kingman convergence."
 lead: "A subadditive process is not an additive orbit sum, and an ergodic map can have a nonergodic power. This chapter develops the finite-block route around both obstacles: subtract the one-step orbit majorant, average every residue phase, return to Birkhoff averages under the original map, and optimize the resulting family of block bounds."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Subadditive processes, ergodic theory, limsup, finite phase averaging, real Bochner integration, and intermediate Lean theorem reading"
 reading_time: "180 to 260 minutes"
@@ -23,10 +23,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is a draft teaching chapter pending human
-editorial, scientific-integrity, and zero-context expert-reader review. The
-checked Lean source is authoritative. The chapter deliberately omits claims
-beyond the checked upper-bound scope.
+**Editorial status.** This teaching chapter is published as an open working
+note while human editorial, scientific-integrity, and zero-context
+expert-reader review remain pending. The checked Lean source is authoritative.
+The chapter deliberately omits claims beyond the checked upper-bound scope.
 {{< /panel >}}
 
 Let \((\Omega,\mu,T)\) be an ergodic probability-preserving system and let

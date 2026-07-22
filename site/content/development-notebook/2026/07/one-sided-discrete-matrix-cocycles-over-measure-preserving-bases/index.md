@@ -9,7 +9,7 @@ lead: |
   A changing linear environment can be generated from one rule. Advance the environment by a base map, observe one matrix-valued generator at each visited point, and multiply those observations in chronological action order. This chapter formalizes that mechanism in Lean, proves its exact finite cocycle identity, and packages the measurable data needed for later random dynamics without pretending that a Lyapunov theorem has already arrived.
 key_result: |
   Lean now constructs the orbit matrix sequence from one base map and one generator, defines its newest-factor-left finite product, and proves that splitting time after m steps puts the later k-step block on the left at the shifted base point. The pointwise algebra works over any semiring. For complex matrices, a measure-preserving base and measurable generator produce measurable cocycle values at every natural time, and every base iterate preserves the same raw measure. Empty matrix dimension remains valid. No probability normalization, ergodicity, independence, invertibility, logarithmic growth, Lyapunov exponent, or asymptotic limit is claimed.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Discrete base dynamics, matrix generators, cocycle identities, measurability, and measure preservation"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

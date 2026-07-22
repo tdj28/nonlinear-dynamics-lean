@@ -4,7 +4,7 @@ slug: "rational-slack-lower-deviation-events-and-ergodic-null-selection"
 date: 2026-07-22
 summary: "A textbook ascent from arbitrarily late centered bad blocks to a countably generated strict lower-deviation event, its one-sided shift law, finite-measure almost-invariance, ergodic dichotomy, and probability-based selection of the null branch."
 lead: "A single bad block says nothing about the asymptotic slope. Random-matrix-theory milestone 32 (RMT-32) asks for strict witnesses beyond every cutoff at one durable rational margin, uses centered subadditivity to pull shifted witnesses back with a slightly relaxed threshold, and turns the resulting one-sided inclusion into almost-invariance. Finite-measure ergodicity yields the empty-or-full dichotomy; probability normalization and the strict ratio inherited from milestone 31 select the empty branch."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Subadditive processes, countably generated events, null measurable sets, measure preservation, finite-measure ergodicity, probability normalization, and intermediate Lean theorem reading"
 reading_time: "220 to 330 minutes"
@@ -23,11 +23,11 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The checked Lean
-source is authoritative. Human publication review and the configured external
-Pro review remain pending. RMT-32 proves nullity of a countably generated
-lower-deviation event; it does not yet identify that event with a library-level
-real lower limit or prove Kingman convergence.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note while human publication review and the configured external Pro
+review remain pending. The checked Lean source is authoritative. RMT-32 proves
+nullity of a countably generated lower-deviation event; it does not yet identify
+that event with a library-level real lower limit or prove Kingman convergence.
 {{< /panel >}}
 
 The lower half of a subadditive ergodic theorem has a particular logical

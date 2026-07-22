@@ -4,7 +4,7 @@ slug: "ergodic-birkhoff-limits-and-normalized-space-averages"
 date: 2026-07-22
 summary: "A textbook derivation of why an ergodic Birkhoff time average converges almost everywhere to the correctly normalized space average on every finite nonzero measure space."
 lead: "The pointwise Birkhoff theorem first leaves a conditional expectation as its limit. Ergodic rigidity then removes every surviving invariant distinction, while finite nonzero mass determines the one constant that remains. This chapter follows that climb from physical time-versus-space intuition to the exact Lean split between PreErgodic rigidity, Ergodic convergence, Mathlib's canonical integral average, and five compiled boundary probes."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite measure theory, conditional expectation, ergodicity, almost-everywhere convergence, normalized Bochner integrals, and intermediate Lean theorem reading"
 reading_time: "150 to 220 minutes"
@@ -23,11 +23,11 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This chapter is an AI-assisted working draft. Its
-mathematical claims and declaration names have been reconciled with the RMT-28
-Lean source, but human publication review, final visual inspection, and the
-configured external Pro review remain pending. The checked Lean module is
-authoritative.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its mathematical claims and declaration names have been
+reconciled with the RMT-28 Lean source, while human publication review, final
+visual inspection, and the configured external Pro review remain pending. The
+checked Lean module is authoritative.
 {{< /panel >}}
 
 Watch one nonlinear system for a very long time. Measure one observable at

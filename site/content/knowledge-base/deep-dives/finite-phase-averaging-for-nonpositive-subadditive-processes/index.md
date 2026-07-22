@@ -4,7 +4,7 @@ slug: "finite-phase-averaging-for-nonpositive-subadditive-processes"
 date: 2026-07-21
 summary: "A textbook derivation of finite residue-phase reindexing, exact prefix and terminal boundaries, their removal under positive-time nonpositivity, and zero-safe sliding-block bounds before any ergodic limit theorem."
 lead: "One powered-map orbit sees only one residue class of block starts. Sum over every residue phase and those sparse views fit together into one ordinary finite orbit sum. The exact construction needs one extra block of horizon, treats block length zero as vacuous rather than informative, and proves no convergence theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite sums, function iterates, shifted subadditivity, block decompositions, positive-horizon nonpositivity, orbit-majorant centering, and one-sided matrix cocycles"
 reading_time: "125 to 175 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematics,
 Lean declaration map, source correction, figures, and accessibility have not
-yet passed the required human and Pro reviews. The page remains a draft until
-those gates are complete.
+yet passed the required human and Pro reviews. The page is publicly available
+as an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A block argument naturally replaces the one-step map \(T\) by its \(b\)-step
@@ -1118,8 +1118,8 @@ make site-check
 
 The repository-wide gate is <code>make check</code>. These commands verify Lean
 acceptance and automated content rules. They do not replace the pending human
-mathematical, source, accessibility, and editorial reviews, so this page
-remains a draft.
+mathematical, source, accessibility, and editorial reviews. This page is
+publicly available as an open working note while those reviews remain pending.
 
 ## What the milestone establishes
 

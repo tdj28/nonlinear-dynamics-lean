@@ -2,7 +2,7 @@
 title: "Hermitian matrix"
 slug: "hermitian-matrix"
 summary: "A Hermitian matrix equals its conjugate transpose, forcing real diagonal entries and conjugate-paired off-diagonal entries."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

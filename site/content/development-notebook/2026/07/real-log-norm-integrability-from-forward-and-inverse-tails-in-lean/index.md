@@ -9,7 +9,7 @@ lead: |
   Lean's total real logarithm is measurable at zero because it sends zero to zero, but that same convention erases exact collapse and can make signed subadditivity false on singular products. RMT-34 separates algebraic pointwise units from analytic tail integrability, constructs a measurable total inverse envelope through determinants and adjugates, and sandwiches each finite-time real log between integrable lower and upper rails. A separate positive-rate argument reuses RMT-33 once the log-positive envelope and real logarithm eventually agree.
 key_result: |
   Pointwise generator invertibility together with integrable one-step forward and inverse log-positive norms makes every finite-horizon real log norm integrable and packages the family as an integrable shifted-subadditive process candidate. Separately, on an ergodic probability base, a strictly positive integrated log-positive rate forces almost-everywhere normalized real-log convergence to that rate without pointwise invertibility or inverse-tail integrability. Empty dimension remains valid for the finite-time package, while the positive-rate specialization is vacuous there.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-dimensional matrix cocycles, total real logarithms, nonsingular inversion, two-sided generator moments, integrable domination, and a positive-rate convergence bridge"

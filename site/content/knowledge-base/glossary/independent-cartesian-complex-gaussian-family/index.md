@@ -2,7 +2,7 @@
 title: "Independent Cartesian complex Gaussian family"
 slug: "independent-cartesian-complex-gaussian-family"
 summary: "An independent Cartesian complex Gaussian family is an indexed collection of measurable complex variables with explicit coordinate laws and one mutual-independence statement across the collection."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.ComplexGaussianFamilies"
@@ -13,7 +13,8 @@ og_image_alt: "Several measurable complex Gaussian coordinates, each with a visi
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 An **independent Cartesian complex Gaussian family** is an indexed collection

@@ -2,7 +2,7 @@
 title: "Ordered interval packing"
 slug: "ordered-interval-packing"
 summary: "Ordered interval packing encodes positive-length half-open natural intervals by successive gaps, making containment, chronological order, disjointness, abutment, exact covered cardinality, and finite marked-start coverage available by construction."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking"

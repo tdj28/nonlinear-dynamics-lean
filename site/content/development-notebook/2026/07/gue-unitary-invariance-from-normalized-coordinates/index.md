@@ -9,7 +9,7 @@ lead: |
   Entrywise Gaussian coordinates built the finite GUE law. Frobenius geometry supplied an invariant intrinsic Gaussian. RMT-08 is the bridge between them: normalize every free Hermitian coordinate, identify the exact pushforward measure, and transport intrinsic symmetry through the ambient inclusion without using a density or Jacobian.
 key_result: |
   Lean now identifies the coordinate-built ambient GUE law exactly with the ambient image of a dimension-scaled intrinsic standard Gaussian. The scaled intrinsic law is invariant under unitary congruence, and the intrinsic-to-ambient commuting square transfers that symmetry to a checked proof of `RandomMatrix.IsUnitaryConjugationInvariant (GUE.matrixLaw n)` for every natural dimension, including zero.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-dimensional Gaussian transport, Euclidean isometries, and invariant matrix laws"
@@ -43,7 +43,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

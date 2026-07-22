@@ -9,7 +9,7 @@ lead: |
   An ergodic theorem has two logically different jobs: prove that a limit exists, then identify how rigid the resulting invariant information must be. This twenty-second random-matrix-theory milestone (RMT-22) formalizes the second shape around a deliberately conditional convergence event. Finite Birkhoff averages are measurable and integrable under explicit hypotheses; almost-everywhere equal representatives determine the same event almost everywhere; and a one-term orbit shift preserves convergence in both directions with the same finite limit. Exact preimage invariance then yields null-or-conull, and under probability normalization zero-or-one, conclusions. Nothing in the module proves that a single orbit average converges.
 key_result: |
   For any map T and real observable g, the set of points whose totalized Birkhoff-average sequence converges to a finite real limit is exactly invariant under preimage by T. The proof needs no measurability, boundedness, invertibility, surjectivity, or convergence-existence theorem: it compares the two sequences after adding or deleting one finite prefix. Measurability or null-measurability is supplied separately. Under the matching pre-ergodic or quasi-ergodic interface, the event is almost everywhere empty or almost everywhere universal; on a probability space its measure is zero or one. These are conditional rigidity statements, not a pointwise Birkhoff theorem.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite Birkhoff sums and averages, measurable convergence events, almost-everywhere representatives, finite-prefix shift equivalence, exact invariant events, ergodic rigidity, and zero-one laws"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1403,8 +1404,8 @@ commands audit representative-independence, measurable-representative,
 finite-prefix, generic rigidity, candidate rigidity, and cocycle rigidity
 theorems.
 
-This article remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Automated checks do not replace human
+This article publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Automated checks do not replace human
 mathematical, source, accessibility, and editorial review.
 
 ## The next ridge

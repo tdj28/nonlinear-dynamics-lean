@@ -9,7 +9,7 @@ lead: |
   Entrywise Gaussian formulas tell us how to build a random Hermitian matrix in one basis. Geometry tells us why changing an orthonormal basis should not change an isotropic Gaussian law. This chapter gives Lean the missing finite-dimensional stage: a Frobenius Euclidean carrier, its intrinsic real Hermitian subspace, unitary-congruence isometries, an invariant standard Gaussian on that subspace, and a separate proof that the existing ambient GUE law is Hermitian almost surely.
 key_result: |
   Lean now packages unitary congruence as an isometric equivalence of both the full complex Frobenius matrix space and the intrinsic real Hermitian space. Mathlib's canonical standard Gaussian on the intrinsic Hermitian space is proved invariant under every such congruence, while the coordinate-built `GUE.matrixLaw` is proved to assign mass one to the measurable Hermitian locus. These are two different theorems: this module does not yet identify the two measures or prove unitary invariance of `GUE.matrixLaw`.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-dimensional Hilbert geometry, linear isometries, and measure support"
@@ -42,7 +42,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

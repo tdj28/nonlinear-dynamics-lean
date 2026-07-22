@@ -9,7 +9,7 @@ lead: |
   A running orbit sum can become positive even when the first reading is negative. The useful object is therefore not the final sum and not its positive part, but the largest partial sum seen up to a fixed horizon. This twenty-third random-matrix-theory milestone (RMT-23) proves a finite Hopf-style maximal ergodic lemma by choosing a positive maximizing time, peeling off the first observation, and cancelling the remaining shifted maxima after integration. The argument needs measure preservation and integrability, but not probability normalization, finite total mass, ergodicity, injectivity, surjectivity, or invertibility. A separate finite-measure layer centers the observable by a threshold and derives average-exceedance bounds. No infinite-horizon maximal theorem or pointwise convergence theorem is claimed.
 key_result: |
   Let M_N be the maximum of the Birkhoff sums at times zero through N, and let E_N be the strict event where M_N is positive. For every measure-preserving map and every integrable real observable, the integral of the observable over E_N is nonnegative. The proof first establishes M_N at the current point minus M_N at the shifted point is at most the observable restricted to E_N; preservation then makes the two maximal integrals equal. On a finite measure space, applying this result to g minus a yields a times the real measure of the finite average-exceedance event at most the integral of g over that event. Only the final weak estimate that divides by a requires a positive threshold.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite running maxima of Birkhoff sums, strict maximal events, pointwise indicator inequalities, measure-preserving integral cancellation, centered threshold events, and finite weak maximal estimates"
@@ -45,7 +45,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1374,8 +1375,8 @@ contains no proof hole or custom axiom. Its three <code>#print axioms</code>
 commands inspect the core finite Hopf theorem, the centered threshold lower
 bound, and the divided weak estimate.
 
-This article remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Deterministic builds, declaration coverage,
+This article publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Deterministic builds, declaration coverage,
 source hygiene, and visual inspection do not replace human mathematical,
 historical, accessibility, and editorial review.
 

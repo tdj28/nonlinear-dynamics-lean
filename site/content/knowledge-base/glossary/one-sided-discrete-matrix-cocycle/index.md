@@ -2,7 +2,7 @@
 title: "One-sided discrete matrix cocycle"
 slug: "one-sided-discrete-matrix-cocycle"
 summary: "A one-sided discrete matrix cocycle multiplies one matrix generator along forward iterates of a base map and splits every finite history into a shifted later block acting after an earlier block."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.Discrete"
@@ -13,7 +13,8 @@ og_image_alt: "One matrix generator is sampled along successive forward base sta
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **one-sided discrete matrix cocycle** records how a matrix update accumulates

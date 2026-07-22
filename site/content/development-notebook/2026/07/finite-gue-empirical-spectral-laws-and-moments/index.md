@@ -9,7 +9,7 @@ lead: |
   One matrix has an empirical spectral measure. A random matrix makes that measure random, so its distribution is a law on measures. Averaging that law produces yet another measure on the real line. RMT-10C formalizes all three layers for the finite Gaussian unitary ensemble (GUE) and proves that the expected first normalized spectral moment is zero, while the expected second is one in every positive dimension.
 key_result: |
   Lean now names the finite Gaussian unitary ensemble (GUE) pushforward law of empirical spectral measures, proves it is an outer probability law in every dimension, gives a stricter probability-measure-valued package in positive dimension, and forms its barycenter with Mathlib's Giry join. Sample spectral moments one and two are exactly normalized trace and normalized trace square. Their GUE expectations are zero and the total all-dimension expression n⁻¹n, which is zero at dimension zero and one in every positive dimension.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite random measures, Giry probability, Bochner integrability, and normalized GUE spectral moments"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

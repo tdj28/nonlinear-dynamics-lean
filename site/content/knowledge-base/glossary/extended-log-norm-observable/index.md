@@ -2,7 +2,7 @@
 title: "Extended log-norm observable"
 slug: "extended-log-norm-observable"
 summary: "An extended log-norm observable applies a zero-aware logarithm to a finite cocycle matrix norm, sending exact matrix collapse to bottom while turning multiplicative norm bounds into additive ones."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.NormObservables"
@@ -13,7 +13,8 @@ og_image_alt: "A finite cocycle matrix is reduced to its largest absolute row su
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 An **extended log-norm observable** measures the finite-time size of a matrix

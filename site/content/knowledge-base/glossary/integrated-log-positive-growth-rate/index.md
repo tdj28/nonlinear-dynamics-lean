@@ -2,7 +2,7 @@
 title: "Integrated log-positive growth rate"
 slug: "integrated-log-positive-growth-rate"
 summary: "Under an explicit one-step integrability hypothesis, the integrated log-positive growth rate is the deterministic Fekete limit obtained by integrating each finite cocycle expansion envelope against a preserved raw measure and then normalizing over positive time."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth"
@@ -13,7 +13,8 @@ og_image_alt: "A five-stage teaching diagram moves from a finite state-dependent
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 An **integrated log-positive growth rate** is a deterministic asymptotic rate

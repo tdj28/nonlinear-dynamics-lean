@@ -2,7 +2,7 @@
 title: "Invariant sigma algebra"
 slug: "invariant-sigma-algebra"
 summary: "The invariant sigma algebra contains exactly the measurable events whose membership is unchanged when a state is pulled back through one step of the dynamics."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit"

@@ -4,7 +4,7 @@ slug: "complex-gaussian-coordinates-and-geometry"
 date: 2026-07-21
 summary: "A guided ascent from two exact real Gaussian coordinates to a complex law, its support geometry, second-order structure, symmetry boundaries, and checked Lean interface."
 lead: "A complex Gaussian is not a bell curve with an imaginary label. It is a two-dimensional law whose coordinates, dependence, degeneracies, and normalization must all be named."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Base camp to advanced"
 reading_time: "50 to 75 minutes"
@@ -18,8 +18,8 @@ og_image_alt: "A warm-paper teaching card compares circular, elliptical, line-su
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A real Gaussian law has one axis. A complex Gaussian law has two. That extra

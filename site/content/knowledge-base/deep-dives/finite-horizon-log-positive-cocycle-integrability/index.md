@@ -4,7 +4,7 @@ slug: "finite-horizon-log-positive-cocycle-integrability"
 date: 2026-07-21
 summary: "A textbook derivation of a real nonnegative log-positive cocycle envelope, its shifted one-step orbit-sum majorant, and the propagation of one explicit generator integrability hypothesis to every finite horizon."
 lead: "The full extended log norm remembers collapse and contraction, but ordinary integrability needs a manageable real majorant. The positive logarithm supplies exactly that upper-growth envelope, provided we remain honest about the information it discards and stop before any asymptotic theorem."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Random matrix cocycles, positive logarithms, finite orbit sums, measure-preserving pullbacks, domination, and Bochner integrability"
 reading_time: "85 to 115 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 RMT-14 assigned every finite value of a one-sided complex matrix cocycle two
@@ -806,8 +806,9 @@ make site-check
 ~~~
 
 The repository-wide gate is <code>make check</code>. Passing automated checks
-does not publish this draft. Human mathematical, source, accessibility, and
-editorial reviews remain separate publication gates.
+does not complete human review. This page is published as an open working note
+while mathematical, source, accessibility, and editorial reviews remain
+pending.
 
 ## Summit: the boundary of the result
 

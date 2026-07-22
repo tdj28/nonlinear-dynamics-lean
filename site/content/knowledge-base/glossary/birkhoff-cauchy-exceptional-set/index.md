@@ -2,7 +2,7 @@
 title: "Birkhoff Cauchy exceptional set"
 slug: "birkhoff-cauchy-exceptional-set"
 summary: "A Birkhoff Cauchy exceptional set contains the starting points whose orbit-average sequence keeps separating by at least one fixed positive scale arbitrarily far into its tail."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff"

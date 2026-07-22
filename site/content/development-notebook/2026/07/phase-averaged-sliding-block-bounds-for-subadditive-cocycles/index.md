@@ -9,7 +9,7 @@ lead: |
   A fixed block map sees only every b-th orbit point. Average over all b possible starting phases, however, and every one-step sliding position appears exactly once. RMT-20 formalizes that finite combinatorial fact, combines it with positive-horizon nonpositivity, and obtains a sliding-block upper bound without invoking measure preservation, probability, ergodicity, or a limit theorem inside the proof.
 key_result: |
   The checked multiplication form bounds b copies of the same process value at horizon bq+b+r by the ordinary bq-term Birkhoff sum of the block observable. The extra block in the horizon is required by the boundary count and repairs an index mismatch in a commonly used teaching display. The theorem is total but vacuous when b = 0; its division form requires b to be nonzero. Candidate wrappers retain their analytic fields, but the raw proof consumes only shifted subadditivity and nonpositivity at positive horizons.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite residue phases, Birkhoff-sum reindexing, shifted subadditivity, boundary removal, and matrix-cocycle specialization"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.
@@ -1321,8 +1322,8 @@ The axiom audit reports only Lean and Mathlib's standard
 <code>sorry</code>, <code>admit</code>, <code>unsafe</code> declaration, or
 custom axiom.
 
-The article remains <code>draft: true</code> and
-<code>pro_reviewed: false</code>. Automated checks do not replace human
+The article publishes as an open working note with <code>draft: false</code> and
+retains <code>pro_reviewed: false</code>. Automated checks do not replace human
 mathematical, source, accessibility, and editorial review.
 
 ## The next ridge

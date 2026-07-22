@@ -4,7 +4,7 @@ slug: "normalized-hermitian-coordinates-to-gue-invariance"
 date: 2026-07-21
 summary: "A textbook derivation of normalized real Hermitian coordinates, the full product-measure comparison with a scaled intrinsic Gaussian, commuting ambient pushforwards, and the first checked nontrivial Gaussian unitary ensemble symmetry."
 lead: "The word unitary becomes a theorem only after entrywise independence and basis-neutral Gaussian geometry are proved to describe the same measure."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite Gaussian product measures through ambient ensemble symmetry"
 reading_time: "75 to 95 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 The phrase *Gaussian unitary ensemble* contains two mathematical claims.

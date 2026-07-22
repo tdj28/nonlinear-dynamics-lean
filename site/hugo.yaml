@@ -27,6 +27,7 @@ module:
 params:
   description: 'A development notebook and knowledge base for formalizing nonlinear dynamics in Lean.'
   repository: 'https://github.com/tdj28/nonlinear-dynamics-lean'
+  open_working_notes: true
 
 permalinks:
   development-notebook: '/development-notebook/:year/:month/:slug/'

@@ -9,7 +9,7 @@ lead: |
   A time-dependent linear system applies one matrix, then another, then another. Because matrix composition is read from right to left, the matrix written latest in the product must stand on the left. This chapter turns that small but decisive convention into a reusable Lean interface, then proves exact finite-time bounds for both the product and every vector it acts on.
 key_result: |
   Lean now defines the forward product P(k) = A(k-1)...A(0), proves its zero, successor, split, constant, and vector-action laws, and separates those purely algebraic facts from analysis. For real or complex matrices in positive finite dimension, Mathlib's maximum-row-sum operator norm bounds the product by the product of the factor norms. A uniform prefix bound gives a power bound, and both estimates transfer directly to vector orbits. Nothing random or asymptotic is assumed.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite products, noncommutative order, induced operator norms, and Lean induction"
@@ -44,7 +44,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

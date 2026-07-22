@@ -2,7 +2,7 @@
 title: "Uniform integrability"
 slug: "uniform-integrability"
 summary: "Uniform integrability gives one family-wide bound that prevents integrable mass from escaping into smaller sets or larger value tails."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit"

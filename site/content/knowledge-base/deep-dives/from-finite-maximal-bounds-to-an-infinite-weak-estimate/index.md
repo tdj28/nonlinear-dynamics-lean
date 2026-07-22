@@ -4,7 +4,7 @@ slug: "from-finite-maximal-bounds-to-an-infinite-weak-estimate"
 date: 2026-07-21
 summary: "A textbook passage from strict finite Birkhoff-average exceedance events to an infinite-horizon weak maximal estimate: positive-time witnesses, the exact increasing union, ordinary and null measurability, extended-measure continuity, the explicit finite-target route used for real measure, and positive-threshold division."
 lead: "A uniform estimate at every finite horizon is not yet an infinite theorem. The missing bridge is an exact increasing union of strict positive-time exceedance events, followed by continuity from below in the extended nonnegative reals. RMT-24 then uses a finite-target real-conversion corollary, passes the all-threshold multiplication bound to the union, and divides only at a strictly positive threshold. This chapter builds that bridge without inventing an infinite real maximum, treating the sufficient finite-target premise as necessary, or claiming that Birkhoff averages converge."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite Birkhoff sums and averages, measurable and null-measurable sets, integrability, measure preservation, extended nonnegative real measure, filter convergence, and elementary real inequalities"
 reading_time: "170 to 250 minutes"
@@ -23,10 +23,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This chapter is an AI-assisted working draft. Its claims
-and declaration names have been reconciled with the RMT-24 Lean module, but
-human publication review and the configured external Pro review remain
-pending.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its claims and declaration names have been reconciled with the
+RMT-24 Lean module, while human publication review and the configured external
+Pro review remain pending.
 {{< /panel >}}
 
 A finite maximal estimate answers a bounded search question: up to horizon

@@ -7,7 +7,7 @@ author: "tdj28"
 summary: "A line-by-line ascent through the Lean module that turns powers of finite random matrices into measurable scalar observables and proves those observables are real on Hermitian samples."
 lead: |
   A random matrix is too large to inspect all at once. Raise each realization to a power, take its trace, and the matrix collapses to one scalar that still remembers its spectrum. This entry builds that observable in Lean, proves it is measurable, proves Hermitian inputs make it real, and stops exactly before expectation begins.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human and Pro review"
 level: "Base camp to research ridge"
@@ -33,7 +33,8 @@ og_image_alt: "Warm-paper teaching card showing a random matrix pass through mat
 author disclosure is intentionally pending until the human author has
 inspected the prose, cited sources, equations, Lean artifacts, and generated
 social card. Scientific-integrity and zero-context reader reviews are also
-pending. The page must remain a draft until those gates are complete.
+pending. The page is published as an open working note while those reviews
+remain pending.
 {{< /panel >}}
 
 Suppose a random experiment produces a square matrix \(X(\omega)\). One

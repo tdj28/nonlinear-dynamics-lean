@@ -9,7 +9,7 @@ lead: |
   The last obstruction is not a missing inequality but a semantic guard. Mathlib's real liminf is total even when a sequence has no eventual lower bound, so membership in a rational lower-deviation event cannot imply a real lower-liminf inequality without an explicit boundedness hypothesis. RMT-33 keeps that gate visible, covers strict liminf deviations by a null union at genuinely smaller rational targets, and reuses the same cover to construct an eventual lower bound almost everywhere. The centered estimate then joins a convergent Birkhoff average, while the earlier upper-limsup theorem closes a samplewise squeeze for the nonnegative log-positive cocycle observable.
 key_result: |
   On a probability space, an integrable shifted-subadditive candidate over an ergodic transformation has an almost-everywhere eventual lower bound for its normalized centered process and a centered real liminf at least any common lower bound for its positive normalized centered integrals. Adding the ergodic Birkhoff limit transfers this lower estimate to the original process. For a discrete matrix cocycle with integrable one-step log-positive norm, bundled measure preservation and PreErgodic base dynamics imply almost-everywhere convergence of the total normalized log-positive norm observable to the integrated log-positive growth rate. Empty matrix dimension remains valid.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Conditional-completeness guards, real liminf events, countable null covers, Birkhoff addition, and log-positive cocycle convergence"
@@ -84,8 +84,9 @@ real convergence theorem.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and separate scientific-integrity and
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and separate
+scientific-integrity and
 zero-context expert-reader reviews are pending. The warning-fatal Lean source
 is authoritative for every theorem, assumption, and boundary claim.
 {{< /panel >}}

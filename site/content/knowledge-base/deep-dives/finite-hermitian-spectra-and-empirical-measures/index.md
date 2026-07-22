@@ -4,7 +4,7 @@ slug: "finite-hermitian-spectra-and-empirical-measures"
 date: 2026-07-21
 summary: "A textbook ascent from the ordered real spectrum of one finite Hermitian matrix to counting and empirical measures, with the exact zero-dimensional policy and conditional measurable-law boundary made explicit."
 lead: "A spectrum becomes probabilistic in stages. First order the real eigenvalues of one Hermitian matrix. Then count them with multiplicity, normalize the count, and only after proving measurability push a random-matrix law onto the resulting space of measures."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite Hermitian spectral algebra through conditional measure-valued probability"
 reading_time: "85 to 110 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, citations, Lean declaration map, figure, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A finite Hermitian matrix carries two complementary descriptions. Its entries
@@ -1082,8 +1082,8 @@ make site-check
 ~~~
 
 The repository-wide milestone gate is <code>make check</code>. A green
-technical build does not change the editorial state: this page remains a draft
-until the required human mathematical and publication reviews are complete.
+technical build does not complete editorial review of this public working note.
+The required human mathematical and publication reviews remain pending.
 
 ## Where to continue
 

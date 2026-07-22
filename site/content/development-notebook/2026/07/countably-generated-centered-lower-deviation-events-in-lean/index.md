@@ -9,7 +9,7 @@ lead: |
   A bad block that occurs once can disappear after one shift, so it cannot support an ergodic lower-bound argument. RMT-32 asks instead for bad blocks beyond every finite cutoff at one rational slope strictly below the target. The rational margin absorbs the endpoint introduced by a shift and keeps the event countably generated. Finite-measure ergodicity then says the event is almost empty or almost full. Probability normalization is a separate final ingredient: together with the inherited strict subunit bound, it rules out the full branch.
 key_result: |
   For an integrable centered subadditive-process candidate, the rationally exhausted strict lower-deviation event is null measurable and its preimage lies inside itself. Preservation and finite mass upgrade that inclusion to almost-everywhere equality, while finite-measure ergodicity gives the almost-empty or almost-full dichotomy. On a probability space, the event has mass zero or one. RMT-31 bounds its real mass strictly below one beneath the centered Fekete offset, so only mass zero remains. The module deliberately stops before identifying this event with a real liminf or proving Kingman convergence.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Countable event design, centered shifted subadditivity, almost-everywhere invariance, ergodic rigidity, and Lean measure APIs"
@@ -83,8 +83,9 @@ offset, excluding mass one.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and the separate scientific-integrity
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and the separate
+scientific-integrity
 and zero-context expert-reader reviews are pending. The warning-fatal checked
 Lean source is authoritative for every theorem, assumption, and boundary.
 {{< /panel >}}

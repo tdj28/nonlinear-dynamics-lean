@@ -4,7 +4,7 @@ slug: "gaussian-laws-independence-and-normalization"
 date: 2026-07-20
 summary: "A guided ascent from one exact real Gaussian law to finite product measures, mutually independent coordinates, and the normalization ledger required before complex Gaussian matrices."
 lead: "A bell curve is only base camp. The real climb is to make laws, measurability, independence, product spaces, and scale agree without smuggling a convention into the name of a model."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Base camp to advanced"
 reading_time: "45 to 65 minutes"
@@ -18,8 +18,8 @@ og_image_alt: "A warm-paper teaching card climbs from one scalar Gaussian law th
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 The familiar picture of a Gaussian distribution is a bell-shaped curve. That

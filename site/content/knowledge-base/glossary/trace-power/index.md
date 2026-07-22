@@ -2,7 +2,7 @@
 title: "Trace-power observable"
 slug: "trace-power"
 summary: "A trace-power observable sends a matrix to the trace of one of its powers, connecting entries, closed walks, and spectral moments."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

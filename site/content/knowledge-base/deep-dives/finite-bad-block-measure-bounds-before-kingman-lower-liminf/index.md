@@ -4,7 +4,7 @@ slug: "finite-bad-block-measure-bounds-before-kingman-lower-liminf"
 date: 2026-07-22
 summary: "A textbook derivation of how finite centered bad blocks, orbit visit counts, greedy interval packing, and a negative-threshold limit produce a measure ratio before any lower-liminf theorem."
 lead: "The lower half of a subadditive ergodic theorem cannot be read off from the upper limsup. This chapter isolates the finite bridge that comes first: mark short blocks below a negative slope, count orbit visits to those marks, pack witnessing intervals, integrate the resulting pointwise inequality, and pass only the auxiliary horizon to infinity."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Subadditive processes, finite measure theory, Birkhoff sums, interval packing, signed inequalities, and intermediate Lean theorem reading"
 reading_time: "190 to 280 minutes"
@@ -23,10 +23,11 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is a draft teaching chapter pending human
-editorial, scientific-integrity, and zero-context expert-reader review. The
-checked Lean source is authoritative. The chapter proves a finite bad-block
-measure estimate, not a lower-liminf theorem or Kingman convergence.
+**Editorial status.** This teaching chapter is published as an open working
+note while human editorial, scientific-integrity, and zero-context
+expert-reader review remain pending. The checked Lean source is authoritative.
+The chapter proves a finite bad-block measure estimate, not a lower-liminf
+theorem or Kingman convergence.
 {{< /panel >}}
 
 Let \((\Omega,\mu,T)\) be a finite measure space with a measure-preserving

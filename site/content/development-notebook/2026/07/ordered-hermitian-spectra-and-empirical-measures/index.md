@@ -9,7 +9,7 @@ lead: |
   A spectrum is more than a list of roots. To become a probability observable, it needs a stable ordering, multiplicity bookkeeping, a finite measure, a zero-dimensional convention, and measurability into a space of measures. RMT-10A formalizes every algebraic and measure-valued step that does not depend on eigenvalue perturbation theory, then leaves the missing measurability theorem visible as an explicit hypothesis.
 key_result: |
   Lean now packages every intrinsic finite Hermitian matrix as a decreasing real eigenvalue vector indexed by `Fin n`. It proves that the vector recovers the trace and the trace of the matrix square, is unchanged by unitary congruence, and generates a counting measure of mass `n` plus a zero-aware empirical measure. The empirical measure is zero at `n = 0`, is a probability measure in positive dimension, and becomes a measurable random measure only under an explicit coordinatewise eigenvalue-measurability hypothesis.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite Hermitian spectral theory, measure-valued observables, and Lean proof engineering"
@@ -44,7 +44,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

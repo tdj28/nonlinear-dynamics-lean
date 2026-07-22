@@ -2,7 +2,7 @@
 title: "Limit inferior"
 slug: "limit-inferior"
 summary: "The limit inferior is the eventual lower envelope of a sequence: the limit of the infima of its tails, with important boundedness gates in Mathlib's real-valued application programming interface (API)."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman"

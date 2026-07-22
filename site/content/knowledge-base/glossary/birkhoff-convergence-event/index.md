@@ -2,7 +2,7 @@
 title: "Birkhoff convergence event"
 slug: "birkhoff-convergence-event"
 summary: "A Birkhoff convergence event is the set of starting points whose normalized finite orbit sums converge to some finite real limit; defining and analyzing the event does not prove that it has any members."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence"

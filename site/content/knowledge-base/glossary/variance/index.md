@@ -2,7 +2,7 @@
 title: "Variance"
 slug: "variance"
 summary: "Variance is the expected squared distance from a random variable to its mean."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 og_image: "variance-card.png"
@@ -12,7 +12,8 @@ og_image_alt: "Two equally likely values lie two units from their mean, so both 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 **Variance** measures squared spread around a mean. If a real random variable

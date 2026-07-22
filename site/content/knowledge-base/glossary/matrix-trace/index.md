@@ -2,7 +2,7 @@
 title: "Matrix trace"
 slug: "matrix-trace"
 summary: "The trace adds a square matrix's diagonal entries and packages information that does not depend on the chosen basis."
-draft: true
+draft: false
 pro_reviewed: false
 toc: false
 ---

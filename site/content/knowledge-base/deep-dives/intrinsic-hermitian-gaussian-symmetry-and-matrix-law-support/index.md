@@ -4,7 +4,7 @@ slug: "intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support"
 date: 2026-07-21
 summary: "A textbook ascent through Frobenius matrix geometry, the Hermitian real Euclidean subspace, unitary-congruence isometries, intrinsic standard-Gaussian symmetry, and mass-one support of the coordinate-built Gaussian unitary ensemble law."
 lead: "RMT-07 proves two strong theorems on parallel tracks and makes the unproved bridge between them impossible to mistake."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite matrix probability through Euclidean Gaussian symmetry"
 reading_time: "65 to 85 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 The seventh random-matrix-theory milestone (RMT-07) supplies the geometry that

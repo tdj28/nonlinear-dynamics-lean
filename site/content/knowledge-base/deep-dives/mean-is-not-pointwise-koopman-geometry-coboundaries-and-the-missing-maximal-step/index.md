@@ -4,7 +4,7 @@ slug: "mean-is-not-pointwise-koopman-geometry-coboundaries-and-the-missing-maxim
 date: 2026-07-21
 summary: "A textbook ascent from measure-preserving dynamics to the real L² Koopman operator, von Neumann mean convergence, a dense fixed-plus-simple-coboundary pointwise-good core, and the maximal estimate still needed for the full pointwise Birkhoff theorem."
 lead: "A measure-preserving map turns time evolution into a linear composition operator on square-integrable observables. Hilbert-space geometry then makes every operator average converge in L² norm to the fixed-space projection. That is not yet full-sequence pointwise convergence. RMT-25 builds a second bridge: fixed vectors and simple-function coboundaries form a dense class whose chosen representatives do converge almost everywhere. This chapter develops both achievements, keeps their modes of convergence separate, and identifies the maximal-stability argument that must join them in RMT-26."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Measure-preserving dynamics, real L² spaces, continuous linear maps, Hilbert-space orthogonal projection, simple functions, almost-everywhere representatives, convergence in measure, and maximal inequalities"
 reading_time: "190 to 285 minutes"
@@ -23,10 +23,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This chapter is an AI-assisted working draft. Its
-mathematical statements and Lean names have been reconciled with RMT-25, but
-human publication review and the configured external Pro review remain
-pending. The checked Lean source is authoritative.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its mathematical statements and Lean names have been reconciled
+with RMT-25, while human publication review and the configured external Pro
+review remain pending. The checked Lean source is authoritative.
 {{< /panel >}}
 
 {{< panel "info" >}}

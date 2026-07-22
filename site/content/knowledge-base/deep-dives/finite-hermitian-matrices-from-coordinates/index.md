@@ -4,7 +4,7 @@ slug: "finite-hermitian-matrices-from-coordinates"
 date: 2026-07-21
 summary: "A textbook ascent from the nonredundant real and complex coordinates of a finite Hermitian matrix to direct assembly, Hermiticity, measurability, and the exact zero-dimensional boundary."
 lead: "A Hermitian matrix does not have a free complex variable in every entry. Its true coordinates are a real diagonal and a complex strict upper triangle, assembled without hiding a scale."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite matrix foundations to measurable assembly"
 reading_time: "50 to 70 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A finite complex Hermitian matrix satisfies one compact equation,

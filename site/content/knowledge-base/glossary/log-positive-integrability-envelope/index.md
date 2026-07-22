@@ -2,7 +2,7 @@
 title: "Log-positive integrability envelope"
 slug: "log-positive-integrability-envelope"
 summary: "A log-positive integrability envelope keeps only the expanding part of finite cocycle norm growth, making a real nonnegative majorant whose one-step integrability propagates to every finite horizon."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability"
@@ -13,7 +13,8 @@ og_image_alt: "A finite cocycle norm enters a positive-log gate: collapse, contr
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **log-positive integrability envelope** is a real-valued upper-growth

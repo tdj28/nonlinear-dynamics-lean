@@ -4,7 +4,7 @@ slug: "finite-gue-from-independent-gaussian-coordinates"
 date: 2026-07-21
 summary: "A textbook ascent from the Wigner variance ledger through independent finite Gaussian blocks and measurable Hermitian assembly to a checked finite Gaussian unitary ensemble matrix law."
 lead: "A named matrix ensemble becomes trustworthy only when every scale, marginal, independence claim, transport map, and boundary case is visible."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite probability foundations to a matrix ensemble law"
 reading_time: "60 to 80 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A finite Gaussian unitary ensemble (GUE) matrix can be described in one

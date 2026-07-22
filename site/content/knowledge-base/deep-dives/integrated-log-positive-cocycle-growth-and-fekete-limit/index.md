@@ -4,7 +4,7 @@ slug: "integrated-log-positive-cocycle-growth-and-fekete-limit"
 date: 2026-07-21
 summary: "A textbook derivation of the subadditive real sequence obtained by integrating finite-horizon log-positive cocycle growth, together with its positive-time Fekete infimum and deterministic convergence theorem."
 lead: "Finite-horizon integrability becomes an asymptotic theorem only after the outcome dependence has been integrated away. This chapter follows that passage declaration by declaration while keeping raw measure, totalized integrals, zero time, and samplewise nonclaims visible."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Matrix cocycles, Bochner integration, measure-preserving pullbacks, subadditive real sequences, normalization, infima, and deterministic Fekete convergence"
 reading_time: "95 to 130 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 RMT-15 built a nonnegative finite-horizon envelope for a one-sided matrix
@@ -859,8 +859,8 @@ make site-check
 ~~~
 
 The repository-wide gate is <code>make check</code>. Automated success does not
-publish this draft. Human mathematical, source, accessibility, and editorial
-reviews remain separate publication gates.
+complete review of this public working note. Human mathematical, source,
+accessibility, and editorial reviews remain pending.
 
 ## What remains outside the theorem
 

@@ -2,7 +2,7 @@
 title: "Forward matrix product"
 slug: "forward-matrix-product"
 summary: "A forward matrix product composes a time-indexed sequence so the earliest factor acts first on a column vector, the newest factor is written on the left, and the empty horizon is the identity."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.MatrixProducts.FiniteProducts"
@@ -13,7 +13,8 @@ og_image_alt: "A chronological sequence begins with an initial vector, passes th
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **forward matrix product** packages a finite history of linear updates into

@@ -2,7 +2,7 @@
 title: "Finite random-matrix product"
 slug: "finite-random-matrix-product"
 summary: "A finite random-matrix product multiplies a finite time prefix pointwise on the sample space, then forms its probability law only after the resulting matrix-valued map is proved measurable."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts"
@@ -13,7 +13,8 @@ og_image_alt: "A finite prefix of random matrix factors is evaluated at one outc
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **finite random-matrix product** is a random matrix obtained by multiplying a

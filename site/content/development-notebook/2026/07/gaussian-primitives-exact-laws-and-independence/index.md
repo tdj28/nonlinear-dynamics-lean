@@ -9,7 +9,7 @@ lead: |
   Before a Gaussian random matrix can exist, its scalar coordinates need exact laws. This module names a real Gaussian by its mean and variance, keeps ordinary measurability separate from almost-everywhere measurability, preserves the zero-variance case, and assembles finite independent coordinates into one joint product law.
 key_result: |
   A checked Lean interface now carries exact real Gaussian parameters through expectation, variance, MemLp membership for every non-infinite exponent, deterministic scaling, independent addition, and finite product construction. Independence is not a comment beside the variables: it is the theorem that turns coordinate laws into the joint product law later matrix constructors will consume.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "First probability intuition to formal random-matrix foundations"
@@ -37,8 +37,8 @@ has not yet inspected and accepted the exposition, sources, equations, Lean
 artifacts, exercises, or generated social card. The canonical teaching-only
 AI-use disclosure is therefore intentionally pending because its human-
 inspection clause is not yet true. Scientific-integrity and zero-context
-expert-reader reviews are also pending. This page must remain a draft until
-those gates are complete.
+expert-reader reviews are also pending. This page is published as an open
+working note while all named reviews remain pending.
 {{< /panel >}}
 
 {{< panel "info" >}}

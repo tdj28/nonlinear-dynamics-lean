@@ -9,7 +9,7 @@ lead: |
   Probability and ergodicity are not two names for the same kind of randomness. Probability fixes the scale of a measure. Ergodicity says invariant measurable information is trivial up to null sets. The one-step integrability hypothesis does a third job: it makes every finite-horizon positive-log cost a genuine finite integral. RMT-17 gives each assumption its own Lean interface, then stops before any theorem could be mistaken for Kingman's subadditive ergodic theorem or a Lyapunov exponent.
 key_result: |
   The finite-horizon log-positive cocycle family is now packaged as an integrable shifted-subadditive-process candidate. Its deterministic integrated rate is nonnegative, equals the infimum of all positive-horizon normalized integrals, and is bounded above by each such horizon and by the one-step integral. On a probability space, the same finite-horizon integral may be exposed as an expectation, but only alongside the explicit integrability proof. Probability plus ergodicity gives a zero-one law for strictly invariant measurable events; ergodicity alone makes almost-everywhere invariant, almost-everywhere strongly measurable real observables almost everywhere constant. None of these declarations constructs a samplewise limit.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Probability normalization, ergodic rigidity, integrable subadditive-process interfaces, and deterministic rate bounds"
@@ -47,7 +47,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

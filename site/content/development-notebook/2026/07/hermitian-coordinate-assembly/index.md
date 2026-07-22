@@ -9,7 +9,7 @@ lead: |
   A Hermitian matrix does not need every entry to be chosen separately. Choose a real diagonal and the complex entries strictly above it; conjugate reflection determines everything below. This chapter turns that familiar picture into a direct Lean constructor whose coordinates are inserted unchanged, whose output is Hermitian at every outcome, and whose measurability survives without choosing a Gaussian law or normalization.
 key_result: |
   Lean now has a normalization-free measurable map from Hermitian coordinates to ambient complex matrices. The checked API exposes diagonal, upper, and lower entries exactly, proves every assembled matrix Hermitian, bundles measurable coordinate processes as pointwise Hermitian random matrices, and treats dimension zero as the unique empty matrix. It makes no probabilistic independence or GUE claim.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-dimensional linear algebra to measurable random-matrix constructors"
@@ -41,7 +41,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

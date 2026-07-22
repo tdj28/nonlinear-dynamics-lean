@@ -9,7 +9,7 @@ lead: |
   A dense family of easy observables is not enough for a pointwise theorem. A nearby function can differ by a small integral while producing a large orbit average on a small set of initial states. The missing ingredient is quantitative stability: a weak maximal estimate says exactly how small that dangerous set must be. Random-matrix-theory milestone 26 (RMT-26) makes this closure argument executable in Lean. It defines fixed-scale Cauchy-failure events, confines each one to an absolute maximal-error event plus the approximant's null bad set, drives its measure to zero by L¹ density, and intersects a countable family of reciprocal scales. Finite measure then transfers the RMT-25 square-integrable good core into a dense integrable core. The result is the first full-sequence pointwise ergodic theorem in this repository.
 key_result: |
   Let a measurable map T preserve a finite measure μ, and let f be a real integrable observable. Then for μ-almost every initial state ω there is a real number c(ω) such that the complete sequence of Birkhoff averages Aₙf(ω) converges to c(ω). No probability normalization, ergodicity, injectivity, surjectivity, or invertibility is assumed. The checked theorem proves convergence-event membership only. It does not yet identify c with a conditional expectation, prove that c is constant on an ergodic probability space, establish L¹-norm convergence, or reach Kingman's subadditive theorem.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Real L¹ and L² spaces, weak maximal estimates, Cauchy exceptional events, dense-good-function closure, almost-everywhere representatives, finite-measure Hölder inclusion, countable conull intersections, and Lean proof architecture"
@@ -46,8 +46,9 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and the separate scientific-integrity
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and the separate
+scientific-integrity
 and zero-context expert-reader reviews are pending. The warning-fatal checked
 Lean source is authoritative for every theorem statement and assumption.
 {{< /panel >}}
@@ -99,7 +100,8 @@ measure-preserving system.
 {{< /panel >}}
 
 **Milestone status.** RMT-26 is implementation-complete in the linked Lean
-module. This prose and its figures remain draft-scoped. The theorem closes the
+module. This prose and its figures are published as an open working note. The
+theorem closes the
 maximal-to-pointwise convergence step, but limit identification remains a
 separate ridge.
 

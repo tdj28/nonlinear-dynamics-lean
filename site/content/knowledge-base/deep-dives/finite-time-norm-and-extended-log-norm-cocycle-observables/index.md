@@ -4,7 +4,7 @@ slug: "finite-time-norm-and-extended-log-norm-cocycle-observables"
 date: 2026-07-21
 summary: "A textbook construction of measurable finite-time matrix-cocycle growth observables using the maximum absolute row-sum norm and a zero-aware extended logarithm, with exact subadditivity and dimension boundaries."
 lead: "The cocycle law tells us how finite histories compose. A carefully chosen norm and extended logarithm turn that algebra into measurable growth data while keeping exact collapse, empty dimension, and every missing asymptotic hypothesis visible."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Random matrix cocycles, finite operator norms, measurable observables, extended-real logarithms, and subadditivity"
 reading_time: "85 to 115 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A one-sided matrix cocycle already knows how to multiply a finite history. If
@@ -943,8 +943,8 @@ make site-check
 ~~~
 
 The repository-wide technical gate is <code>make check</code>. Passing it does
-not publish this draft. Human mathematical, source, accessibility, and
-editorial reviews remain separate publication gates.
+not complete human review. This page is published as an open working note while
+mathematical, source, accessibility, and editorial reviews remain pending.
 
 ## Summit: what has and has not been proved
 

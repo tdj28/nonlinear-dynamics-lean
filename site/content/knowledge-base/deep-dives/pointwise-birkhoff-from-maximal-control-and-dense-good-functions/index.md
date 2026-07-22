@@ -4,7 +4,7 @@ slug: "pointwise-birkhoff-from-maximal-control-and-dense-good-functions"
 date: 2026-07-21
 summary: "A textbook proof of full-sequence almost-everywhere convergence for real integrable Birkhoff averages on finite measure-preserving systems, built from weak maximal control, a dense L2 pointwise-good core, Cauchy exceptional sets, and careful representative transport."
 lead: "Pointwise convergence does not follow from Hilbert-space mean convergence. The missing mechanism is stability: approximate an integrable observable by one whose averages already converge, use a weak maximal inequality to confine every persistent Cauchy failure to a small error event, and then let the approximation error vanish. This chapter develops that closure machine from first principles, explains why finite total mass turns the RMT-25 L2 core into an L1-dense core, and states exactly what the resulting Lean theorem does and does not identify."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Measure-preserving dynamics, real Lebesgue L1 and L2 spaces, almost-everywhere equivalence classes, weak maximal inequalities, Cauchy sequences, finite measure, and elementary Lean theorem reading"
 reading_time: "220 to 330 minutes"
@@ -23,10 +23,11 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This chapter is an AI-assisted working draft. Its
-mathematical claims and declaration names have been reconciled with the
-RMT-26 Lean module, but human publication review and the configured external
-Pro review remain pending. The checked Lean source is authoritative.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its mathematical claims and declaration names have been
+reconciled with the RMT-26 Lean module, while human publication review and the
+configured external Pro review remain pending. The checked Lean source is
+authoritative.
 {{< /panel >}}
 
 An orbit average is easy to write and hard to control. Begin at a state

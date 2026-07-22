@@ -4,7 +4,7 @@ slug: "hermitian-spectral-perturbation-continuity-and-measurability"
 date: 2026-07-21
 summary: "A textbook climb from Frobenius matrix-vector control through a finite min-max witness to 1-Lipschitz ordered eigenvalues, measurable empirical spectra, and an unconditional intrinsic-versus-ambient Gaussian unitary ensemble pushforward bridge."
 lead: "Ordered Hermitian eigenvalues do not jump when the matrix moves. A direct finite-dimensional proof turns a Frobenius perturbation budget into a coordinatewise spectral bound, then turns that bound into continuity, measurability, and law-level spectral observables."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite-dimensional Hermitian perturbation theory through measurable spectral laws"
 reading_time: "90 to 120 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, citations, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 The preceding spectral layer attached a decreasing real eigenvalue vector to
@@ -961,8 +961,8 @@ make site-check
 ~~~
 
 The repository-wide milestone gate is <code>make check</code>. A green
-technical build does not change the editorial state: this page remains a draft
-until the required human mathematical and publication reviews are complete.
+technical build does not complete editorial review of this public working note.
+The required human mathematical and publication reviews remain pending.
 
 ## Where to continue
 

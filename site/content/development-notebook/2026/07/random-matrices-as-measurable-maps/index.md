@@ -9,7 +9,7 @@ lead: |
   A random matrix is not an array with the word random attached. It is a measurable function from outcomes to matrices. Our first Lean module makes that sentence precise, then proves that transpose, conjugation, addition, multiplication, and Hermitian symmetrization preserve the structure we need.
 key_result: |
   Matrix measurability is reduced to scalar measurability: a matrix-valued map is measurable exactly when every entry is measurable. That interface makes all later closure proofs coordinatewise and prepares one shared foundation for GUE, random Jacobians, and matrix cocycles.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial and technical review"
 level: "Beginner to advanced"
@@ -25,8 +25,8 @@ og_image_alt: "An outcome omega flows into a three-by-three matrix whose highlig
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The canonical
 author disclosure is intentionally pending until the human author has
-inspected the prose, cited sources, equations, and Lean artifact. This page
-must remain a draft until that review occurs.
+inspected the prose, cited sources, equations, and Lean artifact. This page is
+published as an open working note while that review remains pending.
 {{< /panel >}}
 
 {{< panel "info" >}}

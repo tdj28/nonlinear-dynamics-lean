@@ -4,7 +4,7 @@ slug: "forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms"
 date: 2026-07-22
 summary: "A concept-first ascent from three logarithmic matrix observables through pointwise units, measurable total inversion, reverse-order products, and an integrable two-rail sandwich for finite-time signed log norms."
 lead: "Random-matrix-theory milestone 34 (RMT-34) builds the finite-time analytic infrastructure needed to move from an expansion-only positive-log envelope toward a signed logarithmic matrix-growth theorem. The key object is a real log norm held between an integrable inverse-tail lower rail and an integrable forward-tail upper rail. A separate positive-rate shortcut reaches signed convergence when clipping is eventually inactive."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Advanced finite-dimensional matrix cocycles, measure theory, matrix inversion, subadditive processes, logarithmic moments, and Lean theorem engineering"
 reading_time: "360 to 540 minutes"
@@ -25,11 +25,12 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The checked Lean
-source is authoritative. Human publication review and the configured external
-Pro review remain pending. The main theorem in this chapter is finite-time
-integrability infrastructure. It is not yet a general signed Kingman theorem,
-a Lyapunov-spectrum theorem, or an Oseledets splitting.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note while human publication review and the configured external Pro
+review remain pending. The checked Lean source is authoritative. The main
+theorem in this chapter is finite-time integrability infrastructure. It is not
+yet a general signed Kingman theorem, a Lyapunov-spectrum theorem, or an
+Oseledets splitting.
 {{< /panel >}}
 
 Imagine climbing from a valley where every contraction has been hidden by a

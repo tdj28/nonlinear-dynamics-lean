@@ -2,7 +2,7 @@
 title: "Weak-type (1,1) maximal bound"
 slug: "weak-type-one-one-maximal-bound"
 summary: "A weak-type (1,1) maximal bound controls the measure of starting points where some orbit average exceeds a positive threshold by the integrable size of the observable divided by that threshold."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff"

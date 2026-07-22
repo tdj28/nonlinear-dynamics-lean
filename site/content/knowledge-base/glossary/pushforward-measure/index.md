@@ -2,7 +2,7 @@
 title: "Pushforward measure"
 slug: "pushforward-measure"
 summary: "A pushforward measure transports mass through a measurable function by measuring preimages in the original space."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 ---
@@ -10,7 +10,8 @@ toc: true
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 prose, equations, examples, references, and Lean interpretation is still
-pending. The page must remain a draft until that review occurs.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **pushforward measure** transports mass from one measurable space to another

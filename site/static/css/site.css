@@ -649,7 +649,7 @@ h1, h2, h3 { text-wrap: balance; }
   text-transform: uppercase;
 }
 .draft-badge { border-color: #c89265; background: var(--paper-amber); color: var(--amber-deep); }
-.entry-card.is-draft .entry-card-link {
+.entry-card.is-working-note .entry-card-link {
   border-style: dashed;
   background:
     repeating-linear-gradient(135deg, rgba(240, 219, 195, .16) 0, rgba(240, 219, 195, .16) 9px, transparent 9px, transparent 18px),

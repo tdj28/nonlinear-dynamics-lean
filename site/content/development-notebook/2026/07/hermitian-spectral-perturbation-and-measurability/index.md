@@ -9,7 +9,7 @@ lead: |
   Eigenvalues are roots, but ordered eigenvalues must also move predictably when a matrix moves. RMT-10B proves that every decreasing Hermitian eigenvalue changes by at most the Frobenius size of the matrix perturbation. The proof builds the finite-dimensional variational witness from ordered eigenspaces, then turns the bound into continuity, measurability, and unconditional random spectral observables.
 key_result: |
   For intrinsic finite Hermitian matrices `A` and `B`, Lean proves `|λᵢ(A) - λᵢ(B)| ≤ ‖A - B‖` at every ordered index. Each coordinate and the full `Fin n → ℝ` spectrum are 1-Lipschitz, where the vector codomain carries its product sup metric. The resulting continuity discharges every eigenvalue-measurability hypothesis left open by RMT-10A, including the ambient-versus-intrinsic Gaussian unitary ensemble (GUE) pushforward equality.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-dimensional spectral perturbation, variational geometry, and measurable random spectra"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

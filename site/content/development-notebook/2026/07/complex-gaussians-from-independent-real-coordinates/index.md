@@ -9,7 +9,7 @@ lead: |
   A complex Gaussian is not one parameter wearing an imaginary unit. It is a two-dimensional real law whose coordinate variances, independence, and geometry must be stated. This module builds that law exactly, retains anisotropic and degenerate cases, and stops before circular symmetry or a GUE normalization can slip in by name.
 key_result: |
   Lean now has an exact Cartesian complex Gaussian measure obtained by mapping a product of real Gaussian measures into the complex plane. Its real and imaginary marginals, their independence, the complex mean, all finite moments, and the double-degenerate Dirac case are checked. A constructor also turns any two independent real variables with the requested exact laws into the corresponding complex variable without assuming ordinary measurability that the theorem does not need.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "First complex-probability intuition to formal random-matrix foundations"
@@ -37,8 +37,8 @@ has not yet inspected and accepted the exposition, sources, equations, Lean
 artifacts, exercises, or generated social card. The canonical teaching-only
 AI-use disclosure is therefore intentionally pending because its human-
 inspection clause is not yet true. Scientific-integrity and zero-context
-expert-reader reviews are also pending. This page must remain a draft until
-those gates are complete.
+expert-reader reviews are also pending. This page is published as an open
+working note while all named reviews remain pending.
 {{< /panel >}}
 
 {{< panel "info" >}}

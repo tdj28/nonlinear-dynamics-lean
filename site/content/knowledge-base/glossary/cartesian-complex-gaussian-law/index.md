@@ -2,7 +2,7 @@
 title: "Cartesian complex Gaussian law"
 slug: "cartesian-complex-gaussian-law"
 summary: "A Cartesian complex Gaussian law is the pushforward of two independent real Gaussian laws through the map that joins real and imaginary coordinates."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 og_image: "cartesian-complex-gaussian-law-card.png"
@@ -12,7 +12,8 @@ og_image_alt: "Two exact real Gaussian coordinate laws enter a product-law stage
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page must remain a draft until that review is complete.
+pending. The page is publicly available as an open working note while that
+review remains pending.
 {{< /panel >}}
 
 A **Cartesian complex Gaussian law** builds a probability measure on the

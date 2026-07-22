@@ -9,7 +9,7 @@ lead: |
   RMT-27 identified the long-time average of an observable as the information visible to invariant events. RMT-28 asks when that surviving information must collapse to one number. The checked answer separates two ideas that textbook slogans often fuse: pre-ergodicity makes the invariant conditional expectation almost everywhere constant, while full ergodicity also supplies the measure preservation needed for the orbit-average theorem. Finite nonzero mass identifies the constant as the normalized space average, and probability normalization turns it into the ordinary integral.
 key_result: |
   Let T act on a finite nonzero measure space, and let f be a real integrable observable. If every exactly invariant measurable event is null or conull, then conditional expectation of f onto the exact invariant sigma algebra is almost everywhere the Mathlib integral average. If T is also measure preserving, the complete Birkhoff-average sequence converges to that normalized value almost everywhere. For a probability measure the target is simply the integral of f. No inverse map, injectivity, surjectivity, mixing, convergence rate, or powered-map ergodicity is assumed.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Ergodicity modulo null sets, pre-ergodic rigidity, invariant sigma algebras, conditional expectation, finite-measure normalization, Mathlib integral averages, totalized definitions, and Lean proof architecture"
@@ -45,8 +45,9 @@ sources and released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This declaration-complete teaching chapter remains a
-draft while human editorial acceptance and the separate scientific-integrity
+**Editorial status.** This declaration-complete teaching chapter is published
+as an open working note while human editorial acceptance and the separate
+scientific-integrity
 and zero-context expert-reader reviews are pending. The warning-fatal checked
 Lean source is authoritative for every theorem statement and assumption.
 {{< /panel >}}
@@ -107,8 +108,8 @@ space, \(\mu(\Omega)=1\), so the target simplifies to the ordinary integral.
 **Milestone status.** The RMT-28 module compiles with warnings treated as
 errors. Its six public declarations report only `propext`,
 `Classical.choice`, and `Quot.sound`, the same standard Mathlib footprint as
-the preceding development. The chapter and its figures remain
-draft-scoped pending human review.
+the preceding development. The chapter and its figures are published as an
+open working note while human review remains pending.
 
 For the reusable concepts, see the glossary entries on
 {{< refterm "ergodicity" "ergodicity" >}},

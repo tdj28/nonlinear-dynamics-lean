@@ -2,7 +2,7 @@
 title: "Normalized space average"
 slug: "normalized-space-average"
 summary: "A normalized space average divides an integrable observable's measure integral by the finite nonzero total mass, making the result invariant under positive rescaling of the measure."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit"

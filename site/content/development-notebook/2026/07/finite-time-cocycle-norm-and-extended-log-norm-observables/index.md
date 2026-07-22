@@ -9,7 +9,7 @@ lead: |
   A matrix cocycle tells us how a linear state changes after finitely many steps. Its norm asks how large that action can be, while its logarithm turns multiplication into addition. The dangerous corner is zero: an annihilating product should represent unbounded contraction, not logarithmic growth zero. This chapter builds the finite-time observable layer in Lean, keeps that corner exact with the extended reals, and shows precisely where positive matrix dimension is needed.
 key_result: |
   Lean now assigns every finite cocycle value its maximum absolute row-sum norm and an extended-real log norm. The norm is measurable and submultiplicative across the exact later-block-left cocycle split. The extended log is measurable, is bottom exactly when the matrix value is zero, and is subadditive without a nonvanishing assumption. In positive dimension, time zero has norm one and log norm zero. In empty dimension, every value has norm zero and log norm bottom. No integrability, normalized growth, ergodic limit, Lyapunov exponent, Oseledets splitting, probability assumption, or random-Jacobian identification is proved.
-draft: true
+draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
 level: "Finite-time cocycle growth, induced operator norms, extended real logarithms, and measurable observables"
@@ -46,7 +46,8 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This teaching chapter remains a draft while human
+**Editorial status.** This teaching chapter is published as an open working
+note while human
 editorial acceptance and the separate scientific-integrity and zero-context
 expert-reader reviews are pending. The checked Lean source is authoritative
 for every theorem statement.

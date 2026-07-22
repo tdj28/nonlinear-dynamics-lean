@@ -4,7 +4,7 @@ slug: "finite-gue-empirical-spectral-laws-and-normalized-moments"
 date: 2026-07-21
 summary: "A textbook construction of the finite Gaussian unitary ensemble law on empirical spectral measures, its probability packaging and Giry mean, and the first two exact normalized sample-moment expectations."
 lead: "A random matrix does not have one deterministic empirical spectrum. It produces a random measure, whose distribution is a probability law on measures. This chapter builds that law for the finite Gaussian unitary ensemble, keeps it separate from its Giry mean, and transports exact trace moments into the first normalized spectral moments."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Finite random matrix probability, measurable measure-valued observables, and exact normalized moments"
 reading_time: "100 to 130 minutes"
@@ -25,8 +25,8 @@ ai_disclosure: |
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
 prose, sources, Lean declaration map, figure, and accessibility have not yet
-received the required human and Pro reviews. The page must remain a draft until
-those gates are complete.
+received the required human and Pro reviews. The page is publicly available as
+an open working note while those reviews remain pending.
 {{< /panel >}}
 
 A finite Hermitian matrix has a finite multiset of real eigenvalues. Its

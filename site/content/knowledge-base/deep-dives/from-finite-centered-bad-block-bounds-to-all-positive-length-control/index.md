@@ -4,7 +4,7 @@ slug: "from-finite-centered-bad-block-bounds-to-all-positive-length-control"
 date: 2026-07-22
 summary: "A textbook passage from uniformly controlled finite centered bad-block sets to the event with one bad witness at any positive length, with the extended-measure limit, finite-target real projection, cocycle specialization, and raw non-invariance all explicit."
 lead: "A bound for every finite cap is not yet a bound for the union over all positive lengths. RMT-31 nests the caps, identifies one finite witness, takes continuity from below in extended measure, crosses to real measure only at a finite target, and transports the uniform RMT-30 ratio with le_of_tendsto'. The resulting raw event is still not an asymptotic deviation event and need not be invariant."
-draft: true
+draft: false
 pro_reviewed: false
 level: "Subadditive processes, finite bad-block estimates, null measurable sets, extended nonnegative real measure, filter convergence, and intermediate Lean theorem reading"
 reading_time: "170 to 250 minutes"
@@ -23,10 +23,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Its mathematical
-claims and declaration names have been reconciled with the frozen RMT-31 Lean
-module, but human publication review and the configured external Pro review
-remain pending.
+**Editorial status.** This AI-assisted working draft is published as an open
+working note. Its mathematical claims and declaration names have been
+reconciled with the frozen RMT-31 Lean module, while human publication review
+and the configured external Pro review remain pending.
 {{< /panel >}}
 
 RMT-30 fixes a natural-number cap \(m\) and controls the points at which some

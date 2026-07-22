@@ -2,7 +2,7 @@
 title: "Finite maximal ergodic inequality"
 slug: "finite-maximal-ergodic-inequality"
 summary: "Under a measure-preserving transformation, a finite maximal ergodic inequality says that an integrable observable has nonnegative integral over the points where one of its finite orbit sums becomes strictly positive, with a positive-threshold weak estimate for finite average-exceedance events on a finite measure space."
-draft: true
+draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal"
