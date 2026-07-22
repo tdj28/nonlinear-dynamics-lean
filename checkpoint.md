@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 16:26 PDT
+Last updated: 2026-07-22 16:39 PDT
 
-Audited baseline: `main` at `c905709`
+Audited baseline: `main` at `cf9401e`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `cf9401e`: rebuild realized empirical spectral measures, their outer laws,
+  finite random-matrix products, and deterministic forward products; execute
+  all four local worksheets and preserve the law-versus-mean type boundary.
 - `c905709`: rebuild Hermitian Frobenius geometry and the finite GUE chapter
   around explicit size-two calculations; execute both tiny local worksheets
   and regenerate their cards from the new diagrams.
