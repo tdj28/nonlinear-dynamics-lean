@@ -1,323 +1,587 @@
 ---
 title: "Gaussian unitary ensemble"
 slug: "gaussian-unitary-ensemble"
-summary: "The Gaussian unitary ensemble is a probability law on finite complex Hermitian matrices obtained from centered independent Gaussian free coordinates with an explicit dimension-dependent scale."
+summary: "The repository's finite Wigner-scaled GUE law, from independent Gaussian Hermitian coordinates through exact trace and normalized spectral moments."
 draft: false
 pro_reviewed: false
 toc: true
-lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble"
+lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum"
 og_image: "gaussian-unitary-ensemble-card.png"
-og_image_alt: "A real Gaussian diagonal block and complex Gaussian strict-upper block enter a product law, followed by measurable Hermitian assembly and a pushforward matrix law."
+og_image_alt: "Four independent centered real Gaussian coordinates assemble the size-two Wigner-scaled GUE, with expected trace zero, trace-square two, and normalized second moment one."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+**Editorial status.** This is an AI-assisted working note. Human review of the
+mathematics, Lean interpretation, sources, figures, and accessibility remains
+pending. The page is public so readers can follow the work while that review
+is still open.
 {{< /panel >}}
 
-The **Gaussian unitary ensemble (GUE)** is a probability law on finite complex
-{{< refterm "hermitian-matrix" "Hermitian matrices" >}}. The word *Gaussian*
-describes its free scalar coordinates. The word *unitary* names the symmetry
-class: in the classical mathematical theory, the law is invariant under
-deterministic unitary conjugation. The word *ensemble* means a probability law
-over matrices, not one distinguished matrix.
+The **Gaussian unitary ensemble**, or **GUE**, is a probability law on finite
+complex {{< refterm "hermitian-matrix" "Hermitian matrices" >}}.
 
-This project constructs the finite GUE law from independent Gaussian
-coordinates under one explicit Wigner-scale convention. For positive size
-\(n\):
+Each word names a different part of the story:
 
-- each real diagonal coordinate is centered Gaussian with variance \(1/n\);
-- each real and imaginary part of a strict-upper coordinate is centered
-  Gaussian with variance \(1/(2n)\);
-- all diagonal coordinates are mutually independent;
-- all strict-upper complex coordinates are mutually independent;
-- the diagonal block is independent of the strict-upper block; and
-- lower entries are conjugate reflections, not additional independent inputs.
+- **Gaussian:** the freely chosen real scalar coordinates have Gaussian laws;
+- **unitary:** changing basis by a deterministic unitary matrix does not
+  change the matrix law; and
+- **ensemble:** the object is a probability measure over matrices, not one
+  particular matrix.
 
-The checked Lean module in the sixth random-matrix-theory milestone (RMT-06)
-proves this coordinate law, its exact marginal and
-independence architecture, the measurable pushforward matrix law, and the
-zero-dimensional Dirac boundary. That module by itself does **not** prove the
-classical unitary-invariance theorem. At the RMT-06 milestone, "GUE"
-identified the explicit standard coordinate presentation that had been
-encoded, while the symmetry named by the acronym remained a separate formal
-obligation.
+Those three facts do not follow from one another. This repository constructs
+the coordinate law, pushes it through Hermitian assembly, proves concentration
+on the Hermitian locus, proves unitary-conjugation invariance, and then proves
+the first two finite trace and empirical spectral moments in separate modules.
 
-RMT-07 proves that this matrix law assigns the measurable Hermitian locus mass
-one. It also proves unitary-congruence invariance of the intrinsic standard
-Gaussian on Hermitian Frobenius space. RMT-08 identifies the coordinate-built
-law with the correctly scaled intrinsic Gaussian and transports that symmetry
-to prove unitary invariance of <code>GUE.matrixLaw</code>. See
-[From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}})
-for the exact measure bridge.
+## The entire \(n=2\) construction
 
-## The normalization ledger
+For dimension \(n=2\), the repository's Wigner variance scale is
 
-The following table is the complete scale specification used by the project.
-The {{< refterm "normalization-convention" "normalization convention" >}}
-cannot be recovered safely from the acronym alone.
+\[
+s_2=\frac12.
+\]
 
-| Ledger field | Project convention |
-|---|---|
-| Matrix size | \(n\in\mathbb N\) |
-| Positive-size variance scale | \(s_n=1/n\) when \(n\gt0\) |
-| Zero-size variance scale | \(s_0=0\), defined as its own branch |
-| Diagonal entry | centered real Gaussian, variance \(s_n\) |
-| Strict-upper entry | \(X_{ij}+iY_{ij}\) |
-| Upper real-part variance | \(s_n/2\) |
-| Upper imaginary-part variance | \(s_n/2\) |
-| Primitive dependence | mutual independence within each block and independence between blocks |
-| Lower triangle | \(H_{ji}=\overline{H_{ij}}\) when \(i\lt j\) |
-| Matrix law | pushforward of the coordinate product measure |
-| Matrix trace in density context | unnormalized \(\operatorname{Tr}\) |
-| Spectral scale in classical context | order one as \(n\) grows |
+Choose four centered real Gaussian variables:
+
+\[
+a,d\sim N\!\left(0,\frac12\right),
+\qquad
+x,y\sim N\!\left(0,\frac14\right),
+\]
+
+with all four primitive real coordinates independent. Here the second
+parameter of \(N(m,v)\) is the **variance**, not the standard deviation.
+
+The two diagonal variables use variance \(s_2=1/2\). The real and imaginary
+parts of the one strict-upper entry use half that variance:
+
+\[
+\frac{s_2}{2}=\frac14.
+\]
+
+Set
+
+\[
+z=x+iy
+\]
+
+and assemble
+
+\[
+H=
+\begin{bmatrix}
+a & z\\
+\overline z & d
+\end{bmatrix}
+{}=
+\begin{bmatrix}
+a & x+iy\\
+x-iy & d
+\end{bmatrix}.
+\]
+
+This matrix is Hermitian for every coordinate outcome. Randomness chooses
+\(a,d,x,y\); conjugate reflection determines the lower-left entry.
+
+The upper entry has total squared-magnitude expectation
+
+\[
+\mathbb E|z|^2
+=\mathbb E[x^2+y^2]
+=\frac14+\frac14
+=\frac12.
+\]
+
+The factor \(1/4\) on each Cartesian component is therefore essential. Giving
+both \(x\) and \(y\) variance \(1/2\) would double the intended off-diagonal
+energy.
+
+{{< reference-figure
+  wide="true"
+  src="gue-n2-moment-ledger.svg"
+  alt="Four independent centered real Gaussian variables assemble a two by two Hermitian matrix. The diagonal variables each have variance one half, and the upper real and imaginary parts each have variance one quarter. The expected trace is zero, the expected trace square is two, and one half of that second trace moment gives normalized spectral second moment one."
+  caption="**The \(n=2\) ledger:** \(a,d\sim N(0,1/2)\) and \(x,y\sim N(0,1/4)\) assemble \(H=\bigl[\begin{smallmatrix}a&x+iy\\x-iy&d\end{smallmatrix}\bigr]\). Centering gives \(\mathbb E\operatorname{Tr}(H)=0\). Expanding the square gives \(\mathbb E\operatorname{Tr}(H^2)=2\). The empirical spectral measure divides the trace-square by \(n=2\), so its expected second moment is \(1\). Patterns separate diagonal, upper-coordinate, and spectral roles without relying on color."
+>}}
+
+## Compute \(\mathbb E\,\operatorname{Tr}(H)\)
+
+The trace reads only the diagonal:
+
+\[
+\operatorname{Tr}(H)=a+d.
+\]
+
+Both coordinates are centered, so linearity of
+{{< refterm "expectation" "expectation" >}} gives
+
+\[
+\begin{aligned}
+\mathbb E\,\operatorname{Tr}(H)
+&=\mathbb E[a]+\mathbb E[d]\\
+&=0+0\\
+&=0.
+\end{aligned}
+\]
+
+No eigenvalue calculation is needed for this first trace moment.
+
+## Compute \(\mathbb E\,\operatorname{Tr}(H^2)\)
+
+Multiplying the matrix by itself gives diagonal entries
+
+\[
+(H^2)_{00}=a^2+|z|^2,
+\qquad
+(H^2)_{11}=d^2+|z|^2.
+\]
+
+Therefore
+
+\[
+\begin{aligned}
+\operatorname{Tr}(H^2)
+&=a^2+d^2+2|z|^2\\
+&=a^2+d^2+2(x^2+y^2).
+\end{aligned}
+\]
+
+For a centered real random variable, its second moment equals its variance.
+Substitute the four variance entries:
+
+\[
+\begin{aligned}
+\mathbb E\,\operatorname{Tr}(H^2)
+&=\frac12+\frac12
+  +2\left(\frac14+\frac14\right)\\
+&=2.
+\end{aligned}
+\]
+
+The doubled off-diagonal term is geometric, not an extra random coordinate.
+Both \(H_{01}H_{10}=|z|^2\) and \(H_{10}H_{01}=|z|^2\) enter the trace of the
+square.
+
+## Why the normalized spectral second moment is one
+
+Let \(\lambda_1,\lambda_2\in\mathbb R\) be the eigenvalues of \(H\). Its
+empirical spectral measure is
+
+\[
+\mu_H=\frac12\left(\delta_{\lambda_1}+\delta_{\lambda_2}\right).
+\]
+
+The second moment of this one sample measure is
+
+\[
+\begin{aligned}
+\int_{\mathbb R} t^2\,d\mu_H(t)
+&=\frac12(\lambda_1^2+\lambda_2^2)\\
+&=\frac12\operatorname{Tr}(H^2).
+\end{aligned}
+\]
+
+Taking the ensemble expectation gives
+
+\[
+\mathbb E\!\left[\int_{\mathbb R}t^2\,d\mu_H(t)\right]
+=\frac12\,\mathbb E\,\operatorname{Tr}(H^2)
+=\frac12\cdot2
+=1.
+\]
+
+The normalization occurs at a precise place: the empirical measure divides
+the spectral counting measure by the number of eigenvalues. The ordinary
+matrix trace itself is not normalized.
+
+The repository proves this finite identity in every positive dimension, not
+only at \(n=2\).
+
+## The same count for every positive dimension
+
+For \(n\gt0\), there are \(n\) diagonal entries with variance \(1/n\), and
+\(\binom n2\) strict-upper entries with expected squared magnitude \(1/n\).
+Since each upper entry appears twice in \(\operatorname{Tr}(H^2)\),
+
+\[
+\begin{aligned}
+\mathbb E\,\operatorname{Tr}(H^2)
+&=n\cdot\frac1n
+  +2\binom n2\cdot\frac1n\\
+&=1+(n-1)\\
+&=n.
+\end{aligned}
+\]
+
+Consequently,
+
+\[
+\mathbb E\!\left[\frac1n\operatorname{Tr}(H^2)\right]=1
+\qquad(n\gt0).
+\]
+
+This exact finite calculation explains one purpose of Wigner scaling: the
+average squared eigenvalue stays of order one as dimension changes.
+
+## Six layers that must not be collapsed
+
+| Layer | Exact question | What this repository establishes |
+|---|---|---|
+| Coordinate shape | Which entries are freely supplied? | Real diagonal plus complex strict upper; the lower triangle is conjugate reflection |
+| Coordinate law | What is the joint probability law? | Centered finite Gaussian product laws with all required independence scopes |
+| Normalization | Which variances are used? | \(1/n\) on each diagonal and \(1/(2n)\) on each displayed upper real component for \(n\gt0\) |
+| Hermitian-locus concentration | Where does the ambient matrix law place its mass? | The measurable Hermitian set has mass one |
+| Unitary invariance | Does \(H\mapsto UHU^*\) preserve the law? | Yes, for every deterministic unitary \(U\) |
+| Spectral consequences | What is proved about eigenvalues? | Finite ordered spectra, empirical spectral laws, and the first two expected empirical moments |
+
+The Hermitian-set theorem is a measure-one statement. It should not be
+silently strengthened to a theorem that the topological support is exactly
+the entire Hermitian space.
+
+Likewise, unitary invariance is an equality of full matrix probability laws.
+It is stronger than saying that individual entries have symmetric marginal
+distributions, and it is separate from Hermitian-locus concentration.
 
 {{< reference-figure
   src="gue-coordinate-ledger.svg"
-  alt="The Wigner ledger assigns variance one over n to real diagonal coordinates and variance one over two n to each real component of a complex strict-upper coordinate, then forms a product measure and pushes it through Hermitian assembly."
-  caption="**Finding:** a finite GUE law is not supplied by Hermiticity alone. The construction first fixes every primitive variance and independence relation, forms one coordinate probability measure, and only then applies measurable Hermitian assembly. The zero-dimensional branch ends at a Dirac mass on the empty matrix. The plate states the checked construction; it does not claim a density, unitary invariance, or spectral theorem."
+  alt="The Wigner ledger assigns variance one over n to real diagonal coordinates and variance one over two n to each real component of a complex strict-upper coordinate, forms a product measure, and pushes it through measurable Hermitian assembly."
+  caption="**Construction before consequences:** the finite product coordinate measure records the marginal laws and independence. Measurable Hermitian assembly then produces the ambient matrix law. Support, invariance, trace moments, and spectral theorems are later propositions about that law, not hidden consequences of its name."
 >}}
 
-## Why the upper components use \(1/(2n)\)
+## The project normalization ledger
 
-Write a strict-upper entry as \(H_{ij}=X_{ij}+iY_{ij}\). Under the project
-ledger,
+The acronym GUE is not enough to recover scale conventions. This project uses:
+
+| Ledger field | Project value |
+|---|---|
+| Positive-dimensional scale | \(s_n=1/n\) |
+| Zero-dimensional scale | \(s_0=0\), by a separate definition branch |
+| Diagonal coordinate | centered real Gaussian, variance \(s_n\) |
+| Strict-upper coordinate | \(X_{ij}+iY_{ij}\) |
+| Upper real-part variance | \(s_n/2\) |
+| Upper imaginary-part variance | \(s_n/2\) |
+| Primitive dependence | mutual independence within each block and independence between blocks |
+| Lower entry | \(H_{ji}=\overline{H_{ij}}\) |
+| Matrix law | measurable pushforward of the coordinate product law |
+| Trace | ordinary, unnormalized \(\operatorname{Tr}\) |
+| Empirical spectral measure for \(n\gt0\) | \(n^{-1}\sum_{j=1}^n\delta_{\lambda_j}\) |
+
+For a strict-upper entry,
 
 \[
 \operatorname{Var}(X_{ij})
 =\operatorname{Var}(Y_{ij})
-=\frac{1}{2n}.
+=\frac1{2n},
 \]
 
-The centered components are independent, so the complex squared magnitude has
-mean
+so
 
 \[
-\mathbb E|H_{ij}|^2
-=\mathbb E[X_{ij}^2+Y_{ij}^2]
-=\frac{1}{2n}+\frac{1}{2n}
-=\frac{1}{n}.
+\mathbb E|H_{ij}|^2=\frac1n.
 \]
 
-Thus the total off-diagonal energy is on the same \(1/n\) scale as a diagonal
-variance even though it is split across two displayed real coordinates. Calling
-each component variance \(1/n\) would double \(\mathbb E|H_{ij}|^2\).
+The component variance \(1/(2n)\), the complex squared-magnitude expectation
+\(1/n\), and the normalized spectral second moment \(1\) are three different
+quantities.
 
-The same factor of two appears in Hermitian geometry. For
-\(H=H^*\), write \(H_{ii}=d_i\in\mathbb R\) and
-\(H_{ij}=x_{ij}+iy_{ij}\) when \(i\lt j\). Then
+## In Lean: name the coordinate law
+
+{{< lean-bridge
+  human="Use the repository's exact size-two product law for all free Hermitian coordinates."
+  math="\(\nu_2=\bigotimes_{i=0}^{1}N(0,1/2)\ \otimes\ N_{\mathbb C}^{\mathrm{cart}}(0;1/4,1/4).\)"
+  lean="NonlinearDynamics.Random.GUE.coordinateMeasure 2"
+>}}
+
+- <code>GUE</code> is the project namespace for this ensemble.
+- <code>coordinateMeasure</code> constructs the product probability measure
+  before matrix assembly.
+- <code>2</code> fixes the finite index types for the two diagonal positions
+  and the single strict-upper position.
+- The first product block contains real Gaussian coordinates.
+- The second product block contains Cartesian complex Gaussian coordinates.
+- Independence is supplied by the product measures; it is not inferred from
+  the marginal law names.
+{{< /lean-bridge >}}
+
+## In Lean: ask for the exact second trace moment
+
+{{< lean-bridge
+  human="Under the size-two GUE matrix law, the expected ordinary trace of H squared is two."
+  math="\(\displaystyle\int \operatorname{Tr}(H^2)\,d\mu_2(H)=2.\)"
+  lean="NonlinearDynamics.Random.GUE.integral_tracePower_two 2"
+>}}
+
+- <code>integral_tracePower_two</code> is a theorem, not a numerical
+  simulator.
+- Its argument <code>2</code> is the matrix dimension.
+- The theorem uses <code>GUE.matrixLaw 2</code> as the measure.
+- <code>tracePower ... 2</code> means the ordinary complex trace of the
+  matrix square.
+- The result is <code>(2 : ℂ)</code>; Lean inserts the coercion from the
+  natural dimension into the complex codomain.
+{{< /lean-bridge >}}
+
+The first trace theorem is the parallel declaration
+<code>GUE.integral_tracePower_one 2</code>, whose right side is zero.
+
+## In Lean: ask for the normalized spectral moment
+
+{{< lean-bridge
+  human="Dimension two is positive, so the expected second moment of its empirical spectral measure is exactly one."
+  math="\(\displaystyle\int\!\left(\int t^2\,d\mu_H(t)\right)d\mathbb P(H)=1.\)"
+  lean="NonlinearDynamics.Random.GUE.integral_empiricalSpectralMoment_two_succ 1"
+>}}
+
+- The theorem is indexed by <code>n</code> but states its result in dimension
+  <code>n + 1</code>. Typing <code>1</code> therefore selects dimension two.
+- <code>empiricalSpectralMoment 2 H</code> is the second moment of one
+  matrix's empirical spectral measure.
+- <code>intrinsicLaw (1 + 1)</code> is the GUE law on the intrinsic Hermitian
+  carrier used for spectral analysis.
+- The conclusion <code>= 1</code> is valid for every positive dimension.
+- A separate theorem keeps the dimension-zero value visible.
+{{< /lean-bridge >}}
+
+## Exact project excerpts
+
+**Resource label: pinned project plus Mathlib.** The scale functions in
+[<code>GaussianUnitaryEnsemble.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean)
+are:
+
+~~~lean
+noncomputable def varianceScale : ℕ → ℝ≥0
+  | 0 => 0
+  | n + 1 => (((n + 1 : ℕ) : ℝ≥0))⁻¹
+
+noncomputable def diagonalVariance (n : ℕ) : ℝ≥0 := varianceScale n
+
+noncomputable def upperCartesianVariance (n : ℕ) : ℝ≥0 := varianceScale n / 2
+~~~
+
+The coordinate and matrix measures are then defined exactly as follows:
+
+~~~lean
+noncomputable def coordinateMeasure (n : ℕ) : Measure (HermitianCoordinateSpace n) :=
+  (gaussianProductMeasure (fun _ : Fin n => 0) (fun _ => diagonalVariance n)).prod
+    (cartesianComplexGaussianProductMeasure
+      (fun _ : StrictUpperIndex n => 0)
+      (fun _ => upperCartesianVariance n)
+      (fun _ => upperCartesianVariance n))
+
+noncomputable def matrixLaw (n : ℕ) :
+    Measure (Matrix (Fin n) (Fin n) ℂ) :=
+  RandomMatrix.law (RandomMatrix.hermitianCoordinateMap n)
+    (RandomMatrix.measurable_hermitianCoordinateMap n) (coordinateMeasure n)
+~~~
+
+The first definition builds the exact joint law of the free coordinates. The
+second applies the measurable deterministic assembly map. Neither definition
+mentions eigenvalues or unitary invariance.
+
+The positive-dimensional spectral normalization theorem in
+[<code>GaussianUnitaryEnsembleSpectrum.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean)
+is short:
+
+~~~lean
+@[simp] theorem integral_empiricalSpectralMoment_two_succ (n : ℕ) :
+    ∫ H, empiricalSpectralMoment 2 H ∂intrinsicLaw (n + 1) = 1 := by
+  rw [integral_empiricalSpectralMoment_two]
+  norm_cast
+  exact inv_mul_cancel₀ (by positivity)
+~~~
+
+It rewrites with the all-dimensions formula \(n^{-1}n\), then uses positivity
+of \(n+1\) to cancel the reciprocal. This proof is the formal endpoint of the
+worked \(n=2\) calculation.
+
+## Tiny local Lean/Std moment ledger
+
+**Resource label: tiny standalone check.** This worksheet imports only
+<code>Std</code> and evaluates the rational arithmetic in the size-two
+example. It is not a random-variable construction and proves no Gaussian law,
+independence, matrix support, invariance, or spectral theorem.
+
+Save it as <code>GUE2MomentLedgerScratch.lean</code>:
+
+~~~lean
+import Std
+
+structure GUE2Ledger where
+  meanA : Rat
+  meanD : Rat
+  meanX : Rat
+  meanY : Rat
+  varA : Rat
+  varD : Rat
+  varX : Rat
+  varY : Rat
+deriving Repr
+
+def scalarSecondMoment (mean variance : Rat) : Rat :=
+  variance + mean ^ 2
+
+def expectedTrace (L : GUE2Ledger) : Rat :=
+  L.meanA + L.meanD
+
+def expectedTraceSq (L : GUE2Ledger) : Rat :=
+  scalarSecondMoment L.meanA L.varA
+    + scalarSecondMoment L.meanD L.varD
+    + 2 * (scalarSecondMoment L.meanX L.varX
+      + scalarSecondMoment L.meanY L.varY)
+
+def expectedNormalizedSecond (L : GUE2Ledger) : Rat :=
+  expectedTraceSq L / 2
+
+def wignerGUE2 : GUE2Ledger :=
+  { meanA := 0, meanD := 0, meanX := 0, meanY := 0
+    varA := (1 : Rat) / 2
+    varD := (1 : Rat) / 2
+    varX := (1 : Rat) / 4
+    varY := (1 : Rat) / 4 }
+
+#eval expectedTrace wignerGUE2
+#eval expectedTraceSq wignerGUE2
+#eval expectedNormalizedSecond wignerGUE2
+~~~
+
+Run it with:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean GUE2MomentLedgerScratch.lean
+~~~
+
+The exact rational outputs should be \(0\), \(2\), and \(1\). The worksheet
+checks only the displayed moment ledger. The project declarations below carry
+the measure-theoretic and spectral content.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** A human can type this
+worksheet in a deliberately provisioned copy of the repository:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
+
+#check NonlinearDynamics.Random.GUE.varianceScale
+#check NonlinearDynamics.Random.GUE.varianceScale_zero
+#check NonlinearDynamics.Random.GUE.varianceScale_succ
+#check NonlinearDynamics.Random.GUE.diagonalVariance
+#check NonlinearDynamics.Random.GUE.upperCartesianVariance
+#check NonlinearDynamics.Random.GUE.coordinateMeasure
+#check NonlinearDynamics.Random.GUE.coordinateMeasure_diagonal_hasLaw
+#check NonlinearDynamics.Random.GUE.coordinateMeasure_upper_hasLaw
+#check NonlinearDynamics.Random.GUE.coordinateMeasure_diagonal_iIndepFun
+#check NonlinearDynamics.Random.GUE.coordinateMeasure_upper_iIndepFun
+#check NonlinearDynamics.Random.GUE.matrixLaw
+#check NonlinearDynamics.Random.GUE.matrixLaw_diagonal_hasLaw
+#check NonlinearDynamics.Random.GUE.matrixLaw_upper_hasLaw
+#check NonlinearDynamics.Random.GUE.coordinateMeasure_zero
+#check NonlinearDynamics.Random.GUE.matrixLaw_zero
+#check NonlinearDynamics.Random.GUE.matrixLaw_hermitianSet
+#check NonlinearDynamics.Random.GUE.matrixLaw_isUnitaryConjugationInvariant
+#check NonlinearDynamics.Random.GUE.integral_tracePower_one
+#check NonlinearDynamics.Random.GUE.integral_tracePower_two
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMoment_two
+#check NonlinearDynamics.Random.GUE.integral_empiricalSpectralMoment_two
+#check NonlinearDynamics.Random.GUE.integral_empiricalSpectralMoment_two_succ
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for an exact declaration
+type. The final import reaches the coordinate, geometry, invariance, moment,
+and finite-spectrum layers. The guarded command below checks that complete
+leaf module on an approved Linux builder.
+{{< /repo-check >}}
+
+## Dimension zero and positive dimension are different
+
+At \(n=0\), the project does not evaluate an informal \(1/0\). Instead:
+
+- <code>varianceScale 0 = 0</code> by its own definition branch;
+- the coordinate law is Dirac at the unique empty coordinate point;
+- the ambient matrix law is Dirac at the unique empty matrix;
+- the intrinsic Hermitian law is also Dirac at its zero element;
+- the zero-aware empirical spectral measure is the zero measure; and
+- every empirical spectral moment is zero.
+
+The raw law of empirical spectral measures is still a probability law: it is
+Dirac at the zero measure. But the zero empirical measure itself has total
+mass zero, so it is not a probability measure on \(\mathbb R\).
+
+For \(n\gt0\), the empirical spectral measure has mass one and its expected
+second moment is one. Lean exposes that boundary honestly:
 
 \[
-\operatorname{Tr}(H^2)
-=\sum_i d_i^2
- +2\sum_{i\lt j}(x_{ij}^2+y_{ij}^2).
+\mathbb E[m_2]=
+\begin{cases}
+0,&n=0,\\
+1,&n\gt0.
+\end{cases}
 \]
 
-Mathematically, substituting this identity into the classical density
-\(\exp[-n\operatorname{Tr}(H^2)/2]\) gives exponent
-\(-nd_i^2/2\) for each diagonal coordinate and
-\(-n(x_{ij}^2+y_{ij}^2)\) for each upper coordinate. Those exponents correspond
-to variances \(1/n\) and \(1/(2n)\), respectively. The identity explains why
-the entrywise ledger and the conventional density agree. The current Lean
-module formalizes neither this trace-square identity as GUE geometry nor the
-density comparison.
+## Physics meaning without overclaiming
 
-## The canonical coordinate law
-
-The free data live in the
-{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+In quantum mechanics, a finite Hamiltonian is Hermitian so its measured
+energies are real. Replacing a basis by a unitary matrix sends
 
 \[
-\mathcal C_n
-=(\operatorname{Fin}(n)\to\mathbb R)
- \times
- (I_n^{\lt}\to\mathbb C),
+H\longmapsto UHU^*.
 \]
 
-where \(I_n^{\lt}\) is the finite set of strict-upper positions. The first
-factor receives a finite product of centered real Gaussian laws. The second
-receives a finite product of centered Cartesian complex Gaussian laws. The
-measure <code>GUE.coordinateMeasure n</code> is the product of those two block
-measures.
+A unitary-invariant ensemble assigns the same law before and after that basis
+change. This is why the word *unitary* describes a symmetry class rather than
+the claim that the random matrix \(H\) is itself unitary.
 
-This one definition contains more information than a list of scalar
-marginals. The module proves:
+Dyson's unitary class models systems where the relevant antiunitary
+time-reversal symmetry is absent. GUE is an idealized reference model for
+spectral statistics, not a claim that every physical Hamiltonian has
+independent Gaussian entries in every basis.
 
-1. the whole diagonal projection has its finite Gaussian product law;
-2. the whole upper projection has its finite complex Gaussian product law;
-3. the two projected blocks are independent;
-4. each diagonal coordinate has its exact real Gaussian law;
-5. each upper coordinate has its exact Cartesian complex Gaussian law;
-6. the diagonal coordinate family is mutually independent;
-7. the upper coordinate family is mutually independent; and
-8. any selected diagonal coordinate is independent of any selected upper
-   coordinate.
+The finite identity
+\(\mathbb E[n^{-1}\operatorname{Tr}(H^2)]=1\) says that the average squared
+eigenvalue is normalized. It does **not** prove a semicircle law,
+concentration, level repulsion, universality, or any large-\(n\) limit.
 
-These are related but distinct statements. Exact marginal laws alone would
-not determine the joint law. Block independence alone would not prove mutual
-independence within either block. The checked product construction supplies
-all three scopes.
+## Distinctions and failure modes
 
-## From coordinates to a matrix law
-
-Let
-
-\[
-A_n:\mathcal C_n\longrightarrow
-\operatorname{Matrix}(\operatorname{Fin}(n),\operatorname{Fin}(n),\mathbb C)
-\]
-
-be the deterministic three-branch assembly map. It inserts real diagonal
-coordinates, copies complex strict-upper coordinates, and conjugates them into
-the reflected lower triangle. The previous module proves \(A_n\) measurable
-and every output Hermitian.
-
-The project matrix law is the
-{{< refterm "pushforward-measure" "pushforward measure" >}}
-
-\[
-\mu_n=(A_n)_*\nu_n,
-\]
-
-where \(\nu_n\) is <code>GUE.coordinateMeasure n</code>. In Lean this is
-<code>GUE.matrixLaw n</code>. The module proves that \(\mu_n\) is a
-{{< refterm "probability-law" "probability measure" >}} and transfers exact
-entry laws through assembly:
-
-- a diagonal matrix entry has Cartesian complex Gaussian law with real
-  variance \(1/n\) and imaginary variance zero; and
-- a strict-upper matrix entry has Cartesian complex Gaussian law with equal
-  real and imaginary variances \(1/(2n)\).
-
-The lower entry is already the conjugate of the corresponding upper entry by
-deterministic assembly. It is not a further primitive variable, and the module
-does not falsely assert independence between reflected matrix entries.
-
-## Dimension zero
-
-When \(n=0\), both coordinate index types are empty. Each function space has
-one element, so the coordinate product has one point. The target matrix type
-also has one element, the empty zero matrix.
-
-The project does not interpret \(1/0\). It defines
-<code>varianceScale 0 = 0</code> by pattern matching and proves
-
-\[
-\nu_0=\delta_0,
-\qquad
-\mu_0=\delta_0.
-\]
-
-The two zeros inhabit different spaces: the first is the unique empty
-coordinate pair; the second is the unique empty matrix. This explicit boundary
-lets every public law be total in \(n\).
-
-## Physics and random-matrix context
-
-Random-matrix theory began in part as a statistical approach to complicated
-quantum energy levels. A finite quantum Hamiltonian is represented by a
-Hermitian matrix so that energies are real and Schrödinger evolution is
-unitary. Dyson's symmetry classification associates the unitary class with
-systems in which the relevant antiunitary time-reversal symmetry is absent.
-
-GUE is an idealized probability model for that class, not a claim that every
-physical Hamiltonian has independently Gaussian matrix elements in every
-basis. In applications, the ensemble is used as a reference model for spectral
-statistics after appropriate unfolding and scaling. The RMT-06 Lean module
-formalizes none of that physical interpretation, no Hamiltonian dynamics, and
-no spectral statistic. It establishes the finite probability law that later
-formal work may analyze.
-
-The \(1/n\) Wigner scale is chosen so that the classical large-\(n\) spectrum
-is order one rather than order \(\sqrt n\). In the established theory, the
-empirical spectrum converges to the semicircle distribution on \([-2,2]\)
-under this convention. This is contextual motivation from the cited
-literature, not a checked theorem in this repository.
-
-## What has and has not been checked
-
-The module
-<code>NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble</code>
-checks 26 public declarations. Together they define three scale functions,
-prove six boundary formulas, construct the coordinate measure, prove its
-probability status and eight law/independence interfaces, construct the matrix
-law, expose its exact pushforward identity, prove its probability status and
-two exact matrix-entry laws, and prove both zero-dimensional Dirac identities.
-
-That RMT-06 module by itself does not prove:
-
-- a density with respect to a chosen Lebesgue measure on Hermitian space;
-- measure-level support on the Hermitian subset;
-- {{< refterm "unitary-invariance" "unitary invariance" >}};
-- an equivalence between coordinate and invariant definitions of GUE;
-- measurable eigenvalues or an eigenvalue joint density;
-- integrability, expectations, or exact trace moments;
-- an unconditional empirical spectral law or the semicircle law; or
-- any large-dimension universality statement.
-
-Those were explicit module boundaries, not qualifications hidden in
-implementation detail. Follow-up modules have since discharged three of them:
-RMT-07 proves that the ambient law gives the measurable Hermitian locus mass
-one and proves intrinsic standard-Gaussian symmetry; RMT-08 proves the exact
-coordinate-to-intrinsic Gaussian comparison and unitary invariance of
-<code>GUE.matrixLaw</code>. RMT-09 proves Bochner integrability and evaluates
-the first two ordinary-trace moments exactly. RMT-10A defines ordered finite
-Hermitian spectra and zero-aware empirical spectral measures, then states the
-intrinsic/ambient GUE pushforward comparison under an explicit coordinatewise
-eigenvalue-measurability hypothesis. RMT-10B proves that measurability and the
-unconditional pushforward comparison. RMT-10C constructs the
-{{< refterm "empirical-spectral-law" "empirical spectral law" >}}, its Giry
-mean, and its first two normalized expected sample moments. Density and
-Jacobian formulas, higher trace moments, moment interchange for the Giry mean,
-and all large-dimension claims remain unchecked.
+| Tempting shortcut | What goes wrong | Correct repair |
+|---|---|---|
+| "Hermitian Gaussian matrix" uniquely fixes the law | Variance and dependence conventions remain unspecified | Publish the complete normalization and independence ledger |
+| Give each upper real component variance \(1/n\) | Then \(\mathbb E|H_{ij}|^2=2/n\) | Use \(1/(2n)\) for both Cartesian components |
+| Treat \(H_{10}\) as independent of \(H_{01}\) | Hermitian reflection forces \(H_{10}=\overline{H_{01}}\) | Randomize only the strict upper triangle |
+| Call mass one on the Hermitian set "unitary invariance" | Support and symmetry are different measure statements | Prove both the mass-one theorem and the pushforward equality |
+| Normalize \(\operatorname{Tr}(H^2)\) inside its definition | The project trace observable is ordinary trace | Divide by \(n\) when forming the empirical spectral moment |
+| Extend the positive formula through \(1/0\) informally | Dimension zero has no eigenvalues and no empirical probability measure | Use the explicit zero branch |
+| Read the second moment as a semicircle theorem | One moment does not determine a limiting distribution | Prove higher and asymptotic claims separately |
+| Read unitary invariance as "\(H\) is unitary" | The sampled matrices are Hermitian, generally not unitary | Interpret invariance as equality in law under \(H\mapsto UHU^*\) |
 
 ## Where to continue
 
-[First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
-uses the normalized real product law to prove the first two integrable complex
-trace expectations, including dimension zero.
-
-[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
-continues from trace moments to ordered finite spectra, counting measures, the
-explicit empty-spectrum policy, and the conditional measure-valued GUE bridge.
-
-[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}})
-continues through measurable pushforward to the unconditional finite law, its
-probability packaging and Giry mean, and the first two normalized expected
-sample moments.
-
 [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
-derives the factor-of-two geometry, builds the product probability space in
-dependency order, and maps every checked declaration to its precise claim.
-[Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
-continues with the Frobenius geometry, support theorem, and intrinsic Gaussian
-symmetry while keeping the RMT-08 comparison explicit.
-[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
-develops the deterministic assembly map that receives this coordinate law.
+builds the product law and explains every independence scope.
+[From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}})
+proves the bridge from entry coordinates to isotropic Hermitian Gaussian
+geometry and then to unitary invariance.
 
-Read
-[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
-for the finite product machinery and
-[Complex Gaussian Coordinates and Geometry]({{< relref "/knowledge-base/deep-dives/complex-gaussian-coordinates-and-geometry" >}})
-for the two-variance complex law. The
-{{< refterm "unitary-invariance" "unitary invariance" >}} entry explains the
-law-level symmetry now checked in RMT-08 and the commuting pushforward route
-that proves it.
+[First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
+develops the integrability and first two trace calculations.
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}})
+continues from traces to zero-aware empirical spectral measures and their
+normalized expected moments.
+
+Read {{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+for the deterministic assembly,
+{{< refterm "unitary-invariance" "unitary invariance" >}} for the law symmetry,
+and {{< refterm "empirical-spectral-law" "empirical spectral law" >}} for the
+measure-valued spectral layer.
 
 ## References
 
 **Alice Guionnet.**
-[Rare Events in Random Matrix Theory](https://ems.press/content/book-chapter-files/33150),
+[Rare Events in Random Matrix Theory](https://doi.org/10.4171/ICM2022/174),
 in *Proceedings of the International Congress of Mathematicians 2022*, volume
-2, European Mathematical Society Press, 2022,
-[doi:10.4171/ICM2022/174](https://doi.org/10.4171/ICM2022/174),
-pp. 1008-1052. Section 1.1.1
-states the GUE entry variances \(1/n\) and \(1/(2n)\), the Gaussian-ensemble
-density convention, and unitary invariance. This project uses the entry
-normalization and now formalizes the finite-law invariance statement; it has
-not formalized the density statement.
+2, European Mathematical Society Press, 2022, pp. 1008-1052. Section 1.1.1
+states the GUE entry variances \(1/n\) and \(1/(2n)\), the conventional density,
+and unitary invariance.
 
 **Freeman J. Dyson.**
 [Statistical Theory of the Energy Levels of Complex Systems. I](https://doi.org/10.1063/1.1703773),
@@ -325,21 +589,28 @@ not formalized the density statement.
 develops the orthogonal, unitary, and symplectic symmetry classes and their
 physical motivation.
 
-**Terence Tao and Van Vu.**
-[Random Matrices: Sharp Concentration of Eigenvalues](https://arxiv.org/abs/1201.4789),
-arXiv:1201.4789, 2012. The paper uses the \(1/\sqrt n\) Wigner scaling and
-records the resulting order-one spectral window. It is cited for normalization
-context only, not as evidence for a checked spectral theorem here.
+**Terence Tao.**
+[Topics in Random Matrix Theory](https://doi.org/10.1090/gsm/132),
+Graduate Studies in Mathematics 132, American Mathematical Society, 2012.
+This monograph develops finite Wigner-scaled ensembles and their spectral
+context. Its asymptotic results are context, not formalized claims here.
 
 **Mathlib contributors.**
 [Gaussian distributions over the reals](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Probability/Distributions/Gaussian/Real.html)
 and
-[indexed product measures](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Constructions/Pi.html),
-Mathlib 4 documentation. These official API references specify that
-<code>gaussianReal</code> takes a variance parameter, make zero variance a
-Dirac law, and define the finite product measures used by the checked
-construction.
+[Hermitian matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/Matrix/Hermitian.html),
+Mathlib 4 documentation. These official APIs underlie the coordinate laws and
+Hermitian matrix statements.
 
-The exact upstream Lean source audited for this entry is Mathlib commit
+**Nonlinear Dynamics in Lean contributors.**
+[GaussianUnitaryEnsemble.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean),
+[GaussianUnitaryEnsembleInvariance.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean),
+[GaussianUnitaryEnsembleMoments.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean),
+and
+[GaussianUnitaryEnsembleSpectrum.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean),
+the checked project sources for construction, symmetry, trace moments, and
+normalized spectral moments.
+
+The upstream Mathlib revision audited for this entry is commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the revision pinned by <code>formalization/lake-manifest.json</code>.
+pinned by <code>formalization/lake-manifest.json</code>.

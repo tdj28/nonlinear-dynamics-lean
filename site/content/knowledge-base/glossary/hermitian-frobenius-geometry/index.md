@@ -1,146 +1,231 @@
 ---
 title: "Hermitian Frobenius geometry"
 slug: "hermitian-frobenius-geometry"
-summary: "Hermitian Frobenius geometry treats complex Hermitian matrices as a finite-dimensional real Euclidean space whose off-diagonal coordinates carry the factor of two required by unitary symmetry and Gaussian normalization."
+summary: "Frobenius geometry turns Hermitian matrices into a real Euclidean space: diagonal coordinates count once, conjugate off-diagonal pairs count twice, and square-root-of-two scaling exposes orthonormal Gaussian coordinates."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry"
 og_image: "hermitian-frobenius-geometry-card.png"
-og_image_alt: "An ambient Frobenius matrix space restricts to a Hermitian real subspace; reflected off-diagonal entries create a factor of two, square-root-of-two rescaling gives orthonormal coordinates, and unitary congruence preserves the geometry."
+og_image_alt: "Two explicit Hermitian matrices have Frobenius inner product zero and norm three; the coordinate ledger shows why each reflected off-diagonal component counts twice."
 ---
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+mathematics, Lean examples, source interpretation, diagram, and accessibility
+remains pending. The page is public so readers can follow the educational
+rebuild while that review remains open.
 {{< /panel >}}
 
-**Hermitian Frobenius geometry** is the Euclidean geometry obtained by placing
-the {{< refterm "hermitian-matrix" "Hermitian matrices" >}} inside the space
-of all finite complex matrices and using the Frobenius inner product. It is the
-geometry in which
+Start with two concrete matrices:
 
 \[
-\langle X,Y\rangle_F
-=\operatorname{Tr}(X^*Y),
+A=
+\begin{bmatrix}
+1 & 1+i\\
+1-i & 2
+\end{bmatrix},
 \qquad
-\lVert X\rVert_F^2
-=\sum_{i,j}|X_{ij}|^2.
+B=
+\begin{bmatrix}
+2 & 1-i\\
+1+i & -1
+\end{bmatrix}.
 \]
 
-The ambient matrix space is complex Euclidean. The Hermitian part is only a
-**real** Euclidean subspace: if \(H=H^*\) and \(r\in\mathbb R\), then
-\((rH)^*=rH\), but multiplying by \(i\) generally produces a skew-Hermitian
-matrix rather than another Hermitian one.
+Both are {{< refterm "hermitian-matrix" "Hermitian" >}}. Their diagonal
+entries are real, and each lower-left entry is the complex conjugate of the
+upper-right entry. We will use these two matrices to discover the geometry
+before introducing its general notation.
 
-This distinction is not bookkeeping trivia. It determines the correct
-orthonormal coordinates, explains the off-diagonal factor of two in
-\(\operatorname{Tr}(H^2)\), makes unitary congruence a real linear isometry,
-and lets Mathlib's intrinsic standard Gaussian inherit unitary symmetry.
+## Multiply matching entries, then add
 
-## The ambient Euclidean space
-
-For matrix size \(n\), write
+For complex matrices, the **Frobenius inner product** conjugates each entry of
+the first matrix, multiplies by the matching entry of the second matrix, and
+adds every result:
 
 \[
-\mathcal F_n
-=\mathbb C^{\operatorname{Fin}(n)\times\operatorname{Fin}(n)}.
+\langle A,B\rangle_F
+=\sum_{r,c}\overline{A_{rc}}\,B_{rc}.
 \]
 
-Lean realizes this as
-<code>EuclideanSpace ℂ (Fin n × Fin n)</code>, abbreviated in the project by
-<code>RandomMatrix.FrobeniusMatrix n</code>. This representation carries the
-finite-dimensional norm, inner product, Borel measurable space, and Gaussian
-infrastructure already developed for Euclidean spaces.
+Here is the complete \(2\) by \(2\) ledger. No entry is hidden.
 
-An ordinary matrix and a point of \(\mathcal F_n\) contain exactly the same
-entries. The maps <code>frobeniusToMatrix</code> and
-<code>matrixToFrobenius</code> merely change the packaging. Their two
-simplification theorems prove that the conversions are inverse, and
-<code>frobeniusMatrixLinearEquiv</code> bundles that fact as a complex linear
-equivalence.
+| Position | \(\overline{A_{rc}}\) | \(B_{rc}\) | Contribution |
+|---|---:|---:|---:|
+| \((0,0)\) | \(1\) | \(2\) | \(2\) |
+| \((0,1)\) | \(1-i\) | \(1-i\) | \((1-i)^2=-2i\) |
+| \((1,0)\) | \(1+i\) | \(1+i\) | \((1+i)^2=2i\) |
+| \((1,1)\) | \(2\) | \(-1\) | \(-2\) |
 
-The central checked identity is
+Adding the last column gives
 
 \[
-\langle x,y\rangle_{\mathbb C}
-=\operatorname{Tr}\!\left(X^*Y\right),
+\langle A,B\rangle_F
+=2-2i+2i-2
+=0.
 \]
 
-where \(X\) and \(Y\) are the ordinary matrices corresponding to \(x\) and
-\(y\). Expanding the diagonal of \(X^*Y\) gives
+The matrices are therefore **orthogonal** in Frobenius geometry. Orthogonal
+does not mean that their entries are disjoint or individually zero. It means
+that all entrywise contributions cancel in the inner product.
+
+{{< reference-figure
+  wide="true"
+  src="hermitian-frobenius-geometry.svg"
+  alt="Two explicit two-by-two Hermitian matrices A and B are followed through an entry ledger. Their diagonal inner-product contributions two and minus two cancel, and their conjugate off-diagonal contributions minus two i and plus two i cancel. A weighted real-coordinate panel gives vectors one, two, square root two, square root two and two, minus one, square root two, minus square root two, whose dot product is zero. A lower panel computes norm squared nine, norm three, correct normalization by three, and two near misses: forgetting the reflected entry gives seven, while dividing by nine gives norm one third."
+  caption="**Finding:** every matrix cell contributes to the Frobenius calculation. For Hermitian matrices, one free upper entry appears twice in the full array, once directly and once as its conjugate reflection. That is why the real and imaginary upper coordinates carry weight \(2\), or equivalently why their orthonormal versions are multiplied by \(\sqrt2\). The example matrices have inner product \(0\), squared norm \(9\), and norm \(3\). Dividing by \(3\) normalizes them; dividing by the squared norm \(9\) does not."
+>}}
+
+## Compute the norm, and avoid two near misses
+
+The Frobenius norm comes from the inner product:
 
 \[
-\operatorname{Tr}(X^*Y)
-=\sum_i\sum_j \overline{X_{ji}}Y_{ji}
-=\sum_{i,j}\overline{X_{ij}}Y_{ij},
+\lVert A\rVert_F^2
+=\langle A,A\rangle_F
+=\sum_{r,c}|A_{rc}|^2.
 \]
 
-which is exactly the finite product-space inner product.
-
-## The Hermitian real subspace
-
-Define
+For \(A\), the four entry contributions are
 
 \[
-\mathcal H_n=\{x\in\mathcal F_n:X=X^*\}.
+|1|^2=1,\qquad
+|1+i|^2=2,\qquad
+|1-i|^2=2,\qquad
+|2|^2=4.
 \]
 
-Because Hermitian matrices are closed under addition and real scalar
-multiplication, \(\mathcal H_n\) is a real subspace of \(\mathcal F_n\). It
-inherits a real inner product and norm from the ambient space. In the Lean
-module, <code>RandomMatrix.hermitianSubmodule n</code> is the bundled real
-submodule and <code>RandomMatrix.HermitianEuclidean n</code> is the convenient
-abbreviation for its underlying Euclidean type.
-
-The intrinsic and ambient descriptions serve different purposes:
-
-| Description | Type of object | Best suited to |
-|---|---|---|
-| Ordinary complex matrix | <code>Matrix (Fin n) (Fin n) ℂ</code> | Entry formulas, multiplication, conjugate transpose |
-| Ambient Frobenius point | <code>FrobeniusMatrix n</code> | Inner products, norms, linear isometries |
-| Intrinsic Hermitian point | <code>HermitianEuclidean n</code> | Real Gaussian measure and unitary action within the Hermitian space |
-| Hermitian subset of ambient matrices | <code>hermitianSet n</code> | Support statements about a matrix law |
-
-The map <code>hermitianToMatrix</code> forgets only the subtype certificate; it
-does not change any entry. Its measurability lets an intrinsic Hermitian
-measure be transported to ordinary matrix space in later work.
-
-## Where the factor of two comes from
-
-Let \(H\in\mathcal H_n\). Its diagonal entries are real; write
-\(H_{ii}=d_i\). For \(i\lt j\), write
+Thus
 
 \[
-H_{ij}=x_{ij}+iy_{ij},
+\lVert A\rVert_F^2=1+2+2+4=9,
 \qquad
-H_{ji}=\overline{H_{ij}}=x_{ij}-iy_{ij}.
+\lVert A\rVert_F=\sqrt9=3.
 \]
 
-The Frobenius squared norm sums **all** matrix entries. Each diagonal
-coordinate appears once, while each freely chosen upper entry reappears below
-the diagonal with the same magnitude. Therefore
+The same calculation gives \(\lVert B\rVert_F^2=9\). Consequently
 
 \[
 \begin{aligned}
-\lVert H\rVert_F^2
-&=\sum_i |H_{ii}|^2
-  +\sum_{i\lt j}\bigl(|H_{ij}|^2+|H_{ji}|^2\bigr)\\
-&=\sum_i d_i^2
-  +2\sum_{i\lt j}\left(x_{ij}^2+y_{ij}^2\right).
+\left\lVert\frac{A}{3}\right\rVert_F
+&=\left\lVert\frac{B}{3}\right\rVert_F=1,\\
+\left\langle\frac A3,\frac B3\right\rangle_F&=0.
 \end{aligned}
 \]
 
-Equivalently, because \(H^*=H\),
+So \(A/3\) and \(B/3\) are an **orthonormal pair**.
+
+Two plausible shortcuts fail:
+
+1. If we record \(1+i\) above the diagonal but forget its reflected
+   \(1-i\), we obtain \(1+2+4=7\), not \(9\). A free coordinate is not the
+   same thing as one occupied matrix cell.
+2. If we divide \(A\) by its squared norm \(9\), then
+   \(\lVert A/9\rVert_F=3/9=1/3\). To produce a unit vector, divide by the
+   norm \(3\), not by the squared norm \(9\).
+
+## The general two-by-two formula
+
+Write two arbitrary Hermitian matrices as
 
 \[
-\lVert H\rVert_F^2=\operatorname{Tr}(H^2).
+H=
+\begin{bmatrix}
+a & z\\
+\overline z & b
+\end{bmatrix},
+\qquad
+K=
+\begin{bmatrix}
+c & w\\
+\overline w & d
+\end{bmatrix},
 \]
 
-The factor of two is geometric, not an arbitrary probability convention. A
-real orthonormal coordinate list for \(\mathcal H_n\) is
+where \(a,b,c,d\in\mathbb R\) and \(z,w\in\mathbb C\). Entrywise expansion
+gives
+
+\[
+\begin{aligned}
+\langle H,K\rangle_F
+&=ac+bd+\overline z\,w+z\,\overline w\\
+&=ac+bd+2\operatorname{Re}(\overline z\,w).
+\end{aligned}
+\]
+
+If \(z=x+iy\) and \(w=u+iv\), then
+
+\[
+\operatorname{Re}(\overline z\,w)=xu+yv,
+\]
+
+so
+
+\[
+\boxed{
+\langle H,K\rangle_F
+=ac+bd+2xu+2yv
+}.
+\]
+
+This formula is a real dot product with weights:
+
+| Free data | Real coordinate | Weight in the inner product |
+|---|---|---:|
+| First diagonal entry | \(a\) | \(1\) |
+| Second diagonal entry | \(b\) | \(1\) |
+| Real part above the diagonal | \(x=\operatorname{Re}z\) | \(2\) |
+| Imaginary part above the diagonal | \(y=\operatorname{Im}z\) | \(2\) |
+
+The diagonal entries each occupy one cell. The upper entry \(z\) and its
+forced lower reflection \(\overline z\) occupy two cells of equal magnitude.
+That physical duplication inside the matrix is the source of the factor
+\(2\).
+
+For the opening example, the corresponding weighted coordinate vectors are
+
+\[
+\Phi(A)=(1,2,\sqrt2,\sqrt2),
+\qquad
+\Phi(B)=(2,-1,\sqrt2,-\sqrt2).
+\]
+
+Their ordinary Euclidean dot product reproduces the matrix inner product:
+
+\[
+\Phi(A)\mathbin{\boldsymbol\cdot}\Phi(B)
+=2-2+2-2
+=0.
+\]
+
+Their squared Euclidean lengths are both \(9\). Thus \(\Phi\) does not merely
+store the free entries. The factors \(\sqrt2\) make it preserve lengths and
+angles.
+
+## From two by two to \(n\) by \(n\)
+
+For an \(n\) by \(n\) Hermitian matrix \(H\), write
+
+\[
+H_{ii}=d_i\in\mathbb R,
+\qquad
+H_{ij}=x_{ij}+iy_{ij}
+\quad(i\lt j),
+\qquad
+H_{ji}=x_{ij}-iy_{ij}.
+\]
+
+Then
+
+\[
+\lVert H\rVert_F^2
+=\sum_i d_i^2
++2\sum_{i\lt j}
+\left(x_{ij}^2+y_{ij}^2\right).
+\]
+
+An orthonormal real coordinate list is therefore
 
 \[
 d_i,
@@ -152,185 +237,438 @@ d_i,
 \]
 
 There are \(n\) diagonal coordinates and two real coordinates for each of the
-\(n(n-1)/2\) strict-upper positions, for a total real dimension
+\(n(n-1)/2\) strict-upper positions. The real dimension is
 
 \[
 n+2\frac{n(n-1)}2=n^2.
 \]
 
-{{< reference-figure
-  src="hermitian-frobenius-geometry.svg"
-  alt="An ambient complex matrix has Frobenius squared norm equal to the sum over all entries. In the Hermitian real subspace, each upper coordinate has a conjugate reflected lower entry, producing weight two. The coordinates d i, square root of two x i j, and square root of two y i j are orthonormal, and unitary congruence preserves the geometry."
-  caption="**Finding:** the same reflected entry that enforces Hermiticity also creates the metric factor of two. Once upper real and imaginary coordinates are multiplied by \(\sqrt2\), the free-coordinate ledger becomes an orthonormal real coordinate system. This identity explains the scaling needed to compare a coordinate Gaussian law with an intrinsic Euclidean Gaussian; that comparison itself is reserved for RMT-08."
->}}
+This matches the number of entries in an \(n\) by \(n\) matrix, but the
+interpretation is different. A general complex matrix has \(2n^2\) real
+coordinates. Hermitian reflection cuts that to \(n^2\).
 
-## Unitary congruence is an isometry
+## Complex inner product versus real inner product
 
-For a fixed unitary matrix \(U\), define congruence by
+The ambient space of all complex matrices is a **complex** inner-product
+space. Mathlib uses the convention
 
 \[
-C_U(X)=UXU^*.
+\langle X,Y\rangle_{\mathbb C}
+=\sum_{r,c}\overline{X_{rc}}Y_{rc}
+=\operatorname{Tr}(X^{\mathrm H}Y).
 \]
 
-It is complex linear on the ambient space. Unitarity gives
-\(U^*U=UU^*=I\), and cyclicity of the
-{{< refterm "matrix-trace" "matrix trace" >}} gives
+It is conjugate-linear in the first argument and linear in the second. Some
+texts reverse the two arguments. Under that reversed convention the answer is
+the complex conjugate of Mathlib's answer. Norms and the condition
+\(\langle X,Y\rangle=0\) are unchanged, but a nonreal inner-product value can
+change, so one must state the convention.
+
+Hermitian matrices form only a **real** vector space. If \(H\) is Hermitian
+and \(r\in\mathbb R\), then \(rH\) is Hermitian. But
+
+\[
+(iH)^{\mathrm H}=-iH,
+\]
+
+so \(iH\) is generally skew-Hermitian rather than Hermitian. There is no
+complex vector-space structure to preserve on the Hermitian locus.
+
+For Hermitian \(H\) and \(K\),
+
+\[
+\langle H,K\rangle_{\mathbb C}
+=\operatorname{Tr}(HK)
+\]
+
+is real. The off-diagonal terms occur as a complex number plus its conjugate,
+as the \(2\operatorname{Re}(\overline z w)\) formula showed. The inherited
+real inner product is therefore
+
+\[
+\langle H,K\rangle_{\mathbb R}
+=\operatorname{Re}\langle H,K\rangle_{\mathbb C}
+=\langle H,K\rangle_{\mathbb C}.
+\]
+
+The final equality is special to Hermitian pairs. For arbitrary complex
+matrices, the complex Frobenius inner product need not be real.
+
+## Why this geometry controls Gaussian coordinates
+
+A {{< refterm "gaussian-distribution" "Gaussian distribution" >}} becomes
+**isotropic** when every direction of the same geometric length has the same
+probabilistic scale. The phrase "same length" is meaningless until an inner
+product has been chosen. Frobenius geometry supplies that choice for the
+Hermitian matrix space.
+
+In the orthonormal coordinates
+
+\[
+d_i,\quad \sqrt2\,x_{ij},\quad \sqrt2\,y_{ij},
+\]
+
+an isotropic centered Gaussian with coordinate variance \(s\) gives every
+listed coordinate variance \(s\). Therefore the unscaled upper-entry parts
+must satisfy
+
+\[
+\operatorname{Var}(x_{ij})
+=\operatorname{Var}(y_{ij})=\frac{s}{2},
+\]
+
+while
+
+\[
+\operatorname{Var}(d_i)=s.
+\]
+
+The factor \(1/2\) in the upper real and imaginary variances is not an
+unrelated random-matrix trick. It compensates for the factor \(2\) in the
+metric. Equivalently, one can begin with equal-variance real Gaussian
+coordinates and divide the two strict-upper coordinates by \(\sqrt2\) when
+assembling the complex matrix.
+
+Geometry does **not** choose the overall value of \(s\). A
+{{< refterm "normalization-convention" "normalization convention" >}} chooses
+that global scale. Geometry fixes the ratio between diagonal and raw
+strict-upper variances once isotropy is requested.
+
+The project makes this distinction exact. Its later normalized-coordinate
+module divides upper real and imaginary coordinates by \(\sqrt2\), proves
+that assembly preserves the real Frobenius inner product, and then compares
+the coordinate product law with an intrinsic Gaussian law. The geometry
+theorem and the probability-law theorem are separate proof obligations.
+
+## Why unitary congruence preserves the geometry
+
+For a unitary matrix \(U\), define
+
+\[
+C_U(X)=UXU^{\mathrm H}.
+\]
+
+Using \(U^{\mathrm H}U=I\) and cyclicity of the
+{{< refterm "matrix-trace" "matrix trace" >}},
 
 \[
 \begin{aligned}
 \langle C_U(X),C_U(Y)\rangle_F
-&=\operatorname{Tr}\!\left((UXU^*)^*(UYU^*)\right)\\
-&=\operatorname{Tr}\!\left(U X^*Y U^*\right)\\
-&=\operatorname{Tr}(X^*Y).
+&=
+\operatorname{Tr}
+\left((UXU^{\mathrm H})^{\mathrm H}(UYU^{\mathrm H})\right)\\
+&=
+\operatorname{Tr}
+\left(U X^{\mathrm H}Y U^{\mathrm H}\right)\\
+&=
+\operatorname{Tr}(X^{\mathrm H}Y).
 \end{aligned}
 \]
 
-Thus congruence is a complex linear isometry of \(\mathcal F_n\). It also
-preserves the Hermitian condition:
+Thus unitary congruence preserves inner products, norms, angles, and
+orthogonality. It also carries Hermitian matrices to Hermitian matrices.
+Restricted to the Hermitian locus, it is a real linear isometry.
 
-\[
-(UHU^*)^*=UH^*U^*=UHU^*.
-\]
+An intrinsic standard Gaussian on a finite-dimensional real inner-product
+space is unchanged by real linear isometries. This yields a checked
+{{< refterm "unitary-invariance" "unitary-invariance" >}} theorem for the
+intrinsic Hermitian standard Gaussian. Identifying that intrinsic measure
+with a separately constructed coordinate matrix law requires the additional
+normalized-coordinate bridge described above.
 
-After restriction to \(\mathcal H_n\), the same action becomes a real linear
-isometry. The module packages both levels: an ambient complex linear isometric
-equivalence and an intrinsic real linear isometric equivalence.
+## In Lean
 
-## The intrinsic standard Gaussian
+The project represents all complex \(n\) by \(n\) matrices as a finite
+Euclidean space, then reinterprets its entries as an ordinary matrix when
+trace algebra is convenient.
 
-On any finite-dimensional real inner-product space \(E\), Mathlib's
-<code>stdGaussian E</code> is the probability measure whose coordinates in an
-orthonormal basis are independent centered real Gaussians of variance one.
-The construction is intrinsic: changing the orthonormal basis does not change
-the measure.
+{{< lean-bridge
+  human="Conjugate each entry of the first matrix, multiply it by the matching entry of the second matrix, and add every cell."
+  math="\(\langle X,Y\rangle_F=\sum_{i,j}\overline{X_{ij}}Y_{ij}=\operatorname{Tr}(X^{\mathrm H}Y)\)."
+  lean="inner ℂ x y = Matrix.trace ((frobeniusToMatrix x)ᴴ * frobeniusToMatrix y)"
+>}}
 
-If \(f:E\simeq E\) is a real linear isometric equivalence, Mathlib proves
+- <code>inner ℂ x y</code> asks for the complex inner product of
+  <code>x</code> and <code>y</code>. The scalar field <code>ℂ</code> makes
+  the convention explicit.
+- <code>frobeniusToMatrix x</code> changes the packaging from a flattened
+  Euclidean point to a square matrix. It does not move or change an entry.
+- <code>ᴴ</code> is Mathlib's postfix notation for conjugate transpose.
+- <code>*</code> is matrix multiplication in this expression.
+- <code>Matrix.trace</code> adds the diagonal entries of the product.
+- The parentheses force Lean to form
+  \((\texttt{frobeniusToMatrix x})^{\mathrm H}\) before multiplying.
+{{< /lean-bridge >}}
 
-\[
-f_*\,\gamma_E=\gamma_E,
-\qquad \gamma_E=\operatorname{stdGaussian}(E).
-\]
+The exact checked theorem in
+<code>GaussianUnitaryEnsembleGeometry.lean</code> is:
 
-Applying that theorem to the restricted unitary congruence gives the checked
-RMT-07 symmetry statement
+~~~lean
+theorem inner_frobenius_eq_trace {n : ℕ} (x y : FrobeniusMatrix n) :
+    inner ℂ x y = Matrix.trace ((frobeniusToMatrix x)ᴴ * frobeniusToMatrix y) := by
+  simp only [PiLp.inner_apply, RCLike.inner_apply, Matrix.trace, Matrix.diag_apply,
+    Matrix.mul_apply, Matrix.conjTranspose_apply, frobeniusToMatrix]
+  rw [Fintype.sum_prod_type]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro i _
+  apply Finset.sum_congr rfl
+  intro j _
+  rw [mul_comm]
+  change star (x.ofLp (j, i)) * y.ofLp (j, i) = _
+  rfl
+~~~
 
-\[
-(C_U)_*\operatorname{stdGaussian}(\mathcal H_n)
-=\operatorname{stdGaussian}(\mathcal H_n).
-\]
+This is a literal project excerpt, including its proof. The proof expands the
+finite Euclidean inner product and the trace, swaps the order of two finite
+sums, and checks one entry.
 
-This is a genuine measure equality, not merely a pointwise norm identity. It
-is also an **intrinsic standard-Gaussian theorem**, not yet the unitary
-invariance of the coordinate-built Gaussian unitary ensemble (GUE) matrix
-law.
+The normalized coordinate map expresses the factor of two in the opposite
+direction. Equal-scale real coordinates are divided by \(\sqrt2\) when they
+become the real and imaginary parts of a strict-upper matrix entry:
 
-## Why the existing coordinate scale fits this geometry
+~~~lean
+/-- Repackage normalized real Hermitian coordinates as the earlier diagonal/upper coordinates. -/
+noncomputable def realToHermitianCoordinates {n : ℕ}
+    (x : HermitianRealIndex n → ℝ) : HermitianCoordinateSpace n :=
+  (fun i ↦ x (.inl i), fun ij ↦
+    ⟨x (.inr (.inl ij)) / Real.sqrt 2,
+      x (.inr (.inr ij)) / Real.sqrt 2⟩)
+~~~
 
-The earlier GUE coordinate construction uses one scale \(s_n\): diagonal
-coordinates have variance \(s_n\), while the real and imaginary parts of an
-upper entry each have variance \(s_n/2\). In the orthonormal real coordinates
-above,
+That excerpt is exact code from
+<code>GaussianUnitaryEnsembleInvariance.lean</code>. The two nested
+<code>.inr</code> cases select the real and imaginary strict-upper coordinate
+families. The theorem that certifies the scaling is:
 
-\[
-\operatorname{Var}(\sqrt2\,x_{ij})
-=\operatorname{Var}(\sqrt2\,y_{ij})
-=2\frac{s_n}{2}=s_n.
-\]
+{{< lean-bridge
+  human="After the square-root-of-two correction, assembling real coordinates into a Hermitian matrix preserves every dot product."
+  math="\(\langle\operatorname{assemble}(x),\operatorname{assemble}(y)\rangle_{\mathbb R}=\langle x,y\rangle_{\mathbb R}\)."
+  lean="normalizedHermitianAssembly_inner x y"
+>}}
 
-Every orthonormal coordinate therefore has the same variance \(s_n\). This
-calculation predicts that the coordinate-built law should equal the intrinsic
-standard Gaussian scaled by \(\sqrt{s_n}\), after both are transported into a
-common space.
+- <code>normalizedHermitianAssembly</code> fills diagonal entries, divides
+  the two upper coordinates by \(\sqrt2\), and fills lower entries by
+  conjugate reflection.
+- <code>inner ℝ</code> asks for a real inner product. Both the coordinate
+  space and the intrinsic Hermitian space are real Euclidean spaces here.
+- The equality says more than equal norms. It preserves cross inner products,
+  so it preserves angles and orthogonality as well.
+- The suffix <code>_inner</code> is part of the project's descriptive theorem
+  name, not built-in Lean syntax.
+{{< /lean-bridge >}}
 
-RMT-07 does **not** prove that comparison. RMT-08 must construct the relevant
-real-linear coordinate isometry, identify the two measures, and then transport
-the intrinsic symmetry theorem to the actual <code>GUE.matrixLaw n</code>.
-Until that bridge is checked, it would be incorrect to cite intrinsic
-<code>stdGaussian</code> invariance as a proof that the coordinate-built matrix
-law is unitarily invariant.
+Here is the exact project theorem:
 
-The subsequent RMT-08 module now discharges that obligation. It introduces
-{{< refterm "normalized-hermitian-coordinates" "normalized Hermitian coordinates" >}},
-proves the full product-measure comparison, and transports the intrinsic
-symmetry to <code>GUE.matrixLaw</code>. The paragraph above remains the exact
-boundary of RMT-07 itself.
+~~~lean
+/-- Normalized coordinate assembly preserves the real Frobenius inner product exactly. -/
+theorem normalizedHermitianAssembly_inner {n : ℕ}
+    (x y : EuclideanSpace ℝ (HermitianRealIndex n)) :
+    inner ℝ (normalizedHermitianAssembly x) (normalizedHermitianAssembly y) =
+      inner ℝ x y := by
+  change inner ℝ
+      (normalizedHermitianAssembly x : FrobeniusMatrix n)
+      (normalizedHermitianAssembly y : FrobeniusMatrix n) = inner ℝ x y
+  simp only [PiLp.inner_apply]
+  rw [← (hermitianRealIndexEquivMatrixIndex n).sum_comp]
+  simp only [Fintype.sum_sum_type]
+  simp [hermitianRealIndexEquivMatrixIndex, hermitianRealIndexToPair,
+    Complex.inner]
+  rw [← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl
+  intro ij _
+  field_simp
+  rw [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 2)]
+  ring
+~~~
 
-## Support is a separate statement
+The final two proof steps use \((\sqrt2)^2=2\), then close the resulting
+polynomial identity.
 
-RMT-07 also defines the measurable subset
+### A tiny standalone worksheet
 
-\[
-\operatorname{Herm}_n
-=\{H:H=H^*\}
-\]
+The following complete Lean file uses only <code>Std</code>. It stores the two
+real diagonal entries and the real and imaginary parts of the one free upper
+entry. Its inner-product function inserts weight \(2\) for that conjugate
+pair.
 
-inside ordinary complex matrix space. It proves that the existing GUE matrix
-law assigns this set mass one, that a sampled matrix is Hermitian almost
-everywhere, and that the complement has mass zero.
+Save it as <code>FrobeniusWorksheet.lean</code>:
 
-This is {{< refterm "almost-everywhere" "almost-everywhere" >}} support. It
-follows because the law is a pushforward through an assembly map whose every
-output is Hermitian. It does not identify a density on \(\mathcal H_n\), and
-it does not imply {{< refterm "unitary-invariance" "unitary invariance" >}}.
+~~~lean
+import Std
 
-## Checked boundary
+structure Hermitian2 where
+  d0 : Int
+  d1 : Int
+  re : Int
+  im : Int
+deriving Repr
 
-The geometry module checks the following layers:
+def frobeniusInner (X Y : Hermitian2) : Int :=
+  X.d0 * Y.d0 + X.d1 * Y.d1 +
+    2 * (X.re * Y.re + X.im * Y.im)
 
-- equivalent packaging of finite matrices as a complex Euclidean space;
-- the trace formula for the ambient Frobenius inner product;
-- the Hermitian matrices as a finite-dimensional real Euclidean subspace;
-- ambient and Hermitian unitary-congruence equivalences;
-- preservation of the inner product and norm;
-- invariance of the intrinsic Hermitian standard Gaussian;
-- measurability of the ambient Hermitian set; and
-- mass-one, almost-everywhere, and zero-complement support for the existing
-  coordinate-built matrix law.
+def frobeniusNormSq (X : Hermitian2) : Int :=
+  frobeniusInner X X
 
-It does not check a coordinate-to-intrinsic Gaussian equivalence, invariance of
-<code>GUE.matrixLaw</code>, a density or Jacobian formula, eigenvalues, moments,
-spectral statistics, a semicircle limit, or universality.
+def halfCountedNormSq (X : Hermitian2) : Int :=
+  X.d0 * X.d0 + X.d1 * X.d1 +
+    X.re * X.re + X.im * X.im
 
-RMT-08 now checks the first two omitted items. The density, spectral, moment,
-and asymptotic items remain outside the project boundary.
+def A : Hermitian2 :=
+  { d0 := 1, d1 := 2, re := 1, im := 1 }
+
+def B : Hermitian2 :=
+  { d0 := 2, d1 := -1, re := 1, im := -1 }
+
+#eval frobeniusInner A B
+#eval frobeniusNormSq A
+#eval frobeniusNormSq B
+#eval halfCountedNormSq A
+
+example : frobeniusInner A B = 0 := by decide
+example : frobeniusNormSq A = 9 := by decide
+example : frobeniusNormSq B = 9 := by decide
+example : halfCountedNormSq A = 7 := by decide
+~~~
+
+With Elan installed, a human opens a terminal in the directory containing the
+file and types:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean FrobeniusWorksheet.lean
+~~~
+
+Lean prints <code>0</code>, <code>9</code>, <code>9</code>, and
+<code>7</code>. The four <code>example</code> declarations then ask the Lean
+kernel to certify those same equalities. This miniature does not define
+complex matrices, Mathlib's inner product, a norm square root, or a Gaussian
+measure. It isolates the integer coordinate ledger that explains the factor
+of two.
+
+### The checked project layer
+
+{{< repo-check >}}
+The authoritative geometry source is
+[formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean).
+The normalized-coordinate isometry is in
+[formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean).
+
+A learner can put these exact lines in a temporary scratch file inside the
+<code>formalization</code> project on an approved Linux builder:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped Matrix NNReal ENNReal RealInnerProductSpace
+
+#check NonlinearDynamics.Random.RandomMatrix.FrobeniusMatrix
+#check NonlinearDynamics.Random.RandomMatrix.HermitianEuclidean
+#check NonlinearDynamics.Random.RandomMatrix.inner_frobenius_eq_trace
+#check NonlinearDynamics.Random.RandomMatrix.frobeniusCongruence_inner
+#check NonlinearDynamics.Random.RandomMatrix.hermitianUnitaryCongruenceLinearIsometryEquiv
+#check NonlinearDynamics.Random.RandomMatrix.map_stdGaussian_hermitianUnitaryCongruence
+#check NonlinearDynamics.Random.HermitianRealIndex
+#check NonlinearDynamics.Random.RandomMatrix.realToHermitianCoordinates
+#check NonlinearDynamics.Random.RandomMatrix.normalizedHermitianAssembly_inner
+#check NonlinearDynamics.Random.RandomMatrix.normalizedHermitianLinearIsometryEquiv
+~~~
+
+<code>import</code> loads the checked project modules and their pinned Mathlib
+dependencies. Each <code>#check</code> asks Lean to elaborate one declaration
+and report its type. It does not prove a new theorem.
+
+From the repository root, a human runs the guarded warning-fatal checks with:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
+
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean
+~~~
+
+These project commands are for an approved Linux cloud builder. The Mac
+workstation is for reading and editing source, Hugo checks, and the standalone
+<code>Std</code> worksheet; it is not a Mathlib build host.
+{{< /repo-check >}}
+
+## Distinctions and boundary cases
+
+| Do not confuse | With | Why the difference matters |
+|---|---|---|
+| Frobenius inner product | Matrix multiplication | The inner product returns one scalar; multiplication returns another matrix |
+| Frobenius norm | Spectral or operator norm | Frobenius sums all entry magnitudes; operator norm measures maximum vector amplification |
+| Hermitian free coordinates | Occupied matrix cells | One free upper entry occupies two conjugate-related cells |
+| Norm | Squared norm | The example has norm \(3\) and squared norm \(9\) |
+| Complex ambient space | Hermitian locus | The first is a complex vector space; the second is generally only a real vector space |
+| Isotropic geometry | A chosen variance scale | The metric fixes relative coordinate weights, not the global variance \(s\) |
+| Intrinsic Gaussian invariance | Invariance of any coordinate-built law | A measure-identification theorem is needed before transporting the symmetry |
+| Orthogonal matrices | Matrices with disjoint nonzero entries | Orthogonality means the complete inner product is zero |
+
+The zero matrix has Frobenius norm \(0\) and cannot be normalized by division.
+In dimension \(0\), the coordinate space and Hermitian space are both
+zero-dimensional; the project's general declarations still make sense.
+For \(1\) by \(1\) Hermitian matrices there is no off-diagonal factor of two,
+because there is no strict-upper entry.
+
+{{< panel "warning" >}}
+**What this page does not prove.** The explicit \(2\) by \(2\) calculation
+checks only the displayed matrices. The cited project theorems establish the
+general trace pairing, unitary isometry, intrinsic Gaussian symmetry, and
+normalized coordinate isometry in every finite dimension. This page does not
+derive a matrix density, a Jacobian, eigenvalue statistics, a semicircle law,
+or universality. It also does not claim that geometry alone selects a random
+matrix law.
+{{< /panel >}}
 
 ## Where to continue
 
+Read {{< refterm "hermitian-matrix" "Hermitian matrix" >}} first if conjugate
+reflection is unfamiliar. The
+{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
+page explains how diagonal and strict-upper data assemble a full matrix.
+{{< refterm "normalized-hermitian-coordinates" "Normalized Hermitian coordinates" >}}
+then develops the square-root-of-two correction as an explicit coordinate
+round trip.
+
+The Deep Dive
 [Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
-derives the geometry, separates the two checked theorem paths, and audits every
-RMT-07 declaration.
+audits the ambient and intrinsic geometry module.
 [From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance]({{< relref "/knowledge-base/deep-dives/normalized-hermitian-coordinates-to-gue-invariance" >}})
-continues through the exact comparison and ambient invariance theorem. The
-{{< refterm "gaussian-unitary-ensemble" "Gaussian unitary ensemble" >}}
-entry records the coordinate variance ledger, while
-[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
-constructs that law. Read
-{{< refterm "unitary-invariance" "unitary invariance" >}} for the distinction
-between preserving Hermiticity, preserving observables, and preserving a full
-probability law.
+continues through the checked measure identification. The
+{{< refterm "gaussian-distribution" "Gaussian distribution" >}},
+{{< refterm "variance" "variance" >}}, and
+{{< refterm "normalization-convention" "normalization convention" >}} pages
+develop the probability language used in that comparison.
 
 ## References
 
 **Mathlib contributors.**
-[Multivariate Gaussian distributions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Probability/Distributions/Gaussian/Multivariate.html),
 [Pi-L2 Euclidean spaces](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/InnerProductSpace/PiL2.html),
-[unitary matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/UnitaryGroup.html),
-and
-[Hermitian matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/Matrix/Hermitian.html),
-Mathlib 4 documentation. The multivariate Gaussian API defines
-<code>stdGaussian</code> by independent standard coordinates in an orthonormal
-basis and proves its transport under real linear isometric equivalences.
+Mathlib 4 documentation. This is the pinned library interface behind finite
+Euclidean coordinate inner products.
+
+**Mathlib contributors.**
+[Norms on matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/Matrix/Normed.html),
+Mathlib 4 documentation. This source defines Mathlib's Frobenius norm and
+records its relation to entrywise norms.
+
+**Mathlib contributors.**
+[Multivariate Gaussian distributions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Probability/Distributions/Gaussian/Multivariate.html),
+Mathlib 4 documentation. This source defines <code>stdGaussian</code> on a
+finite-dimensional real inner-product space and proves invariance under real
+linear isometric equivalences.
 
 **Alice Guionnet.**
 [Rare Events in Random Matrix Theory](https://ems.press/content/book-chapter-files/33150),
 in *Proceedings of the International Congress of Mathematicians 2022*, volume
 2, European Mathematical Society Press, 2022,
 [doi:10.4171/ICM2022/174](https://doi.org/10.4171/ICM2022/174),
-pp. 1008-1052. Section 1.1.1 records the classical GUE variances, invariant
-density, and unitary-conjugation symmetry. This page uses that source for
-context and does not promote its unformalized density statement into a checked
-Lean result.
+pp. 1008-1052. Section 1.1.1 records the classical GUE variance ledger and
+unitary symmetry. This page uses that source for context and does not promote
+its density statement into a checked Lean result.
 
-The exact upstream Lean source audited for this entry is Mathlib commit
-[81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the revision pinned by <code>formalization/lake-manifest.json</code>.
+The local project uses Mathlib 4.32.0 pinned at commit
+[81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997).
