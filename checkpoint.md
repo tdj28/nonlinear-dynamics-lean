@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 10:44 PDT
+Last updated: 2026-07-22 12:35 PDT
 
-Audited pause source checkpoint: `main` at `c0080d4`
+Audited baseline: `main` at `5d30d0f`
 
 Active direction: **paused at the user's request so the existing work can be
 reviewed over the next few days. Do not resume autonomous expansion until the
@@ -65,20 +65,26 @@ listed below for the next session.
   squeeze. It also drove three last source improvements before the pause:
   minimal assumptions on inverse-orbit-sum integration, explicit target names
   for the three inverse-tail inequalities, and a one-step rate upper bound.
-- The retained approved RunPod builder has exactly one running pod. It was
-  observed at zero CPU and about two percent memory while warm-idle. A fresh
-  source-only synchronization then passed the warning-fatal generalized
-  RMT-29 leaf and the pre-RMT-35 full 3,217-job Lean build. The RMT-35 tree has
-  not yet received its final checksum-identical remote release replay. A final
-  attempt resolved a rotated public SSH endpoint through the authenticated
-  RunPod API, but that endpoint presented a different ED25519 server host key
-  from the retained trust record. Strict verification stopped the sync before
-  any remote write. Do not bypass this mismatch: re-establish the pod's server
-  fingerprint through the RunPod control plane or an explicit human-approved
-  trust reset before the next SSH synchronization. Keep resource identifiers
-  and addresses out of this repository. The owner asked that the one approved
-  pod remain up; expect it to idle between compile bursts because proof
-  authoring is not continuously CPU-bound.
+- The approved RMT-35 RunPod CPU builder passed the warning-fatal generalized
+  RMT-29 leaf and the pre-RMT-35 full 3,217-job Lean build, but not the final
+  RMT-35 checksum-identical replay. On 2026-07-22 the owner clarified that the
+  compute should be terminated while its disk should remain. The exact
+  `$1.472`/hour project pod was therefore terminated through the authenticated
+  RunPod REST API; a post-action inventory confirms it is absent and the
+  unrelated account pod was untouched. The separately listed 100 GB
+  `nonlinear-dynamics-lean-cache` network volume remains, with its sequential
+  toolchain and Mathlib snapshots, at approximately `$7`/month. Any future
+  builder must be freshly human-approved and attach that preserved volume.
+  Keep resource identifiers and addresses out of this repository.
+- The same operational pass recovered local Mac space without touching source,
+  Git, Codex sessions, downloaded model weights, or the active Lean toolchain.
+  It cleared the regenerable 24 GB logical `uv` cache, 5 GB npm cache, 7.3 GB
+  Mathlib compiled build tree, and fourteen explicitly named inactive
+  generated audit/build directories with no Git metadata. Ambiguous temporary
+  directories containing nested repositories were preserved. APFS-reported
+  free space rose from 3 GiB to 25 GiB; the repository shrank from 8.8 GB to
+  1.4 GB while Mathlib source and the project's 98 MB build remained. A future
+  local Lean build must restore or rebuild the removed Mathlib artifacts.
 
 ### Deliberately unfinished at the pause
 
@@ -139,12 +145,13 @@ listed below for the next session.
 6. Run warning-fatal leaf/aggregator/root Lean checks, snapshot identity,
    coverage and hygiene tests, deterministic card verification, XML/raster
    inspection, Hugo warnings-fatal rendering, and literal desktop/mobile
-   browser QA. Then run local `make -j1 check`, synchronize source-only to the
-   approved RunPod without `.env`, Git metadata, caches, or generated output,
-   and replay the exact gate remotely. Before SSH, resolve the recorded
-   rotated-host-key mismatch through the authenticated RunPod control plane or
-   an explicit human-approved trust reset; never disable host verification to
-   make the gate pass.
+   browser QA. Then run local `make -j1 check`. If the owner explicitly
+   approves fresh remote compute after resuming, create a new project builder,
+   attach the preserved `nonlinear-dynamics-lean-cache` network volume,
+   establish its server host key through the authenticated control plane,
+   synchronize source-only without `.env`, Git metadata, caches, or generated
+   output, and replay the exact gate remotely. Never disable host verification
+   to make the gate pass.
 7. Only after all of that, replace this pause state with a complete RMT-35
    release checkpoint, commit a coherent milestone, and push `main`.
 
@@ -716,12 +723,11 @@ bridge, or stable-manifold theorem.
   representative bridge, one-sided closure statement, reference reachability,
   and word-only SVG labels. No RMT-25 Lean, prose, citation, or visual blocker
   remains.
-- The active RunPod builder remains up at the user's request. The fast local
-  disk holds the active Lean/Mathlib build tree. The provider API reports 32
-  vCPUs, 128 GB of billed memory, and a current compute rate of $1.472/hour;
-  the guest's larger host-visible memory figure is not the billing tier. The
-  attached 100 GB persistent network volume costs $7/month at RunPod's current
-  first-terabyte rate and holds integrity-tested sequential zstd snapshots of
+- The RMT-25 through RMT-34 release replays used a 32-vCPU, 128-GB RunPod CPU
+  builder billed at $1.472/hour. That compute was terminated on 2026-07-22 at
+  the owner's request. Its separately attached 100 GB persistent network
+  volume remains at approximately $7/month and holds integrity-tested
+  sequential zstd snapshots of
   Elan and Lean 4.32.0 (`736571369` bytes) and the pinned Mathlib/Lake tree
   (`2633278693` bytes). It is not used as a live metadata-heavy `.lake` tree.
   The two obsolete stopped test pods were terminated. No API key, private SSH
@@ -733,15 +739,15 @@ bridge, or stable-manifold theorem.
   tree is `/root/nonlinear-dynamics-lean` on the pod's fast local overlay;
   `/workspace` is persistent network storage and must remain a sequential
   snapshot location rather than a live metadata-heavy `.lake` tree. The
-  builder remains retained under the owner's continuing project-scoped
-  approval.
+  builder was retained under the owner's then-continuing project-scoped
+  approval and was later terminated as recorded above.
 - The synchronized RMT-26 `make check` passes all 3,186 Lean jobs, checkpoint,
   31/31 proof-to-prose coverage, four hygiene regression tests, the 107-file
   teaching scan, and the 332-page warning-fatal Hugo render in 3.90 seconds on
   the warm RunPod tree. The source-only synchronization again excluded `.env`,
   Git metadata, local `.lake`, generated Hugo output, and private review files.
-  The builder remains retained under the owner's continuing project-scoped
-  approval.
+  The builder was retained under the owner's then-continuing project-scoped
+  approval and was later terminated as recorded above.
 - Provenance remains explicit: the human selected the formalization objective
   and approved project-scoped RunPod use; Codex agents performed API discovery,
   proof canonization, prose and figure production, and adversarial review.
@@ -2475,7 +2481,8 @@ Checkpoint/skill milestone QA:
   318-page warning-fatal Hugo render in 11.13 seconds. A read-only filesystem
   audit caught and corrected an initial path choice that had started a cold
   build on persistent network storage; only that disposable compilation was
-  cancelled, and the retained builder remains running.
+  cancelled. The builder was retained at that checkpoint and was later
+  terminated as recorded in the current pause handoff.
 - RMT-26 Lean audit: the 580-line frozen module has SHA-256
   `463a51c280585c932a85acab102421f70231173363fb61008c87a33f866f5253`,
   twenty-nine documented public declarations, seven compiled anonymous
@@ -2514,8 +2521,8 @@ Checkpoint/skill milestone QA:
   `make check` completed all 3,186 Lean jobs, checkpoint and 31/31 coverage
   checks, four hygiene regression tests, the 107-file teaching scan, and the
   332-page warning-fatal Hugo render in 3.90 seconds. The same gate is green on
-  the Mac, and the retained builder remains running under the owner's
-  continuing approval.
+  the Mac. The builder was retained under the owner's then-continuing approval
+  and was later terminated as recorded in the current pause handoff.
 - RMT-27 Lean audit: the 407-line module has SHA-256
   `6473ccd771ce7d913470f73549fb4a0bb675379c930d82ea8fb28979415efd0e`,
   eighteen documented public declarations, one private helper, five compiled
