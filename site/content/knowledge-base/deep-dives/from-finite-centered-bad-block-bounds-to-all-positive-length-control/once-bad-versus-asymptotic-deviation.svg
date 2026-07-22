@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" role="img" aria-labelledby="onceTitle onceDesc">
   <title id="onceTitle">A once-bad event is not an asymptotic deviation event</title>
-  <desc id="onceDesc">The left lane gives the checked Bool collapse model: false has a later witness, the bad event is the singleton false, the map sends false to true, and the preimage is empty. The right lane requires arbitrarily late rational-slack witnesses, a one-sided preimage inclusion, and preservation plus finite mass to upgrade that inclusion to almost invariance before a zero-one argument.</desc>
+  <desc id="onceDesc">The left lane gives the checked Bool collapse model: false has a later witness, the bad event is the singleton false, the map sends false to true, and the preimage is empty. The right lane summarizes the now-checked milestone 32 route: rational-slack recurrence, one-sided inclusion, finite-measure almost-invariance, ergodic dichotomy, and probability-based null selection.</desc>
   <defs><marker id="onceArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/></marker></defs>
   <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}</style>
   <rect width="760" height="430" fill="#F7F4F0"/>
@@ -17,12 +17,12 @@
   <rect x="54" y="286" width="282" height="40" rx="9" class="neutral"/>
   <text x="78" y="311" class="t h">RAW INVARIANCE FAILS</text>
   <rect x="398" y="78" width="334" height="272" rx="14" class="keep"/>
-  <text x="422" y="108" class="t h">RMT-32 MUST BUILD</text>
-  <rect x="424" y="126" width="282" height="42" rx="9" class="neutral"/><text x="449" y="152" class="t s">arbitrarily late rational-slack witnesses</text>
-  <rect x="424" y="180" width="282" height="42" rx="9" class="neutral"/><text x="449" y="206" class="t s">prove a one-sided preimage inclusion</text>
-  <rect x="424" y="234" width="282" height="42" rx="9" class="neutral"/><text x="449" y="260" class="t s">add preservation and finite mass</text>
-  <text x="449" y="301" class="t m">upgrade to almost invariance</text>
-  <text x="449" y="325" class="t m">then, and only then, a zero-one route</text>
+  <text x="422" y="108" class="t h">MILESTONE 32 CHECKED</text>
+  <rect x="424" y="124" width="282" height="38" rx="9" class="neutral"/><text x="445" y="148" class="t s">arbitrarily late rational-slack witnesses</text>
+  <rect x="424" y="172" width="282" height="38" rx="9" class="neutral"/><text x="445" y="196" class="t s">one-sided preimage inclusion</text>
+  <rect x="424" y="220" width="282" height="38" rx="9" class="neutral"/><text x="445" y="244" class="t s">finite-measure almost-invariance</text>
+  <text x="445" y="286" class="t m">ergodicity gives the empty-or-full fork</text>
+  <text x="445" y="310" class="t m">probability plus the ratio selects null</text>
   <rect x="24" y="374" width="712" height="34" rx="9" class="warn"/>
   <text x="71" y="396" class="t s">All positive lengths means an unbounded search range, not asymptotic recurrence.</text>
 </svg>

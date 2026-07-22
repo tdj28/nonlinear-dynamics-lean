@@ -1030,6 +1030,8 @@ h1, h2, h3 { text-wrap: balance; }
   box-shadow: var(--shadow-sm);
 }
 .panel-label { padding-top: 2px; }
+.panel-label,
+.panel-body { min-width: 0; }
 .panel-label span { color: var(--blue-deep); font-family: var(--mono); font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .panel-body > :first-child { margin-top: 0; }
 .panel-body > :last-child { margin-bottom: 0; }
@@ -1184,7 +1186,7 @@ h1, h2, h3 { text-wrap: balance; }
   .article-orientation { grid-template-columns: 1fr; }
   .article-meta > * { padding-inline: 9px; }
   .toc nav { columns: 1; }
-  .panel { grid-template-columns: 1fr; gap: 8px; padding: 21px; }
+  .panel { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 21px; }
   .panel-label { padding-bottom: 8px; border-bottom: 1px solid rgba(22, 36, 58, .18); }
   .learning-checkpoint { grid-template-columns: 42px 1fr; gap: 16px; padding: 24px 20px; }
   .checkpoint-marker span { width: 28px; height: 28px; }

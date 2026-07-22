@@ -241,6 +241,30 @@ def centeredLogPlusBadBlockSet
     (C : DiscreteMatrixCocycle (ι := ι) μ) (m : ℕ) (c : ℝ) : Set Ω :=
   finiteCenteredBadBlockSet C.base C.logPlusNormObservable m c
 
+/-- The integrated Fekete offset is a lower bound for every positive
+normalized centered integral.  This is the reusable numerical bridge from
+the cocycle's deterministic integrated rate to the generic centered-process
+bad-block estimates. -/
+theorem HasIntegrableGeneratorLogPlus.centeredFeketeOffset_le_normalizedIntegral
+    {C : DiscreteMatrixCocycle (ι := ι) μ}
+    (hC : C.HasIntegrableGeneratorLogPlus) (n : ℕ) (hn : n ≠ 0) :
+    C.integratedLogPlusGrowthRate hC - C.integratedLogPlusNorm 1 ≤
+      (∫ ω, centeredProcess C.base C.logPlusNormObservable n ω ∂μ) /
+        (n : ℝ) := by
+  let hX := hC.isIntegrableSubadditiveProcessCandidate
+  have hnR : (n : ℝ) ≠ 0 := by exact_mod_cast hn
+  have hrate :=
+    hC.integratedLogPlusGrowthRate_le_normalized (k := n) hn
+  rw [normalizedIntegratedLogPlusNorm] at hrate
+  rw [hX.integral_centeredProcess C.base_preserving n]
+  calc
+    C.integratedLogPlusGrowthRate hC - C.integratedLogPlusNorm 1 ≤
+        C.integratedLogPlusNorm n / (n : ℝ) -
+          C.integratedLogPlusNorm 1 := sub_le_sub_right hrate _
+    _ = (C.integratedLogPlusNorm n -
+          (n : ℝ) * C.integratedLogPlusNorm 1) / (n : ℝ) := by
+      field_simp [hnR]
+
 /-- The cocycle bad-block measure is controlled by the ratio of its centered
 integrated Fekete offset to any strictly lower threshold.  This finite-measure
 specialization uses the cocycle's bundled base preservation and the existing
@@ -258,23 +282,7 @@ theorem HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_
   let hX := hC.isIntegrableSubadditiveProcessCandidate
   have hδ : ∀ n : ℕ, n ≠ 0 →
       δ ≤ (∫ ω, centeredProcess C.base C.logPlusNormObservable n ω ∂μ) /
-        (n : ℝ) := by
-    intro n hn
-    have hnR : (n : ℝ) ≠ 0 := by exact_mod_cast hn
-    have hrate :=
-      hC.integratedLogPlusGrowthRate_le_normalized (k := n) hn
-    rw [normalizedIntegratedLogPlusNorm] at hrate
-    rw [hX.integral_centeredProcess C.base_preserving n]
-    change δ ≤
-      (C.integratedLogPlusNorm n -
-        (n : ℝ) * C.integratedLogPlusNorm 1) / (n : ℝ)
-    calc
-      δ ≤ C.integratedLogPlusNorm n / (n : ℝ) -
-          C.integratedLogPlusNorm 1 := by
-        exact sub_le_sub_right hrate _
-      _ = (C.integratedLogPlusNorm n -
-          (n : ℝ) * C.integratedLogPlusNorm 1) / (n : ℝ) := by
-        field_simp [hnR]
+        (n : ℝ) := hC.centeredFeketeOffset_le_normalizedIntegral
   simpa only [δ, hX, centeredLogPlusBadBlockSet] using
     hX.measureReal_finiteCenteredBadBlockSet_le_rateRatio
       C.base_preserving m δ c hδ hc
@@ -492,6 +500,7 @@ end BoundaryProbes
 #print axioms IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_finiteCenteredBadBlockSet
 #print axioms IsIntegrableSubadditiveProcessCandidate.centeredProcess_le_badBlockVisitCount
 #print axioms IsIntegrableSubadditiveProcessCandidate.measureReal_finiteCenteredBadBlockSet_le_rateRatio
+#print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.centeredFeketeOffset_le_normalizedIntegral
 #print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio
 
 end NonlinearDynamics.Random.RandomCocycles

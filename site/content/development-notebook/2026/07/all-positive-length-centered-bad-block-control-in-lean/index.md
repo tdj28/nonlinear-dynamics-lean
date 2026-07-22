@@ -3,7 +3,7 @@ title: "All-Positive-Length Centered Bad-Block Control in Lean"
 slug: "all-positive-length-centered-bad-block-control-in-lean"
 date: 2026-07-22
 weight: -65
-author: "tdj31"
+author: "tdj28"
 summary: "Random-matrix-theory milestone 31 (RMT-31) removes the finite witness cap from the centered bad-block estimate. It identifies the all-positive-length event as an increasing union, passes first through extended measure and then through a locally finite real-measure gate, and preserves the finite-cap rate ratio without assuming probability or ergodicity."
 lead: |
   A finite-cap theorem asks whether one bad centered block appears among lengths one through m. RMT-31 lets m grow without changing the question into an asymptotic one. Membership in the resulting union still means one finite witness, not infinitely many witnesses. Extended measure is continuous along the nested caps with no finiteness premise; converting that limit to real-valued measure needs the union itself to have finite extended mass. On a finite measure space, the uniform RMT-30 ratio survives unchanged.
@@ -272,11 +272,12 @@ design. It does decisively refute calling the raw set invariant.
   caption="**Compiled countermodel:** a valid centered subadditive process over a measure-preserving collapse map has raw event `{false}` and preimage `empty`. Once-bad membership is not setwise invariant."
 >}}
 
-Future RMT-32 scope is different: it must define an arbitrarily-late or
-lower-deviation event with rational margins, prove the appropriate one-sided
-preimage relation, and only then add probability normalization and ergodic
-zero-one reasoning. This note gives no live RMT-32 link because that milestone
-is not yet a checked teaching artifact.
+[RMT-32]({{< relref "/development-notebook/2026/07/countably-generated-centered-lower-deviation-events-in-lean" >}})
+now defines the arbitrarily-late strict lower-deviation event with rational
+margins and proves its one-sided preimage relation. Finite-measure ergodicity
+gives an almost-empty or almost-full dichotomy. Probability normalization is
+a separate final ingredient: it makes the full branch have mass one, so the
+strict subunit estimate can exclude it.
 
 ## Public declaration surface in exact source order
 
@@ -805,10 +806,12 @@ refutes raw setwise invariance, which is exactly the claim the module avoids.
 
 What must change before an ergodic zero-one lower-liminf argument can begin?
 
-**Solution.** One must define an arbitrarily-late lower-deviation event, prove
-the appropriate preimage or almost-invariance relation, add probability
-normalization, and only then invoke ergodic rigidity. Those are future RMT-32
-tasks, not RMT-31 conclusions.
+**Solution.** One must define an arbitrarily-late lower-deviation event and
+prove the appropriate preimage or almost-invariance relation before invoking
+ergodic rigidity. RMT-32 now does so. It also keeps the assumption order
+precise: finite-measure ergodicity gives the dichotomy, while probability
+normalization lets a strict subunit estimate select the null branch. None of
+those are RMT-31 conclusions.
 
 ## Reproduction and audit
 
@@ -878,10 +881,12 @@ asymptotic and invariance properties with new quantifiers and proofs.
 proves the uniform estimate for each finite witness cap by visit counting,
 ordered interval packing, and exact finite-measure integration.
 
-**Future scope, RMT-32:** define an arbitrarily-late lower-deviation event,
-establish its measure-theoretic shift behavior, and use probability plus
-ergodic rigidity toward a lower-liminf result. No live link is provided because
-that milestone has not yet been formalized and reviewed.
+**Next, RMT-32:**
+[Countably Generated Centered Lower-Deviation Events in Lean]({{< relref "/development-notebook/2026/07/countably-generated-centered-lower-deviation-events-in-lean" >}})
+defines the rationally exhausted arbitrarily-late event, proves its
+measure-theoretic shift behavior, obtains finite-measure ergodic rigidity, and
+uses probability normalization plus this chapter's ratio to select the null
+branch. It still stops before the exact real-liminf bridge.
 
 ## References
 

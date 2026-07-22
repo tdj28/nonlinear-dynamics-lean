@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" role="img" aria-labelledby="boundaryTitle boundaryDesc">
+  <title id="boundaryTitle">Four boundary models separate four logical jobs</title>
+  <desc id="boundaryDesc">The one-shot collapse is once-bad but asymptotically empty. The two-point identity has an invariant half-mass event but is nonergodic. The one-point half-mass model is ergodic and full with mass below one but is not probability normalized. The zero process has no deviation at a nonpositive target.</desc>
+  <rect width="760" height="460" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.footer{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Boundary models keep the theorem honest</text>
+  <text x="24" y="48" class="t m">Each model blocks a different shortcut through the assumption ladder.</text>
+  <rect x="34" y="76" width="330" height="132" rx="12" class="clay"/>
+  <text x="54" y="103" class="t h">One-shot collapse</text>
+  <text x="54" y="128" class="t s">One finite bad block</text>
+  <text x="54" y="149" class="t s">No negative deviation arbitrarily late</text>
+  <text x="54" y="178" class="t m">Lesson: recurrence is a real extra demand.</text>
+  <rect x="396" y="76" width="330" height="132" rx="12" class="blue"/>
+  <text x="416" y="103" class="t h">Two-point identity</text>
+  <text x="416" y="128" class="t s">Invariant event has half the mass</text>
+  <text x="416" y="149" class="t s">Base is not ergodic</text>
+  <text x="416" y="178" class="t m">Lesson: invariance alone gives no dichotomy.</text>
+  <rect x="34" y="228" width="330" height="132" rx="12" class="green"/>
+  <text x="54" y="255" class="t h">One-point half-mass space</text>
+  <text x="54" y="280" class="t s">Ergodic event is the whole space</text>
+  <text x="54" y="301" class="t s">Its mass is still below one</text>
+  <text x="54" y="330" class="t m">Lesson: probability selects the branch.</text>
+  <rect x="396" y="228" width="330" height="132" rx="12" class="neutral"/>
+  <text x="416" y="255" class="t h">Zero process</text>
+  <text x="416" y="280" class="t s">No strict deviation at a</text>
+  <text x="416" y="301" class="t s">nonpositive target</text>
+  <text x="416" y="330" class="t m">Lesson: strictness and sign stay visible.</text>
+  <rect x="34" y="382" width="692" height="42" rx="10" class="footer"/>
+  <text x="74" y="408" class="t s">Checked edge cases separate recurrence, ergodicity, normalization, and threshold strictness.</text>
+</svg>

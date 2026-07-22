@@ -3,7 +3,7 @@ title: "Subadditive Upper Limsup Bounds from Phase Averaging in Lean"
 slug: "subadditive-upper-limsup-from-phase-averaging-in-lean"
 date: 2026-07-22
 weight: -63
-author: "tdj29"
+author: "tdj28"
 summary: "Random-matrix-theory milestone 29 (RMT-29) combines a corrected finite phase-average bound with ergodic Birkhoff convergence under the original map to prove a samplewise upper limsup estimate for nonnegative subadditive processes, then optimizes all block lengths to reach the integrated log-positive Fekete rate for matrix cocycles."
 lead: |
   A fixed-block proof of the subadditive ergodic theorem faces a subtle trap: an ergodic map can have a nonergodic power. RMT-29 avoids that trap by centering the process, averaging every block phase at finite time, and applying Birkhoff convergence only under the original transformation. The result is the upper half of a Kingman-style argument, formalized with its true probability, integrability, nonnegativity, and positive-block boundaries visible.

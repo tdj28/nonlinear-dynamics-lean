@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="handoffTitle handoffDesc">
+  <title id="handoffTitle">The exact handoff from milestone 32 to milestone 33</title>
+  <desc id="handoffDesc">Milestone 32 ends with nullity of the countably generated strict event. Milestone 33 must prove the exact lower-limit bridge and combine it with the existing upper bound and additive ergodic limit. Lyapunov and Oseledets theory remain outside both milestones.</desc>
+  <defs><marker id="handoffArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <rect width="760" height="330" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.muted{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}.arrow{stroke:#A67C52;stroke-width:2.2;fill:none;marker-end:url(#handoffArrow)}
+  </style>
+  <text x="24" y="28" class="t title">Event nullity is the summit of milestone 32, not of Kingman</text>
+  <text x="24" y="48" class="t m">The lower-limit identification is a separate theorem obligation.</text>
+  <rect x="32" y="78" width="214" height="124" rx="12" class="green"/>
+  <text x="52" y="106" class="t h">Milestone 32 complete</text>
+  <text x="52" y="133" class="t s">countable strict event</text>
+  <text x="52" y="154" class="t s">almost-invariance</text>
+  <text x="52" y="175" class="t s">null-branch selection</text>
+  <line x1="250" y1="140" x2="286" y2="140" class="arrow"/>
+  <rect x="294" y="78" width="214" height="124" rx="12" class="blue"/>
+  <text x="314" y="106" class="t h">Milestone 33 bridge</text>
+  <text x="314" y="133" class="t s">exact lower-limit event</text>
+  <text x="314" y="154" class="t s">prior upper bound</text>
+  <text x="314" y="175" class="t s">additive ergodic limit</text>
+  <line x1="512" y1="140" x2="548" y2="140" class="arrow"/>
+  <rect x="556" y="78" width="172" height="124" rx="12" class="clay"/>
+  <text x="576" y="106" class="t h">Kingman layer</text>
+  <text x="576" y="133" class="t s">samplewise</text>
+  <text x="576" y="154" class="t s">log-positive</text>
+  <text x="576" y="175" class="t s">convergence claim</text>
+  <rect x="72" y="232" width="616" height="54" rx="11" class="muted"/>
+  <text x="94" y="255" class="t h">Still farther away</text>
+  <text x="94" y="275" class="t s">signed logarithmic growth  /  Lyapunov exponents  /  Oseledets splittings</text>
+  <text x="184" y="315" class="t m">EVERY ARROW REQUIRES ITS OWN CHECKED THEOREM</text>
+</svg>

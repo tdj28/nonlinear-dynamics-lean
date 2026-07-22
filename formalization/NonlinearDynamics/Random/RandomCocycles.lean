@@ -17,6 +17,7 @@ import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
 
 /-!
 # Random cocycles
@@ -115,5 +116,15 @@ finite-mass gate, after which the same uniform ratio passes to the union. The
 raw once-bad event is not generally invariant, as a finite measure-preserving
 countermodel records. This layer still proves neither a lower liminf nor
 samplewise convergence, equality with the integrated rate, limit
-integrability, a Lyapunov exponent, or an Oseledets splitting.
+integrability, a Lyapunov exponent, or an Oseledets splitting. A countably
+generated lower-deviation layer then strengthens one finite witness to
+positive witnesses beyond every cutoff at one rational slope below the target.
+Centered subadditivity gives a threshold-relaxed preimage inclusion; rational
+density closes it at the target event. Preservation and finite mass upgrade
+that one-sided inclusion to almost invariance, finite-measure ergodicity gives
+the null-or-conull fork, and probability normalization lets the strict RMT-31
+ratio select the null branch. The cocycle endpoint uses the reusable centered
+Fekete-offset lower bound and retains the empty matrix-index boundary. The
+event is not yet identified with a real liminf, so full samplewise Kingman
+convergence remains a later theorem.
 -/

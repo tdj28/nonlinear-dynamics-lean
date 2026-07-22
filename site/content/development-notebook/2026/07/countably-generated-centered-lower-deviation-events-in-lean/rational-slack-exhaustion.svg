@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="rmt32SlackTitle rmt32SlackDesc">
+  <title id="rmt32SlackTitle">Rational slack exhausts strict lower deviation</title>
+  <desc id="rmt32SlackDesc">Nested lanes of rational witness slopes lie strictly below one target slope. Each lane demands witnesses beyond every cutoff. Their countable union leaves room to relax one rational slope to a larger rational slope without reaching the target.</desc>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Strict means there is room for a rational margin</text>
+  <text x="24" y="48" class="t m">The target is fixed; the witness slope is chosen from a countable dense family.</text>
+  <rect x="42" y="83" width="485" height="52" rx="10" class="blue"/>
+  <text x="62" y="106" class="t h">Lower rational lane</text>
+  <text x="62" y="124" class="t m">Bad blocks occur beyond every cutoff.</text>
+  <rect x="93" y="150" width="485" height="52" rx="10" class="blue"/>
+  <text x="113" y="173" class="t h">Relaxed rational lane</text>
+  <text x="113" y="191" class="t m">Still below the target, with room to absorb one endpoint.</text>
+  <rect x="144" y="217" width="485" height="52" rx="10" class="blue"/>
+  <text x="164" y="240" class="t h">Another rational lane</text>
+  <text x="164" y="258" class="t m">Every included lane carries one durable strict margin.</text>
+  <path d="M544 109 C641 109 641 243 646 243" fill="none" stroke="#A67C52" stroke-width="2.5" stroke-dasharray="5 4"/>
+  <rect x="647" y="76" width="77" height="209" rx="12" class="clay"/>
+  <text x="666" y="110" class="t h">Target</text>
+  <text x="664" y="134" class="t m">never</text>
+  <text x="659" y="151" class="t m">crossed</text>
+  <line x1="685" y1="170" x2="685" y2="244" stroke="#A67C52" stroke-width="3"/>
+  <path d="M677 237 L685 249 L693 237" fill="#A67C52"/>
+  <rect x="42" y="295" width="587" height="40" rx="10" class="cream"/>
+  <text x="62" y="320" class="t s">Countable union: choose any rational lane that works, then keep its margin.</text>
+  <rect x="20" y="348" width="720" height="28" rx="9" class="green"/>
+  <text x="49" y="367" class="t s">Takeaway: rational density gives flexibility and countable measurability at once.</text>
+</svg>

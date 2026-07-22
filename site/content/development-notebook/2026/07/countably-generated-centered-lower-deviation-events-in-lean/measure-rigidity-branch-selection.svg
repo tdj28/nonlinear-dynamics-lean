@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="rmt32RigidityTitle rmt32RigidityDesc">
+  <title id="rmt32RigidityTitle">From one-sided shift stability to the null branch</title>
+  <desc id="rmt32RigidityDesc">A five-stage flow starts with null measurability and one-sided preimage inclusion. Preservation plus finite mass upgrades this to almost-everywhere invariance. Ergodicity then gives almost empty or almost full. Probability normalization converts those branches to mass zero or one, and a strict subunit bound excludes mass one.</desc>
+  <rect width="760" height="470" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Rigidity and branch selection use different assumptions</text>
+  <text x="24" y="48" class="t m">Finite-measure ergodicity creates the dichotomy. Probability is spent only to reject the full branch.</text>
+  <rect x="54" y="76" width="652" height="54" rx="11" class="blue"/>
+  <text x="78" y="99" class="t h">Countable construction plus integrability</text>
+  <text x="78" y="118" class="t m">The strict event is null measurable.</text>
+  <path d="M380 130 L380 151" stroke="#A67C52" stroke-width="2.5"/><path d="M373 145 L380 155 L387 145" fill="#A67C52"/>
+  <rect x="54" y="158" width="652" height="54" rx="11" class="cream"/>
+  <text x="78" y="181" class="t h">Preservation plus finite total mass</text>
+  <text x="78" y="200" class="t m">One-sided preimage inclusion becomes almost-everywhere equality.</text>
+  <path d="M380 212 L380 233" stroke="#A67C52" stroke-width="2.5"/><path d="M373 227 L380 237 L387 227" fill="#A67C52"/>
+  <rect x="54" y="240" width="652" height="54" rx="11" class="blue"/>
+  <text x="78" y="263" class="t h">Finite-measure ergodicity</text>
+  <text x="78" y="282" class="t m">The event is almost empty or almost full.</text>
+  <path d="M380 294 L380 315" stroke="#A67C52" stroke-width="2.5"/><path d="M373 309 L380 319 L387 309" fill="#A67C52"/>
+  <rect x="54" y="322" width="314" height="66" rx="11" class="green"/>
+  <text x="78" y="347" class="t h">Probability branch labels</text>
+  <text x="78" y="369" class="t m">Numerical mass is zero or one.</text>
+  <rect x="392" y="322" width="314" height="66" rx="11" class="clay"/>
+  <text x="416" y="347" class="t h">Strict subunit estimate</text>
+  <text x="416" y="369" class="t m">The full branch is impossible.</text>
+  <path d="M368 355 L392 355" stroke="#A67C52" stroke-width="2.5"/>
+  <rect x="20" y="416" width="720" height="32" rx="9" class="green"/>
+  <text x="47" y="437" class="t s">Takeaway: do not attribute null selection to ergodicity alone; normalization closes the argument.</text>
+</svg>

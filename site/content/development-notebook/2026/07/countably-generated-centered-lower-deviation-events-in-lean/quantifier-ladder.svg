@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" role="img" aria-labelledby="rmt32QuantifierTitle rmt32QuantifierDesc">
+  <title id="rmt32QuantifierTitle">Three lower-deviation quantifier patterns</title>
+  <desc id="rmt32QuantifierDesc">A three-step ladder distinguishes one finite bad witness, witnesses beyond every cutoff at one rational slope, and the union over all rational slopes below the target. Only the final two are asymptotic.</desc>
+  <rect width="760" height="430" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">The quantifier ladder</text>
+  <text x="24" y="48" class="t m">Removing a cap is not yet the same as asking for arbitrarily late witnesses.</text>
+  <rect x="36" y="78" width="688" height="76" rx="12" class="neutral"/>
+  <circle cx="76" cy="116" r="20" class="clay"/>
+  <text x="70" y="121" class="t h">1</text>
+  <text x="112" y="107" class="t h">One finite witness somewhere</text>
+  <text x="112" y="130" class="t m">The all-positive-length event can be triggered once and never again.</text>
+  <path d="M380 154 L380 177" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M373 171 L380 181 L387 171" fill="#A67C52"/>
+  <rect x="36" y="184" width="688" height="76" rx="12" class="blue"/>
+  <circle cx="76" cy="222" r="20" class="blue"/>
+  <text x="70" y="227" class="t h">2</text>
+  <text x="112" y="213" class="t h">Beyond every cutoff at one fixed rational slope</text>
+  <text x="112" y="236" class="t m">A durable margin survives the loss of any finite prefix.</text>
+  <path d="M380 260 L380 283" stroke="#A67C52" stroke-width="2.5"/>
+  <path d="M373 277 L380 287 L387 277" fill="#A67C52"/>
+  <rect x="36" y="290" width="688" height="76" rx="12" class="green"/>
+  <circle cx="76" cy="328" r="20" class="green"/>
+  <text x="70" y="333" class="t h">3</text>
+  <text x="112" y="319" class="t h">Some rational margin strictly below the target</text>
+  <text x="112" y="342" class="t m">The countable union captures strict lower deviation without choosing a margin in advance.</text>
+  <rect x="20" y="384" width="720" height="30" rx="9" class="green"/>
+  <text x="48" y="404" class="t s">Takeaway: milestone 32 changes the quantifiers and earns a shift-stable asymptotic event.</text>
+</svg>

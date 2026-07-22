@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="350" viewBox="0 0 760 350" role="img" aria-labelledby="shiftTitle shiftDesc">
+  <title id="shiftTitle">One-step witness transport needs threshold relaxation</title>
+  <desc id="shiftDesc">A late witness at the shifted state pulls back to a block one step longer at the original state. A finite arithmetic cutoff lets a slightly larger slope absorb the endpoint, producing a relaxed preimage inclusion.</desc>
+  <defs><marker id="shiftArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <rect width="760" height="350" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.arrow{stroke:#A67C52;stroke-width:2.2;fill:none;marker-end:url(#shiftArrow)}
+  </style>
+  <text x="24" y="28" class="t title">Pull the shifted witness back, then pay for one endpoint</text>
+  <text x="24" y="48" class="t m">The larger slope is still chosen below the same final target.</text>
+  <rect x="34" y="82" width="204" height="116" rx="12" class="blue"/>
+  <text x="56" y="110" class="t h">Shifted state</text>
+  <text x="56" y="137" class="t s">late block of length</text>
+  <text x="56" y="158" class="t s">at the lower margin</text>
+  <text x="56" y="182" class="t m">available after every cutoff</text>
+  <line x1="242" y1="140" x2="286" y2="140" class="arrow"/>
+  <rect x="294" y="82" width="172" height="116" rx="12" class="neutral"/>
+  <text x="316" y="110" class="t h">Centered split</text>
+  <text x="316" y="137" class="t s">move back one step</text>
+  <text x="316" y="158" class="t s">length grows by one</text>
+  <text x="316" y="182" class="t m">one-step term is zero</text>
+  <line x1="470" y1="140" x2="514" y2="140" class="arrow"/>
+  <rect x="522" y="82" width="204" height="116" rx="12" class="clay"/>
+  <text x="544" y="110" class="t h">Original state</text>
+  <text x="544" y="137" class="t s">block is one step longer</text>
+  <text x="544" y="158" class="t s">use a slightly larger slope</text>
+  <text x="544" y="182" class="t m">same final target remains</text>
+  <rect x="96" y="226" width="568" height="54" rx="11" class="neutral"/>
+  <text x="120" y="249" class="t h">Finite arithmetic cutoff</text>
+  <text x="120" y="268" class="t s">Beyond it, the strict slope gap dominates the cost of the added endpoint.</text>
+  <rect x="24" y="300" width="712" height="34" rx="9" class="green"/>
+  <text x="68" y="322" class="t s">Result: preimage at the lower margin is contained in the event at the relaxed margin.</text>
+</svg>

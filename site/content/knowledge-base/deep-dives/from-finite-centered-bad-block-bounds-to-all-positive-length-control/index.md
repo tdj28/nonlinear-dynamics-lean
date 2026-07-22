@@ -69,7 +69,7 @@ Useful compact references are
 | Bound | [Transport the uniform RMT-30 ratio](#transport-the-uniform-rmt-30-ratio) | Preserve the ratio without loss |
 | Cocycle | [Specialize to log-positive cocycles](#specialize-to-log-positive-cocycles) | Discharge the generic rate premise |
 | Boundary | [The raw event need not be invariant](#the-raw-event-need-not-be-invariant) | Read the checked countermodel |
-| Future | [What RMT-32 must change](#what-rmt-32-must-change) | Design an asymptotic event honestly |
+| Next layer | [Continue into the checked RMT-32 event](#rmt-32-now-supplies-the-event-layer) | Reach ergodic null selection without claiming a liminf bridge |
 | Practice | [Thirty solved exercises](#thirty-solved-exercises) | Rebuild every bridge |
 
 ## Common setup and notation
@@ -316,8 +316,8 @@ before proving non-invariance.
 
 {{< reference-figure
   src="once-bad-versus-asymptotic-deviation.svg"
-  alt="The left lane shows a checked collapse-map model where false has one later bad witness, the raw once-bad event is the singleton false, and shifting sends the point to true, so the event's preimage is empty and invariance fails. The right lane requires arbitrarily late rational-slack witnesses, a one-sided preimage inclusion, and then preservation plus finite mass to upgrade that inclusion to almost invariance before an ergodic zero-one step."
-  caption="**Finding:** a union over all lengths is still a once-bad event tied to the current origin. In the checked model, shifting removes the sole bad starting point even though the map preserves the measure and the process satisfies the generic interface. The RMT-32 lane is a design requirement, not a proved theorem: it must prove a one-sided preimage inclusion first, then use preservation and finite mass for the almost-invariance upgrade."
+  alt="The left lane shows a checked collapse-map model where false has one later bad witness, the raw once-bad event is the singleton false, and shifting sends the point to true, so the event's preimage is empty and invariance fails. The right lane summarizes checked RMT-32: rational-slack recurrence, one-sided inclusion, finite-measure almost-invariance, ergodic empty-or-full dichotomy, and probability-based null selection."
+  caption="**Finding:** a union over all lengths is still a once-bad event tied to the current origin. In the checked model, shifting removes the sole bad starting point even though the map preserves the measure and the process satisfies the generic interface. The now-checked RMT-32 lane proves a one-sided preimage inclusion first, then uses preservation and finite mass for almost-invariance. Finite-measure ergodicity yields the empty-or-full dichotomy; probability normalization and the strict ratio select the null branch."
 >}}
 
 Null measurability does not imply invariance. Measure preservation does not
@@ -325,14 +325,14 @@ make every dynamically defined set invariant. A subunit bound cannot become a
 zero-one conclusion until the right event earns invariance or almost
 invariance and the matching ergodic hypothesis is present.
 
-## What RMT-32 must change
+## RMT-32 now supplies the event layer
 
-RMT-32 cannot merely add ergodicity to \(B_\infty(c)\). It must replace one
-positive witness by an asymptotic statement, likely an intersection over
-starting cutoffs of unions over later lengths. To represent strict lower
-deviation honestly, choose a rational margin \(q\lt c\).
+RMT-32 does not merely add ergodicity to \(B_\infty(c)\). It replaces one
+positive witness by an asymptotic statement: an intersection over starting
+cutoffs of unions over later positive lengths. To represent strict lower
+deviation honestly, it chooses one rational margin \(q\lt c\).
 
-Schematically, the change is from
+The checked change is from
 
 \[
 \exists n\gt0,\quad Y_n(\omega)\lt cn
@@ -349,17 +349,19 @@ The strict rational slack matters. A sequence can lie below \(c\) infinitely
 often while approaching \(c\), so those witnesses alone do not prove that
 its lower liminf is strictly below \(c\).
 
-The new event must earn:
+The new
+[Rational-Slack Lower-Deviation Events and Ergodic Null Selection]({{< relref "/knowledge-base/deep-dives/rational-slack-lower-deviation-events-and-ergodic-null-selection" >}})
+chapter follows the completed proof. RMT-32 establishes countable null
+measurability, a threshold-relaxed fixed-slope preimage inclusion, rational
+density at the target, and almost-invariance under preservation plus finite
+mass. Finite-measure ergodicity yields an almost-empty or almost-full
+dichotomy. Probability is not needed for that fork; probability normalization
+and RMT-31's strict subunit ratio select the null branch.
 
-1. a precise relation to the lower liminf;
-2. measurable or null-measurable status;
-3. a one-sided preimage inclusion;
-4. an upgrade from that inclusion to almost invariance using preservation and
-   finite mass;
-5. an ergodic zero-one argument in a probability setting; and
-6. passage from rational margins to the exact asymptotic claim.
-
-RMT-31 supplies cap-uniform control, not these six steps.
+The exact equivalence with a library-level real lower limit remains RMT-33's
+job. RMT-31 supplies the quantitative once-bad ceiling used in branch
+selection, while RMT-32 supplies the distinct asymptotic event and rigidity
+layer.
 
 ## The eleven-declaration interface
 

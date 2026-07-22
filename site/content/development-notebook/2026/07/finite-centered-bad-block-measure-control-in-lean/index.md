@@ -3,7 +3,7 @@ title: "Finite Centered Bad-Block Measure Control in Lean"
 slug: "finite-centered-bad-block-measure-control-in-lean"
 date: 2026-07-22
 weight: -64
-author: "tdj30"
+author: "tdj28"
 summary: "Random-matrix-theory milestone 30 (RMT-30) converts finite ordered interval packing into a finite-measure estimate for points with a short centered block below a negative slope. It counts bad-set visits exactly, integrates the count under preservation, and proves a ratio bound without probability or ergodicity."
 lead: |
   A point is marked when some centered block of length at most m falls below the line of slope c. RMT-30 turns those local witnesses into a global measure estimate: if every positive normalized centered integral stays above delta and c is strictly below delta, then the real measure of the finite bad-block set is at most delta divided by c. The proof is finite-measure and measure-preserving, but neither probabilistic nor ergodic.
@@ -304,12 +304,13 @@ set
 
 RMT-29's centered-integral identity and the existing normalized-rate lower
 bound show that this \(\delta\) satisfies the generic premise for every
-positive \(n\). The result is the same ratio estimate for
+positive \(n\). Declaration 9 now exposes that implication as a reusable
+public theorem, and declaration 10 applies it to the same ratio estimate for
 `centeredLogPlusBadBlockSet`.
 
 ## Public declaration surface in exact source order
 
-The module exports nine declarations. Namespace variables already in scope are
+The module exports ten declarations. Namespace variables already in scope are
 described in prose where omitting them makes the signature easier to read.
 
 ### 1. `finiteOrbitVisitCount`
@@ -409,7 +410,23 @@ def centeredLogPlusBadBlockSet
 
 This is a thin cocycle-facing name for the generic bad set.
 
-### 9. `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio`
+### 9. `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.centeredFeketeOffset_le_normalizedIntegral`
+
+```lean
+theorem HasIntegrableGeneratorLogPlus.centeredFeketeOffset_le_normalizedIntegral
+    {C : DiscreteMatrixCocycle (ι := ι) μ}
+    (hC : C.HasIntegrableGeneratorLogPlus) (n : ℕ) (hn : n ≠ 0) :
+    C.integratedLogPlusGrowthRate hC - C.integratedLogPlusNorm 1 ≤
+      (∫ ω, centeredProcess C.base C.logPlusNormObservable n ω ∂μ) /
+        (n : ℝ)
+```
+
+Extracts the reusable numerical bridge from the deterministic integrated
+Fekete rate to every positive normalized centered integral. It uses the
+RMT-29 centered-integral identity and requires no finite-measure, probability,
+or ergodicity typeclass.
+
+### 10. `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio`
 
 ```lean
 theorem HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio
@@ -466,14 +483,15 @@ file.
 | Ratio theorem | `hlim` | Proves the correction factor tends to one |
 | Ratio theorem | `hδmul` | Uses `ge_of_tendsto` and eventual nonzero horizons to obtain \(\delta\le c\mu(s)\) |
 | Ratio theorem | negative-division rewrite | Applies `le_div_iff_of_neg hcneg` and commutes multiplication |
-| Cocycle theorem | `δ` | Names the integrated Fekete offset |
-| Cocycle theorem | `hX` | Retrieves the generic integrable subadditive candidate |
-| Cocycle theorem | `hδ` | Builds the normalized centered-integral lower bound for every positive \(n\) |
-| Inside cocycle `hδ` | `hnR` | Casts \(n\ne0\) into a nonzero real denominator |
-| Inside cocycle `hδ` | `hrate` | Retrieves `integratedLogPlusGrowthRate_le_normalized` |
-| Inside cocycle `hδ` | two rewrites and `change` | Exposes the normalized integral and exact centered-integral formula |
-| Inside cocycle `hδ` | subtraction comparison and `field_simp` | Subtracts the one-step integral and proves the quotient identity |
-| Cocycle theorem | final `simpa` | Instantiates the generic ratio theorem and unfolds the thin wrapper |
+| Centered Fekete bridge | `hX` | Retrieves the generic integrable subadditive candidate |
+| Centered Fekete bridge | `hnR` | Casts \(n\ne0\) into a nonzero real denominator |
+| Centered Fekete bridge | `hrate` | Retrieves `integratedLogPlusGrowthRate_le_normalized` |
+| Centered Fekete bridge | two rewrites | Exposes the normalized integral and exact centered-integral formula |
+| Centered Fekete bridge | subtraction comparison and `field_simp` | Subtracts the one-step integral and proves the quotient identity |
+| Cocycle ratio theorem | `δ` | Names the integrated Fekete offset |
+| Cocycle ratio theorem | `hX` | Retrieves the generic integrable subadditive candidate |
+| Cocycle ratio theorem | `hδ` | Reuses the public centered Fekete bridge at every positive length |
+| Cocycle ratio theorem | final `simpa` | Instantiates the generic ratio theorem and unfolds the thin wrapper |
 
 ## Private boundary-support declarations
 
@@ -540,37 +558,39 @@ the anonymous probes and do not enlarge the public API.
 | 6 | Public receiver theorem | `IsIntegrableSubadditiveProcessCandidate.centeredProcess_le_badBlockVisitCount` |
 | 7 | Public receiver theorem | `IsIntegrableSubadditiveProcessCandidate.measureReal_finiteCenteredBadBlockSet_le_rateRatio` |
 | 8 | Public cocycle definition | `DiscreteMatrixCocycle.centeredLogPlusBadBlockSet` |
-| 9 | Public cocycle receiver theorem | `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio` |
-| 10 | Private boundary definition | `rmt30ZeroProcess` |
-| 11 | Private boundary theorem | `rmt30ZeroProcess_candidate` |
-| 12 | Private boundary definition | `rmt30PositiveAtZeroProcess` |
-| 13 | Private boundary theorem | `rmt30PositiveAtZeroProcess_candidate` |
-| 14 | Private boundary definition | `rmt30TwoPointProbability` |
-| 15 | Private boundary instance | `IsProbabilityMeasure rmt30TwoPointProbability` |
-| 16 | Private boundary theorem | `rmt30Id_not_preErgodic` |
-| 17 | Private boundary definition | `rmt30TwoPointProcess` |
-| 18 | Private boundary theorem | `rmt30TwoPointProcess_candidate` |
-| 19 | Private boundary definition | `rmt30MassTwoMeasure` |
-| 20 | Private boundary instance | `IsFiniteMeasure rmt30MassTwoMeasure` |
-| 21 | Anonymous example | Zero length cap gives the empty bad set |
-| 22 | Anonymous example | Zero horizon is valid for positive cap |
-| 23 | Anonymous example | Zero process and negative threshold give the empty bad set |
-| 24 | Anonymous example | Joint zero corner refutation |
-| 25 | Anonymous example | Zero measure gives zero real bad-set measure |
-| 26 | Anonymous example | Nonergodic two-atom system has a half-mass bad set and a nontrivial ratio bound |
-| 27 | Anonymous example | Equality at the strict threshold is unmarked |
-| 28 | Anonymous example | Mass-two finite-measure rescaling |
-| 29 | Anonymous example | Empty matrix-index cocycle endpoint |
-| 30 | Axiom audit | Cast identity |
-| 31 | Axiom audit | Visit-count integral |
-| 32 | Axiom audit | Bad-set null measurability |
-| 33 | Axiom audit | Pointwise packing inequality |
-| 34 | Axiom audit | Generic rate-ratio theorem |
-| 35 | Axiom audit | Cocycle rate-ratio theorem |
+| 9 | Public cocycle receiver theorem | `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.centeredFeketeOffset_le_normalizedIntegral` |
+| 10 | Public cocycle receiver theorem | `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio` |
+| 11 | Private boundary definition | `rmt30ZeroProcess` |
+| 12 | Private boundary theorem | `rmt30ZeroProcess_candidate` |
+| 13 | Private boundary definition | `rmt30PositiveAtZeroProcess` |
+| 14 | Private boundary theorem | `rmt30PositiveAtZeroProcess_candidate` |
+| 15 | Private boundary definition | `rmt30TwoPointProbability` |
+| 16 | Private boundary instance | `IsProbabilityMeasure rmt30TwoPointProbability` |
+| 17 | Private boundary theorem | `rmt30Id_not_preErgodic` |
+| 18 | Private boundary definition | `rmt30TwoPointProcess` |
+| 19 | Private boundary theorem | `rmt30TwoPointProcess_candidate` |
+| 20 | Private boundary definition | `rmt30MassTwoMeasure` |
+| 21 | Private boundary instance | `IsFiniteMeasure rmt30MassTwoMeasure` |
+| 22 | Anonymous example | Zero length cap gives the empty bad set |
+| 23 | Anonymous example | Zero horizon is valid for positive cap |
+| 24 | Anonymous example | Zero process and negative threshold give the empty bad set |
+| 25 | Anonymous example | Joint zero corner refutation |
+| 26 | Anonymous example | Zero measure gives zero real bad-set measure |
+| 27 | Anonymous example | Nonergodic two-atom system has a half-mass bad set and a nontrivial ratio bound |
+| 28 | Anonymous example | Equality at the strict threshold is unmarked |
+| 29 | Anonymous example | Mass-two finite-measure rescaling |
+| 30 | Anonymous example | Empty matrix-index cocycle endpoint |
+| 31 | Axiom audit | Cast identity |
+| 32 | Axiom audit | Visit-count integral |
+| 33 | Axiom audit | Bad-set null measurability |
+| 34 | Axiom audit | Pointwise packing inequality |
+| 35 | Axiom audit | Generic rate-ratio theorem |
+| 36 | Axiom audit | Centered Fekete offset lower bound |
+| 37 | Axiom audit | Cocycle rate-ratio theorem |
 
-## Six axiom reports
+## Seven axiom reports
 
-The module ends with six `#print axioms` commands in the same theorem order as
+The module ends with seven `#print axioms` commands in the same theorem order as
 the mathematical dependency chain. A warning-fatal Lean run reports:
 
 ```text
@@ -587,6 +607,9 @@ depends on axioms: [propext, Classical.choice, Quot.sound]
 depends on axioms: [propext, Classical.choice, Quot.sound]
 
 'NonlinearDynamics.Random.RandomCocycles.IsIntegrableSubadditiveProcessCandidate.measureReal_finiteCenteredBadBlockSet_le_rateRatio'
+depends on axioms: [propext, Classical.choice, Quot.sound]
+
+'NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.centeredFeketeOffset_le_normalizedIntegral'
 depends on axioms: [propext, Classical.choice, Quot.sound]
 
 'NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio'
@@ -835,12 +858,8 @@ bound. RMT-31 now proves the first bridge; the asymptotic bridge remains open.
 
 ## Reproduction and audit
 
-The frozen source inspected for this note has 497 lines and SHA-256
-`13c9721eff1b864b552d9110218598bd6c51455f9c1fdb3dbbe12b1e77973305`.
-It was checked against repository base commit
-`7ecea15f1278c88634cebdcbdafc9fdf1b0d8ad6`; the RMT-30 leaf itself was an
-assembled worktree artifact at the time of this draft, so that base hash is
-context rather than a claim that the new file already lived in that commit.
+The frozen source inspected for this note has 506 lines and SHA-256
+`a8aee618a10f8434c1c33d8e433fd77e98ed3e5c8dee399e7d6fa323c5079b28`.
 
 Build the leaf module with warnings fatal:
 

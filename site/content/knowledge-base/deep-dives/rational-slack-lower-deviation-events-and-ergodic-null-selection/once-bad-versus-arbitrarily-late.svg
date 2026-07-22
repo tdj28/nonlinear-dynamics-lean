@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="onceTitle onceDesc">
+  <title id="onceTitle">One finite failure versus arbitrarily late failures</title>
+  <desc id="onceDesc">The transient lane has one early failure and no later witnesses. The persistent lane has a witness after every cutoff. Only the second lane reaches the asymptotic event.</desc>
+  <rect width="760" height="330" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.axis{stroke:#7F786D;stroke-width:1.5}.cut{stroke:#A89B8C;stroke-width:1.4;stroke-dasharray:5 4}.bad{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}.good{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.footer{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">One witness is finite history, not asymptotic recurrence</text>
+  <text x="24" y="48" class="t m">A cutoff can always be moved beyond a transient failure.</text>
+  <rect x="24" y="68" width="712" height="82" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="42" y="92" class="t h">Transient pattern</text>
+  <text x="42" y="112" class="t m">Enters the once-bad union</text>
+  <line x1="208" y1="112" x2="694" y2="112" class="axis"/>
+  <circle cx="254" cy="112" r="9" class="bad"/>
+  <circle cx="330" cy="112" r="6" class="good"/>
+  <circle cx="406" cy="112" r="6" class="good"/>
+  <circle cx="482" cy="112" r="6" class="good"/>
+  <circle cx="558" cy="112" r="6" class="good"/>
+  <circle cx="634" cy="112" r="6" class="good"/>
+  <line x1="371" y1="78" x2="371" y2="139" class="cut"/>
+  <text x="381" y="91" class="t m">later cutoff</text>
+  <text x="233" y="139" class="t m">one failure</text>
+  <rect x="24" y="164" width="712" height="82" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text x="42" y="188" class="t h">Persistent pattern</text>
+  <text x="42" y="208" class="t m">Enters both events</text>
+  <line x1="208" y1="208" x2="694" y2="208" class="axis"/>
+  <circle cx="254" cy="208" r="9" class="bad"/>
+  <circle cx="330" cy="208" r="6" class="good"/>
+  <circle cx="406" cy="208" r="9" class="bad"/>
+  <circle cx="482" cy="208" r="6" class="good"/>
+  <circle cx="558" cy="208" r="9" class="bad"/>
+  <circle cx="634" cy="208" r="9" class="bad"/>
+  <line x1="371" y1="174" x2="371" y2="235" class="cut"/>
+  <text x="381" y="187" class="t m">later cutoff</text>
+  <text x="526" y="235" class="t m">later witnesses remain</text>
+  <rect x="24" y="270" width="712" height="42" rx="10" class="footer"/>
+  <text x="45" y="296" class="t s">Arbitrarily late means: every finite cutoff still has a positive witness beyond it.</text>
+</svg>

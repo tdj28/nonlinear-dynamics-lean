@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" role="img" aria-labelledby="ladderTitle ladderDesc">
+  <title id="ladderTitle">Assumption ladder from regularity to null selection</title>
+  <desc id="ladderDesc">Candidate integrability and preservation give null measurability. Finite mass upgrades inclusion to almost-invariance. Ergodicity gives an empty-or-full dichotomy. Probability normalization and the strict finite-block ratio select the empty branch.</desc>
+  <defs><marker id="ladderArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <rect width="760" height="440" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.arrow{stroke:#A67C52;stroke-width:2;fill:none;marker-end:url(#ladderArrow)}
+  </style>
+  <text x="24" y="28" class="t title">Each assumption performs one visible job</text>
+  <text x="24" y="48" class="t m">Ergodicity makes the fork; probability and the strict ratio choose a branch.</text>
+  <rect x="74" y="74" width="612" height="58" rx="11" class="blue"/>
+  <text x="96" y="98" class="t h">Candidate integrability + preservation</text>
+  <text x="96" y="119" class="t s">Centered thresholds and the countable event are null measurable.</text>
+  <line x1="380" y1="134" x2="380" y2="153" class="arrow"/>
+  <rect x="74" y="158" width="612" height="58" rx="11" class="neutral"/>
+  <text x="96" y="182" class="t h">Finite total mass</text>
+  <text x="96" y="203" class="t s">One-sided inclusion plus equal preimage mass becomes almost-invariance.</text>
+  <line x1="380" y1="218" x2="380" y2="237" class="arrow"/>
+  <rect x="74" y="242" width="612" height="58" rx="11" class="clay"/>
+  <text x="96" y="266" class="t h">Ergodicity</text>
+  <text x="96" y="287" class="t s">The almost-invariant event is almost empty or almost the whole space.</text>
+  <line x1="380" y1="302" x2="380" y2="321" class="arrow"/>
+  <rect x="74" y="326" width="612" height="72" rx="11" class="green"/>
+  <text x="96" y="350" class="t h">Probability normalization + strict finite-block ratio</text>
+  <text x="96" y="371" class="t s">The full branch has mass one, while the estimate is strictly below one.</text>
+  <text x="96" y="390" class="t s">Only the null branch remains.</text>
+  <text x="202" y="425" class="t m">DICHOTOMY FIRST  /  NUMERICAL SELECTION SECOND</text>
+</svg>
