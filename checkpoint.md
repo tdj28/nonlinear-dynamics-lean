@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 10:38 PDT
+Last updated: 2026-07-22 10:44 PDT
 
-Baseline before this pause checkpoint: `main` at `e0d28e6`
+Audited pause source checkpoint: `main` at `c0080d4`
 
 Active direction: **paused at the user's request so the existing work can be
 reviewed over the next few days. Do not resume autonomous expansion until the
@@ -23,7 +23,7 @@ listed below for the next session.
 ### What is checked now
 
 - `RealLogNormKingman.lean` is a new 576-line module with thirty-three public
-  named declarations and seven source axiom prints. Its current pre-commit
+  named declarations and seven source axiom prints. Its source-checkpoint
   SHA-256 is
   `ab262f7695330c30fe8f2fdf1d4831e22dcf394ddced6414ce40d27533a3669a`.
   Recompute this hash after any edit; it is not yet a frozen teaching-source
@@ -2841,6 +2841,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `c0080d4`: generalize RMT-29's upper-limsup theorem to an honest eventual
+  lower-bound gate, formalize the compile-checked RMT-35 signed Fekete and
+  pre-ergodic real-log convergence core, and record the deliberate pause and
+  exact resume contract.
 - `624c727`: formalize pointwise finite real-log subadditivity, measurable
   inverse-tail control, two-tail finite-horizon integrability, the signed
   subadditive candidate, the geometric one-tail counterexample, and the
