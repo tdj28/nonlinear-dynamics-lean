@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Three logarithmic observables preserve different information</title>
+  <desc id="desc">A four-row comparison shows that the extended logarithm alone records collapse, the real logarithm records finite contraction, and the positive logarithm retains only expansion.</desc>
+  <rect width="960" height="540" rx="30" fill="#F7F4F0"/>
+  <text x="48" y="62" fill="#16243A" font-family="Georgia,serif" font-size="31" font-weight="700">Three lenses on one norm</text>
+  <text x="48" y="91" fill="#657183" font-family="system-ui,sans-serif" font-size="15">Each observable keeps exactly the information its later proof needs</text>
+  <g font-family="system-ui,sans-serif">
+    <rect x="44" y="126" width="872" height="56" rx="16" fill="#16243A"/>
+    <text x="132" y="160" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="700">NORM REGIME</text>
+    <text x="350" y="160" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="700">EXTENDED LOG</text>
+    <text x="584" y="160" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="700">REAL LOG</text>
+    <text x="804" y="160" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="700">POSITIVE LOG</text>
+    <g font-size="17" fill="#16243A">
+      <rect x="44" y="194" width="872" height="66" rx="14" fill="#F4E5E2"/><text x="132" y="234" text-anchor="middle" font-weight="700">collapse</text><text x="350" y="234" text-anchor="middle" fill="#8B3E33" font-weight="700">bottom</text><text x="584" y="234" text-anchor="middle">zero</text><text x="804" y="234" text-anchor="middle">zero</text>
+      <rect x="44" y="270" width="872" height="66" rx="14" fill="#F3E8E0"/><text x="132" y="310" text-anchor="middle" font-weight="700">contraction</text><text x="350" y="310" text-anchor="middle">negative</text><text x="584" y="310" text-anchor="middle" fill="#8B3E33" font-weight="700">negative</text><text x="804" y="310" text-anchor="middle">zero</text>
+      <rect x="44" y="346" width="872" height="66" rx="14" fill="#FFFFFF"/><text x="132" y="386" text-anchor="middle" font-weight="700">unit scale</text><text x="350" y="386" text-anchor="middle">zero</text><text x="584" y="386" text-anchor="middle">zero</text><text x="804" y="386" text-anchor="middle">zero</text>
+      <rect x="44" y="422" width="872" height="66" rx="14" fill="#EAF1E5"/><text x="132" y="462" text-anchor="middle" font-weight="700">expansion</text><text x="350" y="462" text-anchor="middle">positive</text><text x="584" y="462" text-anchor="middle">positive</text><text x="804" y="462" text-anchor="middle" fill="#315F55" font-weight="700">positive</text>
+    </g>
+  </g>
+</svg>

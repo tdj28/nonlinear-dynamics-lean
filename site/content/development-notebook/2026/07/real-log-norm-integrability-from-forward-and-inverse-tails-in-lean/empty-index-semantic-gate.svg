@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Empty matrix dimension separates algebraic units from norm semantics</title>
+  <desc id="desc">The unique empty matrix is both zero and identity, so it is a unit, while its selected norm is zero. The extended and real logarithms therefore disagree at this boundary.</desc>
+  <rect width="960" height="560" rx="30" fill="#F7F4F0"/>
+  <text x="48" y="62" fill="#16243A" font-family="Georgia,serif" font-size="31" font-weight="700">The empty index is a semantic gate</text>
+  <text x="48" y="91" fill="#657183" font-family="system-ui,sans-serif" font-size="15">Algebra and the selected norm report different facts in the one-element matrix ring</text>
+  <rect x="342" y="126" width="276" height="68" rx="18" fill="#16243A"/>
+  <text x="480" y="156" text-anchor="middle" fill="#FFFFFF" font-family="system-ui,sans-serif" font-size="16">UNIQUE EMPTY MATRIX</text>
+  <text x="480" y="179" text-anchor="middle" fill="#FFFFFF" font-family="system-ui,sans-serif" font-size="14">zero equals identity</text>
+  <path d="M432 194 278 250M528 194l154 56" stroke="#A67C52" stroke-width="3"/>
+  <rect x="66" y="250" width="360" height="184" rx="24" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <text x="246" y="292" text-anchor="middle" fill="#315F55" font-family="system-ui,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">ALGEBRA BRANCH</text>
+  <text x="246" y="337" text-anchor="middle" fill="#16243A" font-family="Georgia,serif" font-size="27" font-weight="700">Unit: yes</text>
+  <text x="246" y="376" text-anchor="middle" fill="#16243A" font-family="system-ui,sans-serif" font-size="16">Identity is always a unit</text>
+  <text x="246" y="402" text-anchor="middle" fill="#657183" font-family="system-ui,sans-serif" font-size="14">Pointwise invertibility survives</text>
+  <rect x="534" y="250" width="360" height="184" rx="24" fill="#F4E5E2" stroke="#8B3E33" stroke-width="2"/>
+  <text x="714" y="292" text-anchor="middle" fill="#8B3E33" font-family="system-ui,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">NORM BRANCH</text>
+  <text x="714" y="332" text-anchor="middle" fill="#16243A" font-family="Georgia,serif" font-size="25" font-weight="700">Selected norm: zero</text>
+  <text x="714" y="372" text-anchor="middle" fill="#8B3E33" font-family="system-ui,sans-serif" font-size="16">Extended log records collapse</text>
+  <text x="714" y="400" text-anchor="middle" fill="#16243A" font-family="system-ui,sans-serif" font-size="16">Real log returns zero</text>
+  <rect x="208" y="472" width="544" height="48" rx="24" fill="#F3E8E0"/>
+  <text x="480" y="502" text-anchor="middle" fill="#16243A" font-family="system-ui,sans-serif" font-size="16" font-weight="700">Require a nonempty index only when bridging these two meanings</text>
+</svg>

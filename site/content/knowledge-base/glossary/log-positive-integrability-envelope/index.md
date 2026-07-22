@@ -285,6 +285,17 @@ negative endpoint needed for a full Lyapunov analysis.
 
 ## Where to continue
 
+RMT-34 repairs the missing negative tail under an explicit, stronger
+interface. The {{< refterm "integrable-generator-log-tails" "integrable generator log tails" >}}
+package combines pointwise matrix units with integrable forward and inverse
+one-step log-positive norms, producing integrable lower and upper rails around
+every finite-time real log norm. A checked geometric-probability example shows
+that the forward moment does not imply the inverse moment. There is one
+separate shortcut: if the RMT-33 log-positive rate is strictly positive, the
+positive log and real log eventually agree almost everywhere without those
+inverse assumptions. That shortcut proves no result in the zero or negative
+rate regime.
+
 [The integrated log-positive growth rate]({{< relref "/knowledge-base/glossary/integrated-log-positive-growth-rate" >}})
 is the RMT-16 successor. It integrates each finite-horizon envelope, proves
 under the same explicit one-step integrability hypothesis that the resulting

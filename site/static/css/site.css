@@ -791,6 +791,7 @@ h1, h2, h3 { text-wrap: balance; }
   background: var(--line);
 }
 .orientation-item { min-width: 0; padding: 18px 20px; background: rgba(255, 253, 248, .72); }
+.article-orientation > .orientation-item:only-child { grid-column: 1 / -1; }
 .orientation-item strong {
   display: block;
   margin-bottom: 8px;

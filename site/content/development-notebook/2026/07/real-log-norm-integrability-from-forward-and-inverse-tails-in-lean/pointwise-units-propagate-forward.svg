@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">Pointwise generator units propagate through forward cocycle values</title>
+  <desc id="desc">Unit generator cards feed a newest-factor-left multiplication ladder whose finite products remain units. A boundary notes that no past-time cocycle is constructed.</desc>
+  <rect width="960" height="520" rx="30" fill="#F7F4F0"/>
+  <text x="48" y="62" fill="#16243A" font-family="Georgia,serif" font-size="31" font-weight="700">Algebra travels forward</text>
+  <text x="48" y="91" fill="#657183" font-family="system-ui,sans-serif" font-size="15">Every new unit factor preserves the unit status of the finite product</text>
+  <path d="M92 245H868" stroke="#4B6787" stroke-width="5" stroke-linecap="round"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <g transform="translate(120 0)"><circle cy="245" r="38" fill="#315F55"/><text y="251" fill="#FFFFFF" font-size="17" font-weight="700">start</text><rect x="-66" y="132" width="132" height="54" rx="14" fill="#EAF1E5" stroke="#315F55"/><text y="165" fill="#16243A" font-size="15">identity unit</text></g>
+    <g transform="translate(360 0)"><circle cy="245" r="38" fill="#4B6787"/><text y="251" fill="#FFFFFF" font-size="17" font-weight="700">step</text><rect x="-78" y="132" width="156" height="54" rx="14" fill="#E8F0F7" stroke="#4B6787"/><text y="165" fill="#16243A" font-size="15">generator unit</text></g>
+    <g transform="translate(600 0)"><circle cy="245" r="38" fill="#4B6787"/><text y="251" fill="#FFFFFF" font-size="17" font-weight="700">step</text><rect x="-78" y="132" width="156" height="54" rx="14" fill="#E8F0F7" stroke="#4B6787"/><text y="165" fill="#16243A" font-size="15">generator unit</text></g>
+    <g transform="translate(840 0)"><circle cy="245" r="46" fill="#16243A"/><text y="239" fill="#FFFFFF" font-size="15">finite</text><text y="260" fill="#FFFFFF" font-size="15" font-weight="700">unit</text></g>
+  </g>
+  <path d="m326 231 18 14-18 14M566 231l18 14-18 14M806 231l18 14-18 14" fill="none" stroke="#F7F4F0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="110" y="354" width="740" height="96" rx="20" fill="#F4E5E2" stroke="#8B3E33"/>
+  <text x="480" y="393" text-anchor="middle" fill="#8B3E33" font-family="system-ui,sans-serif" font-size="16" font-weight="700">ONE-SIDED BOUNDARY</text>
+  <text x="480" y="424" text-anchor="middle" fill="#16243A" font-family="system-ui,sans-serif" font-size="17">No inverse base map and no negative-time value is created</text>
+</svg>

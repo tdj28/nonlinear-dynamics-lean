@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="inverse-pipeline-title inverse-pipeline-desc">
+  <title id="inverse-pipeline-title">Measurable total matrix inversion built from finite entry operations</title>
+  <desc id="inverse-pipeline-desc">Measurable entries feed determinant and constant-row-update constructions. Row updates feed adjugate entries. Determinant reciprocal and adjugate form the total inverse. A finite maximum row-sum norm and continuous positive log complete the observable. A singular branch returns the zero total inverse and is explicitly distinguished from a pseudoinverse.</desc>
+  <defs>
+    <marker id="pipeline-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B3E33"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#F7F4F0"/>
+  <text x="64" y="58" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.4">MEASURABILITY FROM ENTRIES UPWARD</text>
+  <text x="64" y="102" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">Total inversion is a finite measurable pipeline</text>
+
+  <rect x="60" y="148" width="230" height="120" rx="16" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="90" y="188" fill="#284E72" font-family="Arial, sans-serif" font-size="16" font-weight="700">MEASURABLE ENTRIES</text>
+  <text x="90" y="222" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">evaluate one finite row</text>
+  <text x="90" y="246" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">and column at a time</text>
+
+  <path d="M 300 208 L 345 208" stroke="#8B3E33" stroke-width="3" marker-end="url(#pipeline-arrow)"/>
+  <rect x="357" y="130" width="230" height="156" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="387" y="172" fill="#8B3E33" font-family="Arial, sans-serif" font-size="16" font-weight="700">FINITE ALGEBRA</text>
+  <text x="387" y="206" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">determinant from sums</text>
+  <text x="387" y="230" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">and products</text>
+  <text x="387" y="260" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">constant row replacement</text>
+
+  <path d="M 597 208 L 642 208" stroke="#8B3E33" stroke-width="3" marker-end="url(#pipeline-arrow)"/>
+  <rect x="654" y="148" width="230" height="120" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="684" y="188" fill="#315F55" font-family="Arial, sans-serif" font-size="16" font-weight="700">ADJUGATE ENTRIES</text>
+  <text x="684" y="222" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">each entry is another</text>
+  <text x="684" y="246" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">finite determinant</text>
+
+  <path d="M 894 208 L 939 208" stroke="#8B3E33" stroke-width="3" marker-end="url(#pipeline-arrow)"/>
+  <rect x="951" y="148" width="194" height="120" rx="16" fill="#16243A" stroke="#16243A" stroke-width="2"/>
+  <text x="978" y="188" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">TOTAL INVERSE</text>
+  <text x="978" y="222" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="14">determinant reciprocal</text>
+  <text x="978" y="246" fill="#E8F0F7" font-family="Arial, sans-serif" font-size="14">times adjugate</text>
+
+  <path d="M 1048 278 L 1048 335 L 797 335 L 797 383" fill="none" stroke="#8B3E33" stroke-width="3" marker-end="url(#pipeline-arrow)"/>
+  <rect x="670" y="395" width="254" height="126" rx="16" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="701" y="436" fill="#284E72" font-family="Arial, sans-serif" font-size="16" font-weight="700">FINITE ROW-SUM NORM</text>
+  <text x="701" y="470" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">entry norms, finite sums,</text>
+  <text x="701" y="494" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">then a finite maximum</text>
+
+  <path d="M 660 458 L 599 458" stroke="#8B3E33" stroke-width="3" marker-end="url(#pipeline-arrow)"/>
+  <rect x="342" y="395" width="245" height="126" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="373" y="436" fill="#315F55" font-family="Arial, sans-serif" font-size="16" font-weight="700">POSITIVE LOG</text>
+  <text x="373" y="470" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">continuous real function</text>
+  <text x="373" y="494" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">completes the observable</text>
+
+  <path d="M 951 232 L 1015 311" stroke="#A67C52" stroke-width="3" stroke-dasharray="8 7"/>
+  <rect x="835" y="548" width="310" height="105" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="866" y="587" fill="#8B3E33" font-family="Arial, sans-serif" font-size="16" font-weight="700">SINGULAR BRANCH</text>
+  <text x="866" y="619" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">returns zero total inverse</text>
+  <text x="866" y="643" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">not a pseudoinverse</text>
+
+  <rect x="60" y="566" width="700" height="87" rx="16" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="91" y="603" fill="#16243A" font-family="Arial, sans-serif" font-size="15" font-weight="700">WHAT THE PIPELINE PROVES</text>
+  <text x="91" y="634" fill="#5A544C" font-family="Arial, sans-serif" font-size="14">global measurability of the total inverse-norm envelope, without claiming faithful singular behavior</text>
+</svg>

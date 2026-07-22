@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Two proof routes for real log-norm behavior</title>
+  <desc id="desc">A main ladder builds finite-time signed integrability from pointwise units and two generator tails. A separate side route transfers a strictly positive clipped limit to the real logarithm.</desc>
+  <rect width="960" height="560" rx="30" fill="#F7F4F0"/>
+  <path d="M36 112H924" stroke="#D8CDC1" stroke-width="2"/>
+  <text x="48" y="72" fill="#16243A" font-family="Georgia,serif" font-size="32" font-weight="700">Two routes, two honest outputs</text>
+  <text x="48" y="101" fill="#657183" font-family="system-ui,sans-serif" font-size="15">Finite-time infrastructure on the left, a positive-rate transfer on the right</text>
+  <rect x="48" y="142" width="554" height="370" rx="24" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="76" y="182" fill="#315F55" font-family="system-ui,sans-serif" font-size="14" font-weight="700" letter-spacing="1.4">MAIN LADDER</text>
+  <g font-family="system-ui,sans-serif" font-size="17" fill="#16243A">
+    <rect x="86" y="208" width="478" height="48" rx="14" fill="#FFFFFF"/><text x="110" y="238">Total real log-norm is measurable</text>
+    <path d="M325 256V278" stroke="#4B6787" stroke-width="3"/><path d="m317 272 8 10 8-10" fill="none" stroke="#4B6787" stroke-width="3"/>
+    <rect x="86" y="282" width="478" height="48" rx="14" fill="#FFFFFF"/><text x="110" y="312">Pointwise units restore signed algebra</text>
+    <path d="M325 330V352" stroke="#4B6787" stroke-width="3"/><path d="m317 346 8 10 8-10" fill="none" stroke="#4B6787" stroke-width="3"/>
+    <rect x="86" y="356" width="478" height="48" rx="14" fill="#FFFFFF"/><text x="110" y="386">Forward and inverse tails form two rails</text>
+    <path d="M325 404V426" stroke="#4B6787" stroke-width="3"/><path d="m317 420 8 10 8-10" fill="none" stroke="#4B6787" stroke-width="3"/>
+    <rect x="86" y="430" width="478" height="52" rx="14" fill="#315F55"/><text x="110" y="462" fill="#FFFFFF" font-weight="700">Integrable signed process candidate</text>
+  </g>
+  <rect x="630" y="142" width="282" height="370" rx="24" fill="#F4E5E2" stroke="#8B3E33" stroke-width="2"/>
+  <text x="658" y="182" fill="#8B3E33" font-family="system-ui,sans-serif" font-size="14" font-weight="700" letter-spacing="1.4">SIDE ROUTE</text>
+  <circle cx="771" cy="242" r="58" fill="#FFFFFF"/>
+  <path d="M741 247c18-30 42-30 60 0" fill="none" stroke="#8B3E33" stroke-width="7" stroke-linecap="round"/>
+  <text x="683" y="329" fill="#16243A" font-family="system-ui,sans-serif" font-size="17" font-weight="700">Strictly positive rate</text>
+  <path d="M771 346V382" stroke="#8B3E33" stroke-width="3"/><path d="m763 376 8 10 8-10" fill="none" stroke="#8B3E33" stroke-width="3"/>
+  <rect x="660" y="394" width="222" height="74" rx="16" fill="#FFFFFF"/>
+  <text x="771" y="424" text-anchor="middle" fill="#16243A" font-family="system-ui,sans-serif" font-size="16">Clipping eventually</text>
+  <text x="771" y="447" text-anchor="middle" fill="#16243A" font-family="system-ui,sans-serif" font-size="16" font-weight="700">does nothing</text>
+</svg>

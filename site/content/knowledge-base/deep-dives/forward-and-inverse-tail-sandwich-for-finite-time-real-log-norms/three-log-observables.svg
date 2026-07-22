@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="three-log-title three-log-desc">
+  <title id="three-log-title">Three logarithmic observables keep different information</title>
+  <desc id="three-log-desc">A four-row comparison covers collapse, finite contraction, unit scale, and expansion. Extended log alone marks collapse as bottom. Total real log records finite contraction but maps collapse to zero. Positive log maps collapse, contraction, and unit scale to zero, retaining only expansion.</desc>
+  <rect width="1200" height="700" fill="#F7F4F0"/>
+  <text x="64" y="58" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.4">OBSERVABLE INFORMATION LEDGER</text>
+  <text x="64" y="102" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">One norm enters three different policies</text>
+
+  <rect x="60" y="145" width="1080" height="455" rx="18" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <rect x="60" y="145" width="1080" height="72" rx="18" fill="#16243A"/>
+  <rect x="60" y="199" width="1080" height="18" fill="#16243A"/>
+
+  <text x="99" y="188" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">NORM REGIME</text>
+  <text x="363" y="188" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">EXTENDED LOG</text>
+  <text x="660" y="188" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">TOTAL REAL LOG</text>
+  <text x="952" y="188" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" font-weight="700">POSITIVE LOG</text>
+
+  <line x1="305" y1="217" x2="305" y2="600" stroke="#C4B8A8" stroke-width="2"/>
+  <line x1="600" y1="217" x2="600" y2="600" stroke="#C4B8A8" stroke-width="2"/>
+  <line x1="895" y1="217" x2="895" y2="600" stroke="#C4B8A8" stroke-width="2"/>
+  <line x1="60" y1="312" x2="1140" y2="312" stroke="#C4B8A8" stroke-width="2"/>
+  <line x1="60" y1="408" x2="1140" y2="408" stroke="#C4B8A8" stroke-width="2"/>
+  <line x1="60" y1="504" x2="1140" y2="504" stroke="#C4B8A8" stroke-width="2"/>
+
+  <rect x="74" y="231" width="215" height="66" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="105" y="260" fill="#8B3E33" font-family="Arial, sans-serif" font-size="16" font-weight="700">COLLAPSE</text>
+  <text x="105" y="284" fill="#5A544C" font-family="Arial, sans-serif" font-size="14">zero norm</text>
+  <text x="420" y="274" text-anchor="middle" fill="#8B3E33" font-family="Arial, sans-serif" font-size="18" font-weight="700">BOTTOM</text>
+  <text x="747" y="274" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZERO</text>
+  <text x="1017" y="274" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZERO</text>
+
+  <rect x="74" y="327" width="215" height="66" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="105" y="356" fill="#284E72" font-family="Arial, sans-serif" font-size="16" font-weight="700">CONTRACTION</text>
+  <text x="105" y="380" fill="#5A544C" font-family="Arial, sans-serif" font-size="14">strictly below unit scale</text>
+  <text x="420" y="370" text-anchor="middle" fill="#284E72" font-family="Arial, sans-serif" font-size="18" font-weight="700">NEGATIVE</text>
+  <text x="747" y="370" text-anchor="middle" fill="#284E72" font-family="Arial, sans-serif" font-size="18" font-weight="700">NEGATIVE</text>
+  <text x="1017" y="370" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZERO</text>
+
+  <rect x="74" y="423" width="215" height="66" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="105" y="452" fill="#16243A" font-family="Arial, sans-serif" font-size="16" font-weight="700">UNIT SCALE</text>
+  <text x="105" y="476" fill="#5A544C" font-family="Arial, sans-serif" font-size="14">norm exactly one</text>
+  <text x="420" y="466" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZERO</text>
+  <text x="747" y="466" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZERO</text>
+  <text x="1017" y="466" text-anchor="middle" fill="#16243A" font-family="Arial, sans-serif" font-size="18" font-weight="700">ZERO</text>
+
+  <rect x="74" y="519" width="215" height="66" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="105" y="548" fill="#315F55" font-family="Arial, sans-serif" font-size="16" font-weight="700">EXPANSION</text>
+  <text x="105" y="572" fill="#5A544C" font-family="Arial, sans-serif" font-size="14">strictly above unit scale</text>
+  <text x="420" y="562" text-anchor="middle" fill="#315F55" font-family="Arial, sans-serif" font-size="18" font-weight="700">POSITIVE</text>
+  <text x="747" y="562" text-anchor="middle" fill="#315F55" font-family="Arial, sans-serif" font-size="18" font-weight="700">POSITIVE</text>
+  <text x="1017" y="562" text-anchor="middle" fill="#315F55" font-family="Arial, sans-serif" font-size="18" font-weight="700">POSITIVE</text>
+
+  <text x="64" y="650" fill="#5A544C" font-family="Arial, sans-serif" font-size="15">Words indicate information retained, not numerical scale. Mathematics and exact conventions are stated in the chapter.</text>
+</svg>

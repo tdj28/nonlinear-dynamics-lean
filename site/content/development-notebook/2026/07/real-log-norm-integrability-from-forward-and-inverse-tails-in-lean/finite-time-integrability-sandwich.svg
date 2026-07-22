@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Integrable lower and upper rails trap the finite-time real log norm</title>
+  <desc id="desc">An inverse orbit-sum rail lies below the real log-norm path, while the forward positive-log rail lies above it. Integrability of both rails certifies the middle path.</desc>
+  <rect width="960" height="540" rx="30" fill="#F7F4F0"/>
+  <text x="48" y="62" fill="#16243A" font-family="Georgia,serif" font-size="31" font-weight="700">Trap the signed observable between two rails</text>
+  <text x="48" y="91" fill="#657183" font-family="system-ui,sans-serif" font-size="15">Forward expansion controls above, inverse contraction controls below</text>
+  <rect x="62" y="126" width="836" height="330" rx="24" fill="#FFFFFF" stroke="#D8CDC1"/>
+  <path d="M102 212C245 172 330 222 454 186S692 156 858 202" fill="none" stroke="#315F55" stroke-width="9" stroke-linecap="round"/>
+  <path d="M102 298C226 254 328 334 456 282S690 324 858 274" fill="none" stroke="#16243A" stroke-width="6" stroke-linecap="round"/>
+  <path d="M102 386C234 354 348 420 470 372S706 408 858 354" fill="none" stroke="#8B3E33" stroke-width="9" stroke-linecap="round"/>
+  <g font-family="system-ui,sans-serif">
+    <rect x="116" y="145" width="236" height="42" rx="21" fill="#EAF1E5"/><text x="234" y="171" text-anchor="middle" fill="#315F55" font-size="15" font-weight="700">forward integrable rail</text>
+    <rect x="356" y="257" width="248" height="42" rx="21" fill="#E8F0F7"/><text x="480" y="283" text-anchor="middle" fill="#16243A" font-size="15" font-weight="700">finite-time real log norm</text>
+    <rect x="572" y="389" width="258" height="42" rx="21" fill="#F4E5E2"/><text x="701" y="415" text-anchor="middle" fill="#8B3E33" font-size="15" font-weight="700">inverse integrable rail</text>
+  </g>
+  <path d="M885 208v168" stroke="#A67C52" stroke-width="3"/><path d="m877 216 8-10 8 10M877 368l8 10 8-10" fill="none" stroke="#A67C52" stroke-width="3"/>
+  <text x="480" y="498" text-anchor="middle" fill="#16243A" font-family="Georgia,serif" font-size="22" font-weight="700">Two-sided domination certifies integrability in the middle</text>
+</svg>

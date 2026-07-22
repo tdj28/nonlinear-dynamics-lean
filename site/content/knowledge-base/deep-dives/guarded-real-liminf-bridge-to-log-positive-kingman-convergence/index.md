@@ -2032,3 +2032,11 @@ interpret and manipulate the real lower limit honestly.
 
 The limit is nonnegative and expansion-only. It need not equal the signed
 top Lyapunov exponent.
+
+The next checked layer is
+[The Forward-and-Inverse Tail Sandwich for Finite-Time Real Log Norms]({{< relref "/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms" >}}).
+It supplies pointwise unit and inverse-tail hypotheses that make every
+finite-time signed real-log observable integrable and subadditive. It also
+isolates the strictly positive-rate case where the theorem above can be
+unclipped without those hypotheses. That successor still does not prove a
+general signed almost-everywhere limit or an Oseledets splitting.

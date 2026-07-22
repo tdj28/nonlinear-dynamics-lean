@@ -11,6 +11,18 @@ ignoreFiles:
   - 'node_modules/'
   - '__pycache__/'
 
+module:
+  hugoVersion:
+    min: '0.153.0'
+  mounts:
+    - source: 'static'
+      target: 'static'
+    - source: '../formalization/NonlinearDynamics'
+      target: 'static/lean/NonlinearDynamics'
+      files:
+        - '*.lean'
+        - '**/*.lean'
+
 params:
   description: 'A development notebook and knowledge base for formalizing nonlinear dynamics in Lean.'
   repository: 'https://github.com/tdj28/nonlinear-dynamics-lean'

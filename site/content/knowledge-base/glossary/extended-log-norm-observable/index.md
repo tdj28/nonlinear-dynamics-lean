@@ -326,6 +326,16 @@ conclusions of a subadditive or multiplicative ergodic theorem.
 
 ## Where to continue
 
+[The Forward-and-Inverse Tail Sandwich for Finite-Time Real Log Norms]({{< relref "/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms" >}})
+returns to the signed real logarithm in RMT-34. Pointwise generator units
+propagate to finite products, and a nonempty matrix index then identifies the
+finite extended logarithm with the coercion of the total real logarithm. The
+nonempty gate is semantic: in empty dimension the unique matrix is a unit but
+has norm zero, so the extended value is bottom while `Real.log 0` is zero.
+The companion {{< refterm "integrable-generator-log-tails" "integrable generator log tails" >}}
+entry explains the extra forward and inverse moments used to make the signed
+real observable integrable.
+
 [Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
 is the immediate analytic successor. It applies the real positive logarithm
 to the same cocycle norm to obtain a nonnegative

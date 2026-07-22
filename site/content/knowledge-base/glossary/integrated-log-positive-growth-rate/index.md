@@ -285,6 +285,16 @@ sequence of real numbers.
 
 ## Where to continue
 
+RMT-34's
+[Forward-and-Inverse Tail Sandwich]({{< relref "/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms" >}})
+adds a precisely guarded real-log endpoint. When this deterministic
+log-positive rate is strictly positive, RMT-33 convergence forces the
+finite-time unclipped logarithm to become positive eventually, so the
+normalized real log converges almost everywhere to the same rate. The theorem
+does not require matrix invertibility or an inverse-tail moment. It says
+nothing about a zero or negative signed rate, and its empty-dimensional
+specialization is vacuous because the present rate is then zero.
+
 The
 {{< refterm "ergodic-probability-base" "ergodic probability base" >}}
 entry separates the unit-mass, invariant-rigidity, and finite-time

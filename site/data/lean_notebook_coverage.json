@@ -67,6 +67,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase",
     "notebook": "site/content/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability",
+    "notebook": "site/content/development-notebook/2026/07/real-log-norm-integrability-from-forward-and-inverse-tails-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks",
     "notebook": "site/content/development-notebook/2026/07/finite-block-birkhoff-bounds-for-subadditive-cocycles/index.md"

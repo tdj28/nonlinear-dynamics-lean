@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="derivative-context-title derivative-context-desc">
+  <title id="derivative-context-title">Derivative-cocycle motivation for forward and inverse norm tails</title>
+  <desc id="derivative-context-desc">A nonlinear orbit crosses four states. Local tangent arrows are transported by successive derivative matrices into an ordered finite product. One lens highlights strongest amplification through the forward norm, while another highlights weakest transmission and near-collapse through the inverse norm. A footer states that the differential-geometric setting is motivation only.</desc>
+  <defs>
+    <marker id="orbit-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8B3E33"/>
+    </marker>
+    <marker id="tangent-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#315F55"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#F7F4F0"/>
+  <text x="64" y="58" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.4">NONLINEAR-DYNAMICS MOTIVATION</text>
+  <text x="64" y="102" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">Local linearization turns an orbit into a matrix product</text>
+
+  <rect x="55" y="142" width="1090" height="245" rx="20" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="83" y="179" fill="#8B3E33" font-family="Arial, sans-serif" font-size="15" font-weight="700">NONLINEAR ORBIT AND TANGENT TRANSPORT</text>
+
+  <path d="M 170 277 C 270 198, 370 335, 470 257 S 670 196, 770 277 S 970 335, 1040 246" fill="none" stroke="#8B3E33" stroke-width="4" marker-end="url(#orbit-arrow)"/>
+
+  <circle cx="170" cy="277" r="25" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <circle cx="455" cy="267" r="25" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/>
+  <circle cx="750" cy="268" r="25" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="3"/>
+  <circle cx="1030" cy="256" r="25" fill="#16243A" stroke="#16243A" stroke-width="3"/>
+
+  <text x="133" y="340" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">initial state</text>
+  <text x="419" y="340" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">next state</text>
+  <text x="711" y="340" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">later state</text>
+  <text x="982" y="340" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">finite horizon</text>
+
+  <path d="M 170 270 L 140 218" stroke="#315F55" stroke-width="4" marker-end="url(#tangent-arrow)"/>
+  <path d="M 455 260 L 414 204" stroke="#315F55" stroke-width="4" marker-end="url(#tangent-arrow)"/>
+  <path d="M 750 261 L 699 194" stroke="#315F55" stroke-width="4" marker-end="url(#tangent-arrow)"/>
+  <path d="M 1030 249 L 968 174" stroke="#315F55" stroke-width="4" marker-end="url(#tangent-arrow)"/>
+
+  <rect x="86" y="416" width="310" height="178" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="117" y="456" fill="#284E72" font-family="Arial, sans-serif" font-size="16" font-weight="700">FORWARD-NORM LENS</text>
+  <text x="117" y="493" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">strongest tangent amplification</text>
+  <line x1="117" y1="516" x2="360" y2="516" stroke="#4B6787" stroke-width="2"/>
+  <text x="117" y="548" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">useful for sensitivity and</text>
+  <text x="117" y="572" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">finite-time instability</text>
+
+  <rect x="445" y="416" width="310" height="178" rx="18" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <text x="476" y="456" fill="#8B3E33" font-family="Arial, sans-serif" font-size="16" font-weight="700">ORDERED PRODUCT</text>
+  <text x="476" y="493" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">new local map multiplies on left</text>
+  <line x1="476" y1="516" x2="719" y2="516" stroke="#A67C52" stroke-width="2"/>
+  <text x="476" y="548" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">this abstract finite matrix layer</text>
+  <text x="476" y="572" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">is the part formalized here</text>
+
+  <rect x="804" y="416" width="310" height="178" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="835" y="456" fill="#315F55" font-family="Arial, sans-serif" font-size="16" font-weight="700">INVERSE-NORM LENS</text>
+  <text x="835" y="493" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="15">weakest transmission</text>
+  <line x1="835" y1="516" x2="1078" y2="516" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="835" y="548" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">reveals near-collapse and</text>
+  <text x="835" y="572" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">poor finite-time conditioning</text>
+
+  <rect x="55" y="633" width="1090" height="52" rx="12" fill="#16243A"/>
+  <text x="83" y="666" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="15">Motivation only: no manifold, derivative, chain rule, tangent bundle, or stable manifold is formalized in this module.</text>
+</svg>

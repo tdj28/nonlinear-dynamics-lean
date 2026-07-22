@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img" aria-labelledby="tail-boundaries-title tail-boundaries-desc">
+  <title id="tail-boundaries-title">Infinite-volume and probability-space boundaries for the missing inverse tail</title>
+  <desc id="tail-boundaries-desc">The left lane shows a constant contraction on infinite Lebesgue measure. Its zero forward positive log is integrable, while its nonzero constant inverse positive log is not. The right lane shows a geometric probability law: atom mass halves as inverse and signed tail size doubles, leaving the same positive weighted contribution at every atom. The base is identity, so the example is neither independent sampling nor ergodic.</desc>
+  <rect width="1200" height="740" fill="#F7F4F0"/>
+  <text x="64" y="58" fill="#A67C52" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="1.4">TWO MEASURE-SPACE BOUNDARIES</text>
+  <text x="64" y="102" fill="#16243A" font-family="Georgia, serif" font-size="32" font-weight="700">The inverse tail can fail for two different reasons</text>
+
+  <rect x="55" y="145" width="520" height="485" rx="22" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <rect x="625" y="145" width="520" height="485" rx="22" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+
+  <rect x="83" y="173" width="464" height="65" rx="14" fill="#16243A"/>
+  <text x="315" y="214" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="700">INFINITE LEBESGUE MEASURE</text>
+
+  <rect x="653" y="173" width="464" height="65" rx="14" fill="#16243A"/>
+  <text x="885" y="214" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="17" font-weight="700">GEOMETRIC PROBABILITY MEASURE</text>
+
+  <rect x="90" y="275" width="205" height="125" rx="16" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="119" y="313" fill="#284E72" font-family="Arial, sans-serif" font-size="15" font-weight="700">FORWARD TAIL</text>
+  <text x="119" y="348" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">zero constant</text>
+  <text x="119" y="376" fill="#315F55" font-family="Arial, sans-serif" font-size="14" font-weight="700">integrable</text>
+
+  <rect x="335" y="275" width="205" height="125" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="364" y="313" fill="#8B3E33" font-family="Arial, sans-serif" font-size="15" font-weight="700">INVERSE TAIL</text>
+  <text x="364" y="348" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="14">positive constant</text>
+  <text x="364" y="376" fill="#8B3E33" font-family="Arial, sans-serif" font-size="14" font-weight="700">not integrable</text>
+
+  <path d="M 121 459 L 510 459" stroke="#A67C52" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 121 494 L 510 494" stroke="#A67C52" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 121 529 L 510 529" stroke="#A67C52" stroke-width="6" stroke-linecap="round"/>
+  <text x="315" y="574" text-anchor="middle" fill="#5A544C" font-family="Arial, sans-serif" font-size="15">nonzero mass repeats across unbounded volume</text>
+  <text x="315" y="600" text-anchor="middle" fill="#8B3E33" font-family="Arial, sans-serif" font-size="14" font-weight="700">failure comes from infinite total mass</text>
+
+  <text x="685" y="273" fill="#284E72" font-family="Arial, sans-serif" font-size="15" font-weight="700">ATOM INDEX MOVES RIGHT</text>
+  <rect x="680" y="298" width="104" height="82" rx="14" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <rect x="805" y="298" width="104" height="82" rx="14" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <rect x="930" y="298" width="104" height="82" rx="14" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <rect x="1055" y="298" width="48" height="82" rx="14" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="732" y="331" text-anchor="middle" fill="#284E72" font-family="Arial, sans-serif" font-size="14" font-weight="700">FIRST</text>
+  <text x="732" y="357" text-anchor="middle" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="13">atom</text>
+  <text x="857" y="331" text-anchor="middle" fill="#284E72" font-family="Arial, sans-serif" font-size="14" font-weight="700">NEXT</text>
+  <text x="857" y="357" text-anchor="middle" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="13">atom</text>
+  <text x="982" y="331" text-anchor="middle" fill="#284E72" font-family="Arial, sans-serif" font-size="14" font-weight="700">LATER</text>
+  <text x="982" y="357" text-anchor="middle" fill="#4D5B6B" font-family="Arial, sans-serif" font-size="13">atom</text>
+  <text x="1079" y="347" text-anchor="middle" fill="#284E72" font-family="Arial, sans-serif" font-size="21" font-weight="700">...</text>
+
+  <rect x="680" y="412" width="423" height="58" rx="13" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="706" y="448" fill="#315F55" font-family="Arial, sans-serif" font-size="15" font-weight="700">ATOM MASS HALVES AT EACH STEP</text>
+
+  <rect x="680" y="486" width="423" height="58" rx="13" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="706" y="522" fill="#8B3E33" font-family="Arial, sans-serif" font-size="15" font-weight="700">MISSING ABSOLUTE TAIL DOUBLES</text>
+
+  <rect x="680" y="560" width="423" height="50" rx="13" fill="#16243A"/>
+  <text x="891" y="592" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="15" font-weight="700">WEIGHTED CONTRIBUTION STAYS CONSTANT</text>
+
+  <rect x="55" y="660" width="1090" height="48" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="600" y="691" text-anchor="middle" fill="#8B3E33" font-family="Arial, sans-serif" font-size="15" font-weight="700">Probability example base: identity. It is neither fresh independent sampling nor an ergodic construction.</text>
+</svg>

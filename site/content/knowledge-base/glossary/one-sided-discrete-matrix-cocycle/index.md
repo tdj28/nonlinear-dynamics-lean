@@ -306,6 +306,14 @@ one-sided cocycle identity.
 
 ## Where to continue
 
+[The Forward-and-Inverse Tail Sandwich for Finite-Time Real Log Norms]({{< relref "/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms" >}})
+adds pointwise unit generators. Those units propagate along the forward orbit,
+but they do not make the base map invertible and do not create negative-time
+cocycle values. Matrix inversion reverses product order, so a same-order
+product of inverse generators is not the inverse of the newest-factor-left
+forward value. RMT-34 therefore uses inverse norms only as finite-time lower
+majorants and does not advertise a same-base inverse cocycle.
+
 [Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables" >}})
 is the immediate analytic successor. It applies the maximum absolute row-sum
 norm to each finite cocycle value, proves entrywise measurability, and uses a

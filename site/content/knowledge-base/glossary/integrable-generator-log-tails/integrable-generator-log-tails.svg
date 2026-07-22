@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="590"
+     viewBox="0 0 800 590" role="img"
+     aria-labelledby="integrableTailsTitle integrableTailsDesc">
+  <title id="integrableTailsTitle">Three gates control signed finite-time cocycle growth</title>
+  <desc id="integrableTailsDesc">Three separate cards represent pointwise matrix units, an integrable forward expansion tail, and an integrable inverse contraction tail. Arrows connect the unit and inverse-tail cards to an integrable lower bound and connect the forward-tail card to an integrable upper bound. The signed real log norm sits between those bounds. A footer says that the conclusion is finite-time integrability, not an asymptotic spectrum.</desc>
+  <rect width="800" height="590" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .tiny{font-size:10px;fill:#5A544C}
+  </style>
+  <defs>
+    <marker id="integrableTailsArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="31" class="t title">Three gates make signed finite-time growth integrable</text>
+  <text x="24" y="53" class="t m">The algebraic gate validates the lower bound; the two tail gates make both outer bounds integrable.</text>
+
+  <rect x="24" y="84" width="228" height="132" rx="12"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.6"/>
+  <text x="138" y="112" text-anchor="middle" class="t m">ALGEBRAIC GATE</text>
+  <text x="138" y="140" text-anchor="middle" class="t h">POINTWISE MATRIX UNITS</text>
+  <text x="138" y="166" text-anchor="middle" class="t s">Every one-step generator</text>
+  <text x="138" y="185" text-anchor="middle" class="t s">has a genuine inverse</text>
+  <text x="138" y="204" text-anchor="middle" class="t tiny">Rules out singularity in nonempty dimension</text>
+
+  <rect x="286" y="84" width="228" height="132" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.6"/>
+  <text x="400" y="112" text-anchor="middle" class="t m">ANALYTIC GATE</text>
+  <text x="400" y="140" text-anchor="middle" class="t h">FORWARD EXPANSION TAIL</text>
+  <text x="400" y="166" text-anchor="middle" class="t s">The one-step positive</text>
+  <text x="400" y="185" text-anchor="middle" class="t s">log norm is integrable</text>
+  <text x="400" y="204" text-anchor="middle" class="t tiny">Controls the upper bound</text>
+
+  <rect x="548" y="84" width="228" height="132" rx="12"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.6"/>
+  <text x="662" y="112" text-anchor="middle" class="t m">ANALYTIC GATE</text>
+  <text x="662" y="140" text-anchor="middle" class="t h">INVERSE CONTRACTION TAIL</text>
+  <text x="662" y="166" text-anchor="middle" class="t s">The one-step inverse</text>
+  <text x="662" y="185" text-anchor="middle" class="t s">log norm is integrable</text>
+  <text x="662" y="204" text-anchor="middle" class="t tiny">Controls the lower bound</text>
+
+  <path d="M138 218 L138 254 L220 254 L220 286" fill="none"
+        stroke="#4B6787" stroke-width="2.4"
+        marker-end="url(#integrableTailsArrow)"/>
+  <text x="148" y="246" class="t tiny">makes the lower bound honest</text>
+
+  <path d="M400 218 L400 254 L616 254 L616 286" fill="none"
+        stroke="#6F8D5E" stroke-width="2.4"
+        marker-end="url(#integrableTailsArrow)"/>
+
+  <path d="M662 218 L662 270 L220 270 L220 286" fill="none"
+        stroke="#A67C52" stroke-width="2.4"
+        marker-end="url(#integrableTailsArrow)"/>
+
+  <rect x="80" y="292" width="640" height="152" rx="14"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
+  <text x="400" y="320" text-anchor="middle" class="t m">FINITE-TIME SANDWICH</text>
+
+  <rect x="108" y="340" width="176" height="74" rx="10"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.4"/>
+  <text x="196" y="369" text-anchor="middle" class="t h">INTEGRABLE</text>
+  <text x="196" y="391" text-anchor="middle" class="t h">LOWER BOUND</text>
+  <text x="196" y="407" text-anchor="middle" class="t tiny">inverse orbit budget</text>
+
+  <path d="M288 377 L314 377" fill="none" stroke="#A67C52"
+        stroke-width="2.4" marker-end="url(#integrableTailsArrow)"/>
+  <text x="301" y="365" text-anchor="middle" class="t tiny">below</text>
+
+  <rect x="320" y="340" width="176" height="74" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="408" y="369" text-anchor="middle" class="t h">SIGNED REAL</text>
+  <text x="408" y="391" text-anchor="middle" class="t h">LOG NORM</text>
+  <text x="408" y="407" text-anchor="middle" class="t tiny">one finite horizon</text>
+
+  <path d="M500 377 L526 377" fill="none" stroke="#A67C52"
+        stroke-width="2.4" marker-end="url(#integrableTailsArrow)"/>
+  <text x="513" y="365" text-anchor="middle" class="t tiny">below</text>
+
+  <rect x="532" y="340" width="160" height="74" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="612" y="369" text-anchor="middle" class="t h">INTEGRABLE</text>
+  <text x="612" y="391" text-anchor="middle" class="t h">UPPER BOUND</text>
+  <text x="612" y="407" text-anchor="middle" class="t tiny">forward growth budget</text>
+
+  <rect x="60" y="468" width="680" height="82" rx="14"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.6"/>
+  <text x="400" y="493" text-anchor="middle" class="t h">CONCLUSION</text>
+  <text x="400" y="517" text-anchor="middle" class="t s">The finite-time family is shifted-subadditive.</text>
+  <text x="400" y="537" text-anchor="middle" class="t s">Every horizon is measurable and integrable.</text>
+
+  <text x="24" y="570" class="t m">No asymptotic limit, inverse cocycle, Lyapunov spectrum, or invariant splitting follows from this plate.</text>
+</svg>

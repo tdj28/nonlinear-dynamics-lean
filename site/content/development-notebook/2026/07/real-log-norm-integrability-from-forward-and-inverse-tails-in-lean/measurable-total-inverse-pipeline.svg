@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Measurability pipeline for the total matrix inverse observable</title>
+  <desc id="desc">Measurable entries pass through finite determinant and adjugate constructions, total inversion, a finite row-sup norm, and continuous positive logarithm.</desc>
+  <rect width="960" height="540" rx="30" fill="#F7F4F0"/>
+  <text x="48" y="62" fill="#16243A" font-family="Georgia,serif" font-size="31" font-weight="700">Build measurability from finite pieces</text>
+  <text x="48" y="91" fill="#657183" font-family="system-ui,sans-serif" font-size="15">No matrix-space shortcut is needed, and singular inputs remain inside the total function</text>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <rect x="54" y="180" width="150" height="92" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/><text x="129" y="216" fill="#16243A" font-size="16" font-weight="700">Measurable</text><text x="129" y="242" fill="#16243A" font-size="16">entries</text>
+    <rect x="242" y="142" width="158" height="70" rx="18" fill="#FFFFFF" stroke="#A67C52"/><text x="321" y="184" fill="#16243A" font-size="16" font-weight="700">Determinant</text>
+    <rect x="242" y="240" width="158" height="70" rx="18" fill="#FFFFFF" stroke="#A67C52"/><text x="321" y="270" fill="#16243A" font-size="15" font-weight="700">Constant row</text><text x="321" y="291" fill="#16243A" font-size="15">updates</text>
+    <rect x="440" y="180" width="150" height="92" rx="18" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/><text x="515" y="216" fill="#16243A" font-size="16" font-weight="700">Adjugate and</text><text x="515" y="242" fill="#16243A" font-size="16">total inverse</text>
+    <rect x="630" y="180" width="130" height="92" rx="18" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/><text x="695" y="216" fill="#16243A" font-size="16" font-weight="700">Finite row</text><text x="695" y="242" fill="#16243A" font-size="16">sup norm</text>
+    <rect x="800" y="180" width="112" height="92" rx="18" fill="#315F55"/><text x="856" y="216" fill="#FFFFFF" font-size="15" font-weight="700">Positive</text><text x="856" y="242" fill="#FFFFFF" font-size="15" font-weight="700">log</text>
+  </g>
+  <g fill="none" stroke="#4B6787" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M204 226H224M218 218l8 8-8 8M400 177h22v39h18M400 275h22v-39h18M590 226h22M606 218l8 8-8 8M760 226h22M776 218l8 8-8 8"/>
+  </g>
+  <rect x="180" y="362" width="600" height="104" rx="22" fill="#F4E5E2" stroke="#8B3E33"/>
+  <circle cx="236" cy="414" r="28" fill="#8B3E33"/><path d="m224 414 8 8 17-20" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="286" y="405" fill="#16243A" font-family="system-ui,sans-serif" font-size="17" font-weight="700">Singular matrices stay measurable</text>
+  <text x="286" y="434" fill="#657183" font-family="system-ui,sans-serif" font-size="15">The total nonsingular inverse returns zero, not a pseudoinverse</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">A strictly positive limiting rate forces eventual agreement after clipping</title>
+  <desc id="desc">A normalized clipped path approaches a positive band, crosses above zero permanently, and then coincides with the normalized real-log path. Singular matrices remain allowed.</desc>
+  <rect width="960" height="540" rx="30" fill="#F7F4F0"/>
+  <text x="48" y="62" fill="#16243A" font-family="Georgia,serif" font-size="31" font-weight="700">Positivity eventually turns clipping off</text>
+  <text x="48" y="91" fill="#657183" font-family="system-ui,sans-serif" font-size="15">A separate transfer reuses the established clipped convergence theorem</text>
+  <rect x="62" y="128" width="836" height="304" rx="24" fill="#FFFFFF" stroke="#D8CDC1"/>
+  <rect x="86" y="166" width="788" height="58" rx="18" fill="#EAF1E5"/>
+  <text x="846" y="187" text-anchor="end" fill="#315F55" font-family="system-ui,sans-serif" font-size="15" font-weight="700">strictly positive target band</text>
+  <path d="M88 348C150 348 182 316 232 326S302 274 352 286 420 230 478 252 562 201 620 216 704 191 872 194" fill="none" stroke="#4B6787" stroke-width="7" stroke-linecap="round"/>
+  <path d="M88 384C156 410 186 352 232 326S302 274 352 286 420 230 478 252 562 201 620 216 704 191 872 194" fill="none" stroke="#8B3E33" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 8"/>
+  <path d="M78 350H882" stroke="#A67C52" stroke-width="2"/>
+  <text x="100" y="340" fill="#A67C52" font-family="system-ui,sans-serif" font-size="13">zero level</text>
+  <line x1="248" y1="146" x2="248" y2="412" stroke="#315F55" stroke-width="2" stroke-dasharray="5 6"/>
+  <rect x="267" y="365" width="360" height="42" rx="21" fill="#16243A"/>
+  <text x="447" y="391" text-anchor="middle" fill="#FFFFFF" font-family="system-ui,sans-serif" font-size="15" font-weight="700">after this point, the two paths agree</text>
+  <g font-family="system-ui,sans-serif" font-size="14">
+    <circle cx="100" cy="478" r="7" fill="#4B6787"/><text x="116" y="483" fill="#16243A">clipped normalized path</text>
+    <circle cx="368" cy="478" r="7" fill="#8B3E33"/><text x="384" y="483" fill="#16243A">real-log normalized path</text>
+    <rect x="646" y="457" width="226" height="42" rx="21" fill="#F4E5E2"/><text x="759" y="483" text-anchor="middle" fill="#8B3E33" font-weight="700">singular steps allowed</text>
+  </g>
+</svg>

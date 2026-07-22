@@ -49,7 +49,11 @@
       <div class="orientation-item lean-module">
         <strong>Lean module</strong>
         <code>{{ . }}</code>
-        {{ with $.Params.lean_source }}<a class="article-source-link" href="{{ $.Site.Params.repository }}/blob/main/{{ . }}" rel="noopener">Open the source <span aria-hidden="true">-&gt;</span></a>{{ end }}
+        {{ with $.Params.lean_snapshot }}
+          <a class="article-source-link" href="{{ . | relURL }}">Open the checked source <span aria-hidden="true">-&gt;</span></a>
+        {{ else }}
+          {{ with $.Params.lean_source }}<a class="article-source-link" href="{{ $.Site.Params.repository }}/blob/main/{{ . }}" rel="noopener">Open the source <span aria-hidden="true">-&gt;</span></a>{{ end }}
+        {{ end }}
       </div>
       {{ end }}
     </div>

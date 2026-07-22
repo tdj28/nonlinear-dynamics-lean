@@ -44,7 +44,8 @@ make checkpoint-check
 ## Requirements
 
 - macOS (Apple Silicon or Intel) or a recent Linux distribution
-- Git, `curl`, Python 3, and [Hugo Extended](https://gohugo.io/installation/)
+- Git, `curl`, Python 3, and
+  [Hugo Extended](https://gohugo.io/installation/) 0.153.0 or newer
 - At least 12 GB of free disk space for Lean, Mathlib, caches, and build
   artifacts; 15 GB is recommended for comfortable rebuild headroom
 
@@ -219,6 +220,14 @@ internet. The Hugo site is mounted at that URL's root, so use the printed URL
 as-is and do not append `/blog`. Tailnet access rules still apply. Override the
 port when needed with
 `make blog-serve-tailscale BLOG_PORT=1444`. Stop either server with `Ctrl+C`.
+
+Site builds also mount the repository's `.lean` files beneath
+`/lean/NonlinearDynamics/`. A teaching page that declares `lean_module`,
+`lean_snapshot`, and `lean_source_sha256` links to this site-hosted source;
+`make content-coverage` reads those keys only from YAML front matter on every
+content page, derives the exact URL from the module name, and verifies that the
+recorded SHA-256 still matches the checked source. No `.env`, build cache, Git
+metadata, or other formalization artifact is published by this mount.
 
 ## Formalization layout
 
@@ -586,6 +595,25 @@ The first active sequence is:
     Fekete rate, including an empty matrix index. The theorem does not concern
     the signed logarithm, `L¹` convergence, interchange of limit and integral,
     inverse cocycles, Lyapunov exponents, or Oseledets splittings.
+39. [`RandomCocycles/RealLogNormIntegrability.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean)
+    begins the signed finite-time layer without disguising Lean's total
+    convention `Real.log 0 = 0`. Pointwise generator units propagate to every
+    cocycle value and give real-log subadditivity, while a measurable
+    log-positive norm of Mathlib's total nonsingular inverse supplies a
+    forward-orbit lower-tail majorant. An explicit package of generator units,
+    forward log-positive integrability, and inverse-generator log-positive
+    integrability sandwiches every finite-time real log between integrable
+    lower and upper rails and packages the family as an integrable
+    shifted-subadditive candidate. A checked geometric-probability example
+    with an identity base and invertible one-dimensional contractions proves
+    that the forward moment alone need not control either the inverse tail or
+    signed-log integrability. Separately, a strictly positive RMT-33 rate makes
+    the real log and log-positive observable eventually agree almost
+    everywhere, without invertibility or an inverse-tail hypothesis. The
+    empty-dimensional specialization of that endpoint is syntactically valid
+    but vacuous because its rate is zero. The module proves neither a general
+    signed Kingman theorem nor an inverse-cocycle exponent identity,
+    singular-value limit, Lyapunov spectrum, or Oseledets splitting.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
@@ -611,10 +639,14 @@ The guarded real-`liminf` layer now converts those null events into the
 complementary lower estimate, restores the one-step Birkhoff majorant, and
 combines the result with the upper `limsup` theorem. The pinned Mathlib release
 supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
-pointwise Birkhoff or Kingman theorem; the repository now closes that gap for
-the cocycle's finite real log-positive norm observable. A signed Lyapunov
-exponent or Oseledets splitting still needs negative-tail, zero-collapse, and
-further multiplicative infrastructure beyond this endpoint.
+pointwise Birkhoff or Kingman theorem; the repository closes that gap for the
+cocycle's finite real log-positive norm observable. RMT-34 adds the missing
+finite-time signed interface. It keeps collapse semantics,
+pointwise units, inverse-tail domination, and positive-rate unclipping as
+separate obligations, then constructs an integrable signed subadditive
+candidate. A general signed almost-everywhere limit, limit-integral
+identification, Lyapunov spectrum, and Oseledets splitting remain later
+milestones.
 
 That route gives the Random and Quantum Chaos programs a shared foundation,
 then reconnects them to nonlinear stability through random Jacobians.
@@ -630,14 +662,16 @@ and `make content-coverage` checks that:
 - every mapped notebook bundle exists and names the correct Lean module;
 - new entries remain draft-scoped until human review;
 - each entry includes references, exact run instructions, and a substantial
-  teaching treatment.
+  teaching treatment;
+- when an entry freezes a site-hosted Lean snapshot, its module, snapshot path,
+  and SHA-256 agree and still identify the checked source byte for byte.
 
-`make check` runs this coverage gate, `make content-hygiene-test`, and
-`make content-hygiene` automatically. The context-aware source gate masks YAML
-front matter, fenced and inline code, HTML comments, `code`/`pre` HTML, and
-Hugo shortcode tags while preserving source offsets and newlines. Markdown
-bodies inside ordinary shortcodes remain checked; raw Mermaid bodies are
-masked.
+`make check` runs this coverage gate, its snapshot-contract regression tests,
+`make content-hygiene-test`, and `make content-hygiene` automatically. The
+context-aware source gate masks YAML front matter, fenced and inline code,
+HTML comments, `code`/`pre` HTML, and Hugo shortcode tags while preserving
+source offsets and newlines. Markdown bodies inside ordinary shortcodes remain
+checked; raw Mermaid bodies are masked.
 
 In rendered regions, the gate rejects unbalanced, mismatched, or nested TeX
 delimiters; double-escaped delimiter candidates outside active math; literal

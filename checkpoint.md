@@ -3,24 +3,96 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 07:59 PDT
+Last updated: 2026-07-22 10:11 PDT
 
-Audited baseline: `main` at `06da7bd`
+Audited baseline: `main` at `624c727`
 
-Active direction: RMT-33 has converted RMT-32's rational lower-deviation
-events into a guarded real-liminf bridge, reused one null exhaustion for both
-the lower estimate and the bounded-below gate, added back the convergent
-Birkhoff average, and combined the result with RMT-29's upper bound to prove
-almost-everywhere convergence of normalized log-positive cocycle growth in
-checked Lean. Its declaration-complete Notebook, textbook Deep Dive, new
-limit-inferior glossary chapter, reproducible visual layer, independent
-adversarial audits, literal desktop/mobile rendering checks, and
-checkpoint-inclusive local and checksum-identical RunPod release replays are
-green. Commit and push are the active release steps.
-RMT-34 will build the negative-tail infrastructure needed to replace the
-log-positive envelope by an honest real logarithmic norm.
+Active direction: RMT-34 has formalized the finite-time signed logarithmic
+interface needed after log-positive Kingman convergence. Pointwise generator
+units propagate to every cocycle value; a measurable total inverse envelope
+controls contraction; forward and inverse generator tails sandwich every
+finite real log norm between integrable rails; and the resulting family is an
+integrable shifted-subadditive candidate. A geometric probability-space model
+proves that the forward moment alone cannot supply the missing tail, while a
+separate positive-rate theorem unclamps RMT-33 without invertibility. The Lean
+source milestone is pushed at `624c727`; its complete teaching, source-hosting,
+checkpoint, and final local/RunPod release replays now form the RMT-34 release.
+RMT-35 is the exact next milestone: integrate the signed family and prove its
+general real-log Kingman convergence theorem.
 
 ## Restart Handoff
+
+- RMT-34 adds the 942-line
+  `NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability` module at
+  `Random/RandomCocycles/RealLogNormIntegrability.lean`. Its frozen SHA-256 is
+  `ac950f8728e5fd003cff3b7a5d0750e5c36060730b3ebadc5b0e1165b54e72ea`;
+  the source-only Lean milestone is pushed at `624c727`. The public surface
+  has twenty-eight declaration commands and three explicit structure fields,
+  supported by thirty-four private commands, sixteen compiled anonymous
+  examples, and eleven source axiom prints.
+- Lean's total convention `Real.log 0 = 0` remains visible. The extended log
+  norm is zero-faithful at bottom; only the bridge from an extended logarithm
+  to a real logarithm needs a nonempty matrix index. Public signed results
+  split the empty dimension explicitly, where the unique zero matrix is also
+  the identity unit and every finite real log norm is zero.
+- Pointwise generator units propagate through the ordered cocycle product and
+  give real-log subadditivity. Mathlib's total nonsingular inverse is zero on
+  the singular locus, and inverse products reverse order, so RMT-34 constructs
+  neither a same-base inverse cocycle nor an inverse-exponent identity.
+- The inverse-value log-positive observable is measurable without an
+  invertibility hypothesis. Under pointwise units it is bounded by the
+  forward-orbit sum of the inverse-generator observable. Separate integrable
+  forward and inverse tails therefore give integrable upper and lower rails
+  for every finite real log norm.
+- `HasIntegrableGeneratorLogTails` packages exactly the algebraic unit guard
+  and both one-step moment hypotheses. It proves finite-horizon signed
+  integrability and exports the real-log family as an
+  `IsIntegrableSubadditiveProcessCandidate`; it does not yet prove a general
+  signed almost-everywhere limit.
+- A checked identity-base geometric probability model in one dimension has
+  forward log-positive observable zero while the inverse log-positive and
+  signed absolute observables grow like `2^n` and are not integrable. The model
+  is neither independent nor ergodic, and it is used only to refute the false
+  one-tail implication.
+- The positive-rate endpoint needs no units, inverse tail, or nonempty matrix
+  dimension. A strictly positive RMT-33 rate makes the real log and
+  log-positive observable eventually agree almost everywhere. The theorem
+  permits singular matrices, while its empty-dimensional specialization is
+  vacuous because that rate is zero.
+- Every printed public-theorem footprint is exactly `propext`,
+  `Classical.choice`, and `Quot.sound`. Warning-fatal leaf, cocycle-aggregator,
+  Random-root, and project-root compilation pass with no `sorry`, `admit`,
+  unsafe declaration, or project axiom. Independent semantic and
+  theorem-to-prose audits found no remaining blocker.
+- The teaching slice adds a 9,410-token, 1,573-line Development Notebook with
+  forty solved exercises; an 11,402-token, 2,419-line textbook Deep Dive with
+  forty solved exercises; and a 4,507-token, 843-line glossary chapter with
+  sixteen worked mini-exercises. Three deterministic 1200x630 cards and
+  seventeen accessible conceptual SVGs accompany the bundles. All remain
+  `draft: true` and `pro_reviewed: false` pending human publication review.
+- The three pages link to a site-hosted, byte-identical Lean snapshot. The
+  proof-to-prose checker parses every content page's front matter and verifies
+  that its module, exact path, and SHA-256 agree. Seventeen regression tests
+  cover missing, malformed, body-only, mismatched, stale, traversing, and
+  symlink-escaping metadata. Literal
+  1440x1000 and 390x844 browser audits load every lazy image and render 142,
+  374, and 211 KaTeX nodes in the Notebook, Deep Dive, and glossary with no
+  page overflow, missing alt text, broken image or anchor, raw delimiter,
+  KaTeX error, or console failure. The served source returns HTTP 200 and is
+  byte-identical to the frozen 41,522-byte module.
+- The retained approved RunPod builder completed an historical integrated
+  pre-release gate in 11.86 seconds before the snapshot gate was generalized.
+  The current complete gate—including all 3,217 Lean jobs, 39/39
+  proof-to-prose coverage, seventeen snapshot-contract tests, four hygiene
+  tests, the 132-file teaching scan, and the 405-page, 65-static-file
+  warning-fatal Hugo render—takes 7.38 seconds locally and 4.58 seconds on the
+  checksum-identical RunPod tree. Final recorded-checkpoint local and remote
+  replays protect this handoff.
+- RMT-34 proves no general signed Kingman limit, `L¹` convergence,
+  limit-integral interchange, singular-value asymptotic, Lyapunov spectrum,
+  invariant filtration, Oseledets splitting, derivative-cocycle bridge, or
+  stable-manifold theorem. The inverse rail sees the strongest contraction
+  and is not automatically the negative top exponent.
 
 - RMT-33 adds the 627-line
   `NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman` module at
@@ -554,24 +626,23 @@ log-positive envelope by an honest real logarithmic norm.
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last fully green repository build: 3,214 Lean jobs on the integrated RMT-33
-  tree. Its changed leaf, cocycle aggregator, and project root compile
-  warning-fatally; 38/38 coverage and every teaching gate pass; Hugo renders
-  396 pages with warnings fatal. The checkpoint-inclusive local `make check`
-  took 23.37 seconds. The checksum-identical RunPod `make check` replay took
-  10.53 seconds; after the final audit corrections, the recorded-checkpoint
-  replay took 4.41 seconds.
-- Lean inventory: 707 public named declarations counted by the proof-to-prose
-  checker across the thirty-eight substantive modules. The tree also
+- Last fully green repository build: 3,217 Lean jobs on the integrated RMT-34
+  tree. Its changed leaf, cocycle aggregator, Random root, and project root
+  compile warning-fatally; 39/39 coverage, seventeen snapshot-contract tests,
+  four hygiene regression tests, and the 132-file teaching scan pass; Hugo
+  renders 405 pages and 65 static files with warnings fatal. The complete
+  checkpoint-inclusive gate takes 7.38 seconds locally and 4.58 seconds on the
+  checksum-identical retained RunPod tree.
+- Lean inventory: 735 public named declarations counted by the proof-to-prose
+  checker across the thirty-nine substantive modules. The tree also
   has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
   branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
-  249,640 tokens across the thirty-eight Notebook companions and 297,925
-  tokens across thirty-five Deep Dives (213,730) and fifty-one glossary
-  chapters (84,195), for 547,565 tokens across all 124 teaching bundles. Their
-  deterministic visual layer contains 114 social cards and 193 conceptual
-  SVGs.
+  259,068 tokens across thirty-nine Notebook companions, 225,199 tokens across
+  thirty-six Deep Dives, and 89,058 tokens across fifty-two glossary chapters,
+  for 573,325 tokens across all 127 teaching bundles. Their deterministic
+  visual layer contains 117 social cards and 210 conceptual SVGs.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -619,16 +690,17 @@ log-positive envelope by an honest real logarithmic norm.
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure` | Exact all-positive-length once-bad union and membership semantics, cap monotonicity, null measurability, unconditional extended-measure continuity, finite-target real continuity, the unchanged generic and cocycle rate ratios, and a preserving raw non-invariance countermodel | `all-positive-length-centered-bad-block-control-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation` | Arbitrarily-late fixed-slope events, rationally generated strict deviation, relaxed and same-target preimage inclusions, finite-measure almost invariance and ergodic rigidity, probability null selection, exact boundary countermodels, and the log-positive cocycle null theorem | `countably-generated-centered-lower-deviation-events-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman` | Total positive-time normalization, guarded real-liminf/event equivalence, double-rational null exhaustion, almost-everywhere lower-liminf control with explicit boundedness, Birkhoff addback, and full normalized log-positive cocycle convergence from the RMT-29/RMT-32 squeeze | `log-positive-kingman-convergence-from-rational-lower-deviations-in-lean` |
+| `NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability` | Total finite-time real-log norms, pointwise unit propagation, measurable total inverse envelopes, reverse-order inverse orbit majorants, integrable forward-and-inverse tail rails, a signed subadditive candidate, a checked probability-space missing-tail counterexample, and strictly positive-rate real-log convergence without invertibility | `real-log-norm-integrability-from-forward-and-inverse-tails-in-lean` |
 
-The root aggregator imports all thirty-eight modules. The proof-to-prose manifest and
+The root aggregator imports all thirty-nine modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Thirty-eight comprehensive Development Notebook chapters in an explicit
+- Thirty-nine comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Thirty-five textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Thirty-six textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -662,8 +734,10 @@ declaration visibility.
   *From Finite Centered Bad-Block Bounds to All-Positive-Length Control*,
   followed by *Rational-Slack Lower-Deviation Events and Ergodic Null
   Selection*, followed by *The Guarded Real-Liminf Bridge to Log-Positive
-  Kingman Convergence*.
-- Fifty-one glossary chapters, now including the finite orbit visit count,
+  Kingman Convergence*, followed by *The Forward-and-Inverse Tail Sandwich for
+  Finite-Time Real Log Norms*.
+- Fifty-two glossary chapters, now including integrable generator log tails,
+  the finite orbit visit count,
   limit superior, limit inferior, ergodicity, normalized space
   averages, the invariant sigma algebra,
   conditional expectation, uniform integrability, the Birkhoff Cauchy exceptional
@@ -683,7 +757,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- One hundred fourteen deterministic 1200x630 social cards and 193 accessible
+- One hundred seventeen deterministic 1200x630 social cards and 210 accessible
   conceptual SVG figures, plus one static SVG favicon.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -692,75 +766,57 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-34: real-log norm observables and integrable negative tails
+### RMT-35: integrated signed growth and real-log Kingman convergence
 
-The next module should be
-`NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability`. It will
-separate two issues that the log-positive theorem intentionally avoided: the
-algebraic finiteness of the logarithm and the analytic integrability of its
-negative tail. The focused outcome is an integrable real-valued finite-time
-log-norm process under a transparent two-sided generator-tail hypothesis,
-plus the inexpensive positive-growth endpoint where RMT-33 already implies
-convergence of the real logarithm. It is not yet the signed Kingman theorem.
+The next module should consume RMT-34's
+`HasIntegrableGeneratorLogTails.isIntegrableSubadditiveProcessCandidate` and
+prove the first general almost-everywhere limit for the signed finite-time
+real log norm. The target is still a scalar top-growth theorem in the selected
+maximum-row-sum norm. It is not a Lyapunov spectrum or Oseledets theorem.
 
-The intended dependency-ordered surface is:
+The dependency-ordered surface should be:
 
-1. `realLogNormObservable C n := fun ω => Real.log ‖C.value n ω‖`, retaining
-   Lean's total convention `Real.log 0 = 0` rather than hiding singularity;
-2. `IsPointwiseInvertible C := ∀ ω, IsUnit (C.generator ω)` and a theorem that
-   every finite cocycle value is a unit;
-3. unconditional ordinary measurability of the total real-log observable,
-   plus equality between the zero-faithful extended-log observable and its
-   coercion under pointwise invertibility and a nonempty matrix index;
-4. the real subadditivity inequality for finite-time log norms under those
-   same algebraic hypotheses;
-5. `inverseGeneratorLogPlusNormObservable`, its finite orbit sum, and an
-   unconditional finite inverse-product norm bound, followed by the
-   nonempty-dimensional sandwich showing that this sum majorizes the negative
-   tail of the forward finite-time real log norm;
-6. a structure such as `HasIntegrableGeneratorLogTails` recording pointwise
-   invertibility, RMT-15's integrable forward log-positive generator envelope,
-   and integrability of the inverse-generator log-positive envelope;
-7. integrability of every `realLogNormObservable C n`, followed by the exact
-   `IsIntegrableSubadditiveProcessCandidate` package needed by the generic
-   subadditive machinery; and
-8. under an ergodic probability base and strictly positive integrated
-   log-positive growth, an almost-everywhere theorem that the normalized
-   real-log norm converges to the RMT-33 rate. This last endpoint needs neither
-   invertibility, negative-tail integrability, nor a nonempty index: positive
-   limiting log-positive growth makes the real logarithm and log-positive
-   envelope eventually equal.
+1. define the finite-horizon signed integral
+   `integratedRealLogNorm C n := ∫ ω, C.realLogNormObservable n ω ∂μ` and its
+   total positive-time normalization;
+2. prove scalar subadditivity from RMT-34's pointwise signed subadditivity and
+   finite-horizon integrability;
+3. integrate the forward upper rail and inverse-orbit lower rail to obtain
+   explicit linear upper and lower bounds on every signed integral;
+4. use that normalized lower bound to construct a finite deterministic Fekete
+   limit `integratedRealLogGrowthRate`, including exact positive-index infimum,
+   finite-horizon upper bounds, and the empty-dimensional zero boundary;
+5. identify the centered signed integral offset needed by RMT-33's generic
+   rational lower-deviation theorem;
+6. generalize the RMT-29 upper-limsup endpoint beyond pointwise nonnegative
+   processes by supplying an honest eventual lower bound. For the cocycle,
+   that bound should come from the normalized inverse-orbit rail and the
+   Birkhoff theorem for the integrable inverse-generator observable;
+7. combine the generic RMT-33 lower endpoint with that signed upper endpoint
+   to prove, on a pre-ergodic probability base, almost-everywhere convergence
+   of `C.realLogNormObservable n ω / n` to
+   `C.integratedRealLogGrowthRate hC`; and
+8. connect the strictly positive-rate shortcut already proved in RMT-34 to the
+   signed rate without using it as a substitute for the zero and negative
+   regimes.
 
-Keep the empty-index and singular boundaries explicit. For an empty matrix
-index the unique matrix is algebraically a unit while its chosen norm is zero,
-so the extended logarithm is bottom but `Real.log 0` is zero; `[Nonempty ι]`
-is therefore a semantic premise for the coercion bridge, signed
-subadditivity, and tail sandwich, not convenience. The positive-rate endpoint
-is an honest exception because its premise rules out persistent zero growth.
-A singular generator such as `diag(2, 0)` can still have positive top growth,
-so invertibility must not be imposed on that endpoint.
+Boundary proofs should include an invertible scalar contraction with a
+strictly negative signed rate but zero log-positive rate, a neutral scalar
+system, an expanding scalar system, and empty matrix dimension with signed
+rate zero. The RMT-34 geometric probability example must continue to explain
+why forward log-positive integrability alone cannot enter the signed theorem.
+Pointwise units are an algebraic guard, not a quantitative condition-number
+bound. The inverse orbit sum remains a lower majorant, not an equality and not
+a same-base inverse cocycle. In higher dimension its growth can see the
+strongest contraction rather than the negative top exponent.
 
-Pinned API discovery has already compiled the complete proposed surface with
-warnings fatal. Mathlib has no usable `MeasurableInv` instance for complex
-matrices, so inverse-observable measurability must be proved entrywise through
-determinant, adjugate, and the unit-locus inverse formula. Generic matrix-norm
-measurability also lacks the needed topology instance; reuse the project's
-finite row-sup proof rather than guessing a nonexistent shortcut.
-
-The inverse-generator observable is only a lower-tail majorant. In dimensions
-above one its asymptotic rate tracks the most contracting direction, not the
-negative of the top exponent. Do not define a same-base inverse cocycle by
-simply inverting the generator: matrix order reverses, and a one-sided base
-need not be invertible. Audit constant scalar contraction, a singular positive
-top-growth diagonal matrix, the zero generator, a two-rate contracting
-diagonal matrix, and a heavy negative-tail example for which forward
-log-positive integrability alone is insufficient.
-
-RMT-34 should prove no full signed Kingman limit, equality of forward and
-inverse growth rates, `L¹` convergence, limit-integral interchange, singular
-value limit, lower Lyapunov exponent, invariant subspace, or Oseledets
-splitting. The following slice can feed the newly integrable signed process
-through RMT-33's lower-deviation assembly and integrate its scalar Fekete rate.
+RMT-35 should prove no `L¹` convergence, uniform integrability of normalized
+real-log growth, limit-integral interchange, equality between the samplewise
+limit's integral and the deterministic rate, convergence rate, concentration
+estimate, smallest-singular-value theorem, conorm identity, full Lyapunov
+spectrum, invariant filtration, invariant splitting, derivative-cocycle
+bridge, or stable-manifold theorem. Each later multiplicative conclusion
+requires its own checked interface.
 
 ## Dependency-Ordered Roadmap
 
@@ -875,10 +931,14 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Guarded real-liminf bridge, double-rational null exhaustion, explicit
   almost-everywhere boundedness, and full normalized log-positive Kingman
   convergence before signed growth.
-- [ ] Real-log norm measurability and subadditivity under pointwise
-  invertibility, inverse-generator negative-tail control, finite-horizon
-  integrability, and the positive-growth real-log endpoint before the full
-  signed Kingman theorem.
+- [x] Real-log norm measurability and subadditivity under pointwise
+  invertibility, inverse-generator negative-tail control, two-tail
+  finite-horizon integrability, an integrable signed subadditive candidate,
+  the geometric one-tail counterexample, and the positive-growth real-log
+  endpoint.
+- [ ] Integrated signed growth, deterministic finite signed Fekete rate,
+  two-sided normalized bounds, and general almost-everywhere real-log Kingman
+  convergence under the RMT-34 two-tail package.
 - [ ] One explicitly selected meaning of stochastic stability.
 
 ### Deterministic discrete dynamics
@@ -1478,14 +1538,24 @@ k-invariance precedes approximation claims.
   0`, while the zero-faithful extended logarithm is bottom at norm zero; any
   bridge to a signed real logarithm must state the algebraic and dimensional
   hypotheses under which those observables agree.
-- RMT-34 will use pointwise generator invertibility as its first clean
-  finite-log interface and inverse-generator log-positive integrability as a
-  negative-tail majorant. It will not construct a same-base inverse cocycle:
-  inversion reverses product order, and the one-sided base map need not be
-  invertible.
+- RMT-34 uses pointwise generator invertibility as its clean finite-log
+  interface and inverse-generator log-positive integrability as a negative-tail
+  majorant. Only the extended-to-real coercion bridge and its private
+  one-value lower-rail proof need a nonempty matrix index. Public signed
+  subadditivity, the inverse-orbit lower rail, finite-horizon integrability,
+  and candidate packaging handle empty dimension through explicit zero
+  branches. The positive-rate endpoint also accepts empty dimension
+  syntactically, but its strict premise is impossible because the rate is
+  zero there.
+- RMT-34 does not construct a same-base inverse cocycle: inversion reverses
+  product order, and the one-sided base map need not be invertible. Its checked
+  geometric probability example uses an identity base and is a one-step tail
+  counterexample, not an independent-sampling or ergodic construction. It
+  proves that forward log-positive integrability does not imply either the
+  inverse-generator moment or signed-log integrability.
 - The inverse-generator growth rate is not generally the negative top
   exponent. In higher dimension it controls the strongest contraction, so
-  RMT-34 may use it for integrability bounds but must not advertise an
+  RMT-34 uses it for integrability bounds but does not advertise an
   exponent identity.
 - For agent-assisted mathematical discovery, preserve the sourced problem,
   exact Lean statement, material exploratory decisions, and canonized
@@ -1535,10 +1605,13 @@ k-invariance precedes approximation claims.
   observables are formalized. The real log-positive envelope and propagation of
   an explicit one-step integrability hypothesis through every finite horizon
   are also formalized, as are integrated scalar subadditivity and its
-  deterministic Fekete limit. Extended-log and negative-tail integrability,
-  inverse control, signed sample growth, Lyapunov exponents, and Oseledets
-  limits remain open; normalized log-positive sample growth now converges
-  almost everywhere on an ergodic probability base. Probability-guarded
+  deterministic Fekete limit. RMT-34 now adds total real-log measurability,
+  unit-guarded signed subadditivity, measurable inverse-envelope control,
+  separate integrable forward and inverse generator tails, finite-horizon
+  signed integrability, and an integrable signed subadditive candidate.
+  General signed sample growth, Lyapunov exponents, and Oseledets limits remain
+  open; normalized log-positive sample growth now converges almost everywhere
+  on an ergodic probability base. Probability-guarded
   expectation terminology and native
   invariant-event and invariant-observable rigidity are now formalized, as are
   both finite block/remainder orientations and fixed-block Birkhoff-sum
@@ -1593,15 +1666,22 @@ k-invariance precedes approximation claims.
   complementary lower estimate and its bounded-below gate, adds back the
   one-step Birkhoff average, and combines the result with RMT-29 to prove
   almost-everywhere normalized log-positive cocycle convergence. Its final
-  theorem also accepts an empty matrix index.
+  theorem also accepts an empty matrix index. RMT-34 propagates pointwise
+  generator units, bounds the inverse value by an inverse-generator orbit sum,
+  sandwiches each finite real log norm between integrable two-tail rails, and
+  exports the signed family as a generic integrable shifted-subadditive
+  candidate. It separately proves positive-rate unclipping without units and
+  compiles a geometric probability model showing that the forward moment does
+  not imply the inverse or signed moment.
   `Measure.real` still totalizes infinite extended measure
   to zero: local finiteness is a sufficient conversion gate, not a necessary
   condition for every individual projected limit, and no unconditional general
-  real-continuity theorem is available. The existing interfaces still do not
-  give an integrable real logarithmic norm under negative-tail assumptions,
-  construct a full signed log-growth limit, identify that limit with an
-  integrable scalar Fekete rate, or produce a samplewise Lyapunov exponent or
-  Oseledets splitting.
+  real-continuity theorem is available. The existing interfaces now give an
+  integrable finite-horizon real logarithmic norm under the explicit two-tail
+  package. They still do not integrate that signed family into its finite
+  deterministic Fekete rate, prove its full samplewise signed-growth limit,
+  identify a limit integral, or produce a Lyapunov spectrum or Oseledets
+  splitting.
 - Quantum-chaos universality claims are not general theorems in this project.
 - The deterministic placeholder tree has no substantive definitions yet.
 
@@ -2602,6 +2682,48 @@ Checkpoint/skill milestone QA:
   checkpoint-inclusive RunPod replay passed the same complete gate in 10.53
   seconds. After the final audit corrections, a second source-identity replay
   passed in 4.41 seconds. The release candidate is green locally and remotely.
+- RMT-34 Lean audit: the frozen 942-line source has SHA-256
+  `ac950f8728e5fd003cff3b7a5d0750e5c36060730b3ebadc5b0e1165b54e72ea`,
+  twenty-eight public declaration commands, three explicit structure fields,
+  thirty-four private support commands, sixteen compiled anonymous examples,
+  and eleven source axiom prints. Independent review checked total
+  `Real.log 0` semantics, the empty/nonempty split, pointwise unit propagation,
+  reversed inverse order, total nonsingular inverse behavior, both integrable
+  rails, the geometric missing-tail model, positive-rate unclipping, and every
+  nonclaim. No proof hole, unsafe declaration, project axiom, or mathematical
+  overclaim remains; every printed footprint is exactly `propext`,
+  `Classical.choice`, and `Quot.sound`.
+- RMT-34 teaching audit: the deterministic body-only regex counts 9,410 tokens
+  in the 1,573-line, 74,334-byte Notebook; 11,402 in the 2,419-line,
+  85,759-byte Deep Dive; and 4,507 in the 843-line, 33,746-byte glossary. The
+  Notebook maps all twenty-eight public declarations, three structure fields,
+  thirty-four private items, sixteen examples, and eleven axiom reports with
+  forty solved exercises; the Deep Dive also has forty, and the glossary has
+  sixteen worked mini-exercises. Three deterministic cards reproduce
+  byte-for-byte at 1200x630, all seventeen conceptual SVGs parse and pass
+  accessibility and visual review, and all three generators pass ShellCheck.
+  Independent cross-review found and repaired the last empty-index, clipped-
+  rate, shifted-subadditivity, source-span, image-alt, and private-helper
+  classification defects; focused re-audits pass.
+- RMT-34 checked-source and rendered QA: Hugo mounts only `.lean` files from
+  `formalization/NonlinearDynamics` beneath `/lean/NonlinearDynamics`; an
+  optional front-matter module/snapshot/hash triple is checked on every content
+  page against the exact mounted source. Seventeen adversarial regression tests
+  protect parsing, pairing, module agreement, containment, and freshness. The
+  live RMT-34 source route returned HTTP 200 with 41,522 bytes and
+  the frozen SHA-256. Its three new routes expose one heading at literal
+  1440x1000 and 390x844 viewports. All 20 page images load with alt text; there
+  are zero broken images or anchors, raw delimiters, KaTeX errors, page-level
+  overflow, or console failures. The Notebook, Deep Dive, and glossary render
+  142, 374, and 211 KaTeX nodes at both widths.
+- RMT-34 release gate: local `make -j1 check` completes all 3,217 Lean
+  jobs, checkpoint and 39/39 coverage, seventeen snapshot-contract tests, four
+  hygiene regression tests, the 132-file teaching scan, and the 405-page,
+  65-static-file warning-fatal Hugo render in 7.38 seconds. After an exact
+  source-only sync that excludes `.env`, Git metadata, local `.lake`, generated
+  Hugo output, caches, and private review files, the retained RunPod completes
+  the same expanded gate in 4.58 seconds. Final recorded-checkpoint local and
+  checksum-identity remote replays pass and guard the release commit.
 - Research-workflow skill audit: the project skill now incorporates the
   source-to-statement, exploratory-proof, informalization, canonization, and
   human/AI provenance lessons from arXiv:2607.17477 without creating a
@@ -2610,6 +2732,13 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `624c727`: formalize pointwise finite real-log subadditivity, measurable
+  inverse-tail control, two-tail finite-horizon integrability, the signed
+  subadditive candidate, the geometric one-tail counterexample, and the
+  positive-rate unclipping endpoint.
+- `32f9473`: complete guarded log-positive Kingman convergence, including the
+  rational lower-deviation exhaustion, the declaration-complete teaching
+  layer, rendered QA, and exact RMT-34 negative-tail plan.
 - `06da7bd`: formalize countably generated centered lower-deviation events,
   finite-measure almost invariance and ergodic rigidity, probability null
   selection, the log-positive cocycle endpoint, and the complete paired

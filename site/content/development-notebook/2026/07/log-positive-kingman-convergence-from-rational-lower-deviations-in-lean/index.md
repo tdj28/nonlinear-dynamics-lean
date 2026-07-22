@@ -1441,6 +1441,8 @@ content.
 
 ## Navigation
 
+- Signed finite-time successor:
+  [Real Log-Norm Integrability from Forward and Inverse Tails in Lean]({{< relref "/development-notebook/2026/07/real-log-norm-integrability-from-forward-and-inverse-tails-in-lean" >}})
 - Companion textbook chapter:
   [The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
 - Previous lower-event milestone:
