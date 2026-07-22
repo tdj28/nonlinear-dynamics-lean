@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="480" viewBox="0 0 820 480" role="img" aria-labelledby="vitaliBridgeTitle vitaliBridgeDesc">
+  <title id="vitaliBridgeTitle">Identical orbit laws supply the Vitali bridge</title>
+  <desc id="vitaliBridgeDesc">Measure preservation gives every orbit translate the same distribution as the original observable. This yields uniform integrability of translates and arithmetic averages. Combined with almost-everywhere convergence, Vitali's theorem gives absolute-mean norm convergence and an integrable limit.</desc>
+  <defs>
+    <marker id="vitaliBridgeArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#vitaliBridgeArrow)}
+  </style>
+  <rect width="820" height="480" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Identical orbit laws supply the Vitali bridge</text>
+  <text x="28" y="51" class="t m">Pointwise convergence identifies values; uniform integrability is what lets integrals follow.</text>
+
+  <rect x="28" y="84" width="174" height="110" rx="14" class="blue"/>
+  <text x="115" y="110" text-anchor="middle" class="t h">PRESERVATION</text>
+  <text x="115" y="138" text-anchor="middle" class="t s">each orbit translate</text>
+  <text x="115" y="156" text-anchor="middle" class="t s">has the same law</text>
+  <text x="115" y="178" text-anchor="middle" class="t m">same pushforward measure</text>
+
+  <path d="M206 139 H232" class="arrow"/>
+  <rect x="240" y="84" width="174" height="110" rx="14" class="clay"/>
+  <text x="327" y="110" text-anchor="middle" class="t h">ORBIT FAMILY</text>
+  <text x="327" y="138" text-anchor="middle" class="t s">uniformly integrable</text>
+  <text x="327" y="156" text-anchor="middle" class="t s">in absolute mean</text>
+  <text x="327" y="178" text-anchor="middle" class="t m">large tails stay controlled</text>
+
+  <path d="M418 139 H444" class="arrow"/>
+  <rect x="452" y="84" width="174" height="110" rx="14" class="blue"/>
+  <text x="539" y="110" text-anchor="middle" class="t h">FINITE AVERAGES</text>
+  <text x="539" y="138" text-anchor="middle" class="t s">arithmetic averaging</text>
+  <text x="539" y="156" text-anchor="middle" class="t s">preserves that control</text>
+  <text x="539" y="178" text-anchor="middle" class="t m">the whole sequence</text>
+
+  <path d="M630 139 H656" class="arrow"/>
+  <rect x="664" y="84" width="128" height="110" rx="14" class="green"/>
+  <text x="728" y="110" text-anchor="middle" class="t h">UNIFORM</text>
+  <text x="728" y="128" text-anchor="middle" class="t h">CONTROL</text>
+  <path d="M698 159 H758" stroke="#6F8D5E" stroke-width="7" stroke-linecap="round"/>
+  <path d="M710 174 H746" stroke="#6F8D5E" stroke-width="3" stroke-linecap="round"/>
+
+  <rect x="72" y="242" width="250" height="92" rx="15" class="neutral"/>
+  <text x="197" y="270" text-anchor="middle" class="t h">POINTWISE INPUT</text>
+  <text x="197" y="298" text-anchor="middle" class="t s">averages converge almost everywhere</text>
+  <text x="197" y="317" text-anchor="middle" class="t m">from the maximal closure theorem</text>
+
+  <rect x="498" y="242" width="250" height="92" rx="15" class="neutral"/>
+  <text x="623" y="270" text-anchor="middle" class="t h">INTEGRABILITY INPUT</text>
+  <text x="623" y="298" text-anchor="middle" class="t s">averages are uniformly integrable</text>
+  <text x="623" y="317" text-anchor="middle" class="t m">from identical orbit laws</text>
+
+  <path d="M322 288 C372 288 376 357 402 365" class="arrow"/>
+  <path d="M498 288 C448 288 444 357 418 365" class="arrow"/>
+  <rect x="314" y="360" width="192" height="72" rx="16" class="green"/>
+  <text x="410" y="386" text-anchor="middle" class="t h">VITALI BRIDGE</text>
+  <text x="410" y="408" text-anchor="middle" class="t s">absolute-mean norm convergence</text>
+
+  <rect x="166" y="448" width="488" height="24" rx="10" class="clay"/>
+  <text x="410" y="465" text-anchor="middle" class="t m">The limit is integrable, and invariant-set integrals can pass to it.</text>
+</svg>

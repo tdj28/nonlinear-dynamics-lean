@@ -12,6 +12,7 @@ import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
 import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
 import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
 
 /-!
 # Random cocycles
@@ -77,9 +78,14 @@ almost-everywhere convergent subsequence. On a finite-measure base, the weak
 maximal estimate then closes this dense pointwise-good core in real `L¹`:
 fixed-scale Cauchy failures are null, reciprocal natural scales make the
 argument countable, and completeness of the reals gives full-sequence
-almost-everywhere convergence for every integrable observable. This final
-convergence theorem needs neither probability normalization nor ergodicity and
-does not identify the limit. These layers deliberately stop before
-conditional-expectation identification, Kingman's subadditive ergodic theorem,
-or a samplewise exponent claim.
+almost-everywhere convergence for every integrable observable. An
+identification layer then chooses one total invariant limit representative,
+proves orbit and average uniform integrability, upgrades pointwise convergence
+to `L¹`, and matches integrals on every exactly invariant measurable set.
+Conditional-expectation uniqueness identifies the full-sequence limit with
+the conditional expectation onto `MeasurableSpace.invariants T`. This theorem
+still needs neither probability normalization nor ergodicity, and it does not
+assume the base map is injective, surjective, or invertible. These layers
+deliberately stop before ergodic constant identification, Kingman's
+subadditive ergodic theorem, or a samplewise exponent claim.
 -/

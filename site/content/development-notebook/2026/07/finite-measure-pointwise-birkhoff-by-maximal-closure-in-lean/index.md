@@ -777,12 +777,20 @@ familiar space-average formula take its simplest form.
 
 ## The next ridge
 
+{{< panel "info" >}}
+**Successor completed.** RMT-27 now identifies the limit through the exact
+invariant sigma algebra without adding probability, ergodicity, or
+invertibility. Continue with
+[What the Orbit Remembers: Identifying the Birkhoff Limit in Lean]({{< relref "/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean" >}}).
+{{< /panel >}}
+
 RMT-26 completes the existence half of the real finite-measure pointwise
-Birkhoff theorem. The next coherent milestone should identify the limit through
-the invariant sigma algebra without weakening the current theorem or smuggling
-ergodicity into its premises. Once the additive theorem is complete, the
-subadditive cocycle roadmap can return to the orbit-majorant, phase-averaging,
-and interval-packing infrastructure already formalized for Kingman's theorem.
+Birkhoff theorem. RMT-27 supplies the missing measurable representative,
+uniform-integrability and \(L^1\) bridge, invariant-set integral identities,
+and conditional-expectation uniqueness. With the additive theorem complete,
+the roadmap can add the carefully normalized ergodic corollary and then return
+to the orbit-majorant, phase-averaging, and interval-packing infrastructure for
+Kingman's theorem.
 
 ## References
 

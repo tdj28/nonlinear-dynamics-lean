@@ -496,6 +496,19 @@ The first active sequence is:
     no probability normalization, ergodicity, injectivity, surjectivity, or
     invertibility. It proves convergence-event membership without identifying
     the limit.
+32. [`RandomCocycles/PointwiseBirkhoffLimit.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean)
+    identifies that full-sequence limit with conditional expectation onto
+    Mathlib's exact invariant sigma algebra. One total `limUnder`
+    representative is literally invariant even on its divergent fallback
+    branch. Measure-preserving orbit translates have identical laws, which
+    yields uniform integrability of their Cesaro averages; finite-measure
+    Vitali convergence then supplies integrability and real `L¹` convergence
+    of the chosen limit. Restricted-measure preimage transport proves the
+    required integral identity on every exactly invariant measurable set
+    without an inverse map, and conditional-expectation uniqueness completes
+    the identification for the original integrable representative. The final
+    theorem assumes neither probability normalization nor ergodicity and
+    accepts zero mass, noninjective, nonsurjective, and noninvertible dynamics.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has

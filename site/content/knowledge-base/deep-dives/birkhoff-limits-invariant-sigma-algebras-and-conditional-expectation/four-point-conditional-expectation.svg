@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="520" viewBox="0 0 840 520" role="img" aria-labelledby="fourPointTitle fourPointDesc">
+  <title id="fourPointTitle">Conditional expectation on the nonprobability four-point model</title>
+  <desc id="fourPointDesc">The exact invariant sigma algebra sees two cycles. On the mass-four A-cycle, values one and seven are replaced by the invariant value four and both set integrals equal sixteen. On the mass-one B-cycle, values negative three and five are replaced by one and both set integrals equal one. The whole-space integral is seventeen on either side.</desc>
+  <defs>
+    <marker id="fourPointArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .value{font-size:15px;font-weight:700}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#fourPointArrow)}
+  </style>
+  <rect width="840" height="520" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Conditional expectation compresses within each invariant cycle</text>
+  <text x="28" y="51" class="t m">The compression changes point values while preserving every invariant-sector integral.</text>
+
+  <rect x="28" y="88" width="328" height="314" rx="18" class="neutral"/>
+  <text x="192" y="118" text-anchor="middle" class="t h">ORIGINAL OBSERVABLE</text>
+  <rect x="58" y="145" width="268" height="96" rx="15" class="blue"/>
+  <text x="80" y="171" class="t h">A-CYCLE, MASS 4</text>
+  <rect x="94" y="188" width="82" height="36" rx="10" class="neutral"/>
+  <text x="135" y="211" text-anchor="middle" class="t s">a0: value 1</text>
+  <rect x="208" y="188" width="82" height="36" rx="10" class="neutral"/>
+  <text x="249" y="211" text-anchor="middle" class="t s">a1: value 7</text>
+  <rect x="58" y="263" width="268" height="96" rx="15" class="clay"/>
+  <text x="80" y="289" class="t h">B-CYCLE, MASS 1</text>
+  <rect x="94" y="306" width="82" height="36" rx="10" class="neutral"/>
+  <text x="135" y="329" text-anchor="middle" class="t s">b0: value -3</text>
+  <rect x="208" y="306" width="82" height="36" rx="10" class="neutral"/>
+  <text x="249" y="329" text-anchor="middle" class="t s">b1: value 5</text>
+  <text x="192" y="387" text-anchor="middle" class="t m">atom masses: 2, 2, 1/2, 1/2</text>
+
+  <path d="M362 245 H404" class="arrow"/>
+  <rect x="412" y="88" width="400" height="314" rx="18" class="green"/>
+  <text x="612" y="112" text-anchor="middle" class="t h">EXACT INVARIANT CONDITIONAL EXPECTATION</text>
+  <text x="612" y="131" text-anchor="middle" class="t m">one compressed value on each cycle</text>
+
+  <rect x="442" y="153" width="340" height="94" rx="15" class="blue"/>
+  <text x="464" y="179" class="t h">A-CYCLE</text>
+  <rect x="486" y="194" width="82" height="36" rx="10" class="neutral"/>
+  <text x="527" y="217" text-anchor="middle" class="t s">a0: value 4</text>
+  <rect x="596" y="194" width="82" height="36" rx="10" class="neutral"/>
+  <text x="637" y="217" text-anchor="middle" class="t s">a1: value 4</text>
+  <text x="612" y="239" text-anchor="middle" class="t m">set integral: 16 before, 16 after</text>
+
+  <rect x="442" y="269" width="340" height="94" rx="15" class="clay"/>
+  <text x="464" y="295" class="t h">B-CYCLE</text>
+  <rect x="486" y="310" width="82" height="36" rx="10" class="neutral"/>
+  <text x="527" y="333" text-anchor="middle" class="t s">b0: value 1</text>
+  <rect x="596" y="310" width="82" height="36" rx="10" class="neutral"/>
+  <text x="637" y="333" text-anchor="middle" class="t s">b1: value 1</text>
+  <text x="612" y="355" text-anchor="middle" class="t m">set integral: 1 before, 1 after</text>
+  <text x="612" y="389" text-anchor="middle" class="t m">the two compressed values are also the orbit-average limits</text>
+
+  <rect x="64" y="434" width="712" height="54" rx="14" class="green"/>
+  <text x="420" y="457" text-anchor="middle" class="t h">WHOLE-SPACE INTEGRAL: 17 BEFORE AND 17 AFTER</text>
+  <text x="420" y="476" text-anchor="middle" class="t s">No probability normalization is used; the declared masses do the weighting.</text>
+  <text x="420" y="508" text-anchor="middle" class="t m">Toy arithmetic only, not an empirical measurement.</text>
+</svg>

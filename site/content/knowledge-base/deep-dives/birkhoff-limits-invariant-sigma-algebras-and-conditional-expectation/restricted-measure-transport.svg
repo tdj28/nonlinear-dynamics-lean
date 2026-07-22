@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="490" viewBox="0 0 820 490" role="img" aria-labelledby="restrictedTransportTitle restrictedTransportDesc">
+  <title id="restrictedTransportTitle">Restricted-measure transport avoids invertibility assumptions</title>
+  <desc id="restrictedTransportDesc">For an exactly invariant measurable set, restriction and orbit preimage lead to the same restricted measure. Measure preservation therefore transports an orbit-composed observable without requiring the map to be injective, surjective, or invertible, and its integral over the invariant set stays unchanged.</desc>
+  <defs>
+    <marker id="restrictedTransportArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#restrictedTransportArrow)}
+  </style>
+  <rect width="820" height="490" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Restricting to an invariant set creates the right transport problem</text>
+  <text x="28" y="51" class="t m">The proof moves measures through a preserved preimage, not points through an inverse map.</text>
+
+  <rect x="28" y="90" width="218" height="132" rx="16" class="blue"/>
+  <text x="137" y="118" text-anchor="middle" class="t h">START WITH THE SET</text>
+  <rect x="76" y="143" width="122" height="48" rx="24" fill="#FBF9F6" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="109" cy="167" r="6" fill="#4B6787"/>
+  <circle cx="137" cy="167" r="6" fill="#4B6787"/>
+  <circle cx="165" cy="167" r="6" fill="#4B6787"/>
+  <text x="137" y="210" text-anchor="middle" class="t m">exactly invariant and measurable</text>
+
+  <path d="M250 156 H280" class="arrow"/>
+  <rect x="288" y="90" width="244" height="132" rx="16" class="clay"/>
+  <text x="410" y="118" text-anchor="middle" class="t h">TAKE THE ORBIT PREIMAGE</text>
+  <rect x="337" y="141" width="146" height="52" rx="26" fill="#FBF9F6" stroke="#A67C52" stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M364 167 C383 148 403 186 423 167 C443 148 461 179 476 160" fill="none" stroke="#A67C52" stroke-width="2"/>
+  <text x="410" y="210" text-anchor="middle" class="t m">the preimage is the same set</text>
+
+  <path d="M536 156 H566" class="arrow"/>
+  <rect x="574" y="90" width="218" height="132" rx="16" class="green"/>
+  <text x="683" y="118" text-anchor="middle" class="t h">RESTRICTED PRESERVATION</text>
+  <rect x="616" y="142" width="134" height="50" rx="12" class="neutral"/>
+  <text x="683" y="163" text-anchor="middle" class="t s">restricted mass</text>
+  <text x="683" y="181" text-anchor="middle" class="t s">maps back to itself</text>
+  <text x="683" y="210" text-anchor="middle" class="t m">the measure is transported exactly</text>
+
+  <path d="M683 226 V260" class="arrow"/>
+  <rect x="486" y="268" width="306" height="106" rx="17" class="green"/>
+  <text x="639" y="297" text-anchor="middle" class="t h">CHANGE OF VARIABLES ON THE RESTRICTION</text>
+  <path d="M538 333 C562 307 585 350 610 324" fill="none" stroke="#4B6787" stroke-width="2.4"/>
+  <path d="M668 333 C692 307 715 350 740 324" fill="none" stroke="#6F8D5E" stroke-width="2.4"/>
+  <path d="M617 328 H657" class="arrow"/>
+  <text x="639" y="359" text-anchor="middle" class="t m">orbit-composed and original integrals agree</text>
+
+  <rect x="28" y="268" width="394" height="106" rx="17" class="neutral"/>
+  <text x="225" y="297" text-anchor="middle" class="t h">WHAT THE ROUTE DOES NOT ASK FOR</text>
+  <rect x="65" y="323" width="88" height="30" rx="10" class="clay"/>
+  <text x="109" y="343" text-anchor="middle" class="t s">injective</text>
+  <rect x="181" y="323" width="88" height="30" rx="10" class="clay"/>
+  <text x="225" y="343" text-anchor="middle" class="t s">surjective</text>
+  <rect x="297" y="323" width="88" height="30" rx="10" class="clay"/>
+  <text x="341" y="343" text-anchor="middle" class="t s">invertible</text>
+
+  <rect x="80" y="414" width="660" height="46" rx="13" class="blue"/>
+  <text x="410" y="442" text-anchor="middle" class="t s">Averaging the orbit translates preserves the same invariant-set integral at every positive horizon.</text>
+  <text x="410" y="480" text-anchor="middle" class="t m">Absolute-mean convergence then passes this identity to the chosen limit.</text>
+</svg>

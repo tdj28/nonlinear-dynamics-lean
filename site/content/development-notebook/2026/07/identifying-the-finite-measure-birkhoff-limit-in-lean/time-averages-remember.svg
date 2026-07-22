@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="440" viewBox="0 0 820 440" role="img" aria-labelledby="timeRememberTitle timeRememberDesc">
+  <title id="timeRememberTitle">Time averages remember invariant orbit sectors</title>
+  <desc id="timeRememberDesc">Two orbit sectors remain separate under the dynamics. Time averages within each sector converge to that sector's invariant summary, so the conditional-expectation target may vary across the space when ergodicity is not assumed.</desc>
+  <defs>
+    <marker id="timeRememberArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#timeRememberArrow)}
+  </style>
+  <rect width="820" height="440" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Time averages remember invariant orbit sectors</text>
+  <text x="28" y="51" class="t m">Preservation moves states along their own sector; averaging does not mix sectors that never meet.</text>
+
+  <rect x="28" y="84" width="434" height="250" rx="18" class="neutral"/>
+  <text x="245" y="112" text-anchor="middle" class="t h">ONE SPACE, TWO INVARIANT SECTORS</text>
+  <rect x="58" y="138" width="374" height="70" rx="14" class="blue"/>
+  <text x="78" y="164" class="t h">SECTOR A</text>
+  <circle cx="172" cy="174" r="9" fill="#FBF9F6" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="256" cy="174" r="9" fill="#FBF9F6" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="340" cy="174" r="9" fill="#FBF9F6" stroke="#4B6787" stroke-width="2"/>
+  <path d="M183 174 H244 M267 174 H328" class="arrow"/>
+  <rect x="58" y="230" width="374" height="70" rx="14" class="clay"/>
+  <text x="78" y="256" class="t h">SECTOR B</text>
+  <circle cx="172" cy="266" r="9" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="256" cy="266" r="9" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="340" cy="266" r="9" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <path d="M183 266 H244 M267 266 H328" class="arrow"/>
+  <text x="245" y="320" text-anchor="middle" class="t m">Every orbit arrow stays inside its labeled sector.</text>
+
+  <path d="M470 208 H512" class="arrow"/>
+  <rect x="520" y="102" width="270" height="214" rx="18" class="green"/>
+  <text x="655" y="132" text-anchor="middle" class="t h">INVARIANT SUMMARY</text>
+  <rect x="552" y="154" width="206" height="54" rx="11" class="blue"/>
+  <text x="655" y="177" text-anchor="middle" class="t s">sector A average</text>
+  <text x="655" y="194" text-anchor="middle" class="t m">one possible limit value</text>
+  <rect x="552" y="226" width="206" height="54" rx="11" class="clay"/>
+  <text x="655" y="249" text-anchor="middle" class="t s">sector B average</text>
+  <text x="655" y="266" text-anchor="middle" class="t m">another possible limit value</text>
+  <text x="655" y="302" text-anchor="middle" class="t m">conditional expectation records the sector</text>
+
+  <rect x="28" y="370" width="762" height="46" rx="12" class="green"/>
+  <text x="409" y="398" text-anchor="middle" class="t s">Without ergodicity, the identified limit need not be one global constant.</text>
+</svg>

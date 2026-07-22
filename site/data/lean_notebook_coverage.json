@@ -39,6 +39,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff",
     "notebook": "site/content/development-notebook/2026/07/finite-measure-pointwise-birkhoff-by-maximal-closure-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit",
+    "notebook": "site/content/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.Discrete",
     "notebook": "site/content/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases/index.md"

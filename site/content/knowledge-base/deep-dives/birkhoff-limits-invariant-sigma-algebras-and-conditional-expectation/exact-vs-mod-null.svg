@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="470" viewBox="0 0 820 470" role="img" aria-labelledby="exactModNullTitle exactModNullDesc">
+  <title id="exactModNullTitle">Exact invariance and invariance modulo null sets are different interfaces</title>
+  <desc id="exactModNullDesc">The formal theorem targets the sigma algebra of sets whose preimage is literally the same set. A separate modulo-null notion permits a discrepancy confined to a null set. The module uses the exact interface and proves function equality only almost everywhere; it does not identify the two sigma-algebra notions.</desc>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+  </style>
+  <rect width="820" height="470" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Do not silently merge exact invariance with modulo-null invariance</text>
+  <text x="28" y="51" class="t m">The distinction matters at the set interface even when final function identities are almost everywhere.</text>
+
+  <rect x="28" y="88" width="352" height="286" rx="18" class="green"/>
+  <text x="204" y="118" text-anchor="middle" class="t h">EXACT INVARIANCE USED HERE</text>
+  <rect x="66" y="151" width="118" height="82" rx="38" class="blue"/>
+  <text x="125" y="188" text-anchor="middle" class="t s">set before</text>
+  <text x="125" y="206" text-anchor="middle" class="t s">preimage</text>
+  <rect x="224" y="151" width="118" height="82" rx="38" class="blue"/>
+  <text x="283" y="188" text-anchor="middle" class="t s">set after</text>
+  <text x="283" y="206" text-anchor="middle" class="t s">preimage</text>
+  <path d="M184 192 H224" stroke="#6F8D5E" stroke-width="3"/>
+  <text x="204" y="258" text-anchor="middle" class="t h">LITERALLY THE SAME SET</text>
+  <text x="204" y="286" text-anchor="middle" class="t s">supports restricted-measure transport</text>
+  <text x="204" y="306" text-anchor="middle" class="t s">for every orbit iterate</text>
+  <text x="204" y="346" text-anchor="middle" class="t m">this is the exact invariant sigma algebra</text>
+
+  <path d="M410 100 V362" stroke="#A89B8C" stroke-width="2" stroke-dasharray="7 6"/>
+  <rect x="440" y="88" width="352" height="286" rx="18" class="neutral"/>
+  <text x="616" y="118" text-anchor="middle" class="t h">A DIFFERENT MODULO-NULL INTERFACE</text>
+  <rect x="478" y="151" width="118" height="82" rx="38" class="blue"/>
+  <text x="537" y="188" text-anchor="middle" class="t s">set before</text>
+  <text x="537" y="206" text-anchor="middle" class="t s">preimage</text>
+  <rect x="636" y="151" width="118" height="82" rx="38" class="blue"/>
+  <text x="695" y="188" text-anchor="middle" class="t s">set after</text>
+  <text x="695" y="206" text-anchor="middle" class="t s">preimage</text>
+  <circle cx="746" cy="156" r="10" class="clay"/>
+  <path d="M596 192 H636" stroke="#A67C52" stroke-width="3" stroke-dasharray="5 4"/>
+  <text x="616" y="258" text-anchor="middle" class="t h">DIFFER ONLY ON NULL MASS</text>
+  <text x="616" y="286" text-anchor="middle" class="t s">often useful in ergodic theory</text>
+  <text x="616" y="306" text-anchor="middle" class="t s">but not the target named here</text>
+  <text x="616" y="346" text-anchor="middle" class="t m">no equivalence is asserted in this module</text>
+
+  <rect x="86" y="410" width="648" height="38" rx="12" class="clay"/>
+  <text x="410" y="434" text-anchor="middle" class="t s">Exact invariant measurability plus matching integrals identifies the limit almost everywhere.</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="500" viewBox="0 0 820 500" role="img" aria-labelledby="integralRouteTitle integralRouteDesc">
+  <title id="integralRouteTitle">The invariant-set integral route</title>
+  <desc id="integralRouteDesc">An exactly invariant measurable set is used to restrict the measure. Every orbit iterate preserves that restricted measure, so each translated observable and each positive-time average has the original set integral. Absolute-mean convergence then passes the identity to the limit.</desc>
+  <defs>
+    <marker id="integralRouteArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#integralRouteArrow)}
+  </style>
+  <rect width="820" height="500" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Restrict first, transport second, pass to the limit last</text>
+  <text x="28" y="51" class="t m">Exact invariant sets make the change-of-variables step work without an embedding premise.</text>
+
+  <rect x="28" y="88" width="222" height="136" rx="16" class="blue"/>
+  <text x="139" y="115" text-anchor="middle" class="t h">EXACT INVARIANT SET</text>
+  <rect x="70" y="137" width="138" height="56" rx="28" fill="#FBF9F6" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="104" cy="165" r="7" fill="#4B6787"/>
+  <circle cx="139" cy="165" r="7" fill="#4B6787"/>
+  <circle cx="174" cy="165" r="7" fill="#4B6787"/>
+  <text x="139" y="211" text-anchor="middle" class="t m">preimage under every iterate is itself</text>
+
+  <path d="M254 156 H286" class="arrow"/>
+  <rect x="294" y="88" width="222" height="136" rx="16" class="clay"/>
+  <text x="405" y="115" text-anchor="middle" class="t h">RESTRICT THE MEASURE</text>
+  <rect x="340" y="139" width="130" height="52" rx="12" class="neutral"/>
+  <text x="405" y="161" text-anchor="middle" class="t s">keep only mass</text>
+  <text x="405" y="178" text-anchor="middle" class="t s">inside the set</text>
+  <text x="405" y="211" text-anchor="middle" class="t m">the iterate still preserves this measure</text>
+
+  <path d="M520 156 H552" class="arrow"/>
+  <rect x="560" y="88" width="232" height="136" rx="16" class="green"/>
+  <text x="676" y="115" text-anchor="middle" class="t h">TRANSLATE THE OBSERVABLE</text>
+  <path d="M608 157 C632 133 652 182 676 157 C700 132 721 178 744 153" fill="none" stroke="#6F8D5E" stroke-width="2.5"/>
+  <path d="M608 181 C632 157 652 206 676 181 C700 156 721 202 744 177" fill="none" stroke="#4B6787" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="676" y="211" text-anchor="middle" class="t m">its set integral is unchanged</text>
+
+  <path d="M676 228 V260" class="arrow"/>
+  <rect x="560" y="268" width="232" height="92" rx="16" class="blue"/>
+  <text x="676" y="296" text-anchor="middle" class="t h">AVERAGE POSITIVE TIMES</text>
+  <text x="676" y="324" text-anchor="middle" class="t s">the same set integral remains</text>
+  <text x="676" y="343" text-anchor="middle" class="t m">the totalized horizon zero is excluded here</text>
+
+  <rect x="28" y="268" width="442" height="92" rx="16" class="neutral"/>
+  <text x="249" y="296" text-anchor="middle" class="t h">ABSOLUTE-MEAN NORM CONVERGENCE</text>
+  <text x="249" y="324" text-anchor="middle" class="t s">set integrals of the averages converge to the limit integral</text>
+  <text x="249" y="343" text-anchor="middle" class="t m">this is the continuity bridge supplied by Vitali</text>
+
+  <path d="M474 314 H552" class="arrow"/>
+  <path d="M410 365 C410 395 469 395 498 404" class="arrow"/>
+  <path d="M676 365 C676 395 611 395 582 404" class="arrow"/>
+  <rect x="332" y="402" width="356" height="62" rx="16" class="green"/>
+  <text x="510" y="427" text-anchor="middle" class="t h">LIMIT MATCHES THE ORIGINAL SET INTEGRAL</text>
+  <text x="510" y="448" text-anchor="middle" class="t s">for every exactly invariant measurable set</text>
+
+  <text x="410" y="487" text-anchor="middle" class="t m">No injectivity, surjectivity, or invertibility is used.</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="560" viewBox="0 0 840 560" role="img" aria-labelledby="fiveBridgeTitle fiveBridgeDesc">
+  <title id="fiveBridgeTitle">Five bridges identify the pointwise Birkhoff limit</title>
+  <desc id="fiveBridgeDesc">The proof builds a total limit representative, proves exact invariant measurability, upgrades pointwise convergence to absolute-mean norm convergence, transports invariant-set integrals, and invokes conditional-expectation uniqueness. The final conclusion is almost-everywhere convergence to invariant conditional expectation.</desc>
+  <defs>
+    <marker id="fiveBridgeArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:16px;font-weight:700}
+    .h{font-size:12px;font-weight:700}
+    .s{font-size:11px}
+    .m{font-size:10px;fill:#5A544C}
+    .num{font-size:18px;font-weight:700;fill:#FFFDF8}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.2;marker-end:url(#fiveBridgeArrow)}
+  </style>
+  <rect width="840" height="560" fill="#F7F4F0"/>
+  <text x="28" y="31" class="t title">Five bridges turn convergence existence into limit identification</text>
+  <text x="28" y="51" class="t m">Each bridge has a distinct job; skipping one leaves a real gap.</text>
+
+  <rect x="54" y="86" width="732" height="70" rx="15" class="blue"/>
+  <circle cx="91" cy="121" r="22" fill="#4B6787"/>
+  <text x="91" y="127" text-anchor="middle" class="t num">1</text>
+  <text x="130" y="113" class="t h">TOTAL REPRESENTATIVE</text>
+  <text x="130" y="136" class="t s">Select the genuine limit where it exists and a fixed fallback elsewhere.</text>
+
+  <path d="M420 158 V174" class="arrow"/>
+  <rect x="54" y="180" width="732" height="70" rx="15" class="green"/>
+  <circle cx="91" cy="215" r="22" fill="#6F8D5E"/>
+  <text x="91" y="221" text-anchor="middle" class="t num">2</text>
+  <text x="130" y="207" class="t h">EXACT INVARIANT MEASURABILITY</text>
+  <text x="130" y="230" class="t s">Pointwise shift invariance places the representative in the exact invariant sigma algebra.</text>
+
+  <path d="M420 252 V268" class="arrow"/>
+  <rect x="54" y="274" width="732" height="70" rx="15" class="clay"/>
+  <circle cx="91" cy="309" r="22" fill="#A67C52"/>
+  <text x="91" y="315" text-anchor="middle" class="t num">3</text>
+  <text x="130" y="301" class="t h">VITALI ABSOLUTE-MEAN BRIDGE</text>
+  <text x="130" y="324" class="t s">Identical orbit laws give uniform integrability, upgrading pointwise to norm convergence.</text>
+
+  <path d="M420 346 V362" class="arrow"/>
+  <rect x="54" y="368" width="732" height="70" rx="15" class="blue"/>
+  <circle cx="91" cy="403" r="22" fill="#4B6787"/>
+  <text x="91" y="409" text-anchor="middle" class="t num">4</text>
+  <text x="130" y="395" class="t h">INVARIANT-SET INTEGRAL TRANSPORT</text>
+  <text x="130" y="418" class="t s">Restricted preservation passes the original integral through averages and then to the limit.</text>
+
+  <path d="M420 440 V456" class="arrow"/>
+  <rect x="54" y="462" width="732" height="70" rx="15" class="green"/>
+  <circle cx="91" cy="497" r="22" fill="#6F8D5E"/>
+  <text x="91" y="503" text-anchor="middle" class="t num">5</text>
+  <text x="130" y="489" class="t h">CONDITIONAL-EXPECTATION UNIQUENESS</text>
+  <text x="130" y="512" class="t s">Integrability, invariant measurability, and matching set integrals identify the target.</text>
+
+  <text x="420" y="551" text-anchor="middle" class="t m">Conclusion: the complete averages converge almost everywhere to invariant conditional expectation.</text>
+</svg>

@@ -1504,12 +1504,12 @@ RMT-26 imports.
 derives the positive-time infinite weak estimate used to control approximation
 errors.
 
-The next mathematical layer should identify the almost everywhere limit as a
-conditional expectation onto the invariant sigma-algebra. Only after that
-identification should an ergodic specialization derive an almost everywhere
-constant space average. The subadditive program can then reuse the additive
-pointwise theorem without pretending that it already proves Kingman's
-theorem.
+[Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}})
+now completes the next mathematical layer: the almost-everywhere limit is the
+conditional expectation onto the exact invariant sigma algebra. A separate
+ergodic specialization may next derive an almost-everywhere constant normalized
+space average. The subadditive program can then reuse the complete additive
+pointwise theorem without pretending that it already proves Kingman's theorem.
 
 ## References
 
@@ -1529,8 +1529,9 @@ lineage, not an assertion that RMT-26 invokes the theorem verbatim.
 *Proceedings of the National Academy of Sciences* 17(12), 656-660, 1931.
 [PNAS/PMC DOI record](https://doi.org/10.1073/pnas.17.2.656). Page 656 states
 the invariant-volume flow setting; pages 656-660 contain the invariant-set,
-oscillation, and occupation-time argument. The issue number is 12 even though
-the PNAS/PMC DOI record displays <code>17.2.656</code>.
+oscillation, and occupation-time argument. The volume, issue, and page
+coordinates are 17(12), 656-660, while the canonical DOI retains
+`pnas.17.2.656`.
 
 <a id="ref-rmt26-yosida-kakutani"></a>**Kôsaku Yosida and Shizuo Kakutani.**
 [Birkhoff's Ergodic Theorem and the Maximal Ergodic Theorem](https://doi.org/10.3792/pia/1195579375),

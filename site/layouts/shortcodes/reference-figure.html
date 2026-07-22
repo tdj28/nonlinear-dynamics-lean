@@ -1,10 +1,11 @@
 {{ $src := .Get "src" }}
 {{ $alt := .Get "alt" }}
 {{ $caption := .Get "caption" }}
+{{ $wide := eq (.Get "wide") "true" }}
 {{ if not $src }}{{ errorf "reference-figure requires src in %s" .Page.File.Path }}{{ end }}
 {{ if not $alt }}{{ errorf "reference-figure requires finding-led alt text in %s" .Page.File.Path }}{{ end }}
 {{ $resource := .Page.Resources.GetMatch $src }}
-<figure class="reference-figure">
+<figure class="reference-figure{{ if $wide }} reference-figure-wide{{ end }}">
   <div class="reference-figure-frame">
     {{ if $resource }}
     <img src="{{ $resource.RelPermalink }}" alt="{{ $alt }}" loading="lazy" decoding="async">
