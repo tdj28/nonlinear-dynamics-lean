@@ -511,6 +511,12 @@ the distinction between event structure and convergence existence. The
 [companion Deep Dive]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}})
 develops that boundary as a full textbook chapter.
 
+The
+{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
+entry takes the maximum of these sums over \(0\le k\le N\), selects strict
+positivity, and explains how one-step peeling plus measure preservation yields
+a nonnegative event integral and a weak finite average-threshold estimate.
+
 ## References
 
 <a id="ref-birkhoff-mathlib-basic"></a>**Mathlib contributors.**

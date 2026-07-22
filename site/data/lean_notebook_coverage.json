@@ -23,6 +23,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence",
     "notebook": "site/content/development-notebook/2026/07/birkhoff-convergence-events-and-ergodic-rigidity-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/FiniteHopfMaximal.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal",
+    "notebook": "site/content/development-notebook/2026/07/finite-hopf-maximal-ergodic-lemma-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.Discrete",
     "notebook": "site/content/development-notebook/2026/07/one-sided-discrete-matrix-cocycles-over-measure-preserving-bases/index.md"

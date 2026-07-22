@@ -67,6 +67,13 @@ entry uses almost-everywhere equality twice: first to transport an observable
 to a measurable representative, and then to compare the resulting convergence
 events.
 
+The
+{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
+entry uses the same distinction more locally: integrability supplies an
+almost-everywhere measurable finite maximum, so its strict event is null
+measurable even when the original representative of the observable is not
+ordinarily measurable.
+
 Further reading: Mathlib's
 [measure-space foundations](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/MeasureSpaceDef.html)
 define the almost-everywhere filter and associated notation.

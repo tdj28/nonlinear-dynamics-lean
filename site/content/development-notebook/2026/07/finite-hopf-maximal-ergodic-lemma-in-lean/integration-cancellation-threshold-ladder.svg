@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="780"
+     viewBox="0 0 920 780" role="img"
+     aria-labelledby="titleCancellation descCancellation">
+  <title id="titleCancellation">From pointwise maximal control to finite threshold bounds</title>
+  <desc id="descCancellation">The left ladder integrates the pointwise indicator inequality and cancels the current and shifted maximal integrals under measure preservation, leaving a nonnegative event integral. The right ladder centers the observable by a threshold, adds finite total mass for constant integrability, bounds by the positive part, and adds a positive-threshold premise only for division into a weak event-measure estimate.</desc>
+  <rect width="920" height="780" fill="#F7F4F0"/>
+  <style>
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.7}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.7}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.7}
+    .arrow{stroke:#A67C52;stroke-width:2.5;fill:none}
+    .guide{stroke:#A89B8C;stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:18px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .gate{font-size:12px;font-weight:700;fill:#934F1F}
+  </style>
+
+  <text x="34" y="38" class="t title">Integrate, cancel, then add threshold assumptions one at a time</text>
+  <text x="34" y="62" class="t m">The left theorem works for arbitrary total mass; the right ladder marks the later finite-mass and sign gates.</text>
+
+  <rect x="34" y="88" width="400" height="42" rx="10" class="blue"/>
+  <text x="58" y="115" class="t h">FINITE HOPF EVENT INTEGRAL</text>
+
+  <rect x="52" y="154" width="364" height="76" rx="12" class="cream"/>
+  <text x="76" y="184" class="t h">POINTWISE CONTROL</text>
+  <text x="76" y="209" class="t s">Maximum minus shifted maximum is</text>
+  <text x="76" y="226" class="t s">bounded by the event-restricted observable.</text>
+
+  <line x1="234" y1="230" x2="234" y2="254" class="arrow"/>
+  <polygon points="234,266 226,251 242,251" fill="#A67C52"/>
+
+  <rect x="52" y="266" width="364" height="86" rx="12" class="blue"/>
+  <text x="76" y="296" class="t h">INTEGRABILITY AND EVENT REGULARITY</text>
+  <text x="76" y="321" class="t s">Both maxima are integrable; the strict event</text>
+  <text x="76" y="340" class="t s">is null-measurable for the indicator integral.</text>
+
+  <line x1="234" y1="352" x2="234" y2="376" class="arrow"/>
+  <polygon points="234,388 226,373 242,373" fill="#A67C52"/>
+
+  <rect x="52" y="388" width="364" height="86" rx="12" class="clay"/>
+  <text x="76" y="418" class="t h">MEASURE-PRESERVING CANCELLATION</text>
+  <text x="76" y="443" class="t s">Current and shifted maximal integrals agree,</text>
+  <text x="76" y="462" class="t s">so their integrated difference is zero.</text>
+
+  <line x1="234" y1="474" x2="234" y2="498" class="arrow"/>
+  <polygon points="234,510 226,495 242,495" fill="#A67C52"/>
+
+  <rect x="52" y="510" width="364" height="76" rx="12" class="green"/>
+  <text x="76" y="540" class="t h">NONNEGATIVE EVENT INTEGRAL</text>
+  <text x="76" y="565" class="t s">No finite-mass, probability, ergodicity,</text>
+  <text x="76" y="578" class="t s">injectivity, or inverse-map premise.</text>
+
+  <rect x="486" y="88" width="400" height="42" rx="10" class="green"/>
+  <text x="510" y="115" class="t h">FINITE AVERAGE-EXCEEDANCE LADDER</text>
+
+  <rect x="504" y="154" width="364" height="76" rx="12" class="cream"/>
+  <text x="528" y="184" class="t h">CENTER BY A REAL THRESHOLD</text>
+  <text x="528" y="209" class="t s">A positive centered prefix is exactly a</text>
+  <text x="528" y="226" class="t s">positive-time average above the threshold.</text>
+
+  <line x1="686" y1="230" x2="686" y2="254" class="arrow"/>
+  <polygon points="686,266 678,251 694,251" fill="#A67C52"/>
+
+  <rect x="504" y="266" width="364" height="86" rx="12" class="clay"/>
+  <text x="528" y="292" class="t gate">NEW GATE: FINITE TOTAL MASS</text>
+  <text x="528" y="317" class="t s">The constant shift becomes integrable,</text>
+  <text x="528" y="336" class="t s">so the centered event integral can expand.</text>
+
+  <line x1="686" y1="352" x2="686" y2="376" class="arrow"/>
+  <polygon points="686,388 678,373 694,373" fill="#A67C52"/>
+
+  <rect x="504" y="388" width="364" height="86" rx="12" class="blue"/>
+  <text x="528" y="418" class="t h">THRESHOLD TIMES EVENT MEASURE</text>
+  <text x="528" y="443" class="t s">It is bounded by the original observable</text>
+  <text x="528" y="462" class="t s">integrated over the exceedance event.</text>
+
+  <line x1="686" y1="474" x2="686" y2="498" class="arrow"/>
+  <polygon points="686,510 678,495 694,495" fill="#A67C52"/>
+
+  <rect x="504" y="510" width="364" height="76" rx="12" class="green"/>
+  <text x="528" y="540" class="t h">POSITIVE-PART WHOLE-SPACE BOUND</text>
+  <text x="528" y="565" class="t s">The right side is independent of the</text>
+  <text x="528" y="578" class="t s">finite horizon and accepts every threshold.</text>
+
+  <line x1="686" y1="586" x2="686" y2="610" class="arrow"/>
+  <polygon points="686,622 678,607 694,607" fill="#A67C52"/>
+
+  <rect x="504" y="622" width="364" height="82" rx="12" class="clay"/>
+  <text x="528" y="648" class="t gate">NEW GATE: POSITIVE THRESHOLD</text>
+  <text x="528" y="673" class="t s">Only now divide to obtain the finite</text>
+  <text x="528" y="692" class="t s">weak event-measure estimate.</text>
+
+  <rect x="34" y="728" width="852" height="36" rx="10" class="green"/>
+  <text x="111" y="752" class="t s">Finite horizon only: no infinite supremum, pointwise convergence, Kingman theorem, or Lyapunov exponent.</text>
+</svg>

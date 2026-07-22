@@ -1422,6 +1422,12 @@ pointwise Birkhoff development. It must be formalized rather than confused
 with Mathlib's Doob martingale inequality or Hilbert-space mean ergodic
 convergence.
 
+That finite slice is developed next in
+[Peel the Positive Maximum: A Finite Hopf Lemma in Lean]({{< relref "/development-notebook/2026/07/finite-hopf-maximal-ergodic-lemma-in-lean" >}}).
+It proves a strict finite maximal-event integral inequality and finite
+average-threshold consequences. It still does not prove an infinite-horizon
+maximal theorem or pointwise convergence.
+
 Only after a pointwise Birkhoff theorem is available can this branch justify
 the frequency of measurable favorable sets along typical orbits. That density
 input is what the finite phase-averaging and interval-packing mechanisms from

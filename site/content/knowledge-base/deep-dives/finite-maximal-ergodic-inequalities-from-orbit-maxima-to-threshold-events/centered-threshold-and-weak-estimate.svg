@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="450"
+     viewBox="0 0 760 450" role="img"
+     aria-labelledby="thresholdTitle thresholdDesc">
+  <title id="thresholdTitle">Threshold centering and the weak finite maximal estimate</title>
+  <desc id="thresholdDesc">Subtracting a real threshold from an observable converts positive centered partial sums into strict finite-average exceedances. Finite total measure makes the constant threshold integrable, so the core finite Hopf lemma can be applied to the centered observable and its constant term expanded. Positive-part domination makes the right side independent of the horizon, and a positive threshold licenses division.</desc>
+  <rect width="760" height="450" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.5}
+  </style>
+  <defs>
+    <marker id="thresholdArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <text x="24" y="28" class="t title">Threshold centering separates three claims with three premise levels</text>
+  <text x="24" y="48" class="t m">The threshold may be any real number until the last step divides by it.</text>
+
+  <rect class="data" x="24" y="78" width="212" height="98" rx="12"/>
+  <text x="44" y="105" class="t h">SUBTRACT THRESHOLD</text>
+  <text x="44" y="130" class="t s">observable minus threshold</text>
+  <text x="44" y="153" class="t m">This is not expectation centering.</text>
+
+  <path class="arrow" d="M244 127 L278 127" marker-end="url(#thresholdArrow)"/>
+  <rect class="neutral" x="288" y="78" width="212" height="98" rx="12"/>
+  <text x="308" y="105" class="t h">STRICT CENTERED SUM</text>
+  <text x="308" y="130" class="t s">some positive-time sum is positive</text>
+  <text x="308" y="153" class="t m">Equivalent to an average exceedance.</text>
+
+  <path class="arrow" d="M508 127 L542 127" marker-end="url(#thresholdArrow)"/>
+  <rect class="data" x="552" y="78" width="184" height="98" rx="12"/>
+  <text x="572" y="105" class="t h">FINITE EVENT</text>
+  <text x="572" y="130" class="t s">some average is above</text>
+  <text x="572" y="153" class="t m">the threshold by time N</text>
+
+  <path class="arrow" d="M644 185 L644 212 L380 212 L380 237" marker-end="url(#thresholdArrow)"/>
+  <rect class="warn" x="94" y="238" width="572" height="88" rx="12"/>
+  <text x="114" y="263" class="t h">NEW GATE: FINITE TOTAL MASS</text>
+  <text x="114" y="286" class="t h">CENTERED THRESHOLD LOWER BOUND</text>
+  <text x="114" y="308" class="t s">threshold times real event measure is at most the event integral of the observable</text>
+
+  <path class="arrow" d="M380 334 L380 340 L184 340 L184 350" marker-end="url(#thresholdArrow)"/>
+  <rect class="keep" x="24" y="360" width="320" height="66" rx="10"/>
+  <text x="44" y="386" class="t h">POSITIVE-PART BOUND</text>
+  <text x="44" y="408" class="t m">Any real threshold; right side is independent of N.</text>
+  <path class="arrow" d="M350 393 L382 393" marker-end="url(#thresholdArrow)"/>
+  <rect class="keep" x="392" y="360" width="344" height="66" rx="10"/>
+  <text x="412" y="386" class="t h">WEAK MEASURE ESTIMATE</text>
+  <text x="412" y="408" class="t m">Requires a positive threshold because this step divides.</text>
+</svg>

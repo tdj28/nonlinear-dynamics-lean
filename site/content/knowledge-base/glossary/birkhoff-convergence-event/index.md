@@ -318,6 +318,13 @@ integrability.
 [Birkhoff Convergence Events Before the Pointwise Ergodic Theorem]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}})
 develops the complete textbook route, solved exercises, and declaration map.
 
+The
+{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
+entry develops the next analytic ingredient: a strict finite running-maximum
+event whose integral is nonnegative, followed by a horizon-uniform weak
+threshold estimate. It still does not place almost every point in the
+convergence event.
+
 [Finite Ordered Interval Packing for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-ordered-interval-packing-for-nonpositive-subadditive-processes" >}})
 is the finite combinatorial predecessor. RMT-22 supplies an event interface,
 but it still does not supply the density or convergence theorem needed to

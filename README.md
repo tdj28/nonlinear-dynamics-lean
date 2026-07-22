@@ -440,13 +440,27 @@ The first active sequence is:
     yield conditional null-or-conull conclusions, and probability
     normalization turns those into zero-one laws. Thin process and cocycle
     wrappers assert neither membership nor convergence existence.
+28. [`RandomCocycles/FiniteHopfMaximal.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/FiniteHopfMaximal.lean)
+    takes the running maximum of real Birkhoff sums through a fixed horizon,
+    including the zero sum, and isolates its strict positivity event. A
+    positive maximizing index yields the pointwise indicator inequality;
+    measure preservation then cancels the two shifted maximal-function
+    integrals and proves that the observable has nonnegative integral over the
+    event. Centering by a real threshold gives finite average-exceedance
+    bounds, a horizon-uniform positive-part estimate, and a weak measure
+    bound whose division exposes exactly the premise that the threshold is
+    positive. The core theorem needs neither finite total mass, probability,
+    sigma-finiteness, ergodicity, nor invertibility. The average-threshold
+    layer uses a finite measure only to make the constant centering observable
+    integrable.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
-spectral laws or quantum-chaos observables. The next asymptotic route is to
-formalize the missing Hopf maximal-ergodic estimate, use it to build an honest
-pointwise Birkhoff theorem with every measurability, integrability, invariance,
-and finite-measure premise visible, and only then connect the finite packing
-machinery to a Kingman-style subadditive theorem. The pinned Mathlib release
+spectral laws or quantum-chaos observables. The next asymptotic route passes
+from the increasing finite exceedance events to an infinite-horizon maximal
+inequality, then builds an honest pointwise Birkhoff theorem with every
+measurability, integrability, invariance, finite-measure, approximation, and
+limit premise visible. Only after that should the finite packing machinery be
+connected to a Kingman-style subadditive theorem. The pinned Mathlib release
 supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
 pointwise Birkhoff or Kingman theorem. A samplewise growth limit, Lyapunov
 exponent, or Oseledets splitting remains unavailable until those dependencies

@@ -1199,12 +1199,15 @@ representative transport, ergodic rigidity, and specialized mean-ergodic
 results in normed settings. The audited API does not contain the
 measure-theoretic pointwise Birkhoff theorem needed here.
 
-A future development must supply a proof route such as a finite maximal
-ergodic inequality followed by approximation and almost-everywhere convergence
-arguments. Every hypothesis and target topology must remain explicit. The
-project must not confuse Mathlib's martingale maximal inequalities with Hopf's
-maximal ergodic inequality, nor its norm-convergence mean-ergodic results with
-pointwise almost-everywhere convergence.
+RMT-23 now supplies the first item in that route: a finite Hopf-style maximal
+ergodic inequality and a horizon-uniform weak estimate for strict finite
+average-threshold events. The
+[finite maximal Deep Dive]({{< relref "/knowledge-base/deep-dives/finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events" >}})
+keeps the later passage to an infinite maximal event, approximation, and
+almost-everywhere convergence explicit. The project must not confuse
+Mathlib's martingale maximal inequalities with Hopf's maximal ergodic
+inequality, nor its norm-convergence mean-ergodic results with pointwise
+almost-everywhere convergence.
 
 For the subadditive program, even a pointwise theorem for the one-step
 observable is not the final summit. The RMT-20 phase estimate and RMT-21
@@ -1231,6 +1234,11 @@ after RMT-22.
 
 [Birkhoff Convergence Events and Ergodic Rigidity in Lean]({{< relref "/development-notebook/2026/07/birkhoff-convergence-events-and-ergodic-rigidity-in-lean" >}})
 maps all thirty-seven names to their checked proofs and build commands.
+
+[Finite Maximal Ergodic Inequalities: From Orbit Maxima to Threshold Events]({{< relref "/knowledge-base/deep-dives/finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events" >}})
+continues the analytic route with strict finite running maxima,
+measure-preserving cancellation, and a positive-threshold weak estimate. It
+still makes no pointwise convergence claim.
 
 ## References
 

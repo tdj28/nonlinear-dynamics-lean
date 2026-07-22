@@ -8,6 +8,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
 import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
+import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
 
 /-!
 # Random cocycles
@@ -52,7 +53,13 @@ under adding or deleting one orbit prefix, and conditional null/conull and
 probability zero-one consequences under the appropriate ergodic hypotheses.
 It also specializes the event to the one-step subadditive-process observable
 and to the cocycle generator's log-positive norm without claiming that either
-event has full measure. These layers deliberately stop before a pointwise or
-mean Birkhoff theorem, Kingman's subadditive ergodic theorem, or any samplewise
+event has full measure. A finite Hopf-style layer next maximizes Birkhoff sums
+through a fixed horizon, proves that the integral of the observable over the
+strict positivity event is nonnegative, and derives an average-exceedance
+integral inequality at every real threshold. This needs neither finite total
+mass nor probability for the core theorem, and no positivity assumption on
+the threshold for the finite-measure corollary. These layers deliberately stop
+before an infinite-horizon maximal inequality or any pointwise or mean
+Birkhoff theorem, Kingman's subadditive ergodic theorem, or samplewise
 exponent claim.
 -/

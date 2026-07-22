@@ -326,6 +326,13 @@ Birkhoff-average sequence converges. Its null-or-conull and probability
 zero-one conclusions remain conditional: ergodicity cannot choose the conull
 branch without a separate pointwise convergence theorem.
 
+The
+{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
+entry demonstrates the premise separation in the other direction. Its core
+integral theorem needs measure preservation and integrability, but neither
+probability normalization nor ergodicity; finite total measure enters only
+when a constant average threshold is subtracted.
+
 ## References
 
 <a id="ref-ergodic-probability-mathlib-probability"></a>**Mathlib contributors.**
