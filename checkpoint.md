@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 15:18 PDT
+Last updated: 2026-07-22 15:36 PDT
 
-Audited baseline: `main` at `1fd3657`
+Audited baseline: `main` at `16c8eb4`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -77,11 +77,11 @@ commits. They are not instructions for future work.
   single-slash-rooted `href` or `src` attributes.
 - The workflow is deliberately production-only: it does not pass
   `--buildDrafts`. The owner explicitly authorized open publication on
-  2026-07-22, so all 128 existing content pages now opt in with `draft: false`:
-  39 Development Notebook entries, 36 Deep Dives, and 53 glossary chapters.
-  The production and draft-inclusive renders both contain 406 pages.
+  2026-07-22, so all 131 existing content pages now opt in with `draft: false`:
+  39 Development Notebook entries, 36 Deep Dives, and 56 glossary chapters.
+  The production and draft-inclusive renders both contain 409 pages.
 - Publication exposes work in progress; it does not manufacture review. All
-  128 pages retain `pro_reviewed: false`, and the Notebook entries retain their
+  131 pages retain `pro_reviewed: false`, and the Notebook entries retain their
   visible pending-review status language. The site-wide
   `open_working_notes` publication mode adds an **Open working note** badge to
   articles and collection cards without rendering the private review metadata.
@@ -3038,6 +3038,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `16c8eb4`: rebuild measurable space, random matrix, pushforward measure, and
+  matrix trace as example-first teaching chapters; add four accessible concept
+  diagrams and social cards; document a genuinely small local Lean/`Std`
+  tutorial while preserving the cloud boundary for project and Mathlib work.
 - `1fd3657`: codify the educational ladder and dual resource boundary, add the
   shared human/paper/Lean and repository-check components, rebuild “Almost
   everywhere” and “Probability distribution (law)” around exact examples and

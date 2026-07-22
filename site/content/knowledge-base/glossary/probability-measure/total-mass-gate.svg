@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="610"
+     viewBox="0 0 920 610" role="img"
+     aria-labelledby="totalMassTitle totalMassDesc">
+  <title id="totalMassTitle">Only the measure of total mass one passes the probability gate</title>
+  <desc id="totalMassDesc">Three segmented bars share a horizontal scale from total mass zero to two. The fair die has six segments of width one sixth and ends at the dashed mass-one gate. A finite measure has six segments of width one third and reaches mass two. A subprobability has six segments of width one eighth and ends at three quarters. A lower panel states that normalization rescales every event and requires positive finite total mass.</desc>
+  <defs>
+    <linearGradient id="massPaper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EEE5D6"/>
+    </linearGradient>
+    <pattern id="massProbability" width="10" height="10" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#EAF1E5"/>
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#315F55" stroke-width="3"/>
+    </pattern>
+    <pattern id="massFinite" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F3E8E0"/>
+      <circle cx="5" cy="5" r="2" fill="#9B3F2B"/>
+    </pattern>
+    <pattern id="massSub" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#E8F0F7"/>
+      <path d="M0 5 H10 M5 0 V10" stroke="#4B6787" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+  <rect width="920" height="610" fill="url(#massPaper)"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-family:Georgia,serif;font-size:25px;font-weight:700;fill:#16243A}
+    .sub{font-size:14px;fill:#536070}
+    .h{font-size:16px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#536070}
+    .axis{font-size:12px;fill:#536070}
+    .verdict{font-size:14px;font-weight:700}
+    .cell{stroke:#766B5D;stroke-width:1.4}
+  </style>
+
+  <text x="34" y="40" class="title">Probability is the exact total-mass-one gate</text>
+  <text x="34" y="65" class="t sub">Common scale: bar length is proportional to total mass, and each of six segments is one face.</text>
+
+  <line x1="248" y1="105" x2="728" y2="105" stroke="#7F786D" stroke-width="2"/>
+  <line x1="248" y1="97" x2="248" y2="113" stroke="#2C2924" stroke-width="2"/>
+  <line x1="488" y1="92" x2="488" y2="420" stroke="#315F55" stroke-width="2.5" stroke-dasharray="7 6"/>
+  <line x1="728" y1="97" x2="728" y2="113" stroke="#2C2924" stroke-width="2"/>
+  <text x="244" y="132" class="t axis">0</text>
+  <text x="484" y="132" class="t axis">1</text>
+  <text x="724" y="132" class="t axis">2</text>
+  <rect x="500" y="83" width="205" height="34" rx="8" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="515" y="105" class="t s" fill="#315F55">TOTAL MASS ONE</text>
+
+  <g aria-label="Fair die probability measure with six weights one sixth and total mass one">
+    <text x="34" y="182" class="t h">Fair die measure</text>
+    <text x="34" y="205" class="t s">each face: 1/6</text>
+    <g transform="translate(248 160)">
+      <rect x="0" y="0" width="40" height="54" fill="url(#massProbability)" class="cell"/>
+      <rect x="40" y="0" width="40" height="54" fill="url(#massProbability)" class="cell"/>
+      <rect x="80" y="0" width="40" height="54" fill="url(#massProbability)" class="cell"/>
+      <rect x="120" y="0" width="40" height="54" fill="url(#massProbability)" class="cell"/>
+      <rect x="160" y="0" width="40" height="54" fill="url(#massProbability)" class="cell"/>
+      <rect x="200" y="0" width="40" height="54" fill="url(#massProbability)" class="cell"/>
+    </g>
+    <text x="510" y="182" class="t verdict" fill="#315F55">total = 1</text>
+    <text x="510" y="205" class="t s">probability measure</text>
+  </g>
+
+  <g aria-label="Finite measure with six weights one third and total mass two">
+    <text x="34" y="290" class="t h">Finite measure</text>
+    <text x="34" y="313" class="t s">each face: 1/3</text>
+    <g transform="translate(248 268)">
+      <rect x="0" y="0" width="80" height="54" fill="url(#massFinite)" class="cell"/>
+      <rect x="80" y="0" width="80" height="54" fill="url(#massFinite)" class="cell"/>
+      <rect x="160" y="0" width="80" height="54" fill="url(#massFinite)" class="cell"/>
+      <rect x="240" y="0" width="80" height="54" fill="url(#massFinite)" class="cell"/>
+      <rect x="320" y="0" width="80" height="54" fill="url(#massFinite)" class="cell"/>
+      <rect x="400" y="0" width="80" height="54" fill="url(#massFinite)" class="cell"/>
+    </g>
+    <text x="750" y="290" class="t verdict" fill="#9B3F2B">total = 2</text>
+    <text x="750" y="313" class="t s">finite, not probability</text>
+  </g>
+
+  <g aria-label="Subprobability measure with six weights one eighth and total mass three quarters">
+    <text x="34" y="398" class="t h">Subprobability</text>
+    <text x="34" y="421" class="t s">each face: 1/8</text>
+    <g transform="translate(248 376)">
+      <rect x="0" y="0" width="30" height="54" fill="url(#massSub)" class="cell"/>
+      <rect x="30" y="0" width="30" height="54" fill="url(#massSub)" class="cell"/>
+      <rect x="60" y="0" width="30" height="54" fill="url(#massSub)" class="cell"/>
+      <rect x="90" y="0" width="30" height="54" fill="url(#massSub)" class="cell"/>
+      <rect x="120" y="0" width="30" height="54" fill="url(#massSub)" class="cell"/>
+      <rect x="150" y="0" width="30" height="54" fill="url(#massSub)" class="cell"/>
+    </g>
+    <text x="510" y="398" class="t verdict" fill="#4B6787">total = 3/4</text>
+    <text x="510" y="421" class="t s">below the gate, not equal</text>
+  </g>
+
+  <rect x="34" y="472" width="852" height="106" rx="14" fill="#FFFDF8" stroke="#C4B8A8" stroke-width="1.8"/>
+  <text x="58" y="505" class="t h">Normalization is a rescaling operation</text>
+  <text x="58" y="532" class="t s">mass 2: divide every event mass by 2</text>
+  <text x="470" y="532" class="t s">mass 3/4: multiply every event mass by 4/3</text>
+  <text x="58" y="559" class="t m">It requires positive finite total mass and changes absolute event masses and integrals.</text>
+</svg>

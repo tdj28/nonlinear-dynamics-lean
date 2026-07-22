@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="measure-title measure-desc">
+  <title id="measure-title">Three atomic masses add as exact fractions</title>
+  <desc id="measure-desc">One total unit is divided into six equal tiles. Atom a owns three tiles for mass one half, atom b owns two tiles for mass one third, and atom c owns one tile for mass one sixth. A second row joins the disjoint a and b tiles to make five sixths. The empty event has no tiles and mass zero, a larger event contains at least the mass of a smaller event, and doubling every tile gives total mass two, which is a measure but not a probability measure.</desc>
+  <defs>
+    <pattern id="mass-b-stripes" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#dcece5"/>
+      <rect width="4" height="12" fill="#3d7465"/>
+    </pattern>
+    <pattern id="mass-c-dots" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#dfe7f3"/>
+      <circle cx="4" cy="4" r="2.5" fill="#3f5f89"/>
+      <circle cx="11" cy="11" r="2.5" fill="#3f5f89"/>
+    </pattern>
+    <filter id="measure-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#3a3028" flood-opacity="0.12"/>
+    </filter>
+    <marker id="measure-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#715947"/>
+    </marker>
+    <style>
+      .ink { fill: #29231e; }
+      .muted { fill: #665b51; }
+      .title { font: 700 31px Georgia, serif; }
+      .heading { font: 700 21px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .body { font: 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .small { font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .tile-label { font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; text-anchor: middle; }
+      .equation { font: 700 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="760" rx="24" fill="#f7f0e3"/>
+  <text x="48" y="52" class="title ink">Mass is built from pieces that add</text>
+  <text x="48" y="82" class="body muted">The three atoms divide one unit into six equal tiles: three, two, and one.</text>
+
+  <rect x="40" y="108" width="1120" height="210" rx="22" fill="#fffaf1" stroke="#9a7b5e" stroke-width="2" filter="url(#measure-shadow)"/>
+  <text x="70" y="148" class="heading ink">The whole space has total mass 1</text>
+  <text x="70" y="176" class="small muted">Omega = {a, b, c}</text>
+
+  <g aria-label="Six equal mass tiles divided among atoms a, b, and c">
+    <rect x="70" y="198" width="160" height="70" rx="8" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+    <rect x="230" y="198" width="160" height="70" rx="8" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+    <rect x="390" y="198" width="160" height="70" rx="8" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+    <rect x="550" y="198" width="160" height="70" rx="8" fill="url(#mass-b-stripes)" stroke="#315f54" stroke-width="2"/>
+    <rect x="710" y="198" width="160" height="70" rx="8" fill="url(#mass-b-stripes)" stroke="#315f54" stroke-width="2"/>
+    <rect x="870" y="198" width="160" height="70" rx="8" fill="url(#mass-c-dots)" stroke="#3f5f89" stroke-width="2"/>
+  </g>
+  <text x="310" y="239" class="tile-label ink">atom a: 1/2</text>
+  <text x="710" y="239" class="tile-label ink">atom b: 1/3</text>
+  <text x="950" y="239" class="tile-label ink">c: 1/6</text>
+  <path d="M 1045 233 L 1105 233" stroke="#715947" stroke-width="3" marker-end="url(#measure-arrow)"/>
+  <text x="1120" y="239" class="equation ink">1</text>
+  <text x="70" y="298" class="small muted">1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 1</text>
+
+  <rect x="40" y="340" width="1120" height="218" rx="22" fill="#fffaf1" stroke="#9a7b5e" stroke-width="2" filter="url(#measure-shadow)"/>
+  <text x="70" y="382" class="heading ink">Disjoint events add without double counting</text>
+
+  <text x="70" y="420" class="small ink">A = {a}</text>
+  <rect x="70" y="435" width="84" height="54" rx="7" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+  <rect x="154" y="435" width="84" height="54" rx="7" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+  <rect x="238" y="435" width="84" height="54" rx="7" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+  <text x="196" y="515" class="equation ink" text-anchor="middle">1/2</text>
+
+  <text x="350" y="470" class="equation ink">+</text>
+
+  <text x="395" y="420" class="small ink">B = {b}</text>
+  <rect x="395" y="435" width="84" height="54" rx="7" fill="url(#mass-b-stripes)" stroke="#315f54" stroke-width="2"/>
+  <rect x="479" y="435" width="84" height="54" rx="7" fill="url(#mass-b-stripes)" stroke="#315f54" stroke-width="2"/>
+  <text x="479" y="515" class="equation ink" text-anchor="middle">1/3</text>
+
+  <text x="600" y="470" class="equation ink">=</text>
+
+  <text x="650" y="420" class="small ink">A union B = {a, b}</text>
+  <rect x="650" y="435" width="84" height="54" rx="7" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+  <rect x="734" y="435" width="84" height="54" rx="7" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+  <rect x="818" y="435" width="84" height="54" rx="7" fill="#f2c87c" stroke="#7c5729" stroke-width="2"/>
+  <rect x="902" y="435" width="84" height="54" rx="7" fill="url(#mass-b-stripes)" stroke="#315f54" stroke-width="2"/>
+  <rect x="986" y="435" width="84" height="54" rx="7" fill="url(#mass-b-stripes)" stroke="#315f54" stroke-width="2"/>
+  <text x="860" y="515" class="equation ink" text-anchor="middle">5/6</text>
+  <text x="70" y="542" class="small muted">The sets do not overlap, so all five sixth-tiles survive in the union.</text>
+
+  <rect x="40" y="580" width="350" height="135" rx="20" fill="#fffaf1" stroke="#9a7b5e" stroke-width="2"/>
+  <text x="66" y="616" class="heading ink">Empty event</text>
+  <rect x="66" y="635" width="82" height="48" rx="7" fill="#f3eee5" stroke="#73675d" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="164" y="666" class="equation ink">mass 0</text>
+  <text x="66" y="702" class="small muted">No atoms means no mass.</text>
+
+  <rect x="410" y="580" width="350" height="135" rx="20" fill="#fffaf1" stroke="#9a7b5e" stroke-width="2"/>
+  <text x="436" y="616" class="heading ink">Monotonicity</text>
+  <text x="436" y="651" class="body ink">{c} is inside {a, c}</text>
+  <text x="436" y="683" class="equation ink">1/6 is at most 2/3</text>
+  <text x="436" y="705" class="small muted">Adding an atom cannot reduce mass.</text>
+
+  <rect x="780" y="580" width="380" height="135" rx="20" fill="#fff5f2" stroke="#a43d34" stroke-width="2"/>
+  <text x="806" y="616" class="heading ink">Normalization boundary</text>
+  <text x="806" y="650" class="body ink">Double every atomic mass.</text>
+  <text x="806" y="683" class="equation ink">total mass = 2</text>
+  <text x="806" y="705" class="small muted">Still a measure, but not a probability measure.</text>
+</svg>

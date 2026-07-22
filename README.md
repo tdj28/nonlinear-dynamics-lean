@@ -340,7 +340,7 @@ supports manual dispatch for exactly this case.
 
 The deployment intentionally omits Hugo drafts, but the complete existing
 corpus is now opted into publication: 39 Development Notebook entries, 36
-Knowledge Base Deep Dives, and 53 glossary chapters have `draft: false`. They
+Knowledge Base Deep Dives, and 56 glossary chapters have `draft: false`. They
 are public working notes, not a claim that every editorial or technical review
 is complete. Their `pro_reviewed: false` metadata and visible pending-review
 status language remain unchanged. Future pages can still begin as drafts, and
