@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 16:23 PDT
+Last updated: 2026-07-22 16:26 PDT
 
-Audited baseline: `main` at `c9f5c82`
+Audited baseline: `main` at `c905709`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `c905709`: rebuild Hermitian Frobenius geometry and the finite GUE chapter
+  around explicit size-two calculations; execute both tiny local worksheets
+  and regenerate their cards from the new diagrams.
 - `c9f5c82`: rebuild Hermitian coordinate space and normalized coordinates;
   add exact two-point trace-moment and Weyl perturbation lessons; execute all
   four local worksheets and regenerate their explanatory social cards.

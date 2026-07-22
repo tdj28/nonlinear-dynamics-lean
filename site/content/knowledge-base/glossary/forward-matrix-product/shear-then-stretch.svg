@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="forward-example-title forward-example-desc">
+  <title id="forward-example-title">A shear followed by a stretch differs from the reversed matrix product</title>
+  <desc id="forward-example-desc">The upper timeline begins with vector zero one. The time-zero shear maps it to one one. The time-one horizontal stretch maps that vector to two one. The written forward product is stretch times shear because the newest factor is on the left. The lower timeline reverses the actions: the stretch leaves zero one fixed and the shear then maps it to one one, a different final vector. Product matrices are displayed on the right.</desc>
+  <defs>
+    <marker id="forward-example-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#59676d"/>
+    </marker>
+    <filter id="forward-example-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2b2925" flood-opacity=".14"/>
+    </filter>
+    <pattern id="chronological" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#dceaf0"/>
+      <rect width="4" height="12" fill="#5d8392"/>
+    </pattern>
+    <style>
+      .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#292722}
+      .title{font-size:28px;font-weight:750}
+      .sub{font-size:14px;fill:#5a554e}
+      .band{font-size:14px;font-weight:750;letter-spacing:1px}
+      .node{font-size:18px;font-weight:750}
+      .body{font-size:14px}
+      .small{font-size:12px;fill:#5a554e}
+      .matrix{font-size:17px;font-weight:700}
+      .arrow{fill:none;stroke:#59676d;stroke-width:2.6;marker-end:url(#forward-example-arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="760" rx="28" fill="#f7f1e7"/>
+  <text class="t title" x="48" y="50">Time flows right; the newest factor is written on the left</text>
+  <text class="t sub" x="48" y="78">A noncommutative two-step trajectory makes the convention visible</text>
+
+  <rect x="34" y="108" width="1132" height="284" rx="24" fill="#eaf0f3" stroke="#86a1ac" stroke-width="1.6"/>
+  <text class="t band" x="58" y="140" fill="#426672">FORWARD PRODUCT · SHEAR AT TIME 0, STRETCH AT TIME 1</text>
+  <g filter="url(#forward-example-shadow)">
+    <rect x="64" y="184" width="178" height="130" rx="17" fill="#fffdfa" stroke="#547c8e" stroke-width="2"/>
+    <rect x="358" y="184" width="178" height="130" rx="17" fill="url(#chronological)" stroke="#547c8e" stroke-width="2"/>
+    <rect x="652" y="184" width="178" height="130" rx="17" fill="#e8efe3" stroke="#6d8b60" stroke-width="2"/>
+    <rect x="916" y="168" width="214" height="164" rx="18" fill="#fffdfa" stroke="#6d8b60" stroke-width="2"/>
+  </g>
+  <text class="t node" x="153" y="217" text-anchor="middle">initial x</text>
+  <text class="t matrix" x="153" y="259" text-anchor="middle">[ 0 ]</text>
+  <text class="t matrix" x="153" y="286" text-anchor="middle">[ 1 ]</text>
+  <text class="t node" x="447" y="217" text-anchor="middle">after A₀</text>
+  <text class="t matrix" x="447" y="259" text-anchor="middle">[ 1 ]</text>
+  <text class="t matrix" x="447" y="286" text-anchor="middle">[ 1 ]</text>
+  <text class="t node" x="741" y="217" text-anchor="middle">after A₁A₀</text>
+  <text class="t matrix" x="741" y="259" text-anchor="middle">[ 2 ]</text>
+  <text class="t matrix" x="741" y="286" text-anchor="middle">[ 1 ]</text>
+  <path class="arrow" d="M242 249 H348"/>
+  <path class="arrow" d="M536 249 H642"/>
+  <text class="t body" x="295" y="225" text-anchor="middle">A₀ = shear</text>
+  <text class="t small" x="295" y="277" text-anchor="middle">acts first</text>
+  <text class="t body" x="589" y="225" text-anchor="middle">A₁ = stretch</text>
+  <text class="t small" x="589" y="277" text-anchor="middle">acts second</text>
+  <text class="t node" x="1023" y="204" text-anchor="middle">written product</text>
+  <text class="t matrix" x="1023" y="243" text-anchor="middle">A₁A₀ = [ 2  2 ]</text>
+  <text class="t matrix" x="1023" y="272" text-anchor="middle">[ 0  1 ]</text>
+  <text class="t small" x="1023" y="306" text-anchor="middle">rightmost A₀ reaches x first</text>
+
+  <rect x="34" y="420" width="1132" height="284" rx="24" fill="#f2e6df" stroke="#ad7358" stroke-width="1.6"/>
+  <text class="t band" x="58" y="452" fill="#82523d">REVERSED PRODUCT · STRETCH FIRST, THEN SHEAR</text>
+  <g filter="url(#forward-example-shadow)">
+    <rect x="64" y="496" width="178" height="130" rx="17" fill="#fffdfa" stroke="#a4664c" stroke-width="2"/>
+    <rect x="358" y="496" width="178" height="130" rx="17" fill="#f7ddd2" stroke="#a4664c" stroke-width="2"/>
+    <rect x="652" y="496" width="178" height="130" rx="17" fill="#f7ddd2" stroke="#a4664c" stroke-width="2"/>
+    <rect x="916" y="480" width="214" height="164" rx="18" fill="#fffdfa" stroke="#a4664c" stroke-width="2"/>
+  </g>
+  <text class="t node" x="153" y="529" text-anchor="middle">same initial x</text>
+  <text class="t matrix" x="153" y="571" text-anchor="middle">[ 0 ]</text>
+  <text class="t matrix" x="153" y="598" text-anchor="middle">[ 1 ]</text>
+  <text class="t node" x="447" y="529" text-anchor="middle">after A₁</text>
+  <text class="t matrix" x="447" y="571" text-anchor="middle">[ 0 ]</text>
+  <text class="t matrix" x="447" y="598" text-anchor="middle">[ 1 ]</text>
+  <text class="t node" x="741" y="529" text-anchor="middle">after A₀A₁</text>
+  <text class="t matrix" x="741" y="571" text-anchor="middle">[ 1 ]</text>
+  <text class="t matrix" x="741" y="598" text-anchor="middle">[ 1 ]</text>
+  <path class="arrow" d="M242 561 H348"/>
+  <path class="arrow" d="M536 561 H642"/>
+  <text class="t body" x="295" y="537" text-anchor="middle">A₁ = stretch</text>
+  <text class="t small" x="295" y="589" text-anchor="middle">leaves x unchanged</text>
+  <text class="t body" x="589" y="537" text-anchor="middle">A₀ = shear</text>
+  <text class="t small" x="589" y="589" text-anchor="middle">now acts second</text>
+  <text class="t node" x="1023" y="516" text-anchor="middle">reversed product</text>
+  <text class="t matrix" x="1023" y="555" text-anchor="middle">A₀A₁ = [ 2  1 ]</text>
+  <text class="t matrix" x="1023" y="584" text-anchor="middle">[ 0  1 ]</text>
+  <text class="t small" x="1023" y="618" text-anchor="middle">different matrix, different final vector</text>
+</svg>

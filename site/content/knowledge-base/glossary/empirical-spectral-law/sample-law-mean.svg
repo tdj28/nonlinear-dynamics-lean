@@ -1,69 +1,141 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390"
-     viewBox="0 0 760 390" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720"
+     viewBox="0 0 960 720" role="img"
      aria-labelledby="eslTitle eslDesc">
-  <title id="eslTitle">A sample measure, its law, and its mean are different objects</title>
-  <desc id="eslDesc">One random Hermitian matrix produces one empirical spectral measure. Repeated samples produce a probability law on measures. A separate averaging step produces the mean measure. The empty-dimensional branch is a law concentrated at the zero measure.</desc>
-  <rect width="760" height="390" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .sample{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .measure{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .law{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .arrow{stroke:#A67C52;stroke-width:2;fill:none}
-    .dash{stroke:#A89B8C;stroke-width:1.6;stroke-dasharray:5 4;fill:none}
-  </style>
+  <title id="eslTitle">Two matrix outcomes produce a law on measures and a different averaged measure</title>
+  <desc id="eslDesc">Two diagonal two-by-two Hermitian matrices occur with probability one half each. The plus matrix has eigenvalues two and zero, so its empirical spectral measure puts mass one half at each. The minus matrix has eigenvalues zero and minus two, so its empirical spectral measure puts mass one half at each. Their empirical spectral law has two measure-valued atoms, one for each whole sample measure, each with probability one half. Their averaged empirical measure instead puts mass one quarter at minus two, one half at zero, and one quarter at two. A dimension-zero card states that the sample measure is the zero measure while its outer law is a point mass at that zero measure.</desc>
   <defs>
-    <marker id="eslArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
-            orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFDF8"/>
+      <stop offset="1" stop-color="#EEE5D6"/>
+    </linearGradient>
+    <pattern id="measurePattern" width="9" height="9" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <rect width="9" height="9" fill="#EAF1E5"/>
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#6F8D5E" stroke-width="1.7"/>
+    </pattern>
+    <pattern id="zeroPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#F3E8E0"/>
+      <circle cx="5" cy="5" r="1.6" fill="#9B3F2B"/>
+    </pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#8B735B"/>
     </marker>
   </defs>
 
-  <text x="24" y="28" class="t title">The law lives one level above each sampled measure</text>
-  <text x="24" y="48" class="t m">Averaging the outcomes creates another measure, not another name for the law.</text>
+  <rect width="960" height="720" fill="url(#paper)"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-family:Georgia,serif;font-size:23px;font-weight:700;fill:#16243A}
+    .sub{font-size:14px;fill:#536070}
+    .cap{font-size:12px;font-weight:700;letter-spacing:1.1px;fill:#1F5A68}
+    .h{font-size:15px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#536070}
+    .n{font-size:17px;font-weight:700;fill:#16243A}
+    .outcome{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.7}
+    .law{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.7}
+    .neutral{fill:#FFFDF8;stroke:#C4B8A8;stroke-width:1.7}
+    .arrow{fill:none;stroke:#8B735B;stroke-width:2.1;marker-end:url(#arrow)}
+    .axis{stroke:#4B6787;stroke-width:1.8}
+    .tick{stroke:#4B6787;stroke-width:1.4}
+    .good{fill:#315F55}
+    .warn{fill:#8B3022}
+  </style>
 
-  <rect x="24" y="78" width="190" height="94" rx="12" class="sample"/>
-  <text x="119" y="107" text-anchor="middle" class="t h">Random matrix sample</text>
-  <text x="119" y="132" text-anchor="middle" class="t s">One Hermitian matrix</text>
-  <text x="119" y="151" text-anchor="middle" class="t m">Entries vary across trials</text>
+  <text x="28" y="38" class="title">A law on sample measures is not their averaged measure</text>
+  <text x="28" y="63" class="t sub">Two equally likely diagonal matrices make both type levels and every mass visible.</text>
 
-  <path d="M214,125 L276,125" class="arrow" marker-end="url(#eslArrow)"/>
-  <text x="245" y="112" text-anchor="middle" class="t m">spectrum</text>
+  <rect x="40" y="88" width="420" height="214" rx="14" class="outcome"/>
+  <text x="60" y="116" class="t cap">OUTCOME PLUS</text>
+  <text x="440" y="116" text-anchor="end" class="t s">chance: one half</text>
+  <text x="120" y="142" text-anchor="middle" class="t h">Diagonal matrix</text>
+  <rect x="73" y="154" width="94" height="94" rx="5" fill="#FFFDF8" stroke="#4B6787" stroke-width="1.5"/>
+  <path d="M120 154 V248 M73 201 H167" class="axis"/>
+  <text x="96" y="188" text-anchor="middle" class="t n">2</text>
+  <text x="144" y="188" text-anchor="middle" class="t n">0</text>
+  <text x="96" y="236" text-anchor="middle" class="t n">0</text>
+  <text x="144" y="236" text-anchor="middle" class="t n">0</text>
+  <text x="120" y="272" text-anchor="middle" class="t m">eigenvalues: 2 and 0</text>
+  <text x="320" y="142" text-anchor="middle" class="t h">Sample measure L plus</text>
+  <line x1="223" y1="208" x2="417" y2="208" class="axis"/>
+  <line x1="229" y1="201" x2="229" y2="215" class="tick"/>
+  <line x1="320" y1="201" x2="320" y2="215" class="tick"/>
+  <line x1="411" y1="201" x2="411" y2="215" class="tick"/>
+  <text x="229" y="232" text-anchor="middle" class="t m">minus 2</text>
+  <text x="320" y="232" text-anchor="middle" class="t m">0</text>
+  <text x="411" y="232" text-anchor="middle" class="t m">2</text>
+  <circle cx="320" cy="208" r="9" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <circle cx="411" cy="208" r="9" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <text x="320" y="181" text-anchor="middle" class="t s good">mass one half</text>
+  <text x="411" y="181" text-anchor="middle" class="t s good">mass one half</text>
+  <text x="320" y="272" text-anchor="middle" class="t m">one measure on the real line</text>
 
-  <rect x="280" y="78" width="200" height="94" rx="12" class="measure"/>
-  <text x="380" y="107" text-anchor="middle" class="t h">Sample spectral measure</text>
-  <text x="380" y="132" text-anchor="middle" class="t s">One measure on the real line</text>
-  <text x="380" y="151" text-anchor="middle" class="t m">Probability only in positive size</text>
+  <rect x="500" y="88" width="420" height="214" rx="14" class="outcome"/>
+  <text x="520" y="116" class="t cap">OUTCOME MINUS</text>
+  <text x="900" y="116" text-anchor="end" class="t s">chance: one half</text>
+  <text x="580" y="142" text-anchor="middle" class="t h">Diagonal matrix</text>
+  <rect x="533" y="154" width="94" height="94" rx="5" fill="#FFFDF8" stroke="#4B6787" stroke-width="1.5"/>
+  <path d="M580 154 V248 M533 201 H627" class="axis"/>
+  <text x="556" y="188" text-anchor="middle" class="t n">0</text>
+  <text x="604" y="188" text-anchor="middle" class="t n">0</text>
+  <text x="556" y="236" text-anchor="middle" class="t n">0</text>
+  <text x="604" y="236" text-anchor="middle" class="t n">-2</text>
+  <text x="580" y="272" text-anchor="middle" class="t m">eigenvalues: 0 and minus 2</text>
+  <text x="780" y="142" text-anchor="middle" class="t h">Sample measure L minus</text>
+  <line x1="683" y1="208" x2="877" y2="208" class="axis"/>
+  <line x1="689" y1="201" x2="689" y2="215" class="tick"/>
+  <line x1="780" y1="201" x2="780" y2="215" class="tick"/>
+  <line x1="871" y1="201" x2="871" y2="215" class="tick"/>
+  <text x="689" y="232" text-anchor="middle" class="t m">minus 2</text>
+  <text x="780" y="232" text-anchor="middle" class="t m">0</text>
+  <text x="871" y="232" text-anchor="middle" class="t m">2</text>
+  <circle cx="689" cy="208" r="9" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <circle cx="780" cy="208" r="9" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <text x="689" y="181" text-anchor="middle" class="t s good">mass one half</text>
+  <text x="780" y="181" text-anchor="middle" class="t s good">mass one half</text>
+  <text x="780" y="272" text-anchor="middle" class="t m">one measure on the real line</text>
 
-  <path d="M480,125 L542,125" class="arrow" marker-end="url(#eslArrow)"/>
-  <text x="511" y="112" text-anchor="middle" class="t m">repeat</text>
+  <path d="M250 302 V325 H300 V340" class="arrow"/>
+  <path d="M710 302 V325 H660 V340" class="arrow"/>
+  <text x="480" y="327" text-anchor="middle" class="t m">repeat the random experiment</text>
 
-  <rect x="546" y="78" width="190" height="94" rx="12" class="law"/>
-  <text x="641" y="107" text-anchor="middle" class="t h">Empirical spectral law</text>
-  <text x="641" y="132" text-anchor="middle" class="t s">Probability law on measures</text>
-  <text x="641" y="151" text-anchor="middle" class="t m">Mass one in every dimension</text>
+  <rect x="120" y="348" width="720" height="146" rx="14" class="law"/>
+  <text x="480" y="377" text-anchor="middle" class="t cap">EMPIRICAL SPECTRAL LAW: ONE PROBABILITY LAW ON MEASURES</text>
+  <rect x="154" y="394" width="286" height="70" rx="10" fill="url(#measurePattern)" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="297" y="420" text-anchor="middle" class="t h">Whole outcome: L plus</text>
+  <text x="297" y="444" text-anchor="middle" class="t s">outer probability one half</text>
+  <rect x="520" y="394" width="286" height="70" rx="10" fill="url(#measurePattern)" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="663" y="420" text-anchor="middle" class="t h">Whole outcome: L minus</text>
+  <text x="663" y="444" text-anchor="middle" class="t s">outer probability one half</text>
+  <text x="480" y="482" text-anchor="middle" class="t m">The two atoms are measures, not eigenvalue locations.</text>
 
-  <path d="M641,172 L641,222 L482,222" class="dash" marker-end="url(#eslArrow)"/>
-  <text x="565" y="208" text-anchor="middle" class="t m">average measure-valued outcomes</text>
+  <path d="M480 494 V525" class="arrow"/>
+  <text x="492" y="516" class="t m">join averages the inner masses</text>
 
-  <rect x="280" y="200" width="200" height="82" rx="12" class="neutral"/>
-  <text x="380" y="229" text-anchor="middle" class="t h">Mean spectral measure</text>
-  <text x="380" y="253" text-anchor="middle" class="t s">One averaged measure</text>
-  <text x="380" y="270" text-anchor="middle" class="t m">It does not retain trial variation</text>
+  <rect x="40" y="535" width="570" height="112" rx="13" class="neutral"/>
+  <text x="60" y="562" class="t cap">AVERAGED EMPIRICAL MEASURE</text>
+  <text x="60" y="587" class="t s">one measure on the real line</text>
+  <line x1="252" y1="600" x2="572" y2="600" class="axis"/>
+  <line x1="260" y1="592" x2="260" y2="608" class="tick"/>
+  <line x1="412" y1="592" x2="412" y2="608" class="tick"/>
+  <line x1="564" y1="592" x2="564" y2="608" class="tick"/>
+  <circle cx="260" cy="600" r="8" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <circle cx="412" cy="600" r="11" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <circle cx="564" cy="600" r="8" fill="#EAF1E5" stroke="#315F55" stroke-width="2"/>
+  <text x="260" y="584" text-anchor="middle" class="t s good">one quarter</text>
+  <text x="412" y="579" text-anchor="middle" class="t s good">one half</text>
+  <text x="564" y="584" text-anchor="middle" class="t s good">one quarter</text>
+  <text x="260" y="626" text-anchor="middle" class="t m">minus 2</text>
+  <text x="412" y="626" text-anchor="middle" class="t m">0</text>
+  <text x="564" y="626" text-anchor="middle" class="t m">2</text>
 
-  <rect x="24" y="206" width="190" height="70" rx="10" class="neutral"/>
-  <text x="119" y="232" text-anchor="middle" class="t h">Empty dimension</text>
-  <text x="119" y="254" text-anchor="middle" class="t s">Zero sample measure</text>
-  <text x="119" y="270" text-anchor="middle" class="t m">Its law is still a probability law</text>
+  <rect x="635" y="535" width="285" height="112" rx="13" fill="url(#zeroPattern)" stroke="#A67C52" stroke-width="1.7"/>
+  <text x="655" y="562" class="t cap warn">DIMENSION ZERO</text>
+  <text x="655" y="587" class="t s">sample: the zero measure</text>
+  <text x="655" y="609" class="t s">law: point mass at that measure</text>
+  <text x="655" y="631" class="t m">inner mass zero; outer mass one</text>
 
-  <rect x="24" y="316" width="712" height="50" rx="10"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="380" y="346" text-anchor="middle" class="t s">
-    Keep the sample measure, its law, and its mean separate before asking for moments or limits.
-  </text>
+  <rect x="40" y="671" width="880" height="30" rx="9" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="480" y="691" text-anchor="middle" class="t s good">The law remembers which eigenvalues arrived together; the average forgets that trial-level pairing.</text>
 </svg>

@@ -7,7 +7,7 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.MatrixProducts.FiniteProducts"
 og_image: "forward-matrix-product-card.png"
-og_image_alt: "A chronological sequence begins with an initial vector, passes through the earliest, next, and newest matrix actions, and ends with the reminder that the newest factor is written on the left."
+og_image_alt: "A shear followed by a stretch sends zero-one to two-one, while reversing the matrix order sends it to one-one; the newest chronological factor is written on the left."
 ---
 
 {{< panel "warning" >}}
@@ -218,7 +218,36 @@ A_0(A_1x)=
 which is different. A harmless-looking order reversal therefore changes the
 dynamics.
 
+{{< reference-figure
+  wide="true"
+  src="shear-then-stretch.svg"
+  alt="The column vector zero one first passes through a shear matrix and becomes one one, then passes through a horizontal stretch and becomes two one. The forward product is the stretch times the shear. A lower comparison applies the stretch first, obtaining zero one, then the shear, obtaining one one, so the reversed product is different."
+  caption="**Finding:** chronological action runs \(x\to A_0x\to A_1A_0x\), while written matrix multiplication places the newest factor \(A_1\) on the left. The reversed product \(A_0A_1\) sends the same vector somewhere else."
+>}}
+
 ## The checked Lean interface
+
+{{< lean-bridge
+  human="At the next time step, put the newest matrix on the left of the product already accumulated."
+  math="\(P_A(k+1)=A_kP_A(k),\qquad P_A(0)=I.\)"
+  lean="forwardProduct A (k + 1) = A k * forwardProduct A k"
+>}}
+
+- <code>forwardProduct</code> is the project definition for this precise
+  order convention.
+- <code>A : ℕ → Matrix ι ι 𝕜</code> is a time-indexed family of square
+  matrices.
+- <code>k + 1</code> is the successor horizon. It counts \(k+1\) factors,
+  whose indices run from \(0\) through \(k\).
+- <code>A k</code> is the newest factor at that horizon.
+- <code>*</code> is matrix multiplication. Its order is meaningful because
+  this multiplication generally does not commute.
+- <code>forwardProduct A k</code> is the earlier block, placed on the right so
+  it acts first on a column vector.
+- The zero branch lives in the definition as
+  <code>forwardProduct A 0 = 1</code>; here <code>1</code> is the identity
+  matrix.
+{{< /lean-bridge >}}
 
 The algebraic part of the module publishes nine declarations:
 
@@ -238,6 +267,90 @@ The last theorem uses Mathlib's compatibility between matrix multiplication
 and matrix-vector multiplication, <code>Matrix.mulVec_mulVec</code>
 ([Mathlib contributors](#ref-forward-mathlib-mul)). It turns the matrix
 recursion directly into the state recursion.
+
+### Type the noncommutative example locally
+
+This worksheet models two-by-two integer matrices and column vectors with
+<code>Std</code> only. Save it as <code>ForwardProductTutorial.lean</code>:
+
+~~~lean
+import Std
+
+structure Mat2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+deriving Repr, DecidableEq
+
+structure Vec2 where
+  x0 : Int
+  x1 : Int
+deriving Repr, DecidableEq
+
+def Mat2.mul (A B : Mat2) : Mat2 :=
+  { a00 := A.a00 * B.a00 + A.a01 * B.a10
+    a01 := A.a00 * B.a01 + A.a01 * B.a11
+    a10 := A.a10 * B.a00 + A.a11 * B.a10
+    a11 := A.a10 * B.a01 + A.a11 * B.a11 }
+
+def Mat2.mulVec (A : Mat2) (x : Vec2) : Vec2 :=
+  { x0 := A.a00 * x.x0 + A.a01 * x.x1
+    x1 := A.a10 * x.x0 + A.a11 * x.x1 }
+
+def shear : Mat2 :=
+  { a00 := 1, a01 := 1, a10 := 0, a11 := 1 }
+
+def stretch : Mat2 :=
+  { a00 := 2, a01 := 0, a10 := 0, a11 := 1 }
+
+def initial : Vec2 := { x0 := 0, x1 := 1 }
+
+#eval shear.mulVec initial
+#eval stretch.mulVec (shear.mulVec initial)
+#eval shear.mulVec (stretch.mulVec initial)
+#eval stretch.mul shear
+#eval shear.mul stretch
+
+example : stretch.mulVec (shear.mulVec initial) =
+    { x0 := 2, x1 := 1 } := by decide
+example : shear.mulVec (stretch.mulVec initial) =
+    { x0 := 1, x1 := 1 } := by decide
+example : stretch.mul shear ≠ shear.mul stretch := by decide
+~~~
+
+Run it with the installed pinned toolchain:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean ForwardProductTutorial.lean
+~~~
+
+The first three outputs are \((1,1)\), \((2,1)\), and \((1,1)\). The last
+two outputs are distinct matrix products. The kernel-certified examples then
+make both trajectories and noncommutativity explicit. This miniature checks
+the finite arithmetic and order convention, not Mathlib's generic matrix API.
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean).
+On an approved Linux builder, a human can type:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.FiniteProducts
+
+#check NonlinearDynamics.Random.MatrixProducts.forwardProduct
+#check NonlinearDynamics.Random.MatrixProducts.forwardProduct_zero
+#check NonlinearDynamics.Random.MatrixProducts.forwardProduct_succ
+#check NonlinearDynamics.Random.MatrixProducts.forwardProduct_add
+#check NonlinearDynamics.Random.MatrixProducts.forwardProduct_const
+#check NonlinearDynamics.Random.MatrixProducts.forwardProduct_mulVec_succ
+~~~
+
+These checks expose the definition, identity horizon, successor order, block
+split, constant-sequence calibration, and chronological vector action. The
+guarded command below checks the pinned project module and Mathlib dependencies
+in the cloud.
+{{< /repo-check >}}
 
 ## What the definition does not say
 

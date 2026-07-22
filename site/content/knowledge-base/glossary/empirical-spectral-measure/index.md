@@ -1,349 +1,642 @@
 ---
 title: "Empirical spectral measure"
 slug: "empirical-spectral-measure"
-summary: "An empirical spectral measure gives equal mass to every eigenvalue of one finite matrix, counting repeated eigenvalues with multiplicity."
+summary: "A finite matrix spectrum becomes a counting measure with multiplicity, then a probability-normalized empirical measure in positive dimension."
 draft: false
 pro_reviewed: false
 toc: true
-lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum"
+lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum"
 og_image: "empirical-spectral-measure-card.png"
-og_image_alt: "A finite ordered Hermitian spectrum becomes one point mass per eigenvalue slot, then equal weighting turns the counting measure into an empirical spectral measure; the empty spectrum follows a separate zero-measure branch."
+og_image_alt: "A three-by-three spectrum two, two, minus one becomes counting measure two delta at two plus delta at minus one, then empirical masses two thirds and one third with trace moments shown."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+**Editorial status.** This is an AI-assisted working note. Human review of the
+mathematics, Lean interpretation, sources, figures, and accessibility remains
+pending. The page is public so readers can follow the work while that review
+is still open.
 {{< /panel >}}
 
-An **empirical spectral measure** places equal mass on every eigenvalue of one
-finite matrix, with repeated eigenvalues repeated according to their algebraic
-multiplicity. In positive dimension it is a probability measure. In this
-project it is explicitly the zero measure at dimension zero. The construction
-turns a finite list of spectral locations into a measure, so questions about
-many individual eigenvalues can be expressed as integrals against one object.
+An **empirical spectral measure** turns the eigenvalues of one finite matrix
+into one measure on the number line. Every eigenvalue slot receives equal
+weight, and repeated eigenvalues contribute repeatedly.
 
-For an \(n\)-by-\(n\) Hermitian matrix \(H\) with real eigenvalues
-\(\lambda_0(H),\ldots,\lambda_{n-1}(H)\), the positive-dimensional definition
-is
+For a positive-dimensional \(n\times n\) Hermitian matrix \(H\) with ordered
+real eigenvalues
 
 \[
-L_H=\frac1n\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}.
+\lambda_0(H)\geq\lambda_1(H)\geq\cdots\geq\lambda_{n-1}(H),
 \]
 
-Here \(\delta_x\) is the Dirac measure concentrated at \(x\). The project first
-defines the unnormalized **spectral counting measure**
+first form the **spectral counting measure**
 
 \[
-N_H=\sum_{i=0}^{n-1}\delta_{\lambda_i(H)},
+\kappa_H=\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}.
 \]
 
-then defines \(L_H=n^{-1}N_H\). The two objects answer different questions.
-\(N_H\) remembers that the matrix has total spectral multiplicity \(n\), while
-\(L_H\) assigns total mass one when \(n\gt0\).
+It has total mass \(n\). Then divide every atom by \(n\):
 
-{{< reference-figure
-  src="count-normalize-spectrum.svg"
-  alt="A decreasing list of real Hermitian eigenvalues, including a repeated value, becomes one Dirac point mass for every index slot. Equal weighting produces one empirical spectral measure in positive dimension, while an empty spectrum follows an explicit zero-measure branch."
-  caption="**Finding:** multiplicity belongs to the index slots, not merely to the set of distinct spectral locations. The counting measure places one atom at every slot, so coincident eigenvalues add their masses. Equal weighting produces a probability measure only in positive dimension. This conceptual plate does not assert that the eigenvalue map is measurable or that any random-matrix limit exists."
->}}
+\[
+\mu_H=\frac1n\kappa_H
+=\frac1n\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}.
+\]
 
-## Multiplicity is part of the measure
+The result has total mass one when \(n\gt0\). It is therefore a probability
+measure describing the fraction of eigenvalue slots in any measurable region.
 
-Consider the Hermitian matrix
+## A \(3\times3\) example with a repeated eigenvalue
+
+Take the real diagonal, hence Hermitian, matrix
 
 \[
 H=
 \begin{bmatrix}
-4&0&0\\
-0&1&0\\
-0&0&1
+2&0&0\\
+0&2&0\\
+0&0&-1
 \end{bmatrix}.
 \]
 
-Its distinct spectral locations form the set \(\{4,1\}\), but its ordered
-eigenvalue vector is \((4,1,1)\). The counting and empirical measures are
+Its decreasing eigenvalue vector is
 
 \[
-N_H=\delta_4+2\delta_1,
+(\lambda_0,\lambda_1,\lambda_2)=(2,2,-1).
+\]
+
+The value \(2\) occurs in two different index slots. The spectral counting
+measure therefore is
+
+\[
+\begin{aligned}
+\kappa_H
+&=\delta_2+\delta_2+\delta_{-1}\\
+&=2\delta_2+\delta_{-1}.
+\end{aligned}
+\]
+
+Its mass on the whole real line is
+
+\[
+\kappa_H(\mathbb R)=3.
+\]
+
+Normalize by the number of slots:
+
+\[
+\mu_H
+=\frac13\kappa_H
+=\frac23\delta_2+\frac13\delta_{-1}.
+\]
+
+Now
+
+\[
+\mu_H(\mathbb R)=1,
 \qquad
-L_H=\frac13\delta_4+\frac23\delta_1.
-\]
-
-The repeated eigenvalue at \(1\) carries twice the mass because two index
-slots contain it. Replacing the eigenvalue vector by the set of distinct
-values would lose multiplicity and give the wrong trace, the wrong total mass,
-and the wrong spectral moments.
-
-For a measurable set \(B\subseteq\mathbb R\), the empirical measure reads
-
-\[
-L_H(B)=\frac1n\#\{i:\lambda_i(H)\in B\}.
-\]
-
-Thus it is literally the fraction of eigenvalue slots lying in \(B\). Mathlib's
-Dirac-measure API formalizes the unit atom, while its counting-measure API
-formalizes counting as a sum of Dirac measures
-([Mathlib contributors](#ref-esm-mathlib-atoms)). The project uses an explicit
-finite sum because the measure is attached to the finite spectrum of one
-matrix rather than to every point of the ambient real line.
-
-## Ordering matters before the measure forgets it
-
-An empirical measure is unchanged by permuting the eigenvalue vector. Why,
-then, does the project insist on an ordered vector?
-
-The order supplies a canonical coordinate interface. For Hermitian matrices,
-Mathlib provides <code>Matrix.IsHermitian.eigenvalues₀</code>, indexed by a
-finite ordinal whose size is the matrix dimension, and proves that this vector
-is antitone. In project notation,
-
-\[
-i\le j\quad\Longrightarrow\quad\lambda_i(H)\ge\lambda_j(H).
-\]
-
-Mathlib also provides <code>eigenvalues</code> on the matrix's original index
-type, but that definition reindexes through a general finite equivalence. A
-general equivalence preserves cardinality, not order. Treating that vector as
-sorted would smuggle in a false property.
-
-The project therefore transports <code>eigenvalues₀</code> to
-<code>Fin n</code> using the order-preserving cast supplied by the equality
-between the cardinality of <code>Fin n</code> and \(n\). The resulting
-<code>orderedHermitianEigenvalues</code> is checked to be antitone. This choice
-keeps statements about largest and smallest coordinates meaningful, even
-though the later sum of Dirac measures is permutation invariant. The official
-Mathlib spectrum page documents the sorted vector, its antitonicity, the
-arbitrary reindexing, and the spectral theorem
-([Mathlib contributors](#ref-esm-mathlib-spectrum)).
-
-## Counting measure, empirical measure, and spectral law
-
-Three levels are easy to conflate:
-
-| Object | Input | Output | Total mass |
-|---|---|---|---|
-| Spectral counting measure \(N_H\) | One deterministic Hermitian matrix | A measure on \(\mathbb R\) | \(n\) |
-| Empirical spectral measure \(L_H\) | One deterministic Hermitian matrix | A measure on \(\mathbb R\) | One for \(n\gt0\), zero at \(n=0\) by project convention |
-| Law of the empirical spectral measure | A random Hermitian matrix law | A measure on a space of measures | One, provided the sample-to-measure map is measurable and the source law is probabilistic |
-
-The adjective *empirical* does not mean that experimental data were collected.
-It says that one finite realization contributes one equal-weighted atom per
-eigenvalue slot. If \(H(\omega)\) is a random matrix, then \(L_{H(\omega)}\) is
-a measure-valued random object only after the map
-\(\omega\mapsto L_{H(\omega)}\) has been proved measurable. Its probability law
-is a further pushforward.
-
-This hierarchy mirrors the distinction between a random variable and its law.
-One sampled empirical measure is not the same object as the distribution of
-empirical measures across repeated matrix samples. Neither is the same as an
-expected empirical measure, which would average \(L_H\) over the matrix law.
-
-## The explicit zero-dimensional convention
-
-The formula \(n^{-1}N_H\) needs a boundary policy at \(n=0\). The project does
-not invent an eigenvalue or use ordinary real division by zero. Its scalar is
-an extended nonnegative real: there, the inverse of zero is infinity. The
-spectral counting measure over the empty index type is zero, and infinity
-scaled by the zero measure is zero. Therefore
-
-\[
-N_H=0,
+\mu_H(\{2\})=\frac23,
 \qquad
-L_H=0
-\quad\text{when }n=0.
+\mu_H(\{-1\})=\frac13.
 \]
 
-The zero measure is not a probability measure because its total mass is zero.
-The theorem
-<code>empiricalSpectralMeasure_isZeroOrProbability</code> records the honest
-uniform statement for every natural dimension. A genuine
-<code>ProbabilityMeasure ℝ</code> wrapper is exposed only for matrices of size
-<code>n + 1</code>, where positivity is built into the type of the dimension.
-Mathlib defines <code>ProbabilityMeasure</code> as the subtype of measures with
-total mass one, and <code>IsZeroOrProbabilityMeasure</code> as the disjunction
-between total mass zero and total mass one
-([Mathlib contributors](#ref-esm-mathlib-probability)).
+Replacing the eigenvalue vector by the set of distinct values
+\(\{2,-1\}\) would erase the multiplicity at \(2\). It would produce the
+wrong masses and the wrong moments.
 
-This is more than a Lean convenience. A total definition over all natural
-dimensions is useful for recursive constructions, but totality should not
-erase the fact that an empty spectrum has no uniform probability distribution
-over its elements.
+## First moment: normalized trace
 
-## Trace identities become moment identities
-
-The spectral theorem diagonalizes a Hermitian matrix by a unitary basis. The
-first two power sums of the eigenvalues recover familiar matrix observables:
+Integrating the identity function against the counting measure adds all three
+eigenvalue slots:
 
 \[
-\operatorname{Tr}(H)=\sum_i\lambda_i(H),
+\begin{aligned}
+\int_{\mathbb R}t\,d\kappa_H(t)
+&=2+2-1\\
+&=3\\
+&=\operatorname{Tr}(H).
+\end{aligned}
+\]
+
+For the normalized empirical measure,
+
+\[
+\begin{aligned}
+\int_{\mathbb R}t\,d\mu_H(t)
+&=\frac13(2+2-1)\\
+&=1\\
+&=\frac13\operatorname{Tr}(H).
+\end{aligned}
+\]
+
+The first empirical spectral moment is the average eigenvalue, not the
+unnormalized trace.
+
+## Second moment: normalized trace square
+
+The second counting-measure moment is
+
+\[
+\begin{aligned}
+\int_{\mathbb R}t^2\,d\kappa_H(t)
+&=2^2+2^2+(-1)^2\\
+&=4+4+1\\
+&=9.
+\end{aligned}
+\]
+
+Because
+
+\[
+H^2=
+\begin{bmatrix}
+4&0&0\\
+0&4&0\\
+0&0&1
+\end{bmatrix},
+\]
+
+this is exactly
+
+\[
+\int_{\mathbb R}t^2\,d\kappa_H(t)=\operatorname{Tr}(H^2)=9.
+\]
+
+Normalize once more:
+
+\[
+\int_{\mathbb R}t^2\,d\mu_H(t)
+=\frac13\operatorname{Tr}(H^2)
+=3.
+\]
+
+The example has empirical mean \(1\) and empirical second moment \(3\).
+Its empirical variance is consequently \(3-1^2=2\), although the current
+project theorem names only the first two raw moments.
+
+{{< reference-figure
+  wide="true"
+  src="empirical-spectrum-3x3-ledger.svg"
+  alt="The diagonal Hermitian matrix with entries two, two, and minus one produces eigenvalue slots two, two, and minus one. Its counting measure has mass two at two and mass one at minus one, total three. Dividing by three gives empirical masses two thirds and one third. First moments are three and one; second moments are nine and three. A lower flow separates the realized measure from its probability law when the matrix is random."
+  caption="**Worked ledger:** repeated eigenvalue slots add their Dirac masses, so \(\kappa_H=2\delta_2+\delta_{-1}\) and \(\mu_H=(2/3)\delta_2+(1/3)\delta_{-1}\). Counting moments recover \(\operatorname{Tr}(H)\) and \(\operatorname{Tr}(H^2)\); empirical moments divide them by \(3\). The lower row emphasizes a type distinction: one matrix gives one measure, while a random matrix law pushes forward to a probability distribution over such measures."
+>}}
+
+## The exact general moment bridge
+
+For any intrinsic \(n\times n\) Hermitian matrix, the project proves
+
+\[
+\int_{\mathbb R}(t:\mathbb C)\,d\kappa_H(t)
+=\operatorname{Tr}(H)
+\]
+
+and
+
+\[
+\int_{\mathbb R}(t:\mathbb C)^2\,d\kappa_H(t)
+=\operatorname{Tr}(H^2).
+\]
+
+The cast into \(\mathbb C\) matches the complex-valued matrix trace. Since all
+Hermitian eigenvalues are real, this changes the codomain, not the numerical
+values in the worked example.
+
+The normalized sample moments are
+
+\[
+m_1(H)=n^{-1}\operatorname{Tr}(H),
 \qquad
-\operatorname{Tr}(H^2)=\sum_i\lambda_i(H)^2.
+m_2(H)=n^{-1}\operatorname{Tr}(H^2),
 \]
 
-The project proves both identities for its ordered vector. Equivalently, the
-first two complex-valued moments of the counting measure are
+with the project's zero-dimensional inverse convention included in the Lean
+theorems.
+
+{{< reference-figure
+  src="count-normalize-spectrum.svg"
+  alt="A decreasing list keeps one slot for every Hermitian eigenvalue, including repeated values. Each slot contributes one point mass. Equal weighting gives an empirical spectral measure in positive dimension, while an empty spectrum gives the zero measure."
+  caption="**General pattern:** preserve multiplicity as one Dirac mass per finite index, then scale the counting measure. Ordering supplies a canonical eigenvalue coordinate system even though the final sum of atoms is unchanged by permutation."
+>}}
+
+## Ordering is useful even though measures forget order
+
+The sum of Dirac measures is unchanged if the eigenvalue vector is permuted.
+The project nevertheless starts with a decreasing vector because canonical
+coordinates support statements about the largest and smallest eigenvalues.
+
+Pinned Mathlib supplies <code>Matrix.IsHermitian.eigenvalues₀</code> in
+decreasing order. The project transports that vector to the concrete index
+type <code>Fin n</code> using an order-preserving cast and proves
+<code>orderedHermitianEigenvalues_antitone</code>.
+
+Multiplicity survives that ordering. In the example, the first two
+coordinates both equal \(2\); the measure then adds their two unit atoms at
+the same real location.
+
+## The \(n=0\) policy
+
+At dimension zero, there are no eigenvalue slots. The finite sum defining the
+counting measure is empty, so
 
 \[
-\int_{\mathbb R}x\,\mathrm dN_H(x)=\operatorname{Tr}(H),
+\kappa_H=0.
+\]
+
+The project defines the empirical measure uniformly as
+
+\[
+\mu_H=(n:\mathbb R_{\geq0}^{\infty})^{-1}\,\kappa_H.
+\]
+
+When \(n=0\), the counting measure is already zero, and scalar multiplication
+of the zero measure remains zero. Thus
+
+\[
+\mu_H=0
+\qquad(n=0).
+\]
+
+This zero measure has total mass zero, so it is not a probability measure on
+\(\mathbb R\). The project exposes:
+
+- <code>empiricalSpectralMeasure_isZeroOrProbability</code> in every
+  dimension;
+- <code>empiricalSpectralMeasure_succ_isProbability</code> for dimension
+  <code>n + 1</code>; and
+- <code>empiricalSpectralProbability n H</code> as a genuine bundled
+  probability measure only in positive dimension.
+
+No artificial eigenvalue at zero is inserted merely to make the empty case
+look probabilistic.
+
+## One realized measure is not its probability law
+
+Suppose now that \(H(\omega)\) is random.
+
+| Object | Type-level role | Meaning |
+|---|---|---|
+| \(H(\omega)\) | one Hermitian matrix | one realized sample |
+| \(\mu_{H(\omega)}\) | one measure on \(\mathbb R\) | the realized empirical spectrum |
+| \(\omega\mapsto\mu_{H(\omega)}\) | a measure-valued random variable | the empirical spectrum varies with the sample |
+| \(\mathcal L(\mu_H)\) | a measure on the space of measures | the distribution of realized empirical measures |
+| \(\mathbb E[\mu_H]\) | one averaged measure on \(\mathbb R\) | the barycenter of that distribution |
+
+For finite GUE, the project names the distribution
+<code>GUE.empiricalSpectralLaw n</code>. It is a probability measure on
+<code>Measure ℝ</code>. In positive dimension it also offers a law valued in
+<code>ProbabilityMeasure ℝ</code>.
+
+This distinction is especially sharp at \(n=0\):
+
+\[
+\mu_H=0,
 \qquad
-\int_{\mathbb R}x^2\,\mathrm dN_H(x)=\operatorname{Tr}(H^2).
+\mathcal L(\mu_H)=\delta_0.
 \]
 
-For positive dimension, dividing by \(n\) yields the corresponding empirical
-moments. RMT-10A states the counting-measure identities directly. The
-successor RMT-10C layer now defines those normalized sample moments and
-combines their first two cases with the expected finite Gaussian unitary
-ensemble (GUE) trace moments from RMT-09. See the
-{{< refterm "empirical-spectral-law" "empirical spectral law" >}} entry and
-[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}}).
+The realized empirical measure is the zero measure on \(\mathbb R\). Its law
+is a Dirac probability measure on the **space of measures**. These live on
+different spaces and have different total masses.
 
-## Unitary changes of basis do not move spectral mass
+## In Lean: one matrix gives one measure
 
-If \(U\) is unitary, then \(UHU^*\) represents the same Hermitian operator in a
-different orthonormal basis. Its characteristic polynomial, ordered
-eigenvalue vector, counting measure, and empirical measure are unchanged:
+{{< lean-bridge
+  human="Take the eigenvalues of this intrinsic Hermitian matrix H, count every slot with multiplicity, and divide by the matrix dimension."
+  math="\(\displaystyle\mu_H=\frac1n\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}.\)"
+  lean="NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure H"
+>}}
 
-\[
-L_{UHU^*}=L_H.
-\]
+- <code>H</code> is one value of type
+  <code>RandomMatrix.HermitianEuclidean n</code>.
+- <code>orderedHermitianEigenvalues H i</code> is the real eigenvalue in slot
+  <code>i : Fin n</code>.
+- <code>spectralCountingMeasure H</code> sums one Dirac measure per slot.
+- <code>empiricalSpectralMeasure H</code> scales that measure by the extended
+  nonnegative-real reciprocal of <code>n</code>.
+- The result has type <code>Measure ℝ</code>. In positive dimension a theorem
+  separately certifies total mass one.
+{{< /lean-bridge >}}
 
-The Lean proof first identifies the characteristic polynomials, then compares
-the decreasingly sorted real roots. This avoids arguing that two arbitrary
-eigenvalue enumerations agree coordinate by coordinate. The result is
-pointwise and deterministic. It does not require a random-matrix law.
+## In Lean: the second sample moment is a trace power
 
-## The RMT-10A measurability seam and its discharge
+{{< lean-bridge
+  human="The second moment of H's empirical spectral measure equals one over n times the ordinary trace of H squared."
+  math="\(\displaystyle m_2(H)=\int t^2\,d\mu_H(t)=n^{-1}\operatorname{Tr}(H^2).\)"
+  lean="NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMoment_two H"
+>}}
 
-The algebraic definition exists for every intrinsic finite Hermitian matrix,
-but a law on empirical measures needs more. The target <code>Measure ℝ</code>
-uses Mathlib's Giry measurable structure, generated by evaluation maps
-\(\mu\mapsto\mu(B)\) on measurable sets \(B\). In that structure, Dirac
-embedding and the relevant finite measure operations are measurable
-([Mathlib contributors](#ref-esm-mathlib-giry)).
+- <code>empiricalSpectralMoment 2 H</code> is a complex-valued integral.
+- <code>hermitianToMatrix H</code> forgets the intrinsic Hermitian wrapper
+  without changing matrix entries.
+- <code>Matrix.trace ((hermitianToMatrix H) ^ 2)</code> is the ordinary,
+  unnormalized trace of the square.
+- The theorem's reciprocal is totalized, so the same statement also covers
+  \(n=0\).
+- For the worked size-three matrix, the right side is
+  \(3^{-1}\cdot9=3\).
+{{< /lean-bridge >}}
 
-The input left open by RMT-10A was measurability of each ordered eigenvalue
-coordinate as a function of the matrix. Pinned Mathlib supplies the algebraic
-ordered eigenvalues but does not supply the continuity or measurability theorem
-needed by this project. The RMT-10A module therefore exposes conditional
-interfaces:
+## In Lean: a random matrix gives a law of measures
+
+{{< lean-bridge
+  human="Sample a size-three GUE matrix repeatedly, compute its empirical spectral measure each time, and take the distribution of those measure-valued outputs."
+  math="\(\mathcal Q_3=(\mu_{\bullet})_*\mathbb P_{\mathrm{GUE},3}\in\operatorname{Prob}(\operatorname{Measure}(\mathbb R)).\)"
+  lean="NonlinearDynamics.Random.GUE.empiricalSpectralLaw 3"
+>}}
+
+- <code>GUE.intrinsicLaw 3</code> is the source probability law on intrinsic
+  Hermitian matrices.
+- <code>empiricalSpectralMeasure</code> is the measurable map applied to each
+  matrix.
+- <code>empiricalSpectralLaw 3</code> is their pushforward and has type
+  <code>Measure (Measure ℝ)</code>.
+- Its samples are measures such as \(\mu_H\); it is not itself the empirical
+  measure of one fixed matrix.
+- <code>meanEmpiricalSpectralMeasure 3</code> is yet another object, obtained
+  by taking the Giry barycenter of this law.
+{{< /lean-bridge >}}
+
+## Exact project excerpts
+
+**Resource label: pinned project plus Mathlib.** The authoritative deterministic
+definitions are in
+[<code>HermitianSpectrum.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean):
 
 ~~~lean
-theorem measurable_empiricalSpectralMeasure_of_measurable_eigenvalues
-    (h : ∀ i, Measurable (fun H => orderedHermitianEigenvalues H i)) :
-    Measurable empiricalSpectralMeasure
+noncomputable def spectralCountingMeasure {n : ℕ}
+    (H : HermitianEuclidean n) : Measure ℝ :=
+  ∑ i, Measure.dirac (orderedHermitianEigenvalues H i)
+
+noncomputable def empiricalSpectralMeasure {n : ℕ}
+    (H : HermitianEuclidean n) : Measure ℝ :=
+  (n : ℝ≥0∞)⁻¹ • spectralCountingMeasure H
 ~~~
 
-Read the hypothesis as a genuine premise of that theorem, not as documentation
-of an automatically available instance. The successor RMT-10B module now
-proves a Frobenius {{< refterm "weyl-eigenvalue-bound" "Weyl eigenvalue bound" >}},
-deduces 1-Lipschitz continuity and coordinatewise measurability, and applies
-that result to discharge this premise. The conditional theorem remains the
-compositional bridge; the later theorem supplies its input.
+The first line preserves multiplicity because the sum runs over all finite
+index slots, not over the set of distinct real values. The second line
+normalizes the complete counting measure.
 
-## What the checked layer establishes
+The exact second counting-moment theorem is:
 
-The RMT-10A module checks:
+~~~lean
+theorem integral_sq_complex_ofReal_spectralCountingMeasure {n : ℕ}
+    (H : HermitianEuclidean n) :
+    ∫ x : ℝ, (x : ℂ) ^ 2 ∂spectralCountingMeasure H =
+      Matrix.trace ((hermitianToMatrix H) ^ 2) := by
+  rw [spectralCountingMeasure]
+  rw [integral_finsetSum_measure]
+  · simp only [integral_dirac]
+    exact (trace_sq_eq_sum_sq_orderedHermitianEigenvalues H).symm
+  · intro i _
+    exact integrable_dirac (by simp)
+~~~
 
-- a decreasing real eigenvalue vector with multiplicity;
-- exact trace and trace-square power-sum identities;
-- invariance of the ordered vector under intrinsic unitary congruence;
-- finite spectral counting measure, including total mass \(n\);
-- the zero-aware empirical spectral measure;
-- the zero-or-probability theorem in every dimension;
-- a positive-dimensional <code>ProbabilityMeasure</code> wrapper;
-- a measurable Hermitian-or-zero totalization on ambient complex matrices;
-- conditional Giry-measurability theorems; and
-- a conditional equality between the ambient and intrinsic GUE pushforwards.
+The proof expands the finite sum of Dirac measures, evaluates the integral at
+each atom, and invokes the checked eigenvalue power-sum identity.
 
-RMT-10A itself does **not** prove coordinatewise eigenvalue measurability or
-continuity. RMT-10B now supplies those results and an unconditional equality of
-the ambient and intrinsic GUE empirical-spectral pushforwards. Neither module
-proves an eigenvalue density, semicircle law, concentration estimate, unfolding
-procedure, spacing statistic, universality result, or large-dimension limit.
+The normalized moment layer in
+[<code>GaussianUnitaryEnsembleSpectrum.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean)
+defines:
 
-The empirical spectral distribution (ESD) in Tao, Vu, and Krishnapur's
-circular-law paper is also a normalized eigenvalue-counting object, but that paper studies
-general complex non-Hermitian matrices and eigenvalues in the complex plane
-([Tao, Vu, and Krishnapur](#ref-esm-tao-vu)). It is cited here for a primary
-example of the empirical-spectral-distribution convention and its later
-asymptotic use, not as evidence for any Hermitian, GUE, or Lean theorem in this
-project.
+~~~lean
+noncomputable def empiricalSpectralMoment {n : ℕ} (k : ℕ)
+    (H : HermitianEuclidean n) : ℂ :=
+  ∫ x : ℝ, (x : ℂ) ^ k ∂empiricalSpectralMeasure H
+
+theorem empiricalSpectralMoment_two {n : ℕ} (H : HermitianEuclidean n) :
+    empiricalSpectralMoment 2 H =
+      (((n : ℕ) : ℝ)⁻¹ : ℂ) * Matrix.trace ((hermitianToMatrix H) ^ 2) := by
+  rw [empiricalSpectralMoment, empiricalSpectralMeasure,
+    integral_smul_measure, ENNReal.toReal_inv]
+  rw [integral_sq_complex_ofReal_spectralCountingMeasure]
+  norm_cast
+~~~
+
+Finally, the law of the random measure is a separate definition:
+
+~~~lean
+noncomputable def empiricalSpectralLaw (n : ℕ) : Measure (Measure ℝ) :=
+  (intrinsicLaw n).map empiricalSpectralMeasure
+~~~
+
+The nested type <code>Measure (Measure ℝ)</code> is deliberate: the outer
+measure describes how the inner realized measures vary.
+
+## Tiny local Lean/Std multiplicity worksheet
+
+**Resource label: tiny standalone check.** This worksheet imports only
+<code>Std</code>. It calculates the finite eigenvalue ledger using exact
+rationals. It does not define Dirac measures, diagonalize matrices, or prove
+the project trace theorems.
+
+Save it as <code>EmpiricalSpectrum3Scratch.lean</code>:
+
+~~~lean
+import Std
+
+def eigenvalueSlots : List Rat :=
+  [2, 2, -1]
+
+def countingMomentOf (xs : List Rat) (k : Nat) : Rat :=
+  xs.foldl (fun total x => total + x ^ k) 0
+
+def empiricalMomentOf (xs : List Rat) (k : Nat) : Rat :=
+  match xs with
+  | [] => 0
+  | _ :: _ => countingMomentOf xs k / (xs.length : Rat)
+
+#eval eigenvalueSlots.length
+#eval eigenvalueSlots.count 2
+#eval eigenvalueSlots.count (-1)
+#eval countingMomentOf eigenvalueSlots 1
+#eval empiricalMomentOf eigenvalueSlots 1
+#eval countingMomentOf eigenvalueSlots 2
+#eval empiricalMomentOf eigenvalueSlots 2
+#eval empiricalMomentOf [] 2
+~~~
+
+Run it with:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean EmpiricalSpectrum3Scratch.lean
+~~~
+
+The outputs should be \(3,2,1,3,1,9,3,0\). The second output is the
+multiplicity of eigenvalue \(2\); the final output implements the explicit
+empty-list policy.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** A human can type this
+worksheet in a deliberately provisioned copy of the repository:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
+
+#check NonlinearDynamics.Random.RandomMatrix.orderedHermitianEigenvalues
+#check NonlinearDynamics.Random.RandomMatrix.orderedHermitianEigenvalues_antitone
+#check NonlinearDynamics.Random.RandomMatrix.trace_eq_sum_orderedHermitianEigenvalues
+#check NonlinearDynamics.Random.RandomMatrix.trace_sq_eq_sum_sq_orderedHermitianEigenvalues
+#check NonlinearDynamics.Random.RandomMatrix.spectralCountingMeasure
+#check NonlinearDynamics.Random.RandomMatrix.spectralCountingMeasure_zero
+#check NonlinearDynamics.Random.RandomMatrix.spectralCountingMeasure_univ
+#check NonlinearDynamics.Random.RandomMatrix.integral_complex_ofReal_spectralCountingMeasure
+#check NonlinearDynamics.Random.RandomMatrix.integral_sq_complex_ofReal_spectralCountingMeasure
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure_zero
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure_isZeroOrProbability
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure_succ_isProbability
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralProbability
+#check NonlinearDynamics.Random.RandomMatrix.measurable_empiricalSpectralMeasure
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMoment
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMoment_zero
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMoment_one
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMoment_two
+#check NonlinearDynamics.Random.GUE.empiricalSpectralLaw
+#check NonlinearDynamics.Random.GUE.empiricalSpectralLaw_zero
+#check NonlinearDynamics.Random.GUE.meanEmpiricalSpectralMeasure
+#check NonlinearDynamics.Random.GUE.meanEmpiricalSpectralMeasure_zero
+#check NonlinearDynamics.Random.GUE.empiricalSpectralLaw_eq_map_matrixLaw_ambient
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for an exact declaration
+type. The imported leaf module reaches deterministic spectra, continuity and
+measurability, GUE pushforwards, and normalized moments. The guarded command
+below checks that complete module on an approved Linux builder.
+{{< /repo-check >}}
+
+## Measurability is the bridge to a distribution
+
+The formula for \(\mu_H\) makes sense pointwise before any probability space
+is introduced. To push a matrix law through
+
+\[
+H\longmapsto\mu_H,
+\]
+
+the map must also be measurable into the space of measures carrying Mathlib's
+Giry measurable structure.
+
+The project proves a Frobenius-norm Weyl perturbation bound for ordered
+Hermitian eigenvalues, deduces continuity and coordinatewise measurability,
+and then proves
+<code>measurable_empiricalSpectralMeasure</code>. Only after that bridge is
+available does the pushforward law become an unconditional checked object.
+
+This separates two questions:
+
+1. **Algebraic:** what measure does a fixed matrix produce?
+2. **Probabilistic:** can a random matrix law be pushed through that map?
+
+A correct pointwise formula does not automatically answer the second
+question.
+
+## Unitary basis changes preserve the realized measure
+
+For a unitary matrix \(U\), intrinsic congruence sends
+
+\[
+H\longmapsto UHU^*.
+\]
+
+The project proves the complete ordered eigenvalue vector unchanged, and
+therefore proves
+
+\[
+\kappa_{UHU^*}=\kappa_H,
+\qquad
+\mu_{UHU^*}=\mu_H.
+\]
+
+This is a deterministic statement for each \(H\) and \(U\). It is different
+from unitary invariance of a random matrix law, although the two facts work
+together in GUE.
+
+## Distinctions and failure modes
+
+| Tempting shortcut | What goes wrong | Correct repair |
+|---|---|---|
+| Replace repeated eigenvalues by a set of distinct values | Algebraic multiplicity disappears | Sum one Dirac mass per eigenvalue index |
+| Call \(\kappa_H\) a probability measure | Its total mass is \(n\), not one | Divide by \(n\) when \(n\gt0\) |
+| Call \(\mu_H\) the spectral law of random \(H\) | \(\mu_H\) is one realized measure | Push the matrix law through \(H\mapsto\mu_H\) |
+| Confuse \(\mathcal L(\mu_H)\) with \(\mathbb E[\mu_H]\) | One is a distribution on measures; the other is one barycenter measure | Track the outer and inner carrier types |
+| Insert \(\delta_0\) for an empty spectrum | It invents an eigenvalue that does not exist | Use the explicit zero-measure policy |
+| Say the empirical measure is always probabilistic | At \(n=0\), its total mass is zero | Use zero-or-probability globally and probability only for positive dimension |
+| Normalize the trace theorem itself | The checked counting moment uses ordinary trace | Apply \(n^{-1}\) at the empirical-measure layer |
+| Infer a semicircle law from two moments | Two finite moments do not prove convergence or identify a limit | State asymptotic claims separately and prove them |
+| Assume measurability from the formula | Eigenvalue selection requires an analytic continuity argument | Use the checked Weyl-continuity bridge |
+
+{{< panel "warning" >}}
+**What this entry does not establish.** The finite empirical measure does not
+by itself give an eigenvalue density, level-spacing statistic, unfolded
+spectrum, concentration estimate, semicircle law, circular law, universality
+theorem, or large-dimension convergence result.
+{{< /panel >}}
 
 ## Exercises
 
-1. Compute \(N_H\) and \(L_H\) for a diagonal matrix with eigenvalue vector
-   \((3,3,-2,-2)\). Evaluate both measures on the singleton \(\{3\}\).
-2. Show that permuting an eigenvalue vector leaves its sum of Dirac measures
-   unchanged. Explain why this does not make an ordered coordinate API
-   useless.
-3. For positive \(n\), derive the first two moments of \(L_H\) from the checked
-   counting-measure identities.
-4. Explain why there is no uniform probability measure on an empty finite
-   spectrum. Compare the zero-measure convention with an arbitrary Dirac
-   fallback and state which one preserves spectral meaning.
-5. Draw the type distinction between a matrix \(H\), its empirical measure
-   \(L_H\), and a probability law on the space containing \(L_H\).
-6. Identify the exact hypothesis needed before pushing a matrix law through
-   <code>empiricalSpectralMeasure</code>. Why does pointwise algebra not prove
-   it?
+1. Replace the example by
+   \(H=\operatorname{diag}(3,3,-2,-2)\). Compute
+   \(\kappa_H(\{3\})\), \(\mu_H(\{3\})\), and both first two empirical
+   moments.
+2. Verify directly that permuting \((2,2,-1)\) leaves the sum of Dirac
+   measures unchanged.
+3. Explain why \(\delta_0\) is the law of the zero empirical measure at
+   \(n=0\), while it is not the zero empirical measure itself.
+4. Draw the carrier types for \(H\), \(\mu_H\),
+   \(\mathcal L(\mu_H)\), and \(\mathbb E[\mu_H]\).
 
 ## Where to continue
 
 [Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
-develops the spectral theorem, the Lean index choice, all three measure levels,
-the ambient totalization, and the conditional GUE bridge as one continuous
-ascent.
+develops the ordered spectrum, multiplicity, counting measure, normalization,
+ambient totalization, and zero boundary in textbook detail.
 [Hermitian Spectral Perturbation, Continuity, and Measurability]({{< relref "/knowledge-base/deep-dives/hermitian-spectral-perturbation-continuity-and-measurability" >}})
-proves the Frobenius perturbation theorem that makes those measure-valued maps
-unconditionally measurable. The
-{{< refterm "finite-matrix-trace-moment" "finite matrix trace moment" >}}
-entry explains the earlier expectation layer, while
-{{< refterm "unitary-invariance" "unitary invariance" >}} explains the symmetry
-that leaves these measures unchanged.
+proves the Weyl bound that turns this pointwise observable into a measurable
+map.
+
+[Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}})
+continues from one realized measure to its GUE distribution, Giry mean, and
+first two expected normalized moments. Read
+{{< refterm "empirical-spectral-law" "empirical spectral law" >}} for the
+outer probability law and
+{{< refterm "finite-matrix-trace-moment" "finite matrix trace moment" >}} for
+the earlier ordinary-trace expectation layer.
 
 ## References
 
-<a id="ref-esm-mathlib-spectrum"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [Spectral theory of Hermitian matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/Matrix/Spectrum.html),
-Mathlib 4 documentation. This official page defines
-<code>eigenvalues₀</code>, proves its antitonicity, documents the generally
-reindexed <code>eigenvalues</code>, and supplies the finite Hermitian spectral
-theorem used by the project.
+Mathlib 4 documentation. This official page defines the decreasingly sorted
+Hermitian eigenvalue vector and supplies the finite spectral theorem used by
+the project.
 
-<a id="ref-esm-mathlib-atoms"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [Dirac measure](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/Dirac.html)
 and
-[counting measure](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/Count.html),
-Mathlib 4 documentation. These official APIs define the atomic measure and
-explain counting measure as a sum of Dirac masses. The project specializes
-that pattern to a finite indexed spectrum.
+[probability measures](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/ProbabilityMeasure.html),
+Mathlib 4 documentation. These APIs underlie the finite atomic sum and the
+positive-dimensional probability wrapper.
 
-<a id="ref-esm-mathlib-probability"></a>**Mathlib contributors.**
-[Probability measures](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/ProbabilityMeasure.html)
-and
-[probability-measure typeclasses](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/Typeclasses/Probability.html),
-Mathlib 4 documentation. These official pages define the subtype of measures
-with total mass one and the zero-or-probability interface used at the
-zero-dimensional boundary.
-
-<a id="ref-esm-mathlib-giry"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [The Giry measurable structure on measures](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/GiryMonad.html),
-Mathlib 4 documentation. Mathlib equips the space of all measures with the
-evaluation-generated measurable structure and proves measurability of Dirac,
-map, finite addition, and related operations consumed by the conditional
-interfaces.
+Mathlib 4 documentation. This is the measure-space structure used when an
+empirical measure itself becomes a random output.
 
-<a id="ref-esm-tao-vu"></a>**Terence Tao, Van Vu, with an appendix by Manjunath Krishnapur.**
-[Random matrices: Universality of ESDs and the circular law](https://arxiv.org/abs/0807.4898v5),
-arXiv:0807.4898v5, revised 23 April 2009 and accessed 21 July 2026; published
-in *The Annals of Probability* 38 (2010), 2023-2065,
-[doi:10.1214/10-AOP534](https://doi.org/10.1214/10-AOP534). The paper defines
-the normalized empirical spectral distribution of a general complex matrix
-and studies non-Hermitian circular-law asymptotics. Only the finite normalized
-counting convention is used as context here.
+**Terence Tao, Van Vu, with an appendix by Manjunath Krishnapur.**
+[Random matrices: Universality of ESDs and the circular law](https://doi.org/10.1214/10-AOP534),
+*The Annals of Probability* 38 (2010), 2023-2065. This primary paper uses the
+normalized empirical spectral distribution convention for general complex
+matrices. Its non-Hermitian asymptotic results are context, not project
+theorems.
 
-The exact upstream Lean source audited for this entry is Mathlib commit
+**Nonlinear Dynamics in Lean contributors.**
+[HermitianSpectrum.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean),
+[HermitianSpectrumContinuity.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean),
+and
+[GaussianUnitaryEnsembleSpectrum.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean),
+the checked project sources for finite spectra, measure-valued measurability,
+random spectral laws, and normalized moments.
+
+The upstream Mathlib revision audited for this entry is commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the revision pinned by <code>formalization/lake-manifest.json</code>.
+pinned by <code>formalization/lake-manifest.json</code>.
