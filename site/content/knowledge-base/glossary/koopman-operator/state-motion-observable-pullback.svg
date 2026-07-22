@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400"
+     viewBox="0 0 760 400" role="img"
+     aria-labelledby="koopmanMotionTitle koopmanMotionDesc">
+  <title id="koopmanMotionTitle">Forward state motion and observable pullback</title>
+  <desc id="koopmanMotionDesc">The left panel moves a starting state through an update and then reads the original observable. The right panel first composes the observable with the state update and then reads it at the starting state. Both routes give the same value. A footer says that measure preservation keeps the real square-integrable norm unchanged.</desc>
+  <rect width="760" height="400" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}
+    .h{font-size:13px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .kept{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">Move the state forward; pull the observable back</text>
+  <text x="24" y="48" class="t m">Two routes to one reading make a nonlinear state update act linearly on observables.</text>
+
+  <rect class="neutral" x="24" y="70" width="344" height="244" rx="12"/>
+  <text x="44" y="99" class="t h">FORWARD STATE MOTION</text>
+  <text x="44" y="121" class="t m">Update first, then read the original observable.</text>
+  <circle cx="92" cy="183" r="30" fill="#FBF9F6" stroke="#7F786D" stroke-width="1.5"/>
+  <text x="66" y="180" class="t s">starting</text>
+  <text x="76" y="196" class="t s">state</text>
+  <path d="M128 183 L234 183" fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  <polygon points="242,183 229,176 229,190" fill="#A67C52"/>
+  <text x="153" y="169" class="t m">state update</text>
+  <circle cx="282" cy="183" r="34" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.7"/>
+  <text x="258" y="180" class="t s">updated</text>
+  <text x="267" y="196" class="t s">state</text>
+  <path d="M282 221 L282 251" fill="none" stroke="#4B6787" stroke-width="2"/>
+  <polygon points="282,258 275,246 289,246" fill="#4B6787"/>
+  <rect class="data" x="199" y="261" width="166" height="35" rx="8"/>
+  <text x="219" y="283" class="t s">read original observable</text>
+
+  <rect class="neutral" x="392" y="70" width="344" height="244" rx="12"/>
+  <text x="412" y="99" class="t h">OBSERVABLE PULLBACK</text>
+  <text x="412" y="121" class="t m">Compose first, then read at the starting state.</text>
+  <rect class="data" x="414" y="153" width="118" height="58" rx="10"/>
+  <text x="439" y="178" class="t s">original</text>
+  <text x="433" y="195" class="t s">observable</text>
+  <path d="M540 182 L594 182" fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  <polygon points="602,182 589,175 589,189" fill="#A67C52"/>
+  <text x="542" y="167" class="t m">compose</text>
+  <rect class="kept" x="610" y="153" width="104" height="58" rx="10"/>
+  <text x="629" y="178" class="t s">pulled-back</text>
+  <text x="631" y="195" class="t s">observable</text>
+  <path d="M662 219 L662 251" fill="none" stroke="#6F8D5E" stroke-width="2"/>
+  <polygon points="662,258 655,246 669,246" fill="#6F8D5E"/>
+  <rect class="kept" x="414" y="261" width="300" height="35" rx="8"/>
+  <text x="455" y="283" class="t s">read at starting state: the same value</text>
+
+  <rect class="kept" x="24" y="334" width="712" height="44" rx="10"/>
+  <text x="44" y="361" class="t s">Measure preservation keeps the real square-integrable norm unchanged; it does not supply an inverse.</text>
+</svg>

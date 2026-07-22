@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" role="img" aria-labelledby="convTitle convDesc">
+  <title id="convTitle">The convergence ladder stops before the full pointwise sequence</title>
+  <desc id="convDesc">Three connected boxes show square-integrable norm convergence, convergence in measure, and an almost-everywhere convergent subsequence. A broken bridge separates them from full-sequence almost-everywhere convergence, which requires maximal stability.</desc>
+  <rect width="760" height="360" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.ok{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}.warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.8}.arrow{fill:none;stroke:#6F8D5E;stroke-width:2.3;marker-end:url(#cArrow)}.break{stroke:#A67C52;stroke-width:3;stroke-dasharray:7 6}</style>
+  <defs><marker id="cArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6F8D5E"/></marker></defs>
+  <text x="24" y="28" class="t title">Three checked implications, then a cliff</text>
+  <text x="24" y="48" class="t m">The selected subsequence is a real theorem; the full sequence needs a different argument.</text>
+  <rect x="42" y="90" width="174" height="92" rx="12" class="ok"/><text x="58" y="112" class="t h">SQUARE-INTEGRABLE</text><text x="110" y="130" class="t h">NORM</text><text x="67" y="150" class="t s">all operator averages</text><text x="76" y="169" class="t m">approach projection</text>
+  <rect x="292" y="90" width="174" height="92" rx="12" class="ok"/><text x="317" y="121" class="t h">IN MEASURE</text><text x="317" y="146" class="t s">large deviations occupy</text><text x="330" y="166" class="t m">shrinking measure</text>
+  <rect x="542" y="90" width="176" height="92" rx="12" class="ok"/><text x="557" y="116" class="t s">ALMOST-EVERYWHERE</text><text x="585" y="135" class="t h">SUBSEQUENCE</text><text x="563" y="157" class="t m">strictly increasing times</text><text x="573" y="174" class="t m">converge off a null set</text>
+  <path d="M216 136 L286 136" class="arrow"/><path d="M466 136 L536 136" class="arrow"/>
+  <line x1="90" y1="236" x2="330" y2="236" class="break"/><line x1="430" y1="236" x2="670" y2="236" class="break"/>
+  <path d="M348 216 L368 256 M392 216 L412 256" stroke="#A67C52" stroke-width="5"/>
+  <rect x="220" y="270" width="320" height="62" rx="12" class="warn"/>
+  <text x="329" y="293" class="t h">FULL-SEQUENCE</text><text x="270" y="312" class="t s">ALMOST-EVERYWHERE CONVERGENCE</text><text x="310" y="327" class="t m">maximal stability still missing</text>
+  <rect x="24" y="336" width="712" height="18" rx="7" fill="#EAF1E5" stroke="#6F8D5E"/>
+</svg>

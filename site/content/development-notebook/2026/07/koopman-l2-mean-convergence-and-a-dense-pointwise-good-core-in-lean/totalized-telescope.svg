@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="540" viewBox="0 0 920 540" role="img" aria-labelledby="telescopeTitle telescopeDesc">
+  <title id="telescopeTitle">A forward coboundary average cancels to two endpoints, including a totalized zero-horizon identity</title>
+  <desc id="telescopeDesc">For a positive horizon, a row of consecutive differences cancels at every interior orbit point, leaving the last potential value minus the first, divided by the horizon. A separate horizon-zero lane shows an empty sum and totalized inverse, so both sides are zero. Bounded endpoint values make the positive-horizon quotient converge to zero.</desc>
+  <rect width="920" height="540" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+  </style>
+  <text x="24" y="28" class="t title">A coboundary remembers only two endpoints</text>
+  <text x="24" y="48" class="t m">Interior orbit values cancel exactly; the zero-horizon case remains a valid but vacuous identity.</text>
+
+  <rect class="cream" x="44" y="88" width="832" height="224" rx="12"/>
+  <text x="68" y="120" class="t h">POSITIVE HORIZON</text>
+  <rect class="blue" x="78" y="150" width="150" height="58" rx="10"/>
+  <text x="98" y="175" class="t s">first difference</text>
+  <text x="98" y="195" class="t m">next minus first</text>
+  <text x="238" y="183" class="t h">plus</text>
+  <rect class="gray" x="274" y="150" width="150" height="58" rx="10"/>
+  <text x="296" y="175" class="t s">middle differences</text>
+  <text x="300" y="195" class="t m">interior terms cancel</text>
+  <text x="434" y="183" class="t h">plus</text>
+  <rect class="clay" x="470" y="150" width="150" height="58" rx="10"/>
+  <text x="492" y="175" class="t s">last difference</text>
+  <text x="492" y="195" class="t m">last minus previous</text>
+  <text x="645" y="183" class="t h">becomes</text>
+  <rect class="green" x="710" y="138" width="138" height="82" rx="10"/>
+  <text x="731" y="168" class="t s">last minus first</text>
+  <text x="731" y="191" class="t m">then divide by</text>
+  <text x="731" y="209" class="t m">the horizon</text>
+  <line x1="96" y1="250" x2="600" y2="250" stroke="#A89B8C" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="98" y="278" class="t m">bounded first and last values make the divided endpoint difference vanish as horizons grow</text>
+
+  <rect class="clay" x="44" y="338" width="832" height="118" rx="12"/>
+  <text x="68" y="370" class="t h">HORIZON ZERO</text>
+  <rect class="cream" x="82" y="390" width="208" height="42" rx="9"/>
+  <text x="108" y="416" class="t s">empty average is zero</text>
+  <text x="320" y="416" class="t h">matches</text>
+  <rect class="cream" x="390" y="390" width="418" height="42" rx="9"/>
+  <text x="416" y="416" class="t s">totalized inverse times the zero endpoint difference is zero</text>
+
+  <rect class="green" x="24" y="486" width="872" height="36" rx="10"/>
+  <text x="48" y="509" class="t s">Takeaway: the exact identity includes horizon zero, but convergence uses bounded endpoints along positive horizons.</text>
+</svg>

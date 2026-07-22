@@ -469,15 +469,29 @@ The first active sequence is:
     families do converge after totalization. The result requires neither
     probability, ergodicity, nor invertibility and makes no pointwise
     convergence claim.
+30. [`RandomCocycles/KoopmanL2Mean.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/KoopmanL2Mean.lean)
+    defines the real square-integrable Koopman contraction, its fixed
+    subspace and orthogonal projection, and fixed-plus-simple-coboundary
+    approximants. Raw forward coboundaries telescope at every horizon,
+    including the totalized zero horizon. Hilbert-space geometry gives norm
+    convergence of Koopman averages to the fixed-space projection and density
+    of the fixed-plus-simple-coboundary core. Representative bookkeeping then
+    proves almost-everywhere full-sequence convergence on that core, while a
+    general square-integrable observable receives only an almost-everywhere
+    convergent subsequence. The module assumes measure preservation only for
+    its square-integrable geometry and makes no probability, ergodicity,
+    invertibility, full pointwise-Birkhoff, or limit-identification claim.
 
 This finite-dimensional foundation is deliberately earlier than asymptotic
 spectral laws or quantum-chaos observables. The current asymptotic route has
-passed from the increasing finite exceedance events to an infinite-horizon
-weak maximal inequality. The next stage builds an honest pointwise Birkhoff
-theorem with every measurability, integrability, invariance, finite-measure,
-approximation, and limit premise visible. Only after that should the finite
-packing machinery be connected to a Kingman-style subadditive theorem. The
-pinned Mathlib release
+passed from the infinite-horizon weak maximal inequality through Koopman
+square-integrable mean convergence and a dense pointwise-good core. The next
+stage combines that density with absolute weak maximal control and
+oscillation or Cauchy exceptional sets to build an honest finite-measure
+pointwise Birkhoff theorem for integrable observables. Every measurability,
+integrability, invariance, finite-measure, approximation, and limit premise
+will remain visible. Only after that should the finite packing machinery be
+connected to a Kingman-style subadditive theorem. The pinned Mathlib release
 supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
 pointwise Birkhoff or Kingman theorem. A samplewise growth limit, Lyapunov
 exponent, or Oseledets splitting remains unavailable until those dependencies

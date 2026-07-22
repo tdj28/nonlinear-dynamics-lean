@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="570" viewBox="0 0 920 570" role="img" aria-labelledby="cliffTitle cliffDesc">
+  <title id="cliffTitle">Norm convergence yields convergence in measure and a subsequence with almost-everywhere convergence, but not full-sequence pointwise convergence</title>
+  <desc id="cliffDesc">A three-stage descending path starts with convergence in the square-integrable norm, continues to convergence in measure, and reaches a strictly increasing subsequence whose chosen representatives converge almost everywhere. A blocked path from norm convergence directly to almost-everywhere convergence of the full sequence marks the theorem that is not available. The final pointwise Birkhoff theorem remains beyond a maximal closure step.</desc>
+  <rect width="920" height="570" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:3}
+  </style>
+  <text x="24" y="28" class="t title">Three valid implications stop before the full pointwise theorem</text>
+  <text x="24" y="48" class="t m">The quantifier over a chosen subsequence cannot be erased.</text>
+
+  <rect class="blue" x="58" y="96" width="248" height="108" rx="12"/>
+  <text x="84" y="128" class="t h">SQUARE-INTEGRABLE NORM</text>
+  <text x="84" y="155" class="t s">all finite mean averages converge</text>
+  <text x="84" y="178" class="t m">limit: projection onto fixed vectors</text>
+
+  <path class="arrow" d="M322 150 L392 150"/>
+  <polygon points="408,150 390,141 390,159" fill="#A67C52"/>
+  <rect class="cream" x="408" y="96" width="206" height="108" rx="12"/>
+  <text x="438" y="128" class="t h">IN MEASURE</text>
+  <text x="438" y="155" class="t s">the same full sequence</text>
+  <text x="438" y="178" class="t m">weaker mode of convergence</text>
+
+  <path class="arrow" d="M630 150 L700 150"/>
+  <polygon points="716,150 698,141 698,159" fill="#A67C52"/>
+  <rect class="green" x="716" y="96" width="164" height="108" rx="12"/>
+  <text x="741" y="128" class="t h">SUBSEQUENCE</text>
+  <text x="741" y="155" class="t s">strictly increasing indices</text>
+  <text x="741" y="178" class="t m">almost everywhere</text>
+
+  <rect class="clay" x="150" y="278" width="620" height="116" rx="12"/>
+  <text x="180" y="310" class="t h">BLOCKED INFERENCE</text>
+  <text x="180" y="340" class="t s">Norm convergence alone does not certify almost-everywhere convergence of every term in the full sequence.</text>
+  <text x="180" y="366" class="t m">A sequence may be small in norm while exceptional sets move from one index to the next.</text>
+  <line x1="392" y1="414" x2="528" y2="414" stroke="#A67C52" stroke-width="5"/>
+  <line x1="448" y1="394" x2="472" y2="434" stroke="#934F1F" stroke-width="5"/>
+  <line x1="472" y1="394" x2="448" y2="434" stroke="#934F1F" stroke-width="5"/>
+
+  <rect class="gray" x="150" y="446" width="620" height="58" rx="12"/>
+  <text x="180" y="471" class="t h">NEXT MILESTONE</text>
+  <text x="180" y="491" class="t m">Use the weak maximal estimate to close pointwise convergence beyond the dense good core.</text>
+
+  <rect class="green" x="24" y="524" width="872" height="30" rx="10"/>
+  <text x="48" y="544" class="t s">Takeaway: mean convergence finds a limit in function space; a maximal argument must still control moving exceptional sets.</text>
+</svg>

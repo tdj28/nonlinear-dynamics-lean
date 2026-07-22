@@ -1453,6 +1453,13 @@ RMT-24 supplies one of the analytic controls needed by a pointwise Birkhoff
 theorem, but it does not choose or prove the remaining approximation route.
 The next milestone must audit the pinned library before fixing a statement.
 
+That next milestone is now the draft
+[Mean Is Not Pointwise: Koopman L² Convergence and a Dense Good Core in Lean]({{< relref "/development-notebook/2026/07/koopman-l2-mean-convergence-and-a-dense-pointwise-good-core-in-lean" >}}).
+It constructs the square-integrable Koopman mean limit and a dense
+fixed-plus-simple-coboundary class whose full averages converge almost
+everywhere. It still leaves the maximal closure step to the following
+milestone.
+
 One classical strategy begins with a class of observables for which averages
 converge for algebraic reasons, then approximates a general integrable
 observable and controls the approximation error with a weak maximal estimate.

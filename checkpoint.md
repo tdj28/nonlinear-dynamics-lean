@@ -3,64 +3,67 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-21 20:42 PDT
+Last updated: 2026-07-21 22:11 PDT
 
-Audited baseline: `main` at `5a7c96f`
+Audited baseline: `main` at `9f0ee23`
 
-Active direction: RMT-24 is implementation- and teaching-complete on `main`;
-RMT-25 is the Koopman-`L²` mean-ergodic and dense
-pointwise-good-core bridge toward the pointwise Birkhoff theorem
+Active direction: RMT-25 is implementation-, teaching-, audit-, and
+full-validation-complete in the milestone worktree; RMT-26 is the
+finite-measure `L¹` maximal-closure bridge to the full pointwise Birkhoff
+theorem
 
 ## Restart Handoff
 
-- RMT-24 adds the 342-line
-  `Random/RandomCocycles/InfiniteHopfMaximal.lean`. Its frozen SHA-256 is
-  `80b56f91d3c54b69f0ef589f9732aed3abf8ee76ba0de2e937ab86f93f054032`.
-  The module has ten documented public declarations, no private helper, and
-  ten compiled anonymous probes. It defines the positive-time infinite
-  Birkhoff-average exceedance event, identifies it exactly with the increasing
-  union of finite events, and transfers the finite Hopf estimate to that
-  infinite event.
-- The event, membership, exact-union, and finite-inclusion layer needs no
-  measurable structure. Ordinary measurability uses measurable `T` and `g`;
-  the null-measurable route uses `MeasurePreserving T μ μ` and `Integrable g μ`
-  without finite total mass. Extended nonnegative real measure continuity from
-  below uses only the increasing-union geometry.
-- The reusable `Measure.real` continuity corollary assumes only that the target
-  union has finite extended mass. That premise is a clean sufficient gate, not
-  a necessary condition for every particular sequence. Paired count-measure
-  probes show both sides: real-measure convergence can fail when finite sets
-  exhaust an infinite union, yet it can also hold after totalization when all
-  finite and limiting extended measures are infinite. No ungated general
-  conversion theorem is valid.
-- Under `[IsFiniteMeasure μ]`, preservation and integrability transfer the
-  horizon-uniform positive-part bound to the infinite event for every real
-  threshold. Only the final division requires `0 < a`. Probability,
-  sigma-finiteness as a separate premise, ergodicity, injectivity,
-  surjectivity, and invertibility are absent, and the module proves no
-  pointwise convergence.
+- RMT-25 adds the 491-line
+  `Random/RandomCocycles/KoopmanL2Mean.lean`. Its frozen SHA-256 is
+  `4041dd4fcbb1353c31fa26072071c2e6ee73626eb5c8b7f59ac4d76219e446ac`.
+  The module has twenty documented public declarations, two private helpers,
+  eleven compiled anonymous probes, and five source axiom prints.
+- The raw forward-coboundary telescope is totalized honestly: horizon zero is
+  a valid vacuous identity, while convergence uses bounded endpoints along
+  positive horizons. This algebraic layer needs no measurable space or
+  measure.
+- `MeasurePreserving T μ μ` enters only for square-integrable Koopman
+  geometry, density, and representative transport. The Koopman operator is
+  proved contractive, `‖U‖ ≤ 1`, rather than unconditionally norm one; the
+  zero-measure probe forces operator norm zero. No finite-mass, probability,
+  ergodicity, injectivity, surjectivity, or invertibility premise leaks into
+  the theorem signatures.
+- Hilbert geometry proves only the needed one-sided inclusion of the fixed
+  space's orthogonal complement in the closure of the coboundary range. Simple
+  functions then generate a dense fixed-plus-simple-coboundary core. Fixed
+  representatives and bounded simple-coboundary representatives have
+  full-sequence almost-everywhere convergent averages, and convergence events
+  close under their sums.
+- Koopman averages of every square-integrable vector converge in norm to the
+  fixed-space projection. That yields an almost-everywhere convergent strictly
+  increasing subsequence, not full-sequence pointwise convergence. The final
+  dense-core theorem proves convergence-event membership only and does not
+  identify a general core sum's limit.
 - Direct warning-fatal leaf, cocycle-aggregator, Random-root, and project-root
   checks are green. The printed axiom footprint is exactly `propext`,
   `Classical.choice`, and `Quot.sound`; no proof hole, unsafe declaration, or
-  project axiom occurs. An independent theorem and assumption audit found no
-  slice blocker.
-- The teaching layer adds a 9,614-body-token declaration- and probe-complete
-  Development Notebook with 24 solved exercises, a 1,978-token glossary
-  chapter, and an 8,725-token textbook Deep Dive with 36 solved exercises.
-  Here and below “token” means the deterministic body-only regex
-  `\b[\w'-]+\b`, not a model tokenizer. Three deterministic 1200x630 cards and
-  seven accessible conceptual SVGs are integrated.
-- Proof-to-prose coverage passes 29/29 substantive modules; source hygiene
-  passes 99 Markdown files; Hugo renders 304 pages with warnings fatal. Card
+  project axiom occurs. Independent semantic and assumption audits found no
+  Lean blocker.
+- The teaching layer adds a 10,911-body-token declaration-, helper-, and
+  probe-complete Development Notebook with 34 solved exercises, two new
+  glossary chapters, and a textbook Deep Dive with 20 solved exercises. Here
+  and below “token” means the deterministic body-only regex
+  `\b[\w'-]+\b`, not a model tokenizer. Four deterministic 1200x630 cards and
+  twelve accessible conceptual SVGs are integrated.
+- Proof-to-prose coverage passes 30/30 substantive modules; source hygiene
+  passes 103 Markdown files; Hugo renders 318 pages with warnings fatal. Card
   reproduction, ShellCheck, XML parsing, and desktop/390-pixel browser QA are
-  green. The three pages have zero page-level overflow, KaTeX errors, raw
-  delimiters, broken or alt-less assets, or console failures; wide math,
-  tables, and code scroll locally on mobile.
-- Independent review repaired an over-strong necessity claim at the
-  `Measure.real` boundary, completed the Yosida–Kakutani and Keane–Petersen
-  assumption ledgers, corrected probe labels and visual summaries, compiled
-  the standalone Lean fence, and removed every orphaned reference. No RMT-24
-  Lean, prose, citation, or visual blocker remains.
+  green. The Notebook, Deep Dive, Koopman-operator glossary, and
+  Koopman-coboundary glossary render 296, 231, 62, and 87 KaTeX nodes with zero
+  page-level overflow, KaTeX errors, raw delimiters, broken or alt-less assets,
+  broken anchors, or console failures. Wide math, tables, and code scroll
+  locally on mobile.
+- Independent review checked the complete declaration/probe map, exact
+  historical sources and DOI metadata, mean-versus-pointwise boundary,
+  representative bridge, one-sided closure statement, reference reachability,
+  and word-only SVG labels. No RMT-25 Lean, prose, citation, or visual blocker
+  remains.
 - The active RunPod builder remains up at the user's request. The fast local
   disk holds the active Lean/Mathlib build tree. The provider API reports 32
   vCPUs, 128 GB of billed memory, and a current compute rate of $1.472/hour;
@@ -72,12 +75,18 @@ pointwise-good-core bridge toward the pointwise Birkhoff theorem
   The two obsolete stopped test pods were terminated. No API key, private SSH
   key, pod address, or account-specific resource identifier belongs in the
   repository.
-- The synchronized RMT-24 `make check` passes all 3,182 Lean jobs, checkpoint,
-  coverage, four hygiene regression tests, the 99-file teaching scan, and the
-  304-page warning-fatal Hugo render. The first replay that built RMT-24 took
-  9.542 seconds; the final cached replay of the complete checkpointed tree took
-  3.776 seconds. The builder remains retained under the owner's continuing
-  project-scoped approval.
+- The synchronized RMT-25 `make check` passes all 3,185 Lean jobs, checkpoint,
+  30/30 coverage, four hygiene regression tests, the 103-file teaching scan,
+  and the 318-page warning-fatal Hugo render in 11.13 seconds. The warm active
+  tree is `/root/nonlinear-dynamics-lean` on the pod's fast local overlay;
+  `/workspace` is persistent network storage and must remain a sequential
+  snapshot location rather than a live metadata-heavy `.lake` tree. The
+  builder remains retained under the owner's continuing project-scoped
+  approval.
+- Provenance remains explicit: the human selected the formalization objective
+  and approved project-scoped RunPod use; Codex agents performed API discovery,
+  proof canonization, prose and figure production, and adversarial review.
+  Checked Lean, not agent testimony, is the source of truth.
 
 ## How to Use This Checkpoint
 
@@ -93,18 +102,19 @@ pointwise-good-core bridge toward the pointwise Birkhoff theorem
 - Lean toolchain: Lean 4.32.0 through elan.
 - Library: Mathlib 4.32.0, pinned by `formalization/lakefile.toml`.
 - Full validation command: `make check`.
-- Last green Lean build: 3,182 jobs. The synchronized RMT-24 full gate and
-  direct warning-fatal checks are green. The integrated worktree covers
-  twenty-nine substantive modules, twenty-nine complete draft Notebook
-  companions, and 304 Hugo pages with warnings fatal.
-- Lean inventory: 565 public named declarations counted by the proof-to-prose
-  checker across the twenty-nine substantive modules. The tree also
+- Last green Lean build: 3,185 jobs. The synchronized RMT-25 full gate and
+  direct warning-fatal leaf, cocycle-aggregator, Random-root, and project-root
+  checks are green. The integrated worktree covers thirty substantive modules,
+  thirty complete draft Notebook companions, and 318 Hugo pages with warnings
+  fatal.
+- Lean inventory: 585 public named declarations counted by the proof-to-prose
+  checker across the thirty substantive modules. The tree also
   has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
   branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
-  189,768 tokens across the twenty-nine Notebook companions and 218,763
-  tokens across twenty-six Deep Dives and thirty-nine glossary chapters.
+  200,734 tokens across the thirty Notebook companions and 228,335 tokens
+  across twenty-seven Deep Dives and forty-one glossary chapters.
 - Publication status: all new research prose remains `draft: true` and
   `pro_reviewed: false` pending human review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
@@ -143,14 +153,15 @@ pointwise-good-core bridge toward the pointwise Birkhoff theorem
 | `NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence` | Measurable and integrable finite real Birkhoff sums/averages, the convergence event and representative transport, exact one-prefix preimage invariance, conditional ergodic null/conull and probability zero-one consequences, and process/cocycle wrappers without a convergence-existence claim | `birkhoff-convergence-events-and-ergodic-rigidity-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal` | Finite Birkhoff-sum maxima, strict Hopf events, the core integral nonnegativity theorem without finite mass, centered finite average-exceedance integral and positive-part bounds, and a positive-threshold weak measure estimate | `finite-hopf-maximal-ergodic-lemma-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal` | Positive-time infinite average-exceedance event, exact increasing-union representation, ordinary and null measurability routes, unconditional extended-measure continuity, locally finite real-measure continuity, an all-threshold positive-part multiplication bound, and the positive-threshold weak maximal estimate | `infinite-horizon-birkhoff-average-exceedance-bounds-in-lean` |
+| `NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean` | Totalized forward-coboundary telescoping, the real square-integrable Koopman contraction and fixed-space projection, norm mean convergence, a dense fixed-plus-simple-coboundary core, generic almost-everywhere subsequences, and full-sequence convergence-event membership on the core | `koopman-l2-mean-convergence-and-a-dense-pointwise-good-core-in-lean` |
 
-The root aggregator imports all twenty-nine modules. The proof-to-prose manifest and
+The root aggregator imports all thirty modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Twenty-nine comprehensive Development Notebook chapters in an explicit
+- Thirty comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
 - Twenty-six textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
@@ -176,8 +187,10 @@ declaration visibility.
   Processes*, *Birkhoff Convergence Events Before the Pointwise Ergodic
   Theorem*, and *Finite Maximal Ergodic Inequalities: From Orbit Maxima to
   Threshold Events*, followed by *From Finite Maximal Bounds to an Infinite
-  Weak Estimate*.
-- Thirty-nine glossary chapters, now including the infinite-horizon
+  Weak Estimate*, and *Mean Is Not Pointwise: Koopman Geometry,
+  Coboundaries, and the Missing Maximal Step*.
+- Forty-one glossary chapters, now including the Koopman operator and Koopman
+  coboundary, as well as the infinite-horizon
   Birkhoff-average exceedance event, the finite maximal ergodic inequality,
   the Birkhoff convergence event,
   ordered interval packing, phase averaging,
@@ -192,7 +205,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- Eighty-four deterministic 1200x630 social cards and eighty-two accessible
+- Eighty-eight deterministic 1200x630 social cards and ninety-four accessible
   conceptual SVG figures.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -201,88 +214,61 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### RMT-25: Koopman `L²` mean convergence and a dense pointwise-good core
+### RMT-26: finite-measure pointwise Birkhoff by maximal closure
 
-The next module is
-`Random/RandomCocycles/KoopmanL2Mean.lean`. It imports RMT-24 together with
-Mathlib's Hilbert-space mean-ergodic and `Lp` simple-function density APIs.
-This is the honest intermediate bridge between the infinite weak maximal
-estimate and a full pointwise Birkhoff theorem. It must not infer full-sequence
-almost-everywhere convergence merely from convergence in `L²` norm.
-
-A 170-line warning-fatal reconnaissance file at
-`/private/tmp/RMT25Recon.lean` already compiles the raw bounded-coboundary
-limit, the real Koopman contraction, its fixed subspace and orthogonal
-projection, closure of the coboundary range, density of fixed vectors plus
-simple-function coboundaries, and von Neumann mean convergence. Canonize that
-discovery rather than re-searching the API from scratch.
+The next module is provisionally
+`Random/RandomCocycles/PointwiseBirkhoff.lean`. It will import the RMT-24
+infinite weak maximal estimate and the RMT-25 dense pointwise-good core. The
+target is full-sequence almost-everywhere convergence of Birkhoff averages for
+real integrable observables on a finite measure-preserving system. It should
+first prove convergence-event membership; conditional-expectation or ergodic
+constant-limit identification is a separate theorem and must not be smuggled
+into this closure step.
 
 The dependency-ordered implementation is:
 
-1. Promote the raw algebraic identities
-   `birkhoffAverage_forwardCoboundary` and
-   `tendsto_birkhoffAverage_forwardCoboundary`. For a bounded real potential
-   `u`, the averages of `u ∘ T - u` telescope and converge pointwise to zero.
-   These facts need no measurable space or measure.
-2. Define the real `L²` Koopman operator from
-   `Lp.compMeasurePreservingₗᵢ`, its fixed subspace, orthogonal projection,
-   coboundary operator `U_T - I`, simple-function coboundary set, and sums of
-   fixed vectors with those coboundaries. Prove only `‖U_T‖ ≤ 1`; equality is
-   not valid as a public unconditional claim in the degenerate zero-measure
-   case.
-3. Check the iterate formula through `Lp.compMeasurePreserving_iterate` and
-   apply
-   `ContinuousLinearMap.tendsto_birkhoffAverage_orthogonalProjection` to prove
-   that Koopman Birkhoff averages converge in `L²` to the projection onto the
-   fixed subspace. This consumes only `MeasurePreserving T μ μ`, not finite
-   mass, probability, ergodicity, or invertibility.
-4. Prove the orthogonal complement of the fixed subspace lies in the closure
-   of the range of `U_T - I`; then use `Lp.simpleFunc.dense` and continuity of
-   the coboundary operator to replace arbitrary generators by simple ones.
-   Orthogonal projection then proves
-   `Dense (fixedPlusSimpleCoboundarySetL2 hT)`.
-5. Complete the representative bridge. For a fixed `L²` vector, turn equality
-   under Koopman composition into a countable family of almost-everywhere
-   orbit equalities using `Lp.coeFn_compMeasurePreserving`. For a simple
-   potential, use its bounded representative and the raw telescoping theorem.
-   Close under sums and transport almost-everywhere equal representatives with
-   RMT-22's `birkhoffConvergenceSet_ae_eq_of_ae_eq`. The target is:
+1. Reconnoiter pinned Mathlib's finite-measure inclusions between real
+   square-integrable and integrable functions, truncation or simple-function
+   density, `Lp` representatives, and almost-everywhere convergence/Cauchy
+   APIs. Preserve the successful scratch artifact and exact inferred
+   signatures before canonizing anything.
+2. Derive absolute all-time error control from the one-sided RMT-24 estimate.
+   Pointwise, the absolute value of an average of an error is bounded by the
+   average of its absolute value. Equivalently, positive and negative error
+   events may be controlled separately. Keep the finite-mass and
+   positive-threshold gates explicit.
+3. Lift the RMT-25 fixed-plus-simple-coboundary core into the integrable
+   setting. On a finite measure space, obtain a dense integrable class from
+   square-integrable approximants, then transport the RMT-25 representative
+   convergence theorem without claiming a canonical pointwise representative.
+4. Define an oscillation or Cauchy exceptional event for the full sequence of
+   Birkhoff averages. Prove that replacing an arbitrary integrable observable
+   by a nearby pointwise-good approximant confines the exceptional event to an
+   absolute maximal-error event.
+5. Apply the weak maximal bound, then send the integrable approximation error
+   to zero. Deduce that every rational positive oscillation threshold has a
+   null exceptional event and intersect the resulting countable conull sets.
+6. Convert the real Cauchy conclusion into convergence and conclude
+   almost-everywhere membership in `birkhoffConvergenceSet T f`. Audit the
+   horizon-zero term explicitly: it may differ from later averages but cannot
+   affect convergence.
+7. Compile boundary probes for zero measure, identity dynamics, a
+   noninjective Dirac-preserving map, zero and positive thresholds, and the
+   absence of probability, ergodicity, injectivity, surjectivity, or
+   invertibility assumptions. Keep finite total mass visible as a premise of
+   this proof route.
+8. Pair every substantive declaration with a comprehensive Development
+   Notebook, expand the Knowledge Base into the maximal-closure textbook
+   chapter, add deterministic cards and word-only conceptual figures, compare
+   the exact Lean theorem with primary sources, run browser and full repository
+   QA, update this checkpoint, and push the coherent milestone to `main`.
 
-   ```lean
-   theorem ae_mem_birkhoffConvergenceSet_of_mem_fixedPlusSimpleCoboundarySetL2
-       (hT : MeasurePreserving T μ μ) {f : Lp ℝ 2 μ}
-       (hf : f ∈ fixedPlusSimpleCoboundarySetL2 hT) :
-       ∀ᵐ ω ∂μ, ω ∈ birkhoffConvergenceSet T (fun ω ↦ f ω)
-   ```
-
-6. Compile probes for horizon zero, constant potentials, identity dynamics,
-   the zero measure, translation on counting measure, a noninjective constant
-   map preserving a Dirac measure, finite-range simple representatives, and
-   the fact that generic `L²` convergence supplies at most subsequential
-   almost-everywhere convergence without the later maximal argument.
-7. Canonize the module and pair it with a declaration-complete Development
-   Notebook, a textbook Deep Dive, glossary integration, deterministic cards
-   and figures, primary-source comparison, browser QA, full validation,
-   checkpoint update, and a push to `main`.
-
-The pinned Mathlib interfaces already compile in reconnaissance:
-`ContinuousLinearMap.tendsto_birkhoffAverage_orthogonalProjection`,
-`Lp.compMeasurePreservingₗᵢ`, `Lp.coeFn_compMeasurePreserving`,
-`Lp.compMeasurePreserving_iterate`, `Lp.simpleFunc.dense`,
-`Submodule.starProjection`, `Submodule.sub_starProjection_mem_orthogonal`, and
-`Submodule.orthogonal_orthogonal_eq_closure`. Primary historical sources are
-von Neumann's 1932 mean-ergodic theorem and Birkhoff's 1931 pointwise theorem;
-Keane and Petersen supplies a later finite-maximal-to-pointwise comparison.
-
-If the representative bookkeeping cannot be canonized without obscuring the
-geometry, split the work as RMT-25A (checked Koopman Hilbert geometry and dense
-core) followed immediately by RMT-25B (representative bridge). Do not weaken
-the final bridge or call the geometry alone a pointwise theorem. RMT-25 claims
-no full `L¹` pointwise Birkhoff theorem, conditional-expectation
-identification, ergodic constant limit, integral-preservation conclusion,
-unitary Koopman equivalence, Kingman theorem, Lyapunov exponent, or Oseledets
-splitting. RMT-26 will combine density with the absolute weak maximal estimate
-to close the pointwise theorem.
+RMT-26 must not claim that norm convergence alone implies pointwise
+convergence, identify the limit before proving that theorem, or infer an
+ergodic constant without ergodicity. It also does not prove Kingman's theorem,
+a Lyapunov exponent, or an Oseledets splitting. Once the pointwise additive
+theorem is checked, the next research boundary returns to the existing finite
+subadditive block, centering, phase-averaging, and interval-packing machinery.
 
 ## Dependency-Ordered Roadmap
 
@@ -369,7 +355,7 @@ unresolved convention or depend on an unproved earlier interface.
   `Measure.real` conversion, the infinite weak maximal estimate, and paired
   infinite-mass boundary probes showing that local finiteness is not necessary
   for every particular real-measure limit.
-- [ ] Koopman `L²` mean convergence, dense fixed-plus-simple-coboundary core,
+- [x] Koopman `L²` mean convergence, dense fixed-plus-simple-coboundary core,
   and the almost-everywhere pointwise-good representative bridge.
 - [ ] Full finite-measure `L¹` pointwise Birkhoff theorem from density,
   absolute weak maximal control, and oscillation/Cauchy exceptional sets.
@@ -955,11 +941,16 @@ k-invariance precedes approximation claims.
   average-exceedance weak estimates are formalized too. RMT-24 now adds the
   exact positive-time infinite exceedance event, separate regularity routes,
   extended-measure continuity, the infinite positive-part estimate, and the
-  weak maximal bound. `Measure.real` still totalizes infinite extended measure
+  weak maximal bound. RMT-25 now adds totalized forward-coboundary telescoping,
+  the real square-integrable Koopman contraction, fixed-space projection and
+  norm mean convergence, the one-sided coboundary-closure geometry, a dense
+  fixed-plus-simple-coboundary core, generic almost-everywhere convergent
+  subsequences, and full-sequence convergence-event membership on that core.
+  `Measure.real` still totalizes infinite extended measure
   to zero: local finiteness is a sufficient conversion gate, not a necessary
   condition for every individual projected limit, and no unconditional general
   real-continuity theorem is available. The existing interfaces still do not
-  prove convergence-event membership, a dense pointwise-good core, a full
+  prove full-sequence convergence for every integrable observable, a full
   pointwise Birkhoff theorem, a marked-set density theorem, a subadditive
   ergodic theorem, or a samplewise cocycle-growth limit.
 - Quantum-chaos universality claims are not general theorems in this project.
@@ -1609,6 +1600,44 @@ Checkpoint/skill milestone QA:
   regression tests, the 99-file teaching scan, and the 304-page warning-fatal
   Hugo render in 9.542 seconds when building the new module and 3.776 seconds
   on the final cached replay.
+- RMT-25 Lean audit: the 491-line frozen module has SHA-256
+  `4041dd4fcbb1353c31fa26072071c2e6ee73626eb5c8b7f59ac4d76219e446ac`,
+  twenty documented public declarations, two private helpers, eleven compiled
+  anonymous probes, and five source axiom prints. Leaf, cocycle aggregator,
+  Random root, and project-root warning-fatal checks pass. The fourteen public
+  theorems use only `propext`, `Classical.choice`, and `Quot.sound`; no proof
+  hole, unsafe declaration, or project axiom occurs. Independent review found
+  no finite-mass, probability, sigma-finite, ergodicity, injectivity,
+  surjectivity, invertibility, or norm-one leak.
+- RMT-25 teaching audit: the body-only regex counts 10,911 tokens in the
+  Notebook, 6,056 in the Deep Dive, 1,718 in the Koopman-operator glossary,
+  and 1,798 in the Koopman-coboundary glossary. The Notebook maps every public
+  declaration, private helper, and anonymous probe in source order with 34
+  solved exercises; the Deep Dive has 20 solved exercises. Four cards
+  reproduce byte-for-byte at
+  1200x630, all twelve SVGs parse and pass word-only label and visual-fit
+  review, and every generator passes ShellCheck. Source hygiene covers 103
+  Markdown files, proof-to-prose coverage passes 30/30 modules, and Hugo
+  renders 318 pages with warnings fatal. Independent review corrected the
+  horizon-zero fixed-vector boundary, historical source scope, representative
+  nonclaims, reference reachability, and raw SVG notation before the final
+  gate.
+- Rendered RMT-25 QA: the Notebook, Deep Dive, Koopman-operator glossary, and
+  Koopman-coboundary glossary render 296, 231, 62, and 87 KaTeX nodes. At
+  desktop and 390-pixel widths, all four pages have one article heading and
+  zero KaTeX errors, raw delimiters, page-level overflow, broken anchors,
+  broken or alt-less assets, or console failures. Wide math, tables, and code
+  scroll locally on mobile; all conceptual figures lazy-load at their intrinsic
+  dimensions and pass direct raster inspection.
+- RMT-25 full repository gate: the source-only worktree was synchronized to
+  the authorized RunPod builder's fast local cache without `.env`, Git
+  metadata, local `.lake`, generated Hugo output, or private review files.
+  `make check` completed all 3,185 Lean jobs, checkpoint and 30/30 coverage
+  checks, four hygiene regression tests, the 103-file teaching scan, and the
+  318-page warning-fatal Hugo render in 11.13 seconds. A read-only filesystem
+  audit caught and corrected an initial path choice that had started a cold
+  build on persistent network storage; only that disposable compilation was
+  cancelled, and the retained builder remains running.
 - Research-workflow skill audit: the project skill now incorporates the
   source-to-statement, exploratory-proof, informalization, canonization, and
   human/AI provenance lessons from arXiv:2607.17477 without creating a
@@ -1617,6 +1646,8 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `9f0ee23`: checkpoint the complete RMT-24 milestone and the exact RMT-25
+  Koopman mean-ergodic and dense pointwise-good-core plan.
 - `5a7c96f`: formalize the infinite-horizon Birkhoff-average exceedance event,
   extended and real continuity interfaces, the weak maximal estimate, paired
   infinite-mass boundaries, and the complete teaching layer.

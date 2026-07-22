@@ -10,6 +10,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
 import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
 import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
+import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
 
 /-!
 # Random cocycles
@@ -65,7 +66,13 @@ preservation and one-step integrability make it null measurable without a
 finite-mass assumption. Continuity from below is exposed unconditionally for
 extended nonnegative real measure; under finite total mass, it yields an
 infinite weak maximal bound. The real-measure corollary exposes finiteness
-because `Measure.real` totalizes infinite mass to zero. These layers
-deliberately stop before any pointwise or mean Birkhoff theorem, Kingman's
-subadditive ergodic theorem, or samplewise exponent claim.
+because `Measure.real` totalizes infinite mass to zero. A real `L²` Koopman
+layer then constructs the fixed subspace and orthogonal projection, proves von
+Neumann mean convergence, and builds a dense set of fixed vectors plus
+simple-function coboundaries whose chosen representatives have almost-everywhere
+convergent pointwise averages. Norm convergence is kept distinct from
+full-sequence pointwise convergence: in general it supplies only an
+almost-everywhere convergent subsequence. These layers deliberately stop before
+the full `L¹` pointwise Birkhoff theorem, Kingman's subadditive ergodic theorem,
+or a samplewise exponent claim.
 -/

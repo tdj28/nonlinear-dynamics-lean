@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="680" viewBox="0 0 920 680" role="img" aria-labelledby="coreTitle coreDesc">
+  <title id="coreTitle">Fixed vectors and simple-function coboundaries form a dense pointwise-good core</title>
+  <desc id="coreDesc">A blue fixed-vector lane has positive-horizon orbit averages equal to the chosen representative, so the sequence is eventually constant after horizon zero. A clay simple-coboundary lane telescopes because its representative has finite bounded range. The two lanes add to a green fixed-plus-simple-coboundary core. Hilbert projection and density show this core is dense in square-integrable space. Representative transport proves almost-everywhere convergence on the core. A dashed final arrow to every integrable observable is labeled as the missing maximal closure step.</desc>
+  <rect width="920" height="650" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
+    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:3}
+  </style>
+  <text x="24" y="28" class="t title">Build a dense class where pointwise convergence is already algebraic</text>
+  <text x="24" y="48" class="t m">Geometry proves density; representative bookkeeping proves almost-everywhere goodness.</text>
+
+  <rect class="blue" x="50" y="92" width="334" height="126" rx="12"/>
+  <text x="78" y="124" class="t h">FIXED VECTORS</text>
+  <text x="78" y="151" class="t s">Koopman composition leaves the vector fixed</text>
+  <text x="78" y="176" class="t m">one conull set works for every natural iterate</text>
+  <text x="78" y="198" class="t m">positive-horizon averages equal the chosen representative</text>
+
+  <rect class="clay" x="536" y="92" width="334" height="126" rx="12"/>
+  <text x="564" y="124" class="t h">SIMPLE COBOUNDARIES</text>
+  <text x="564" y="151" class="t s">generator has a finite-range representative</text>
+  <text x="564" y="176" class="t m">finite range gives bounded endpoints</text>
+  <text x="564" y="198" class="t m">telescoping averages converge to zero</text>
+
+  <path class="arrow" d="M217 236 C250 282, 325 300, 418 314"/>
+  <polygon points="434,316 416,306 414,324" fill="#A67C52"/>
+  <path class="arrow" d="M703 236 C670 282, 595 300, 502 314"/>
+  <polygon points="486,316 504,306 506,324" fill="#A67C52"/>
+
+  <rect class="green" x="238" y="314" width="444" height="112" rx="12"/>
+  <text x="270" y="346" class="t h">FIXED PLUS SIMPLE COBOUNDARY CORE</text>
+  <text x="270" y="374" class="t s">closed under the one addition needed by the definition</text>
+  <text x="270" y="399" class="t m">almost-everywhere equal representatives transport convergence events</text>
+
+  <rect class="cream" x="50" y="462" width="334" height="94" rx="12"/>
+  <text x="78" y="494" class="t h">DENSITY CERTIFICATE</text>
+  <text x="78" y="519" class="t s">projection plus orthogonal residual</text>
+  <text x="78" y="541" class="t m">simple generators approximate the residual</text>
+
+  <rect class="blue" x="536" y="462" width="334" height="94" rx="12"/>
+  <text x="564" y="494" class="t h">POINTWISE-GOOD CERTIFICATE</text>
+  <text x="564" y="519" class="t s">full averages converge almost everywhere on the core</text>
+  <text x="564" y="541" class="t m">the limit is not identified for a general core sum</text>
+
+  <line x1="384" y1="509" x2="520" y2="509" stroke="#A89B8C" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="405" y="492" class="t m">both facts are needed</text>
+
+  <rect class="gray" x="238" y="578" width="444" height="42" rx="10"/>
+  <text x="270" y="604" class="t s">Missing: a weak-maximal closure argument extending convergence to every integrable observable.</text>
+  <line x1="460" y1="556" x2="460" y2="575" stroke="#A89B8C" stroke-width="3" stroke-dasharray="5 4"/>
+
+  <rect class="green" x="24" y="634" width="872" height="30" rx="10"/>
+  <text x="48" y="654" class="t s">Takeaway: density and pointwise goodness are proved separately; maximal closure is still missing.</text>
+</svg>
