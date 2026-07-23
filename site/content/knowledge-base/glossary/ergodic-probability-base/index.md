@@ -1,382 +1,619 @@
 ---
 title: "Ergodic probability base"
 slug: "ergodic-probability-base"
-summary: "A probability base has total mass one, while ergodicity says invariant measurable information is trivial; integrability is a third, independent analytic requirement."
+summary: "An ergodic probability base has total mass one, preserves that measure under time evolution, and gives every invariant measurable event probability zero or one."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase"
 og_image: "ergodic-probability-base-card.png"
-og_image_alt: "Three separately labeled gates show probability fixing the measure scale, ergodicity making invariant information trivial, and integrability controlling finite moments. A final warning says that passing all three gates still does not itself prove a samplewise limit."
+og_image_alt: "Two uniform four-state systems are compared: one four-cycle has only invariant-event masses zero and one, while two disjoint two-cycles preserve the event zero one with probability one half."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+**Editorial status.** This is an AI-assisted public working draft. Human review
+of the mathematics, Lean interpretation, sources, figure, and accessibility
+remains pending. Publication does not mean that the page has completed that
+review.
 {{< /panel >}}
 
-An **ergodic probability base** is a measure-preserving dynamical system whose
-measure has total mass one and whose invariant measurable information is
-trivial up to null sets. In the seventeenth random-matrix-theory milestone
-(RMT-17), this phrase is a coordination label, not a new bundled structure.
-The two hypotheses remain separate:
+Consider four states with equal probability:
+
+\[
+\Omega=\{0,1,2,3\},
+\qquad
+\mu(\{j\})=\frac14
+\quad\text{for every }j\in\Omega.
+\]
+
+Every subset of this finite space is an
+{{< refterm "event" "event" >}}. The total mass is
+
+\[
+\mu(\Omega)=4\cdot\frac14=1,
+\]
+
+so \(\mu\) is a
+{{< refterm "probability-measure" "probability measure" >}}. We will put two
+different time evolutions on exactly this same probability space.
+
+## Two systems, one decisive difference
+
+The first evolution is one four-state cycle:
+
+\[
+\begin{aligned}
+T_{\mathrm{cycle}}(0)&=1,&
+T_{\mathrm{cycle}}(1)&=2,&
+T_{\mathrm{cycle}}(2)&=3,&
+T_{\mathrm{cycle}}(3)&=0.
+\end{aligned}
+\]
+
+The second evolution has two disconnected two-state cycles:
+
+\[
+\begin{aligned}
+T_{\mathrm{split}}(0)&=1,&
+T_{\mathrm{split}}(1)&=0,&
+T_{\mathrm{split}}(2)&=3,&
+T_{\mathrm{split}}(3)&=2.
+\end{aligned}
+\]
+
+Both maps are permutations. For any event \(S\subseteq\Omega\), a permutation
+does not change the number of points in its preimage:
+
+\[
+\mu(T^{-1}S)
+=\frac{|T^{-1}S|}{4}
+=\frac{|S|}{4}
+=\mu(S).
+\]
+
+Every map from this finite discrete measurable space is measurable. Thus both
+the counting calculation and the required measurability gate hold.
+
+Thus both maps are
+{{< refterm "measure-preserving-transformation" "measure-preserving transformations" >}}.
+Probability normalization and measure preservation do not distinguish the two
+systems.
+
+### The four-cycle is ergodic
+
+An event \(S\) is **strictly invariant** when
+
+\[
+T_{\mathrm{cycle}}^{-1}(S)=S.
+\]
+
+The notation means preimage: a point \(x\) belongs to
+\(T_{\mathrm{cycle}}^{-1}(S)\) exactly when
+\(T_{\mathrm{cycle}}(x)\in S\). It does not require an inverse function.
+
+Test the tempting half-space \(A=\{0,2\}\):
+
+\[
+T_{\mathrm{cycle}}^{-1}(A)=\{1,3\}\ne A.
+\]
+
+So \(A\) is not invariant. In fact, suppose an invariant event \(S\) contains
+one point \(x\). Invariance gives
+
+\[
+x\in S
+\iff T_{\mathrm{cycle}}(x)\in S.
+\]
+
+Following the four-cycle from \(x\) visits every state, so \(S=\Omega\).
+If \(S\) contains no point, then \(S=\varnothing\). The only invariant events
+are therefore
+
+\[
+\varnothing
+\quad\text{and}\quad
+\Omega,
+\]
+
+with probabilities \(0\) and \(1\). This system is ergodic.
+
+### The split system is not ergodic
+
+Now take
+
+\[
+B=\{0,1\}.
+\]
+
+The split map never moves a point between \(B\) and its complement:
+
+\[
+T_{\mathrm{split}}^{-1}(B)=B.
+\]
+
+But
+
+\[
+\mu(B)=\frac{2}{4}=\frac12.
+\]
+
+This measurable invariant event is neither null nor full. The split map is
+probability preserving, but it is not ergodic.
+
+{{< reference-figure
+  wide="true"
+  src="ergodic-probability-base.svg"
+  alt="Two four-state systems use uniform mass one quarter at each state. The left system is one cycle zero to one to two to three to zero. The candidate event zero and two has preimage one and three, so it is not invariant; the only invariant events have mass zero or one. The right system swaps zero with one and two with three. The event zero and one is invariant and has mass one half, proving that system is not ergodic. A lower comparison shows that invariant real functions are constant on the single cycle but may take a different constant on each component of the split system."
+  caption="**Finding:** probability and measure preservation are identical in the two examples: four atoms each have mass \(1/4\), and each map is a permutation. Their invariant-event structures differ. For the single cycle, \(T_{\mathrm{cycle}}^{-1}\{0,2\}=\{1,3\}\), and the only invariant events are \(\varnothing\) and \(\Omega\), with probabilities \(0\) and \(1\). For the split system, \(B=\{0,1\}\) satisfies \(T_{\mathrm{split}}^{-1}B=B\) while \(\mu(B)=1/2\), so the system is not ergodic. Likewise, an invariant real function is constant on the single cycle, while the split system permits value \(0\) on its first cycle and value \(1\) on its second. The final periodic calculation shows that the ergodic four-cycle is not mixing. Nothing in the figure asserts independence or convergence of time averages."
+>}}
+
+## Unpack the three layers
+
+An **ergodic probability base** combines three statements about a state space
+\(\Omega\), a measure \(\mu\), and a time-one map \(T:\Omega\to\Omega\).
+
+### 1. Probability normalization
+
+The measure has total mass one:
+
+\[
+\mu(\Omega)=1.
+\]
+
+This fixes the unit of measure. It lets an integrable raw integral be called an
+{{< refterm "expectation" "expectation" >}}. It does not make \(T\) measurable,
+measure preserving, or ergodic.
+
+If we keep the same four-cycle but assign mass \(1/2\) to every point, then the
+total mass is \(2\). The invariant sets are still only empty and full, but
+their measures are \(0\) and \(2\), not \(0\) and \(1\). The numerical
+zero-or-one conclusion uses probability normalization. This rescaled cycle is
+measure preserving and ergodic, but it is not a probability base.
+
+### 2. Measure preservation
+
+The map is measurable and transporting the measure through one time step
+returns the same measure:
+
+\[
+T_*\mu=\mu.
+\]
+
+Equivalently, for every measurable event \(S\),
+
+\[
+\mu(T^{-1}S)=\mu(S).
+\]
+
+This says the statistical weight of events is unchanged by the dynamics. It
+does not say that invariant events are trivial. The split example preserves
+the uniform measure and still has the half-mass invariant event \(B\).
+
+### 3. Ergodic rigidity
+
+Among measurable events satisfying \(T^{-1}S=S\), only null or conull events
+are allowed:
+
+\[
+\mu(S)=0
+\quad\text{or}\quad
+\mu(S^{\mathsf c})=0.
+\]
+
+Here \(S^{\mathsf c}\) is the complement of \(S\). On a probability space,
+the second alternative is equivalent to \(\mu(S)=1\). A
+{{< refterm "null-set" "null set" >}} may contain points, so this is an
+almost-everywhere statement in a general space. In the finite uniform example,
+every point has positive mass, and the only null event is empty.
+
+{{< panel "warning" >}}
+**The zero-or-one law applies only to invariant measurable events.** In the
+ergodic four-cycle, the ordinary event \(\{0\}\) has probability \(1/4\).
+There is no contradiction because
+\(T_{\mathrm{cycle}}^{-1}\{0\}=\{3\}\ne\{0\}\).
+{{< /panel >}}
+
+## Invariant functions carry the same idea
+
+A real-valued observable is a function \(g:\Omega\to\mathbb R\). It is
+invariant when advancing the base does not change its value:
+
+\[
+g\circ T=g.
+\]
+
+On the four-cycle, this equation forces
+
+\[
+g(0)=g(1)=g(2)=g(3).
+\]
+
+On the split system, define
+
+\[
+h(0)=h(1)=0,
+\qquad
+h(2)=h(3)=1.
+\]
+
+Then \(h\circ T_{\mathrm{split}}=h\), but \(h\) is not constant. This is the
+function version of the invariant half-event: \(B=h^{-1}(\{0\})\).
+
+In a general measure space, the checked theorem uses two weaker phrases:
+
+- \(g\) is almost-everywhere strongly measurable, a standard measurable
+  representative condition; and
+- \(g\circ T=g\) holds almost everywhere, so failure on a null set is allowed.
+
+Ergodicity then gives a constant \(c\) such that \(g=c\) almost everywhere.
+The {{< refterm "almost-everywhere" "almost-everywhere" >}} entry explains the
+quantifier, and the
+{{< refterm "measurable-function" "measurable function" >}} entry explains why
+measurability is a separate gate.
+
+## Ergodic does not mean mixing or independent
+
+**Mixing** would require long-lag overlaps to approach the product of their
+probabilities. The four-cycle fails this stronger condition. Let
+\(D=\{0\}\). Then
+
+\[
+\mu\bigl(D\cap T_{\mathrm{cycle}}^{-n}D\bigr)=
+\begin{cases}
+\frac14,&4\text{ divides }n,\\
+0,&4\text{ does not divide }n.
+\end{cases}
+\]
+
+This periodic sequence does not converge to
+
+\[
+\mu(D)^2=\frac1{16}.
+\]
+
+So the running example is ergodic and not mixing. It also does not make the
+events \(D\) and \(T_{\mathrm{cycle}}^{-1}D\) independent: their intersection
+has probability \(0\), while the product of their probabilities is \(1/16\).
+The {{< refterm "independence" "independence" >}} page develops that separate
+probabilistic relation.
+
+Ergodicity also need not pass to a power of the map. The square
+\(T_{\mathrm{cycle}}^2\) splits the states into the two cycles
+\(\{0,2\}\) and \(\{1,3\}\). Thus \(\{0,2\}\) is invariant under the square
+and has probability \(1/2\), even though the original four-cycle is ergodic.
+
+## How the project keeps the assumptions separate
+
+The project does not define a new structure called
+<code>ErgodicProbabilityBase</code>. The phrase is a coordination label for
+separate hypotheses:
 
 ~~~lean
 [IsProbabilityMeasure μ]
 hErg : Ergodic C.base μ
 ~~~
 
-A third condition, <code>C.HasIntegrableGeneratorLogPlus</code>, controls the
-finite log-positive cocycle moments. It is not part of probability or
+The cocycle \(C\) already stores a measure-preserving base. Mathlib's
+<code>Ergodic</code> structure also contains measure preservation, plus the
+invariant-event rigidity field. The probability typeclass adds total mass one.
+
+The same module has a third, independent analytic hypothesis,
+<code>C.HasIntegrableGeneratorLogPlus</code>. It propagates
+{{< refterm "integrability" "integrability" >}} from a one-step log-positive
+matrix observable to every finite horizon. It is not part of probability or
 ergodicity.
 
-The separation is the central lesson:
+This separation supports three precise conclusions:
 
-- **probability fixes scale:** \(\mu(\Omega)=1\);
-- **ergodicity fixes invariant information:** invariant events are null or
-  conull, and suitably measurable invariant real observables are almost
-  everywhere constant; and
-- **integrability fixes analytic legitimacy:** the finite-horizon
-  log-positive functions have genuine finite Bochner integrals.
+| Hypotheses used | What the module may conclude |
+|---|---|
+| Probability and integrability | A finite-horizon integral may be named an expectation |
+| Probability, ergodicity, event measurability, and strict invariance | The event has probability \(0\) or \(1\) |
+| Ergodicity, almost-everywhere strong measurability, and almost-everywhere function invariance | The real observable is almost everywhere constant |
 
-Passing all three gates still does not, by itself, produce a theorem saying
-that a normalized cocycle observable converges at almost every base point.
+None of these rows alone states that a time average or normalized matrix
+product converges.
 
-{{< reference-figure
-  src="ergodic-probability-base.svg"
-  alt="Probability, ergodicity, and integrability appear as three independent gates. Probability sets total mass to one and licenses expectation language. Ergodicity reduces invariant events to null or full and invariant observables to almost-everywhere constants. Integrability certifies finite-horizon moments. The three gates meet at a warning that no samplewise limit follows without an ergodic theorem."
-  caption="**Finding:** probability normalization, ergodic rigidity, and integrability answer different questions. The current module combines them only where a theorem needs them. The diagram is an assumption map, not a claim that the three hypotheses imply independence, mixing, or samplewise convergence."
+## In Lean
+
+The probability layer is a typeclass whose single field is total mass one.
+
+{{< lean-bridge
+  human="The measure mu assigns total mass one to the whole state space."
+  math="\(\mu(\Omega)=1.\)"
+  lean="[IsProbabilityMeasure μ]"
 >}}
 
-## Probability fixes the unit of measure
+- Square brackets tell Lean to synthesize this hypothesis as a typeclass
+  instance.
+- <code>μ</code> has type <code>Measure Ω</code>.
+- Mathlib writes the whole space as <code>Set.univ</code>.
+- The exact field theorem <code>measure_univ</code> has conclusion
+  <code>μ Set.univ = 1</code>.
+- The numeral <code>1</code> is a value in the extended nonnegative reals,
+  because measures return that scalar type.
+{{< /lean-bridge >}}
 
-Mathlib's <code>IsProbabilityMeasure μ</code> class records exactly
-
-
-\[
-\mu(\Omega)=1.
-\]
-
-It also supplies finite-measure and nonzero-measure consequences through the
-upstream typeclass hierarchy. It does not assert that a base map is ergodic,
-that random variables are independent, or that a cocycle observable is
-integrable. These semantics are visible in the official
-[Mathlib probability-measure documentation](#ref-ergodic-probability-mathlib-probability).
-
-RMT-17 uses mass one to license the name
-<code>finiteHorizonLogPlusExpectation</code>. Under the separate integrability
-hypothesis <code>hC</code>, it defines
-
-\[
-\mathbb E_\mu[P_k]
-{} =
-\int_\Omega P_k(\omega)\,d\mu(\omega),
-\qquad
-P_k(\omega)=\log^+\lVert C(k,\omega)\rVert_\infty.
-\]
-
-The theorem
-<code>finiteHorizonLogPlusExpectation_eq_integratedLogPlusNorm</code> is proved
-by reflexivity. Probability normalization does not numerically rescale the
-existing integral. It makes expectation vocabulary correct, while
-<code>hC</code> makes the totalized Bochner integral analytically meaningful.
-
-## Ergodicity makes invariant information rigid
-
-Mathlib's <code>Ergodic T μ</code> extends both measure preservation and a
-pre-ergodic condition. The latter says that a measurable set satisfying the
-strict invariance equation
-
-\[
-T^{-1}(A)=A
-\]
-
-is almost everywhere empty or almost everywhere the whole space. This is the
-definition implemented by the official
-[Mathlib ergodicity documentation](#ref-ergodic-probability-mathlib-ergodic).
-
-On a probability space, conull means probability one. RMT-17 therefore exports
-
-\[
-\mu(A)=0
-\quad\text{or}\quad
-\mu(A)=1
-\]
-
-for every measurable, strictly invariant event \(A\). The theorem requires
-both <code>[IsProbabilityMeasure μ]</code> and
-<code>hErg : Ergodic C.base μ</code>. Ergodicity supplies the null-or-conull
-dichotomy; probability supplies the numerical value one.
-
-RMT-17 also exposes the function form of the same rigidity. If
-\(g:\Omega\to\mathbb R\) is almost-everywhere strongly measurable and
-
-\[
-g\circ T = g
-\qquad\text{almost everywhere},
-\]
-
-then there is a real constant \(c\) such that \(g=c\) almost everywhere. This
-bridge follows the official
-[Mathlib invariant-function theorem](#ref-ergodic-probability-mathlib-function).
-It needs <code>Ergodic T μ</code>, but no probability typeclass. Without mass
-one, the conclusion is still almost-everywhere constancy; one simply cannot
-rename arbitrary integrals as expectations.
-
-## Integrability controls the finite moments
-
-For this cocycle, <code>HasIntegrableGeneratorLogPlus</code> says that the
-one-step function \(P_1\) is integrable. RMT-15 propagates that fact to every
-finite horizon. RMT-17 packages the result as
+The exact pinned Mathlib class is:
 
 ~~~lean
-structure IsIntegrableSubadditiveProcessCandidate
-    (T : Ω → Ω) (μ : Measure Ω) (X : ℕ → Ω → ℝ) : Prop where
-  integrable : ∀ k, Integrable (X k) μ
-  add_le : ∀ m k ω, X (m + k) ω ≤ X k (T^[m] ω) + X m ω
+class IsProbabilityMeasure (μ : Measure α) : Prop where
+  measure_univ : μ univ = 1
 ~~~
 
-The word **candidate** is deliberate. The package stores finite-horizon
-integrability and the shifted subadditive inequality. It does not store
-probability normalization, measure preservation, ergodicity, or an asymptotic
-theorem. For a matrix cocycle, preservation is already a field of the cocycle,
-while the other assumptions remain explicit at theorem boundaries.
+Ergodicity combines preservation with invariant-event rigidity.
 
-## Four examples separate the concepts
+{{< lean-bridge
+  human="The map T preserves mu, and every measurable event fixed by taking its preimage is almost everywhere empty or almost everywhere full."
+  math="\(T_*\mu=\mu,\quad T^{-1}S=S\Longrightarrow[\mu(S)=0\text{ or }\mu(S^{\mathsf c})=0].\)"
+  lean="hErg : Ergodic T μ"
+>}}
 
-### Probability without ergodicity
+- <code>Ergodic T μ</code> is a proposition about one map and one measure.
+- <code>hErg.toMeasurePreserving</code> extracts measurability and the
+  pushforward equality.
+- <code>hErg.toPreErgodic</code> extracts invariant-event rigidity.
+- In the underlying strict set condition, Lean writes preimage as
+  <code>T ⁻¹' s</code>. The token <code>⁻¹'</code> does not assert that
+  <code>T</code> has an inverse.
+- The rigidity conclusion is equality almost everywhere to the empty set or
+  whole space, not necessarily literal set equality.
+{{< /lean-bridge >}}
 
-Let \(\Omega=\{0,1\}\), give each point probability \(1/2\), and let \(T\) be
-the identity. The event \(A=\{0\}\) is measurable and strictly invariant, but
+These are the exact pinned Mathlib structures:
 
-\[
-\mu(A)=\frac12.
-\]
+~~~lean
+structure PreErgodic (f : α → α) (μ : Measure α := by volume_tac) : Prop where
+  aeconst_set ⦃s : Set α⦄ :
+    MeasurableSet s → f ⁻¹' s = s → EventuallyConst s (ae μ)
 
-The base is a probability-preserving system and is not ergodic.
+structure Ergodic (f : α → α) (μ : Measure α := by volume_tac) : Prop extends
+  MeasurePreserving f μ μ, PreErgodic f μ
+~~~
 
-### Ergodicity without probability
+The project exposes the probability zero-or-one statement directly.
 
-Let \(\Omega=\{\ast\}\), let \(T\) be the identity, and give the only point raw
-mass two. The only measurable events are empty and full, so the base is
-ergodic. It is not a probability base because
+{{< lean-bridge
+  human="If s is measurable and its preimage under the cocycle base is exactly s, then an ergodic probability base gives s probability zero or one."
+  math="\(C_{\mathrm{base}}^{-1}(s)=s\Longrightarrow[\mu(s)=0\text{ or }\mu(s)=1].\)"
+  lean="C.ergodicBase_invariantEvent_prob_eq_zero_or_one hErg hs hinv"
+>}}
 
-\[
-\mu(\Omega)=2.
-\]
+- <code>C</code> is a bundled one-sided discrete matrix cocycle.
+- <code>hErg : Ergodic C.base μ</code> supplies ergodicity.
+- <code>hs : MeasurableSet s</code> says that \(s\) is an allowed event.
+- <code>hinv : C.base ⁻¹' s = s</code> is strict preimage invariance.
+- The result <code>μ s = 0 ∨ μ s = 1</code> uses <code>∨</code> for the two
+  alternatives.
+- The theorem delegates the invariant-set step to
+  <code>hErg.toPreErgodic.prob_eq_zero_or_one</code>.
+{{< /lean-bridge >}}
 
-The invariant-function theorem still has content here: every real function on
-one point is constant. The probability zero-one theorem is unavailable because
-the full event has mass two, not one.
+The exact checked project theorem is:
 
-### Probability and ergodicity without mixing
+~~~lean
+theorem ergodicBase_invariantEvent_prob_eq_zero_or_one
+    [IsProbabilityMeasure μ]
+    (C : DiscreteMatrixCocycle (ι := ι) μ)
+    (hErg : Ergodic C.base μ) {s : Set Ω}
+    (hs : MeasurableSet s) (hinv : C.base ⁻¹' s = s) :
+    μ s = 0 ∨ μ s = 1 :=
+  hErg.toPreErgodic.prob_eq_zero_or_one hs hinv
+~~~
 
-Return to two points with equal probabilities, but let the base flip them:
+The invariant-function statement replaces strict pointwise equality with an
+almost-everywhere equality.
 
-\[
-T(0)=1,
-\qquad
-T(1)=0.
-\]
+{{< lean-bridge
+  human="If a suitably measurable real observable is unchanged almost everywhere after one base step, ergodicity makes it equal almost everywhere to one constant."
+  math="\(g\circ C_{\mathrm{base}}=g\ \mu\text{-a.e.}\Longrightarrow\exists c\in\mathbb R,\ g=c\ \mu\text{-a.e.}\)"
+  lean="C.ergodicBase_ae_eq_const_of_ae_invariant hErg hg hinv"
+>}}
 
-Only the empty and full sets are strictly invariant, so the base is ergodic.
-It is not mixing. For \(A=\{0\}\),
+- <code>hg : AEStronglyMeasurable g μ</code> supplies the measurable
+  representative condition.
+- <code>g ∘ C.base</code> means first apply the base, then read \(g\).
+- <code>=ᵐ[μ]</code> is Lean's equality-almost-everywhere notation.
+- <code>∃ c : ℝ</code> introduces the real constant.
+- <code>Function.const Ω c</code> is the function that returns \(c\) at every
+  point of \(\Omega\).
+{{< /lean-bridge >}}
 
-\[
-\mu\bigl(A\cap T^{-n}A\bigr)
-{} =
-\begin{cases}
-\tfrac12,& n\text{ even},\\
-0,& n\text{ odd},
-\end{cases}
-\]
+The exact project theorem is:
 
-which does not converge to
-\(\mu(A)^2=1/4\). Ergodicity does not erase periodic correlation.
+~~~lean
+theorem ergodicBase_ae_eq_const_of_ae_invariant
+    (C : DiscreteMatrixCocycle (ι := ι) μ)
+    (hErg : Ergodic C.base μ) {g : Ω → ℝ}
+    (hg : AEStronglyMeasurable g μ)
+    (hinv : g ∘ C.base =ᵐ[μ] g) :
+    ∃ c : ℝ, g =ᵐ[μ] Function.const Ω c :=
+  hErg.ae_eq_const_of_ae_eq_comp_ae hg hinv
+~~~
 
-### Probability without integrability
+## Tiny local Lean/Std worksheet
 
-On \(\Omega=(0,1]\) with Lebesgue probability measure, the measurable scalar
-generator
+**Resource label: tiny standalone check.** This worksheet imports only Lean's
+<code>Std</code> library. It does not import Mathlib or this project, and it
+does not build a project cache. It enumerates all sixteen events on four
+points and checks invariance by finite computation.
 
-\[
-G(x)=\exp(1/x)
-\]
+Save the following as <code>ErgodicBaseWorksheet.lean</code> in a temporary
+directory outside the repository:
 
-is finite at every point, but its one-step log-positive envelope is \(1/x\),
-whose integral diverges. Probability normalization alone does not establish
-<code>HasIntegrableGeneratorLogPlus</code>. This is an analytic example, not a
-formal declaration in RMT-17.
+~~~lean
+import Std
 
-Conversely, any finite-valued generator on the two-point raw-mass-two identity
-base is integrable. That base is neither probabilistic nor ergodic. Finite
-moments do not determine the measure scale or the invariant-set structure.
+namespace ErgodicBaseWorksheet
 
-## The flip cocycle is the calibration example
+inductive Point where
+  | p0
+  | p1
+  | p2
+  | p3
+deriving Repr, DecidableEq
 
-Use the equal-probability two-point flip and one-dimensional generators
+def points : List Point := [.p0, .p1, .p2, .p3]
 
-\[
-G(0)=\begin{bmatrix}2\end{bmatrix},
-\qquad
-G(1)=\begin{bmatrix}\tfrac12\end{bmatrix}.
-\]
+def cycle : Point → Point
+  | .p0 => .p1
+  | .p1 => .p2
+  | .p2 => .p3
+  | .p3 => .p0
 
-Let \(P_k\) be the log-positive product norm, let
-\(E_k=\mathbb E[P_k]\), and define the normalized expectation
-\(Q_k=E_k/k\) for positive \(k\). Every even product is one. At odd horizons,
-the product starting at zero is two and the product starting at one is one
-half. Therefore
+def split : Point → Point
+  | .p0 => .p1
+  | .p1 => .p0
+  | .p2 => .p3
+  | .p3 => .p2
 
-\[
-Q_1=\frac{\log 2}{2},
-\qquad
-Q_2=0,
-\qquad
-Q_3=\frac{\log 2}{6}.
-\]
+def invariant (T : Point → Point) (A : List Point) : Bool :=
+  points.all fun x => decide (T x ∈ A) == decide (x ∈ A)
 
-The normalized sequence is not monotone. Its deterministic integrated
-log-positive growth rate is zero because every even positive horizon has
-normalized value zero and all normalized values are nonnegative:
+def allEvents : List (List Point) :=
+  points.foldr
+    (fun x events => events ++ events.map (fun event => x :: event))
+    [[]]
 
-\[
-\gamma_\mu^+(C)=0
-\lt
-\frac{\log2}{2}=E_1.
-\]
+def alternating : List Point := [.p0, .p2]
+def firstSplitCycle : List Point := [.p0, .p1]
 
-This checks two RMT-17 rate facts sharply: the rate lies below every positive
-normalized horizon, and the one-step upper bound can be strict. The example is
-probabilistic, ergodic, finite, and integrable. RMT-17 still makes no formal
-samplewise-limit claim about it.
+def splitLabel : Point → Nat
+  | .p0 => 0
+  | .p1 => 0
+  | .p2 => 1
+  | .p3 => 1
 
-## The ten-declaration interface
+def functionInvariant (T : Point → Point) (g : Point → Nat) : Bool :=
+  points.all fun x => g (T x) == g x
 
-RMT-17 exports ten source-level declarations, counting the process-candidate
-structure as one declaration:
+#eval invariant cycle alternating
+#eval invariant split firstSplitCycle
+#eval (allEvents.filter (invariant cycle)).map fun A => A.length
+#eval (allEvents.filter (invariant split)).map fun A => A.length
+#eval functionInvariant split splitLabel
 
-| No. | Declaration | Required gate |
-|---:|---|---|
-| 1 | <code>IsIntegrableSubadditiveProcessCandidate</code> | Generic finite-horizon predicate |
-| 2 | <code>HasIntegrableGeneratorLogPlus.isIntegrableSubadditiveProcessCandidate</code> | Integrability |
-| 3 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_nonneg</code> | Integrability |
-| 4 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_eq_sInf</code> | Integrability |
-| 5 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_le_normalized</code> | Integrability and a positive horizon |
-| 6 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_le_oneStep</code> | Integrability |
-| 7 | <code>finiteHorizonLogPlusExpectation</code> | Probability and integrability |
-| 8 | <code>finiteHorizonLogPlusExpectation_eq_integratedLogPlusNorm</code> | Probability and integrability |
-| 9 | <code>ergodicBase_invariantEvent_prob_eq_zero_or_one</code> | Probability, ergodicity, measurability, and strict invariance |
-| 10 | <code>ergodicBase_ae_eq_const_of_ae_invariant</code> | Ergodicity, almost-everywhere strong measurability, and almost-everywhere invariance |
+example : invariant cycle alternating = false := by decide
+example : invariant split firstSplitCycle = true := by decide
+example : (allEvents.filter (invariant cycle)).length = 2 := by decide
+example : (allEvents.filter (invariant split)).length = 4 := by decide
+example : functionInvariant split splitLabel = true := by decide
+example : splitLabel .p0 ≠ splitLabel .p2 := by decide
 
-The deterministic rate results do not need probability or ergodicity. The
-expectation bridge does not need ergodicity. The event theorem needs both
-probability and ergodicity. The invariant-function theorem needs ergodicity
-but not probability. The rate comparisons reuse Mathlib's deterministic
-[subadditive-sequence interface](#ref-ergodic-probability-mathlib-subadditive).
-These signatures are part of the mathematical content.
+end ErgodicBaseWorksheet
+~~~
 
-## The pre-Kingman boundary
+From that temporary directory, a human with the pinned Lean toolchain already
+installed can type:
 
-Kingman's subadditive ergodic theorem is the historical route from a stationary
-subadditive process to an almost-everywhere normalized limit under additional
-hypotheses
-([Kingman, 1968](#ref-ergodic-probability-kingman)). Ergodicity can then make
-the invariant limiting quantity constant in the relevant formulations.
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean ErgodicBaseWorksheet.lean
+~~~
 
-RMT-17 does not invoke that theorem. The Mathlib revision pinned by this
-project has deterministic subadditive-sequence machinery but no Kingman
-theorem matching this process. The new candidate packages two finite-time
-obligations so a future theorem can consume them honestly. It does not fill
-the missing asymptotic step.
+The first two evaluations print <code>false</code> and <code>true</code>. The
+next two print invariant-event cardinalities \(0,4\) for the single cycle and
+\(0,2,2,4\) for the split system. Dividing by four gives probabilities
+\(0,1\) versus \(0,1/2,1/2,1\). The last evaluation prints
+<code>true</code> for the nonconstant split-system label. This finite program
+models strict invariance exactly; it does not implement Mathlib measures or
+almost-everywhere equivalence.
 
-Accordingly, RMT-17 proves none of the following:
+## Try it in the repository
 
-- convergence of \(P_k(\omega)/k\) at any base point;
-- almost-everywhere, in-probability, distributional, or \(L^1\)
-  integrable-norm convergence;
-- equality between the deterministic integrated rate and a samplewise limit;
-- interchange of expectation and a limit;
-- mixing, independence, or decay of correlations;
-- a Lyapunov exponent, spectrum, filtration, or Oseledets splitting; or
-- the Furstenberg-Kesten theorem for products of random matrices
-  ([Furstenberg and Kesten, 1960](#ref-ergodic-probability-furstenberg-kesten)).
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** The authoritative project
+source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean).
+On an approved Linux builder with the project cache provisioned, a human can
+type the following in a temporary probe:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
+
+#check MeasureTheory.IsProbabilityMeasure
+#check MeasureTheory.measure_univ
+#check MeasurePreserving
+#check PreErgodic
+#check Ergodic
+#check PreErgodic.prob_eq_zero_or_one
+#check Ergodic.ae_eq_const_of_ae_eq_comp_ae
+
+#check NonlinearDynamics.Random.RandomCocycles.IsIntegrableSubadditiveProcessCandidate
+#check NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.finiteHorizonLogPlusExpectation
+#check NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.finiteHorizonLogPlusExpectation_eq_integratedLogPlusNorm
+#check NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.ergodicBase_invariantEvent_prob_eq_zero_or_one
+#check NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.ergodicBase_ae_eq_const_of_ae_invariant
+~~~
+
+Each <code>#check</code> asks the pinned elaborator to display the exact type
+of a declaration. To check the authoritative project module itself, type this
+literal guarded command from the repository root:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
+~~~
+
+That project command belongs on an approved Linux builder. Do not run it on
+the Mac workstation; the repository deliberately keeps Mathlib builds in the
+cloud.
+{{< /repo-check >}}
+
+## Boundaries and nonclaims
+
+- An ergodic probability base is measure preserving, but a measure-preserving
+  probability base need not be ergodic.
+- The probability zero-or-one conclusion concerns invariant measurable events,
+  not arbitrary events.
+- Invariant functions are almost everywhere constant in the general theorem,
+  not necessarily pointwise constant on every input.
+- Ergodicity does not imply mixing, independence, or decay of correlations.
+- Ergodicity of \(T\) does not imply ergodicity of every power \(T^n\).
+- Ergodicity and probability normalization do not imply integrability of an
+  arbitrary observable.
+- Probability, ergodicity, and finite-horizon integrability still do not by
+  themselves prove a pointwise ergodic theorem, a subadditive limit, a
+  Lyapunov exponent, or an Oseledets splitting.
 
 ## Where to continue
 
-The standalone {{< refterm "ergodicity" >}} entry separates Mathlib's
-<code>PreErgodic</code> rigidity field from the measure-preserving field of
-full <code>Ergodic</code>. The
-[RMT-28 Deep Dive]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
-then composes that distinction with the additive pointwise Birkhoff theorem
-and identifies the {{< refterm "normalized-space-average" "normalized space average" >}}.
-It still proves no subadditive cocycle-growth limit.
-
-[The Birkhoff sum]({{< relref "/knowledge-base/glossary/birkhoff-sum" >}})
-is the next finite-time concept: it packages powered-orbit block costs without
-claiming that their normalized values converge.
-
+The {{< refterm "ergodicity" "ergodicity" >}} entry isolates Mathlib's
+<code>PreErgodic</code> rigidity from the measure-preserving field of full
+<code>Ergodic</code>. The
 [Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
-derives the ten-declaration interface, works all finite examples, and maps the
-remaining theorem gap.
+derives the complete project interface and keeps the finite-time integrability
+and subadditive-rate declarations visible.
 
 The
-{{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}
-entry explains the deterministic Fekete rate inherited from RMT-16.
-[Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
-is the immediate asymptotic predecessor.
-
-The
-{{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
-entry now applies the invariant-event interface to the set where one real
-Birkhoff-average sequence converges. Its null-or-conull and probability
-zero-one conclusions remain conditional: ergodicity cannot choose the conull
-branch without a separate pointwise convergence theorem.
-
-The
-{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
-entry demonstrates the premise separation in the other direction. Its core
-integral theorem needs measure preservation and integrability, but neither
-probability normalization nor ergodicity; finite total measure enters only
-when a constant average threshold is subtracted.
+[Birkhoff Convergence Events Before the Pointwise Ergodic Theorem]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}})
+uses invariant-event rigidity without pretending that rigidity chooses the
+full-probability branch. The later
+[Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
+adds the actual convergence and limit-identification machinery.
 
 ## References
 
-<a id="ref-ergodic-probability-mathlib-probability"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [Probability-measure typeclasses](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/Typeclasses/Probability.html),
-Mathlib 4 documentation. This official source defines
-<code>IsProbabilityMeasure μ</code> by the equation \(\mu(\Omega)=1\) and
-records its finite- and nonzero-measure consequences.
+Mathlib 4 documentation. The pinned source defines
+<code>IsProbabilityMeasure μ</code> by the equation
+<code>μ univ = 1</code>.
 
-<a id="ref-ergodic-probability-mathlib-ergodic"></a>**Mathlib contributors.**
+**Mathlib contributors.**
+[Measure-preserving maps](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/MeasurePreserving.html),
+Mathlib 4 documentation. This official source packages measurability and
+pushforward preservation.
+
+**Mathlib contributors.**
 [Ergodic maps and measures](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/Ergodic.html),
 Mathlib 4 documentation. This official source defines <code>PreErgodic</code>
-and <code>Ergodic</code> and proves the probability zero-one bridge for
+and <code>Ergodic</code> and proves the probability zero-or-one bridge for
 measurable strictly invariant events.
 
-<a id="ref-ergodic-probability-mathlib-function"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [Functions invariant under an ergodic map](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/Function.html),
 Mathlib 4 documentation. This official source proves almost-everywhere
 constancy of suitably measurable almost-everywhere invariant functions.
-
-<a id="ref-ergodic-probability-mathlib-subadditive"></a>**Mathlib contributors.**
-[Subadditive and superadditive sequences](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/Subadditive.html),
-Mathlib 4 documentation. This official source supplies the deterministic
-positive-index Fekete rate and comparison theorem used by the rate facts.
-
-<a id="ref-ergodic-probability-kingman"></a>**J. F. C. Kingman.**
-[The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
-This primary source establishes a subadditive ergodic theorem under additional
-hypotheses. RMT-17 does not invoke it.
-
-<a id="ref-ergodic-probability-furstenberg-kesten"></a>**Harry Furstenberg and Harry Kesten.**
-[Products of Random Matrices](https://doi.org/10.1214/aoms/1177705909),
-*The Annals of Mathematical Statistics* 31(2), 457-469, 1960. This primary
-source motivates asymptotic random-matrix-product growth; none of its
-samplewise conclusions is proved here.
 
 The exact upstream Lean source audited for this entry is Mathlib commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),

@@ -7,33 +7,186 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth"
 og_image: "integrated-log-positive-growth-rate-card.png"
-og_image_alt: "A five-stage teaching diagram moves from a finite state-dependent positive-log envelope through raw-measure integration certified by explicit one-step integrability, scalar subadditivity, positive-time normalization, and a deterministic Fekete limit. A separate warning says that no samplewise or Lyapunov limit is proved."
+og_image_alt: "A constant matrix on a one-point probability space produces integrated values two n plus parity; normalized horizons one through six alternate as three, two, seven thirds, two, eleven fifths, and two toward rate two."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+**Editorial status.** This is an AI-assisted working note. Human review of the
+mathematics, Lean interpretation, sources, figures, and accessibility remains
+pending. The page is public so readers can follow the work while that review
+is still open.
 {{< /panel >}}
 
+## First compute a growth rate that wobbles
+
+Take the one-point sample space
+
+\[
+\Omega=\{\star\},
+\qquad
+\mu(\{\star\})=1,
+\]
+
+and let the base transformation fix its only point:
+\(T(\star)=\star\). Because the whole space has mass one, \(\mu\) is a
+{{< refterm "probability-measure" "probability measure" >}}.
+
+Use the same \(2\times2\) matrix at every step. This is a constant
+{{< refterm "one-sided-discrete-matrix-cocycle" "one-sided matrix cocycle" >}}:
+
+\[
+A=
+\begin{bmatrix}
+0&e^3\\
+e&0
+\end{bmatrix}
+{} =
+e^2
+\begin{bmatrix}
+0&e\\
+e^{-1}&0
+\end{bmatrix}
+=e^2M.
+\]
+
+Here \(e\) is the base of the natural logarithm. These real entries can be
+viewed as complex entries, as in the project's cocycle type. The norm is the
+{{< refterm "induced-infinity-operator-norm" "maximum absolute row-sum norm" >}}.
+Direct multiplication and those row sums give
+
+\[
+M^2=I,
+\qquad
+\lVert M\rVert_\infty=e,
+\qquad
+A^2=e^4I.
+\]
+
+Even powers lose the extra \(M\); odd powers retain it:
+
+\[
+\lVert A^n\rVert_\infty
+{} =
+\begin{cases}
+e^{2n},&n\text{ even},\\
+e^{2n+1},&n\text{ odd}.
+\end{cases}
+\]
+
+The finite-horizon log-positive envelope is
+
+\[
+P_n(\star)=\log^+\lVert A^n\rVert_\infty.
+\]
+
+Here \(\log^+x=\max\{0,\log x\}\): it retains expansion above one and clips
+nonpositive logarithms to zero. Every displayed norm is at least one, so the
+positive part does not clip its logarithm. The one point has mass one, so
+integrating does not change the number. If
+
+\[
+I_n=\int_\Omega P_n(\omega)\,d\mu(\omega),
+\]
+
+then
+
+\[
+\boxed{I_n=2n+(n\bmod 2)}.
+\]
+
+Here \(n\bmod2\) is the remainder after division by two: zero for even \(n\)
+and one for odd \(n\).
+
+| Horizon \(n\) | \(\lVert A^n\rVert_\infty\) | Integrated value \(I_n\) | Lean's totalized \(I_n/n\) | Included in the rate infimum? |
+|---:|---:|---:|---:|---|
+| \(0\) | \(1\) | \(0\) | \(0/0=0\) | no |
+| \(1\) | \(e^3\) | \(3\) | \(3\) | yes |
+| \(2\) | \(e^4\) | \(4\) | \(2\) | yes |
+| \(3\) | \(e^7\) | \(7\) | \(7/3\) | yes |
+| \(4\) | \(e^8\) | \(8\) | \(2\) | yes |
+| \(5\) | \(e^{11}\) | \(11\) | \(11/5\) | yes |
+| \(6\) | \(e^{12}\) | \(12\) | \(2\) | yes |
+
+The normalized sequence is not decreasing:
+
+\[
+3,\ 2,\ \frac73,\ 2,\ \frac{11}{5},\ 2,\ldots
+\]
+
+Every even positive horizon has ratio \(2\). Every odd horizon has ratio
+\(2+1/n\). Therefore
+
+\[
+\inf_{n\ge1}\frac{I_n}{n}=2
+\qquad\text{and}\qquad
+\lim_{n\to\infty}\frac{I_n}{n}=2.
+\]
+
+This value \(2\) is the integrated log-positive growth rate of the example.
+
+{{< reference-figure
+  wide="true"
+  src="parity-wobble-fekete-example.svg"
+  alt="On a one-point probability space, a constant two-by-two matrix produces integrated log-positive values two n plus the parity of n. The normalized values at horizons one through six are three, two, seven thirds, two, eleven fifths, and two. Even horizons attain the infimum two while odd horizons approach it from above."
+  caption="**Computed example:** the matrix satisfies \(A=e^2M\), \(M^2=I\), and \(\lVert M\rVert_\infty=e\). Hence \(I_n=2n+(n\bmod2)\). The positive-time ratios wobble between \(2\) and \(2+1/n\), yet converge to their infimum \(2\). The time-zero value is displayed because Lean's real division makes it \(0\), but it is excluded from the rate-defining infimum. This one-point model illustrates the deterministic Fekete mechanism; it does not prove a random samplewise theorem."
+>}}
+
+## Check subadditivity by parity
+
+A real sequence \(u:\mathbb N\to\mathbb R\) is **subadditive** when
+
+\[
+u_{m+n}\leq u_m+u_n
+\qquad\text{for every }m,n\in\mathbb N.
+\]
+
+For the example, write \(r_n=n\bmod2\). The remainder obeys
+
+\[
+r_{m+n}\leq r_m+r_n.
+\]
+
+This can be checked in four parity cases. If \(m\) and \(n\) are both odd, the
+left remainder is zero while the right remainders sum to two. In the other
+three cases the two sides are equal. Consequently,
+
+\[
+\begin{aligned}
+I_{m+n}
+&=2(m+n)+r_{m+n}\\
+&\leq2m+2n+r_m+r_n\\
+&=I_m+I_n.
+\end{aligned}
+\]
+
+Subadditivity says that treating a combined block at once costs no more than
+adding the separate block budgets. It does not say \(I_{m+n}=I_m+I_n\), and it
+does not force \(I_n/n\) to decrease at every step.
+
+## General definition
+
 An **integrated log-positive growth rate** is a deterministic asymptotic rate
-built from a matrix cocycle by integrating before taking a limit. For the
+built from a matrix cocycle by integrating before taking a limit. For a
+cocycle \(C\), horizon \(k\), and base state \(\omega\), define the
 finite-horizon positive-log envelope
 
 \[
 P_k(\omega)
 {} =
-\log^+\lVert C(k,\omega)\rVert_\infty,
+\log^+\lVert C(k,\omega)\rVert_\infty.
 \]
 
-RMT-16 defines the scalar sequence
+The project's <code>IntegratedLogPlusGrowth.lean</code> module, called RMT-16
+in the historical checkpoint ledger, defines the scalar sequence
 
 \[
 I_k=\int_\Omega P_k(\omega)\,d\mu(\omega)
 \]
 
-and, under the explicit one-step integrability hypothesis from RMT-15, proves
+and, under the explicit one-step
+{{< refterm "integrability" "integrability" >}} hypothesis from the preceding
+<code>LogPlusIntegrability.lean</code> module, called RMT-15 in that ledger,
+proves
 
 \[
 I_{m+k}\le I_m+I_k.
@@ -51,12 +204,21 @@ Mathlib's deterministic Fekete theorem then supplies
 
 The notation \(\gamma_\mu^+(C)\) is explanatory prose. Lean calls the value
 <code>integratedLogPlusGrowthRate C hC</code>, where <code>hC</code> records
-one-step positive-log integrability.
+one-step positive-log integrability. Its exact proposition is
+
+~~~lean
+Integrable (C.logPlusNormObservable 1) μ
+~~~
+
+It says the one-step envelope is strongly measurable almost everywhere and
+has finite integral of its absolute value. Because the envelope is
+nonnegative, this is precisely the finite positive-tail condition needed by
+the finite-horizon propagation argument.
 
 {{< reference-figure
   src="integrated-log-positive-growth-rate.svg"
   alt="The checked route begins with a finite state-dependent positive-log envelope, integrates it against a preserved raw measure, obtains a subadditive sequence of real numbers, divides only at positive horizons, and reaches a deterministic Fekete limit. Time zero is shown separately as a formal boundary value. A rejected side route says that samplewise normalization and a samplewise limit are not established."
-  caption="**Finding:** RMT-16 integrates the finite-horizon envelope before normalization, so Fekete acts on one subadditive sequence of real numbers. Its infimum uses positive horizons only. The diagram deliberately separates the unproved samplewise route and makes no expectation, ergodic, limit-interchange, or Lyapunov claim."
+  caption="**General route:** the project integrates the finite-horizon envelope before normalization, so Fekete's lemma acts on one subadditive sequence of real numbers. Its infimum uses positive horizons only. The diagram deliberately separates the unproved samplewise route and makes no expectation, ergodic, limit-interchange, or Lyapunov claim."
 >}}
 
 ## Three objects that must not be merged
@@ -140,6 +302,42 @@ S_k(\omega)
 Since \(P_k\le S_k\), RMT-16 obtains \(I_k\le kI_1\). Neither equality nor
 inequality needs independent orbit terms.
 
+## Fekete's lemma in plain language
+
+An **infimum** is the greatest lower bound. For example, the positive-horizon
+ratios in the opening calculation all lie at or above \(2\), and no larger
+number is below all of them because the even ratios equal \(2\). Their infimum
+is therefore \(2\).
+
+Mathlib's real-valued form of **Fekete's lemma** starts with a sequence
+\(u:\mathbb N\to\mathbb R\) satisfying
+
+\[
+u_{m+n}\leq u_m+u_n.
+\]
+
+It also asks that the normalized range
+
+\[
+\left\{\frac{u_n}{n}:n\in\mathbb N\right\}
+\]
+
+be bounded below. It then proves
+
+\[
+\lim_{n\to\infty}\frac{u_n}{n}
+{} =
+\inf_{n\geq1}\frac{u_n}{n}.
+\]
+
+The project discharges the lower-bound condition with zero because every
+log-positive envelope and every integrated value is nonnegative. Its sequence
+is \(u_n=I_n\).
+
+Fekete's lemma is deterministic. Once the integrals \(I_n\) have been formed,
+the theorem sees only one sequence of real numbers. It does not see the sample
+space, base transformation, matrices, or individual outcomes.
+
 ## Time zero is a boundary convention
 
 Lean defines
@@ -164,15 +362,17 @@ every \(A_k\ge0\), the infimum of the full range would always be zero, even
 when every positive-time ratio equals a positive constant.
 
 Fekete convergence also does not say that the ratios decrease monotonically.
-A subadditive sequence can have fluctuating normalized values. The result is
-an infimum, not necessarily a minimum attained at one horizon.
+The opening sequence visibly fluctuates. Nor must the infimum be a minimum
+attained at one horizon; the opening example happens to attain it at every
+positive even horizon, but that is extra structure.
 
 ## Raw measure is not expectation
 
 The cocycle is parameterized by a raw measure \(\mu\). Its structure contains
 no probability assumption, no finite-mass hypothesis, and no division by
-\(\mu(\Omega)\). Therefore \(I_k\) is an integral, not automatically an
-expectation, and \(I_k/k\) is normalized in time only.
+\(\mu(\Omega)\). Therefore \(I_k\) is a raw integral, not automatically an
+{{< refterm "expectation" "expectation" >}}, and \(I_k/k\) is normalized in
+time only.
 
 Finite scalar rescaling makes the distinction visible. If a finite
 nonnegative scalar \(c\) is used to repackage the same cocycle over
@@ -188,10 +388,14 @@ thirteen exported RMT-16 declarations. Avoid the broader phrase “scales with
 total measure,” especially when \(\mu(\Omega)=\infty\).
 
 Expectation language becomes justified only after separately establishing
-that the measure has mass one. Even then, RMT-16 gives a limit of expectations
-of positive envelopes, not an expectation of a proved samplewise limit.
+that \(\mu\) is a probability measure, meaning \(\mu(\Omega)=1\). The
+successor module introduces
+<code>finiteHorizonLogPlusExpectation</code> under exactly that typeclass and
+proves it is the same scalar as <code>integratedLogPlusNorm</code>. Even then,
+the current theorem gives a limit of finite-horizon expectations, not an
+expectation of a proved samplewise limit.
 
-## A one-point calculation
+## Edge cases that change the reading
 
 Take a one-point base whose raw measure has finite, strictly positive mass
 \(q\), and take a
@@ -263,6 +467,366 @@ mistaken for an integrability result. The finite orbit-sum identity, bounds,
 subadditivity, rate definition, and convergence all use
 <code>HasIntegrableGeneratorLogPlus</code>.
 
+## In Lean: from envelope to deterministic rate
+
+### 1. Form one real number
+
+{{< lean-bridge
+  human="At horizon k, integrate the log-positive matrix-norm envelope over all base outcomes."
+  math="\(\displaystyle I_k=\int_\Omega \log^+\lVert C(k,\omega)\rVert_\infty\,d\mu(\omega).\)"
+  lean="C.integratedLogPlusNorm k"
+>}}
+
+The exact project definition is:
+
+~~~lean
+def integratedLogPlusNorm
+    (C : DiscreteMatrixCocycle (ι := ι) μ) (k : ℕ) : ℝ :=
+  ∫ ω, C.logPlusNormObservable k ω ∂μ
+~~~
+
+A human with <code>C</code> and <code>k</code> in scope types:
+
+~~~lean
+#check C.integratedLogPlusNorm k
+~~~
+
+Read the definition token by token:
+
+- <code>C.logPlusNormObservable k ω</code> is \(P_k(\omega)\), the
+  nonnegative finite-horizon envelope at outcome \(\omega\);
+- <code>∫ ω, ... ∂μ</code> is Lean notation for integration with respect to
+  \(\mu\);
+- <code>k : ℕ</code> makes the horizon a natural number;
+- <code>: ℝ</code> says the result is one real scalar; and
+- no <code>Integrable</code> argument occurs in the definition, because the
+  Bochner integral is totalized.
+{{< /lean-bridge >}}
+
+### 2. Turn the cocycle split into scalar subadditivity
+
+{{< lean-bridge
+  human="Under the one-step integrability hypothesis, the integrated cost of a combined horizon is at most the sum of the two separate integrated costs."
+  math="\(\displaystyle I_{m+k}\leq I_m+I_k.\)"
+  lean="hC.integratedLogPlusNorm_add_le m k"
+>}}
+
+The human types:
+
+~~~lean
+#check hC.integratedLogPlusNorm_add_le m k
+#check hC.subadditive_integratedLogPlusNorm
+~~~
+
+- <code>hC</code> has type
+  <code>C.HasIntegrableGeneratorLogPlus</code>; it is the explicit analytic
+  certificate that makes integral monotonicity legitimate.
+- <code>integratedLogPlusNorm_add_le</code> returns the displayed inequality.
+- <code>subadditive_integratedLogPlusNorm</code> packages all choices of
+  <code>m</code> and <code>k</code> into
+  <code>Subadditive C.integratedLogPlusNorm</code>.
+- Method notation puts the proof object <code>hC</code> before the theorem
+  name; it does not change the mathematical statement.
+{{< /lean-bridge >}}
+
+### 3. Normalize and name the rate
+
+{{< lean-bridge
+  human="Divide each integrated value by its time horizon, then define the rate as the Fekete limit of that subadditive sequence."
+  math="\(\displaystyle A_k=I_k/k,\qquad \gamma_\mu^+(C)=\inf_{k\geq1}A_k.\)"
+  lean="C.normalizedIntegratedLogPlusNorm k; C.integratedLogPlusGrowthRate hC"
+>}}
+
+The two exact definitions are:
+
+~~~lean
+def normalizedIntegratedLogPlusNorm
+    (C : DiscreteMatrixCocycle (ι := ι) μ) (k : ℕ) : ℝ :=
+  C.integratedLogPlusNorm k / k
+
+def integratedLogPlusGrowthRate
+    (C : DiscreteMatrixCocycle (ι := ι) μ)
+    (hC : C.HasIntegrableGeneratorLogPlus) : ℝ :=
+  hC.subadditive_integratedLogPlusNorm.lim
+~~~
+
+A human types:
+
+~~~lean
+#check C.normalizedIntegratedLogPlusNorm k
+#check C.integratedLogPlusGrowthRate hC
+~~~
+
+The natural number <code>k</code> is coerced to a real number by the division
+operation. At <code>k = 0</code>, real division returns zero. The protected
+Mathlib definition <code>Subadditive.lim</code> uses
+<code>Set.Ici 1</code>, the natural numbers at least one, so the rate itself
+does not use that artificial time-zero ratio.
+{{< /lean-bridge >}}
+
+### 4. State convergence and expose the infimum
+
+{{< lean-bridge
+  human="The normalized integrated values converge to the deterministic rate as the horizon tends to infinity."
+  math="\(\displaystyle A_k\longrightarrow\gamma_\mu^+(C)\quad(k\to\infty).\)"
+  lean="hC.tendsto_normalizedIntegratedLogPlusNorm"
+>}}
+
+The exact proof term has type
+
+~~~lean
+Tendsto C.normalizedIntegratedLogPlusNorm atTop
+  (𝓝 (C.integratedLogPlusGrowthRate hC))
+~~~
+
+and a human asks Lean for it with:
+
+~~~lean
+#check hC.tendsto_normalizedIntegratedLogPlusNorm
+~~~
+
+- <code>Tendsto f atTop (𝓝 a)</code> says \(f(k)\) tends to \(a\) as natural
+  \(k\) tends to infinity.
+- <code>atTop</code> is the filter describing arbitrarily large horizons.
+- <code>𝓝 a</code> is the neighborhood filter around the proposed real limit.
+- The theorem has no outcome <code>ω</code>; it is convergence of a
+  deterministic scalar sequence.
+{{< /lean-bridge >}}
+
+The next project module exposes the rate's defining infimum:
+
+{{< lean-bridge
+  human="The rate equals the greatest lower bound of the normalized integrated values at positive horizons."
+  math="\(\displaystyle\gamma_\mu^+(C)=\inf\{A_k:k\geq1\}.\)"
+  lean="hC.integratedLogPlusGrowthRate_eq_sInf"
+>}}
+
+The exact conclusion is:
+
+~~~lean
+C.integratedLogPlusGrowthRate hC =
+  sInf (C.normalizedIntegratedLogPlusNorm '' Set.Ici 1)
+~~~
+
+Here <code>sInf</code> is the infimum, <code>''</code> is the image of a set
+under a function, and <code>Set.Ici 1</code> is
+\(\{k\in\mathbb N:1\leq k\}\). The related theorem
+<code>hC.integratedLogPlusGrowthRate_le_normalized hk</code> says the rate is
+below every ratio whose horizon proof <code>hk : k ≠ 0</code> is supplied.
+{{< /lean-bridge >}}
+
+### Exact source excerpts
+
+**Resource label: pinned project plus Mathlib.** The current module defines the
+rate through Mathlib's subadditive limit and proves convergence in
+[<code>IntegratedLogPlusGrowth.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean):
+
+~~~lean
+def integratedLogPlusGrowthRate
+    (C : DiscreteMatrixCocycle (ι := ι) μ)
+    (hC : C.HasIntegrableGeneratorLogPlus) : ℝ :=
+  hC.subadditive_integratedLogPlusNorm.lim
+
+theorem HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm
+    {C : DiscreteMatrixCocycle (ι := ι) μ}
+    (hC : C.HasIntegrableGeneratorLogPlus) :
+    Tendsto C.normalizedIntegratedLogPlusNorm atTop
+      (𝓝 (C.integratedLogPlusGrowthRate hC)) := by
+  exact hC.subadditive_integratedLogPlusNorm.tendsto_lim
+    C.bddBelow_normalizedIntegratedLogPlusNorm
+~~~
+
+**Resource label: pinned Mathlib.** The repository's pinned
+[<code>Mathlib/Analysis/Subadditive.lean</code>](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Subadditive.lean)
+contains:
+
+~~~lean
+open Set Filter Topology
+
+def Subadditive (u : ℕ → ℝ) : Prop :=
+  ∀ m n, u (m + n) ≤ u m + u n
+
+namespace Subadditive
+
+variable {u : ℕ → ℝ} (h : Subadditive u)
+
+protected def lim (_h : Subadditive u) :=
+  sInf ((fun n : ℕ => u n / n) '' Ici 1)
+
+theorem tendsto_lim (hbdd : BddBelow (range fun n => u n / n)) :
+    Tendsto (fun n => u n / n) atTop (𝓝 h.lim) := by
+  refine tendsto_order.2 ⟨fun l hl => ?_, fun L hL => ?_⟩
+  · refine eventually_atTop.2
+      ⟨1, fun n hn => hl.trans_le (h.lim_le_div hbdd (zero_lt_one.trans_le hn).ne')⟩
+  · obtain ⟨n, npos, hn⟩ : ∃ n : ℕ, 0 < n ∧ u n / n < L := by
+      rw [Subadditive.lim] at hL
+      rcases exists_lt_of_csInf_lt (by simp) hL with ⟨x, hx, xL⟩
+      rcases (mem_image _ _ _).1 hx with ⟨n, hn, rfl⟩
+      exact ⟨n, zero_lt_one.trans_le hn, xL⟩
+    exact h.eventually_div_lt_of_div_lt npos.ne' hn
+
+end Subadditive
+~~~
+
+The proof first uses the infimum to obtain the eventual lower bound. For an
+upper neighborhood, it chooses one positive horizon whose ratio is already
+below that neighborhood and applies the finite block-and-remainder estimate.
+
+**Resource label: pinned project plus Mathlib.** The successor
+[<code>ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean)
+unfolds the positive-horizon infimum:
+
+~~~lean
+theorem HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_eq_sInf
+    {C : DiscreteMatrixCocycle (ι := ι) μ}
+    (hC : C.HasIntegrableGeneratorLogPlus) :
+    C.integratedLogPlusGrowthRate hC =
+      sInf (C.normalizedIntegratedLogPlusNorm '' Ici 1) := by
+  rw [integratedLogPlusGrowthRate, Subadditive.lim]
+  rfl
+~~~
+
+### Tiny local Lean/Std parity worksheet
+
+**Resource label: tiny standalone check.** The following worksheet imports only
+<code>Std</code>. It computes the opening sequence exactly, reduces each
+positive ratio to a numerator-denominator pair, and checks subadditivity on the
+finite square \(0\leq m,n\leq20\). It does not define matrix norms, Bochner
+integrals, or prove the infinite Fekete theorem.
+
+Save it as <code>ParityFeketeScratch.lean</code>:
+
+~~~lean
+import Std
+
+def integratedValue (n : Nat) : Nat :=
+  2 * n + n % 2
+
+structure Fraction where
+  numerator : Nat
+  denominator : Nat
+deriving Repr, BEq
+
+def reduceFraction (a b : Nat) : Fraction :=
+  let g := Nat.gcd a b
+  { numerator := a / g, denominator := b / g }
+
+def normalized (n : Nat) : Option Fraction :=
+  if n = 0 then
+    none
+  else
+    some (reduceFraction (integratedValue n) n)
+
+def subadditiveOn (bound : Nat) : Bool :=
+  (List.range (bound + 1)).all fun m =>
+    (List.range (bound + 1)).all fun n =>
+      decide (integratedValue (m + n) ≤
+        integratedValue m + integratedValue n)
+
+def boundedBelowByTwoOn (bound : Nat) : Bool :=
+  (List.range (bound + 1)).all fun n =>
+    if n = 0 then
+      true
+    else
+      decide (2 * n ≤ integratedValue n)
+
+def horizons : List Nat := [0, 1, 2, 3, 4, 5, 6]
+
+#eval horizons.map fun n => (n, integratedValue n, normalized n)
+#eval subadditiveOn 20
+#eval boundedBelowByTwoOn 20
+~~~
+
+Run it on a normal Mac or Linux host with the pinned small toolchain:
+
+~~~sh
+elan run leanprover/lean4:v4.32.0 lean ParityFeketeScratch.lean
+~~~
+
+The ledger should report integrated values \(0,3,4,7,8,11,12\). The
+time-zero ratio should be <code>none</code>; the positive fractions should be
+\(3/1,2/1,7/3,2/1,11/5,2/1\). Both finite checks should print
+<code>true</code>.
+
+The parity proof earlier on this page establishes subadditivity for all natural
+indices. This finite worksheet is an executable arithmetic audit, not a
+replacement for that proof or for Mathlib's analytic theorem. It was not run
+during this workstation-only documentation pass.
+
+### Try it in the repository
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, cloud-only.** On an approved
+Linux builder, a human can create a worksheet containing:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
+
+open MeasureTheory Set Filter Topology
+open NonlinearDynamics.Random.RandomCocycles
+open scoped Matrix.Norms.Operator Real
+
+universe uΩ uι
+
+variable {Ω : Type uΩ} {ι : Type uι} [MeasurableSpace Ω]
+  [Fintype ι] [DecidableEq ι] {μ : Measure Ω}
+variable (C : DiscreteMatrixCocycle (ι := ι) μ)
+variable (hC : C.HasIntegrableGeneratorLogPlus)
+variable (m k : ℕ)
+
+#check MeasureTheory.integral_undef
+#check Subadditive
+#check Subadditive.lim
+#check Subadditive.lim_le_div
+#check Subadditive.tendsto_lim
+#check C.integratedLogPlusNorm k
+#check C.integratedLogPlusNorm_zero
+#check C.integratedLogPlusNorm_nonneg k
+#check C.integral_logPlusNormObservable_at_base_iterate_eq k m
+#check hC.integral_orbitLogPlusSum_eq k
+#check hC.integratedLogPlusNorm_le_nat_mul k
+#check hC.integratedLogPlusNorm_add_le m k
+#check hC.subadditive_integratedLogPlusNorm
+#check C.normalizedIntegratedLogPlusNorm k
+#check C.normalizedIntegratedLogPlusNorm_nonneg k
+#check C.bddBelow_normalizedIntegratedLogPlusNorm
+#check C.integratedLogPlusGrowthRate hC
+#check hC.tendsto_normalizedIntegratedLogPlusNorm
+#check hC.integratedLogPlusGrowthRate_nonneg
+#check hC.integratedLogPlusGrowthRate_eq_sInf
+#check hC.integratedLogPlusGrowthRate_le_normalized
+#check hC.integratedLogPlusGrowthRate_le_oneStep
+
+section Probability
+
+variable [IsProbabilityMeasure μ]
+
+#check C.finiteHorizonLogPlusExpectation hC k
+#check hC.finiteHorizonLogPlusExpectation_eq_integratedLogPlusNorm k
+
+end Probability
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for an exact type. The
+current leaf owns the definition and convergence theorem:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
+~~~
+
+The successor leaf owns the explicit infimum, upper-bound, and
+probability-expectation declarations:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
+~~~
+
+Per repository policy, both commands are for an approved Linux cloud builder.
+Do not run them on the Mac workstation.
+{{< /repo-check >}}
+
 ## What this rate does not establish
 
 RMT-16 proves none of the following:
@@ -283,6 +847,25 @@ RMT-16 proves none of the following:
 The checked conclusion is narrower and exact: the sequence of integrated
 positive-growth envelopes, normalized by time, converges as a deterministic
 sequence of real numbers.
+
+## Exercises
+
+1. Multiply the opening matrix by itself and verify every entry of
+   \(A^2=e^4I\).
+2. Compute \(\lVert A^7\rVert_\infty\), \(I_7\), and \(I_7/7\). Repeat at
+   horizon eight.
+3. In which parity case is
+   \(I_{m+n}\leq I_m+I_n\) strict? By how much?
+4. Explain why the time-zero normalized value is defined in Lean but excluded
+   from the rate infimum.
+5. Replace the one-point probability measure by a one-point raw measure of
+   mass three. What happens to \(I_n\), \(I_n/n\), and the rate?
+6. The sequence \(u_n=2n+1\) is subadditive. Show that its positive-time
+   ratios converge to an infimum of two that is never attained.
+7. Explain why “limit of finite-horizon expectations” does not by itself mean
+   “expectation of a samplewise limit.”
+8. Match each paper object \(P_k(\omega)\), \(I_k\), \(I_k/k\), and
+   \(\gamma_\mu^+(C)\) with its exact Lean identifier.
 
 ## Where to continue
 

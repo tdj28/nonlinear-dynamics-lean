@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 16:54 PDT
+Last updated: 2026-07-22 17:02 PDT
 
-Audited baseline: `main` at `975c5a3`
+Audited baseline: `main` at `36d8181`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `36d8181`: pair the log-positive envelope with the stronger forward-and-
+  inverse tail package; compute the four-state orbit and fair two-outcome
+  sandwich, execute both `Std` worksheets, and make four worked cards
+  reproducible from their teaching SVGs.
 - `975c5a3`: rebuild the one-sided matrix-cocycle and zero-aware extended-log
   chapters around exact finite matrix calculations; execute both standalone
   `Std` worksheets and make their example diagrams the reproducible cards.

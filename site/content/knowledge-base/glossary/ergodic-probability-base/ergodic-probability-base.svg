@@ -1,86 +1,127 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620"
-     viewBox="0 0 800 620" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="820"
+     viewBox="0 0 960 820" role="img"
      aria-labelledby="ergodicProbabilityTitle ergodicProbabilityDesc">
-  <title id="ergodicProbabilityTitle">Three independent gates before a samplewise theorem</title>
-  <desc id="ergodicProbabilityDesc">Probability fixes total measure mass at one and licenses expectation language. Ergodicity makes invariant events null or full and invariant observables almost everywhere constant. Integrability certifies finite moments at every finite horizon. All three are distinct, and their conjunction does not itself prove a samplewise limit.</desc>
-  <rect width="800" height="620" fill="#F7F4F0"/>
+  <title id="ergodicProbabilityTitle">A single four-cycle is ergodic while two split cycles are not</title>
+  <desc id="ergodicProbabilityDesc">Both systems have four states of probability one quarter and both maps are permutations that preserve the measure. In the left system, zero maps to one, one to two, two to three, and three to zero. The marked event zero and two has preimage one and three, so it is not invariant; only the empty and full events are invariant. In the right system, zero swaps with one and two swaps with three. The event zero and one is invariant and has probability one half, so this system is not ergodic. A lower panel compares invariant functions, and a periodic return calculation shows that the ergodic four-cycle is not mixing.</desc>
+  <rect width="960" height="820" fill="#F7F4F0"/>
   <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:16px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .n{font-size:13px;font-weight:700;fill:#FFFDF8}
+    .t { font-family: Inter, Arial, Helvetica, sans-serif; fill: #28251F; }
+    .title { font-size: 24px; font-weight: 700; }
+    .subtitle { font-size: 14px; fill: #514A42; }
+    .panelTitle { font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+    .h { font-size: 15px; font-weight: 700; }
+    .body { font-size: 13px; }
+    .small { font-size: 12px; fill: #514A42; }
+    .tiny { font-size: 11px; fill: #514A42; }
+    .formula { font-family: Georgia, 'Times New Roman', serif; font-size: 17px; fill: #28251F; }
+    .formulaSmall { font-family: Georgia, 'Times New Roman', serif; font-size: 14px; fill: #28251F; }
   </style>
-  <defs>
-    <marker id="ergodicProbabilityArrow" markerWidth="8" markerHeight="8"
-            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
-    </marker>
-  </defs>
 
-  <text x="24" y="32" class="t title">Three gates answer three different questions</text>
-  <text x="24" y="53" class="t m">Scale, invariant information, and finite moments must remain separate.</text>
+  <text x="28" y="32" class="t title">Same probability, same preservation, different invariant events</text>
+  <text x="28" y="56" class="t subtitle">Four atoms each have mass 1/4, so total mass is 1 in both systems</text>
 
-  <circle cx="138" cy="102" r="20" fill="#16243A"/>
-  <text x="138" y="107" text-anchor="middle" class="t n" style="fill:#FFFDF8">1</text>
-  <circle cx="400" cy="102" r="20" fill="#315F55"/>
-  <text x="400" y="107" text-anchor="middle" class="t n" style="fill:#FFFDF8">2</text>
-  <circle cx="662" cy="102" r="20" fill="#9B5523"/>
-  <text x="662" y="107" text-anchor="middle" class="t n" style="fill:#FFFDF8">3</text>
+  <rect x="24" y="76" width="444" height="392" rx="16"
+        fill="#EDF3EA" stroke="#55765B" stroke-width="1.8"/>
+  <text x="48" y="105" class="t panelTitle">ERGODIC: ONE FOUR-STATE CYCLE</text>
+  <text x="48" y="128" class="t small">one orbit visits every state; the permutation preserves uniform mass</text>
 
-  <rect x="24" y="132" width="228" height="282" rx="15"
-        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="138" y="164" text-anchor="middle" class="t h">PROBABILITY</text>
-  <text x="138" y="189" text-anchor="middle" class="t s">total mass is one</text>
-  <line x1="54" y1="210" x2="222" y2="210" stroke="#4B6787" stroke-width="1"/>
-  <text x="138" y="242" text-anchor="middle" class="t h">FIXES SCALE</text>
-  <text x="138" y="270" text-anchor="middle" class="t s">raw integrals may be called</text>
-  <text x="138" y="290" text-anchor="middle" class="t s">expectations when integrable</text>
-  <rect x="48" y="324" width="180" height="62" rx="11"
-        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.2"/>
-  <text x="138" y="350" text-anchor="middle" class="t s">does not imply</text>
-  <text x="138" y="372" text-anchor="middle" class="t h">ERGODICITY</text>
+  <circle cx="120" cy="184" r="26" fill="#FCFAF7" stroke="#4C6786" stroke-width="2"/>
+  <text x="120" y="190" text-anchor="middle" class="t h">0</text>
+  <circle cx="372" cy="184" r="26" fill="#FCFAF7" stroke="#4C6786" stroke-width="2"/>
+  <text x="372" y="190" text-anchor="middle" class="t h">1</text>
+  <circle cx="372" cy="270" r="26" fill="#FCFAF7" stroke="#4C6786" stroke-width="2"/>
+  <text x="372" y="276" text-anchor="middle" class="t h">2</text>
+  <circle cx="120" cy="270" r="26" fill="#FCFAF7" stroke="#4C6786" stroke-width="2"/>
+  <text x="120" y="276" text-anchor="middle" class="t h">3</text>
 
-  <rect x="286" y="132" width="228" height="282" rx="15"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="400" y="164" text-anchor="middle" class="t h">ERGODICITY</text>
-  <text x="400" y="189" text-anchor="middle" class="t s">invariant sets are null or full</text>
-  <line x1="316" y1="210" x2="484" y2="210" stroke="#6F8D5E" stroke-width="1"/>
-  <text x="400" y="242" text-anchor="middle" class="t h">FIXES INVARIANT INFORMATION</text>
-  <text x="400" y="270" text-anchor="middle" class="t s">invariant real observables are</text>
-  <text x="400" y="290" text-anchor="middle" class="t s">almost everywhere constant</text>
-  <rect x="310" y="324" width="180" height="62" rx="11"
-        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.2"/>
-  <text x="400" y="350" text-anchor="middle" class="t s">does not imply</text>
-  <text x="400" y="372" text-anchor="middle" class="t h">MIXING</text>
+  <rect x="82" y="146" width="76" height="76" rx="13"
+        fill="none" stroke="#A34D40" stroke-width="2.5"/>
+  <text x="91" y="162" class="t tiny" style="fill:#8B3A30">A</text>
+  <rect x="334" y="232" width="76" height="76" rx="13"
+        fill="none" stroke="#A34D40" stroke-width="2.5"/>
+  <text x="343" y="248" class="t tiny" style="fill:#8B3A30">A</text>
 
-  <rect x="548" y="132" width="228" height="282" rx="15"
-        fill="#F7E9DA" stroke="#C16F2C" stroke-width="1.5"/>
-  <text x="662" y="164" text-anchor="middle" class="t h">INTEGRABILITY</text>
-  <text x="662" y="189" text-anchor="middle" class="t s">finite moments are certified</text>
-  <line x1="578" y1="210" x2="746" y2="210" stroke="#C16F2C" stroke-width="1"/>
-  <text x="662" y="242" text-anchor="middle" class="t h">FIXES ANALYTIC LEGITIMACY</text>
-  <text x="662" y="270" text-anchor="middle" class="t s">one-step control propagates</text>
-  <text x="662" y="290" text-anchor="middle" class="t s">to every finite horizon</text>
-  <rect x="572" y="324" width="180" height="62" rx="11"
-        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.2"/>
-  <text x="662" y="350" text-anchor="middle" class="t s">does not imply</text>
-  <text x="662" y="372" text-anchor="middle" class="t h">PROBABILITY</text>
+  <line x1="147" y1="184" x2="334" y2="184" stroke="#8B623E" stroke-width="2.2"/>
+  <path d="M334 177 L346 184 L334 191 Z" fill="#8B623E"/>
+  <line x1="372" y1="211" x2="372" y2="232" stroke="#8B623E" stroke-width="2.2"/>
+  <path d="M365 232 L372 244 L379 232 Z" fill="#8B623E"/>
+  <line x1="345" y1="270" x2="158" y2="270" stroke="#8B623E" stroke-width="2.2"/>
+  <path d="M158 263 L146 270 L158 277 Z" fill="#8B623E"/>
+  <line x1="120" y1="243" x2="120" y2="222" stroke="#8B623E" stroke-width="2.2"/>
+  <path d="M113 222 L120 210 L127 222 Z" fill="#8B623E"/>
 
-  <path d="M138 416 L138 448 L350 474" fill="none" stroke="#A67C52"
-        stroke-width="2.5" marker-end="url(#ergodicProbabilityArrow)"/>
-  <path d="M400 416 L400 468" fill="none" stroke="#A67C52"
-        stroke-width="2.5" marker-end="url(#ergodicProbabilityArrow)"/>
-  <path d="M662 416 L662 448 L450 474" fill="none" stroke="#A67C52"
-        stroke-width="2.5" marker-end="url(#ergodicProbabilityArrow)"/>
+  <text x="246" y="225" text-anchor="middle" class="t tiny">arrows show one time step</text>
+  <text x="246" y="319" text-anchor="middle" class="t small" style="fill:#8B3A30">A labels mark candidate A = {0,2}</text>
+  <rect x="51" y="327" width="390" height="52" rx="10"
+        fill="#FCFAF7" stroke="#A34D40" stroke-width="1.4"/>
+  <text x="246" y="349" text-anchor="middle" class="t formulaSmall">preimage(A) = {1,3}, so preimage(A) != A</text>
+  <text x="246" y="369" text-anchor="middle" class="t tiny">the half-mass candidate fails invariance</text>
 
-  <rect x="148" y="480" width="504" height="76" rx="15"
-        fill="#16243A"/>
-  <text x="400" y="509" text-anchor="middle" class="t h" style="fill:#FFFDF8">A CLEAN FINITE-TIME INTERFACE</text>
-  <text x="400" y="534" text-anchor="middle" class="t s" style="fill:#D9E1EA">still needs an actual ergodic theorem for a samplewise limit</text>
+  <rect x="51" y="393" width="390" height="50" rx="10"
+        fill="#315F55" stroke="#315F55" stroke-width="1.4"/>
+  <text x="246" y="414" text-anchor="middle" class="t h" style="fill:#FFFDF8">INVARIANT EVENTS: empty and Omega</text>
+  <text x="246" y="434" text-anchor="middle" class="t small" style="fill:#EAF1E5">probabilities 0 and 1</text>
 
-  <rect x="24" y="574" width="752" height="30" rx="10"
-        fill="#F3E8E0" stroke="#A55445" stroke-width="1.5"/>
-  <text x="400" y="594" text-anchor="middle" class="t h">NO INDEPENDENCE, MIXING, OR SAMPLEWISE CONVERGENCE FOLLOWS AUTOMATICALLY</text>
+  <rect x="492" y="76" width="444" height="392" rx="16"
+        fill="#F5E8E4" stroke="#A34D40" stroke-width="1.8"/>
+  <text x="516" y="105" class="t panelTitle">NOT ERGODIC: TWO DISCONNECTED CYCLES</text>
+  <text x="516" y="128" class="t small">the permutation still preserves exactly the same uniform probability</text>
+
+  <rect x="517" y="150" width="210" height="116" rx="14"
+        fill="#FCFAF7" stroke="#A34D40" stroke-width="2.5"/>
+  <text x="622" y="170" text-anchor="middle" class="t tiny" style="fill:#8B3A30">B = {0,1}</text>
+  <circle cx="558" cy="211" r="25" fill="#F4DFDA" stroke="#9A4D40" stroke-width="2"/>
+  <text x="558" y="217" text-anchor="middle" class="t h">0</text>
+  <circle cx="686" cy="211" r="25" fill="#F4DFDA" stroke="#9A4D40" stroke-width="2"/>
+  <text x="686" y="217" text-anchor="middle" class="t h">1</text>
+  <line x1="584" y1="202" x2="649" y2="202" stroke="#8B623E" stroke-width="2"/>
+  <path d="M649 195 L660 202 L649 209 Z" fill="#8B623E"/>
+  <line x1="660" y1="220" x2="595" y2="220" stroke="#8B623E" stroke-width="2"/>
+  <path d="M595 213 L584 220 L595 227 Z" fill="#8B623E"/>
+
+  <rect x="749" y="150" width="162" height="116" rx="14"
+        fill="#FCFAF7" stroke="#7E756A" stroke-width="1.4"/>
+  <text x="830" y="170" text-anchor="middle" class="t tiny">other component</text>
+  <circle cx="782" cy="211" r="25" fill="#E2EAF3" stroke="#4C6786" stroke-width="2"/>
+  <text x="782" y="217" text-anchor="middle" class="t h">2</text>
+  <circle cx="878" cy="211" r="25" fill="#E2EAF3" stroke="#4C6786" stroke-width="2"/>
+  <text x="878" y="217" text-anchor="middle" class="t h">3</text>
+  <line x1="808" y1="202" x2="841" y2="202" stroke="#8B623E" stroke-width="2"/>
+  <path d="M841 195 L852 202 L841 209 Z" fill="#8B623E"/>
+  <line x1="852" y1="220" x2="819" y2="220" stroke="#8B623E" stroke-width="2"/>
+  <path d="M819 213 L808 220 L819 227 Z" fill="#8B623E"/>
+
+  <rect x="519" y="292" width="390" height="65" rx="10"
+        fill="#FCFAF7" stroke="#A34D40" stroke-width="1.5"/>
+  <text x="714" y="317" text-anchor="middle" class="t formula">preimage(B) = B</text>
+  <text x="714" y="342" text-anchor="middle" class="t formulaSmall">mu(B) = 2/4 = 1/2</text>
+
+  <rect x="519" y="373" width="390" height="70" rx="10"
+        fill="#8B3A30" stroke="#8B3A30" stroke-width="1.4"/>
+  <text x="714" y="399" text-anchor="middle" class="t h" style="fill:#FFFDF8">A HALF-MASS INVARIANT EVENT EXISTS</text>
+  <text x="714" y="422" text-anchor="middle" class="t small" style="fill:#FBE9E4">probability preserving, but not ergodic</text>
+
+  <rect x="24" y="486" width="912" height="164" rx="16"
+        fill="#FCFAF7" stroke="#B9AA98" stroke-width="1.5"/>
+  <text x="48" y="514" class="t panelTitle">THE SAME TEST THROUGH INVARIANT REAL FUNCTIONS</text>
+  <line x1="480" y1="527" x2="480" y2="625" stroke="#C8BAA9" stroke-width="1.4"/>
+
+  <text x="252" y="548" text-anchor="middle" class="t h">ONE CYCLE FORCES ONE VALUE</text>
+  <text x="252" y="579" text-anchor="middle" class="t formula">g(0) = g(1) = g(2) = g(3)</text>
+  <text x="252" y="607" text-anchor="middle" class="t small">g after one step equals g, so equality travels around the orbit</text>
+
+  <text x="708" y="548" text-anchor="middle" class="t h">TWO CYCLES ALLOW TWO VALUES</text>
+  <text x="708" y="578" text-anchor="middle" class="t formulaSmall">h(0) = h(1) = 0</text>
+  <text x="708" y="601" text-anchor="middle" class="t formulaSmall">h(2) = h(3) = 1</text>
+  <text x="708" y="624" text-anchor="middle" class="t small">h is invariant on each component, but not globally constant</text>
+
+  <rect x="24" y="668" width="912" height="124" rx="16"
+        fill="#EFE9E0" stroke="#A9825E" stroke-width="1.5"/>
+  <text x="48" y="696" class="t panelTitle">ERGODIC DOES NOT MEAN MIXING</text>
+  <text x="48" y="725" class="t formulaSmall">For D = {0}:  mu(D intersect preimage^n(D)) = 1/4 when 4 divides n, otherwise 0.</text>
+  <text x="48" y="751" class="t formulaSmall">The periodic overlap does not approach mu(D)^2 = 1/16.</text>
+  <rect x="665" y="708" width="243" height="58" rx="10"
+        fill="#FCFAF7" stroke="#A34D40" stroke-width="1.4"/>
+  <text x="786" y="732" text-anchor="middle" class="t h">ERGODIC AND PERIODIC</text>
+  <text x="786" y="754" text-anchor="middle" class="t small">not mixing; no independence claim</text>
 </svg>
