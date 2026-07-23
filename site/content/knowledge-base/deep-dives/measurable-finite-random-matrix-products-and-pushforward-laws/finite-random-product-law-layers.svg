@@ -2,7 +2,7 @@
      viewBox="0 0 800 600" role="img"
      aria-labelledby="finiteProductLayersTitle finiteProductLayersDesc">
   <title id="finiteProductLayersTitle">Four interfaces from random matrix factors to a bundled product law</title>
-  <desc id="finiteProductLayersDesc">A vertical ladder begins with a finite prefix of outcome-dependent matrix factors. Pointwise chronological multiplication produces a sample product. Exact prefix measurability evidence certifies that product map. A chosen source measure is transported through the certified map to a raw law. A separate mass-one theorem permits the same raw law to be packaged as a bundled probability measure. Side notes distinguish algebraic, measurable, and probability assumptions, and a footer lists conclusions not supplied.</desc>
+  <desc id="finiteProductLayersDesc">A vertical ladder begins with a finite prefix of outcome-dependent matrix factors. Pointwise chronological multiplication produces a sample product. A sufficient measurability certificate asks only about factors in that finite prefix and certifies the product map. A chosen source measure is transported through the certified map to a raw law. A separate mass-one theorem permits the same raw law to be packaged as a bundled probability measure. Side notes distinguish algebraic, measurable, and probability assumptions, and a footer lists conclusions not supplied.</desc>
   <rect width="800" height="600" fill="#F7F4F0"/>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
@@ -46,9 +46,9 @@
   <rect x="226" y="290" width="348" height="72" rx="12"
         fill="#16243A"/>
   <text x="400" y="319" text-anchor="middle" class="t h"
-        style="fill:#FFFDF8">EXACT PREFIX MEASURABILITY</text>
+        style="fill:#FFFDF8">PREFIX MEASURABILITY CERTIFICATE</text>
   <text x="400" y="344" text-anchor="middle" class="t m"
-        style="fill:#D9E1EA">certifies every factor that the product reads</text>
+        style="fill:#D9E1EA">sufficient; asks for no future factor</text>
 
   <rect x="610" y="290" width="166" height="72" rx="12"
         fill="#FBF9F6" stroke="#4B6787" stroke-width="1.5"/>

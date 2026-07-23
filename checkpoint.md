@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:26 PDT
+Last updated: 2026-07-22 20:31 PDT
 
-Audited baseline: `main` at `22bece2`
+Audited baseline: `main` at `b254d6e`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **14 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **15 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -345,6 +345,19 @@ measurability, measure preservation, and every still-absent probability,
 two-sided, norm-growth, and Lyapunov layer. Exact Mathlib/project checks remain
 guarded Linux-cloud commands, while the small arithmetic worksheet is the
 intended local Mac/Linux learning path.
+*Measurable Finite Random-Matrix Products and Proof-Carrying Pushforward Laws*
+now lets one fair red/blue outcome choose one complete two-factor history. The
+two chronological products `[[2,2],[0,1]]` and `[[1,0],[3,3]]`, their distinct
+reverse-order products, the preimage `{red}`, and two masses `1/2` construct
+the law atom by atom. An executable horizon-zero collision merges both source
+outcomes into one identity atom of mass `1`; event masses
+`(1/2,1/2,1/2)` versus product `1/4` prove dependence; and a swapped map
+separates pointwise equality from equality in law. Three accessible figures,
+seven Lean bridges, five guarded project probes, the complete twelve-name API,
+and an executed `Std` worksheet make prefix measurability, Mathlib's map
+fallback, raw laws, mass-one evidence, and bundled probability laws distinct.
+The small finite ledger is intentionally local; all exact Mathlib/project
+checks remain on approved Linux cloud compute.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3232,6 +3245,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `b254d6e`: rebuild *Generator-Presented One-Sided Discrete Matrix Cocycles*
+  around a noninvertible three-state orbit, exact shifted later-block identity,
+  two numeric near misses, six Lean bridges, and a local `Std` worksheet.
 - `22bece2`: rebuild *Hermitian Spectral Perturbation, Continuity, and
   Measurability* around an exact diagonal Frobenius budget and a sharply scoped
   non-Hermitian square-root near miss, with seven Lean bridges and a local

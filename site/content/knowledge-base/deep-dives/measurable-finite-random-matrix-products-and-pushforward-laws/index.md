@@ -2,17 +2,17 @@
 title: "Measurable Finite Random-Matrix Products and Proof-Carrying Pushforward Laws"
 slug: "measurable-finite-random-matrix-products-and-pushforward-laws"
 date: 2026-07-21
-summary: "A textbook ascent from semiring-valued pointwise matrix products through exact finite-prefix measurability to raw pushforward laws, mass-one proofs, and bundled probability measures."
-lead: "An ordered product of random matrices is not yet a probability law. First it is a function of one outcome, then it needs a finite-prefix measurability proof, and only then can its source measure be transported without hiding Mathlib's zero-measure fallback."
+summary: "Two noncommuting two-by-two matrix histories make product order, event preimages, atom-by-atom pushforward weights, dependence, and equality in law concrete before the checked Lean interface generalizes the construction."
+lead: "A fair coin chooses one complete red or blue matrix history. Multiply the two selected factors in chronological order, compute one event preimage, and the product law appears atom by atom. Lean then proves that every measurable finite prefix has this honest pushforward interface."
 draft: false
 pro_reviewed: false
 level: "Finite random dynamics, measurable maps, and law-level interfaces"
-reading_time: "70 to 95 minutes"
-prerequisites: "Finite matrices, chronological forward products, measurable spaces, pushforward measures, and the distinction between a raw measure and a bundled probability measure"
+reading_time: "120 to 155 minutes"
+prerequisites: "Two-by-two matrix multiplication and finite probability; measurable spaces, pushforwards, and Lean syntax are introduced from the concrete example before the general interface"
 lean_module: "NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts"
 toc: true
 og_image: "measurable-finite-random-matrix-products-and-pushforward-laws-card.png"
-og_image_alt: "A finite prefix of outcome-dependent matrix factors becomes a pointwise ordered product, receives an exact measurability certificate, becomes a raw pushforward law, and is finally packaged with a mass-one proof."
+og_image_alt: "A fair red-blue sample space selects two complete two-step matrix histories. The chronological red product is the matrix with rows two two and zero one, the blue product has rows one zero and three three, the event that the top-left entry equals two has red as its preimage, and the product law gives each output matrix mass one half."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -28,6 +28,412 @@ prose, sources, Lean declaration map, figures, and accessibility have not yet
 received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
+
+## Start with two complete histories
+
+Our sample space is the two-element set
+
+\[
+\Omega=\{\mathrm{red},\mathrm{blue}\}.
+\]
+
+Give each outcome probability \(1/2\). This assignment is a
+{{< refterm "probability-measure" "probability measure" >}} \(\mu\): the
+weights are nonnegative and add to one. We can imagine one fair coin toss, but
+the toss selects an entire two-step history at once. It does **not** toss a new
+coin independently at each time.
+
+At time zero and time one, define these two-by-two integer matrices:
+
+\[
+\begin{array}{c|cc}
+\omega&A_0(\omega)&A_1(\omega)\\ \hline
+\mathrm{red}&
+\begin{bmatrix}1&1\\0&1\end{bmatrix}&
+\begin{bmatrix}2&0\\0&1\end{bmatrix}\\[9pt]
+\mathrm{blue}&
+\begin{bmatrix}1&0\\1&1\end{bmatrix}&
+\begin{bmatrix}1&0\\0&3\end{bmatrix}.
+\end{array}
+\]
+
+The map \(A_0\) sends an outcome to its time-zero matrix, and \(A_1\) does the
+same at time one. A map from a sample space into matrix space is a random
+matrix in the elementary sense used by this project. The adjective *random*
+describes dependence on \(\omega\); it does not mean that matrix multiplication
+itself is random.
+
+For column-vector action, the time-zero matrix acts first. The chronological
+two-step product is therefore
+
+\[
+P_2(\omega)=A_1(\omega)A_0(\omega).
+\]
+
+### Multiply the red history
+
+\[
+\begin{aligned}
+P_2(\mathrm{red})
+&=
+\begin{bmatrix}2&0\\0&1\end{bmatrix}
+\begin{bmatrix}1&1\\0&1\end{bmatrix}\\[4pt]
+&=
+\begin{bmatrix}
+2\cdot1+0\cdot0&2\cdot1+0\cdot1\\
+0\cdot1+1\cdot0&0\cdot1+1\cdot1
+\end{bmatrix}\\[4pt]
+&=
+\begin{bmatrix}2&2\\0&1\end{bmatrix}
+=:R.
+\end{aligned}
+\]
+
+Reverse the order and the upper-right entry changes:
+
+\[
+A_0(\mathrm{red})A_1(\mathrm{red})
+{} =
+\begin{bmatrix}2&1\\0&1\end{bmatrix}
+\ne R.
+\]
+
+This is why a one-by-one example is too weak for an order audit: scalar
+multiplication commutes, while these matrices do not.
+
+### Multiply the blue history
+
+\[
+\begin{aligned}
+P_2(\mathrm{blue})
+&=
+\begin{bmatrix}1&0\\0&3\end{bmatrix}
+\begin{bmatrix}1&0\\1&1\end{bmatrix}\\[4pt]
+&=
+\begin{bmatrix}1&0\\3&3\end{bmatrix}
+=:B.
+\end{aligned}
+\]
+
+Again, the reverse order differs:
+
+\[
+A_0(\mathrm{blue})A_1(\mathrm{blue})
+{} =
+\begin{bmatrix}1&0\\1&3\end{bmatrix}
+\ne B.
+\]
+
+The two values \(R\) and \(B\) are the complete image of \(P_2\).
+
+{{< reference-figure
+  wide="true"
+  src="two-outcome-product-law-ledger.svg"
+  alt="A fair red-blue sample space selects two complete two-step matrix histories. Red uses an upper shear followed by a horizontal stretch, producing chronological product with rows two two and zero one; reversing the order produces rows two one and zero one. Blue uses a lower shear followed by a vertical stretch, producing chronological product with rows one zero and three three; reversing the order produces rows one zero and one three. The event that the top-left entry is two has red as its preimage, so its probability is one half. The product law puts mass one half on each chronological product."
+  caption="**Finding:** one fair outcome chooses one complete factor history. Chronological multiplication gives \(R=[[2,2],[0,1]]\) at red and \(B=[[1,0],[3,3]]\) at blue. Both reverse-order calculations differ, so the newest-factor-left convention is visible numerically. For the event \(G=\{M:M_{00}=2\}\), the preimage is exactly \(\{\mathrm{red}\}\), and its pushforward probability is \(1/2\)."
+>}}
+
+## Compute a pushforward law atom by atom
+
+An {{< refterm "event" "event" >}} is a measurable subset of the relevant
+space. On \(\Omega\), choose the full discrete measurable space, so all four
+subsets
+
+\[
+\varnothing,\quad
+\{\mathrm{red}\},\quad
+\{\mathrm{blue}\},\quad
+\Omega
+\]
+
+are events. Every function out of this finite discrete space is a
+{{< refterm "measurable-function" "measurable function" >}}. In particular,
+\(A_0\), \(A_1\), and \(P_2\) are measurable.
+
+In the matrix target, consider
+
+\[
+G=\{M:M_{00}=2\}.
+\]
+
+To find the probability assigned to \(G\) by the product law, pull \(G\) back
+through the product map:
+
+\[
+\begin{aligned}
+P_2^{-1}(G)
+&=\{\omega:P_2(\omega)_{00}=2\}\\
+&=\{\mathrm{red}\}.
+\end{aligned}
+\]
+
+Therefore
+
+\[
+\mu(P_2^{-1}(G))=\mu(\{\mathrm{red}\})=\frac12.
+\]
+
+The {{< refterm "pushforward-measure" "pushforward" >}}
+\((P_2)_*\mu\), also called the
+{{< refterm "probability-law" "probability distribution or law" >}} of
+\(P_2\), is
+
+\[
+\mathcal L_\mu(P_2)
+{} =
+\frac12\delta_R+\frac12\delta_B.
+\]
+
+The symbol \(\delta_R\) is the Dirac point mass at \(R\): it assigns mass one
+to any measurable set containing \(R\) and mass zero otherwise. Thus the
+displayed formula is an atom-by-atom ledger:
+
+| Target matrix | Preimage under \(P_2\) | Source mass | Product-law mass |
+|---|---|---:|---:|
+| \(R=[[2,2],[0,1]]\) | \(\{\mathrm{red}\}\) | \(1/2\) | \(1/2\) |
+| \(B=[[1,0],[3,3]]\) | \(\{\mathrm{blue}\}\) | \(1/2\) | \(1/2\) |
+| Any other matrix | \(\varnothing\) | \(0\) | \(0\) |
+
+If two outcomes produced the same matrix, their source masses would merge at
+one target atom. At horizon zero, both outcomes produce the identity, so the
+law is
+
+\[
+\frac12\delta_I+\frac12\delta_I=\delta_I,
+\]
+
+not two distinguishable identity atoms. Pushforward laws remember output
+values and total mass at those values; they do not remember which outcomes
+collided there.
+
+Under this fair measure, the only
+{{< refterm "null-set" "null set" >}} is the empty set. Consequently,
+“almost everywhere” and “everywhere” happen to agree for this toy space.
+The checked project theorem uses ordinary measurability anyway, so it works
+uniformly for every source measure rather than relying on this finite accident.
+
+## Three near-misses, three different questions
+
+Measurability, independence, and equality in law are not interchangeable.
+The same two-outcome model separates them exactly.
+
+### Measurability does not imply independence
+
+Define the factor events
+
+\[
+\begin{aligned}
+E_0&=\{\omega:A_0(\omega)=A_0(\mathrm{red})\}
+=\{\mathrm{red}\},\\
+E_1&=\{\omega:A_1(\omega)=A_1(\mathrm{red})\}
+=\{\mathrm{red}\}.
+\end{aligned}
+\]
+
+Both factor maps are measurable. Yet
+
+\[
+\mu(E_0\cap E_1)=\frac12
+\quad\text{while}\quad
+\mu(E_0)\mu(E_1)=\frac12\cdot\frac12=\frac14.
+\]
+
+The required factorization fails, so \(A_0\) and \(A_1\) are not
+{{< refterm "independence" "independent" >}}. The shared outcome variable
+alone would not prove dependence; the numerical event calculation does.
+
+### Equality in law does not imply pointwise equality
+
+Define another matrix-valued map \(Q\) by swapping the two outputs:
+
+\[
+Q(\mathrm{red})=B,
+\qquad
+Q(\mathrm{blue})=R.
+\]
+
+Then \(Q(\mathrm{red})\ne P_2(\mathrm{red})\), so \(Q\ne P_2\) as functions.
+But the fair source gives both atoms weight \(1/2\), hence
+
+\[
+\mathcal L_\mu(Q)
+=\frac12\delta_B+\frac12\delta_R
+=\mathcal L_\mu(P_2).
+\]
+
+This equality depends on the chosen source. If red had probability \(3/4\)
+and blue probability \(1/4\), \(P_2\) would place mass \(3/4\) on \(R\),
+whereas \(Q\) would place mass \(1/4\) there.
+
+{{< reference-figure
+  wide="true"
+  src="measurability-independence-law-near-misses.svg"
+  alt="Three numerical checks separate three notions. On the full discrete measurable space every map out of red and blue is measurable. The events that the first and second factors take their red values both have probability one half and intersection probability one half, which differs from the product one quarter, so the factors are dependent. Swapping the red and blue product outputs changes the map pointwise but preserves the fair two-atom law; biased source weights would distinguish the laws."
+  caption="**Finding:** measurability says preimages of measurable target sets are events. Independence says selected joint-event probabilities factor, which fails here because \(1/2\ne1/4\). Equality in law compares pushforward measures, not sample-by-sample values: the swapped map differs pointwise but has the same law only under the fair source."
+>}}
+
+## Type the finite ledger in Lean with <code>Std</code>
+
+The general project theorem imports Mathlib and belongs on approved Linux
+cloud compute. The exact two-outcome arithmetic is small enough for a normal
+Mac or Linux computer. Save the following byte-for-byte as
+<code>/tmp/MeasurableFiniteProducts2.lean</code>:
+
+~~~lean
+import Std
+
+namespace MeasurableFiniteProducts2
+
+structure Mat2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+deriving Repr, DecidableEq, BEq
+
+def identity : Mat2 :=
+  ⟨1, 0, 0, 1⟩
+
+def mul (A B : Mat2) : Mat2 :=
+  ⟨A.a00 * B.a00 + A.a01 * B.a10,
+   A.a00 * B.a01 + A.a01 * B.a11,
+   A.a10 * B.a00 + A.a11 * B.a10,
+   A.a10 * B.a01 + A.a11 * B.a11⟩
+
+/-- The input list is chronological: the first matrix acts first. -/
+def forwardProduct (factors : List Mat2) : Mat2 :=
+  factors.foldl (fun earlier newest => mul newest earlier) identity
+
+inductive Outcome where
+  | red
+  | blue
+deriving Repr, DecidableEq, BEq
+
+def outcomes : List Outcome :=
+  [.red, .blue]
+
+def A0 : Outcome → Mat2
+  | .red  => ⟨1, 1, 0, 1⟩
+  | .blue => ⟨1, 0, 1, 1⟩
+
+def A1 : Outcome → Mat2
+  | .red  => ⟨2, 0, 0, 1⟩
+  | .blue => ⟨1, 0, 0, 3⟩
+
+def product2 (ω : Outcome) : Mat2 :=
+  forwardProduct [A0 ω, A1 ω]
+
+def reversed2 (ω : Outcome) : Mat2 :=
+  forwardProduct [A1 ω, A0 ω]
+
+def preimage (f : Outcome → Mat2) (event : Mat2 → Bool) : List Outcome :=
+  outcomes.filter (fun ω => event (f ω))
+
+def topLeftIsTwo (M : Mat2) : Bool :=
+  M.a00 == 2
+
+def fairMass (event : Outcome → Bool) : Rat :=
+  ((outcomes.filter event).length : Rat) / 2
+
+def atomWeight (f : Outcome → Mat2) (target : Mat2) : Rat :=
+  fairMass (fun ω => f ω == target)
+
+def zeroProduct : Outcome → Mat2 :=
+  fun _ => identity
+
+def swappedProduct : Outcome → Mat2
+  | .red  => product2 .blue
+  | .blue => product2 .red
+
+def firstFactorIsRed (ω : Outcome) : Bool :=
+  A0 ω == A0 .red
+
+def secondFactorIsRed (ω : Outcome) : Bool :=
+  A1 ω == A1 .red
+
+#eval product2 .red
+#eval product2 .blue
+#eval reversed2 .red
+#eval reversed2 .blue
+#eval preimage product2 topLeftIsTwo
+#eval [(product2 .red, atomWeight product2 (product2 .red)),
+       (product2 .blue, atomWeight product2 (product2 .blue))]
+#eval atomWeight zeroProduct identity
+#eval (fairMass firstFactorIsRed,
+       fairMass secondFactorIsRed,
+       fairMass (fun ω => firstFactorIsRed ω && secondFactorIsRed ω))
+#eval [(atomWeight product2 (product2 .red),
+        atomWeight swappedProduct (product2 .red)),
+       (atomWeight product2 (product2 .blue),
+        atomWeight swappedProduct (product2 .blue))]
+
+example : forwardProduct [] = identity := by decide
+example : forwardProduct [A0 .red] = A0 .red := by decide
+example : product2 .red = ⟨2, 2, 0, 1⟩ := by decide
+example : product2 .blue = ⟨1, 0, 3, 3⟩ := by decide
+example : preimage product2 topLeftIsTwo = [.red] := by decide
+example : atomWeight product2 (product2 .red) = (1 : Rat) / 2 := by native_decide
+example : atomWeight product2 (product2 .blue) = (1 : Rat) / 2 := by native_decide
+example : atomWeight zeroProduct identity = 1 := by native_decide
+example : fairMass (fun ω => firstFactorIsRed ω && secondFactorIsRed ω) ≠
+    fairMass firstFactorIsRed * fairMass secondFactorIsRed := by native_decide
+example : swappedProduct .red ≠ product2 .red := by decide
+example : atomWeight product2 (product2 .red) =
+    atomWeight swappedProduct (product2 .red) := by native_decide
+example : atomWeight product2 (product2 .blue) =
+    atomWeight swappedProduct (product2 .blue) := by native_decide
+
+end MeasurableFiniteProducts2
+~~~
+
+Load the pinned toolchain environment if needed, then type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/MeasurableFiniteProducts2.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+{ a00 := 2, a01 := 2, a10 := 0, a11 := 1 }
+{ a00 := 1, a01 := 0, a10 := 3, a11 := 3 }
+{ a00 := 2, a01 := 1, a10 := 0, a11 := 1 }
+{ a00 := 1, a01 := 0, a10 := 1, a11 := 3 }
+[MeasurableFiniteProducts2.Outcome.red]
+[({ a00 := 2, a01 := 2, a10 := 0, a11 := 1 }, (1 : Rat)/2), ({ a00 := 1, a01 := 0, a10 := 3, a11 := 3 }, (1 : Rat)/2)]
+1
+((1 : Rat)/2, (1 : Rat)/2, (1 : Rat)/2)
+[((1 : Rat)/2, (1 : Rat)/2), ((1 : Rat)/2, (1 : Rat)/2)]
+~~~
+
+Read the output from top to bottom. The first two matrices are \(R\) and \(B\).
+The next two are the reverse-order products. The singleton list is the
+preimage of \(G\). The weighted matrix list is the two-atom pushforward
+ledger. The next output, \(1\), proves that the red and blue zero-horizon
+identity outcomes merge into one atom of total weight one. The triple
+\((1/2,1/2,1/2)\) records the two factor-event masses and their intersection,
+so it visibly fails the independence target \(1/4\). The last pairs show equal
+atom weights for \(P_2\) and the swapped map.
+
+The symbols are deliberately elementary:
+
+- <code>structure Mat2</code> gives names to four integer entries.
+- <code>mul A B</code> implements the four row-by-column formulas for \(AB\).
+- <code>foldl</code> reads factors chronologically; its callback multiplies
+  each newest factor on the left of the accumulated earlier product.
+- <code>inductive Outcome</code> creates exactly two constructors.
+- <code>filter</code> computes a finite preimage by retaining outcomes whose
+  output satisfies the event test.
+- <code>Rat</code> keeps the masses \(1/2\) exact.
+- <code>decide</code> and <code>native_decide</code> close finite,
+  computational propositions with kernel-checked proofs.
+
+This worksheet checks the numerical ledger. It does not formalize measurable
+spaces, <code>Measure.map</code>, complex Mathlib matrices, or the general
+finite-product theorems below.
 
 Consider a time-indexed family of random square matrices
 
@@ -112,8 +518,8 @@ By the summit, you should be able to:
 
 {{< reference-figure
   src="finite-random-product-law-layers.svg"
-  alt="A finite prefix of outcome-dependent factors enters a pointwise chronological product. Exact prefix measurability evidence certifies that product map. A chosen source measure is transported through it to a raw law. A separate mass-one proof then permits a bundled probability-law interface."
-  caption="**Finding:** the construction climbs through four distinct interfaces. Pointwise multiplication is algebra, prefix certification is measurability, transport produces a raw measure, and mass-one evidence permits a bundled probability measure. The diagram does not assert factor independence, stationarity, a cocycle, or any long-time growth theorem."
+  alt="A finite prefix of outcome-dependent factors enters a pointwise chronological product. A sufficient measurability certificate asks about every factor in that prefix and no future factor, then certifies the product map. A chosen source measure is transported through it to a raw law. A separate mass-one proof permits a bundled probability-law interface."
+  caption="**Finding:** the construction climbs through four distinct interfaces. Pointwise multiplication is algebra. A sufficient measurability hypothesis is exact in scope because it asks only about the prefix the product reads. Transport produces a raw measure, and mass-one evidence permits a bundled probability measure. The diagram does not assert necessity of the factor hypothesis, independence, stationarity, a cocycle, or any long-time growth theorem."
 >}}
 
 The four boxes are different mathematical types:
@@ -219,8 +625,26 @@ The empty product is the constant identity map. Lean publishes
 \Pi_{k+1}(\omega)=A_k(\omega)\Pi_k(\omega).
 \]
 
-The newest factor is prepended on the left. This is
-<code>sampleForwardProduct_succ</code>, also true by reflexivity.
+{{< lean-bridge
+  human="At the next horizon, multiply the newest sampled matrix on the left of the product already accumulated from earlier times."
+  math="\( \Pi_{k+1}(\omega)=A_k(\omega)\Pi_k(\omega). \)"
+  lean="sampleForwardProduct_succ A k"
+>}}
+
+- <code>sampleForwardProduct</code> is the matrix-valued function
+  \(\omega\mapsto\Pi_k(\omega)\).
+- The suffix <code>_succ</code> announces the successor horizon
+  <code>k + 1</code>.
+- The first explicit argument <code>A</code> is the whole time-indexed factor
+  family; <code>k</code> selects the newest index.
+- In the theorem's result, <code>fun ω =&gt;</code> means “at every outcome
+  \(\omega\),” and <code>*</code> is matrix multiplication.
+- The newest factor is on the left because \(A_0\) acts first on a column
+  vector.
+{{< /lean-bridge >}}
+
+The result is definitional: after unfolding the recursion, Lean proves it with
+<code>rfl</code>.
 
 ### One step
 
@@ -248,74 +672,59 @@ block is on the left because it acts second. The theorem
 <code>sampleForwardProduct_add</code> uses function extensionality and then
 applies <code>forwardProduct_add</code> at the chosen outcome.
 
+{{< lean-bridge
+  human="Split after m steps: the shifted block of k later factors multiplies the original m-factor prefix on the left."
+  math="\( \Pi_{m+k}(\omega)=\Pi^{(m)}_k(\omega)\Pi_m(\omega),\quad A^{(m)}_j=A_{m+j}. \)"
+  lean="sampleForwardProduct_add A m k"
+>}}
+
+- <code>add</code> refers to the horizon decomposition <code>m + k</code>.
+- <code>fun j =&gt; A (m + j)</code> is the shifted family
+  \(A^{(m)}\); its local time zero is global time \(m\).
+- <code>sampleForwardProduct ... k ω</code> evaluates the later block at the
+  same outcome as the earlier block.
+- The rightmost <code>sampleForwardProduct A m ω</code> acts first.
+- The equality is pointwise algebra. It does not factor the distribution of
+  the two blocks.
+{{< /lean-bridge >}}
+
+{{< repo-check >}}
+On an approved Linux builder, a reader can put these lines in a temporary
+project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+
+#check NonlinearDynamics.Random.MatrixProducts.sampleForwardProduct_succ
+#check NonlinearDynamics.Random.MatrixProducts.sampleForwardProduct_add
+~~~
+
+The first check exposes newest-factor-left recursion. The second exposes the
+shifted later family and block order. The command below checks the exact
+committed module with its pinned project dependencies.
+{{< /repo-check >}}
+
 No measurability is needed for any of these equations. They are finite algebra
 of functions.
 
-## A two-outcome expedition
+## Read the split through the two-outcome expedition
 
-Use one-by-one complex matrices, written \([z]\) for the matrix whose only
-entry is \(z\). Let the outcome space be
-\(\Omega=\{r,b\}\), and choose
-
-\[
-\begin{array}{c|cc}
-&r&b\\ \hline
-A_0&[2]&[-1]\\
-A_1&[3]&[4]\\
-A_2&[5]&[2]
-\end{array}.
-\]
-
-At the red outcome,
+Return to the opening matrices and split the horizon-two product after one
+step. Here \(m=1\) and \(k=1\). The shifted later family begins at \(A_1\), so
 
 \[
-\begin{aligned}
-\Pi_0(r)&=[1],\\
-\Pi_1(r)&=[2],\\
-\Pi_2(r)&=[3][2]=[6],\\
-\Pi_3(r)&=[5][3][2]=[30].
-\end{aligned}
-\]
-
-At the blue outcome,
-
-\[
-\begin{aligned}
-\Pi_0(b)&=[1],\\
-\Pi_1(b)&=[-1],\\
-\Pi_2(b)&=[4][-1]=[-4],\\
-\Pi_3(b)&=[2][4][-1]=[-8].
-\end{aligned}
-\]
-
-Split the three-step red product after \(m=1\). The later shifted block is
-built from \(A_1,A_2\):
-
-\[
-\Pi^{(1)}_2(r)\Pi_1(r)
+\Pi_2(\omega)
 {} =
-([5][3])[2]
-{} =
-[30]
-{} =
-\Pi_3(r).
+\underbrace{\Pi^{(1)}_1(\omega)}_{A_1(\omega)}
+\underbrace{\Pi_1(\omega)}_{A_0(\omega)}
+=A_1(\omega)A_0(\omega).
 \]
 
-This arithmetic checks the order and shift. The scalar-looking example should
-not hide the real issue: for larger matrices, changing the order generally
-changes the product.
-
-Now place probability \(1/4\) on \(r\) and \(3/4\) on \(b\). At horizon two,
-the law is
-
-\[
-\mathcal L(\Pi_2)
-{} =
-\frac14\delta_{[6]}+\frac34\delta_{[-4]}.
-\]
-
-No independence statement occurs. The three factor maps are all functions of
-the same outcome and are visibly dependent.
+At red this recovers \(R=[[2,2],[0,1]]\); at blue it recovers
+\(B=[[1,0],[3,3]]\). Omitting the shift would reuse \(A_0\) in the later
+block. Reversing the block order would produce the two reverse matrices
+already computed. The concrete ledger therefore detects both common
+implementation mistakes.
 
 ## Camp three: measurability uses exactly one prefix
 
@@ -329,6 +738,13 @@ h_A:\forall j\lt k,\quad A_j\text{ is measurable}.
 The quantifier ends at \(k\). The sample product \(\Pi_k\) never reads a factor
 at time \(k\) or later, so future measurability is irrelevant.
 
+This hypothesis is **scope-exact**: it asks only about indices the definition
+reads. It is a sufficient condition, not an if-and-only-if characterization.
+For example, a nonmeasurable earlier factor could be annihilated by a later
+constant zero matrix, leaving a measurable zero product. The checked theorem
+does not claim that measurability of \(\Pi_k\) forces every used factor to be
+measurable.
+
 The theorem is:
 
 ~~~lean
@@ -337,6 +753,24 @@ theorem measurable_sampleForwardProduct
     (k : ℕ) (hA : ∀ j < k, Measurable (A j)) :
     Measurable (sampleForwardProduct A k)
 ~~~
+
+{{< lean-bridge
+  human="If every complex random matrix used before horizon k is measurable, then their pointwise chronological product is measurable."
+  math="\( [\,\forall j<k,\ A_j:\Omega\to M_\iota(\mathbb C)\text{ measurable}\,]\Longrightarrow \Pi_k\text{ measurable}. \)"
+  lean="measurable_sampleForwardProduct A k hA"
+>}}
+
+- <code>hA</code> is the proof of the bounded statement
+  <code>∀ j &lt; k, Measurable (A j)</code>.
+- <code>∀</code> means “for every,” while <code>j &lt; k</code> restricts that
+  quantifier to the finite prefix.
+- <code>Measurable (A j)</code> is ordinary map measurability, not
+  almost-everywhere measurability relative to one measure.
+- The conclusion names <code>sampleForwardProduct A k</code>, the whole
+  matrix-valued sample map.
+- The scalar type is exactly \(\mathbb C\) in this theorem. The earlier algebra
+  declarations are more general, but this checked measurable interface is not.
+{{< /lean-bridge >}}
 
 The proof is induction on \(k\).
 
@@ -367,6 +801,22 @@ The proof architecture mirrors the mathematics exactly:
 |---|---|
 | Empty identity product | Constant maps are measurable |
 | New factor times previous product | Each factor is measurable, induction handles the prefix, multiplication is measurable |
+
+{{< repo-check >}}
+The project theorem and the matrix-multiplication interface it consumes can be
+inspected together:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+
+#check NonlinearDynamics.Random.MatrixProducts.measurable_sampleForwardProduct
+#check NonlinearDynamics.Random.RandomMatrix.measurable_mul
+~~~
+
+The first type displays the bounded prefix premise. The second confirms the
+induction step's pointwise multiplication rule. Run the authoritative module
+with the guarded cloud command below.
+{{< /repo-check >}}
 
 ### Why complex matrices?
 
@@ -426,6 +876,25 @@ noncomputable def forwardProductLaw
     (measurable_sampleForwardProduct A k hA) μ
 ~~~
 
+{{< lean-bridge
+  human="Choose a source measure, certify the finite product map as measurable, and push the source mass through that map."
+  math="\( \operatorname{forwardProductLaw}(\mu,A,k,h_A)=(\Pi_k)_*\mu,\quad ((\Pi_k)_*\mu)(S)=\mu(\Pi_k^{-1}(S)) \) for measurable \(S\)."
+  lean="forwardProductLaw μ A k hA"
+>}}
+
+- <code>μ</code> is the source <code>Measure Ω</code>; changing it can change
+  the output law even when <code>A</code> is unchanged.
+- <code>A</code> and <code>k</code> determine the sample map
+  <code>sampleForwardProduct A k</code>.
+- <code>hA</code> proves exactly the finite-prefix premise used to derive
+  product measurability.
+- Inside the definition, <code>RandomMatrix.law</code> is the project's
+  explicit-evidence interface to <code>Measure.map</code>.
+- The resulting type is the raw
+  <code>Measure (Matrix ι ι ℂ)</code>. It does not store <code>hA</code> as a
+  data field.
+{{< /lean-bridge >}}
+
 The source measure is explicit. The factor family alone cannot determine a
 law because different measures on the same outcome space can assign different
 weights to the same product values.
@@ -469,6 +938,23 @@ particular call lies in the measurable regime where the usual pushforward
 theorems apply.
 {{< /panel >}}
 
+{{< repo-check >}}
+The product-law constructor and its predecessor law interface can be inspected
+side by side:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+
+#check NonlinearDynamics.Random.MatrixProducts.forwardProductLaw
+#check NonlinearDynamics.Random.RandomMatrix.law
+#check NonlinearDynamics.Random.RandomMatrix.law_apply
+~~~
+
+The first two checks reveal where ordinary measurability evidence enters. The
+third is the checked preimage-evaluation theorem matching the opening ledger.
+The command below runs only on the approved Linux project builder.
+{{< /repo-check >}}
+
 ## Camp six: calibrate the law at zero and one step
 
 The first two horizons catch most convention errors.
@@ -484,6 +970,23 @@ If \(\mu\) is a probability measure, then
 The sample map at horizon zero is constant at the identity. Pushing a
 probability measure through a constant map puts all unit mass at that value.
 Lean names the theorem <code>forwardProductLaw_zero</code>.
+
+{{< lean-bridge
+  human="Under a probability source, the empty matrix product is always the identity, so its law is one Dirac atom at the identity."
+  math="\( \mu(\Omega)=1\Longrightarrow \mathcal L_\mu(\Pi_0)=\delta_I. \)"
+  lean="forwardProductLaw_zero μ A hA"
+>}}
+
+- The hidden typeclass argument
+  <code>[IsProbabilityMeasure μ]</code> supplies \(\mu(\Omega)=1\).
+- The numeral <code>0</code> selects the empty product.
+- <code>hA : ∀ j &lt; 0, Measurable (A j)</code> has no cases; it is present
+  only because the law interface uses one uniform evidence shape.
+- <code>Measure.dirac 1</code> is the right side of the theorem. Here
+  <code>1</code> is the matrix identity, inferred from the target type.
+- If several sample outcomes all map to that identity, their masses merge into
+  this single atom, as in the opening two-outcome calculation.
+{{< /lean-bridge >}}
 
 The typeclass hypothesis <code>[IsProbabilityMeasure μ]</code> is essential
 for this exact unit Dirac formula. For a general measure, a constant
@@ -524,6 +1027,22 @@ The zero and one formulas test different things:
 | Zero law is Dirac at identity | Empty-product convention and probability mass normalization |
 | One law equals the first factor law | Horizon indexing and factor order |
 
+{{< repo-check >}}
+These exact calibration declarations distinguish the assumptions at horizons
+zero and one:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+
+#check NonlinearDynamics.Random.MatrixProducts.forwardProductLaw_zero
+#check NonlinearDynamics.Random.MatrixProducts.forwardProductLaw_one
+~~~
+
+The zero theorem carries a source probability typeclass; the one-step equality
+does not. Use the guarded cloud command below to check their authoritative
+types and proofs.
+{{< /repo-check >}}
+
 ## Camp seven: raw mass-one theorem versus bundled law
 
 The definition <code>forwardProductLaw</code> accepts an arbitrary raw
@@ -538,7 +1057,26 @@ theorem forwardProductLaw_isProbabilityMeasure
     IsProbabilityMeasure (forwardProductLaw μ A k hA)
 ~~~
 
-records the result as a proposition and typeclass-bearing proof. It does not
+{{< lean-bridge
+  human="A measurable pushforward of a mass-one source still has total mass one."
+  math="\( \mu(\Omega)=1\Longrightarrow ((\Pi_k)_*\mu)(M_\iota(\mathbb C))=1. \)"
+  lean="forwardProductLaw_isProbabilityMeasure μ A k hA"
+>}}
+
+- <code>IsProbabilityMeasure</code> is a proposition about the raw output
+  measure; it is not a second measure.
+- Lean finds the source hypothesis through
+  <code>[IsProbabilityMeasure μ]</code>.
+- <code>μ A k hA</code> are the same source, factor family, horizon, and
+  prefix certificate used by <code>forwardProductLaw</code>.
+- The theorem delegates to
+  <code>RandomMatrix.law_isProbabilityMeasure</code> after supplying the
+  derived product measurability proof.
+- No division or normalization occurs. Pushforward preserves the source's
+  already-unit total mass.
+{{< /lean-bridge >}}
+
+This records the result as a proposition and typeclass-bearing proof. It does not
 construct a different measure.
 
 The next definition starts from a bundled source
@@ -574,6 +1112,41 @@ wrapper recovers the raw law:
 The proof is reflexivity. The wrapper is transparent by construction. It adds
 a guarantee to the type and no renormalization, conditioning, or change of
 sample weights.
+
+{{< lean-bridge
+  human="If we forget the bundled probability-law certificate, the underlying raw measure is exactly the previously defined product law."
+  math="\( \operatorname{coe}(\widehat{\mathcal L}_\mu(\Pi_k))=\mathcal L_\mu(\Pi_k). \)"
+  lean="coe_forwardProductProbabilityLaw μ A k hA"
+>}}
+
+- <code>forwardProductProbabilityLaw</code> starts with
+  <code>μ : ProbabilityMeasure Ω</code>, so source mass one is already in the
+  input type.
+- The double coercion visible in the full theorem converts the bundled target
+  back to <code>Measure (Matrix ι ι ℂ)</code>.
+- <code>coe_</code> in the theorem name signals this forgetful comparison.
+- The right side calls <code>forwardProductLaw</code> on the raw measure
+  underlying \(\mu\).
+- The proof is <code>rfl</code>, confirming that packaging added evidence but
+  changed no atom and no weight.
+{{< /lean-bridge >}}
+
+{{< repo-check >}}
+The mass-one theorem, bundled constructor, and forgetful equality form the
+final interface:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+
+#check NonlinearDynamics.Random.MatrixProducts.forwardProductLaw_isProbabilityMeasure
+#check NonlinearDynamics.Random.MatrixProducts.forwardProductProbabilityLaw
+#check NonlinearDynamics.Random.MatrixProducts.coe_forwardProductProbabilityLaw
+~~~
+
+The first result is evidence about a raw measure, the second is a bundled
+probability measure, and the third proves their underlying measures coincide.
+The exact project file is cloud-only and checked by the guarded command below.
+{{< /repo-check >}}
 
 ## The complete declaration map
 
@@ -709,7 +1282,9 @@ The later block begins at \(A_m\), not \(A_0\). Omitting
 ### Requiring every future factor to be measurable
 
 Horizon \(k\) reads only \(A_0,\ldots,A_{k-1}\). The checked premise is exact
-prefix measurability.
+in scope: it asks only for that prefix. It is a sufficient hypothesis, not a
+claim that product measurability logically forces measurability of every used
+factor.
 
 ### Treating <code>Measure.map</code> as an unconditional probability law
 
@@ -794,32 +1369,43 @@ spectral law.
 
 ## Reproduce the checked slice
 
-From the repository root, load the pinned Lean toolchain and compile the module
-with warnings treated as errors:
+There are two deliberately separate resource lanes.
+
+On a normal Mac or Linux host, rerun only the bounded <code>Std</code>
+worksheet from the opening:
 
 ~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/MeasurableFiniteProducts2.lean
 ~~~
 
-Build the module and its dependencies by library name:
+That command checks exact integer matrix arithmetic, finite preimages, rational
+atom weights, the dependence witness, and the same-law/different-map example.
+It imports <code>Std</code>, not Mathlib.
+
+The authoritative project theorem belongs on approved Linux cloud compute with
+the pinned project cache. From the repository root there, type:
 
 ~~~sh
-lake build NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
 ~~~
 
-Return to the repository root and check the teaching site:
+The guarded target verifies the committed manifest digest and checks the
+Mathlib-backed module with warnings treated as errors. Do not replace it with
+raw <code>lake</code> or project <code>lean</code> commands on the Mac.
+
+Site authoring and static validation remain workstation-safe:
 
 ~~~sh
-cd ..
+make content-hygiene
 make site-check
 ~~~
 
-The repository-wide technical gate is <code>make check</code>. Passing it does
-not complete human review. This page is published as an open working note while
-mathematical, source, accessibility, and editorial reviews remain pending.
+The repository-wide <code>make check</code> gate is also cloud-only because it
+includes the Lean project build. Passing a technical gate does not complete
+human review. This page remains an open working note while mathematical,
+source, accessibility, and editorial reviews are pending.
 
 ## Summit: what has and has not been proved
 
@@ -840,11 +1426,14 @@ mathematical, source, accessibility, and editorial reviews remain pending.
 | Coercion from the bundled law to the raw law | Checked definitionally |
 | Empty coordinate dimension | Supported without a nonempty assumption |
 | Independence of factors | Not assumed or proved |
+| Joint law of the factor tuple | Not defined |
 | Identical distribution or stationarity | Not assumed or proved |
 | Product-law factorization or convolution formula | Not stated |
 | Probability-preserving base map | Not defined |
 | Random cocycle over a base transformation | Not defined |
+| Ergodicity or mixing | Not assumed or proved |
 | Almost-sure equality or property | Not stated |
+| Infinite matrix product or convergence as \(k\to\infty\) | Not defined or proved |
 | Norm measurability, norm moments, or integrability | Not proved |
 | Finite product or orbit growth bounds | Not part of this module |
 | Invertibility or determinant statements | Not assumed or proved |

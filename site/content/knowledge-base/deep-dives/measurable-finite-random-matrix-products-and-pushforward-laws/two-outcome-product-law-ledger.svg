@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
+     viewBox="0 0 1200 630" role="img"
+     aria-labelledby="twoOutcomeTitle twoOutcomeDesc">
+  <title id="twoOutcomeTitle">Two complete matrix histories produce a two-atom forward-product law</title>
+  <desc id="twoOutcomeDesc">A fair sample space has red and blue outcomes. At red, A zero is the upper shear with rows one one and zero one, while A one is diagonal two one. Their chronological product A one A zero has rows two two and zero one; the reverse order has rows two one and zero one. At blue, A zero is the lower shear with rows one zero and one one, while A one is diagonal one three. Their chronological product has rows one zero and three three; the reverse order has rows one zero and one three. The event that the top-left entry equals two has preimage red and probability one half. The product law has one half of its mass on each chronological product.</desc>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#17263C}
+    .title{font-size:30px;font-weight:750}
+    .lead{font-size:17px;fill:#4D5B6B}
+    .h{font-size:21px;font-weight:750}
+    .s{font-size:17px}
+    .m{font-size:15px;fill:#4D5B6B}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:17px}
+    .monoSmall{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px}
+  </style>
+  <defs>
+    <marker id="ledgerArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="42" y="48" class="t title">One fair coin chooses one complete two-step history</text>
+  <text x="42" y="76" class="t lead">Chronological convention: the first factor acts first, so P₂(ω) = A₁(ω) A₀(ω).</text>
+
+  <rect x="42" y="104" width="540" height="322" rx="18"
+        fill="#F3E8E0" stroke="#A65E2E" stroke-width="2"/>
+  <circle cx="74" cy="139" r="11" fill="#B8523B"/>
+  <text x="98" y="146" class="t h">red outcome · mass 1/2</text>
+  <rect x="68" y="170" width="214" height="104" rx="12"
+        fill="#FFFDF8" stroke="#C8B8AA" stroke-width="1.5"/>
+  <text x="86" y="196" class="t s">time 0 · upper shear</text>
+  <text x="86" y="226" class="t mono">A₀ = [[1, 1],</text>
+  <text x="142" y="252" class="t mono">[0, 1]]</text>
+  <rect x="340" y="170" width="214" height="104" rx="12"
+        fill="#FFFDF8" stroke="#C8B8AA" stroke-width="1.5"/>
+  <text x="358" y="196" class="t s">time 1 · stretch x</text>
+  <text x="358" y="226" class="t mono">A₁ = [[2, 0],</text>
+  <text x="414" y="252" class="t mono">[0, 1]]</text>
+  <path d="M288 222 H328" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#ledgerArrow)"/>
+  <text x="68" y="309" class="t mono">A₁A₀ = [[2, 2], [0, 1]]</text>
+  <text x="68" y="339" class="t m">chronological product · newest factor on the left</text>
+  <text x="68" y="382" class="t monoSmall">reverse A₀A₁ = [[2, 1], [0, 1]]</text>
+  <text x="68" y="407" class="t m">different: order is numerically visible</text>
+
+  <rect x="618" y="104" width="540" height="322" rx="18"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="650" cy="139" r="11" fill="#3F75A3"/>
+  <text x="674" y="146" class="t h">blue outcome · mass 1/2</text>
+  <rect x="644" y="170" width="214" height="104" rx="12"
+        fill="#FFFDF8" stroke="#B6C5D2" stroke-width="1.5"/>
+  <text x="662" y="196" class="t s">time 0 · lower shear</text>
+  <text x="662" y="226" class="t mono">A₀ = [[1, 0],</text>
+  <text x="718" y="252" class="t mono">[1, 1]]</text>
+  <rect x="916" y="170" width="214" height="104" rx="12"
+        fill="#FFFDF8" stroke="#B6C5D2" stroke-width="1.5"/>
+  <text x="934" y="196" class="t s">time 1 · stretch y</text>
+  <text x="934" y="226" class="t mono">A₁ = [[1, 0],</text>
+  <text x="990" y="252" class="t mono">[0, 3]]</text>
+  <path d="M864 222 H904" fill="none" stroke="#A67C52"
+        stroke-width="2.5" marker-end="url(#ledgerArrow)"/>
+  <text x="644" y="309" class="t mono">A₁A₀ = [[1, 0], [3, 3]]</text>
+  <text x="644" y="339" class="t m">chronological product · newest factor on the left</text>
+  <text x="644" y="382" class="t monoSmall">reverse A₀A₁ = [[1, 0], [1, 3]]</text>
+  <text x="644" y="407" class="t m">different: the same order test works again</text>
+
+  <rect x="42" y="456" width="1116" height="134" rx="18" fill="#17263C"/>
+  <text x="68" y="490" class="h" style="fill:#FFFDF8">Push forward the fair source through P₂</text>
+  <text x="68" y="524" class="monoSmall" style="fill:#E8F0F7">G = {M : M₀₀ = 2}     P₂⁻¹(G) = {red}     μ(P₂⁻¹(G)) = 1/2</text>
+  <text x="68" y="561" class="monoSmall" style="fill:#FFFDF8">law(P₂) = 1/2 δ_[[2,2],[0,1]] + 1/2 δ_[[1,0],[3,3]]</text>
+  <text x="68" y="583" class="m" style="fill:#C9D4E1">Two outcomes select two histories, not four independently resampled factor pairs.</text>
+</svg>

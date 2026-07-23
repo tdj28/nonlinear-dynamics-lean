@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="nearMissTitle nearMissDesc">
+  <title id="nearMissTitle">Measurability, independence, and equality in law are three different questions</title>
+  <desc id="nearMissDesc">On the two-point discrete sample space, every displayed map is measurable. The event that the first factor is its red value and the event that the second factor is its red value both equal the singleton red. Their individual probabilities are one half and their intersection has probability one half, not one quarter, so the factors are not independent. A new product map that swaps the red and blue output matrices differs pointwise from the original map, but under the fair source both maps assign one half to each of the same two atoms and therefore have the same law. A biased source would separate those laws.</desc>
+  <rect width="1200" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#17263C}
+    .title{font-size:30px;font-weight:750}
+    .lead{font-size:17px;fill:#4D5B6B}
+    .h{font-size:22px;font-weight:750}
+    .s{font-size:17px}
+    .m{font-size:15px;fill:#4D5B6B}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:16px}
+    .badge{font-size:15px;font-weight:750;letter-spacing:.5px}
+  </style>
+
+  <text x="42" y="48" class="t title">Three questions that must not collapse into one</text>
+  <text x="42" y="77" class="t lead">The same finite example answers each question with a separate calculation.</text>
+
+  <rect x="42" y="110" width="1116" height="150" rx="18"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="68" y="145" class="t badge" style="fill:#315F55">1 · MEASURABLE?</text>
+  <text x="68" y="180" class="t h">Yes, after choosing the full discrete measurable space.</text>
+  <text x="68" y="213" class="t s">Every subset of {red, blue} is measurable, so every map out of it is measurable.</text>
+  <text x="68" y="240" class="t mono">A₀, A₁, P₂ : {red, blue} → Mat₂     all measurable</text>
+
+  <rect x="42" y="288" width="1116" height="190" rx="18"
+        fill="#F3E8E0" stroke="#A65E2E" stroke-width="2"/>
+  <text x="68" y="323" class="t badge" style="fill:#934F1F">2 · INDEPENDENT?</text>
+  <text x="68" y="358" class="t h">No. Measurability does not factor event probabilities.</text>
+  <text x="68" y="393" class="t mono">E₀ = {A₀ has its red value} = {red}       μ(E₀) = 1/2</text>
+  <text x="68" y="426" class="t mono">E₁ = {A₁ has its red value} = {red}       μ(E₁) = 1/2</text>
+  <text x="68" y="459" class="t mono">μ(E₀ ∩ E₁) = 1/2     but     μ(E₀) μ(E₁) = 1/4</text>
+
+  <rect x="42" y="506" width="1116" height="206" rx="18"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="68" y="541" class="t badge" style="fill:#315F78">3 · EQUAL POINTWISE OR EQUAL IN LAW?</text>
+  <text x="68" y="576" class="t h">Different maps can have the same law under one chosen source.</text>
+  <text x="68" y="610" class="t mono">P₂(red) = R, P₂(blue) = B       Q(red) = B, Q(blue) = R</text>
+  <text x="68" y="643" class="t mono">P₂(red) ≠ Q(red)                 so P₂ ≠ Q pointwise</text>
+  <text x="68" y="676" class="t mono">lawμ(P₂) = 1/2 δ_R + 1/2 δ_B = lawμ(Q)     for fair μ</text>
+  <text x="68" y="700" class="t m">Change the source weights away from one half and the two pushforward laws generally separate.</text>
+
+  <rect x="42" y="727" width="1116" height="3" fill="#A67C52"/>
+  <text x="600" y="750" text-anchor="middle" class="t m">A property of maps, a property of a joint law, and equality of pushforwards are three distinct layers.</text>
+</svg>
