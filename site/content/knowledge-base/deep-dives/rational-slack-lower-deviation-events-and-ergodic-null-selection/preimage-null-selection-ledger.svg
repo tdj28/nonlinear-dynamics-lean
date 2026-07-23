@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960"
+     viewBox="0 0 1440 960" role="img"
+     aria-labelledby="null-selection-ledger-title null-selection-ledger-desc">
+  <title id="null-selection-ledger-title">Preimage inclusion, almost invariance, and null-branch selection</title>
+  <desc id="null-selection-ledger-desc">For the two-state collapse model at target minus five quarters, the strict event is the zero-mass singleton a and its preimage is empty. The inclusion is strict as sets, but the symmetric difference has probability zero, so the sets are almost everywhere equal. Ergodicity gives event mass zero or one. The normalized integral lower bound delta equals minus one and delta divided by the target is four fifths, which is strictly below one and therefore excludes the full branch. At target minus three quarters the event is full, but the required target-below-delta premise fails.</desc>
+  <defs>
+    <marker id="selection-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#315a70"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Georgia, serif; fill: #16283a; }
+      .subtitle { font: 20px Arial, sans-serif; fill: #516172; }
+      .panelTitle { font: 700 24px Arial, sans-serif; fill: #203c54; }
+      .label { font: 18px Arial, sans-serif; fill: #263746; }
+      .small { font: 16px Arial, sans-serif; fill: #526170; }
+      .math { font: 21px Georgia, serif; fill: #172d40; }
+      .mathStrong { font: 700 24px Georgia, serif; fill: #172d40; }
+      .good { font: 700 18px Arial, sans-serif; fill: #45683c; }
+      .bad { font: 700 18px Arial, sans-serif; fill: #8d3e32; }
+      .white { font: 700 20px Arial, sans-serif; fill: #fffaf0; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="960" fill="#f6f0e4"/>
+  <rect width="1440" height="18" fill="#1f3f58"/>
+  <text x="66" y="66" class="title">A strict set inclusion can still be almost invariance</text>
+  <text x="66" y="101" class="subtitle">Same exact model: μ(a)=0, μ(b)=1 and T sends both states to b</text>
+
+  <rect x="52" y="136" width="420" height="512" rx="20"
+        fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="80" y="178" class="panelTitle">1 · Compute the preimage</text>
+  <rect x="86" y="218" width="350" height="76" rx="12" fill="#e9f0f3"/>
+  <text x="110" y="250" class="label">At c=−5/4:</text>
+  <text x="110" y="280" class="mathStrong">D<tspan baseline-shift="sub" font-size="16">c</tspan> = {a}</text>
+  <line x1="260" y1="326" x2="260" y2="384" stroke="#315a70"
+        stroke-width="5" marker-end="url(#selection-arrow)"/>
+  <text x="282" y="358" class="small">take T⁻¹</text>
+  <rect x="86" y="402" width="350" height="76" rx="12" fill="#f1dfcf"/>
+  <text x="110" y="434" class="label">No state maps to a:</text>
+  <text x="110" y="464" class="mathStrong">T⁻¹D<tspan baseline-shift="sub" font-size="16">c</tspan> = ∅</text>
+  <text x="86" y="521" class="mathStrong">∅ ⊊ {a}</text>
+  <text x="86" y="558" class="label">The one-sided inclusion is strict.</text>
+  <text x="86" y="594" class="small">Setwise equality is false in this model.</text>
+
+  <rect x="500" y="136" width="420" height="512" rx="20"
+        fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="528" y="178" class="panelTitle">2 · Measure forgets the null point</text>
+  <rect x="528" y="218" width="364" height="118" rx="12" fill="#edf1e7"/>
+  <text x="554" y="256" class="mathStrong">μ({a}) = 0</text>
+  <text x="554" y="296" class="mathStrong">μ(∅) = 0</text>
+  <text x="528" y="382" class="label">The symmetric difference is {a},</text>
+  <text x="528" y="415" class="label">and that set also has mass zero.</text>
+  <rect x="528" y="452" width="364" height="116" rx="12" fill="#e9f0f3"/>
+  <text x="554" y="494" class="mathStrong">T⁻¹D<tspan baseline-shift="sub" font-size="16">c</tspan> and D<tspan baseline-shift="sub" font-size="16">c</tspan> agree</text>
+  <text x="554" y="535" class="label">almost everywhere with respect to μ</text>
+  <text x="528" y="607" class="small">Almost invariance is weaker than literal invariance.</text>
+
+  <rect x="948" y="136" width="440" height="512" rx="20"
+        fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="976" y="178" class="panelTitle">3 · The probability fork closes</text>
+  <text x="976" y="224" class="label">Ergodicity plus almost invariance:</text>
+  <rect x="976" y="248" width="384" height="74" rx="12" fill="#1f3f58"/>
+  <text x="1040" y="294" class="white">μ(D<tspan baseline-shift="sub" font-size="14">c</tspan>) ∈ {0, 1}</text>
+  <text x="976" y="366" class="label">Integrated lower rail:</text>
+  <text x="976" y="402" class="math">δ=−1 ≤ (integral X(n,·))/n</text>
+  <text x="976" y="445" class="label">At c=−5/4:</text>
+  <text x="976" y="482" class="mathStrong">δ/c = 4/5 &lt; 1</text>
+  <rect x="976" y="514" width="384" height="96" rx="12" fill="#edf1e7"/>
+  <text x="1002" y="552" class="good">THE FULL BRANCH IS IMPOSSIBLE</text>
+  <text x="1002" y="586" class="mathStrong">therefore μ(D<tspan baseline-shift="sub" font-size="16">c</tspan>)=0</text>
+
+  <rect x="52" y="680" width="1336" height="214" rx="20" fill="#1f3f58"/>
+  <text x="82" y="721" class="white">THE OTHER ERGODIC BRANCH IS REAL, BUT THE RATE GATE MUST ALLOW IT</text>
+  <rect x="82" y="748" width="596" height="112" rx="12" fill="#fffaf0"/>
+  <text x="108" y="786" class="label">At target c=−3/4:</text>
+  <text x="108" y="825" class="mathStrong">D<tspan baseline-shift="sub" font-size="16">c</tspan>={a,b},  μ(D<tspan baseline-shift="sub" font-size="16">c</tspan>)=1</text>
+  <rect x="710" y="748" width="648" height="112" rx="12" fill="#f1dfcf"/>
+  <text x="736" y="786" class="label">But the strict-estimate premise is false:</text>
+  <text x="736" y="825" class="mathStrong">−3/4 &lt; δ=−1  is false</text>
+  <text x="66" y="931" class="small">The zero-or-one fork comes from ergodicity; the strict ratio chooses a branch only when c&lt;δ.</text>
+</svg>

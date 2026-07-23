@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1080"
+     viewBox="0 0 1440 1080" role="img"
+     aria-labelledby="rational-slack-ledger-title rational-slack-ledger-desc">
+  <title id="rational-slack-ledger-title">A two-state rational-slack lower-deviation ledger</title>
+  <desc id="rational-slack-ledger-desc">The probability measure gives state a mass zero and state b mass one. The map sends a to b and fixes b. The centered process is minus two times n minus one at a and minus n minus one at b. At rational slope minus three halves, strictly below target minus five quarters, state a has a witness at every time from five onward while state b has none. A cutoff table shows witnesses for cutoffs zero, four, five, ten, and one hundred.</desc>
+  <defs>
+    <marker id="slack-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#315a70"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Georgia, serif; fill: #16283a; }
+      .subtitle { font: 20px Arial, sans-serif; fill: #516172; }
+      .panelTitle { font: 700 24px Arial, sans-serif; fill: #203c54; }
+      .label { font: 18px Arial, sans-serif; fill: #263746; }
+      .small { font: 16px Arial, sans-serif; fill: #526170; }
+      .math { font: 21px Georgia, serif; fill: #172d40; }
+      .mathStrong { font: 700 24px Georgia, serif; fill: #172d40; }
+      .head { font: 700 16px Arial, sans-serif; fill: #fffaf0; }
+      .cell { font: 16px Arial, sans-serif; fill: #243746; }
+      .good { font: 700 17px Arial, sans-serif; fill: #45683c; }
+      .bad { font: 700 17px Arial, sans-serif; fill: #8d3e32; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="1080" fill="#f6f0e4"/>
+  <rect width="1440" height="18" fill="#1f3f58"/>
+  <text x="66" y="66" class="title">One fixed rational margin survives every cutoff</text>
+  <text x="66" y="101" class="subtitle">Exact toy probability system: μ(a)=0, μ(b)=1, T(a)=b, and T(b)=b</text>
+
+  <rect x="52" y="136" width="478" height="492" rx="20"
+        fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="80" y="178" class="panelTitle">1 · Dynamics and centered process</text>
+  <circle cx="170" cy="282" r="62" fill="#e9f0f3" stroke="#315a70" stroke-width="3"/>
+  <circle cx="392" cy="282" r="62" fill="#f1dfcf" stroke="#a5532d" stroke-width="3"/>
+  <text x="162" y="291" class="mathStrong">a</text>
+  <text x="384" y="291" class="mathStrong">b</text>
+  <text x="121" y="365" class="small">null state: mass 0</text>
+  <text x="330" y="365" class="small">support: mass 1</text>
+  <line x1="235" y1="266" x2="323" y2="266" stroke="#315a70"
+        stroke-width="5" marker-end="url(#slack-arrow)"/>
+  <path d="M392 217 C500 205 500 350 430 338" fill="none"
+        stroke="#315a70" stroke-width="5" marker-end="url(#slack-arrow)"/>
+  <text x="267" y="246" class="label">T</text>
+  <text x="80" y="420" class="math">X<tspan baseline-shift="sub" font-size="15">n</tspan>(a)=−2(n−1),   X<tspan baseline-shift="sub" font-size="15">n</tspan>(b)=−(n−1)</text>
+  <text x="80" y="460" class="label">X₁ is zero at both states, so centering changes nothing.</text>
+  <rect x="80" y="490" width="422" height="105" rx="12" fill="#e9f0f3"/>
+  <text x="104" y="526" class="mathStrong">q = −3/2  &lt;  c = −5/4</text>
+  <text x="104" y="562" class="label">At a: X(n,a)/n = −2 + 2/n.</text>
+  <text x="104" y="588" class="label">At b: X(n,b)/n = −1 + 1/n.</text>
+
+  <rect x="558" y="136" width="830" height="492" rx="20"
+        fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="586" y="178" class="panelTitle">2 · The strict fixed-slope ledger</text>
+  <text x="586" y="211" class="small">“bad?” means X(n,ω) &lt; qn at q=−3/2; equality is not a witness.</text>
+  <rect x="586" y="236" width="774" height="42" rx="8" fill="#315a70"/>
+  <text x="606" y="263" class="head">n</text>
+  <text x="664" y="263" class="head">X(n,a)</text>
+  <text x="772" y="263" class="head">X(n,a)/n</text>
+  <text x="908" y="263" class="head">bad at a?</text>
+  <text x="1042" y="263" class="head">X(n,b)/n</text>
+  <text x="1205" y="263" class="head">bad at b?</text>
+  <g class="cell">
+    <rect x="586" y="279" width="774" height="39" fill="#f2eadb"/>
+    <text x="610" y="305">1</text><text x="685" y="305">0</text><text x="805" y="305">0</text><text x="938" y="305">no</text><text x="1080" y="305">0</text><text x="1239" y="305">no</text>
+    <rect x="586" y="318" width="774" height="39" fill="#fffaf0"/>
+    <text x="610" y="344">2</text><text x="675" y="344">−2</text><text x="795" y="344">−1</text><text x="938" y="344">no</text><text x="1068" y="344">−1/2</text><text x="1239" y="344">no</text>
+    <rect x="586" y="357" width="774" height="39" fill="#f2eadb"/>
+    <text x="610" y="383">3</text><text x="675" y="383">−4</text><text x="785" y="383">−4/3</text><text x="938" y="383">no</text><text x="1068" y="383">−2/3</text><text x="1239" y="383">no</text>
+    <rect x="586" y="396" width="774" height="39" fill="#fffaf0"/>
+    <text x="610" y="422">4</text><text x="675" y="422">−6</text><text x="785" y="422">−3/2</text><text x="922" y="422">equal</text><text x="1068" y="422">−3/4</text><text x="1239" y="422">no</text>
+    <rect x="586" y="435" width="774" height="39" fill="#e7efe4"/>
+    <text x="610" y="461">5</text><text x="675" y="461">−8</text><text x="785" y="461">−8/5</text><text x="934" y="461" class="good">yes</text><text x="1068" y="461">−4/5</text><text x="1239" y="461">no</text>
+    <rect x="586" y="474" width="774" height="39" fill="#edf1e7"/>
+    <text x="610" y="500">6</text><text x="665" y="500">−10</text><text x="785" y="500">−5/3</text><text x="934" y="500" class="good">yes</text><text x="1068" y="500">−5/6</text><text x="1239" y="500">no</text>
+    <rect x="586" y="513" width="774" height="39" fill="#e7efe4"/>
+    <text x="610" y="539">7</text><text x="665" y="539">−12</text><text x="775" y="539">−12/7</text><text x="934" y="539" class="good">yes</text><text x="1068" y="539">−6/7</text><text x="1239" y="539">no</text>
+    <rect x="586" y="552" width="774" height="39" fill="#edf1e7"/>
+    <text x="610" y="578">8</text><text x="665" y="578">−14</text><text x="785" y="578">−7/4</text><text x="934" y="578" class="good">yes</text><text x="1068" y="578">−7/8</text><text x="1239" y="578">no</text>
+  </g>
+  <text x="586" y="614" class="small">At a, every n≥5 works. At b, X(n,b)/n&gt;−1&gt;c, so no rational margin below c can work.</text>
+
+  <rect x="52" y="658" width="1336" height="358" rx="20"
+        fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="80" y="700" class="panelTitle">3 · “Arbitrarily late” is a cutoff-by-cutoff certificate</text>
+  <text x="80" y="735" class="label">For each requested cutoff N, choose n=max(N,5). Then N≤n, n&gt;0, and X(n,a)&lt;qn.</text>
+  <rect x="80" y="763" width="820" height="42" rx="8" fill="#a5532d"/>
+  <text x="112" y="790" class="head">requested N</text>
+  <text x="275" y="790" class="head">chosen n</text>
+  <text x="410" y="790" class="head">X(n,a)</text>
+  <text x="555" y="790" class="head">qn</text>
+  <text x="720" y="790" class="head">strict witness?</text>
+  <g class="cell">
+    <rect x="80" y="806" width="820" height="42" fill="#f2eadb"/>
+    <text x="155" y="834">0</text><text x="318" y="834">5</text><text x="430" y="834">−8</text><text x="575" y="834">−15/2</text><text x="762" y="834" class="good">yes</text>
+    <rect x="80" y="848" width="820" height="42" fill="#fffaf0"/>
+    <text x="155" y="876">4</text><text x="318" y="876">5</text><text x="430" y="876">−8</text><text x="575" y="876">−15/2</text><text x="762" y="876" class="good">yes</text>
+    <rect x="80" y="890" width="820" height="42" fill="#f2eadb"/>
+    <text x="150" y="918">10</text><text x="310" y="918">10</text><text x="420" y="918">−18</text><text x="580" y="918">−15</text><text x="762" y="918" class="good">yes</text>
+    <rect x="80" y="932" width="820" height="42" fill="#fffaf0"/>
+    <text x="142" y="960">100</text><text x="302" y="960">100</text><text x="412" y="960">−198</text><text x="572" y="960">−150</text><text x="762" y="960" class="good">yes</text>
+  </g>
+  <rect x="940" y="763" width="420" height="211" rx="14" fill="#e9f0f3"/>
+  <text x="968" y="805" class="mathStrong">A<tspan baseline-shift="sub" font-size="16">−3/2</tspan> = {a}</text>
+  <text x="968" y="851" class="mathStrong">D<tspan baseline-shift="sub" font-size="16">−5/4</tspan> = {a}</text>
+  <text x="968" y="895" class="label">One fixed rational q works</text>
+  <text x="968" y="925" class="label">for every cutoff at a.</text>
+  <text x="968" y="955" class="small">The raw event is nonempty, but a has mass zero.</text>
+  <text x="66" y="1051" class="small">Toy arithmetic, not sampled data. The strict inequality begins after the equality at n=4.</text>
+</svg>

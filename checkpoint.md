@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:34 PDT
+Last updated: 2026-07-22 22:44 PDT
 
-Audited baseline: `main` at `49b2d45`
+Audited baseline: `main` at `644f862`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **33 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **34 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -605,6 +605,21 @@ examples and seven axiom reports, the unconditional extended-measure limit and
 finite-target `Measure.real` gate, a guarded cloud check, and a byte-identical
 executed 97-line `Std` worksheet distinguish one finite witness from recurrent
 or lower-liminf deviation.
+*Rational-Slack Lower-Deviation Events and Ergodic Null Selection* now opens
+on the exact probability model `mu(a)=0`, `mu(b)=1`, `T(a)=b`, and `T(b)=b`.
+For positive time, `X_n(a)=-2(n-1)` and `X_n(b)=-(n-1)`. At the fixed inner
+slope `q=-3/2` below target `c=-5/4`, state `a` is strictly bad at every
+`n>=5` while `b` never is, so the target event is the nonempty null set `{a}`.
+Its preimage is literally empty; the two sets are unequal but agree almost
+everywhere. The integrated lower rate `delta=-1` gives the strict branch
+ceiling `delta/c=4/5<1`, selecting mass zero from the ergodic zero-or-one
+fork. At target `-3/4` the event is full but the rate gate fails, while the
+transient process `W_n=-1` for `n>=2` separates one bad witness, same-target
+recurrence, and a durable rational margin. Three new accessible numeric
+figures, seven human/paper/Lean bridges, the complete nineteen-public/
+twenty-one-private/six-probe/ten-axiom source map, a guarded cloud check, and
+a byte-identical executed 122-line `Std` worksheet make every quantifier and
+branch-selection step inspectable on an ordinary laptop.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3492,6 +3507,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `644f862`: rebuild *Ergodic Birkhoff Limits and Normalized Space Averages*
+  around the exact `(3,7)` two-state orbit, probability and mass-two
+  normalization, identity/zero-mass/non-mixing boundaries, six Lean bridges,
+  and an executed local `Std` worksheet.
 - `49b2d45`: rebuild *From Finite Centered Bad-Block Bounds to
   All-Positive-Length Control* around nested finite caps, their exact union,
   the finite-target real-measure gate, and a collapse model separating literal

@@ -2,17 +2,17 @@
 title: "Rational-Slack Lower-Deviation Events and Ergodic Null Selection"
 slug: "rational-slack-lower-deviation-events-and-ergodic-null-selection"
 date: 2026-07-22
-summary: "A textbook ascent from arbitrarily late centered bad blocks to a countably generated strict lower-deviation event, its one-sided shift law, finite-measure almost-invariance, ergodic dichotomy, and probability-based selection of the null branch."
-lead: "A single bad block says nothing about the asymptotic slope. Random-matrix-theory milestone 32 (RMT-32) asks for strict witnesses beyond every cutoff at one durable rational margin, uses centered subadditivity to pull shifted witnesses back with a slightly relaxed threshold, and turns the resulting one-sided inclusion into almost-invariance. Finite-measure ergodicity yields the empty-or-full dichotomy; probability normalization and the strict ratio inherited from milestone 31 select the empty branch."
+summary: "Start with an exact two-state probability ledger in which one zero-mass state has a durable rational lower deviation, then climb through arbitrarily-late witnesses, threshold-relaxed preimages, almost-invariance, the ergodic empty-or-full fork, and the strict four-fifths bound that selects the null branch."
+lead: "On a two-state collapse with all probability mass at the fixed state, the target event is the nonempty null set {a}, its preimage is empty, and the two sets nevertheless agree almost everywhere. The centered integral floor is minus one; at target minus five quarters the inherited ratio is four fifths, so the ergodic probability fork cannot choose mass one. A transient sequence beside it shows why one witness, or even recurrence at the target line without a fixed rational margin, is not enough. This chapter turns those finite ledgers into the exact RMT-32 Lean interface without claiming the later real-liminf bridge."
 draft: false
 pro_reviewed: false
 level: "Subadditive processes, countably generated events, null measurable sets, measure preservation, finite-measure ergodicity, probability normalization, and intermediate Lean theorem reading"
-reading_time: "220 to 330 minutes"
+reading_time: "300 to 420 minutes, including the runnable Lean worksheet"
 prerequisites: "Centered shifted-subadditive processes, finite bad-block estimates, all-positive-length once-bad events, elementary measure theory, and the meaning of almost-everywhere equality; no real-liminf API or Kingman theorem is assumed"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation"
 toc: true
 og_image: "rational-slack-lower-deviation-events-and-ergodic-null-selection-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing a durable rational margin feeding arbitrarily late centered bad blocks, a one-step threshold-relaxed shift, finite-measure almost-invariance, an ergodic empty-or-full fork, and probability plus a strict measure ratio selecting the empty branch."
+og_image_alt: "Warm-paper Deep Dive card for a two-state collapse. The null state a has fixed-slope witnesses from time five onward, the strict event is {a}, its preimage is empty, and the numerical chain zero less than or equal to four fifths less than one selects event mass zero from the ergodic probability fork."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -29,6 +29,262 @@ review remain pending. The checked Lean source is authoritative. RMT-32 proves
 nullity of a countably generated lower-deviation event; it does not yet identify
 that event with a library-level real lower limit or prove Kingman convergence.
 {{< /panel >}}
+
+## Base camp: a nonempty event can still be the null branch
+
+Start with the two-state space
+
+\[
+\Omega=\{a,b\}
+\]
+
+and the {{< refterm "probability-measure" "probability measure" >}}
+
+\[
+\mu(\{a\})=0,
+\qquad
+\mu(\{b\})=1.
+\]
+
+The point \(a\) exists in the sample space, but it is a
+{{< refterm "null-set" "null state" >}}: the singleton \(\{a\}\) has measure
+zero. The point \(b\) carries all probability mass. Let the dynamics collapse
+the null state into the supported state and then remain there:
+
+\[
+T(a)=b,
+\qquad
+T(b)=b.
+\]
+
+Because the only point seen with positive probability is the fixed point
+\(b\), \(T\) is {{< refterm "measure-preserving-transformation"
+"measure preserving" >}} and ergodic for this measure. This does not erase
+\(a\) as a set-theoretic point; it means that
+{{< refterm "event" "events" >}} differing only at \(a\)
+agree {{< refterm "almost-everywhere" "almost everywhere" >}}.
+
+Define \(X_0=0\). At every positive horizon \(n\), set
+
+\[
+X_n(a)=-2(n-1),
+\qquad
+X_n(b)=-(n-1).
+\]
+
+The one-step observable is zero at both states. Its orbit sum is therefore
+zero, so the project's centered process is exactly this process:
+
+\[
+Y_n
+{} =
+X_n-S_n(X_1)
+{} =
+X_n.
+\]
+
+### Check subadditivity before using the example
+
+The process is not merely a table chosen to fit the conclusion. It is a
+shifted-subadditive candidate. The cases with \(m=0\) or \(n=0\) are
+equalities because \(X_0=0\). When \(m,n\gt0\), the supported state gives
+
+\[
+\begin{aligned}
+X_{m+n}(b)
+&=-(m+n-1)\\
+&\le -(m-1)-(n-1)\\
+&=X_m(b)+X_n(T^m b).
+\end{aligned}
+\]
+
+At the null state, \(T^m a=b\) for positive \(m\), so
+
+\[
+\begin{aligned}
+X_{m+n}(a)
+&=-2(m+n-1)\\
+&\le -2(m-1)-(n-1)\\
+&=X_m(a)+X_n(T^m a).
+\end{aligned}
+\]
+
+The finite `Std` worksheet later checks every triple
+\((m,n,\omega)\) with \(0\le m,n\le12\); the displayed calculation proves the
+formula at every horizon.
+
+This exact two-state ledger is the chapter's pedagogical model, not one of the
+six anonymous Mathlib-backed probes compiled in RMT-32. The source contains
+nearby collapse, identity, half-mass, zero-process, and empty-index probes.
+The complete source-order map below keeps those checked artifacts separate
+from this executable teaching worksheet.
+
+### Fix one rational margin below the target
+
+Choose
+
+\[
+q=-\frac32,
+\qquad
+c=-\frac54.
+\]
+
+The margin is strict:
+
+\[
+q\lt c.
+\]
+
+At \(a\), the positive-time normalized values are
+
+\[
+\frac{X_n(a)}n=-2+\frac2n.
+\]
+
+The inequality \(X_n(a)\lt qn\) is equivalent to
+
+\[
+-2(n-1)\lt-\frac32n
+\quad\Longleftrightarrow\quad
+n\gt4.
+\]
+
+Thus every \(n\ge5\) is a strict \(q\)-witness. At \(b\),
+
+\[
+\frac{X_n(b)}n=-1+\frac1n\gt-1\gt-\frac54=c,
+\]
+
+so no rational threshold below \(c\) can ever be a witness there.
+
+| \(n\) | \(X_n(a)\) | \(X_n(a)/n\) | below \(q=-3/2\)? | \(X_n(b)\) | \(X_n(b)/n\) |
+|---:|---:|---:|:---:|---:|---:|
+| 1 | 0 | 0 | no | 0 | 0 |
+| 2 | \(-2\) | \(-1\) | no | \(-1\) | \(-1/2\) |
+| 3 | \(-4\) | \(-4/3\) | no | \(-2\) | \(-2/3\) |
+| 4 | \(-6\) | \(-3/2\) | equality, not strict | \(-3\) | \(-3/4\) |
+| 5 | \(-8\) | \(-8/5\) | yes | \(-4\) | \(-4/5\) |
+| 6 | \(-10\) | \(-5/3\) | yes | \(-5\) | \(-5/6\) |
+| 7 | \(-12\) | \(-12/7\) | yes | \(-6\) | \(-6/7\) |
+| 8 | \(-14\) | \(-7/4\) | yes | \(-7\) | \(-7/8\) |
+
+The phrase *arbitrarily late* has exact quantifiers. Given any cutoff
+\(N\), choose
+
+\[
+n=\max(N,5).
+\]
+
+Then \(N\le n\), \(n\gt0\), and \(X_n(a)\lt qn\). One formula answers every
+possible cutoff, although the chosen witness may depend on that cutoff.
+
+{{< reference-figure
+  wide="true"
+  src="two-state-rational-slack-ledger.svg"
+  alt="In a two-state collapse with mass zero at a and mass one at b, the centered process equals minus two times n minus one at a and minus n minus one at b. For rational q minus three halves below target c minus five quarters, the a row first becomes strictly bad at n equals five and remains bad thereafter; b never becomes bad. A cutoff table chooses max of N and five for requested cutoffs through one hundred."
+  caption="**Finding:** the raw strict event at \(c=-5/4\) is the singleton \(\{a\}\). The fixed rational \(q=-3/2\) works at \(a\) beyond every cutoff, while \(X_n(b)/n\gt-1\gt c\) rules out \(b\). Equality at \(n=4\) is not a strict witness. These are exact toy values, not sampled frequencies."
+>}}
+
+Consequently the fixed-margin and target events are
+
+\[
+A_{-3/2}=\{a\},
+\qquad
+D_{-5/4}=\{a\}.
+\]
+
+### Compute the preimage before saying “invariant”
+
+No state maps to \(a\). Therefore
+
+\[
+T^{-1}D_{-5/4}=\varnothing
+\subsetneq
+\{a\}=D_{-5/4}.
+\]
+
+Literal invariance is false. But the symmetric difference is \(\{a\}\), a
+null set, so
+
+\[
+T^{-1}D_{-5/4}
+=^{\mu}_{\mathrm{ae}}
+D_{-5/4}.
+\]
+
+This one example separates set inclusion, equality, and almost-everywhere
+equality.
+
+### Let the integrated rate select the branch
+
+Integration sees only the supported point \(b\):
+
+\[
+\int_\Omega X_n\,d\mu=-(n-1).
+\]
+
+For every positive \(n\),
+
+\[
+\delta:=-1
+\le
+-1+\frac1n
+{} =
+\frac{\int_\Omega X_n\,d\mu}{n}.
+\]
+
+Our target satisfies \(c=-5/4\lt\delta=-1\). The inherited RMT-31 ratio is
+
+\[
+\frac{\delta}{c}
+{} =
+\frac{-1}{-5/4}
+{} =
+\frac45
+\lt1.
+\]
+
+Ergodicity and probability normalization give the numerical fork
+
+\[
+\mu(D_c)\in\{0,1\}.
+\]
+
+The strict subunit estimate rules out \(1\), so
+
+\[
+\mu(D_{-5/4})=0.
+\]
+
+The direct set computation already told us the answer. The point of the
+theorem architecture is that the same branch selection works when an event
+cannot be enumerated point by point.
+
+{{< reference-figure
+  wide="true"
+  src="preimage-null-selection-ledger.svg"
+  alt="At target minus five quarters, the strict event is the zero-mass singleton a and its preimage is empty. Their inclusion is strict but their symmetric difference has mass zero, so they agree almost everywhere. Ergodicity gives event mass zero or one, while delta minus one divided by c minus five quarters is four fifths, strictly below one, selecting zero. At target minus three quarters the event is full, but the required inequality c less than delta is false."
+  caption="**Finding:** \(T^{-1}D_c=\varnothing\subsetneq\{a\}=D_c\), yet both sides agree almost everywhere because \(\mu(\{a\})=0\). The probability fork is \(0\) or \(1\); the exact ceiling \(4/5\lt1\) selects \(0\). The same ergodic system has the full event at \(c=-3/4\), where the premise \(c\lt\delta\) correctly fails."
+>}}
+
+The full branch is not fictional. At the higher target
+\(c_{\mathrm{full}}=-3/4\), state \(a\) uses margin \(-3/2\) and state \(b\)
+uses margin \(-4/5\). Hence
+
+\[
+D_{-3/4}=\Omega,
+\qquad
+\mu(D_{-3/4})=1.
+\]
+
+There is no conflict with the strict estimate because
+
+\[
+-\frac34\lt-1
+\]
+
+is false. The hypothesis \(c\lt\delta\) is a mathematical gate, not proof
+ceremony.
 
 The lower half of a subadditive ergodic theorem has a particular logical
 shape. First construct the right exceptional event. Then show that shifting
@@ -64,6 +320,7 @@ Compact background is available in
 
 | Route | Begin | Destination |
 |---|---|---|
+| Base camp | [A nonempty event can still be the null branch](#base-camp-a-nonempty-event-can-still-be-the-null-branch) | Compute the event, preimage, fork, and \(4/5\) selector |
 | Intuition | [Why one witness cannot carry an asymptotic theorem](#why-one-witness-cannot-carry-an-asymptotic-theorem) | Separate a finite accident from recurrent deviation |
 | Event | [Build one fixed-margin event](#build-one-fixed-margin-event) | Read the intersection-union quantifiers |
 | Slack | [Why strict rational slack is essential](#why-strict-rational-slack-is-essential) | Reject a tempting but false encoding |
@@ -71,7 +328,7 @@ Compact background is available in
 | Measure | [Upgrade inclusion to almost-invariance](#upgrade-inclusion-to-almost-invariance) | Locate finite mass exactly |
 | Ergodic | [Separate dichotomy from branch selection](#separate-dichotomy-from-branch-selection) | Keep ergodicity and probability distinct |
 | Audit | [Walk through the boundary models](#walk-through-the-boundary-models) | Test every assumption against a concrete edge |
-| Interface | [Read the checked theorem surface](#read-the-checked-theorem-surface) | Connect mathematics to Lean names |
+| Interface | [Seven Lean bridges](#in-lean-seven-bridges-from-cutoffs-to-the-null-branch) | Connect mathematics to exact Lean names and commands |
 | Frontier | [Stop exactly at the RMT-32 boundary](#stop-exactly-at-the-rmt-32-boundary) | Hand the real-liminf bridge to RMT-33 |
 | Practice | [Thirty-six solved exercises](#thirty-six-solved-exercises) | Rebuild the whole argument |
 
@@ -145,9 +402,10 @@ but sufficiently late times are not. The point is once-bad without having a
 negative lower asymptotic slope below \(-2/5\).
 
 {{< reference-figure
-  src="once-bad-versus-arbitrarily-late.svg"
-  alt="A transient lane contains one early centered bad block and then no later witnesses, so it enters the once-bad event but not the arbitrarily-late event. A persistent lane contains witnesses beyond every cutoff and enters both events."
-  caption="**Finding:** removing a finite cap does not create recurrence. The once-bad event accepts one transient witness, whereas the RMT-32 event demands a witness beyond each requested cutoff. The two lanes are conceptual time patterns, not empirical trajectories, and they do not assert monotonicity of the centered process."
+  wide="true"
+  src="one-witness-no-slack-boundary.svg"
+  alt="For the transient sequence that is minus one from time two onward, the normalized values are minus one half, minus one third, minus one fifth, minus one ninth, minus one tenth, and minus one twentieth. At target minus two fifths only time two is bad. At target zero every later time is below the target, but a fixed margin minus one tenth stops being strict at time ten. The main two-state process instead remains below minus three halves from time five onward."
+  caption="**Finding:** three quantifier patterns differ. The transient process has one \(c=-2/5\) witness, has same-target witnesses below \(0\) forever, but has no fixed rational \(q\lt0\) that survives arbitrarily late because \(-1/n\to0\). In the running model, \(q=-3/2\) works at every \(n\ge5\). The values are exact toy arithmetic, and strictness excludes the equality at \(n=10\)."
 >}}
 
 The required quantifier change is therefore
@@ -310,6 +568,32 @@ To see why, rewrite the desired inequality as
 Since \(r-q\gt0\), it is enough to choose a natural number larger than
 \((-r)/(r-q)\). Mathlib's Archimedean theorem provides such a natural number.
 No sign assumption on \(q\) or \(r\) is needed.
+
+The supported state in base camp gives a fully numerical instance. Take
+
+\[
+q=-\frac45,
+\qquad
+r=-\frac{31}{40},
+\qquad
+q\lt r\lt-\frac34.
+\]
+
+At \(n=32\),
+
+\[
+\begin{aligned}
+Y_{33}(b)=-32
+&\le Y_{32}(Tb)=-31\\
+&\lt q\cdot32=-\frac{128}{5}\\
+&\lt r\cdot33=-\frac{1023}{40}.
+\end{aligned}
+\]
+
+The final comparison is only one fortieth wide:
+\(-128/5=-1024/40\lt-1023/40\). It is nevertheless strict, which is all the
+set inclusion needs. Smaller horizons may fail that endpoint comparison; the
+theorem promises an eventual cutoff, not a uniform inequality from time one.
 
 Given a requested cutoff \(N\), ask the \(A_q\) hypothesis at
 \(\max(N,K)\). The resulting \(n\) is late enough both for the user's cutoff
@@ -664,35 +948,472 @@ construct a signed logarithmic growth rate, a Lyapunov exponent, or an
 Oseledets splitting. It also does not prove pointwise convergence of the
 normalized cocycle process.
 
-## Read the checked theorem surface
+## In Lean: seven bridges from cutoffs to the null branch
 
-The frozen public surface has nineteen declarations. Reading them in source
-order exposes the proof architecture.
+Base camp used two named states and exact rational numbers. The project source
+works with arbitrary state types, real-valued integrable
+shifted-subadditive candidates, and Mathlib measures. Read each bridge in four
+layers: ordinary language, paper mathematics, exact Lean, and the tokens that
+carry its assumptions.
 
-| Declaration | Mathematical job |
-|---|---|
-| <code>centeredArbitrarilyLateBadBlockSet</code> | Defines \(A_q\) by cutoffs and later positive witnesses |
-| <code>mem_centeredArbitrarilyLateBadBlockSet_iff</code> | Exposes the exact \(\forall N\exists n\) membership statement |
-| <code>centeredStrictLowerDeviationSet</code> | Defines \(D_c\) as the rational union below \(c\) |
-| <code>mem_centeredStrictLowerDeviationSet_iff</code> | Exposes one durable rational margin |
-| <code>exists_nat_forall_mul_lt_mul_succ</code> | Absorbs the added endpoint beyond a finite cutoff |
-| <code>centeredArbitrarilyLateBadBlockSet_subset_allLength</code> | Forgets recurrence and keeps one witness at slope \(q\) |
-| <code>centeredStrictLowerDeviationSet_subset_allLength</code> | Embeds \(D_c\) into the RMT-31 event at target \(c\) |
-| <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredArbitrarilyLateBadBlockSet</code> | Builds fixed-margin null measurability |
-| <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredStrictLowerDeviationSet</code> | Takes the countable rational union |
-| <code>IsIntegrableSubadditiveProcessCandidate.preimage_centeredArbitrarilyLateBadBlockSet_subset_of_lt</code> | Proves \(T^{-1}A_q\subseteq A_r\) for \(q\lt r\) |
-| <code>IsIntegrableSubadditiveProcessCandidate.preimage_centeredStrictLowerDeviationSet_subset</code> | Uses rational density to prove \(T^{-1}D_c\subseteq D_c\) |
-| <code>IsIntegrableSubadditiveProcessCandidate.preimage_centeredStrictLowerDeviationSet_ae_eq</code> | Uses preservation and finite mass for almost-invariance |
-| <code>IsIntegrableSubadditiveProcessCandidate.centeredStrictLowerDeviationSet_ae_empty_or_univ</code> | Applies finite-measure ergodicity to get the dichotomy |
-| <code>IsIntegrableSubadditiveProcessCandidate.measure_centeredStrictLowerDeviationSet_eq_zero_or_one</code> | Converts the fork to numerical zero or one under probability |
-| <code>IsIntegrableSubadditiveProcessCandidate.measureReal_centeredStrictLowerDeviationSet_lt_one</code> | Imports the strict RMT-31 ratio, without ergodicity |
-| <code>IsIntegrableSubadditiveProcessCandidate.measure_centeredStrictLowerDeviationSet_eq_zero</code> | Selects the null branch on an ergodic probability base |
-| <code>DiscreteMatrixCocycle.centeredLogPlusArbitrarilyLateBadBlockSet</code> | Names the cocycle fixed-margin event |
-| <code>DiscreteMatrixCocycle.centeredLogPlusStrictLowerDeviationSet</code> | Names the cocycle target event |
-| <code>DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measure_centeredLogPlusStrictLowerDeviationSet_eq_zero</code> | Specializes null selection through the centered Fekete offset |
+### Bridge 1: expose every cutoff and its later witness
 
-The module prints the axiom dependencies of ten central declarations. In the
-checked build, the proof footprints are the standard classical and quotient
+{{< lean-bridge
+  human="A point belongs to the fixed-slope event exactly when every natural cutoff has a positive witness at or after that cutoff."
+  math="\(\omega\in A_q\Longleftrightarrow\forall N\in\mathbb N,\ \exists n\in\mathbb N,\ N\le n\land0\lt n\land Y_n(\omega)\lt qn.\)"
+  lean="mem_centeredArbitrarilyLateBadBlockSet_iff"
+>}}
+
+- <code>∀ N : ℕ</code> is the universal cutoff. It prevents one early witness
+  from certifying an asymptotic event.
+- <code>∃ n : ℕ</code> lets the witness depend on the requested cutoff.
+- <code>N ≤ n</code> means *at or after*; <code>0 &lt; n</code> protects
+  positive-time normalization.
+- <code>centeredProcess T X n ω</code> is \(Y_n(\omega)\), not expectation
+  centering.
+- This membership theorem unfolds a definition. It needs no measurable space,
+  measure, integrability, preservation, or ergodicity.
+{{< /lean-bridge >}}
+
+### Bridge 2: expose one durable rational margin
+
+{{< lean-bridge
+  human="A point belongs to the strict target event exactly when one rational slope below the target works beyond every cutoff."
+  math="\(\omega\in D_c\Longleftrightarrow\exists q\in\mathbb Q,\ q\lt c\land\omega\in A_q.\)"
+  lean="mem_centeredStrictLowerDeviationSet_iff"
+>}}
+
+- <code>q : ℚ</code> makes the outer event union countable.
+- <code>(q : ℝ)</code> casts the rational threshold into the real-valued
+  process inequality.
+- The existential quantifier lies outside the cutoff quantifier. The proof may
+  not choose a new \(q\) for each \(N\).
+- <code>centeredStrictLowerDeviationSet_subset_allLength T X c</code> later
+  forgets recurrence, keeps one positive witness, and embeds \(D_c\) into the
+  RMT-31 once-bad event.
+{{< /lean-bridge >}}
+
+### Bridge 3: pull back a witness by relaxing its slope
+
+{{< lean-bridge
+  human="If q is strictly smaller than r, every shifted point with arbitrarily-late q-witnesses pulls back to a point with arbitrarily-late r-witnesses."
+  math="\(q\lt r\Longrightarrow T^{-1}A_q\subseteq A_r.\)"
+  lean="hX.preimage_centeredArbitrarilyLateBadBlockSet_subset_of_lt hqr"
+>}}
+
+- <code>hX : IsIntegrableSubadditiveProcessCandidate T μ X</code> is the public
+  receiver. The proof body uses its centered shifted-subadditivity field.
+- <code>hqr : q &lt; r</code> provides the positive gap that absorbs the added
+  endpoint.
+- <code>exists_nat_forall_mul_lt_mul_succ hqr</code> chooses a cutoff after
+  which \(qn\lt r(n+1)\).
+- <code>T ⁻¹' A</code> is a preimage: it contains \(\omega\) when
+  \(T\omega\in A\).
+- No measure operation occurs in this setwise theorem.
+{{< /lean-bridge >}}
+
+### Bridge 4: upgrade same-target inclusion to almost-invariance
+
+{{< lean-bridge
+  human="On a finite preserved measure space, the target event and its preimage agree outside a null set."
+  math="\(T^{-1}D_c=^{\mu}_{\mathrm{ae}}D_c.\)"
+  lean="hX.preimage_centeredStrictLowerDeviationSet_ae_eq hT c"
+>}}
+
+- <code>[IsFiniteMeasure μ]</code> prevents the uninformative comparison
+  \(\infty=\infty\).
+- <code>hT : MeasurePreserving T μ μ</code> makes the event and its preimage
+  have equal measure.
+- Rational density is already used by
+  <code>preimage_centeredStrictLowerDeviationSet_subset</code> to recover the
+  same target \(c\) after threshold relaxation.
+- <code>=ᵐ[μ]</code> means membership agrees almost everywhere. It does not
+  assert literal set equality; base camp has
+  \(\varnothing\subsetneq\{a\}\).
+{{< /lean-bridge >}}
+
+### Bridge 5: let ergodicity create the fork
+
+{{< lean-bridge
+  human="A finite-measure ergodic system makes the almost-invariant target event almost empty or almost full."
+  math="\(D_c=^{\mu}_{\mathrm{ae}}\varnothing\ \lor\ D_c=^{\mu}_{\mathrm{ae}}\Omega.\)"
+  lean="hX.centeredStrictLowerDeviationSet_ae_empty_or_univ hT c"
+>}}
+
+- <code>hT : Ergodic T μ</code> bundles measure preservation and
+  pre-ergodicity.
+- <code>hT.quasiErgodic.ae_empty_or_univ₀</code> consumes null measurability
+  plus almost-invariance.
+- Probability normalization is absent here. On total mass \(m\), the full
+  branch has mass \(m\), not automatically one.
+- Under <code>[IsProbabilityMeasure μ]</code>, the companion theorem
+  <code>measure_centeredStrictLowerDeviationSet_eq_zero_or_one</code> converts
+  the fork into event measure \(0\) or \(1\).
+{{< /lean-bridge >}}
+
+### Bridge 6: use the strict ratio to select zero
+
+{{< lean-bridge
+  human="On an ergodic probability base, a uniform centered-integral floor delta and a target c below delta force the strict lower-deviation event to have measure zero."
+  math="\(\bigl[\delta\le n^{-1}\!\int Y_n\,d\mu\ \forall n\gt0,\ c\lt\delta\bigr]\Longrightarrow\mu(D_c)=0.\)"
+  lean="hX.measure_centeredStrictLowerDeviationSet_eq_zero hT δ c hδ hc"
+>}}
+
+- <code>hδ</code> has type
+  <code>∀ n : ℕ, n ≠ 0 → δ ≤
+  (∫ ω, centeredProcess T X n ω ∂μ) / (n : ℝ)</code>.
+- <code>hc : c &lt; δ</code>, together with the time-one identity, makes
+  \(\delta/c\lt1\).
+- <code>measureReal_centeredStrictLowerDeviationSet_lt_one</code> proves the
+  strict subunit estimate without ergodicity or probability.
+- The zero-or-one theorem supplies the only two probability branches; the
+  strict estimate excludes one.
+- Base camp instantiates the arithmetic with
+  \(\delta=-1\), \(c=-5/4\), and \(\delta/c=4/5\).
+{{< /lean-bridge >}}
+
+### Bridge 7: specialize the event to log-positive cocycle growth
+
+{{< lean-bridge
+  human="Below the centered integrated log-positive Fekete offset, the cocycle's strict centered lower-deviation event is null on an ergodic probability base."
+  math="\(c\lt\gamma_\mu^+(C)-\int X_1\,d\mu\Longrightarrow\mu(D_c^C)=0.\)"
+  lean="hC.measure_centeredLogPlusStrictLowerDeviationSet_eq_zero hErg c hc"
+>}}
+
+- <code>hC : C.HasIntegrableGeneratorLogPlus</code> supplies the integrable
+  shifted-subadditive log-positive norm process.
+- <code>hErg : Ergodic C.base μ</code> refers to the original cocycle base.
+- <code>C.integratedLogPlusGrowthRate hC</code> is the deterministic integrated
+  Fekete rate.
+- <code>C.integratedLogPlusNorm 1</code> is the one-step integral subtracted by
+  orbit-majorant centering.
+- Empty matrix dimension remains legal. This theorem still says nothing about
+  a signed logarithm, a real liminf, or samplewise convergence.
+{{< /lean-bridge >}}
+
+### Try every public declaration in the repository
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean).
+On an approved Linux builder, save this temporary query as
+<code>formalization/NonlinearDynamics/SubadditiveLowerDeviationChecks.lean</code>:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
+
+open MeasureTheory Set Filter Topology Function
+open NonlinearDynamics.Random.RandomCocycles
+
+-- The nineteen RMT-32 public declarations, in source order.
+#check centeredArbitrarilyLateBadBlockSet
+#check mem_centeredArbitrarilyLateBadBlockSet_iff
+#check centeredStrictLowerDeviationSet
+#check mem_centeredStrictLowerDeviationSet_iff
+#check exists_nat_forall_mul_lt_mul_succ
+#check centeredArbitrarilyLateBadBlockSet_subset_allLength
+#check centeredStrictLowerDeviationSet_subset_allLength
+#check IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredArbitrarilyLateBadBlockSet
+#check IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredStrictLowerDeviationSet
+#check IsIntegrableSubadditiveProcessCandidate.preimage_centeredArbitrarilyLateBadBlockSet_subset_of_lt
+#check IsIntegrableSubadditiveProcessCandidate.preimage_centeredStrictLowerDeviationSet_subset
+#check IsIntegrableSubadditiveProcessCandidate.preimage_centeredStrictLowerDeviationSet_ae_eq
+#check IsIntegrableSubadditiveProcessCandidate.centeredStrictLowerDeviationSet_ae_empty_or_univ
+#check IsIntegrableSubadditiveProcessCandidate.measure_centeredStrictLowerDeviationSet_eq_zero_or_one
+#check IsIntegrableSubadditiveProcessCandidate.measureReal_centeredStrictLowerDeviationSet_lt_one
+#check IsIntegrableSubadditiveProcessCandidate.measure_centeredStrictLowerDeviationSet_eq_zero
+#check DiscreteMatrixCocycle.centeredLogPlusArbitrarilyLateBadBlockSet
+#check DiscreteMatrixCocycle.centeredLogPlusStrictLowerDeviationSet
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measure_centeredLogPlusStrictLowerDeviationSet_eq_zero
+~~~
+
+Then type:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/SubadditiveLowerDeviationChecks.lean
+~~~
+
+Delete the temporary query file afterward. To compile the authoritative module
+itself with warnings treated as errors, type:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
+~~~
+
+These commands import the pinned project and Mathlib. Run them only on an
+approved Linux cloud builder or another deliberately provisioned Linux host,
+never on this Mac.
+{{< /repo-check >}}
+
+## Type the finite witness and branch ledgers with Lean and `Std`
+
+The next worksheet contains no Mathlib import. It computes the two-state
+process, the fixed \(q=-3/2\) witnesses, the endpoint-relaxation arithmetic,
+the strict preimage inclusion, the probability masses, the \(4/5\) branch
+ceiling, and the transient no-slack boundary. It also checks shifted
+subadditivity for every pair of horizons through twelve.
+
+The finite Boolean search illustrates the formulas; it does not replace the
+general quantified proofs or define a measure-theoretic liminf. Save this
+exact text as
+<code>/tmp/RationalSlackLowerDeviationTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace RationalSlackLowerDeviationTutorial
+
+inductive Point where
+  | a
+  | b
+  deriving Repr, DecidableEq, BEq
+
+def points : List Point := [.a, .b]
+
+def step : Point → Point
+  | .a => .b
+  | .b => .b
+
+def iterate : Nat → Point → Point
+  | 0, p => p
+  | n + 1, p => iterate n (step p)
+
+def weight : Point → Nat
+  | .a => 2
+  | .b => 1
+
+def process (n : Nat) (p : Point) : Int :=
+  -((weight p * (n - 1) : Nat) : Int)
+
+def normalize (z : Int) (n : Nat) : Rat :=
+  if n = 0 then 0 else (z : Rat) / (n : Rat)
+
+def slope (n : Nat) (p : Point) : Rat :=
+  normalize (process n p) n
+
+def q : Rat := -3 / 2
+def c : Rat := -5 / 4
+def delta : Rat := -1
+
+def strictBad (threshold : Rat) (n : Nat) (p : Point) : Bool :=
+  decide (0 < n) &&
+    decide ((process n p : Rat) < threshold * (n : Rat))
+
+def badTimes (threshold : Rat) (p : Point) (horizon : Nat) : List Nat :=
+  (List.range (horizon + 1)).filter fun n => strictBad threshold n p
+
+def processRow (n : Nat) :=
+  (n, process n .a, slope n .a, strictBad q n .a,
+    process n .b, slope n .b, strictBad q n .b)
+
+def recurringWitness (cutoff : Nat) : Nat := max cutoff 5
+
+def recurringWitnessRow (cutoff : Nat) :=
+  let n := recurringWitness cutoff
+  (cutoff, n, process n .a, q * (n : Rat), strictBad q n .a)
+
+def subadditiveThrough (bound : Nat) : Bool :=
+  (List.range (bound + 1)).all fun m =>
+    (List.range (bound + 1)).all fun n =>
+      points.all fun p =>
+        process (m + n) p ≤ process m p + process n (iterate m p)
+
+def qShift : Rat := -4 / 5
+def rShift : Rat := -31 / 40
+
+def endpointLedger :=
+  let n := 32
+  (n, process n .b, qShift * (n : Rat), process (n + 1) .b,
+    rShift * ((n + 1 : Nat) : Rat),
+    decide (process (n + 1) .b ≤ process n .b),
+    decide ((process n .b : Rat) < qShift * (n : Rat)),
+    decide (qShift * (n : Rat) < rShift * ((n + 1 : Nat) : Rat)))
+
+def nullEvent : List Point := [.a]
+def fullEvent : List Point := points
+
+def preimage (event : List Point) : List Point :=
+  points.filter fun p => event.contains (step p)
+
+def pointMass : Point → Rat
+  | .a => 0
+  | .b => 1
+
+def eventMass (event : List Point) : Rat :=
+  (event.map pointMass).sum
+
+def transient (n : Nat) (p : Point) : Int :=
+  if p == .a && decide (2 ≤ n) then -1 else 0
+
+def transientSlope (n : Nat) (p : Point) : Rat :=
+  normalize (transient n p) n
+
+def transientBad (threshold : Rat) (n : Nat) (p : Point) : Bool :=
+  decide (0 < n) &&
+    decide ((transient n p : Rat) < threshold * (n : Rat))
+
+def transientBadTimes
+    (threshold : Rat) (p : Point) (horizon : Nat) : List Nat :=
+  (List.range (horizon + 1)).filter fun n => transientBad threshold n p
+
+def transientRow (n : Nat) :=
+  (n, transient n .a, transientSlope n .a,
+    transientBad 0 n .a, transientBad (-1 / 10) n .a)
+
+#eval (List.range 8).map fun k => processRow (k + 1)
+#eval [0, 1, 4, 5, 10, 100].map recurringWitnessRow
+#eval endpointLedger
+#eval (nullEvent, preimage nullEvent,
+  eventMass nullEvent, eventMass (preimage nullEvent))
+#eval (delta, c, delta / c, decide (delta / c < 1),
+  eventMass nullEvent, eventMass fullEvent)
+#eval transientBadTimes (-2 / 5) .a 12
+#eval [2, 3, 5, 9, 10, 20].map transientRow
+#eval subadditiveThrough 12
+
+example : q < c := by native_decide
+example : badTimes q .a 8 = [5, 6, 7, 8] := by native_decide
+example : badTimes q .b 20 = [] := by native_decide
+example : preimage nullEvent = [] := by native_decide
+example : eventMass nullEvent = 0 := by native_decide
+example : delta / c = 4 / 5 := by native_decide
+example : transientBadTimes (-2 / 5) .a 12 = [2] := by native_decide
+example : subadditiveThrough 12 = true := by native_decide
+
+end RationalSlackLowerDeviationTutorial
+~~~
+
+From any directory, type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/RationalSlackLowerDeviationTutorial.lean
+~~~
+
+The byte-for-byte standard output emitted by Lean is:
+
+~~~text
+[(1, 0, 0, false, 0, 0, false),
+ (2, -2, -1, false, -1, (-1 : Rat)/2, false),
+ (3, -4, (-4 : Rat)/3, false, -2, (-2 : Rat)/3, false),
+ (4, -6, (-3 : Rat)/2, false, -3, (-3 : Rat)/4, false),
+ (5, -8, (-8 : Rat)/5, true, -4, (-4 : Rat)/5, false),
+ (6, -10, (-5 : Rat)/3, true, -5, (-5 : Rat)/6, false),
+ (7, -12, (-12 : Rat)/7, true, -6, (-6 : Rat)/7, false),
+ (8, -14, (-7 : Rat)/4, true, -7, (-7 : Rat)/8, false)]
+[(0, 5, -8, (-15 : Rat)/2, true),
+ (1, 5, -8, (-15 : Rat)/2, true),
+ (4, 5, -8, (-15 : Rat)/2, true),
+ (5, 5, -8, (-15 : Rat)/2, true),
+ (10, 10, -18, -15, true),
+ (100, 100, -198, -150, true)]
+(32, -31, (-128 : Rat)/5, -32, (-1023 : Rat)/40, true, true, true)
+([RationalSlackLowerDeviationTutorial.Point.a], [], 0, 0)
+(-1, (-5 : Rat)/4, (4 : Rat)/5, true, 0, 1)
+[2]
+[(2, -1, (-1 : Rat)/2, true, true),
+ (3, -1, (-1 : Rat)/3, true, true),
+ (5, -1, (-1 : Rat)/5, true, true),
+ (9, -1, (-1 : Rat)/9, true, true),
+ (10, -1, (-1 : Rat)/10, true, false),
+ (20, -1, (-1 : Rat)/20, true, false)]
+true
+~~~
+
+The first ledger has columns
+\((n,X_n(a),X_n(a)/n,\text{bad at }a,X_n(b),X_n(b)/n,\text{bad at }b)\).
+The second turns six requested cutoffs into explicit witnesses. The three
+Boolean values in the endpoint row check
+
+\[
+X_{33}(b)\le X_{32}(b)\lt q\cdot32\lt r\cdot33.
+\]
+
+The next tuple computes \(D_c=\{a\}\), \(T^{-1}D_c=\varnothing\), and the two
+zero masses. The branch tuple records
+\((\delta,c,\delta/c,\delta/c\lt1,\mu(D_c),\mu(\Omega))\).
+The singleton list `[2]` is the transient once-bad witness, while the final
+ledger shows same-target recurrence and the fixed \(-1/10\) margin expiring at
+equality when \(n=10\). The last `true` is the bounded exhaustive
+subadditivity check.
+
+**Resource profile: tiny standalone tutorial, safe on a normal Mac or Linux
+machine.** It imports only <code>Std</code> and never opens the project's
+Mathlib dependency graph. This exact file and output were checked with the
+pinned Lean 4.32.0 toolchain on the Mac. The exact project module remains
+cloud-only and uses the guarded commands above.
+
+## Complete source-order declaration, helper, probe, and axiom map
+
+The authoritative source is 668 lines and has SHA-256
+<code>1bdcfd6b3be654f52bae22bdb2b44c15848e66d51f3a0973ce1c8aba61db14d4</code>.
+It contains nineteen public declarations, twenty-one private support items,
+six anonymous compiled probes, and ten axiom queries. The complete sequence is:
+
+| No. | Visibility | Source item | Exact role |
+|---:|---|---|---|
+| 1 | public | <code>centeredArbitrarilyLateBadBlockSet</code> | Defines \(A_q\) as a cutoff intersection of positive-witness unions |
+| 2 | public | <code>mem_centeredArbitrarilyLateBadBlockSet_iff</code> | Exposes the exact \(\forall N\exists n\) membership statement |
+| 3 | public | <code>centeredStrictLowerDeviationSet</code> | Defines \(D_c\) by a rational union below \(c\) |
+| 4 | public | <code>mem_centeredStrictLowerDeviationSet_iff</code> | Exposes one durable rational margin |
+| 5 | public | <code>exists_nat_forall_mul_lt_mul_succ</code> | Absorbs the one-step endpoint beyond a finite cutoff |
+| 6 | public | <code>centeredArbitrarilyLateBadBlockSet_subset_allLength</code> | Forgets recurrence and retains one witness at \(q\) |
+| 7 | public | <code>centeredStrictLowerDeviationSet_subset_allLength</code> | Embeds \(D_c\) in the RMT-31 once-bad event at \(c\) |
+| 8 | public | <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredArbitrarilyLateBadBlockSet</code> | Builds null measurability for \(A_q\) |
+| 9 | public | <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredStrictLowerDeviationSet</code> | Takes the countable rational union |
+| 10 | public | <code>IsIntegrableSubadditiveProcessCandidate.preimage_centeredArbitrarilyLateBadBlockSet_subset_of_lt</code> | Proves \(T^{-1}A_q\subseteq A_r\) when \(q\lt r\) |
+| 11 | public | <code>IsIntegrableSubadditiveProcessCandidate.preimage_centeredStrictLowerDeviationSet_subset</code> | Uses rational density to recover \(T^{-1}D_c\subseteq D_c\) |
+| 12 | public | <code>IsIntegrableSubadditiveProcessCandidate.preimage_centeredStrictLowerDeviationSet_ae_eq</code> | Upgrades inclusion to almost-invariance under finite preserved mass |
+| 13 | public | <code>IsIntegrableSubadditiveProcessCandidate.centeredStrictLowerDeviationSet_ae_empty_or_univ</code> | Gives the finite-measure ergodic fork |
+| 14 | public | <code>IsIntegrableSubadditiveProcessCandidate.measure_centeredStrictLowerDeviationSet_eq_zero_or_one</code> | Converts the fork to probability mass zero or one |
+| 15 | public | <code>IsIntegrableSubadditiveProcessCandidate.measureReal_centeredStrictLowerDeviationSet_lt_one</code> | Imports the strict RMT-31 real-mass ratio |
+| 16 | public | <code>IsIntegrableSubadditiveProcessCandidate.measure_centeredStrictLowerDeviationSet_eq_zero</code> | Selects the null branch |
+| 17 | public | <code>DiscreteMatrixCocycle.centeredLogPlusArbitrarilyLateBadBlockSet</code> | Names the cocycle fixed-margin event |
+| 18 | public | <code>DiscreteMatrixCocycle.centeredLogPlusStrictLowerDeviationSet</code> | Names the cocycle target event |
+| 19 | public | <code>DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measure_centeredLogPlusStrictLowerDeviationSet_eq_zero</code> | Specializes null selection through the centered Fekete offset |
+| 20 | private | <code>rmt32ZeroProcess</code> | Defines the zero-process strictness boundary |
+| 21 | private | <code>rmt32Collapse</code> | Sends both Boolean states to `true` |
+| 22 | private | <code>rmt32OneShotProcess</code> | Defines the transient value \(-1\) after horizon two at `false` |
+| 23 | private | <code>rmt32_iterate_collapse_true</code> | Computes every iterate from `true` |
+| 24 | private | <code>rmt32_iterate_collapse_of_ne_zero</code> | Computes every positive iterate from either Boolean state |
+| 25 | private | <code>rmt32OneShotProcess_candidate</code> | Packages the transient process as an integrable subadditive candidate |
+| 26 | private | <code>rmt32Collapse_preserving</code> | Proves preservation of the Dirac mass at `true` |
+| 27 | private | <code>rmt32OneShotProcess_centered_lower_bound</code> | Proves \(-1\le Y_n(\omega)\) for every centered transient value |
+| 28 | private | <code>rmt32OneShotProcess_not_mem_arbitrarilyLate_of_neg</code> | Rejects every fixed negative margin |
+| 29 | probe | zero-process/nonpositive-target example | Proves \(D_c=\varnothing\) for \(c\le0\) |
+| 30 | probe | one-shot/once-bad example | Gets once-bad singleton but strict event empty at \(-2/5\) |
+| 31 | probe | same-target/no-slack example | Gets \(A_0=\{\texttt{false}\}\) but \(D_0=\varnothing\) |
+| 32 | private | <code>rmt32TwoPointProbability</code> | Defines the uniform Boolean probability measure |
+| 33 | private | probability instance | Proves the Boolean measure has total mass one |
+| 34 | private | <code>rmt32Id_not_preErgodic</code> | Proves the two-point identity is not pre-ergodic |
+| 35 | private | <code>rmt32TwoPointProcess</code> | Defines slopes \(0\) and \(-(n-1)\) on the identity base |
+| 36 | private | <code>rmt32TwoPointProcess_candidate</code> | Packages the two-point process |
+| 37 | private | <code>rmt32TwoPointStrictLowerDeviationSet</code> | Computes \(D_{-3/4}=\{\texttt{false}\}\) |
+| 38 | probe | nonergodic half-mass example | Computes strict-event probability \(1/2\) |
+| 39 | private | <code>rmt32HalfUnitMeasure</code> | Defines the half-mass measure on one point |
+| 40 | private | finite-measure instance | Proves the half-mass measure is finite |
+| 41 | private | <code>rmt32IdHalfUnit_ergodic</code> | Proves identity is ergodic on the one-point carrier |
+| 42 | private | <code>rmt32UnitProcess</code> | Defines the one-point process \(-(n-1)\) |
+| 43 | private | <code>rmt32UnitProcess_candidate</code> | Packages the one-point process |
+| 44 | private | <code>rmt32UnitStrictLowerDeviationSet</code> | Computes \(D_{-3/4}=\Omega\) |
+| 45 | probe | nonprobability full-event example | Computes mass \(1/2\le2/3\lt1\) for the full event |
+| 46 | probe | empty-index cocycle example | Rechecks the endpoint at matrix index type `Empty` |
+| 47 | axiom query | item 2 | Audits fixed-slope membership |
+| 48 | axiom query | item 4 | Audits rational target membership |
+| 49 | axiom query | item 5 | Audits the endpoint arithmetic cutoff |
+| 50 | axiom query | item 7 | Audits the target-to-once-bad inclusion |
+| 51 | axiom query | item 9 | Audits strict-event null measurability |
+| 52 | axiom query | item 11 | Audits same-target preimage inclusion |
+| 53 | axiom query | item 12 | Audits finite-measure almost-invariance |
+| 54 | axiom query | item 13 | Audits the ergodic fork |
+| 55 | axiom query | item 16 | Audits null-branch selection |
+| 56 | axiom query | item 19 | Audits the cocycle specialization |
+
+The module prints the axiom dependencies of the ten declarations in items
+47 through 56. The checked build uses the standard classical and quotient
 principles already used by Mathlib, with no <code>sorry</code>,
 <code>admit</code>, or project-local axiom.
 
@@ -1058,19 +1779,25 @@ the pinned Mathlib filter and lower-limit APIs. It then combines the null event
 with the existing upper-limsup and additive Birkhoff results. RMT-32 itself
 proves neither step.
 
-## Reproduce the checked interface
+## Proof reproduction
 
-From the repository root:
+On an approved Linux builder, from the repository root, run:
 
-~~~text
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
-lake build NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
 ~~~
 
-Run <code>make site-check</code> for the draft teaching site and
-<code>make check</code> for the complete repository gate. The paired
+For the complete project and teaching checks on that builder, run:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+These guarded commands may restore and compile the pinned Mathlib graph, so
+they must not run on this Mac. The tiny <code>Std</code> worksheet above is
+the workstation-safe route for following the finite arithmetic interactively.
+The paired
 [Development Notebook]({{< relref "/development-notebook/2026/07/countably-generated-centered-lower-deviation-events-in-lean" >}})
 contains the source-order proof ledger, compiled boundary inventory, and axiom
 reports.
