@@ -12,7 +12,7 @@ prerequisites: "Finite Birkhoff averages, strict finite maximal events, finite-m
 lean_module: "NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal"
 toc: true
 og_image: "from-finite-maximal-bounds-to-an-infinite-weak-estimate-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing strict finite average-exceedance events passing through an exact increasing union and extended-measure continuity. A finite-target real-conversion route appears before the real-valued multiplication bound, and a positive threshold licenses the final divided weak estimate. The card explicitly says that no pointwise convergence theorem is claimed."
+og_image_alt: "Warm-paper Deep Dive card following the five-state observable values 5, negative 4, 0, 0, and negative 1 through the nested events E1 equals state 0, E2 equals states 0 and 4, and E3 equals states 0, 3, and 4. Their union has mass three fifths, below the weak bound one. The card explicitly says that no pointwise convergence theorem is claimed."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -29,30 +29,194 @@ RMT-24 Lean module, while human publication review and the configured external
 Pro review remain pending.
 {{< /panel >}}
 
+## Start with five states you can calculate by hand
+
+Let
+
+\[
+\Omega=\{0,1,2,3,4\},
+\qquad
+T(i)=i+1\pmod 5,
+\qquad
+\mu(\{i\})=\frac15.
+\]
+
+The map moves around one five-state cycle, and every state has equal mass.
+Choose the observable
+
+\[
+\bigl(g(0),g(1),g(2),g(3),g(4)\bigr)
+{} =
+(5,-4,0,0,-1)
+\]
+
+and the strict threshold \(a=1\). Starting at state \(\omega\), write
+
+\[
+S_k(\omega)
+{} =
+\sum_{j=0}^{k-1}g\bigl(T^j\omega\bigr),
+\qquad
+A_k(\omega)=\frac{S_k(\omega)}{k}.
+\]
+
+Because \(k\gt0\),
+
+\[
+A_k(\omega)\gt1
+\quad\Longleftrightarrow\quad
+S_k(\omega)\gt k.
+\]
+
+This integer comparison lets us enumerate the event without decimal
+rounding. The first five partial sums from each starting state are:
+
+| Start \(\omega\) | \(S_1\) | \(S_2\) | \(S_3\) | \(S_4\) | \(S_5\) | First strict witness |
+|---:|---:|---:|---:|---:|---:|---:|
+| \(0\) | \(5\) | \(1\) | \(1\) | \(1\) | \(0\) | \(k=1\), since \(5\gt1\) |
+| \(1\) | \(-4\) | \(-4\) | \(-4\) | \(-5\) | \(0\) | none |
+| \(2\) | \(0\) | \(0\) | \(-1\) | \(4\) | \(0\) | none; \(S_4=4\) is equality |
+| \(3\) | \(0\) | \(-1\) | \(4\) | \(0\) | \(0\) | \(k=3\), since \(4\gt3\) |
+| \(4\) | \(-1\) | \(4\) | \(0\) | \(0\) | \(0\) | \(k=2\), since \(4\gt2\) |
+
+The equality in the state-two row is the threshold boundary. The event uses
+\(A_k\gt1\), so \(A_4(2)=1\) does not count.
+
+Why can we stop the search for states one and two? One full cycle has sum
+
+\[
+5-4+0+0-1=0.
+\]
+
+Writing \(k=5q+r\), each complete cycle contributes zero, so the \(k\)-step
+sum is just the first \(r\)-step remainder sum. For states one and two, every
+such remainder satisfies \(S_r\le r\). Since \(r\le5q+r=k\), neither state
+can cross at a later time. This proves the infinite event exactly; it is not
+merely a search through the first five steps.
+
+{{< reference-figure
+  src="five-state-average-ledger.svg"
+  wide="true"
+  alt="In a five-state cycle with observable values 5, negative 4, 0, 0, and negative 1, states zero, four, and three first cross average threshold one at times one, two, and three. State two reaches equality at time four and is excluded, while state one never crosses."
+  caption="**Finding:** the strict threshold event has three finite witnesses. State zero crosses at \(k=1\), state four at \(k=2\), and state three at \(k=3\). State two reaches \(S_4=4\), hence \(A_4=1\), but strictness excludes equality. State one never crosses either. The table shows exact partial sums, not sampled or empirical data. The five-step sum is zero, so the remainder argument proves that the two nonmembers never enter at later cycles."
+>}}
+
+### Watch the finite events grow
+
+Let
+
+\[
+E_N
+{} =
+\{\omega:\exists k,\ 1\le k\le N
+\text{ and }1\lt A_k(\omega)\}.
+\]
+
+The ledger gives every finite event:
+
+\[
+\begin{aligned}
+E_0&=\varnothing,\\
+E_1&=\{0\},\\
+E_2&=\{0,4\},\\
+E_3&=\{0,3,4\},\\
+E_N&=\{0,3,4\}\qquad(N\ge3).
+\end{aligned}
+\]
+
+The sets are nested because a witness available by horizon \(N\) is still
+available at every later horizon. Their measures are
+
+\[
+0,\quad\frac15,\quad\frac25,\quad\frac35,\quad\frac35,\ldots
+\]
+
+These are first the native extended-measure values in
+\(\mathbb R_{\ge0\infty}\). All are finite in this example, so applying
+<code>Measure.real</code> returns the same numerical sequence in
+\(\mathbb R\).
+
+Their exact union is
+
+\[
+E_1\cup E_2\cup E_3\cup\cdots
+{} =
+\{0,3,4\}.
+\]
+
+This is the infinite-horizon event: a point belongs when **some finite
+positive time** supplies a strict crossing. The word *infinite* describes the
+unbounded search range, not an infinitely long witness.
+
+### Check the weak estimate numerically
+
+The positive part of the observable is
+
+\[
+\bigl(g^+(0),g^+(1),g^+(2),g^+(3),g^+(4)\bigr)
+{} =
+(5,0,0,0,0).
+\]
+
+Therefore
+
+\[
+\int_\Omega g^+\,d\mu
+{} =
+\frac{5+0+0+0+0}{5}
+{} =
+1.
+\]
+
+The infinite event has real measure \(3/5\). At \(a=1\), the multiplication
+bound and the divided weak estimate both read
+
+\[
+1\cdot\frac35\le1,
+\qquad
+\frac35\le\frac11.
+\]
+
+Every number in this calculation is exact. The example is a probability
+space for convenience, but the Lean theorem needs only finite total mass, not
+normalization to one.
+
+{{< reference-figure
+  src="five-state-events-and-weak-bound.svg"
+  wide="true"
+  alt="The finite events grow from empty to state zero, then states zero and four, then states zero, three, and four, where they stabilize. Their masses grow from zero to one fifth, two fifths, and three fifths. The infinite-event mass three fifths lies below the weak upper bound one."
+  caption="**Finding:** the finite events increase and stabilize at the exact infinite event \(\{0,3,4\}\), whose mass is \(3/5\). The positive-part integral is \(1\), so the positive-threshold weak estimate gives \(3/5\le1\). The horizontal measure scale runs from \(0\) to \(1\), and the final comparison bar uses the same scale. These are exact toy-model values derived above, not empirical measurements. Stabilization is special to this finite example; the general proof uses continuity from below and does not assume stabilization."
+>}}
+
+### What the example has already shown
+
+The finite calculation contains the entire proof architecture:
+
+1. every infinite-event member carries one finite positive witness;
+2. finite events increase with the search horizon;
+3. their union is the infinite event;
+4. their measures approach the union measure;
+5. a horizon-independent finite bound survives the limit; and
+6. a positive threshold permits division.
+
+The general theorem must now reproduce those moves without assuming a finite
+state space or eventual stabilization. Its native measure values may include
+infinity, which creates one important type boundary.
+
 A finite maximal estimate answers a bounded search question: up to horizon
 \(N\), how large can the set be on which some orbit average exceeds a fixed
-threshold? The estimate from the preceding milestone is uniform in \(N\).
-Uniformity is essential, but it does not by itself identify the set searched
-over all positive times. One still needs to construct the infinite event and
-prove that the finite events approach it in the correct measure type.
+threshold? Uniformity in \(N\) is essential, but it does not by itself
+identify the set searched over all positive times.
 
-The set-theoretic part is exact. A point in the infinite event comes with one
-positive finite witness time, so that same time can be chosen as a finite
-horizon. Conversely, every finite witness remains an infinite witness. Thus
-the infinite event is the increasing union of the finite events, not merely an
-almost-everywhere surrogate and not a limiting approximation with an unknown
-remainder.
-
-The analytic part has a trap. Measures in Lean are valued in the extended
-nonnegative reals, where infinity is a legitimate value and continuity from
-below is safe. The convenient real-valued view <code>Measure.real</code> sends
-infinite mass to zero. Extended convergence therefore does not automatically
-survive that projection. Random-matrix-theory milestone 24 (RMT-24) exposes
-both a clean sufficient result and its precise limitation: unconditional
-convergence in extended measure, then a reusable real-valued corollary under
-local finiteness. Paired infinite-mass probes show that projection can either
-preserve or destroy a particular limit, so the finite-target premise is not
-reported as necessary.
+The analytic trap appears when passing to the union. Measures in Lean take
+values in the extended nonnegative reals, where infinity is legitimate and
+continuity from below is safe. The convenient real-valued view
+<code>Measure.real</code> sends infinite mass to zero. Extended convergence
+therefore does not automatically survive that projection. RMT-24 exposes
+unconditional convergence in extended measure, then a reusable real-valued
+corollary under local finiteness. Paired infinite-mass probes show that the
+projection can either preserve or destroy a particular limit, so local
+finiteness is presented as sufficient rather than necessary.
 
 The compact recurring-concept page is
 {{< refterm "infinite-horizon-birkhoff-average-exceedance-event" "infinite-horizon Birkhoff-average exceedance event" >}}.
@@ -65,6 +229,7 @@ The finite theorem that supplies the uniform input is
 
 | Route | Begin | Destination |
 |---|---|---|
+| Worked-example route | [Start with five states](#start-with-five-states-you-can-calculate-by-hand) | Recompute every event and exact mass |
 | Event route | [Define existence directly](#define-existence-directly) | Understand strictness and positive time |
 | Set route | [Prove the exact increasing union](#prove-the-exact-increasing-union) | Build the finite-to-infinite bridge |
 | Regularity route | [Keep two measurability routes separate](#keep-two-measurability-routes-separate) | Track ordinary versus null measurability |
@@ -192,13 +357,34 @@ a\lt A_k g(\omega)
 \right\}.
 \]
 
-Lean records this formula without first constructing a supremum:
+### In Lean: name exactly one finite witness
+
+{{< lean-bridge
+  human="A starting point belongs to the infinite event exactly when at least one positive natural time has average strictly above the threshold."
+  math="\\(\\omega\\in E_a(g)\\iff\\exists k\\in\\mathbb N,\\ 1\\le k\\ \\text{and}\\ a<A_kg(\\omega).\\)"
+  lean="ω ∈ birkhoffAverageExceedanceSet T g a ↔ ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω"
+>}}
+
+- `ω ∈ ...` is ordinary set membership.
+- `∃ k` asks for one natural-number witness; it does not construct an
+  infinite supremum.
+- `1 ≤ k` removes the totalized zero-time average.
+- `a < ...` encodes a strict crossing, so equality stays outside.
+- `birkhoffAverage ℝ T g k ω` is the real \(k\)-step average of \(g\) along
+  the orbit of \(\omega\).
+
+The exact source definition is:
 
 ~~~lean
 def birkhoffAverageExceedanceSet
     (T : Ω → Ω) (g : Ω → ℝ) (a : ℝ) : Set Ω :=
   {ω | ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω}
 ~~~
+
+The companion
+<code>mem_birkhoffAverageExceedanceSet_iff</code> exposes the displayed
+membership statement by reflexivity.
+{{< /lean-bridge >}}
 
 This formulation has three advantages.
 
@@ -257,14 +443,32 @@ There is a time \(k\) satisfying \(1\le k\le N\) and
 \(a\lt A_k g(\omega)\). Forgetting \(k\le N\) leaves exactly the witness
 required for \(\omega\in E_a(g)\).
 
-The Lean proof follows those two sentences. There is no limiting argument in
-the equality itself:
+### In Lean: turn the unbounded search into an exact union
+
+{{< lean-bridge
+  human="The event searched over all positive times is exactly the union of the events searched only through each finite horizon."
+  math="\\(E_a(g)=\\bigcup_{N\\in\\mathbb N}E_{N,a}(g).\\)"
+  lean="birkhoffAverageExceedanceSet_eq_iUnion_finite (T := T) (g := g) a"
+>}}
+
+- `⋃ N : ℕ, ...` is a countable union indexed by finite horizons.
+- The forward proof extracts `k`, then chooses the same value as the union
+  index and finite horizon.
+- The reverse proof keeps the witness `k` and forgets only the condition
+  `k ≤ N`.
+- The equality is literal `Set` equality. There is no `AlmostEverywhere`
+  qualifier and no measure in the statement.
+
+The theorem statement is:
 
 ~~~lean
 theorem birkhoffAverageExceedanceSet_eq_iUnion_finite (a : ℝ) :
     birkhoffAverageExceedanceSet T g a =
       ⋃ N : ℕ, finiteBirkhoffAverageExceedanceSet T g N a
 ~~~
+
+There is no limiting argument in this equality.
+{{< /lean-bridge >}}
 
 The theorem is exact as sets, not only modulo null sets. It requires neither a
 measurable space nor a measure. The companion theorem
@@ -286,6 +490,7 @@ orbit.
 
 {{< reference-figure
   src="exact-increasing-union.svg"
+  wide="true"
   alt="The infinite event gives one positive witness time, which can be reused as a finite horizon. A finite event gives the same witness after its upper horizon bound is forgotten. Nested regions show that finite events grow with the horizon and their exact union is the infinite event."
   caption="**Finding:** the finite-to-infinite bridge is a two-inclusion set proof. From the infinite event, recover one positive witness time and choose it as the finite horizon. From a finite event, forget only the upper horizon bound. The nested regions encode monotonicity in search horizon, not monotonicity of the orbit averages themselves. No measure, topology, or measurability enters this figure, and the shapes are conceptual rather than quantitative."
 >}}
@@ -387,7 +592,23 @@ union is \(E_a(g)\), continuity from below gives
 m_N\longrightarrow m.
 \]
 
-The checked theorem is
+### In Lean: take the limit before leaving extended measure
+
+{{< lean-bridge
+  human="The extended measures of the nested finite events tend to the extended measure of their union, even when the limiting value is infinite."
+  math="\\(\\mu(E_{N,a}(g))\\longrightarrow\\mu(E_a(g))\\quad\\text{in }\\mathbb R_{\\ge0\\infty}.\\)"
+  lean="tendsto_measure_finiteBirkhoffAverageExceedanceSet (T := T) (g := g) (μ := μ) a"
+>}}
+
+- `Tendsto` is Lean's filter-level statement of convergence.
+- `fun N ↦ μ (...)` is the sequence of native measure values in
+  `ENNReal`.
+- `atTop` means that the natural horizon tends upward without bound.
+- `nhds (μ (...))` names the neighborhoods of the union's measure.
+- No `IsFiniteMeasure`, ordinary measurability, preservation, or
+  integrability hypothesis appears in the theorem.
+
+The checked statement is:
 
 ~~~lean
 theorem tendsto_measure_finiteBirkhoffAverageExceedanceSet (a : ℝ) :
@@ -395,6 +616,8 @@ theorem tendsto_measure_finiteBirkhoffAverageExceedanceSet (a : ℝ) :
       (fun N ↦ μ (finiteBirkhoffAverageExceedanceSet T g N a))
       atTop (nhds (μ (birkhoffAverageExceedanceSet T g a)))
 ~~~
+
+{{< /lean-bridge >}}
 
 Its assumptions are intentionally minimal. It needs the ambient measurable
 space because a <code>Measure</code> is typed over one, but it assumes no
@@ -444,14 +667,34 @@ extended-measure continuity and yields
 \mu_{\mathbb R}\bigl(E_a(g)\bigr).
 \]
 
-This is
-<code>tendsto_measureReal_finiteBirkhoffAverageExceedanceSet</code>. Its
-finiteness premise concerns the **one union event**, not the total mass of
-\(\Omega\). A finite measure space makes the premise automatic, while local
-event finiteness is the weaker of those two sufficient interfaces. Neither is
+### In Lean: convert only at a finite target
+
+{{< lean-bridge
+  human="If this one infinite event has finite extended mass, converting every event measure to a real number preserves the finite-to-infinite limit."
+  math="\\(\\mu(E_a)\\ne\\infty\\ \\Longrightarrow\\ \\mu_{\\mathbb R}(E_{N,a})\\longrightarrow\\mu_{\\mathbb R}(E_a).\\)"
+  lean="tendsto_measureReal_finiteBirkhoffAverageExceedanceSet (T := T) (g := g) (μ := μ) a hfinite"
+>}}
+
+- `hfinite` has the local type
+  `μ (birkhoffAverageExceedanceSet T g a) ≠ ∞`.
+- `μ.real S` unfolds to `(μ S).toReal`.
+- `ENNReal.tendsto_toReal hfinite` supplies continuity of that conversion at
+  this finite target.
+- `.comp` composes it with the preceding extended-measure convergence.
+- The premise concerns the **one union event**, not the total mass of
+  \(\Omega\).
+
+The finite-target theorem is sufficient for a reusable interface. It does not
+claim that every infinite-target sequence fails after conversion.
+{{< /lean-bridge >}}
+
+A finite measure space makes the premise automatic, while local event
+finiteness is the weaker of those two sufficient interfaces. Neither is
 claimed to be necessary for every particular increasing family.
 
-### The counting-measure countermodel
+### Infinite mass: one failure and one near miss
+
+#### Failure: finite prefixes approach an infinite union
 
 Let \(\mu\) be counting measure on \(\mathbb N\), and define
 
@@ -486,6 +729,8 @@ below can fail when the limiting extended mass is infinite. RMT-24 includes
 this countermodel as compiled Lean code, so no unconditional conversion theorem
 is available.
 
+#### Near miss: the totalized real sequence still converges
+
 Failure is not forced by infinite mass. With counting measure, identity
 dynamics, constant observable two, and threshold one, every finite event from
 horizon one onward and the infinite event are <code>univ</code>. Their
@@ -496,6 +741,7 @@ sufficient theorem premise, not an if-and-only-if characterization.
 
 {{< reference-figure
   src="measure-continuity-and-real-cliff.svg"
+  wide="true"
   alt="Extended nonnegative real measures of nested sets approach the extended measure of their union even when it is infinite. For finite prefixes of the natural numbers under counting measure, the real measures grow while the infinite union is mapped to real measure zero, showing that real continuity can fail at an infinite union; local finiteness guarantees the conversion."
   caption="**Finding:** continuity from below belongs first in extended nonnegative real measure, where an infinite limit remains a valid value. The lower lane is the compiled guardrail: finite counting-measure prefixes have growing real masses, but their infinite union is sent to zero by the totalized real conversion. Local finiteness of the union supplies a clean sufficient route through that conversion, without being necessary for every particular sequence. The nested shapes and lane geometry communicate logical structure only; they are not scaled quantitative plots."
 >}}
@@ -552,8 +798,24 @@ a\,\mu_{\mathbb R}\bigl(E_a(g)\bigr)
 \le I^+(g).
 \]
 
-This is
-<code>birkhoffAverageExceedanceSet_posPart_bound</code>.
+### In Lean: pass the common finite bound through the limit
+
+{{< lean-bridge
+  human="On a finite measure space, the threshold times the real mass of the infinite event is bounded by the integral of the positive part, for every real threshold."
+  math="\\(a\\,\\mu_{\\mathbb R}(E_a(g))\\le\\int_\\Omega\\max\\{g,0\\}\\,d\\mu.\\)"
+  lean="birkhoffAverageExceedanceSet_posPart_bound hT hg a"
+>}}
+
+- `[IsFiniteMeasure μ]` supplies finite total mass.
+- `hT : MeasurePreserving T μ μ` and `hg : Integrable g μ` are the analytic
+  inputs inherited by every finite estimate.
+- The argument `a` is any real number; positivity is not yet required.
+- `max (g ω) 0` is the pointwise positive part.
+- The proof multiplies a convergent real-measure sequence by the fixed
+  constant and uses `le_of_tendsto'` to preserve the common upper bound.
+
+The theorem does not assert that the products are monotone.
+{{< /lean-bridge >}}
 
 ### Why no sign premise is needed here
 
@@ -599,8 +861,23 @@ multiplication bound becomes
 \frac{\displaystyle\int_\Omega\max\{g(\omega),0\}\,d\mu(\omega)}{a}.
 \]
 
-This is the infinite-horizon weak maximal estimate formalized as
-<code>measureReal_birkhoffAverageExceedanceSet_le</code>.
+### In Lean: divide with a proof that the threshold is positive
+
+{{< lean-bridge
+  human="At a strictly positive threshold, divide the multiplication bound without reversing the inequality to obtain the infinite weak estimate."
+  math="\\(0<a\\ \\Longrightarrow\\ \\mu_{\\mathbb R}(E_a(g))\\le a^{-1}\\int_\\Omega\\max\\{g,0\\}\\,d\\mu.\\)"
+  lean="measureReal_birkhoffAverageExceedanceSet_le hT hg ha"
+>}}
+
+- `ha : 0 < a` is proof data, not a comment or runtime check.
+- `le_div_iff₀ ha` is the order equivalence for division by a positive real.
+- The result reuses the multiplication theorem and only commutes the two
+  factors to match its conclusion.
+- No probability, ergodicity, injectivity, surjectivity, or invertibility
+  assumption is added.
+
+This is the module's final infinite-horizon weak maximal estimate.
+{{< /lean-bridge >}}
 
 The positivity premise enters exactly in Lean's
 <code>le_div_iff₀</code> step. At \(a=0\), division would be totalized but
@@ -616,6 +893,7 @@ of any \(L^p\) space.
 
 {{< reference-figure
   src="weak-estimate-assumption-ladder.svg"
+  wide="true"
   alt="The event and exact union require no analytic assumptions. Ordinary measurability uses measurable dynamics and observable, while null measurability instead uses measure preservation and integrability. Extended-measure continuity uses only increasing sets. The checked real-continuity corollary uses local finiteness as a clean sufficient premise, the multiplication bound uses finite total measure with preservation and integrability for every real threshold, and the divided weak estimate additionally needs a positive threshold."
   caption="**Finding:** assumptions enter at the operation that consumes them. Set construction precedes analysis. Ordinary and null measurability are alternative routes. Extended-measure continuity needs only the increasing-event geometry, while the reusable real-conversion corollary uses local finiteness as a sufficient premise, not an if-and-only-if condition. The all-threshold multiplication bound adds finite total mass, preservation, and integrability; strict positivity appears only for division. Probability, ergodicity, and invertibility never enter. This is a logical dependency diagram, not a quantitative ranking."
 >}}
@@ -744,6 +1022,24 @@ and ten anonymous compiled probes.
    real threshold.
 10. <code>measureReal_birkhoffAverageExceedanceSet_le</code> divides by a
     strictly positive threshold to obtain the infinite weak estimate.
+
+### Private and proof-local inventory
+
+There is no `private def`, `private theorem`, private instance, or named
+internal declaration in this module. The complete visibility map is therefore:
+
+| Visibility | Names | Reader-facing role |
+|---|---|---|
+| Public definition | <code>birkhoffAverageExceedanceSet</code> | Names the infinite event |
+| Public theorems | The other nine names listed above | Membership, exact union, inclusion, regularity, continuity, and bounds |
+| Private declarations | none | There is no hidden callable API |
+| Anonymous examples | ten | Compile theorem boundaries without exporting names |
+| Proof-local terms | <code>heq</code>, <code>hreal</code>, and local `have` / `let` bindings inside probes | Organize individual proofs; they disappear outside their proof bodies |
+
+In particular, <code>heq</code> rewrites the null-measurable event as a
+positive-time subtype union, while <code>hreal</code> composes extended
+convergence with finite-target real conversion. Neither is a declaration that
+downstream code can import.
 
 Five <code>#print axioms</code> commands inspect the null-regularity theorem,
 both continuity theorems, and both final inequalities. The module introduces no
@@ -1287,19 +1583,101 @@ infinite-horizon event, its two regularity interfaces, typed continuity from
 finite horizons, and the weak measure estimate with every finiteness and sign
 gate visible.
 
-## Reproduce the checked interface
+## Run the five-state worksheet on a laptop
 
-From the repository root:
+The theorem module imports Mathlib and belongs on the approved Linux builder.
+The calculation from the opening example does not. The following complete
+worksheet imports only `Std`, uses integer partial sums instead of floating
+point averages, and is intentionally small enough for an ordinary Mac or
+Linux laptop.
+
+Create `/tmp/InfiniteHopfFiveStateTutorial.lean` with exactly this content:
+
+~~~lean
+import Std
+
+def observable (state : Nat) : Int :=
+  match state % 5 with
+  | 0 => 5
+  | 1 => -4
+  | 2 => 0
+  | 3 => 0
+  | _ => -1
+
+def partialSum (state k : Nat) : Int :=
+  (List.range k).foldl
+    (fun total j => total + observable (state + j))
+    0
+
+def crossesAt (state k : Nat) : Bool :=
+  decide (0 < k ∧ (k : Int) < partialSum state k)
+
+def finiteEvent (N : Nat) : List Nat :=
+  (List.range 5).filter fun state =>
+    (List.range N).any fun j => crossesAt state (j + 1)
+
+def firstWitness (state : Nat) : Option Nat :=
+  ((List.range 15).map (· + 1)).find? fun k => crossesAt state k
+
+def ledgerLine (state : Nat) : String :=
+  s!"state {state}: sums {List.map (partialSum state) [1, 2, 3, 4, 5]}, first strict witness {firstWitness state}"
+
+def main : IO Unit := do
+  IO.println "observable around the cycle: [5, -4, 0, 0, -1]"
+  IO.println "threshold rule: A_k > 1, equivalently S_k > k"
+  for state in List.range 5 do
+    IO.println (ledgerLine state)
+  for N in List.range 6 do
+    IO.println s!"E_{N} = {finiteEvent N}"
+  IO.println s!"union through horizon 15 = {finiteEvent 15}"
+  IO.println s!"event cardinality = {(finiteEvent 15).length} of 5"
+  IO.println "weak bound: 3/5 <= (integral of g^+) / 1 = 1"
+
+#eval main
+~~~
+
+Type:
 
 ~~~sh
 source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean
-lake build NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/InfiniteHopfFiveStateTutorial.lean
 ~~~
 
-To inspect the public boundary in a scratch file that imports the module:
+The exact worksheet above was run successfully with the repository's pinned
+Lean 4.32.0 toolchain. Its exact transcript is:
+
+~~~text
+observable around the cycle: [5, -4, 0, 0, -1]
+threshold rule: A_k > 1, equivalently S_k > k
+state 0: sums [5, 1, 1, 1, 0], first strict witness (some 1)
+state 1: sums [-4, -4, -4, -5, 0], first strict witness none
+state 2: sums [0, 0, -1, 4, 0], first strict witness none
+state 3: sums [0, -1, 4, 0, 0], first strict witness (some 3)
+state 4: sums [-1, 4, 0, 0, 0], first strict witness (some 2)
+E_0 = []
+E_1 = [0]
+E_2 = [0, 4]
+E_3 = [0, 3, 4]
+E_4 = [0, 3, 4]
+E_5 = [0, 3, 4]
+union through horizon 15 = [0, 3, 4]
+event cardinality = 3 of 5
+weak bound: 3/5 <= (integral of g^+) / 1 = 1
+~~~
+
+The worksheet searches through horizon 15 as a computational demonstration.
+The zero-sum-cycle argument above is the proof that the displayed union is the
+true infinite event. A finite search alone would not prove that claim.
+
+## Inspect and check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal" >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean).
+On an approved Linux builder with the pinned project dependencies already
+provisioned, place these inspection commands in a temporary project scratch
+file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
@@ -1318,10 +1696,31 @@ open NonlinearDynamics.Random.RandomCocycles
 #check measureReal_birkhoffAverageExceedanceSet_le
 ~~~
 
+The exact guarded module check from the repository root is:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean
+~~~
+
+That Mathlib-backed command belongs only on a human-approved, provisioned
+Linux cloud builder. Do not run it on this Mac. The lightweight `Std`
+worksheet above is the local learning path.
+
+The guarded full release command on approved Linux cloud compute is:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+Neither command changes `pro_reviewed: false`; technical validation and human
+review are separate gates.
+{{< /repo-check >}}
+
 The frozen module is 342 lines with SHA-256
 <code>80b56f91d3c54b69f0ef589f9732aed3abf8ee76ba0de2e937ab86f93f054032</code>.
-It has ten public declarations, ten anonymous probes, no private helper, and
-no proof hole or project axiom.
+It has ten public declarations, ten anonymous probes, no private declaration,
+and no proof hole or project axiom.
 
 ## Continue the learning path
 

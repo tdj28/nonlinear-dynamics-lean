@@ -25,52 +25,57 @@ magick -size 1200x630 xc:'#F3EFE6' \
   -annotate +67+139 'From finite maximal bounds' \
   -annotate +67+191 'to an infinite weak estimate' \
   -fill '#4D5B6B' -font Helvetica -pointsize 18 \
-  -annotate +70+229 'Build the exact union, cross the measure limit, and divide only at a positive threshold.' \
+  -annotate +70+229 'Follow one exact five-state orbit from finite witnesses to the infinite weak bound.' \
   -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 2 \
   -draw 'roundrectangle 68,260 1132,507 18,18' \
   -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-  -draw 'roundrectangle 94,300 294,424 14,14' \
+  -draw 'roundrectangle 92,292 328,432 14,14' \
   -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 17 \
-  -annotate +137+337 'FINITE EVENTS' \
+  -annotate +125+326 'FIVE-STATE CYCLE' \
   -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +120+370 'strict positive-time witnesses' \
-  -annotate +133+393 'uniform finite bounds' \
-  -fill none -stroke '#A67C52' -strokewidth 4 \
-  -draw 'line 304,362 358,362 polygon 358,362 342,352 342,372' \
-  -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-  -draw 'roundrectangle 370,286 594,438 14,14' \
-  -fill '#47633B' -stroke none -font Helvetica-Bold -pointsize 17 \
-  -annotate +409+326 'INCREASING UNION' \
-  -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +397+360 'extended measure is continuous' \
-  -annotate +411+383 'with no finiteness gate' \
+  -annotate +112+361 'g = [5, -4, 0, 0, -1]' \
+  -annotate +139+386 'threshold a = 1' \
   -fill '#934F1F' -font Helvetica-Bold -pointsize 11 \
-  -annotate +397+414 'FINITE TARGET: SAFE CONVERSION' \
+  -annotate +113+412 'STRICT: STATE 2 HITS EQUALITY' \
   -fill none -stroke '#A67C52' -strokewidth 4 \
-  -draw 'line 604,362 658,362 polygon 658,362 642,352 642,372' \
+  -draw 'line 338,362 380,362 polygon 380,362 364,352 364,372' \
+  -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
+  -draw 'roundrectangle 392,280 674,444 14,14' \
+  -fill '#47633B' -stroke none -font Helvetica-Bold -pointsize 17 \
+  -annotate +435+317 'NESTED FINITE EVENTS' \
+  -fill '#5A544C' -font Helvetica -pointsize 13 \
+  -annotate +427+350 'E1 = {0}' \
+  -annotate +427+374 'E2 = {0, 4}' \
+  -annotate +427+398 'E3 = {0, 3, 4}' \
+  -fill '#47633B' -font Helvetica-Bold -pointsize 11 \
+  -annotate +427+425 'EXACT INCREASING UNION' \
+  -fill none -stroke '#A67C52' -strokewidth 4 \
+  -draw 'line 684,362 726,362 polygon 726,362 710,352 710,372' \
   -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-  -draw 'roundrectangle 670,300 870,424 14,14' \
+  -draw 'roundrectangle 738,292 904,432 14,14' \
   -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 17 \
-  -annotate +711+337 'ALL THRESHOLDS' \
+  -annotate +769+326 'UNION MASS' \
   -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +697+370 'finite total measure' \
-  -annotate +698+393 'multiplication bound' \
+  -annotate +782+364 'mu(E) = 3/5' \
+  -annotate +757+389 'extended measure first' \
+  -fill '#934F1F' -font Helvetica-Bold -pointsize 10 \
+  -annotate +759+414 'REAL VIEW NEEDS A GATE' \
   -fill none -stroke '#A67C52' -strokewidth 4 \
-  -draw 'line 880,362 920,362 polygon 920,362 904,352 904,372' \
+  -draw 'line 914,362 946,362 polygon 946,362 930,352 930,372' \
   -fill '#F3E8E0' -stroke '#A67C52' -strokewidth 2 \
-  -draw 'roundrectangle 932,286 1110,438 14,14' \
+  -draw 'roundrectangle 958,280 1112,444 14,14' \
   -fill '#934F1F' -stroke none -font Helvetica-Bold -pointsize 16 \
-  -annotate +956+326 'WEAK ESTIMATE' \
+  -annotate +976+317 'WEAK BOUND' \
   -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +954+361 'positive threshold' \
-  -annotate +962+384 'licenses division' \
+  -annotate +990+355 '3/5 <= 1' \
+  -annotate +974+381 'positive division' \
   -fill '#934F1F' -font Helvetica-Bold -pointsize 12 \
-  -annotate +956+408 'NO POINTWISE' \
-  -annotate +967+425 'CONVERGENCE' \
+  -annotate +978+414 'NO POINTWISE' \
+  -annotate +987+431 'CONVERGENCE' \
   -fill '#5A544C' -stroke none -font Helvetica -pointsize 13 \
-  -annotate +95+480 'The infinity cliff is explicit: real measure maps infinite extended mass to zero.' \
+  -annotate +95+480 'Finite witnesses build the union. Extended measure crosses the limit before real conversion.' \
   -fill '#FFFDF8' -stroke none -font Helvetica -pointsize 15 \
-  -annotate +68+582 'EXACT UNION  /  EXTENDED MEASURE FIRST  /  POSITIVE DIVISION' \
+  -annotate +68+582 'EXACT FIVE-STATE LEDGER  /  EXTENDED MEASURE FIRST  /  POSITIVE DIVISION' \
   -strip -define png:exclude-chunk=date,time \
   "PNG:$output"
 

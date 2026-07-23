@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720" role="img" aria-labelledby="five-state-ledger-title five-state-ledger-desc">
+  <title id="five-state-ledger-title">Exact partial-sum ledger for a five-state cyclic observable at threshold one</title>
+  <desc id="five-state-ledger-desc">Five states cycle in the order zero, one, two, three, four and back to zero. Their observable values are 5, negative 4, 0, 0, and negative 1. A strict average crossing above one is equivalent to the partial sum S sub k being greater than k. State zero crosses at time one, state four at time two, and state three at time three. State two reaches equality S sub 4 equals 4 and is excluded. State one never crosses. The first five partial sums for every start are listed numerically.</desc>
+  <defs>
+    <marker id="five-state-ledger-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A06733"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#292721}
+    .title{font-size:22px;font-weight:700}
+    .sub{font-size:16px;fill:#554F47}
+    .head{font-size:16px;font-weight:700}
+    .cell{font-size:18px}
+    .small{font-size:15px;fill:#554F47}
+    .value{font-size:20px;font-weight:700}
+  </style>
+  <rect width="1000" height="720" rx="20" fill="#F7F2E8"/>
+  <text class="t title" x="34" y="38">Five-state orbit: strict crossings have finite witness times</text>
+  <text class="t sub" x="34" y="63">Threshold a = 1. Test A_k &gt; 1 by the integer comparison S_k &gt; k.</text>
+
+  <g aria-label="Cyclic observable values">
+    <rect x="55" y="94" width="130" height="74" rx="12" fill="#E7EFF7" stroke="#416587" stroke-width="2"/>
+    <text class="t head" x="76" y="119">state 0</text>
+    <text class="t value" x="76" y="148">g = 5</text>
+    <line x1="190" y1="131" x2="229" y2="131" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-ledger-arrow)"/>
+
+    <rect x="240" y="94" width="130" height="74" rx="12" fill="#F4E8DF" stroke="#A06733" stroke-width="2"/>
+    <text class="t head" x="261" y="119">state 1</text>
+    <text class="t value" x="261" y="148">g = -4</text>
+    <line x1="375" y1="131" x2="414" y2="131" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-ledger-arrow)"/>
+
+    <rect x="425" y="94" width="130" height="74" rx="12" fill="#F9F7F2" stroke="#8A8278" stroke-width="2"/>
+    <text class="t head" x="446" y="119">state 2</text>
+    <text class="t value" x="446" y="148">g = 0</text>
+    <line x1="560" y1="131" x2="599" y2="131" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-ledger-arrow)"/>
+
+    <rect x="610" y="94" width="130" height="74" rx="12" fill="#F9F7F2" stroke="#8A8278" stroke-width="2"/>
+    <text class="t head" x="631" y="119">state 3</text>
+    <text class="t value" x="631" y="148">g = 0</text>
+    <line x1="745" y1="131" x2="784" y2="131" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-ledger-arrow)"/>
+
+    <rect x="795" y="94" width="130" height="74" rx="12" fill="#F4E8DF" stroke="#A06733" stroke-width="2"/>
+    <text class="t head" x="816" y="119">state 4</text>
+    <text class="t value" x="816" y="148">g = -1</text>
+    <path d="M860 174 C860 205, 120 205, 120 174" fill="none" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-ledger-arrow)"/>
+  </g>
+
+  <rect x="34" y="226" width="932" height="388" rx="14" fill="#FFFDF8" stroke="#C9BBA9" stroke-width="2"/>
+  <rect x="50" y="244" width="900" height="48" rx="8" fill="#17263A"/>
+  <text x="72" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">start</text>
+  <text x="180" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">S1</text>
+  <text x="280" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">S2</text>
+  <text x="380" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">S3</text>
+  <text x="480" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">S4</text>
+  <text x="580" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">S5</text>
+  <text x="700" y="274" font-family="Inter,Arial,Helvetica,sans-serif" font-size="16" font-weight="700" fill="#FFFDF8">first S_k &gt; k</text>
+
+  <g class="t cell">
+    <rect x="50" y="302" width="900" height="54" rx="7" fill="#EEF4F8"/>
+    <text x="86" y="335">0</text><text x="180" y="335">5 &gt; 1</text><text x="280" y="335">1</text><text x="380" y="335">1</text><text x="480" y="335">1</text><text x="580" y="335">0</text><text x="720" y="335">k = 1</text>
+    <rect x="162" y="312" width="80" height="34" rx="6" fill="none" stroke="#416587" stroke-width="2"/>
+
+    <rect x="50" y="364" width="900" height="54" rx="7" fill="#FBF8F2"/>
+    <text x="86" y="397">1</text><text x="180" y="397">-4</text><text x="280" y="397">-4</text><text x="380" y="397">-4</text><text x="480" y="397">-5</text><text x="580" y="397">0</text><text x="720" y="397">none</text>
+
+    <rect x="50" y="426" width="900" height="54" rx="7" fill="#FBF1E9"/>
+    <text x="86" y="459">2</text><text x="180" y="459">0</text><text x="280" y="459">0</text><text x="380" y="459">-1</text><text x="480" y="459">4 = 4</text><text x="580" y="459">0</text><text x="720" y="451">none</text><text class="small" x="720" y="469">equality is excluded</text>
+    <rect x="462" y="436" width="88" height="34" rx="6" fill="none" stroke="#A06733" stroke-width="2" stroke-dasharray="6 4"/>
+
+    <rect x="50" y="488" width="900" height="54" rx="7" fill="#EEF4F8"/>
+    <text x="86" y="521">3</text><text x="180" y="521">0</text><text x="280" y="521">-1</text><text x="380" y="521">4 &gt; 3</text><text x="480" y="521">0</text><text x="580" y="521">0</text><text x="720" y="521">k = 3</text>
+    <rect x="362" y="498" width="80" height="34" rx="6" fill="none" stroke="#416587" stroke-width="2"/>
+
+    <rect x="50" y="550" width="900" height="54" rx="7" fill="#EEF4F8"/>
+    <text x="86" y="583">4</text><text x="180" y="583">-1</text><text x="280" y="583">4 &gt; 2</text><text x="380" y="583">0</text><text x="480" y="583">0</text><text x="580" y="583">0</text><text x="720" y="583">k = 2</text>
+    <rect x="262" y="560" width="80" height="34" rx="6" fill="none" stroke="#416587" stroke-width="2"/>
+  </g>
+
+  <rect x="34" y="638" width="932" height="52" rx="12" fill="#E8F0E3" stroke="#607B53" stroke-width="2"/>
+  <text class="t head" x="58" y="660">Exact result:</text>
+  <text class="t sub" x="182" y="660">states 0, 4, and 3 enter at horizons 1, 2, and 3.</text>
+  <text class="t sub" x="58" y="681">States 1 and 2 never enter because each five-step cycle adds total sum zero; no later repeat can repair the failed strict test.</text>
+</svg>

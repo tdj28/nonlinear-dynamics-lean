@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720" role="img" aria-labelledby="five-state-events-title five-state-events-desc">
+  <title id="five-state-events-title">Nested finite exceedance events stabilize at mass three fifths below the weak bound one</title>
+  <desc id="five-state-events-desc">For the five-state cycle with uniform mass one fifth per state and threshold one, E zero is empty, E one contains state zero, E two contains states zero and four, and E three contains states zero, three, and four. E four and every later event contain those same three states. Their real measures are zero, one fifth, two fifths, and three fifths. The infinite union has mass three fifths. The positive part of the observable is 5 only at state zero, so its integral is one and the weak estimate reads three fifths less than or equal to one.</desc>
+  <defs>
+    <marker id="five-state-events-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A06733"/>
+    </marker>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#292721}
+    .title{font-size:22px;font-weight:700}
+    .sub{font-size:16px;fill:#554F47}
+    .head{font-size:16px;font-weight:700}
+    .label{font-size:16px}
+    .small{font-size:14px;fill:#554F47}
+    .mass{font-size:18px;font-weight:700}
+  </style>
+  <rect width="1000" height="720" rx="20" fill="#F7F2E8"/>
+  <text class="t title" x="34" y="38">Nested events, increasing measures, and the finite weak bound</text>
+  <text class="t sub" x="34" y="63">Uniform mass: each state weighs 1/5. Threshold: a = 1. Observable: [5, -4, 0, 0, -1].</text>
+
+  <g aria-label="Nested finite events">
+    <rect x="34" y="92" width="164" height="136" rx="12" fill="#FBF8F2" stroke="#9A9185" stroke-width="2"/>
+    <text class="t head" x="58" y="120">E0 = empty</text>
+    <text class="t mass" x="58" y="198">mass 0</text>
+    <line x1="204" y1="160" x2="225" y2="160" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-events-arrow)"/>
+
+    <rect x="236" y="92" width="164" height="136" rx="12" fill="#E8F0F7" stroke="#416587" stroke-width="2"/>
+    <text class="t head" x="260" y="120">E1 = {0}</text>
+    <circle cx="284" cy="157" r="17" fill="#FFFDF8" stroke="#416587" stroke-width="2"/><text class="t label" x="280" y="162">0</text>
+    <text class="t mass" x="260" y="198">mass 1/5</text>
+    <line x1="406" y1="160" x2="427" y2="160" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-events-arrow)"/>
+
+    <rect x="438" y="92" width="164" height="136" rx="12" fill="#E8F0F7" stroke="#416587" stroke-width="2"/>
+    <text class="t head" x="462" y="120">E2 = {0, 4}</text>
+    <circle cx="486" cy="157" r="17" fill="#FFFDF8" stroke="#416587" stroke-width="2"/><text class="t label" x="482" y="162">0</text>
+    <circle cx="530" cy="157" r="17" fill="#FFFDF8" stroke="#416587" stroke-width="2"/><text class="t label" x="526" y="162">4</text>
+    <text class="t mass" x="462" y="198">mass 2/5</text>
+    <line x1="608" y1="160" x2="629" y2="160" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-events-arrow)"/>
+
+    <rect x="640" y="92" width="164" height="136" rx="12" fill="#E8F0E3" stroke="#607B53" stroke-width="2"/>
+    <text class="t head" x="664" y="120">E3 = {0, 3, 4}</text>
+    <circle cx="688" cy="157" r="17" fill="#FFFDF8" stroke="#607B53" stroke-width="2"/><text class="t label" x="684" y="162">0</text>
+    <circle cx="732" cy="157" r="17" fill="#FFFDF8" stroke="#607B53" stroke-width="2"/><text class="t label" x="728" y="162">3</text>
+    <circle cx="776" cy="157" r="17" fill="#FFFDF8" stroke="#607B53" stroke-width="2"/><text class="t label" x="772" y="162">4</text>
+    <text class="t mass" x="664" y="198">mass 3/5</text>
+    <line x1="810" y1="160" x2="831" y2="160" stroke="#A06733" stroke-width="3" marker-end="url(#five-state-events-arrow)"/>
+
+    <rect x="842" y="92" width="124" height="136" rx="12" fill="#E8F0E3" stroke="#607B53" stroke-width="2"/>
+    <text class="t head" x="863" y="120">E4, E5, ...</text>
+    <text class="t label" x="863" y="158">{0, 3, 4}</text>
+    <text class="t mass" x="863" y="198">mass 3/5</text>
+  </g>
+
+  <rect x="34" y="256" width="932" height="270" rx="14" fill="#FFFDF8" stroke="#C9BBA9" stroke-width="2"/>
+  <text class="t head" x="58" y="286">REAL MEASURE OF EACH EVENT</text>
+  <line x1="184" y1="478" x2="884" y2="478" stroke="#6D665D" stroke-width="2"/>
+  <line x1="184" y1="470" x2="184" y2="486" stroke="#6D665D" stroke-width="2"/>
+  <line x1="324" y1="470" x2="324" y2="486" stroke="#6D665D" stroke-width="2"/>
+  <line x1="464" y1="470" x2="464" y2="486" stroke="#6D665D" stroke-width="2"/>
+  <line x1="604" y1="470" x2="604" y2="486" stroke="#6D665D" stroke-width="2"/>
+  <line x1="744" y1="470" x2="744" y2="486" stroke="#6D665D" stroke-width="2"/>
+  <line x1="884" y1="470" x2="884" y2="486" stroke="#6D665D" stroke-width="2"/>
+  <text class="t small" x="178" y="506">0</text><text class="t small" x="314" y="506">1/5</text><text class="t small" x="454" y="506">2/5</text><text class="t small" x="594" y="506">3/5</text><text class="t small" x="734" y="506">4/5</text><text class="t small" x="878" y="506">1</text>
+
+  <text class="t label" x="58" y="331">E0</text><rect x="184" y="314" width="2" height="22" fill="#9A9185"/>
+  <text class="t label" x="58" y="369">E1</text><rect x="184" y="352" width="140" height="22" rx="5" fill="#DCE9F3" stroke="#416587"/>
+  <text class="t label" x="58" y="407">E2</text><rect x="184" y="390" width="280" height="22" rx="5" fill="#DCE9F3" stroke="#416587"/>
+  <text class="t label" x="58" y="445">E3 = E4 = union</text><rect x="184" y="428" width="420" height="22" rx="5" fill="#E0EAD9" stroke="#607B53" stroke-width="2"/>
+  <line x1="604" y1="304" x2="604" y2="458" stroke="#607B53" stroke-width="2" stroke-dasharray="6 5"/>
+  <text class="t small" x="618" y="325">infinite-event mass = 3/5</text>
+
+  <rect x="34" y="554" width="932" height="132" rx="14" fill="#F4E8DF" stroke="#A06733" stroke-width="2"/>
+  <text class="t head" x="58" y="584">FINITE-MASS WEAK ESTIMATE</text>
+  <text class="t label" x="58" y="616">positive part values: [5, 0, 0, 0, 0]</text>
+  <text class="t label" x="58" y="643">integral of g+ = (5 + 0 + 0 + 0 + 0) / 5 = 1</text>
+  <text class="t mass" x="58" y="671">event mass 3/5  &lt;=  1 / 1 = 1</text>
+  <rect x="622" y="600" width="300" height="28" rx="6" fill="#FFFDF8" stroke="#A06733"/>
+  <rect x="622" y="600" width="180" height="28" rx="6" fill="#E0EAD9" stroke="#607B53"/>
+  <text class="t small" x="622" y="648">0</text><text class="t small" x="786" y="648">3/5</text><text class="t small" x="914" y="648">1</text>
+  <text class="t small" x="622" y="670">Same 0-to-1 scale as the theorem's bound.</text>
+</svg>
