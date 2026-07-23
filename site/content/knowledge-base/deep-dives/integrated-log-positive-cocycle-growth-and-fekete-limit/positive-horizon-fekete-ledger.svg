@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780"
+     viewBox="0 0 1200 780" role="img"
+     aria-labelledby="positiveFeketeTitle positiveFeketeDesc">
+  <title id="positiveFeketeTitle">Positive-horizon Fekete ledger and a failed subadditivity test</title>
+  <desc id="positiveFeketeDesc">The two samplewise finite-time rows are integrated into one deterministic scalar sequence before normalization. A plot shows the formal zero-time normalized value at zero and every positive normalized value at one half log 2, approximately 0.3466. The Fekete infimum uses only horizons at least one. A near-miss candidate with J one equal to one half log 2 and J two equal to three halves log 2 fails subadditivity because J two exceeds twice J one. A claim ledger says deterministic scalar convergence is proved, while samplewise convergence and a Lyapunov exponent are not.</desc>
+  <defs>
+    <marker id="feketeArrow" markerWidth="9" markerHeight="9"
+            refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#416887"/>
+    </marker>
+    <style>
+      .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#262A2E}
+      .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+      .title{font-size:30px;font-weight:700}
+      .subtitle{font-size:17px;fill:#52606D}
+      .head{font-size:17px;font-weight:700}
+      .body{font-size:15px}
+      .small{font-size:13px;fill:#59636D}
+      .math{font-family:Georgia,'Times New Roman',serif;font-size:18px}
+      .light{fill:#FFFDF8}
+      .lightBody{fill:#E8EDF2}
+      .lightWarn{fill:#F2C9C0}
+      .red{fill:#963F35}
+    </style>
+  </defs>
+
+  <rect width="1200" height="780" fill="#F5F0E6"/>
+  <rect x="0" y="0" width="1200" height="16" fill="#16243A"/>
+  <text x="56" y="62" class="serif title">Fekete sees one scalar sequence - not two sample paths</text>
+  <text x="56" y="91" class="sans subtitle">Integrate first, normalize second, and exclude the formal zero-time quotient from the infimum.</text>
+
+  <g>
+    <rect x="56" y="126" width="196" height="74" rx="14"
+          fill="#F4E4CD" stroke="#B66A2C" stroke-width="1.5"/>
+    <text x="154" y="155" text-anchor="middle" class="sans head">sample rows</text>
+    <text x="154" y="180" text-anchor="middle" class="sans body">P_k(amber), P_k(blue)</text>
+    <path d="M258 163 H315" stroke="#416887" stroke-width="3"
+          marker-end="url(#feketeArrow)"/>
+    <rect x="324" y="126" width="196" height="74" rx="14"
+          fill="#E5EEF4" stroke="#416887" stroke-width="1.5"/>
+    <text x="422" y="155" text-anchor="middle" class="sans head">integrate</text>
+    <text x="422" y="177" text-anchor="middle" class="sans body">I_k = integral of P_k</text>
+    <text x="422" y="194" text-anchor="middle" class="sans small">against mu</text>
+    <path d="M526 163 H583" stroke="#416887" stroke-width="3"
+          marker-end="url(#feketeArrow)"/>
+    <rect x="592" y="126" width="196" height="74" rx="14"
+          fill="#E5EEF4" stroke="#416887" stroke-width="1.5"/>
+    <text x="690" y="155" text-anchor="middle" class="sans head">normalize</text>
+    <text x="690" y="180" text-anchor="middle" class="sans body">A_k = I_k / k</text>
+    <path d="M794 163 H851" stroke="#416887" stroke-width="3"
+          marker-end="url(#feketeArrow)"/>
+    <rect x="860" y="126" width="284" height="74" rx="14"
+          fill="#16243A"/>
+    <text x="1002" y="155" text-anchor="middle" class="sans head light">deterministic limit</text>
+    <text x="1002" y="180" text-anchor="middle" class="sans body light">inf { A_k : k &gt;= 1 }</text>
+  </g>
+
+  <rect x="56" y="238" width="700" height="356" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <text x="82" y="274" class="sans head">Normalized integrated values in units of L = log 2</text>
+
+  <path d="M130 528 H700 M130 320 V528" fill="none"
+        stroke="#5D6670" stroke-width="2"/>
+  <g class="sans small" text-anchor="middle">
+    <text x="130" y="553">0</text><text x="220" y="553">1</text>
+    <text x="310" y="553">2</text><text x="400" y="553">3</text>
+    <text x="490" y="553">4</text><text x="580" y="553">5</text>
+    <text x="670" y="553">6</text>
+  </g>
+  <text x="706" y="552" class="sans small">k</text>
+  <text x="112" y="533" text-anchor="end" class="sans small">0</text>
+  <text x="112" y="405" text-anchor="end" class="sans small">1/2</text>
+  <path d="M130 400 H700" stroke="#668253" stroke-width="2"
+        stroke-dasharray="8 7"/>
+  <text x="690" y="387" text-anchor="end" class="sans body"
+        fill="#526C42">positive-time infimum = 1/2</text>
+
+  <circle cx="130" cy="528" r="9" fill="#A34D40"/>
+  <text x="151" y="508" class="sans body red">A_0/L = 0</text>
+  <text x="151" y="526" class="sans small">formal division boundary</text>
+  <g fill="#668253" stroke="#365B47" stroke-width="2">
+    <circle cx="220" cy="400" r="8"/><circle cx="310" cy="400" r="8"/>
+    <circle cx="400" cy="400" r="8"/><circle cx="490" cy="400" r="8"/>
+    <circle cx="580" cy="400" r="8"/><circle cx="670" cy="400" r="8"/>
+  </g>
+  <text x="406" y="582" text-anchor="middle" class="sans body">
+    Actual rate: (1/2)L approx. 0.3466. Including k = 0 would give the wrong infimum 0.
+  </text>
+
+  <rect x="788" y="238" width="356" height="178" rx="18"
+        fill="#F4E9E4" stroke="#A34D40" stroke-width="2"/>
+  <text x="814" y="274" class="sans head red">Near miss: a failed ledger</text>
+  <text x="814" y="307" class="serif math">J_1 = (1/2)L,   J_2 = (3/2)L</text>
+  <text x="814" y="345" class="sans body">Subadditivity at 1 + 1 would require</text>
+  <text x="814" y="375" class="serif math">J_2 &lt;= J_1 + J_1 = L,</text>
+  <text x="814" y="400" class="sans body red">but (3/2)L &gt; L. Fekete cannot be invoked.</text>
+
+  <rect x="788" y="438" width="356" height="156" rx="18"
+        fill="#E8F0E3" stroke="#668253" stroke-width="2"/>
+  <text x="814" y="474" class="sans head">What the checked theorem says</text>
+  <text x="814" y="506" class="sans body">PROVED: A_k converges in the real numbers.</text>
+  <text x="814" y="535" class="sans body">PROVED: positive-index infimum is the limit.</text>
+  <text x="814" y="564" class="sans body">NOT NEEDED: probability or ergodicity.</text>
+
+  <rect x="56" y="628" width="1088" height="108" rx="18"
+        fill="#16243A"/>
+  <text x="82" y="664" class="sans head light">The quantifier boundary</text>
+  <text x="82" y="694" class="sans body lightBody">
+    Proved: the deterministic numbers A_k = (integral of P_k against mu) / k converge.
+  </text>
+  <text x="82" y="720" class="sans body lightWarn">
+    Not proved: P_k(omega) / k converges pointwise or almost everywhere; no Lyapunov exponent is identified.
+  </text>
+</svg>

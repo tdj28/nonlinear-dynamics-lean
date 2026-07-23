@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:34 PDT
+Last updated: 2026-07-22 20:49 PDT
 
-Audited baseline: `main` at `b4f0e27`
+Audited baseline: `main` at `529fc28`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **16 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **17 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -372,6 +372,20 @@ positive/empty-dimension, and zero-safe subadditivity boundaries without
 claiming integrability or an asymptotic exponent. The tutorial's partial
 zero-horizon result `none` is explicitly distinguished from the later
 project's totalized normalized process; exact Mathlib checks remain cloud-only.
+*Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit*
+now follows a uniform amber/blue swap with scalar generators `[2]` and `[1]`.
+Its two sample rows integrate to the exact scalar sequence
+`Iₖ=(k/2) log 2`, whose positive-time normalization is constantly
+`(1/2) log 2`; the formal Lean value `A₀=0` visibly gives the wrong infimum
+if zero time is admitted. A separate candidate with
+`J₁=(1/2) log 2` and `J₂=(3/2) log 2` fails subadditivity at `1+1` before any
+Fekete argument can begin. Two accessible figures, six Lean bridges, the
+complete thirteen-declaration map, and an executed `Std` worksheet expose the
+totalized-integral, integrability, preservation, subadditivity, and
+positive-index boundaries. The chapter repeatedly distinguishes convergence
+of one deterministic sequence of integrals from any pointwise or
+almost-everywhere sample limit, Kingman theorem, or Lyapunov exponent; its
+exact Mathlib/project check remains Linux-cloud only.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3259,6 +3273,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `529fc28`: rebuild *Finite-Time Norm and Extended-Log-Norm Observables for
+  Matrix Cocycles* around positive and exact-collapse paths, distinct real and
+  extended logarithm policies, seven Lean bridges, and an independently
+  audited local worksheet.
 - `b4f0e27`: rebuild *Measurable Finite Random-Matrix Products and
   Proof-Carrying Pushforward Laws* around two complete histories, an
   atom-by-atom product law, collision merging, a numerical dependence witness,

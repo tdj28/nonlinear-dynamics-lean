@@ -1,114 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760"
-     viewBox="0 0 800 760" role="img"
-     aria-labelledby="integratedFeketeTitle integratedFeketeDesc">
-  <title id="integratedFeketeTitle">Dependency graph for the deterministic Fekete limit</title>
-  <desc id="integratedFeketeDesc">A pointwise cocycle bound, an unconditional preserved-shift integral identity, and finite-horizon integrability propagated from the explicit one-step hypothesis jointly justify integral monotonicity and additivity, producing a subadditive real sequence. In a separate unconditional branch, log-positive nonnegativity produces nonnegative normalized values and a zero lower bound. Subadditivity and the lower bound merge at the deterministic positive-time Fekete limit. No samplewise, ergodic, or Lyapunov conclusion follows.</desc>
-  <rect width="800" height="760" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:16px;font-weight:700}
-    .h{font-size:12px;font-weight:700}
-    .s{font-size:11px}
-    .m{font-size:10px;fill:#5A544C}
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820"
+     viewBox="0 0 1200 820" role="img"
+     aria-labelledby="integratedLedgerTitle integratedLedgerDesc">
+  <title id="integratedLedgerTitle">Exact two-state integrated log-positive growth ledger</title>
+  <desc id="integratedLedgerDesc">A uniform two-state base swaps amber and blue. The one-by-one generator is 2 at amber and 1 at blue. In units of log 2, the finite sample values from horizons zero through six are zero zero, one zero, one one, two one, two two, three two, and three three. Their uniform integrals are zero, one half, one, three halves, two, five halves, and three. Every positive-horizon normalized integral is one half, while the formal zero-horizon quotient is zero.</desc>
   <defs>
-    <marker id="integratedFeketeAlgebraArrow" markerWidth="8" markerHeight="8"
-            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#4B6787"/>
+    <marker id="ledgerArrowBlue" markerWidth="9" markerHeight="9"
+            refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#416887"/>
     </marker>
-    <marker id="integratedFeketeIntegrabilityArrow" markerWidth="8" markerHeight="8"
-            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#C16F2C"/>
-    </marker>
-    <marker id="integratedFeketeOrderArrow" markerWidth="8" markerHeight="8"
-            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#6F8D5E"/>
-    </marker>
+    <style>
+      .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#262A2E}
+      .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+      .title{font-size:30px;font-weight:700}
+      .subtitle{font-size:17px;fill:#52606D}
+      .section{font-size:17px;font-weight:700;letter-spacing:.5px}
+      .body{font-size:16px}
+      .small{font-size:14px;fill:#59636D}
+      .tableHead{font-size:15px;font-weight:700;fill:#FFFDF8}
+      .cell{font-size:17px;font-weight:600}
+      .math{font-family:Georgia,'Times New Roman',serif;font-size:18px}
+    </style>
   </defs>
 
-  <text x="24" y="32" class="t title">Dependency graph for the deterministic limit</text>
-  <text x="24" y="53" class="t m">Integrability joins the algebra before subadditivity; the lower-bound branch is unconditional.</text>
+  <rect width="1200" height="820" fill="#F5F0E6"/>
+  <rect x="0" y="0" width="1200" height="16" fill="#16243A"/>
+  <text x="56" y="62" class="serif title">Integrate the two sample rows, then normalize</text>
+  <text x="56" y="91" class="sans subtitle">Exact finite values for a uniform swap base; L denotes log 2, approximately 0.6931.</text>
 
-  <rect x="24" y="78" width="236" height="42" rx="12" fill="#16243A"/>
-  <text x="142" y="104" text-anchor="middle" class="t h" style="fill:#FFFDF8">ALGEBRA</text>
-  <rect x="282" y="78" width="236" height="42" rx="12" fill="#9B5523"/>
-  <text x="400" y="104" text-anchor="middle" class="t h" style="fill:#FFFDF8">INTEGRABILITY</text>
-  <rect x="540" y="78" width="236" height="42" rx="12" fill="#315F55"/>
-  <text x="658" y="104" text-anchor="middle" class="t h" style="fill:#FFFDF8">UNCONDITIONAL ORDER</text>
+  <rect x="56" y="124" width="420" height="134" rx="18"
+        fill="#F4E4CD" stroke="#B66A2C" stroke-width="2"/>
+  <circle cx="98" cy="169" r="20" fill="#C97932"/>
+  <text x="132" y="163" class="sans section">AMBER</text>
+  <text x="132" y="188" class="sans body">mass 1/2 - generator [2]</text>
+  <text x="80" y="230" class="serif math">P_1(amber) = positive log of norm [2] = L</text>
 
-  <rect x="24" y="142" width="236" height="66" rx="13"
-        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="142" y="169" text-anchor="middle" class="t h">SHIFTED POINTWISE BOUND</text>
-  <text x="142" y="191" text-anchor="middle" class="t s">split a long cocycle product</text>
+  <rect x="724" y="124" width="420" height="134" rx="18"
+        fill="#DFEAF2" stroke="#416887" stroke-width="2"/>
+  <circle cx="766" cy="169" r="20" fill="#416887"/>
+  <text x="800" y="163" class="sans section">BLUE</text>
+  <text x="800" y="188" class="sans body">mass 1/2 - generator [1]</text>
+  <text x="748" y="230" class="serif math">P_1(blue) = positive log of norm [1] = 0</text>
 
-  <rect x="282" y="142" width="236" height="66" rx="13"
-        fill="#F7E9DA" stroke="#C16F2C" stroke-width="1.5"/>
-  <text x="400" y="169" text-anchor="middle" class="t h">ONE-STEP INTEGRABILITY</text>
-  <text x="400" y="191" text-anchor="middle" class="t s">the explicit hypothesis hC</text>
+  <path d="M478 151 C555 111 645 111 722 151" fill="none"
+        stroke="#416887" stroke-width="3" marker-end="url(#ledgerArrowBlue)"/>
+  <path d="M722 225 C645 276 555 276 478 225" fill="none"
+        stroke="#416887" stroke-width="3" marker-end="url(#ledgerArrowBlue)"/>
+  <text x="600" y="133" text-anchor="middle" class="sans small">T</text>
+  <text x="600" y="265" text-anchor="middle" class="sans small">T</text>
 
-  <rect x="540" y="142" width="236" height="66" rx="13"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="658" y="169" text-anchor="middle" class="t h">LOG-POSITIVE NONNEGATIVITY</text>
-  <text x="658" y="191" text-anchor="middle" class="t s">pointwise and hypothesis-free</text>
+  <rect x="56" y="294" width="1088" height="416" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <rect x="56" y="294" width="1088" height="48" rx="18"
+        fill="#16243A"/>
+  <rect x="56" y="324" width="1088" height="18" fill="#16243A"/>
 
-  <rect x="24" y="246" width="236" height="68" rx="13"
-        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="142" y="273" text-anchor="middle" class="t h">SHIFT INTEGRAL IDENTITY</text>
-  <text x="142" y="295" text-anchor="middle" class="t s">unconditional under preservation</text>
+  <text x="116" y="325" text-anchor="middle" class="sans tableHead">horizon k</text>
+  <text x="315" y="325" text-anchor="middle" class="sans tableHead">P_k(amber) / L</text>
+  <text x="520" y="325" text-anchor="middle" class="sans tableHead">P_k(blue) / L</text>
+  <text x="756" y="325" text-anchor="middle" class="sans tableHead">I_k / L = average</text>
+  <text x="1004" y="325" text-anchor="middle" class="sans tableHead">A_k / L = (I_k / k) / L</text>
 
-  <path d="M400 210 L400 240" fill="none" stroke="#C16F2C"
-        stroke-width="2.5" marker-end="url(#integratedFeketeIntegrabilityArrow)"/>
-  <rect x="282" y="246" width="236" height="68" rx="13"
-        fill="#F7E9DA" stroke="#C16F2C" stroke-width="1.5"/>
-  <text x="400" y="273" text-anchor="middle" class="t h">EVERY HORIZON INTEGRABLE</text>
-  <text x="400" y="295" text-anchor="middle" class="t s">hC propagates through finite sums</text>
+  <rect x="57" y="343" width="1086" height="46" fill="#F4E9E4"/>
+  <g class="sans cell" text-anchor="middle">
+    <text x="116" y="374">0</text><text x="315" y="374">0</text>
+    <text x="520" y="374">0</text><text x="756" y="374">0</text>
+    <text x="1004" y="374" fill="#9A473B">0  (formal 0/0)</text>
 
-  <path d="M658 210 L658 240" fill="none" stroke="#6F8D5E"
-        stroke-width="2.5" marker-end="url(#integratedFeketeOrderArrow)"/>
-  <rect x="540" y="246" width="236" height="68" rx="13"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="658" y="273" text-anchor="middle" class="t h">NORMALIZED VALUES NONNEGATIVE</text>
-  <text x="658" y="295" text-anchor="middle" class="t s">also true for totalized integrals</text>
+    <text x="116" y="424">1</text><text x="315" y="424">1</text>
+    <text x="520" y="424">0</text><text x="756" y="424">1/2</text>
+    <text x="1004" y="424">1/2</text>
 
-  <path d="M142 210 L12 210 L12 338 L170 360" fill="none" stroke="#4B6787"
-        stroke-width="2.5" marker-end="url(#integratedFeketeAlgebraArrow)"/>
-  <path d="M142 316 L142 338 L240 360" fill="none" stroke="#4B6787"
-        stroke-width="2.5" marker-end="url(#integratedFeketeAlgebraArrow)"/>
-  <path d="M400 316 L400 360" fill="none" stroke="#C16F2C"
-        stroke-width="2.5" marker-end="url(#integratedFeketeIntegrabilityArrow)"/>
-  <rect x="24" y="366" width="494" height="76" rx="14"
-        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
-  <text x="271" y="393" text-anchor="middle" class="t h">JUSTIFIED INTEGRAL STEP</text>
-  <text x="271" y="414" text-anchor="middle" class="t s">finite integrability licenses monotonicity and addition;</text>
-  <text x="271" y="430" text-anchor="middle" class="t s">preservation removes the shifted base point</text>
+    <text x="116" y="474">2</text><text x="315" y="474">1</text>
+    <text x="520" y="474">1</text><text x="756" y="474">1</text>
+    <text x="1004" y="474">1/2</text>
 
-  <path d="M658 316 L658 360" fill="none" stroke="#6F8D5E"
-        stroke-width="2.5" marker-end="url(#integratedFeketeOrderArrow)"/>
-  <rect x="540" y="366" width="236" height="76" rx="14"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="658" y="393" text-anchor="middle" class="t h">ZERO IS A LOWER BOUND</text>
-  <text x="658" y="414" text-anchor="middle" class="t s">for the full normalized range</text>
-  <text x="658" y="430" text-anchor="middle" class="t m">no hC required</text>
+    <text x="116" y="524">3</text><text x="315" y="524">2</text>
+    <text x="520" y="524">1</text><text x="756" y="524">3/2</text>
+    <text x="1004" y="524">1/2</text>
 
-  <path d="M271 444 L271 472" fill="none" stroke="#4B6787"
-        stroke-width="2.5" marker-end="url(#integratedFeketeAlgebraArrow)"/>
-  <rect x="24" y="478" width="494" height="68" rx="14"
-        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="271" y="505" text-anchor="middle" class="t h">SUBADDITIVE REAL SEQUENCE</text>
-  <text x="271" y="527" text-anchor="middle" class="t s">this branch carries the hC dependency</text>
+    <text x="116" y="574">4</text><text x="315" y="574">2</text>
+    <text x="520" y="574">2</text><text x="756" y="574">2</text>
+    <text x="1004" y="574">1/2</text>
 
-  <path d="M271 548 L271 568 L360 590" fill="none" stroke="#4B6787"
-        stroke-width="2.5" marker-end="url(#integratedFeketeAlgebraArrow)"/>
-  <path d="M658 444 L658 568 L440 590" fill="none" stroke="#6F8D5E"
-        stroke-width="2.5" marker-end="url(#integratedFeketeOrderArrow)"/>
-  <rect x="130" y="596" width="540" height="74" rx="15" fill="#16243A"/>
-  <text x="400" y="624" text-anchor="middle" class="t h" style="fill:#FFFDF8">DETERMINISTIC FEKETE LIMIT</text>
-  <text x="400" y="648" text-anchor="middle" class="t s" style="fill:#D9E1EA">positive-horizon ratios converge to their infimum</text>
+    <text x="116" y="624">5</text><text x="315" y="624">3</text>
+    <text x="520" y="624">2</text><text x="756" y="624">5/2</text>
+    <text x="1004" y="624">1/2</text>
 
-  <rect x="24" y="690" width="752" height="46" rx="12"
-        fill="#F3E8E0" stroke="#A55445" stroke-width="1.5"/>
-  <text x="400" y="710" text-anchor="middle" class="t h">OUTCOME DEPENDENCE WAS INTEGRATED AWAY BEFORE THE LIMIT</text>
-  <text x="400" y="728" text-anchor="middle" class="t m">No samplewise convergence, ergodic theorem, limit interchange, or Lyapunov exponent is established.</text>
+    <text x="116" y="674">6</text><text x="315" y="674">3</text>
+    <text x="520" y="674">3</text><text x="756" y="674">3</text>
+    <text x="1004" y="674">1/2</text>
+  </g>
 
-  <text x="24" y="752" class="t m">The raw measure is not automatically probabilistic; finite scalar rescaling rescales the integrated sequence and rate.</text>
+  <g stroke="#D8CEC0" stroke-width="1">
+    <path d="M56 389 H1144 M56 439 H1144 M56 489 H1144 M56 539 H1144
+             M56 589 H1144 M56 639 H1144"/>
+    <path d="M176 294 V710 M418 294 V710 M624 294 V710 M888 294 V710"/>
+  </g>
+
+  <rect x="56" y="736" width="662" height="56" rx="14"
+        fill="#E5EEF4" stroke="#416887" stroke-width="1.5"/>
+  <text x="78" y="770" class="serif math">I_5 = (5/2)L = I_2 + I_3 = L + (3/2)L</text>
+  <rect x="742" y="736" width="402" height="56" rx="14"
+        fill="#E8F0E3" stroke="#668253" stroke-width="1.5"/>
+  <text x="943" y="760" text-anchor="middle" class="sans section">positive horizons only</text>
+  <text x="943" y="782" text-anchor="middle" class="sans body">A_k = L/2 approx. 0.3466 for k &gt;= 1</text>
 </svg>

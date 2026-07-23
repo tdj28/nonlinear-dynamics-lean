@@ -2,17 +2,17 @@
 title: "Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit"
 slug: "integrated-log-positive-cocycle-growth-and-fekete-limit"
 date: 2026-07-21
-summary: "A textbook derivation of the subadditive real sequence obtained by integrating finite-horizon log-positive cocycle growth, together with its positive-time Fekete infimum and deterministic convergence theorem."
-lead: "Finite-horizon integrability becomes an asymptotic theorem only after the outcome dependence has been integrated away. This chapter follows that passage declaration by declaration while keeping raw measure, totalized integrals, zero time, and samplewise nonclaims visible."
+summary: "Compute a two-state cocycle exactly, integrate its finite log-positive values, and then climb declaration by declaration to the checked deterministic Fekete limit without turning it into a samplewise exponent."
+lead: "Two sample rows become one scalar sequence only after integration. This chapter keeps that change of type visible from an exact finite ledger through subadditivity, positive-time normalization, Mathlib's Fekete infimum, and every explicit nonclaim."
 draft: false
 pro_reviewed: false
-level: "Matrix cocycles, Bochner integration, measure-preserving pullbacks, subadditive real sequences, normalization, infima, and deterministic Fekete convergence"
-reading_time: "95 to 130 minutes"
-prerequisites: "One-sided discrete matrix cocycles, finite-horizon log-positive envelopes, finite sums, measure-preserving maps, ordinary real-valued integrability, and elementary limits; no ergodic theorem is assumed"
+level: "Finite cocycle observables, Bochner integration, measure-preserving pullbacks, subadditive sequences, and deterministic limits"
+reading_time: "105 to 140 minutes"
+prerequisites: "Finite sums, logarithms, elementary integration, and sequences; measurable maps, measures, Lean notation, and Fekete's lemma are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth"
 toc: true
 og_image: "integrated-log-positive-cocycle-growth-and-fekete-limit-card.png"
-og_image_alt: "A dependency map shows a shifted cocycle bound and finite-horizon integrability propagated from the explicit one-step hypothesis joining at the justified integral step that yields scalar subadditivity. A separate unconditional branch gives nonnegative normalized values and a lower bound. Both feed a deterministic positive-time Fekete limit, while a warning excludes samplewise and ergodic conclusions."
+og_image_alt: "A uniform two-state swap alternates scalar generators 2 and 1. A finite ledger shows the two log-positive sample rows, their integrated values, and the normalized positive-time value one half log 2, while zero time is marked as a formal division boundary."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -23,156 +23,175 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+**Editorial status.** This is an AI-assisted public working note. Its
+mathematical prose, Lean declaration map, figures, and accessibility have not
+yet received the required human and Pro reviews. The checked Lean source is
+authoritative where prose and code disagree.
 {{< /panel >}}
 
-RMT-15 built a nonnegative finite-horizon envelope for a one-sided matrix
-cocycle:
+## Begin with two states and calculate every finite value
+
+Let the base space have two points:
 
 \[
-P_k(\omega)
-{} =
-\log^+\lVert C(k,\omega)\rVert_\infty.
+\Omega=\{\mathsf{amber},\mathsf{blue}\}.
 \]
 
-It proved that one explicit assumption, integrability of \(P_1\), propagates
-to \(P_k\) for every fixed natural horizon. RMT-16 asks what deterministic
-asymptotic statement can be obtained from exactly that layer, without adding
-probability, ergodicity, invertibility, or a negative-log hypothesis.
-
-The answer is deliberately ordered. First integrate each horizon:
+The base map swaps them:
 
 \[
-I_k=\int_\Omega P_k(\omega)\,d\mu(\omega).
+T(\mathsf{amber})=\mathsf{blue},
+\qquad
+T(\mathsf{blue})=\mathsf{amber}.
 \]
 
-Then prove that \(I:\mathbb N\to\mathbb R\) is subadditive. Only after that
-scalar reduction define
+Give each point mass \(1/2\). This particular \(\mu\) is a
+{{< refterm "probability-measure" "probability measure" >}}, and the swap
+preserves it. The checked project theorem does **not** require probability;
+we choose it here because an average of two values is easy to see.
+
+Use one-dimensional complex matrices:
 
 \[
-A_k=\frac{I_k}{k}
+A(\mathsf{amber})=[2],
+\qquad
+A(\mathsf{blue})=[1].
 \]
 
-and invoke Mathlib's deterministic Fekete theorem. The resulting checked limit
-is
+For a one-by-one matrix, the project's maximum absolute row-sum norm is just
+the absolute value of its entry. Put
 
 \[
-A_k\longrightarrow
-\gamma_\mu^+(C)
-{} =
-\inf_{k\ge1}\frac{I_k}{k}.
+L=\log 2\gt0.
 \]
 
-This is the project's first asymptotic theorem for the integrated
-log-positive cocycle envelope. It is not a theorem about the convergence of
-\(P_k(\omega)/k\), not an application of Kingman, and not a Lyapunov exponent.
+The finite log-positive cocycle observable is
 
-## Choose a route up
+\[
+P_k(\omega)=\log^+\lVert C(k,\omega)\rVert_\infty.
+\]
 
-| Route | Begin with | Destination |
-|---|---|---|
-| First encounter | [The proof braid](#the-proof-braid) | See the algebraic and analytic strands merge at Fekete |
-| Type route | [Three objects and three quantifier patterns](#three-objects-and-three-quantifier-patterns) | Separate functions of outcomes from deterministic numbers |
-| Integral route | [Camp one: the totalized integral](#camp-one-the-totalized-integral) | Understand why a real integral value is not an integrability certificate |
-| Dynamics route | [Camp two: preserved pullback integrals](#camp-two-preserved-pullback-integrals) | Remove a base shift only after integration |
-| Bound route | [Camp three: integrate the finite orbit majorant](#camp-three-integrate-the-finite-orbit-majorant) | Derive the exact orbit-sum integral and linear bound |
-| Sequence route | [Camp four: scalar subadditivity](#camp-four-scalar-subadditivity) | Package the integrated values for Mathlib |
-| Limit route | [Summit: the deterministic Fekete limit](#summit-the-deterministic-fekete-limit) | Read the positive-index infimum and convergence statement exactly |
-| Lean route | [The complete thirteen-declaration map](#the-complete-thirteen-declaration-map) | Audit every public declaration in source order |
-| Integrity route | [What remains outside the theorem](#what-remains-outside-the-theorem) | Reject samplewise, probabilistic, and Lyapunov overreads |
+Starting at amber, the sampled factors are
+\(2,1,2,1,\ldots\). Starting at blue, they are
+\(1,2,1,2,\ldots\). Every factor has norm at least one, so positive log does
+not clip anything in this example:
 
-### Learning objectives
+\[
+\begin{aligned}
+P_k(\mathsf{amber})&=\left\lceil\frac{k}{2}\right\rceil L,\\
+P_k(\mathsf{blue})&=\left\lfloor\frac{k}{2}\right\rfloor L.
+\end{aligned}
+\]
 
-By the summit, a reader should be able to:
+Integrate the two values using their masses:
 
-1. distinguish \(P_k(\omega)\), \(I_k\), and \(A_k\) by type and quantifiers;
-2. explain why Mathlib's Bochner integral is defined even when its integrand
-   is not integrable;
-3. identify which RMT-16 declarations are unconditional and why that does not
-   make their integrals analytically meaningful;
-4. explain where RMT-15's one-step integrability hypothesis enters;
-5. use measure preservation to identify a shifted pullback integral;
-6. integrate the finite orbit-sum majorant term by term;
-7. explain why no independence hypothesis is needed;
-8. derive \(I_k\le kI_1\);
-9. derive \(I_{m+k}\le I_m+I_k\) without changing the cocycle product order;
-10. read Mathlib's <code>Subadditive</code> predicate;
-11. distinguish the formal value \(A_0=0\) from a zero-time average;
-12. read <code>Subadditive.lim</code> as an infimum over positive indices;
-13. explain why Fekete ratios need not be monotone;
-14. distinguish a raw-measure integral from an expectation;
-15. qualify finite scalar rescaling of the measure correctly;
-16. explain why deterministic convergence of \(A_k\) says nothing directly
-    about samplewise convergence; and
-17. identify every additional direction left for ergodic and Lyapunov theory.
+\[
+\begin{aligned}
+I_k
+&=
+\int_\Omega P_k(\omega)\,d\mu(\omega)\\
+&=
+\frac12P_k(\mathsf{amber})
++\frac12P_k(\mathsf{blue})\\
+&=
+\frac{k}{2}L.
+\end{aligned}
+\]
 
-## The proof braid
+For positive \(k\), normalize:
+
+\[
+A_k=\frac{I_k}{k}=\frac12L\approx0.3466.
+\]
+
+Here is the complete horizon-zero-through-six ledger.
+
+| \(k\) | \(P_k(\mathsf{amber})/L\) | \(P_k(\mathsf{blue})/L\) | \(I_k/L\) | \(A_k/L\) |
+|---:|---:|---:|---:|---:|
+| 0 | 0 | 0 | 0 | \(0\), by Lean's formal \(0/0=0\) convention |
+| 1 | 1 | 0 | \(1/2\) | \(1/2\) |
+| 2 | 1 | 1 | \(1\) | \(1/2\) |
+| 3 | 2 | 1 | \(3/2\) | \(1/2\) |
+| 4 | 2 | 2 | \(2\) | \(1/2\) |
+| 5 | 3 | 2 | \(5/2\) | \(1/2\) |
+| 6 | 3 | 3 | \(3\) | \(1/2\) |
+
+The integrated sequence is not merely subadditive here; it is additive. For
+the split \(5=2+3\),
+
+\[
+I_5=\frac52L=I_2+I_3=L+\frac32L.
+\]
+
+That calculation is the finite arithmetic behind the general inequality
+\(I_{m+k}\le I_m+I_k\).
 
 {{< reference-figure
+  wide="true"
   src="integrated-log-positive-cocycle-growth-fekete.svg"
-  alt="Three dependency lanes lead to the deterministic Fekete limit. A shifted pointwise bound, an unconditional preserved-shift integral identity, and finite-horizon integrability obtained from the explicit one-step hypothesis jointly justify the integral step that yields scalar subadditivity. Separately, log-positive nonnegativity gives normalized nonnegativity and a lower bound without an integrability hypothesis. Subadditivity and the lower bound merge at Fekete. A warning says that outcome dependence was integrated away and no samplewise limit is proved."
-  caption="**Finding:** the algebraic ingredients and propagated integrability meet before scalar subadditivity: finite-horizon integrability is what licenses integral monotonicity and additivity. The lower-bound branch is different and unconditional; log-positive nonnegativity survives the totalized integral and normalization without <code>hC</code>. Fekete consumes the resulting subadditivity proof together with that lower bound. Since the outcome variable has already been integrated away, the theorem supplies no almost-everywhere, ergodic, limit-interchange, or Lyapunov conclusion."
+  alt="A uniform two-state base swaps amber and blue. The one-by-one generator is 2 at amber and 1 at blue. In units of log 2, a table gives the two finite sample values, their uniform integral, and the normalized integral for horizons zero through six. Every positive normalized value is one half, while horizon zero is marked as a formal zero divided by zero."
+  caption="**Finding:** integration combines two outcome-dependent rows into the deterministic scalar \(I_k=(k/2)\log 2\). Only after that combination do we divide by time. The positive-horizon values all equal \((1/2)\log 2\), but the formal zero-horizon value is \(0\). The checked theorem follows this integrate-then-normalize order; it does not prove convergence of either sample row divided by time."
 >}}
 
-The algebra lane supplies the shifted pointwise inequality and the
-preserved-shift integral identity. RMT-15's explicit one-step hypothesis
-separately propagates integrability to each finite horizon. Those dependencies
-join before the integral inequality: finite-horizon integrability licenses
-monotonicity and additivity, after which the shifted identity produces ordinary
-scalar subadditivity.
+### Boundary case: zero time can corrupt the infimum
 
-The order lane does not depend on that integrability hypothesis. Pointwise
-log-positive nonnegativity gives nonnegative totalized integrals, nonnegative
-normalized values, and zero as a lower bound. Fekete needs the subadditivity
-branch and this unconditional lower-bound branch: neither alone supplies the
-convergence theorem used here.
-
-## Three objects and three quantifier patterns
-
-Fix a measurable base type \(\Omega\), a finite matrix index type \(\iota\)
-with decidable equality, an arbitrary measure \(\mu\), and a bundled
-<code>DiscreteMatrixCocycle μ</code>. The cocycle has a measurable base map
-\(T\) preserving \(\mu\), a measurable complex matrix generator, and finite
-products satisfying
+Lean's real division is total, so
 
 \[
-C(m+k,\omega)
-{} =
-C(k,T^m\omega)C(m,\omega).
+A_0=\frac{I_0}{0}=\frac00=0.
 \]
 
-RMT-15 supplies three inherited objects:
+But the genuine positive-time values are \(L/2\gt0\). If we incorrectly took
+the infimum over **all** natural indices, the answer in this example would be
+zero. Mathlib's Fekete limit instead uses indices \(k\ge1\), so its infimum is
+the correct value \(L/2\).
+
+### Near miss: a finite ledger that is not subadditive
+
+Keep \(J_0=0\), but propose
 
 \[
-P_k(\omega)=\log^+\lVert C(k,\omega)\rVert_\infty,
+J_1=\frac12L,
+\qquad
+J_2=\frac32L.
 \]
+
+Subadditivity at \(1+1\) would require
 
 \[
-S_k(\omega)=\sum_{j=0}^{k-1}P_1(T^j\omega),
+J_2\le J_1+J_1=L.
 \]
 
-and the proposition
+Because \(L\gt0\), we instead have \(J_2=(3/2)L\gt L\). This candidate fails before
+any limit argument begins. A sequence does not become a Fekete sequence merely
+because its first few normalized values look bounded.
 
-~~~lean
-C.HasIntegrableGeneratorLogPlus
-~~~
+{{< reference-figure
+  wide="true"
+  src="positive-horizon-fekete-ledger.svg"
+  alt="A pipeline sends two finite sample rows through integration to a deterministic scalar sequence, then through normalization to a deterministic limit. A plot marks the formal zero-time normalized value at zero and all positive values at one half log 2. A near-miss sequence fails subadditivity at one plus one. A warning says that samplewise convergence and a Lyapunov exponent are not proved."
+  caption="**Finding:** the positive-index restriction is mathematically active, not cosmetic. In the running example, including \(A_0\) changes the infimum from \((1/2)\log 2\) to \(0\). The red near miss shows the other admission test: without scalar subadditivity, the deterministic Fekete theorem is unavailable. Neither test addresses samplewise convergence."
+>}}
 
-meaning exactly that \(P_1\) is integrable against \(\mu\). From it, RMT-15
-proves that \(P_k\), every shifted \(P_1\), and \(S_k\) are integrable at each
-fixed natural horizon.
+## Name the objects before climbing
 
-RMT-16 adds two scalar sequences:
+The chapter uses three different kinds of object:
 
-| Symbol | Lean expression | Type | Remaining variable |
-|---|---|---|---|
-| \(P_k(\omega)\) | <code>C.logPlusNormObservable k ω</code> | \(\Omega\to\mathbb R\) after fixing \(k\) | Base outcome \(\omega\) |
-| \(I_k\) | <code>C.integratedLogPlusNorm k</code> | \(\mathbb R\) | Horizon \(k\) |
-| \(A_k\) | <code>C.normalizedIntegratedLogPlusNorm k</code> | \(\mathbb R\) | Horizon \(k\) |
+| Symbol | Human meaning | Type after fixing the other inputs |
+|---|---|---|
+| \(P_k(\omega)\) | Finite log-positive growth at one outcome | \(\Omega\to\mathbb R\) |
+| \(I_k\) | Integral of the entire outcome function | \(\mathbb R\) |
+| \(A_k\) | Time-normalized integrated value | \(\mathbb R\) |
 
-The checked arrow of construction is
+In Lean they are:
+
+| Mathematics | Exact Lean expression |
+|---|---|
+| \(P_k(\omega)\) | <code>C.logPlusNormObservable k ω</code> |
+| \(I_k\) | <code>C.integratedLogPlusNorm k</code> |
+| \(A_k\) | <code>C.normalizedIntegratedLogPlusNorm k</code> |
+
+The checked route is
 
 \[
 P_k(\omega)
@@ -184,24 +203,90 @@ A_k
 \lim_{k\to\infty}A_k.
 \]
 
-The arrow
+The unproved route is
 
 \[
 P_k(\omega)
 \longrightarrow
 \frac{P_k(\omega)}{k}
 \longrightarrow
-\text{samplewise limit}
+\text{a limit depending on }\omega.
 \]
 
-belongs to another theorem. RMT-16 neither proves that route nor exchanges its
-limit with an integral.
+Those arrows differ in both type and quantifier order. A limit of integrals is
+not automatically an integral of a limit, and neither is automatically an
+{{< refterm "almost-everywhere" "almost-everywhere" >}} statement. An
+almost-everywhere theorem would need a specified
+{{< refterm "null-set" "null set" >}} outside which samplewise convergence
+holds. No such set occurs in this module.
 
-## Camp one: the totalized integral
+### What the one-step hypothesis means
 
-### Declaration 1: <code>integratedLogPlusNorm</code>
+The predecessor chapter defined
 
-The module begins with an unconditional definition:
+~~~lean
+C.HasIntegrableGeneratorLogPlus
+~~~
+
+as exactly
+
+~~~lean
+Integrable (C.logPlusNormObservable 1) μ
+~~~
+
+The word {{< refterm "integrability" "integrable" >}} means more than
+{{< refterm "measurable-function" "measurable" >}}: the real-valued function
+must also have finite integral of its norm. RMT-15 propagates that one-step
+hypothesis to every fixed finite horizon and to every finite orbit sum.
+
+It does not require \(\mu(\Omega)=1\). Consequently, the project calls \(I_k\)
+an **integral**, not an expectation. In the two-point running example only,
+our chosen \(\mu\) is probabilistic, so \(I_k\) can also be read as an
+{{< refterm "expectation" "expectation" >}}.
+
+## Choose a route up
+
+| Route | Begin with | Destination |
+|---|---|---|
+| Concrete route | [The two-state ledger](#begin-with-two-states-and-calculate-every-finite-value) | Compute every displayed value before seeing an abstract integral |
+| Type route | [Name the objects](#name-the-objects-before-climbing) | Keep functions of outcomes separate from deterministic numbers |
+| Analytic route | [Camp one](#camp-one-a-totalized-integral-needs-an-integrability-ledger) | Learn why a real integral term is not itself a finiteness proof |
+| Dynamics route | [Camp two](#camp-two-preservation-removes-a-base-shift-after-integration) | See where measure preservation, rather than independence, enters |
+| Algebra route | [Camp four](#camp-four-build-one-subadditive-real-sequence) | Follow the pointwise cocycle split into scalar subadditivity |
+| Limit route | [The summit](#summit-read-mathlibs-fekete-limit-literally) | Read the positive-index infimum and deterministic convergence exactly |
+| Hands-on Lean route | [Run the finite worksheet](#type-the-finite-ledger-yourself-with-lean-and-std) | Check the numeric ledger with only Lean core and <code>Std</code> |
+| Audit route | [The declaration map](#the-complete-thirteen-declaration-map) | Match every public source declaration to its role and assumptions |
+
+### Learning objectives
+
+By the summit, you should be able to:
+
+1. reproduce the two-state sample and integral ledger through horizon six;
+2. explain why the swap preserves the uniform measure;
+3. distinguish \(P_k(\omega)\), \(I_k\), and \(A_k\) by type;
+4. explain why the running example is probabilistic although the theorem is
+   stated for a raw measure;
+5. state the one-step integrability hypothesis exactly;
+6. explain Mathlib's totalized Bochner-integral boundary;
+7. read the integrated time-zero and nonnegativity theorems without inferring
+   hidden integrability;
+8. remove a base shift under an integral using measure preservation;
+9. distinguish preservation from independence and ergodicity;
+10. integrate the finite orbit sum and derive \(I_k\le kI_1\);
+11. derive \(I_{m+k}\le I_m+I_k\) in the correct block order;
+12. read <code>Subadditive C.integratedLogPlusNorm</code>;
+13. explain why \(A_0=0\) is not a zero-time growth rate;
+14. identify the positive-index set inside <code>Subadditive.lim</code>;
+15. explain why normalized ratios need not be monotone;
+16. run a bounded <code>Std</code> worksheet on a normal Mac or Linux host;
+17. run the exact project check only through the guarded Linux command; and
+18. state why the result is neither samplewise nor a Lyapunov exponent.
+
+## Camp one: a totalized integral needs an integrability ledger
+
+### Declarations 1–3: define, evaluate zero time, and prove nonnegativity
+
+The first definition is:
 
 ~~~lean
 def integratedLogPlusNorm
@@ -209,122 +294,132 @@ def integratedLogPlusNorm
   ∫ ω, C.logPlusNormObservable k ω ∂μ
 ~~~
 
-Mathematically, this looks like \(I_k=\int P_k\,d\mu\). The Lean type is a
-total function \(\mathbb N\to\mathbb R\). No <code>hC</code> argument occurs
-in the definition.
+### In Lean: integrate the whole outcome function
 
-That is possible because Mathlib's Bochner integral is totalized. When a
-real-valued function is integrable, <code>MeasureTheory.integral</code> gives
-its Bochner integral. When the function is not integrable, it returns zero.
-The theorem <code>integral_undef</code> exposes this second branch.
+{{< lean-bridge
+  human="Fix a horizon k. Take the log-positive finite cocycle value at every outcome omega and integrate that real-valued function against the chosen measure mu."
+  math="\(I_k=\int_\Omega P_k(\omega)\,d\mu(\omega)\)."
+  lean="∫ ω, C.logPlusNormObservable k ω ∂μ"
+>}}
 
-The convention is useful for a total proof language, but it changes how the
-definition should be read. A term of type \(\mathbb R\) is not evidence that
-the integrand is integrable. In ordinary extended integration, a nonnegative
-nonintegrable function suggests an infinite value. The totalized Bochner API
-instead supplies zero because its codomain remains an ordinary real vector
-space.
+- <code>∫ ω, ... ∂μ</code> is Mathlib notation for the Bochner integral with
+  bound variable <code>ω</code> and measure <code>μ</code>.
+- <code>C.logPlusNormObservable k</code> is a function
+  \(\Omega\to\mathbb R\), not a scalar sample.
+- Appending <code>ω</code> evaluates that function at one outcome inside the
+  integrand.
+- The result is a single real number because the outcome variable is bound by
+  the integral.
+- The exact project definition is
+  <code>DiscreteMatrixCocycle.integratedLogPlusNorm</code>.
+- No <code>hC</code> appears in the definition; that is a totality convention,
+  not proof of integrability.
+{{< /lean-bridge >}}
 
-{{< panel "warning" >}}
-**Do not infer finiteness from the codomain.** Without
-<code>HasIntegrableGeneratorLogPlus</code>, the bare \(I_k\) is a total Lean
-value that may be the artificial zero assigned to a nonintegrable integrand.
-The shifted-pullback equality remains valid for this totalized value, but the
-finite orbit-sum identity, bounds, subadditivity, rate, and convergence use the
-explicit hypothesis.
-{{< /panel >}}
+Mathlib's Bochner integral is a total function. If a function is not
+integrable, its totalized integral is defined to be zero. This design lets
+<code>integratedLogPlusNorm</code> return a real number at every horizon even
+before an integrability proof is supplied.
 
-Consider an infinite-measure base and the constant real function one. That
-function is not integrable. Mathlib's totalized integral is nevertheless zero.
-This stress test explains why the first definition is unconditional without
-turning it into an analytic moment theorem.
+The stress test is the constant function one on an infinite-measure space. It
+is measurable but not integrable. Its totalized Bochner integral is still the
+real number zero. Therefore:
 
-### Declaration 2: <code>integratedLogPlusNorm_zero</code>
+> “Lean produced an \(\mathbb R\)” does not mean “the mathematical integral is
+> finite.”
 
-RMT-15 proves \(P_0(\omega)=0\) for every base point and every finite matrix
-dimension, including the empty index type. Integration therefore gives
+The source then proves
 
 \[
 I_0=0.
 \]
 
-No integrability premise is needed because the zero function is integrable and
-its integral is zero.
+RMT-15 already established \(P_0(\omega)=0\), including empty matrix
+dimension. Integrating the zero function closes the result.
 
-### Declaration 3: <code>integratedLogPlusNorm_nonneg</code>
-
-The finite envelope satisfies \(P_k(\omega)\ge0\), so Mathlib's
-<code>integral_nonneg</code> yields
+It also proves
 
 \[
 0\le I_k.
 \]
 
-This theorem is also unconditional. It still does not prove integrability.
-In the nonintegrable branch, Mathlib has set \(I_k=0\), and the statement
-reduces to \(0\le0\).
+Pointwise log-positive values are nonnegative, and
+<code>integral_nonneg</code> transports that order to the totalized integral.
+This theorem is unconditional. In a nonintegrable branch, it can say only
+\(0\le0\), because totalization supplied the zero value.
 
-The first camp therefore contains three sound total statements with a strict
-interpretive boundary. Definition, zero value, and nonnegativity become the
-analytic sequence of interest only when the RMT-15 integrability hypothesis is
-available.
+{{< panel "warning" >}}
+**Keep two ledgers.** The term <code>C.integratedLogPlusNorm k</code> exists
+without <code>hC</code>. Its intended finite analytic interpretation depends
+on <code>hC.integrable_logPlusNormObservable k</code>. Definitions and order
+facts can be unconditional while monotonicity and additivity of genuine
+finite integrals require the propagated integrability proofs used later.
+{{< /panel >}}
 
-## Camp two: preserved pullback integrals
+## Camp two: preservation removes a base shift after integration
 
-### Declaration 4: <code>integral_logPlusNormObservable_at_base_iterate_eq</code>
+### Declaration 4: the pullback integral identity
 
-Every natural iterate \(T^j\) preserves \(\mu\). RMT-16 proves
-
-\[
-\int_\Omega P_k(T^j\omega)\,d\mu(\omega)=I_k
-\]
-
-for all natural \(k\) and \(j\), without an <code>hC</code> argument.
-
-The proof uses the pushforward description of a change of variables. Measure
-preservation gives
+The cocycle split contains a shifted later block:
 
 \[
-\operatorname{Measure.map}(T^j)\,\mu=\mu.
+P_k(T^j\omega).
 \]
 
-Mathlib's <code>integral_map</code> rewrites the pullback integral as an
-integral against that mapped measure. The equality of measures then closes the
-calculation.
-
-There are two technical obligations worth seeing. First, \(T^j\) must be
-measurable. Second, the finite envelope must be almost-everywhere strongly
-measurable under the mapped measure. RMT-15's ordinary measurability theorem
-supplies the second fact directly. Integrability is not required by this
-particular application of <code>integral_map</code>.
-
-Totalization explains the stronger signature. If \(P_k\) is nonintegrable,
-the equality can merely identify the artificial zero on the left with the
-artificial zero on the right. The theorem is still correct and useful, but its
-unconditional form does not turn either side into a finite analytic moment.
-Under <code>hC</code>, RMT-15 supplies integrability and the same equality has
-its ordinary analytic interpretation.
-
-The identity is not an independence statement. The functions
-\(P_k\circ T^j\) may have maximal dependence along one orbit. It is not an
-ergodicity statement either. Preservation alone says that integration is
-unchanged by the pullback.
-
-## Camp three: integrate the finite orbit majorant
-
-### Declaration 5: <code>HasIntegrableGeneratorLogPlus.integral_orbitLogPlusSum_eq</code>
-
-Recall the finite RMT-15 majorant
+Every natural iterate \(T^j\) preserves \(\mu\), so the module proves
 
 \[
-S_k(\omega)
-{} =
-\sum_{j=0}^{k-1}P_1(T^j\omega).
+\int_\Omega P_k(T^j\omega)\,d\mu(\omega)=I_k.
 \]
 
-Every summand is integrable under <code>hC</code>. Finite linearity permits
-term-by-term integration, and declaration 4 makes each term's integral equal
-to \(I_1\):
+### In Lean: erase a preserved shift only under the integral
+
+{{< lean-bridge
+  human="Composing the finite observable with j preserved base updates changes which outcome is inspected, but it does not change the integral."
+  math="\(\int_\Omega P_k(T^j\omega)\,d\mu(\omega)=\int_\Omega P_k(\omega)\,d\mu(\omega)\)."
+  lean="C.integral_logPlusNormObservable_at_base_iterate_eq k j"
+>}}
+
+- <code>C.base^[j]</code> in the theorem statement is the \(j\)-fold function
+  iterate of the base map.
+- <code>C.base_iterate_preserving j</code> supplies both measurability of that
+  iterate and the equality
+  \(\operatorname{Measure.map}(T^j)\mu=\mu\).
+- <code>integral_map</code> converts the pullback integral into an integral
+  against the mapped measure.
+- Rewriting by <code>map_eq</code> returns the original measure.
+- The result removes the shift **after integration**. It does not prove
+  \(P_k(T^j\omega)=P_k(\omega)\) pointwise.
+- The exact theorem has no <code>hC</code> argument because its totalized
+  integral identity remains valid in the nonintegrable branch.
+{{< /lean-bridge >}}
+
+In the running example, \(T\) exchanges the two sample values. The uniform
+average is unchanged:
+
+\[
+\frac12P_k(\mathsf{blue})+\frac12P_k(\mathsf{amber})
+=\frac12P_k(\mathsf{amber})+\frac12P_k(\mathsf{blue}).
+\]
+
+This is preservation, not independence. The two time samples are determined
+by the same starting state. It is also not
+{{< refterm "ergodicity" "ergodicity" >}}: the source needs only the stored
+{{< refterm "measure-preserving-transformation" "measure-preserving" >}}
+interface.
+
+## Camp three: integrate the one-step orbit majorant
+
+### Declaration 5: the exact orbit-sum integral
+
+RMT-15 defined
+
+\[
+S_k(\omega)=\sum_{j=0}^{k-1}P_1(T^j\omega).
+\]
+
+Under <code>hC</code>, every shifted one-step summand is integrable. Finite
+linearity and the preserved-shift identity give
 
 \[
 \begin{aligned}
@@ -339,45 +434,51 @@ kI_1.
 \end{aligned}
 \]
 
-The factor \(k\) is coerced to a real number in the final multiplication.
-The equality includes \(k=0\), where both the empty sum and \(0I_1\) vanish.
+The checked theorem is
 
-Again, no independence is needed. Finite additivity of the integral and equal
-integrals under preserved shifts are sufficient.
+~~~lean
+hC.integral_orbitLogPlusSum_eq k
+~~~
 
-### Declaration 6: <code>HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_le_nat_mul</code>
+At \(k=0\), the finite sum is empty and both sides are zero. No independence
+assumption appears: finite additivity of the integral and equality of each
+shifted integral are enough.
 
-RMT-15's pointwise domination is
+For the two-state example, \(S_k=P_k\) because each scalar factor has norm at
+least one. Its one-step integral is \(I_1=L/2\), so the equality reads
+
+\[
+\int_\Omega S_k\,d\mu=k\frac{L}{2}.
+\]
+
+In a general matrix cocycle, \(S_k\) can strictly overestimate \(P_k\).
+Positive log clips contraction at each step, and the norm inequality can lose
+additional information.
+
+### Declaration 6: the linear finite-horizon bound
+
+RMT-15 proved the pointwise domination
 
 \[
 P_k(\omega)\le S_k(\omega).
 \]
 
-Both sides are integrable under <code>hC</code>, so integral monotonicity and
-declaration 5 give
+Both functions are integrable under <code>hC</code>. Integral monotonicity and
+the exact orbit-sum calculation yield
 
 \[
-I_k
-\le
-\int_\Omega S_k\,d\mu
-{} =
-kI_1.
+I_k\le kI_1.
 \]
 
-This is a linear finite-horizon upper bound, not the limiting theorem itself.
-For positive \(k\), it implies the derived inequality \(A_k\le I_1\), but the
-module does not export that specialization as an additional declaration.
+This is a finite-horizon bound. For \(k\gt0\), it implies the derived estimate
+\(A_k\le I_1\), but the module does not export that specialization as another
+public declaration.
 
-The majorant can be loose. It clips contracting factors before summing and
-therefore cannot record cancellation between expansion and contraction. Its
-purpose is to transfer one-step integrability and bound the positive tail, not
-to reconstruct exact logarithmic growth.
+## Camp four: build one subadditive real sequence
 
-## Camp four: scalar subadditivity
+### Declarations 7–8: integrate the cocycle split and package it
 
-### Declaration 7: <code>HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_add_le</code>
-
-RMT-15 proves the pointwise shifted inequality
+The pointwise finite-time theorem from RMT-15 is
 
 \[
 P_{m+k}(\omega)
@@ -385,9 +486,14 @@ P_{m+k}(\omega)
 P_k(T^m\omega)+P_m(\omega).
 \]
 
-Under <code>hC</code>, all three functions are integrable. The shifted
-\(k\)-block is integrable because a measure-preserving pullback preserves
-integrability. Integral monotonicity and integral additivity therefore give
+Notice the order:
+
+- the early block has length \(m\) and begins at \(\omega\);
+- the later block has length \(k\) and begins at \(T^m\omega\).
+
+Under <code>hC</code>, every function in this inequality is integrable. The
+proof applies integral monotonicity, expands the integral of the sum, and then
+uses preservation to remove the shift:
 
 \[
 \begin{aligned}
@@ -404,35 +510,64 @@ I_m+I_k.
 \end{aligned}
 \]
 
-The last line uses commutativity of real addition. It does not reverse or
-commute the original matrix product. The cocycle's chronological order was
-already handled in the pointwise RMT-15 inequality.
+The final commutation is addition of real numbers. It does not reverse or
+commute the underlying matrix factors.
 
-### Declaration 8: <code>HasIntegrableGeneratorLogPlus.subadditive_integratedLogPlusNorm</code>
+### In Lean: state scalar subadditivity at two horizons
+
+{{< lean-bridge
+  human="The integrated value over a combined m-plus-k horizon is at most the sum of the two integrated block values."
+  math="\(I_{m+k}\le I_m+I_k\)."
+  lean="C.integratedLogPlusNorm (m + k) ≤ C.integratedLogPlusNorm m + C.integratedLogPlusNorm k"
+>}}
+
+- <code>m + k</code> adds natural-number horizons.
+- Each <code>C.integratedLogPlusNorm ...</code> is now a deterministic real
+  number; no outcome variable remains.
+- <code>≤</code> comes from the pointwise norm and positive-log inequalities,
+  then integral monotonicity.
+- The proof needs <code>hC</code> to justify integrability of all finite
+  observables and the shifted term.
+- The exact theorem is
+  <code>hC.integratedLogPlusNorm_add_le m k</code>.
+- The wrapper
+  <code>hC.subadditive_integratedLogPlusNorm</code> packages the same statement
+  as <code>Subadditive C.integratedLogPlusNorm</code>.
+{{< /lean-bridge >}}
 
 Mathlib defines
 
-\[
-\operatorname{Subadditive}(u)
-\quad\Longleftrightarrow\quad
-\forall m\,k,\ u(m+k)\le u(m)+u(k).
-\]
-
-Declaration 8 packages declaration 7 exactly as
-
 ~~~lean
-Subadditive C.integratedLogPlusNorm
+def Subadditive (u : ℕ → ℝ) : Prop :=
+  ∀ m n, u (m + n) ≤ u m + u n
 ~~~
 
-This is the conceptual crossing point. Before declaration 8, the proof carries
-measurable functions, base shifts, pullbacks, and cocycle products. After it,
-Mathlib sees one deterministic real sequence and no outcome variable.
+At this line, the dynamical problem has been reduced to a deterministic
+sequence problem. Fekete will see the function
 
-## Camp five: normalize over natural time
+~~~lean
+C.integratedLogPlusNorm : ℕ → ℝ
+~~~
 
-### Declaration 9: <code>normalizedIntegratedLogPlusNorm</code>
+and the subadditivity proof. It will not see \(\omega\), the base map, the
+generator, or a sample path.
 
-The normalized sequence is defined by
+### Why the near miss is rejected here
+
+For \(J_1=L/2\) and \(J_2=3L/2\), Lean would need the false inequality
+
+\[
+\frac32L\le\frac12L+\frac12L.
+\]
+
+No amount of lower boundedness or numerical plotting repairs that missing
+subadditivity proof. The theorem's hypothesis is structural, not empirical.
+
+## Camp five: normalize natural time without pretending zero is positive
+
+### Declarations 9–11: normalized values, nonnegativity, and a lower bound
+
+The source defines:
 
 ~~~lean
 def normalizedIntegratedLogPlusNorm
@@ -440,57 +575,57 @@ def normalizedIntegratedLogPlusNorm
   C.integratedLogPlusNorm k / k
 ~~~
 
-Lean coerces the denominator from \(\mathbb N\) to \(\mathbb R\). The
-definition is total over all natural numbers, including zero.
+### In Lean: divide the integrated scalar by elapsed time
 
-At \(k=0\), declaration 2 gives \(I_0=0\), and Lean's real division convention
-gives
+{{< lean-bridge
+  human="After integrating away the outcome, divide the resulting real number by the natural horizon, coerced to a real denominator."
+  math="\(A_k=I_k/k\)."
+  lean="C.integratedLogPlusNorm k / k"
+>}}
 
-\[
-A_0=\frac00=0.
-\]
+- The numerator is a real number.
+- The denominator <code>k</code> begins as a natural number and is coerced to
+  \(\mathbb R\) because real division is expected.
+- The slash is real division, not natural-number division.
+- At <code>k = 0</code>, the result is total and equals zero.
+- The definition contains no outcome variable, so it is not the samplewise
+  quantity <code>C.logPlusNormObservable k ω / k</code>.
+- The exact project name is
+  <code>normalizedIntegratedLogPlusNorm</code>.
+{{< /lean-bridge >}}
 
-{{< panel "warning" >}}
-**Time zero is not a rate.** The value \(A_0=0\) is a convenient total boundary
-value. It does not mean “growth per zero steps.” The Fekete infimum excludes
-zero, and convergence along <code>atTop</code> ignores every finite prefix.
-{{< /panel >}}
-
-### Declaration 10: <code>normalizedIntegratedLogPlusNorm_nonneg</code>
-
-Declaration 3 gives \(I_k\ge0\), while the real coercion of a natural number is
-nonnegative. Division therefore gives
+Nonnegativity of \(I_k\) and of the coerced natural denominator gives
 
 \[
 0\le A_k
 \]
 
-for every natural \(k\). Like declarations 1 through 3, this theorem is
-unconditional. Without <code>hC</code>, it remains an order fact about a
-totalized definition rather than a hidden integrability result.
-
-### Declaration 11: <code>bddBelow_normalizedIntegratedLogPlusNorm</code>
-
-Zero is a lower bound for the entire range of \(A\):
+for every \(k\), including zero. The source then proves
 
 \[
-\operatorname{BddBelow}(\operatorname{range} A).
+\operatorname{BddBelow}(\operatorname{range} A)
 \]
 
-Mathlib's Fekete convergence theorem asks for this lower-bound property. RMT-16
-proves the stronger and simpler pointwise fact \(0\le A_k\), then packages zero
-as a lower bound.
+by exhibiting zero as a lower bound.
 
-The full range here does include \(A_0\). That is harmless for boundedness.
-It would not be harmless for the infimum defining the rate, which is why the
-next camp must inspect Mathlib's positive-index definition exactly.
+This lower-bound proof is unconditional because it is an order theorem about
+the totalized values. The later Fekete rate still takes <code>hC</code>,
+because its subadditivity proof depends on finite-horizon integrability.
 
-## Summit: the deterministic Fekete limit
+{{< panel "warning" >}}
+**The lower-bound range includes time zero; the rate infimum does not.**
+<code>bddBelow_normalizedIntegratedLogPlusNorm</code> establishes a bound for
+the entire range because that is what Mathlib's convergence theorem requests.
+<code>Subadditive.lim</code> separately forms its infimum from
+<code>Set.Ici 1</code>. Conflating those two sets gives the wrong rate in the
+opening example.
+{{< /panel >}}
 
-### Declaration 12: <code>integratedLogPlusGrowthRate</code>
+## Summit: read Mathlib's Fekete limit literally
 
-Given <code>hC</code>, declaration 8 supplies a subadditive real sequence.
-RMT-16 defines
+### Declaration 12: define the positive-index infimum
+
+The project rate is:
 
 ~~~lean
 def integratedLogPlusGrowthRate
@@ -499,484 +634,577 @@ def integratedLogPlusGrowthRate
   hC.subadditive_integratedLogPlusNorm.lim
 ~~~
 
-Mathlib's <code>Subadditive.lim</code> is not an unspecified abstract limit. Its
-definition is
+### In Lean: use the limit attached to the subadditivity proof
 
-~~~lean
-sInf ((fun n : ℕ => u n / n) '' Set.Ici 1)
-~~~
+{{< lean-bridge
+  human="Ask Mathlib for the canonical Fekete limit of the integrated subadditive sequence justified by hC."
+  math="\(\gamma_\mu^+(C)=\inf\{I_k/k:k\ge1\}\)."
+  lean="hC.subadditive_integratedLogPlusNorm.lim"
+>}}
 
-so the RMT-16 rate has the exact semantics
+- <code>hC</code> is the one-step integrability proof.
+- <code>.subadditive_integratedLogPlusNorm</code> turns it into a proof that
+  the scalar sequence \(I_k\) is subadditive.
+- <code>.lim</code> is Mathlib's protected definition in the
+  <code>Subadditive</code> namespace.
+- In the pinned Mathlib source, it unfolds to
+  <code>sInf ((fun n : ℕ =&gt; u n / n) '' Set.Ici 1)</code>.
+- <code>Set.Ici 1</code> means the natural indices \(n\ge1\); zero is absent.
+- <code>sInf</code> is an infimum. The definition does not claim that one
+  finite horizon attains it.
+{{< /lean-bridge >}}
+
+Thus the exact semantics are
 
 \[
 \gamma_\mu^+(C)
-{} =
-\inf\left\{\frac{I_k}{k}:k\ge1\right\}.
+=\inf\left\{\frac{I_k}{k}:k\in\mathbb N,\ k\ge1\right\}.
 \]
 
-Three words matter: **infimum**, **positive**, and **indices**.
+The superscript \(+\) is expository notation for this page. The Lean source
+name is <code>integratedLogPlusGrowthRate</code>. The positive sign reminds us
+that the underlying observable uses \(\log^+\) and therefore discards
+contraction and singular collapse.
 
-It is an infimum, not necessarily a minimum achieved by one horizon. The
-indices begin at one, so \(A_0=0\) is excluded. The set consists of normalized
-scalar integrals, not pointwise normalized functions.
+### Declaration 13: deterministic convergence
 
-The zero-time distinction can alter the value. In a one-point expanding
-example, every positive-time ratio may equal a constant \(r\gt0\), while
-\(A_0=0\). The positive-index infimum is \(r\), but the infimum of the full
-range would be zero. Any prose that says simply “the infimum of the normalized
-range” is therefore false unless it explicitly restricts to positive horizons.
-
-### Declaration 13: <code>HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm</code>
-
-The final theorem is
+The final theorem is:
 
 ~~~lean
-Tendsto C.normalizedIntegratedLogPlusNorm atTop
-  (𝓝 (C.integratedLogPlusGrowthRate hC))
+theorem HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm
+    {C : DiscreteMatrixCocycle (ι := ι) μ}
+    (hC : C.HasIntegrableGeneratorLogPlus) :
+    Tendsto C.normalizedIntegratedLogPlusNorm atTop
+      (𝓝 (C.integratedLogPlusGrowthRate hC))
 ~~~
 
-Mathlib's <code>Subadditive.tendsto_lim</code> consumes the subadditivity proof
-and the lower-bound theorem. In conventional notation,
+### In Lean: say that the scalar sequence converges
+
+{{< lean-bridge
+  human="As the natural horizon tends to infinity, the normalized integrated real numbers approach the positive-index Fekete infimum."
+  math="\(A_k\longrightarrow\gamma_\mu^+(C)\) as \(k\to\infty\)."
+  lean="Tendsto C.normalizedIntegratedLogPlusNorm atTop (𝓝 (C.integratedLogPlusGrowthRate hC))"
+>}}
+
+- <code>Tendsto</code> is a filter-based convergence statement.
+- <code>C.normalizedIntegratedLogPlusNorm</code> is the deterministic function
+  \(\mathbb N\to\mathbb R\).
+- <code>atTop</code> expresses \(k\to\infty\) in natural time.
+- <code>𝓝 x</code> is the neighborhood filter of the real number <code>x</code>.
+- The target is exactly the rate defined from
+  <code>Subadditive.lim</code>.
+- There is no <code>ω</code>, <code>∀ᵐ ω ∂μ</code>, exceptional set, random
+  variable, convergence-in-probability predicate, or \(L^1\) norm in the
+  theorem.
+{{< /lean-bridge >}}
+
+The proof calls Mathlib's deterministic
+<code>Subadditive.tendsto_lim</code> with two inputs:
+
+1. scalar subadditivity obtained from <code>hC</code>; and
+2. the unconditional zero lower bound for the normalized range.
+
+That is the whole asymptotic engine.
+
+### Fekete ratios need not decrease
+
+Fekete convergence does not say \(u_n/n\) is monotone. A simple calibration
+sequence is
 
 \[
-A_k\longrightarrow\gamma_\mu^+(C)
-\qquad\text{as }k\to\infty.
+u_n=\left\lceil\frac n2\right\rceil.
 \]
 
-This is ordinary convergence of a sequence in \(\mathbb R\). The theorem does
-not state that \(A_k\) decreases. Subadditivity can produce normalized ratios
-that fluctuate while converging to their infimum.
-
-### Why Fekete works
-
-The checked module invokes Mathlib rather than reproving Fekete's lemma. Its
-classical proof idea is still useful. Fix a positive block length \(n\). Write
-a large horizon as
+It is subadditive because
 
 \[
-k=qn+r,
-\qquad
-0\le r\lt n.
+\left\lceil\frac{m+n}{2}\right\rceil
+\le
+\left\lceil\frac m2\right\rceil
++\left\lceil\frac n2\right\rceil.
 \]
 
-Repeated subadditivity gives a bound of the form
+Its positive ratios begin
 
 \[
-I_k\le qI_n+I_r.
+1,\quad
+\frac12,\quad
+\frac23,\quad
+\frac12,\quad
+\frac35,\quad
+\frac12,\ldots
 \]
 
-After division by \(k\), the repeated blocks contribute approximately
-\(I_n/n\). The remainder belongs to the finite set of indices below \(n\), so
-its contribution divided by \(k\) vanishes along large horizons. This bounds
-the asymptotic upper behavior by each positive ratio \(I_n/n\), hence by their
-infimum. The infimum itself bounds every positive ratio from below. The two
-directions meet at the limit.
+They rise and fall while converging to \(1/2\). Therefore the correct phrase
+is “converges to the infimum,” not “decreases to the infimum.”
 
-This argument explains both the positive-index restriction and the absence of
-monotonicity. It compares long horizons with repeated fixed blocks; it does
-not order each consecutive pair of ratios.
+## Type the finite ledger yourself with Lean and Std
+
+The project theorem imports Mathlib's matrices, measure theory, integration,
+and subadditive analysis. The opening arithmetic does not need that entire
+dependency graph. The worksheet below imports only Lean's <code>Std</code>
+library.
+
+It measures sample values in units of \(L=\log 2\). To avoid implementing real
+integration in a toy file,
+
+~~~text
+integratedNumerator k = 2 I_k / L.
+~~~
+
+For the uniform two-point measure, that numerator equals \(k\). The worksheet
+checks the two finite rows, the integrated numerator, an additive split, the
+formal zero boundary, and the failed near miss.
+
+This is a small standalone tutorial. It is suitable for an ordinary Mac or
+Linux host and does not invoke Lake, Mathlib, or a project build.
+
+Save the exact block below as
+<code>/tmp/IntegratedLogPlusFeketeTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace IntegratedLogPlusFeketeTutorial
+
+inductive State where
+  | amber
+  | blue
+  deriving Repr, DecidableEq
+
+def base : State → State
+  | .amber => .blue
+  | .blue => .amber
+
+/-- `sampleLogUnits k ω` is the finite log-positive value in units of `log 2`. -/
+def sampleLogUnits : Nat → State → Nat
+  | 0, _ => 0
+  | k + 1, .amber => sampleLogUnits k .blue + 1
+  | k + 1, .blue => sampleLogUnits k .amber
+
+/-- Twice the uniform integral, still measured in units of `log 2`. -/
+def integratedNumerator (k : Nat) : Nat :=
+  sampleLogUnits k .amber + sampleLogUnits k .blue
+
+theorem integratedNumerator_eq (k : Nat) :
+    integratedNumerator k = k := by
+  induction k with
+  | zero => rfl
+  | succ k ih =>
+      simpa [integratedNumerator, sampleLogUnits, Nat.add_assoc,
+        Nat.add_comm, Nat.add_left_comm] using congrArg Nat.succ ih
+
+theorem integratedNumerator_add (m k : Nat) :
+    integratedNumerator (m + k) =
+      integratedNumerator m + integratedNumerator k := by
+  simp [integratedNumerator_eq]
+
+/-- The normalized numerator. At zero, natural-number division returns zero. -/
+def normalizedNumerator (k : Nat) : Nat :=
+  integratedNumerator k / k
+
+theorem normalizedNumerator_eq_one {k : Nat} (hk : 0 < k) :
+    normalizedNumerator k = 1 := by
+  rw [normalizedNumerator, integratedNumerator_eq]
+  exact Nat.div_self hk
+
+/-- A candidate ledger that fails subadditivity already at one plus one. -/
+def nearMiss : Nat → Nat
+  | 0 => 0
+  | 1 => 1
+  | 2 => 3
+  | k + 3 => k + 3
+
+#eval (List.range 7).map fun k =>
+  (k, sampleLogUnits k .amber, sampleLogUnits k .blue,
+    integratedNumerator k, normalizedNumerator k)
+
+#eval decide
+  (integratedNumerator 5 =
+    integratedNumerator 2 + integratedNumerator 3)
+
+#eval decide (nearMiss 2 ≤ nearMiss 1 + nearMiss 1)
+
+example : normalizedNumerator 0 = 0 := by decide
+example : integratedNumerator 6 = 6 := by decide
+example : integratedNumerator 5 =
+    integratedNumerator 2 + integratedNumerator 3 := by decide
+example : ¬ nearMiss 2 ≤ nearMiss 1 + nearMiss 1 := by decide
+
+end IntegratedLogPlusFeketeTutorial
+~~~
+
+Open a terminal and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/IntegratedLogPlusFeketeTutorial.lean
+~~~
+
+The exact worksheet above was executed successfully with Lean 4.32.0 while
+editing this chapter. Its output was:
+
+~~~text
+[(0, 0, 0, 0, 0), (1, 1, 0, 1, 1), (2, 1, 1, 2, 1), (3, 2, 1, 3, 1), (4, 2, 2, 4, 1), (5, 3, 2, 5, 1), (6, 3, 3, 6, 1)]
+true
+false
+~~~
+
+Each five-tuple is
+
+~~~text
+(k, amber sample, blue sample, integrated numerator, normalized numerator).
+~~~
+
+- The first line reproduces horizons zero through six.
+- At positive horizons the final coordinate is one. Translating out of the
+  doubled units gives \(A_k/L=1/2\).
+- The first <code>true</code> checks the exact split \(I_5=I_2+I_3\) after
+  multiplying all values by \(2/L\).
+- The final <code>false</code> checks that the near miss does **not** satisfy
+  its \(1+1\) subadditivity test.
+- The silent <code>example</code> declarations ask Lean's kernel to check the
+  zero boundary, the horizon-six value, the additive split, and the negation
+  of the near-miss inequality.
+
+The worksheet is a finite model, not the project theorem. It uses natural
+counts instead of real logarithms, encodes the uniform two-point integral by a
+sum and a known factor \(1/2\), and proves no statement about arbitrary
+measures, Bochner integrals, matrices, measurable maps, integrability,
+subadditive real sequences, or limits. Its job is to make the page's opening
+numbers executable on a modest computer.
 
 ## The complete thirteen-declaration map
 
-| No. | Lean declaration | Assumptions beyond the cocycle | Mathematical content |
-|---:|---|---|---|
-| 1 | <code>integratedLogPlusNorm</code> | None | Defines totalized \(I_k=\int P_k\,d\mu\) |
-| 2 | <code>integratedLogPlusNorm_zero</code> | None | \(I_0=0\) |
-| 3 | <code>integratedLogPlusNorm_nonneg</code> | None | \(0\le I_k\), not integrability |
-| 4 | <code>integral_logPlusNormObservable_at_base_iterate_eq</code> | None | \(\int P_k\circ T^j\,d\mu=I_k\) for the totalized integral; possibly \(0=0\) without integrability |
-| 5 | <code>HasIntegrableGeneratorLogPlus.integral_orbitLogPlusSum_eq</code> | <code>hC</code> | \(\int S_k\,d\mu=kI_1\) |
-| 6 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_le_nat_mul</code> | <code>hC</code> | \(I_k\le kI_1\) |
-| 7 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_add_le</code> | <code>hC</code> | \(I_{m+k}\le I_m+I_k\) |
-| 8 | <code>HasIntegrableGeneratorLogPlus.subadditive_integratedLogPlusNorm</code> | <code>hC</code> | Packages declaration 7 as <code>Subadditive</code> |
-| 9 | <code>normalizedIntegratedLogPlusNorm</code> | None | Defines total \(A_k=I_k/k\) |
-| 10 | <code>normalizedIntegratedLogPlusNorm_nonneg</code> | None | \(0\le A_k\) |
-| 11 | <code>bddBelow_normalizedIntegratedLogPlusNorm</code> | None | The full range of \(A\) is bounded below by zero |
-| 12 | <code>integratedLogPlusGrowthRate</code> | <code>hC</code> | Defines the Fekete infimum over \(k\ge1\) |
-| 13 | <code>HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm</code> | <code>hC</code> | Proves \(A_k\to\gamma_\mu^+(C)\) in \(\mathbb R\) |
+The source module exposes exactly thirteen public declarations.
 
-The ordering is part of the API's integrity. Total definitions, elementary
-order facts, and the preserved-pullback equality appear without
-<code>hC</code>. The finite orbit-sum identity, bounds, subadditivity theorem,
-rate definition, and convergence theorem carry the explicit hypothesis.
+| # | Declaration | Needs <code>hC</code>? | Exact role |
+|---:|---|:---:|---|
+| 1 | <code>integratedLogPlusNorm</code> | No | Totalized real integral of the finite log-positive observable |
+| 2 | <code>integratedLogPlusNorm_zero</code> | No | The integrated time-zero value is zero |
+| 3 | <code>integratedLogPlusNorm_nonneg</code> | No | Every totalized integrated value is nonnegative |
+| 4 | <code>integral_logPlusNormObservable_at_base_iterate_eq</code> | No | A preserved finite base shift leaves the totalized integral unchanged |
+| 5 | <code>HasIntegrableGeneratorLogPlus.integral_orbitLogPlusSum_eq</code> | Yes | The finite one-step orbit-sum integral equals \(kI_1\) |
+| 6 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_le_nat_mul</code> | Yes | \(I_k\le kI_1\) |
+| 7 | <code>HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_add_le</code> | Yes | \(I_{m+k}\le I_m+I_k\) |
+| 8 | <code>HasIntegrableGeneratorLogPlus.subadditive_integratedLogPlusNorm</code> | Yes | Packages declaration 7 as Mathlib's <code>Subadditive</code> predicate |
+| 9 | <code>normalizedIntegratedLogPlusNorm</code> | No | Defines the total natural-time ratio \(A_k=I_k/k\) |
+| 10 | <code>normalizedIntegratedLogPlusNorm_nonneg</code> | No | Every normalized totalized value is nonnegative |
+| 11 | <code>bddBelow_normalizedIntegratedLogPlusNorm</code> | No | Zero bounds the full normalized range from below |
+| 12 | <code>integratedLogPlusGrowthRate</code> | Yes | Names the positive-index Fekete infimum |
+| 13 | <code>HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm</code> | Yes | Proves deterministic real convergence to that infimum |
 
-## Raw measure, probability, and finite rescaling
+The assumption ledger is just as important:
 
-The cocycle structure is parameterized by an arbitrary <code>Measure Ω</code>.
-It does not include <code>IsProbabilityMeasure μ</code>, a finite-mass
-assumption, or a normalization by \(\mu(\Omega)\). Thus
+| Data or property | Present? | Consequence |
+|---|:---:|---|
+| Measurable base space | Yes | Observables and pullbacks can enter measure theory |
+| Finite matrix index type with decidable equality | Yes | Finite complex matrices and their norm are available |
+| Arbitrary measure \(\mu\) | Yes | Integrals are raw measure integrals by default |
+| Base preserves \(\mu\) | Yes | Shifted pullback integrals agree |
+| Measurable generator | Yes | Finite observables are measurable |
+| One-step log-positive integrability <code>hC</code> | Required for declarations 5–8 and 12–13 | Finite integral algebra and scalar subadditivity are justified |
+| Probability normalization | No | “Expectation” is not the general theorem's terminology |
+| Ergodicity, mixing, or independence | No | No orbit-average or decorrelation conclusion follows |
+| Invertibility | No | Time remains one-sided |
+| Negative-log control | No | Contraction and collapse are not recovered |
+
+### Empty matrix dimension
+
+The index type may be empty. RMT-15 proves that every log-positive norm
+observable is then the zero function. The one-step hypothesis is satisfied,
+all integrated and normalized values are zero, and the deterministic Fekete
+rate is zero.
+
+That boundary is consistent, but it does not explain positive-dimensional
+growth. It records that the envelope has no coordinates from which to collect
+growth.
+
+### Raw measure scaling
+
+In the opening example, replacing the uniform probability measure
+\((1/2,1/2)\) with counting measure \((1,1)\) doubles every integral:
 
 \[
-I_k=\int_\Omega P_k\,d\mu
-\]
-
-is a raw-measure integral. Calling it an expectation would silently add mass
-one. Calling \(A_k\) a measure average would silently add division by the total
-mass. Neither operation occurs in the checked definitions.
-
-A safe summary is:
-
-{{< panel "info" >}}
-The construction is normalized in time but not normalized in measure.
-{{< /panel >}}
-
-Finite scalar rescaling exposes this choice. Let \(c\) be a finite
-nonnegative scalar and repackage the cocycle over \(c\mu\). Mathlib proves
-that measure preservation survives such scaling and that a Bochner integral
-against the scaled measure is multiplied by \(c\). Subject to the corresponding
-integrability facts, this gives
-
-\[
-I_k^{c\mu}=cI_k^\mu,
+I_k^{\mathrm{count}}=kL,
 \qquad
-A_k^{c\mu}=cA_k^\mu,
-\qquad
-\gamma_{c\mu}^+(C)=c\gamma_\mu^+(C).
+A_k^{\mathrm{count}}=L.
 \]
 
-For finite \(c\gt0\), integrability is equivalent before and after scaling.
-For \(c=0\), the zero measure makes every function integrable and every
-integral vanishes. No claim about scaling by an infinite extended scalar should
-be inferred. The phrase “depends on total mass” is also too broad when the base
-measure has infinite mass.
-
-These scaling equations are consequences of upstream Mathlib APIs after the
-cocycle is re-bundled over the scaled measure. They are not among RMT-16's
-thirteen named declarations.
-
-If a future specialization proves \(\mu(\Omega)=1\), then each \(I_k\) may be
-called an expectation. Even in that specialization, declaration 13 remains a
-limit of expected positive envelopes. It does not become an expectation of a
-samplewise limit without another theorem.
-
-## Two calibration examples
-
-### One point, one expanding scalar
-
-Let the base have one point with finite, strictly positive raw mass \(q\), let
-the base map be the
-identity, and let the one-dimensional generator be a constant
-\(\lambda\gt1\). The cocycle product is \(\lambda^k\), so
-
-\[
-P_k=k\log\lambda.
-\]
-
-Therefore
-
-\[
-I_k=qk\log\lambda,
-\qquad
-A_k=q\log\lambda
-\quad(k\ge1),
-\]
-
-and
-
-\[
-\gamma_\mu^+(C)=q\log\lambda.
-\]
-
-This one example checks four boundaries:
-
-1. the rate scales with finite scalar rescaling of the raw measure;
-2. expectation language is justified only when \(q=1\);
-3. \(A_0=0\) differs from every positive-time ratio; and
-4. the Fekete infimum must exclude zero to recover the positive answer.
-
-For \(0\lt\lambda\lt1\), the positive logarithm clips every horizon to zero.
-The RMT-16 rate is then zero even though the ordinary scalar logarithmic rate
-is \(\log\lambda\lt0\). This is direct evidence that the construction is not a
-full Lyapunov exponent.
-
-### One point, a nilpotent matrix
-
-Now take the constant matrix
-
-\[
-B=
-\begin{bmatrix}
-0&2\\
-0&0
-\end{bmatrix}.
-\]
-
-Its selected maximum absolute row-sum norm is two, so the one-step envelope is
-\(P_1=\log2\). But \(B^2=0\). Hence \(P_k=0\) for every \(k\ge2\), the
-normalized integrated values eventually vanish, and the Fekete rate is zero.
-
-The example records one-step expansion followed by exact annihilation. The
-positive envelope sees the first event but maps the collapse itself to zero.
-It therefore cannot serve as an invariant record of contraction or singular
-behavior.
-
-Both calculations are deterministic teaching examples, not measured data and
-not additional formal declarations.
-
-## Assumption and order-of-operations ledger
-
-| Question | RMT-16 answer |
-|---|---|
-| Is the base measurable? | Yes, by the cocycle structure |
-| Does the base preserve \(\mu\)? | Yes, including every natural iterate |
-| Is \(\mu\) a probability measure? | Not assumed |
-| Is \(\mu\) finite? | Not assumed |
-| Is the one-step positive envelope integrable? | Explicit hypothesis <code>hC</code> |
-| Is every finite-horizon envelope integrable? | Inherited RMT-15 theorem under <code>hC</code> |
-| Are orbit terms independent? | Not assumed and not needed |
-| Is the base ergodic? | Not assumed |
-| Is the cocycle invertible? | Not assumed |
-| Is the positive envelope integrated before normalization? | Yes |
-| Does the rate use time zero? | No, its infimum uses \(k\ge1\) |
-| Is the final convergence scalar? | Yes, in \(\mathbb R\) |
-| Is any samplewise convergence proved? | No |
-
-This ledger prevents a common proof inversion. Measure preservation does not
-make \(P_1\) integrable. It transports an already supplied integrability fact.
-Likewise, nonnegativity does not make a totalized integral analytically finite.
-It supplies the normalized range's lower bound unconditionally. The separate
-<code>hC</code> hypothesis is still needed for the substantive subadditivity
-and Fekete-convergence branch.
+The cocycle did not change; the measure normalization did. This is why the
+general symbol \(\gamma_\mu^+(C)\) should remember \(\mu\), and why the source
+does not call its raw integral an expectation.
 
 ## Common wrong turns
 
-### Calling the integral an expectation
+### Calling \(I_k\) an expectation for an arbitrary measure
 
-The measure is arbitrary. Use “integrated value” or “raw-measure integral”
-unless mass one has been separately established.
+An expectation requires a probability measure. The module assumes only a
+measure. Say “integral” unless a probability instance is explicitly in scope.
 
-### Treating a real result as a finiteness proof
+### Treating a totalized real integral as an integrability proof
 
-Mathlib's Bochner integral returns a real even when the integrand is not
-integrable. Check <code>hC</code> rather than inferring integrability from the
-codomain.
-
-### Using the full normalized range in the infimum
-
-The range includes \(A_0=0\). Mathlib's rate uses only positive indices. A
-full-range infimum would erase every strictly positive example.
-
-### Saying the ratios decrease to the limit
-
-Fekete proves convergence to an infimum, not consecutive monotonicity. Draw
-fluctuating ratios, not a descending staircase.
-
-### Replacing the Fekete rate by the one-step integral
-
-The finite bound gives \(A_k\le I_1\) for positive \(k\), hence
-\(\gamma_\mu^+(C)\le I_1\). Equality is not proved in general.
+The Bochner integral has a real value even when the integrand is
+nonintegrable. Use the explicit <code>hC</code> propagation theorem.
 
 ### Deleting the base shift pointwise
 
-The cocycle split contains \(P_k(T^m\omega)\). Preservation removes that shift
-inside an integral, not in a pointwise identity.
+Preservation proves equal integrals of \(P_k\circ T^m\) and \(P_k\). It does
+not prove those functions are equal at each outcome.
 
-### Reading equal integrals as independence
+### Reading preservation as independence
 
-Every shifted term has the same integral because \(T\) preserves \(\mu\).
-The terms can remain completely dependent.
+All orbit observables can be functions of the same initial outcome.
+Equal shifted integrals do not factor a joint law.
 
-### Moving the limit through the integral
+### Including \(A_0\) in the Fekete infimum
 
-No samplewise limit is available to move. Declaration 13 takes a limit only
-after each horizon has become one real number.
+The running example gives a direct counterexample: \(A_0=0\), but every
+positive value is \(L/2\). Mathlib uses <code>Set.Ici 1</code>.
 
-### Calling the rate a Lyapunov exponent
+### Saying the ratios decrease
 
-Positive clipping sends contraction, unit scale, and exact collapse to zero.
-The theorem gives no negative tail, inverse growth, nonzero condition,
-invariant splitting, or samplewise logarithmic limit.
+Fekete gives convergence to an infimum. The ratios may oscillate, as
+\(\lceil n/2\rceil/n\) does.
+
+### Replacing the rate by \(I_1\)
+
+The bound \(I_k\le kI_1\) implies \(\gamma_\mu^+(C)\le I_1\). It does not
+generally imply equality. The running example happens to have equality
+\(A_k=I_1=L/2\) because its integrated sequence is additive.
+
+### Moving a limit through the integral
+
+The theorem takes a limit of the scalars \(\int P_k\,d\mu/k\). It proves no
+pointwise limit and no dominated- or uniform-integrability hypothesis that
+would justify interchanging limit and integral.
+
+### Calling the conclusion a Lyapunov exponent
+
+A Lyapunov exponent normally records samplewise exponential growth and is
+sensitive to contraction. This module integrates first and uses
+\(\log^+\), which clips all nonpositive logarithmic growth.
 
 ### Invoking Kingman retroactively
 
-RMT-16 invokes only Mathlib's deterministic subadditive-sequence theorem.
-Kingman's theorem concerns measurable subadditive processes and samplewise
-conclusions under additional hypotheses. It is a future destination, not an
-unstated ingredient.
+The proof invokes deterministic Fekete convergence, not a subadditive ergodic
+theorem. No almost-sure convergence theorem occurs in the source.
 
 ## Exercises from trailhead to summit
 
 ### Trailhead
 
-1. Write the types of \(P_k\), \(I_k\), and \(A_k\) after fixing a cocycle.
-2. Explain why \(I_k:\mathbb R\) does not by itself prove integrability.
-3. Derive \(I_0=0\) from the RMT-15 time-zero envelope.
-4. Explain why \(A_0=0\) is formal rather than physical.
-5. Compute the one-point scalar example for \(q=3\) and \(\lambda=2\).
+1. Starting from amber, multiply the first six one-by-one generator matrices
+   and recover the first sample row.
+2. Repeat from blue.
+3. Average the two rows and verify \(I_k=(k/2)L\).
+4. Explain in one sentence why the uniform swap measure is preserved.
+5. Compute the same integral with counting measure.
+6. Identify the first horizon at which the two sample values agree.
 
 ### Mid-mountain
 
-6. Expand \(\int S_3\,d\mu\) term by term and identify where preservation is
-   used.
-7. Derive \(I_k\le kI_1\) from the orbit-sum majorant.
-8. Reconstruct the four-line integral proof of scalar subadditivity.
-9. Explain why the final use of commutativity does not change matrix order.
-10. Give a numerical subadditive sequence whose normalized ratios are not
-    monotone.
-11. Show why zero lower-bounds the normalized range.
-12. Explain why the positive-index infimum can differ from the full-range
-    infimum.
+7. Prove on paper that
+   \(\lceil k/2\rceil+\lfloor k/2\rfloor=k\).
+8. Verify \(I_{m+k}=I_m+I_k\) for the running example.
+9. Show exactly where the near-miss ledger fails subadditivity.
+10. Construct another finite sequence that passes the \(1+1\) test but fails a
+    later subadditivity test.
+11. Explain why <code>integratedLogPlusNorm_nonneg</code> does not prove
+    integrability.
+12. Trace the shifted \(k\)-block through the proof of
+    <code>integratedLogPlusNorm_add_le</code>.
+13. Explain why finite integral additivity needs the propagated
+    integrability proofs.
+14. Show that \(I_k\le kI_1\) does not force \(I_k=kI_1\).
 
 ### Summit
 
-13. Use the division algorithm \(k=qn+r\) to outline Fekete's block argument.
-14. State the exact additional assumption needed before “expectation” becomes
-    valid terminology.
-15. Explain the difference between a limit of expectations and an expectation
-    of a samplewise limit.
-16. Analyze finite rescaling by \(c\gt0\) and the separate zero-measure case.
-17. Use the nilpotent example to refute the claim that the rate detects
-    collapse.
-18. List the hypotheses and codomain choices that a future Kingman layer must
-    settle before theorem application.
-19. Design a separate two-sided inverse-growth envelope and state what RMT-16
-    fails to provide for it.
-20. Explain why an Oseledets splitting requires much more than convergence of
-    the integrated positive envelope.
+15. Unfold <code>Subadditive.lim</code> in the pinned Mathlib source and point
+    to the positive-index restriction.
+16. Prove that \(u_n=\lceil n/2\rceil\) is subadditive and that its ratios are
+    not monotone.
+17. State a candidate samplewise theorem using an explicit almost-everywhere
+    quantifier. List every new hypothesis it would need.
+18. Explain why convergence of \(I_k/k\) alone does not imply convergence of
+    \(P_k(\omega)/k\).
+19. Explain what contraction information \(\log^+\) discards for a scalar
+    factor \(a\) with \(0\lt|a|\lt1\).
+20. Design a collapse-sensitive observable for a zero scalar factor and state
+    the codomain problem it introduces.
+21. Compare the deterministic Fekete conclusion with the statement of a
+    subadditive ergodic theorem, keeping hypotheses and quantifiers separate.
 
-## Reproduce the checked slice
+## Inspect and check the exact project interfaces
 
-From the repository root, load the pinned Lean toolchain and compile the leaf
-module with warnings treated as errors:
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean).
+On an approved Linux builder with the pinned project dependencies already
+provisioned, a learner can place the following in a temporary project scratch
+file:
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
+
+open Matrix MeasureTheory Set Filter Topology
+open scoped Matrix.Norms.Operator Real
+open NonlinearDynamics.Random.RandomCocycles
+
+#check DiscreteMatrixCocycle.integratedLogPlusNorm
+#check DiscreteMatrixCocycle.integratedLogPlusNorm_zero
+#check DiscreteMatrixCocycle.integratedLogPlusNorm_nonneg
+#check DiscreteMatrixCocycle.integral_logPlusNormObservable_at_base_iterate_eq
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integral_orbitLogPlusSum_eq
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_le_nat_mul
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_add_le
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.subadditive_integratedLogPlusNorm
+#check DiscreteMatrixCocycle.normalizedIntegratedLogPlusNorm
+#check DiscreteMatrixCocycle.normalizedIntegratedLogPlusNorm_nonneg
+#check DiscreteMatrixCocycle.bddBelow_normalizedIntegratedLogPlusNorm
+#check DiscreteMatrixCocycle.integratedLogPlusGrowthRate
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm
 ~~~
 
-Build the named module and its dependency graph:
+The <code>#check</code> commands ask Lean to report existing declaration
+types. They do not create a samplewise exponent, prove an ergodic theorem, or
+replace the source module's compilation.
+
+Immediately below this prose, the repository-check panel renders the exact
+guarded command
+<code>CLOUD_LEAN_BUILD=1 make lean-file
+LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean</code>.
+That check belongs on a provisioned, human-approved Linux cloud builder. This
+Mac is suitable for the small <code>Std</code> worksheet, Hugo authoring, and
+static checks; it must not rebuild this Mathlib-backed project.
+{{< /repo-check >}}
+
+The broader Linux release gate is:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
+CLOUD_LEAN_BUILD=1 make check
 ~~~
 
-Return to the repository root and validate the complete teaching surface:
+Both commands use the repository's guarded workflow and pinned manifest.
+Technical success does not complete human or Pro review.
 
-~~~sh
-cd ..
-make site-check
-~~~
+## What the checked theorem does and does not say
 
-The repository-wide gate is <code>make check</code>. Automated success does not
-complete review of this public working note. Human mathematical, source,
-accessibility, and editorial reviews remain pending.
-
-## What remains outside the theorem
-
-| Topic | Status in RMT-16 |
+| Topic | Status in this module |
 |---|---|
-| Totalized finite-horizon integral | Defined |
+| Finite-horizon log-positive integral | Defined as a total real value |
 | Integrated time-zero value | Proved zero |
-| Integrated nonnegativity | Proved, but not an integrability theorem |
-| Shifted pullback integral equality | Proved unconditionally for the totalized integral; may be \(0=0\) without integrability |
+| Integrated nonnegativity | Proved without claiming integrability |
+| Shifted pullback integral | Proved invariant under every preserved base iterate |
+| One-step integrability hypothesis | Inherited explicitly from RMT-15 |
 | Exact finite orbit-sum integral | Proved under <code>hC</code> |
-| Linear finite-horizon integral bound | Proved under <code>hC</code> |
+| Linear bound \(I_k\le kI_1\) | Proved under <code>hC</code> |
 | Scalar subadditivity | Proved under <code>hC</code> |
-| Natural-time normalized sequence | Defined, including formal time zero |
-| Lower bound for normalized range | Proved |
-| Positive-index Fekete rate | Defined under <code>hC</code> |
-| Deterministic convergence in \(\mathbb R\) | Proved under <code>hC</code> |
-| Probability normalization or expectation | Not assumed or defined |
+| Natural-time normalization | Defined, including formal time zero |
+| Lower bound | Zero bounds the full normalized range |
+| Rate | Defined as Mathlib's positive-index Fekete infimum |
+| Deterministic convergence | Proved in \(\mathbb R\) |
+| Probability normalization | Not assumed |
 | Finite total measure | Not assumed |
-| Monotonicity of normalized ratios | Not proved and not implied |
-| Samplewise convergence | Not proved |
-| Almost-everywhere convergence | Not proved |
+| Independence, mixing, or ergodicity | Not assumed or proved |
+| Monotonic normalized ratios | Not implied |
+| Pointwise or almost-sure convergence | Not proved |
 | Convergence in probability, distribution, or \(L^1\) | Not proved |
 | Limit-integral interchange | Not attempted |
-| Ergodicity, mixing, or independence | Not assumed or proved |
-| Kingman's theorem | Not invoked |
-| Furstenberg-Kesten theorem | Not invoked |
-| Negative logarithmic growth or collapse-sensitive rate | Deliberately erased by positive log |
+| Kingman's subadditive ergodic theorem | Not invoked |
+| Furstenberg–Kesten theorem | Not invoked |
+| Contraction-sensitive logarithmic rate | Not available from \(\log^+\) |
 | Lyapunov exponent or spectrum | Not defined or proved |
 | Oseledets filtration or splitting | Not invoked |
-| Two-sided or inverse cocycle growth | Not present |
-| Derivative or random-Jacobian interpretation | Not connected |
+| Two-sided cocycle or inverse estimates | Not present |
+| Random Jacobian interpretation | Not connected |
 
-The summit is exact: an explicitly integrable finite positive-growth envelope
-produces a lower-bounded subadditive sequence of real integrals, and its
-positive-time normalized values converge to their deterministic Fekete
-infimum.
+The exact summit is narrower and cleaner:
+
+> One-step integrability plus measure preservation turns the finite
+> log-positive cocycle envelope into a lower-bounded subadditive sequence of
+> real integrals. Its positive-time normalized values converge to their
+> deterministic Fekete infimum.
+
+No outcome-dependent limit appears in that sentence.
 
 ## Where to continue
 
-[Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
-is the immediate successor. It packages the finite-time process, introduces
-probability-specialized expectation terminology, and exposes native invariant
-event and invariant-observable rigidity without claiming that an almost-sure
-limit exists. Its compact companion is the
-{{< refterm "ergodic-probability-base" "ergodic probability base" >}}
-entry.
-
-The
-{{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}
-entry is the compact definition and caveat ledger for this chapter.
-
 [Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
 is the immediate predecessor. It constructs \(P_k\), the finite orbit sum,
-and the propagated integrability hypothesis used throughout RMT-16.
+and the propagated <code>hC</code> proofs used here.
+
+[Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
+is the immediate successor. It adds a probability-specialized interface and
+native ergodic rigidity while still refusing to claim a samplewise limit.
+
+The compact
+{{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}
+glossary entry is the quick reference for the rate and its caveats.
 
 [Integrated Log-Positive Growth in Lean: Subadditivity and a Deterministic Fekete Limit]({{< relref "/development-notebook/2026/07/integrated-log-positive-growth-and-deterministic-fekete-limit" >}})
-is the proof-to-prose Research Note paired directly with the Lean module.
+is the paired Development Notebook entry.
 
-The next asymptotic layer should choose its theorem before choosing its
-terminology. A Kingman route needs a precise measurable-process interface,
-probability or finite-measure hypotheses as required by the chosen theorem,
-and an exact statement of samplewise convergence. A Lyapunov route must also
-restore contraction-sensitive logarithmic information and settle nonzero,
-inverse, or singular-value policies. None of those choices is retroactively
-present in RMT-16.
+A genuine Lyapunov chapter must choose additional mathematics rather than
+renaming this result. At minimum it must decide:
+
+- the samplewise convergence theorem and its exact quantifiers;
+- probability or finite-measure normalization;
+- the required subadditive-process measurability and integrability hypotheses;
+- how contraction and zero matrices are represented;
+- whether the cocycle is one-sided or invertible; and
+- whether the target is one exponent, all singular-value exponents, or an
+  invariant filtration or splitting.
 
 ## References
 
+<a id="ref-integrated-deep-project"></a>**Nonlinear Dynamics in Lean.**
+[IntegratedLogPlusGrowth.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean).
+This is the authoritative thirteen-declaration project source described by the
+chapter.
+
 <a id="ref-integrated-deep-subadditive"></a>**Mathlib contributors.**
 [Subadditive and superadditive sequences](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/Subadditive.html),
-Mathlib 4 documentation. This official source defines
+Mathlib 4 documentation. The pinned source defines
 <code>Subadditive</code>, the positive-index <code>Subadditive.lim</code>, and
-the lower-bounded convergence theorem used by RMT-16.
+the lower-bounded deterministic convergence theorem used here.
 
 <a id="ref-integrated-deep-bochner"></a>**Mathlib contributors.**
 [The Bochner integral](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Integral/Bochner/Basic.html),
-Mathlib 4 documentation. This official source records the totalized integral,
-<code>integral_undef</code>, integral monotonicity, finite linearity,
-<code>integral_map</code>, and finite nonnegative measure scaling.
-
-<a id="ref-integrated-deep-integrable"></a>**Mathlib contributors.**
-[Bochner integrability](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Function/L1Space/Integrable.html),
-Mathlib 4 documentation. This official source supplies the integrability
-transport and finite measure-rescaling facts that qualify the raw-measure
-discussion.
+Mathlib 4 documentation. This official source documents the totalized
+integral and the integral operations used by the module.
 
 <a id="ref-integrated-deep-preserving"></a>**Mathlib contributors.**
 [Measure-preserving maps](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/MeasurePreserving.html),
-Mathlib 4 documentation. This official source supplies mapped-measure equality,
-natural-iterate preservation, pullback integrability, and preservation under
-finite nonnegative scalar rescaling.
+Mathlib 4 documentation. This is the upstream interface for mapped-measure
+equality, natural iterates, and pullback integrability.
 
 <a id="ref-integrated-deep-fekete"></a>**M. Fekete.**
 [Über die Verteilung der Wurzeln bei gewissen algebraischen Gleichungen mit ganzzahligen Koeffizienten](https://doi.org/10.1007/BF01504345),
-*Mathematische Zeitschrift* 17, 228-249, 1923. This is the historical primary
-source associated with the deterministic subadditive lemma used here through
-Mathlib.
+*Mathematische Zeitschrift* 17, 228–249, 1923. This is the historical primary
+source associated with the deterministic subadditive lemma.
 
 <a id="ref-integrated-deep-furstenberg-kesten"></a>**Harry Furstenberg and Harry Kesten.**
 [Products of Random Matrices](https://doi.org/10.1214/aoms/1177705909),
-*The Annals of Mathematical Statistics* 31(2), 457-469, 1960. This primary
-source motivates asymptotic random-matrix-product growth. RMT-16 proves none
+*The Annals of Mathematical Statistics* 31(2), 457–469, 1960. This primary
+source motivates random-matrix-product growth. The present module proves none
 of its probabilistic or samplewise conclusions.
 
 <a id="ref-integrated-deep-kingman"></a>**J. F. C. Kingman.**
 [The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
-This primary source establishes a subadditive ergodic theorem under additional
-hypotheses. The present chapter invokes only deterministic Fekete convergence.
+*Journal of the Royal Statistical Society: Series B* 30(3), 499–510, 1968.
+Kingman's theorem has additional hypotheses and samplewise content. It is not
+invoked here.
 
 <a id="ref-integrated-deep-oseledets"></a>**V. I. Oseledets.**
-[A multiplicative ergodic theorem. Characteristic Ljapunov exponents of dynamical systems](https://www.mathnet.ru/eng/mmo214),
-*Transactions of the Moscow Mathematical Society* 19, 197-231, 1968. This
-primary source is a later exponent and splitting destination. RMT-16 provides
-neither its logarithmic hypotheses nor its conclusions.
+[A multiplicative ergodic theorem: characteristic Ljapunov exponents of dynamical systems](https://www.mathnet.ru/eng/mmo214),
+*Transactions of the Moscow Mathematical Society* 19, 197–231, 1968. This is
+a later exponent-and-splitting destination, not a result of the present
+module.
 
 The exact upstream Lean source audited for this chapter is Mathlib commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the revision pinned by <code>formalization/lake-manifest.json</code>.
+the revision pinned by <code>formalization/lake-manifest.json</code>. The
+project source file audited while rebuilding this page had SHA-256
+<code>e5ce3cb8cfdec22bae395be609b00a2ae7e17b3928b031005a1232d8c00eec57</code>.

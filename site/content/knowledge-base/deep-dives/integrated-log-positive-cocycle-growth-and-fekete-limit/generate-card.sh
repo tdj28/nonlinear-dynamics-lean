@@ -1,93 +1,80 @@
 #!/bin/sh
 set -eu
 
-script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+script_dir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
 checked="$script_dir/integrated-log-positive-cocycle-growth-and-fekete-limit-card.png"
 
 generate() {
   output="$1"
-  magick -size 1200x630 xc:'#F3EFE6' \
-    -fill '#16243A' -draw 'rectangle 0,0 1200,22 rectangle 0,535 1200,630' \
-    -fill '#C16F2C' -font Helvetica -pointsize 22 \
-    -annotate +72+96 'DEEP DIVE / RANDOM COCYCLES' \
-    -fill '#16243A' -font Palatino-Roman -pointsize 35 \
-    -annotate +72+154 'Integrated log-positive' \
-    -annotate +72+200 'cocycle growth' \
-    -annotate +72+246 'and its Fekete limit' \
+  magick -size 1200x630 xc:'#F5F0E6' \
+    -fill '#16243A' -draw 'rectangle 0,0 1200,20 rectangle 0,536 1200,630' \
+    -fill '#C16F2C' -font Helvetica-Bold -pointsize 19 \
+    -annotate +72+88 'DEEP DIVE / RANDOM COCYCLES' \
+    -fill '#16243A' -font Palatino-Roman -pointsize 37 \
+    -annotate +72+152 'Integrate first.' \
+    -annotate +72+200 'Normalize second.' \
+    -annotate +72+248 'Read Fekete exactly.' \
     -fill '#4D5B6B' -font Helvetica -pointsize 18 \
-    -annotate +76+300 'Exact dependencies. One deterministic scalar limit.' \
-    -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 3 \
-    -draw 'roundrectangle 686,54 1148,482 22,22' \
-    -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +730+91 'ALGEBRA' \
-    -fill '#9B5523' -font Helvetica-Bold -pointsize 10 \
-    -annotate +850+91 'INTEGRABILITY' \
-    -fill '#315F55' -font Helvetica-Bold -pointsize 10 \
-    -annotate +1021+91 'ORDER' \
-    -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-    -draw 'roundrectangle 704,108 832,166 12,12' \
-    -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +718+142 'SHIFTED BOUND' \
-    -fill '#F7E9DA' -stroke '#C16F2C' -strokewidth 2 \
-    -draw 'roundrectangle 850,108 978,166 12,12' \
-    -fill '#9B5523' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +875+142 'ONE-STEP hC' \
-    -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-    -draw 'roundrectangle 996,108 1124,166 12,12' \
-    -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +1033+142 'P(k) >= 0' \
-    -fill none -stroke '#4B6787' -strokewidth 3 \
-    -draw 'polyline 768,170 768,190 812,212' \
-    -fill '#4B6787' -stroke none \
-    -draw 'polygon 812,216 803,203 821,203' \
-    -fill none -stroke '#C16F2C' -strokewidth 3 \
-    -draw 'polyline 914,170 914,190 870,212' \
-    -fill '#C16F2C' -stroke none \
-    -draw 'polygon 870,216 861,203 879,203' \
-    -fill none -stroke '#6F8D5E' -strokewidth 3 \
-    -draw 'line 1060,170 1060,210 polygon 1053,203 1067,203 1060,214' \
-    -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 2 \
-    -draw 'roundrectangle 704,216 978,276 12,12' \
-    -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +738+241 'JUSTIFIED INTEGRAL STEP' \
-    -fill '#4D5B6B' -font Helvetica -pointsize 9 \
-    -annotate +724+260 'MONOTONE + ADDITIVE + SHIFT IDENTITY' \
-    -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-    -draw 'roundrectangle 996,216 1124,276 12,12' \
-    -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +1026+250 'A(k) >= 0' \
-    -fill none -stroke '#4B6787' -strokewidth 3 \
-    -draw 'line 841,280 841,302 polygon 834,295 848,295 841,306' \
-    -fill none -stroke '#6F8D5E' -strokewidth 3 \
-    -draw 'line 1060,280 1060,302 polygon 1053,295 1067,295 1060,306' \
-    -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-    -draw 'roundrectangle 704,308 978,360 12,12' \
-    -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 11 \
-    -annotate +773+339 'SUBADDITIVE SEQUENCE' \
-    -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-    -draw 'roundrectangle 996,308 1124,360 12,12' \
-    -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 10 \
-    -annotate +1018+339 'ZERO LOWER BOUND' \
-    -fill none -stroke '#4B6787' -strokewidth 3 \
-    -draw 'polyline 841,364 841,382 900,404' \
-    -fill '#4B6787' -stroke none \
-    -draw 'polygon 908,407 892,410 899,395' \
-    -fill none -stroke '#6F8D5E' -strokewidth 3 \
-    -draw 'polyline 1060,364 1060,382 934,404' \
-    -fill '#6F8D5E' -stroke none \
-    -draw 'polygon 926,407 935,395 942,410' \
+    -annotate +76+294 'One scalar sequence. One deterministic limit.' \
+    -fill '#F4E9E4' -stroke '#A34D40' -strokewidth 2 \
+    -draw 'roundrectangle 72,342 598,452 16,16' \
+    -fill '#963F35' -stroke none -font Helvetica-Bold -pointsize 16 \
+    -annotate +96+377 'ZERO TIME IS A FORMAL BOUNDARY' \
+    -fill '#4D3B37' -font Helvetica -pointsize 16 \
+    -annotate +96+407 'A_0 = 0, but the infimum uses k >= 1.' \
+    -annotate +96+433 'No samplewise or Lyapunov conclusion.' \
+    -fill '#FFFDF8' -stroke '#C9BBA6' -strokewidth 2 \
+    -draw 'roundrectangle 668,52 1148,498 20,20' \
+    -fill '#F4E4CD' -stroke '#B66A2C' -strokewidth 2 \
+    -draw 'roundrectangle 700,78 884,148 13,13' \
+    -fill '#B66A2C' -stroke none -draw 'circle 728,103 728,117' \
+    -fill '#2C2924' -font Helvetica-Bold -pointsize 13 \
+    -annotate +748+108 'AMBER / [2]' \
+    -fill '#4D5B6B' -font Helvetica -pointsize 12 \
+    -annotate +724+134 'mass 1/2; P_1/L = 1' \
+    -fill '#DFEAF2' -stroke '#416887' -strokewidth 2 \
+    -draw 'roundrectangle 932,78 1116,148 13,13' \
+    -fill '#416887' -stroke none -draw 'circle 960,103 960,117' \
+    -fill '#2C2924' -font Helvetica-Bold -pointsize 13 \
+    -annotate +980+108 'BLUE / [1]' \
+    -fill '#4D5B6B' -font Helvetica -pointsize 12 \
+    -annotate +956+134 'mass 1/2; P_1/L = 0' \
+    -fill none -stroke '#416887' -strokewidth 3 \
+    -draw 'line 887,113 926,113 polygon 917,106 929,113 917,120' \
     -fill '#16243A' -stroke none \
-    -draw 'roundrectangle 758,408 1076,462 13,13' \
-    -fill '#FFFDF8' -font Helvetica-Bold -pointsize 13 \
-    -annotate +800+441 'DETERMINISTIC FEKETE LIMIT' \
-    -fill '#F3E8E0' -stroke '#A55445' -strokewidth 2 \
-    -draw 'roundrectangle 72,356 590,416 13,13' \
-    -fill '#8B3E33' -stroke none -font Helvetica-Bold -pointsize 15 \
-    -annotate +118+392 'NO SAMPLEWISE OR LYAPUNOV CONCLUSION' \
+    -draw 'roundrectangle 700,184 1116,222 10,10' \
+    -fill '#FFFDF8' -font Helvetica-Bold -pointsize 11 \
+    -annotate +719+208 'k' \
+    -annotate +775+208 'P_a/L' \
+    -annotate +862+208 'P_b/L' \
+    -annotate +955+208 'I_k/L' \
+    -annotate +1047+208 'A_k/L' \
+    -fill '#F4E9E4' -stroke none -draw 'rectangle 701,223 1115,271' \
+    -fill '#2C2924' -font Helvetica-Bold -pointsize 13 \
+    -annotate +721+253 '0' -annotate +797+253 '0' \
+    -annotate +884+253 '0' -annotate +971+253 '0' \
+    -fill '#963F35' -annotate +1054+253 '0*' \
+    -fill '#2C2924' \
+    -annotate +721+301 '1' -annotate +797+301 '1' \
+    -annotate +884+301 '0' -annotate +966+301 '1/2' \
+    -annotate +1050+301 '1/2' \
+    -annotate +721+349 '2' -annotate +797+349 '1' \
+    -annotate +884+349 '1' -annotate +971+349 '1' \
+    -annotate +1050+349 '1/2' \
+    -annotate +721+397 '3' -annotate +797+397 '2' \
+    -annotate +884+397 '1' -annotate +966+397 '3/2' \
+    -annotate +1050+397 '1/2' \
+    -fill none -stroke '#D8CEC0' -strokewidth 1 \
+    -draw 'line 700,271 1116,271 line 700,319 1116,319 line 700,367 1116,367 line 700,415 1116,415' \
+    -fill '#E8F0E3' -stroke '#668253' -strokewidth 2 \
+    -draw 'roundrectangle 700,430 1116,474 12,12' \
+    -fill '#365B47' -stroke none -font Helvetica-Bold -pointsize 14 \
+    -annotate +754+458 'positive A_k = (1/2) log 2' \
     -fill '#FFFDF8' -font Helvetica -pointsize 17 \
-    -annotate +72+578 'RAW MEASURE  /  POSITIVE INDICES  /  NO ERGODIC CLAIM' \
+    -annotate +72+578 'EXACT FINITE LEDGER  /  POSITIVE INDICES  /  DETERMINISTIC LIMIT' \
     -strip -define png:exclude-chunk=date,time \
     "PNG:$output"
+
   dimensions="$(magick identify -format '%wx%h' "$output")"
   test "$dimensions" = "1200x630" || {
     echo "unexpected card dimensions: $dimensions" >&2
