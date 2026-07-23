@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:31 PDT
+Last updated: 2026-07-22 18:33 PDT
 
-Audited baseline: `main` at `672703a`
+Audited baseline: `main` at `34d2472`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -184,8 +184,13 @@ conjugate transpose, matrix trace, orbit iteration, random matrices, random
 variables, and null sets. The orbit worksheet deliberately defines its own
 finite recursion because Mathlib's iterate notation is not part of `Std`.
 There are therefore no missing page-owned generators and no missing bounded
-tutorials; fifteen older generators remain stale against their checked cards.
-Treat those findings as required
+tutorials. The final asset-provenance wave replaces all fifteen stale generic
+generators with deterministic exports of each page's exact worked SVG. A live
+62-page audit now reports 62 executable generators, 62 successful `--verify`
+comparisons, and 62 pinned `Std` tutorial routes. A wording scan still finds
+five older tutorials described with hypothetical “should print” or “expected
+output” language; rerun and record those exact files before calling the
+glossary release fully closed. Treat those findings as required
 final glossary cleanup under the owner's reader-walkthrough direction; do not
 call the glossary release closed merely because all 62 content rewrites exist.
 The separate stale “worksheet not run” finding is also cleared: the exact
@@ -3097,6 +3102,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `34d2472`: close all missing glossary tutorial and generator coverage,
+  including five executed matrix/dynamics lessons, a standalone orbit-recursion
+  correction, and a nonempty zero-mass null-set experiment.
 - `672703a`: make expectation, integrability, measurable-function,
   measurable-space, measure-preserving, and pushforward chapters executable;
   run all six exact `Std` worksheets and add deterministic worked-figure cards.
