@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:15 PDT
+Last updated: 2026-07-22 22:18 PDT
 
-Audited baseline: `main` at `8752826`
+Audited baseline: `main` at `09bbc99`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **31 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **32 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -577,6 +577,20 @@ all ten public declarations, eleven private support declarations/instances,
 nine boundary examples and seven axiom reports, a guarded cloud probe, and a
 byte-identical executed `Std` worksheet explicitly stop before lower liminf or
 Kingman convergence.
+*From Finite Centered Bad-Block Bounds to All-Positive-Length Control* carries
+the same uniform amber/blue process to its uncapped event. At slope `-3/4`,
+caps zero through four are empty, cap five first becomes `{amber}`, every
+larger cap stays there, and the union has mass `1/2≤δ/c=2/3` for
+`δ=-1/2`. Equality at length four and the slope-zero cap-one/cap-two split
+keep strictness visible. A separate preserving collapse with a one-shot
+centered process has exactly one bad length, raw event `{amber}`, and empty
+preimage; both sets have Dirac-blue mass zero, so almost-everywhere equality
+does not repair setwise invariance. Two accessible numeric figures, seven Lean
+bridges, all eleven public declarations plus fifteen private items, ten
+examples and seven axiom reports, the unconditional extended-measure limit and
+finite-target `Measure.real` gate, a guarded cloud check, and a byte-identical
+executed 97-line `Std` worksheet distinguish one finite witness from recurrent
+or lower-liminf deviation.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3464,6 +3478,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `09bbc99`: rebuild *Subadditive Upper Limsup Bounds Before Kingman
+  Convergence* around a sharp two-state block ledger and the `-n²`
+  totalized-real-limsup boundary, with the generalized lower-bound theorem,
+  seven Lean bridges, and an executed local `Std` worksheet.
 - `8752826`: rebuild *Birkhoff Limits, Invariant Sigma Algebras, and
   Conditional Expectation* around a weighted four-state two-sector model,
   atomwise conditional expectation, four wrong-target boundaries, seven Lean

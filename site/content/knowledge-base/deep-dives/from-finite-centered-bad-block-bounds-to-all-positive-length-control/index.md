@@ -7,12 +7,12 @@ lead: "A bound for every finite cap is not yet a bound for the union over all po
 draft: false
 pro_reviewed: false
 level: "Subadditive processes, finite bad-block estimates, null measurable sets, extended nonnegative real measure, filter convergence, and intermediate Lean theorem reading"
-reading_time: "170 to 250 minutes"
+reading_time: "180 to 260 minutes"
 prerequisites: "Centered subadditive processes, the RMT-30 finite bad-block ratio, increasing unions, finite measures, and elementary real convergence; no Kingman theorem is assumed"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure"
 toc: true
 og_image: "from-finite-centered-bad-block-bounds-to-all-positive-length-control-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing nested finite centered bad-block caps becoming one all-positive-length union, extended measure continuity preceding a finite-target real projection, and the uniform finite ratio passing to the union. A warning states that the raw once-bad event need not be invariant and is not a lower-liminf event."
+og_image_alt: "Exact two-atom centered bad-block ledger. Amber has centered values minus n minus one, blue has value zero, and the slope is negative three quarters. Length five is the first strict witness, caps zero through four are empty, the all-length event has mass one half, and its unchanged ratio ceiling is two thirds."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -28,6 +28,229 @@ working note. Its mathematical claims and declaration names have been
 reconciled with the frozen RMT-31 Lean module, while human publication review
 and the configured external Pro review remain pending.
 {{< /panel >}}
+
+## Begin with two atoms and one first witness
+
+Let
+
+\[
+\Omega=\{\text{amber},\text{blue}\}
+\]
+
+carry the uniform probability measure, so each atom has mass \(1/2\). Let the
+base map be the identity. This system preserves the measure but is not
+ergodic: each singleton is invariant and has nonzero, nonfull mass.
+
+Use the centered process
+
+\[
+Y_n(\text{amber})=-(n-1),
+\qquad
+Y_n(\text{blue})=0.
+\]
+
+Natural-number subtraction is truncated, so \(Y_0(\text{amber})=0\), and
+\(Y_1=0\) at both atoms. Choose the slope
+
+\[
+c=-\frac34.
+\]
+
+A positive length \(n\) is a strict bad-block witness at \(x\) when
+
+\[
+Y_n(x)\lt cn.
+\]
+
+For blue this never happens: \(0\) cannot lie below the negative number
+\(-3n/4\). For amber, the complete first ledger is:
+
+| \(n\) | \(Y_n(\text{amber})\) | \(cn\) | strict witness? | reason |
+|---:|---:|---:|:---:|---|
+| \(0\) | \(0\) | \(0\) | no | witnesses must have positive length |
+| \(1\) | \(0\) | \(-3/4\) | no | the value lies above the line |
+| \(2\) | \(-1\) | \(-3/2\) | no | the value lies above the line |
+| \(3\) | \(-2\) | \(-9/4\) | no | the value lies above the line |
+| \(4\) | \(-3\) | \(-3\) | no | equality is not strict |
+| \(5\) | \(-4\) | \(-15/4\) | yes | first strict witness |
+| \(6\) | \(-5\) | \(-9/2\) | yes | the point remains discoverable |
+| \(7\) | \(-6\) | \(-21/4\) | yes | the point remains discoverable |
+
+The algebra isolates the same boundary:
+
+\[
+-(n-1)\lt-\frac34n
+\quad\Longleftrightarrow\quad
+1\lt\frac14n
+\quad\Longleftrightarrow\quad
+4\lt n.
+\]
+
+If \(B_m(c)\) searches only lengths \(1,\ldots,m\), then
+
+\[
+B_0(c)=B_1(c)=\cdots=B_4(c)=\varnothing,
+\]
+
+while
+
+\[
+B_5(c)=B_6(c)=\cdots=\{\text{amber}\}.
+\]
+
+Removing the cap does not create an infinite witness. It merely permits the
+finite witness \(n=5\):
+
+\[
+B_\infty(c)
+{} =
+\bigcup_{m\in\mathbb N}B_m(c)
+=\{\text{amber}\},
+\qquad
+\mu(B_\infty(c))=\frac12.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="two-atom-cap-and-ratio-ledger.svg"
+  alt="A uniform two-atom identity system is shown. Amber has centered value minus n minus one, blue has value zero, and the strict comparison line has slope negative three quarters. Lengths zero through four fail, with equality at four, while length five is the first strict witness. Caps zero through four are empty, every later cap is amber, the union has mass one half, and the rate-ratio bound is two thirds. A slope-zero panel shows cap one empty and cap two amber."
+  caption="**Exact cap ledger:** amber first crosses strictly below the line \(cn=-3n/4\) at \(n=5\); equality at \(n=4\) is excluded. Thus the nested cap sequence stabilizes from \(\varnothing\) to \(\{\text{amber}\}\), and the all-length event has mass \(1/2\). The normalized integral is bounded below by \(\delta=-1/2\), giving the unchanged ceiling \(\delta/c=2/3\). The slope-zero boundary separately shows why \(Y_1=0\) contributes nothing while \(Y_2=-1\) does."
+>}}
+
+### See the rate premise numerically
+
+Uniform integration gives, for every positive \(n\),
+
+\[
+\int_\Omega Y_n\,d\mu
+{} =
+\frac12\bigl(-(n-1)\bigr)+\frac12\cdot0
+=-\frac{n-1}{2}.
+\]
+
+After normalization,
+
+\[
+\frac{\int_\Omega Y_n\,d\mu}{n}
+=-\frac{n-1}{2n}
+=-\frac12+\frac{1}{2n}.
+\]
+
+Set
+
+\[
+\delta=-\frac12.
+\]
+
+Then \(\delta\) is a lower bound for every positive normalized integral, and
+
+\[
+c=-\frac34\lt-\frac12=\delta.
+\]
+
+The generic RMT-31 conclusion becomes
+
+\[
+\mu(B_\infty(c))
+=\frac12
+\le
+\frac{\delta}{c}
+=\frac{-1/2}{-3/4}
+=\frac23.
+\]
+
+The theorem does not need ergodicity, and this identity model is explicitly
+nonergodic. It also does not need probability normalization; the uniform
+probability is used here only because it makes every number transparent.
+
+### Let equality fail first and strictness succeed later
+
+Set the slope to zero while keeping the same process. At length one,
+
+\[
+Y_1(\text{amber})=0=0\cdot1,
+\]
+
+so the strict comparison fails. At length two,
+
+\[
+Y_2(\text{amber})=-1\lt0\cdot2,
+\]
+
+so amber enters. Therefore
+
+\[
+B_1(0)=\varnothing,
+\qquad
+B_2(0)=\{\text{amber}\}.
+\]
+
+This nearby boundary prevents two common mistakes: replacing strict
+\(\lt\) by non-strict \(\le\), or deciding the uncapped event from length one
+alone.
+
+### Separate one bad length from recurrence and invariance
+
+Now use a different two-atom model. Let the base map collapse both atoms to
+blue:
+
+\[
+T(\text{amber})=\text{blue},
+\qquad
+T(\text{blue})=\text{blue}.
+\]
+
+The Dirac measure at blue is preserved. Define a one-shot centered process by
+
+\[
+Y_n(\text{blue})=0
+\]
+
+for every \(n\), and
+
+\[
+Y_1(\text{amber})=0,
+\qquad
+Y_n(\text{amber})=-1\quad(n\ge2).
+\]
+
+Choose \(c=-2/5\). Amber is strict at exactly one positive length:
+
+| \(n\) | \(Y_n(\text{amber})\) | \(cn\) | strict? |
+|---:|---:|---:|:---:|
+| \(1\) | \(0\) | \(-2/5\) | no |
+| \(2\) | \(-1\) | \(-4/5\) | yes |
+| \(3\) | \(-1\) | \(-6/5\) | no |
+| \(4\) | \(-1\) | \(-8/5\) | no |
+
+For \(n\ge3\), the line keeps moving downward while the one-shot value stays
+at \(-1\), so there are no arbitrarily late witnesses. Nevertheless,
+
+\[
+B_\infty(-2/5)=\{\text{amber}\}
+\]
+
+because the raw event asks for one witness. The collapse map never lands at
+amber, hence
+
+\[
+T^{-1}\bigl(B_\infty(-2/5)\bigr)=\varnothing
+\ne
+\{\text{amber}\}=B_\infty(-2/5).
+\]
+
+{{< reference-figure
+  wide="true"
+  src="collapse-map-raw-event-ledger.svg"
+  alt="A collapse map sends both amber and blue to blue and preserves a Dirac mass at blue. Amber has a one-shot centered value negative one from length two onward against slope negative two fifths. It is strictly below the line only at length two, so the raw event is amber, but its preimage is empty. Both sets have zero Dirac-blue measure although they are setwise unequal."
+  caption="**Checked non-invariance model:** one strict witness at \(n=2\) puts amber in the raw all-length event, even though no later length works. Because the collapse map sends both atoms to blue, the preimage of \(\{\text{amber}\}\) is empty. The preserved Dirac-blue measure assigns both sets mass zero, so this example proves failure of setwise invariance without claiming failure of almost-everywhere equality. It also makes the once-bad versus asymptotic distinction numerical."
+>}}
+
+The two models serve different purposes. The identity model checks nested caps,
+the first strict witness, the uniform rate premise, and the \(1/2\le2/3\)
+ratio. The collapse model checks that a one-witness union can be setwise
+noninvariant even for a preserved finite measure and a valid
+shifted-subadditive process.
 
 RMT-30 fixes a natural-number cap \(m\) and controls the points at which some
 centered block of length at most \(m\) falls strictly below a line. RMT-31
@@ -363,27 +586,395 @@ job. RMT-31 supplies the quantitative once-bad ceiling used in branch
 selection, while RMT-32 supplies the distinct asymptotic event and rigidity
 layer.
 
+## Seven bridges from the two-atom ledgers to Lean
+
+The finite tables used lists of atoms and exact rational comparisons. The
+project module states the same architecture for arbitrary sets, measures, and
+centered subadditive processes. Each bridge aligns ordinary language, paper
+mathematics, exact Lean syntax, and the tokens that carry the proof.
+
+### Bridge 1: remove the cap without inventing an infinite witness
+
+{{< lean-bridge
+  human="A point belongs to the all-length event exactly when one positive finite length is a strict witness."
+  math="\(\omega\in B_\infty(c)\Longleftrightarrow\exists n\in\mathbb N,\ 0\lt n\ \land\ Y_n(\omega)\lt cn.\)"
+  lean="mem_centeredAllLengthBadBlockSet_iff"
+>}}
+
+- <code>centeredAllLengthBadBlockSet T X c</code> is the union over natural
+  caps.
+- <code>centeredProcess T X n ω</code> is the centered value \(Y_n(\omega)\).
+- The witness carries <code>0 &lt; n</code>; cap zero contributes nothing.
+- The comparison remains strict. No “infinitely often,” limit, supremum, or
+  infinite length appears.
+{{< /lean-bridge >}}
+
+### Bridge 2: enlarge only the search window
+
+{{< lean-bridge
+  human="If cap m is at most cap M, every witness allowed under m is still allowed under M."
+  math="\(m\le M\Longrightarrow B_m(c)\subseteq B_M(c).\)"
+  lean="finiteCenteredBadBlockSet_mono hmM c"
+>}}
+
+- <code>hmM : m ≤ M</code> is the only premise.
+- A witness supplies <code>1 ≤ n</code> and <code>n ≤ m</code>; transitivity
+  gives <code>n ≤ M</code>.
+- Neither a measurable space nor a measure is needed.
+- This theorem does not compare \(Y_m\) and \(Y_M\); the process itself need
+  not be monotone in time.
+{{< /lean-bridge >}}
+
+### Bridge 3: take the countable null-measurable union
+
+{{< lean-bridge
+  human="If every finite cap is null measurable, their countable all-length union is null measurable too."
+  math="\(\bigl[\forall m,\ \operatorname{NullMeasurableSet}_\mu(B_m(c))\bigr]\Longrightarrow\operatorname{NullMeasurableSet}_\mu(B_\infty(c)).\)"
+  lean="hX.nullMeasurableSet_centeredAllLengthBadBlockSet hT c"
+>}}
+
+- <code>hX : IsIntegrableSubadditiveProcessCandidate T μ X</code> supplies
+  the RMT-30 regularity for each cap.
+- <code>hT : MeasurePreserving T μ μ</code> transports integrability along
+  the dynamics.
+- <code>NullMeasurableSet.iUnion</code> closes the countable union.
+- No finite-mass, probability, ergodicity, or ordinary
+  <code>MeasurableSet</code> premise is added.
+{{< /lean-bridge >}}
+
+### Bridge 4: take continuity in extended measure first
+
+{{< lean-bridge
+  human="The extended measures of the nested finite caps converge to the extended measure of their union, even when the target is infinite."
+  math="\(\mu(B_m(c))\longrightarrow\mu(B_\infty(c))\quad\text{in }\mathbb R_{\ge0\infty}.\)"
+  lean="tendsto_measure_finiteCenteredBadBlockSet (T := T) (μ := μ) X c"
+>}}
+
+- <code>μ (...)</code> is an extended nonnegative real value, so
+  \(\infty\) remains legitimate.
+- <code>atTop</code> means that the natural cap tends upward without bound.
+- <code>nhds</code> identifies the target neighborhood filter.
+- <code>tendsto_measure_iUnion_atTop</code> consumes only the cap monotonicity
+  and exact union; event measurability and finite mass are absent.
+{{< /lean-bridge >}}
+
+### Bridge 5: cross to `Measure.real` only at a finite target
+
+{{< lean-bridge
+  human="Real-valued cap measures converge only after certifying that the union's extended measure is not infinity."
+  math="\(\mu(B_\infty(c))\ne\infty\Longrightarrow\mu_{\mathbb R}(B_m(c))\longrightarrow\mu_{\mathbb R}(B_\infty(c)).\)"
+  lean="tendsto_measureReal_finiteCenteredBadBlockSet (T := T) (μ := μ) X c hfinite"
+>}}
+
+- <code>hfinite : μ (centeredAllLengthBadBlockSet T X c) ≠ ∞</code> is local
+  to the target event.
+- <code>Measure.real</code> is <code>ENNReal.toReal</code> applied to a
+  measure value.
+- Since <code>toReal ∞ = 0</code>, continuity cannot be composed through the
+  infinity cliff without <code>hfinite</code>.
+- <code>[IsFiniteMeasure μ]</code> is a convenient stronger assumption used
+  later to discharge this local gate automatically.
+{{< /lean-bridge >}}
+
+### Bridge 6: preserve the finite-cap ratio at the union
+
+{{< lean-bridge
+  human="A cap-uniform centered rate ratio passes unchanged to all positive lengths on a finite measure space."
+  math="\(\delta\le(\int Y_n\,d\mu)/n\ \forall n\gt0,\ c\lt\delta\Longrightarrow\mu_{\mathbb R}(B_\infty(c))\le\delta/c.\)"
+  lean="hX.measureReal_centeredAllLengthBadBlockSet_le_rateRatio hT δ c hδ hc"
+>}}
+
+- <code>hδ</code> is the lower bound for every nonzero normalized centered
+  integral.
+- <code>hc : c &lt; δ</code> is the strict slope separation.
+- RMT-30 supplies the same ceiling <code>δ / c</code> for every cap.
+- <code>le_of_tendsto'</code> carries that closed upper bound through the
+  real-measure limit with no extra factor or error term.
+{{< /lean-bridge >}}
+
+### Bridge 7: specialize the generic bridge to a matrix cocycle
+
+{{< lean-bridge
+  human="For a discrete matrix cocycle with integrable log-positive generator, the same all-length ratio holds with the integrated Fekete offset."
+  math="\(c\lt\gamma_\mu^+(C)-\int X_1\,d\mu\Longrightarrow\mu_{\mathbb R}(B_\infty^C(c))\le\bigl(\gamma_\mu^+(C)-\int X_1\,d\mu\bigr)/c.\)"
+  lean="hC.measureReal_centeredLogPlusAllLengthBadBlockSet_le_rateRatio c hc"
+>}}
+
+- <code>hC : C.HasIntegrableGeneratorLogPlus</code> supplies the generic
+  candidate, preservation, and the needed integrability.
+- <code>C.integratedLogPlusGrowthRate hC</code> is the deterministic
+  integrated log-positive growth rate.
+- <code>C.integratedLogPlusNorm 1</code> is the one-step integral.
+- The theorem adds neither ergodicity nor a nonempty matrix index and still
+  asserts only a once-bad measure bound.
+{{< /lean-bridge >}}
+
+### Type-check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure" >}}
+
+On an approved Linux builder, place this probe in a project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check centeredAllLengthBadBlockSet
+#check mem_centeredAllLengthBadBlockSet_iff
+#check finiteCenteredBadBlockSet_mono
+#check centeredAllLengthBadBlockSet_eq_iUnion_finite
+#check finiteCenteredBadBlockSet_subset_allLength
+#check IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredAllLengthBadBlockSet
+#check tendsto_measure_finiteCenteredBadBlockSet
+#check tendsto_measureReal_finiteCenteredBadBlockSet
+#check IsIntegrableSubadditiveProcessCandidate.measureReal_centeredAllLengthBadBlockSet_le_rateRatio
+#check DiscreteMatrixCocycle.centeredLogPlusAllLengthBadBlockSet
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusAllLengthBadBlockSet_le_rateRatio
+~~~
+
+From the repository root on that approved Linux host, type:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean
+~~~
+
+This is a **project/Mathlib check**. It can restore or compile substantial
+dependencies and must not run on the Mac workstation. The guarded target
+checks the pinned manifest and validates the authoritative 481-line source
+with warnings treated as errors.
+{{< /repo-check >}}
+
+## Run both two-atom ledgers with `Std`
+
+The following file imports only Lean's `Std` library. It computes the nested
+caps, first witness, union mass, ratio, slope-zero strictness boundary, and
+collapse-map preimage with exact rational arithmetic. It neither imports
+Mathlib nor opens this project. Save the block byte for byte as
+<code>/tmp/AllLengthBadBlockDeepDiveTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace AllLengthBadBlockDeepDiveTutorial
+
+inductive Atom where
+  | amber
+  | blue
+  deriving Repr, DecidableEq
+
+def atoms : List Atom := [.amber, .blue]
+
+def atomName : Atom → String
+  | .amber => "amber"
+  | .blue => "blue"
+
+def centered (n : Nat) : Atom → Rat
+  | .amber => -((n - 1 : Nat) : Rat)
+  | .blue => 0
+
+def slope : Rat := -(3 : Rat) / 4
+
+def strictBadAt (n : Nat) (x : Atom) : Bool :=
+  decide (0 < n ∧ centered n x < slope * (n : Rat))
+
+def capEvent (cap : Nat) : List Atom :=
+  atoms.filter fun x =>
+    (List.range (cap + 1)).any fun n => strictBadAt n x
+
+def firstWitness (x : Atom) : Option Nat :=
+  ((List.range 12).map (· + 1)).find? fun n => strictBadAt n x
+
+def eventMass (event : List Atom) : Rat :=
+  (event.length : Rat) / 2
+
+structure CapRow where
+  cap : Nat
+  event : List String
+  mass : Rat
+  deriving Repr, DecidableEq
+
+def capRow (cap : Nat) : CapRow :=
+  let event := capEvent cap
+  { cap := cap
+    event := event.map atomName
+    mass := eventMass event }
+
+def strictAtSlope (c : Rat) (n : Nat) (x : Atom) : Bool :=
+  decide (0 < n ∧ centered n x < c * (n : Rat))
+
+def capEventAtSlope (c : Rat) (cap : Nat) : List Atom :=
+  atoms.filter fun x =>
+    (List.range (cap + 1)).any fun n => strictAtSlope c n x
+
+def collapse : Atom → Atom
+  | .amber => .blue
+  | .blue => .blue
+
+def oneShotCentered (n : Nat) : Atom → Rat
+  | .amber => if 2 ≤ n then -1 else 0
+  | .blue => 0
+
+def oneShotBadAt (n : Nat) (x : Atom) : Bool :=
+  decide (0 < n ∧
+    oneShotCentered n x < (-(2 : Rat) / 5) * (n : Rat))
+
+def oneShotEvent (cap : Nat) : List Atom :=
+  atoms.filter fun x =>
+    (List.range (cap + 1)).any fun n => oneShotBadAt n x
+
+def oneShotPreimage (cap : Nat) : List Atom :=
+  atoms.filter fun x => (oneShotEvent cap).contains (collapse x)
+
+#eval (List.range 9).map capRow
+#eval atoms.map fun x => (atomName x, firstWitness x)
+#eval (capEvent 12).map atomName
+#eval (eventMass (capEvent 12), (-(1 : Rat) / 2) / slope)
+#eval ((capEventAtSlope 0 1).map atomName,
+  (capEventAtSlope 0 2).map atomName)
+#eval ((oneShotEvent 12).map atomName,
+  (oneShotPreimage 12).map atomName)
+
+example : ((List.range 8).map fun n => strictBadAt n .amber) =
+    [false, false, false, false, false, true, true, true] := by
+  native_decide
+
+example : capEvent 4 = [] := by native_decide
+example : capEvent 5 = [.amber] := by native_decide
+example : eventMass (capEvent 12) = (1 : Rat) / 2 := by
+  native_decide
+example : eventMass (capEvent 12) ≤ (-(1 : Rat) / 2) / slope := by
+  native_decide
+example : capEventAtSlope 0 1 = [] := by native_decide
+example : capEventAtSlope 0 2 = [.amber] := by native_decide
+example : oneShotEvent 12 = [.amber] := by native_decide
+example : oneShotPreimage 12 = [] := by native_decide
+
+end AllLengthBadBlockDeepDiveTutorial
+~~~
+
+Important syntax:
+
+- <code>inductive Atom</code> creates exactly the two named atoms;
+- <code>Rat</code> keeps the slopes, masses, and ratio exact;
+- <code>List.range (cap + 1)</code> searches lengths zero through the cap,
+  while <code>strictBadAt</code> separately requires positive length;
+- <code>List.any</code> implements existence of one witness;
+- <code>List.filter</code> materializes the finite event;
+- <code>find?</code> returns <code>some 5</code> for amber and
+  <code>none</code> for blue; and
+- each <code>native_decide</code> example asks Lean to certify a displayed
+  boundary or inequality.
+
+With the pinned compiler installed, a human types:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/AllLengthBadBlockDeepDiveTutorial.lean
+~~~
+
+This is a **small standalone tutorial** suitable for a normal Mac or Linux
+host. It imports only `Std`, enumerates two atoms, and does not compile Mathlib
+or this project. Successful execution prints exactly:
+
+~~~text
+[{ cap := 0, event := [], mass := 0 },
+ { cap := 1, event := [], mass := 0 },
+ { cap := 2, event := [], mass := 0 },
+ { cap := 3, event := [], mass := 0 },
+ { cap := 4, event := [], mass := 0 },
+ { cap := 5, event := ["amber"], mass := (1 : Rat)/2 },
+ { cap := 6, event := ["amber"], mass := (1 : Rat)/2 },
+ { cap := 7, event := ["amber"], mass := (1 : Rat)/2 },
+ { cap := 8, event := ["amber"], mass := (1 : Rat)/2 }]
+[("amber", some 5), ("blue", none)]
+["amber"]
+((1 : Rat)/2, (2 : Rat)/3)
+([], ["amber"])
+(["amber"], [])
+~~~
+
+The first output is the increasing cap sequence. The next three outputs
+identify the first witness, union, mass, and ratio. The final two certify the
+slope-zero strictness boundary and the collapse model's unequal raw event and
+preimage. These finite computations do not model extended nonnegative real
+measure, `Measure.real`, null measurability, or filter convergence; those are
+the responsibilities of the project module.
+
 ## The eleven-declaration interface
 
-| Declaration | Role |
-|---|---|
-| <code>centeredAllLengthBadBlockSet</code> | Defines the union |
-| <code>mem_centeredAllLengthBadBlockSet_iff</code> | Gives one positive witness |
-| <code>finiteCenteredBadBlockSet_mono</code> | Proves cap monotonicity |
-| <code>centeredAllLengthBadBlockSet_eq_iUnion_finite</code> | Restates the union |
-| <code>finiteCenteredBadBlockSet_subset_allLength</code> | Embeds each cap |
-| <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredAllLengthBadBlockSet</code> | Takes the null-measurable union |
-| <code>tendsto_measure_finiteCenteredBadBlockSet</code> | Gives extended continuity |
-| <code>tendsto_measureReal_finiteCenteredBadBlockSet</code> | Projects under local finiteness |
-| <code>IsIntegrableSubadditiveProcessCandidate.measureReal_centeredAllLengthBadBlockSet_le_rateRatio</code> | Transfers the ratio |
-| <code>DiscreteMatrixCocycle.centeredLogPlusAllLengthBadBlockSet</code> | Names the cocycle event |
-| <code>DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusAllLengthBadBlockSet_le_rateRatio</code> | Proves the cocycle ratio |
+The frozen 481-line source exposes exactly eleven public declarations in
+source order. Its SHA-256 is
+<code>53438522344c078d64473316a594570993d694ada909a33184579cec6a996fb7</code>.
 
-Fifteen private support items build boundary models. Ten examples check the
-zero cap, finite inclusion, negative-slope zero process, zero measure,
-nonergodic half-mass model, strict later witness, cap-one behavior, mass-two
-measure, empty cocycle index, and non-invariance. Seven axiom reports inspect
-the central chain.
+| No. | Declaration | Exact responsibility |
+|---:|---|---|
+| 1 | <code>centeredAllLengthBadBlockSet</code> | Defines the union of every finite centered bad-block cap |
+| 2 | <code>mem_centeredAllLengthBadBlockSet_iff</code> | Rewrites membership as one positive finite strict witness |
+| 3 | <code>finiteCenteredBadBlockSet_mono</code> | Proves monotonicity in the search cap |
+| 4 | <code>centeredAllLengthBadBlockSet_eq_iUnion_finite</code> | Restates the definitional union exactly |
+| 5 | <code>finiteCenteredBadBlockSet_subset_allLength</code> | Embeds each fixed cap in the all-length event |
+| 6 | <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredAllLengthBadBlockSet</code> | Takes the countable null-measurable union under preservation |
+| 7 | <code>tendsto_measure_finiteCenteredBadBlockSet</code> | Gives unconditional continuity from below in extended measure |
+| 8 | <code>tendsto_measureReal_finiteCenteredBadBlockSet</code> | Projects the limit to real measure under local target finiteness |
+| 9 | <code>IsIntegrableSubadditiveProcessCandidate.measureReal_centeredAllLengthBadBlockSet_le_rateRatio</code> | Transfers the cap-uniform generic ratio through the real limit |
+| 10 | <code>DiscreteMatrixCocycle.centeredLogPlusAllLengthBadBlockSet</code> | Names the cocycle's log-positive all-length event |
+| 11 | <code>DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusAllLengthBadBlockSet_le_rateRatio</code> | Specializes the unchanged ratio to the cocycle Fekete offset |
+
+### Fifteen private support items
+
+These source-local declarations build boundary models without enlarging the
+public API:
+
+| No. | Private item | Role |
+|---:|---|---|
+| 1 | <code>rmt31ZeroProcess</code> | Defines the identically zero process |
+| 2 | <code>rmt31ZeroProcess_candidate</code> | Certifies integrability and shifted subadditivity of the zero process |
+| 3 | <code>rmt31TwoPointProbability</code> | Defines the equal-weight measure on `Bool` |
+| 4 | private <code>IsProbabilityMeasure rmt31TwoPointProbability</code> instance | Proves that the two weights sum to one |
+| 5 | <code>rmt31Id_not_preErgodic</code> | Proves identity on the two-atom probability space is not pre-ergodic |
+| 6 | <code>rmt31TwoPointProcess</code> | Defines zero on blue/`true` and \(-(n-1)\) on amber/`false` |
+| 7 | <code>rmt31TwoPointProcess_candidate</code> | Certifies the displayed process as an integrable shifted-subadditive candidate |
+| 8 | <code>rmt31MassTwoMeasure</code> | Defines a finite measure of total mass two on `Unit` |
+| 9 | private <code>IsFiniteMeasure rmt31MassTwoMeasure</code> instance | Supplies its finite-measure certificate |
+| 10 | <code>rmt31Collapse</code> | Sends both Boolean points to `true` |
+| 11 | <code>rmt31OneShotProcess</code> | Defines the zero/negative-one one-shot process |
+| 12 | <code>rmt31_iterate_collapse_true</code> | Shows every iterate keeps `true` fixed |
+| 13 | <code>rmt31_iterate_collapse_of_ne_zero</code> | Shows every positive iterate sends either point to `true` |
+| 14 | <code>rmt31OneShotProcess_candidate</code> | Certifies the one-shot process as an integrable shifted-subadditive candidate |
+| 15 | <code>rmt31Collapse_preserving</code> | Proves the collapse map preserves the Dirac measure at `true` |
+
+### Ten anonymous compiled examples
+
+The examples are checked propositions but do not create public names:
+
+| Probe | Exact boundary checked |
+|---:|---|
+| 1 | Every cap-zero event is empty |
+| 2 | Every finite cap embeds in the all-length union |
+| 3 | The zero process has no strict witness below a negative slope |
+| 4 | Every all-length event has real measure zero under the zero measure |
+| 5 | The nonergodic uniform two-point identity model has event mass \(1/2\) and satisfies \(1/2\le2/3\) |
+| 6 | Equality at length one for slope zero is excluded, while length two gives a later strict witness |
+| 7 | The cap-one event for the two-point process is the whole space exactly when \(0\lt c\), and is empty otherwise |
+| 8 | The generic ratio theorem works for a finite measure of total mass two, not only a probability |
+| 9 | The cocycle theorem compiles with an empty matrix index |
+| 10 | The preserved collapse-map model has a raw event unequal to its preimage |
+
+### Seven axiom reports
+
+The source prints the axiom footprints of:
+
+1. <code>mem_centeredAllLengthBadBlockSet_iff</code>;
+2. <code>finiteCenteredBadBlockSet_mono</code>;
+3. <code>IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_centeredAllLengthBadBlockSet</code>;
+4. <code>tendsto_measure_finiteCenteredBadBlockSet</code>;
+5. <code>tendsto_measureReal_finiteCenteredBadBlockSet</code>;
+6. <code>IsIntegrableSubadditiveProcessCandidate.measureReal_centeredAllLengthBadBlockSet_le_rateRatio</code>; and
+7. <code>DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusAllLengthBadBlockSet_le_rateRatio</code>.
 
 ## Assumption and nonclaim ledger
 
@@ -568,20 +1159,30 @@ What must replace one-witness membership?
 lower-liminf interpretation, a proved one-sided preimage inclusion, and an
 almost-invariance upgrade using preservation plus finite mass.
 
-## Reproduce the checked interface
+## Reproduce the right layer on the right machine
 
-From the repository root:
+There are two deliberately separate runnable paths.
 
-~~~text
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean
-lake build NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
+- The `Std` worksheet is a tiny two-atom arithmetic tutorial suitable for an
+  ordinary Mac or Linux host.
+- The exact project import, extended-measure API, `Measure.real`, filter
+  limits, candidate interface, and warning-fatal leaf check belong to the
+  guarded Linux/RunPod command in
+  [Type-check the exact project interface](#type-check-the-exact-project-interface).
+
+The distinction is about resource use, not pedagogy. Readers should type,
+run, and modify the finite tutorial locally. The Mathlib-backed proof remains
+fully visible without rebuilding the project cache on this workstation.
+
+The Hugo teaching layer can be checked safely from the repository root:
+
+~~~sh
+make site-check
+git diff --check
 ~~~
 
-For complete source and teaching checks, run <code>make check</code>. The
-paired [Development Notebook]({{< relref "/development-notebook/2026/07/all-positive-length-centered-bad-block-control-in-lean" >}})
-gives the proof ledger, countermodel inventory, and axiom reports.
+The paired [Development Notebook]({{< relref "/development-notebook/2026/07/all-positive-length-centered-bad-block-control-in-lean" >}})
+gives the implementation ledger and review history.
 
 ## Continue the learning path
 
