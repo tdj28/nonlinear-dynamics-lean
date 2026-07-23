@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:12 PDT
+Last updated: 2026-07-22 22:15 PDT
 
-Audited baseline: `main` at `6f8c7e5`
+Audited baseline: `main` at `8752826`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **30 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **31 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -549,6 +549,20 @@ queries, a guarded cloud interface check, and a byte-identical executed `Std`
 worksheet lead from exact finite conditioning to the checked almost-everywhere
 limit identification without confusing exact invariance with modulo-null
 triviality.
+*Subadditive Upper Limsup Bounds Before Kingman Convergence* now begins with
+the uniform two-state flip and the exact process
+`Xₙ=⌈n/2⌉+φ(Tⁿω)-φ(ω)`. Both normalized paths converge to `1/2`, the block-two
+integral ratio is exactly `1/2`, and centering gives
+`Yₙ=-⌊n/2⌋`; the residue coefficients visibly approach one half under the
+original ergodic map even though its square is the nonergodic identity. A
+separate one-point process `Zₙ=-n²` has normalized path `-n`, no eventual real
+lower bound, extended-real limsup `-∞`, but Mathlib's totalized real limsup
+zero—so omitting the generalized theorem's honest lower-bound gate would
+assert the false inequality `0≤-1`. Two accessible numeric figures, a revised
+generic-to-cocycle ladder, seven Lean bridges, the full 27-item public/private/
+probe/axiom map including the generalized declaration, a guarded cloud check,
+and a byte-identical executed `Std` worksheet keep the upper bound distinct
+from the missing lower-liminf and convergence halves of Kingman.
 *Finite Bad-Block Measure Bounds Before Kingman Lower Liminf* now makes the
 entire RMT-30 bridge explicit on a uniform amber/blue identity system. For
 `m=5`, `c=-3/4`, only amber at length five is strictly bad, so the event has
@@ -3450,6 +3464,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `8752826`: rebuild *Birkhoff Limits, Invariant Sigma Algebras, and
+  Conditional Expectation* around a weighted four-state two-sector model,
+  atomwise conditional expectation, four wrong-target boundaries, seven Lean
+  bridges, and an executed local `Std` worksheet.
 - `6f8c7e5`: rebuild *Pointwise Birkhoff from Maximal Control and Dense Good
   Functions* around an eight-cycle closure rehearsal, a dyadic approximation
   ladder, strict and zero-scale boundaries, seven Lean bridges, and an

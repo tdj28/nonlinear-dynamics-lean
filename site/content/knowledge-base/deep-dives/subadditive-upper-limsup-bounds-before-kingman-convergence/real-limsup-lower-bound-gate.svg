@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="930"
+     viewBox="0 0 1440 930" role="img"
+     aria-labelledby="real-limsup-gate-title real-limsup-gate-desc">
+  <title id="real-limsup-gate-title">The eventual lower-bound gate for totalized real limsup</title>
+  <desc id="real-limsup-gate-desc">For the one-point subadditive process Z n equals minus n squared, a table lists normalized values zero, minus one, minus two, through minus six. Proposed lower bounds zero, minus one, minus five, and minus twenty are each defeated by a later term. In the extended reals the limsup is minus infinity, while Mathlib's total conditionally complete real limsup is zero because every real is eventually an upper bound. The block-one target is minus one, so omitting the lower-bound hypothesis would produce the false inequality zero less than or equal to minus one.</desc>
+  <defs>
+    <style>
+      .title { font: 700 38px Georgia, serif; fill: #16283a; }
+      .subtitle { font: 20px Arial, sans-serif; fill: #516172; }
+      .panelTitle { font: 700 24px Arial, sans-serif; fill: #203c54; }
+      .label { font: 18px Arial, sans-serif; fill: #263746; }
+      .small { font: 16px Arial, sans-serif; fill: #526170; }
+      .math { font: 21px Georgia, serif; fill: #172d40; }
+      .mathStrong { font: 700 23px Georgia, serif; fill: #172d40; }
+      .head { font: 700 17px Arial, sans-serif; fill: #fffaf0; }
+      .cell { font: 17px Arial, sans-serif; fill: #243746; }
+      .bad { font: 700 18px Arial, sans-serif; fill: #8d3e32; }
+      .good { font: 700 18px Arial, sans-serif; fill: #45683c; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="930" fill="#f6f0e4"/>
+  <rect width="1440" height="18" fill="#1f3f58"/>
+  <text x="66" y="66" class="title">Why the generalized theorem asks for a real lower bound</text>
+  <text x="66" y="100" class="subtitle">One-point probability system; Z<tspan baseline-shift="sub" font-size="15">n</tspan> = −n² is integrable and subadditive, but Z<tspan baseline-shift="sub" font-size="15">n</tspan>/n = −n escapes downward</text>
+
+  <rect x="52" y="132" width="410" height="548" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="80" y="172" class="panelTitle">1 · Exact normalized ledger</text>
+  <text x="80" y="207" class="math">−(m+n)² ≤ −m² − n²</text>
+  <text x="80" y="238" class="small">So Z is genuinely shifted-subadditive.</text>
+  <rect x="80" y="266" width="354" height="42" rx="8" fill="#315a70"/>
+  <text x="106" y="293" class="head">n</text>
+  <text x="205" y="293" class="head">Z<tspan baseline-shift="sub" font-size="13">n</tspan></text>
+  <text x="320" y="293" class="head">Z<tspan baseline-shift="sub" font-size="13">n</tspan>/n</text>
+  <g class="cell">
+    <rect x="80" y="309" width="354" height="45" fill="#f2eadb"/>
+    <text x="108" y="338">0</text><text x="215" y="338">0</text><text x="335" y="338">0</text>
+    <rect x="80" y="354" width="354" height="45" fill="#fffaf0"/>
+    <text x="108" y="383">1</text><text x="208" y="383">-1</text><text x="328" y="383">-1</text>
+    <rect x="80" y="399" width="354" height="45" fill="#f2eadb"/>
+    <text x="108" y="428">2</text><text x="208" y="428">-4</text><text x="328" y="428">-2</text>
+    <rect x="80" y="444" width="354" height="45" fill="#fffaf0"/>
+    <text x="108" y="473">3</text><text x="208" y="473">-9</text><text x="328" y="473">-3</text>
+    <rect x="80" y="489" width="354" height="45" fill="#f2eadb"/>
+    <text x="108" y="518">4</text><text x="198" y="518">-16</text><text x="328" y="518">-4</text>
+    <rect x="80" y="534" width="354" height="45" fill="#fffaf0"/>
+    <text x="108" y="563">5</text><text x="198" y="563">-25</text><text x="328" y="563">-5</text>
+    <rect x="80" y="579" width="354" height="45" fill="#f2eadb"/>
+    <text x="108" y="608">6</text><text x="198" y="608">-36</text><text x="328" y="608">-6</text>
+  </g>
+  <text x="80" y="651" class="small">At n=0, Lean totalizes 0/0 to 0.</text>
+
+  <rect x="490" y="132" width="444" height="548" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="518" y="172" class="panelTitle">2 · Every proposed lower bound fails</text>
+  <text x="518" y="207" class="label">Choose n = |L| + 1; then -n &lt; L.</text>
+  <rect x="518" y="236" width="388" height="42" rx="8" fill="#a5532d"/>
+  <text x="542" y="263" class="head">proposed L</text>
+  <text x="681" y="263" class="head">witness n</text>
+  <text x="809" y="263" class="head">-n &lt; L</text>
+  <g class="cell">
+    <rect x="518" y="279" width="388" height="58" fill="#f2eadb"/>
+    <text x="575" y="315">0</text><text x="724" y="315">1</text><text x="830" y="315">-1 &lt; 0</text>
+    <rect x="518" y="337" width="388" height="58" fill="#fffaf0"/>
+    <text x="565" y="373">-1</text><text x="724" y="373">2</text><text x="820" y="373">-2 &lt; -1</text>
+    <rect x="518" y="395" width="388" height="58" fill="#f2eadb"/>
+    <text x="565" y="431">-5</text><text x="724" y="431">6</text><text x="820" y="431">-6 &lt; -5</text>
+    <rect x="518" y="453" width="388" height="58" fill="#fffaf0"/>
+    <text x="555" y="489">-20</text><text x="714" y="489">21</text><text x="808" y="489">-21 &lt; -20</text>
+  </g>
+  <rect x="518" y="538" width="388" height="106" rx="12" fill="#f1dfcf"/>
+  <text x="542" y="573" class="bad">NO EVENTUAL REAL LOWER BOUND</text>
+  <text x="542" y="600" class="small">Each witness starts a whole tail below L.</text>
+  <text x="542" y="626" class="small">The generalized hXlower premise fails.</text>
+
+  <rect x="962" y="132" width="426" height="548" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="990" y="172" class="panelTitle">3 · Two codomains, two readings</text>
+  <rect x="990" y="207" width="370" height="116" rx="12" fill="#e9f0f3"/>
+  <text x="1014" y="241" class="label">Extended real numbers:</text>
+  <text x="1014" y="278" class="mathStrong">limsup (−n) = −∞</text>
+  <text x="1014" y="306" class="small">The downward escape is represented explicitly.</text>
+
+  <rect x="990" y="345" width="370" height="144" rx="12" fill="#edf1e7"/>
+  <text x="1014" y="379" class="label">Mathlib real Filter.limsup:</text>
+  <text x="1014" y="416" class="mathStrong">sInf(all real upper bounds) = 0</text>
+  <text x="1014" y="447" class="small">Every real is eventually an upper bound.</text>
+  <text x="1014" y="473" class="small">The conditionally complete operation is total.</text>
+
+  <rect x="990" y="512" width="370" height="132" rx="12" fill="#f1dfcf" stroke="#a5532d" stroke-width="2"/>
+  <text x="1014" y="548" class="label">Block-one target:</text>
+  <text x="1014" y="582" class="mathStrong">(integral Z<tspan baseline-shift="sub" font-size="16">1</tspan>)/1 = −1</text>
+  <text x="1014" y="620" class="bad">Without hXlower: 0 ≤ −1  FALSE</text>
+
+  <rect x="52" y="710" width="1336" height="158" rx="20" fill="#1f3f58"/>
+  <text x="82" y="752" style="font:700 20px Arial,sans-serif;fill:#fffaf0;">THE GENERALIZED RMT-29 GATE</text>
+  <text x="82" y="793" style="font:700 27px Georgia,serif;fill:#fffaf0;">
+    normalized path eventually bounded below almost everywhere
+  </text>
+  <text x="82" y="831" style="font:20px Arial,sans-serif;fill:#dce8ec;">
+    + one-step Birkhoff upper bound  →  real limsup_le_iff is legal
+  </text>
+  <rect x="1038" y="741" width="310" height="92" rx="12" fill="#e7efe4"/>
+  <text x="1064" y="778" class="good">NONNEGATIVE WRAPPER</text>
+  <text x="1064" y="810" class="label">chooses lower bound L = 0</text>
+
+  <text x="66" y="905" class="small">Boundary, not intuition: Z is inside the integrable subadditive universe but outside the theorem's honest real-limsup domain.</text>
+</svg>
