@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:06 PDT
+Last updated: 2026-07-22 17:11 PDT
 
-Audited baseline: `main` at `b883058`
+Audited baseline: `main` at `2ec7ddd`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -151,6 +151,17 @@ All remain public working notes with `pro_reviewed: false`. Continue through
 all glossary entries before beginning the Deep Dive pass, validate and push
 small coherent batches, and do not resume RMT-35 formalization while this
 reader-catch-up phase is active.
+
+The current wave brings **47 of 62 glossary chapters** through the full
+example-first rebuild. The newest pair computes the finite maximal ergodic
+inequality on the cyclic observable `(-2, 3, -4, 2)` and the weak-type
+`(1,1)` estimate on four fixed points with values `(4, -2, 1, 0)`. Their
+accessible SVGs expose strict-threshold and terminal-sum near-misses, their
+social cards reproduce from those same diagrams, and both embedded `Std`
+worksheets were executed with the pinned Lean 4.32.0 compiler on the Mac. This
+is intentional teaching use of local Lean; all project imports, Mathlib work,
+dependency builds, caches, and large proof checks remain on freshly approved
+Linux cloud compute.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3038,6 +3049,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `2ec7ddd`: compute a four-state Birkhoff-sum ledger and a uniform
+  seven-state visit-count integral; execute both local `Std` tutorials and
+  turn their exact finite calculations into reproducible cards.
 - `b883058`: derive a wobbling integrated Fekete rate from an exact constant
   matrix and contrast an ergodic four-cycle with a preserved split system;
   execute both finite `Std` audits and regenerate example-bearing cards.

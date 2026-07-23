@@ -1,56 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410"
-     viewBox="0 0 760 410" role="img"
-     aria-labelledby="finiteMaxTitle finiteMaxDesc">
-  <title id="finiteMaxTitle">Strict finite maximal event and one-step peeling</title>
-  <desc id="finiteMaxDesc">Time zero anchors a conceptual sequence of finite partial sums at zero. A later positive maximum enters the strict event, and a second panel explains that its first orbit value is peeled before comparison with the shifted running maximum.</desc>
-  <rect width="760" height="410" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .kept{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-  </style>
-  <text x="24" y="28" class="t title">Strict positivity makes the finite maximum informative</text>
-  <text x="24" y="48" class="t m">Time zero supplies the baseline; a positive-time maximizer supplies the peelable witness.</text>
-
-  <rect class="neutral" x="24" y="70" width="430" height="250" rx="12"/>
-  <text x="44" y="98" class="t h">Conceptual finite partial sums</text>
-  <line x1="62" y1="238" x2="420" y2="238" stroke="#7F786D" stroke-width="1.5"/>
-  <line x1="62" y1="122" x2="62" y2="274" stroke="#7F786D" stroke-width="1.5"/>
-  <text x="43" y="242" class="t m">zero</text>
-  <polyline points="82,238 152,205 222,254 292,157 362,187 414,143"
-            fill="none" stroke="#4B6787" stroke-width="3"/>
-  <circle cx="82" cy="238" r="6" fill="#FBF9F6" stroke="#2C2924" stroke-width="1.5"/>
-  <circle cx="152" cy="205" r="6" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <circle cx="222" cy="254" r="6" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <circle cx="292" cy="157" r="8" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
-  <circle cx="362" cy="187" r="6" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <circle cx="414" cy="143" r="8" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
-  <text x="75" y="296" class="t m">time 0</text>
-  <text x="198" y="296" class="t m">positive horizons</text>
-  <text x="276" y="138" class="t s">positive witness</text>
-  <path d="M338 132 L392 144" fill="none" stroke="#A67C52" stroke-width="2"/>
-  <polygon points="394,144 384,138 386,149" fill="#A67C52"/>
-
-  <rect class="kept" x="478" y="70" width="258" height="112" rx="12"/>
-  <text x="500" y="99" class="t h">STRICT EVENT</text>
-  <text x="500" y="125" class="t s">A positive maximum cannot</text>
-  <text x="500" y="146" class="t s">be attained only at time zero.</text>
-  <text x="500" y="167" class="t m">A positive-time index exists.</text>
-
-  <rect class="warn" x="478" y="198" width="258" height="122" rx="12"/>
-  <text x="500" y="227" class="t h">ONE-STEP PEEL</text>
-  <text x="500" y="253" class="t s">first orbit value</text>
-  <path d="M604 249 L654 249" fill="none" stroke="#A67C52" stroke-width="2.5"/>
-  <polygon points="657,249 645,242 645,256" fill="#A67C52"/>
-  <text x="500" y="281" class="t s">shifted running maximum</text>
-  <text x="500" y="305" class="t m">The two maxima later cancel in the integral.</text>
-
-  <rect class="kept" x="24" y="342" width="712" height="44" rx="10"/>
-  <text x="44" y="369" class="t s">Strict selection + first-summand peeling + measure-preserving cancellation = nonnegative event integral.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700"
+ role="img" aria-labelledby="finiteMaxTitle finiteMaxDesc">
+ <title id="finiteMaxTitle">Exact four-state finite maximal inequality</title>
+ <desc id="finiteMaxDesc">Four equally likely cyclic starts have prefix sums through horizon four. Starts a, b, and d have positive running maxima one, three, and three; start c has maximum zero. The selected observable values minus two, three, and two sum to three, so their event integral is three quarters. Every terminal sum is minus one, exposing the failure of a terminal-positive-part shortcut.</desc>
+ <defs><style>
+ .i{font-family:Inter,Arial,sans-serif;fill:#25231F}.m{font-family:Inter,Arial,sans-serif;fill:#57514A}
+ .t{font-size:23px;font-weight:750}.h{font-size:16px;font-weight:750}.b{font-size:13px}.s{font-size:11px}.k{font-size:11px;font-weight:750;letter-spacing:1px}
+ </style><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#55715B"/></pattern>
+ <pattern id="stripes" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="2.5" height="8" fill="#A4664B"/></pattern></defs>
+ <rect width="1000" height="700" fill="#F7F1E8"/>
+ <text x="32" y="38" class="i t">A running maximum sees witnesses the terminal sum misses</text>
+ <text x="32" y="62" class="m b">Uniform four-state cycle, horizon four, with time zero included.</text>
+ <text x="32" y="96" class="m k">ALL PREFIX SUMS</text>
+ <g>
+  <rect x="32" y="112" width="226" height="178" rx="14" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/><rect x="32" y="112" width="226" height="16" rx="8" fill="url(#dots)"/>
+  <text x="52" y="154" class="i h">start a, g(a) = -2</text><text x="52" y="184" class="i b">0, -2, 1, -3, -1</text><text x="52" y="216" class="i h">maximum 1</text><text x="52" y="246" class="i b">selected: yes</text><text x="52" y="272" class="m s">positive witness at k = 2</text>
+  <rect x="274" y="112" width="226" height="178" rx="14" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/><rect x="274" y="112" width="226" height="16" rx="8" fill="url(#dots)"/>
+  <text x="294" y="154" class="i h">start b, g(b) = 3</text><text x="294" y="184" class="i b">0, 3, -1, 1, -1</text><text x="294" y="216" class="i h">maximum 3</text><text x="294" y="246" class="i b">selected: yes</text><text x="294" y="272" class="m s">positive witness at k = 1</text>
+  <rect x="516" y="112" width="226" height="178" rx="14" fill="#F5E9E2" stroke="#A4664B" stroke-width="2"/><rect x="516" y="112" width="226" height="16" rx="8" fill="url(#stripes)"/>
+  <text x="536" y="154" class="i h">start c, g(c) = -4</text><text x="536" y="184" class="i b">0, -4, -2, -4, -1</text><text x="536" y="216" class="i h">maximum 0</text><text x="536" y="246" class="i b">selected: no</text><text x="536" y="272" class="m s">only time zero reaches max</text>
+  <rect x="758" y="112" width="210" height="178" rx="14" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/><rect x="758" y="112" width="210" height="16" rx="8" fill="url(#dots)"/>
+  <text x="778" y="154" class="i h">start d, g(d) = 2</text><text x="778" y="184" class="i b">0, 2, 0, 3, -1</text><text x="778" y="216" class="i h">maximum 3</text><text x="778" y="246" class="i b">selected: yes</text><text x="778" y="272" class="m s">positive witness at k = 1</text>
+ </g>
+ <rect x="32" y="320" width="936" height="142" rx="16" fill="#FBFAF7" stroke="#8A7C6D" stroke-width="1.7"/>
+ <text x="54" y="349" class="m k">CORE EVENT INTEGRAL</text>
+ <text x="54" y="382" class="i h">event = {a, b, d}</text><text x="54" y="414" class="i h">selected values = -2 + 3 + 2 = 3</text>
+ <rect x="570" y="346" width="370" height="88" rx="12" fill="#E9EFF3" stroke="#3F5D73"/><text x="755" y="379" text-anchor="middle" class="m b">uniform probability weights</text><text x="755" y="412" text-anchor="middle" class="i t">event integral = 3 / 4 ≥ 0</text>
+ <rect x="32" y="490" width="450" height="150" rx="16" fill="#F5E9E2" stroke="#A4664B" stroke-width="2"/>
+ <text x="54" y="520" class="i h">NEAR-MISS: terminal positive part</text><text x="54" y="552" class="i b">Every terminal sum S4 equals -1.</text><text x="54" y="579" class="i b">So max(S4, 0) = 0 at every start.</text><text x="54" y="609" class="m b">That shortcut erases the three earlier witnesses.</text>
+ <rect x="510" y="490" width="458" height="150" rx="16" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/>
+ <text x="532" y="520" class="i h">THRESHOLD 1: WEAK FINITE BOUND</text><text x="532" y="552" class="i b">average-exceedance event = {b, d}</text><text x="532" y="579" class="i b">left side = 1 × 2/4 = 1/2</text><text x="532" y="609" class="i b">positive-part integral = (0 + 3 + 0 + 2)/4 = 5/4</text>
+ <text x="32" y="675" class="m b">Exact toy arithmetic only. No infinite supremum, almost-everywhere limit, ergodicity, or independence is asserted.</text>
 </svg>

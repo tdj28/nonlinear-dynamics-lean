@@ -7,8 +7,54 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal"
 og_image: "finite-maximal-ergodic-inequality-card.png"
-og_image_alt: "Warm-paper glossary card showing a finite partial-sum path with its strict positive maximum marked, cancellation under a measure-preserving shift, and a warning that the result is finite horizon only."
+og_image_alt: "Four uniform cyclic states with observable values minus two, three, minus four, and two have finite running maxima one, three, zero, and three; the selected values integrate to three quarters while every terminal sum equals minus one."
 ---
+
+{{< panel "warning" >}}
+**Editorial status.** This public page is an AI-assisted working note.
+Mathematical, Lean, source, figure, and accessibility review remains pending.
+{{< /panel >}}
+
+Take four equally likely states \(a,b,c,d\), let \(T\) cycle through them, and
+read the observable
+\[
+g(a)=-2,\qquad g(b)=3,\qquad g(c)=-4,\qquad g(d)=2.
+\]
+The uniform {{< refterm "probability-measure" "probability measure" >}} gives
+each state mass \(1/4\), and the cycle preserves it. Through horizon \(N=4\),
+include the empty sum \(S_0=0\):
+
+| start | \(S_0,S_1,S_2,S_3,S_4\) | maximum \(M_4\) | in \(E_4=\{M_4\gt0\}\)? |
+|---|---|---:|---|
+| \(a\) | \(0,-2,1,-3,-1\) | \(1\) | yes |
+| \(b\) | \(0,3,-1,1,-1\) | \(3\) | yes |
+| \(c\) | \(0,-4,-2,-4,-1\) | \(0\) | no |
+| \(d\) | \(0,2,0,3,-1\) | \(3\) | yes |
+
+Thus \(E_4=\{a,b,d\}\), and the core inequality is visible numerically:
+\[
+\int_{E_4}g\,d\mu
+=\frac{-2+3+2}{4}
+=\frac34\geq0.
+\]
+Individual selected points need not have positive \(g\): state \(a\) is
+selected even though \(g(a)=-2\).
+
+For the strict average threshold \(1\), only \(b\) and \(d\) have some average
+above \(1\). Hence the event has measure \(2/4\), while
+\[
+1\cdot\frac24
+\leq\frac{0+3+0+2}{4}
+=\int_\Omega \max(g,0)\,d\mu
+=\frac54.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="finite-maximal-event.svg"
+  alt="Four equally likely cyclic starting states have all five prefix sums listed through horizon four. Starts a, b, and d have a strictly positive running maximum; start c does not. Their selected observable values sum to three, giving event integral three quarters. A terminal-sum shortcut fails because every terminal sum is minus one."
+  caption="**Exact finite check:** the cyclic observable values are \(-2,3,-4,2\). Through horizon \(4\), the running maxima from \(a,b,c,d\) are \(1,3,0,3\), so \(E_4=\{a,b,d\}\) and \(\int_{E_4}g\,d\mu=(-2+3+2)/4=3/4\geq0\). For threshold \(1\), the strict average-exceedance event is \(\{b,d\}\); its left side is \(1/2\), bounded by the positive-part integral \(5/4\). Every terminal sum \(S_4\) equals \(-1\), so replacing the running maximum by \(\max(S_4,0)\) would incorrectly erase all three witnesses. This is finite arithmetic, not a convergence claim."
+>}}
 
 A **finite maximal ergodic inequality** controls, for an integrable observable
 under a measure-preserving transformation, the set of starting points at which
@@ -29,12 +75,6 @@ historical comparison, declaration ledger, and exercises are in
 [Finite Maximal Ergodic Inequalities: From Orbit Maxima to Threshold Events]({{< relref "/knowledge-base/deep-dives/finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events" >}}).
 The checked implementation narrative is
 [The Finite Hopf Maximal Ergodic Lemma in Lean]({{< relref "/development-notebook/2026/07/finite-hopf-maximal-ergodic-lemma-in-lean" >}}).
-
-{{< reference-figure
-  src="finite-maximal-event.svg"
-  alt="Time zero fixes the running maximum at or above zero. Strict positivity selects only paths with a positive-time positive partial sum. On that selected event, the first orbit value pays for the change between the maximum before and after one shift."
-  caption="**Finding:** including time zero makes every finite running maximum nonnegative, so a nonstrict event would contain the whole state space. The strict event instead supplies a positive-time maximizing index. Peeling its first summand bounds the change of the maximum by the observable on the event; off the event, the original maximum is exactly zero. The displayed path is a conceptual finite example, not an empirical trajectory or a claim about long-time convergence."
->}}
 
 ## Exact finite objects
 
@@ -324,6 +364,103 @@ Integrability gives almost-everywhere strong measurability, not necessarily an
 ordinarily measurable representative. That is why the core integral theorem
 uses a **null-measurable** event route. The distinction is developed in the
 {{< refterm "almost-everywhere" "almost everywhere" >}} entry.
+
+## In Lean
+
+{{< lean-bridge
+  human="A point belongs to the strict finite maximal event exactly when some positive-time orbit sum through N is positive."
+  math="\(\omega\in E_N(g)\Longleftrightarrow\exists k,\ 1\leq k\leq N\ \text{and}\ 0<S_kg(\omega).\)"
+  lean="mem_finiteHopfEvent_iff"
+>}}
+- <code>finiteHopfEvent T g N</code> is the set \(E_N(g)\).
+- <code>k</code> is forced positive because the time-zero sum is exactly zero.
+- <code>k ≤ N</code> includes the terminal horizon.
+- <code>birkhoffSum T g k ω</code> is the first-\(k\)-sample sum.
+{{< /lean-bridge >}}
+
+{{< lean-bridge
+  human="If T preserves the measure and g is integrable, then g has nonnegative integral over the strict finite maximal event."
+  math="\(\operatorname{MeasurePreserving}(T,\mu),\ g\in L^1(\mu)\Longrightarrow 0\leq\int_{E_N(g)}g\,d\mu.\)"
+  lean="integral_finiteHopfEvent_nonneg hT hg N"
+>}}
+- <code>hT</code> proves measure preservation; it is not an ergodicity proof.
+- <code>hg</code> proves integrability of <code>g</code>.
+- <code>N : ℕ</code> is fixed and finite.
+- The result is a set integral, not pointwise positivity of <code>g</code>.
+{{< /lean-bridge >}}
+
+### Tiny standalone worksheet
+
+Save as <code>FiniteMaximalTutorial.lean</code>. It imports only Lean's
+standard library and checks the four-state integer arithmetic:
+
+~~~lean
+import Std
+
+inductive OrbitState where | a | b | c | d
+deriving Repr, DecidableEq
+
+def step : OrbitState → OrbitState
+  | .a => .b | .b => .c | .c => .d | .d => .a
+
+def g : OrbitState → Int
+  | .a => -2 | .b => 3 | .c => -4 | .d => 2
+
+def iterate : Nat → OrbitState → OrbitState
+  | 0, x => x
+  | n + 1, x => iterate n (step x)
+
+def orbitSum : Nat → OrbitState → Int
+  | 0, _ => 0
+  | n + 1, x => orbitSum n x + g (iterate n x)
+
+def finiteMax (N : Nat) (x : OrbitState) : Int :=
+  (List.range (N + 1)).foldl (fun m k => max m (orbitSum k x)) 0
+
+def inEvent (N : Nat) (x : OrbitState) : Bool :=
+  decide (0 < finiteMax N x)
+
+#eval [finiteMax 4 .a, finiteMax 4 .b, finiteMax 4 .c, finiteMax 4 .d]
+#eval [inEvent 4 .a, inEvent 4 .b, inEvent 4 .c, inEvent 4 .d]
+
+example : orbitSum 4 .a = -1 := by decide
+example : finiteMax 4 .a = 1 := by decide
+example : g .a + g .b + g .d = 3 := by decide
+~~~
+
+Run:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean FiniteMaximalTutorial.lean
+~~~
+
+Expected outputs are <code>[1, 3, 0, 3]</code> and
+<code>[true, true, false, true]</code>. This worksheet does not define
+measures, integrals, or Mathlib's theorem.
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.**
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check finiteBirkhoffSumMax
+#check finiteHopfEvent
+#check mem_finiteHopfEvent_iff
+#check finiteHopfEvent_zero
+#check finiteBirkhoffSumMax_sub_comp_le_indicator
+#check integral_finiteHopfEvent_nonneg
+#check mem_finiteBirkhoffAverageExceedanceSet_iff
+#check finiteBirkhoffAverageExceedanceSet_posPart_bound
+#check measureReal_finiteBirkhoffAverageExceedanceSet_le
+~~~
+
+The guarded command below checks the authoritative module on approved Linux
+compute. No project or Mathlib build belongs on this workstation.
+{{< /repo-check >}}
 
 ## What the inequality does not claim
 

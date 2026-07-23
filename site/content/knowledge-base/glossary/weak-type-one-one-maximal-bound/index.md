@@ -7,8 +7,46 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff"
 og_image: "weak-type-one-one-maximal-bound-card.png"
-og_image_alt: "Warm-paper glossary card sending an integrable orbit-average error through a positive threshold gate and bounding the resulting exceptional set by its integrable size divided by the threshold."
+og_image_alt: "Four uniform fixed points with observable values four, minus two, one, and zero; at strict threshold two the one-quarter exceedance event is bounded by seven eighths, with threshold zero marked as invalid for division."
 ---
+
+{{< panel "warning" >}}
+**Editorial status.** This public page is an AI-assisted working note.
+Mathematical, Lean, source, figure, and accessibility review remains pending.
+{{< /panel >}}
+
+Let \(\Omega=\{p,q,r,s\}\) carry the uniform
+{{< refterm "probability-measure" "probability measure" >}} with mass \(1/4\)
+at each point, let \(T\) be the identity map, and set
+\[
+h(p)=4,\qquad h(q)=-2,\qquad h(r)=1,\qquad h(s)=0.
+\]
+Every positive-time orbit average equals the starting value because the orbit
+never moves. At strict threshold \(a=2\),
+\[
+M_2(T,h)=\{\omega:\exists n\geq1,\ 2\lt|A_nh(\omega)|\}=\{p\}.
+\]
+Thus the event measure is \(1/4\). The integrable input size is
+\[
+\lVert h\rVert_1
+=\frac{|4|+|-2|+|1|+|0|}{4}
+=\frac74,
+\]
+so the weak-\((1,1)\) inequality reads
+\[
+\underbrace{\mu(M_2(T,h))}_{1/4}
+\leq
+\underbrace{\frac{\lVert h\rVert_1}{2}}_{7/8}.
+\]
+This controls **how much probability can see a large average**. It does not
+bound every average pointwise by \(7/8\): at \(p\), the average is \(4\).
+
+{{< reference-figure
+  wide="true"
+  src="weak-type-one-one-maximal-bound.svg"
+  alt="Four equally likely fixed points have absolute orbit averages four, two, one, and zero. At strict threshold two only the value four is selected, so event measure one quarter is bounded by seven eighths. Thresholds one, two, and four show shrinking events and inverse-threshold bounds; threshold zero is marked invalid for division."
+  caption="**Exact weak bound:** on four uniform fixed points, \(h=(4,-2,1,0)\) and \(\lVert h\rVert_1=7/4\). At strict threshold \(2\), only \(p\) satisfies \(|A_nh|>2\), giving \(1/4\leq(7/4)/2=7/8\). At thresholds \(1,2,4\), the strict events have measures \(1/2,1/4,0\), while the theorem bounds are \(7/4,7/8,7/16\). The negative value \(-2\) shows why absolute values matter. At threshold zero, three points cross but Lean's total division gives a zero quotient, so positivity of the threshold is indispensable."
+>}}
 
 A **weak-type (1,1) maximal bound** turns integrable size into control of a
 bad set. For a real observable, it says that the set of starting points where
@@ -26,15 +64,9 @@ observable. The complete implementation narrative is
 The connected textbook chapter is
 [Pointwise Birkhoff from Maximal Control and Dense Good Functions]({{< relref "/knowledge-base/deep-dives/pointwise-birkhoff-from-maximal-control-and-dense-good-functions" >}}).
 
-{{< reference-figure
-  src="weak-type-one-one-maximal-bound.svg"
-  alt="An integrable error enters from the left with its total integral size. A positive threshold gate selects starting points having at least one larger absolute Birkhoff average. The selected region on the right is bounded in measure by input size divided by the threshold."
-  caption="**Finding:** the maximal bound does not make every orbit-average error uniformly small. It says that a small \(L^1\) error can expose a large average only on a set whose measure is quantitatively small. Raising the threshold shrinks the upper bound, while threshold zero lies outside the division theorem. The diagram represents a theorem inequality, not measured frequencies or a strong maximal-function norm estimate."
->}}
-
 ## Exact event-level definition
 
-Let Ω be a state space, let \(T:\Omega\to\Omega\) be a discrete-time map,
+Let \(\Omega\) be a state space, let \(T:\Omega\to\Omega\) be a discrete-time map,
 and let \(h:\Omega\to\mathbb R\) be a real observable. At a natural horizon
 \(n\), define the normalized {{< refterm "birkhoff-sum" "Birkhoff average" >}}
 
@@ -124,59 +156,33 @@ positive part is itself, and the numerator simplifies to \(\int|h|\,d\mu\).
 This proves the absolute theorem without adding an invertibility or
 ergodicity premise and without defining a supremum function.
 
-## Worked example: identity dynamics on two points
+## Threshold scaling and near-misses
 
-Let \(\Omega=\{p,q\}\) carry counting measure, so
-\(\mu(\Omega)=2\). This is a finite measure but not a probability measure.
-Let \(T\) be the identity and define
+For the four-point example, strictness gives:
 
-\[
-h(p)=3,
-\qquad
-h(q)=1.
-\]
+| threshold \(a\) | event \(\{|A_nh|\gt a\text{ for some }n\ge1\}\) | event measure | \(\lVert h\rVert_1/a\) |
+|---:|---|---:|---:|
+| \(1\) | \(\{p,q\}\) | \(1/2\) | \(7/4\) |
+| \(2\) | \(\{p\}\) | \(1/4\) | \(7/8\) |
+| \(4\) | \(\varnothing\) | \(0\) | \(7/16\) |
 
-For every positive horizon, the orbit stays at its starting point, so
+Raising the threshold shrinks both the actual event and the theorem's
+inverse-threshold budget. The bound need not be sharp.
 
-\[
-A_nh(p)=3,
-\qquad
-A_nh(q)=1.
-\]
+Two tempting alterations fail:
 
-At threshold \(a=2\), strict exceedance occurs only at \(p\):
+- Dropping the absolute value at threshold \(1\) keeps \(p\) but loses \(q\),
+  whose average is \(-2\). A one-sided estimate cannot control a signed
+  approximation error in both directions.
+- Setting \(a=0\) makes the strict absolute event \(\{p,q,r\}\), of measure
+  \(3/4\). Lean totalizes real division by zero to zero, so the displayed
+  quotient would be \(0\), producing the false claim \(3/4\leq0\).
+  The hypothesis \(0\lt a\) is therefore mathematically essential.
 
-\[
-M_2(T,h)=\{p\},
-\qquad
-\mu\bigl(M_2(T,h)\bigr)=1.
-\]
-
-The integrable size is
-
-\[
-\int_\Omega|h|\,d\mu=|3|+|1|=4.
-\]
-
-The weak bound reads
-
-\[
-1
-{} =
-\mu\bigl(M_2(T,h)\bigr)
-\le \frac{4}{2}=2.
-\]
-
-The inequality is valid and not tight in this example. At threshold \(a=3\),
-the event is empty because equality is not a strict crossing. At threshold
-\(a=1\), the point \(q\) is still excluded for the same reason, while \(p\)
-remains included. These checks expose both the positive-time convention and
-the strict threshold convention.
-
-For identity dynamics the theorem reduces to the familiar level-set estimate
-for an integrable function. In general dynamics, one starting point samples
-many values of \(h\), and the same bound controls a threshold crossing at any
-positive time.
+At a nonstrict threshold \(2\), \(q\) would also enter because \(|h(q)|=2\).
+The checked event is strict. Its complement consequently yields the useful
+statement that every positive-time absolute average is **at most** the
+threshold.
 
 ## Why weak control is the right closure tool
 
@@ -282,26 +288,105 @@ function, establish norm convergence of averages, or imply an ergodic
 constant. It also does not prove Kingman's subadditive theorem, a Lyapunov
 exponent, or an Oseledets filtration or splitting.
 
-## Lean interface
+## In Lean
 
-RMT-26 exposes the absolute weak estimate through five declarations:
+{{< lean-bridge
+  human="A starting point enters the absolute exceedance event when some positive-time Birkhoff average has magnitude strictly larger than a."
+  math="\(\omega\in M_a(T,h)\Longleftrightarrow\exists k\geq1,\ a<|A_kh(\omega)|.\)"
+  lean="ω ∈ birkhoffAverageAbsoluteExceedanceSet T h a"
+>}}
+- <code>∈</code> is set membership.
+- <code>k ≥ 1</code> is encoded in the definition as <code>1 ≤ k</code>, so
+  the totalized horizon-zero average cannot witness membership.
+- Vertical bars become Lean's real absolute value around
+  <code>birkhoffAverage ℝ T h k ω</code>.
+- Strict <code>&lt;</code> means equality with the threshold is excluded.
+{{< /lean-bridge >}}
 
-- <code>abs_birkhoffAverage_le_birkhoffAverage_abs</code>, the finite-sum
-  triangle inequality, including the totalized horizon-zero case;
-- <code>birkhoffAverageAbsoluteExceedanceSet</code>, the strict positive-time
-  event;
-- <code>mem_birkhoffAverageAbsoluteExceedanceSet_iff</code>, its exact witness
-  interface;
-- <code>birkhoffAverageAbsoluteExceedanceSet_subset</code>, reduction to the
-  one-sided event for \(|h|\); and
-- <code>measureReal_birkhoffAverageAbsoluteExceedanceSet_le</code>, the
-  finite-measure weak-type \((1,1)\) estimate at a positive threshold.
+{{< lean-bridge
+  human="On a finite measure space, a measure-preserving map and an integrable observable make the absolute maximal event no larger than the L1 input size divided by a positive threshold."
+  math="\(\mu_{\mathbb R}(M_a(T,h))\leq\frac{\int|h|\,d\mu}{a},\qquad a>0.\)"
+  lean="measureReal_birkhoffAverageAbsoluteExceedanceSet_le hT hh ha"
+>}}
+- <code>hT</code> proves <code>MeasurePreserving T μ μ</code>.
+- <code>hh</code> proves <code>Integrable h μ</code>.
+- The ambient <code>IsFiniteMeasure μ</code> instance says that the whole
+  space has finite measure.
+- <code>ha</code> proves <code>0 &lt; a</code>; it licenses division.
+- <code>μ.real</code> is Mathlib's real-valued view of a finite measure.
+- The conclusion is an inequality between event measure and an integral
+  quotient, not a pointwise or strong-\(L^1\) maximal-function bound.
+{{< /lean-bridge >}}
 
-The upstream
-<code>measureReal_birkhoffAverageExceedanceSet_le</code> declaration in RMT-24
-supplies the one-sided bound. RMT-26 then consumes the absolute version in
-<code>measureReal_birkhoffCauchyExceptionalSet_le</code> and the dense-good
-closure theorem.
+### Tiny standalone worksheet
+
+Save this finite arithmetic model as <code>WeakTypeTutorial.lean</code>:
+
+~~~lean
+import Std
+
+inductive Point where | p | q | r | s
+deriving Repr, DecidableEq
+
+def h : Point → Int
+  | .p => 4 | .q => -2 | .r => 1 | .s => 0
+
+def absInt (z : Int) : Nat := z.natAbs
+
+def crosses (threshold : Nat) (x : Point) : Bool :=
+  decide (threshold < absInt (h x))
+
+def points : List Point := [.p, .q, .r, .s]
+
+def eventCount (threshold : Nat) : Nat :=
+  (points.filter (crosses threshold)).length
+
+def l1Numerator : Nat :=
+  points.foldl (fun total x => total + absInt (h x)) 0
+
+#eval points.map (crosses 1)
+#eval points.map (crosses 2)
+#eval points.map (crosses 4)
+#eval eventCount 2
+#eval l1Numerator
+
+example : eventCount 2 = 1 := by decide
+example : l1Numerator = 7 := by decide
+example : 2 * eventCount 2 ≤ l1Numerator := by decide
+~~~
+
+Run it with:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean WeakTypeTutorial.lean
+~~~
+
+The threshold-\(2\) event count should be \(1\), and the unnormalized
+\(L^1\) numerator should be \(7\). Multiplying the probability inequality by
+the common denominator \(4\) yields the checked integer inequality
+\(2\cdot1\leq7\). This imports only <code>Std</code>; it does not formalize
+measures, integrals, or the maximal theorem.
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.**
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check abs_birkhoffAverage_le_birkhoffAverage_abs
+#check birkhoffAverageAbsoluteExceedanceSet
+#check mem_birkhoffAverageAbsoluteExceedanceSet_iff
+#check birkhoffAverageAbsoluteExceedanceSet_subset
+#check measureReal_birkhoffAverageAbsoluteExceedanceSet_le
+#check measureReal_birkhoffCauchyExceptionalSet_le
+~~~
+
+The guarded command below checks the authoritative RMT-26 module on approved
+Linux compute. It must not trigger a project or Mathlib build on this Mac.
+{{< /repo-check >}}
 
 ## Related concepts
 
