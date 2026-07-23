@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" role="img" aria-labelledby="finiteSpikeTitle finiteSpikeDesc">
+  <title id="finiteSpikeTitle">A one-time spike changes the maximum but not the eventual upper edge</title>
+  <desc id="finiteSpikeDesc">The sequence begins at five and then alternates between minus one and one. The tail beginning at zero has ceiling five. Every later tail has ceiling one. The infimum of those tail ceilings is one, while the global maximum remains five and the separated late levels prevent an ordinary limit.</desc>
+  <rect width="1000" height="700" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:24px;font-weight:700}
+    .h{font-size:17px;font-weight:700}
+    .s{font-size:15px}
+    .m{font-size:13px;fill:#5A544C}
+    .axis{stroke:#7F786D;stroke-width:1.5}
+    .guide{stroke:#A89B8C;stroke-width:1.2;stroke-dasharray:5 5}
+    .path{fill:none;stroke:#4B6787;stroke-width:2.5}
+    .upper{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .lower{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .spike{fill:#F3E8E0;stroke:#8A5F37;stroke-width:2}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .takeaway{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warning{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+
+  <text x="30" y="38" class="t title">One spike disappears; the upper return level remains</text>
+  <text x="30" y="62" class="t m">Exact toy sequence: five once, then minus one and one forever.</text>
+
+  <rect x="30" y="88" width="620" height="354" rx="14" class="neutral"/>
+  <text x="54" y="120" class="t h">THE SEQUENCE</text>
+  <text x="54" y="143" class="t m">Position is the index; height is the exact value.</text>
+
+  <line x1="88" y1="174" x2="88" y2="393" class="axis"/>
+  <line x1="88" y1="393" x2="625" y2="393" class="axis"/>
+  <line x1="88" y1="194" x2="625" y2="194" class="guide"/>
+  <line x1="88" y1="282" x2="625" y2="282" class="guide"/>
+  <line x1="88" y1="354" x2="625" y2="354" class="guide"/>
+
+  <text x="58" y="199" class="t s">5</text>
+  <text x="58" y="287" class="t s">1</text>
+  <text x="52" y="359" class="t s">-1</text>
+  <text x="55" y="378" class="t m">value</text>
+
+  <polyline points="114,194 178,354 242,282 306,354 370,282 434,354 498,282 562,354 616,282" class="path"/>
+
+  <path d="M114 184 L124 204 L104 204 Z" class="spike"/>
+  <circle cx="178" cy="354" r="8" class="lower"/>
+  <circle cx="242" cy="282" r="8" class="upper"/>
+  <circle cx="306" cy="354" r="8" class="lower"/>
+  <circle cx="370" cy="282" r="8" class="upper"/>
+  <circle cx="434" cy="354" r="8" class="lower"/>
+  <circle cx="498" cy="282" r="8" class="upper"/>
+  <circle cx="562" cy="354" r="8" class="lower"/>
+  <circle cx="616" cy="282" r="8" class="upper"/>
+
+  <text x="101" y="418" class="t s">0</text>
+  <text x="173" y="418" class="t s">1</text>
+  <text x="237" y="418" class="t s">2</text>
+  <text x="301" y="418" class="t s">3</text>
+  <text x="365" y="418" class="t s">4</text>
+  <text x="429" y="418" class="t s">5</text>
+  <text x="493" y="418" class="t s">6</text>
+  <text x="557" y="418" class="t s">7</text>
+  <text x="611" y="418" class="t s">8</text>
+  <text x="574" y="438" class="t m">index</text>
+
+  <text x="132" y="181" class="t s">one-time maximum: 5</text>
+  <text x="258" y="269" class="t s">upper return level: 1</text>
+  <text x="322" y="377" class="t s">lower return level: -1</text>
+
+  <rect x="675" y="88" width="295" height="354" rx="14" class="neutral"/>
+  <text x="699" y="120" class="t h">TAIL CEILINGS</text>
+  <text x="699" y="143" class="t m">Move the starting index forward.</text>
+
+  <rect x="699" y="165" width="247" height="65" rx="10" class="warning"/>
+  <text x="717" y="190" class="t h">start at 0</text>
+  <text x="717" y="214" class="t s">ceiling = 5</text>
+
+  <path d="M822 237 L822 254" class="axis"/>
+  <path d="M816 248 L822 256 L828 248" fill="none" stroke="#7F786D" stroke-width="1.8"/>
+
+  <rect x="699" y="262" width="247" height="65" rx="10" class="upper"/>
+  <text x="717" y="287" class="t h">start at 1</text>
+  <text x="717" y="311" class="t s">ceiling = 1</text>
+
+  <path d="M822 334 L822 351" class="axis"/>
+  <path d="M816 345 L822 353 L828 345" fill="none" stroke="#7F786D" stroke-width="1.8"/>
+
+  <rect x="699" y="359" width="247" height="59" rx="10" class="upper"/>
+  <text x="717" y="383" class="t h">every later start</text>
+  <text x="717" y="405" class="t s">ceiling stays 1</text>
+
+  <rect x="30" y="466" width="455" height="112" rx="14" class="warning"/>
+  <text x="54" y="497" class="t h">NEAR-MISS: GLOBAL MAXIMUM</text>
+  <text x="54" y="525" class="t s">The maximum is 5, but it occurs only once.</text>
+  <text x="54" y="550" class="t s">Later tails discard it, so it is not the eventual edge.</text>
+
+  <rect x="515" y="466" width="455" height="112" rx="14" class="neutral"/>
+  <text x="539" y="497" class="t h">NEAR-MISS: ORDINARY LIMIT</text>
+  <text x="539" y="525" class="t s">Late values keep alternating between 1 and -1.</text>
+  <text x="539" y="550" class="t s">One upper edge does not make the two levels converge.</text>
+
+  <rect x="30" y="604" width="940" height="68" rx="12" class="takeaway"/>
+  <text x="54" y="633" class="t h">INFIMUM OF THE TAIL CEILINGS: 1</text>
+  <text x="54" y="657" class="t s">The limit superior remembers the highest level returned to arbitrarily late.</text>
+</svg>

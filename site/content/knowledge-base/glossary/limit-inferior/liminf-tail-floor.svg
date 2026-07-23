@@ -1,36 +1,125 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="450" viewBox="0 0 760 450" role="img" aria-labelledby="tailFloorTitle tailFloorDesc">
-  <title id="tailFloorTitle">Limit inferior is the rising floor of sequence tails</title>
-  <desc id="tailFloorDesc">Three progressively later tail windows discard more of the finite prefix. Their infimum floors rise or stay level. An oscillating sequence can keep returning near the eventual lower edge while also moving above it, so the lower edge alone does not imply convergence.</desc>
-  <rect width="760" height="450" fill="#F7F4F0"/>
-  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:18px;font-weight:700}.h{font-size:14px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.floor{stroke:#A67C52;stroke-width:2;stroke-dasharray:7 5}</style>
-  <text x="24" y="30" class="t title">Move the tail forward and watch its floor rise</text>
-  <text x="24" y="51" class="t m">Conceptual order sketch: vertical position shows relative level, not measured data.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="liminfWorkedTitle liminfWorkedDesc">
+  <title id="liminfWorkedTitle">Exact tail floors rise toward minus one while the sequence keeps oscillating</title>
+  <desc id="liminfWorkedDesc">The first panel plots the exact rational sequence values 4, minus 2, seven halves, minus three halves, ten thirds, minus four thirds, thirteen fourths, and minus five fourths. Even terms approach 3 and odd terms approach minus 1, so the sequence does not converge. A lower panel groups cutoffs in pairs and shows tail floors minus 2, minus three halves, minus four thirds, and minus five fourths rising toward minus 1. A boundary panel shows the downward sequence zero, minus 1, minus 2, minus 3 and explains that it has no real eventual lower floor: its extended-real liminf is minus infinity, while Mathlib's real liminf totalizes to 0.</desc>
+  <defs>
+    <marker id="liminfArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <pattern id="liminfHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#F3E8E0"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#D8B89A" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:21px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .tiny{font-size:11px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.6}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .axis{stroke:#7F786D;stroke-width:1.2}
+    .grid{stroke:#D9D0C4;stroke-width:1;stroke-dasharray:4 5}
+    .upper{fill:#E8F0F7;stroke:#4B6787;stroke-width:2.2}
+    .lower{fill:#F3E8E0;stroke:#A67C52;stroke-width:2.2}
+  </style>
 
-  <rect x="24" y="82" width="214" height="220" rx="13" class="blue"/>
-  <text x="44" y="112" class="t h">EARLY TAIL</text>
-  <polyline points="48,164 75,255 102,184 129,247 156,198 183,238 212,210" fill="none" stroke="#4B6787" stroke-width="2.3"/>
-  <line x1="44" y1="272" x2="218" y2="272" class="floor"/>
-  <text x="44" y="291" class="t m">lower tail floor</text>
+  <rect width="1000" height="720" fill="#F7F4F0"/>
+  <text x="36" y="37" class="t title">One exact sequence, its rising tail floors, and the real-valued boundary</text>
+  <text x="36" y="61" class="t m">Toy rational values are exact. One shared vertical scale shows their order and two subsequential limits.</text>
 
-  <rect x="273" y="82" width="214" height="220" rx="13" class="cream"/>
-  <text x="293" y="112" class="t h">LATER TAIL</text>
-  <polyline points="297,170 324,235 351,190 378,230 405,201 432,225 461,210" fill="none" stroke="#7F786D" stroke-width="2.3"/>
-  <line x1="293" y1="250" x2="467" y2="250" class="floor"/>
-  <text x="293" y="269" class="t m">floor has risen</text>
+  <rect x="36" y="88" width="610" height="340" rx="14" class="cream"/>
+  <text x="58" y="118" class="t h">THE FIRST EIGHT TERMS SPLIT INTO TWO RAILS</text>
+  <text x="270" y="140" class="t m">Even indices approach 3; odd indices approach -1.</text>
 
-  <rect x="522" y="82" width="214" height="220" rx="13" class="green"/>
-  <text x="542" y="112" class="t h">EVENTUAL TAILS</text>
-  <polyline points="546,170 573,217 600,183 627,215 654,190 681,212 710,198" fill="none" stroke="#6F8D5E" stroke-width="2.3"/>
-  <line x1="542" y1="228" x2="716" y2="228" class="floor"/>
-  <text x="542" y="247" class="t m">eventual lower edge</text>
+  <line x1="76" y1="204" x2="614" y2="204" class="grid"/>
+  <text x="79" y="198" class="t tiny">upper limit 3</text>
+  <line x1="76" y1="316" x2="614" y2="316" class="grid"/>
+  <text x="79" y="310" class="t tiny">lower limit -1</text>
+  <line x1="76" y1="386" x2="614" y2="386" class="axis"/>
 
-  <rect x="24" y="326" width="344" height="92" rx="13" class="green"/>
-  <text x="48" y="356" class="t h">WHAT LIMINF REMEMBERS</text>
-  <text x="48" y="383" class="t s">The lowest level approached arbitrarily late.</text>
-  <text x="48" y="403" class="t m">Every finite prefix has disappeared.</text>
+  <polyline points="95,176 225,190 355,195 485,197" fill="none" stroke="#4B6787" stroke-width="2.4"/>
+  <polyline points="160,344 290,330 420,325 550,323" fill="none" stroke="#A67C52" stroke-width="2.4"/>
+  <polyline points="95,176 160,344 225,190 290,330 355,195 420,325 485,197 550,323" fill="none" stroke="#A89B8C" stroke-width="1.1" stroke-dasharray="3 5"/>
 
-  <rect x="392" y="326" width="344" height="92" rx="13" class="clay"/>
-  <text x="416" y="356" class="t h">WHAT IT DOES NOT PROVE</text>
-  <text x="416" y="383" class="t s">The upper edge may remain separated.</text>
-  <text x="416" y="403" class="t m">Lower control alone is not convergence.</text>
+  <circle cx="95" cy="176" r="8" class="upper"/>
+  <circle cx="160" cy="344" r="8" class="lower"/>
+  <circle cx="225" cy="190" r="8" class="upper"/>
+  <circle cx="290" cy="330" r="8" class="lower"/>
+  <circle cx="355" cy="195" r="8" class="upper"/>
+  <circle cx="420" cy="325" r="8" class="lower"/>
+  <circle cx="485" cy="197" r="8" class="upper"/>
+  <circle cx="550" cy="323" r="8" class="lower"/>
+
+  <text x="86" y="165" class="t s">4</text>
+  <text x="145" y="368" class="t s">-2</text>
+  <text x="211" y="179" class="t s">7/2</text>
+  <text x="270" y="354" class="t s">-3/2</text>
+  <text x="336" y="184" class="t s">10/3</text>
+  <text x="400" y="349" class="t s">-4/3</text>
+  <text x="466" y="186" class="t s">13/4</text>
+  <text x="530" y="347" class="t s">-5/4</text>
+
+  <text x="91" y="407" class="t tiny">n=0</text>
+  <text x="151" y="407" class="t tiny">1</text>
+  <text x="216" y="407" class="t tiny">2</text>
+  <text x="281" y="407" class="t tiny">3</text>
+  <text x="346" y="407" class="t tiny">4</text>
+  <text x="411" y="407" class="t tiny">5</text>
+  <text x="476" y="407" class="t tiny">6</text>
+  <text x="541" y="407" class="t tiny">7</text>
+  <text x="573" y="224" class="t tiny">toward 3</text>
+  <text x="557" y="302" class="t tiny">toward -1</text>
+
+  <rect x="674" y="88" width="290" height="340" rx="14" fill="url(#liminfHatch)" stroke="#A67C52" stroke-width="1.6"/>
+  <text x="696" y="118" class="t h">NEAR-MISS: DOWNWARD ESCAPE</text>
+  <text x="696" y="141" class="t m">values: 0, -1, -2, -3, ...</text>
+  <line x1="721" y1="169" x2="721" y2="282" stroke="#A67C52" stroke-width="2" marker-end="url(#liminfArrow)"/>
+  <circle cx="721" cy="175" r="6" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="721" cy="207" r="6" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="721" cy="239" r="6" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="721" cy="271" r="6" fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <text x="741" y="180" class="t s">0</text>
+  <text x="741" y="212" class="t s">-1</text>
+  <text x="741" y="244" class="t s">-2</text>
+  <text x="741" y="276" class="t s">-3, then lower forever</text>
+  <text x="696" y="310" class="t h">No real eventual lower floor</text>
+  <rect x="696" y="326" width="246" height="38" rx="8" class="cream"/>
+  <text x="710" y="350" class="t s">Extended-real liminf: minus infinity</text>
+  <rect x="696" y="374" width="246" height="38" rx="8" class="blue"/>
+  <text x="710" y="391" class="t s">Mathlib real liminf: 0</text>
+  <text x="710" y="405" class="t tiny">totalization default, not a lower edge</text>
+
+  <rect x="36" y="458" width="928" height="190" rx="14" class="green"/>
+  <text x="58" y="488" class="t h">MOVE THE CUTOFF FORWARD: EACH PAIR HAS ONE EXACT TAIL FLOOR</text>
+  <text x="58" y="510" class="t m">Each displayed lower-rail term is the smallest value remaining in its entire infinite tail.</text>
+
+  <rect x="58" y="530" width="176" height="88" rx="10" class="cream"/>
+  <text x="76" y="555" class="t m">cutoff 0 or 1</text>
+  <text x="76" y="588" class="t h">tail floor = -2</text>
+
+  <line x1="238" y1="574" x2="260" y2="574" stroke="#A67C52" stroke-width="2" marker-end="url(#liminfArrow)"/>
+  <rect x="266" y="530" width="176" height="88" rx="10" class="cream"/>
+  <text x="284" y="555" class="t m">cutoff 2 or 3</text>
+  <text x="284" y="588" class="t h">tail floor = -3/2</text>
+
+  <line x1="446" y1="574" x2="468" y2="574" stroke="#A67C52" stroke-width="2" marker-end="url(#liminfArrow)"/>
+  <rect x="474" y="530" width="176" height="88" rx="10" class="cream"/>
+  <text x="492" y="555" class="t m">cutoff 4 or 5</text>
+  <text x="492" y="588" class="t h">tail floor = -4/3</text>
+
+  <line x1="654" y1="574" x2="676" y2="574" stroke="#A67C52" stroke-width="2" marker-end="url(#liminfArrow)"/>
+  <rect x="682" y="530" width="176" height="88" rx="10" class="cream"/>
+  <text x="700" y="555" class="t m">cutoff 6 or 7</text>
+  <text x="700" y="588" class="t h">tail floor = -5/4</text>
+
+  <line x1="862" y1="574" x2="914" y2="574" stroke="#A67C52" stroke-width="2" marker-end="url(#liminfArrow)"/>
+  <text x="873" y="548" class="t m">rises</text>
+  <text x="872" y="606" class="t h">to -1</text>
+
+  <rect x="36" y="666" width="928" height="34" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="58" y="688" class="t s">Liminf remembers the lower rail. The separated upper rail explains why no ordinary limit exists.</text>
 </svg>
