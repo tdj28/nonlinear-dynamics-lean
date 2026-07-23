@@ -6,63 +6,87 @@ script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 checked="$script_dir/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms-card.png"
 verify=false
 
-if test "$#" -gt 0 && test "$1" = "--verify"; then
-  output="$(mktemp "/tmp/rmt34-deep-dive-card.XXXXXX")"
-  verify=true
-  trap 'rm -f "$output"' EXIT HUP INT TERM
-elif test "$#" -gt 0; then
-  output="$1"
-else
-  output="$checked"
-fi
+case "$#" in
+  0)
+    output="$checked"
+    ;;
+  1)
+    if test "$1" = "--verify"; then
+      output="$(mktemp "/tmp/rmt34-deep-dive-card.XXXXXX")"
+      verify=true
+      trap 'rm -f "$output"' EXIT HUP INT TERM
+    else
+      output="$1"
+    fi
+    ;;
+  *)
+    echo "usage: $0 [--verify|OUTPUT.png]" >&2
+    exit 2
+    ;;
+esac
 
-magick -size 1200x630 xc:'#F7F4F0' \
-  -fill '#16243A' -draw 'rectangle 0,0 1200,22 rectangle 0,542 1200,630' \
-  -fill '#A67C52' -font Helvetica-Bold -pointsize 18 \
-  -annotate +68+76 'KNOWLEDGE BASE / DEEP DIVE' \
-  -fill '#16243A' -font Palatino-Roman -pointsize 34 \
-  -annotate +67+132 'The forward-and-inverse tail sandwich' \
-  -annotate +67+174 'for finite-time real log norms' \
-  -fill '#4D5B6B' -font Helvetica -pointsize 16 \
-  -annotate +70+215 'Two integrable rails turn signed finite-time growth into a reusable candidate.' \
-  -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 2 \
-  -draw 'roundrectangle 66,252 1134,507 18,18' \
-  -fill '#F3E8E0' -stroke '#A67C52' -strokewidth 2 \
-  -draw 'roundrectangle 89,282 326,474 14,14' \
-  -fill '#8B3E33' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +119+321 'THREE INPUTS' \
-  -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +119+358 'pointwise units' \
-  -annotate +119+387 'forward generator moment' \
-  -annotate +119+416 'inverse generator moment' \
-  -fill none -stroke '#A67C52' -strokewidth 3 \
-  -draw 'line 338,378 386,378 polygon 386,378 372,369 372,387' \
-  -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-  -draw 'roundrectangle 398,279 787,338 12,12' \
-  -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 14 \
-  -annotate +475+315 'FORWARD POSITIVE-LOG UPPER RAIL' \
-  -fill '#FFFDF8' -stroke '#8B3E33' -strokewidth 3 \
-  -draw 'roundrectangle 431,349 754,407 12,12' \
-  -fill '#8B3E33' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +505+385 'FINITE-TIME REAL LOG' \
-  -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-  -draw 'roundrectangle 398,418 787,477 12,12' \
-  -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 14 \
-  -annotate +474+454 'INVERSE-ORBIT LOWER RAIL' \
-  -fill none -stroke '#A67C52' -strokewidth 3 \
-  -draw 'line 799,378 847,378 polygon 847,378 833,369 833,387' \
-  -fill '#16243A' -stroke '#16243A' -strokewidth 2 \
-  -draw 'roundrectangle 859,282 1111,474 14,14' \
-  -fill '#FFFFFF' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +897+321 'CHECKED OUTPUT' \
-  -fill '#E8F0F7' -font Helvetica -pointsize 13 \
-  -annotate +897+358 'integrable signed slices' \
-  -annotate +897+387 'shifted subadditivity' \
-  -annotate +897+416 'finite-time candidate' \
-  -fill '#FFFDF8' -stroke none -font Helvetica -pointsize 14 \
-  -annotate +68+580 'FINITE-TIME INFRASTRUCTURE  /  STRICT POSITIVE-RATE SHORTCUT IS A SEPARATE ROUTE' \
-  -strip -define png:exclude-chunk=date,time \
-  "PNG:$output"
+generate() {
+  destination="$1"
+  magick -size 1200x630 xc:'#F7F4F0' \
+    -fill '#16243A' -stroke none \
+    -draw 'rectangle 0,0 1200,18 rectangle 0,558 1200,630' \
+    -fill '#A06E43' -font Helvetica-Bold -pointsize 17 \
+    -annotate +64+59 'KNOWLEDGE BASE  /  EXACT FINITE LEDGER' \
+    -fill '#16243A' -font Palatino-Roman -pointsize 32 \
+    -annotate +63+105 'Forward and inverse tails for signed log norms' \
+    -fill '#556170' -font Helvetica -pointsize 15 \
+    -annotate +66+139 'Exponent steps +2, -3, +1, +2 make every rail and every inverse-order choice visible.' \
+    -fill '#FFFDF9' -stroke '#C8BDAE' -strokewidth 2 \
+    -draw 'roundrectangle 62,174 807,526 18,18' \
+    -fill '#16243A' -stroke none \
+    -draw 'roundrectangle 62,174 807,231 18,18 rectangle 62,210 807,231' \
+    -font Helvetica-Bold -pointsize 14 -fill '#FFFFFF' \
+    -annotate +86+207 'n' \
+    -annotate +165+199 'LOWER' -annotate +178+219 '-J' \
+    -annotate +291+199 'SIGNED' -annotate +315+219 'R' \
+    -annotate +421+199 'CLIPPED' -annotate +449+219 'P' \
+    -annotate +551+199 'FORWARD' -annotate +581+219 'U' \
+    -annotate +683+199 'INVERSE' -annotate +710+219 'Q' \
+    -stroke '#DED6CB' -strokewidth 1 -fill none \
+    -draw 'line 62,290 807,290 line 62,348 807,348 line 62,406 807,406 line 62,464 807,464 line 122,174 122,526 line 250,174 250,526 line 382,174 382,526 line 514,174 514,526 line 646,174 646,526' \
+    -fill '#F5EDE3' -stroke none -draw 'rectangle 64,348 805,406' \
+    -font Helvetica-Bold -pointsize 20 -fill '#263548' \
+    -annotate +88+270 '0' -annotate +185+270 '0' -annotate +314+270 '0' -annotate +446+270 '0' -annotate +578+270 '0' -annotate +710+270 '0' \
+    -annotate +88+328 '1' -annotate +185+328 '0' -fill '#284E72' -annotate +314+328 '2' -fill '#263548' -annotate +446+328 '2' -annotate +578+328 '2' -annotate +710+328 '0' \
+    -annotate +88+386 '2' -fill '#8B3E33' -annotate +177+386 '-3' -annotate +306+386 '-1' -fill '#263548' -annotate +446+386 '0' -fill '#284E72' -annotate +578+386 '2' -fill '#315F55' -annotate +710+386 '1' \
+    -fill '#263548' -annotate +88+444 '3' -fill '#8B3E33' -annotate +177+444 '-3' -fill '#263548' -annotate +314+444 '0' -annotate +446+444 '0' -fill '#284E72' -annotate +578+444 '3' -fill '#263548' -annotate +710+444 '0' \
+    -annotate +88+502 '4' -fill '#8B3E33' -annotate +177+502 '-3' -fill '#284E72' -annotate +314+502 '2' -fill '#263548' -annotate +446+502 '2' -fill '#284E72' -annotate +578+502 '5' -fill '#263548' -annotate +710+502 '0' \
+    -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
+    -draw 'roundrectangle 839,174 1138,324 18,18' \
+    -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 14 \
+    -annotate +866+207 'ORDER CHECK' \
+    -fill '#16243A' -font Palatino-Roman -pointsize 17 \
+    -annotate +866+241 'inverse(U L)' \
+    -annotate +866+265 '= inverse(L) inverse(U)' \
+    -font Helvetica-Bold -pointsize 15 -fill '#39705B' \
+    -annotate +866+299 '[[1,-1],[-1,2]]   CORRECT' \
+    -fill '#F5DDD8' -stroke '#9A493E' -strokewidth 2 \
+    -draw 'roundrectangle 839,342 1138,450 18,18' \
+    -fill '#8B3E33' -stroke none -font Helvetica-Bold -pointsize 14 \
+    -annotate +866+375 'WRONG ORDER' \
+    -fill '#16243A' -font Helvetica-Bold -pointsize 13 \
+    -annotate +866+407 'WRONG: inverse(U) inverse(L)' \
+    -annotate +866+431 '= [[2,-1],[-1,1]]' \
+    -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
+    -draw 'roundrectangle 839,468 1138,526 16,16' \
+    -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 11 \
+    -annotate +866+489 'SEVERE CONTRACTION' \
+    -annotate +866+507 'positive clip = 0 · signed = -100' \
+    -annotate +866+522 'inverse tail = 100' \
+    -fill '#C7D2DF' -font Helvetica-Bold -pointsize 12 \
+    -annotate +64+582 'GATES: POINTWISE UNITS + INTEGRABLE FORWARD AND INVERSE GENERATOR TAILS' \
+    -fill '#FFFDF8' -font Helvetica-Bold -pointsize 11 \
+    -annotate +64+607 'OUTPUT: LOWER RAIL ≤ SIGNED LOG ≤ POSITIVE LOG  /  INVERSE VALUE ≤ INVERSE-ORBIT SUM  /  FINITE SIGNED SLICES ARE INTEGRABLE' \
+    -strip -define png:exclude-chunk=date,time \
+    "PNG:$destination"
+}
+
+generate "$output"
 
 dimensions="$(magick identify -format '%wx%h' "$output")"
 test "$dimensions" = "1200x630" || {

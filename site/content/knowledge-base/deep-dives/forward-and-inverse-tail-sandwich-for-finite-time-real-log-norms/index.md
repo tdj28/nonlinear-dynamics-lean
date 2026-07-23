@@ -2,8 +2,8 @@
 title: "The Forward-and-Inverse Tail Sandwich for Finite-Time Real Log Norms"
 slug: "forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms"
 date: 2026-07-22
-summary: "A concept-first ascent from three logarithmic matrix observables through pointwise units, measurable total inversion, reverse-order products, and an integrable two-rail sandwich for finite-time signed log norms."
-lead: "Random-matrix-theory milestone 34 (RMT-34) builds the finite-time analytic infrastructure needed to move from an expansion-only positive-log envelope toward a signed logarithmic matrix-growth theorem. The key object is a real log norm held between an integrable inverse-tail lower rail and an integrable forward-tail upper rail. A separate positive-rate shortcut reaches signed convergence when clipping is eventually inactive."
+summary: "A four-step scalar ledger and two noncommuting shears lead into the checked forward-and-inverse tail sandwich for finite-time signed log norms."
+lead: "Start with exponent steps 2, -3, 1, 2. Their signed prefixes are 0, 2, -1, 0, 2; their forward positive rails are 0, 2, 2, 3, 5; and their inverse rails are 0, 0, 3, 3, 3. That complete finite ledger explains why random-matrix-theory milestone 34 (RMT-34) needs pointwise units, reversed inverse order, and separate forward and inverse moments before it packages the signed real log as an integrable subadditive candidate."
 draft: false
 pro_reviewed: false
 level: "Advanced finite-dimensional matrix cocycles, measure theory, matrix inversion, subadditive processes, logarithmic moments, and Lean theorem engineering"
@@ -14,7 +14,7 @@ lean_snapshot: "/lean/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegra
 lean_source_sha256: "ac950f8728e5fd003cff3b7a5d0750e5c36060730b3ebadc5b0e1165b54e72ea"
 toc: true
 og_image: "forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing pointwise matrix units and an inverse-orbit lower rail supporting a finite-time real log norm beneath a forward positive-log upper rail, with a separate strictly positive-rate shortcut."
+og_image_alt: "Textbook card for the finite-time real-log sandwich. Exponent steps two, negative three, one, and two produce signed prefixes between inverse and forward rails; a shear calculation reverses inverse-product order; and the footer states the pointwise-unit plus two integrable-generator-tail gates for integrable signed finite slices."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -32,6 +32,201 @@ theorem in this chapter is finite-time integrability infrastructure. It is not
 yet a general signed Kingman theorem, a Lyapunov-spectrum theorem, or an
 Oseledets splitting.
 {{< /panel >}}
+
+## Start with four scalar steps you can audit
+
+Begin in one dimension, where every matrix is a nonzero scalar and products
+commute. Use powers of two so every logarithm becomes integer arithmetic.
+Choose the four generator multipliers
+
+\[
+a_0=2^2=4,\qquad
+a_1=2^{-3}=\frac18,\qquad
+a_2=2^1=2,\qquad
+a_3=2^2=4.
+\]
+
+Their base-two log exponents are
+
+\[
+(e_0,e_1,e_2,e_3)=(2,-3,1,2).
+\]
+
+For horizon \(n\), multiply the first \(n\) generators and define five
+quantities:
+
+\[
+\begin{aligned}
+R_n^{(2)}
+&:=\log_2\left|\prod_{j=0}^{n-1}a_j\right|
+  =\sum_{j=0}^{n-1}e_j,\\
+P_n^{(2)}
+&:=\max(R_n^{(2)},0),\\
+U_n^{(2)}
+&:=\sum_{j=0}^{n-1}\max(e_j,0),\\
+Q_n^{(2)}
+&:=\max(-R_n^{(2)},0),\\
+J_n^{(2)}
+&:=\sum_{j=0}^{n-1}\max(-e_j,0).
+\end{aligned}
+\]
+
+Here \(R_n^{(2)}\) is the signed log of the whole product,
+\(P_n^{(2)}\) is the positive log of that product, \(U_n^{(2)}\) is the
+looser sum of one-step forward positive logs, \(Q_n^{(2)}\) is the positive
+log of the inverse product, and \(J_n^{(2)}\) is the sum of one-step inverse
+positive logs. The superscript \((2)\) records the temporary base-two scale.
+Multiplying every entry by the positive constant \(\log 2\) converts the
+ledger to the natural logarithms used by Lean without changing any
+inequality.
+
+| \(n\) | Prefix product | \(R_n^{(2)}\) | \(-J_n^{(2)}\) | \(P_n^{(2)}\) | \(U_n^{(2)}\) | \(Q_n^{(2)}\) |
+|---:|---:|---:|---:|---:|---:|---:|
+| 0 | \(1\) | \(0\) | \(0\) | \(0\) | \(0\) | \(0\) |
+| 1 | \(4\) | \(2\) | \(0\) | \(2\) | \(2\) | \(0\) |
+| 2 | \(1/2\) | \(-1\) | \(-3\) | \(0\) | \(2\) | \(1\) |
+| 3 | \(1\) | \(0\) | \(-3\) | \(0\) | \(3\) | \(0\) |
+| 4 | \(4\) | \(2\) | \(-3\) | \(2\) | \(5\) | \(0\) |
+
+Every row verifies the complete chain
+
+\[
+-J_n^{(2)}
+\le
+-Q_n^{(2)}
+\le
+R_n^{(2)}
+\le
+P_n^{(2)}
+\le
+U_n^{(2)}.
+\]
+
+The checked module uses the sharper middle upper rail
+\(R_n\le P_n\). Earlier forward-tail integrability results make \(P_n\)
+integrable by controlling it with the one-step sum represented here by
+\(U_n^{(2)}\). Keeping both columns prevents two different positive-log
+objects from being silently identified.
+
+{{< reference-figure
+  wide="true"
+  src="four-step-tail-sandwich-ledger.svg"
+  alt="Four scalar exponent steps two, negative three, one, and two have signed prefixes zero, two, negative one, zero, and two. At every horizon the signed prefix lies above the inverse lower rail zero, zero, negative three, negative three, negative three and below both the exact positive log and the forward one-step positive rail."
+  caption="**Finding:** the four-step ledger verifies every finite inequality before any measure theory appears. Signed prefixes are \(0,2,-1,0,2\); the inverse orbit sums are \(0,0,3,3,3\); the exact product positive logs are \(0,2,0,0,2\); and the forward one-step rails are \(0,2,2,3,5\). The inverse product values \(0,0,1,0,0\) stay below the inverse orbit sum. These are exact toy powers of two, not empirical measurements."
+>}}
+
+### One severe contraction exposes the missing tail
+
+Now take a single generator \(a=2^{-100}\). Its signed log exponent is
+\(-100\), but its forward positive log is zero:
+
+\[
+R_1^{(2)}=-100,
+\qquad
+P_1^{(2)}=U_1^{(2)}=0.
+\]
+
+An expansion-only moment sees nothing. The inverse multiplier is \(2^{100}\),
+so both inverse quantities record the missing magnitude:
+
+\[
+Q_1^{(2)}=J_1^{(2)}=100,
+\qquad
+-J_1^{(2)}=-100=R_1^{(2)}.
+\]
+
+This is the smallest possible reason that a forward positive-log moment
+cannot control signed integrability by itself.
+
+{{< reference-figure
+  wide="true"
+  src="severe-contraction-tail-boundary.svg"
+  alt="A one-step multiplier two to the negative one hundred has signed log exponent negative one hundred and forward positive log zero, while its inverse has positive log one hundred and supplies the exact lower rail negative one hundred."
+  caption="**Finding:** clipping erases a severe contraction completely: the forward positive value is \(0\) while the signed value is \(-100\). The inverse tail restores the missing magnitude \(100\), making the lower rail exact in this scalar example. This finite example motivates the separate inverse moment; it is not a probability-tail or asymptotic theorem."
+>}}
+
+### Noncommuting shears reveal chronological order
+
+Scalar products hide one matrix issue because scalars commute. Let
+
+\[
+U=
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix},
+\qquad
+L=
+\begin{bmatrix}
+1&0\\
+1&1
+\end{bmatrix}.
+\]
+
+If the time-zero generator is \(L\) and the time-one generator is \(U\), the
+newest-factor-left cocycle value is
+
+\[
+UL=
+\begin{bmatrix}
+2&1\\
+1&1
+\end{bmatrix}.
+\]
+
+Inversion reverses the product:
+
+\[
+\begin{aligned}
+(UL)^{-1}
+&=L^{-1}U^{-1}\\
+&=
+\begin{bmatrix}
+1&-1\\
+-1&2
+\end{bmatrix}.
+\end{aligned}
+\]
+
+A direct multiplication checks that this displayed matrix is a two-sided
+inverse:
+
+\[
+\begin{aligned}
+\begin{bmatrix}1&-1\\-1&2\end{bmatrix}
+\begin{bmatrix}2&1\\1&1\end{bmatrix}
+&=
+\begin{bmatrix}1&0\\0&1\end{bmatrix},\\
+\begin{bmatrix}2&1\\1&1\end{bmatrix}
+\begin{bmatrix}1&-1\\-1&2\end{bmatrix}
+&=
+\begin{bmatrix}1&0\\0&1\end{bmatrix}.
+\end{aligned}
+\]
+
+Keeping the forward order after inversion gives a different matrix:
+
+\[
+U^{-1}L^{-1}=
+\begin{bmatrix}
+2&-1\\
+-1&1
+\end{bmatrix}
+\ne
+(UL)^{-1}.
+\]
+
+The inverse factors therefore cannot be advertised as another
+newest-factor-left cocycle over the same one-sided base.
+
+{{< reference-figure
+  wide="true"
+  src="inverse-order-shear-ledger.svg"
+  alt="Upper and lower two-by-two shears multiply as upper times lower. The correct inverse is lower inverse times upper inverse and equals the matrix with rows one negative one and negative one two. Keeping the inverse factors in the original order gives a different matrix with rows two negative one and negative one one."
+  caption="**Finding:** for the exact shears \(U\) and \(L\), \((UL)^{-1}=L^{-1}U^{-1}=\left[\begin{smallmatrix}1&-1\\-1&2\end{smallmatrix}\right]\), while \(U^{-1}L^{-1}=\left[\begin{smallmatrix}2&-1\\-1&1\end{smallmatrix}\right]\). The difference is visible in the diagonal entries. RMT-34 respects this reversal and derives a scalar forward-orbit bound instead of inventing a same-order inverse cocycle."
+>}}
+
+## From the finite ledger to RMT-34
 
 Imagine climbing from a valley where every contraction has been hidden by a
 clip. At the first ledge, the observable
@@ -68,7 +263,11 @@ Here \(R_n\) is the finite-time real log norm, \(P_n\) is its positive-log
 upper envelope, and \(J_n\) is a finite sum of inverse-generator positive
 logs. The rails are integrable, so the signed middle function is integrable.
 Together with signed subadditivity, this produces a reusable candidate for a
-future signed convergence theorem.
+downstream signed convergence layer. The repository's source-only RMT-35
+checkpoint now consumes that candidate to prove a pre-ergodic probability
+almost-everywhere limit for signed top growth. RMT-35 remains outside
+RMT-34's frozen checked surface and still awaits its paired teaching and
+release gates.
 
 A second route reaches a narrower summit. If the already-constructed
 log-positive asymptotic rate is strictly positive, clipping eventually does
@@ -86,6 +285,8 @@ and
 
 | Route | Begin | Destination |
 |---|---|---|
+| Worked-example route | [Start with four scalar steps you can audit](#start-with-four-scalar-steps-you-can-audit) | Verify the signed, positive, forward, and inverse rails numerically |
+| Order route | [Noncommuting shears reveal chronological order](#noncommuting-shears-reveal-chronological-order) | Compute the correct and incorrect inverse products |
 | Panorama | [See the whole mountain](#see-the-whole-mountain) | Understand the main and shortcut routes |
 | Observables | [Separate the three logarithms](#separate-the-three-logarithms) | Know what each observable remembers and erases |
 | Algebra | [Propagate pointwise units](#propagate-pointwise-units) | Restore nonvanishing and signed subadditivity |
@@ -96,16 +297,24 @@ and
 | Probability | [Test the missing inverse tail](#test-the-missing-inverse-tail) | Verify the geometric probability counterexample and its limits |
 | Shortcut | [Use strict positive rate](#use-strict-positive-rate) | Transfer log-positive convergence to the real log |
 | Lean | [Audit the complete checked surface](#audit-the-complete-checked-surface) | Match public and private declarations to their jobs |
+| Runnable route | [Run the finite worksheet on Mac or Linux](#run-the-finite-worksheet-on-mac-or-linux) | Execute every opening ledger with only Lean `Std` |
 | History | [Place the construction classically](#place-the-construction-classically) | Compare cautiously with Furstenberg, Kesten, Kingman, Oseledets, and Ruelle |
 | Practice | [Forty fully worked exercises](#forty-fully-worked-exercises) | Rebuild the argument and its boundaries |
 
 ## Common setup and notation
 
-Let \((\Omega,\mu)\) be a measure space. Let
-\(T:\Omega\to\Omega\) preserve \(\mu\), and let
-\(A:\Omega\to\operatorname{Mat}_{\iota}(\mathbb C)\) be a measurable
-finite complex matrix generator. The finite index type \(\iota\) may be empty
-unless a theorem states otherwise.
+Let \(\Omega\) be a
+{{< refterm "measurable-space" "measurable space" >}}: a set equipped with a
+chosen collection of subsets on which measurement is allowed. Let \(\mu\) be
+a {{< refterm "measure" "measure" >}} on that space. Let
+\(T:\Omega\to\Omega\) be a
+{{< refterm "measure-preserving-transformation" "measure-preserving transformation" >}},
+meaning that applying \(T\) does not change the measure of measurable events.
+Finally, let
+\(A:\Omega\to\operatorname{Mat}_{\iota}(\mathbb C)\) be a
+{{< refterm "measurable-function" "measurable" >}} finite complex matrix
+generator. The finite index type \(\iota\) may be empty unless a theorem
+states otherwise.
 
 The repository's one-sided discrete cocycle uses the newest-factor-left
 convention:
@@ -135,6 +344,9 @@ The active matrix norm is the maximum absolute row-sum operator norm:
 
 The notation \(\lVert M\rVert\) below always means that selected norm. It is
 not the Frobenius norm and not the Euclidean spectral norm.
+The dedicated
+{{< refterm "induced-infinity-operator-norm" "induced infinity operator norm" >}}
+chapter derives the row-sum formula from its action on vectors.
 
 Define the three finite-time observables
 
@@ -287,6 +499,23 @@ No column is simply better than the others.
   caption="**Information boundary:** zero-faithfulness, signed finite values, and a nonnegative continuous envelope are three different design goals. A proof must choose the column that matches its claim."
 >}}
 
+### In Lean: name the signed finite-time observable
+
+{{< lean-bridge
+  human="At horizon k and sample omega, take the ordinary real logarithm of the selected norm of the cocycle product."
+  math="\\(R_k(\\omega)=\\log\\lVert C_k(\\omega)\\rVert.\\)"
+  lean="C.realLogNormObservable k ω"
+>}}
+
+- `C` is the bundled one-sided discrete matrix cocycle.
+- `k : ℕ` is the finite horizon, including \(0\).
+- `ω` is the sample point in \(\Omega\).
+- `C.value k ω` is the newest-factor-left finite product.
+- `‖...‖` is the selected maximum row-sum operator norm.
+- `Real.log` is total in Lean, so `Real.log 0 = 0`; this syntax does not make
+  the observable zero-faithful.
+{{< /lean-bridge >}}
+
 The first four compiled boundary examples make this table executable:
 
 \[
@@ -393,6 +622,24 @@ R_k(T^m\omega)+R_m(\omega).
 
 The empty branch is identically zero.
 
+### In Lean: state signed shifted subadditivity
+
+{{< lean-bridge
+  human="If every generator is a unit, the real log norm over a split horizon is at most the shifted later-block log plus the earlier-block log."
+  math="\\(R_{m+k}(\\omega)\\le R_k(T^m\\omega)+R_m(\\omega).\\)"
+  lean="hC.realLogNormObservable_add_le m k ω"
+>}}
+
+- `hC : C.IsPointwiseInvertible` is the pointwise unit proof.
+- `m` is the earlier block length and `k` is the shifted later block length.
+- `C.base^[m] ω` is Lean's notation for \(T^m\omega\).
+- The receiver dot in `hC.realLogNormObservable_add_le` supplies the unit
+  hypothesis to the theorem namespace.
+- The conclusion is pointwise for every `ω`, not merely almost everywhere.
+- No moment, probability, ergodicity, or nonempty-index hypothesis appears in
+  this public real-valued statement.
+{{< /lean-bridge >}}
+
 This hypothesis is not cosmetic. Set
 
 \[
@@ -460,6 +707,25 @@ The module builds the proof from exact finite operations.
   alt="Measurable matrix entries flow through determinant and constant-row updates, then through adjugate and determinant-reciprocal multiplication, then through a finite row-sum norm and positive log. A singular branch ends at the zero total inverse."
   caption="**Measurability pipeline:** each arrow is a finite checked construction. The singular branch remains measurable because total inversion returns zero there; that branch is not a pseudoinverse and does not quantify collapse."
 >}}
+
+### In Lean: prove the total inverse envelope measurable
+
+{{< lean-bridge
+  human="The one-step positive log of the norm of Mathlib's total matrix inverse is a measurable real-valued function."
+  math="\\(\\omega\\mapsto\\log^+\\lVert A(\\omega)^{-1}\\rVert\\text{ is measurable}.\\)"
+  lean="C.measurable_inverseGeneratorLogPlusNormObservable"
+>}}
+
+- `inverseGeneratorLogPlusNormObservable` is
+  \(\omega\mapsto\log^+\lVert A(\omega)^{-1}\rVert\).
+- The superscript-looking Lean inverse is implemented by Mathlib's total
+  nonsingular inverse.
+- `measurable_...` concludes ordinary measurability, not integrability.
+- The theorem uses the cocycle's `measurable_generator` field and the private
+  determinant-adjugate support chain.
+- No unit hypothesis is required because the total inverse is defined as zero
+  on the singular locus.
+{{< /lean-bridge >}}
 
 This yields unconditional measurability of \(G\) and every \(Q_n\).
 Pointwise units are introduced later, when these totalized functions are
@@ -541,6 +807,29 @@ positive log, and the positive-log product inequality prove
 Q_n(\omega)\le J_n(\omega).
 \]
 
+### In Lean: compare the inverse value with its orbit envelope
+
+{{< lean-bridge
+  human="The positive log norm of the inverse of the whole finite product is at most the sum of the one-step inverse positive-log costs, in chronological base order."
+  math="\\(Q_k(\\omega)\\le J_k(\\omega).\\)"
+  lean="C.inverseValueLogPlusNormObservable_le_inverseOrbitLogPlusSum k ω"
+>}}
+
+- `inverseValueLogPlusNormObservable` is the left side \(Q_k\): first build
+  the entire newest-factor-left product, then invert it.
+- `le` is the order relation \(\le\).
+- `inverseOrbitLogPlusSum` is the right side \(J_k\): a scalar sum over
+  \(j=0,\ldots,k-1\).
+- The proof reverses matrix factors before taking norms. The scalar summands
+  may then be written in increasing chronological base order because real
+  addition is commutative.
+- `k` and `ω` are literal theorem arguments; there is no hidden expectation
+  or limit.
+- No unit hypothesis occurs in this call. Mathlib's total inverse makes the
+  statement defined even at singular matrices, but the singular branch then
+  loses quantitative information about collapse.
+{{< /lean-bridge >}}
+
 This inequality is unconditional because total inversion and positive log are
 defined on singular matrices. On a singular input, however, \(Q_n\) may be
 zero. The inequality then carries no quantitative record of collapse.
@@ -618,6 +907,27 @@ Together the rails are
 \le P_n(\omega).
 \]
 
+### In Lean: place the signed observable between the rails
+
+{{< lean-bridge
+  human="Pointwise invertibility puts the negative inverse-orbit sum below the signed real log norm; the total max inequality puts the positive-log observable above it."
+  math="\\(-J_k(\\omega)\\le R_k(\\omega)\\le P_k(\\omega).\\)"
+  lean="hC.neg_inverseOrbitLogPlusSum_le_realLogNormObservable k ω"
+>}}
+
+- `hC : C.IsPointwiseInvertible` supplies the unit proof needed only for the
+  lower comparison.
+- `neg_inverseOrbitLogPlusSum` means the unary minus applied to \(J_k\);
+  Lean's theorem name spells out that lower endpoint.
+- `realLogNormObservable` is the signed middle \(R_k\).
+- `k ω` specialize a pointwise theorem at one finite horizon and sample.
+- The companion upper theorem is typed as
+  `C.realLogNormObservable_le_logPlusNormObservable k ω`; it requires no
+  invertibility.
+- Neither comparison claims equality. The two-rate diagonal example below
+  makes the lower inequality strict.
+{{< /lean-bridge >}}
+
 {{< reference-figure
   wide="true"
   src="two-rail-integrability-sandwich.svg"
@@ -658,6 +968,26 @@ two-sided domination theorem then proves
 
 for every natural \(n\).
 
+### In Lean: certify finite-horizon signed integrability
+
+{{< lean-bridge
+  human="If the generators are pointwise invertible and both one-step logarithmic tails are integrable, then every finite-time signed real log norm is integrable."
+  math="\\(R_k\\in L^1(\\mu).\\)"
+  lean="hC.integrable_realLogNormObservable k"
+>}}
+
+- Here `hC : C.HasIntegrableGeneratorLogTails` is the three-field package in
+  the preceding code block.
+- `integrable_...` means the absolute value has a finite integral with respect
+  to `μ`; it is stronger than measurability.
+- `realLogNormObservable k` is the function
+  \(\omega\mapsto R_k(\omega)\), not a single sampled value.
+- The proof combines the measurable middle, the integrable lower and upper
+  rails, and a two-sided domination theorem.
+- `k : ℕ` is arbitrary but finite. This declaration does not assert
+  integrability of a limit as \(k\to\infty\).
+{{< /lean-bridge >}}
+
 The lower inequality itself requires only pointwise units. RMT-34 exposes it
 on the weaker receiver <code>IsPointwiseInvertible</code>, not on the full
 three-field integrability package.
@@ -680,6 +1010,26 @@ theorem HasIntegrableGeneratorLogTails.isIntegrableSubadditiveProcessCandidate
 
 fills those fields with the sandwich integrability theorem and the
 pointwise-unit subadditivity theorem.
+
+### In Lean: package exactly the input expected downstream
+
+{{< lean-bridge
+  human="Bundle the signed finite-time family as an integrable shifted-subadditive process candidate."
+  math="\\(R\\text{ has integrable finite slices and }R_{m+k}(\\omega)\\le R_k(T^m\\omega)+R_m(\\omega).\\)"
+  lean="hC.isIntegrableSubadditiveProcessCandidate"
+>}}
+
+- The same `hC : C.HasIntegrableGeneratorLogTails` provides both tail moments
+  and pointwise units.
+- `isIntegrableSubadditiveProcessCandidate` returns a structure-valued proof;
+  it does not run an ergodic theorem.
+- Its integrability field is filled by
+  `hC.integrable_realLogNormObservable`.
+- Its shifted-subadditivity field is filled by
+  `hC.isPointwiseInvertible.realLogNormObservable_add_le`.
+- There is no horizon argument because this one proof packages the entire
+  family \(k\mapsto R_k\).
+{{< /lean-bridge >}}
 
 This candidate is infrastructure, not convergence. RMT-34 does not define a
 signed integrated Fekete rate, rerun the lower-deviation machinery for this
@@ -862,6 +1212,34 @@ Eventual equality transfers convergence:
 \]
 
 for almost every \(\omega\).
+
+### In Lean: transfer the limit on the strictly positive branch
+
+{{< lean-bridge
+  human="On a probability space, pre-ergodicity and a strictly positive log-positive rate make the normalized signed real log norm converge almost everywhere to that same rate."
+  math="\\(R_n(\\omega)/n\\to\\gamma_+(C)\\text{ for }\\mu\\text{-almost every }\\omega.\\)"
+  lean="hC.ae_tendsto_normalizedRealLogNormObservable_of_pos hT hpos"
+>}}
+
+- Here `hC : C.HasIntegrableGeneratorLogPlus` is only the forward
+  positive-log integrability package; this shortcut does not consume the
+  two-tail package.
+- `hT : PreErgodic C.base μ` supplies the invariant-set rigidity used by the
+  preceding RMT-33 convergence theorem. Preservation is already stored in
+  `C`.
+- `hpos : 0 < C.integratedLogPlusGrowthRate hC` is the literal strict
+  branch-selection hypothesis; the rate consumes the forward-integrability
+  witness `hC`, not the measure as an explicit final argument.
+- `ae_tendsto` means convergence for \(\mu\)-almost every sample; it is not a
+  pointwise-for-all-samples claim.
+- The theorem's conclusion writes
+  `(fun n ↦ normalizedProcess C.realLogNormObservable n ω)`. Here
+  `normalizedProcess` divides the signed observable by the horizon using the
+  repository's total convention at \(n=0\); there is no separate declaration
+  named `normalizedRealLogNormObservable`.
+- No unit or inverse-tail argument appears because eventual positivity turns
+  off clipping directly.
+{{< /lean-bridge >}}
 
 {{< reference-figure
   wide="true"
@@ -1128,8 +1506,22 @@ checkout is commit
 
 ### Axiom surface
 
-The source prints axioms for eleven representative public theorems. Every
-print reports exactly
+The source prints axioms for these eleven public theorems, in this exact
+source order:
+
+1. <code>IsPointwiseInvertible.value_isUnit</code>
+2. <code>IsPointwiseInvertible.logNormObservable_eq_coe_realLogNormObservable</code>
+3. <code>measurable_realLogNormObservable</code>
+4. <code>IsPointwiseInvertible.realLogNormObservable_add_le</code>
+5. <code>measurable_inverseGeneratorLogPlusNormObservable</code>
+6. <code>inverseValueLogPlusNormObservable_le_inverseOrbitLogPlusSum</code>
+7. <code>HasIntegrableGeneratorLogTails.integrable_inverseOrbitLogPlusSum</code>
+8. <code>IsPointwiseInvertible.neg_inverseOrbitLogPlusSum_le_realLogNormObservable</code>
+9. <code>HasIntegrableGeneratorLogTails.integrable_realLogNormObservable</code>
+10. <code>HasIntegrableGeneratorLogTails.isIntegrableSubadditiveProcessCandidate</code>
+11. <code>HasIntegrableGeneratorLogPlus.ae_tendsto_normalizedRealLogNormObservable_of_pos</code>
+
+Every print reports exactly
 
 - <code>propext</code>;
 - <code>Classical.choice</code>; and
@@ -1137,6 +1529,11 @@ print reports exactly
 
 There is no <code>sorryAx</code>, project-specific axiom, unsafe declaration,
 <code>sorry</code>, or <code>admit</code> in the module.
+
+The complete surface audit therefore records 28 public declaration commands,
+three fields on <code>HasIntegrableGeneratorLogTails</code>, 34 private
+commands, 16 compiled anonymous examples, and 11 explicit axiom prints. These
+counts describe the frozen 942-line source, not a hand-selected theorem list.
 
 ### Checked nonclaim ledger
 
@@ -2228,9 +2625,11 @@ Typical multiplicative-ergodic outputs include:
 4. equivariance of those subspaces under the cocycle.
 
 RMT-34 supplies none of these. Its main output is an integrable
-shifted-subadditive process candidate for the single top-norm real log. Even a
-future proof that \(R_n/n\) converges would identify only a top growth rate,
-not the full Oseledets structure.
+shifted-subadditive process candidate for the single top-norm real log. The
+downstream source-only RMT-35 checkpoint now consumes that candidate and
+proves convergence of \(R_n/n\) to one integrated signed top-growth rate.
+That endpoint still identifies only top growth, not the full Oseledets
+structure.
 
 #### Exercise 38: classify public and private declarations
 
@@ -2245,7 +2644,7 @@ and level of generality have not yet been tested. The second belongs to one
 compiled counterexample and should not become reusable API.
 
 The public inverse-generator measurability theorem is directly about the
-cocycle observable that later formalization will consume. It hides the
+cocycle observable that downstream RMT-35 now consumes. It hides the
 determinant-adjugate implementation and presents a stable mathematical
 interface. This split lets proofs reuse the result without freezing every
 local construction.
@@ -2268,28 +2667,36 @@ intended mathematics. That requires the boundary models, assumption ledger,
 and proof-to-prose review. Axiom transparency and semantic fidelity are
 separate gates.
 
-#### Exercise 40: design the next signed milestone
+#### Exercise 40: audit the downstream signed layer
 
-What major ingredients remain before a general almost-everywhere theorem for
-\(R_n/n\) can be claimed?
+Which ingredients does the current source-only RMT-35 checkpoint add beyond
+RMT-34, and which teaching and release gates still separate that checkpoint
+from a released vertical slice?
 
 **Solution.**
 
-RMT-34 already provides the signed process candidate: finite-horizon
-integrability and shifted subadditivity. A next milestone must construct the
-appropriate signed deterministic rate and its centered-integral lower bound.
-Those ingredients should let the generic RMT-30 through RMT-33
-lower-deviation and lower-liminf machinery be reused. That machinery is driven
-by centered nonpositivity and deterministic centered-integral bounds, not by
-global nonnegativity of the original process.
+RMT-34 provides finite-horizon integrability and shifted subadditivity as one
+signed process candidate. The subsequent RMT-35 source adds integrated signed
+growth, a deterministic Fekete rate with an inverse-tail lower floor, and the
+centered-integral lower bound needed to reuse the RMT-30 through RMT-33
+rational-deviation machinery.
 
-The upper endpoint needs separate work. RMT-29 used pointwise nonnegativity to
-supply a real boundedness gate for the log-positive process. A signed
-generalization must replace that gate with honest lower-tail control, for
-which the inverse-orbit rail is the natural candidate. The exact probability,
-ergodicity, deterministic-rate, and conditional-completeness assumptions must
-still be audited. Only after both endpoints compile can a signed limit be
-compared cautiously with classical Lyapunov exponents.
+For the upper endpoint, RMT-35 replaces RMT-29's nonnegativity shortcut with
+an honest eventual lower bound obtained from the negative inverse-generator
+Birkhoff average. The generalized lower-bounded RMT-29 theorem and the lower
+endpoint then squeeze normalized signed growth. On a pre-ergodic probability
+base, the source checkpoint proves almost-everywhere convergence to the
+integrated signed top-growth rate. It still proves no Lyapunov spectrum,
+multiplicities, invariant filtration or splitting, or Oseledets theorem.
+
+That source checkpoint is not yet a released vertical slice. Its scalar
+boundary atlas and recommended countermodels remain unfinished; it has no
+paired Development Notebook, Deep Dive, glossary chapter, social card,
+hosted source snapshot, or coverage entry. The RMT-29 teaching layer must
+also document its generalized lower-bounded theorem. Browser and visual QA,
+snapshot identity, the proof-to-prose audit, and a checksum-identical guarded
+Linux cloud release gate remain outstanding. None of those pending gates
+changes the frozen 942-line RMT-34 surface audited in this chapter.
 
 ## Final theorem cards
 
@@ -2354,16 +2761,320 @@ into a compact reference. RMT-33's
 [guarded log-positive convergence chapter]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
 is the immediate asymptotic predecessor.
 
-## Reproduce the checked bundle
+## Run the finite worksheet on Mac or Linux
 
-From the repository root, compile the frozen Lean source with warnings fatal:
+**Resource label: small standalone Lean 4 tutorial; safe on a normal Mac or
+Linux machine.** This worksheet imports only Lean's bundled
+<code>Std</code> library. It does not import Mathlib, open the project, restore
+a Lake cache, or check RMT-34.
 
-~~~bash
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean
-cd ..
+Open a plain-text editor, create
+<code>/tmp/ForwardInverseTailSandwichTutorial.lean</code>, and type or paste
+this file exactly:
+
+~~~lean
+import Std
+
+namespace ForwardInverseTailSandwichTutorial
+
+def steps : List Int := [2, -3, 1, 2]
+
+def positivePart (z : Int) : Int := max z 0
+
+def negativePart (z : Int) : Int := max (-z) 0
+
+def prefixSum (n : Nat) : Int := (steps.take n).sum
+
+def forwardRail (n : Nat) : Int :=
+  ((steps.take n).map positivePart).sum
+
+def inverseRail (n : Nat) : Int :=
+  ((steps.take n).map negativePart).sum
+
+def inverseValue (n : Nat) : Int := negativePart (prefixSum n)
+
+structure SandwichRow where
+  horizon : Nat
+  signedLogExponent : Int
+  lowerRail : Int
+  positiveLogExponent : Int
+  upperRail : Int
+  inverseValueExponent : Int
+  lowerHolds : Bool
+  upperHolds : Bool
+  inverseHolds : Bool
+  deriving Repr, DecidableEq
+
+def sandwichRow (n : Nat) : SandwichRow :=
+  let signed := prefixSum n
+  let inverse := inverseRail n
+  let forward := forwardRail n
+  let inverseProduct := inverseValue n
+  { horizon := n
+    signedLogExponent := signed
+    lowerRail := -inverse
+    positiveLogExponent := positivePart signed
+    upperRail := forward
+    inverseValueExponent := inverseProduct
+    lowerHolds := decide (-inverse ≤ signed)
+    upperHolds := decide (signed ≤ forward)
+    inverseHolds := decide (inverseProduct ≤ inverse) }
+
+structure Mat2 where
+  a11 : Int
+  a12 : Int
+  a21 : Int
+  a22 : Int
+  deriving Repr, DecidableEq
+
+def matMul (A B : Mat2) : Mat2 :=
+  { a11 := A.a11 * B.a11 + A.a12 * B.a21
+    a12 := A.a11 * B.a12 + A.a12 * B.a22
+    a21 := A.a21 * B.a11 + A.a22 * B.a21
+    a22 := A.a21 * B.a12 + A.a22 * B.a22 }
+
+def upperShear : Mat2 := ⟨1, 1, 0, 1⟩
+def lowerShear : Mat2 := ⟨1, 0, 1, 1⟩
+def upperShearInv : Mat2 := ⟨1, -1, 0, 1⟩
+def lowerShearInv : Mat2 := ⟨1, 0, -1, 1⟩
+
+structure OrderLedger where
+  forwardProduct : Mat2
+  correctInverse : Mat2
+  reversedInverseProduct : Mat2
+  unreversedInverseProduct : Mat2
+  correctOrderMatches : Bool
+  wrongOrderDiffers : Bool
+  deriving Repr, DecidableEq
+
+def orderLedger : OrderLedger :=
+  let forward := matMul upperShear lowerShear
+  let correct : Mat2 := ⟨1, -1, -1, 2⟩
+  let reversed := matMul lowerShearInv upperShearInv
+  let unreversed := matMul upperShearInv lowerShearInv
+  { forwardProduct := forward
+    correctInverse := correct
+    reversedInverseProduct := reversed
+    unreversedInverseProduct := unreversed
+    correctOrderMatches := decide (correct = reversed)
+    wrongOrderDiffers := decide (correct ≠ unreversed) }
+
+def severeContractionRow : SandwichRow :=
+  let signed : Int := -100
+  { horizon := 1
+    signedLogExponent := signed
+    lowerRail := -100
+    positiveLogExponent := positivePart signed
+    upperRail := positivePart signed
+    inverseValueExponent := negativePart signed
+    lowerHolds := decide ((-100 : Int) ≤ signed)
+    upperHolds := decide (signed ≤ positivePart signed)
+    inverseHolds := decide (negativePart signed ≤ 100) }
+
+#eval (List.range 5).map sandwichRow
+#eval orderLedger
+#eval severeContractionRow
+
+example : (List.range 5).map prefixSum = [0, 2, -1, 0, 2] := by
+  native_decide
+example : (List.range 5).map forwardRail = [0, 2, 2, 3, 5] := by
+  native_decide
+example : (List.range 5).map inverseRail = [0, 0, 3, 3, 3] := by
+  native_decide
+example : (List.range 5).all fun n =>
+    (sandwichRow n).lowerHolds && (sandwichRow n).upperHolds &&
+      (sandwichRow n).inverseHolds := by
+  native_decide
+example : orderLedger.correctOrderMatches = true := by native_decide
+example : orderLedger.wrongOrderDiffers = true := by native_decide
+example : severeContractionRow.positiveLogExponent = 0 := by
+  native_decide
+example : severeContractionRow.signedLogExponent = -100 := by
+  native_decide
+
+end ForwardInverseTailSandwichTutorial
 ~~~
+
+Then type this command in a terminal:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/ForwardInverseTailSandwichTutorial.lean
+~~~
+
+Lean should print the following transcript and exit without errors:
+
+~~~text
+[{ horizon := 0,
+   signedLogExponent := 0,
+   lowerRail := 0,
+   positiveLogExponent := 0,
+   upperRail := 0,
+   inverseValueExponent := 0,
+   lowerHolds := true,
+   upperHolds := true,
+   inverseHolds := true },
+ { horizon := 1,
+   signedLogExponent := 2,
+   lowerRail := 0,
+   positiveLogExponent := 2,
+   upperRail := 2,
+   inverseValueExponent := 0,
+   lowerHolds := true,
+   upperHolds := true,
+   inverseHolds := true },
+ { horizon := 2,
+   signedLogExponent := -1,
+   lowerRail := -3,
+   positiveLogExponent := 0,
+   upperRail := 2,
+   inverseValueExponent := 1,
+   lowerHolds := true,
+   upperHolds := true,
+   inverseHolds := true },
+ { horizon := 3,
+   signedLogExponent := 0,
+   lowerRail := -3,
+   positiveLogExponent := 0,
+   upperRail := 3,
+   inverseValueExponent := 0,
+   lowerHolds := true,
+   upperHolds := true,
+   inverseHolds := true },
+ { horizon := 4,
+   signedLogExponent := 2,
+   lowerRail := -3,
+   positiveLogExponent := 2,
+   upperRail := 5,
+   inverseValueExponent := 0,
+   lowerHolds := true,
+   upperHolds := true,
+   inverseHolds := true }]
+{ forwardProduct := { a11 := 2, a12 := 1, a21 := 1, a22 := 1 },
+  correctInverse := { a11 := 1, a12 := -1, a21 := -1, a22 := 2 },
+  reversedInverseProduct := { a11 := 1, a12 := -1, a21 := -1, a22 := 2 },
+  unreversedInverseProduct := { a11 := 2, a12 := -1, a21 := -1, a22 := 1 },
+  correctOrderMatches := true,
+  wrongOrderDiffers := true }
+{ horizon := 1,
+  signedLogExponent := -100,
+  lowerRail := -100,
+  positiveLogExponent := 0,
+  upperRail := 0,
+  inverseValueExponent := 100,
+  lowerHolds := true,
+  upperHolds := true,
+  inverseHolds := true }
+~~~
+
+Here is the exact translation from executable names to the paper ledger:
+
+| Lean worksheet name | Mathematical object |
+|---|---|
+| `steps` | The base-two one-step log exponents \([2,-3,1,2]\) |
+| `prefixSum n` | Signed product exponent \(R_n^{(2)}\) |
+| `positivePart (prefixSum n)` | Exact finite-product positive log \(P_n^{(2)}\) |
+| `forwardRail n` | Sum of one-step expansion costs \(U_n^{(2)}\) |
+| `inverseValue n` | Exact inverse-product positive log \(Q_n^{(2)}\) |
+| `inverseRail n` | Sum of one-step contraction costs \(J_n^{(2)}\) |
+| `lowerHolds` | The lower comparison \(-J_n^{(2)}\le R_n^{(2)}\) |
+| `upperHolds` | The looser upper comparison \(R_n^{(2)}\le U_n^{(2)}\) |
+| `inverseHolds` | The inverse comparison \(Q_n^{(2)}\le J_n^{(2)}\) |
+| `matMul lowerShearInv upperShearInv` | Correct reversed order \(L^{-1}U^{-1}\) |
+| `matMul upperShearInv lowerShearInv` | Deliberately wrong unreversed order |
+| `native_decide` | Lean's verified computation proves each finite equality |
+
+The worksheet checks the arithmetic and order-sensitive toy models. It does
+not prove matrix-norm measurability, integrability on a measure space, or the
+Mathlib-backed RMT-34 theorems. In the shear ledger, `correctInverse` is the
+paper inverse entered by hand: the finite check proves that it matches the
+reversed inverse-factor product and differs from the unreversed product, but
+does not independently prove that it inverts `forwardProduct`. The displayed
+two-by-two calculation and the generic Mathlib theorem
+<code>Matrix.mul_inv_rev</code> supply the inverse fact. Those project-level
+facts belong to the exact interface below.
+
+## Inspect and check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability" >}}
+
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean),
+with a
+[site-hosted copy](/lean/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean)
+for direct reading. On an approved Linux builder, create a temporary project
+scratch file containing this source-order interface probe:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
+
+open MeasureTheory
+open NonlinearDynamics.Random.RandomCocycles
+
+#check DiscreteMatrixCocycle.realLogNormObservable
+#check DiscreteMatrixCocycle.IsPointwiseInvertible
+#check DiscreteMatrixCocycle.IsPointwiseInvertible.value_isUnit
+#check DiscreteMatrixCocycle.IsPointwiseInvertible.logNormObservable_eq_coe_realLogNormObservable
+#check DiscreteMatrixCocycle.measurable_realLogNormObservable
+#check DiscreteMatrixCocycle.realLogNormObservable_eq_zero_of_isEmpty
+#check DiscreteMatrixCocycle.realLogNormObservable_zero
+#check DiscreteMatrixCocycle.realLogNormObservable_one
+#check DiscreteMatrixCocycle.IsPointwiseInvertible.realLogNormObservable_add_le
+#check DiscreteMatrixCocycle.inverseGeneratorLogPlusNormObservable
+#check DiscreteMatrixCocycle.measurable_inverseGeneratorLogPlusNormObservable
+#check DiscreteMatrixCocycle.inverseValueLogPlusNormObservable
+#check DiscreteMatrixCocycle.inverseValueLogPlusNormObservable_zero
+#check DiscreteMatrixCocycle.inverseValueLogPlusNormObservable_one
+#check DiscreteMatrixCocycle.measurable_inverseValueLogPlusNormObservable
+#check DiscreteMatrixCocycle.inverseOrbitLogPlusSum
+#check DiscreteMatrixCocycle.inverseOrbitLogPlusSum_zero
+#check DiscreteMatrixCocycle.inverseOrbitLogPlusSum_succ
+#check DiscreteMatrixCocycle.inverseValueLogPlusNormObservable_le_inverseOrbitLogPlusSum
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails
+#check DiscreteMatrixCocycle.measurable_inverseOrbitLogPlusSum
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.integrable_inverseGeneratorLogPlus_at_base_iterate
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.integrable_inverseOrbitLogPlusSum
+#check DiscreteMatrixCocycle.IsPointwiseInvertible.neg_inverseOrbitLogPlusSum_le_realLogNormObservable
+#check DiscreteMatrixCocycle.realLogNormObservable_le_logPlusNormObservable
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.integrable_realLogNormObservable
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.isIntegrableSubadditiveProcessCandidate
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_tendsto_normalizedRealLogNormObservable_of_pos
+
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.isPointwiseInvertible
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.hasIntegrableGeneratorLogPlus
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.integrable_inverseGeneratorLogPlus
+~~~
+
+The first 28 checks match every public declaration command in source order.
+The final three expose every field of the one public structure. The module's
+34 private helpers and fixtures cannot be imported by name; its 16 anonymous
+examples and 11 axiom prints are source-level audit checks rather than public
+API.
+
+From the repository root on the approved Linux host, type:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean
+~~~
+
+This is the exact warning-fatal, pinned Mathlib leaf check. It may restore or
+compile substantial dependencies, so it belongs on a human-approved RunPod or
+another approved Linux cloud builder. Do not run it on the Mac workstation
+and do not replace the guarded target with raw `lake` commands.
+{{< /repo-check >}}
+
+After the leaf succeeds, the broader guarded project gate on that same
+approved Linux builder is:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+The workstation-safe teaching-layer gates do not compile the Lean project:
 
 Regenerate and byte-verify this page's 1200 by 630 social card from any
 working directory:

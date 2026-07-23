@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:49 PDT
+Last updated: 2026-07-22 23:12 PDT
 
-Audited baseline: `main` at `3307fe2`
+Audited baseline: `main` at `e0e04c0`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **35 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **36 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -636,6 +636,21 @@ twenty-four-public/eleven-private/five-probe/eleven-axiom manifest, a guarded
 cloud interface check, and a byte-identical executed 142-line `Std` worksheet
 make the totalization trap and final convergence mechanism reproducible
 without building Mathlib on the workstation.
+*The Forward-and-Inverse Tail Sandwich for Finite-Time Real Log Norms* now
+opens on base-two exponent steps `(2,-3,1,2)`. Their signed prefixes
+`(0,2,-1,0,2)`, exact positive clips `(0,2,0,0,2)`, forward rails
+`(0,2,2,3,5)`, inverse-value clips `(0,0,1,0,0)`, and inverse-orbit rails
+`(0,0,3,3,3)` verify `-J <= -Q <= R <= P <= U` at every horizon. The exact
+noncommuting shears show `(UL)^-1 = L^-1 U^-1` and expose the wrong unreversed
+product; one `2^-100` contraction makes signed log norm `-100`, forward clip
+zero, and inverse tail `100`. Three new accessible numeric figures, eight
+human/paper/Lean bridges, the complete twenty-eight-public/thirty-four-private/
+sixteen-example/eleven-axiom source map plus all three structure fields, a
+guarded cloud interface check, and a byte-identical executed `Std` worksheet
+finish the 36-chapter textbook pass while keeping the RMT-35 source-only
+release debt explicit. This latest wave has static Hugo and native-pixel asset
+QA; a fresh live desktop/mobile browser pass remains future release QA because
+the browser backend was unavailable.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -1404,12 +1419,13 @@ bridge, or stable-manifold theorem.
   branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
-  259,068 tokens across thirty-nine Notebook companions, 225,199 tokens across
-  thirty-six Deep Dives, and 89,058 tokens across fifty-two glossary chapters,
-  for 573,325 tokens across all 127 teaching bundles. Their deterministic
-  visual layer contains 117 social cards and 210 conceptual SVGs.
-- Publication status: all new research prose remains `draft: true` and
-  `pro_reviewed: false` pending human review.
+  259,297 tokens across thirty-nine Notebook companions, 310,021 tokens across
+  thirty-six Deep Dives, and 178,777 tokens across sixty-two glossary chapters,
+  for 748,095 tokens across all 137 teaching bundles. Their deterministic
+  visual layer contains 137 social cards and 316 conceptual SVGs.
+- Publication status: all 137 teaching pages are owner-authorized public
+  working notes with `draft: false` and `pro_reviewed: false` pending human
+  review.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
   port 1333.
 
@@ -1522,7 +1538,7 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- One hundred seventeen deterministic 1200x630 social cards and 210 accessible
+- One hundred thirty-seven deterministic 1200x630 social cards and 316 accessible
   conceptual SVG figures, plus one static SVG favicon.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
@@ -3523,6 +3539,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `e0e04c0`: rebuild *The Guarded Real-Liminf Bridge to Log-Positive Kingman
+  Convergence* around three exact sequence boundaries, the totalized-liminf
+  guard, an exact closing squeeze, seven Lean bridges, and an executed local
+  `Std` worksheet.
 - `3307fe2`: rebuild *Rational-Slack Lower-Deviation Events and Ergodic Null
   Selection* around an exact collapse/Dirac model, fixed rational witnesses,
   literal-versus-almost invariance, strict probability branch selection,
