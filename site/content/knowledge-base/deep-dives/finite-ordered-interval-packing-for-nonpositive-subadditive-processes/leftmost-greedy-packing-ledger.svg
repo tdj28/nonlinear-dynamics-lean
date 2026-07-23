@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="greedyLedgerTitle greedyLedgerDesc">
+  <title id="greedyLedgerTitle">Exact leftmost greedy interval selection and gap-length-tail decoding</title>
+  <desc id="greedyLedgerDesc">Fourteen positions zero through thirteen contain marked starts one, two, four, five, eight, and nine. Round one selects interval one to four and covers marks one and two. Round two selects interval four to six and covers marks four and five. Round three selects interval eight to twelve and covers marks eight and nine. The selected starts are one, four, and eight, while the covered positions are one, two, three, four, five, eight, nine, ten, and eleven. A bottom strip decodes the packing as gap one, length three, gap zero, length two, gap two, length four, tail two, summing to the enlarged horizon fourteen.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+    .eyebrow{font-size:17px;font-weight:700;letter-spacing:1.5px;fill:#A45524}
+    .title{font-size:31px;font-weight:700}
+    .sub{font-size:17px;fill:#4D5B6B}
+    .h{font-size:18px;font-weight:700}
+    .label{font-size:14px;fill:#4D5B6B}
+    .small{font-size:13px;fill:#4D5B6B}
+    .value{font-size:20px;font-weight:700}
+    .pos{font-size:14px;font-weight:700}
+    .white{fill:#FFFDF8}
+  </style>
+  <defs>
+    <marker id="greedyArrow" markerWidth="10" markerHeight="10"
+            refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#A45524"/>
+    </marker>
+  </defs>
+
+  <text x="60" y="48" class="sans eyebrow">LEFTMOST GREEDY SELECTION</text>
+  <text x="60" y="88" class="serif title">Choose, cover, discard, and continue to the right</text>
+  <text x="60" y="118" class="sans sub">H = 10 · maximum length m = 4 · enlarged packing horizon H + m = 14</text>
+
+  <text x="60" y="158" class="sans h">Marked starts and selected half-open intervals</text>
+  <g transform="translate(60 178)">
+    <g class="sans pos">
+      <rect x="0" y="0" width="72" height="48" rx="8" fill="#FFFDF8" stroke="#B7AA99"/>
+      <text x="36" y="30" text-anchor="middle">0</text>
+      <rect x="76" y="0" width="72" height="48" rx="8" fill="#F3E8E0" stroke="#A45524"/>
+      <text x="112" y="30" text-anchor="middle">1</text>
+      <rect x="152" y="0" width="72" height="48" rx="8" fill="#F3E8E0" stroke="#A45524"/>
+      <text x="188" y="30" text-anchor="middle">2</text>
+      <rect x="228" y="0" width="72" height="48" rx="8" fill="#FFFDF8" stroke="#B7AA99"/>
+      <text x="264" y="30" text-anchor="middle">3</text>
+      <rect x="304" y="0" width="72" height="48" rx="8" fill="#F3E8E0" stroke="#A45524"/>
+      <text x="340" y="30" text-anchor="middle">4</text>
+      <rect x="380" y="0" width="72" height="48" rx="8" fill="#F3E8E0" stroke="#A45524"/>
+      <text x="416" y="30" text-anchor="middle">5</text>
+      <rect x="456" y="0" width="72" height="48" rx="8" fill="#FFFDF8" stroke="#B7AA99"/>
+      <text x="492" y="30" text-anchor="middle">6</text>
+      <rect x="532" y="0" width="72" height="48" rx="8" fill="#FFFDF8" stroke="#B7AA99"/>
+      <text x="568" y="30" text-anchor="middle">7</text>
+      <rect x="608" y="0" width="72" height="48" rx="8" fill="#F3E8E0" stroke="#A45524"/>
+      <text x="644" y="30" text-anchor="middle">8</text>
+      <rect x="684" y="0" width="72" height="48" rx="8" fill="#F3E8E0" stroke="#A45524"/>
+      <text x="720" y="30" text-anchor="middle">9</text>
+      <rect x="760" y="0" width="72" height="48" rx="8" fill="#E8F0F7" stroke="#416B91"/>
+      <text x="796" y="30" text-anchor="middle">10</text>
+      <rect x="836" y="0" width="72" height="48" rx="8" fill="#E8F0F7" stroke="#416B91"/>
+      <text x="872" y="30" text-anchor="middle">11</text>
+      <rect x="912" y="0" width="72" height="48" rx="8" fill="#FFFDF8" stroke="#B7AA99"/>
+      <text x="948" y="30" text-anchor="middle">12</text>
+      <rect x="988" y="0" width="72" height="48" rx="8" fill="#FFFDF8" stroke="#B7AA99"/>
+      <text x="1024" y="30" text-anchor="middle">13</text>
+    </g>
+    <g fill="#A45524">
+      <circle cx="112" cy="-10" r="6"/><circle cx="188" cy="-10" r="6"/>
+      <circle cx="340" cy="-10" r="6"/><circle cx="416" cy="-10" r="6"/>
+      <circle cx="644" cy="-10" r="6"/><circle cx="720" cy="-10" r="6"/>
+    </g>
+    <rect x="76" y="64" width="228" height="30" rx="10" fill="#5C7A50"/>
+    <text x="190" y="85" text-anchor="middle" class="sans value white">[1,4) · length 3</text>
+    <rect x="304" y="64" width="152" height="30" rx="10" fill="#416B91"/>
+    <text x="380" y="85" text-anchor="middle" class="sans value white">[4,6)</text>
+    <rect x="608" y="64" width="304" height="30" rx="10" fill="#A45524"/>
+    <text x="760" y="85" text-anchor="middle" class="sans value white">[8,12) · length 4</text>
+  </g>
+
+  <text x="60" y="316" class="sans small">Orange dots are marks. Interval starts 1, 4, and 8 are selected; marks 2, 5, and 9 are covered and discarded.</text>
+
+  <g transform="translate(60 344)">
+    <rect width="330" height="146" rx="18" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+    <text x="22" y="31" class="sans h">ROUND 1 · choose 1</text>
+    <text x="22" y="62" class="sans label">remaining before</text><text x="306" y="62" text-anchor="end" class="serif value">[1,2,4,5,8,9]</text>
+    <text x="22" y="92" class="sans label">covered marks</text><text x="306" y="92" text-anchor="end" class="serif value">[1,2]</text>
+    <text x="22" y="122" class="sans label">survivors</text><text x="306" y="122" text-anchor="end" class="serif value">[4,5,8,9]</text>
+  </g>
+  <path d="M402 417 H432" stroke="#A45524" stroke-width="4" marker-end="url(#greedyArrow)"/>
+  <g transform="translate(450 344)">
+    <rect width="300" height="146" rx="18" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+    <text x="22" y="31" class="sans h">ROUND 2 · choose 4</text>
+    <text x="22" y="62" class="sans label">remaining before</text><text x="276" y="62" text-anchor="end" class="serif value">[4,5,8,9]</text>
+    <text x="22" y="92" class="sans label">covered marks</text><text x="276" y="92" text-anchor="end" class="serif value">[4,5]</text>
+    <text x="22" y="122" class="sans label">survivors</text><text x="276" y="122" text-anchor="end" class="serif value">[8,9]</text>
+  </g>
+  <path d="M762 417 H792" stroke="#A45524" stroke-width="4" marker-end="url(#greedyArrow)"/>
+  <g transform="translate(810 344)">
+    <rect width="330" height="146" rx="18" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="22" y="31" class="sans h">ROUND 3 · choose 8</text>
+    <text x="22" y="62" class="sans label">remaining before</text><text x="306" y="62" text-anchor="end" class="serif value">[8,9]</text>
+    <text x="22" y="92" class="sans label">covered marks</text><text x="306" y="92" text-anchor="end" class="serif value">[8,9]</text>
+    <text x="22" y="122" class="sans label">survivors</text><text x="306" y="122" text-anchor="end" class="serif value">[]</text>
+  </g>
+
+  <text x="60" y="535" class="sans h">Gap · length · gap · length · gap · length · tail</text>
+  <g transform="translate(60 555)" class="sans">
+    <rect x="0" y="0" width="76" height="58" fill="#D9D2C8"/><text x="38" y="25" text-anchor="middle" class="small">gap</text><text x="38" y="47" text-anchor="middle" class="value">1</text>
+    <rect x="76" y="0" width="228" height="58" fill="#5C7A50"/><text x="190" y="25" text-anchor="middle" class="small white">length</text><text x="190" y="48" text-anchor="middle" class="value white">3</text>
+    <rect x="304" y="0" width="42" height="58" fill="#D9D2C8"/><text x="325" y="25" text-anchor="middle" class="small">gap</text><text x="325" y="47" text-anchor="middle" class="value">0</text>
+    <rect x="346" y="0" width="152" height="58" fill="#416B91"/><text x="422" y="25" text-anchor="middle" class="small white">length</text><text x="422" y="48" text-anchor="middle" class="value white">2</text>
+    <rect x="498" y="0" width="152" height="58" fill="#D9D2C8"/><text x="574" y="25" text-anchor="middle" class="small">gap</text><text x="574" y="47" text-anchor="middle" class="value">2</text>
+    <rect x="650" y="0" width="304" height="58" fill="#A45524"/><text x="802" y="25" text-anchor="middle" class="small white">length</text><text x="802" y="48" text-anchor="middle" class="value white">4</text>
+    <rect x="954" y="0" width="152" height="58" fill="#D9D2C8"/><text x="1030" y="25" text-anchor="middle" class="small">tail</text><text x="1030" y="47" text-anchor="middle" class="value">2</text>
+  </g>
+
+  <rect x="60" y="640" width="520" height="72" rx="16" fill="#16243A"/>
+  <text x="80" y="670" class="sans label white">selected starts</text>
+  <text x="555" y="673" text-anchor="end" class="serif value white" style="fill:#FFFDF8">[1,4,8]</text>
+  <text x="80" y="698" class="sans label white">covered positions</text>
+  <text x="555" y="701" text-anchor="end" class="serif value white" style="fill:#FFFDF8">[1,2,3,4,5,8,9,10,11]</text>
+  <rect x="610" y="640" width="530" height="72" rx="16" fill="#FFFDF8" stroke="#A45524" stroke-width="2"/>
+  <text x="630" y="670" class="sans label">encoding</text>
+  <text x="1118" y="673" text-anchor="end" class="serif value">[1,3,0,2,2,4,2]</text>
+  <text x="630" y="698" class="sans label">sum</text>
+  <text x="1118" y="701" text-anchor="end" class="serif value">14 = H + m</text>
+
+  <text x="60" y="744" class="sans small">Coverage preserves every original mark; selection provenance records only the three chosen left endpoints. No density or limit is shown.</text>
+</svg>

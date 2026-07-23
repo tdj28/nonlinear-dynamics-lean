@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:16 PDT
+Last updated: 2026-07-22 21:28 PDT
 
-Audited baseline: `main` at `f69b719`
+Audited baseline: `main` at `ed872b1`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **22 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **23 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -453,6 +453,19 @@ figures, seven Lean bridges, eight public declarations, four proof helpers and
 three source-level boundary witnesses, two guarded project probes, and a
 byte-identical executed `Std` worksheet keep finite phase arithmetic separate
 from measure preservation, probability, ergodicity, and convergence.
+*Finite Ordered Interval Packing for Nonpositive Subadditive Processes* now
+opens with an ordered family whose length-sum/union ledger is `[6,6]` and an
+overlapping near miss with `[7,6]`. Its larger leftmost-greedy example begins
+from marks `{1,2,4,5,8,9}`, selects starts `1,4,8`, and decodes the disjoint
+intervals `[1,4)`, `[4,6)`, `[8,12)` as gap–length–tail data
+`[1,3,0,2,2,4,2]` inside the enlarged horizon `14`. Coverage separates the
+three selected starts from nine covered positions, and coefficient `-2`
+turns `6≤9` into `-18≤-12`; positive coefficient, empty strict sum, and
+time-zero process examples fail exactly where the theorem says they should.
+Two accessible numeric figures, seven shortcode Lean bridges, one guarded
+project probe, a complete manifest of 54 public and 13 private declarations,
+and a byte-identical executed `Std` worksheet make the finite geometry and
+cost bounds runnable without making a density, ergodic, or convergence claim.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3340,6 +3353,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `ed872b1`: rebuild *Finite Phase Averaging for Nonpositive Subadditive
+  Processes* around three exact residue rows, explicit prefix and tail
+  boundaries, wrong-sign and missing-block near misses, seven Lean bridges,
+  and an executed local `Std` worksheet.
 - `f69b719`: rebuild *Orbit-Majorant Centering for Subadditive Processes*
   around a three-state majorant/residual ledger, one wrong-shift false bound,
   four nearby centering operations, seven Lean bridges, and an executed local

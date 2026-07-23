@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720"
+     viewBox="0 0 1200 720" role="img"
+     aria-labelledby="packingBoundaryTitle packingBoundaryDesc">
+  <title id="packingBoundaryTitle">Valid versus overlapping packing, nonpositive sign reversal, and empty-time boundaries</title>
+  <desc id="packingBoundaryDesc">The upper left valid packing has intervals one to three, three to four, and six to nine. Their lengths sum to six and their union has six positions. The upper right overlapping near miss replaces the singleton by two to four; lengths sum to seven while the union still has six positions. The middle row shows six marked starts covered by length nine. Multiplying by coefficient minus two reverses the comparison to minus eighteen less than or equal to minus twelve, while coefficient plus two would give the false eighteen less than or equal to twelve. Four lower boundary cards show an empty weak packing at positive time succeeds, the same empty time-zero claim with X zero equal to one fails, strict empty cost zero less than zero fails, and a nonempty strict cost minus twenty-one less than minus twelve succeeds.</desc>
+  <rect width="1200" height="720" fill="#F7F1E7"/>
+  <style>
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+    .eyebrow{font-size:17px;font-weight:700;letter-spacing:1.5px;fill:#A45524}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:17px;fill:#4D5B6B}
+    .h{font-size:18px;font-weight:700}
+    .label{font-size:14px;fill:#4D5B6B}
+    .small{font-size:13px;fill:#4D5B6B}
+    .value{font-size:23px;font-weight:700}
+    .white{fill:#FFFDF8}
+  </style>
+
+  <text x="60" y="48" class="sans eyebrow">CARDINALITY, SIGN, AND BOUNDARIES</text>
+  <text x="60" y="88" class="serif title">One overlap, one sign, and one zero-time value change the theorem</text>
+  <text x="60" y="118" class="sans sub">All quantities are exact finite arithmetic; none is an empirical density.</text>
+
+  <g transform="translate(60 148)">
+    <rect width="520" height="190" rx="20" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+    <text x="24" y="34" class="sans h">VALID ORDERED PACKING</text>
+    <text x="24" y="64" class="sans label">intervals</text><text x="496" y="67" text-anchor="end" class="serif value">[1,3)  [3,4)  [6,9)</text>
+    <text x="24" y="98" class="sans label">endpoint tests</text><text x="496" y="101" text-anchor="end" class="serif value">3 ≤ 3, 4 ≤ 6</text>
+    <rect x="24" y="118" width="472" height="48" rx="12" fill="#16243A"/>
+    <text x="44" y="148" class="sans label white">[length sum, union size]</text>
+    <text x="472" y="151" text-anchor="end" class="serif value white" style="fill:#FFFDF8">[6,6] ✓</text>
+  </g>
+  <g transform="translate(620 148)">
+    <rect width="520" height="190" rx="20" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="24" y="34" class="sans h">OVERLAPPING NEAR MISS</text>
+    <text x="24" y="64" class="sans label">intervals</text><text x="496" y="67" text-anchor="end" class="serif value">[1,3)  [2,4)  [6,9)</text>
+    <text x="24" y="98" class="sans label">failed endpoint test</text><text x="496" y="101" text-anchor="end" class="serif value">3 ≤ 2 ✗</text>
+    <rect x="24" y="118" width="472" height="48" rx="12" fill="#A45524"/>
+    <text x="44" y="148" class="sans label white">[length sum, union size]</text>
+    <text x="472" y="151" text-anchor="end" class="serif value white" style="fill:#FFFDF8">[7,6] ✗</text>
+  </g>
+
+  <text x="60" y="380" class="sans h">Coverage gives 6 marked starts ≤ 9 covered positions</text>
+  <g transform="translate(60 402)">
+    <rect width="520" height="108" rx="18" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+    <text x="24" y="31" class="sans label">nonpositive coefficient c = −2 reverses order</text>
+    <text x="260" y="69" text-anchor="middle" class="serif value">6 ≤ 9  ⇒  −18 ≤ −12 ✓</text>
+    <text x="260" y="94" text-anchor="middle" class="sans small">c · coveredLength ≤ c · markedCount</text>
+  </g>
+  <g transform="translate(620 402)">
+    <rect width="520" height="108" rx="18" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="24" y="31" class="sans label">positive coefficient c = +2 does not reverse order</text>
+    <text x="260" y="69" text-anchor="middle" class="serif value">6 ≤ 9  ⇏  18 ≤ 12 ✗</text>
+    <text x="260" y="94" text-anchor="middle" class="sans small">the final marked-card bound would point the wrong way</text>
+  </g>
+
+  <text x="60" y="552" class="sans h">Empty, nonempty, and time-zero theorem gates</text>
+  <g transform="translate(60 574)">
+    <rect width="250" height="104" rx="16" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+    <text x="18" y="28" class="sans label">empty marks · positive time</text>
+    <text x="125" y="61" text-anchor="middle" class="serif value">X(4)=−4 ≤ 0 ✓</text>
+    <text x="125" y="87" text-anchor="middle" class="sans small">weak theorem is meaningful</text>
+  </g>
+  <g transform="translate(337 574)">
+    <rect width="250" height="104" rx="16" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="18" y="28" class="sans label">empty packing · time zero</text>
+    <text x="125" y="61" text-anchor="middle" class="serif value">X(0)=1 ≤ 0 ✗</text>
+    <text x="125" y="87" text-anchor="middle" class="sans small">needs a positive horizon</text>
+  </g>
+  <g transform="translate(614 574)">
+    <rect width="250" height="104" rx="16" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="18" y="28" class="sans label">strict empty sum</text>
+    <text x="125" y="61" text-anchor="middle" class="serif value">0 &lt; 0 ✗</text>
+    <text x="125" y="87" text-anchor="middle" class="sans small">nonempty marks are necessary</text>
+  </g>
+  <g transform="translate(891 574)">
+    <rect width="249" height="104" rx="16" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+    <text x="18" y="28" class="sans label">strict nonempty selection</text>
+    <text x="124" y="61" text-anchor="middle" class="serif value">−21 &lt; −12 ✓</text>
+    <text x="124" y="87" text-anchor="middle" class="sans small">three selected intervals</text>
+  </g>
+
+  <text x="60" y="708" class="sans small">Singleton length one and abutting endpoint equality remain legal; the failures above come from overlap, sign, emptiness, or time zero.</text>
+</svg>

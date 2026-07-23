@@ -7,12 +7,12 @@ lead: "Attach one positive bounded interval to every marked orbit start. Choosin
 draft: false
 pro_reviewed: false
 level: "Finite sets, half-open intervals, strong induction, shifted subadditivity, positive-horizon nonpositivity, orbit-majorant centering, and one-sided matrix cocycles"
-reading_time: "145 to 205 minutes"
+reading_time: "190 to 260 minutes"
 prerequisites: "Natural-number arithmetic, finite half-open intervals, finite sets, function iteration, real inequalities, shifted-subadditive processes, orbit-majorant centering, and discrete matrix cocycles; no ergodic theorem is assumed"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking"
 toc: true
 og_image: "finite-ordered-interval-packing-for-nonpositive-subadditive-processes-card.png"
-og_image_alt: "Warm-paper teaching card showing three rounds of leftmost interval selection on fixed marked coordinates. Covered starts disappear, later selected intervals stay disjoint, and side panels say the empty-mark weak bound needs positive enlarged horizon while strictness requires nonempty marks. The footer says finite covering with no ergodic limit."
+og_image_alt: "Warm-paper numeric teaching card for H equals 10 and maximum length 4. Marks at 1, 2, 4, 5, 8, and 9 yield selected intervals [1,4), [4,6), and [8,12). Three cards show each leftmost selection round, and a lower strip decodes the packing as gaps and lengths summing to the enlarged horizon 14 while distinguishing three selected starts from nine covered positions."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -28,6 +28,73 @@ Lean declaration map, source correction, figures, and accessibility have not
 yet passed the required human and Pro reviews. The page is publicly available
 as an open working note while those reviews remain pending.
 {{< /panel >}}
+
+## Begin with six positions you can count by hand
+
+Before introducing an indexed type or a subadditive process, compare two
+families of half-open intervals inside the horizon \([0,10)\).
+
+The valid family is
+
+\[
+[1,3),\qquad [3,4),\qquad [6,9).
+\]
+
+It covers the six positions
+
+\[
+\{1,2,3,6,7,8\}.
+\]
+
+Its interval lengths are \(2,1,3\), so the arithmetic ledger is
+
+\[
+[\text{sum of lengths},\text{size of union}]=[6,6].
+\]
+
+The equality is not a coincidence. The first two intervals merely abut:
+the endpoint \(3\) is excluded from \([1,3)\) and included in \([3,4)\).
+The endpoint tests \(3\le3\) and \(4\le6\) show that the family is ordered.
+
+Now slide the middle interval one step left:
+
+\[
+[1,3),\qquad [2,4),\qquad [6,9).
+\]
+
+The covered set is still \(\{1,2,3,6,7,8\}\), but the three lengths now sum
+to \(2+2+3=7\). The ledger becomes
+
+\[
+[7,6].
+\]
+
+The failed test \(3\le2\) identifies the overlap. Counting interval lengths
+as though they were disjoint has counted position \(2\) twice.
+
+{{< figure
+  src="packing-cardinality-sign-and-boundaries.svg"
+  alt="Two exact interval ledgers. The ordered family [1,3), [3,4), [6,9) has length sum and union size [6,6]. The overlapping family [1,3), [2,4), [6,9) has [7,6]. Below, six marked starts are compared with nine covered positions: multiplying by negative two reverses the inequality, while multiplying by positive two does not. Four boundary cards show the positive-time empty weak case, the time-zero failure, the empty strict failure, and a valid nonempty strict case."
+  caption="The upper row is the same six-position worksheet used in the ordered-interval-packing glossary. The lower rows preview a different, larger greedy worksheet developed below. Keep the two interval families separate: the first diagnoses overlap; the second tests coverage, sign reversal, and theorem boundaries."
+>}}
+
+This small example gives the chapter's first invariant:
+
+\[
+\left|\bigcup_r I_r\right|
+=\sum_r |I_r|
+\]
+
+only after order and disjointness have been established. It also exposes the
+two legal edge cases that the representation must retain:
+
+- a singleton such as \([3,4)\) has positive length one; and
+- two intervals may abut when the first endpoint equals the next start.
+
+The rest of the chapter scales this exact ledger up. We will start with six
+marked positions, keep only three left endpoints, decode the resulting packing
+from gaps and lengths, and then use a nonpositive coefficient to convert nine
+covered positions into a bound by six marked starts.
 
 A finite subadditive argument often reaches the following situation. Along an
 orbit of a map \(T\), some starting positions are marked because a short
@@ -409,6 +476,31 @@ The union contains nine positions:
 =\{1,2,3,4,5,8,9,10,11\}.
 \]
 
+Here is the distinction between selection provenance and coverage in full.
+Every selected start is covered, but three covered marks were deliberately
+discarded:
+
+| Original mark \(j\) | Selected as a left endpoint? | Covered by the selected union? |
+|---:|:---:|:---:|
+| \(1\) | yes | yes |
+| \(2\) | no | yes |
+| \(4\) | yes | yes |
+| \(5\) | no | yes |
+| \(8\) | yes | yes |
+| \(9\) | no | yes |
+
+The selected-start set is \(\{1,4,8\}\). The covered set is larger because an
+interval covers positions, not merely its own left endpoint. The proof needs
+both facts: selected intervals inherit local cost hypotheses from their
+left endpoints, while coverage controls the cardinality of the original
+marked set.
+
+{{< figure
+  src="leftmost-greedy-packing-ledger.svg"
+  alt="A numbered horizon from zero through thirteen with marks at 1, 2, 4, 5, 8, and 9. Three selected half-open intervals are [1,4), [4,6), and [8,12). Three round cards show the remaining marks, the marks covered in that round, and the survivors. A final strip decodes the packing as gap 1, length 3, gap 0, length 2, gap 2, length 4, tail 2, summing to fourteen. The footer distinguishes selected starts 1, 4, 8 from nine covered positions."
+  caption="The complete larger worksheet. Leftmost selection chooses 1, then 4, then 8. The last interval crosses the old endpoint \(H=10\) but stays inside the enlarged packing horizon \(H+m=14\). The diagram is finite bookkeeping, not a density or convergence plot."
+>}}
+
 Thus
 
 \[
@@ -781,6 +873,230 @@ proof does not use an integral.
 The observable remains log-positive. It controls expansion after clipping
 contraction and is not a signed Lyapunov observable.
 
+## Seven bridges from paper mathematics to checked Lean
+
+Each bridge below says the same fact three ways: first as a sentence a human
+might write, then as mathematics, then as the exact Lean interface. The
+project declarations import Mathlib and belong on the guarded Linux builder.
+The later `Std` worksheet is intentionally small enough for an ordinary Mac
+or Linux computer.
+
+### Lean bridge 1: the data itself enforces positive lengths
+
+{{< lean-bridge
+  human="An empty packing may have any horizon. To add an interval, record a gap, a positive length, and the remaining packing; the new horizon is their exact sum."
+  math="\(\frac{0\lt\ell\quad P:\mathcal P(t)}{\operatorname{cons}(g,\ell,P):\mathcal P(g+\ell+t)}.\)"
+  lean="OrderedNatIntervalPacking.cons gap length length_pos rest"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+inductive OrderedNatIntervalPacking : ℕ → Type
+  | empty (horizon : ℕ) : OrderedNatIntervalPacking horizon
+  | cons (gap length : ℕ) {tail : ℕ} (length_pos : 0 < length)
+      (rest : OrderedNatIntervalPacking tail) :
+      OrderedNatIntervalPacking (gap + length + tail)
+~~~
+
+Read `ℕ → Type` as “one type for each natural-number horizon.”
+`length_pos` is a proof stored with the constructor. Braces around `{tail :
+ℕ}` make the tail horizon implicit, so Lean infers it from `rest`. The result
+index `gap + length + tail` is the gap-length-tail equation, not a later
+side condition.
+{{< /lean-bridge >}}
+
+### Lean bridge 2: covered membership has an interval witness
+
+{{< lean-bridge
+  human="A position is covered exactly when one decoded half-open interval starts at or before it and ends strictly after it."
+  math="\(j\in\operatorname{covered}(P)\Longleftrightarrow\exists(a,b)\in\operatorname{intervals}(P),\ a\le j\lt b.\)"
+  lean="P.mem_coveredFinset_iff_exists_interval"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+theorem mem_coveredFinset_iff_exists_interval {N j : ℕ}
+    (P : OrderedNatIntervalPacking N) :
+    j ∈ P.coveredFinset ↔
+      ∃ I ∈ P.intervals, I.1 ≤ j ∧ j < I.2
+~~~
+
+`↔` is logical equivalence. The phrase `∃ I ∈ P.intervals` introduces an
+endpoint pair and its list-membership proof. `I.1` and `I.2` are its left and
+right endpoints. The strict `j < I.2` is the excluded right edge of
+`Finset.Ico`.
+{{< /lean-bridge >}}
+
+### Lean bridge 3: disjoint geometry becomes exact cardinality
+
+{{< lean-bridge
+  human="Because decoded intervals are ordered and disjoint, the number of covered positions equals the sum of selected lengths."
+  math="\(\left|\operatorname{covered}(P)\right|=\operatorname{coveredLength}(P).\)"
+  lean="P.card_coveredFinset"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+theorem card_coveredFinset {N : ℕ} (P : OrderedNatIntervalPacking N) :
+    P.coveredFinset.card = P.coveredLength
+~~~
+
+The dot in `P.coveredFinset.card` chains two projections: decode the finite
+covered set, then count it. The theorem is exact equality, not an upper bound.
+Its shifted helper proves the current `Finset.Ico` disjoint from the recursive
+tail before applying finite-union cardinality.
+{{< /lean-bridge >}}
+
+### Lean bridge 4: leftmost selection returns coverage and provenance
+
+{{< lean-bridge
+  human="Bounded positive lengths on marked starts inside [0,H) produce a packing inside [0,H+m). Every original mark is covered, and every selected interval came from a marked start with its prescribed length."
+  math="\(B\subseteq[0,H),\ 0\lt\ell(j)\le m\ (j\in B)\Longrightarrow\exists P:\mathcal P(H+m),\ B\subseteq\operatorname{covered}(P)\land P\operatorname{\ selectedFrom}(B,\ell).\)"
+  lean="exists_orderedPacking_covering H m marked length hmarked hlength"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+theorem exists_orderedPacking_covering
+    (H m : ℕ) (marked : Finset ℕ) (length : ℕ → ℕ)
+    (hmarked : marked ⊆ Finset.range H)
+    (hlength : ∀ j ∈ marked, 0 < length j ∧ length j ≤ m) :
+    ∃ P : OrderedNatIntervalPacking (H + m),
+      P.Covers marked ∧
+        P.SelectedFrom marked length
+~~~
+
+`Finset.range H` is \(\{0,\ldots,H-1\}\). `∀ j ∈ marked` means “for every
+natural \(j\), if \(j\) is marked.” The returned conjunction keeps `Covers`
+and `SelectedFrom` distinct. The private proof selects `marked.min'`, filters
+survivors at or beyond the chosen endpoint, and recurses by strong induction.
+{{< /lean-bridge >}}
+
+### Lean bridge 5: positive gaps may be discarded, zero gaps may not
+
+{{< lean-bridge
+  human="Shifted subadditivity decomposes a positive horizon into selected interval costs and gaps. Every nonzero gap costs at most zero, so the whole process value is at most the selected cost."
+  math="\(X_{a+b}(\omega)\le X_b(T^a\omega)+X_a(\omega),\ n\ne0\Rightarrow X_n(\omega)\le0,\ N\ne0\Rightarrow X_N(\omega)\le\operatorname{cost}(P,T,X,\omega).\)"
+  lean="P.le_cost_of_add_le_nonpos hadd hnonpos hN ω"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+theorem le_cost_of_add_le_nonpos
+    {Ω : Type uΩ} {T : Ω → Ω} {X : ℕ → Ω → ℝ}
+    (hadd : ∀ m n ω, X (m + n) ω ≤ X n (T^[m] ω) + X m ω)
+    (hnonpos : ∀ n, n ≠ 0 → ∀ ω, X n ω ≤ 0)
+    {N : ℕ} (P : OrderedNatIntervalPacking N) (hN : N ≠ 0) (ω : Ω) :
+    X N ω ≤ P.cost T X ω
+~~~
+
+`T^[m]` is Lean's notation for the \(m\)-fold iterate of `T`. The premise
+`n ≠ 0` is intentionally inside `hnonpos`; the theorem never assumes
+`X 0 ω ≤ 0`. The separate `hN` prevents the empty time-zero counterexample.
+{{< /lean-bridge >}}
+
+### Lean bridge 6: a nonpositive coefficient reverses the counting inequality
+
+{{< lean-bridge
+  human="If a packing covers all marks, every selected interval has weak cost at most c times its length, and c is nonpositive, then the process is bounded by c times the number of marks."
+  math="\(|B|\le L,\ c\le0,\ X_N\le cL\Longrightarrow X_N\le cL\le c|B|.\)"
+  lean="P.le_mul_card_of_add_le_nonpos_of_covers hadd hnonpos hN marked hcover ω c hc hcost"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+theorem le_mul_card_of_add_le_nonpos_of_covers
+    {Ω : Type uΩ} {T : Ω → Ω} {X : ℕ → Ω → ℝ}
+    (hadd : ∀ m n ω, X (m + n) ω ≤ X n (T^[m] ω) + X m ω)
+    (hnonpos : ∀ n, n ≠ 0 → ∀ ω, X n ω ≤ 0)
+    {N : ℕ} (P : OrderedNatIntervalPacking N) (hN : N ≠ 0)
+    (marked : Finset ℕ) (hcover : P.Covers marked)
+    (ω : Ω) (c : ℝ) (hc : c ≤ 0)
+    (hcost : P.EveryIntervalCostLE T X ω c) :
+    X N ω ≤ c * (marked.card : ℝ)
+~~~
+
+`(marked.card : ℝ)` is a type cast from a natural count to a real number.
+`hc` supplies the sign needed by `mul_le_mul_of_nonpos_left`. With \(c=+2\),
+the numeric worksheet would demand \(18\le12\), so deleting `hc` would make
+the conclusion false.
+{{< /lean-bridge >}}
+
+### Lean bridge 7: strictness needs at least one marked start
+
+{{< lean-bridge
+  human="Strict favorable estimates yield a strict marked-card bound only when the marked set is nonempty."
+  math="\(B\ne\varnothing,\ X_{\ell(j)}(T^j\omega)\lt c\ell(j)\ (j\in B)\Longrightarrow X_{H+m}(\omega)\lt c|B|.\)"
+  lean="lt_mul_card_of_greedy_cover hadd hnonpos H m marked length hmarked hlength hmarked_nonempty ω c hc hcost"
+>}}
+
+**Exact project declaration.**
+
+~~~lean
+theorem lt_mul_card_of_greedy_cover
+    {Ω : Type uΩ} {T : Ω → Ω} {X : ℕ → Ω → ℝ}
+    (hadd : ∀ a b ω, X (a + b) ω ≤ X b (T^[a] ω) + X a ω)
+    (hnonpos : ∀ n, n ≠ 0 → ∀ ω, X n ω ≤ 0)
+    (H m : ℕ) (marked : Finset ℕ) (length : ℕ → ℕ)
+    (hmarked : marked ⊆ Finset.range H)
+    (hlength : ∀ j ∈ marked, 0 < length j ∧ length j ≤ m)
+    (hmarked_nonempty : marked.Nonempty)
+    (ω : Ω) (c : ℝ) (hc : c ≤ 0)
+    (hcost : ∀ j ∈ marked,
+      X (length j) (T^[j] ω) < c * (length j : ℝ)) :
+    X (H + m) ω < c * (marked.card : ℝ)
+~~~
+
+`marked.Nonempty` provides a witness. Coverage then forces a nonempty packing,
+so the selected strict costs contain at least one term and the horizon is
+positive. Without that witness, every local premise is vacuous and the target
+can collapse to \(0\lt0\).
+{{< /lean-bridge >}}
+
+### Type-check the seven project bridges
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking" >}}
+
+The seven bridge endpoints can be queried in a project scratch file with:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check OrderedNatIntervalPacking
+#check OrderedNatIntervalPacking.mem_coveredFinset_iff_exists_interval
+#check OrderedNatIntervalPacking.card_coveredFinset
+#check OrderedNatIntervalPacking.exists_orderedPacking_covering
+#check OrderedNatIntervalPacking.le_cost_of_add_le_nonpos
+#check OrderedNatIntervalPacking.le_mul_card_of_add_le_nonpos_of_covers
+#check OrderedNatIntervalPacking.lt_mul_card_of_greedy_cover
+~~~
+
+`#check` asks Lean to print the inferred type without constructing new data or
+running a proof. These queries correspond in order to the seven bridges above.
+
+On an approved Linux builder, from the repository root, a human types:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
+~~~
+
+This is a **project/Mathlib check**. It restores or builds substantial
+dependencies and must use the guarded Linux workflow, such as a
+human-approved Runpod. Do not run it on the Mac workstation. The command
+checks the source file containing all seven declarations with warnings treated
+as errors and with the pinned manifest integrity gate.
+{{< /repo-check >}}
+
 ## The checked declaration architecture
 
 The frozen source has fifty-four public named declarations and thirteen
@@ -855,6 +1171,93 @@ and zero gaps, final endpoints, centered wrappers, and empty matrix dimension.
 The
 [Development Notebook]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}})
 lists all sixty-seven named declarations individually in exact source order.
+
+### Complete declaration manifest
+
+This chapter also records that source-order manifest directly, so a reader can
+audit the frozen module without treating any helper as invisible prose. The
+public surface contains exactly fifty-four names:
+
+| No. | Public declaration | Contract in this chapter |
+|---:|---|---|
+| 1 | <code>OrderedNatIntervalPacking</code> | Indexed gap-length-tail representation |
+| 2 | <code>intervalCount</code> | Number of selected intervals |
+| 3 | <code>coveredLength</code> | Sum of selected lengths |
+| 4 | <code>intervalsFrom</code> | Decode endpoints from an absolute offset |
+| 5 | <code>intervals</code> | Decode endpoints from zero |
+| 6 | <code>length_intervalsFrom</code> | Shifted decoder preserves interval count |
+| 7 | <code>length_intervals</code> | Public decoder preserves interval count |
+| 8 | <code>coveredFinsetFrom</code> | Decode the shifted finite covered union |
+| 9 | <code>coveredFinset</code> | Decode the zero-offset covered union |
+| 10 | <code>mem_coveredFinsetFrom_iff_exists_interval</code> | Shifted membership has an interval witness |
+| 11 | <code>mem_coveredFinset_iff_exists_interval</code> | Public membership has an interval witness |
+| 12 | <code>mem_coveredFinsetFrom_bounds</code> | Shifted covered positions lie in the shifted horizon |
+| 13 | <code>card_coveredFinsetFrom</code> | Shifted covered cardinality equals covered length |
+| 14 | <code>card_coveredFinset</code> | Public covered cardinality equals covered length |
+| 15 | <code>coveredFinset_subset_range</code> | Covered positions lie in <code>Finset.range N</code> |
+| 16 | <code>Covers</code> | Every marked point belongs to the covered union |
+| 17 | <code>intervalCount_ne_zero_of_covers_of_nonempty</code> | A nonempty covered set forces a nonempty packing |
+| 18 | <code>card_le_coveredLength_of_covers</code> | Coverage gives marked count at most covered length |
+| 19 | <code>intervalsFrom_inside</code> | Shifted decoded endpoints stay inside their horizon |
+| 20 | <code>intervalsFrom_pairwise</code> | Earlier shifted intervals end before later starts |
+| 21 | <code>intervals_pairwise</code> | Zero-offset endpoint order |
+| 22 | <code>intervals_pairwiseDisjoint_Ico</code> | Decoded half-open sets are pairwise disjoint |
+| 23 | <code>intervals_inside</code> | Zero-offset endpoint containment |
+| 24 | <code>SelectedFromFrom</code> | Recursive shifted selection provenance |
+| 25 | <code>SelectedFrom</code> | Zero-offset selection provenance |
+| 26 | <code>SelectedFromFrom.mono</code> | Provenance survives enlarging the eligible set |
+| 27 | <code>SelectedFromFrom.intervalsFrom_chosen</code> | Shifted decoded intervals expose their chosen start and length |
+| 28 | <code>SelectedFrom.intervals_chosen</code> | Public decoded intervals expose their chosen start and length |
+| 29 | <code>SelectedFrom.interval_end_lt_enlargedHorizon</code> | Selected endpoints have strict \(H+m\) slack |
+| 30 | <code>exists_orderedPacking_covering</code> | Public leftmost cover and provenance theorem |
+| 31 | <code>cost</code> | Recursive sum of selected shifted process values |
+| 32 | <code>coveredLength_le_horizon</code> | Selected length never exceeds the packing horizon |
+| 33 | <code>horizon_pos_of_intervalCount_ne_zero</code> | A nonempty packing has positive horizon |
+| 34 | <code>EveryIntervalCostLE</code> | Recursive weak local-cost predicate |
+| 35 | <code>EveryIntervalCostLT</code> | Recursive strict local-cost predicate |
+| 36 | <code>EveryIntervalCostLT.le</code> | Strict local costs imply weak local costs |
+| 37 | <code>SelectedFromFrom.everyIntervalCostLE</code> | Shifted provenance transports weak marked costs |
+| 38 | <code>SelectedFromFrom.everyIntervalCostLT</code> | Shifted provenance transports strict marked costs |
+| 39 | <code>SelectedFrom.everyIntervalCostLE</code> | Public provenance transports weak marked costs |
+| 40 | <code>SelectedFrom.everyIntervalCostLT</code> | Public provenance transports strict marked costs |
+| 41 | <code>cost_le_mul_coveredLength</code> | Weak local costs sum to a weak covered-length bound |
+| 42 | <code>cost_lt_mul_coveredLength</code> | Strict local costs sum strictly for nonempty packings |
+| 43 | <code>le_cost_of_add_le_nonpos</code> | Positive-horizon process value is at most packing cost |
+| 44 | <code>le_cost_of_add_le_nonpos_of_nonempty</code> | Nonempty packing supplies the positive horizon |
+| 45 | <code>le_mul_coveredLength_of_add_le_nonpos</code> | Weak process bound by covered length |
+| 46 | <code>lt_mul_coveredLength_of_add_le_nonpos</code> | Strict process bound by covered length |
+| 47 | <code>le_mul_card_of_add_le_nonpos_of_covers</code> | Weak covered packing bound by marked count |
+| 48 | <code>lt_mul_card_of_add_le_nonpos_of_covers</code> | Strict nonempty covered packing bound by marked count |
+| 49 | <code>le_mul_card_of_greedy_cover</code> | End-to-end weak greedy marked-count theorem |
+| 50 | <code>lt_mul_card_of_greedy_cover</code> | End-to-end strict nonempty greedy theorem |
+| 51 | <code>IsIntegrableSubadditiveProcessCandidate.le_orderedIntervalPackingSum</code> | Candidate-facing packing-cost wrapper |
+| 52 | <code>IsIntegrableSubadditiveProcessCandidate.le_mul_coveredLength_of_orderedIntervalPacking</code> | Candidate-facing covered-length wrapper |
+| 53 | <code>IsIntegrableSubadditiveProcessCandidate.centeredProcess_le_orderedIntervalPackingSum</code> | Orbit-majorant-centered packing wrapper |
+| 54 | <code>DiscreteMatrixCocycle.centeredLogPlusNormObservable_le_orderedIntervalPackingSum</code> | Centered log-positive cocycle wrapper |
+
+The thirteen private named declarations are implementation machinery or
+regression fixtures. They are not additional public assumptions:
+
+| No. | Private declaration | Why it exists |
+|---:|---|---|
+| 1 | <code>exists_orderedPacking_covering_from</code> | Offset strong-induction selector used by the public existence theorem |
+| 2 | <code>positiveAtZeroProcess</code> | Concrete \(X_0=1\), positive-time nonpositive boundary process |
+| 3 | <code>positiveAtZeroProcess_add_le</code> | Shifted-subadditivity proof for that boundary process |
+| 4 | <code>positiveAtZeroProcess_nonpos</code> | Positive-horizon sign proof for that boundary process |
+| 5 | <code>positiveAtZeroCandidate</code> | Candidate fixture retaining the time-zero counterexample |
+| 6 | <code>emptyPositivePacking</code> | Empty packing at positive horizon |
+| 7 | <code>fullTerminalPacking</code> | Selected interval ending exactly at a generic horizon |
+| 8 | <code>abuttingPacking</code> | Zero-gap abutting intervals |
+| 9 | <code>packingWithOuterGaps</code> | Nonzero initial and terminal gaps |
+| 10 | <code>unitAbuttingPacking</code> | Length-one intervals with zero intermediate gap |
+| 11 | <code>packingWithIntermediateGap</code> | Positive gap between selected intervals |
+| 12 | <code>longChoice</code> | Prescribed-length fixture whose first interval covers later marks |
+| 13 | <code>longCoverPacking</code> | Expected packing for the long-choice selector test |
+
+Unnamed `example` declarations below these fixtures exercise equalities,
+inequalities, endpoints, wrapper specializations, and empty-index matrix
+behavior. They are checked regression examples, but they do not add names to
+the fifty-four-plus-thirteen manifest.
 
 ## Why the public API has this shape
 
@@ -1527,30 +1930,330 @@ identity required by the intended Kingman statement. RMT-21 provides the
 finite inequality inserted into that future argument; it provides none of
 the measure-theoretic or limiting bridges by itself.
 
+## Run the complete finite worksheet on a normal computer
+
+The following file imports only Lean's `Std` library. It does not import
+Mathlib or this project. It computes both numeric examples, exposes every
+greedy round, prints the gap-length-tail decoder, separates selected starts
+from covered marks, checks the sign reversal, and evaluates the empty,
+nonempty, singleton, abutting, and time-zero boundaries.
+
+Save this block byte for byte as
+<code>/tmp/OrderedIntervalPackingDeepDiveTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace OrderedIntervalPackingDeepDiveTutorial
+
+abbrev NatInterval := Nat × Nat
+
+def packing : List NatInterval :=
+  [(1, 3), (3, 4), (6, 9)]
+
+def nearMiss : List NatInterval :=
+  [(1, 3), (2, 4), (6, 9)]
+
+def openingMarked : List Nat :=
+  [1, 2, 3, 6, 8]
+
+def inside (I : NatInterval) (j : Nat) : Bool :=
+  decide (I.1 ≤ j ∧ j < I.2)
+
+def coveredPositions (horizon : Nat)
+    (family : List NatInterval) : List Nat :=
+  (List.range horizon).filter fun j =>
+    family.any fun I => inside I j
+
+def intervalLength (I : NatInterval) : Nat :=
+  I.2 - I.1
+
+def totalLength (family : List NatInterval) : Nat :=
+  family.foldl (fun total I => total + intervalLength I) 0
+
+def isOrdered : List NatInterval → Bool
+  | [] => true
+  | [_] => true
+  | I :: J :: rest =>
+      decide (I.2 ≤ J.1) && isOrdered (J :: rest)
+
+def allCovered (marked : List Nat)
+    (horizon : Nat) (family : List NatInterval) : Bool :=
+  marked.all fun j => (coveredPositions horizon family).contains j
+
+/-
+The deeper example uses H = 10, m = 4, and marked starts
+[1, 2, 4, 5, 8, 9].  The leftmost start chooses its prescribed interval;
+every mark inside it is deleted; recursion continues with the survivors.
+-/
+
+def marked : List Nat :=
+  [1, 2, 4, 5, 8, 9]
+
+def prescribedLength (start : Nat) : Nat :=
+  match start with
+  | 1 => 3
+  | 4 => 2
+  | 8 => 4
+  | _ => 1
+
+structure GreedyRound where
+  remainingBefore : List Nat
+  selectedStart : Nat
+  selectedInterval : NatInterval
+  coveredMarks : List Nat
+  survivors : List Nat
+  deriving Repr, DecidableEq
+
+def greedyRoundsWithFuel :
+    Nat → List Nat → List GreedyRound
+  | 0, _ => []
+  | _ + 1, [] => []
+  | fuel + 1, start :: rest =>
+      let endpoint := start + prescribedLength start
+      let covered :=
+        start :: rest.filter (fun j => decide (j < endpoint))
+      let survivors :=
+        rest.filter (fun j => decide (endpoint ≤ j))
+      { remainingBefore := start :: rest
+        selectedStart := start
+        selectedInterval := (start, endpoint)
+        coveredMarks := covered
+        survivors := survivors } ::
+        greedyRoundsWithFuel fuel survivors
+
+def greedyRounds (starts : List Nat) : List GreedyRound :=
+  greedyRoundsWithFuel starts.length starts
+
+def greedyPacking (starts : List Nat) : List NatInterval :=
+  (greedyRounds starts).map GreedyRound.selectedInterval
+
+def selectedStarts (family : List NatInterval) : List Nat :=
+  family.map Prod.fst
+
+def selectionCoverageLedger :
+    List (Nat × Bool × Bool) :=
+  let family := greedyPacking marked
+  let selected := selectedStarts family
+  let covered := coveredPositions 14 family
+  marked.map fun j =>
+    (j, selected.contains j, covered.contains j)
+
+def encodeFrom (cursor horizon : Nat) :
+    List NatInterval → List Nat
+  | [] => [horizon - cursor]
+  | I :: rest =>
+      (I.1 - cursor) :: intervalLength I ::
+        encodeFrom I.2 horizon rest
+
+def gapLengthTail (horizon : Nat)
+    (family : List NatInterval) : List Nat :=
+  encodeFrom 0 horizon family
+
+structure SignLedger where
+  markedCount : Nat
+  coveredLength : Nat
+  coefficient : Int
+  coefficientTimesCovered : Int
+  coefficientTimesMarked : Int
+  nonpositiveReversalHolds : Bool
+  positiveCoefficientWouldWork : Bool
+  weakSelectedCost : Int
+  strictSelectedCost : Int
+  strictMarkedBoundHolds : Bool
+  deriving Repr, DecidableEq
+
+def signLedger : SignLedger :=
+  let family := greedyPacking marked
+  let covered := totalLength family
+  let count := marked.length
+  let c : Int := -2
+  let weakCost : Int := ([-6, -4, -8] : List Int).sum
+  let strictCost : Int := ([-7, -5, -9] : List Int).sum
+  { markedCount := count
+    coveredLength := covered
+    coefficient := c
+    coefficientTimesCovered := c * covered
+    coefficientTimesMarked := c * count
+    nonpositiveReversalHolds := decide (c * covered ≤ c * count)
+    positiveCoefficientWouldWork :=
+      decide ((2 : Int) * covered ≤ 2 * count)
+    weakSelectedCost := weakCost
+    strictSelectedCost := strictCost
+    strictMarkedBoundHolds := decide (strictCost < c * count) }
+
+def positiveAtZeroProcess (horizon : Nat) : Int :=
+  if horizon = 0 then 1 else -(horizon : Int)
+
+structure BoundaryLedger where
+  emptyGreedyPacking : List NatInterval
+  emptyWeakAtPositiveTime : Bool
+  emptyWeakAtTimeZero : Bool
+  emptyStrictSum : Bool
+  nonemptyStrictSum : Bool
+  singletonOrdered : Bool
+  abuttingOrdered : Bool
+  deriving Repr, DecidableEq
+
+def boundaryLedger : BoundaryLedger :=
+  { emptyGreedyPacking := greedyPacking []
+    emptyWeakAtPositiveTime := decide (positiveAtZeroProcess 4 ≤ 0)
+    emptyWeakAtTimeZero := decide (positiveAtZeroProcess 0 ≤ 0)
+    emptyStrictSum := decide ((0 : Int) < 0)
+    nonemptyStrictSum := signLedger.strictMarkedBoundHolds
+    singletonOrdered := isOrdered [(3, 4)]
+    abuttingOrdered := isOrdered [(1, 3), (3, 4)] }
+
+#eval coveredPositions 10 packing
+#eval [totalLength packing, (coveredPositions 10 packing).length]
+#eval [isOrdered packing, allCovered openingMarked 10 packing]
+#eval coveredPositions 10 nearMiss
+#eval [totalLength nearMiss, (coveredPositions 10 nearMiss).length]
+#eval isOrdered nearMiss
+#eval greedyRounds marked
+#eval greedyPacking marked
+#eval gapLengthTail 14 (greedyPacking marked)
+#eval [totalLength (greedyPacking marked),
+  (gapLengthTail 14 (greedyPacking marked)).sum]
+#eval coveredPositions 14 (greedyPacking marked)
+#eval selectionCoverageLedger
+#eval signLedger
+#eval boundaryLedger
+
+example : coveredPositions 10 packing = [1, 2, 3, 6, 7, 8] := by
+  native_decide
+example : [totalLength packing, (coveredPositions 10 packing).length] =
+    [6, 6] := by native_decide
+example : isOrdered packing = true := by native_decide
+example : allCovered openingMarked 10 packing = true := by native_decide
+
+example : coveredPositions 10 nearMiss = [1, 2, 3, 6, 7, 8] := by
+  native_decide
+example : [totalLength nearMiss, (coveredPositions 10 nearMiss).length] =
+    [7, 6] := by native_decide
+example : isOrdered nearMiss = false := by native_decide
+
+example : greedyPacking marked = [(1, 4), (4, 6), (8, 12)] := by
+  native_decide
+example : gapLengthTail 14 (greedyPacking marked) =
+    [1, 3, 0, 2, 2, 4, 2] := by native_decide
+example : coveredPositions 14 (greedyPacking marked) =
+    [1, 2, 3, 4, 5, 8, 9, 10, 11] := by native_decide
+example : allCovered marked 14 (greedyPacking marked) = true := by
+  native_decide
+example : selectedStarts (greedyPacking marked) = [1, 4, 8] := by
+  native_decide
+
+example : signLedger.nonpositiveReversalHolds = true := by native_decide
+example : signLedger.positiveCoefficientWouldWork = false := by native_decide
+example : signLedger.weakSelectedCost = -18 := by native_decide
+example : signLedger.strictSelectedCost = -21 := by native_decide
+example : signLedger.strictMarkedBoundHolds = true := by native_decide
+
+example : boundaryLedger.emptyWeakAtPositiveTime = true := by native_decide
+example : boundaryLedger.emptyWeakAtTimeZero = false := by native_decide
+example : boundaryLedger.emptyStrictSum = false := by native_decide
+example : boundaryLedger.nonemptyStrictSum = true := by native_decide
+example : boundaryLedger.singletonOrdered = true := by native_decide
+example : boundaryLedger.abuttingOrdered = true := by native_decide
+
+end OrderedIntervalPackingDeepDiveTutorial
+~~~
+
+The important syntax is deliberately ordinary:
+
+- `List.range horizon` enumerates \(0,\ldots,\text{horizon}-1\);
+- `filter` keeps the positions or survivors satisfying a Boolean test;
+- `decide` computes a proposition such as \(j\lt\text{endpoint}\);
+- `structure GreedyRound` gives names to the four columns of one algorithm
+  step;
+- `#eval` prints a value; and
+- each `example ... := by native_decide` asks Lean's kernel-checked decision
+  procedure to certify the displayed finite equality or inequality.
+
+With the repository's pinned Lean toolchain already installed, a human types:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/OrderedIntervalPackingDeepDiveTutorial.lean
+~~~
+
+This is a **small standalone tutorial**. It imports only `Std`, uses short
+lists, and is suitable for a normal Mac or Linux host. It does not validate
+the Mathlib project module. Successful execution prints exactly:
+
+~~~text
+[1, 2, 3, 6, 7, 8]
+[6, 6]
+[true, true]
+[1, 2, 3, 6, 7, 8]
+[7, 6]
+false
+[{ remainingBefore := [1, 2, 4, 5, 8, 9],
+   selectedStart := 1,
+   selectedInterval := (1, 4),
+   coveredMarks := [1, 2],
+   survivors := [4, 5, 8, 9] },
+ { remainingBefore := [4, 5, 8, 9],
+   selectedStart := 4,
+   selectedInterval := (4, 6),
+   coveredMarks := [4, 5],
+   survivors := [8, 9] },
+ { remainingBefore := [8, 9],
+   selectedStart := 8,
+   selectedInterval := (8, 12),
+   coveredMarks := [8, 9],
+   survivors := [] }]
+[(1, 4), (4, 6), (8, 12)]
+[1, 3, 0, 2, 2, 4, 2]
+[9, 14]
+[1, 2, 3, 4, 5, 8, 9, 10, 11]
+[(1, true, true), (2, false, true), (4, true, true), (5, false, true), (8, true, true), (9, false, true)]
+{ markedCount := 6,
+  coveredLength := 9,
+  coefficient := -2,
+  coefficientTimesCovered := -18,
+  coefficientTimesMarked := -12,
+  nonpositiveReversalHolds := true,
+  positiveCoefficientWouldWork := false,
+  weakSelectedCost := -18,
+  strictSelectedCost := -21,
+  strictMarkedBoundHolds := true }
+{ emptyGreedyPacking := [],
+  emptyWeakAtPositiveTime := true,
+  emptyWeakAtTimeZero := false,
+  emptyStrictSum := false,
+  nonemptyStrictSum := true,
+  singletonOrdered := true,
+  abuttingOrdered := true }
+~~~
+
+The transcript connects the diagrams to executable facts. The first six lines
+are the separate six-position valid/near-miss worksheet. The remaining lines
+belong to the larger \(H=10,m=4\) greedy worksheet.
+
 ## Read and reproduce the checked Lean slice
 
 The source-order entry point is
 <code>NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking</code>.
-From the repository root, the intended direct audit is:
+From the repository root on an approved Linux builder, the intended direct
+audit is:
 
 ~~~sh
 source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
-lake build NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles.lean
-lake env lean -DwarningAsError=true NonlinearDynamics.lean
-cd ..
-make site-check
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
+CLOUD_LEAN_BUILD=1 make check
 ~~~
 
 The integrated repository module has 1,131 lines and SHA-256
 <code>732187ce77b5efa14df3a992f194d5dce4dfc8d9f5fa6dbaf658c5ed41ef4f4d</code>.
 That hash records the exact source audited for this chapter; the repository
-module is the present authority. Its warning-fatal leaf check and the
-aggregator/root builds pass with no project-specific axiom or proof escape.
+module is the present authority. These are **project/Mathlib checks**, not
+standalone tutorials. They restore or compile substantial dependencies and
+must run through the guarded cloud workflow. The Mac workstation is for
+editing, Hugo, static checks, and the bounded `Std` worksheet above.
 
 ## What the milestone establishes
 
