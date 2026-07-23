@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:26 PDT
+Last updated: 2026-07-22 17:29 PDT
 
-Audited baseline: `main` at `dec0796`
+Audited baseline: `main` at `8f40965`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -152,18 +152,16 @@ all glossary entries before beginning the Deep Dive pass, validate and push
 small coherent batches, and do not resume RMT-35 formalization while this
 reader-catch-up phase is active.
 
-The current wave brings **52 of 62 glossary chapters** through the full
-example-first rebuild. The newest pair computes the upper edge of
-`(5, -1, 1, -1, ...)` from its tail ceilings and the lower edge of the exact
-two-rail rational sequence `(4, -2, 7/2, -3/2, ...)` from its rising tail
-floors. Both chapters contrast their honest bounded examples with the
-totalized real-order behavior of an escaping sequence, distinguish a single
-limsup or liminf from ordinary convergence, and expose the exact pinned
-Mathlib side conditions. Their accessible SVGs are now the reproducible cards,
-and both embedded `Std` worksheets were executed with Lean 4.32.0 on the Mac.
-This is intentional teaching use of local Lean; project imports, Mathlib work,
-dependency builds, caches, and large proof checks remain on freshly approved
-Linux cloud compute.
+The current wave brings **53 of 62 glossary chapters** through the full
+example-first rebuild. The newest chapter enumerates all `64` events of a
+six-state full measurable space, the `4` exact invariant events of two sealed
+three-cycles, and the `2` bottom events. Its cross-cut near-miss makes literal
+preimage equality visible, while a separate Dirac boundary distinguishes the
+exact invariant field from invariance modulo null sets and ergodicity. The
+accessible SVG is now the reproducible card, and its `Std` worksheet was
+executed with Lean 4.32.0 on the Mac. This is intentional teaching use of
+local Lean; project imports, Mathlib work, dependency builds, caches, and
+large proof checks remain on freshly approved Linux cloud compute.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3051,6 +3049,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `8f40965`: compute limsup from the tail ceilings of one finite-spike
+  sequence and liminf from the tail floors of one exact rational two-rail
+  sequence; execute both local `Std` worksheets and visualize the real-order
+  totalization boundaries.
 - `dec0796`: compare one six-cycle with two sealed components, compute full
   versus empty Birkhoff convergence events, and separate one strict crossing
   from long-time behavior; execute all three local `Std` worksheets and make

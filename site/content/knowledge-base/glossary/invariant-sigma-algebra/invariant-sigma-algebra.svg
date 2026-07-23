@@ -1,62 +1,127 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400" viewBox="0 0 760 400" role="img" aria-labelledby="invariantSigmaTitle invariantSigmaDesc">
-  <title id="invariantSigmaTitle">Exact invariant sigma algebra</title>
-  <desc id="invariantSigmaDesc">A four-state map has two backward-saturated basins. The set containing a and b has the same preimage and passes the exact invariant-set test. The singleton containing b gains predecessor a under preimage and fails.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720" role="img" aria-labelledby="invariantSigmaTitle invariantSigmaDesc">
+  <title id="invariantSigmaTitle">The invariant sigma algebra between full and bottom information</title>
+  <desc id="invariantSigmaDesc">Six states form two separate three-cycles. All sixty-four subsets are ambient measurable. Exactly four events survive one-step preimage: empty, the left component, the right component, and all states. Bottom keeps only empty and all states. A cross-cut containing zero and three fails because its preimage contains two and five.</desc>
   <defs>
-    <marker id="invariantArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <marker id="arrowClay" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
       <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
     </marker>
+    <pattern id="leftPattern" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8 L8 0" stroke="#4B6787" stroke-width="1" opacity="0.24"/>
+    </pattern>
+    <pattern id="rightPattern" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0 L8 8" stroke="#6F8D5E" stroke-width="1" opacity="0.28"/>
+    </pattern>
   </defs>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:16px;font-weight:700}
-    .head{font-size:12px;font-weight:700;letter-spacing:.3px}
-    .label{font-size:11px}
-    .small{font-size:10px;fill:#5A544C}
+    .title{font-size:20px;font-weight:700}
+    .h{font-size:14px;font-weight:700}
+    .s{font-size:12px}
+    .m{font-size:11px;fill:#5A544C}
+    .tiny{font-size:10px;fill:#5A544C}
     .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .node{fill:#FFFDF8;stroke:#4B6787;stroke-width:1.7}
-    .arrow{fill:none;stroke:#A67C52;stroke-width:2;marker-end:url(#invariantArrow)}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.6}
+    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.4}
+    .nodeL{fill:#FFFDF8;stroke:#4B6787;stroke-width:2}
+    .nodeR{fill:#FFFDF8;stroke:#6F8D5E;stroke-width:2}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2;marker-end:url(#arrowClay)}
+    .divider{stroke:#A89B8C;stroke-width:1.2;stroke-dasharray:5 4}
   </style>
-  <rect width="760" height="400" fill="#F7F4F0"/>
-  <text x="24" y="29" class="t title">Exact invariant sigma algebra</text>
-  <text x="24" y="49" class="t small">An event passes only when pulling it back through one time step changes nothing.</text>
 
-  <rect x="24" y="72" width="302" height="294" rx="17" class="neutral"/>
-  <text x="175" y="98" text-anchor="middle" class="t head">TOY STATE MAP</text>
-  <rect x="48" y="115" width="254" height="96" rx="14" class="blue"/>
-  <text x="60" y="135" class="t small">upper backward-saturated basin</text>
-  <circle cx="105" cy="171" r="20" class="node"/>
-  <circle cx="245" cy="171" r="20" class="node"/>
-  <text x="105" y="175" text-anchor="middle" class="t head">a</text>
-  <text x="245" y="175" text-anchor="middle" class="t head">b</text>
-  <path d="M128 171 H218" class="arrow"/>
-  <path d="M245 148 C287 125 296 184 268 187" class="arrow"/>
+  <rect width="1000" height="720" fill="#F7F4F0"/>
+  <text x="30" y="34" class="t title">Exactly which questions survive one step?</text>
+  <text x="30" y="56" class="t m">The split six-state map retains the component label, but forgets every cross-cut and within-cycle distinction.</text>
 
-  <rect x="48" y="229" width="254" height="96" rx="14" class="green"/>
-  <text x="60" y="249" class="t small">lower backward-saturated basin</text>
-  <circle cx="105" cy="285" r="20" class="node"/>
-  <circle cx="245" cy="285" r="20" class="node"/>
-  <text x="105" y="289" text-anchor="middle" class="t head">c</text>
-  <text x="245" y="289" text-anchor="middle" class="t head">d</text>
-  <path d="M128 285 H218" class="arrow"/>
-  <path d="M245 262 C287 239 296 298 268 301" class="arrow"/>
-  <text x="175" y="349" text-anchor="middle" class="t small">one time-step map, named T</text>
+  <rect x="30" y="82" width="430" height="286" rx="16" class="neutral"/>
+  <text x="48" y="108" class="t h">ONE MAP, TWO SEALED CYCLES</text>
+  <text x="48" y="128" class="t m">Each arrow is one application of the time-one map.</text>
 
-  <rect x="348" y="72" width="388" height="294" rx="17" class="neutral"/>
-  <text x="542" y="98" text-anchor="middle" class="t head">EXACT PREIMAGE TEST</text>
+  <rect x="50" y="148" width="390" height="88" rx="13" class="blue"/>
+  <rect x="50" y="148" width="390" height="88" rx="13" fill="url(#leftPattern)"/>
+  <text x="67" y="171" class="t h">LEFT COMPONENT</text>
+  <circle cx="120" cy="204" r="19" class="nodeL"/>
+  <circle cx="245" cy="204" r="19" class="nodeL"/>
+  <circle cx="370" cy="204" r="19" class="nodeL"/>
+  <text x="120" y="209" text-anchor="middle" class="t h">0</text>
+  <text x="245" y="209" text-anchor="middle" class="t h">1</text>
+  <text x="370" y="209" text-anchor="middle" class="t h">2</text>
+  <path d="M141 204 H221" class="arrow"/>
+  <path d="M266 204 H346" class="arrow"/>
+  <path d="M370 182 C355 151 137 151 120 182" class="arrow"/>
 
-  <rect x="370" y="119" width="344" height="94" rx="14" class="green"/>
-  <text x="390" y="144" class="t head">candidate event: {a, b}</text>
-  <text x="390" y="169" class="t label">preimage under T: {a, b}</text>
-  <rect x="584" y="176" width="108" height="24" rx="12" fill="#FFFDF8" stroke="#6F8D5E"/>
-  <text x="638" y="192" text-anchor="middle" class="t head" fill="#315F55">EXACT PASS</text>
+  <rect x="50" y="254" width="390" height="88" rx="13" class="green"/>
+  <rect x="50" y="254" width="390" height="88" rx="13" fill="url(#rightPattern)"/>
+  <text x="67" y="277" class="t h">RIGHT COMPONENT</text>
+  <circle cx="120" cy="310" r="19" class="nodeR"/>
+  <circle cx="245" cy="310" r="19" class="nodeR"/>
+  <circle cx="370" cy="310" r="19" class="nodeR"/>
+  <text x="120" y="315" text-anchor="middle" class="t h">3</text>
+  <text x="245" y="315" text-anchor="middle" class="t h">4</text>
+  <text x="370" y="315" text-anchor="middle" class="t h">5</text>
+  <path d="M141 310 H221" class="arrow"/>
+  <path d="M266 310 H346" class="arrow"/>
+  <path d="M370 288 C355 257 137 257 120 288" class="arrow"/>
 
-  <rect x="370" y="231" width="344" height="94" rx="14" class="clay"/>
-  <text x="390" y="256" class="t head">candidate event: {b}</text>
-  <text x="390" y="281" class="t label">preimage under T: {a, b}</text>
-  <rect x="584" y="288" width="108" height="24" rx="12" fill="#FFFDF8" stroke="#A67C52"/>
-  <text x="638" y="304" text-anchor="middle" class="t head" fill="#8B3E33">FAILS</text>
-  <text x="542" y="348" text-anchor="middle" class="t small">the predecessor a cannot be omitted from an invariant event</text>
+  <rect x="482" y="82" width="488" height="286" rx="16" class="neutral"/>
+  <text x="500" y="108" class="t h">THREE NESTED INFORMATION LEVELS</text>
+  <text x="500" y="128" class="t m">The number counts measurable yes-or-no events.</text>
+
+  <rect x="502" y="148" width="448" height="198" rx="14" class="blue"/>
+  <text x="520" y="172" class="t h">FULL AMBIENT SPACE: 64 EVENTS</text>
+  <text x="520" y="191" class="t m">Every subset of the six states is measurable.</text>
+
+  <rect x="540" y="210" width="372" height="116" rx="13" class="green"/>
+  <rect x="540" y="210" width="372" height="116" rx="13" fill="url(#rightPattern)" opacity="0.55"/>
+  <text x="558" y="234" class="t h">INVARIANT SPACE: 4 EVENTS</text>
+  <rect x="558" y="243" width="70" height="23" rx="8" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <rect x="638" y="243" width="80" height="23" rx="8" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <rect x="728" y="243" width="80" height="23" rx="8" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <rect x="818" y="243" width="76" height="23" rx="8" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <text x="593" y="259" text-anchor="middle" class="t tiny">empty</text>
+  <text x="678" y="259" text-anchor="middle" class="t tiny">left cycle</text>
+  <text x="768" y="259" text-anchor="middle" class="t tiny">right cycle</text>
+  <text x="856" y="259" text-anchor="middle" class="t tiny">all six</text>
+
+  <rect x="588" y="275" width="276" height="34" rx="10" class="gray"/>
+  <text x="726" y="297" text-anchor="middle" class="t h">BOTTOM: EMPTY AND ALL SIX</text>
+
+  <text x="726" y="338" text-anchor="middle" class="t tiny">bottom is contained in invariant, which is contained in ambient</text>
+
+  <rect x="30" y="392" width="940" height="242" rx="16" class="neutral"/>
+  <text x="48" y="419" class="t h">THE EXACT PREIMAGE TEST</text>
+  <text x="48" y="439" class="t m">The left component passes. A cross-cut with the same size does not.</text>
+
+  <rect x="50" y="460" width="418" height="146" rx="13" class="green"/>
+  <rect x="50" y="460" width="418" height="146" rx="13" fill="url(#rightPattern)" opacity="0.5"/>
+  <text x="68" y="486" class="t h">PASS: LEFT COMPONENT</text>
+  <text x="68" y="509" class="t s">candidate</text>
+  <rect x="137" y="492" width="132" height="29" rx="9" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <text x="203" y="512" text-anchor="middle" class="t s">states 0, 1, 2</text>
+  <path d="M279 507 H331" class="arrow"/>
+  <text x="305" y="493" text-anchor="middle" class="t tiny">pull back</text>
+  <rect x="341" y="492" width="108" height="29" rx="9" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <text x="395" y="512" text-anchor="middle" class="t s">states 0, 1, 2</text>
+  <line x1="68" y1="535" x2="450" y2="535" class="divider"/>
+  <text x="68" y="559" class="t s">Result: the membership answer is unchanged.</text>
+  <rect x="68" y="571" width="104" height="23" rx="11" fill="#FFFDF8" stroke="#6F8D5E"/>
+  <text x="120" y="587" text-anchor="middle" class="t h">EXACT PASS</text>
+
+  <rect x="490" y="460" width="460" height="146" rx="13" class="clay"/>
+  <text x="508" y="486" class="t h">FAIL: CROSS-CUT</text>
+  <text x="508" y="509" class="t s">candidate</text>
+  <rect x="577" y="492" width="112" height="29" rx="9" fill="#FFFDF8" stroke="#A67C52"/>
+  <text x="633" y="512" text-anchor="middle" class="t s">states 0 and 3</text>
+  <path d="M699 507 H751" class="arrow"/>
+  <text x="725" y="493" text-anchor="middle" class="t tiny">pull back</text>
+  <rect x="761" y="492" width="112" height="29" rx="9" fill="#FFFDF8" stroke="#A67C52"/>
+  <text x="817" y="512" text-anchor="middle" class="t s">states 2 and 5</text>
+  <line x1="508" y1="535" x2="930" y2="535" class="divider"/>
+  <text x="508" y="559" class="t s">Result: equal size, different membership.</text>
+  <rect x="508" y="571" width="104" height="23" rx="11" fill="#FFFDF8" stroke="#A67C52"/>
+  <text x="560" y="587" text-anchor="middle" class="t h">EXACT FAIL</text>
+
+  <rect x="30" y="654" width="940" height="42" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="500" y="680" text-anchor="middle" class="t h">Invariant information answers only which sealed component contains the current state.</text>
 </svg>
