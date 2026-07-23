@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:11 PDT
+Last updated: 2026-07-22 17:20 PDT
 
-Audited baseline: `main` at `2ec7ddd`
+Audited baseline: `main` at `83844af`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -152,14 +152,16 @@ all glossary entries before beginning the Deep Dive pass, validate and push
 small coherent batches, and do not resume RMT-35 formalization while this
 reader-catch-up phase is active.
 
-The current wave brings **47 of 62 glossary chapters** through the full
-example-first rebuild. The newest pair computes the finite maximal ergodic
-inequality on the cyclic observable `(-2, 3, -4, 2)` and the weak-type
-`(1,1)` estimate on four fixed points with values `(4, -2, 1, 0)`. Their
-accessible SVGs expose strict-threshold and terminal-sum near-misses, their
-social cards reproduce from those same diagrams, and both embedded `Std`
-worksheets were executed with the pinned Lean 4.32.0 compiler on the Mac. This
-is intentional teaching use of local Lean; all project imports, Mathlib work,
+The current wave brings **50 of 62 glossary chapters** through the full
+example-first rebuild. The newest trio computes ergodicity on one six-cycle
+versus two sealed three-cycles, the Birkhoff convergence event on both a
+periodic orbit and a rising shift, and a strict infinite-horizon exceedance
+event on the exact four-cycle `(3, -1, -1, -1)`. Their accessible SVGs expose
+invariant information, pointwise/everywhere/almost-everywhere scope, and the
+difference between one crossing and long-time behavior. Their social cards
+reproduce from those calculations, and all three embedded `Std` worksheets
+were executed with the pinned Lean 4.32.0 compiler on the Mac. This is
+intentional teaching use of local Lean; all project imports, Mathlib work,
 dependency builds, caches, and large proof checks remain on freshly approved
 Linux cloud compute.
 
@@ -3049,6 +3051,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `83844af`: compute the finite maximal inequality on a four-state cycle and
+  the weak-type `(1,1)` estimate on four fixed points; execute both local
+  `Std` worksheets and regenerate both cards from their exact teaching SVGs.
 - `2ec7ddd`: compute a four-state Birkhoff-sum ledger and a uniform
   seven-state visit-count integral; execute both local `Std` tutorials and
   turn their exact finite calculations into reproducible cards.

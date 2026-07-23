@@ -1,53 +1,182 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360"
-     viewBox="0 0 760 360" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720"
+     viewBox="0 0 1000 720" role="img" focusable="false"
      aria-labelledby="eventTitle eventDesc">
-  <title id="eventTitle">Convergence-event membership is not a convergence theorem</title>
-  <desc id="eventDesc">Two conceptual sequences of finite orbit averages are compared. One settles toward a finite level and its starting point belongs to the event. The other rises without settling and stays outside. A footer says that naming, measuring, or proving invariance of the event does not put all points inside it.</desc>
-  <rect width="760" height="360" fill="#F7F4F0"/>
+  <title id="eventTitle">Two exact Birkhoff convergence events and three logical scopes</title>
+  <desc id="eventDesc">The left panel computes Birkhoff averages on a four-state
+  cycle with readings three, minus one, four, and two. Every four-step block
+  sums to eight, every starting state converges to average two, and the event
+  is the whole space. The right panel computes the natural-number shift with
+  reading g of k equal to k. Its averages equal k plus n minus one over two,
+  rise without bound, and the event is empty. Three bottom cards distinguish
+  membership of one point, equality with the whole state space, and membership
+  outside a measure-zero exceptional set.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5D6570"/>
+    </marker>
+    <pattern id="paperDots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.7" fill="#BBAE9C" opacity="0.22"/>
+    </pattern>
+  </defs>
   <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .good{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .plot{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.2}
+    .txt{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;fill:#252A2F}
+    .title{font-size:24px;font-weight:760}
+    .subtitle{font-size:13px;fill:#5D6164}
+    .kicker{font-size:11px;font-weight:800;letter-spacing:1.25px}
+    .head{font-size:16px;font-weight:760}
+    .body{font-size:13px}
+    .small{font-size:11.5px;fill:#5B6064}
+    .tablehead{font-size:11px;font-weight:760;fill:#5D6164}
+    .number{font-size:13px;font-weight:680}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:16px;font-style:italic}
+    .result{font-size:18px;font-weight:800}
+    .panel{fill:#FFFDFC;stroke:#B9AD9E;stroke-width:1.4}
+    .line{stroke:#C9BFB2;stroke-width:1}
   </style>
-  <text x="24" y="28" class="t title">Membership is a property of one whole average sequence</text>
-  <text x="24" y="48" class="t m">The two traces are conceptual examples, not measured data.</text>
 
-  <rect class="good" x="24" y="70" width="344" height="218" rx="12"/>
-  <text x="44" y="96" class="t h">STARTING POINT A</text>
-  <text x="44" y="116" class="t m">finite averages settle toward one finite level</text>
-  <rect class="plot" x="44" y="132" width="304" height="100" rx="8"/>
-  <line x1="62" y1="210" x2="330" y2="210" stroke="#7F786D" stroke-width="1"/>
-  <line x1="62" y1="148" x2="62" y2="210" stroke="#7F786D" stroke-width="1"/>
-  <line x1="62" y1="174" x2="330" y2="174" stroke="#6F8D5E" stroke-width="1.5" stroke-dasharray="5 4"/>
-  <polyline points="70,196 105,158 140,183 175,168 210,178 245,171 280,175 322,173"
-            fill="none" stroke="#4B6787" stroke-width="2.5"/>
-  <circle cx="70" cy="196" r="3" fill="#4B6787"/>
-  <circle cx="140" cy="183" r="3" fill="#4B6787"/>
-  <circle cx="210" cy="178" r="3" fill="#4B6787"/>
-  <circle cx="280" cy="175" r="3" fill="#4B6787"/>
-  <text x="44" y="258" class="t h" fill="#47633B">IN THE CONVERGENCE EVENT</text>
-  <text x="44" y="277" class="t m">a finite real limit exists for this point</text>
+  <rect width="1000" height="720" fill="#F6F1E9"/>
+  <rect width="1000" height="720" fill="url(#paperDots)"/>
+  <text x="28" y="38" class="txt title">Compute the event before making a probability claim</text>
+  <text x="28" y="61" class="txt subtitle">Same definition, opposite answers: a periodic orbit gives every point; a rising orbit gives no point.</text>
 
-  <rect class="warn" x="392" y="70" width="344" height="218" rx="12"/>
-  <text x="412" y="96" class="t h">STARTING POINT B</text>
-  <text x="412" y="116" class="t m">finite averages keep rising instead of settling</text>
-  <rect class="plot" x="412" y="132" width="304" height="100" rx="8"/>
-  <line x1="430" y1="210" x2="698" y2="210" stroke="#7F786D" stroke-width="1"/>
-  <line x1="430" y1="148" x2="430" y2="210" stroke="#7F786D" stroke-width="1"/>
-  <polyline points="438,203 474,196 510,188 546,178 582,166 618,151 654,132 690,108"
-            fill="none" stroke="#A67C52" stroke-width="2.5"/>
-  <circle cx="438" cy="203" r="3" fill="#A67C52"/>
-  <circle cx="510" cy="188" r="3" fill="#A67C52"/>
-  <circle cx="582" cy="166" r="3" fill="#A67C52"/>
-  <circle cx="654" cy="132" r="3" fill="#A67C52"/>
-  <text x="412" y="258" class="t h" fill="#934F1F">OUTSIDE THE CONVERGENCE EVENT</text>
-  <text x="412" y="277" class="t m">no finite real limit exists for this point</text>
+  <!-- Periodic model -->
+  <rect x="28" y="82" width="570" height="403" rx="16" class="panel"/>
+  <rect x="46" y="99" width="220" height="25" rx="12.5" fill="#DCE9E1"/>
+  <text x="58" y="116" class="txt kicker" fill="#315D4B">PERIODIC FOUR-STATE MODEL</text>
+  <text x="568" y="116" text-anchor="end" class="txt small">one exact cycle</text>
 
-  <rect x="24" y="306" width="712" height="36" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="380" y="329" text-anchor="middle" class="t s">Defining, measuring, or proving invariance of the event does not put every point inside it.</text>
+  <line x1="98" y1="158" x2="170" y2="158" stroke="#5D6570" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="215" y1="158" x2="287" y2="158" stroke="#5D6570" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <line x1="332" y1="158" x2="404" y2="158" stroke="#5D6570" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <path d="M 429 184 C 429 215, 50 215, 50 184 L 50 158 L 54 158"
+        fill="none" stroke="#5D6570" stroke-width="1.5"
+        stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+
+  <circle cx="78" cy="158" r="22" fill="#365F78"/>
+  <circle cx="195" cy="158" r="22" fill="#365F78"/>
+  <circle cx="312" cy="158" r="22" fill="#365F78"/>
+  <circle cx="429" cy="158" r="22" fill="#365F78"/>
+  <text x="78" y="164" text-anchor="middle" class="txt head" fill="#FFFFFF">a</text>
+  <text x="195" y="164" text-anchor="middle" class="txt head" fill="#FFFFFF">b</text>
+  <text x="312" y="164" text-anchor="middle" class="txt head" fill="#FFFFFF">c</text>
+  <text x="429" y="164" text-anchor="middle" class="txt head" fill="#FFFFFF">d</text>
+  <text x="78" y="196" text-anchor="middle" class="txt small">g = 3</text>
+  <text x="195" y="196" text-anchor="middle" class="txt small">g = −1</text>
+  <text x="312" y="196" text-anchor="middle" class="txt small">g = 4</text>
+  <text x="429" y="196" text-anchor="middle" class="txt small">g = 2</text>
+
+  <rect x="474" y="137" width="105" height="60" rx="10" fill="#F1E6CE" stroke="#B48A43"/>
+  <text x="526.5" y="157" text-anchor="middle" class="txt small">one block</text>
+  <text x="526.5" y="181" text-anchor="middle" class="txt head">sum = 8</text>
+
+  <rect x="46" y="225" width="534" height="187" rx="10" fill="#FAF7F2" stroke="#D2C8BA"/>
+  <text x="62" y="248" class="txt tablehead">START</text>
+  <text x="151" y="248" text-anchor="middle" class="txt tablehead">A₁</text>
+  <text x="235" y="248" text-anchor="middle" class="txt tablehead">A₂</text>
+  <text x="319" y="248" text-anchor="middle" class="txt tablehead">A₃</text>
+  <text x="403" y="248" text-anchor="middle" class="txt tablehead">A₄</text>
+  <text x="519" y="248" text-anchor="middle" class="txt tablehead">LIMIT</text>
+  <line x1="59" y1="258" x2="567" y2="258" class="line"/>
+
+  <rect x="55" y="267" width="516" height="30" rx="6" fill="#EEF4F0"/>
+  <text x="73" y="287" class="txt number">a</text>
+  <text x="151" y="287" text-anchor="middle" class="txt body">3</text>
+  <text x="235" y="287" text-anchor="middle" class="txt body">1</text>
+  <text x="319" y="287" text-anchor="middle" class="txt body">2</text>
+  <text x="403" y="287" text-anchor="middle" class="txt body">2</text>
+  <text x="519" y="287" text-anchor="middle" class="txt number" fill="#315D4B">→ 2</text>
+
+  <text x="73" y="321" class="txt number">b</text>
+  <text x="151" y="321" text-anchor="middle" class="txt body">−1</text>
+  <text x="235" y="321" text-anchor="middle" class="txt body">3/2</text>
+  <text x="319" y="321" text-anchor="middle" class="txt body">5/3</text>
+  <text x="403" y="321" text-anchor="middle" class="txt body">2</text>
+  <text x="519" y="321" text-anchor="middle" class="txt number" fill="#315D4B">→ 2</text>
+
+  <rect x="55" y="333" width="516" height="30" rx="6" fill="#EEF4F0"/>
+  <text x="73" y="353" class="txt number">c</text>
+  <text x="151" y="353" text-anchor="middle" class="txt body">4</text>
+  <text x="235" y="353" text-anchor="middle" class="txt body">3</text>
+  <text x="319" y="353" text-anchor="middle" class="txt body">3</text>
+  <text x="403" y="353" text-anchor="middle" class="txt body">2</text>
+  <text x="519" y="353" text-anchor="middle" class="txt number" fill="#315D4B">→ 2</text>
+
+  <text x="73" y="387" class="txt number">d</text>
+  <text x="151" y="387" text-anchor="middle" class="txt body">2</text>
+  <text x="235" y="387" text-anchor="middle" class="txt body">5/2</text>
+  <text x="319" y="387" text-anchor="middle" class="txt body">4/3</text>
+  <text x="403" y="387" text-anchor="middle" class="txt body">2</text>
+  <text x="519" y="387" text-anchor="middle" class="txt number" fill="#315D4B">→ 2</text>
+
+  <rect x="46" y="426" width="534" height="42" rx="10" fill="#DCE9E1" stroke="#70927F"/>
+  <text x="62" y="452" class="txt body">every start converges</text>
+  <text x="558" y="454" text-anchor="end" class="txt result" fill="#315D4B">E(T,g) = Ω</text>
+
+  <!-- Rising model -->
+  <rect x="618" y="82" width="354" height="403" rx="16" class="panel"/>
+  <rect x="636" y="99" width="173" height="25" rx="12.5" fill="#F3DED7"/>
+  <text x="648" y="116" class="txt kicker" fill="#874D3B">RISING SHIFT MODEL</text>
+  <text x="948" y="116" text-anchor="end" class="txt small">Ω = natural numbers</text>
+
+  <text x="642" y="151" class="txt body">T(k) = k + 1</text>
+  <text x="825" y="151" class="txt body">g(k) = k</text>
+  <rect x="636" y="166" width="318" height="48" rx="9" fill="#FAF2EC" stroke="#D6B1A2"/>
+  <text x="795" y="195" text-anchor="middle" class="txt math">A_n(k) = k + (n − 1) / 2</text>
+
+  <text x="642" y="238" class="txt small">AT START k = 0</text>
+  <rect x="636" y="248" width="318" height="139" rx="9" fill="#FAF7F2" stroke="#D2C8BA"/>
+  <line x1="660" y1="357" x2="930" y2="357" stroke="#777B7E"/>
+  <line x1="660" y1="268" x2="660" y2="357" stroke="#777B7E"/>
+  <line x1="660" y1="313" x2="930" y2="313" stroke="#C5BAB0" stroke-dasharray="4 4"/>
+  <polyline points="676,350 736,330 796,310 856,290 916,270"
+            fill="none" stroke="#A4553F" stroke-width="3"/>
+  <circle cx="676" cy="350" r="4.5" fill="#A4553F"/>
+  <circle cx="736" cy="330" r="4.5" fill="#A4553F"/>
+  <circle cx="796" cy="310" r="4.5" fill="#A4553F"/>
+  <circle cx="856" cy="290" r="4.5" fill="#A4553F"/>
+  <circle cx="916" cy="270" r="4.5" fill="#A4553F"/>
+  <text x="676" y="374" text-anchor="middle" class="txt small">0</text>
+  <text x="736" y="374" text-anchor="middle" class="txt small">1/2</text>
+  <text x="796" y="374" text-anchor="middle" class="txt small">1</text>
+  <text x="856" y="374" text-anchor="middle" class="txt small">3/2</text>
+  <text x="916" y="374" text-anchor="middle" class="txt small">2</text>
+  <text x="646" y="282" class="txt small" transform="rotate(-90 646 282)">average</text>
+  <text x="926" y="341" text-anchor="end" class="txt small" fill="#874D3B">keeps rising ↗</text>
+
+  <rect x="636" y="402" width="318" height="66" rx="10" fill="#F3DED7" stroke="#B86C55"/>
+  <text x="652" y="425" class="txt body">no finite real limit, for any k</text>
+  <text x="938" y="454" text-anchor="end" class="txt result" fill="#874D3B">E(T,g) = ∅</text>
+
+  <!-- Logical scopes -->
+  <text x="28" y="516" class="txt kicker" fill="#5D6164">THREE DIFFERENT CLAIMS</text>
+
+  <rect x="28" y="530" width="296" height="139" rx="14" fill="#E8EEF2" stroke="#8DA5B4"/>
+  <circle cx="52" cy="555" r="10" fill="#365F78"/>
+  <text x="52" y="559" text-anchor="middle" class="txt small" fill="#FFFFFF">1</text>
+  <text x="70" y="560" class="txt head">One point</text>
+  <text x="52" y="594" class="txt math">ω ∈ E(T,g)</text>
+  <text x="52" y="619" class="txt body">This one complete average</text>
+  <text x="52" y="638" class="txt body">sequence converges.</text>
+  <text x="52" y="656" class="txt small">Pointwise membership</text>
+
+  <rect x="352" y="530" width="296" height="139" rx="14" fill="#DCE9E1" stroke="#70927F"/>
+  <circle cx="376" cy="555" r="10" fill="#315D4B"/>
+  <text x="376" y="559" text-anchor="middle" class="txt small" fill="#FFFFFF">2</text>
+  <text x="394" y="560" class="txt head">Every point</text>
+  <text x="376" y="594" class="txt math">E(T,g) = Ω</text>
+  <text x="376" y="619" class="txt body">No exceptional starting point</text>
+  <text x="376" y="638" class="txt body">is allowed.</text>
+  <text x="376" y="656" class="txt small">Set equality</text>
+
+  <rect x="676" y="530" width="296" height="139" rx="14" fill="#F1E6CE" stroke="#B48A43"/>
+  <circle cx="700" cy="555" r="10" fill="#936D2F"/>
+  <text x="700" y="559" text-anchor="middle" class="txt small" fill="#FFFFFF">3</text>
+  <text x="718" y="560" class="txt head">Almost every point</text>
+  <text x="700" y="594" class="txt math">μ(Ω − E(T,g)) = 0</text>
+  <text x="700" y="619" class="txt body">Exceptions may exist, but their</text>
+  <text x="700" y="638" class="txt body">set has measure zero.</text>
+  <text x="700" y="656" class="txt small">Measure-relative statement</text>
+
+  <text x="28" y="701" class="txt small">Finite calculations reveal the models; measurability only makes the event measurable—it does not decide which points belong.</text>
 </svg>

@@ -1,36 +1,136 @@
 ---
 title: "Birkhoff convergence event"
 slug: "birkhoff-convergence-event"
-summary: "A Birkhoff convergence event is the set of starting points whose normalized finite orbit sums converge to some finite real limit; defining and analyzing the event does not prove that it has any members."
+summary: "A Birkhoff convergence event collects exactly the starting points whose orbit averages approach a finite real limit; a four-state cycle makes the set concrete before pointwise, everywhere, and almost-everywhere claims are separated."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence"
 og_image: "birkhoff-convergence-event-card.png"
-og_image_alt: "Warm-paper glossary card separating a finite sequence of Birkhoff averages, the yes-or-no convergence event, and the later ergodic rigidity conclusion. A warning states that event analysis does not prove convergence exists."
+og_image_alt: "A four-state cycle with readings three, minus one, four, and two has every orbit average converge to two, while the natural-number shift with reading g of k equal to k has no finite-limit starting point."
 ---
 
-A **Birkhoff convergence event** is the set of starting points for which the
-real Birkhoff averages of one observable converge to some finite real number.
-The word **event** means a subset of the state space. It does not mean that the
-subset has positive probability, full probability, or even one member.
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted working note. Human review of the
+mathematics, Lean interpretation, sources, figure, and accessibility remains
+pending. The page is public so readers can follow the work while that review
+is still open.
+{{< /panel >}}
 
-This distinction is the purpose of the twenty-second random-matrix-theory
-milestone (RMT-22). The module isolates the event, proves that it is measurable
-under ordinary measurability assumptions, proves that it is unchanged when the
-orbit is shifted by one step, and derives conditional null-or-conull and
-probability-zero-or-one results. It does **not** prove that the averages
-converge.
+Start with four states in a repeating orbit:
+
+\[
+a\xrightarrow{T}b\xrightarrow{T}c\xrightarrow{T}d\xrightarrow{T}a.
+\]
+
+An **observable** \(g\) assigns a real reading to each state:
+
+\[
+g(a)=3,\qquad g(b)=-1,\qquad g(c)=4,\qquad g(d)=2.
+\]
+
+For a starting state \(x\), the Birkhoff average \(A_n^g(x)\) is the mean of
+the first \(n\) readings along its orbit. Here are the first four positive-time
+averages from every possible start:
+
+| start \(x\) | first four readings | \(A_1,A_2,A_3,A_4\) | eventual limit |
+|---|---|---|---:|
+| \(a\) | \(3,-1,4,2\) | \(3,1,2,2\) | \(2\) |
+| \(b\) | \(-1,4,2,3\) | \(-1,\frac32,\frac53,2\) | \(2\) |
+| \(c\) | \(4,2,3,-1\) | \(4,3,3,2\) | \(2\) |
+| \(d\) | \(2,3,-1,4\) | \(2,\frac52,\frac43,2\) | \(2\) |
+
+Why does looking at four terms settle an infinite-limit question here? Every
+complete block of four readings is a cyclic rearrangement of the same list,
+so every such block sums to
+
+\[
+3+(-1)+4+2=8.
+\]
+
+Write a positive horizon as \(n=4q+r\), where \(0\le r\lt4\). For each start
+\(x\), its sum has the form
+
+\[
+S_n^g(x)=8q+R_r(x),
+\qquad
+A_n^g(x)-2=\frac{R_r(x)-2r}{4q+r}.
+\]
+
+Only four possible remainders \(R_r(x)\) occur, so the numerator in the last
+fraction stays bounded while the denominator grows. Thus every row converges
+to \(8/4=2\).
+
+The **Birkhoff convergence event** is the set of starts whose full average
+sequence converges to some finite real number. We have computed the entire set
+in this example:
+
+\[
+E(T,g)=\{a,b,c,d\}=\Omega.
+\]
+
+If we put the uniform {{< refterm "probability-measure" "probability measure" >}}
+on the four states, each point has mass \(1/4\), so \(\mu(E(T,g))=1\). But the
+set equality \(E(T,g)=\Omega\) was proved before introducing a measure; it is a
+stronger, every-point statement.
+
+Now deliberately change the model. Let \(\Omega=\mathbb N\), let
+\(T(k)=k+1\), and read \(g(k)=k\). Starting at \(k\),
+
+\[
+A_n^g(k)
+=\frac{k+(k+1)+\cdots+(k+n-1)}{n}
+=k+\frac{n-1}{2}
+\qquad(n\gt0).
+\]
+
+These averages rise without bound, so they do not converge to a finite real
+number. No starting point belongs:
+
+\[
+E(T,g)=\varnothing.
+\]
+
+The two models show why the word **event** must not be read as “something that
+happens.” It means a subset of the state space. Depending on \(T\) and \(g\),
+that subset can be all points, no points, or something in between.
+
+{{< reference-figure
+  wide="true"
+  src="event-membership-is-not-existence.svg"
+  alt="A numeric comparison of two exact dynamical models. On a four-state cycle with readings three, minus one, four, and two, a table gives the first four averages from each start and shows that every start converges to two, so the convergence event is the whole state space. For the shift on natural numbers with reading g of k equal to k, the averages k plus n minus one over two rise without bound, so the event is empty. A bottom strip separates one-point membership, every-point equality, and an almost-everywhere statement."
+  caption="**Two events computed exactly.** Left: each four-step block on the cycle has sum \(8\), so every starting state has average limit \(2\) and \(E(T,g)=\Omega\). Right: for the natural-number shift, \(A_n^g(k)=k+(n-1)/2\), so no finite real limit exists and \(E(T,g)=\varnothing\). The bottom strip separates three logical strengths: one point belongs, every point belongs, and all points except a null exceptional set belong. No data were sampled; every displayed value follows from the two definitions."
+>}}
+
+## Pointwise, everywhere, and almost everywhere
+
+These three sentences are not interchangeable:
+
+| Scope | Paper statement | Meaning |
+|---|---|---|
+| one starting point | \(\omega\in E(T,g)\) | this one average sequence converges |
+| every starting point | \(E(T,g)=\Omega\) | every average sequence converges |
+| almost every starting point | \(\forall^\mu\omega,\ \omega\in E(T,g)\) | the set of failures is a {{< refterm "null-set" "null set" >}} |
+
+An almost-everywhere statement can allow exceptional points. For example, a
+single point has probability zero under many continuous
+{{< refterm "probability-law" "probability distributions" >}}, so a theorem may
+hold almost everywhere while failing at that point. On our uniform four-point
+space, however, every point has positive mass \(1/4\); the only null set is the
+empty set, and “almost every point” really does mean every point.
+
+The twenty-second random-matrix-theory milestone (RMT-22) isolates the event,
+proves its measurability under ordinary measurability assumptions, proves that
+it is unchanged when the orbit is shifted by one step, and derives conditional
+null-or-conull and probability-zero-or-one results. Those structural results
+do **not** choose whether the event is empty or full. A later analytic theorem
+must prove membership. This repository's later
+<code>PointwiseBirkhoff</code> module supplies almost-everywhere membership
+under finite-measure, measure-preservation, and integrability assumptions.
 
 The underlying finite sums are introduced in the
 {{< refterm "birkhoff-sum" "Birkhoff sum" >}} entry. The present term adds one
 existential limit statement around those finite objects.
-
-{{< reference-figure
-  src="event-membership-is-not-existence.svg"
-  alt="Two starting points generate sequences of finite Birkhoff averages. One sequence settles toward a finite height and enters the convergence event. The other keeps rising and stays outside. A separate box says that defining, measuring, or proving invariance of the event does not place every point inside it."
-  caption="**Finding:** event membership is a property of one complete sequence of finite averages. A convergent sequence contributes its starting point to the event; a sequence that escapes upward does not. Measurability and invariance let later theorems reason about the event as a set, but neither property proves that a starting point belongs to it. The trajectories are conceptual, not empirical measurements."
->}}
 
 ## Exact definition
 
@@ -77,6 +177,49 @@ definition at a point. It is useful because later proofs can rewrite set
 membership into an explicit limit witness without unfolding unrelated
 implementation details.
 
+## In Lean: one starting point belongs
+
+{{< lean-bridge
+  human="The starting point omega belongs to the convergence event exactly when its sequence of Birkhoff averages approaches some finite real number c."
+  math="\(\omega\in E(T,g)\Longleftrightarrow\exists c\in\mathbb R,\ A_n^g(\omega)\longrightarrow c.\)"
+  lean="ω ∈ birkhoffConvergenceSet T g ↔ ∃ c : ℝ, Tendsto (fun n ↦ birkhoffAverage ℝ T g n ω) atTop (nhds c)"
+>}}
+
+- <code>ω ∈ ...</code> is ordinary membership of one point in one set.
+- <code>∃ c : ℝ</code> asks for a finite real witness. A sequence escaping to
+  \(+\infty\) does not satisfy this existential statement.
+- <code>fun n ↦ ...</code> builds the sequence whose \(n\)-th term is the
+  finite Birkhoff average at <code>ω</code>.
+- <code>atTop</code> means that natural-number horizons become arbitrarily
+  large. It is Lean's filter-level version of \(n\to\infty\).
+- <code>nhds c</code> is the collection of neighborhoods of \(c\).
+- <code>Tendsto sequence atTop (nhds c)</code> says that the sequence
+  eventually enters every neighborhood of \(c\).
+- <code>mem_birkhoffConvergenceSet_iff</code> is the exact theorem name that
+  exposes this statement; its proof is <code>rfl</code> because the set was
+  defined by this predicate.
+{{< /lean-bridge >}}
+
+## In Lean: almost every starting point belongs
+
+{{< lean-bridge
+  human="Outside a set of mu-measure zero, every starting point has convergent Birkhoff averages."
+  math="\(\mu\bigl(\Omega\setminus E(T,g)\bigr)=0.\)"
+  lean="∀ᵐ ω ∂μ, ω ∈ birkhoffConvergenceSet T g"
+>}}
+
+- <code>∀ᵐ</code> is Lean's “for almost every” binder; it is not the ordinary
+  universal quantifier <code>∀</code>.
+- <code>∂μ</code> names the measure that decides which exceptional sets are
+  negligible.
+- The body after the comma is still pointwise membership. The binder changes
+  how many exceptions are permitted.
+- This line is a proposition to prove, not a consequence of the definition.
+  In the later <code>PointwiseBirkhoff</code> module, the exact theorem
+  <code>ae_mem_birkhoffConvergenceSet_of_integrable</code> proves it from a
+  finite measure, a measure-preserving map, and an integrable observable.
+{{< /lean-bridge >}}
+
 ## Four statements that must stay separate
 
 The following claims answer different questions:
@@ -88,8 +231,10 @@ The following claims answer different questions:
 | Rigidity | \(E(T,g)\) is null or conull under ergodicity | the only possible sizes if it is invariant |
 | Existence | almost every point lies in \(E(T,g)\) | actual convergence |
 
-RMT-22 proves the first three layers under their stated hypotheses. It does
-not prove the fourth. In particular, the disjunction
+RMT-22 proves the first three layers under their stated hypotheses. That
+module does not prove the fourth; the later <code>PointwiseBirkhoff</code>
+module does so under additional analytic hypotheses. In particular, the
+RMT-22 disjunction
 
 \[
 E(T,g)=\varnothing\quad\text{almost everywhere}
@@ -103,6 +248,12 @@ analytic result that supplies almost-everywhere membership under additional
 hypotheses.
 
 ## Why the event is measurable
+
+In either cold-open model, give the countable state space its full power-set
+\(\sigma\)-algebra. Every subset is then measurable, so
+\(\Omega\) and \(\varnothing\) are measurable by inspection. A general state
+space can have a smaller \(\sigma\)-algebra, however, and the conclusion then
+needs an argument.
 
 Suppose \(T\) and \(g\) are ordinarily measurable. Every iterate \(T^j\) is
 measurable, so every finite composition \(g\circ T^j\) is measurable. A finite
@@ -123,6 +274,24 @@ to obtain
 <code>measurableSet_birkhoffConvergenceSet</code>. No probability,
 integrability, preservation, or ergodicity assumption is needed for this
 ordinary-measurability route.
+
+{{< lean-bridge
+  human="If the orbit map T and observable g are measurable, then the set of starts where the averages converge is a measurable event."
+  math="\(T\ \text{and}\ g\ \text{measurable}\Longrightarrow E(T,g)\in\mathcal F.\)"
+  lean="measurableSet_birkhoffConvergenceSet hT hg"
+>}}
+
+- <code>hT : Measurable T</code> is the proof that inverse images under the
+  dynamics respect the chosen \(\sigma\)-algebra.
+- <code>hg : Measurable g</code> is the corresponding proof for the
+  observable.
+- The result has type
+  <code>MeasurableSet (birkhoffConvergenceSet T g)</code>.
+- No <code>MeasurePreserving</code>, <code>Integrable</code>, or
+  <code>Ergodic</code> token appears because none is needed for this theorem.
+- Measurable means the set can be assigned a measure. It says nothing about
+  whether that measure is zero, one, or somewhere between.
+{{< /lean-bridge >}}
 
 ## Why integrability does not imply ordinary measurability
 
@@ -214,7 +383,7 @@ Again, this is a dichotomy, not an existence theorem. On the zero measure, the
 almost-everywhere empty and almost-everywhere full descriptions are both
 vacuous because every set agrees almost everywhere with every other set.
 
-## Three boundary models
+## Boundary models and edge cases
 
 ### Zero and constant observables
 
@@ -237,15 +406,162 @@ is a pointwise algebraic fact, not a measure-theoretic one.
 ### A genuinely divergent orbit
 
 Let the state space be the natural numbers, let \(T(k)=k+1\), let
-\(g(k)=k\), and start at zero. Then
+\(g(k)=k\), and start at \(k\). For every positive \(n\),
 
 \[
-A_{n+1}^g(0)=\frac n2.
+A_n^g(k)=k+\frac{n-1}{2}.
 \]
 
-The sequence tends to positive infinity, not to a finite real. Hence
-\(0\notin E(T,g)\). This compiled RMT-22 probe prevents the event definition
-from being mistaken for a universal convergence assertion.
+The sequence tends to positive infinity, not to a finite real. Hence no
+natural-number start belongs and \(E(T,g)=\varnothing\). The compiled RMT-22
+boundary probe checks the start at zero, while the displayed closed formula
+settles every \(k\).
+
+### Time zero, empty spaces, and the zero measure
+
+- Mathlib defines \(A_0^g(\omega)=0\). Event membership still depends on the
+  tail as \(n\to\infty\); one initial value cannot create or destroy a limit.
+- If \(\Omega\) is empty, then \(E(T,g)=\varnothing=\Omega\). The phrases
+  “empty event” and “full event” coincide because there are no points.
+- Under the zero measure, every exceptional set is null. Consequently an
+  almost-everywhere membership statement can be true even when there is no
+  pointwise member. Never extract a concrete witness from an a.e. theorem
+  without an additional nonvacuity argument.
+
+## A tiny standalone Lean worksheet a human can type
+
+**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+worksheet computes exact finite sums for the two cold-open models. It does not
+import Mathlib, define filters, or prove that an infinite sequence converges.
+
+Save it as <code>BirkhoffConvergenceTutorial.lean</code>:
+
+~~~lean
+import Std
+
+inductive OrbitState where
+  | a | b | c | d
+deriving Repr, DecidableEq
+
+def step : OrbitState → OrbitState
+  | .a => .b
+  | .b => .c
+  | .c => .d
+  | .d => .a
+
+def reading : OrbitState → Int
+  | .a => 3
+  | .b => -1
+  | .c => 4
+  | .d => 2
+
+def iterate : Nat → OrbitState → OrbitState
+  | 0, x => x
+  | n + 1, x => iterate n (step x)
+
+def orbitSum : Nat → OrbitState → Int
+  | 0, _ => 0
+  | n + 1, x => orbitSum n x + reading (iterate n x)
+
+-- The pair (sum, horizon) represents the exact average sum / horizon.
+def averageFraction (n : Nat) (x : OrbitState) : Int × Nat :=
+  (orbitSum n x, n)
+
+#eval [averageFraction 1 .a, averageFraction 2 .a,
+  averageFraction 3 .a, averageFraction 4 .a]
+#eval [averageFraction 4 .a, averageFraction 4 .b,
+  averageFraction 4 .c, averageFraction 4 .d]
+
+example : orbitSum 4 .a = 8 := by decide
+example : orbitSum 4 .b = 8 := by decide
+example : orbitSum 4 .c = 8 := by decide
+example : orbitSum 4 .d = 8 := by decide
+example : orbitSum 8 .a = 16 := by decide
+example : orbitSum 8 .d = 16 := by decide
+
+-- 0 + 1 + ... + (n - 1), the numerator for the rising model at start 0.
+def risingSum : Nat → Nat
+  | 0 => 0
+  | n + 1 => risingSum n + n
+
+-- For n > 0 this is twice the average: 2 * risingSum n / n = n - 1.
+def twiceRisingAverage (n : Nat) : Nat :=
+  if n = 0 then 0 else (2 * risingSum n) / n
+
+#eval [risingSum 1, risingSum 2, risingSum 3, risingSum 4, risingSum 5]
+#eval [twiceRisingAverage 1, twiceRisingAverage 2,
+  twiceRisingAverage 3, twiceRisingAverage 4, twiceRisingAverage 5]
+
+example : risingSum 5 = 10 := by decide
+example : twiceRisingAverage 5 = 4 := by decide
+~~~
+
+From the directory containing the file, type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean BirkhoffConvergenceTutorial.lean
+~~~
+
+The first output represents \(3/1,2/2,6/3,8/4\), namely
+\(3,1,2,2\). The four horizon-\(4\) fractions all have numerator \(8\) and
+denominator \(4\). The rising-model sums are \(0,1,3,6,10\), and twice its
+first five positive-time averages are \(0,1,2,3,4\). These finite checks
+expose the pattern; the bounded-remainder and closed-form arguments above are
+what justify the infinite conclusions.
+
+This command is appropriate on an ordinary Mac or Linux machine: it imports
+only <code>Std</code> and compiles one tiny file. It is intentionally separate
+from the project and Mathlib checks below. This exact worksheet was executed
+successfully with the pinned Lean 4.32.0 compiler on the Mac.
+
+## Try the exact project declarations
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** A human can type the following
+query worksheet in a deliberately provisioned repository clone:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check birkhoffConvergenceSet
+#check mem_birkhoffConvergenceSet_iff
+#check measurableSet_birkhoffConvergenceSet
+#check birkhoffConvergenceSet_ae_eq_of_ae_eq
+#check nullMeasurableSet_birkhoffConvergenceSet_of_integrable
+#check tendsto_birkhoffAverage_apply_base_iff
+#check preimage_birkhoffConvergenceSet
+#check birkhoffConvergenceSet_ae_empty_or_univ_of_measurableSet
+#check measure_birkhoffConvergenceSet_eq_zero_or_one_of_integrable
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for a declaration's exact
+type. The guarded command below compiles the authoritative RMT-22 module. It
+requires the project and Mathlib cache, so it belongs on approved Linux cloud
+compute rather than this Mac workstation.
+{{< /repo-check >}}
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff" >}}
+**Resource label: later pinned project theorem.** To see the distinction
+between defining the event and proving almost-everywhere membership, query the
+later module:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check ae_mem_birkhoffConvergenceSet_of_integrable
+~~~
+
+That theorem assumes a finite measure, measure-preserving dynamics, and an
+integrable real observable. Its conclusion is the exact almost-everywhere
+Lean sentence displayed above. It does not identify the value of the limit.
+The guarded command compiles the later authoritative module only on an
+approved Linux builder.
+{{< /repo-check >}}
 
 ## Candidate and matrix-cocycle views
 

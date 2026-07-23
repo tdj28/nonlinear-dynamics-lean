@@ -1,337 +1,781 @@
 ---
 title: "Infinite-horizon Birkhoff-average exceedance event"
 slug: "infinite-horizon-birkhoff-average-exceedance-event"
-summary: "The infinite-horizon Birkhoff-average exceedance event is the set of starting points for which at least one strictly positive finite time has an orbit average strictly above a fixed threshold."
+summary: "The infinite-horizon Birkhoff-average exceedance event contains the starting points whose finite-time orbit average strictly crosses a chosen threshold at least once."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal"
 og_image: "infinite-horizon-birkhoff-average-exceedance-event-card.png"
-og_image_alt: "Warm-paper glossary card showing nested finite average-exceedance events forming one exact infinite-horizon event. The card emphasizes strict crossing at positive time, says that the event asserts existence rather than convergence, and identifies finite union mass as a clean sufficient gate for the reusable real-measure limit theorem."
+og_image_alt: "On a uniform four-cycle with readings three, minus one, minus one, minus one, strict threshold one half is crossed by x zero at times one, two, and five and by x three at time two, giving event mass one half."
 ---
 
-The **infinite-horizon Birkhoff-average exceedance event** is the set of
-starting points whose orbit average crosses a fixed threshold at least once,
-at some finite positive time. The search ranges over every positive natural
-time, but every successful point still has one finite witness. The word
-*infinite* describes the unbounded search range, not an infinite-duration
-average and not a real-valued maximum over infinitely many times.
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted public working draft. Human review
+of the mathematics, Lean interpretation, sources, figure, and accessibility
+remains pending. Publication does not mean that the page has completed that
+review.
+{{< /panel >}}
 
-Random-matrix-theory milestone 24 (RMT-24) formalizes this event, its exact
-decomposition into increasing finite events, two distinct measurability
-routes, continuity from below in extended measure, and an infinite-horizon
-weak estimate. The full construction is in
-[From Finite Maximal Bounds to an Infinite Weak Estimate]({{< relref "/knowledge-base/deep-dives/from-finite-maximal-bounds-to-an-infinite-weak-estimate" >}}).
-The checked implementation narrative is
-[Infinite-Horizon Birkhoff-Average Exceedance Bounds in Lean]({{< relref "/development-notebook/2026/07/infinite-horizon-birkhoff-average-exceedance-bounds-in-lean" >}}).
-Its finite predecessor is the
-{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}.
-The historical infinite-horizon scope comes from
-[Yosida and Kakutani](#ref-infinite-event-yosida-kakutani), while
-[Keane and Petersen](#ref-infinite-event-keane-petersen) provide the closest
-finite-strict-event precedent.
+Start with four equally likely states
+
+\[
+\Omega=\{x_0,x_1,x_2,x_3\},
+\qquad
+\mu(\{x_j\})=\frac14.
+\]
+
+The map \(T\) moves one step around the cycle
+
+\[
+x_0\longmapsto x_1\longmapsto x_2\longmapsto x_3
+\longmapsto x_0,
+\]
+
+and the observable \(g:\Omega\to\mathbb R\) reads
+
+\[
+g(x_0)=3,
+\qquad
+g(x_1)=g(x_2)=g(x_3)=-1.
+\]
+
+An **observable** is simply a numerical reading attached to each state. The
+measure \(\mu\) is a
+{{< refterm "probability-measure" "probability measure" >}} because the four
+masses add to one. Every subset of this finite space is an
+{{< refterm "event" "event" >}}.
+
+For a start \(x\), add the first \(n\) readings along its orbit and divide by
+\(n\):
+
+\[
+S_n g(x)=\sum_{j=0}^{n-1}g(T^j x),
+\qquad
+A_n g(x)=\frac{S_n g(x)}{n}\quad(n\ge1).
+\]
+
+The first expression is a
+{{< refterm "birkhoff-sum" "Birkhoff sum" >}}. The second is its finite-time
+average. Fix the threshold
+
+\[
+a=\frac12.
+\]
+
+The question is deliberately modest: **does the average cross \(1/2\) at
+least once at a positive finite time?**
+
+## Work out every crossing
+
+The exact first six averages are:
+
+| start | \(A_1\) | \(A_2\) | \(A_3\) | \(A_4\) | \(A_5\) | \(A_6\) |
+|---|---:|---:|---:|---:|---:|---:|
+| \(x_0\) | **\(3\)** | **\(1\)** | \(1/3\) | \(0\) | **\(3/5\)** | \(1/3\) |
+| \(x_1\) | \(-1\) | \(-1\) | \(-1\) | \(0\) | \(-1/5\) | \(-1/3\) |
+| \(x_2\) | \(-1\) | \(-1\) | \(1/3\) | \(0\) | \(-1/5\) | \(-1/3\) |
+| \(x_3\) | \(-1\) | **\(1\)** | \(1/3\) | \(0\) | \(-1/5\) | \(1/3\) |
+
+Bold entries strictly exceed \(1/2\). Thus \(x_0\) crosses at times
+\(1,2,5\), \(x_3\) crosses at time \(2\), and the other two starts do not
+cross in this table.
+
+The table is enough only after we rule out later crossings. Each complete
+four-step block has sum
+
+\[
+3-1-1-1=0.
+\]
+
+For any starting phase, deleting complete four-step blocks leaves a partial
+sum no larger than \(3\). Hence
+
+\[
+S_n g(x)\le3
+\quad\Longrightarrow\quad
+A_n g(x)\le\frac3n\le\frac12
+\qquad(n\ge6).
+\]
+
+The last inequality is not strict at its numerical upper bound, so it still
+excludes the required strict crossing. We have now checked every time, not
+just the six displayed times.
+
+The at-least-once event is therefore
+
+\[
+E_{1/2}(g)=\{x_0,x_3\},
+\qquad
+\mu(E_{1/2}(g))=\frac24=\frac12.
+\]
 
 {{< reference-figure
+  wide="true"
   src="infinite-horizon-exceedance-event.svg"
-  alt="A strict threshold crossing at one positive witness time places a point in the finite event at that same horizon. Conversely, every finite witness remains an infinite witness, so the nested finite events have exactly the infinite event as their union."
-  caption="**Finding:** every point in the infinite-horizon event supplies one positive finite witness time. Choosing that same time as the horizon proves membership in one finite event. The reverse inclusion only forgets the finite upper bound, so the union equality is exact and set-theoretic. Time zero never qualifies, and the construction asserts one crossing rather than convergence of the averages. The orbit path and nested regions are conceptual, not empirical data."
+  alt="An exact four-state cycle has observable values three, negative one, negative one, negative one and uniform mass one quarter. A table shows that x zero crosses the threshold one half at times one, two, and five, while x three crosses at time two. Prefix events grow from empty to x zero and then x zero plus x three. Tail-witness events shrink to empty by time six. Every four-step sum is zero, so all averages have limit superior zero. The at-least-once event has mass one half and satisfies the displayed weak bound one half less than or equal to three halves."
+  caption="**Exact finite example:** the observable values \(3,-1,-1,-1\) repeat around a uniform four-cycle, and the threshold is \(a=1/2\). The highlighted cells are all strict crossings: \(x_0\) crosses at times \(1,2,5\), and \(x_3\) crosses at time \(2\). Prefix events \(E_N\) increase to \(\{x_0,x_3\}\), while tail-witness events \(F_N\) decrease to the empty set by \(N=6\). Since every complete four-step block sums to zero, all four average sequences converge to zero. Thus one crossing does not imply arbitrarily late crossings, eventual crossing at every time, or a positive limit superior. Under the uniform probability measure, \(\mu(E_{1/2})=1/2\), while the general weak estimate gives the valid but loose bound \(1/2\le(3/4)/(1/2)=3/2\). All values are exact toy-model calculations, not empirical data."
 >}}
 
-## Exact definition
+## Three questions that sound similar but are not
 
-Let Ω be a state space, let \(T:\Omega\to\Omega\) be a discrete-time
-transformation, and let \(g:\Omega\to\mathbb R\) be a real observable. For a
-starting point \(\omega\in\Omega\) and a natural number \(k\), the finite
-{{< refterm "birkhoff-sum" "Birkhoff sum" >}} is
+For a fixed positive \(N\), compare these two tail questions:
 
 \[
-S_k g(\omega)
+F_N=
+\{x:\exists n\ge N,\ A_n g(x)\gt a\},
+\]
+
+\[
+G_N=
+\{x:\forall n\ge N,\ A_n g(x)\gt a\}.
+\]
+
+The first says **there is at least one witness at or after \(N\)**. The second
+says **every time at or after \(N\) is a witness**. A single symbol change,
+\(\exists\) to \(\forall\), changes the event drastically.
+
+In the four-cycle example,
+
+\[
+\begin{aligned}
+F_1&=F_2=\{x_0,x_3\},\\
+F_3&=F_4=F_5=\{x_0\},\\
+F_6&=F_7=\cdots=\varnothing.
+\end{aligned}
+\]
+
+The sets \(F_N\) shrink because a later lower bound gives fewer possible
+witness times. Their intersection is the event of **arbitrarily late**, or
+infinitely many, strict crossings:
+
+\[
+\bigcap_{N\ge1}F_N
 {} =
-\sum_{0\le j\lt k}g\bigl(T^j\omega\bigr).
+\{x:\forall N\ge1,\ \exists n\ge N,\ A_n g(x)\gt a\}
+=\varnothing.
 \]
 
-At a positive time \(k\ge1\), the Birkhoff average is
+For \(G_N\), choose a multiple of four with \(n\ge N\). Its average is zero,
+so it does not exceed \(1/2\). Consequently \(G_N=\varnothing\) for every
+\(N\), and the **eventually always above** event is also empty:
 
 \[
-A_k g(\omega)=\frac{S_k g(\omega)}{k}.
-\]
-
-Fix a real threshold \(a\in\mathbb R\). The infinite-horizon exceedance event
-is
-
-\[
-E_a(g)
+\bigcup_{N\ge1}G_N
 {} =
-\left\{\omega:
-\exists k\in\mathbb N,\quad
-1\le k\ \text{and}\ a\lt A_k g(\omega)
-\right\}.
+\{x:\exists N\ge1,\ \forall n\ge N,\ A_n g(x)\gt a\}
+=\varnothing.
 \]
 
-The checked Lean definition states the same predicate directly:
+The project event asks neither tail question. It asks only
 
-~~~lean
-def birkhoffAverageExceedanceSet
-    (T : Ω → Ω) (g : Ω → ℝ) (a : ℝ) : Set Ω :=
-  {ω | ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω}
-~~~
+\[
+\exists n\ge1,\ A_n g(x)\gt a,
+\]
 
-This event is a union of finite-horizon events, not the superlevel set of a
-new real-valued infinite maximum. Avoiding that extra maximum keeps the
-construction meaningful even when the sequence of averages is unbounded.
+so it is exactly \(F_1\). In this example that event has two points even
+though both stronger tail events are empty.
 
-## Strict crossing and positive time are part of the object
+## Prefix unions are different from tail intersections
 
-The threshold comparison is strict. If \(A_k g(\omega)=a\), then time \(k\)
-does not witness membership. This matches the strict finite maximal event used
-to derive the estimate. Replacing \(a\lt A_k g(\omega)\) by
-\(a\le A_k g(\omega)\) would define a different event, especially on atoms or
-on observables whose averages land exactly on the threshold.
-
-Time must also be positive. Mathlib totalizes the zero-time average, but the
-value at zero is not an average of any observed orbit values. Building
-\(1\le k\) into the definition prevents that convention from creating a
-spurious witness.
-
-For the zero observable, these choices are visible immediately:
-
-- if \(0\le a\), every positive-time average equals zero and \(E_a(0)\) is
-  empty;
-- if \(a\lt0\), time one already crosses the threshold and \(E_a(0)=\Omega\);
-  and
-- if \(a=0\), equality does not count, so the event is empty.
-
-These are theorem-boundary tests, not special assumptions in the definition.
-
-## The exact increasing union
-
-For a finite horizon \(N\in\mathbb N\), write
+For a finite upper horizon \(N\), define the **prefix event**
 
 \[
 E_{N,a}(g)
 {} =
-\left\{\omega:
-\exists k,\quad
-1\le k\le N\ \text{and}\ a\lt A_k g(\omega)
-\right\}.
+\{x:\exists n,\ 1\le n\le N\text{ and }a\lt A_n g(x)\}.
 \]
 
-The finite events increase with the horizon: if \(M\le N\), then
-\(E_{M,a}(g)\subseteq E_{N,a}(g)\). Their union is exactly the infinite event:
+As \(N\) grows, a prefix search keeps all earlier witnesses, so these events
+increase. In the example,
+
+\[
+E_{0,1/2}=\varnothing,
+\qquad
+E_{1,1/2}=\{x_0\},
+\qquad
+E_{N,1/2}=\{x_0,x_3\}\quad(N\ge2).
+\]
+
+The infinite-horizon event is their exact union:
 
 \[
 E_a(g)=\bigcup_{N\in\mathbb N}E_{N,a}(g).
 \]
 
-Both inclusions are constructive. Given an infinite-event witness \(k\), take
-\(N=k\). Given a witness inside one finite event, forget only the upper bound
-\(k\le N\). No measurable space, measure, topology, integrability, or dynamical
-regularity is used in this equality.
+The proof is elementary in both directions:
 
-The horizon-zero event is empty because no natural number satisfies
-\(1\le k\le0\). Including that empty first term causes no problem for the
-increasing union.
+1. If \(x\in E_a(g)\), recover its finite witness time \(n\) and choose the
+   finite horizon \(N=n\).
+2. If \(x\in E_{N,a}(g)\) for some \(N\), keep the same witness \(n\) and
+   forget only the upper bound \(n\le N\).
 
-## Two measurability routes
+No measure, measurable structure, topology, integrability, or regularity of
+\(T\) is needed for this set equality.
 
-RMT-24 deliberately exposes two different analytic interfaces.
+Do not confuse the increasing prefix family \(E_{N,a}\) with the decreasing
+tail family \(F_N\). Their quantifiers are
 
-The **ordinary measurable-set route** assumes that both \(T\) and \(g\) are
-measurable. Every finite Birkhoff average is then measurable, each strict
-superlevel set \(E_{N,a}(g)\) is measurable, and their countable union is
+\[
+1\le n\le N
+\qquad\text{versus}\qquad
+n\ge N.
+\]
+
+## What the limit superior can and cannot tell us
+
+The
+{{< refterm "limit-superior" "limit superior" >}}, written
+\(\limsup_{n\to\infty}A_n\), records the largest value that a sequence keeps
+approaching along arbitrarily late times. It is a tail notion, unlike one
+early crossing.
+
+For the four-cycle, complete four-step blocks contribute zero and every
+remaining partial sum has absolute value at most \(3\). Therefore
+
+\[
+\lvert A_n g(x)\rvert
+\le\frac3n,
+\]
+
+and dividing the bounded remainder by \(n\) gives
+
+\[
+A_n g(x)\longrightarrow0
+\qquad\text{for every }x\in\Omega.
+\]
+
+Therefore
+
+\[
+\limsup_{n\to\infty}A_n g(x)=0\lt\frac12
+\]
+
+for all four starts, including the two points in \(E_{1/2}(g)\). This is the
+central misconception guardrail: **an infinite search for one finite witness
+does not describe the long-time limit**.
+
+For a real sequence with a well-defined finite limit superior, the safe
+logical implications are:
+
+\[
+\limsup_n A_n\gt a
+\quad\Longrightarrow\quad
+\forall N\ \exists n\ge N,\ A_n\gt a,
+\]
+
+and
+
+\[
+\forall N\ \exists n\ge N,\ A_n\gt a
+\quad\Longrightarrow\quad
+\limsup_n A_n\ge a.
+\]
+
+Strict inequality is lost in the reverse direction. The sequence
+\(a+1/n\) crosses \(a\) forever but has limit superior exactly \(a\). The
+sequence \(a-1/n\) also has limit superior \(a\) but never crosses \(a\).
+Likewise, eventual strict crossing at every time implies only that the
+{{< refterm "limit-inferior" "limit inferior" >}} is at least \(a\), not
+necessarily strictly greater than \(a\).
+
+## General definition
+
+Let \(\Omega\) be any state space, let \(T:\Omega\to\Omega\) be a discrete-time
+transformation, let \(g:\Omega\to\mathbb R\) be a real observable, and let
+\(a\in\mathbb R\). The infinite-horizon Birkhoff-average exceedance set is
+
+\[
+E_a(g)
+{} =
+\left\{\omega:\exists k\in\mathbb N,\
+1\le k\text{ and }a\lt A_k g(\omega)\right\}.
+\]
+
+The word **infinite-horizon** means that there is no fixed upper bound on the
+search. Every successful point still comes with one ordinary finite witness
+\(k\). The definition introduces no infinite-duration average and no
+real-valued maximum over all times.
+
+The comparison is strict. If \(A_k g(\omega)=a\), time \(k\) is not a
+witness. Time zero is excluded because an average of zero observations should
+not create membership through a totalized library convention.
+
+## Measurability: two honest routes
+
+A
+{{< refterm "measurable-space" "measurable space" >}} specifies which
+subsets may be treated as events, and a
+{{< refterm "measurable-function" "measurable function" >}} has measurable
+preimages of measurable value-space sets. The four-state example uses the
+discrete measurable structure, so every subset and every function is
 measurable.
 
-The **null-measurable-set route** assumes instead that \(T\) preserves a
-measure \(\mu\) and that \(g\) is integrable with respect to \(\mu\). Every
-positive-time Birkhoff average is integrable, hence almost-everywhere strongly
-measurable. Its strict superlevel set is null measurable, and a countable union
-over positive times remains null measurable. This route needs no finite total
-mass, probability normalization, or ergodicity.
+The repository exposes two different general interfaces.
 
-Null measurability is weaker than ordinary measurability. It says that the set
-agrees with a measurable set up to a \(\mu\)-null discrepancy. It is enough
-for the measure-theoretic operations used here, but it must not be advertised
-as the ordinary theorem.
+### Ordinary measurable-set route
 
-## Measure continuity and the real-value cliff
-
-Measures in Lean take values in the **extended nonnegative reals**
-\(\mathbb R_{\ge0}\cup\{\infty\}\), written \(\mathbb R_{\ge0\infty}\) in
-Mathlib. Continuity from below gives
+If \(T\) and \(g\) are measurable, every finite average is measurable. Each
+strict superlevel set is then measurable, and the countable prefix union is a
+measurable set:
 
 \[
-\mu\bigl(E_{N,a}(g)\bigr)
+T\text{ measurable},\ g\text{ measurable}
+\quad\Longrightarrow\quad
+E_a(g)\text{ measurable}.
+\]
+
+### Null-measurable route
+
+Suppose instead that \(T\) is a
+{{< refterm "measure-preserving-transformation" "measure-preserving transformation" >}}
+for a measure \(\mu\), and \(g\) is
+{{< refterm "integrability" "integrable" >}}. Then every positive-time
+average has enough almost-everywhere measurability for its strict superlevel
+set to agree with a measurable set outside a
+{{< refterm "null-set" "null set" >}}. A countable union preserves that
+property, so \(E_a(g)\) is **null measurable** with respect to \(\mu\).
+
+This second conclusion is weaker than ordinary measurability and is stated as
+such in Lean. It needs no finite total mass, probability normalization, or
+ergodicity. It is an example of why
+{{< refterm "almost-everywhere" "almost-everywhere" >}} language must not be
+silently replaced by pointwise language.
+
+## Measures of the increasing finite events
+
+A measure in Mathlib returns an **extended nonnegative real**: an ordinary
+nonnegative number together with a possible value \(\infty\). Continuity from
+below gives
+
+\[
+\mu(E_{N,a}(g))
 \longrightarrow
-\mu\bigl(E_a(g)\bigr)
+\mu(E_a(g))
 \]
 
-in that extended type. Because the finite events are increasing, the checked
-Mathlib theorem needs neither measurability of those sets nor a finiteness
-premise. The limiting value may be infinite.
-This is the exact [continuity-from-below interface used by
-RMT-24](#ref-infinite-event-mathlib-continuity).
+in that extended number system. For this theorem, monotonicity of the prefix
+events is enough. The target may be infinite, and the checked interface does
+not require the sets themselves to be measurable.
 
-Mathlib also offers the real-valued view
-\(\mu_{\mathbb R}(S)=\operatorname{toReal}(\mu(S))\). This conversion maps
-infinite extended mass to zero
-([Mathlib's definition of <code>Measure.real</code>](#ref-infinite-event-mathlib-real)).
-Therefore it is not continuous at infinity.
-To conclude
+Mathlib also defines a real-valued projection
 
 \[
-\mu_{\mathbb R}\bigl(E_{N,a}(g)\bigr)
-\longrightarrow
-\mu_{\mathbb R}\bigl(E_a(g)\bigr),
+\mu_{\mathbb R}(S)=\operatorname{toReal}(\mu(S)),
 \]
 
-RMT-24 proves a reusable corollary under the clean sufficient local condition
+written <code>μ.real S</code> in Lean. This totalized operation maps infinite
+mass to zero. It is therefore not continuous at \(\infty\). The repository's
+real-valued convergence theorem uses the clean sufficient local condition
 
 \[
-\mu\bigl(E_a(g)\bigr)\ne\infty.
+\mu(E_a(g))\ne\infty.
 \]
 
-A finite total measure is also sufficient, but stronger than this local
-statement. Neither condition is claimed to be necessary for every particular
-increasing family.
+That condition is sufficient, not necessary for every special family.
 
-Counting measure supplies the guardrail. Let \(F_N=\{0,\ldots,N-1\}\) inside
-the natural numbers. Then \(F_N\) increases to the whole space and
-\(\mu_{\mathbb R}(F_N)=N\). The union has infinite extended mass, so its
-totalized real measure is zero. The sequence \(N\) plainly does not converge
-to zero. Thus no unconditional theorem can push arbitrary continuity from
-below through the real projection.
-
-The converse guardrail is equally important. Under the same counting measure,
-take identity dynamics, \(g=2\), and \(a=1\). Then every finite event from
-horizon one onward and the infinite event are the whole space. Their real
-measures are all the totalized value zero, so the real sequence converges even
-though the union has infinite extended measure. Local finiteness is therefore
-a small sufficient theorem interface, not an if-and-only-if characterization.
-
-## The weak estimate
-
-Assume now that \(\mu\) is a finite measure, \(T\) preserves \(\mu\), and
-\(g\) is integrable. The RMT-23 finite inequality bounds every horizon by the
-same positive-part integral. Passing through the increasing union gives, for
-every real threshold \(a\),
+Here is the failure mode it prevents. Under counting measure on the natural
+numbers, let \(H_N=\{0,\ldots,N-1\}\). Then \(H_N\uparrow\mathbb N\), but
 
 \[
-a\,\mu_{\mathbb R}\bigl(E_a(g)\bigr)
+\mu_{\mathbb R}(H_N)=N
+\qquad\text{while}\qquad
+\mu_{\mathbb R}(\mathbb N)=0,
+\]
+
+because the union has infinite extended mass. The real sequence \(N\) does
+not converge to zero.
+
+## The weak measure bound, numerically first
+
+Return to the uniform four-cycle. The positive part
+\(g^+(x)=\max\{g(x),0\}\) equals \(3\) at \(x_0\) and \(0\) elsewhere, so
+
+\[
+\int_\Omega g^+\,d\mu
+{} =3\cdot\frac14
+{} =\frac34.
+\]
+
+We already found \(\mu(E_{1/2}(g))=1/2\). The multiplication form says
+
+\[
+\frac12\cdot\frac12
+{} =\frac14
+\le
+\frac34.
+\]
+
+Dividing by the positive threshold gives
+
+\[
+\mu(E_{1/2}(g))
+{} =\frac12
+\le
+\frac{\frac34}{\frac12}
+{} =\frac32.
+\]
+
+The right side can exceed one even on a probability space. The theorem is an
+upper bound, not a probability normalization formula and not an equality.
+
+In general, if \(\mu\) is finite, \(T\) preserves \(\mu\), and \(g\) is
+integrable, the checked multiplication estimate is
+
+\[
+a\,\mu_{\mathbb R}(E_a(g))
 \le
 \int_\Omega \max\{g(\omega),0\}\,d\mu(\omega).
 \]
 
-No sign condition on \(a\) is required for this multiplication form. At a
-negative threshold, however, its left side is nonpositive while the right side
-is nonnegative, so the result may carry little information. At threshold zero
-the left side is zero.
-
-Only a strictly positive threshold licenses order-preserving division:
+This form is valid for every real \(a\). Division is order preserving only
+when \(a\gt0\), which yields
 
 \[
-0\lt a
-\quad\Longrightarrow\quad
-\mu_{\mathbb R}\bigl(E_a(g)\bigr)
+\mu_{\mathbb R}(E_a(g))
 \le
 \frac{\displaystyle\int_\Omega \max\{g(\omega),0\}\,d\mu(\omega)}{a}.
 \]
 
-The right side uses the positive part \(g^+=\max(g,0)\), not the absolute
-value and not the integral of a centered observable. Finite total mass appears
-because the finite threshold argument must integrate the constant threshold
-and because it safely discharges the real-measure finiteness gate.
+The numerator is the integral of the positive part, not the absolute value
+and not the integral of a centered observable.
 
-## What the event and estimate do not say
+## In Lean
 
-Membership in \(E_a(g)\) says that **one** positive-time average crosses
-\(a\). It does not say that:
+The definition says exactly that one positive natural time is a strict
+witness.
 
-- the averages converge;
-- their limit, upper limit, or lower limit has any particular value;
-- the crossing happens infinitely often;
-- the event is invariant under \(T\);
-- the event has probability one or zero;
-- the system is ergodic or mixing;
-- \(T\) is injective, surjective, or invertible;
-- an infinite real maximum exists;
-- a strong \(L^p\) maximal estimate holds; or
-- the pointwise Birkhoff, Kingman, Lyapunov, or Oseledets theorem has been
-  proved.
+{{< lean-bridge
+  human="A starting point omega belongs when at least one positive finite-time average is strictly above the threshold a."
+  math="\(\omega\in E_a(g)\Longleftrightarrow\exists k\in\mathbb N,\ 1\le k\text{ and }a\lt A_k g(\omega).\)"
+  lean="ω ∈ birkhoffAverageExceedanceSet T g a ↔\n  ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω"
+>}}
 
-The weak estimate is an analytic control on event size. A later pointwise
-ergodic proof still needs a dense class with known convergence, approximation
-control, and a closed-limit argument. RMT-24 supplies the infinite weak
-maximal component, not that entire ascent.
+- <code>ω ∈ birkhoffAverageExceedanceSet T g a</code> is set membership.
+- <code>∃ k</code> introduces one natural-number witness.
+- <code>∧</code> requires both positive time and strict crossing.
+- <code>1 ≤ k</code> excludes time zero.
+- <code>birkhoffAverage ℝ T g k ω</code> is the real-valued average of the
+  first \(k\) readings of \(g\) along the \(T\)-orbit of \(\omega\).
+- The final <code>&lt;</code> is strict, so equality with the threshold does not
+  count.
+{{< /lean-bridge >}}
 
-## Lean interface
+The exact checked definition and membership theorem are:
 
-The reusable public declarations are:
+~~~lean
+def birkhoffAverageExceedanceSet
+    (T : Ω → Ω) (g : Ω → ℝ) (a : ℝ) : Set Ω :=
+  {ω | ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω}
 
-- <code>birkhoffAverageExceedanceSet</code>, the event itself;
-- <code>mem_birkhoffAverageExceedanceSet_iff</code>, its positive-time witness
-  interface;
-- <code>birkhoffAverageExceedanceSet_eq_iUnion_finite</code>, the exact union;
-- <code>finiteBirkhoffAverageExceedanceSet_subset</code>, finite-to-infinite
-  inclusion;
-- <code>measurableSet_birkhoffAverageExceedanceSet</code>, ordinary
-  measurability;
-- <code>nullMeasurableSet_birkhoffAverageExceedanceSet_of_integrable</code>,
-  the preservation-and-integrability route;
-- <code>tendsto_measure_finiteBirkhoffAverageExceedanceSet</code>, unconditional
-  extended-measure continuity;
-- <code>tendsto_measureReal_finiteBirkhoffAverageExceedanceSet</code>, locally
-  finite real-measure continuity;
-- <code>birkhoffAverageExceedanceSet_posPart_bound</code>, the all-threshold
-  multiplication estimate; and
-- <code>measureReal_birkhoffAverageExceedanceSet_le</code>, the
-  positive-threshold weak estimate.
+@[simp] theorem mem_birkhoffAverageExceedanceSet_iff
+    {a : ℝ} {ω : Ω} :
+    ω ∈ birkhoffAverageExceedanceSet T g a ↔
+      ∃ k, 1 ≤ k ∧ a < birkhoffAverage ℝ T g k ω := by
+  rfl
+~~~
 
-Ten anonymous compiled probes test witness recovery, horizon zero, both
-threshold branches for the zero observable, zero measure, an explicitly
-nonfinite counting-measure route, positive-threshold division, a noninjective
-measure-preserving map whose exceedance event has positive mass, successful
-real-measure convergence for one infinite-mass event family, and failure of
-real-measure continuity for another infinite-mass increasing family.
+The exact prefix union is a separate theorem.
 
-## Related concepts
+{{< lean-bridge
+  human="Searching all positive times is exactly the same as taking the union of the searches through each finite horizon N."
+  math="\(E_a(g)=\bigcup_{N\in\mathbb N}E_{N,a}(g).\)"
+  lean="birkhoffAverageExceedanceSet T g a =\n  ⋃ N : ℕ, finiteBirkhoffAverageExceedanceSet T g N a"
+>}}
 
-- {{< refterm "birkhoff-sum" "Birkhoff sum" >}} defines the finite orbit sums
-  from which the averages are built.
-- {{< refterm "finite-maximal-ergodic-inequality" "Finite maximal ergodic inequality" >}}
-  supplies the uniform finite-horizon estimate used before taking the union.
-- {{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
-  asks whether the entire average sequence converges, a logically different
-  predicate.
-- {{< refterm "almost-everywhere" "Almost everywhere" >}} explains the
-  null-set equivalence underlying the weaker measurability route.
+- <code>⋃ N : ℕ</code> is an indexed union over every natural-number horizon.
+- <code>finiteBirkhoffAverageExceedanceSet T g N a</code> scans exactly the
+  times \(1\le k\le N\).
+- Equality is literal set equality, not equality only up to a null set.
+- The proof chooses <code>N := k</code> from an infinite-event witness in one
+  direction and forgets <code>k ≤ N</code> in the other.
+{{< /lean-bridge >}}
+
+Ordinary measurability records its assumptions explicitly.
+
+{{< lean-bridge
+  human="If the time-one map T and the observable g are measurable, then the infinite-horizon exceedance set is measurable."
+  math="\(T,g\text{ measurable}\Longrightarrow E_a(g)\in\mathcal F.\)"
+  lean="measurableSet_birkhoffAverageExceedanceSet hT hg a"
+>}}
+
+- <code>hT : Measurable T</code> is the hypothesis for the dynamics.
+- <code>hg : Measurable g</code> is the hypothesis for the observable.
+- <code>MeasurableSet</code> is the conclusion about the set.
+- The theorem rewrites the event as the countable union and applies finite
+  measurability at each horizon.
+{{< /lean-bridge >}}
+
+The measure limit stays in extended nonnegative reals unless a finite target
+licenses the real projection.
+
+{{< lean-bridge
+  human="The extended measures of the increasing finite-horizon events converge to the extended measure of their union."
+  math="\(\mu(E_{N,a})\to\mu(E_a).\)"
+  lean="tendsto_measure_finiteBirkhoffAverageExceedanceSet (T := T) (g := g) (μ := μ) a"
+>}}
+
+- <code>Tendsto</code>, visible in the theorem's result type, is Lean's
+  filter-based convergence relation.
+- <code>atTop</code> means \(N\to\infty\) through natural horizons.
+- <code>nhds</code> is the neighborhood filter of the target measure.
+- The theorem returns convergence before <code>Measure.real</code> is applied,
+  so infinite mass is allowed.
+{{< /lean-bridge >}}
+
+Finally, positivity appears exactly where the multiplication estimate is
+divided by \(a\).
+
+{{< lean-bridge
+  human="On a finite measure space, if T preserves mu, g is integrable, and a is positive, then the real measure of the crossing event is at most the positive-part integral divided by a."
+  math="\(0\lt a\Longrightarrow\mu_{\mathbb R}(E_a(g))\le a^{-1}\int g^+\,d\mu.\)"
+  lean="measureReal_birkhoffAverageExceedanceSet_le hT hg ha"
+>}}
+
+- <code>[IsFiniteMeasure μ]</code> is the finite-total-mass typeclass
+  assumption in the theorem signature.
+- <code>hT : MeasurePreserving T μ μ</code> says the source and target measure
+  are both \(\mu\).
+- <code>hg : Integrable g μ</code> supplies integrability.
+- <code>ha : 0 &lt; a</code> is the division gate.
+- <code>μ.real</code> converts a finite extended measure value to a real
+  number.
+- <code>∫ ω, max (g ω) 0 ∂μ</code> is \(\int g^+\,d\mu\).
+{{< /lean-bridge >}}
+
+The exact checked theorem is:
+
+~~~lean
+theorem measureReal_birkhoffAverageExceedanceSet_le
+    [IsFiniteMeasure μ]
+    (hT : MeasurePreserving T μ μ) (hg : Integrable g μ)
+    {a : ℝ} (ha : 0 < a) :
+    μ.real (birkhoffAverageExceedanceSet T g a) ≤
+      (∫ ω, max (g ω) 0 ∂μ) / a
+~~~
+
+## Tiny local Lean/Std worksheet
+
+**Resource label: tiny standalone check.** This worksheet imports only Lean's
+<code>Std</code> library. It does not import Mathlib or this project, and it
+does not build a project cache. It computes integer orbit sums for the exact
+four-cycle above. At positive time \(n\), the threshold test
+
+\[
+\frac12\lt\frac{S_n}{n}
+\]
+
+is encoded without fractions as \(n\lt2S_n\).
+
+Save this as <code>InfiniteHorizonExceedanceWorksheet.lean</code> in a
+temporary directory outside the repository:
+
+~~~lean
+import Std
+
+namespace InfiniteHorizonExceedanceWorksheet
+
+inductive Point where
+  | p0
+  | p1
+  | p2
+  | p3
+deriving Repr, DecidableEq
+
+def points : List Point := [.p0, .p1, .p2, .p3]
+
+def step : Point → Point
+  | .p0 => .p1
+  | .p1 => .p2
+  | .p2 => .p3
+  | .p3 => .p0
+
+def reading : Point → Int
+  | .p0 => 3
+  | .p1 => -1
+  | .p2 => -1
+  | .p3 => -1
+
+def sumFrom : Nat → Point → Int
+  | 0, _ => 0
+  | n + 1, x => reading x + sumFrom n (step x)
+
+def crossesAt (n : Nat) (x : Point) : Bool :=
+  decide (1 ≤ n ∧ Int.ofNat n < 2 * sumFrom n x)
+
+def crossesThrough (upper : Nat) (x : Point) : Bool :=
+  (List.range (upper + 1)).any fun n => crossesAt n x
+
+def crossesBetween (lower upper : Nat) (x : Point) : Bool :=
+  (List.range (upper + 1)).any fun n =>
+    decide (lower ≤ n) && crossesAt n x
+
+def firstSixSums (x : Point) : List Int :=
+  (List.range 6).map fun j => sumFrom (j + 1) x
+
+#eval firstSixSums .p0
+#eval firstSixSums .p3
+#eval points.filter (crossesThrough 0)
+#eval points.filter (crossesThrough 1)
+#eval points.filter (crossesThrough 2)
+#eval points.filter (crossesBetween 3 12)
+#eval points.filter (crossesBetween 6 12)
+
+example : firstSixSums .p0 = [3, 2, 1, 0, 3, 2] := by decide
+example : firstSixSums .p3 = [-1, 2, 1, 0, -1, 2] := by decide
+example : points.filter (crossesThrough 0) = [] := by decide
+example : points.filter (crossesThrough 1) = [.p0] := by decide
+example : points.filter (crossesThrough 2) = [.p0, .p3] := by decide
+example : points.filter (crossesBetween 3 12) = [.p0] := by decide
+example : points.filter (crossesBetween 6 12) = [] := by decide
+
+end InfiniteHorizonExceedanceWorksheet
+~~~
+
+From that temporary directory, a human with the pinned Lean toolchain already
+installed can type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  InfiniteHorizonExceedanceWorksheet.lean
+~~~
+
+The first two evaluations print the partial sums
+\([3,2,1,0,3,2]\) and \([-1,2,1,0,-1,2]\). The next three print the prefix
+events \(\varnothing\), \(\{x_0\}\), and \(\{x_0,x_3\}\). The last two search
+the displayed tail window: \(x_0\) still has its time-five witness when the
+lower bound is three, and no point has a witness from six through twelve. The
+paper bound \(S_n\le3\) proves the stronger statement for every \(n\ge6\);
+the finite program is not presented as a proof about infinitely many times.
+This exact worksheet was executed successfully with the pinned Lean 4.32.0
+compiler on the Mac; it imports only <code>Std</code> and does not load the
+project or Mathlib.
+
+## Try it in the repository
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** The authoritative checked
+source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean).
+On an approved Linux builder with the project cache provisioned, a human can
+type the following in a temporary project probe:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
+
+open MeasureTheory Set Filter
+open NonlinearDynamics.Random.RandomCocycles
+
+#check birkhoffAverage
+#check finiteBirkhoffAverageExceedanceSet
+#check mem_finiteBirkhoffAverageExceedanceSet_iff
+#check finiteBirkhoffAverageExceedanceSet_mono
+#check birkhoffAverageExceedanceSet
+#check mem_birkhoffAverageExceedanceSet_iff
+#check birkhoffAverageExceedanceSet_eq_iUnion_finite
+#check finiteBirkhoffAverageExceedanceSet_subset
+#check measurableSet_birkhoffAverageExceedanceSet
+#check nullMeasurableSet_birkhoffAverageExceedanceSet_of_integrable
+#check tendsto_measure_finiteBirkhoffAverageExceedanceSet
+#check tendsto_measureReal_finiteBirkhoffAverageExceedanceSet
+#check birkhoffAverageExceedanceSet_posPart_bound
+#check measureReal_birkhoffAverageExceedanceSet_le
+
+#check MeasureTheory.tendsto_measure_iUnion_atTop
+#check MeasureTheory.Measure.real
+#check ENNReal.tendsto_toReal
+~~~
+
+Each <code>#check</code> asks the pinned elaborator to display an exact type.
+The first group follows the repository proof from finite witnesses through
+measurability, measure limits, and the weak bound. The final three queries
+expose the pinned Mathlib interfaces for continuity from below, real-valued
+measure projection, and continuity of that projection away from infinity.
+The guarded command rendered below checks the complete authoritative module.
+It belongs on approved Linux compute, not on this Mac workstation.
+{{< /repo-check >}}
+
+## Boundary cases and nonclaims
+
+- **Horizon zero:** \(E_{0,a}(g)=\varnothing\) because no natural time
+  satisfies \(1\le k\le0\).
+- **Equality:** \(A_k g(\omega)=a\) is not a crossing. Replacing \(\lt\) by
+  \(\le\) defines a different event.
+- **Zero observable:** if \(g=0\) and \(a\ge0\), the event is empty. If
+  \(a\lt0\), time one witnesses every point, so the event is all of \(\Omega\).
+- **Negative threshold:** the multiplication estimate remains valid, but its
+  left side is nonpositive and may convey little information. Division needs
+  \(a\gt0\).
+- **Infinite mass:** extended-measure continuity still works. Unconditional
+  passage through <code>Measure.real</code> does not.
+- **Null measurability:** this is agreement with a measurable set outside a
+  null set, not automatically ordinary measurability.
+
+Membership in \(E_a(g)\) does not assert:
+
+- convergence of the Birkhoff averages;
+- any value for their limit superior or limit inferior;
+- arbitrarily late or infinitely many crossings;
+- eventual crossing at every time;
+- invariance of the event under \(T\);
+- probability zero or one;
+- ergodicity, mixing, or independence;
+- injectivity, surjectivity, or invertibility of \(T\);
+- existence of a real-valued maximum over all times;
+- a strong \(L^p\) maximal inequality;
+- the pointwise Birkhoff or Kingman ergodic theorem; or
+- a Lyapunov exponent or an Oseledets splitting.
+
+The weak estimate controls the measure of one event. It does not, by itself,
+prove a long-time convergence theorem.
+
+## Where to continue
+
+The
+{{< refterm "finite-maximal-ergodic-inequality" "finite maximal ergodic inequality" >}}
+supplies the uniform finite-horizon bound that is passed through the exact
+increasing union. The
+{{< refterm "birkhoff-convergence-event" "Birkhoff convergence event" >}}
+asks whether the whole average sequence converges, which is a different
+predicate.
+
+[From Finite Maximal Bounds to an Infinite Weak Estimate]({{< relref "/knowledge-base/deep-dives/from-finite-maximal-bounds-to-an-infinite-weak-estimate" >}})
+develops the proof architecture as a textbook chapter. The matching checked
+implementation narrative is
+[Infinite-Horizon Birkhoff-Average Exceedance Bounds in Lean]({{< relref "/development-notebook/2026/07/infinite-horizon-birkhoff-average-exceedance-bounds-in-lean" >}}).
+
+Repository milestone 24 (RMT-24) is the current formalized scope: the event,
+its finite union, two measurability routes, extended and locally finite real
+measure limits, and the weak measure estimate. It does not include a
+pointwise ergodic theorem.
 
 ## References
 
-<a id="ref-infinite-event-yosida-kakutani"></a>**Kôsaku Yosida and Shizuo
-Kakutani.**
+**Kôsaku Yosida and Shizuo Kakutani.**
 [Birkhoff's Ergodic Theorem and the Maximal Ergodic Theorem](https://doi.org/10.3792/pia/1195579375),
-*Proceedings of the Imperial Academy* 15(6), 165-168, 1939. Their Theorem 2 is
-an infinite-horizon average theorem proved with a finite maximal-interval
-argument. It is historical scope, not the exact RMT-24 increasing-union proof.
+*Proceedings of the Imperial Academy* 15(6), 165-168, 1939. Their Theorem 2
+gives the historical infinite-horizon maximal-ergodic setting. It is not
+claimed as the exact source of the repository's increasing-union proof.
 
-<a id="ref-infinite-event-keane-petersen"></a>**Michael Keane and Karl
-Petersen.**
+**Michael Keane and Karl Petersen.**
 [Easy and Nearly Simultaneous Proofs of the Ergodic Theorem and Maximal Ergodic Theorem](https://doi.org/10.1214/074921706000000266),
 *IMS Lecture Notes-Monograph Series* 48, 248-251, 2006, with
-[arXiv:math/0608251](https://arxiv.org/abs/math/0608251). Pages 248-249 give
-the closest primary precedent for passing from finite strict average events
-to an infinite maximal statement, in a probability-space development that
-continues farther than RMT-24.
+[arXiv:math/0608251](https://arxiv.org/abs/math/0608251). Pages 248-249 give a
+close primary precedent for passing from finite strict average events to an
+infinite maximal statement in a probability-space argument.
 
-<a id="ref-infinite-event-mathlib-continuity"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [Continuity from below for increasing sets](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Measure/MeasureSpace.lean#L648-L654)
 and
 [continuity of extended-nonnegative-real conversion away from infinity](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Topology/Instances/ENNReal/Lemmas.lean#L103-L107),
 Mathlib 4.32.0. These are the exact limit interfaces used by RMT-24.
 
-<a id="ref-infinite-event-mathlib-real"></a>**Mathlib contributors.**
+**Mathlib contributors.**
 [Definition of <code>Measure.real</code>](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Measure/MeasureSpaceDef.lean#L99-L107),
-Mathlib 4.32.0. The source explicitly records that infinite measure is mapped
-to zero. RMT-24's local finiteness premise supplies a clean sufficient route
-through that totalization boundary; it is not advertised as necessary for
-every specific family.
+Mathlib 4.32.0. The source records explicitly that infinite measure is mapped
+to zero.
+
+The exact upstream Lean source audited for this page is Mathlib commit
+[81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
+the revision pinned by <code>formalization/lake-manifest.json</code>.

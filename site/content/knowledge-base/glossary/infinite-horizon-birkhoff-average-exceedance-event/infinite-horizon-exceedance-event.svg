@@ -1,62 +1,197 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620" role="img" aria-labelledby="infinite-event-title infinite-event-desc">
-  <title id="infinite-event-title">Finite average-exceedance events form the infinite-horizon event</title>
-  <desc id="infinite-event-desc">A positive-time average that strictly crosses the threshold has a finite witness time. Choosing that same time as the finite horizon places the point in one finite event. Conversely, every finite witness is already an infinite witness. The events are nested with the horizon and never lose earlier witnesses, while time zero contributes no witness.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="960" viewBox="0 0 1000 960" role="img" aria-labelledby="infinite-event-title infinite-event-desc">
+  <title id="infinite-event-title">One strict crossing, arbitrarily late crossings, and eventual crossings are different events</title>
+  <desc id="infinite-event-desc">An exact four-state periodic system has uniform mass one quarter, cycles from x zero through x three, and has observable readings three, negative one, negative one, negative one. At threshold one half, x zero crosses at times one, two, and five, while x three crosses at time two. Prefix events grow from empty to x zero and then x zero plus x three. Tail-witness events shrink from x zero plus x three to x zero and then empty at time six. Their intersection is empty, and the eventual-always event is empty. Every four-step block sums to zero and all averages tend to zero. The at-least-once event has measure one half, while the weak theorem gives the valid bound one half less than or equal to three halves.</desc>
   <defs>
-    <marker id="infinite-event-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
-      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    <marker id="orbit-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#4B6787"/>
+    </marker>
+    <marker id="set-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A66A3F"/>
     </marker>
   </defs>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
+    .title{font-size:19px;font-weight:750}
+    .subtitle{font-size:12px;fill:#5F584F}
+    .panelTitle{font-size:13px;font-weight:750;letter-spacing:.04em}
+    .h{font-size:12px;font-weight:700}
+    .body{font-size:11px}
+    .small{font-size:10px;fill:#5F584F}
+    .math{font-family:"STIX Two Math","Cambria Math",Georgia,serif;font-size:12px}
+    .cell{font-family:"STIX Two Math","Cambria Math",Georgia,serif;font-size:11px;text-anchor:middle}
+    .crossText{font-family:"STIX Two Math","Cambria Math",Georgia,serif;font-size:11px;font-weight:750;text-anchor:middle;fill:#6D3F20}
   </style>
-  <rect width="920" height="620" rx="18" fill="#F7F4F0"/>
-  <text class="t title" x="24" y="28">One finite witness builds the infinite-horizon event</text>
-  <text class="t m" x="24" y="48">Strict crossing occurs at a positive natural time, so every witness already lives at a finite horizon.</text>
 
-  <rect x="36" y="82" width="238" height="190" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
-  <text class="t h" x="58" y="112">ONE ORBIT POINT</text>
-  <line x1="66" y1="211" x2="242" y2="211" stroke="#7F786D" stroke-width="1.6"/>
-  <line x1="66" y1="139" x2="66" y2="230" stroke="#7F786D" stroke-width="1.6"/>
-  <line x1="66" y1="175" x2="242" y2="175" stroke="#A89B8C" stroke-width="1.5" stroke-dasharray="5 4"/>
-  <polyline points="72,211 104,201 136,189 168,153 200,168 232,143" fill="none" stroke="#4B6787" stroke-width="3.5"/>
-  <circle cx="168" cy="153" r="7" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
-  <text class="t m" x="77" y="246">time zero</text>
-  <text class="t m" x="146" y="135">strict crossing</text>
-  <text class="t m" x="174" y="225">positive witness time</text>
+  <rect width="1000" height="960" rx="18" fill="#F7F4F0"/>
+  <text class="t title" x="24" y="31">One early crossing is not a long-time conclusion</text>
+  <text class="t subtitle" x="24" y="52">Exact toy model: a uniform four-cycle, readings 3, −1, −1, −1, and strict threshold a = 1/2</text>
 
-  <line x1="286" y1="177" x2="348" y2="177" stroke="#A67C52" stroke-width="3" marker-end="url(#infinite-event-arrow)"/>
-  <text class="t m" x="289" y="160">choose the</text>
-  <text class="t m" x="291" y="195">same horizon</text>
+  <!-- Exact periodic model -->
+  <rect x="24" y="72" width="390" height="262" rx="14" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text class="t panelTitle" x="44" y="98">1. THE PERIODIC ORBIT</text>
+  <text class="t small" x="44" y="117">Each state has probability 1/4. Arrows show one application of T.</text>
 
-  <rect x="360" y="82" width="524" height="190" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.6"/>
-  <text class="t h" x="382" y="112">NESTED FINITE EVENTS</text>
-  <rect x="394" y="139" width="450" height="103" rx="46" fill="#EDE8E1" stroke="#7F786D" stroke-width="1.3"/>
-  <rect x="438" y="151" width="356" height="79" rx="38" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.3"/>
-  <rect x="485" y="162" width="256" height="57" rx="28" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.3"/>
-  <text class="t s" x="505" y="196">earlier horizon</text>
-  <text class="t m" x="748" y="196">later</text>
-  <text class="t m" x="803" y="196">all finite</text>
-  <text class="t m" x="382" y="258">Each later horizon retains every earlier positive-time witness.</text>
+  <line x1="211" y1="151" x2="307" y2="192" stroke="#4B6787" stroke-width="2.8" marker-end="url(#orbit-arrow)"/>
+  <line x1="322" y1="211" x2="229" y2="264" stroke="#4B6787" stroke-width="2.8" marker-end="url(#orbit-arrow)"/>
+  <line x1="191" y1="273" x2="100" y2="220" stroke="#4B6787" stroke-width="2.8" marker-end="url(#orbit-arrow)"/>
+  <line x1="93" y1="195" x2="187" y2="151" stroke="#4B6787" stroke-width="2.8" marker-end="url(#orbit-arrow)"/>
 
-  <rect x="36" y="304" width="848" height="214" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
-  <text class="t h" x="58" y="337">THE TWO INCLUSIONS</text>
-  <rect x="62" y="362" width="350" height="114" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
-  <text class="t h" x="84" y="392">INFINITE TO FINITE</text>
-  <text class="t s" x="84" y="419">Recover the positive witness time.</text>
-  <text class="t s" x="84" y="442">Use that time as the finite horizon.</text>
-  <text class="t m" x="84" y="462">No topology, measure, or measurability is used.</text>
-  <rect x="508" y="362" width="350" height="114" rx="10" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.4"/>
-  <text class="t h" x="530" y="392">FINITE TO INFINITE</text>
-  <text class="t s" x="530" y="419">Forget the upper horizon bound.</text>
-  <text class="t s" x="530" y="442">The same strict positive-time witness remains.</text>
-  <text class="t m" x="530" y="462">The equality is exact, not only almost everywhere.</text>
-  <line x1="424" y1="419" x2="493" y2="419" stroke="#A67C52" stroke-width="3" marker-end="url(#infinite-event-arrow)"/>
-  <line x1="496" y1="449" x2="427" y2="449" stroke="#A67C52" stroke-width="3" marker-end="url(#infinite-event-arrow)"/>
+  <circle cx="205" cy="145" r="34" fill="#F6DDD0" stroke="#A66A3F" stroke-width="2"/>
+  <text class="t h" x="205" y="141" text-anchor="middle">x₀</text>
+  <text class="t math" x="205" y="159" text-anchor="middle">g = 3</text>
 
-  <rect x="24" y="548" width="872" height="48" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
-  <text class="t s" x="48" y="577">Takeaway: the infinite event means that one finite positive-time average crosses strictly; it does not mean the averages converge.</text>
+  <circle cx="329" cy="207" r="34" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text class="t h" x="329" y="203" text-anchor="middle">x₁</text>
+  <text class="t math" x="329" y="221" text-anchor="middle">g = −1</text>
+
+  <circle cx="205" cy="278" r="34" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text class="t h" x="205" y="274" text-anchor="middle">x₂</text>
+  <text class="t math" x="205" y="292" text-anchor="middle">g = −1</text>
+
+  <circle cx="81" cy="207" r="34" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text class="t h" x="81" y="203" text-anchor="middle">x₃</text>
+  <text class="t math" x="81" y="221" text-anchor="middle">g = −1</text>
+
+  <rect x="117" y="308" width="176" height="17" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text class="t small" x="205" y="320" text-anchor="middle">one full block: 3 − 1 − 1 − 1 = 0</text>
+
+  <!-- Average table -->
+  <rect x="430" y="72" width="546" height="262" rx="14" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text class="t panelTitle" x="450" y="98">2. EXACT AVERAGES A_n = S_n / n</text>
+  <text class="t small" x="450" y="117">Outlined cells are the strict crossings A_n &gt; 1/2.</text>
+
+  <rect x="446" y="130" width="514" height="166" rx="7" fill="#FFFFFF" stroke="#D8CEC1"/>
+  <line x1="538" y1="130" x2="538" y2="296" stroke="#D8CEC1"/>
+  <line x1="446" y1="160" x2="960" y2="160" stroke="#D8CEC1"/>
+  <line x1="446" y1="194" x2="960" y2="194" stroke="#E1D8CE"/>
+  <line x1="446" y1="228" x2="960" y2="228" stroke="#E1D8CE"/>
+  <line x1="446" y1="262" x2="960" y2="262" stroke="#E1D8CE"/>
+  <line x1="608" y1="130" x2="608" y2="296" stroke="#E1D8CE"/>
+  <line x1="678" y1="130" x2="678" y2="296" stroke="#E1D8CE"/>
+  <line x1="748" y1="130" x2="748" y2="296" stroke="#E1D8CE"/>
+  <line x1="818" y1="130" x2="818" y2="296" stroke="#E1D8CE"/>
+  <line x1="888" y1="130" x2="888" y2="296" stroke="#E1D8CE"/>
+
+  <text class="t h" x="492" y="150" text-anchor="middle">start</text>
+  <text class="t h" x="573" y="150" text-anchor="middle">n=1</text>
+  <text class="t h" x="643" y="150" text-anchor="middle">n=2</text>
+  <text class="t h" x="713" y="150" text-anchor="middle">n=3</text>
+  <text class="t h" x="783" y="150" text-anchor="middle">n=4</text>
+  <text class="t h" x="853" y="150" text-anchor="middle">n=5</text>
+  <text class="t h" x="923" y="150" text-anchor="middle">n=6</text>
+
+  <text class="t h" x="492" y="182" text-anchor="middle">x₀</text>
+  <text class="t h" x="492" y="216" text-anchor="middle">x₁</text>
+  <text class="t h" x="492" y="250" text-anchor="middle">x₂</text>
+  <text class="t h" x="492" y="284" text-anchor="middle">x₃</text>
+
+  <rect x="542" y="164" width="62" height="26" rx="5" fill="#F6DDD0" stroke="#A66A3F" stroke-width="1.5"/>
+  <rect x="612" y="164" width="62" height="26" rx="5" fill="#F6DDD0" stroke="#A66A3F" stroke-width="1.5"/>
+  <rect x="822" y="164" width="62" height="26" rx="5" fill="#F6DDD0" stroke="#A66A3F" stroke-width="1.5"/>
+  <rect x="612" y="266" width="62" height="26" rx="5" fill="#F6DDD0" stroke="#A66A3F" stroke-width="1.5"/>
+
+  <text class="crossText" x="573" y="181">3</text>
+  <text class="crossText" x="643" y="181">1</text>
+  <text class="cell" x="713" y="181">1/3</text>
+  <text class="cell" x="783" y="181">0</text>
+  <text class="crossText" x="853" y="181">3/5</text>
+  <text class="cell" x="923" y="181">1/3</text>
+
+  <text class="cell" x="573" y="215">−1</text>
+  <text class="cell" x="643" y="215">−1</text>
+  <text class="cell" x="713" y="215">−1</text>
+  <text class="cell" x="783" y="215">0</text>
+  <text class="cell" x="853" y="215">−1/5</text>
+  <text class="cell" x="923" y="215">−1/3</text>
+
+  <text class="cell" x="573" y="249">−1</text>
+  <text class="cell" x="643" y="249">−1</text>
+  <text class="cell" x="713" y="249">1/3</text>
+  <text class="cell" x="783" y="249">0</text>
+  <text class="cell" x="853" y="249">−1/5</text>
+  <text class="cell" x="923" y="249">−1/3</text>
+
+  <text class="cell" x="573" y="283">−1</text>
+  <text class="crossText" x="643" y="283">1</text>
+  <text class="cell" x="713" y="283">1/3</text>
+  <text class="cell" x="783" y="283">0</text>
+  <text class="cell" x="853" y="283">−1/5</text>
+  <text class="cell" x="923" y="283">1/3</text>
+
+  <text class="t small" x="450" y="316">All later times fail: S_n ≤ 3, so A_n ≤ 3/n ≤ 1/2 for n ≥ 6.</text>
+
+  <!-- Prefix and tail sets -->
+  <rect x="24" y="352" width="952" height="252" rx="14" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text class="t panelTitle" x="44" y="378">3. UPPER-HORIZON PREFIXES GROW; LOWER-HORIZON TAILS SHRINK</text>
+
+  <text class="t h" x="44" y="408">Prefix: E_N = {a crossing at some time 1 through N}</text>
+  <text class="t small" x="44" y="425">A later upper horizon keeps every earlier witness.</text>
+
+  <rect x="54" y="442" width="126" height="43" rx="8" fill="#EEE9E2" stroke="#7F786D"/>
+  <text class="t math" x="117" y="469" text-anchor="middle">E₀ = ∅</text>
+  <line x1="185" y1="464" x2="221" y2="464" stroke="#A66A3F" stroke-width="2.3" marker-end="url(#set-arrow)"/>
+  <rect x="228" y="442" width="144" height="43" rx="8" fill="#F6DDD0" stroke="#A66A3F"/>
+  <text class="t math" x="300" y="469" text-anchor="middle">E₁ = {x₀}</text>
+  <line x1="377" y1="464" x2="413" y2="464" stroke="#A66A3F" stroke-width="2.3" marker-end="url(#set-arrow)"/>
+  <rect x="420" y="442" width="176" height="43" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text class="t math" x="508" y="469" text-anchor="middle">E₂ = {x₀,x₃}</text>
+  <line x1="601" y1="464" x2="637" y2="464" stroke="#A66A3F" stroke-width="2.3" marker-end="url(#set-arrow)"/>
+  <rect x="644" y="442" width="282" height="43" rx="8" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.6"/>
+  <text class="t math" x="785" y="461" text-anchor="middle">⋃_N E_N = {x₀,x₃}</text>
+  <text class="t small" x="785" y="477" text-anchor="middle">the project event: at least once</text>
+
+  <text class="t h" x="44" y="520">Tail: F_N = {a crossing at some time n ≥ N}</text>
+  <text class="t small" x="44" y="537">A later lower horizon discards early witnesses.</text>
+
+  <rect x="54" y="550" width="166" height="40" rx="8" fill="#E8F0F7" stroke="#4B6787"/>
+  <text class="t math" x="137" y="575" text-anchor="middle">F₁ = {x₀,x₃}</text>
+  <line x1="225" y1="570" x2="261" y2="570" stroke="#4B6787" stroke-width="2.3" marker-end="url(#orbit-arrow)"/>
+  <rect x="268" y="550" width="150" height="40" rx="8" fill="#E8F0F7" stroke="#4B6787"/>
+  <text class="t math" x="343" y="575" text-anchor="middle">F₃ = {x₀}</text>
+  <line x1="423" y1="570" x2="459" y2="570" stroke="#4B6787" stroke-width="2.3" marker-end="url(#orbit-arrow)"/>
+  <rect x="466" y="550" width="126" height="40" rx="8" fill="#EEE9E2" stroke="#7F786D"/>
+  <text class="t math" x="529" y="575" text-anchor="middle">F₆ = ∅</text>
+  <line x1="597" y1="570" x2="633" y2="570" stroke="#4B6787" stroke-width="2.3" marker-end="url(#orbit-arrow)"/>
+  <rect x="640" y="550" width="286" height="40" rx="8" fill="#EEE9E2" stroke="#7F786D" stroke-width="1.5"/>
+  <text class="t math" x="783" y="568" text-anchor="middle">⋂_N F_N = ∅</text>
+  <text class="t small" x="783" y="583" text-anchor="middle">no arbitrarily late crossings</text>
+
+  <!-- Logical outcomes -->
+  <rect x="24" y="622" width="952" height="290" rx="14" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
+  <text class="t panelTitle" x="44" y="649">4. THREE DIFFERENT CONCLUSIONS</text>
+
+  <rect x="44" y="667" width="286" height="216" rx="11" fill="#F6EEE8" stroke="#A66A3F" stroke-width="1.4"/>
+  <text class="t h" x="62" y="691">QUANTIFIERS</text>
+  <text class="t math" x="62" y="720">∃ n ≥ 1, A_n &gt; 1/2</text>
+  <text class="t body" x="62" y="740">at least once: {x₀,x₃}</text>
+  <line x1="62" y1="753" x2="312" y2="753" stroke="#D3BCA9"/>
+  <text class="t math" x="62" y="778">∀ N, ∃ n ≥ N, A_n &gt; 1/2</text>
+  <text class="t body" x="62" y="798">arbitrarily late: ∅</text>
+  <line x1="62" y1="811" x2="312" y2="811" stroke="#D3BCA9"/>
+  <text class="t math" x="62" y="836">∃ N, ∀ n ≥ N, A_n &gt; 1/2</text>
+  <text class="t body" x="62" y="856">eventually always: ∅</text>
+  <text class="t small" x="62" y="874">Changing ∃ to ∀ changes the event.</text>
+
+  <rect x="357" y="667" width="286" height="216" rx="11" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text class="t h" x="375" y="691">LONG-TIME BEHAVIOR</text>
+  <text class="t math" x="375" y="722">3 − 1 − 1 − 1 = 0</text>
+  <text class="t body" x="375" y="744">complete blocks cancel</text>
+  <text class="t math" x="375" y="775">|S_n(x)| ≤ 3</text>
+  <text class="t body" x="375" y="797">every remaining partial sum is bounded</text>
+  <text class="t math" x="375" y="828">A_n(x) → 0</text>
+  <text class="t math" x="375" y="851">lim sup A_n(x) = 0 &lt; 1/2</text>
+  <text class="t small" x="375" y="874">An early crossing does not set the limit.</text>
+
+  <rect x="670" y="667" width="286" height="216" rx="11" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text class="t h" x="688" y="691">MEASURE BOUND</text>
+  <text class="t math" x="688" y="722">E₁⁄₂ = {x₀,x₃}</text>
+  <text class="t math" x="688" y="748">μ(E₁⁄₂) = 2/4 = 1/2</text>
+  <text class="t math" x="688" y="784">∫ g⁺ dμ = 3 · 1/4 = 3/4</text>
+  <line x1="688" y1="801" x2="938" y2="801" stroke="#B6C5AA"/>
+  <text class="t math" x="688" y="828">μ(E₁⁄₂) ≤ (∫ g⁺ dμ)/(1/2)</text>
+  <text class="t math" x="688" y="854">1/2 ≤ 3/2  ✓</text>
+  <text class="t small" x="688" y="874">Valid and intentionally not sharp.</text>
+
+  <rect x="24" y="926" width="952" height="22" rx="9" fill="#2C2924"/>
+  <text x="500" y="941" text-anchor="middle" style="font-family:Inter,Arial,sans-serif;font-size:11px;fill:#FFFFFF">Takeaway: “some positive time” is an increasing-union event, not a claim about infinitely many times or a limiting average.</text>
 </svg>

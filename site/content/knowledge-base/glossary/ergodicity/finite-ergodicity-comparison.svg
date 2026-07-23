@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1410"
+     viewBox="0 0 760 1410" role="img"
+     aria-labelledby="finiteErgodicityTitle finiteErgodicityDesc">
+  <title id="finiteErgodicityTitle">One six-state cycle is ergodic, while two three-state cycles retain component information</title>
+  <desc id="finiteErgodicityDesc">Six states have equal mass one sixth and observable values two, five, eight, eleven, fourteen, and twenty. The first system is one directed cycle through every state. Its only invariant events are empty and all, every invariant function uses one value, and every six-step observable average is ten. The second system consists of separate left and right three-cycles. Each component is an invariant event of mass one half, an invariant function may use value five on the first and fifteen on the second, and the corresponding orbit averages are five and fifteen. A lower timeline shows that for the singleton event zero in the one-cycle, the overlap probability is one sixth at lags zero and six and zero at intervening lags. It does not approach the mixing target one thirty-six. A final note distinguishes literal invariance from equality modulo null sets.</desc>
+
+  <defs>
+    <marker id="finiteErgodicityArrow" viewBox="0 0 10 10"
+            refX="9" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#76583F"/>
+    </marker>
+    <pattern id="finiteErgodicityHatch" width="8" height="8"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8"
+            stroke="#A96F45" stroke-width="2" opacity="0.28"/>
+    </pattern>
+  </defs>
+
+  <rect width="760" height="1410" fill="#F7F2EA"/>
+  <style>
+    .text{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2E2923}
+    .title{font-size:24px;font-weight:750}
+    .subtitle{font-size:14px;fill:#5A5147}
+    .panelTitle{font-size:19px;font-weight:750}
+    .section{font-size:14px;font-weight:700;letter-spacing:.35px}
+    .body{font-size:13px}
+    .small{font-size:12px;fill:#5A5147}
+    .nodeState{font-size:15px;font-weight:750}
+    .nodeValue{font-size:10px;fill:#4E463D}
+    .ledger{font-size:13px;font-weight:650}
+    .card{fill:#FCFAF6;stroke:#BBAE9D;stroke-width:1.5}
+    .leftCard{fill:#EEF3F7;stroke:#4F6D89;stroke-width:2}
+    .rightCard{fill:#F7ECE3;stroke:#9B6846;stroke-width:2}
+    .blueBox{fill:#E7EFF6;stroke:#4F6D89;stroke-width:1.5}
+    .clayBox{fill:#F5E7DC;stroke:#9B6846;stroke-width:1.5}
+    .greenBox{fill:#EAF1E5;stroke:#667F55;stroke-width:1.5}
+    .creamBox{fill:#FFFCF7;stroke:#BBAE9D;stroke-width:1.2}
+    .node{fill:#FFFCF7;stroke:#514A42;stroke-width:1.6}
+    .edge{fill:none;stroke:#76583F;stroke-width:2.4;
+          marker-end:url(#finiteErgodicityArrow)}
+    .rule{stroke:#C6B9A8;stroke-width:1.2}
+  </style>
+
+  <text x="24" y="38" class="text title">What information survives forever?</text>
+  <text x="24" y="62" class="text subtitle">Same six states, same mass 1/6 per state, same observable f. Only the arrows change.</text>
+
+  <rect x="24" y="88" width="712" height="400" rx="18" class="leftCard"/>
+  <rect x="48" y="108" width="94" height="24" rx="12" fill="#4F6D89"/>
+  <text x="95" y="125" text-anchor="middle" class="text small"
+        style="fill:#FFFDF8;font-weight:750">SYSTEM A</text>
+  <text x="48" y="159" class="text panelTitle">ONE ORBIT: ERGODIC</text>
+  <text x="48" y="181" class="text body">Every start visits all six states.</text>
+
+  <path d="M 252 230 L 305 260" class="edge"/>
+  <path d="M 330 299 L 330 359" class="edge"/>
+  <path d="M 305 398 L 252 428" class="edge"/>
+  <path d="M 198 428 L 145 398" class="edge"/>
+  <path d="M 120 359 L 120 299" class="edge"/>
+  <path d="M 145 260 L 198 230" class="edge"/>
+
+  <g>
+    <circle cx="225" cy="215" r="29" class="node"/>
+    <text x="225" y="213" text-anchor="middle" class="text nodeState">0</text>
+    <text x="225" y="229" text-anchor="middle" class="text nodeValue">f=2</text>
+
+    <circle cx="330" cy="276" r="29" class="node"/>
+    <text x="330" y="274" text-anchor="middle" class="text nodeState">1</text>
+    <text x="330" y="290" text-anchor="middle" class="text nodeValue">f=5</text>
+
+    <circle cx="330" cy="382" r="29" class="node"/>
+    <text x="330" y="380" text-anchor="middle" class="text nodeState">2</text>
+    <text x="330" y="396" text-anchor="middle" class="text nodeValue">f=8</text>
+
+    <circle cx="225" cy="443" r="29" class="node"/>
+    <text x="225" y="441" text-anchor="middle" class="text nodeState">3</text>
+    <text x="225" y="457" text-anchor="middle" class="text nodeValue">f=11</text>
+
+    <circle cx="120" cy="382" r="29" class="node"/>
+    <text x="120" y="380" text-anchor="middle" class="text nodeState">4</text>
+    <text x="120" y="396" text-anchor="middle" class="text nodeValue">f=14</text>
+
+    <circle cx="120" cy="276" r="29" class="node"/>
+    <text x="120" y="274" text-anchor="middle" class="text nodeState">5</text>
+    <text x="120" y="290" text-anchor="middle" class="text nodeValue">f=20</text>
+  </g>
+
+  <rect x="390" y="147" width="322" height="303" rx="12" class="creamBox"/>
+  <text x="410" y="177" class="text section">INVARIANT EVENTS</text>
+  <text x="410" y="201" class="text ledger">empty, all</text>
+  <text x="410" y="223" class="text body">probabilities 0, 1</text>
+  <line x1="410" y1="242" x2="692" y2="242" class="rule"/>
+  <text x="410" y="271" class="text section">INVARIANT FUNCTION g</text>
+  <text x="410" y="296" class="text body">g(0) = g(1) = ... = g(5) = c</text>
+  <text x="410" y="319" class="text small">one value on the whole orbit</text>
+  <line x1="410" y1="338" x2="692" y2="338" class="rule"/>
+  <text x="410" y="367" class="text section">OBSERVABLE f</text>
+  <text x="410" y="392" class="text body">sum = 2 + 5 + 8 + 11 + 14 + 20 = 60</text>
+  <rect x="410" y="408" width="282" height="25" rx="8" class="greenBox"/>
+  <text x="551" y="425" text-anchor="middle" class="text ledger">full-cycle mean = 60 / 6 = 10</text>
+
+  <rect x="24" y="514" width="712" height="449" rx="18" class="rightCard"/>
+  <rect x="48" y="534" width="94" height="24" rx="12" fill="#9B6846"/>
+  <text x="95" y="551" text-anchor="middle" class="text small"
+        style="fill:#FFFDF8;font-weight:750">SYSTEM B</text>
+  <text x="48" y="585" class="text panelTitle">TWO ORBITS: NOT ERGODIC</text>
+  <text x="48" y="607" class="text body">The component label never changes.</text>
+
+  <rect x="48" y="628" width="320" height="218" rx="16"
+        fill="url(#finiteErgodicityHatch)" stroke="#4F6D89"
+        stroke-width="2"/>
+  <rect x="392" y="628" width="320" height="218" rx="16"
+        fill="#FCF6F0" stroke="#9B6846" stroke-width="2"
+        stroke-dasharray="8 6"/>
+  <text x="65" y="654" class="text section">L = {0,1,2}: MASS 1/2</text>
+  <text x="409" y="654" class="text section">R = {3,4,5}: MASS 1/2</text>
+
+  <path d="M 198 704 L 130 776" class="edge"/>
+  <path d="M 159 798 L 257 798" class="edge"/>
+  <path d="M 280 776 L 220 704" class="edge"/>
+  <path d="M 542 704 L 474 776" class="edge"/>
+  <path d="M 503 798 L 601 798" class="edge"/>
+  <path d="M 624 776 L 564 704" class="edge"/>
+
+  <g>
+    <circle cx="209" cy="688" r="28" class="node"/>
+    <text x="209" y="686" text-anchor="middle" class="text nodeState">0</text>
+    <text x="209" y="701" text-anchor="middle" class="text nodeValue">f=2</text>
+    <circle cx="132" cy="798" r="28" class="node"/>
+    <text x="132" y="796" text-anchor="middle" class="text nodeState">1</text>
+    <text x="132" y="811" text-anchor="middle" class="text nodeValue">f=5</text>
+    <circle cx="286" cy="798" r="28" class="node"/>
+    <text x="286" y="796" text-anchor="middle" class="text nodeState">2</text>
+    <text x="286" y="811" text-anchor="middle" class="text nodeValue">f=8</text>
+
+    <circle cx="553" cy="688" r="28" class="node"/>
+    <text x="553" y="686" text-anchor="middle" class="text nodeState">3</text>
+    <text x="553" y="701" text-anchor="middle" class="text nodeValue">f=11</text>
+    <circle cx="476" cy="798" r="28" class="node"/>
+    <text x="476" y="796" text-anchor="middle" class="text nodeState">4</text>
+    <text x="476" y="811" text-anchor="middle" class="text nodeValue">f=14</text>
+    <circle cx="630" cy="798" r="28" class="node"/>
+    <text x="630" y="796" text-anchor="middle" class="text nodeState">5</text>
+    <text x="630" y="811" text-anchor="middle" class="text nodeValue">f=20</text>
+  </g>
+
+  <rect x="48" y="866" width="664" height="73" rx="10" class="creamBox"/>
+  <text x="66" y="890" class="text ledger">Invariant events: empty, L, R, all   |   masses: 0, 1/2, 1/2, 1</text>
+  <text x="66" y="914" class="text body">Invariant g: 5 on L, 15 on R   |   f means: 15 / 3 = 5, 45 / 3 = 15</text>
+  <text x="66" y="931" class="text small">The orbit average remembers which sealed component contained the start.</text>
+
+  <rect x="24" y="989" width="712" height="271" rx="18" class="card"/>
+  <text x="48" y="1023" class="text panelTitle">Ergodic does not imply mixing</text>
+  <text x="48" y="1048" class="text body">In System A, let E = {0}. Track mu(E intersection T^-n E):</text>
+
+  <line x1="61" y1="1110" x2="516" y2="1110" class="rule"/>
+  <g>
+    <circle cx="68" cy="1110" r="19" class="greenBox"/>
+    <circle cx="143" cy="1110" r="19" class="creamBox"/>
+    <circle cx="218" cy="1110" r="19" class="creamBox"/>
+    <circle cx="293" cy="1110" r="19" class="creamBox"/>
+    <circle cx="368" cy="1110" r="19" class="creamBox"/>
+    <circle cx="443" cy="1110" r="19" class="creamBox"/>
+    <circle cx="518" cy="1110" r="19" class="greenBox"/>
+    <text x="68" y="1115" text-anchor="middle" class="text ledger">1/6</text>
+    <text x="143" y="1115" text-anchor="middle" class="text ledger">0</text>
+    <text x="218" y="1115" text-anchor="middle" class="text ledger">0</text>
+    <text x="293" y="1115" text-anchor="middle" class="text ledger">0</text>
+    <text x="368" y="1115" text-anchor="middle" class="text ledger">0</text>
+    <text x="443" y="1115" text-anchor="middle" class="text ledger">0</text>
+    <text x="518" y="1115" text-anchor="middle" class="text ledger">1/6</text>
+    <text x="68" y="1143" text-anchor="middle" class="text small">n=0</text>
+    <text x="143" y="1143" text-anchor="middle" class="text small">n=1</text>
+    <text x="218" y="1143" text-anchor="middle" class="text small">n=2</text>
+    <text x="293" y="1143" text-anchor="middle" class="text small">n=3</text>
+    <text x="368" y="1143" text-anchor="middle" class="text small">n=4</text>
+    <text x="443" y="1143" text-anchor="middle" class="text small">n=5</text>
+    <text x="518" y="1143" text-anchor="middle" class="text small">n=6</text>
+  </g>
+
+  <rect x="548" y="1071" width="164" height="89" rx="12" class="clayBox"/>
+  <text x="630" y="1097" text-anchor="middle" class="text section">MIXING TARGET</text>
+  <text x="630" y="1124" text-anchor="middle" class="text panelTitle">mu(E)^2 = 1/36</text>
+  <text x="630" y="1147" text-anchor="middle" class="text small">never approached</text>
+
+  <rect x="48" y="1181" width="664" height="55" rx="10" class="greenBox"/>
+  <text x="380" y="1204" text-anchor="middle" class="text ledger">overlap: 1/6, 0, 0, 0, 0, 0, 1/6, ...</text>
+  <text x="380" y="1223" text-anchor="middle" class="text small">Periodic timing survives, so the ergodic finite cycle is not mixing.</text>
+
+  <rect x="24" y="1286" width="712" height="96" rx="16" class="greenBox"/>
+  <text x="48" y="1316" class="text section">INVARIANCE MODULO NULL SETS</text>
+  <text x="48" y="1341" class="text body">Finite uniform model: equality almost everywhere = literal equality.</text>
+  <text x="48" y="1365" class="text body">General preserved measure: mu(N)=0 implies T^-1 N differs from N only on a null set.</text>
+</svg>
