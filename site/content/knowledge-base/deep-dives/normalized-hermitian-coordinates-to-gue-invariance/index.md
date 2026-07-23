@@ -2,17 +2,17 @@
 title: "From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble Invariance"
 slug: "normalized-hermitian-coordinates-to-gue-invariance"
 date: 2026-07-21
-summary: "A textbook derivation of normalized real Hermitian coordinates, the full product-measure comparison with a scaled intrinsic Gaussian, commuting ambient pushforwards, and the first checked nontrivial Gaussian unitary ensemble symmetry."
-lead: "The word unitary becomes a theorem only after entrywise independence and basis-neutral Gaussian geometry are proved to describe the same measure."
+summary: "An exact size-two ledger shows why normalized Hermitian coordinates are isometric, how their full Gaussian product becomes the intrinsic and ambient Gaussian unitary ensemble laws, and why unitary invariance is equality of pushforward measures rather than pointwise fixedness."
+lead: "One square root of two turns an entrywise Gaussian recipe into basis-neutral Hermitian geometry. Follow the exact matrix, the complete product law, and the commuting pushforwards before using the word invariant."
 draft: false
 pro_reviewed: false
-level: "Finite Gaussian product measures through ambient ensemble symmetry"
-reading_time: "75 to 95 minutes"
-prerequisites: "Finite product measures, real and complex Gaussian scaling, Hermitian assembly, Frobenius geometry, and intrinsic standard-Gaussian invariance; each is reviewed before use"
+level: "Concrete two-by-two calculation to finite ensemble symmetry"
+reading_time: "75 to 100 minutes"
+prerequisites: "Algebra with complex numbers and two-by-two matrices; Gaussian laws, product measures, intrinsic carriers, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance"
 toc: true
 og_image: "normalized-coordinates-to-gue-invariance-card.png"
-og_image_alt: "An independent normalized real Gaussian product is decoded into a scaled intrinsic Hermitian Gaussian and included into ambient matrix space; the exact commuting comparison transfers unitary symmetry to the coordinate-built Gaussian unitary ensemble law."
+og_image_alt: "At size two, four normalized Gaussian coordinates of variance one half decode into the Hermitian matrix with rows two, one plus two i and one minus two i, minus one; the coordinate and Frobenius squared norms both equal fifteen."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -23,873 +23,1156 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+**Editorial status.** This is an AI-assisted public working draft. The
+mathematical prose, figures, citations, declaration map, and accessibility
+remain pending human and Pro review. Statements described as checked refer to
+the pinned repository modules. The small <code>Std</code> worksheet below was
+executed separately with pinned Lean 4.32.0.
 {{< /panel >}}
 
-The phrase *Gaussian unitary ensemble* contains two mathematical claims.
-*Gaussian* says how probability is distributed. *Unitary* says that a
-deterministic unitary change of basis does not alter that distribution. An
-entrywise construction from independent random variables makes the first
-claim visible but hides the second. An intrinsic isotropic Gaussian makes the
-second claim nearly automatic but hides the exact entry variances and
-independence ledger.
+## Start with the exact size-two ledger
 
-The eighth random-matrix-theory milestone (RMT-08) proves that these are two
-presentations of the same finite law. It introduces a single family of
-normalized real Hermitian coordinates, proves that decoding them is a real
-linear isometric equivalence, identifies their full product Gaussian measure
-with the earlier coordinate measure, identifies the Euclidean packaging with
-a uniformly scaled intrinsic standard Gaussian, and proves that both
-deterministic routes commute all the way to ambient matrix space.
+The repository fixes one finite Gaussian unitary ensemble (GUE) convention
+before it proves any symmetry. In positive dimension \(n\), the variance scale
+is
 
-The checked module exposes 35 public declarations: 12 definitions or
-abbreviations, one probability-measure instance, and 22 theorems. The API is
-mapped declaration by declaration below.
+\[
+v_n=\frac1n.
+\]
 
-Only then does the project transport RMT-07's intrinsic Gaussian symmetry to
-the previously defined <code>GUE.matrixLaw</code>. The conclusion is the first
-checked nontrivial instance of ambient
-{{< refterm "unitary-invariance" "unitary invariance" >}} in the repository.
-No density, volume Jacobian, or spectral theorem is needed.
+A {{< refterm "gaussian-distribution" "Gaussian distribution" >}} is a
+bell-shaped probability law determined here by its mean and
+{{< refterm "variance" "variance" >}}. “Centered” means mean zero; variance
+measures expected squared displacement from that mean. When this chapter says
+coordinates are mutually {{< refterm "independence" "independent" >}}, it
+means their joint law is the product of the listed one-coordinate laws, not
+merely that their pairwise correlations vanish.
 
-## Choose a route up
+Diagonal entries have variance \(v_n\). The real and imaginary parts of each
+strict-upper entry have variance \(v_n/2\). The lower triangle is not sampled
+independently; it is forced by Hermitian conjugate reflection.
 
-| Route | Begin with | Destination |
-|---|---|---|
-| First encounter | [The comparison in one picture](#the-comparison-in-one-picture) | See the two routes and where they meet |
-| Coordinate route | [One normalized real index](#camp-one-one-normalized-real-index) | Encode every free Hermitian degree of freedom uniformly |
-| Geometry route | [Decode with the metric correction](#camp-two-decode-with-the-metric-correction) | Prove a real linear isometric equivalence |
-| Probability route | [Put one Gaussian scale on every slot](#camp-four-put-one-gaussian-scale-on-every-slot) | Recover the complete earlier coordinate law |
-| Intrinsic route | [From the product law to a scaled standard Gaussian](#camp-six-from-the-product-law-to-a-scaled-standard-gaussian) | Identify the basis-neutral Hermitian law |
-| Transport route | [The commuting ambient square](#camp-seven-the-commuting-ambient-square) | Prove equality with <code>GUE.matrixLaw</code> |
-| Symmetry route | [Transport unitary symmetry](#camp-eight-transport-unitary-symmetry) | Close the first nontrivial ensemble-invariance proof |
-| Lean route | [The checked declaration map](#the-checked-declaration-map) | Audit the public API against the landed module |
+At \(n=2\), the ledger becomes
 
-### Learning objectives
+| Object | Number of real slots | Mean | Variance of each displayed real slot |
+|---|---:|---:|---:|
+| diagonal entries | 2 | 0 | \(1/2\) |
+| real part of the one strict-upper entry | 1 | 0 | \(1/4\) |
+| imaginary part of the one strict-upper entry | 1 | 0 | \(1/4\) |
 
-By the summit, you should be able to:
+A \(2\times2\) {{< refterm "hermitian-matrix" "Hermitian matrix" >}} has the
+form
 
-1. define the three-region real index for finite Hermitian coordinates;
-2. decode diagonal, upper-real, and upper-imaginary coordinates into a
-   Hermitian matrix;
-3. recover normalized real coordinates from an intrinsic Hermitian point;
-4. derive the factor-of-two metric correction and prove norm preservation;
-5. explain why inverse real-linear maps plus norm preservation give a linear
-   isometric equivalence;
-6. distinguish equality of a full finite product law from agreement of scalar
-   marginals;
-7. explain how a product measure over a sum index splits into block product
-   measures;
-8. use scalar Gaussian transport to derive the upper component variances;
-9. connect a unit-variance real product with Mathlib's
-   <code>stdGaussian</code>;
-10. derive the uniformly scaled intrinsic Hermitian Gaussian;
-11. state the pointwise commuting identity joining normalized decoding to the
-    earlier Hermitian assembly map;
-12. use <code>Measure.map_map</code> to turn commuting functions into commuting
-    pushforwards;
-13. transport intrinsic unitary symmetry to the ambient matrix law;
-14. explain why the zero-dimensional case is already contained in the same
-    theorem chain; and
-15. separate every checked RMT-08 result from density, eigenvalue, moment, and
-    asymptotic claims.
+\[
+H=
+\begin{bmatrix}
+d_0 & a+ib\\
+a-ib & d_1
+\end{bmatrix},
+\]
 
-## The comparison in one picture
+where \(d_0,d_1,a,b\in\mathbb R\). “Hermitian” means
+\(H^*=H\), where \(H^*\) is the
+{{< refterm "conjugate-transpose" "conjugate transpose" >}}. The diagonal is
+real, and the lower-left entry is the complex conjugate of the upper-right
+entry.
+
+### The four normalized real coordinates
+
+The repository does not use \((d_0,d_1,a,b)\) as its orthonormal real
+coordinates. It uses
+
+\[
+z=(d_0,d_1,r,s)
+=\bigl(d_0,d_1,\sqrt2,a,\sqrt2,b\bigr).
+\]
+
+All four entries of the random vector \(z\) are mutually independent centered
+Gaussians with variance \(1/2\). Decoding divides the last two by \(\sqrt2\):
+
+\[
+H(z)=
+\begin{bmatrix}
+d_0 & r/\sqrt2+i\,s/\sqrt2\\
+r/\sqrt2-i\,s/\sqrt2 & d_1
+\end{bmatrix}.
+\]
+
+Because variance scales by the square of a deterministic multiplier,
+
+\[
+\operatorname{Var}(r/\sqrt2)
+=\operatorname{Var}(s/\sqrt2)
+=\frac12\cdot\frac12
+=\frac14.
+\]
+
+The decoder therefore recovers exactly the entrywise variance ledger above.
+It does not add another normalization later.
+
+### One concrete coordinate point
+
+Take the deterministic point
+
+\[
+z_0=(2,-1,\sqrt2,2\sqrt2).
+\]
+
+This is one point in the coordinate space, not a claim that a continuously
+distributed random vector assigns positive probability to that singleton.
+The decoder gives
+
+\[
+H_0=H(z_0)=
+\begin{bmatrix}
+2 & 1+2i\\
+1-2i & -1
+\end{bmatrix}.
+\]
+
+The {{< refterm "hermitian-frobenius-geometry" "Frobenius squared norm" >}}
+adds the squared complex magnitudes of all four matrix entries. Since an upper
+entry and its conjugate have the same magnitude,
+
+\[
+\begin{aligned}
+\lVert H_0\rVert_F^2
+&=2^2+(-1)^2+|1+2i|^2+|1-2i|^2\\
+&=4+1+5+5\\
+&=15.
+\end{aligned}
+\]
+
+The Euclidean coordinate square is
+
+\[
+\lVert z_0\rVert_2^2
+=2^2+(-1)^2+(\sqrt2)^2+(2\sqrt2)^2
+=4+1+2+8
+=15.
+\]
+
+The equality is not a coincidence. The decoder is designed to be an isometry.
+
+### The wrong-normalization near-miss
+
+Suppose we omit both divisions by \(\sqrt2\) and place \(r+is\) directly
+above the diagonal. The same coordinate point would produce an upper entry
+\(\sqrt2+2\sqrt2 i\). Its matrix square would be
+
+\[
+4+1+2(2+8)=25,
+\]
+
+not 15. At the law level, its upper real and imaginary parts would retain
+variance \(1/2\), not the repository's required \(1/4\). The near-miss fails
+both the geometry test and the probability ledger.
 
 {{< reference-figure
+  wide="true"
   src="commuting-gaussian-pushforwards.svg"
-  alt="The coordinate route sends one independent normalized real Gaussian product through metric-corrected decoding and measurable Hermitian assembly to the coordinate-built ambient matrix law. The intrinsic route sends the standard Hermitian Gaussian through uniform Wigner scaling and ambient inclusion. An exact comparison theorem proves both routes give the same law. Intrinsic unitary symmetry commutes with scaling and inclusion, yielding ambient unitary invariance."
-  caption="**Finding:** symmetry is transferred only after the full measures meet in the same ambient space. The normalized product route preserves the original entrywise variance and independence ledger; the intrinsic route exposes basis-neutral Gaussian geometry. The commuting comparison proves they are one law, so RMT-07's intrinsic symmetry becomes a theorem about the actual coordinate-built ensemble."
+  alt="At size two, four independent normalized Gaussian slots each have variance one half. The point two, minus one, square root two, two square root two decodes into a Hermitian matrix whose rows are two, one plus two i and one minus two i, minus one. The coordinate square and Frobenius square both equal fifteen; omitting the square-root-two divisions gives twenty-five and the wrong upper variances."
+  caption="**Finding:** the same factor \\(1/\sqrt2\\) solves two obligations. It turns four common-variance real coordinates into the approved diagonal variance \\(1/2\\) and upper component variances \\(1/4\\), and it makes normalized Euclidean length equal Frobenius length. The numeric point is a deterministic geometry audit, not sampled data. The hatched lower panel is a deliberately wrong decoder."
 >}}
 
-The top route preserves the construction history. It begins with independent
-real coordinates, splits them into the three Hermitian roles, combines the two
-upper components into complex entries, reflects the lower triangle, and ends
-at the existing ambient matrix law.
-
-The bottom route preserves the geometry. It begins with the canonical standard
-Gaussian on intrinsic Hermitian Euclidean space, applies the common Wigner
-scale in every direction, and forgets the intrinsic subtype to obtain an
-ambient matrix measure.
-
-RMT-08 proves that the endpoints are equal. Equality is stronger than saying
-that both measures are Gaussian, stronger than matching all one-coordinate
-variances, and stronger than showing both are supported on Hermitian matrices.
-
-{{< checkpoint stage="Orientation" title="The proof compares constructions, not densities" >}}
-The bridge is built from finite product measures, scalar Gaussian map
-theorems, linear isometries, and composition of measurable pushforwards. No
-Lebesgue measure on Hermitian space is selected, so there is no hidden density
-normalization or Jacobian convention.
+{{< checkpoint stage="Exact ledger" title="Do not normalize by visual habit" >}}
+The upper entry appears twice in the Frobenius sum, once above and once below
+the diagonal. That duplication forces the factor two in squared norm and the
+factor \(\sqrt2\) in orthonormal real coordinates.
 {{< /checkpoint >}}
 
-## Base camp: the earlier endpoints
+## Conjugate the concrete matrix by a unitary swap
 
-RMT-06 constructed a coordinate space
+A complex matrix \(U\) is **unitary** when \(U^*U=UU^*=I\). Unitary matrices
+encode changes between orthonormal bases. Their action on a Hermitian matrix is
+the congruence
 
 \[
-\mathcal C_n
-=(\operatorname{Fin}(n)\to\mathbb R)
- \times (I_n^{\lt}\to\mathbb C),
+H\longmapsto UHU^*.
 \]
 
-a probability measure \(\nu_n\) on that space, and a measurable assembly map
+For the exact example, choose the coordinate-swap matrix
 
 \[
-A_n:\mathcal C_n\to\mathcal M_n,
+P=
+\begin{bmatrix}
+0&1\\
+1&0
+\end{bmatrix}.
 \]
 
-where \(\mathcal M_n\) is ambient complex matrix space. The matrix law is
+It satisfies \(P^*=P\) and \(P^2=I\), so it is unitary. Direct multiplication
+gives
 
 \[
-\mu_n=(A_n)_*\nu_n.
+PH_0P^*=
+\begin{bmatrix}
+-1 & 1-2i\\
+1+2i & 2
+\end{bmatrix}.
 \]
 
-The coordinate measure gives diagonal variables variance \(s_n\) and the real
-and imaginary parts of upper variables variance \(s_n/2\), with the exact
-finite product and block-independence structure.
-
-RMT-07 constructed the intrinsic real Euclidean space \(\mathcal H_n\) of
-Hermitian matrices, its ambient inclusion
+The transformed matrix is visibly not \(H_0\). Its diagonal values have
+traded places and the sign of the upper imaginary part has changed. In
+normalized real coordinates, the action on this example is
 
 \[
-J_n:\mathcal H_n\to\mathcal M_n,
+(d_0,d_1,r,s)
+\longmapsto
+(d_1,d_0,r,-s),
 \]
 
-and the standard Gaussian \(\gamma_n=\operatorname{stdGaussian}(\mathcal H_n)\).
-For every unitary \(U\), intrinsic congruence \(C_U\) is a real linear
-isometry and
+so
 
 \[
-(C_U)_*\gamma_n=\gamma_n.
+(2,-1,\sqrt2,2\sqrt2)
+\longmapsto
+(-1,2,\sqrt2,-2\sqrt2).
 \]
 
-It also proved that \(\mu_n\) gives the measurable Hermitian locus mass one,
-equivalently that an ambient draw is Hermitian almost everywhere. This is not
-a claim about Mathlib's topological <code>Measure.support</code>. What remained
-was the exact comparison
+This is a signed permutation of real coordinates. It preserves squared length:
 
 \[
-\mu_n=(J_n)_*(S_n)_*\gamma_n,
+1+4+2+8=15.
 \]
 
-where \(S_n\) is uniform multiplication by \(\sqrt{s_n}\).
-
-## Camp one: one normalized real index
-
-Let \(I_n^{\lt}\) be the finite type of strict-upper positions. RMT-08 uses the
-sum type
+A phase change gives a second concrete audit. Let
 
 \[
-\mathcal I_n
-=\operatorname{Fin}(n)
- \sqcup\bigl(I_n^{\lt}\sqcup I_n^{\lt}\bigr).
-\]
-
-Read the outer left branch as diagonal coordinates, the inner left branch as
-upper-real coordinates, and the inner right branch as upper-imaginary
-coordinates. A function \(z:\mathcal I_n\to\mathbb R\) stores every real
-degree of freedom exactly once.
-
-The nesting is not mathematically privileged. A three-way finite tagged union
-would express the same partition. The nested sum is useful in Lean because
-function spaces over sum types admit explicit equivalences with products of
-function spaces. Applying that equivalence twice gives
-
-\[
-(\mathcal I_n\to\mathbb R)
-\simeq
-(\operatorname{Fin}(n)\to\mathbb R)
-\times(I_n^{\lt}\to\mathbb R)
-\times(I_n^{\lt}\to\mathbb R),
-\]
-
-up to the chosen product association.
-
-This is exactly the shape needed to compare one homogeneous real product law
-with the earlier diagonal and complex-upper block law.
-
-### Why use a function type before Euclidean packaging?
-
-Finite product measures naturally live on ordinary function spaces. Mathlib's
-<code>Measure.pi</code> takes a family of scalar measures and produces their
-joint product on \(\mathcal I_n\to\mathbb R\). Euclidean geometry, by contrast,
-is most convenient on
-
-\[
-\mathcal E_n
-=\operatorname{EuclideanSpace}(\mathbb R,\mathcal I_n).
-\]
-
-The map <code>WithLp.toLp 2</code> changes the packaging without changing any
-coordinate. RMT-08 keeps the raw function space long enough to use product-law
-theorems and then moves to \(\mathcal E_n\) for isometries and
-<code>stdGaussian</code>.
-
-## Camp two: decode with the metric correction
-
-Write the three coordinate families as
-
-\[
-a_i=z(\text{diagonal }i),
-\quad
-b_{ij}=z(\text{upper-real }(i,j)),
-\quad
-c_{ij}=z(\text{upper-imaginary }(i,j)).
-\]
-
-Normalized decoding forms the matrix
-
-\[
-H_{ii}=a_i,
+D=\operatorname{diag}(1,i),
 \qquad
-H_{ij}=\frac{b_{ij}+ic_{ij}}{\sqrt2}\quad(i\lt j),
-\qquad
-H_{ji}=\frac{b_{ij}-ic_{ij}}{\sqrt2}.
+D^*=\operatorname{diag}(1,-i).
 \]
 
-The output is Hermitian by construction. The diagonal branch is real, and the
-two off-diagonal branches are conjugates.
-
-Why divide by \(\sqrt2\)? The normalized upper coordinates \(b_{ij},c_{ij}\)
-are meant to be orthonormal coordinates of intrinsic Hermitian space. The
-matrix stores each complex upper value twice: once above the diagonal and once
-as its conjugate below. Without division, the Frobenius norm would give those
-coordinates twice the weight of a diagonal coordinate.
-
-The inverse analysis map takes \(H\in\mathcal H_n\) to
+Then
 
 \[
-a_i=H_{ii},
-\qquad
-b_{ij}=\sqrt2\operatorname{Re}(H_{ij}),
-\qquad
-c_{ij}=\sqrt2\operatorname{Im}(H_{ij}).
+DH_0D^*=
+\begin{bmatrix}
+2 & 2-i\\
+2+i & -1
+\end{bmatrix}.
 \]
 
-Hermiticity ensures the diagonal is real. Applying analysis after decoding
-returns \(a,b,c\), and decoding after analysis returns every diagonal, upper,
-and lower matrix entry. These inverse proofs are entrywise; no dimension count
-or choice of basis is needed.
-
-## Camp three: prove the isometry
-
-The Euclidean coordinate norm is
+On the normalized upper pair, this action is the quarter-turn
 
 \[
-\lVert z\rVert^2
-=\sum_i a_i^2
- +\sum_{i\lt j}b_{ij}^2
- +\sum_{i\lt j}c_{ij}^2.
+(r,s)\longmapsto(s,-r).
 \]
 
-The Hermitian Frobenius identity from RMT-07 gives
+It sends \(z_0\) to
+\((2,-1,2\sqrt2,-\sqrt2)\), whose square is
+\(4+1+8+2=15\). The swap was a signed permutation; this phase is a genuine
+two-coordinate rotation. Both visibly move the displayed matrix while
+preserving the real Frobenius geometry.
+
+### Pointwise invariance is the wrong claim
+
+The theorem in this chapter does **not** say
 
 \[
-\lVert H\rVert_F^2
-=\sum_i H_{ii}^2+2\sum_{i\lt j}|H_{ij}|^2.
+UHU^*=H
+\quad\text{for every sample }H.
 \]
 
-Substituting the normalized decoding formula yields
+That is false for \(H_0\) and \(P\). The theorem concerns the
+{{< refterm "probability-law" "probability law" >}} \(\mu_2\) of the random
+matrix. A law is a measure on the value space. Pushing that law through the
+congruence map means applying the deterministic basis change to every possible
+matrix while transporting its probabilities. The checked equality is
 
 \[
-\begin{aligned}
-\lVert H\rVert_F^2
-&=\sum_i a_i^2
- +2\sum_{i\lt j}
-   \left|\frac{b_{ij}+ic_{ij}}{\sqrt2}\right|^2\\
-&=\sum_i a_i^2
- +\sum_{i\lt j}(b_{ij}^2+c_{ij}^2)\\
-&=\lVert z\rVert^2.
-\end{aligned}
+(H\mapsto UHU^*)_*\mu_2=\mu_2.
 \]
 
-The map is real linear because every output entry is a fixed real-linear
-combination of input coordinates. Together with the inverse formulas and norm
-preservation, this bundles as a real linear isometric equivalence
-
-\[
-D_n:\mathcal E_n\simeq_{\mathbb R}^{\mathrm{iso}}\mathcal H_n.
-\]
-
-This one object has two later roles. It transfers the standard Gaussian by
-<code>stdGaussian_map</code>, and its linearity proves that uniform scaling
-commutes with decoding:
-
-\[
-D_n(rz)=rD_n(z).
-\]
+Thus a random draw and its conjugate generally differ as matrices while having
+the same distribution. The {{< refterm "pushforward-measure" "pushforward measure" >}}
+is the layer at which invariance lives.
 
-{{< checkpoint stage="Camp three" title="The square-root correction is now structural" >}}
-The correction is no longer a variance mnemonic. It is built into an inverse
-real-linear map whose norm preservation is checked. Every later probability
-identity uses this same map.
-{{< /checkpoint >}}
-
-## Camp four: put one Gaussian scale on every slot
+{{< reference-figure
+  wide="true"
+  src="swap-conjugation-law-boundary.svg"
+  alt="The swap unitary changes the matrix with rows two, one plus two i and one minus two i, minus one into the matrix with rows minus one, one minus two i and one plus two i, two. The matrices are unequal but both have Frobenius square fifteen. The checked law statement says the pushforward of the Gaussian unitary ensemble matrix law under this congruence equals the original law."
+  caption="**Finding:** three assertions must be separated. Pointwise fixedness fails for the displayed matrix. Frobenius norm preservation holds because unitary congruence is a real isometry on Hermitian space. Law invariance holds because the complete scaled intrinsic Gaussian is preserved and its ambient pushforward is exactly the coordinate-built matrix law. No random unitary is sampled in this calculation."
+>}}
 
-Recall the total variance scale
-
-\[
-s_n=
-\begin{cases}
-0,&n=0,\\
-1/n,&n\gt 0.
-\end{cases}
-\]
+## Type and run the size-two arithmetic yourself
 
-Define the normalized raw product law
+The exact Gaussian measures and project theorems import Mathlib and belong on
+an approved Linux project builder. The finite matrix ledger can run locally.
+The following worksheet imports only Lean's <code>Std</code> library. It stores
+complex integers as pairs, checks Hermiticity plus the swap and phase
+congruences, and records variances in quarter-units so that \(1/2\) is the
+natural number 2 and \(1/4\) is 1.
 
-\[
-\rho_n
-=\bigotimes_{k\in\mathcal I_n}N(0,s_n).
-\]
+Create <code>/tmp/NormalizedGUE2Tutorial.lean</code> in a text editor and type:
 
-Every normalized coordinate is centered, has the same variance, and is part
-of one mutually independent finite family. The homogeneous law is simpler
-than the earlier coordinate measure, whose diagonal and displayed upper
-components have different variances.
-
-The difference disappears under decoding. A diagonal coordinate is unchanged,
-so its variance remains \(s_n\). An upper component is multiplied by
-\(1/\sqrt2\). Mathlib's scalar Gaussian map theorem gives
-
-\[
-N(0,s_n)\xrightarrow{\text{divide by }\sqrt2}N(0,s_n/2).
-\]
-
-Combining one decoded real component and one decoded imaginary component gives
-the project's centered Cartesian complex Gaussian with equal component
-variances \(s_n/2\).
+~~~lean
+import Std
 
-### Why scalar marginals are not enough
+structure GaussianInt where
+  re : Int
+  im : Int
+deriving Repr, DecidableEq
 
-Suppose one proved only that each decoded diagonal coordinate has the desired
-law and that each decoded upper coordinate has the desired complex law. Those
-facts would not determine the joint distribution. Dependent variables can
-have exactly the same scalar marginals as independent variables.
+def GaussianInt.conj (z : GaussianInt) : GaussianInt :=
+  ⟨z.re, -z.im⟩
 
-RMT-08 instead transports the entire product measure. The proof must preserve:
+def GaussianInt.normSq (z : GaussianInt) : Int :=
+  z.re * z.re + z.im * z.im
 
-1. the joint diagonal product law;
-2. the joint upper-real product law;
-3. the joint upper-imaginary product law;
-4. independence between those three blocks;
-5. the pairing of corresponding real and imaginary upper coordinates;
-6. the resulting product of Cartesian complex Gaussian laws; and
-7. independence between the diagonal block and the whole complex upper block.
+def GaussianInt.mul (z w : GaussianInt) : GaussianInt :=
+  ⟨z.re * w.re - z.im * w.im,
+    z.re * w.im + z.im * w.re⟩
 
-The endpoint is not “matching coordinates.” It is an exact measure equality
-with <code>GUE.coordinateMeasure n</code>.
+structure Matrix2 where
+  a00 : GaussianInt
+  a01 : GaussianInt
+  a10 : GaussianInt
+  a11 : GaussianInt
+deriving Repr, DecidableEq
 
-## Camp five: split and reassemble the finite product
+def matrixEntries (H : Matrix2) : List (Int × Int) :=
+  [(H.a00.re, H.a00.im), (H.a01.re, H.a01.im),
+   (H.a10.re, H.a10.im), (H.a11.re, H.a11.im)]
 
-A function on a sum type is equivalently a pair of functions. Under the
-canonical equivalence,
+def isHermitian (H : Matrix2) : Bool :=
+  decide (H.a00.im = 0 ∧ H.a11.im = 0 ∧
+    H.a10 = H.a01.conj)
 
-\[
-((\alpha\sqcup\beta)\to\mathbb R)
-\simeq(\alpha\to\mathbb R)\times(\beta\to\mathbb R).
-\]
+def frobeniusSq (H : Matrix2) : Int :=
+  H.a00.normSq + H.a01.normSq + H.a10.normSq + H.a11.normSq
 
-For finite product measures, pushing the product law on the left through this
-equivalence gives the product of the two indexed product laws on the right.
-Applying the result twice splits \(\rho_n\) into diagonal, upper-real, and
-upper-imaginary blocks.
+def correctH : Matrix2 :=
+  ⟨⟨2, 0⟩, ⟨1, 2⟩, ⟨1, -2⟩, ⟨-1, 0⟩⟩
 
-Next, a pointwise product-family equivalence reorganizes the two upper real
-fields into a field of real pairs. The existing Cartesian complex map sends
-each pair to one complex number after the upper normalization. Product-map
-theorems move the scalar Gaussian equality across the whole finite family.
+def swapCongruence (H : Matrix2) : Matrix2 :=
+  ⟨H.a11, H.a10, H.a01, H.a00⟩
 
-The proof order matters:
+def swappedH : Matrix2 := swapCongruence correctH
 
-1. split the single sum-index product into block products;
-2. transport each upper scalar law through division by \(\sqrt2\);
-3. pair the real and imaginary upper families pointwise;
-4. map those pairs into complex upper entries; and
-5. associate the diagonal and complex-upper blocks exactly as the earlier
-   coordinate measure expects.
+def phaseCongruence (H : Matrix2) : Matrix2 :=
+  let plusI : GaussianInt := ⟨0, 1⟩
+  let minusI : GaussianInt := ⟨0, -1⟩
+  ⟨H.a00, H.a01.mul minusI, plusI.mul H.a10, H.a11⟩
 
-At no stage is independence inferred from marginal equality. It comes from the
-source product measure and is preserved by explicit measurable equivalences
-and blockwise maps.
+def phasedH : Matrix2 := phaseCongruence correctH
 
-## Camp six: from the product law to a scaled standard Gaussian
+def normalizedCoordinateSquares : List Int := [4, 1, 2, 8]
 
-Start with the unit product law on raw real coordinates:
+def swappedCoordinateSquares : List Int := [1, 4, 2, 8]
 
-\[
-\rho_n^{\mathrm{std}}
-=\bigotimes_{k\in\mathcal I_n}N(0,1).
-\]
+def normalizedNormSq : Int := normalizedCoordinateSquares.sum
 
-Mathlib proves
-
-\[
-(\operatorname{toLp})_*\rho_n^{\mathrm{std}}
-=\operatorname{stdGaussian}(\mathcal E_n).
-\]
+def swappedNormalizedNormSq : Int := swappedCoordinateSquares.sum
 
-This is <code>map_pi_eq_stdGaussian</code>. It is the exact bridge from a
-finite product presentation to the basis-neutral Euclidean measure.
+def wrongUnnormalizedAssemblySq : Int :=
+  4 + 1 + 2 * (2 + 8)
 
-Now scale every raw coordinate by \(\sqrt{s_n}\). The scalar map theorem says
+def normalizedVarianceQuarters : List (String × Nat) :=
+  [("diagonal 0", 2), ("diagonal 1", 2),
+   ("upper real normalized", 2), ("upper imaginary normalized", 2)]
 
-\[
-(x\mapsto\sqrt{s_n}x)_*N(0,1)=N(0,s_n),
-\]
+def decodedEntryVarianceQuarters : List (String × Nat) :=
+  [("diagonal 0", 2), ("diagonal 1", 2),
+   ("real part of upper entry", 1), ("imaginary part of upper entry", 1)]
 
-because the variance is multiplied by the square of the scale. Mapping the
-whole finite product coordinatewise produces \(\rho_n\). Packaging and scaling
-commute pointwise, so repeated use of <code>Measure.map_map</code> yields
+#eval normalizedVarianceQuarters
+#eval decodedEntryVarianceQuarters
+#eval matrixEntries correctH
+#eval matrixEntries swappedH
+#eval matrixEntries phasedH
+#eval (normalizedNormSq, frobeniusSq correctH,
+  wrongUnnormalizedAssemblySq)
+#eval (!decide (correctH = swappedH),
+  decide (frobeniusSq correctH = frobeniusSq swappedH),
+  decide (normalizedNormSq = swappedNormalizedNormSq))
+#eval (isHermitian correctH, isHermitian swappedH)
+#eval (isHermitian phasedH,
+  decide (frobeniusSq correctH = frobeniusSq phasedH))
 
-\[
-(\operatorname{toLp})_*\rho_n
-=(z\mapsto\sqrt{s_n}z)_*
-  \operatorname{stdGaussian}(\mathcal E_n).
-\]
+example : normalizedNormSq = 15 := by
+  native_decide
 
-Finally, the decoding isometry \(D_n\) carries the standard Gaussian on
-\(\mathcal E_n\) to the standard Gaussian on \(\mathcal H_n\). Its real
-linearity makes it commute with the same uniform scaling. Therefore
+example : frobeniusSq correctH = 15 := by
+  native_decide
 
-\[
-(D_n)_*(\operatorname{toLp})_*\rho_n
-=(H\mapsto\sqrt{s_n}H)_*\gamma_n.
-\]
+example : wrongUnnormalizedAssemblySq = 25 := by
+  native_decide
 
-This is the scaled intrinsic Gaussian theorem.
+example : swappedH =
+    ⟨⟨-1, 0⟩, ⟨1, -2⟩, ⟨1, 2⟩, ⟨2, 0⟩⟩ := by
+  native_decide
 
-### The local module-instance seam
+example : correctH ≠ swappedH := by
+  native_decide
 
-As in RMT-07, the final application of <code>stdGaussian_map</code> crosses a
-Mathlib typeclass seam. The Hermitian subtype's inferred real module structure
-and the canonical module structure derived from its inner-product space are
-mathematically the same but not definitionally identical in the needed API
-context. The proof installs the canonical module locally and reconstructs the
-same isometry against that instance.
+example : phasedH =
+    ⟨⟨2, 0⟩, ⟨2, -1⟩, ⟨2, 1⟩, ⟨-1, 0⟩⟩ := by
+  native_decide
 
-This is a typeclass and definitional-equality boundary, not a new mathematical
-assumption. No alternative scalar action is chosen, and no extra hypothesis is
-added to the theorem.
+example :
+    frobeniusSq correctH = frobeniusSq swappedH ∧
+      normalizedNormSq = swappedNormalizedNormSq := by
+  native_decide
 
-## Camp seven: the commuting ambient square
+example : isHermitian correctH = true ∧ isHermitian swappedH = true := by
+  native_decide
 
-The probability comparison is useful only if it reaches the already defined
-matrix law. There are two deterministic routes from raw normalized coordinates
-to an ambient matrix.
+example : isHermitian phasedH = true ∧
+    frobeniusSq correctH = frobeniusSq phasedH := by
+  native_decide
+~~~
 
-The coordinate route first creates an element of the old coordinate space:
-
-\[
-z\longmapsto
-\left(
-  i\mapsto a_i,
-  (i,j)\mapsto\frac{b_{ij}+ic_{ij}}{\sqrt2}
-\right),
-\]
-
-then applies the old Hermitian assembly map \(A_n\).
-
-The intrinsic route packages \(z\) as a Euclidean point, applies normalized
-decoding \(D_n\), and includes the intrinsic Hermitian result into ambient
-matrix space using \(J_n\).
-
-The commuting identity is
-
-\[
-A_n(\operatorname{splitDecode}(z))
-=J_n(D_n(\operatorname{toLp}(z))).
-\]
-
-It is proved entrywise. On the diagonal both sides return \(a_i\). Above the
-diagonal both return the normalized complex combination. Below the diagonal
-both return its conjugate.
-
-Because all maps are measurable, <code>Measure.map_map</code> converts the
-pointwise identity into an equality of pushforwards. Substituting the exact
-coordinate-law theorem and the scaled intrinsic theorem gives
-
-\[
-\boxed{
-\mu_n
-=(J_n)_*(H\mapsto\sqrt{s_n}H)_*\gamma_n}.
-\]
-
-The left side is the original <code>GUE.matrixLaw n</code>, not a newly defined
-look-alike. Both sides are measures on the same ambient complex matrix space.
-
-{{< checkpoint stage="Camp seven" title="The two Gaussian presentations are now one law" >}}
-The comparison preserves the original entrywise product construction and
-identifies it with a scaled basis-neutral Gaussian. The classical equivalence
-has become an equality of the project's existing Lean measures.
-{{< /checkpoint >}}
-
-## Camp eight: transport unitary symmetry
-
-Fix a deterministic unitary matrix \(U\). Let \(C_U^{\mathcal H}\) denote
-congruence on intrinsic Hermitian space and \(C_U^{\mathcal M}\) congruence on
-ambient matrices.
-
-RMT-07 proved
-
-\[
-(C_U^{\mathcal H})_*\gamma_n=\gamma_n.
-\]
-
-Two pointwise commuting identities do the remaining work. First, congruence is
-real linear, so it commutes with uniform scaling:
-
-\[
-C_U^{\mathcal H}(\sqrt{s_n}H)
-=\sqrt{s_n}\,C_U^{\mathcal H}(H).
-\]
-
-Second, the ambient inclusion intertwines the actions:
-
-\[
-J_n(C_U^{\mathcal H}(H))
-=C_U^{\mathcal M}(J_n(H)).
-\]
-
-Now calculate with pushforwards:
-
-\[
-\begin{aligned}
-(C_U^{\mathcal M})_*\mu_n
-&=(C_U^{\mathcal M})_*(J_n)_*(S_n)_*\gamma_n\\
-&=(J_n)_*(S_n)_*(C_U^{\mathcal H})_*\gamma_n\\
-&=(J_n)_*(S_n)_*\gamma_n\\
-&=\mu_n.
-\end{aligned}
-\]
-
-The second line uses both commuting identities plus associativity of measurable
-pushforwards. The third uses intrinsic Gaussian invariance. The first and last
-use the ambient law comparison.
-
-Because \(U\) was arbitrary, this proves
-
-\[
-\operatorname{RandomMatrix.IsUnitaryConjugationInvariant}
-(\operatorname{GUE.matrixLaw}(n)).
-\]
-
-The law is nontrivial in positive dimension: its entries have the exact
-nondegenerate Gaussian variances fixed by RMT-06. This distinguishes the result
-from the earlier interface examples for the zero measure and the point mass at
-the zero matrix.
-
-## Camp nine: dimension zero stays inside the proof
-
-When \(n=0\), all three regions of \(\mathcal I_n\) are empty. There is one
-raw coordinate function, one Euclidean point, one intrinsic Hermitian point,
-one old coordinate point, and one ambient matrix.
-
-The indexed products are empty probability products. The scale is \(s_0=0\),
-and uniform multiplication by \(\sqrt{s_0}\) maps the unique point to itself.
-Every decoding and inclusion map is the unique function between singleton
-spaces. Thus the general comparison reduces to the previously checked Dirac
-law at the empty zero matrix.
-
-The uniform invariance theorem also covers this case: unitary congruence on the
-zero-dimensional matrix space is the identity. No positive-size side
-condition, reciprocal at zero, or separate density convention is required.
-
-## The checked declaration map
-
-The module
-<code>NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance</code>
-checks 35 public declarations. Six initial index declarations and five general
-Gaussian-transport declarations live directly in
-<code>NonlinearDynamics.Random</code>; 13 geometry declarations live in
-<code>RandomMatrix</code>; and 11 ensemble-law declarations, including the
-probability instance, live in <code>GUE</code>.
-
-| Lean declaration | Exact checked role | Deliberate boundary |
-|---|---|---|
-| <code>HermitianRealIndex</code> | Defines the diagonal, upper-real, and upper-imaginary sum index | An index type, not yet a Euclidean carrier or law |
-| <code>hermitianRealIndexToPair</code> | Sends diagonal indices to diagonal pairs, upper-real indices above the diagonal, and upper-imaginary indices to reflected lower pairs | The pair enumeration supports the inner-product sum; it is not the complex decoding formula |
-| <code>pairToHermitianRealIndex</code> | Classifies every matrix-entry pair as diagonal, strict upper, or reflected strict upper | Uses finite-order trichotomy, not eigenvalue data |
-| <code>pairToHermitianRealIndex_toPair</code> | Classifying the pair represented by a real coordinate returns that coordinate | One inverse direction only |
-| <code>hermitianRealIndexToPair_pairTo</code> | Representing the classification of a matrix pair returns that pair | Other inverse direction only |
-| <code>hermitianRealIndexEquivMatrixIndex</code> | Bundles the two classifications as an equivalence with all matrix-entry pairs | A finite indexing equivalence, not a linear map between value spaces |
-| <code>RandomMatrix.realToHermitianCoordinates</code> | Repackages normalized real data into the old diagonal and complex-upper coordinates, dividing upper components by \(\sqrt2\) | Does not assemble a matrix or state a law |
-| <code>RandomMatrix.measurable_realToHermitianCoordinates</code> | Proves that repackaging map measurable | No measure equality yet |
-| <code>RandomMatrix.normalizedHermitianAssembly</code> | Decodes normalized Euclidean data into intrinsic Hermitian space | Geometry first; probability is added later |
-| <code>RandomMatrix.normalizedHermitianAnalysis</code> | Extracts diagonal values and square-root-of-two-scaled upper components from an intrinsic Hermitian point | Uses the upper entry once; the lower entry is constrained by Hermiticity |
-| <code>RandomMatrix.hermitianToMatrix_normalizedHermitianAssembly</code> | Shows ambient inclusion after normalized assembly equals the earlier coordinate matrix map | Pointwise commuting identity, not a pushforward theorem |
-| <code>RandomMatrix.normalizedHermitianAssembly_apply_diag</code> | Gives the exact diagonal entry formula | No upper or lower claim |
-| <code>RandomMatrix.normalizedHermitianAssembly_apply_upper</code> | Gives the exact strict-upper complex formula with divided real components | Makes the metric correction explicit |
-| <code>RandomMatrix.normalizedHermitianAssembly_apply_lower</code> | Gives the reflected lower entry as the conjugate of its upper partner | Lower entries are not independent inputs |
-| <code>RandomMatrix.normalizedHermitianAnalysis_assembly</code> | Analysis after assembly recovers every normalized coordinate | One inverse direction |
-| <code>RandomMatrix.normalizedHermitianAssembly_analysis</code> | Assembly after analysis recovers every intrinsic Hermitian point | Uses Hermiticity for diagonal and lower branches |
-| <code>RandomMatrix.normalizedHermitianLinearEquiv</code> | Bundles normalized assembly and analysis as a real linear equivalence | Correctly makes no complex-linearity claim |
-| <code>RandomMatrix.normalizedHermitianAssembly_inner</code> | Proves exact preservation of the real Frobenius inner product | Geometry, not Gaussian invariance by itself |
-| <code>RandomMatrix.normalizedHermitianLinearIsometryEquiv</code> | Bundles normalized decoding as a real linear isometric equivalence onto intrinsic Hermitian space | No probability law is built into the equivalence |
-| <code>map_gaussianProduct_toLp_eq_map_smul_stdGaussian</code> | Identifies any finite common-variance real product, after Euclidean packaging, with the standard Gaussian under uniform square-root-variance scaling | General finite Gaussian theorem, not specific to matrices |
-| <code>gaussianReal_map_div_sqrt_two</code> | Proves division by \(\sqrt2\) halves a centered real Gaussian's variance | Scalar law only |
-| <code>realUpperToComplex</code> | Pairs two upper real families into complex values after the metric correction | Deterministic family map only |
-| <code>measurable_realUpperToComplex</code> | Proves the normalized upper-family pairing measurable | No product-law conclusion yet |
-| <code>map_realUpperToComplex_gaussianProduct</code> | Maps two common-variance independent real products to the required Cartesian complex Gaussian product | Proves the whole family law, not merely one upper marginal |
-| <code>GUE.coordinateToHermitianEuclidean</code> | Sends the old diagonal and complex-upper coordinate space into intrinsic Hermitian space | Reuses the checked assembly map |
-| <code>GUE.measurable_coordinateToHermitianEuclidean</code> | Proves the old-coordinate to intrinsic map measurable | Needed for the intrinsic pushforward definition |
-| <code>GUE.coordinateToHermitianEuclidean_realToHermitianCoordinates</code> | Shows old-coordinate assembly after normalized repackaging equals normalized intrinsic assembly after Euclidean packaging | The core pointwise commuting identity |
-| <code>GUE.map_realToHermitianCoordinates_gaussianProduct</code> | Identifies the decoded common-variance real product exactly with <code>coordinateMeasure</code> | Preserves the full block product law, not just variances |
-| <code>GUE.intrinsicLaw</code> | Defines the existing coordinate GUE law transported into intrinsic Hermitian space | A pushforward of the old law, not a second unrelated ensemble |
-| <code>GUE.instIsProbabilityMeasureIntrinsicLaw</code> | Proves the intrinsic law has total mass one in every dimension | No density conclusion |
-| <code>GUE.intrinsicLaw_eq_map_smul_stdGaussian</code> | Identifies the intrinsic law with canonical standard Gaussian under uniform Wigner scaling | Uses the local canonical-module API alignment; adds no mathematical hypothesis |
-| <code>GUE.intrinsicLaw_zero</code> | Identifies the zero-dimensional intrinsic law as Dirac at the unique zero Hermitian point | Explicit boundary theorem, not a positive-dimensional limit |
-| <code>GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw</code> | Identifies the original ambient matrix law as the intrinsic law pushed through Hermitian inclusion | Exact equality with the existing <code>matrixLaw</code> |
-| <code>GUE.map_intrinsicLaw_hermitianCongruence</code> | Proves the Wigner-scaled intrinsic GUE law invariant under every unitary congruence | Intrinsic measure equality before ambient transport |
-| <code>GUE.matrixLaw_isUnitaryConjugationInvariant</code> | Proves <code>RandomMatrix.IsUnitaryConjugationInvariant (GUE.matrixLaw n)</code> for every \(n\) | No density, eigenvalue, moment, or asymptotic theorem |
-
-All 35 declarations compile under Lean 4.32.0 and the pinned Mathlib 4.32.0
-dependency with warnings treated as errors. The module contains no
-<code>sorry</code> or <code>admit</code>.
-
-### Reproduce the check
-
-From the repository root:
+Run the pinned compiler directly:
 
 ~~~sh
 source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean
+elan run leanprover/lean4:v4.32.0 lean /tmp/NormalizedGUE2Tutorial.lean
 ~~~
 
-This command checks the normalized-coordinate, product-measure, intrinsic
-Gaussian, commuting-pushforward, and unitary-invariance proofs. It does not
-sample matrices, estimate a density, calculate eigenvalues, or test any
-large-dimension claim.
+**Resource label: small standalone Lean plus <code>Std</code>, suitable for an
+ordinary Mac or Linux machine.** The command neither enters the Lake project
+nor downloads or builds Mathlib.
 
-## What changed at RMT-08
+The executed output is:
 
-The project now has a genuine equivalence between its entrywise and intrinsic
-presentations of finite GUE.
+~~~text
+[("diagonal 0", 2), ("diagonal 1", 2), ("upper real normalized", 2), ("upper imaginary normalized", 2)]
+[("diagonal 0", 2), ("diagonal 1", 2), ("real part of upper entry", 1), ("imaginary part of upper entry", 1)]
+[(2, 0), (1, 2), (1, -2), (-1, 0)]
+[(-1, 0), (1, -2), (1, 2), (2, 0)]
+[(2, 0), (2, -1), (2, 1), (-1, 0)]
+(15, 15, 25)
+(true, true, true)
+(true, true)
+(true, true)
+~~~
 
-| Layer | Before RMT-08 | RMT-08 result |
-|---|---|---|
-| Free coordinates | Diagonal and complex upper blocks | One normalized real orthonormal ledger |
-| Geometry | Factor-two Frobenius identity | Explicit real linear isometric decoding |
-| Joint law | Independent entrywise Gaussian product | Same law transported from one common-variance real product |
-| Intrinsic Gaussian | Invariant under unitary congruence | Identified with the coordinate law after uniform scaling |
-| Ambient support | Hermitian almost everywhere | Retained under the exact comparison |
-| Ambient matrix symmetry | Unchecked for nontrivial GUE | Unitary invariance checked for <code>GUE.matrixLaw</code> |
-| Density | Unchecked | Still unchecked and unnecessary here |
-| Spectrum and asymptotics | Unchecked | Still unchecked |
+The first two lines separate normalized-coordinate variances from decoded
+entry variances. The next three list the original, swapped, and phase-rotated
+matrix entries in row-major order. The triple \((15,15,25)\) compares
+coordinate square, correct Frobenius square, and wrong-decoder square. The
+remaining Booleans confirm pointwise change, norm preservation,
+coordinate-norm preservation, and Hermiticity for both concrete congruences.
 
-The normalization step is not cosmetic. It creates the isometry needed by the
-intrinsic Gaussian API and makes the product measure homogeneous. The
-commuting-square step is not cosmetic either. It proves that the intrinsic law
-is the original ambient matrix law rather than a mathematically related new
-definition.
+The worksheet does **not** define a Gaussian probability measure, prove a full
+product law, construct Mathlib's standard Gaussian, or establish measure
+invariance. Those claims require the exact project modules below.
 
-## Classical density context, deliberately outside the proof
+## Generalize the four slots to every finite dimension
 
-Under the selected positive-dimensional convention, the classical finite GUE
-density is proportional to
+Let \(T_n\) be the finite type of strict-upper positions \((i,j)\) with
+\(i\lt j\). The checked normalized real index is
+
+\[
+I_n
+=\operatorname{Fin}(n)\sqcup(T_n\sqcup T_n).
+\]
+
+Its sectors are semantic:
+
+- <code>Sum.inl i</code> is diagonal coordinate \(d_i\);
+- <code>Sum.inr (Sum.inl ij)</code> is normalized upper-real coordinate
+  \(r_{ij}\); and
+- <code>Sum.inr (Sum.inr ij)</code> is normalized upper-imaginary coordinate
+  \(s_{ij}\).
+
+The cardinality is
+
+\[
+|I_n|=n+2\binom n2=n^2,
+\]
+
+the real dimension of the Hermitian matrices. The source module does not need
+to turn this into an arbitrary <code>Fin (n^2)</code> enumeration. The semantic
+sum tells every decoder branch which role a coordinate has.
+
+The definitions <code>hermitianRealIndexToPair</code> and
+<code>pairToHermitianRealIndex</code> match those semantic slots with all
+matrix positions. A diagonal slot maps to \((i,i)\), a real-upper slot to
+\((i,j)\), and its imaginary partner to the reflected position \((j,i)\).
+The two inverse theorems package this as
+<code>hermitianRealIndexEquivMatrixIndex</code>. That equivalence later
+reindexes the Frobenius sum without choosing a basis ordering.
+
+## Decode, analyze, and prove the real isometry
+
+The coordinate carrier is
+
+\[
+E_n=\operatorname{EuclideanSpace}(\mathbb R,I_n).
+\]
+
+A point in \(E_n\) is a real function on the finite index wrapped in a finite
+\(\ell^2\) structure. The target is
+\(\mathcal H_n\), the intrinsic real Euclidean space of Hermitian matrices
+with the inherited Frobenius inner product.
+
+Why **real**? If \(H\) is Hermitian, then \(rH\) is Hermitian for every real
+\(r\). Multiplication by an arbitrary complex scalar need not preserve
+\(H^*=H\). The Hermitian locus is a real subspace of the complex Frobenius
+carrier, not generally a complex subspace.
+
+The synthesis map \(\Phi_n:E_n\to\mathcal H_n\) uses
+
+\[
+(\Phi_n z)_{ii}=d_i,
+\qquad
+(\Phi_n z)_{ij}
+=\frac{r_{ij}}{\sqrt2}+i\frac{s_{ij}}{\sqrt2}
+\quad(i\lt j),
+\]
+
+and conjugate reflection below the diagonal. The analysis map reads
+
+\[
+d_i=H_{ii},
+\qquad
+r_{ij}=\sqrt2\operatorname{Re}(H_{ij}),
+\qquad
+s_{ij}=\sqrt2\operatorname{Im}(H_{ij}).
+\]
+
+The source proves both round trips, real linearity, and the stronger inner
+product identity
+
+\[
+\langle\Phi_n x,\Phi_n y\rangle_F
+=\langle x,y\rangle_2.
+\]
+
+The norm identity from the opening example is the case \(x=y=z_0\).
+
+### Lean bridge: read one strict-upper entry
+
+{{< lean-bridge
+  human="Normalized Hermitian assembly divides the upper-real and upper-imaginary slots by square root two before combining them as a complex entry."
+  math="\((\Phi_n x)_{ij}=x_{\mathrm{re}(ij)}/\sqrt2+i\,x_{\mathrm{im}(ij)}/\sqrt2\) for \(i\lt j\)."
+  lean="(normalizedHermitianAssembly x : FrobeniusMatrix n) ij.1 = ⟨x (.inr (.inl ij)) / Real.sqrt 2, x (.inr (.inr ij)) / Real.sqrt 2⟩"
+>}}
+
+- <code>ij : StrictUpperIndex n</code> contains a pair and proof that its row
+  is strictly less than its column.
+- <code>.inr (.inl ij)</code> selects the real-upper sector;
+  <code>.inr (.inr ij)</code> selects the imaginary-upper sector.
+- <code>⟨re, im⟩</code> constructs the complex number with those two Cartesian
+  coordinates.
+- The exact theorem is
+  <code>RandomMatrix.normalizedHermitianAssembly_apply_upper</code>.
+
+**Run boundary.** Replay the theorem with the guarded primary-module check
+near the end. The local worksheet verifies only its displayed size-two
+arithmetic.
+{{< /lean-bridge >}}
+
+### Lean bridge: the decoder preserves the real inner product
+
+{{< lean-bridge
+  human="Normalized assembly preserves every real inner product, so it is an isometry onto intrinsic Hermitian space."
+  math="\(\langle\Phi_nx,\Phi_ny\rangle_F=\langle x,y\rangle_2.\)"
+  lean="inner ℝ (normalizedHermitianAssembly x) (normalizedHermitianAssembly y) = inner ℝ x y"
+>}}
+
+- <code>inner ℝ</code> makes the scalar field explicit. The intrinsic
+  Hermitian carrier is real.
+- The two appearances of <code>normalizedHermitianAssembly</code> are compared
+  in the Frobenius geometry inherited by the subtype.
+- The theorem is
+  <code>RandomMatrix.normalizedHermitianAssembly_inner</code>.
+- <code>normalizedHermitianLinearIsometryEquiv n</code> then bundles the
+  inverse maps, real linearity, and norm preservation for downstream Gaussian
+  transport.
+
+**Run boundary.** The exact proof reindexes finite sums and uses Mathlib, so it
+belongs to the guarded Linux project check. The numeric \(15=15\) case is safe
+in the standalone worksheet.
+{{< /lean-bridge >}}
+
+## The coordinate law is a complete product law
+
+Geometry alone does not define probability. Put the common centered Gaussian
+law of variance \(v_n\) on every normalized real slot:
+
+\[
+\Pi_n=\bigotimes_{k\in I_n}\gamma_{0,v_n}.
+\]
+
+At size two this is the fourfold product of \(\gamma_{0,1/2}\). The word
+**product** carries the mutual-independence structure. It is stronger than a
+list of four marginal law statements.
+
+The decoder splits \(I_n\) into the diagonal, upper-real, and upper-imaginary
+families. It divides both upper families by \(\sqrt2\), pairs them pointwise as
+complex numbers, and produces the earlier coordinate carrier
+
+\[
+(\operatorname{Fin}(n)\to\mathbb R)
+\times(T_n\to\mathbb C).
+\]
+
+The scalar transport identity is
+
+\[
+(x\mapsto x/\sqrt2)_*\gamma_{0,v_n}
+=\gamma_{0,v_n/2}.
+\]
+
+Two real upper products therefore become the exact Cartesian complex product
+whose real and imaginary variances are both \(v_n/2\). At \(n=2\), this is
+\(1/4\) and \(1/4\).
+
+### Why matching marginals would not be enough
+
+Four variables could each have law \(\gamma_{0,1/2}\) while being completely
+dependent. For example, copying one Gaussian variable into all four slots
+gives the right scalar marginals and the wrong joint law. RMT-08 does not infer
+independence from variance calculations. It transports the complete finite
+product measure through measurable sum/product equivalences.
+
+### Lean bridge: decode the entire product at once
+
+{{< lean-bridge
+  human="The common-variance product over every normalized real slot decodes exactly to the repository's diagonal and complex-upper coordinate law."
+  math="\((D_n)_*\Pi_n=\nu_n\), where \(D_n\) divides upper slots by \(\sqrt2\) and \(\nu_n\) is the full coordinate measure."
+  lean="(gaussianProductMeasure (fun _ : HermitianRealIndex n ↦ 0) (fun _ ↦ varianceScale n)).map RandomMatrix.realToHermitianCoordinates = coordinateMeasure n"
+>}}
+
+- <code>gaussianProductMeasure</code> is the finite product of exact real
+  Gaussian measures.
+- The first function supplies mean zero at every semantic index.
+- The second supplies the same variance <code>varianceScale n</code> at every
+  normalized index.
+- <code>.map RandomMatrix.realToHermitianCoordinates</code> is the pushforward
+  through the decoder.
+- <code>coordinateMeasure n</code> is the earlier nested diagonal/complex-upper
+  law, including all block independence.
+- The theorem is
+  <code>GUE.map_realToHermitianCoordinates_gaussianProduct</code>.
+
+**Run boundary.** This equality uses Mathlib finite product measures and must
+be checked through the cloud-only repository command. No claim in the local
+integer worksheet substitutes for it.
+{{< /lean-bridge >}}
+
+## Standard Gaussian transport supplies the basis-neutral shape
+
+Mathlib's <code>stdGaussian E</code> is the canonical centered standard
+Gaussian on a finite real Euclidean space \(E\). On a coordinate Euclidean
+space, a product of unit-variance real Gaussians becomes this measure after
+the finite \(\ell^2\) packaging. A real linear isometric equivalence transports
+it to the standard Gaussian on the target Euclidean space.
+
+For a common variance \(v\), first scale a unit-variance coordinate vector by
+\(\sqrt v\). Coordinatewise,
+
+\[
+\sqrt v\,G\sim\gamma_{0,v}
+\quad\text{when}\quad
+G\sim\gamma_{0,1}.
+\]
+
+The source proves the full finite-product version:
+
+\[
+(\operatorname{toLp})_*\bigotimes_i\gamma_{0,v}=
+(x\mapsto\sqrt v\,x)_*\operatorname{stdGaussian}(E).
+\]
+
+Now use the normalized isometry \(\Phi_n\). Standard Gaussian shape is
+unchanged by an isometric coordinate change, while uniform scalar
+multiplication commutes with real linear maps. The intrinsic GUE law is
+
+\[
+\Gamma_n
+=(H\mapsto\sqrt{v_n}\,H)_*
+  \operatorname{stdGaussian}(\mathcal H_n).
+\]
+
+At size two, the common scale is
+
+\[
+\sqrt{v_2}=\sqrt{1/2}=1/\sqrt2.
+\]
+
+The standard Gaussian supplies isotropic shape. The scalar supplies the
+dimension-dependent Wigner scale. These are separate responsibilities.
+
+### Lean bridge: identify the intrinsic law
+
+{{< lean-bridge
+  human="The intrinsic finite GUE law is the canonical standard Hermitian Gaussian uniformly scaled by the square root of the variance scale."
+  math="\(\Gamma_n=(H\mapsto\sqrt{v_n}H)_*\operatorname{stdGaussian}(\mathcal H_n).\)"
+  lean="GUE.intrinsicLaw n = (stdGaussian (RandomMatrix.HermitianEuclidean n)).map (fun H ↦ Real.sqrt (GUE.varianceScale n : ℝ) • H)"
+>}}
+
+- <code>GUE.intrinsicLaw n</code> is a measure whose values are intrinsically
+  Hermitian points.
+- <code>stdGaussian</code> supplies the canonical basis-neutral Euclidean law.
+- <code>Real.sqrt (GUE.varianceScale n : ℝ)</code> converts the nonnegative
+  variance parameter to its real standard-deviation scale.
+- <code>• H</code> is real scalar multiplication in the intrinsic Hermitian
+  space.
+- The theorem is <code>GUE.intrinsicLaw_eq_map_smul_stdGaussian</code>.
+
+**Run boundary.** The exact statement and its <code>stdGaussian_map</code>
+proof belong to the cloud-only project module. The local worksheet checks the
+size-two normalization but does not define <code>stdGaussian</code>.
+{{< /lean-bridge >}}
+
+## Keep coordinate, intrinsic, and ambient carriers distinct
+
+The proof uses several spaces because each carries different useful
+structure.
+
+| Layer | Carrier | Measure or map | What the layer contributes |
+|---|---|---|---|
+| normalized real coordinates | \(I_n\to\mathbb R\), then \(E_n\) | common product \(\Pi_n\) | exact independent scalar law and Euclidean coordinates |
+| old assembly coordinates | diagonal reals times strict-upper complexes | <code>coordinateMeasure n</code> | the repository's explicit entrywise variance convention |
+| intrinsic Hermitian space | \(\mathcal H_n\) | <code>GUE.intrinsicLaw n</code> | real inner product, isometries, and standard Gaussian symmetry |
+| ambient matrix space | all \(n\times n\) complex matrices | <code>GUE.matrixLaw n</code> | the public random-matrix law and its ambient congruence action |
+
+The intrinsic carrier is a subtype: a point contains a Frobenius vector and a
+proof that its matrix is Hermitian. The ambient carrier contains Hermitian and
+non-Hermitian matrices alike. The inclusion
+
+\[
+\iota_n:\mathcal H_n\to\operatorname{Matrix}_n(\mathbb C)
+\]
+
+forgets the subtype proof without changing any entry.
+
+The intrinsic law is the coordinate law pushed through intrinsic assembly.
+The ambient law is the intrinsic law pushed through inclusion:
+
+\[
+\mu_n=(\iota_n)_*\Gamma_n.
+\]
+
+This equality is the bridge from basis-neutral geometry back to the exact
+entrywise law defined earlier.
+
+### Matrix-law support means full mass here
+
+The preceding geometry module proves that the ambient Hermitian set is
+measurable and
+
+\[
+\mu_n\{H:H^*=H\}=1,
+\qquad
+\mu_n\{H:H^*\ne H\}=0.
+\]
+
+It also states the almost-everywhere Hermitian property. These are
+measure-theoretic full-mass claims. They do not identify Mathlib's topological
+<code>Measure.support</code>, prove a density on the Hermitian subspace, or
+show that every ambient matrix lies in the image.
+
+### Lean bridge: move the intrinsic law into ambient matrices
+
+{{< lean-bridge
+  human="The ambient Gaussian unitary ensemble law is exactly the pushforward of the intrinsic Hermitian law through the inclusion that forgets the proof of Hermiticity."
+  math="\(\mu_n=(\iota_n)_*\Gamma_n.\)"
+  lean="GUE.matrixLaw n = (GUE.intrinsicLaw n).map RandomMatrix.hermitianToMatrix"
+>}}
+
+- <code>GUE.matrixLaw n</code> is a measure on all complex matrices of size
+  <code>n</code>.
+- <code>GUE.intrinsicLaw n</code> is a measure on the Hermitian subtype.
+- <code>RandomMatrix.hermitianToMatrix</code> forgets intrinsic packaging and
+  returns the same entries in ambient matrix space.
+- <code>.map</code> pushes the complete measure through that measurable map.
+- The theorem is
+  <code>GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw</code>.
+
+**Run boundary.** The guarded module check elaborates the exact carrier types
+and measurability. The local tutorial contains only the concrete matrices.
+{{< /lean-bridge >}}
+
+## The checked route to unitary invariance
+
+Let \(U\) be any deterministic bundled unitary matrix. RMT-07 proves that
+intrinsic congruence
+
+\[
+\mathcal C_U(H)=UHU^*
+\]
+
+is a real linear isometric equivalence of \(\mathcal H_n\). Therefore the
+canonical intrinsic standard Gaussian is invariant:
+
+\[
+(\mathcal C_U)_*\operatorname{stdGaussian}(\mathcal H_n)
+=\operatorname{stdGaussian}(\mathcal H_n).
+\]
+
+Uniform real scaling commutes pointwise with congruence:
+
+\[
+\mathcal C_U(\sqrt{v_n}H)
+=\sqrt{v_n}\,\mathcal C_U(H).
+\]
+
+Repeated use of measurable pushforward composition then gives
+
+\[
+\begin{aligned}
+(\mathcal C_U)_*\Gamma_n
+&=(\mathcal C_U)_*(H\mapsto\sqrt{v_n}H)_*\gamma_n\\
+&=(H\mapsto\sqrt{v_n}H)_*(\mathcal C_U)_*\gamma_n\\
+&=(H\mapsto\sqrt{v_n}H)_*\gamma_n\\
+&=\Gamma_n,
+\end{aligned}
+\]
+
+where \(\gamma_n=\operatorname{stdGaussian}(\mathcal H_n)\). This is
+<code>GUE.map_intrinsicLaw_hermitianCongruence</code>.
+
+The inclusion intertwines intrinsic and ambient congruence pointwise:
+
+\[
+\iota_n(\mathcal C_U H)
+=\widehat{\mathcal C}_U(\iota_nH).
+\]
+
+Since \(\mu_n=(\iota_n)_*\Gamma_n\), another pushforward calculation gives
+
+\[
+(\widehat{\mathcal C}_U)_*\mu_n=\mu_n.
+\]
+
+Every arrow needs ordinary measurability before <code>Measure.map_map</code>
+can reassociate it. Every commuting square is proved as a pointwise function
+identity before it is used to rewrite a measure. The proof does not infer
+measure equality from a picture.
+
+### Lean bridge: the final law-level statement
+
+{{< lean-bridge
+  human="Every deterministic unitary congruence leaves the ambient finite Gaussian unitary ensemble probability law unchanged."
+  math="\(\forall U\in\mathrm U(n),\ (H\mapsto UHU^*)_*\mu_n=\mu_n.\)"
+  lean="RandomMatrix.IsUnitaryConjugationInvariant (GUE.matrixLaw n)"
+>}}
+
+- <code>IsUnitaryConjugationInvariant</code> expands to a universal statement
+  over <code>U : Matrix.unitaryGroup (Fin n) ℂ</code>.
+- <code>GUE.matrixLaw n</code> is the exact ambient law constructed from the
+  approved coordinate measure.
+- The predicate compares <code>Measure.map</code> with the original measure. It
+  never asks for <code>U * H * Uᴴ = H</code> pointwise.
+- The checked theorem is
+  <code>GUE.matrixLaw_isUnitaryConjugationInvariant</code>.
+
+**Run boundary.** This is the primary cloud-only repository theorem. The swap
+worksheet checks one deterministic congruence but cannot establish equality
+of Gaussian measures.
+{{< /lean-bridge >}}
+
+## Why no density theorem is imported
+
+Classically, finite GUE is often presented using a density proportional to
 
 \[
 \exp\!\left(-\frac n2\operatorname{Tr}(H^2)\right)
 \]
 
-relative to a Lebesgue measure on the real vector space of Hermitian matrices.
-In normalized orthonormal coordinates,
+with respect to a specified Euclidean volume on Hermitian space. Unitary
+congruence preserves \(\operatorname{Tr}(H^2)\), so that formula suggests
+invariance. Guionnet records this normalization and symmetry in the standard
+random-matrix presentation cited below.
+
+That route would require the formal development to define the reference
+volume, prove the coordinate Jacobian, normalize the density, identify the
+entrywise law with that density, and prove change of variables. RMT-08 imports
+none of those conclusions. Its route is instead
 
 \[
-\operatorname{Tr}(H^2)=\lVert H\rVert_F^2
+\text{exact finite product law}
+\longrightarrow
+\text{real isometric decoding}
+\longrightarrow
+\text{scaled intrinsic standard Gaussian}
+\longrightarrow
+\text{commuting pushforwards}
+\longrightarrow
+\text{ambient law invariance}.
 \]
 
-is the ordinary Euclidean squared norm. This makes the density's rotational
-symmetry intuitive.
+This proves the desired measure equality without claiming a density or a
+Jacobian theorem. A future density proof may identify another presentation of
+the same law, but it cannot be treated as already formalized here.
 
-RMT-08 does not use or formalize this density. A density theorem would first
-need a chosen reference volume measure, a normalization constant, and a proof
-relating that volume to the normalized coordinate chart. The product-measure
-proof avoids those obligations while still establishing exact equality of
-probability laws and unitary invariance.
+## Dimension zero stays inside the same construction
 
-## Physics window: basis neutrality becomes checked
+At \(n=0\), <code>Fin 0</code> and the strict-upper index are empty, so
+<code>HermitianRealIndex 0</code> is empty. There is one function from an empty
+type to \(\mathbb R\), one empty Hermitian matrix, and one empty ambient
+matrix.
 
-In a finite quantum system, changing an orthonormal basis transforms a
-Hermitian Hamiltonian by unitary congruence. A basis-neutral ensemble should
-not assign different probabilities merely because the observer uses another
-orthonormal coordinate frame.
+The project defines
 
-The entrywise GUE construction initially looks basis-dependent: it names a
-diagonal and strict-upper triangle and places independent Gaussians there.
-RMT-08 explains why that appearance is deceptive. Once the free entries are
-written in normalized Hermitian coordinates, they form an isotropic real
-Gaussian. Isotropy is precisely what makes every orthogonal transformation of
-the real Hermitian space invisible to the law, and unitary congruence is one
-such transformation.
+\[
+v_0=0.
+\]
 
-Dyson's unitary symmetry class supplies the physical and historical context.
-The Lean theorem is narrower and exact: for each finite \(n\), every
-deterministic bundled unitary matrix leaves the specified ambient GUE
-probability measure unchanged. It does not formalize time reversal, quantum
-dynamics, energy-level unfolding, or universal spectral statistics.
+The empty finite Gaussian product is Dirac at the unique empty coordinate
+function. The coordinate, intrinsic, and ambient laws are all Dirac at their
+unique zero points. The theorem
+<code>GUE.intrinsicLaw_zero</code> states the intrinsic equality explicitly.
+
+The fixed geometric factor \(\sqrt2\) and the dimension scale
+\(\sqrt{v_n}\) must not be conflated. The former orthonormalizes upper entries
+and is always nonzero. The latter scales the probability law and becomes zero
+at dimension zero. Because the source uses <code>varianceScale</code> rather
+than the partial-looking expression \(1/n\), the general invariance theorem
+includes \(n=0\) without a separate positive-dimension premise.
+
+## What is checked in each source module
+
+The geometry predecessor establishes the carrier and symmetry before the law
+comparison. The primary RMT-08 module establishes the comparison and final
+transport.
+
+| Source layer | Checked results | Explicitly absent |
+|---|---|---|
+| <code>GaussianUnitaryEnsembleGeometry</code> | Frobenius carrier, intrinsic real Hermitian subspace, unitary congruence isometries, intrinsic standard-Gaussian invariance, measurable Hermitian locus, full-mass ambient Hermitian law | equality with scaled intrinsic GUE, final ambient invariance, densities, spectra |
+| <code>GaussianUnitaryEnsembleInvariance</code> | normalized real index, analysis/synthesis, real isometry, exact product decoding, scaled intrinsic law, intrinsic probability and zero law, ambient inclusion law, intrinsic and ambient invariance | density, Jacobian, eigenvalues, moments, asymptotics |
+
+### Inspect the geometry and support interfaces
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry" >}}
+**Resource label: predecessor project module plus Mathlib, cloud-only for this
+project.** On an approved Linux builder, put these lines in a temporary project
+scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped Matrix RealInnerProductSpace
+open NonlinearDynamics.Random
+
+#check RandomMatrix.FrobeniusMatrix
+#check RandomMatrix.HermitianEuclidean
+#check RandomMatrix.hermitianToMatrix
+#check RandomMatrix.hermitianUnitaryCongruenceLinearIsometryEquiv
+#check RandomMatrix.map_stdGaussian_hermitianUnitaryCongruence
+#check RandomMatrix.hermitianSet
+#check RandomMatrix.measurableSet_hermitianSet
+#check GUE.matrixLaw_hermitianSet
+#check GUE.matrixLaw_ae_isHermitian
+#check GUE.matrixLaw_compl_hermitianSet
+~~~
+
+The <code>#check</code> commands inspect existing declarations; they do not
+sample a matrix. The guarded command rendered below checks the exact source
+file. Do not replace it with a local project or Lake command on this Mac.
+{{< /repo-check >}}
+
+### Inspect the normalization and invariance interfaces
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance" >}}
+**Resource label: primary project module plus Mathlib, cloud-only for this
+project.** Type this exact probe on the approved Linux builder:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped Matrix NNReal ENNReal RealInnerProductSpace
+open NonlinearDynamics.Random
+
+#check HermitianRealIndex
+#check hermitianRealIndexEquivMatrixIndex
+#check RandomMatrix.normalizedHermitianAssembly
+#check RandomMatrix.normalizedHermitianAnalysis
+#check RandomMatrix.normalizedHermitianAssembly_apply_upper
+#check RandomMatrix.normalizedHermitianAssembly_inner
+#check RandomMatrix.normalizedHermitianLinearIsometryEquiv
+#check gaussianReal_map_div_sqrt_two
+#check GUE.map_realToHermitianCoordinates_gaussianProduct
+#check GUE.intrinsicLaw
+#check GUE.intrinsicLaw_eq_map_smul_stdGaussian
+#check GUE.intrinsicLaw_zero
+#check GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw
+#check GUE.map_intrinsicLaw_hermitianCongruence
+#check GUE.matrixLaw_isUnitaryConjugationInvariant
+~~~
+
+<code>import</code> loads the pinned source and dependencies. Each
+<code>#check</code> asks Lean to elaborate an exact declaration and display its
+type. The guarded command below checks the whole authoritative leaf. It is not
+a workstation command.
+{{< /repo-check >}}
+
+## The complete RMT-08 declaration map
+
+The primary module exports 35 public declarations. The table records what each
+one checks and prevents prose from attributing a later theorem to an earlier
+definition.
+
+| Declaration | Checked content |
+|---|---|
+| <code>HermitianRealIndex</code> | semantic diagonal, upper-real, and upper-imaginary index |
+| <code>hermitianRealIndexToPair</code> | map each semantic real slot to one matrix position |
+| <code>pairToHermitianRealIndex</code> | classify every matrix position into one semantic sector |
+| <code>pairToHermitianRealIndex_toPair</code> | first index/pair round trip |
+| <code>hermitianRealIndexToPair_pairTo</code> | second pair/index round trip |
+| <code>hermitianRealIndexEquivMatrixIndex</code> | equivalence with all matrix-entry pairs |
+| <code>RandomMatrix.realToHermitianCoordinates</code> | raw normalized decoder into the old coordinate carrier |
+| <code>RandomMatrix.measurable_realToHermitianCoordinates</code> | ordinary measurability of that decoder |
+| <code>RandomMatrix.normalizedHermitianAssembly</code> | normalized Euclidean coordinates to intrinsic Hermitian space |
+| <code>RandomMatrix.normalizedHermitianAnalysis</code> | intrinsic Hermitian point to normalized coordinates |
+| <code>RandomMatrix.hermitianToMatrix_normalizedHermitianAssembly</code> | intrinsic forgetting exposes the old assembled matrix |
+| <code>RandomMatrix.normalizedHermitianAssembly_apply_diag</code> | diagonal entry formula |
+| <code>RandomMatrix.normalizedHermitianAssembly_apply_upper</code> | strict-upper formula with both \(1/\sqrt2\) factors |
+| <code>RandomMatrix.normalizedHermitianAssembly_apply_lower</code> | conjugate-reflected lower formula |
+| <code>RandomMatrix.normalizedHermitianAnalysis_assembly</code> | analysis after assembly is identity |
+| <code>RandomMatrix.normalizedHermitianAssembly_analysis</code> | assembly after analysis is identity |
+| <code>RandomMatrix.normalizedHermitianLinearEquiv</code> | real linear equivalence between coordinate and intrinsic carriers |
+| <code>RandomMatrix.normalizedHermitianAssembly_inner</code> | exact real inner-product preservation |
+| <code>RandomMatrix.normalizedHermitianLinearIsometryEquiv</code> | bundled real linear isometric equivalence |
+| <code>map_gaussianProduct_toLp_eq_map_smul_stdGaussian</code> | common-variance product becomes a scaled Euclidean standard Gaussian |
+| <code>gaussianReal_map_div_sqrt_two</code> | division by \(\sqrt2\) halves centered real Gaussian variance |
+| <code>realUpperToComplex</code> | pair two upper real families after normalization |
+| <code>measurable_realUpperToComplex</code> | measurability of the complex pairing map |
+| <code>map_realUpperToComplex_gaussianProduct</code> | exact two-real-products to Cartesian-complex-product law |
+| <code>GUE.coordinateToHermitianEuclidean</code> | old GUE coordinates assembled into intrinsic space |
+| <code>GUE.measurable_coordinateToHermitianEuclidean</code> | ordinary measurability of intrinsic assembly |
+| <code>GUE.coordinateToHermitianEuclidean_realToHermitianCoordinates</code> | old assembly after decoding equals normalized assembly |
+| <code>GUE.map_realToHermitianCoordinates_gaussianProduct</code> | full normalized product decodes to the earlier coordinate measure |
+| <code>GUE.intrinsicLaw</code> | intrinsic law as a coordinate-measure pushforward |
+| <code>GUE.instIsProbabilityMeasureIntrinsicLaw</code> | intrinsic law is a probability measure in every dimension |
+| <code>GUE.intrinsicLaw_eq_map_smul_stdGaussian</code> | intrinsic law is scaled canonical standard Gaussian |
+| <code>GUE.intrinsicLaw_zero</code> | zero-dimensional intrinsic law is Dirac at zero |
+| <code>GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw</code> | ambient matrix law is the included intrinsic law |
+| <code>GUE.map_intrinsicLaw_hermitianCongruence</code> | unitary congruence preserves intrinsic GUE |
+| <code>GUE.matrixLaw_isUnitaryConjugationInvariant</code> | every unitary congruence preserves ambient GUE law |
+
+The checked source has no <code>sorry</code> or <code>admit</code>. Its recorded
+cloud audit compiled the leaf and aggregators with warnings treated as errors
+against Lean 4.32.0 and pinned Mathlib 4.32.0. This rewrite does not claim a
+fresh project build on the Mac.
+
+## Physics window: basis neutrality, stated narrowly
+
+A finite quantum Hamiltonian is represented by a Hermitian matrix after an
+orthonormal basis is chosen. A deterministic basis change by \(U\) replaces
+the coordinate matrix by \(UHU^*\). The abstract operator has not acquired
+new physics; its coordinate description changed.
+
+The entrywise GUE construction initially appears to favor one basis because it
+names diagonal and upper coordinates. The normalized real-coordinate bridge
+shows why that preference disappears from the probability law. After the
+\(\sqrt2\) correction, the primitive variables are common-variance Gaussian
+coordinates in the real Frobenius geometry. Their intrinsic law has no
+preferred orthonormal real basis. Unitary congruence is one real orthogonal
+transformation of that space, so the law cannot detect it.
+
+Dyson's unitary symmetry class supplies historical physical context. The Lean
+theorem is narrower: for each finite \(n\), every deterministic bundled
+unitary matrix preserves the specified ambient probability measure. It does
+not sample \(U\) from Haar measure, define time evolution, formalize time
+reversal, unfold energy levels, or prove universal spectral statistics.
 
 ## Common wrong turns
 
-### Matching variances and declaring equality of laws
+| Wrong turn | Why it fails | Checked repair |
+|---|---|---|
+| Place normalized upper slots directly into the matrix. | Frobenius square becomes 25 instead of 15 in the example, and upper component variance is wrong. | Divide both upper slots by \(\sqrt2\). |
+| Match all scalar variances and declare the vector laws equal. | Marginals do not encode mutual independence or the full joint law. | Transport the complete product measure. |
+| Say unitary invariance means \(UHU^*=H\) for every sample. | The swap example is an explicit counterexample. | Compare the pushed-forward matrix law with itself. |
+| Apply intrinsic standard-Gaussian symmetry directly to <code>matrixLaw</code>. | The measures initially live on different carriers. | Prove the intrinsic representation and ambient inclusion pushforward first. |
+| Treat Hermitian space as a complex vector space. | Multiplication by a general complex scalar can destroy Hermiticity. | Use the intrinsic real submodule and real isometries. |
+| Treat <code>Measure.map_map</code> as syntax-only reassociation. | The composition theorem needs measurability evidence. | Prove each deterministic map measurable before rewriting pushforwards. |
+| Call full mass “topological support.” | A mass-one measurable locus is not an equality with <code>Measure.support</code>. | State the full-mass and complement-zero theorems exactly. |
+| Import the classical density into the proof. | No reference volume, Jacobian, or density equivalence is formalized here. | Use finite product transport and standard-Gaussian isometries. |
+| Divide by \(\sqrt n\) in the geometric decoder. | That confuses dimension scale with upper-entry orthonormalization and fails at zero. | Keep fixed \(1/\sqrt2\) decoding separate from \(\sqrt{v_n}\) law scaling. |
+| Infer eigenvalue or moment results from invariance. | Law symmetry alone does not define or integrate those observables. | Build each spectral and integrability layer separately. |
 
-Scalar variances do not determine a joint distribution. RMT-08 transports the
-whole finite product measure, including every independence relation.
+## Exercises: keep the size-two matrix in view
 
-### Using the naive upper real and imaginary parts as orthonormal coordinates
+1. **Index.** List the four semantic elements of
+   <code>HermitianRealIndex 2</code> and their sum-type constructors.
+2. **Decode.** Decode \((0,3,-2\sqrt2,\sqrt2)\) into a Hermitian matrix.
+3. **Analyze.** Apply the inverse formulas to that matrix and recover the four
+   normalized coordinates.
+4. **Metric.** Compute both squared norms for the new point and verify equality.
+5. **Wrong decoder.** Omit \(1/\sqrt2\) for the new point and compute the norm
+   discrepancy.
+6. **Variance.** Starting with normalized variance \(1/2\), derive each
+   decoded entry-component variance.
+7. **Dependence near-miss.** Let all four normalized coordinates equal one
+   common \(\gamma_{0,1/2}\) variable. Which marginal facts remain true, and
+   which product-law fact fails?
+8. **Swap.** Multiply \(PH_0P\) by hand, one row and column at a time.
+9. **Point versus law.** State separately the false pointwise equation, the
+   true norm equation, and the checked measure equation.
+10. **Phase unitary.** Try a diagonal unitary
+    \(\operatorname{diag}(1,i)\). Compute how it changes the upper entry of
+    \(H_0\).
+11. **Real carrier.** Give one complex scalar \(c\) and one Hermitian matrix
+    \(H\) for which \(cH\) is not Hermitian.
+12. **Pushforward.** Write the preimage formula that defines
+    \((\iota_n)_*\Gamma_n(B)\) for a measurable ambient set \(B\).
+13. **Support language.** Explain why mass one on the Hermitian locus does not
+    by itself identify topological support.
+14. **Standard Gaussian.** Separate the shape-preserving isometry from the
+    scalar \(\sqrt{v_n}\) in the intrinsic-law formula.
+15. **Zero dimension.** Count every coordinate index and explain why the law
+    is Dirac without evaluating \(1/\sqrt0\).
+16. **Lean tokens.** Change <code>correctH</code> in the local worksheet to
+    the matrix from exercise 2 and update every displayed output and example.
+17. **Resource boundary.** Explain why the worksheet is local-safe but the
+    two <code>repo-check</code> blocks require approved Linux compute.
+18. **Density boundary.** List the reference-volume and change-of-variables
+    obligations needed before the classical exponential formula could become
+    a checked alternative construction.
 
-Each upper entry is reflected below the diagonal. The Frobenius norm counts
-both copies, so the naive upper components have metric weight two. Normalized
-coordinates multiply analysis by \(\sqrt2\) and divide decoding by
-\(\sqrt2\).
+## Summit summary
 
-### Scaling upper entries twice
+The proof dependency chain is now visible in one exact example and in the
+general declarations:
 
-The normalized product already gives every normalized coordinate variance
-\(s_n\). Decoding alone turns the displayed upper components into variance
-\(s_n/2\). Applying another upper-specific variance correction would produce
-the wrong law.
+\[
+\begin{aligned}
+&\text{common independent real Gaussian product}\\
+&\quad\longrightarrow\text{normalized decoder with }1/\sqrt2\\
+&\quad\longrightarrow\text{exact coordinate law and real Frobenius isometry}\\
+&\quad\longrightarrow\text{scaled intrinsic standard Gaussian}\\
+&\quad\longrightarrow\text{intrinsic unitary-law invariance}\\
+&\quad\longrightarrow\text{ambient matrix-law invariance}.
+\end{aligned}
+\]
 
-### Applying standard-Gaussian invariance to the wrong measure
-
-RMT-07's theorem concerns <code>stdGaussian</code> on intrinsic Hermitian
-space. It reaches <code>GUE.matrixLaw</code> only after RMT-08 proves the scaled
-ambient comparison.
-
-### Forgetting that scaling and congruence must commute
-
-Measure-map algebra needs pointwise function identities. The proof explicitly
-uses real linearity of congruence to move uniform scaling across the action.
-
-### Forgetting the ambient inclusion
-
-The project's invariance predicate is stated for measures on ordinary matrix
-space. An intrinsic measure equality must be pushed through
-<code>hermitianToMatrix</code> before it can discharge that predicate.
-
-### Treating <code>Measure.map</code> as unconditional composition
-
-The useful <code>map_map</code> theorem requires measurability of both maps.
-Continuity or bundled linear structure supplies those proofs, but they must be
-present.
-
-### Calling the typeclass workaround a mathematical hypothesis
-
-Reinstalling the canonical real module locally aligns Mathlib instances. It
-does not assume a new algebraic structure or restrict the theorem.
-
-### Reading unitary invariance as a spectral theorem
-
-The law-level symmetry does not define eigenvalues, prove their joint density,
-establish integrability, or imply a semicircle limit inside Lean. Each is a
-separate formal layer.
-
-## Exercises
-
-1. **Indexing.** List every element and its role in the normalized real index
-   when \(n=2\).
-2. **Decode.** Write the full \(2\times2\) Hermitian matrix obtained from four
-   normalized real coordinates.
-3. **Analyze.** Apply the inverse formulas to that matrix and recover all four
-   coordinates.
-4. **Metric.** Verify directly that the Euclidean and Frobenius squared norms
-   agree in the \(2\times2\) example.
-5. **Dimension.** Count the elements of \(\mathcal I_n\) and obtain \(n^2\).
-6. **Scalar Gaussian.** Starting with variance \(s\), compute the variance
-   after division by \(\sqrt2\).
-7. **Joint law.** Give an example of dependent real variables with the same
-   Gaussian marginals as an independent pair.
-8. **Sum splitting.** Write the forward and inverse functions between a
-   function on a two-way sum and a pair of functions.
-9. **Upper pairing.** Describe the measurable equivalence between a pair of
-   real upper fields and a field of real pairs.
-10. **Standard product.** Explain the roles of <code>Measure.pi</code> and
-    <code>WithLp.toLp 2</code> in <code>map_pi_eq_stdGaussian</code>.
-11. **Uniform scale.** Prove that normalized decoding commutes with real scalar
-    multiplication.
-12. **Ambient square.** Check the commuting identity separately on diagonal,
-    upper, and lower entries.
-13. **Pushforwards.** Starting from a pointwise identity between two
-    compositions, derive equality of their measure maps under measurability
-    hypotheses.
-14. **Symmetry chain.** Identify which line of the ambient invariance
-    calculation uses RMT-07 and which lines use RMT-08.
-15. **Zero dimension.** Show that every type and measure in the comparison has
-    the claimed singleton or Dirac interpretation at \(n=0\).
-16. **Nonclaim.** List the extra objects needed to state a Hermitian-space
-    density theorem rigorously.
-17. **Next layer.** Explain why unitary invariance alone does not provide an
-    eigenvalue random variable or an expected trace moment.
-
-## Summit register
-
-RMT-08 introduces one normalized real coordinate index containing the
-diagonal, upper-real, and upper-imaginary slots. Its decoding map inserts
-diagonal values unchanged, divides both upper components by \(\sqrt2\), and
-reflects their complex conjugates below the diagonal. The inverse analysis
-rescales the displayed upper components by \(\sqrt2\). The maps are inverse,
-real linear, and norm preserving, hence a real linear isometric equivalence
-with intrinsic Hermitian Euclidean space.
-
-Putting variance \(s_n\) on every normalized real coordinate creates one
-homogeneous finite Gaussian product. Exact sum-index splitting, pointwise
-pairing, and scalar Gaussian transport identify its decoded law with the full
-RMT-06 coordinate measure. Packaging the unit product as Euclidean space gives
-Mathlib's standard Gaussian; uniform multiplication by \(\sqrt{s_n}\) gives
-the homogeneous product; and the decoding isometry gives the scaled intrinsic
-Hermitian Gaussian.
-
-The coordinate route and intrinsic route commute pointwise to ambient matrix
-space. Their pushforwards are therefore equal, identifying the existing
-<code>GUE.matrixLaw</code> with the ambient image of the scaled intrinsic
-Gaussian. Scaling and inclusion commute with unitary congruence, so RMT-07's
-intrinsic symmetry transports to the first nontrivial checked theorem that
-<code>GUE.matrixLaw</code> is unitarily invariant.
-
-Dimension zero remains inside the uniform construction. A density, Jacobian,
-eigenvalue law, trace moment, spectral statistic, empirical spectral measure,
-semicircle limit, and universality theorem all remain outside RMT-08.
+For the concrete swap, the matrix changes while its norm remains 15. For the
+random ensemble, the pushforward law remains exactly the same. The first fact
+illustrates a real isometry; the second is a probability theorem. Neither
+requires a density, and neither should be rewritten as pointwise fixedness.
 
 ## Where to continue
 
-[First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
-is the next checked layer. It consumes the normalized real product pushforward
-to prove integrability and evaluate the first two ordinary-trace expectations.
-
-[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
-then constructs ordered finite spectral data and compares the intrinsic and
-ambient empirical-measure pushforwards under the explicit coordinatewise
-eigenvalue-measurability premise.
-
-Use the
-{{< refterm "normalized-hermitian-coordinates" "Normalized Hermitian coordinates" >}}
-glossary entry for the compact index, decoding, and product-law ledger.
-[Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
-develops the RMT-07 geometry and intrinsic symmetry transported here.
-
-[Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
-constructs the entrywise law, while the
-{{< refterm "gaussian-unitary-ensemble" "Gaussian unitary ensemble" >}}
-entry records the Wigner variance ledger. Read
-{{< refterm "pushforward-measure" "pushforward measure" >}} for the law-level
-transport operation and
-{{< refterm "unitary-invariance" "unitary invariance" >}} for the ambient
-predicate finally discharged here.
+- {{< refterm "normalized-hermitian-coordinates" "Normalized Hermitian coordinates" >}}
+  gives the compact coordinate and factor-two ledger.
+- {{< refterm "unitary-invariance" "Unitary invariance" >}} isolates the
+  measure-level symmetry definition and its pointwise near-miss.
+- [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
+  constructs the entrywise coordinate and ambient laws used here.
+- [Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}})
+  proves the geometry and full-mass Hermitian facts transported here.
+- [First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
+  adds the separate integrability and expectation layer.
+- [Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
+  constructs finite spectral observables without treating invariance as a
+  substitute for measurability.
 
 ## References
 
 **Mathlib contributors.**
 [Multivariate Gaussian distributions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Probability/Distributions/Gaussian/Multivariate.html),
-Mathlib 4 documentation. The official API defines
-<code>stdGaussian</code>, proves <code>map_pi_eq_stdGaussian</code> for finite
-unit products, and proves <code>stdGaussian_map</code> for real linear
-isometric equivalences.
+Mathlib 4 documentation. This is the official API source for
+<code>stdGaussian</code>, <code>map_pi_eq_stdGaussian</code>, and
+<code>stdGaussian_map</code> under real linear isometries.
 
 **Mathlib contributors.**
 [Real Gaussian distributions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Probability/Distributions/Gaussian/Real.html),
@@ -897,8 +1180,8 @@ isometric equivalences.
 and
 [measure maps](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Measure/Map.html),
 Mathlib 4 documentation. These official references specify variance
-parameterization, scalar Gaussian transport, finite product construction, and
-composition of measurable pushforwards.
+parameterization, scalar Gaussian transport, finite products, and measurable
+pushforward composition.
 
 **Alice Guionnet.**
 [Rare Events in Random Matrix Theory](https://ems.press/content/book-chapter-files/33150),
@@ -907,8 +1190,7 @@ in *Proceedings of the International Congress of Mathematicians 2022*, volume
 [doi:10.4171/ICM2022/174](https://doi.org/10.4171/ICM2022/174),
 pp. 1008-1052. Section 1.1.1 records the GUE diagonal variance \(1/n\), upper
 real and imaginary variances \(1/(2n)\), invariant density convention, and
-unitary symmetry. The RMT-08 proof checks the entrywise-to-intrinsic equivalence
-through product measures rather than using the density.
+unitary symmetry. This chapter's checked proof does not use that density.
 
 **Freeman J. Dyson.**
 [Statistical Theory of the Energy Levels of Complex Systems. I](https://doi.org/10.1063/1.1703773),
@@ -917,5 +1199,5 @@ develops the orthogonal, unitary, and symplectic symmetry-class framework and
 its quantum-spectral motivation.
 
 The exact upstream Lean source audited for this chapter is Mathlib commit
-[81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the revision pinned by <code>formalization/lake-manifest.json</code>.
+[`81a5d257`](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
+the revision pinned in <code>formalization/lake-manifest.json</code>.

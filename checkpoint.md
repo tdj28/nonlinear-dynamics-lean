@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 19:21 PDT
+Last updated: 2026-07-22 19:27 PDT
 
-Audited baseline: `main` at `bc77be8`
+Audited baseline: `main` at `aa90da4`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **6 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **7 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -257,6 +257,16 @@ and an executed `Std` worksheet expose the geometry and measure layers. The
 chapter preserves the historical RMT-07 boundary while explicitly identifying
 the comparison subsequently checked in RMT-08; its deterministic page-owned
 card reproduces the exact congruence ledger.
+*From Normalized Hermitian Coordinates to Gaussian Unitary Ensemble
+Invariance* now starts with four variance-`1/2` real slots, decodes the upper
+pair by `1/sqrt(2)`, and closes the coordinate/Frobenius square ledger at `15`.
+Swap and phase congruences visibly move the same matrix while preserving its
+geometry; a wrong decoder yields `25`. The chapter then climbs through the
+complete product law, real isometry, scaled intrinsic Gaussian, ambient
+inclusion, and final law-level invariance without importing a density or
+spectral claim. Six Lean bridges, two accessible numeric figures, all 35 RMT-08
+declarations, and a nine-example local `Std` worksheet make the route
+reproducible; exact project checks remain Linux-cloud only.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3144,6 +3154,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `aa90da4`: rebuild *Intrinsic Hermitian Gaussian Symmetry and Matrix-Law
+  Support* around one exact swap congruence and contrasting Dirac/balanced
+  two-point laws, with three accessible figures, six Lean bridges, an executed
+  local worksheet, and an explicit historical RMT-07/current RMT-08 boundary.
 - `bc77be8`: rebuild *Finite Product Probability Spaces and Independent
   Gaussian Fields* around the complete four-bit outcome table, cylinder-event
   preimages, product-law and parity boundaries, six Lean bridges, two numeric
