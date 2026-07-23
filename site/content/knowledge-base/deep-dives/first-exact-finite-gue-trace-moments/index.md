@@ -2,17 +2,17 @@
 title: "First Exact Finite Gaussian Unitary Ensemble Trace Moments"
 slug: "first-exact-finite-gue-trace-moments"
 date: 2026-07-21
-summary: "A textbook derivation of Bochner integrability and the first two exact ordinary-trace moments of the finite Wigner-scaled Gaussian unitary ensemble, including dimension zero."
-lead: "Before moments can predict a spectrum, they must first exist. This chapter proves that analytic gate and evaluates the first two finite Gaussian unitary ensemble trace powers without eigenvalues, densities, or asymptotics."
+summary: "An exact size-two sample and probability ledger separates evaluation from expectation before deriving Bochner integrability and the first two finite Gaussian unitary ensemble trace moments."
+lead: "One matrix has trace one and trace-square fifteen; its ensemble has expected trace zero and expected trace-square two. Follow the change of level, then climb through the exact Lean proof."
 draft: false
 pro_reviewed: false
 level: "Finite matrix probability through exact integrable observables"
-reading_time: "75 to 95 minutes"
+reading_time: "90 to 120 minutes"
 prerequisites: "Finite matrix trace, measurable pushforwards, scalar Gaussian mean and variance, Hermitian Frobenius geometry, and normalized Hermitian coordinates; each is reviewed before use"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments"
 toc: true
 og_image: "first-exact-finite-gue-trace-moments-card.png"
-og_image_alt: "The finite Gaussian unitary ensemble matrix law splits into a centered diagonal route for the first expected trace and a normalized-coordinate Frobenius route for the second; each route passes an explicit integrability gate and includes dimension zero."
+og_image_alt: "A deterministic size-two Hermitian matrix has trace one and trace-square fifteen, while four centered normalized Gaussian coordinates of variance one half give ensemble expectations zero and two."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,27 +24,306 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figure, and accessibility have not yet
+prose, sources, Lean declaration map, figures, and accessibility have not yet
 received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
 
-The finite **Gaussian unitary ensemble (GUE)** law is now fully constructed in
-the repository. Its free entries have exact Gaussian laws, its normalization
-is explicit, its matrix realizations are Hermitian almost everywhere, and its
-ambient law is invariant under deterministic unitary changes of basis. None of
-those facts alone gives a trace expectation. An observable must be measurable,
-then integrable, before its integral has the intended finite probabilistic
-meaning.
+## Start with one matrix, then change levels
 
-The ninth random-matrix-theory milestone (RMT-09) crosses that analytic
-boundary. The Bochner integral is the norm-controlled integral for functions
-valued in a complete normed vector space; the complex numbers are such a
-space. For every natural matrix dimension \(n\), including \(n=0\), RMT-09
-proves that the first two
-{{< refterm "trace-power" "trace-power observables" >}} are complex Bochner
-integrable under the Wigner-scaled GUE matrix law and evaluates their integrals
-exactly:
+The **Gaussian unitary ensemble (GUE)** is a
+{{< refterm "probability-law" "probability law" >}} on finite
+{{< refterm "hermitian-matrix" "Hermitian matrices" >}}. A probability law is
+an assignment of mass to possible matrices. It is not one matrix, and an
+{{< refterm "expectation" "expectation" >}} is a probability-weighted average
+under that law.
+
+Those distinctions matter immediately. Begin with the deterministic matrix
+
+\[
+H_0=
+\begin{bmatrix}
+2 & 1+2i\\
+1-2i & -1
+\end{bmatrix}.
+\]
+
+Its ordinary, unnormalized {{< refterm "matrix-trace" "matrix trace" >}} is
+
+\[
+\operatorname{Tr}(H_0)=2+(-1)=1.
+\]
+
+Hermiticity makes the trace of its square equal its Frobenius squared norm:
+
+\[
+\begin{aligned}
+\operatorname{Tr}(H_0^2)
+&=2^2+(-1)^2+2|1+2i|^2\\
+&=4+1+2(1+4)\\
+&=15.
+\end{aligned}
+\]
+
+The pair \((1,15)\) describes one point. It does **not** say what the GUE
+expectations are.
+
+### Put the size-two GUE law on normalized coordinates
+
+For the repository's size-two normalization, choose four mutually
+{{< refterm "independence" "independent" >}} centered real Gaussian
+coordinates
+
+\[
+D_0,D_1,R,S\sim N(0,1/2).
+\]
+
+Here \(N(m,v)\) denotes a real Gaussian law with mean \(m\) and
+{{< refterm "variance" "variance" >}} \(v\). “Centered” means mean zero.
+Mutual independence means the joint law is the product of all four scalar
+laws, not merely that each pair has zero covariance.
+
+Decode those normalized coordinates as
+
+\[
+H=
+\begin{bmatrix}
+D_0 & R/\sqrt2+iS/\sqrt2\\
+R/\sqrt2-iS/\sqrt2 & D_1
+\end{bmatrix}.
+\]
+
+The displayed real and imaginary parts above the diagonal each have variance
+\((1/2)/2=1/4\). The normalized variables \(R,S\) themselves still have
+variance \(1/2\).
+
+Now compute the two random observables pointwise:
+
+\[
+\operatorname{Tr}(H)=D_0+D_1,
+\]
+
+and
+
+\[
+\begin{aligned}
+\operatorname{Tr}(H^2)
+&=D_0^2+D_1^2
+  +2\left|R/\sqrt2+iS/\sqrt2\right|^2\\
+&=D_0^2+D_1^2+R^2+S^2.
+\end{aligned}
+\]
+
+Each coordinate is centered, so linearity of expectation gives
+
+\[
+\mathbb E\operatorname{Tr}(H)=0+0=0.
+\]
+
+For a centered real Gaussian, the second moment equals the variance. Therefore
+
+\[
+\begin{aligned}
+\mathbb E\operatorname{Tr}(H^2)
+&=\mathbb E D_0^2+\mathbb E D_1^2
+  +\mathbb E R^2+\mathbb E S^2\\
+&=\frac12+\frac12+\frac12+\frac12\\
+&=2.
+\end{aligned}
+\]
+
+This last sum needs linearity, not a factorization of products of distinct
+coordinates. The product law is still essential because it is the exact source
+law from which the matrix law is pushed forward.
+
+{{< reference-figure
+  wide="true"
+  src="gue-n2-sample-law-theorem-ledger.svg"
+  alt="The deterministic Hermitian matrix with rows two, one plus two i and one minus two i, minus one has trace one and trace-square fifteen. The random size-two law instead has four centered normalized real coordinates of variance one half. Their law-level expected trace is zero and expected trace-square is two."
+  caption="**Finding:** three layers carry different numbers. The deterministic point \(H_0\) has \(\operatorname{Tr}(H_0)=1\) and \(\operatorname{Tr}(H_0^2)=15\). The GUE law is built from four mutually independent normalized real coordinates \(D_0,D_1,R,S\), each centered with variance \(1/2\). Under that law, \(\mathbb E\operatorname{Tr}(H)=0\) and \(\mathbb E\operatorname{Tr}(H^2)=2\). The figure is an exact symbolic ledger, not simulated data, and RMT-09 separately proves the integrability that licenses both expectations."
+>}}
+
+### Three near-misses with three different answers
+
+The correct value \(2\) depends on keeping the law, observable, and operation
+fixed.
+
+1. **Wrong decoder.** If the upper entry were \(R+iS\), without division by
+   \(\sqrt2\), then
+   \[
+   \mathbb E[D_0^2+D_1^2+2R^2+2S^2]=3.
+   \]
+   That is a different matrix law with the wrong Frobenius normalization.
+2. **Wrong observable.** The scalar square \((\operatorname{Tr}H)^2\) is not
+   \(\operatorname{Tr}(H^2)\). Under the product law,
+   \[
+   \mathbb E[(\operatorname{Tr}H)^2]
+   =\mathbb E[(D_0+D_1)^2]=1.
+   \]
+   Off-diagonal energy never appears in this observable.
+3. **Wrong probability level.** Substitution of \(H_0\) produces \(15\), but
+   no law has been integrated. A sample value is not an expected value.
+
+{{< reference-figure
+  wide="true"
+  src="gue-n2-trace-near-misses.svg"
+  alt="The correct normalized size-two calculation gives expected trace of the matrix square equal to two. Omitting the square-root-two decoder gives three, squaring the scalar trace gives one, and evaluating the displayed deterministic sample gives fifteen."
+  caption="**Finding:** the values \(2,3,1,15\) answer different questions. Two is the checked expectation of \(\operatorname{Tr}(H^2)\) under the repository law. Three belongs to an incorrectly normalized law. One belongs to the different observable \((\operatorname{Tr}H)^2\). Fifteen is the value of \(\operatorname{Tr}(H_0^2)\) at one deterministic point. Only the first route also carries RMT-09's Bochner-integrability theorem."
+>}}
+
+{{< checkpoint stage="Exact size-two ledger" title="Do not replace an expectation with evaluation" >}}
+The theorem integrates a measurable, integrable function against the complete
+matrix law. Neither an aesthetically typical matrix nor one convenient numeric
+matrix can stand in for that operation.
+{{< /checkpoint >}}
+
+## Type and run the finite ledger yourself
+
+The exact GUE measures and Bochner integrals use Mathlib and stay on an
+approved Linux project builder. The deterministic matrix arithmetic and the
+quarter-unit moment ledger fit in a small standalone Lean file that imports
+only <code>Std</code>.
+
+Create <code>/tmp/GUETraceMoments2Tutorial.lean</code> and type:
+
+~~~lean
+import Std
+
+structure ComplexInt where
+  re : Int
+  im : Int
+deriving Repr, DecidableEq
+
+def ComplexInt.add (z w : ComplexInt) : ComplexInt :=
+  ⟨z.re + w.re, z.im + w.im⟩
+
+def ComplexInt.mul (z w : ComplexInt) : ComplexInt :=
+  ⟨z.re * w.re - z.im * w.im,
+    z.re * w.im + z.im * w.re⟩
+
+structure Matrix2 where
+  a00 : ComplexInt
+  a01 : ComplexInt
+  a10 : ComplexInt
+  a11 : ComplexInt
+deriving Repr, DecidableEq
+
+def Matrix2.entries (H : Matrix2) : List (Int × Int) :=
+  [(H.a00.re, H.a00.im), (H.a01.re, H.a01.im),
+   (H.a10.re, H.a10.im), (H.a11.re, H.a11.im)]
+
+def Matrix2.trace (H : Matrix2) : ComplexInt :=
+  H.a00.add H.a11
+
+def Matrix2.traceSquare (H : Matrix2) : ComplexInt :=
+  let diagonal0 := H.a00.mul H.a00
+  let upperLower := H.a01.mul H.a10
+  let lowerUpper := H.a10.mul H.a01
+  let diagonal1 := H.a11.mul H.a11
+  (diagonal0.add upperLower).add (lowerUpper.add diagonal1)
+
+def sampleH : Matrix2 :=
+  ⟨⟨2, 0⟩, ⟨1, 2⟩, ⟨1, -2⟩, ⟨-1, 0⟩⟩
+
+def normalizedVarianceQuarters : List (String × Nat) :=
+  [("diagonal 0", 2), ("diagonal 1", 2),
+   ("upper real normalized", 2), ("upper imaginary normalized", 2)]
+
+def diagonalMeans : List Int := [0, 0]
+
+def expectedTrace : Int := diagonalMeans.sum
+
+def expectedTraceSquareQuarters : Nat :=
+  (normalizedVarianceQuarters.map Prod.snd).sum
+
+def expectedSquareOfTraceQuarters : Nat :=
+  2 + 2
+
+def wrongDecoderTraceSquareQuarters : Nat :=
+  2 + 2 + 2 * 2 + 2 * 2
+
+def quarters (q : Nat) : Rat :=
+  (q : Rat) / 4
+
+#eval normalizedVarianceQuarters
+#eval sampleH.entries
+#eval sampleH.trace
+#eval sampleH.traceSquare
+#eval (expectedTrace, quarters expectedTraceSquareQuarters,
+  quarters expectedSquareOfTraceQuarters,
+  quarters wrongDecoderTraceSquareQuarters)
+#eval (decide (sampleH.trace.re ≠ expectedTrace),
+  decide (sampleH.traceSquare.re ≠ 2),
+  decide (expectedTraceSquareQuarters ≠ wrongDecoderTraceSquareQuarters))
+
+example : sampleH.trace = ⟨1, 0⟩ := by
+  native_decide
+
+example : sampleH.traceSquare = ⟨15, 0⟩ := by
+  native_decide
+
+example : expectedTrace = 0 := by
+  native_decide
+
+example : quarters expectedTraceSquareQuarters = 2 := by
+  native_decide
+
+example : quarters expectedSquareOfTraceQuarters = 1 := by
+  native_decide
+
+example : quarters wrongDecoderTraceSquareQuarters = 3 := by
+  native_decide
+
+example : sampleH.trace.re ≠ expectedTrace := by
+  native_decide
+
+example : sampleH.traceSquare.re ≠ 2 := by
+  native_decide
+
+example : expectedTraceSquareQuarters ≠
+    wrongDecoderTraceSquareQuarters := by
+  native_decide
+~~~
+
+Run the pinned compiler directly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/GUETraceMoments2Tutorial.lean
+~~~
+
+**Resource label: small standalone Lean plus <code>Std</code>, suitable for an
+ordinary Mac or Linux machine.** This command does not enter the Lake project,
+import Mathlib, or build a project cache.
+
+The executed output is:
+
+~~~text
+[("diagonal 0", 2), ("diagonal 1", 2), ("upper real normalized", 2), ("upper imaginary normalized", 2)]
+[(2, 0), (1, 2), (1, -2), (-1, 0)]
+{ re := 1, im := 0 }
+{ re := 15, im := 0 }
+(0, 2, 1, 3)
+(true, true, true)
+~~~
+
+The value <code>2</code> in every variance row means two quarter-units, or
+\(1/2\). The tuple <code>(0, 2, 1, 3)</code> records expected trace, correct
+expected matrix-square trace, expected squared scalar trace, and the
+wrong-decoder result. Nine <code>example</code> declarations prove the same
+integer and rational identities to the compiler.
+
+This worksheet does **not** construct a Gaussian random variable, prove
+integrability, or evaluate a Bochner integral. It checks the finite arithmetic
+that the exact Mathlib-backed theorems organize.
+
+## What RMT-09 proves in every finite dimension
+
+The ninth random-matrix-theory milestone (RMT-09) crosses the analytic
+boundary. For every \(n\in\mathbb N\), including \(n=0\), it proves that the
+first two {{< refterm "trace-power" "trace-power observables" >}} are complex
+Bochner integrable under the Wigner-scaled GUE matrix law and then evaluates
+their integrals:
 
 \[
 \mathbb E[\operatorname{Tr}(H)]=0,
@@ -52,22 +331,12 @@ exactly:
 \mathbb E[\operatorname{Tr}(H^2)]=n.
 \]
 
-Here \(H\) denotes a matrix distributed according to the project's finite GUE
-law, \(\operatorname{Tr}\) is the ordinary unnormalized matrix trace, and
-\(\mathbb E\) denotes integration under that probability law. The theorem
-statements live in ℂ because the ambient matrices and trace observable are
-complex-valued.
-
-Here *Wigner scaled* means that each orthonormal real Hermitian coordinate has
-variance \(1/n\) in positive dimension. The squared Frobenius norm is the sum
-of the squared magnitudes of all matrix entries. Those two definitions explain
-why the second expected ordinary trace grows exactly like the dimension.
-
-The checked module exposes exactly four public declarations: two integrability
-theorems and the two integral identities they license. Its proof uses centered
-diagonal marginals for the first power and normalized real Hermitian coordinates
-for the second. It does not define eigenvalues, invoke a density, or pass to a
-large-dimension limit.
+The theorem statements live in \(\mathbb C\) because the ambient matrices and
+trace observable are complex-valued, even though these values are real on
+Hermitian matrices. The checked module exposes exactly four public
+declarations: two integrability theorems and the two integral identities they
+license. It invokes no density, eigenvalue enumeration, or large-dimension
+limit.
 
 ## Choose a route up
 
@@ -112,9 +381,10 @@ By the summit, you should be able to:
 ## Two proofs in one picture
 
 {{< reference-figure
+  wide="true"
   src="two-trace-moment-routes.svg"
-  alt="The finite Gaussian unitary ensemble matrix law feeds two routes. The first writes trace as a finite sum of centered diagonal Gaussian coordinates. The second represents the matrix law as a pushforward from normalized real coordinates, moves the integral to those coordinates, rewrites Hermitian trace square as Frobenius norm square, and sums scalar Gaussian second moments over one coordinate per matrix position. Each route proves integrability before evaluating its complex integral, and both include the empty zero-size case."
-  caption="**Finding:** the first two expected trace powers are not two instances of one opaque automation step. The first is linear and sees only centered diagonal marginals. The second is geometric and uses the exact normalized-coordinate pushforward together with the Hermitian trace-square identity. Both routes carry a separate integrability proof, and neither needs eigenvalues or a density."
+  alt="The finite Gaussian unitary ensemble matrix law feeds two routes. The first writes trace as a finite sum of centered diagonal Gaussian coordinates, proves integrability, and sums their means to zero; at size two this is zero plus zero. The second pushes normalized real coordinates to matrices, rewrites Hermitian trace-square as a coordinate square sum, proves integrability, and computes n squared times one over n; at size two this is four times one half equal to two. Dimension zero uses empty sums."
+  caption="**Finding:** the first two expected trace powers are not two instances of one opaque automation step. The first is linear, sees only centered diagonal marginals, and gives \(0+0=0\) at size two. The second is geometric, uses the exact normalized-coordinate pushforward and Hermitian trace-square identity, and gives \(4(1/2)=2\). Both routes prove integrability before evaluating the integral. The zero-dimensional branch uses empty sums, and neither route needs eigenvalues or a density."
 >}}
 
 The left route exploits how little the first power contains. Trace is already a
@@ -220,6 +490,29 @@ does not alone tell a reader whether \(f\) has mean zero or whether the
 totalized nonintegrable branch was reached. RMT-09 publishes the integrability
 theorem first in each pair.
 
+### Lean bridge: license the first expected trace
+
+{{< lean-bridge
+  human="The ordinary trace is Bochner integrable under the finite Gaussian unitary ensemble matrix law in every natural dimension."
+  math="\(T_1\in L^1(\mu_n;\mathbb C)\), where \(T_1(H)=\operatorname{Tr}(H)\)."
+  lean="MeasureTheory.Integrable (RandomMatrix.tracePower (id : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ) 1) (GUE.matrixLaw n)"
+>}}
+
+- <code>MeasureTheory.Integrable</code> is the analytic license, not the value
+  of the integral.
+- <code>tracePower ... 1</code> is the complex-valued function
+  \(H\mapsto\operatorname{Tr}(H^1)\).
+- The long <code>id</code> annotation tells Lean that the sample itself is the
+  matrix-valued random variable.
+- <code>GUE.matrixLaw n</code> supplies the measure under which norm
+  integrability is proved.
+- The exact theorem is <code>GUE.integrable_tracePower_one</code>.
+
+**Run boundary.** This proposition imports Mathlib's Bochner integral and the
+project GUE law. Check it through the guarded Linux module probe below, not
+with the local integer worksheet.
+{{< /lean-bridge >}}
+
 ### Measurability is necessary but weaker
 
 Measurability lets us form a pushforward distribution and discuss the
@@ -301,6 +594,29 @@ This proof is deliberately local. It does not use the full normalized real
 product representation, the unitary-invariance theorem, or independence among
 entries. Exact centered diagonal marginals are sufficient.
 
+### Lean bridge: evaluate the first expected trace
+
+{{< lean-bridge
+  human="After integrability is established, the complex expectation of the ordinary trace is exactly zero."
+  math="\(\displaystyle\int \operatorname{Tr}(H)\,\mathrm d\mu_n(H)=0.\)"
+  lean="∫ H, RandomMatrix.tracePower (id : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ) 1 H ∂GUE.matrixLaw n = 0"
+>}}
+
+- <code>∫ H, ... ∂GUE.matrixLaw n</code> is Lean's binder syntax for the
+  Bochner integral over matrices.
+- The final <code>H</code> evaluates the trace-power function at the bound
+  matrix.
+- <code>= 0</code> is a complex equality; the preceding integrability theorem
+  prevents the totalized nonintegrable zero from being misread as a mean.
+- The source expands trace into a finite diagonal sum and uses
+  <code>(matrixLaw_diagonal_hasLaw n i).mean_eq</code> at each index.
+- The exact theorem is <code>GUE.integral_tracePower_one</code>.
+
+**Run boundary.** The local worksheet checks \(2+(-1)=1\) for one sample and a
+zero centered-mean ledger. The law-level integral is a guarded Linux project
+check.
+{{< /lean-bridge >}}
+
 ### The empty first sum
 
 When \(n=0\), <code>Fin 0</code> has no elements. Matrix trace is the sum over
@@ -340,6 +656,31 @@ the Frobenius inner product and
 This is an important reuse boundary. The moment module does not re-prove the
 geometry from raw entries, and the geometry module did not pretend to prove a
 probability statement.
+
+### Lean bridge: turn Hermitian trace-square into energy
+
+{{< lean-bridge
+  human="For an intrinsic Hermitian matrix, the trace of its matrix square equals its squared Frobenius norm, included into the complex numbers."
+  math="\(\operatorname{Tr}(H^2)=\lVert H\rVert_F^2\in\mathbb C.\)"
+  lean="Matrix.trace ((RandomMatrix.hermitianToMatrix H) ^ 2) = (‖H‖ ^ 2 : ℂ)"
+>}}
+
+- <code>H</code> has type <code>RandomMatrix.HermitianEuclidean n</code>, so
+  Hermiticity is carried by the value itself.
+- <code>hermitianToMatrix</code> forgets the subtype proof and exposes the
+  ambient entries.
+- <code>^ 2</code> on the left is matrix multiplication; <code>‖H‖ ^ 2</code>
+  on the right is a real norm square.
+- <code>(... : ℂ)</code> coerces that real energy into the complex trace
+  codomain.
+- This is the private checked helper
+  <code>trace_sq_hermitianToMatrix</code>, derived from RMT-07's public
+  <code>RandomMatrix.inner_frobenius_eq_trace</code>.
+
+**Run boundary.** Because the helper is private, it is audited by checking the
+whole RMT-09 source leaf. The standalone worksheet verifies its displayed
+\(n=2\) instance, \(15=15\).
+{{< /lean-bridge >}}
 
 ## Camp three: move the law to normalized real coordinates
 
@@ -381,6 +722,29 @@ earlier coordinate-built GUE law. RMT-09 exposes the direct composite
 
 This is an equality of whole measures, not a statement that the coordinates
 merely have matching variances. It licenses the pushforward integration step.
+
+### Lean bridge: transport the complete normalized product
+
+{{< lean-bridge
+  human="The common-variance product over every normalized real Hermitian coordinate decodes into the repository's complete diagonal and complex-upper coordinate law."
+  math="\((D_n)_*\bigotimes_{a\in\mathcal I_n}N(0,s_n)=\nu_n.\)"
+  lean="(gaussianProductMeasure (fun _ : HermitianRealIndex n ↦ 0) (fun _ ↦ GUE.varianceScale n)).map RandomMatrix.realToHermitianCoordinates = GUE.coordinateMeasure n"
+>}}
+
+- <code>gaussianProductMeasure</code> builds the finite joint law; the two
+  functions provide mean zero and common variance at every index.
+- <code>HermitianRealIndex n</code> has diagonal, normalized upper-real, and
+  normalized upper-imaginary sectors.
+- <code>.map</code> is pushforward of the entire measure, not a list of marginal
+  variance statements.
+- <code>realToHermitianCoordinates</code> divides both upper sectors by
+  \(\sqrt2\) and pairs them into complex entries.
+- The exact predecessor theorem is
+  <code>GUE.map_realToHermitianCoordinates_gaussianProduct</code>.
+
+**Run boundary.** This predecessor theorem and RMT-09's private composite to
+<code>matrixLaw n</code> both require the pinned Mathlib project on Linux.
+{{< /lean-bridge >}}
 
 Combining the measure equality with the pointwise norm identity gives
 
@@ -424,6 +788,27 @@ The target statement is not about the coordinate source measure. The theorem
 <code>tracePower id 2</code> under <code>matrixLaw n</code>. The proof passes
 through <code>integrable_map_measure</code> and the pointwise bridge, so the
 analytic result lands on the public ambient law.
+
+### Lean bridge: license the second expected trace
+
+{{< lean-bridge
+  human="The trace of the matrix square is Bochner integrable under finite Gaussian unitary ensemble in every natural dimension."
+  math="\(T_2\in L^1(\mu_n;\mathbb C)\), where \(T_2(H)=\operatorname{Tr}(H^2)\)."
+  lean="MeasureTheory.Integrable (RandomMatrix.tracePower (id : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ) 2) (GUE.matrixLaw n)"
+>}}
+
+- The only visible change from the first integrability proposition is the
+  power <code>2</code>; the proof route is completely different.
+- <code>integrable_map_measure</code> moves the target question to normalized
+  coordinate space.
+- <code>integrable_finsetSum</code> assembles the finite family of integrable
+  coordinate squares.
+- <code>.ofReal</code> includes the real square sum into the complex codomain.
+- The exact theorem is <code>GUE.integrable_tracePower_two</code>.
+
+**Run boundary.** The worksheet proves finite identities only. The norm-tail
+control and pushforward transfer are checked by the primary module on Linux.
+{{< /lean-bridge >}}
 
 ### Why no independence calculation appears
 
@@ -497,6 +882,29 @@ For a successor dimension, hence positive \(n\), the variance scale is
 
 The private theorem <code>card_mul_varianceScale</code> implements exactly this
 zero/successor split. The public theorem needs no assumption \(0\lt n\).
+
+### Lean bridge: close the exact second expectation
+
+{{< lean-bridge
+  human="The complex Bochner integral of the ordinary second trace power equals the matrix dimension."
+  math="\(\displaystyle\int\operatorname{Tr}(H^2)\,\mathrm d\mu_n(H)=n.\)"
+  lean="∫ H, RandomMatrix.tracePower (id : Matrix (Fin n) (Fin n) ℂ → Matrix (Fin n) (Fin n) ℂ) 2 H ∂GUE.matrixLaw n = (n : ℂ)"
+>}}
+
+- <code>integral_map</code> moves the target integral through the normalized
+  real matrix sample map.
+- <code>integral_congr_ae</code> replaces the composed trace-square by the
+  pointwise coordinate square sum.
+- <code>integral_finsetSum</code> uses scalar Gaussian second moments; it does
+  not factor a product of distinct coordinates.
+- <code>Fintype.card (HermitianRealIndex n)</code> becomes \(n^2\), and
+  <code>varianceScale n</code> contributes \(1/n\) in positive dimension.
+- <code>(n : ℂ)</code> makes the complex codomain explicit.
+- The exact theorem is <code>GUE.integral_tracePower_two</code>.
+
+**Run boundary.** This is the cloud-only RMT-09 endpoint. The local worksheet
+checks the \(n=2\) arithmetic \(4(1/2)=2\), not the measure integral.
+{{< /lean-bridge >}}
 
 ### A two-by-two audit
 
@@ -795,35 +1203,70 @@ RMT-09 answers each question explicitly.
     proof used here. List the extra reference-measure, normalization, and
     change-of-variables obligations introduced by the density route.
 
-## Reproduce the checked slice
+## Check the exact project interfaces on Linux
 
-From the repository root, load the pinned Lean toolchain and compile the module
-with warnings treated as errors:
+### Inspect the geometry and normalized-law predecessors
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance" >}}
+**Resource label: predecessor project module plus Mathlib, cloud-only for this
+project.** On an approved Linux builder, place this probe in a temporary
+project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped Matrix NNReal ENNReal RealInnerProductSpace
+open NonlinearDynamics.Random
+
+#check HermitianRealIndex
+#check GUE.varianceScale
+#check RandomMatrix.inner_frobenius_eq_trace
+#check RandomMatrix.normalizedHermitianAssembly_inner
+#check GUE.map_realToHermitianCoordinates_gaussianProduct
+#check GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw
 ~~~
 
-Build the targeted module and its dependencies:
+<code>#check</code> asks Lean to elaborate each exact declaration and display
+its type. It does not sample a matrix or evaluate an expectation. The guarded
+command rendered below checks the authoritative predecessor source file and
+must not be replaced by a local Lake command on this Mac.
+{{< /repo-check >}}
 
-~~~sh
-lake build \
-  NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
+### Inspect all four RMT-09 endpoints
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments" >}}
+**Resource label: primary project module plus Mathlib, cloud-only for this
+project.** Type this exact probe on the approved Linux builder:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped Matrix NNReal ENNReal RealInnerProductSpace
+open NonlinearDynamics.Random
+
+#check RandomMatrix.tracePower
+#check RandomMatrix.measurable_tracePower
+#check GUE.integrable_tracePower_one
+#check GUE.integral_tracePower_one
+#check GUE.integrable_tracePower_two
+#check GUE.integral_tracePower_two
 ~~~
 
-Return to the repository root and build the draft teaching site:
+The first two checks expose the observable and its earlier measurability gate.
+The final four are the complete public API of RMT-09. The guarded command below
+checks the whole leaf with the committed toolchain and manifest policy.
+{{< /repo-check >}}
+
+The workstation-safe site gate remains:
 
 ~~~sh
-cd ..
 make site-check
 ~~~
 
-The repository-wide milestone gate is <code>make check</code>. The page is
-publicly available as an open working note. Passing the technical gate does not
-complete the pending human mathematical and editorial reviews.
+Passing technical checks does not change <code>pro_reviewed: false</code> or
+complete the pending human mathematical, editorial, and accessibility review.
 
 ## What has and has not been proved
 

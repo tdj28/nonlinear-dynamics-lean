@@ -1,69 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="650"
-     viewBox="0 0 840 650" role="img"
-     aria-labelledby="twoMomentRoutesTitle twoMomentRoutesDesc">
-  <title id="twoMomentRoutesTitle">The first two finite Gaussian unitary ensemble trace moments use different exact routes</title>
-  <desc id="twoMomentRoutesDesc">The first route reads the trace from centered diagonal marginals and integrates a finite sum. The second represents the matrix law as a pushforward from normalized real coordinates, moves the integral to those coordinates, rewrites the Hermitian trace square as a Frobenius norm square, and sums scalar Gaussian second moments over one coordinate per matrix position. Both routes carry a separate integrability proof. The empty zero-size branch returns zero without a positivity assumption.</desc>
-  <rect width="840" height="650" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820"
+     viewBox="0 0 1200 820" role="img"
+     aria-labelledby="two-moment-routes-title two-moment-routes-desc">
+  <title id="two-moment-routes-title">The first two finite Gaussian unitary ensemble trace moments pass separate integrability gates and use different exact routes</title>
+  <desc id="two-moment-routes-desc">The first route expands trace as a finite diagonal sum, proves each diagonal coordinate integrable, and sums centered means to zero. At size two the means are zero plus zero. The second route pushes a common Gaussian product through normalized Hermitian assembly, converts trace-square to a sum of coordinate squares, and proves that sum integrable. In positive dimension its arithmetic is n squared times one over n equal to n; at size two this is four times one half equal to two. Dimension zero uses empty sums and no division.</desc>
   <defs>
-    <marker id="twoMomentArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
-            orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    <marker id="two-moment-routes-arrow" markerWidth="10" markerHeight="8"
+            refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
     </marker>
   </defs>
+  <rect width="1200" height="820" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:29px;font-weight:700}.sub{font-size:17px;fill:#5A544C}
+    .h{font-size:20px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}
+    .num{font-size:20px;font-weight:700}.tiny{font-size:13px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+  </style>
 
-  <text x="24" y="30" class="t title">Two finite-moment proofs, one analytic gate</text>
-  <text x="24" y="50" class="t m">The linear trace route and the geometric trace-square route share a law but expose different structure.</text>
+  <text x="48" y="48" class="t title">Two expected trace powers, two proof routes, two analytic licenses</text>
+  <text x="48" y="78" class="t sub">Both start from the same finite matrix law; neither expectation is read directly from a sample.</text>
 
-  <rect x="24" y="82" width="792" height="64" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="420" y="110" text-anchor="middle" class="t h">FINITE GAUSSIAN UNITARY ENSEMBLE MATRIX LAW</text>
-  <text x="420" y="132" text-anchor="middle" class="t s">one probability measure, ordinary matrix trace, every natural dimension</text>
+  <rect x="318" y="106" width="564" height="78" rx="15" class="blue"/>
+  <text x="600" y="138" text-anchor="middle" class="t h">FINITE GUE MATRIX LAW IN DIMENSION n</text>
+  <text x="600" y="166" text-anchor="middle" class="t s">ordinary trace, Wigner variance scale, complex Bochner integral</text>
 
-  <path d="M420 148 L420 174" fill="none" stroke="#A67C52" stroke-width="2"/>
-  <path d="M420 174 L206 174 L206 194" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#twoMomentArrow)"/>
-  <path d="M420 174 L634 174 L634 194" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#twoMomentArrow)"/>
+  <path d="M600 186 L600 214 L292 214 L292 236" fill="none" stroke="#A67C52"
+        stroke-width="3" marker-end="url(#two-moment-routes-arrow)"/>
+  <path d="M600 214 L908 214 L908 236" fill="none" stroke="#A67C52"
+        stroke-width="3" marker-end="url(#two-moment-routes-arrow)"/>
 
-  <text x="206" y="190" text-anchor="middle" class="t h">FIRST TRACE POWER</text>
-  <rect x="24" y="204" width="364" height="78" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
-  <text x="206" y="234" text-anchor="middle" class="t h">CENTERED DIAGONAL MARGINALS</text>
-  <text x="206" y="259" text-anchor="middle" class="t s">trace is a finite sum of diagonal entries</text>
+  <rect x="48" y="248" width="516" height="360" rx="17" class="cream"/>
+  <text x="70" y="284" class="t h">Route 1: the trace sees only the diagonal</text>
+  <rect x="72" y="310" width="468" height="66" rx="11" class="blue"/>
+  <text x="92" y="338" class="t s">Tr(H) = sum over i of Hii</text>
+  <text x="92" y="362" class="t m">exact centered diagonal marginal at every finite index</text>
+  <line x1="306" y1="380" x2="306" y2="407" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#two-moment-routes-arrow)"/>
+  <rect x="72" y="416" width="468" height="72" rx="11" class="clay"/>
+  <text x="92" y="444" class="t h">Integrability gate</text>
+  <text x="92" y="472" class="t s">finite sum of integrable complex coordinates</text>
+  <line x1="306" y1="492" x2="306" y2="519" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#two-moment-routes-arrow)"/>
+  <rect x="72" y="528" width="468" height="58" rx="11" class="green"/>
+  <text x="92" y="564" class="t num">all n: E Tr(H) = 0</text>
 
-  <path d="M206 284 L206 308" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#twoMomentArrow)"/>
-  <rect x="24" y="314" width="364" height="78" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
-  <text x="206" y="344" text-anchor="middle" class="t h">FINITE INTEGRABLE SUM</text>
-  <text x="206" y="369" text-anchor="middle" class="t s">each scalar Gaussian has mean zero</text>
+  <rect x="636" y="248" width="516" height="360" rx="17" class="cream"/>
+  <text x="658" y="284" class="t h">Route 2: Hermitian geometry sees all entries</text>
+  <rect x="660" y="310" width="468" height="66" rx="11" class="blue"/>
+  <text x="680" y="338" class="t s">normalized product maps to H</text>
+  <text x="680" y="362" class="t m">Tr(H^2) = Frobenius square = sum over a of xa^2</text>
+  <line x1="894" y1="380" x2="894" y2="407" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#two-moment-routes-arrow)"/>
+  <rect x="660" y="416" width="468" height="72" rx="11" class="clay"/>
+  <text x="680" y="444" class="t h">Integrability gate</text>
+  <text x="680" y="472" class="t s">finite sum of integrable Gaussian coordinate squares</text>
+  <line x1="894" y1="492" x2="894" y2="519" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#two-moment-routes-arrow)"/>
+  <rect x="660" y="528" width="468" height="58" rx="11" class="green"/>
+  <text x="680" y="554" class="t num">all n: E Tr(H^2) = n</text>
+  <text x="680" y="578" class="t tiny">for n &gt; 0, the arithmetic is n^2(1/n) = n</text>
 
-  <text x="634" y="190" text-anchor="middle" class="t h">SECOND TRACE POWER</text>
-  <rect x="452" y="204" width="364" height="78" rx="12" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.5"/>
-  <text x="634" y="234" text-anchor="middle" class="t h">NORMALIZED REAL COORDINATES</text>
-  <text x="634" y="259" text-anchor="middle" class="t s">one orthonormal direction per matrix position</text>
+  <rect x="48" y="642" width="516" height="92" rx="15" class="blue"/>
+  <text x="70" y="676" class="t h">Size-two checkpoint</text>
+  <text x="70" y="708" class="t num">0 + 0 = 0</text>
+  <text x="258" y="708" class="t s">two centered diagonal means</text>
 
-  <path d="M634 284 L634 308" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#twoMomentArrow)"/>
-  <rect x="452" y="314" width="364" height="78" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
-  <text x="634" y="337" text-anchor="middle" class="t h">HERMITIAN TRACE SQUARE</text>
-  <text x="634" y="357" text-anchor="middle" class="t h">BECOMES FROBENIUS NORM SQUARE</text>
-  <text x="634" y="379" text-anchor="middle" class="t s">sum the scalar Gaussian second moments</text>
+  <rect x="636" y="642" width="516" height="92" rx="15" class="green"/>
+  <text x="658" y="676" class="t h">Size-two checkpoint</text>
+  <text x="658" y="708" class="t num">4(1/2) = 2</text>
+  <text x="846" y="708" class="t s">four normalized real squares</text>
 
-  <path d="M206 394 L206 424" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#twoMomentArrow)"/>
-  <path d="M634 394 L634 424" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#twoMomentArrow)"/>
-
-  <rect x="24" y="430" width="364" height="76" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="206" y="460" text-anchor="middle" class="t h">CENTERED FIRST EXPECTED TRACE</text>
-  <text x="206" y="485" text-anchor="middle" class="t m">exact complex Bochner integral</text>
-
-  <rect x="452" y="430" width="364" height="76" rx="12" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="634" y="460" text-anchor="middle" class="t h">DIMENSION-SIZED SECOND EXPECTED TRACE</text>
-  <text x="634" y="485" text-anchor="middle" class="t m">exact complex Bochner integral</text>
-
-  <rect x="110" y="536" width="620" height="46" rx="12" fill="#16243A"/>
-  <text x="420" y="565" text-anchor="middle" class="t h" style="fill:#FFFDF8">EACH ROUTE PROVES INTEGRABILITY BEFORE EVALUATING THE INTEGRAL</text>
-
-  <rect x="176" y="600" width="488" height="34" rx="10" fill="#EDE8E1" stroke="#7F786D" stroke-width="1.2" stroke-dasharray="5 4"/>
-  <text x="420" y="622" text-anchor="middle" class="t m">The empty zero-size branch is included and returns zero on both routes.</text>
+  <rect x="186" y="764" width="828" height="36" rx="10" fill="#16243A"/>
+  <text x="600" y="788" text-anchor="middle" class="t s" style="fill:#FFFDF8">Dimension zero: both index sets are empty, both sums are zero, and no division by zero is used.</text>
 </svg>

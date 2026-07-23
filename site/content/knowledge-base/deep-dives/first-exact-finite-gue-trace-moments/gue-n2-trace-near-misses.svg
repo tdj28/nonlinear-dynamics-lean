@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"
+     viewBox="0 0 1200 800" role="img"
+     aria-labelledby="gue-n2-near-title gue-n2-near-desc">
+  <title id="gue-n2-near-title">Three size-two near-misses separate the correct second trace moment from common lookalikes</title>
+  <desc id="gue-n2-near-desc">The correct normalized decoder gives expected trace of the matrix square equal to two. Omitting division by square root two in the upper entry gives the wrong value three. Squaring the scalar trace is a different observable whose expectation is one. Substituting the deterministic sample gives fifteen, which is a sample value rather than a law expectation. A final strip states that the checked theorem also proves integrability.</desc>
+  <defs>
+    <pattern id="gue-n2-near-hatch" width="10" height="10"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#A67C52"
+            stroke-width="3" opacity="0.25"/>
+    </pattern>
+    <marker id="gue-n2-near-arrow" markerWidth="10" markerHeight="8"
+            refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="800" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:29px;font-weight:700}.sub{font-size:17px;fill:#5A544C}
+    .h{font-size:20px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}
+    .num{font-size:21px;font-weight:700}.badge{font-size:15px;font-weight:700}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+  </style>
+
+  <text x="48" y="48" class="t title">Size 2: three plausible calculations answer three different questions</text>
+  <text x="48" y="78" class="t sub">Keep the decoder, the observable, and the probability operation fixed before comparing numbers.</text>
+
+  <rect x="48" y="110" width="1104" height="158" rx="17" class="green"/>
+  <text x="70" y="146" class="t h">Correct: normalized coordinates and the matrix-square trace</text>
+  <text x="70" y="179" class="t s">Tr(H^2) = D0^2 + D1^2 + R^2 + S^2</text>
+  <text x="70" y="211" class="t s">E[D0^2] = E[D1^2] = E[R^2] = E[S^2] = 1/2</text>
+  <text x="70" y="246" class="t num">E Tr(H^2) = 1/2 + 1/2 + 1/2 + 1/2 = 2</text>
+  <rect x="1010" y="132" width="112" height="44" rx="10" class="cream"/>
+  <text x="1066" y="160" text-anchor="middle" class="t badge">THEOREM</text>
+
+  <rect x="48" y="302" width="344" height="304" rx="17" class="clay"/>
+  <rect x="48" y="302" width="344" height="304" rx="17"
+        fill="url(#gue-n2-near-hatch)" opacity="0.32"/>
+  <text x="70" y="339" class="t h">Near-miss A: wrong decoder</text>
+  <text x="70" y="369" class="t m">Place R + iS directly above the diagonal.</text>
+  <text x="70" y="405" class="t s">The reflected upper pair is counted twice:</text>
+  <text x="70" y="439" class="t s">D0^2 + D1^2 + 2R^2 + 2S^2</text>
+  <text x="70" y="481" class="t num">expectation = 3</text>
+  <text x="70" y="517" class="t s">The intended upper components have variance</text>
+  <text x="70" y="543" class="t s">1/4, not 1/2. Geometry and law both fail.</text>
+  <rect x="70" y="563" width="142" height="29" rx="8" class="cream"/>
+  <text x="141" y="583" text-anchor="middle" class="t badge">WRONG LAW</text>
+
+  <rect x="428" y="302" width="344" height="304" rx="17" class="blue"/>
+  <text x="450" y="339" class="t h">Near-miss B: wrong observable</text>
+  <text x="450" y="369" class="t m">Square the scalar trace instead of the matrix.</text>
+  <text x="450" y="405" class="t s">(Tr H)^2 = (D0 + D1)^2</text>
+  <text x="450" y="439" class="t s">The cross mean is zero, so</text>
+  <text x="450" y="481" class="t num">E[(Tr H)^2] = 1</text>
+  <text x="450" y="517" class="t s">This is not Tr(H^2). Off-diagonal energy</text>
+  <text x="450" y="543" class="t s">never enters the squared scalar trace.</text>
+  <rect x="450" y="563" width="177" height="29" rx="8" class="cream"/>
+  <text x="538" y="583" text-anchor="middle" class="t badge">WRONG FUNCTION</text>
+
+  <rect x="808" y="302" width="344" height="304" rx="17" class="cream"/>
+  <text x="830" y="339" class="t h">Near-miss C: one sample</text>
+  <text x="830" y="369" class="t m">Insert the displayed deterministic matrix H0.</text>
+  <text x="830" y="405" class="t s">Tr(H0) = 1</text>
+  <text x="830" y="439" class="t s">Tr(H0^2) = 15</text>
+  <text x="830" y="481" class="t num">sample pair = (1, 15)</text>
+  <text x="830" y="517" class="t s">No probability-weighted average has been</text>
+  <text x="830" y="543" class="t s">taken, so this cannot contradict (0, 2).</text>
+  <rect x="830" y="563" width="181" height="29" rx="8" class="blue"/>
+  <text x="920" y="583" text-anchor="middle" class="t badge">WRONG LEVEL</text>
+
+  <line x1="220" y1="621" x2="220" y2="650" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#gue-n2-near-arrow)"/>
+  <line x1="600" y1="621" x2="600" y2="650" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#gue-n2-near-arrow)"/>
+  <line x1="980" y1="621" x2="980" y2="650" stroke="#A67C52" stroke-width="3"
+        marker-end="url(#gue-n2-near-arrow)"/>
+
+  <rect x="48" y="662" width="1104" height="94" rx="16" fill="#16243A"/>
+  <text x="70" y="697" class="t h" style="fill:#FFFDF8">The checked route fixes all three choices and adds the analytic gate</text>
+  <text x="70" y="729" class="t s" style="fill:#FFFDF8">correct normalized law  +  observable H maps to Tr(H^2)  +  Bochner integrability  =  expectation 2</text>
+</svg>

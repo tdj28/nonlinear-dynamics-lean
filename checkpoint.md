@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 19:36 PDT
+Last updated: 2026-07-22 19:47 PDT
 
-Audited baseline: `main` at `985c0a8`
+Audited baseline: `main` at `09e1253`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **8 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **9 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -279,6 +279,16 @@ independence, reflected dependence, deterministic assembly, and pushforward
 law. An independent adversarial review corrected module-boundary language and
 replaced topological-support shorthand with the exact Hermitian-set mass-one
 claim.
+*First Exact Finite Gaussian Unitary Ensemble Trace Moments* now starts by
+separating the deterministic sample values `(1, 15)` from the ensemble
+expectations `(0, 2)`. Its wrong decoder, wrong observable, and wrong
+probability level produce the deliberately different values `3`, `1`, and
+`15`. The general climb adds the Bochner-integrability licenses, normalized
+product pushforward, Hermitian/Frobenius identity, exact `n² · (1/n) = n`
+ledger, and dimension-zero branch without invoking eigenvalues, density, or
+asymptotics. Three figures, six Lean bridges, two guarded project probes, a
+complete four-declaration RMT-09 map, and a nine-example local `Std` worksheet
+make every finite arithmetic layer reproducible.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3166,6 +3176,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `09e1253`: rebuild *Finite GUE from Independent Gaussian Coordinates* around
+  the exact size-two Wigner ledger, reflection and scale near-misses, the
+  zero-dimensional Dirac branch, six Lean bridges, three figures, and an
+  independently reviewed RMT-06/later-module boundary.
 - `985c0a8`: rebuild *From Normalized Hermitian Coordinates to Gaussian
   Unitary Ensemble Invariance* around the exact `15`-versus-`25` isometry
   ledger, swap and phase congruences, six Lean bridges, all 35 RMT-08

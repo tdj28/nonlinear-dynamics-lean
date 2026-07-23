@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
+     viewBox="0 0 1200 630" role="img"
+     aria-labelledby="gue-n2-ledger-title gue-n2-ledger-desc">
+  <title id="gue-n2-ledger-title">A size-two matrix sample, its Gaussian law, and the two expected trace theorems are three different layers</title>
+  <desc id="gue-n2-ledger-desc">The deterministic Hermitian matrix with rows two, one plus two i and one minus two i, minus one has trace one and trace-square fifteen. The random law instead uses four centered normalized real coordinates, each of variance one half. Linearity gives expected trace zero, and four scalar second moments give expected trace-square two. A bottom warning says the sample values one and fifteen are not the expectation values zero and two.</desc>
+  <defs>
+    <marker id="gue-n2-ledger-arrow" markerWidth="10" markerHeight="8"
+            refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <pattern id="gue-n2-ledger-hatch" width="9" height="9"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#A67C52"
+            stroke-width="2" opacity="0.23"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:29px;font-weight:700}.sub{font-size:17px;fill:#5A544C}
+    .h{font-size:20px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}
+    .num{font-size:20px;font-weight:700}.tiny{font-size:13px;fill:#5A544C}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .grid{stroke:#7F786D;stroke-width:1.5}
+  </style>
+
+  <text x="48" y="46" class="t title">Size 2: sample, probability law, and theorem are different objects</text>
+  <text x="48" y="75" class="t sub">One matrix can have trace 1 and trace-square 15 while the ensemble expectations are 0 and 2.</text>
+
+  <rect x="48" y="106" width="318" height="382" rx="17" class="cream"/>
+  <text x="70" y="141" class="t h">1. One deterministic sample</text>
+  <text x="70" y="167" class="t m">This point illustrates algebra; it is not an average.</text>
+  <rect x="90" y="194" width="234" height="128" rx="11" class="blue"/>
+  <line x1="207" y1="194" x2="207" y2="322" class="grid"/>
+  <line x1="90" y1="258" x2="324" y2="258" class="grid"/>
+  <text x="145" y="235" class="t num">2</text>
+  <text x="239" y="235" class="t num">1 + 2i</text>
+  <text x="116" y="299" class="t num">1 - 2i</text>
+  <text x="260" y="299" class="t num">-1</text>
+  <text x="70" y="357" class="t s">Diagonal sum:</text>
+  <text x="198" y="357" class="t num">Tr(H0) = 2 - 1 = 1</text>
+  <text x="70" y="398" class="t s">Frobenius square:</text>
+  <text x="70" y="427" class="t num">4 + 1 + 2(1 + 4) = 15</text>
+  <text x="70" y="462" class="t num">Tr(H0^2) = 15</text>
+
+  <line x1="378" y1="297" x2="416" y2="297" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#gue-n2-ledger-arrow)"/>
+
+  <rect x="430" y="106" width="340" height="382" rx="17" class="blue"/>
+  <text x="452" y="141" class="t h">2. The normalized Gaussian law</text>
+  <text x="452" y="167" class="t m">Four mutually independent centered real slots.</text>
+  <rect x="454" y="190" width="292" height="94" rx="11" class="cream"/>
+  <text x="475" y="219" class="t s">D0, D1, R, S</text>
+  <text x="475" y="248" class="t num">each has variance 1/2</text>
+  <text x="475" y="272" class="t m">Every mean is zero.</text>
+  <text x="452" y="318" class="t s">Decode the random matrix:</text>
+  <text x="452" y="348" class="t s">diagonal = D0, D1</text>
+  <text x="452" y="376" class="t s">upper = R/sqrt(2) + i S/sqrt(2)</text>
+  <line x1="452" y1="398" x2="748" y2="398" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="452" y="429" class="t s">Tr(H) = D0 + D1</text>
+  <text x="452" y="459" class="t s">Tr(H^2) = D0^2 + D1^2 + R^2 + S^2</text>
+
+  <line x1="782" y1="297" x2="820" y2="297" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#gue-n2-ledger-arrow)"/>
+
+  <rect x="834" y="106" width="318" height="382" rx="17" class="green"/>
+  <text x="856" y="141" class="t h">3. The law-level expectations</text>
+  <text x="856" y="167" class="t m">RMT-09 proves integrability before these equalities.</text>
+  <rect x="858" y="194" width="270" height="100" rx="11" class="cream"/>
+  <text x="878" y="225" class="t s">E Tr(H) = E D0 + E D1</text>
+  <text x="878" y="261" class="t num">= 0 + 0 = 0</text>
+  <rect x="858" y="318" width="270" height="136" rx="11" class="cream"/>
+  <text x="878" y="349" class="t s">E Tr(H^2)</text>
+  <text x="878" y="381" class="t s">= E D0^2 + E D1^2</text>
+  <text x="878" y="407" class="t s">  + E R^2 + E S^2</text>
+  <text x="878" y="439" class="t num">= 4(1/2) = 2</text>
+
+  <rect x="48" y="518" width="1104" height="80" rx="15" class="clay"/>
+  <rect x="48" y="518" width="1104" height="80" rx="15"
+        fill="url(#gue-n2-ledger-hatch)" opacity="0.35"/>
+  <text x="70" y="550" class="t h">Boundary: evaluating one sample is not taking an expectation</text>
+  <text x="70" y="579" class="t num">sample values: 1 and 15</text>
+  <text x="575" y="579" class="t num">law expectations: 0 and 2</text>
+</svg>
