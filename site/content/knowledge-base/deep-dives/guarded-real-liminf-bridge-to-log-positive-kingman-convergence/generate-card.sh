@@ -17,52 +17,70 @@ else
 fi
 
 magick -size 1200x630 xc:'#F7F4F0' \
-  -fill '#16243A' -draw 'rectangle 0,0 1200,22 rectangle 0,542 1200,630' \
+  -fill '#16243A' -draw 'rectangle 0,0 1200,20 rectangle 0,552 1200,630' \
   -fill '#A67C52' -font Helvetica-Bold -pointsize 18 \
-  -annotate +68+76 'KNOWLEDGE BASE / DEEP DIVE' \
-  -fill '#16243A' -font Palatino-Roman -pointsize 36 \
-  -annotate +67+137 'The guarded real-liminf bridge' \
-  -annotate +67+181 'to log-positive Kingman convergence' \
-  -fill '#4D5B6B' -font Helvetica -pointsize 17 \
-  -annotate +70+226 'One rational null cover supplies both the inequality and the bound.' \
-  -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 2 \
-  -draw 'roundrectangle 66,270 1134,500 18,18' \
+  -annotate +64+68 'KNOWLEDGE BASE / DEEP DIVE' \
+  -fill '#16243A' -font Palatino-Bold -pointsize 34 \
+  -annotate +63+120 'The guarded real-liminf bridge' \
+  -annotate +63+161 'to log-positive Kingman convergence' \
+  -fill '#4D5B6B' -font Helvetica -pointsize 16 \
+  -annotate +66+202 'Three exact sequences show where rational slack works - and where the guard fails.' \
+  -fill '#FBF9F6' -stroke '#6F8D5E' -strokewidth 2 \
+  -draw 'roundrectangle 62,236 400,482 16,16' \
+  -fill '#EAF1E5' -stroke none \
+  -draw 'roundrectangle 83,256 223,285 14,14' \
+  -fill '#315F55' -font Helvetica-Bold -pointsize 13 \
+  -annotate +101+276 'GUARD PRESENT' \
+  -fill '#16243A' -font Palatino-Bold -pointsize 21 \
+  -annotate +84+320 'BOUNDED ALTERNATION' \
+  -fill '#4D5B6B' -font Courier -pointsize 15 \
+  -annotate +84+354 '0, -3/2, -1/2, -3/2, ...' \
+  -fill '#8B6440' -font Helvetica -pointsize 14 \
+  -annotate +84+386 'inner q=-5/4 < target c=-1' \
+  -fill '#315F55' -font Helvetica-Bold -pointsize 14 \
+  -annotate +84+421 'guard + event -> liminf=-3/2' \
+  -fill '#4D5B6B' -font Helvetica -pointsize 13 \
+  -annotate +84+452 'the honest bounded-below regime' \
+  -fill '#FBF9F6' -stroke '#A67C52' -strokewidth 2 \
+  -draw 'roundrectangle 431,236 769,482 16,16' \
+  -fill '#F3E8E0' -stroke none \
+  -draw 'roundrectangle 452,256 598,285 14,14' \
+  -fill '#8B3E33' -font Helvetica-Bold -pointsize 13 \
+  -annotate +470+276 'STRICTNESS TEST' \
+  -fill '#16243A' -font Palatino-Bold -pointsize 21 \
+  -annotate +453+320 'APPROACH ZERO' \
+  -fill '#4D5B6B' -font Courier -pointsize 15 \
+  -annotate +453+354 '0, -1, -1/2, -1/3, ...' \
+  -fill '#8B6440' -font Helvetica -pointsize 14 \
+  -annotate +453+386 'sequence a_n < target c=0 for every n > 0' \
+  -fill '#8B3E33' -font Helvetica-Bold -pointsize 14 \
+  -annotate +453+421 'no fixed inner q < 0 recurs' \
+  -fill '#4D5B6B' -font Helvetica -pointsize 13 \
+  -annotate +453+452 'target crossing is not slack' \
+  -fill '#FBF9F6' -stroke '#8B3E33' -strokewidth 2 \
+  -draw 'roundrectangle 800,236 1138,482 16,16' \
+  -fill '#F3E8E0' -stroke none \
+  -draw 'roundrectangle 821,256 957,285 14,14' \
+  -fill '#8B3E33' -font Helvetica-Bold -pointsize 13 \
+  -annotate +839+276 'GUARD MISSING' \
+  -fill '#16243A' -font Palatino-Bold -pointsize 21 \
+  -annotate +822+320 'QUADRATIC ESCAPE' \
+  -fill '#4D5B6B' -font Courier -pointsize 15 \
+  -annotate +822+354 '0, 0, -1, -2, -3, ...' \
+  -fill '#8B6440' -font Helvetica -pointsize 14 \
+  -annotate +822+386 'inner q=-2 < target c=-1 recurs' \
+  -fill '#8B3E33' -font Helvetica-Bold -pointsize 14 \
+  -annotate +822+421 'total real liminf=0' \
+  -fill '#4D5B6B' -font Helvetica -pointsize 13 \
+  -annotate +822+452 'event true; unguarded result false' \
   -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-  -draw 'roundrectangle 90,300 300,438 14,14' \
-  -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +123+337 'REAL LIMINF' \
-  -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +117+372 'totalized on every' \
-  -annotate +133+397 'real sequence' \
-  -fill none -stroke '#A67C52' -strokewidth 3 \
-  -draw 'line 310,369 350,369 polygon 350,369 336,360 336,378' \
-  -fill '#F3E8E0' -stroke '#A67C52' -strokewidth 2 \
-  -draw 'roundrectangle 362,300 572,438 14,14' \
-  -fill '#8B3E33' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +400+337 'TWO MARGINS' \
-  -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +393+372 'inner witness plus' \
-  -annotate +394+397 'outer null target' \
-  -fill none -stroke '#A67C52' -strokewidth 3 \
-  -draw 'line 582,369 622,369 polygon 622,369 608,360 608,378' \
-  -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-  -draw 'roundrectangle 634,300 844,438 14,14' \
-  -fill '#315F55' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +679+337 'DUAL OUTPUT' \
-  -fill '#5A544C' -font Helvetica -pointsize 13 \
-  -annotate +670+372 'lower inequality and' \
-  -annotate +671+397 'eventual lower bound' \
-  -fill none -stroke '#A67C52' -strokewidth 3 \
-  -draw 'line 854,369 894,369 polygon 894,369 880,360 880,378' \
-  -fill '#16243A' -stroke '#16243A' -strokewidth 2 \
-  -draw 'roundrectangle 906,300 1110,438 14,14' \
-  -fill '#FFFFFF' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +951+337 'SQUEEZE' \
-  -fill '#E8F0F7' -font Helvetica -pointsize 13 \
-  -annotate +937+372 'Birkhoff plus prior' \
-  -annotate +947+397 'upper limsup' \
-  -fill '#FFFDF8' -stroke none -font Helvetica -pointsize 14 \
-  -annotate +68+580 'LOG-POSITIVE ENVELOPE ONLY  /  SIGNED LYAPUNOV GROWTH REMAINS OUT OF SCOPE' \
+  -draw 'roundrectangle 178,504 1022,539 12,12' \
+  -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 14 \
+  -annotate +208+527 'LOWER LIMINF RAIL + UPPER LIMSUP RAIL -> CONVERGENCE TO THE LOG-POSITIVE RATE' \
+  -fill '#FFFDF8' -font Helvetica-Bold -pointsize 14 \
+  -annotate +64+584 'NONNEGATIVE LOG-POSITIVE ENVELOPE ONLY' \
+  -fill '#C7D2DF' -font Helvetica -pointsize 13 \
+  -annotate +64+609 'Signed contraction, integral convergence, and invariant splittings remain out of scope.' \
   -strip -define png:exclude-chunk=date,time \
   "PNG:$output"
 

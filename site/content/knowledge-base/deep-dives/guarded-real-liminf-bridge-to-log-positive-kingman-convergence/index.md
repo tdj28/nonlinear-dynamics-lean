@@ -7,12 +7,12 @@ lead: "Random-matrix-theory milestone 33 (RMT-33) closes the first samplewise su
 draft: false
 pro_reviewed: false
 level: "Advanced measure-theoretic dynamics, subadditive processes, filters and real liminf, ergodic theory, random matrix cocycles, and intermediate Lean theorem engineering"
-reading_time: "320 to 480 minutes"
+reading_time: "380 to 560 minutes"
 prerequisites: "Shifted-subadditive processes, orbit-majorant centering, Birkhoff averages, finite bad-block estimates, rational lower-deviation events, elementary filter language, and deterministic Fekete limits"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman"
 toc: true
 og_image: "guarded-real-liminf-bridge-to-log-positive-kingman-convergence-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing totalized real liminf passing through an eventual-lower-bound guard, a two-rational-margin null cover, centered Birkhoff transfer, and a final liminf-limsup squeeze for log-positive cocycle growth."
+og_image_alt: "Warm-paper Deep Dive card comparing a guarded bounded alternation, an approach-to-zero sequence with no recurring rational slack, and an unguarded quadratic escape whose totalized real liminf is zero; a lower-liminf and upper-limsup rail then force convergence to the log-positive rate."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -30,6 +30,172 @@ proved here concerns the normalized real-valued log-positive envelope
 \(\log^+\lVert C_n\rVert\). It is not a theorem about the signed logarithm, a
 negative Lyapunov exponent, convergence in \(L^1\), or an Oseledets splitting.
 {{< /panel >}}
+
+## Start with three sequences you can calculate by hand
+
+Before filters, null sets, or cocycles enter, write down three exact rational
+sequences. They isolate three logically different questions that are easy to
+blur together.
+
+### The guarded sequence: the rational event and liminf agree
+
+Define
+
+\[
+u_0=0,\qquad
+u_n=
+\begin{cases}
+-\frac32,&n\text{ odd},\\[2mm]
+-\frac12,&n\text{ positive and even}.
+\end{cases}
+\]
+
+Take the event target \(c=-1\) and the rational witness
+\(q=-5/4\). The first eleven values are
+
+| \(n\) | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| \(u_n\) | \(0\) | \(-3/2\) | \(-1/2\) | \(-3/2\) | \(-1/2\) | \(-3/2\) | \(-1/2\) | \(-3/2\) | \(-1/2\) | \(-3/2\) | \(-1/2\) |
+| \(u_n\lt q\)? | no | yes | no | yes | no | yes | no | yes | no | yes | no |
+
+Every odd time is a witness beyond any proposed cutoff, so
+\(u_n\lt q\) occurs frequently. At the same time,
+
+\[
+-\frac32\le u_n\le0
+\]
+
+for every \(n\). The eventual-lower-bound guard is therefore present, and
+the ordinary answer is honest:
+
+\[
+\liminf_nu_n=-\frac32\lt-\!1=c.
+\]
+
+At the strict boundary \(c=-3/2\), however, there is no rational
+\(q\lt c\) crossed frequently: the sequence never goes below \(-3/2\).
+Equality with the liminf does not enter a **strict** lower-deviation event.
+
+### The strictness near-miss: crossing the target is not enough
+
+Now take
+
+\[
+a_0=0,\qquad a_n=-\frac1n\quad(n\gt0).
+\]
+
+Every positive term satisfies \(a_n\lt0\), but for the sample margin
+\(q=-1/4\), the strict inequality \(a_n\lt q\) holds only at
+\(n=1,2,3\); equality at \(n=4\) does not count. The same phenomenon holds
+for every fixed rational \(q\lt0\): eventually \(q\lt a_n\lt0\). Thus
+
+\[
+\liminf_na_n=0,
+\qquad
+a_n\lt0\text{ frequently},
+\qquad
+\nexists q\in\mathbb Q,\ q\lt0\text{ and }a_n\lt q\text{ frequently}.
+\]
+
+This is why the event stores a *durable rational margin below the target*,
+not just arbitrarily late strict crossings of the target itself.
+
+### The guard near-miss: a real totalization can hide escape to \(-\infty\)
+
+The project source uses the genuine subadditive process
+\(X_n=-n^2\) on the one-point probability space. After subtracting its
+one-step orbit sum and normalizing, its exact values are
+
+\[
+e_0=0,\qquad e_n=1-n\quad(n\gt0):
+\qquad 0,0,-1,-2,-3,-4,\ldots
+\]
+
+At target \(c=-1\), choose \(q=-2\). Then \(q\lt c\) and
+\(e_n\lt q\) for every \(n\ge4\), so the rational lower-deviation event really
+occurs. But no real number lies below all sufficiently late values. For
+example, the candidate bound \(-10\) survives through \(n=11\), where
+\(e_{11}=-10\), and fails at \(n=12\), where \(e_{12}=-11\). Every other
+finite candidate fails in the same way.
+
+The defining set of eventual real lower bounds is empty. In the pinned
+real-order implementation, its supremum is totalized:
+
+\[
+\operatorname{liminf}_{\mathbb R}e
+=\sup\varnothing
+=0.
+\]
+
+Consequently the unguarded implication
+
+\[
+\bigl(\exists q\lt c,\ e_n\lt q\text{ frequently}\bigr)
+\Longrightarrow
+\operatorname{liminf}_{\mathbb R}e\lt c
+\]
+
+would demand the false statement \(0\lt-1\). This is not a hypothetical
+arbitrary-sequence objection: the paired Lean module checks the subadditive
+candidate, event membership, absence of the guard, and totalized value.
+
+{{< reference-figure
+  src="guarded-sequence-trichotomy-ledger.svg"
+  alt="Three exact sequence panels. The bounded alternating sequence has a lower bound and repeatedly crosses negative five quarters, so its honest liminf is negative three halves. Negative one over n crosses zero but stops crossing each fixed negative rational margin. The quadratic centered normalization decreases without a lower bound, crosses negative two forever, but the project-proved total real liminf is zero, making the unguarded conclusion false."
+  caption="**Read the three panels separately.** Panel A validates the guarded bridge. Panel B tests strict rational slack. Panel C proves why total real liminf cannot be interpreted as an extended-real liminf without an eventual lower-bound witness."
+>}}
+
+### A finite squeeze that says exactly what the final theorem says
+
+For a second hand-check, set
+
+\[
+\gamma_+=\frac32,\qquad
+L_k=\gamma_+-\frac1k,\qquad
+U_k=\gamma_++\frac1k,
+\]
+
+and let \(s_k\) alternate between the upper and lower rails. Then
+
+\[
+L_k\le s_k\le U_k,
+\qquad
+U_k-L_k=\frac2k\longrightarrow0,
+\]
+
+so \(s_k\to\gamma_+\). This is a finite-arithmetic picture of the final
+proof architecture, with one essential provenance label on each rail:
+
+- **this module supplies the lower rail**
+  \(\gamma_+\le\liminf a_n(\omega)\);
+- **the earlier RMT-29 module supplies the upper rail**
+  \(\limsup a_n(\omega)\le\gamma_+\); and
+- actual lower and upper boundedness let Mathlib turn those two inequalities
+  into convergence.
+
+The conclusion concerns
+
+\[
+a_n(\omega)
+=\frac{\log^+\lVert C_n(\omega)\rVert}{n}\ge0.
+\]
+
+It does not manufacture a signed logarithm. The nearby zero-rate sequence
+\(1/k\to0\) is a faithful endpoint: \(\gamma_+\) can be zero, while a
+constant contraction can simultaneously have a negative **signed** rate
+that the log-positive observable erases.
+
+The actual paired-source zero probe is even simpler: its normalized process
+is identically zero, its real liminf is zero, and its strict lower-liminf
+deviation set at target zero is empty. The \(1/k\) row is only a visual model
+of approaching the same permitted endpoint; it is not being attributed to
+that source probe.
+
+{{< reference-figure
+  src="log-positive-squeeze-numeric-ledger.svg"
+  alt="Exact table and graph for gamma positive equal to three halves. Lower and upper rational rails trap alternating samples and close with width two over k. A proof-flow strip labels the current lower-liminf theorem, prior RMT-29 upper-limsup theorem, two-sided boundedness, and convergence. A boundary strip shows one over k converging to zero and distinguishes negative signed contraction."
+  caption="**Finding:** the endpoint is a two-source squeeze for a nonnegative observable. RMT-33 proves the lower rail and imports the prior upper rail; neither rail turns log-positive growth into a signed Lyapunov theorem."
+>}}
 
 The last step of a long proof is often described as a squeeze:
 
@@ -884,6 +1050,454 @@ The phrase *log-positive Kingman endpoint* is therefore a scope label. It says
 that the proof architecture is subadditive and Kingman-style while the
 observable is the nonnegative envelope chosen by this project.
 
+## Seven bridges from the sequence ledger to Lean
+
+Each bridge below has four layers: the sentence a mathematician says, the
+paper formula, the exact checked Lean interface, and a token map. Read them in
+order once; afterward the declaration names become a compact proof roadmap.
+The literal guarded repository command appears after bridge seven.
+
+### Bridge 1: normalize at every natural time
+
+{{< lean-bridge
+  human="Divide the process value at time n by n. At time zero, real division is totalized, so the normalized value is exactly zero."
+  math="\(N_X(n,\omega)=X_n(\omega)/n,\qquad N_X(0,\omega)=0.\)"
+  lean="normalizedProcess X n ω"
+>}}
+
+- <code>normalizedProcess</code> is the project definition being applied.
+- <code>X</code> is the whole time-indexed real process, not one slice.
+- <code>n</code> is a natural horizon whose cast is the real denominator.
+- <code>ω</code> is the sample point.
+- <code>normalizedProcess_zero</code> checks the zero-time statement, while
+  <code>normalizedProcess_update_zero</code> proves that changing
+  <code>X 0</code> changes no normalized value.
+{{< /lean-bridge >}}
+
+### Bridge 2: expose the durable rational witness
+
+{{< lean-bridge
+  human="Membership in the strict lower-deviation event means that one rational q below c is crossed arbitrarily late."
+  math="\(\omega\in D_c\Longleftrightarrow\exists q\in\mathbb Q,\ q<c\ \land\ (\exists^\infty n,\ u_n(\omega)<q).\)"
+  lean="mem_centeredStrictLowerDeviationSet_iff_exists_frequently_normalized_lt"
+>}}
+
+- <code>centeredStrictLowerDeviationSet T X c</code> is \(D_c\).
+- <code>∃ q : ℚ</code> keeps the generator countable.
+- <code>(q : ℝ) < c</code> is the strict rational slack.
+- <code>∃ᶠ n in atTop</code> means “beyond every cutoff there is another
+  witness,” not “all sufficiently large times are witnesses.”
+- <code>normalizedCenteredProcess T X n ω < (q : ℝ)</code> is the checked
+  crossing.
+{{< /lean-bridge >}}
+
+### Bridge 3: pass from the event to liminf only through the guard
+
+{{< lean-bridge
+  human="If the centered normalized sequence is eventually bounded below, a frequently crossed rational q below c forces its real liminf below c."
+  math="\(\bigl[\exists b,\ b\le u_n\text{ eventually}\bigr]\land\omega\in D_c\Longrightarrow\liminf_nu_n<c.\)"
+  lean="liminf_normalizedCenteredProcess_lt_of_mem_centeredStrictLowerDeviationSet hlower hω"
+>}}
+
+- <code>hlower</code> has exact type
+  <code>IsBoundedUnder (· ≥ ·) atTop (fun n ↦ ...)</code>.
+- The relation <code>(· ≥ ·)</code> means that a fixed witness lies **below**
+  the late sequence values.
+- <code>hω</code> supplies the rational \(q\) and its frequent crossings.
+- <code>liminf_le_of_frequently_le</code> consumes
+  <code>hlower</code>; the theorem is deliberately not callable without it.
+- The quadratic-escape ledger shows the false statement that would result if
+  this first argument were erased.
+{{< /lean-bridge >}}
+
+### Bridge 4: spend an outer rational target as well as an inner witness
+
+{{< lean-bridge
+  human="Every strict liminf deviation below delta lies in one rational event whose target c is itself strictly below delta."
+  math="\(E_\delta=\{\liminf u\lt\delta\}\subseteq\bigcup_{c\in\mathbb Q,\ c\lt\delta}D_c.\)"
+  lean="hX.centeredLowerLiminfDeviationSet_subset_rationalExhaustion δ"
+>}}
+
+- <code>hX</code> is the integrable shifted-subadditive candidate; its
+  centered normalization is nonpositive.
+- <code>δ</code> is the deterministic centered Fekete offset.
+- <code>exists_rat_btwn</code> first chooses an outer \(c\) between the low
+  liminf and \(\delta\).
+- The event membership theorem chooses or exposes an inner \(q\lt c\).
+- Two strict margins avoid the impossible request
+  \(\delta\lt\delta\), while the rational index keeps the union countable.
+{{< /lean-bridge >}}
+
+### Bridge 5: make the null cover return two deliverables
+
+{{< lean-bridge
+  human="Almost every sample receives both an eventual real lower bound and the centered lower-liminf inequality."
+  math="\(\text{a.e. }\omega,\quad [\exists b,\ b\le u_n(\omega)\text{ eventually}]\ \land\ \delta\le\liminf_nu_n(\omega).\)"
+  lean="hX.ae_isBoundedUnder_ge_and_le_liminf_normalizedCenteredProcess hT δ hδ"
+>}}
+
+- <code>hT : Ergodic T μ</code> drives the prior event-nullity result.
+- <code>hδ</code> says \(\delta\) lies below every positive normalized
+  centered integral.
+- The first component of the returned conjunction is the semantic guard.
+- The second component is the numerical lower rail.
+- The private helper constructs the first component from nonmembership in the
+  rational exhaustion; the public theorem exposes it instead of hiding it.
+{{< /lean-bridge >}}
+
+### Bridge 6: add back the convergent Birkhoff average
+
+{{< lean-bridge
+  human="The centered lower rail plus the one-step space average lies below the liminf of the original normalized process."
+  math="\(\delta+\int X_1\,d\mu\le\liminf_n X_n(\omega)/n\quad\text{a.e.}\)"
+  lean="hX.ae_add_oneStepIntegral_le_liminf_normalized hT δ hδ"
+>}}
+
+- <code>normalized_eq_normalizedCenteredProcess_add_birkhoffAverage</code>
+  supplies the pointwise decomposition \(X_n/n=u_n+v_n\).
+- The rational null cover supplies the lower bound on \(u\).
+- <code>normalizedCenteredProcess_nonpos</code> supplies an upper bound on
+  \(u\).
+- Birkhoff convergence supplies lower and upper bounds on \(v\) and identifies
+  its liminf with \(\int X_1\,d\mu\).
+- <code>le_liminf_add</code> consumes all four order gates before addition.
+{{< /lean-bridge >}}
+
+### Bridge 7: squeeze the nonnegative log-positive observable
+
+{{< lean-bridge
+  human="For almost every sample, normalized log-positive cocycle growth converges to its integrated Fekete rate."
+  math="\(\frac{\log^+\lVert C_n(\omega)\rVert}{n}\longrightarrow\gamma_+\quad\text{a.e.}\)"
+  lean="hC.ae_tendsto_normalizedLogPlusNormObservable hT"
+>}}
+
+- <code>hC : C.HasIntegrableGeneratorLogPlus</code> controls the one-step
+  **positive** logarithmic envelope.
+- This module's
+  <code>ae_integratedLogPlusGrowthRate_le_liminf_normalized</code> is the
+  lower rail \(\gamma_+\le\liminf a\).
+- The imported RMT-29 declaration
+  <code>ae_limsup_normalized_le_integratedLogPlusGrowthRate</code> is the
+  prior upper rail \(\limsup a\le\gamma_+\).
+- Global nonnegativity supplies the lower bound on \(a\); the convergent
+  one-step Birkhoff majorant supplies its eventual upper bound.
+- <code>tendsto_of_le_liminf_of_limsup_le</code> closes the squeeze.
+- No token here names the signed quantity
+  <code>Real.log ‖C n ω‖</code>; contractions and zero products remain
+  intentionally invisible.
+{{< /lean-bridge >}}
+
+### Type-check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman" >}}
+
+**Resource label: pinned project plus Mathlib, approved Linux cloud compute
+only.** Put the following probe in a temporary file inside
+<code>formalization/</code> on the approved builder:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
+
+open MeasureTheory Set Filter Topology
+open NonlinearDynamics.Random.RandomCocycles
+
+#check normalizedProcess
+#check normalizedProcess_zero
+#check normalizedProcess_update_zero
+#check liminf_normalizedProcess_succ
+#check mem_centeredStrictLowerDeviationSet_iff_exists_frequently_normalized_lt
+#check liminf_normalizedCenteredProcess_lt_of_mem_centeredStrictLowerDeviationSet
+#check IsIntegrableSubadditiveProcessCandidate.mem_centeredStrictLowerDeviationSet_iff_liminf_normalizedCenteredProcess_lt
+#check IsIntegrableSubadditiveProcessCandidate.centeredLowerLiminfDeviationSet_subset_rationalExhaustion
+#check IsIntegrableSubadditiveProcessCandidate.ae_isBoundedUnder_ge_and_le_liminf_normalizedCenteredProcess
+#check IsIntegrableSubadditiveProcessCandidate.ae_add_oneStepIntegral_le_liminf_normalized
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_integratedLogPlusGrowthRate_le_liminf_normalized
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_tendsto_normalizedLogPlusNormObservable
+~~~
+
+From the repository root on that approved Linux host, type:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean
+~~~
+
+This is the authoritative project/Mathlib check. It verifies the pinned
+manifest and checks the complete 627-line source with warnings fatal. It may
+restore or compile substantial dependencies. Do **not** run this command, raw
+<code>lake</code>, or a project import on the Mac workstation.
+{{< /repo-check >}}
+
+## Run the exact finite ledger with Lean and `Std`
+
+The project theorem needs Mathlib's filters, measures, liminf, Birkhoff
+theorem, and cocycle hierarchy. Its numerical spine can be explored without
+building any of that. The following standalone worksheet imports only Lean's
+<code>Std</code> library and uses exact rationals throughout.
+
+Save this block byte for byte as
+<code>/tmp/GuardedRealLiminfTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace GuardedRealLiminfTutorial
+
+structure SequenceRow where
+  n : Nat
+  value : Rat
+  belowInnerQ : Bool
+  deriving Repr, DecidableEq
+
+def boundedAlternation (n : Nat) : Rat :=
+  if n = 0 then 0
+  else if n % 2 = 1 then (-3 : Rat) / 2
+  else (-1 : Rat) / 2
+
+def boundedRows : List SequenceRow :=
+  (List.range 11).map fun n =>
+    { n := n
+      value := boundedAlternation n
+      belowInnerQ := decide (boundedAlternation n < (-5 : Rat) / 4) }
+
+def approachZero (n : Nat) : Rat :=
+  if n = 0 then 0 else (-1 : Rat) / n
+
+def approachRows : List SequenceRow :=
+  (List.range 9).map fun n =>
+    { n := n
+      value := approachZero n
+      belowInnerQ := decide (approachZero n < (-1 : Rat) / 4) }
+
+def quadraticEscapeNormalized (n : Nat) : Rat :=
+  if n = 0 then 0 else 1 - n
+
+def escapeRows : List SequenceRow :=
+  (List.range 9).map fun n =>
+    { n := n
+      value := quadraticEscapeNormalized n
+      belowInnerQ := decide (quadraticEscapeNormalized n < (-2 : Rat)) }
+
+structure EscapeBoundary where
+  target : Rat
+  innerQ : Rat
+  innerBelowTarget : Bool
+  bound : Rat
+  boundHoldsThrough : Nat
+  valueThere : Rat
+  firstDisplayedFailure : Nat
+  valueAtFailure : Rat
+  boundFailsThere : Bool
+  sourceProvedTotalizedRealLiminf : Rat
+  unguardedConclusion : Bool
+  deriving Repr, DecidableEq
+
+def escapeBoundary : EscapeBoundary :=
+  { target := -1
+    innerQ := -2
+    innerBelowTarget := decide ((-2 : Rat) < -1)
+    bound := -10
+    boundHoldsThrough := 11
+    valueThere := quadraticEscapeNormalized 11
+    firstDisplayedFailure := 12
+    valueAtFailure := quadraticEscapeNormalized 12
+    boundFailsThere := decide (quadraticEscapeNormalized 12 < (-10 : Rat))
+    sourceProvedTotalizedRealLiminf := 0
+    unguardedConclusion := decide ((0 : Rat) < -1) }
+
+structure SqueezeRow where
+  k : Nat
+  lowerRail : Rat
+  sample : Rat
+  upperRail : Rat
+  width : Rat
+  insideRails : Bool
+  deriving Repr, DecidableEq
+
+def gamma : Rat := 3 / 2
+
+def lowerRail (k : Nat) : Rat := gamma - 1 / k
+
+def upperRail (k : Nat) : Rat := gamma + 1 / k
+
+def squeezedSample (k : Nat) : Rat :=
+  if k % 2 = 0 then lowerRail k else upperRail k
+
+def squeezeRow (k : Nat) : SqueezeRow :=
+  { k := k
+    lowerRail := lowerRail k
+    sample := squeezedSample k
+    upperRail := upperRail k
+    width := upperRail k - lowerRail k
+    insideRails := decide
+      (lowerRail k ≤ squeezedSample k ∧ squeezedSample k ≤ upperRail k) }
+
+def squeezeRows : List SqueezeRow :=
+  (List.range 8).map fun n => squeezeRow (n + 1)
+
+def zeroRateRows : List (Nat × Rat) :=
+  (List.range 6).map fun n =>
+    let k := n + 1
+    (k, 1 / (k : Rat))
+
+#eval boundedRows
+#eval approachRows
+#eval escapeRows
+#eval escapeBoundary
+#eval squeezeRows
+#eval zeroRateRows
+
+example : boundedAlternation 0 = 0 := by native_decide
+example : boundedAlternation 9 = (-3 : Rat) / 2 := by native_decide
+example : boundedAlternation 10 = (-1 : Rat) / 2 := by native_decide
+example : (List.range 11).all fun n =>
+    decide ((-3 : Rat) / 2 ≤ boundedAlternation n ∧
+      boundedAlternation n ≤ 0) := by native_decide
+example : (List.range 5).all fun j =>
+    decide (boundedAlternation (2 * j + 1) < (-5 : Rat) / 4) := by
+  native_decide
+example : (List.range 11).all fun n =>
+    decide (¬ boundedAlternation n < (-3 : Rat) / 2) := by native_decide
+
+example : (List.range 8).all fun n =>
+    decide (approachZero (n + 1) < 0) := by native_decide
+example : (List.range 5).all fun n =>
+    decide (¬ approachZero (n + 4) < (-1 : Rat) / 4) := by
+  native_decide
+
+example : quadraticEscapeNormalized 11 = -10 := by native_decide
+example : quadraticEscapeNormalized 12 = -11 := by native_decide
+example : (List.range 5).all fun j =>
+    decide (quadraticEscapeNormalized (j + 4) < (-2 : Rat)) := by
+  native_decide
+example : escapeBoundary.unguardedConclusion = false := by native_decide
+
+example : (List.range 8).all fun n =>
+    (squeezeRow (n + 1)).insideRails := by native_decide
+example : (List.range 8).all fun n =>
+    decide ((squeezeRow (n + 1)).width = 2 / ((n + 1 : Nat) : Rat)) := by
+  native_decide
+example : (List.range 6).all fun n =>
+    decide (0 < (zeroRateRows[n]!).2) := by native_decide
+
+end GuardedRealLiminfTutorial
+~~~
+
+Open a terminal and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/GuardedRealLiminfTutorial.lean
+~~~
+
+**Resource label: small standalone Lean 4.32.0 plus `Std`, suitable for an
+ordinary Mac or Linux host.** This exact file ran in 3.4 seconds on the
+workstation and printed the following complete transcript:
+
+~~~text
+[{ n := 0, value := 0, belowInnerQ := false },
+ { n := 1, value := (-3 : Rat)/2, belowInnerQ := true },
+ { n := 2, value := (-1 : Rat)/2, belowInnerQ := false },
+ { n := 3, value := (-3 : Rat)/2, belowInnerQ := true },
+ { n := 4, value := (-1 : Rat)/2, belowInnerQ := false },
+ { n := 5, value := (-3 : Rat)/2, belowInnerQ := true },
+ { n := 6, value := (-1 : Rat)/2, belowInnerQ := false },
+ { n := 7, value := (-3 : Rat)/2, belowInnerQ := true },
+ { n := 8, value := (-1 : Rat)/2, belowInnerQ := false },
+ { n := 9, value := (-3 : Rat)/2, belowInnerQ := true },
+ { n := 10, value := (-1 : Rat)/2, belowInnerQ := false }]
+[{ n := 0, value := 0, belowInnerQ := false },
+ { n := 1, value := -1, belowInnerQ := true },
+ { n := 2, value := (-1 : Rat)/2, belowInnerQ := true },
+ { n := 3, value := (-1 : Rat)/3, belowInnerQ := true },
+ { n := 4, value := (-1 : Rat)/4, belowInnerQ := false },
+ { n := 5, value := (-1 : Rat)/5, belowInnerQ := false },
+ { n := 6, value := (-1 : Rat)/6, belowInnerQ := false },
+ { n := 7, value := (-1 : Rat)/7, belowInnerQ := false },
+ { n := 8, value := (-1 : Rat)/8, belowInnerQ := false }]
+[{ n := 0, value := 0, belowInnerQ := false },
+ { n := 1, value := 0, belowInnerQ := false },
+ { n := 2, value := -1, belowInnerQ := false },
+ { n := 3, value := -2, belowInnerQ := false },
+ { n := 4, value := -3, belowInnerQ := true },
+ { n := 5, value := -4, belowInnerQ := true },
+ { n := 6, value := -5, belowInnerQ := true },
+ { n := 7, value := -6, belowInnerQ := true },
+ { n := 8, value := -7, belowInnerQ := true }]
+{ target := -1,
+  innerQ := -2,
+  innerBelowTarget := true,
+  bound := -10,
+  boundHoldsThrough := 11,
+  valueThere := -10,
+  firstDisplayedFailure := 12,
+  valueAtFailure := -11,
+  boundFailsThere := true,
+  sourceProvedTotalizedRealLiminf := 0,
+  unguardedConclusion := false }
+[{ k := 1, lowerRail := (1 : Rat)/2, sample := (5 : Rat)/2, upperRail := (5 : Rat)/2, width := 2, insideRails := true },
+ { k := 2, lowerRail := 1, sample := 1, upperRail := 2, width := 1, insideRails := true },
+ { k := 3,
+   lowerRail := (7 : Rat)/6,
+   sample := (11 : Rat)/6,
+   upperRail := (11 : Rat)/6,
+   width := (2 : Rat)/3,
+   insideRails := true },
+ { k := 4,
+   lowerRail := (5 : Rat)/4,
+   sample := (5 : Rat)/4,
+   upperRail := (7 : Rat)/4,
+   width := (1 : Rat)/2,
+   insideRails := true },
+ { k := 5,
+   lowerRail := (13 : Rat)/10,
+   sample := (17 : Rat)/10,
+   upperRail := (17 : Rat)/10,
+   width := (2 : Rat)/5,
+   insideRails := true },
+ { k := 6,
+   lowerRail := (4 : Rat)/3,
+   sample := (4 : Rat)/3,
+   upperRail := (5 : Rat)/3,
+   width := (1 : Rat)/3,
+   insideRails := true },
+ { k := 7,
+   lowerRail := (19 : Rat)/14,
+   sample := (23 : Rat)/14,
+   upperRail := (23 : Rat)/14,
+   width := (2 : Rat)/7,
+   insideRails := true },
+ { k := 8,
+   lowerRail := (11 : Rat)/8,
+   sample := (11 : Rat)/8,
+   upperRail := (13 : Rat)/8,
+   width := (1 : Rat)/4,
+   insideRails := true }]
+[(1, 1), (2, (1 : Rat)/2), (3, (1 : Rat)/3), (4, (1 : Rat)/4), (5, (1 : Rat)/5), (6, (1 : Rat)/6)]
+~~~
+
+Read the output as four separate ledgers:
+
+1. the alternating sequence repeatedly crosses \(-5/4\) and remains between
+   \(-3/2\) and zero;
+2. \(-1/n\) is negative at every displayed positive time but stops strictly
+   crossing \(-1/4\) at equality \(n=4\);
+3. \(1-n\) keeps crossing \(-2\), defeats the displayed lower bound one step
+   after equality, and makes the proposed unguarded conclusion false; and
+4. the exact squeeze rows lie between their two rails with width \(2/k\),
+   while the positive zero-rate rows \(1/k\) approach the allowed endpoint
+   zero.
+
+The <code>example</code> declarations kernel-check every recorded finite
+identity and Boolean window. The field
+<code>sourceProvedTotalizedRealLiminf := 0</code> is an explicit reference to
+the paired Mathlib proof, not a reimplementation of liminf in <code>Std</code>.
+The infinite frequency, eventual boundedness, totalized real-liminf, null-set,
+Birkhoff, and cocycle claims remain exactly the guarded cloud-only project
+interfaces above.
+
 ## Audit every checked interface
 
 ### RMT-33 declaration ledger
@@ -919,6 +1533,65 @@ The private helper
 <code>ae_isBoundedUnder_ge_normalizedCenteredProcess</code> is intentionally
 not public. Its content is exposed through the stronger public conjunction
 theorem.
+
+### Complete paired-source manifest
+
+The authoritative paired file is
+<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean</code>.
+At this chapter revision it has 627 lines and SHA-256 digest
+<code>55680bc2afa18d0a195a7fa7426e6afb2b55fcbb3f588d3474bc6f52764025ef</code>.
+It imports exactly:
+
+1. <code>NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation</code>;
+   and
+2. <code>NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup</code>.
+
+The 24 public declarations appear in source order in the ledger above. The
+remaining named private surface is complete in the following table.
+
+| Private source item | Role |
+|---|---|
+| <code>ae_isBoundedUnder_ge_normalizedCenteredProcess</code> | Extracts one eventual rational lower-bound witness off the null exhaustion |
+| <code>rmt33ZeroProcess</code> | Defines the zero-process boundary |
+| <code>rmt33ApproachZeroFromBelow</code> | Defines the total sequence \((-1)/n\), with value zero at time zero |
+| <code>rmt33ApproachZeroFromBelow_tendsto</code> | Proves convergence to zero |
+| <code>rmt33ApproachZeroFromBelow_frequently_neg</code> | Proves strict negative crossings are frequent |
+| <code>rmt33ApproachZeroFromBelow_not_frequently_below</code> | Proves every fixed rational \(q\lt0\) eventually stops being crossed |
+| <code>rmt33QuadraticEscapeProcess</code> | Defines the one-point process \(X_n=-n^2\) |
+| <code>rmt33QuadraticEscapeProcess_candidate</code> | Checks integrability and shifted subadditivity of that process |
+| <code>rmt33QuadraticEscape_centered</code> | Computes its centered numerator as \(-n^2+n\) |
+| <code>rmt33QuadraticEscape_mem</code> | Checks event membership at target \(-1\) using rational witness \(-2\) |
+| <code>rmt33QuadraticEscape_liminf</code> | Proves the pinned total real liminf is zero because the eventual-lower-bound set is empty |
+
+Five anonymous <code>example</code> probes then test the public boundary:
+
+| Probe, in source order | Exact checked boundary |
+|---:|---|
+| 1 | The zero process has liminf zero and an empty strict deviation set at target zero |
+| 2 | Replacing the arbitrary time-zero slice leaves normalized liminf unchanged |
+| 3 | \((-1)/n\) has liminf zero and is frequently negative, but crosses no fixed rational \(q\lt0\) frequently |
+| 4 | The quadratic candidate belongs to the rational event at \(-1\), has no eventual lower bound, and does **not** have total real liminf below \(-1\) |
+| 5 | The final convergence theorem remains well typed for the empty matrix-index type |
+
+Finally, the source contains exactly 11 explicit axiom-audit probes:
+
+~~~lean
+#print axioms normalizedProcess_update_zero
+#print axioms liminf_normalizedProcess_succ
+#print axioms mem_centeredArbitrarilyLateBadBlockSet_iff_frequently_normalized_lt
+#print axioms liminf_normalizedCenteredProcess_lt_of_mem_centeredStrictLowerDeviationSet
+#print axioms IsIntegrableSubadditiveProcessCandidate.mem_centeredStrictLowerDeviationSet_of_liminf_normalizedCenteredProcess_lt
+#print axioms IsIntegrableSubadditiveProcessCandidate.centeredLowerLiminfDeviationSet_subset_rationalExhaustion
+#print axioms IsIntegrableSubadditiveProcessCandidate.measure_centeredLowerLiminfDeviationSet_eq_zero
+#print axioms IsIntegrableSubadditiveProcessCandidate.ae_isBoundedUnder_ge_and_le_liminf_normalizedCenteredProcess
+#print axioms IsIntegrableSubadditiveProcessCandidate.ae_add_oneStepIntegral_le_liminf_normalized
+#print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_integratedLogPlusGrowthRate_le_liminf_normalized
+#print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_tendsto_normalizedLogPlusNormObservable
+~~~
+
+These lines are part of the source manifest, not a substitute for the guarded
+cloud check. Their printed results belong to the Linux build transcript; this
+chapter does not fabricate them from a workstation-only text scan.
 
 ### Pinned Mathlib API ledger
 

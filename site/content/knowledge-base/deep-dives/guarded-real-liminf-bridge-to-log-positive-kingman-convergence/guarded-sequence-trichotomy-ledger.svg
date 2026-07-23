@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Three exact sequences expose the real-liminf guard and rational-slack boundary</title>
+  <desc id="desc">A bounded alternating sequence has lower limit negative three halves and repeatedly crosses the rational margin negative five quarters below target negative one. The sequence negative one over n crosses zero forever but no fixed negative rational margin forever. The quadratic centered normalization zero, zero, negative one, negative two and downward crosses negative two forever but has no eventual lower bound; the checked project source proves Mathlib's total real liminf is zero, so the unguarded conclusion zero less than negative one is false.</desc>
+  <rect width="1200" height="760" fill="#f7f4f0"/>
+  <rect x="0" y="0" width="1200" height="18" fill="#16243a"/>
+  <text x="55" y="56" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#a67c52" letter-spacing="1.5">EXACT SEQUENCE LEDGER</text>
+  <text x="55" y="91" font-family="Georgia, serif" font-size="30" font-weight="700" fill="#16243a">One guard, two near-misses, three different lessons</text>
+  <text x="55" y="119" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#4d5b6b">The finite values are checked by the standalone Std worksheet; the infinite liminf facts are proved in mathematics and in the paired project source.</text>
+
+  <g transform="translate(45,145)">
+    <rect width="350" height="535" rx="18" fill="#fbf9f6" stroke="#6f8d5e" stroke-width="2"/>
+    <rect x="20" y="20" width="144" height="28" rx="14" fill="#eaf1e5"/>
+    <text x="92" y="39" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#315f55">GUARD PRESENT</text>
+    <text x="20" y="82" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#16243a">A. Bounded alternation</text>
+    <text x="20" y="111" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#4d5b6b">u_0=0; odd n: -3/2; even n&gt;0: -1/2</text>
+
+    <line x1="44" y1="158" x2="325" y2="158" stroke="#9aa4b2" stroke-width="1"/>
+    <line x1="44" y1="142" x2="44" y2="283" stroke="#9aa4b2" stroke-width="1"/>
+    <line x1="44" y1="213" x2="325" y2="213" stroke="#8b3e33" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <line x1="44" y1="231" x2="325" y2="231" stroke="#a67c52" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <line x1="44" y1="248" x2="325" y2="248" stroke="#315f55" stroke-width="2"/>
+    <polyline points="52,158 90,248 128,194 166,248 204,194 242,248 280,194 318,248" fill="none" stroke="#284e72" stroke-width="3"/>
+    <g fill="#284e72">
+      <circle cx="52" cy="158" r="4"/><circle cx="90" cy="248" r="4"/><circle cx="128" cy="194" r="4"/>
+      <circle cx="166" cy="248" r="4"/><circle cx="204" cy="194" r="4"/><circle cx="242" cy="248" r="4"/>
+      <circle cx="280" cy="194" r="4"/><circle cx="318" cy="248" r="4"/>
+    </g>
+    <text x="48" y="301" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">0</text>
+    <text x="314" y="301" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">7</text>
+    <text x="246" y="208" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b3e33">c=-1</text>
+    <text x="246" y="227" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b6440">q=-5/4</text>
+    <text x="235" y="265" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#315f55">lower bound -3/2</text>
+
+    <text x="20" y="338" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#16243a">Exact ledger</text>
+    <text x="20" y="365" font-family="Menlo, monospace" font-size="13" fill="#4d5b6b">n   0   1    2    3    4    5</text>
+    <text x="20" y="388" font-family="Menlo, monospace" font-size="13" fill="#4d5b6b">u   0 -3/2 -1/2 -3/2 -1/2 -3/2</text>
+    <text x="20" y="424" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- -3/2 &lt;= u_n &lt;= 0 for every n</text>
+    <text x="20" y="448" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- u_n&lt;q at every odd n</text>
+    <text x="20" y="472" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- liminf u = -3/2 &lt; c</text>
+    <rect x="20" y="491" width="310" height="29" rx="7" fill="#eaf1e5"/>
+    <text x="175" y="511" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#315f55">EVENT + GUARD -&gt; HONEST LOW LIMINF</text>
+  </g>
+
+  <g transform="translate(425,145)">
+    <rect width="350" height="535" rx="18" fill="#fbf9f6" stroke="#a67c52" stroke-width="2"/>
+    <rect x="20" y="20" width="160" height="28" rx="14" fill="#f3e8e0"/>
+    <text x="100" y="39" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b3e33">STRICTNESS TEST</text>
+    <text x="20" y="82" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#16243a">B. Approach zero</text>
+    <text x="20" y="111" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#4d5b6b">a_0=0; a_n=-1/n for n&gt;0</text>
+
+    <line x1="44" y1="158" x2="325" y2="158" stroke="#8b3e33" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <line x1="44" y1="229" x2="325" y2="229" stroke="#a67c52" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <line x1="44" y1="142" x2="44" y2="283" stroke="#9aa4b2" stroke-width="1"/>
+    <polyline points="52,158 90,278 128,218 166,198 204,188 242,182 280,178 318,175" fill="none" stroke="#284e72" stroke-width="3"/>
+    <g fill="#284e72">
+      <circle cx="52" cy="158" r="4"/><circle cx="90" cy="278" r="4"/><circle cx="128" cy="218" r="4"/>
+      <circle cx="166" cy="198" r="4"/><circle cx="204" cy="188" r="4"/><circle cx="242" cy="182" r="4"/>
+      <circle cx="280" cy="178" r="4"/><circle cx="318" cy="175" r="4"/>
+    </g>
+    <text x="270" y="153" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b3e33">target c=0</text>
+    <text x="247" y="245" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b6440">test q=-1/4</text>
+    <text x="48" y="301" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">0</text>
+    <text x="314" y="301" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">7</text>
+
+    <text x="20" y="338" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#16243a">Exact ledger</text>
+    <text x="20" y="365" font-family="Menlo, monospace" font-size="13" fill="#4d5b6b">n   0   1    2    3    4    5</text>
+    <text x="20" y="388" font-family="Menlo, monospace" font-size="13" fill="#4d5b6b">a   0  -1  -1/2 -1/3 -1/4 -1/5</text>
+    <text x="20" y="424" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- a_n&lt;0 at every positive n</text>
+    <text x="20" y="448" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- a_n&lt;-1/4 only for n=1,2,3</text>
+    <text x="20" y="472" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- liminf a=0; no fixed q&lt;0 recurs</text>
+    <rect x="20" y="491" width="310" height="29" rx="7" fill="#f3e8e0"/>
+    <text x="175" y="511" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#8b3e33">TARGET CROSSING != RATIONAL SLACK</text>
+  </g>
+
+  <g transform="translate(805,145)">
+    <rect width="350" height="535" rx="18" fill="#fbf9f6" stroke="#8b3e33" stroke-width="2"/>
+    <rect x="20" y="20" width="154" height="28" rx="14" fill="#f3e8e0"/>
+    <text x="97" y="39" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b3e33">GUARD MISSING</text>
+    <text x="20" y="82" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#16243a">C. Quadratic escape</text>
+    <text x="20" y="111" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#4d5b6b">u_0=0; u_n=1-n for n&gt;0</text>
+
+    <line x1="44" y1="151" x2="325" y2="151" stroke="#9aa4b2" stroke-width="1"/>
+    <line x1="44" y1="142" x2="44" y2="283" stroke="#9aa4b2" stroke-width="1"/>
+    <line x1="44" y1="174" x2="325" y2="174" stroke="#8b3e33" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <line x1="44" y1="197" x2="325" y2="197" stroke="#a67c52" stroke-width="1.5" stroke-dasharray="3 4"/>
+    <polyline points="52,151 90,151 128,174 166,197 204,220 242,243 280,266 318,289" fill="none" stroke="#284e72" stroke-width="3"/>
+    <g fill="#284e72">
+      <circle cx="52" cy="151" r="4"/><circle cx="90" cy="151" r="4"/><circle cx="128" cy="174" r="4"/>
+      <circle cx="166" cy="197" r="4"/><circle cx="204" cy="220" r="4"/><circle cx="242" cy="243" r="4"/>
+      <circle cx="280" cy="266" r="4"/><circle cx="318" cy="289" r="4"/>
+    </g>
+    <text x="252" y="169" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b3e33">target c=-1</text>
+    <text x="265" y="193" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#8b6440">q=-2</text>
+    <text x="48" y="301" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">0</text>
+    <text x="314" y="301" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">7</text>
+
+    <text x="20" y="338" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#16243a">Exact ledger</text>
+    <text x="20" y="365" font-family="Menlo, monospace" font-size="13" fill="#4d5b6b">n   0  1  2  3  4  5  6</text>
+    <text x="20" y="388" font-family="Menlo, monospace" font-size="13" fill="#4d5b6b">u   0  0 -1 -2 -3 -4 -5</text>
+    <text x="20" y="420" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- u_n&lt;q for every n&gt;=4</text>
+    <text x="20" y="444" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- every real lower bound fails later</text>
+    <text x="20" y="468" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">- project proof: total real liminf=0</text>
+    <rect x="20" y="486" width="310" height="36" rx="7" fill="#f3e8e0"/>
+    <text x="175" y="509" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8b3e33">UNGUARDED "0&lt;-1" IS FALSE</text>
+  </g>
+
+  <rect x="45" y="703" width="1110" height="38" rx="9" fill="#16243a"/>
+  <text x="600" y="728" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#fffdf8">The theorem needs an eventual real lower-bound witness; a finite prefix or a pretty plotted trend cannot substitute for it.</text>
+</svg>

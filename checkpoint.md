@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:44 PDT
+Last updated: 2026-07-22 22:49 PDT
 
-Audited baseline: `main` at `644f862`
+Audited baseline: `main` at `3307fe2`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **34 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **35 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -620,6 +620,22 @@ figures, seven human/paper/Lean bridges, the complete nineteen-public/
 twenty-one-private/six-probe/ten-axiom source map, a guarded cloud check, and
 a byte-identical executed 122-line `Std` worksheet make every quantifier and
 branch-selection step inspectable on an ordinary laptop.
+*The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence* now
+starts with three exact normalized sequences. A bounded alternation between
+`-3/2` and `-1/2` has the needed lower guard and repeatedly crosses
+`q=-5/4<c=-1`; the sequence `-1/n` stays below target zero but eventually
+loses every fixed negative rational margin; and the quadratic-escape
+normalization `1-n` crosses `q=-2<c=-1` forever while defeating every eventual
+real lower bound. The last model has Mathlib's totalized real liminf zero, so
+dropping the guard would demand the false conclusion `0<-1`. An exact squeeze
+with log-positive rate `3/2`, rails `3/2-1/k` and `3/2+1/k`, alternating
+samples, and width `2/k` then shows how the new lower rail joins the prior
+upper rail; the positive `1/k` boundary keeps zero rate legal. Two new
+accessible numeric figures, seven human/paper/Lean bridges, the complete
+twenty-four-public/eleven-private/five-probe/eleven-axiom manifest, a guarded
+cloud interface check, and a byte-identical executed 142-line `Std` worksheet
+make the totalization trap and final convergence mechanism reproducible
+without building Mathlib on the workstation.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3507,6 +3523,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `3307fe2`: rebuild *Rational-Slack Lower-Deviation Events and Ergodic Null
+  Selection* around an exact collapse/Dirac model, fixed rational witnesses,
+  literal-versus-almost invariance, strict probability branch selection,
+  seven Lean bridges, and an executed local `Std` worksheet.
 - `644f862`: rebuild *Ergodic Birkhoff Limits and Normalized Space Averages*
   around the exact `(3,7)` two-state orbit, probability and mass-two
   normalization, identity/zero-mass/non-mixing boundaries, six Lean bridges,

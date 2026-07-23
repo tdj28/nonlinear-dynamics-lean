@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Exact rational squeeze toward a nonnegative log-positive growth rate</title>
+  <desc id="desc">For gamma equal to three halves, lower rail gamma minus one over k and upper rail gamma plus one over k trap an alternating sample. A table lists exact values for k one through eight and widths two over k. The diagram maps the current lower-liminf theorem and prior upper-limsup theorem into convergence. A lower strip shows the zero-rate sequence one over k converging to zero and warns that negative signed contraction remains outside the log-positive theorem.</desc>
+  <rect width="1200" height="760" fill="#f7f4f0"/>
+  <rect x="0" y="0" width="1200" height="18" fill="#16243a"/>
+  <text x="55" y="56" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#a67c52" letter-spacing="1.5">NUMERIC SQUEEZE LEDGER</text>
+  <text x="55" y="91" font-family="Georgia, serif" font-size="30" font-weight="700" fill="#16243a">Lower rail + prior upper rail = convergence to gamma+</text>
+  <text x="55" y="119" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#4d5b6b">Exact model: gamma+=3/2, L_k=gamma+-1/k, U_k=gamma++1/k, and a_k alternates between the rails.</text>
+
+  <rect x="45" y="145" width="550" height="380" rx="18" fill="#fbf9f6" stroke="#c4b8a8" stroke-width="2"/>
+  <text x="70" y="180" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#16243a">The rails close at exact width 2/k</text>
+  <line x1="92" y1="328" x2="548" y2="328" stroke="#9aa4b2" stroke-width="1"/>
+  <line x1="92" y1="212" x2="92" y2="445" stroke="#9aa4b2" stroke-width="1"/>
+  <line x1="92" y1="328" x2="548" y2="328" stroke="#315f55" stroke-width="2" stroke-dasharray="5 5"/>
+  <polyline points="112,238 172,273 232,285 292,291 352,295 412,297 472,299 532,300" fill="none" stroke="#8b3e33" stroke-width="3"/>
+  <polyline points="112,418 172,363 232,345 292,336 352,331 412,327 472,325 532,323" fill="none" stroke="#284e72" stroke-width="3"/>
+  <polyline points="112,238 172,363 232,285 292,336 352,295 412,327 472,299 532,323" fill="none" stroke="#a67c52" stroke-width="2.5"/>
+  <g fill="#a67c52">
+    <circle cx="112" cy="238" r="5"/><circle cx="172" cy="363" r="5"/><circle cx="232" cy="285" r="5"/>
+    <circle cx="292" cy="336" r="5"/><circle cx="352" cy="295" r="5"/><circle cx="412" cy="327" r="5"/>
+    <circle cx="472" cy="299" r="5"/><circle cx="532" cy="323" r="5"/>
+  </g>
+  <text x="448" y="286" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#8b3e33">U_k</text>
+  <text x="448" y="350" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#284e72">L_k</text>
+  <text x="452" y="319" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#315f55">gamma+=3/2</text>
+  <text x="100" y="468" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">1</text>
+  <text x="525" y="468" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#667180">8</text>
+  <rect x="70" y="487" width="500" height="25" rx="6" fill="#eaf1e5"/>
+  <text x="320" y="505" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#315f55">Every amber point satisfies L_k &lt;= a_k &lt;= U_k.</text>
+
+  <rect x="620" y="145" width="535" height="380" rx="18" fill="#fbf9f6" stroke="#c4b8a8" stroke-width="2"/>
+  <text x="645" y="180" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#16243a">Kernel-checked rational rows</text>
+  <rect x="645" y="199" width="485" height="34" fill="#16243a"/>
+  <g font-family="Menlo, monospace" font-size="13">
+    <text x="661" y="221" fill="#fffdf8">k</text><text x="711" y="221" fill="#fffdf8">L_k</text>
+    <text x="816" y="221" fill="#fffdf8">a_k</text><text x="921" y="221" fill="#fffdf8">U_k</text>
+    <text x="1026" y="221" fill="#fffdf8">width</text>
+    <g fill="#4d5b6b">
+      <text x="661" y="258">1</text><text x="711" y="258">1/2</text><text x="816" y="258">5/2</text><text x="921" y="258">5/2</text><text x="1026" y="258">2</text>
+      <text x="661" y="290">2</text><text x="711" y="290">1</text><text x="816" y="290">1</text><text x="921" y="290">2</text><text x="1026" y="290">1</text>
+      <text x="661" y="322">3</text><text x="711" y="322">7/6</text><text x="816" y="322">11/6</text><text x="921" y="322">11/6</text><text x="1026" y="322">2/3</text>
+      <text x="661" y="354">4</text><text x="711" y="354">5/4</text><text x="816" y="354">5/4</text><text x="921" y="354">7/4</text><text x="1026" y="354">1/2</text>
+      <text x="661" y="386">5</text><text x="711" y="386">13/10</text><text x="816" y="386">17/10</text><text x="921" y="386">17/10</text><text x="1026" y="386">2/5</text>
+      <text x="661" y="418">6</text><text x="711" y="418">4/3</text><text x="816" y="418">4/3</text><text x="921" y="418">5/3</text><text x="1026" y="418">1/3</text>
+      <text x="661" y="450">7</text><text x="711" y="450">19/14</text><text x="816" y="450">23/14</text><text x="921" y="450">23/14</text><text x="1026" y="450">2/7</text>
+      <text x="661" y="482">8</text><text x="711" y="482">11/8</text><text x="816" y="482">11/8</text><text x="921" y="482">13/8</text><text x="1026" y="482">1/4</text>
+    </g>
+  </g>
+
+  <g transform="translate(45,550)">
+    <rect width="1110" height="88" rx="16" fill="#16243a"/>
+    <rect x="22" y="18" width="246" height="52" rx="10" fill="#eaf1e5"/>
+    <text x="145" y="40" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#315f55">CURRENT MODULE</text>
+    <text x="145" y="60" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#315f55">gamma+ &lt;= liminf a</text>
+    <path d="M279 44 H352" stroke="#a67c52" stroke-width="3"/><path d="M352 44 l-13 -8 v16 z" fill="#a67c52"/>
+    <rect x="365" y="18" width="248" height="52" rx="10" fill="#f3e8e0"/>
+    <text x="489" y="40" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#8b3e33">PRIOR RMT-29</text>
+    <text x="489" y="60" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8b3e33">limsup a &lt;= gamma+</text>
+    <path d="M624 44 H697" stroke="#a67c52" stroke-width="3"/><path d="M697 44 l-13 -8 v16 z" fill="#a67c52"/>
+    <rect x="710" y="18" width="378" height="52" rx="10" fill="#fffdf8"/>
+    <text x="899" y="40" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#16243a">TWO-SIDED REAL BOUNDEDNESS</text>
+    <text x="899" y="60" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#4d5b6b">forces a_n -&gt; gamma+ almost everywhere</text>
+  </g>
+
+  <g transform="translate(45,659)">
+    <rect width="1110" height="75" rx="14" fill="#fbf9f6" stroke="#8b3e33" stroke-width="2"/>
+    <text x="22" y="30" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#8b3e33">ZERO-RATE BOUNDARY</text>
+    <text x="190" y="30" font-family="Menlo, monospace" font-size="14" fill="#4d5b6b">a_k=1/k:  1, 1/2, 1/3, 1/4, 1/5, 1/6 -&gt; 0</text>
+    <text x="22" y="56" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4d5b6b">A nonnegative log-positive rate may equal zero. Constant contraction can have a negative signed rate while this observable remains identically zero.</text>
+  </g>
+</svg>
