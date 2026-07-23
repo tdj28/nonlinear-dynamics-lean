@@ -2,17 +2,24 @@
 title: "Complex Gaussian Coordinates and Geometry"
 slug: "complex-gaussian-coordinates-and-geometry"
 date: 2026-07-21
-summary: "A guided ascent from two exact real Gaussian coordinates to a complex law, its support geometry, second-order structure, symmetry boundaries, and checked Lean interface."
-lead: "A complex Gaussian is not a bell curve with an imaginary label. It is a two-dimensional law whose coordinates, dependence, degeneracies, and normalization must all be named."
+summary: "Carry the exact ledger m = 1 - 2i and component variances 4 and 1 through moments, scaling, dependence, degeneracy, the Cartesian complex Gaussian law, and its checked Lean interfaces."
+lead: "Start with four visible parameters, calculate every finite consequence, and only then climb from two real Gaussian coordinates to a law on the complex plane."
 draft: false
 pro_reviewed: false
-level: "Base camp to advanced"
-reading_time: "50 to 75 minutes"
-prerequisites: "Real Gaussian laws, elementary complex arithmetic, and basic probability notation; no Lean experience required"
+level: "First exact ledger to law-level geometry"
+reading_time: "65 to 85 minutes"
+prerequisites: "Arithmetic with complex numbers; probability laws, independence, variances, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.ComplexGaussian"
 toc: true
 og_image: "complex-gaussian-coordinates-card.png"
-og_image_alt: "A warm-paper teaching card compares circular, elliptical, line-supported, and point-mass complex Gaussian geometry while preserving separate real and imaginary variances."
+og_image_alt: "The exact complex Gaussian ledger with mean one minus two i and component variances four and one gives centered squared spread five and full squared-modulus moment ten; scaling by negative two gives variances sixteen and four and moment forty."
+ai_disclosure: |
+  **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
+  and review this note. The author selected the questions, shaped the
+  exposition, has inspected the sources and artifacts cited here, and is
+  responsible for the final text and claims. This is an independent,
+  non-peer-reviewed Deep Dive. Verify claims against the cited primary
+  sources and any released artifacts before relying on them.
 ---
 
 {{< panel "warning" >}}
@@ -21,6 +28,306 @@ prose, sources, Lean declaration map, figures, and accessibility have not yet
 received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
+
+## Start with one exact anisotropic ledger
+
+A **complex-valued random variable** assigns a complex number to every outcome
+of a probability experiment. Write one such variable as
+
+\[
+Z=1-2i+X+iY,
+\]
+
+where the two real-valued variables \(X\) and \(Y\) satisfy the following
+four conditions:
+
+\[
+\mathbb E[X]=0,
+\qquad
+\mathbb E[Y]=0,
+\qquad
+\operatorname{Var}(X)=4,
+\qquad
+\operatorname{Var}(Y)=1.
+\]
+
+Assume in addition that \(X\) and \(Y\) are independent and each has an exact
+real Gaussian law. Then the real and imaginary coordinates of \(Z\) are
+
+\[
+\operatorname{Re}Z=1+X,
+\qquad
+\operatorname{Im}Z=-2+Y.
+\]
+
+The word **mean** names the probability-weighted center. The word
+**variance** names expected squared displacement from that center. Translation
+changes a mean but does not change variance, so the first four entries of the
+ledger are
+
+| Slot | Exact value | Why |
+|---|---:|---|
+| real-coordinate mean | \(1\) | \(1+\mathbb E[X]=1\) |
+| imaginary-coordinate mean | \(-2\) | \(-2+\mathbb E[Y]=-2\) |
+| real-coordinate variance | \(4\) | adding 1 does not change spread |
+| imaginary-coordinate variance | \(1\) | adding \(-2\) does not change spread |
+
+The complex mean is therefore
+
+\[
+m=\mathbb E[Z]=1-2i.
+\]
+
+This example is **anisotropic**: its spread depends on direction because the
+real-axis variance \(4\) differs from the imaginary-axis variance \(1\).
+Nothing has been sampled. These are parameters of the whole probability law,
+not measurements from a scatter plot.
+
+### Compute the centered squared-modulus moment
+
+For a complex number \(a+ib\), its squared modulus is
+\(|a+ib|^2=a^2+b^2\). Since \(Z-m=X+iY\),
+
+\[
+\begin{aligned}
+\mathbb E|Z-m|^2
+&=\mathbb E(X^2+Y^2)\\
+&=\operatorname{Var}(X)+\operatorname{Var}(Y)\\
+&=4+1\\
+&=5.
+\end{aligned}
+\]
+
+The centered squared-modulus moment is the sum of the two component
+variances. It is not either component variance by itself.
+
+### Compute the full squared-modulus moment
+
+The mean contributes its own squared magnitude:
+
+\[
+|m|^2=|1-2i|^2=1^2+(-2)^2=5.
+\]
+
+The centered cross terms have expectation zero, so
+
+\[
+\begin{aligned}
+\mathbb E|Z|^2
+&=|m|^2+\mathbb E|Z-m|^2\\
+&=5+5\\
+&=10.
+\end{aligned}
+\]
+
+This distinction will matter repeatedly: \(5\) measures spread around the
+mean, while \(10\) measures squared distance from the origin.
+
+### Scale the same law by a real number
+
+Set \(W=-2Z\). Real scaling multiplies both coordinate means by \(-2\) and
+both component variances by \((-2)^2=4\):
+
+\[
+\mathbb E[W]=-2+4i,
+\qquad
+\bigl(\operatorname{Var}(\operatorname{Re}W),
+      \operatorname{Var}(\operatorname{Im}W)\bigr)=(16,4).
+\]
+
+Consequently,
+
+\[
+\mathbb E|W-\mathbb E W|^2=16+4=20,
+\qquad
+\mathbb E|W|^2=4\,\mathbb E|Z|^2=40.
+\]
+
+The sign changes the center but the variance scale sees only the square. The
+exact project scaling theorem later in this chapter includes negative and zero
+real scalars.
+
+{{< reference-figure
+  wide="true"
+  src="anisotropic-coordinate-ledger.svg"
+  alt="The exact law with mean one minus two i and component variances four and one has centered squared-modulus moment five and full moment ten; after multiplication by negative two its mean is negative two plus four i, its variances are sixteen and four, and its moments are twenty and forty."
+  caption="**Finding:** one visible parameter ledger determines every displayed finite calculation. The mean \((1,-2)\), component variances \((4,1)\), centered squared-modulus moment 5, and full moment 10 become mean \((-2,4)\), variances \((16,4)\), centered moment 20, and full moment 40 under multiplication by \(-2\). The ellipses are schematic contour guides; the centers and labels are exact toy parameters, not sampled or empirical data."
+>}}
+
+### In Lean: name the exact law before asking for moments
+
+{{< lean-bridge
+  human="The complex variable Z has mean one minus two i, real-coordinate variance four, and imaginary-coordinate variance one under the probability measure P."
+  math="\(\mathcal L_P(Z)=\Gamma^{\mathrm{cart}}_{1-2i;4,1}.\)"
+  lean="HasCartesianComplexGaussianLaw Z (1 - 2 * Complex.I) (4 : ℝ≥0) (1 : ℝ≥0) P"
+>}}
+
+- <code>HasCartesianComplexGaussianLaw</code> is a proposition, so a term of
+  this type is evidence for an exact law rather than a generated sample.
+- <code>Z : Ω → ℂ</code> is the sample map from outcomes to complex values.
+- <code>1 - 2 * Complex.I</code> is the complex mean parameter \(1-2i\).
+- <code>(4 : ℝ≥0)</code> and <code>(1 : ℝ≥0)</code> are separate
+  nonnegative real-coordinate and imaginary-coordinate variances. The type
+  annotation prevents either number from being mistaken for a natural or real
+  scalar in isolation.
+- <code>P</code> is the source measure. The exact law proposition entails that
+  it is a probability measure; it is not an unnamed default distribution.
+
+The proposition identifies the complete pushforward law. It is stronger than
+the four moment equalities above. Conversely, the arithmetic equalities alone
+would not identify a Gaussian law or prove independence.
+{{< /lean-bridge >}}
+
+## A nearby nonexample: the same marginals can lie on one line
+
+Let \(U\) be a centered real Gaussian with variance one and form
+
+\[
+Z_{\mathrm{copy}}=U+iU.
+\]
+
+Both displayed coordinates have the same \(N(0,1)\) marginal law, but they are
+not independent: learning the real coordinate determines the imaginary one.
+Here \(N(0,1)\) means the real Gaussian law with mean zero and variance one.
+The real covariance matrix is
+
+\[
+\begin{bmatrix}
+1&1\\
+1&1
+\end{bmatrix},
+\]
+
+not the identity matrix. Every realization lies on the diagonal line
+\(y=x\). Its pseudocovariance, the centered moment
+\(\mathbb E[Z_{\mathrm{copy}}^2]\), equals
+
+\[
+\mathbb E[(U+iU)^2]=2i\,\mathbb E[U^2]=2i.
+\]
+
+Thus equal Gaussian marginals do not certify a Cartesian product law,
+circular symmetry, or even two-dimensional support. The missing datum is the
+joint dependence structure.
+
+The dependence question grows when there are several complex coordinates.
+For \(Z_j=X_j+iY_j\), product structure **inside** each pair
+\((X_j,Y_j)\) is one gate. Mutual independence **between** the pair-vectors is
+another. Knowing only that the \(X\)-family is independent and the
+\(Y\)-family is independent leaves every cross-family dependence unspecified.
+
+{{< reference-figure
+  wide="true"
+  src="independence-scopes-and-near-miss.svg"
+  alt="The Cartesian pair has covariance matrix with rows four zero and zero one, while copying one standard Gaussian into both coordinates gives covariance matrix with every entry one, diagonal-line support, and pseudocovariance two i. A two-coordinate family separately requires product laws within pairs and independence between pair-vectors."
+  caption="**Finding:** dependence is not encoded by one-dimensional marginals. The running Cartesian pair has cross covariance zero and covariance matrix \(\left[\begin{smallmatrix}4&0\\0&1\end{smallmatrix}\right]\). The copied-coordinate near-miss has the same standard Gaussian law on both axes but covariance matrix \(\left[\begin{smallmatrix}1&1\\1&1\end{smallmatrix}\right]\), line support, and pseudocovariance \(2i\). For a family, within-pair product laws and between-pair independence are distinct gates. The bottom strip shows the exact one-zero line branch and double-zero Dirac branch; none of the shapes are empirical samples."
+>}}
+
+## Type the finite ledger yourself with Lean and Std
+
+The exact Gaussian measure lives in Mathlib, so its project proof belongs on
+approved Linux compute. The arithmetic ledger is much smaller. The following
+file imports only Lean's <code>Std</code> library and uses integers and natural
+numbers to check every displayed finite value, including the copied-coordinate
+near-miss. Save it as <code>/tmp/ComplexGaussianLedger.lean</code> on a normal
+Mac or Linux computer:
+
+~~~lean
+import Std
+
+namespace ComplexGaussianLedger
+
+structure Ledger where
+  meanRe : Int
+  meanIm : Int
+  varRe : Nat
+  varIm : Nat
+deriving Repr, DecidableEq
+
+def running : Ledger :=
+  { meanRe := 1, meanIm := -2, varRe := 4, varIm := 1 }
+
+def centeredSqMoment (ledger : Ledger) : Nat :=
+  ledger.varRe + ledger.varIm
+
+def meanNormSq (ledger : Ledger) : Nat :=
+  ledger.meanRe.natAbs ^ 2 + ledger.meanIm.natAbs ^ 2
+
+def fullSqMoment (ledger : Ledger) : Nat :=
+  meanNormSq ledger + centeredSqMoment ledger
+
+def pseudocovariance
+    (varRe varIm : Nat) (crossCovariance : Int) : Int × Int :=
+  (Int.ofNat varRe - Int.ofNat varIm, 2 * crossCovariance)
+
+def scale (c : Int) (ledger : Ledger) : Ledger :=
+  { meanRe := c * ledger.meanRe
+    meanIm := c * ledger.meanIm
+    varRe := c.natAbs ^ 2 * ledger.varRe
+    varIm := c.natAbs ^ 2 * ledger.varIm }
+
+def scaled : Ledger := scale (-2) running
+
+def copiedCovariance : List (List Nat) :=
+  [[1, 1], [1, 1]]
+
+#eval [running.meanRe, running.meanIm]
+#eval [running.varRe, running.varIm,
+  centeredSqMoment running, fullSqMoment running]
+#eval pseudocovariance running.varRe running.varIm 0
+#eval [scaled.meanRe, scaled.meanIm]
+#eval [scaled.varRe, scaled.varIm,
+  centeredSqMoment scaled, fullSqMoment scaled]
+#eval pseudocovariance scaled.varRe scaled.varIm 0
+#eval copiedCovariance
+#eval pseudocovariance 1 1 1
+
+example : centeredSqMoment running = 5 := by decide
+example : fullSqMoment running = 10 := by decide
+example : pseudocovariance running.varRe running.varIm 0 = (3, 0) := by decide
+example : scaled =
+    { meanRe := -2, meanIm := 4, varRe := 16, varIm := 4 } := by decide
+example : centeredSqMoment scaled = 20 := by decide
+example : fullSqMoment scaled = 40 := by decide
+example : pseudocovariance 1 1 1 = (0, 2) := by decide
+
+end ComplexGaussianLedger
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/ComplexGaussianLedger.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[1, -2]
+[4, 1, 5, 10]
+(3, 0)
+[-2, 4]
+[16, 4, 20, 40]
+(12, 0)
+[[1, 1], [1, 1]]
+(0, 2)
+~~~
+
+The first two lines are the running mean pair and its variance, centered-
+moment, and full-moment ledger. The next line is its pseudocovariance. The
+following three lines repeat those calculations after scaling by \(-2\). The
+last two lines are the copied-coordinate covariance matrix and
+pseudocovariance. An ordered pair <code>(a, b)</code> represents the complex
+number \(a+ib\), so <code>(3, 0)</code> is the running law's real
+pseudocovariance \(3\), while <code>(0, 2)</code> is the copied near-miss's
+\(2i\).
+
+This worksheet checks finite arithmetic and data transformations. It does not
+define a probability measure, prove Gaussianity or independence, or replace
+the Mathlib-backed project theorems. Those exact interfaces are identified
+with guarded cloud commands later in the chapter.
 
 A real Gaussian law has one axis. A complex Gaussian law has two. That extra
 axis creates choices that informal notation often erases: whether the real and
@@ -38,37 +345,42 @@ branches without pretending they are the same geometry.
 The Lean module follows the same dependency order. It proves the exact measure
 first, then coordinate laws and independence, then qualitative Gaussianity and
 analytic consequences. It does not formalize a density, properness,
-circularity, or a matrix ensemble. Those boundaries are stated here instead of
-being hidden behind a suggestive name.
+circularity, the squared-modulus formulas above, or a matrix ensemble. Those
+boundaries are stated here instead of being hidden behind a suggestive name.
 
 ## Choose a route up
 
 | Route | Start with | What you will gain |
 |---|---|---|
-| First encounter | A complex number as two real coordinates | A concrete model of a complex-valued random variable |
+| First encounter | [The exact anisotropic ledger](#start-with-one-exact-anisotropic-ledger) | Means, component variances, squared-modulus moments, and scaling from one example |
+| Hands-on Lean route | [The finite <code>Std</code> worksheet](#type-the-finite-ledger-yourself-with-lean-and-std) | Run every opening arithmetic check without Mathlib or Lake |
 | Probability route | Product laws and pushforwards | Why exact marginals plus independence determine this law |
 | Geometry route | Variance along each axis | A complete map of circular, elliptical, line, and point branches |
 | Signal route | Covariance and pseudocovariance | A careful separation of properness from circular symmetry |
-| Lean route | <code>HasLaw</code> and a real-linear equivalence | A declaration-by-declaration map of the checked module |
+| Project Lean route | <code>HasLaw</code> and a real-linear equivalence | Human, paper, and exact project syntax with guarded cloud commands |
 | Random-matrix route | Normalization ledgers | A safe handoff toward complex matrix entries without naming GUE early |
 
 ### Learning objectives
 
 By the summit, you should be able to:
 
-1. define the Cartesian complex Gaussian measure as a pushforward of a product
+1. reproduce the running ledger's means, component variances, centered moment
+   \(5\), full squared-modulus moment \(10\), and scaled values;
+2. define the Cartesian complex Gaussian measure as a pushforward of a product
    of two exact real Gaussian laws;
-2. recover its real, imaginary, and joint coordinate laws;
-3. explain why Gaussian marginals do not encode independence;
-4. derive the positive-variance planar density without using it at singular
+3. recover its real, imaginary, and joint coordinate laws;
+4. explain why Gaussian marginals do not encode within-pair or family
+   independence;
+5. derive the positive-variance planar density without using it at singular
    variance values;
-5. compute total centered squared magnitude and pseudocovariance from the two
+6. compute total centered squared magnitude and pseudocovariance from the two
    component variances;
-6. distinguish a proper law from a circularly symmetric law;
-7. convert between the two common symmetric normalizations;
-8. explain why <code>HasLaw</code> gives almost-everywhere measurability rather
+7. distinguish a proper law from a circularly symmetric law;
+8. convert between the two common symmetric normalizations;
+9. explain why <code>HasLaw</code> gives almost-everywhere measurability rather
    than ordinary measurability; and
-9. identify exactly what the current Lean module proves and what remains prose.
+10. identify exactly what the current Lean modules prove and what remains
+    mathematical context.
 
 ## Base camp: the complex plane is a real two-dimensional space
 
@@ -153,6 +465,27 @@ The resulting measure is
  \right).
 \]
 
+### In Lean: construct the measure from the product law
+
+{{< lean-bridge
+  human="Take the exact real Gaussian law for the real coordinate and the exact real Gaussian law for the imaginary coordinate, form their product, and transport that pair through the map from (x,y) to x + iy."
+  math="\(\Gamma^{\mathrm{cart}}_{m;v_{\mathrm R},v_{\mathrm I}}=\Phi_*(\gamma_{m_{\mathrm R},v_{\mathrm R}}\otimes\gamma_{m_{\mathrm I},v_{\mathrm I}}).\)"
+  lean="((gaussianReal m.re vRe).prod (gaussianReal m.im vIm)).map Complex.equivRealProdCLM.symm"
+>}}
+
+- <code>gaussianReal m.re vRe</code> is the exact real Gaussian measure for
+  the real axis; <code>m.re</code> extracts the real part of the complex mean.
+- <code>gaussianReal m.im vIm</code> is the corresponding imaginary-axis
+  measure.
+- <code>.prod</code> forms the product measure. This is the measure-level
+  independence choice, not mere side-by-side notation.
+- <code>Complex.equivRealProdCLM.symm</code> is the continuous real-linear map
+  that sends a pair \((x,y)\) to \(x+iy\).
+- <code>.map</code> pushes the product measure through that map. The project
+  definition <code>cartesianComplexGaussian m vRe vIm</code> is exactly this
+  expression.
+{{< /lean-bridge >}}
+
 The dedicated
 {{< refterm "cartesian-complex-gaussian-law" "Cartesian complex Gaussian law" >}}
 entry gives the compact operational definition. Here we will unpack every
@@ -198,14 +531,36 @@ Projecting that product onto either coordinate gives the corresponding exact
 real Gaussian marginal. This back-and-forth identity is stronger than a
 moment calculation. It identifies the complete probability law.
 
+### In Lean: recover the whole coordinate pair, then independence
+
+{{< lean-bridge
+  human="If Z has the exact Cartesian complex Gaussian law, then its real and imaginary coordinates jointly have the defining product law; therefore those two coordinate functions are independent."
+  math="\(\mathcal L_P(\operatorname{Re}Z,\operatorname{Im}Z)=\gamma_{m_{\mathrm R},v_{\mathrm R}}\otimes\gamma_{m_{\mathrm I},v_{\mathrm I}}\;\Longrightarrow\;\operatorname{Re}Z\perp\!\!\!\perp\operatorname{Im}Z.\)"
+  lean="hZ.indep_re_im"
+>}}
+
+- <code>hZ</code> is evidence of
+  <code>HasCartesianComplexGaussianLaw Z m vRe vIm P</code>.
+- <code>hZ.jointHasLaw</code> returns an exact <code>HasLaw</code> statement for
+  the pair-valued map
+  <code>fun ω ↦ ((Z ω).re, (Z ω).im)</code>. It does not merely return its two
+  marginals.
+- <code>hZ.indep_re_im</code> packages the resulting within-pair independence
+  as Mathlib's <code>IndepFun</code> predicate under <code>P</code>.
+- The displayed term is exact Lean syntax for the conclusion. The preceding
+  product-law certificate remains separately available as
+  <code>hZ.jointHasLaw</code>; both declarations are included in the cloud
+  worksheet below.
+{{< /lean-bridge >}}
+
 ## Camp two: the variance split determines support geometry
 
 The two nonnegative variances form a complete branch table for this family.
 
 {{< reference-figure
   src="complex-gaussian-geometry.svg"
-  alt="Equal positive component spreads produce circular contours, unequal positive spreads produce an axis-aligned ellipse, one zero spread produces a line-supported law, and two zero spreads produce a point mass."
-  caption="**Finding:** the separate component variances determine whether the Cartesian law occupies the plane, an axis-aligned line, or one point. Equal positive spreads give circular contours; unequal positive spreads give elliptical contours. The shapes are conceptual level sets and supports, not samples or empirical estimates."
+  alt="Component-variance pairs one one, four one, zero one, and zero zero produce circular contours, anisotropic elliptical contours, vertical-line support, and a point mass respectively."
+  caption="**Finding:** the exact pairs \((1,1)\), \((4,1)\), \((0,1)\), and \((0,0)\) select four different branches of the same Cartesian measure definition: circular positive-variance contours, the running example's anisotropic ellipse, a line-supported singular law, and a Dirac point mass. The contours and supports are conceptual geometry, not samples or empirical estimates; only the displayed parameter pairs are quantitative."
 >}}
 
 ### Both variances positive: a planar density
@@ -278,6 +633,25 @@ This is a Gaussian law in Mathlib's qualitative sense. Degenerate Gaussians
 are part of the closed family. Excluding them would make scaling by zero an
 artificial exceptional case.
 
+### In Lean: the double-zero branch is exactly Dirac
+
+{{< lean-bridge
+  human="When both component variances are zero, the Cartesian complex Gaussian measure puts all mass at its mean."
+  math="\(\Gamma^{\mathrm{cart}}_{m;0,0}=\delta_m.\)"
+  lean="cartesianComplexGaussian_zero_variances m"
+>}}
+
+- <code>cartesianComplexGaussian_zero_variances m</code> is the measure-level
+  equality with <code>Measure.dirac m</code>.
+- <code>hZ</code> now has type
+  <code>HasCartesianComplexGaussianLaw Z m 0 0 P</code>.
+- <code>hZ.ae_eq_const_of_variances_zero</code> is the sample-map consequence;
+  it uses almost-everywhere equality because exact laws are insensitive to a
+  null-set modification.
+- <code>0 0</code> fills the real and imaginary variance slots separately.
+  No singular density expression or division by a variance appears.
+{{< /lean-bridge >}}
+
 ## Camp three: mean, total spread, and pseudocovariance
 
 Let
@@ -295,6 +669,26 @@ Linearity of integration gives
 =m+\mathbb E[X]+i\mathbb E[Y]
 =m.
 \]
+
+### In Lean: integrability licenses the complex mean
+
+{{< lean-bridge
+  human="A variable with the exact Cartesian complex Gaussian law is integrable, and its complex Bochner integral equals the named complex mean."
+  math="\(Z\in L^1(P),\qquad\int_\Omega Z(\omega)\,dP(\omega)=m.\)"
+  lean="hZ.mean_eq"
+>}}
+
+- <code>hZ.integrable</code> is the checked analytic gate. A raw integral term
+  alone would not prove that its integrand has finite expected norm.
+- <code>hZ.mean_eq</code> is the exact integral identity
+  <code>∫ ω, Z ω ∂P = m</code>.
+- The proof uses <code>Complex.ext</code> to reduce equality of complex numbers
+  to equality of their real and imaginary components, then invokes the exact
+  real-coordinate mean theorems.
+- The displayed term is exact Lean syntax. The separate gate
+  <code>hZ.integrable</code> also appears in the cloud worksheet later in the
+  page.
+{{< /lean-bridge >}}
 
 Complex second-order theory then splits into two quantities.
 
@@ -427,56 +821,56 @@ and no circularity or properness predicate appears in the module. The name
 records exactly what is proved: a product in Cartesian coordinates followed by
 a real-linear equivalence.
 
-## A worked anisotropic example
+## Revisit the running example as a density
 
-Take
+The opening parameters were
 
 \[
 m=1-2i,
 \qquad
 v_{\mathrm R}=4,
 \qquad
-v_{\mathrm I}=\frac14.
+v_{\mathrm I}=1.
 \]
 
-Then the coordinate laws are
+The exact coordinate laws are therefore
 
 \[
 \operatorname{Re}Z\sim\gamma_{1,4},
 \qquad
-\operatorname{Im}Z\sim\gamma_{-2,1/4},
+\operatorname{Im}Z\sim\gamma_{-2,1},
 \]
 
-and they are independent. The planar density is
+and their joint law is the product of these two real laws. Because both
+variances are positive, the planar density exists and equals
 
 \[
 f(x+iy)
-=\frac{1}{2\pi}
+=\frac{1}{4\pi}
  \exp\!\left(
   -\frac{(x-1)^2}{8}
-  -2(y+2)^2
+  -\frac{(y+2)^2}{2}
  \right).
 \]
 
-The coefficient is \(1/(2\pi\sqrt{4\cdot1/4})=1/(2\pi)\).
-The real standard deviation is \(2\); the imaginary standard deviation is
-\(1/2\). Thus the density is much wider horizontally than vertically.
+The coefficient follows from
+\(1/(2\pi\sqrt{4\cdot1})=1/(4\pi)\). The real standard deviation is
+\(2\), while the imaginary standard deviation is \(1\), so the contours are
+twice as wide horizontally at matched standardized radius.
 
-The second-order ledger is
+The centered second-order ledger is the one already computed:
 
 \[
-C_Z
-=4+\frac14
-=\frac{17}{4},
+C_Z=4+1=5,
 \qquad
-P_Z
-=4-\frac14
-=\frac{15}{4}.
+P_Z=4-1=3.
 \]
 
-The nonzero pseudocovariance certifies that this Cartesian Gaussian is
-improper and not circularly symmetric. No plot is needed to infer that
-directional imbalance because the exact law already supplies the variances.
+The nonzero pseudocovariance certifies that this Cartesian Gaussian is not
+proper and is not circularly symmetric. The checked project law supplies the
+exact product and marginal data. The density, \(C_Z\), \(P_Z\), properness,
+and circularity conclusions remain mathematical context rather than named
+declarations in the current complex-Gaussian module.
 
 ## The normalization pass: two common circular laws
 
@@ -546,6 +940,27 @@ entry turns this comparison into a reusable ledger. The current formalization
 keeps \(v_{\mathrm R}\) and \(v_{\mathrm I}\) as separate public parameters
 and deliberately does not bless either symmetric branch as the matrix-entry
 convention.
+
+### In Lean: real scaling squares both variance factors
+
+{{< lean-bridge
+  human="If Z has Cartesian mean m and component variances vRe and vIm, then multiplying Z by the real scalar negative two multiplies the mean by negative two and both component variances by four."
+  math="\(Z\sim\Gamma^{\mathrm{cart}}_{m;v_{\mathrm R},v_{\mathrm I}}\Longrightarrow-2Z\sim\Gamma^{\mathrm{cart}}_{-2m;4v_{\mathrm R},4v_{\mathrm I}}.\)"
+  lean="hZ.real_smul (-2)"
+>}}
+
+- <code>hZ</code> is again an exact Cartesian-law certificate.
+- <code>.real_smul</code> is a theorem in
+  <code>NonlinearDynamics.Random.ComplexGaussianFamilies</code>, even when it
+  is applied to one coordinate. The later module extends the earlier
+  namespace rather than changing the definition of the law.
+- <code>(-2)</code> is a real scalar inferred from the theorem argument.
+- The conclusion uses the square \((-2)^2\) in both nonnegative variance
+  slots. At scalar zero, the same theorem reaches the double-zero Dirac law.
+- The theorem proves an exact law transformation. It does not itself name the
+  squared-modulus moments \(20\) and \(40\); the opening worksheet checks those
+  finite consequences of the variance and mean ledger.
+{{< /lean-bridge >}}
 
 ## High camp: exact law before qualitative Gaussianity
 
@@ -622,7 +1037,7 @@ Mathlib's <code>HasLaw</code> contains two fields:
 1. <code>AEMeasurable Z P</code>, meaning that \(Z\) agrees almost everywhere
    with a measurable map; and
 2. the exact pushforward identity
-   <code>P.map Z = cartesianComplexGaussian m vRe vIm</code>.
+   <code>Measure.map Z P = cartesianComplexGaussian m vRe vIm</code>.
 
 It does not provide ordinary <code>Measurable Z</code>. Changing a function on
 a null set leaves its law unchanged, so this law-level interface intentionally
@@ -710,25 +1125,85 @@ Mathlib's real <code>variance</code> API and the signal-processing quantities
 layer must define the desired complex second moments explicitly, prove their
 integrability, and then establish the sum and difference formulas.
 
-### Reproduce the check
+### Inspect the exact single-coordinate interfaces on Linux
 
-From the repository root:
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/ComplexGaussian.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussian.lean).
+On an approved Linux builder with the pinned project cache provisioned, put
+these lines in a temporary project scratch file:
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/ComplexGaussian.lean
+~~~lean
+import NonlinearDynamics.Random.ComplexGaussian
+
+open MeasureTheory ProbabilityTheory
+open scoped ENNReal NNReal ProbabilityTheory
+open NonlinearDynamics.Random
+
+#print cartesianComplexGaussian
+#check instIsProbabilityMeasureCartesianComplexGaussian
+#check instIsGaussianCartesianComplexGaussian
+#check cartesianComplexGaussian_map_equivRealProd
+#check cartesianComplexGaussian_map_re
+#check cartesianComplexGaussian_map_im
+#check cartesianComplexGaussian_zero_variances
+#print HasCartesianComplexGaussianLaw
+#check HasCartesianComplexGaussianLaw.aemeasurable
+#check HasCartesianComplexGaussianLaw.isProbabilityMeasure
+#check HasCartesianComplexGaussianLaw.jointHasLaw
+#check HasCartesianComplexGaussianLaw.real_hasLaw
+#check HasCartesianComplexGaussianLaw.imag_hasLaw
+#check HasCartesianComplexGaussianLaw.indep_re_im
+#check HasCartesianComplexGaussianLaw.hasGaussianLaw
+#check HasCartesianComplexGaussianLaw.memLp
+#check HasCartesianComplexGaussianLaw.integrable
+#check HasCartesianComplexGaussianLaw.mean_eq
+#check HasCartesianComplexGaussianLaw.ae_eq_const_of_variances_zero
+#check HasCartesianComplexGaussianLaw.of_indep_re_im
 ~~~
 
-To run the whole proof-to-prose gate, including Hugo drafts:
+<code>#print</code> exposes a definition body. <code>#check</code> asks Lean to
+elaborate an existing declaration and display its type. Neither command draws
+samples, estimates a moment, proves circular symmetry, or upgrades the
+unformalized density and pseudocovariance formulas. The guarded command below
+checks the authoritative module under Lean 4.32.0 and pinned Mathlib 4.32.0.
+{{< /repo-check >}}
 
-~~~sh
-make check
+### Inspect the scaling and family interfaces on Linux
+
+{{< repo-check module="NonlinearDynamics.Random.ComplexGaussianFamilies" >}}
+The authoritative continuation is
+[<code>formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean).
+The next temporary project scratch file checks the exact scaling and
+independence-scope names used in this chapter:
+
+~~~lean
+import NonlinearDynamics.Random.ComplexGaussianFamilies
+
+open MeasureTheory ProbabilityTheory
+open scoped ENNReal NNReal ProbabilityTheory
+open NonlinearDynamics.Random
+
+#check HasCartesianComplexGaussianLaw.real_smul
+#print IndependentCartesianComplexGaussianFamily
+#check IndependentCartesianComplexGaussianFamily.measurable
+#check IndependentCartesianComplexGaussianFamily.hasLaw
+#check IndependentCartesianComplexGaussianFamily.independent
+#check IndependentCartesianComplexGaussianFamily.real_variance_eq
+#check IndependentCartesianComplexGaussianFamily.imag_variance_eq
+#check IndependentCartesianComplexGaussianFamily.of_independent_real_pair_laws
+#check IndependentCartesianComplexGaussianFamily.scale
 ~~~
 
-The commands check the file that exists in the repository. No ellipses in this
-chapter are presented as executable Lean.
+The first declaration is the exact single-coordinate real-scaling theorem.
+The structure print shows that coordinate measurability, each coordinate's
+exact Cartesian law, and mutual family independence occupy separate fields.
+The constructor from real pair-vectors requires an exact product law inside
+every pair and independence between pair-vectors. It never infers cross-family
+independence from two separately independent real families. This exact file
+imports Mathlib and the project, so its guarded check belongs on the approved
+Linux builder rather than this Mac workstation.
+{{< /repo-check >}}
 
 ## The deliberate RMT-03 boundary before a family
 
@@ -740,7 +1215,9 @@ The single-coordinate layer provides:
 - a constructor from independent exact real Gaussian variables;
 - qualitative Gaussianity on \(\mathbb C\);
 - finite moments, integrability, and exact mean;
-- line-supported and point-mass degeneracies; and
+- a checked double-zero point-mass theorem, while the one-zero line geometry
+  remains an explicit mathematical consequence of the exact product measure;
+  and
 - no hidden selection between the two common circular scales.
 
 It does not itself provide:
@@ -765,6 +1242,27 @@ law, coordinatewise real scaling, a canonical product sample space, and the
 empty-index Dirac boundary. It still does not choose a matrix normalization or
 construct a Gaussian unitary ensemble.
 {{< /panel >}}
+
+### In Lean: family independence is a separate field
+
+{{< lean-bridge
+  human="For every index j, Z j is an ordinarily measurable complex variable with its own exact Cartesian law, and the whole indexed family is mutually independent."
+  math="\(\bigl[\forall j,\;Z_j\text{ measurable and }\mathcal L_P(Z_j)=\Gamma^{\mathrm{cart}}_{m_j;v_{\mathrm R,j},v_{\mathrm I,j}}\bigr]\;\text{ and }\;(Z_j)_j\text{ mutually independent}.\)"
+  lean="IndependentCartesianComplexGaussianFamily Z m vRe vIm P"
+>}}
+
+- <code>Z : ι → Ω → ℂ</code> is an indexed family of sample maps.
+- <code>m</code>, <code>vRe</code>, and <code>vIm</code> are indexed parameter
+  ledgers, so every coordinate retains its own mean and two variances.
+- The structure field <code>measurable</code> stores ordinary measurability of
+  every complex coordinate. This is stronger than the almost-everywhere
+  measurability in each exact law.
+- The field <code>hasLaw</code> stores the single-coordinate Cartesian product
+  law, including within-pair real-imaginary independence.
+- The field <code>independent</code> stores Mathlib's <code>iIndepFun Z P</code>
+  for the complex coordinates as a family. It is not inferred from the two
+  real component families separately.
+{{< /lean-bridge >}}
 
 A complex matrix law adds diagonal and off-diagonal roles, conjugate
 reflection, dimension scaling, and a zero-size policy. In a Hermitian matrix,
@@ -814,7 +1312,9 @@ The word "Gaussian" fills none of these matrix slots by itself.
 - [ ] A nonzero mean is centered before claiming phase invariance.
 - [ ] Any "unit" or "standard" scale states whether it is per component or
       total.
-- [ ] Lean claims are limited to the twenty declarations in the checked module.
+- [ ] Single-coordinate Lean claims are limited to the twenty declarations in
+      <code>ComplexGaussian.lean</code>; scaling and family claims are
+      explicitly attributed to <code>ComplexGaussianFamilies.lean</code>.
 - [ ] Density, symmetry, matrix, spectral, and asymptotic claims are not
       attributed to Lean before they are formalized.
 

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:36 PDT
+Last updated: 2026-07-22 18:48 PDT
 
-Audited baseline: `main` at `10efa90`
+Audited baseline: `main` at `d7d343b`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **2 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **3 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -217,7 +217,16 @@ typed gate. Its `Std` worksheet was executed locally under Lean 4.32.0 and
 prints the two entry ledgers, spectra, four successful eigenpair certificates,
 the exact preimage `["red"]`, and the four quarter-mass atoms. The page-owned
 card now derives deterministically from that exact worked figure, while both
-Mathlib/project probes remain clearly cloud-only.
+Mathlib/project probes remain clearly cloud-only. *Complex Gaussian
+Coordinates and Geometry* carries the exact law ledger with mean `1 - 2i` and
+component variances `(4, 1)` through centered/full squared-modulus moments
+`5/10`, real scaling by `-2` to variances `(16, 4)` and moments `20/40`, and
+pseudocovariance. A copied-coordinate Gaussian near-miss separates equal
+marginals from independence; the variance atlas includes planar, line, and
+Dirac branches; and the prose separates Cartesian, proper, and circular claims.
+Its three accessible figures, seven Lean bridges, and two guarded project
+checks are paired with a local `Std` ledger executed under Lean 4.32.0. The
+page-owned card reproduces its primary numeric figure byte for byte.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3105,6 +3114,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `d7d343b`: execute the final five hypothetical-output glossary worksheets,
+  record their output verbatim, correct Lean's rational display to
+  `(5 : Rat)/2`, and close the complete 62-page glossary audit.
 - `10efa90`: replace the final fifteen generic/stale card scripts with
   deterministic exports of their pages' exact worked SVGs; all 62 glossary
   generators now reproduce their checked cards byte for byte.
