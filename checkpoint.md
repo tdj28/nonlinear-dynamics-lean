@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:52 PDT
+Last updated: 2026-07-22 22:05 PDT
 
-Audited baseline: `main` at `15bbb61`
+Audited baseline: `main` at `46489b6`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **28 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **29 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -520,6 +520,21 @@ probe inventory, a guarded cloud project check, and a byte-identical executed
 `Std` worksheet show exactly why Hilbert-space mean convergence supplies an
 almost-everywhere subsequence but full-sequence convergence still needs
 maximal closure.
+*Pointwise Birkhoff from Maximal Control and Dense Good Functions* now opens
+on a uniform eight-cycle with target `f=2` plus a one-third spike at state
+zero, the constant approximant `g₀=2`, and scale `ε=1/4`. At the spike,
+`A₁f-A₄f=1/4`; the strict error-maximal event at threshold `1/12` is exactly
+`{0,6,7}`, with mass `3/8≤(1/24)/(1/12)=1/2`, while start five touches
+equality and is excluded. Dyadic spike approximants `0,1/4,5/16,21/64`
+shrink the `L¹` errors through `1/24,1/96,1/384,1/1536` and the closure
+bounds through `1/2,1/8,1/32,1/128`; in this finite model the third bound is
+already smaller than one atom. The chapter separates that rehearsal from the
+true persistent Cauchy event, makes `D₀=Ω` explicit, and then climbs through
+the general maximal-closure proof. Two accessible numeric figures, seven Lean
+bridges, all 29 public declarations plus seven probes and five axiom queries,
+a guarded cloud project check, and a byte-identical executed 258-line `Std`
+worksheet make the full-sequence mechanism reproducible without running
+Mathlib or the project on the workstation.
 *Finite Bad-Block Measure Bounds Before Kingman Lower Liminf* now makes the
 entire RMT-30 bridge explicit on a uniform amber/blue identity system. For
 `m=5`, `c=-3/4`, only amber at length five is strictly bad, so the event has
@@ -3421,6 +3436,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `46489b6`: rebuild *Mean Is Not Pointwise: Koopman Geometry,
+  Coboundaries, and the Missing Maximal Step* around an exact two-state
+  projection/coboundary ledger and a dyadic typewriter diagnostic, with seven
+  Lean bridges and an executed local `Std` worksheet.
 - `15bbb61`: rebuild *From Finite Maximal Bounds to an Infinite Weak
   Estimate* around a strict five-cycle event, its exact increasing finite
   horizons, the finite-mass `Measure.real` gate, six Lean bridges, and an

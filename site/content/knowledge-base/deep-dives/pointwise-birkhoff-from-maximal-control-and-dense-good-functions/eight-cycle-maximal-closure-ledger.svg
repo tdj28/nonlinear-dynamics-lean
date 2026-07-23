@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="eightCycleTitle eightCycleDesc">
+  <title id="eightCycleTitle">Exact eight-cycle ledger for the maximal-closure triangle</title>
+  <desc id="eightCycleDesc">Eight equally weighted states form a cycle. The target observable equals two except for a one-third spike at state zero, while the first good approximant is the constant two. At start zero, target averages at times one and four differ by one quarter, the approximant averages agree, and the error average at time one strictly exceeds the one-twelfth thirds threshold. The strict maximal error event is states zero, six, and seven, with measure three eighths, bounded by one half. State five reaches exactly one twelfth and is excluded.</desc>
+  <rect width="1200" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .serif{font-family:Georgia,Times,serif;fill:#17243A}
+    .title{font-size:31px;font-weight:700}
+    .eyebrow{font-size:15px;font-weight:700;letter-spacing:1.5px;fill:#A95320}
+    .h{font-size:17px;font-weight:700}
+    .s{font-size:14px}
+    .m{font-size:12px;fill:#4D5B6B}
+    .mono{font-family:Menlo,Consolas,monospace;font-size:14px;fill:#17243A}
+    .light{fill:#FFFDF8}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+    .navy{fill:#17243A}
+    .blue{fill:#284E72}
+    .green{fill:#47633B}
+    .rust{fill:#934F1F}
+  </style>
+
+  <text x="70" y="40" class="t eyebrow">ONE FINITE MODEL · EXACT RATIONAL ARITHMETIC</text>
+  <text x="70" y="78" class="serif title">One early oscillation enters the maximal-error event</text>
+  <text x="70" y="105" class="t m">Uniform eight-cycle · f = 2 + a one-third spike at state 0 · good approximant g₀ = 2 · ε = 1/4</text>
+
+  <rect x="64" y="124" width="1072" height="112" rx="16" class="neutral"/>
+  <text x="84" y="151" class="t h">Orbit and observable values</text>
+  <path d="M132 194 H1027" fill="none" stroke="#A67C52" stroke-width="2.4"/>
+  <path d="M1027 194 C1085 194 1085 168 1027 168" fill="none" stroke="#A67C52" stroke-width="2.4"/>
+  <polygon points="1028,188 1041,194 1028,200" fill="#A67C52"/>
+  <g class="t h" text-anchor="middle">
+    <rect x="92" y="168" width="82" height="48" rx="10" class="warn"/>
+    <text x="133" y="188" class="rust">state 0</text>
+    <text x="133" y="207" class="t s">f=7/3</text>
+    <rect x="215" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="256" y="189">1</text><text x="256" y="208" class="t s">f=2</text>
+    <rect x="338" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="379" y="189">2</text><text x="379" y="208" class="t s">f=2</text>
+    <rect x="461" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="502" y="189">3</text><text x="502" y="208" class="t s">f=2</text>
+    <rect x="584" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="625" y="189">4</text><text x="625" y="208" class="t s">f=2</text>
+    <rect x="707" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="748" y="189">5</text><text x="748" y="208" class="t s">f=2</text>
+    <rect x="830" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="871" y="189">6</text><text x="871" y="208" class="t s">f=2</text>
+    <rect x="953" y="168" width="82" height="48" rx="10" class="data"/>
+    <text x="994" y="189">7</text><text x="994" y="208" class="t s">f=2</text>
+  </g>
+  <text x="1080" y="224" class="t m" text-anchor="end">g₀=2 at every state</text>
+
+  <rect x="64" y="258" width="342" height="283" rx="16" class="data"/>
+  <text x="84" y="289" class="t eyebrow">1 · A FINITE WITNESS PAIR</text>
+  <text x="84" y="321" class="serif h">At the spike, compare times 1 and 4</text>
+  <text x="84" y="356" class="mono">A₁f = 7/3</text>
+  <text x="84" y="383" class="mono">A₄f = 25/12</text>
+  <rect x="84" y="402" width="302" height="51" rx="10" class="warn"/>
+  <text x="102" y="424" class="t h rust">|A₁f − A₄f| = 1/4 = ε</text>
+  <text x="102" y="444" class="t m">an early scale witness</text>
+  <text x="84" y="481" class="mono">A₁g₀ = A₄g₀ = 2</text>
+  <text x="84" y="508" class="t s green">approximant gap 0 &lt; ε/3 = 1/12</text>
+
+  <rect x="429" y="258" width="342" height="283" rx="16" class="keep"/>
+  <text x="449" y="289" class="t eyebrow">2 · THE THIRDS TRIANGLE</text>
+  <text x="449" y="321" class="serif h">The error h=f−g₀ must pay</text>
+  <text x="449" y="357" class="mono">|A₁h| = 1/3 &gt; 1/12</text>
+  <text x="449" y="387" class="mono">|A₄h| = 1/12</text>
+  <text x="449" y="413" class="t m">time four only touches the boundary</text>
+  <path d="M462 450 H735" stroke="#6F8D5E" stroke-width="3"/>
+  <polygon points="735,450 721,442 721,458" fill="#6F8D5E"/>
+  <rect x="449" y="468" width="302" height="52" rx="10" class="neutral"/>
+  <text x="600" y="490" class="t h blue" text-anchor="middle">strict error exceedance</text>
+  <text x="600" y="511" class="t m" text-anchor="middle">witnessed at positive time 1</text>
+
+  <rect x="794" y="258" width="342" height="283" rx="16" class="warn"/>
+  <text x="814" y="289" class="t eyebrow">3 · MAXIMAL CONTROL</text>
+  <text x="814" y="321" class="serif h">First hit of state 0</text>
+  <text x="814" y="354" class="mono">start 0: k=1, 1/3 &gt; 1/12</text>
+  <text x="814" y="381" class="mono">start 7: k=2, 1/6 &gt; 1/12</text>
+  <text x="814" y="408" class="mono">start 6: k=3, 1/9 &gt; 1/12</text>
+  <text x="814" y="435" class="mono">start 5: k=4, 1/12 = boundary</text>
+  <rect x="814" y="457" width="302" height="63" rx="10" class="keep"/>
+  <text x="832" y="481" class="t h green">event {0,6,7}: μ = 3/8</text>
+  <text x="832" y="506" class="t s">3/8 ≤ (1/24)/(1/12) = 1/2</text>
+
+  <rect x="64" y="563" width="1072" height="126" rx="16" class="neutral"/>
+  <text x="84" y="594" class="t h">Why this is a rehearsal, not the pointwise theorem</text>
+  <text x="84" y="624" class="t s">One pair at n=1 and n=4 does not mean persistent Cauchy failure: the real exceptional set requires such pairs beyond every N.</text>
+  <text x="84" y="651" class="t s">Here every observable is eight-periodic, so full-cycle averages at n=8 and n=16 already agree at the cycle mean 49/24.</text>
+  <text x="84" y="677" class="t m">The finite ledger checks the triangle and strict threshold exactly; the Lean source supplies the infinite quantifiers, null sets, and dense L¹ closure.</text>
+
+  <rect x="0" y="716" width="1200" height="44" class="navy"/>
+  <text x="600" y="744" class="t s light" text-anchor="middle">EARLY OSCILLATION ≠ PERSISTENT FAILURE · STRICTNESS EXCLUDES START 5 · WEAK BOUND: 3/8 ≤ 1/2</text>
+</svg>

@@ -7,12 +7,12 @@ lead: "Pointwise convergence does not follow from Hilbert-space mean convergence
 draft: false
 pro_reviewed: false
 level: "Measure-preserving dynamics, real Lebesgue L1 and L2 spaces, almost-everywhere equivalence classes, weak maximal inequalities, Cauchy sequences, finite measure, and elementary Lean theorem reading"
-reading_time: "220 to 330 minutes"
+reading_time: "280 to 400 minutes"
 prerequisites: "Finite sums, real absolute values, the epsilon definition of a Cauchy sequence, basic measure theory, and willingness to learn Lp quotient notation; no prior ergodic-theory or Lean experience is assumed"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff"
 toc: true
 og_image: "pointwise-birkhoff-from-maximal-control-and-dense-good-functions-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing an L2 pointwise-good core entering L1 through finite-measure density, an arbitrary integrable observable approaching that core, weak maximal control shrinking the Cauchy-failure event, and a final full-sequence almost-everywhere convergence theorem whose limit remains unidentified."
+og_image_alt: "Exact eight-cycle closure ledger. A target observable has a one-third spike at state zero and a constant-two good approximant. Target averages at times one and four differ by one quarter, the strict error-maximal event is states zero, six, and seven, and its mass three eighths is bounded by one half."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -29,6 +29,277 @@ reconciled with the RMT-26 Lean module, while human publication review and the
 configured external Pro review remain pending. The checked Lean source is
 authoritative.
 {{< /panel >}}
+
+## Begin with one spike on an eight-state cycle
+
+Let
+
+\[
+\Omega=\{0,1,2,3,4,5,6,7\}
+\]
+
+carry the uniform probability measure, so every state has mass \(1/8\). Let
+\(T\) advance one place around the cycle:
+
+\[
+0\longmapsto1\longmapsto\cdots\longmapsto7\longmapsto0.
+\]
+
+This transformation preserves the measure because it permutes eight equal
+atoms. Define the target observable \(f\) and a first approximant \(g_0\) by
+
+\[
+f(0)=2+\frac13=\frac73,\qquad
+f(x)=2\ \text{for }x\ne0,\qquad
+g_0(x)=2\ \text{for every }x.
+\]
+
+Thus the error \(h_0=f-g_0\) is a single spike:
+
+\[
+h_0(0)=\frac13,\qquad h_0(x)=0\ \text{for }x\ne0.
+\]
+
+Every observable on this finite cycle has convergent orbit averages. One
+complete cycle sees the same multiset of values from every start. For \(f\),
+the cycle sum and cycle mean are
+
+\[
+8\cdot2+\frac13=\frac{49}{3},
+\qquad
+\frac18\cdot\frac{49}{3}=\frac{49}{24}.
+\]
+
+In particular, \(A_8f(x)=A_{16}f(x)=49/24\) for all eight starts. This finite
+model makes pointwise goodness easy. Its purpose is to expose the
+**closure arithmetic** that remains valid when goodness is known only on a
+dense class. More explicitly, write \(n=8q+r\) with \(0\le r\lt8\). The first
+\(8q\) samples contribute \(q\) complete cycle sums, while the remaining
+prefix comes from one of finitely many bounded remainders. After division by
+\(n\), that remainder tends to zero and the averages tend to \(49/24\).
+
+### Watch the thirds argument at one start
+
+Fix the Cauchy scale
+
+\[
+\varepsilon=\frac14,
+\qquad
+\frac{\varepsilon}{3}=\frac1{12}.
+\]
+
+Start at state \(0\), where the spike appears immediately. The target
+averages at times one and four are
+
+\[
+A_1f(0)=\frac73,
+\qquad
+A_4f(0)
+=\frac{\frac73+2+2+2}{4}
+=\frac{25}{12}.
+\]
+
+Their distance is exactly the chosen scale:
+
+\[
+\left|A_1f(0)-A_4f(0)\right|
+=\frac14
+=\varepsilon.
+\]
+
+The constant approximant has no oscillation:
+
+\[
+A_1g_0(0)=A_4g_0(0)=2,
+\qquad
+\left|A_1g_0(0)-A_4g_0(0)\right|
+=0
+\lt\frac1{12}.
+\]
+
+The two error averages are
+
+\[
+\left|A_1h_0(0)\right|=\frac13\gt\frac1{12},
+\qquad
+\left|A_4h_0(0)\right|=\frac1{12}.
+\]
+
+The second one merely touches the boundary, while the first one strictly
+exceeds it. This is the concrete version of the triangle argument:
+
+\[
+\begin{aligned}
+\left|A_mf-A_nf\right|
+&\le
+\left|A_m(f-g)\right|
++\left|A_mg-A_ng\right|
++\left|A_n(f-g)\right|.
+\end{aligned}
+\]
+
+If the left side is at least \(\varepsilon\) and the middle term is strictly
+below \(\varepsilon/3\), the two error terms cannot both be at most
+\(\varepsilon/3\).
+
+{{< reference-figure
+  wide="true"
+  src="eight-cycle-maximal-closure-ledger.svg"
+  alt="Eight equally weighted states form a cycle. The target equals two except for a one-third spike at state zero, and the approximant is constant two. At start zero, target averages at times one and four differ by one quarter, the approximant averages agree, and the time-one error average exceeds one twelfth. The strict maximal event is starts zero, six, and seven, of mass three eighths, bounded by one half. Start five reaches equality and is excluded."
+  caption="**One exact closure rehearsal:** at start \(0\), the target has an early \(1/4\)-oscillation while the constant good approximant has gap zero. The error average at time one is \(1/3\gt1/12\), so the start enters the strict maximal-error event. Across all starts that event is \(\{0,6,7\}\), with mass \(3/8\le1/2\). State \(5\) first reaches the spike at time four and gives equality \(1/12\), not strict exceedance. One early pair is not persistent Cauchy failure; the source theorem requires witnesses beyond every tail index."
+>}}
+
+### Compute the strict maximal-error event
+
+For a start \(x\), let \(k_x\) be the first positive time at which the orbit
+has seen state \(0\). Before that hit, every error average is zero; at the hit,
+the average is \((1/3)/k_x\). Later hits cannot create a larger average. If
+the \(r\)-th later hit occurs at \(k_x+8r\), then
+
+\[
+\frac{(r+1)/3}{k_x+8r}
+\le
+\frac{1/3}{k_x}
+\]
+
+because \(k_x\le8\). Thus the first hit determines the infinite positive-time
+supremum in this toy system.
+
+| start \(x\) | first-hit time \(k_x\) | largest \(|A_nh_0(x)|\) | strictly above \(1/12\)? |
+|---:|---:|---:|:---:|
+| \(0\) | \(1\) | \(1/3\) | yes |
+| \(1\) | \(8\) | \(1/24\) | no |
+| \(2\) | \(7\) | \(1/21\) | no |
+| \(3\) | \(6\) | \(1/18\) | no |
+| \(4\) | \(5\) | \(1/15\) | no |
+| \(5\) | \(4\) | \(1/12\) | no: equality |
+| \(6\) | \(3\) | \(1/9\) | yes |
+| \(7\) | \(2\) | \(1/6\) | yes |
+
+Therefore the strict absolute maximal-error event is
+
+\[
+M_{1/12}(h_0)=\{0,6,7\},
+\qquad
+\mu\bigl(M_{1/12}(h_0)\bigr)=\frac38.
+\]
+
+The exact \(L^1\) error is
+
+\[
+\lVert f-g_0\rVert_1
+=\frac18\cdot\frac13
+=\frac1{24}.
+\]
+
+The weak maximal estimate gives
+
+\[
+\mu\bigl(M_{1/12}(h_0)\bigr)
+\le
+\frac{\lVert h_0\rVert_1}{1/12}
+=\frac{1/24}{1/12}
+=\frac12,
+\]
+
+and indeed \(3/8\le1/2\).
+
+### Replace one good approximant by a dense ladder
+
+The constant \(g_0\) is good but is not, by itself, a dense class. Use instead
+the dyadic-valued observables on the eight atoms. Coordinatewise dyadic
+approximation makes that pointwise-good family dense in this finite
+\(L^1\) space. To keep the ledger one-dimensional, hold the seven background
+values at two and vary only the spike through
+
+\[
+q_0=0,\qquad
+q_1=\frac14,\qquad
+q_2=\frac5{16},\qquad
+q_3=\frac{21}{64}.
+\]
+
+Let \(g_r\) equal \(2+q_r\) at state \(0\) and \(2\) elsewhere. Every \(g_r\)
+is pointwise good because it is eight-periodic. The spike heights are the
+successive binary truncations of \(1/3\), so
+
+\[
+\left|\frac13-q_r\right|
+=\frac{1}{3\cdot4^r}.
+\]
+
+Uniform integration and the closure estimate at \(\varepsilon=1/4\) give:
+
+| \(r\) | spike \(q_r\) | \(\lVert f-g_r\rVert_1\) | \(3\lVert f-g_r\rVert_1/\varepsilon\) |
+|---:|---:|---:|---:|
+| \(0\) | \(0\) | \(1/24\) | \(1/2\) |
+| \(1\) | \(1/4\) | \(1/96\) | \(1/8\) |
+| \(2\) | \(5/16\) | \(1/384\) | \(1/32\) |
+| \(3\) | \(21/64\) | \(1/1536\) | \(1/128\) |
+
+The true Cauchy exceptional set \(D_{1/4}(f)\) is contained, up to the
+approximant's empty bad set, in the maximal-error event for every row.
+Consequently,
+
+\[
+\mu\bigl(D_{1/4}(f)\bigr)\le\frac1{32}
+\]
+
+already at \(r=2\). A nonempty subset of this uniform finite space has mass
+at least \(1/8\), so \(D_{1/4}(f)\) must be empty.
+
+That last atom-size shortcut is special to this finite model. The general
+Lean proof does not have a smallest positive atom. It asks for good
+approximants at every \(L^1\) accuracy and concludes that the exceptional
+measure is smaller than every positive real number, hence is zero.
+
+{{< reference-figure
+  wide="true"
+  src="dyadic-good-core-closure-ladder.svg"
+  alt="Four pointwise-good dyadic spike approximants approach the target spike one third. Their L1 errors are one twenty-fourth, one ninety-sixth, one three-hundred-eighty-fourth, and one fifteen-hundred-thirty-sixth, while the fixed quarter-scale closure bounds are one half, one eighth, one thirty-second, and one one-hundred-twenty-eighth. The third bound lies below the mass of one atom, forcing the bad set empty in the finite model. At scale zero, every point is exceptional."
+  caption="**Four rungs of a dense-good ladder:** better periodic approximants drive the fixed-scale Cauchy-failure bound from \(1/2\) to \(1/128\). In this eight-atom model, \(1/32\lt1/8\) already forces the bad set to be empty. The general theorem replaces that discrete shortcut by arbitrary \(L^1\) accuracy. The lower panels record both remaining logical moves: reciprocal positive scales form a countable route to Cauchy convergence, while scale zero fails because choosing \(m=n=N\) makes \(0\le0\) at every point."
+>}}
+
+### The nearby false definition
+
+The actual exceptional event at scale \(\varepsilon\) is
+
+\[
+D_\varepsilon(f)
+{} =
+\left\{
+\omega:
+\forall N\ \exists m,n\ge N,\
+\varepsilon\le|A_mf(\omega)-A_nf(\omega)|
+\right\}.
+\]
+
+The start \(0\) has an early witness at \(m=1,n=4\), but this single pair does
+**not** put it in \(D_{1/4}(f)\). The quantifier \(\forall N\) demands new
+witnesses arbitrarily far out. Our periodic sequence converges, so the demand
+eventually fails. Replacing “beyond every \(N\)” by “for some \(m,n\)” would
+mistake ordinary transient motion for nonconvergence.
+
+There is a second sharp boundary. At \(\varepsilon=0\), choose \(m=n=N\).
+Then
+
+\[
+0\le|A_mf-A_nf|=0
+\]
+
+for every \(N\) and every point. Hence
+
+\[
+D_0(f)=\Omega.
+\]
+
+This is why the quantitative closure theorems require \(0\lt\varepsilon\).
+
+The model does not reproduce Mathlib's \(L^p\) quotient spaces, null-set
+transport, or the RMT-25 fixed-plus-simple-coboundary core. It is a complete
+arithmetic model of their interaction: a pointwise-good approximating family,
+a strict maximal error event, a shrinking \(L^1\)-controlled bound, a
+fixed-scale Cauchy event, and the exact boundary that positivity excludes.
 
 An orbit average is easy to write and hard to control. Begin at a state
 \(\omega\), apply a transformation \(T\) repeatedly, evaluate an observable
@@ -805,36 +1076,584 @@ the proof.
   caption="**Finding:** the checked theorem needs finite total mass for this density-and-real-measure route, measure preservation for maximal control and orbit transport, and real integrability for L1 approximation. It concludes only full-sequence almost-everywhere convergence. Probability normalization and map invertibility properties are unnecessary; conditional-expectation identification, constancy under ergodicity, Kingman's theorem, Lyapunov exponents, and Oseledets splittings require later results."
 >}}
 
+## Seven bridges from the finite ledger to Lean
+
+The eight-cycle model computed the closure machine with rational numbers. The
+project module states the same moves for measurable functions, almost
+everywhere representatives, and arbitrarily long orbits. Each bridge below
+pairs a human sentence, paper mathematics, exact Lean syntax, and a token map.
+
+### Bridge 1: move the absolute value inside the orbit sum
+
+{{< lean-bridge
+  human="The magnitude of an orbit average is never larger than the orbit average of the pointwise magnitude."
+  math="\(\left|A_nf(\omega)\right|\le A_n|f|(\omega)\), including the totalized case \(n=0\)."
+  lean="abs_birkhoffAverage_le_birkhoffAverage_abs T f n ω"
+>}}
+
+- <code>T</code> is the dynamics, <code>f</code> the observable,
+  <code>n</code> the horizon, and <code>ω</code> the starting point.
+- <code>birkhoffAverage ℝ</code> fixes real-valued averages.
+- <code>Finset.abs_sum_le_sum_abs</code> is the finite triangle inequality
+  underneath the theorem.
+- The inverse of the natural horizon is nonnegative; at horizon zero both
+  sides are Lean's totalized zero.
+{{< /lean-bridge >}}
+
+### Bridge 2: turn one-sided maximal control into absolute control
+
+{{< lean-bridge
+  human="For a positive threshold, the starts where some positive-time absolute average exceeds that threshold have measure controlled by the L1 size of the observable."
+  math="\(0\lt a\Longrightarrow\mu_{\mathbb R}\{\omega:\exists k\ge1,\ a\lt|A_kf(\omega)|\}\le\|f\|_1/a.\)"
+  lean="measureReal_birkhoffAverageAbsoluteExceedanceSet_le hT hf ha"
+>}}
+
+- <code>hT : MeasurePreserving T μ μ</code> supplies the dynamical premise.
+- <code>hf : Integrable f μ</code> supplies the \(L^1\) quantity
+  \(\int|f|\,d\mu\).
+- <code>ha : 0 &lt; a</code> licenses division by the threshold.
+- The proof first embeds the absolute event in the one-sided event for
+  <code>fun x ↦ |f x|</code>; this is weak \((1,1)\) event control, not an
+  \(L^1\) maximal-function norm theorem.
+{{< /lean-bridge >}}
+
+### Bridge 3: name persistent failure at one Cauchy scale
+
+{{< lean-bridge
+  human="A start is exceptional at scale epsilon when every tail contains two averages at least epsilon apart."
+  math="\(\omega\in D_\varepsilon(f)\Longleftrightarrow\forall N\ \exists m,n\ge N,\ \varepsilon\le|A_mf(\omega)-A_nf(\omega)|.\)"
+  lean="mem_birkhoffCauchyExceptionalSet_iff"
+>}}
+
+- <code>birkhoffCauchyExceptionalSet T f ε</code> is the set
+  \(D_\varepsilon(f)\).
+- The outer <code>∀ N</code> is what the early \(n=1,4\) toy witness does not
+  satisfy.
+- The comparison is non-strict <code>ε ≤ ...</code>. Its complement therefore
+  gives the strict tail bound demanded by the metric Cauchy criterion.
+- At <code>ε = 0</code>, choosing <code>m = n = N</code> makes every point
+  exceptional.
+{{< /lean-bridge >}}
+
+### Bridge 4: make the approximation error pay
+
+{{< lean-bridge
+  human="If the approximant converges at a point, persistent target failure forces a strict maximal exceedance for the approximation error."
+  math="\(0\lt\varepsilon\Longrightarrow D_\varepsilon(f)\subseteq M_{\varepsilon/3}(f-g)\cup G(g)^{\mathsf c}.\)"
+  lean="birkhoffCauchyExceptionalSet_subset_exceedance_union_compl hε"
+>}}
+
+- <code>hε : 0 &lt; ε</code> makes \(\varepsilon/3\) positive.
+- <code>M</code> is
+  <code>birkhoffAverageAbsoluteExceedanceSet T (f - g) (ε / 3)</code>.
+- <code>G</code> is <code>birkhoffConvergenceSet T g</code>.
+- Witness horizons are chosen beyond <code>max N 1</code>, so the
+  positive-time maximal event never uses the totalized zero horizon.
+- The three terms in the triangle inequality are the two error averages and
+  the approximant's Cauchy gap.
+{{< /lean-bridge >}}
+
+### Bridge 5: close the pointwise-good class
+
+{{< lean-bridge
+  human="Arbitrarily accurate L1 approximants whose averages converge almost everywhere force the target averages to converge almost everywhere."
+  math="\(\bigl[\forall\delta\gt0\ \exists g:\|f-g\|_1\lt\delta\ \land\ g\text{ pointwise-good a.e.}\bigr]\Longrightarrow f\text{ pointwise-good a.e.}\)"
+  lean="ae_mem_birkhoffConvergenceSet_of_dense_good hT happrox"
+>}}
+
+- <code>happrox</code> returns an actual representative <code>g : Ω → ℝ</code>,
+  integrability of <code>f - g</code>, a strict error-integral bound, and an
+  almost-everywhere convergence statement.
+- <code>measure_birkhoffCauchyExceptionalSet_eq_zero_of_dense_good</code>
+  makes each positive fixed scale null.
+- <code>1 / ((k : ℝ) + 1)</code> supplies a countable family cofinal at zero.
+- <code>cauchySeq_tendsto_of_complete</code> uses completeness of
+  \(\mathbb R\) to obtain a limit without identifying it.
+{{< /lean-bridge >}}
+
+### Bridge 6: bring the RMT-25 good core into \(L^1\)
+
+{{< lean-bridge
+  human="On a finite measure space, the included fixed-plus-simple-coboundary core is dense in real L1."
+  math="\(\overline{J(C_2)}^{\,L^1}=L^1,\quad J:L^2\hookrightarrow L^1,\quad\|J\|\le\mu(\Omega)^{1/2}.\)"
+  lean="dense_fixedPlusSimpleCoboundarySetL1 hT"
+>}}
+
+- <code>l2ToL1</code> is the continuous finite-measure inclusion on
+  almost-everywhere equivalence classes.
+- <code>denseRange_l2ToL1</code> proves its range dense using simple
+  functions.
+- <code>fixedPlusSimpleCoboundarySetL1 hT</code> is the image of the dense
+  RMT-25 \(L^2\) core.
+- <code>ae_mem_birkhoffConvergenceSet_of_mem_fixedPlusSimpleCoboundarySetL1</code>
+  transports the chosen representative's pointwise-good property.
+{{< /lean-bridge >}}
+
+### Bridge 7: instantiate the closure theorem for every integrable observable
+
+{{< lean-bridge
+  human="Every real integrable observable on a finite measure-preserving system has a full sequence of orbit averages that converges almost everywhere."
+  math="\(\mu(\Omega)\lt\infty,\ T_*\mu=\mu,\ f\in L^1(\mu)\Longrightarrow A_nf(\omega)\text{ converges for a.e. }\omega.\)"
+  lean="ae_mem_birkhoffConvergenceSet_of_integrable hT hf"
+>}}
+
+- <code>[IsFiniteMeasure μ]</code> is a typeclass premise, not probability
+  normalization.
+- <code>hf.toL1 f</code> places the target in the \(L^1\) quotient space.
+- Density chooses a core element at every positive distance.
+- The conclusion is membership in <code>birkhoffConvergenceSet T f</code>.
+  No conditional expectation or ergodic constant appears.
+{{< /lean-bridge >}}
+
+### Type-check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff" >}}
+
+On an approved Linux builder, place this probe in a project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check abs_birkhoffAverage_le_birkhoffAverage_abs
+#check measureReal_birkhoffAverageAbsoluteExceedanceSet_le
+#check birkhoffCauchyExceptionalSet
+#check birkhoffCauchyExceptionalSet_subset_exceedance_union_compl
+#check measure_birkhoffCauchyExceptionalSet_eq_zero_of_dense_good
+#check ae_mem_birkhoffConvergenceSet_of_dense_good
+#check l2ToL1
+#check dense_fixedPlusSimpleCoboundarySetL1
+#check ae_mem_birkhoffConvergenceSet_of_integrable
+~~~
+
+From the repository root on that approved Linux host, type:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean
+~~~
+
+This is a **project/Mathlib check**. It can restore or compile substantial
+dependencies and must not run on the Mac workstation. The guarded target
+checks the pinned manifest and validates the authoritative 580-line module
+with warnings treated as errors.
+{{< /repo-check >}}
+
+## Run the eight-cycle closure ledger with `Std`
+
+The following file imports only Lean's `Std` library. It defines the cycle,
+target, dyadic approximants, exact rational averages, strict maximal event,
+\(L^1\) errors, closure bounds, and the zero-scale boundary. It neither
+imports Mathlib nor opens this project. Save the block byte for byte as
+<code>/tmp/PointwiseBirkhoffClosureTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace PointwiseBirkhoffClosureTutorial
+
+def states : List Nat :=
+  List.range 8
+
+def step (x : Nat) : Nat :=
+  (x + 1) % 8
+
+def iterate : Nat → Nat → Nat
+  | 0, x => x
+  | n + 1, x => iterate n (step x)
+
+def observable (spike : Rat) (x : Nat) : Rat :=
+  2 + if x % 8 = 0 then spike else 0
+
+def orbitSum (spike : Rat) : Nat → Nat → Rat
+  | 0, _ => 0
+  | n + 1, x =>
+      orbitSum spike n x + observable spike (iterate n x)
+
+def average (spike : Rat) (n : Nat) (x : Nat) : Rat :=
+  orbitSum spike n x / (n : Rat)
+
+def targetSpike : Rat :=
+  1 / 3
+
+def epsilon : Rat :=
+  1 / 4
+
+def thirdsThreshold : Rat :=
+  epsilon / 3
+
+def errorAverage
+    (target approximate : Rat) (n : Nat) (x : Nat) : Rat :=
+  average target n x - average approximate n x
+
+def ratAbs (q : Rat) : Rat :=
+  if q < 0 then -q else q
+
+def absoluteErrorExceedsWithinFirstCycle
+    (target approximate threshold : Rat) (x : Nat) : Bool :=
+  (List.range 8).any fun j =>
+    decide (threshold < ratAbs
+      (errorAverage target approximate (j + 1) x))
+
+def firstCycleExceedanceStarts
+    (target approximate threshold : Rat) : List Nat :=
+  states.filter fun x =>
+    absoluteErrorExceedsWithinFirstCycle target approximate threshold x
+
+def uniformL1Error (target approximate : Rat) : Rat :=
+  (states.foldl
+    (fun total x =>
+      total + ratAbs (observable target x - observable approximate x))
+    0) / 8
+
+def weakClosureBound (target approximate scale : Rat) : Rat :=
+  uniformL1Error target approximate / (scale / 3)
+
+structure TriangleLedger where
+  start : Nat
+  targetAverageAtOne : Rat
+  targetAverageAtFour : Rat
+  targetGap : Rat
+  approximateAverageAtOne : Rat
+  approximateAverageAtFour : Rat
+  approximateGap : Rat
+  oneThirdScale : Rat
+  errorAverageAtOne : Rat
+  errorAverageAtFour : Rat
+  targetHasEarlyScaleWitness : Bool
+  approximateGapIsStrictlySmall : Bool
+  errorAtOneStrictlyExceeds : Bool
+  errorAtFourOnlyTouchesBoundary : Bool
+  deriving Repr, DecidableEq
+
+def triangleLedger : TriangleLedger :=
+  let f1 := average targetSpike 1 0
+  let f4 := average targetSpike 4 0
+  let g1 := average 0 1 0
+  let g4 := average 0 4 0
+  let e1 := errorAverage targetSpike 0 1 0
+  let e4 := errorAverage targetSpike 0 4 0
+  { start := 0
+    targetAverageAtOne := f1
+    targetAverageAtFour := f4
+    targetGap := ratAbs (f1 - f4)
+    approximateAverageAtOne := g1
+    approximateAverageAtFour := g4
+    approximateGap := ratAbs (g1 - g4)
+    oneThirdScale := thirdsThreshold
+    errorAverageAtOne := e1
+    errorAverageAtFour := e4
+    targetHasEarlyScaleWitness := decide (epsilon ≤ ratAbs (f1 - f4))
+    approximateGapIsStrictlySmall :=
+      decide (ratAbs (g1 - g4) < thirdsThreshold)
+    errorAtOneStrictlyExceeds := decide (thirdsThreshold < ratAbs e1)
+    errorAtFourOnlyTouchesBoundary :=
+      decide (ratAbs e4 = thirdsThreshold) }
+
+structure MaximalLedger where
+  strictThreshold : Rat
+  exceedanceStarts : List Nat
+  exceedanceMeasure : Rat
+  l1Error : Rat
+  weakUpperBound : Rat
+  weakInequalityHolds : Bool
+  boundaryStart : Nat
+  boundaryFirstHitTime : Nat
+  boundaryErrorAverage : Rat
+  boundaryIsExcludedByStrictness : Bool
+  deriving Repr, DecidableEq
+
+def maximalLedger : MaximalLedger :=
+  let event :=
+    firstCycleExceedanceStarts targetSpike 0 thirdsThreshold
+  let eventMeasure := (event.length : Rat) / 8
+  let l1 := uniformL1Error targetSpike 0
+  let bound := weakClosureBound targetSpike 0 epsilon
+  let boundaryAverage := errorAverage targetSpike 0 4 5
+  { strictThreshold := thirdsThreshold
+    exceedanceStarts := event
+    exceedanceMeasure := eventMeasure
+    l1Error := l1
+    weakUpperBound := bound
+    weakInequalityHolds := decide (eventMeasure ≤ bound)
+    boundaryStart := 5
+    boundaryFirstHitTime := 4
+    boundaryErrorAverage := boundaryAverage
+    boundaryIsExcludedByStrictness :=
+      decide (¬ thirdsThreshold < ratAbs boundaryAverage) }
+
+def dyadicApproximations : List Rat :=
+  [0, 1 / 4, 5 / 16, 21 / 64]
+
+structure ApproximationRow where
+  level : Nat
+  spike : Rat
+  l1Error : Rat
+  closureBoundAtQuarter : Rat
+  averageAtEightFromZero : Rat
+  averageAtSixteenFromZero : Rat
+  fullCyclesAgree : Bool
+  deriving Repr, DecidableEq
+
+def approximationRow (level : Nat) (spike : Rat) : ApproximationRow :=
+  let atEight := average spike 8 0
+  let atSixteen := average spike 16 0
+  { level := level
+    spike := spike
+    l1Error := uniformL1Error targetSpike spike
+    closureBoundAtQuarter := weakClosureBound targetSpike spike epsilon
+    averageAtEightFromZero := atEight
+    averageAtSixteenFromZero := atSixteen
+    fullCyclesAgree := decide (atEight = atSixteen) }
+
+def approximationRows : List ApproximationRow :=
+  (List.range dyadicApproximations.length).zipWith
+    approximationRow dyadicApproximations
+
+structure TailAndBoundaryLedger where
+  targetCycleMean : Rat
+  targetAveragesAtEight : List Rat
+  targetAveragesAtSixteen : List Rat
+  wholeCycleRowsAgree : Bool
+  startZeroAveragesAtOneFourEightSixteen : List Rat
+  laterWholeCyclePairAgrees : Bool
+  zeroScaleSelfPairAlwaysQualifies : Bool
+  atomMeasure : Rat
+  thirdApproximationBound : Rat
+  thirdBoundBelowOneAtom : Bool
+  deriving Repr, DecidableEq
+
+def tailAndBoundaryLedger : TailAndBoundaryLedger :=
+  let atEight := states.map fun x => average targetSpike 8 x
+  let atSixteen := states.map fun x => average targetSpike 16 x
+  let atomMeasure : Rat := 1 / 8
+  let thirdBound :=
+    weakClosureBound targetSpike (5 / 16) epsilon
+  { targetCycleMean := 49 / 24
+    targetAveragesAtEight := atEight
+    targetAveragesAtSixteen := atSixteen
+    wholeCycleRowsAgree := decide (atEight = atSixteen)
+    startZeroAveragesAtOneFourEightSixteen :=
+      [average targetSpike 1 0, average targetSpike 4 0,
+        average targetSpike 8 0, average targetSpike 16 0]
+    laterWholeCyclePairAgrees :=
+      decide (average targetSpike 8 0 = average targetSpike 16 0)
+    zeroScaleSelfPairAlwaysQualifies :=
+      decide (0 ≤ ratAbs (average targetSpike 37 3 -
+        average targetSpike 37 3))
+    atomMeasure := atomMeasure
+    thirdApproximationBound := thirdBound
+    thirdBoundBelowOneAtom := decide (thirdBound < atomMeasure) }
+
+#eval triangleLedger
+#eval maximalLedger
+#eval approximationRows
+#eval tailAndBoundaryLedger
+
+example : triangleLedger.targetGap = (1 : Rat) / 4 := by
+  native_decide
+example : triangleLedger.approximateGap = 0 := by
+  native_decide
+example : triangleLedger.errorAverageAtOne = (1 : Rat) / 3 := by
+  native_decide
+example : triangleLedger.errorAverageAtFour = (1 : Rat) / 12 := by
+  native_decide
+example : triangleLedger.targetHasEarlyScaleWitness = true := by
+  native_decide
+example : triangleLedger.approximateGapIsStrictlySmall = true := by
+  native_decide
+example : triangleLedger.errorAtOneStrictlyExceeds = true := by
+  native_decide
+example : triangleLedger.errorAtFourOnlyTouchesBoundary = true := by
+  native_decide
+
+example : maximalLedger.exceedanceStarts = [0, 6, 7] := by
+  native_decide
+example : maximalLedger.exceedanceMeasure = (3 : Rat) / 8 := by
+  native_decide
+example : maximalLedger.l1Error = (1 : Rat) / 24 := by
+  native_decide
+example : maximalLedger.weakUpperBound = (1 : Rat) / 2 := by
+  native_decide
+example : maximalLedger.weakInequalityHolds = true := by
+  native_decide
+example : maximalLedger.boundaryErrorAverage = (1 : Rat) / 12 := by
+  native_decide
+example : maximalLedger.boundaryIsExcludedByStrictness = true := by
+  native_decide
+
+example : approximationRows.map ApproximationRow.l1Error =
+    [1 / 24, 1 / 96, 1 / 384, 1 / 1536] := by
+  native_decide
+example : approximationRows.map ApproximationRow.closureBoundAtQuarter =
+    [1 / 2, 1 / 8, 1 / 32, 1 / 128] := by
+  native_decide
+example : approximationRows.all ApproximationRow.fullCyclesAgree = true := by
+  native_decide
+
+example : tailAndBoundaryLedger.targetAveragesAtEight =
+    List.replicate 8 (49 / 24) := by
+  native_decide
+example : tailAndBoundaryLedger.targetAveragesAtSixteen =
+    List.replicate 8 (49 / 24) := by
+  native_decide
+example : tailAndBoundaryLedger.startZeroAveragesAtOneFourEightSixteen =
+    [7 / 3, 25 / 12, 49 / 24, 49 / 24] := by
+  native_decide
+example : tailAndBoundaryLedger.zeroScaleSelfPairAlwaysQualifies = true := by
+  native_decide
+example : tailAndBoundaryLedger.thirdBoundBelowOneAtom = true := by
+  native_decide
+
+end PointwiseBirkhoffClosureTutorial
+~~~
+
+Important syntax:
+
+- <code>Rat</code> keeps every displayed average and bound exact;
+- <code>List.range 8</code> enumerates the eight starts;
+- <code>iterate</code>, <code>orbitSum</code>, and <code>average</code> build
+  the finite orbit arithmetic without Mathlib;
+- <code>decide</code> computes a finite Boolean comparison;
+- <code>native_decide</code> asks Lean to certify each printed ledger entry;
+  and
+- <code>firstCycleExceedanceStarts</code> is sufficient for this single
+  nonnegative periodic spike, as the first-hit calculation above proves. It
+  is not a replacement for the project's infinite maximal-event definition.
+
+With the pinned compiler installed, a human types:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/PointwiseBirkhoffClosureTutorial.lean
+~~~
+
+This is a **small standalone tutorial** suitable for a normal Mac or Linux
+host. It imports only `Std`, enumerates eight states, and does not compile
+Mathlib or this project. Successful execution prints exactly:
+
+~~~text
+{ start := 0,
+  targetAverageAtOne := (7 : Rat)/3,
+  targetAverageAtFour := (25 : Rat)/12,
+  targetGap := (1 : Rat)/4,
+  approximateAverageAtOne := 2,
+  approximateAverageAtFour := 2,
+  approximateGap := 0,
+  oneThirdScale := (1 : Rat)/12,
+  errorAverageAtOne := (1 : Rat)/3,
+  errorAverageAtFour := (1 : Rat)/12,
+  targetHasEarlyScaleWitness := true,
+  approximateGapIsStrictlySmall := true,
+  errorAtOneStrictlyExceeds := true,
+  errorAtFourOnlyTouchesBoundary := true }
+{ strictThreshold := (1 : Rat)/12,
+  exceedanceStarts := [0, 6, 7],
+  exceedanceMeasure := (3 : Rat)/8,
+  l1Error := (1 : Rat)/24,
+  weakUpperBound := (1 : Rat)/2,
+  weakInequalityHolds := true,
+  boundaryStart := 5,
+  boundaryFirstHitTime := 4,
+  boundaryErrorAverage := (1 : Rat)/12,
+  boundaryIsExcludedByStrictness := true }
+[{ level := 0,
+   spike := 0,
+   l1Error := (1 : Rat)/24,
+   closureBoundAtQuarter := (1 : Rat)/2,
+   averageAtEightFromZero := 2,
+   averageAtSixteenFromZero := 2,
+   fullCyclesAgree := true },
+ { level := 1,
+   spike := (1 : Rat)/4,
+   l1Error := (1 : Rat)/96,
+   closureBoundAtQuarter := (1 : Rat)/8,
+   averageAtEightFromZero := (65 : Rat)/32,
+   averageAtSixteenFromZero := (65 : Rat)/32,
+   fullCyclesAgree := true },
+ { level := 2,
+   spike := (5 : Rat)/16,
+   l1Error := (1 : Rat)/384,
+   closureBoundAtQuarter := (1 : Rat)/32,
+   averageAtEightFromZero := (261 : Rat)/128,
+   averageAtSixteenFromZero := (261 : Rat)/128,
+   fullCyclesAgree := true },
+ { level := 3,
+   spike := (21 : Rat)/64,
+   l1Error := (1 : Rat)/1536,
+   closureBoundAtQuarter := (1 : Rat)/128,
+   averageAtEightFromZero := (1045 : Rat)/512,
+   averageAtSixteenFromZero := (1045 : Rat)/512,
+   fullCyclesAgree := true }]
+{ targetCycleMean := (49 : Rat)/24,
+  targetAveragesAtEight := [(49 : Rat)/24,
+                            (49 : Rat)/24,
+                            (49 : Rat)/24,
+                            (49 : Rat)/24,
+                            (49 : Rat)/24,
+                            (49 : Rat)/24,
+                            (49 : Rat)/24,
+                            (49 : Rat)/24],
+  targetAveragesAtSixteen := [(49 : Rat)/24,
+                              (49 : Rat)/24,
+                              (49 : Rat)/24,
+                              (49 : Rat)/24,
+                              (49 : Rat)/24,
+                              (49 : Rat)/24,
+                              (49 : Rat)/24,
+                              (49 : Rat)/24],
+  wholeCycleRowsAgree := true,
+  startZeroAveragesAtOneFourEightSixteen := [(7 : Rat)/3, (25 : Rat)/12, (49 : Rat)/24, (49 : Rat)/24],
+  laterWholeCyclePairAgrees := true,
+  zeroScaleSelfPairAlwaysQualifies := true,
+  atomMeasure := (1 : Rat)/8,
+  thirdApproximationBound := (1 : Rat)/32,
+  thirdBoundBelowOneAtom := true }
+~~~
+
+The first record certifies the thirds triangle. The second certifies the
+strict maximal event and weak bound. The approximation rows show the closure
+bound shrinking by a factor of four at each level. The last record verifies
+the full-cycle mean, the zero-scale self-pair, and the atom-size comparison.
+None of these finite computations claims to formalize null sets, \(L^p\)
+quotients, or the infinite pointwise theorem; those are precisely the
+responsibilities of the project module.
+
 ## The checked declaration map
 
-The RMT-26 module exposes twenty-nine documented public declarations. They
-form four layers.
+The frozen 580-line RMT-26 module exposes exactly twenty-nine documented
+public declarations and no private declarations. The tables preserve source
+order. The SHA-256 of the audited source is
+<code>463a51c280585c932a85acab102421f70231173363fb61008c87a33f866f5253</code>.
 
 ### Layer 1: absolute maximal control
 
-| Lean declaration | Mathematical role |
-|---|---|
-| <code>abs_birkhoffAverage_le_birkhoffAverage_abs</code> | Proves \(|A_nf|\le A_n|f|\), including horizon zero |
-| <code>birkhoffAverageAbsoluteExceedanceSet</code> | Defines the strict absolute positive-time event |
-| <code>mem_birkhoffAverageAbsoluteExceedanceSet_iff</code> | Exposes its witness characterization |
-| <code>birkhoffAverageAbsoluteExceedanceSet_subset</code> | Embeds it in the one-sided event for \(|f|\) |
-| <code>measureReal_birkhoffAverageAbsoluteExceedanceSet_le</code> | Gives the weak \((1,1)\) real-measure bound |
+| No. | Lean declaration | Mathematical role |
+|---:|---|---|
+| 1 | <code>abs_birkhoffAverage_le_birkhoffAverage_abs</code> | Proves \(|A_nf|\le A_n|f|\), including horizon zero |
+| 2 | <code>birkhoffAverageAbsoluteExceedanceSet</code> | Defines the strict absolute positive-time event |
+| 3 | <code>mem_birkhoffAverageAbsoluteExceedanceSet_iff</code> | Exposes its witness characterization |
+| 4 | <code>birkhoffAverageAbsoluteExceedanceSet_subset</code> | Embeds it in the one-sided event for \(|f|\) |
+| 5 | <code>measureReal_birkhoffAverageAbsoluteExceedanceSet_le</code> | Gives the weak \((1,1)\) real-measure bound |
 
 ### Layer 2: Cauchy failure and maximal closure
 
-| Lean declaration | Mathematical role |
-|---|---|
-| <code>birkhoffCauchyExceptionalSet</code> | Defines persistent non-strict failure at one scale |
-| <code>mem_birkhoffCauchyExceptionalSet_iff</code> | Exposes the quantified tail-failure test |
-| <code>measurableSet_birkhoffCauchyExceptionalSet</code> | Proves ordinary measurability from measurable inputs |
-| <code>birkhoffCauchyExceptionalSet_ae_eq_of_ae_eq</code> | Transports the event across almost everywhere equal representatives |
-| <code>nullMeasurableSet_birkhoffCauchyExceptionalSet_of_aemeasurable</code> | Handles almost everywhere measurable observables |
-| <code>nullMeasurableSet_birkhoffCauchyExceptionalSet_of_integrable</code> | Specializes null measurability to integrable observables |
-| <code>birkhoffCauchyExceptionalSet_subset_exceedance_union_compl</code> | Proves the three-part triangle inclusion |
-| <code>measureReal_birkhoffCauchyExceptionalSet_le</code> | Bounds one exceptional scale by the approximation error |
-| <code>measure_birkhoffCauchyExceptionalSet_eq_zero_of_dense_good</code> | Makes one positive scale null using arbitrarily close good approximants |
-| <code>cauchySeq_birkhoffAverage_of_not_mem_exceptional</code> | Turns avoidance of reciprocal scales into a Cauchy sequence |
-| <code>ae_mem_birkhoffConvergenceSet_of_dense_good</code> | States the abstract Banach-principle-style closure theorem |
+| No. | Lean declaration | Mathematical role |
+|---:|---|---|
+| 6 | <code>birkhoffCauchyExceptionalSet</code> | Defines persistent non-strict failure at one scale |
+| 7 | <code>mem_birkhoffCauchyExceptionalSet_iff</code> | Exposes the quantified tail-failure test |
+| 8 | <code>measurableSet_birkhoffCauchyExceptionalSet</code> | Proves ordinary measurability from measurable inputs |
+| 9 | <code>birkhoffCauchyExceptionalSet_ae_eq_of_ae_eq</code> | Transports the event across almost everywhere equal representatives |
+| 10 | <code>nullMeasurableSet_birkhoffCauchyExceptionalSet_of_aemeasurable</code> | Handles almost everywhere measurable observables |
+| 11 | <code>nullMeasurableSet_birkhoffCauchyExceptionalSet_of_integrable</code> | Specializes null measurability to integrable observables |
+| 12 | <code>birkhoffCauchyExceptionalSet_subset_exceedance_union_compl</code> | Proves the three-part triangle inclusion |
+| 13 | <code>measureReal_birkhoffCauchyExceptionalSet_le</code> | Bounds one exceptional scale by the approximation error |
+| 14 | <code>measure_birkhoffCauchyExceptionalSet_eq_zero_of_dense_good</code> | Makes one positive scale null using arbitrarily close good approximants |
+| 15 | <code>cauchySeq_birkhoffAverage_of_not_mem_exceptional</code> | Turns avoidance of reciprocal scales into a Cauchy sequence |
+| 16 | <code>ae_mem_birkhoffConvergenceSet_of_dense_good</code> | States the abstract Banach-principle-style closure theorem |
 
 The abstract closure theorem does not require integrability of \(f\) itself.
 Its hypotheses ask directly for integrable differences \(f-g\), arbitrarily
@@ -844,32 +1663,50 @@ approximants from \(L^1\).
 
 ### Layer 3: the finite-measure density bridge
 
-| Lean declaration | Mathematical role |
-|---|---|
-| <code>l2ToL1Linear</code> | Defines the linear inclusion on quotient classes |
-| <code>l2ToL1Linear_apply_ae</code> | Records equality of chosen representatives almost everywhere |
-| <code>norm_l2ToL1Linear_apply_le</code> | Proves the finite-mass Hölder norm bound for each input |
-| <code>l2ToL1</code> | Bundles the inclusion as a continuous linear map |
-| <code>l2ToL1_apply_ae</code> | Records representative retention for the continuous map |
-| <code>norm_l2ToL1_le</code> | Bounds the operator norm by the square root of total mass |
-| <code>l2ToL1_injective</code> | Proves injectivity on almost everywhere classes |
-| <code>denseRange_l2ToL1</code> | Proves density of the inclusion range using simple functions |
-| <code>dense_image_l2ToL1_of_dense</code> | Sends any dense \(L^2\) set to a dense \(L^1\) image |
-| <code>fixedPlusSimpleCoboundarySetL1</code> | Defines the included RMT-25 core |
-| <code>dense_fixedPlusSimpleCoboundarySetL1</code> | Proves that core dense in \(L^1\) |
-| <code>ae_mem_birkhoffConvergenceSet_of_mem_fixedPlusSimpleCoboundarySetL1</code> | Retains its representative-level convergence property |
+| No. | Lean declaration | Mathematical role |
+|---:|---|---|
+| 17 | <code>l2ToL1Linear</code> | Defines the linear inclusion on quotient classes |
+| 18 | <code>l2ToL1Linear_apply_ae</code> | Records equality of chosen representatives almost everywhere |
+| 19 | <code>norm_l2ToL1Linear_apply_le</code> | Proves the finite-mass Hölder norm bound for each input |
+| 20 | <code>l2ToL1</code> | Bundles the inclusion as a continuous linear map |
+| 21 | <code>l2ToL1_apply_ae</code> | Records representative retention for the continuous map |
+| 22 | <code>norm_l2ToL1_le</code> | Bounds the operator norm by the square root of total mass |
+| 23 | <code>l2ToL1_injective</code> | Proves injectivity on almost everywhere classes |
+| 24 | <code>denseRange_l2ToL1</code> | Proves density of the inclusion range using simple functions |
+| 25 | <code>dense_image_l2ToL1_of_dense</code> | Sends any dense \(L^2\) set to a dense \(L^1\) image |
+| 26 | <code>fixedPlusSimpleCoboundarySetL1</code> | Defines the included RMT-25 core |
+| 27 | <code>dense_fixedPlusSimpleCoboundarySetL1</code> | Proves that core dense in \(L^1\) |
+| 28 | <code>ae_mem_birkhoffConvergenceSet_of_mem_fixedPlusSimpleCoboundarySetL1</code> | Retains its representative-level convergence property |
 
 ### Layer 4: the final theorem
 
-| Lean declaration | Mathematical role |
-|---|---|
-| <code>ae_mem_birkhoffConvergenceSet_of_integrable</code> | Gives full-sequence almost everywhere convergence for every real integrable observable |
+| No. | Lean declaration | Mathematical role |
+|---:|---|---|
+| 29 | <code>ae_mem_birkhoffConvergenceSet_of_integrable</code> | Gives full-sequence almost everywhere convergence for every real integrable observable |
 
-Seven compiled anonymous examples probe threshold zero, zero measure, the
-probability coefficient, threshold one, the vacuous zero-measure conclusion,
-identity dynamics, and a noninjective nonsurjective Dirac-preserving map. Five
-<code>#print axioms</code> commands expose the axiom footprint of the main
-layers.
+### Seven anonymous compiled boundary probes
+
+The source then checks seven propositions without adding names to the public
+API:
+
+| Probe | Exact boundary checked |
+|---:|---|
+| 1 | \(D_0(f)=\Omega\), because \(m=n=N\) witnesses \(0\le0\) |
+| 2 | The \(L^2\to L^1\) operator norm is exactly zero for the zero measure |
+| 3 | On a probability space, the general finite-mass norm coefficient reduces to one |
+| 4 | At absolute threshold one, the weak bound has no residual division factor |
+| 5 | The final theorem includes the zero-measure boundary, where its almost-everywhere conclusion is vacuous |
+| 6 | Identity dynamics satisfy the final theorem for every integrable observable without ergodicity |
+| 7 | A constant map on `Bool` preserves a Dirac mass while remaining noninjective and nonsurjective, and the final theorem still applies |
+
+Finally, five <code>#print axioms</code> commands expose the axiom footprints
+of:
+
+1. <code>measureReal_birkhoffAverageAbsoluteExceedanceSet_le</code>;
+2. <code>ae_mem_birkhoffConvergenceSet_of_dense_good</code>;
+3. <code>denseRange_l2ToL1</code>;
+4. <code>dense_fixedPlusSimpleCoboundarySetL1</code>; and
+5. <code>ae_mem_birkhoffConvergenceSet_of_integrable</code>.
 
 ## Read the main Lean signatures
 
@@ -1441,55 +2278,32 @@ sequence of Birkhoff averages \(A_nf(\omega)\) converges to some real number
 for \(\mu\)-almost every \(\omega\), without a probability, ergodicity, or
 invertibility premise and without identifying the limit.
 
-## Run the formalization
+## Reproduce the right layer on the right machine
 
-From the repository root, load the Elan environment and check the leaf module
-with warnings treated as errors:
+There are two deliberately separate runnable paths in this chapter.
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean
-~~~
+- The `Std` worksheet is a tiny eight-state arithmetic tutorial. A reader may
+  run it on an ordinary Mac or Linux host with the pinned Lean 4.32 compiler.
+- The exact <code>PointwiseBirkhoff</code> import, public declarations,
+  Mathlib representatives, \(L^p\) spaces, and warning-fatal source check
+  belong to the guarded Linux/RunPod command in
+  [Type-check the exact project interface](#type-check-the-exact-project-interface).
 
-Build the named library module:
+The distinction is about resource use, not pedagogy. Readers should type and
+modify the small tutorial locally. The project proof remains fully visible,
+but this workstation does not rebuild Mathlib or the Lake cache.
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake build NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
-~~~
-
-Run the repository teaching and formalization gates from the repository root:
+The Hugo teaching layer can be checked safely from the repository root on the
+workstation:
 
 ~~~sh
 make site-check
-make check
 git diff --check
 ~~~
 
-To inspect the public theorem boundary in a scratch Lean file, use a complete
-import and <code>#check</code> commands:
-
-~~~lean
-import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
-
-open NonlinearDynamics.Random.RandomCocycles
-
-#check measureReal_birkhoffAverageAbsoluteExceedanceSet_le
-#check birkhoffCauchyExceptionalSet
-#check ae_mem_birkhoffConvergenceSet_of_dense_good
-#check l2ToL1
-#check denseRange_l2ToL1
-#check dense_fixedPlusSimpleCoboundarySetL1
-#check ae_mem_birkhoffConvergenceSet_of_integrable
-~~~
-
-The source currently contains seven compiled anonymous boundary examples and
-five axiom-print commands. A warning-fatal leaf compilation checks the exact
-version pinned by <code>formalization/lean-toolchain</code> and
-<code>formalization/lakefile.toml</code> rather than a globally guessed Lean API.
+The declaration and probe manifests above are checked against the exact
+source hash and the repository's pinned toolchain, rather than a globally
+guessed Lean API.
 
 ## Continue the learning path
 
