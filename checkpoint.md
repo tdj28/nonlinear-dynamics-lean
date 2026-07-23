@@ -3,7 +3,7 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-23 01:16 PDT
+Last updated: 2026-07-23 01:20 PDT
 
 Audited baseline: `main` at `296291a`
 
@@ -3687,6 +3687,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `c360723`: replace ambiguous probability-zero language with explicit sample
+  spaces, fibers, masses, neighborhoods, countable additivity, and law-versus-
+  range distinctions; propagate the rule through the teaching corpus and
+  project guides.
 - `ec0dc90`: complete the 150-document mathematical-register audit across the
   glossary, Deep Dives, Development Notebook, indexes, project guides, and
   checkpoint; add independent adversarial reviews and a context-aware
