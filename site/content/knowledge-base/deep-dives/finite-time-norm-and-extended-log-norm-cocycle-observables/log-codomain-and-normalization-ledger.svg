@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="logLedgerTitle logLedgerDesc">
+  <title id="logLedgerTitle">Positive-log and extended-log codomain comparison</title>
+  <desc id="logLedgerDesc">Four toy norm values show the different zero policies. At norm two, both logarithms give log two. At norm one, both give zero. At norm one half, the real positive logarithm gives zero while the extended logarithm gives negative log two. At norm zero, the real positive logarithm gives zero while the extended logarithm gives bottom. A horizon-two footer divides retained finite values by two and leaves bottom at bottom.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .ink{fill:#17283F;font-family:Inter,Arial,Helvetica,sans-serif}
+    .title{font-size:31px;font-weight:700}
+    .sub{font-size:18px;fill:#536172}
+    .head{font-size:18px;font-weight:700;letter-spacing:.4px}
+    .body{font-size:18px}
+    .small{font-size:15px;fill:#536172}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:24px}
+    .paper{fill:#FFFDF8;stroke:#C9BBA7;stroke-width:2}
+    .blue{fill:#E7F0F7;stroke:#527394;stroke-width:2}
+    .green{fill:#E8F2E3;stroke:#6C8A5B;stroke-width:2}
+    .clay{fill:#F5E5DA;stroke:#B36B3D;stroke-width:2}
+    .line{stroke:#C9BBA7;stroke-width:2}
+  </style>
+
+  <text x="52" y="52" class="ink title">The same norm enters two logarithms with different jobs</text>
+  <text x="52" y="82" class="ink sub">The positive logarithm is a real nonnegative envelope. The extended logarithm preserves contraction and exact collapse.</text>
+
+  <rect x="48" y="112" width="1104" height="474" rx="20" class="paper"/>
+  <rect x="48" y="112" width="1104" height="68" rx="20" class="blue"/>
+  <rect x="48" y="158" width="1104" height="22" fill="#E7F0F7"/>
+  <text x="76" y="153" class="ink head">INPUT NORM</text>
+  <text x="326" y="153" class="ink head">REAL POSITIVE LOGARITHM log+</text>
+  <text x="745" y="153" class="ink head">EXTENDED LOGARITHM INTO EReal</text>
+
+  <line x1="294" y1="112" x2="294" y2="586" class="line"/>
+  <line x1="711" y1="112" x2="711" y2="586" class="line"/>
+  <line x1="48" y1="280" x2="1152" y2="280" class="line"/>
+  <line x1="48" y1="382" x2="1152" y2="382" class="line"/>
+  <line x1="48" y1="484" x2="1152" y2="484" class="line"/>
+
+  <rect x="49" y="181" width="244" height="98" fill="#E8F2E3"/>
+  <text x="76" y="220" class="ink math">N = 2</text>
+  <text x="76" y="252" class="ink small">expansion above one</text>
+  <text x="326" y="232" class="ink math">log+(2) = log(2)</text>
+  <text x="745" y="232" class="ink math">logₑ(2) = log(2)</text>
+
+  <rect x="49" y="281" width="244" height="100" fill="#FFFDF8"/>
+  <text x="76" y="322" class="ink math">N = 1</text>
+  <text x="76" y="354" class="ink small">neutral norm budget</text>
+  <text x="326" y="334" class="ink math">log+(1) = 0</text>
+  <text x="745" y="334" class="ink math">logₑ(1) = 0</text>
+
+  <rect x="49" y="383" width="244" height="100" fill="#E7F0F7"/>
+  <text x="76" y="424" class="ink math">N = 1 / 2</text>
+  <text x="76" y="456" class="ink small">strict contraction</text>
+  <text x="326" y="424" class="ink math">log+(1 / 2) = 0</text>
+  <text x="326" y="456" class="ink small">negative information is clipped</text>
+  <text x="745" y="436" class="ink math">logₑ(1 / 2) = −log(2)</text>
+
+  <rect x="49" y="485" width="244" height="100" fill="#F5E5DA"/>
+  <text x="76" y="526" class="ink math">N = 0</text>
+  <text x="76" y="558" class="ink small">exact matrix collapse</text>
+  <text x="326" y="526" class="ink math">log+(0) = 0</text>
+  <text x="326" y="558" class="ink small">same envelope value as N = 1</text>
+  <text x="745" y="526" class="ink math">logₑ(0) = ⊥</text>
+  <text x="745" y="558" class="ink small">bottom records exact zero</text>
+
+  <rect x="48" y="612" width="1104" height="112" rx="18" class="green"/>
+  <text x="76" y="650" class="ink head">POSITIVE-HORIZON NORMALIZATION: k = 2 MEANS TWO FACTORS</text>
+  <text x="76" y="687" class="ink body">positive path p0:</text>
+  <text x="248" y="687" class="ink math">log(2) / 2</text>
+  <text x="456" y="687" class="ink body">in both codomains</text>
+  <text x="710" y="687" class="ink body">collapse path z0:</text>
+  <text x="890" y="687" class="ink math">0 / 2 = 0</text>
+  <text x="1023" y="687" class="ink math">⊥ / 2 = ⊥</text>
+  <text x="76" y="712" class="ink small">Normalization rescales retained information; it does not restore contraction or collapse data discarded by log+.</text>
+</svg>

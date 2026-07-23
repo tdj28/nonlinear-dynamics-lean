@@ -2,17 +2,17 @@
 title: "Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles"
 slug: "finite-time-norm-and-extended-log-norm-cocycle-observables"
 date: 2026-07-21
-summary: "A textbook construction of measurable finite-time matrix-cocycle growth observables using the maximum absolute row-sum norm and a zero-aware extended logarithm, with exact subadditivity and dimension boundaries."
-lead: "The cocycle law tells us how finite histories compose. A carefully chosen norm and extended logarithm turn that algebra into measurable growth data while keeping exact collapse, empty dimension, and every missing asymptotic hypothesis visible."
+summary: "Follow one positive two-step cocycle product and one exact collapse through the row-sum norm, real positive logarithm, extended logarithm, and finite normalization without confusing their codomains or zero policies."
+lead: "The positive path has norm two; two nonzero projections collapse to norm zero. Their real positive logs are log two and zero, while their extended logs are log two and bottom."
 draft: false
 pro_reviewed: false
-level: "Random matrix cocycles, finite operator norms, measurable observables, extended-real logarithms, and subadditivity"
-reading_time: "85 to 115 minutes"
-prerequisites: "One-sided discrete matrix cocycles, forward matrix products, finite matrix norms, measurable functions, and basic logarithms; extended number systems and all edge cases are introduced before use"
+level: "Exact two-by-two arithmetic through measurable cocycle observables and extended-real subadditivity"
+reading_time: "110 to 140 minutes"
+prerequisites: "Two-by-two matrix multiplication and absolute values; cocycles, row-sum norms, positive logarithms, extended reals, measurability, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.NormObservables"
 toc: true
 og_image: "finite-time-norm-and-extended-log-norm-cocycle-observables-card.png"
-og_image_alt: "A finite cocycle matrix passes through the largest absolute row-sum norm and a zero-aware extended logarithm, turning a multiplicative product bound into an additive bound while keeping the empty-dimension branch explicit."
+og_image_alt: "Two horizon-two cocycle paths: a shear followed by a stretch gives matrix one one; zero two with row-sum norm two and factor budget four, while two nonzero coordinate projections multiply to the zero matrix with norm zero and factor budget one."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,83 +24,502 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+prose, sources, exact examples, Lean declaration map, worksheet, figures, and
+accessibility have not yet received the required human and Pro reviews. The
+page is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-A one-sided matrix cocycle already knows how to multiply a finite history. If
-\(C(k,\omega)\) denotes the value after \(k\) steps from base state \(\omega\),
-then the RMT-13 cocycle law is
+## Begin with two base points and two exact products
+
+A matrix cocycle is a rule that reads a base state, applies the matrix stored
+there, moves the base state, and repeats. To make every symbol concrete, take
+the four-point base
 
 \[
-C(m+k,\omega)
-{} =
-C(k,T^m\omega)C(m,\omega).
+\Omega=\{p_0,p_1,z_0,z_1\}.
 \]
 
-The early block acts first and is written on the right. The later block begins
-at the shifted environment \(T^m\omega\), acts second, and is written on the
-left.
+Let the base map \(T:\Omega\to\Omega\) swap \(p_0\) with \(p_1\) and swap
+\(z_0\) with \(z_1\). Give each point mass \(1/4\). This uniform probability
+measure is preserved because \(T\) is a permutation, and every function on
+this finite discrete space is measurable.
 
-RMT-14 asks the next analytic question: how large is that finite matrix value?
-The answer must make four choices explicit:
+The probability weights make the bundled cocycle legitimate, but none of the
+following pointwise arithmetic uses them. At the four base points, let the
+generator be
 
-1. which matrix norm measures size;
-2. how its measurability follows from the project's entrywise measurable
-   structure;
-3. what logarithm means when the matrix value is exactly zero; and
-4. which statements survive the empty matrix dimension.
+\[
+\begin{aligned}
+A(p_0)&=A_0=
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix},
+&
+A(p_1)&=A_1=
+\begin{bmatrix}
+1&0\\
+0&2
+\end{bmatrix},\\[4pt]
+A(z_0)&=B_0=
+\begin{bmatrix}
+1&0\\
+0&0
+\end{bmatrix},
+&
+A(z_1)&=B_1=
+\begin{bmatrix}
+0&0\\
+0&1
+\end{bmatrix}.
+\end{aligned}
+\]
+
+Regard these integer entries as complex numbers through the standard
+embedding. No genuinely complex arithmetic is needed for this example.
+
+For a generator-presented cocycle, the two-step value is
+
+\[
+C(2,\omega)=A(T\omega)A(\omega).
+\]
+
+The matrix at the starting state acts first and therefore appears on the
+right.
+
+### The positive-norm sample
+
+Starting from \(p_0\), the shear acts before the stretch:
+
+\[
+\begin{aligned}
+C(2,p_0)
+&=A_1A_0\\
+&=
+\begin{bmatrix}
+1&0\\
+0&2
+\end{bmatrix}
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+1&1\\
+0&2
+\end{bmatrix}.
+\end{aligned}
+\]
+
+The two absolute row sums are \(2\) and \(2\). Hence its induced infinity
+operator norm, the maximum absolute row sum, is
+
+\[
+N_2(p_0)=\lVert C(2,p_0)\rVert_\infty=2.
+\]
+
+Each factor has norm \(2\), so the submultiplicative theorem gives the valid
+but non-sharp budget \(2\leq2\cdot2=4\).
+
+### The exact-collapse sample
+
+Starting from \(z_0\), the first factor keeps only the first coordinate and the
+second keeps only the second coordinate:
+
+\[
+\begin{aligned}
+C(2,z_0)
+&=B_1B_0\\
+&=
+\begin{bmatrix}
+0&0\\
+0&1
+\end{bmatrix}
+\begin{bmatrix}
+1&0\\
+0&0
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+0&0\\
+0&0
+\end{bmatrix}.
+\end{aligned}
+\]
+
+Both \(B_0\) and \(B_1\) are nonzero and have norm \(1\), yet their product is
+zero. Thus
+
+\[
+N_2(z_0)=0\leq1\cdot1.
+\]
+
+This is the boundary that decides which logarithm the formalization needs.
+
+{{< reference-figure
+  wide="true"
+  src="positive-and-collapse-cocycle-ledger.svg"
+  alt="A four-state base has two two-step paths. From p zero, a shear matrix acts first and a diagonal stretch acts second, producing matrix one one; zero two with row-sum norm two and factor budget four. From z zero, projection onto the first coordinate acts before projection onto the second, producing the zero matrix with norm zero even though both factors are nonzero and have norm one."
+  caption="**Two exact sample paths:** \(C(2,p_0)=A_1A_0=\left[\begin{smallmatrix}1&1\\0&2\end{smallmatrix}\right]\) has norm \(2\), while \(C(2,z_0)=B_1B_0=0\) has norm \(0\) although both projection factors are nonzero. The base dynamics chooses the later factor; matrix action fixes the later-factor-left order; the norm bounds are \(2\leq4\) and \(0\leq1\). No probability average or limiting statement is shown."
+>}}
+
+## Four finite-time values with different jobs
+
+The target module defines the real norm observable
+
+\[
+N_k(\omega)=\lVert C(k,\omega)\rVert_\infty\in\mathbb R
+\]
+
+and the extended-real logarithm
+
+\[
+L_k(\omega)
+{} =
+\operatorname{ENNReal.log}
+\lVert C(k,\omega)\rVert_{\infty,e}
+\in\overline{\mathbb R}.
+\]
+
+Here \(\overline{\mathbb R}\), Lean's <code>EReal</code>, is the real line
+with bottom \(\bot=-\infty\) and top \(\top=+\infty\). The subscript \(e\)
+only records the embedding of the nonnegative norm into the extended
+nonnegative reals before taking the logarithm.
+
+The immediate successor module defines a different real-valued function,
+
+\[
+G_k(\omega)
+{} =
+\log^+N_k(\omega)
+{} =
+\max\{0,\log N_k(\omega)\}
+\in\mathbb R.
+\]
+
+This positive logarithm is an integrability envelope. It keeps expansion above
+one and clips contraction, neutral norm, and exact collapse to zero
+([Mathlib contributors](#ref-finite-log-norm-poslog)).
+
+At a positive horizon, one can also inspect finite quotients
+
+\[
+\widehat G_k(\omega)=\frac{G_k(\omega)}{k},
+\qquad
+\widehat L_k(\omega)=\frac{L_k(\omega)}{k}.
+\]
+
+The second quotient is extended-real arithmetic; dividing bottom by a positive
+finite number leaves bottom
+([Mathlib contributors](#ref-finite-log-norm-ereal-div)). Neither quotient is defined by
+<code>NormObservables.lean</code>, and one fixed quotient is not a limit.
+
+For the two running samples at horizon two, the entire ledger is
+
+| Quantity | Codomain | Positive path \(p_0\) | Collapse path \(z_0\) |
+|---|---|---:|---:|
+| Matrix value | \(M_2(\mathbb C)\) | \(\left[\begin{smallmatrix}1&1\\0&2\end{smallmatrix}\right]\) | \(0\) |
+| \(N_2\) | \(\mathbb R\) | \(2\) | \(0\) |
+| \(G_2=\log^+N_2\) | \(\mathbb R\) | \(\log2\) | \(0\) |
+| \(L_2=\log_eN_2\) | <code>EReal</code> | \(\log2\) | \(\bot\) |
+| \(\widehat G_2=G_2/2\) | \(\mathbb R\) | \(\frac12\log2\) | \(0\) |
+| \(\widehat L_2=L_2/2\) | <code>EReal</code> | \(\frac12\log2\) | \(\bot\) |
+
+The agreement on the positive path does not identify the two logarithms. Their
+zero policies are intentionally different.
+
+{{< reference-figure
+  wide="true"
+  src="log-codomain-and-normalization-ledger.svg"
+  alt="A four-row comparison sends norms two, one, one half, and zero through the real positive logarithm and the extended-real logarithm. Norm two gives log two in both columns. Norm one gives zero in both. Norm one half gives zero in the positive-log column and negative log two in the extended-log column. Norm zero gives zero in the positive-log column and bottom in the extended-log column. At horizon two, normalization divides finite values by two and leaves bottom at bottom."
+  caption="**Codomain and zero-policy audit:** \(\log^+\) is real and nonnegative, so it clips norm \(1/2\) and norm \(0\) to the same value \(0\). The extended logarithm preserves contraction as \(-\log2\) and exact collapse as \(\bot\). At the positive horizon \(k=2\), normalization uses two factors; it does not change which information each codomain retained."
+>}}
+
+## Controlled near-misses
+
+### Using the ordinary real logarithm at zero
+
+Lean's total real logarithm satisfies
+\(\operatorname{Real.log}(0)=0=\operatorname{Real.log}(1)\). Defining the
+collapse-sensitive observable with <code>Real.log</code> would make the zero
+matrix look indistinguishable from norm one. The target module therefore uses
+<code>ENNReal.log</code> into <code>EReal</code>.
+
+### Calling the positive logarithm a signed growth rate
+
+\(\log^+(1/2)=0\), \(\log^+(1)=0\), and \(\log^+(0)=0\). That loss is useful
+when proving integrability of a nonnegative upper envelope, but it cannot
+represent contraction or collapse. The later log-positive observable does not
+replace \(L_k\).
+
+### Dividing by the final factor index
+
+Horizon two contains the factors with indices zero and one. Its normalizing
+factor is \(2\), not the last index \(1\). Dividing by one would double the
+positive path's finite normalized value and would divide by zero at horizon
+one.
+
+### Treating time-zero totalization as growth information
+
+Classically, \(X_0/0\) is not a normalized growth rate. Much later, the generic
+real <code>normalizedProcess</code> defines the time-zero quotient to be zero
+because Lean's real division is total. Its own theorem says that this value
+forgets \(X_0\) completely. Positive-time asymptotics may ignore that finite
+prefix; this page must not reinterpret it as a meaningful zero-step rate.
+
+## Keep the formal layers separate
+
+| Layer | Checked object or property | What it does not supply |
+|---|---|---|
+| Sample matrix | \(C(k,\omega)\) | A probability law or expectation |
+| Target finite observable | \(N_k:\Omega\to\mathbb R\) | Integrability or normalized growth |
+| Target extended observable | \(L_k:\Omega\to\overline{\mathbb R}\) | Almost-sure finiteness or an integral |
+| Target regularity | Measurability of \(N_k\) and \(L_k\) | Integrability; measurable is weaker |
+| Successor envelope | \(G_k=\log^+N_k:\Omega\to\mathbb R\) | Signed contraction or collapse data |
+| Successor hypothesis | One-step integrability propagated to finite \(G_k\) | Automatic integrability from preservation |
+| Probability law | A pushforward measure such as \((N_k)_*\mu\) | Not defined in either observable module |
+| Positive-time normalization | A fixed quotient by \(k\) | A limit or Lyapunov exponent |
+| Asymptotic theory | Kingman- or Oseledets-type conclusions under extra hypotheses | Not contained in this finite-time module |
 
 The module
-<code>NonlinearDynamics.Random.RandomCocycles.NormObservables</code> answers
-those questions in fourteen public declarations. It chooses Mathlib's maximum
-absolute row-sum operator norm, proves its finite-time observable measurable,
-passes it through a zero-aware extended logarithm, and derives norm
-submultiplicativity and log-norm subadditivity across every cocycle split.
-
-This is still finite-time infrastructure. No integrability, normalized growth,
-almost-sure limit, Lyapunov exponent, invariant splitting, ergodicity, or
-probability normalization is smuggled into the interface.
+<code>NonlinearDynamics.Random.RandomCocycles.NormObservables</code> contains
+fourteen public declarations. It proves finite pointwise algebra and
+measurability only. Probability normalization, integrability, normalized
+limits, Lyapunov exponents, and invariant splittings are separate later
+decisions.
 
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [The analytic pipeline in one picture](#the-analytic-pipeline-in-one-picture) | See how a cocycle split becomes an additive growth budget |
+| First encounter | [Two exact products](#begin-with-two-base-points-and-two-exact-products) | Compute a positive norm and an exact collapse |
+| Codomain route | [Four finite-time values](#four-finite-time-values-with-different-jobs) | Separate real norm, positive log, extended log, and normalized quotients |
+| Near-miss route | [Controlled near-misses](#controlled-near-misses) | Audit zero policies, factor counts, and time-zero totalization |
 | Norm route | [Why this particular matrix norm](#camp-one-why-this-particular-matrix-norm) | Compute the maximum absolute row sum and identify the active Lean scope |
 | Measure route | [Prove norm measurability from entries](#camp-four-prove-norm-measurability-from-entries) | Audit every closure step without assuming a hidden Borel instance |
 | Endpoint route | [Why the ordinary real logarithm is the wrong totalization](#camp-five-why-the-ordinary-real-logarithm-is-the-wrong-totalization) | Preserve the difference between norm one and norm zero |
 | Inequality route | [The zero-safe subadditivity proof](#camp-seven-the-zero-safe-subadditivity-proof) | Follow cocycle law, norm bound, monotonicity, and product-to-sum |
 | Dimension route | [Positive and empty dimensions](#camp-eight-positive-and-empty-dimensions) | See exactly where nonempty coordinates are required |
-| Lean route | [The complete fourteen-declaration map](#the-complete-fourteen-declaration-map) | Audit every public name, assumption, and output |
+| Lean route | [Seven exact bridges](#in-lean-seven-bridges-from-finite-matrices-to-later-normalization) | Translate human claims into exact project syntax |
+| Hands-on route | [Run the worksheet](#type-the-two-ledgers-yourself-with-lean-and-std) | Recheck the integer products and symbolic zero policies locally |
+| Interface route | [The complete fourteen-declaration map](#the-complete-fourteen-declaration-map) | Audit every public name, assumption, and output |
 | Summit route | [What has and has not been proved](#summit-what-has-and-has-not-been-proved) | Keep the finite-time boundary intact |
 
 ### Learning objectives
 
-By the summit, you should be able to:
+By the summit, you should be able to reproduce both two-step products and every
+row-sum norm; distinguish \(N_k\), \(G_k\), \(L_k\), and their positive-time
+quotients by codomain and zero policy; explain why two nonzero factors may
+produce bottom; read seven Lean bridges token by token; run the bounded
+<code>Std</code> worksheet; reconstruct norm and log-norm measurability; follow
+the zero-safe subadditivity proof; audit all fourteen target declarations; and
+state precisely which integrability, law-level, normalized, ergodic, and
+Lyapunov conclusions remain outside this module.
 
-1. distinguish the cocycle value, norm observable, and extended log-norm
-   observable by type;
-2. state the maximum absolute row-sum formula;
-3. explain why this norm is induced by the vector supremum norm;
-4. identify the scoped Lean instance that gives <code>‖A‖</code> its meaning;
-5. derive norm submultiplicativity from the later-block-left cocycle law;
-6. reconstruct norm measurability from complex matrix entries;
-7. distinguish real numbers, extended nonnegative reals, and extended reals;
-8. explain why <code>Real.log 0 = 0</code> is unsuitable for exact collapse;
-9. read \(\bot\) as the intended logarithmic value of zero norm;
-10. prove that the log norm is bottom exactly when the cocycle matrix is zero;
-11. derive log-norm measurability by composition;
-12. follow the extended-real subadditivity proof without a nonzero hypothesis;
-13. explain how nonzero factors can still have a zero product;
-14. identify the two time-zero theorems that need nonempty coordinates;
-15. prove that every norm is zero and every log norm is bottom in empty
-    dimension;
-16. map every mathematical claim to one of the fourteen checked declarations;
-    and
-17. list the integrability, ergodic, asymptotic, and nonlinear-Jacobian bridges
-    that remain absent.
+## In Lean: seven bridges from finite matrices to later normalization
+
+The first five bridges belong to the target module. Bridge six is the
+real-valued positive-log successor, and bridge seven is a much later generic
+normalization utility. Their separate homes are part of the lesson.
+
+### Bridge one: the finite norm is an ordinary real
+
+{{< lean-bridge
+  human="At a fixed horizon and base state, measure the cocycle matrix by its maximum absolute row sum."
+  math="\(N_k(\omega)=\lVert C(k,\omega)\rVert_\infty\in\mathbb R.\)"
+  lean="C.normObservable k ω : ℝ"
+>}}
+
+- <code>C</code> is a bundled one-sided discrete complex matrix cocycle.
+- <code>k</code> is a natural-number factor count.
+- <code>ω</code> is one base state, not a probability distribution.
+- <code>normObservable</code> returns a function
+  <code>Ω → ℝ</code>; supplying <code>ω</code> evaluates it.
+- The active <code>Matrix.Norms.Operator</code> scope makes the matrix norm the
+  maximum absolute row sum.
+{{< /lean-bridge >}}
+
+### Bridge two: cocycle splitting gives a norm budget
+
+{{< lean-bridge
+  human="The norm of the full history is at most the shifted later-block norm times the early-block norm."
+  math="\(N_{m+k}(\omega)\leq N_k(T^m\omega)N_m(\omega).\)"
+  lean="C.normObservable_add_le m k ω"
+>}}
+
+- <code>m + k</code> is the total factor count.
+- <code>C.base^[m] ω</code> is the base state after the early block.
+- The later block is evaluated there and its matrix acts on the left.
+- <code>≤</code>, rather than equality, comes from matrix-norm
+  submultiplicativity.
+- This theorem is pointwise and assumes neither a probability measure nor
+  integrability.
+{{< /lean-bridge >}}
+
+### Bridge three: the collapse-sensitive logarithm changes codomain
+
+{{< lean-bridge
+  human="Embed the nonnegative matrix norm into the extended nonnegative reals, then take the logarithm into the extended reals."
+  math="\(L_k(\omega)=\log_e\lVert C(k,\omega)\rVert_\infty\in\overline{\mathbb R}.\)"
+  lean="C.logNormObservable k ω : EReal"
+>}}
+
+- <code>EReal</code> contains finite real values, bottom, and top.
+- <code>‖C.value k ω‖ₑ</code> is the extended nonnegative norm input.
+- <code>ENNReal.log</code> sends zero to bottom instead of using
+  <code>Real.log 0 = 0</code>.
+- The result is not automatically coercible to an ordinary real.
+- The target module defines no normalization of this value.
+{{< /lean-bridge >}}
+
+### Bridge four: bottom means exact matrix collapse
+
+{{< lean-bridge
+  human="The extended log norm is negative infinity exactly when the complete finite cocycle matrix is zero."
+  math="\(L_k(\omega)=\bot\Longleftrightarrow C(k,\omega)=0.\)"
+  lean="C.logNormObservable_eq_bot_iff k ω"
+>}}
+
+- <code>⊥</code> is bottom in <code>EReal</code>, interpreted here as negative
+  infinity.
+- The right side says the entire matrix is the zero matrix.
+- A singular but nonzero matrix does not satisfy the right side.
+- The equivalence is exact and pointwise; it is not an almost-everywhere
+  statement.
+- For the running collapse path, this theorem turns
+  <code>B1 * B0 = 0</code> into <code>L₂(z₀) = ⊥</code>.
+{{< /lean-bridge >}}
+
+### Bridge five: extended log norms are zero-safe subadditive
+
+{{< lean-bridge
+  human="Across every finite split, the full extended log norm is at most the sum of the shifted later and early extended log norms."
+  math="\(L_{m+k}(\omega)\leq L_k(T^m\omega)+L_m(\omega).\)"
+  lean="C.logNormObservable_add_le m k ω"
+>}}
+
+- The cocycle law first rewrites the full value as a matrix product.
+- <code>nnnorm_mul_le</code> supplies the multiplicative norm upper bound.
+- <code>ENNReal.log_monotone</code> preserves that inequality.
+- <code>ENNReal.log_mul_add</code> changes the scalar product into a sum.
+- Zero factors and zero products require no side condition; bottom arithmetic
+  remains inside the codomain.
+{{< /lean-bridge >}}
+
+### Bridge six: the later positive logarithm is a real upper envelope
+
+{{< lean-bridge
+  human="The positive logarithm of every finite norm is a nonnegative real number."
+  math="\(0\leq G_k(\omega)=\log^+N_k(\omega).\)"
+  lean="C.logPlusNormObservable_nonneg k ω"
+>}}
+
+- This theorem lives in <code>LogPlusIntegrability.lean</code>, not the target
+  module.
+- <code>log⁺</code> is <code>Real.posLog</code>, defined as
+  <code>max 0 (Real.log ·)</code>.
+- Its codomain is <code>ℝ</code>, so there is no bottom value.
+- Norms zero, one half, and one all produce the value zero.
+- A separate <code>HasIntegrableGeneratorLogPlus</code> hypothesis is needed
+  before the successor proves finite-horizon integrability.
+{{< /lean-bridge >}}
+
+### Bridge seven: normalization is a later real-process operation
+
+{{< lean-bridge
+  human="A later generic helper divides a real process value by the natural horizon, coerced to a real number."
+  math="\(Q_k(\omega)=X_k(\omega)/k.\)"
+  lean="NonlinearDynamics.Random.RandomCocycles.normalizedProcess X k ω"
+>}}
+
+- <code>X</code> must be real-valued; the helper does not normalize
+  <code>EReal</code>-valued \(L_k\).
+- <code>(k : ℝ)</code> is the real coercion of the natural horizon.
+- At positive <code>k</code>, this is the ordinary finite quotient.
+- At <code>k = 0</code>, totalized real division returns zero and forgets
+  <code>X 0 ω</code>; <code>normalizedProcess_zero</code> records that boundary.
+- A sequence of finite quotients is not a convergence theorem.
+{{< /lean-bridge >}}
+
+### Try the exact target interfaces
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+On an approved Linux builder, use a temporary scratch file containing:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.NormObservables
+
+open Matrix MeasureTheory
+open scoped Matrix.Norms.Operator
+open NonlinearDynamics.Random.RandomCocycles
+
+#print DiscreteMatrixCocycle.normObservable
+#check DiscreteMatrixCocycle.normObservable_eq_rowSumSup
+#check DiscreteMatrixCocycle.normObservable_zero
+#check DiscreteMatrixCocycle.normObservable_one
+#check DiscreteMatrixCocycle.normObservable_add_le
+#check DiscreteMatrixCocycle.measurable_normObservable
+#print DiscreteMatrixCocycle.logNormObservable
+#check DiscreteMatrixCocycle.logNormObservable_eq_bot_iff
+#check DiscreteMatrixCocycle.logNormObservable_zero
+#check DiscreteMatrixCocycle.logNormObservable_one
+#check DiscreteMatrixCocycle.measurable_logNormObservable
+#check DiscreteMatrixCocycle.logNormObservable_add_le
+#check DiscreteMatrixCocycle.normObservable_eq_zero_of_isEmpty
+#check DiscreteMatrixCocycle.logNormObservable_eq_bot_of_isEmpty
+~~~
+
+This is the complete fourteen-declaration target interface. The guarded
+command rendered below checks the authoritative module with the pinned
+manifest and warnings fatal.
+{{< /repo-check >}}
+
+### Inspect the separate positive-log and integrability successor
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability" >}}
+**Resource label: later pinned project module plus Mathlib, cloud-only.**
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#print DiscreteMatrixCocycle.logPlusNormObservable
+#check DiscreteMatrixCocycle.logPlusNormObservable_nonneg
+#check DiscreteMatrixCocycle.measurable_logPlusNormObservable
+#check DiscreteMatrixCocycle.logPlusNormObservable_add_le
+#print DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable
+~~~
+
+The successor proves measurability unconditionally and finite-horizon
+integrability only from the named one-step hypothesis. It defines no
+pushforward probability law and proves no asymptotic limit.
+{{< /repo-check >}}
+
+### Inspect the much later real normalization boundary
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman" >}}
+**Resource label: much later pinned project module plus Mathlib, cloud-only.**
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#print normalizedProcess
+#check normalizedProcess_zero
+#check normalizedProcess_update_zero
+~~~
+
+These declarations explain the real time-zero policy only. The later module
+contains stronger theorems under stronger hypotheses, but importing it does
+not retroactively add normalization or convergence to
+<code>NormObservables.lean</code>.
+{{< /repo-check >}}
 
 ## The analytic pipeline in one picture
 
@@ -118,10 +537,11 @@ The picture separates three structures that are easy to conflate:
 
 Each layer has its own assumptions and its own failure modes.
 
-## Base camp: the RMT-13 input
+## Base camp: the checked cocycle input
 
-Fix a type \(\Omega\) of base states with a measurable-space structure, a finite
-matrix index type \(\iota\) with decidable equality, and a measure \(\mu\) on
+The preceding random-matrix-theory milestone 13 (RMT-13) fixes a type
+\(\Omega\) of base states with a measurable-space structure, a finite matrix
+index type \(\iota\) with decidable equality, and a measure \(\mu\) on
 \(\Omega\). A bundled <code>DiscreteMatrixCocycle μ</code> stores:
 
 - a base map \(T:\Omega\to\Omega\);
@@ -138,8 +558,9 @@ therefore proves that every finite value
 
 is measurable.
 
-RMT-14 consumes exactly that interface. It does not add a probability instance
-for \(\mu\), and none of its finite-time pointwise inequalities uses measure
+Random-matrix-theory milestone 14 (RMT-14), the target of this chapter,
+consumes exactly that interface. It does not add a probability instance for
+\(\mu\), and none of its finite-time pointwise inequalities uses measure
 preservation. The stored measurable structure matters for the two observable
 measurability theorems; the algebraic inequalities follow pointwise from the
 cocycle law and matrix norm.
@@ -215,7 +636,7 @@ open scoped Matrix.Norms.Operator
 before using <code>‖B‖</code>. Under that scope, the notation means the maximum
 absolute row-sum norm. The theorem
 <code>normObservable_eq_rowSumSup</code> then exposes the precise finite formula
-in the public API.
+in the public interface.
 
 ## Camp two: define the finite-time norm observable
 
@@ -594,70 +1015,226 @@ norms are zero, since both block norms equal one. The inequality reads
 which is true. This example also shows why subadditivity is an inequality, not
 an equality.
 
-## A complete two-block calculation
+## Return to the two sample paths after the general theorem
 
-Take the early block
-
-\[
-B=
-\begin{bmatrix}
-1 & -1\\
-0 & 2
-\end{bmatrix}
-\]
-
-and shifted later block
+Split each horizon-two path after its first factor, so \(m=k=1\). On the
+positive path, the norm theorem reads
 
 \[
-D=
-\begin{bmatrix}
-1 & 0\\
-3 & 1
-\end{bmatrix}.
-\]
-
-The absolute row sums of \(B\) are two and two, so
-
-\[
-\lVert B\rVert_\infty=2.
-\]
-
-The absolute row sums of \(D\) are one and four, so
-
-\[
-\lVert D\rVert_\infty=4.
-\]
-
-Because the later block acts after the early block, the full matrix is
-
-\[
-DB=
-\begin{bmatrix}
-1 & -1\\
-3 & -1
-\end{bmatrix}.
-\]
-
-Its row sums are two and four, hence
-
-\[
-\lVert DB\rVert_\infty=4
+2=N_2(p_0)
 \leq
-4\cdot2.
+N_1(p_1)N_1(p_0)
+=2\cdot2=4,
 \]
 
-All three norms are positive, so the extended logarithms agree with ordinary
-real logarithms. The subadditive inequality is
+and extended-log subadditivity reads
 
 \[
-\log 4
+\log2=L_2(p_0)
 \leq
-\log 4+\log 2.
+L_1(p_1)+L_1(p_0)
+=\log2+\log2.
 \]
 
-The strict slack comes from the norm product estimate. There is no claim that
-the later block realizes its largest row amplification on the output direction
-created by the early block.
+On the collapse path,
+
+\[
+0=N_2(z_0)\leq1\cdot1,
+\]
+
+while both one-step extended logs are zero and the full extended log is
+bottom:
+
+\[
+\bot=L_2(z_0)\leq0+0.
+\]
+
+The positive-log successor instead reports \(G_2(z_0)=0\). The values satisfy
+their own theorems; they answer different questions.
+
+## Type the two ledgers yourself with Lean and Std
+
+The project modules use Mathlib's general matrices, measurable cocycles,
+extended reals, and operator norm. A learner can first verify the exact integer
+products, row-sum norms, and symbolic zero policies with a bounded file that
+imports only <code>Std</code>.
+
+Create a scratch directory outside <code>formalization/</code>. Save this exact
+block as <code>FiniteCocycleObservablesTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace FiniteCocycleObservablesTutorial
+
+structure Matrix2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+  deriving Repr, DecidableEq
+
+def Matrix2.mul (A B : Matrix2) : Matrix2 :=
+  { a00 := A.a00 * B.a00 + A.a01 * B.a10
+    a01 := A.a00 * B.a01 + A.a01 * B.a11
+    a10 := A.a10 * B.a00 + A.a11 * B.a10
+    a11 := A.a10 * B.a01 + A.a11 * B.a11 }
+
+def Matrix2.linftyOpNorm (A : Matrix2) : Nat :=
+  max (A.a00.natAbs + A.a01.natAbs)
+      (A.a10.natAbs + A.a11.natAbs)
+
+def A0 : Matrix2 :=
+  { a00 := 1, a01 := 1, a10 := 0, a11 := 1 }
+
+def A1 : Matrix2 :=
+  { a00 := 1, a01 := 0, a10 := 0, a11 := 2 }
+
+def B0 : Matrix2 :=
+  { a00 := 1, a01 := 0, a10 := 0, a11 := 0 }
+
+def B1 : Matrix2 :=
+  { a00 := 0, a01 := 0, a10 := 0, a11 := 1 }
+
+def positiveProduct : Matrix2 := A1.mul A0
+def collapseProduct : Matrix2 := B1.mul B0
+
+inductive LogValue where
+  | bottom
+  | zero
+  | logOfNat (n : Nat)
+  deriving Repr, DecidableEq
+
+def positiveLogToken (n : Nat) : LogValue :=
+  if n ≤ 1 then .zero else .logOfNat n
+
+def extendedLogToken (n : Nat) : LogValue :=
+  if n = 0 then .bottom
+  else if n = 1 then .zero
+  else .logOfNat n
+
+structure FiniteQuotient where
+  numerator : LogValue
+  factorCount : Nat
+  deriving Repr, DecidableEq
+
+def normalizeAt (k : Nat) (value : LogValue) : Option FiniteQuotient :=
+  if k = 0 then none else some { numerator := value, factorCount := k }
+
+structure ObservableLedger where
+  product : Matrix2
+  productNorm : Nat
+  factorNormBudget : Nat
+  positiveLog : LogValue
+  extendedLog : LogValue
+  normalizedPositiveLog : Option FiniteQuotient
+  normalizedExtendedLog : Option FiniteQuotient
+  deriving Repr, DecidableEq
+
+def ledger (left right : Matrix2) : ObservableLedger :=
+  let product := left.mul right
+  let norm := product.linftyOpNorm
+  { product := product
+    productNorm := norm
+    factorNormBudget := left.linftyOpNorm * right.linftyOpNorm
+    positiveLog := positiveLogToken norm
+    extendedLog := extendedLogToken norm
+    normalizedPositiveLog := normalizeAt 2 (positiveLogToken norm)
+    normalizedExtendedLog := normalizeAt 2 (extendedLogToken norm) }
+
+def positiveLedger : ObservableLedger := ledger A1 A0
+def collapseLedger : ObservableLedger := ledger B1 B0
+
+#eval [positiveProduct, collapseProduct]
+#eval [A0.linftyOpNorm, A1.linftyOpNorm,
+  positiveProduct.linftyOpNorm,
+  B0.linftyOpNorm, B1.linftyOpNorm,
+  collapseProduct.linftyOpNorm]
+#eval positiveLedger
+#eval collapseLedger
+#eval [positiveLogToken 0, positiveLogToken 1, positiveLogToken 2]
+#eval [extendedLogToken 0, extendedLogToken 1, extendedLogToken 2]
+#eval normalizeAt 0 (.logOfNat 2)
+
+example : positiveProduct =
+    { a00 := 1, a01 := 1, a10 := 0, a11 := 2 } := by decide
+example : collapseProduct =
+    { a00 := 0, a01 := 0, a10 := 0, a11 := 0 } := by decide
+example : positiveProduct.linftyOpNorm = 2 := by decide
+example : collapseProduct.linftyOpNorm = 0 := by decide
+example : positiveLedger.factorNormBudget = 4 := by decide
+example : collapseLedger.factorNormBudget = 1 := by decide
+example : positiveLedger.positiveLog = .logOfNat 2 := by decide
+example : positiveLedger.extendedLog = .logOfNat 2 := by decide
+example : collapseLedger.positiveLog = .zero := by decide
+example : collapseLedger.extendedLog = .bottom := by decide
+example : normalizeAt 0 (.logOfNat 2) = none := by decide
+
+end FiniteCocycleObservablesTutorial
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean FiniteCocycleObservablesTutorial.lean
+~~~
+
+**Resource label: small standalone Lean tutorial, ordinary Mac or Linux.**
+This exact worksheet was executed with Lean 4.32.0 and printed:
+
+~~~text
+[{ a00 := 1, a01 := 1, a10 := 0, a11 := 2 }, { a00 := 0, a01 := 0, a10 := 0, a11 := 0 }]
+[2, 2, 2, 1, 1, 0]
+{ product := { a00 := 1, a01 := 1, a10 := 0, a11 := 2 },
+  productNorm := 2,
+  factorNormBudget := 4,
+  positiveLog := FiniteCocycleObservablesTutorial.LogValue.logOfNat 2,
+  extendedLog := FiniteCocycleObservablesTutorial.LogValue.logOfNat 2,
+  normalizedPositiveLog := some { numerator := FiniteCocycleObservablesTutorial.LogValue.logOfNat 2, factorCount := 2 },
+  normalizedExtendedLog := some { numerator := FiniteCocycleObservablesTutorial.LogValue.logOfNat 2,
+                             factorCount := 2 } }
+{ product := { a00 := 0, a01 := 0, a10 := 0, a11 := 0 },
+  productNorm := 0,
+  factorNormBudget := 1,
+  positiveLog := FiniteCocycleObservablesTutorial.LogValue.zero,
+  extendedLog := FiniteCocycleObservablesTutorial.LogValue.bottom,
+  normalizedPositiveLog := some { numerator := FiniteCocycleObservablesTutorial.LogValue.zero, factorCount := 2 },
+  normalizedExtendedLog := some { numerator := FiniteCocycleObservablesTutorial.LogValue.bottom, factorCount := 2 } }
+[FiniteCocycleObservablesTutorial.LogValue.zero,
+ FiniteCocycleObservablesTutorial.LogValue.zero,
+ FiniteCocycleObservablesTutorial.LogValue.logOfNat 2]
+[FiniteCocycleObservablesTutorial.LogValue.bottom,
+ FiniteCocycleObservablesTutorial.LogValue.zero,
+ FiniteCocycleObservablesTutorial.LogValue.logOfNat 2]
+none
+~~~
+
+Read the output in layers:
+
+1. the two products are the positive matrix and the zero matrix;
+2. the factor and product norms are \(2,2,2\) and \(1,1,0\);
+3. the positive ledger stores the symbolic numerator \(\log2\) in both
+   logarithm slots and the factor count two;
+4. the collapse ledger stores zero for the positive logarithm and bottom for
+   the extended logarithm;
+5. the separate token lists expose the policies at norms zero, one, and two;
+   and
+6. conventional normalization at horizon zero returns <code>none</code>.
+
+<code>LogValue.logOfNat 2</code> is a symbolic token for the exact expression
+\(\log2\); the worksheet does not approximate a transcendental number.
+Likewise, <code>LogValue.bottom</code> models the zero policy without
+reimplementing Mathlib's <code>EReal</code>. Every integer product, norm,
+budget, branch, and <code>example</code> is kernel-checked. The project-level
+types and theorems remain the cloud-only interfaces in the earlier repository
+checks.
+
+The worksheet's <code>normalizeAt 0 = none</code> intentionally models the
+classical partial convention that normalization needs a positive horizon. It
+is not an implementation of the much later real
+<code>normalizedProcess</code>, whose explicitly totalized time-zero value is
+zero.
 
 ## Camp eight: positive and empty dimensions
 
@@ -878,13 +1455,13 @@ derivative, chain rule, or tangent-space identification appears here.
 ### Trailhead
 
 1. Compute the largest absolute row sum of three different two-by-two matrices.
-2. Verify the two-block worked example entry by entry.
+2. Verify both running horizon-two products entry by entry.
 3. Give a nonidentity matrix with maximum absolute row-sum norm one.
 4. Explain in words why one output coordinate corresponds to one matrix row.
 5. Compare the row-sum norm and Frobenius norm of the identity in dimensions
    one, two, and three.
-6. Explain why the extended logarithm sends norm one to zero and norm zero to
-   bottom.
+6. Build the four-row norm, positive-log, and extended-log table without
+   looking back at the figure.
 
 ### Mid-mountain
 
@@ -916,35 +1493,39 @@ derivative, chain rule, or tangent-space identification appears here.
 21. Design a separate theorem connecting the cocycle generator to a Jacobian
     along a nonlinear orbit. List the differentiability and chain-rule
     prerequisites.
+22. Normalize both running logarithm ledgers at horizon two, then explain why
+    the target module proves neither a normalized-process theorem nor a limit.
 
-## Reproduce the checked slice
+## Reproduce the chapter without crossing the host boundary
 
-From the repository root, load the pinned Lean toolchain and compile the module
-with warnings treated as errors:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/NormObservables.lean
-~~~
-
-Build the module and its dependencies by library name:
+The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
+Linux host. From the repository root, the page-owned and workstation-safe
+checks are:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.NormObservables
-~~~
-
-Return to the repository root and check the teaching site:
-
-~~~sh
-cd ..
+site/content/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables/generate-card.sh --verify
 make site-check
+git diff --check
 ~~~
 
-The repository-wide technical gate is <code>make check</code>. Passing it does
-not complete human review. This page is published as an open working note while
-mathematical, source, accessibility, and editorial reviews remain pending.
+These commands do not compile the project. The exact target and comparison
+modules import Mathlib, so their checks belong on approved Linux compute:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/NormObservables.lean
+
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
+
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean
+~~~
+
+The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
+This teaching rebuild does not claim that any project module was recompiled on
+the Mac. Passing the technical gates would still leave human mathematical,
+source, accessibility, scientific-integrity, and editorial review pending.
 
 ## Summit: what has and has not been proved
 
@@ -964,6 +1545,10 @@ mathematical, source, accessibility, and editorial reviews remain pending.
 | Extended-real subadditivity across every cocycle split | Checked pointwise |
 | Empty-dimensional norm identically zero | Checked under <code>IsEmpty ι</code> |
 | Empty-dimensional log norm identically bottom | Checked under <code>IsEmpty ι</code> |
+| Real log-positive envelope \(G_k\) | Defined only in the successor <code>LogPlusIntegrability.lean</code> |
+| Integrability of finite \(G_k\) | Proved there only from an explicit one-step hypothesis |
+| Positive-time quotients displayed in this chapter | Computed for the examples; not defined by the target module |
+| Generic real <code>normalizedProcess</code> | Defined much later; not an <code>EReal</code> normalizer |
 | Extended log norm is everywhere an ordinary real value | Not proved and false when a finite value is zero |
 | Probability normalization of the base measure | Not assumed or proved |
 | Ergodicity, mixing, stationarity, or independence | Not assumed or proved |
@@ -972,7 +1557,7 @@ mathematical, source, accessibility, and editorial reviews remain pending.
 | Pushforward law or expectation of either observable | Not defined |
 | Continuity in the base state, moment bounds, or tail estimates | Not proved |
 | Skew-product invariance or product-law factorization | Not stated |
-| Normalized finite-time growth | Not defined |
+| Target-module normalized finite-time growth | Not defined |
 | Subadditive ergodic limit | Not invoked or proved |
 | Lyapunov exponent or spectrum | Not defined or proved |
 | Oseledets invariant splitting | Not invoked or proved |
@@ -981,7 +1566,7 @@ mathematical, source, accessibility, and editorial reviews remain pending.
 | Singular-value, determinant, or spectral-radius formula | Not stated |
 | Norm multiplicativity, log additivity, equality, or lower product-growth bound | Not stated |
 | Comparison with Frobenius or Euclidean spectral norms | Not formalized |
-| Matrix logarithm or the distinct ODE logarithmic norm | Not defined |
+| Matrix logarithm or the distinct ordinary-differential-equation logarithmic norm | Not defined |
 | Nonlinear derivative or random-Jacobian representation | Not connected |
 | Stability, attraction, bifurcation, or chaos theorem | Not claimed |
 
@@ -1035,10 +1620,23 @@ criteria, and unconditional product-to-sum law.
 Mathlib 4 documentation. This official source packages the logarithm as an
 order isomorphism and homeomorphism and proves that it is measurable.
 
+<a id="ref-finite-log-norm-poslog"></a>**Mathlib contributors.**
+[Positive part of the real logarithm](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/SpecialFunctions/Log/PosLog.html),
+Mathlib 4 documentation. This official source defines
+<code>Real.posLog</code> as the maximum of zero and the real logarithm, proves
+its zero policy, nonnegativity, continuity, and product upper bound.
+
+<a id="ref-finite-log-norm-ereal-div"></a>**Mathlib contributors.**
+[Extended-real inversion and division](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/EReal/Inv.html),
+Mathlib 4 documentation. This official source records that bottom divided by a
+positive finite extended real remains bottom. The target module itself defines
+no normalized extended observable.
+
 <a id="ref-finite-log-norm-horn-johnson"></a>**Roger A. Horn and Charles R. Johnson.**
 [Matrix Analysis, second edition](https://www.cambridge.org/highereducation/books/matrix-analysis/FDA3627DC2B9F5C3DF2FD8C3CC136B48),
-Cambridge University Press, 2013, ISBN 978-0-521-54823-6. Chapter 5 develops
-vector norms, induced matrix norms, and submultiplicative product estimates.
+Cambridge University Press, 2013, International Standard Book Number (ISBN)
+978-0-521-54823-6. Chapter 5 develops vector norms, induced matrix norms, and
+submultiplicative product estimates.
 
 <a id="ref-finite-log-norm-kingman"></a>**J. F. C. Kingman.**
 [The ergodic theory of subadditive stochastic processes](https://www.jstor.org/stable/2984534),

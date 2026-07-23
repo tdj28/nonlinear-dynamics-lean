@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:31 PDT
+Last updated: 2026-07-22 20:34 PDT
 
-Audited baseline: `main` at `b254d6e`
+Audited baseline: `main` at `b4f0e27`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **15 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **16 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -358,6 +358,20 @@ and an executed `Std` worksheet make prefix measurability, Mathlib's map
 fallback, raw laws, mass-one evidence, and bundled probability laws distinct.
 The small finite ledger is intentionally local; all exact Mathlib/project
 checks remain on approved Linux cloud compute.
+*Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles* now
+follows two horizon-two paths through the same row-sum norm interface. The
+positive path has product `[[1,1],[0,2]]`, norm `2`, and factor budget `4`;
+two nonzero projection factors on the collapse path multiply to zero, giving
+norm `0` under budget `1`. A second exact ledger separates the real
+log-positive envelope from the `EReal` extended logarithm at norms `2`, `1`,
+`1/2`, and `0`, then normalizes retained information by the actual two-factor
+horizon. Three accessible figures, seven Lean bridges, three guarded project
+checks, the complete fourteen-declaration API, and an independently audited
+local `Std` worksheet expose the ordinary-measurability, zero-divisor,
+positive/empty-dimension, and zero-safe subadditivity boundaries without
+claiming integrability or an asymptotic exponent. The tutorial's partial
+zero-horizon result `none` is explicitly distinguished from the later
+project's totalized normalized process; exact Mathlib checks remain cloud-only.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3245,6 +3259,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `b4f0e27`: rebuild *Measurable Finite Random-Matrix Products and
+  Proof-Carrying Pushforward Laws* around two complete histories, an
+  atom-by-atom product law, collision merging, a numerical dependence witness,
+  seven Lean bridges, and an executed local worksheet.
 - `b254d6e`: rebuild *Generator-Presented One-Sided Discrete Matrix Cocycles*
   around a noninvertible three-state orbit, exact shifted later-block identity,
   two numeric near misses, six Lean bridges, and a local `Std` worksheet.

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="cocycleLedgerTitle cocycleLedgerDesc">
+  <title id="cocycleLedgerTitle">Positive and zero-norm two-step cocycle products</title>
+  <desc id="cocycleLedgerDesc">Two exact paths begin in a four-state base. From p zero, a shear acts first and a diagonal stretch acts second. Their chronological product has rows one one and zero two, norm two, and factor-norm budget four. From z zero, two nonzero coordinate projections act in sequence. Their chronological product is the zero matrix, with norm zero and factor-norm budget one.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .ink{fill:#17283F;font-family:Inter,Arial,Helvetica,sans-serif}
+    .title{font-size:31px;font-weight:700}
+    .sub{font-size:18px;fill:#536172}
+    .head{font-size:20px;font-weight:700;letter-spacing:.4px}
+    .body{font-size:18px}
+    .small{font-size:15px;fill:#536172}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:25px}
+    .matrix{font-family:"STIX Two Text","Times New Roman",serif;font-size:23px}
+    .panelBlue{fill:#E7F0F7;stroke:#527394;stroke-width:2}
+    .panelClay{fill:#F5E5DA;stroke:#B36B3D;stroke-width:2}
+    .paper{fill:#FFFDF8;stroke:#C9BBA7;stroke-width:2}
+    .green{fill:#E8F2E3;stroke:#6C8A5B;stroke-width:2}
+    .bracket{fill:none;stroke:#6D7887;stroke-width:2}
+    .arrow{fill:none;stroke:#B36B3D;stroke-width:3}
+  </style>
+  <defs>
+    <marker id="pathArrow" markerWidth="10" markerHeight="10" refX="9" refY="5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#B36B3D"/>
+    </marker>
+  </defs>
+
+  <text x="52" y="52" class="ink title">One cocycle, one positive path, one exact collapse</text>
+  <text x="52" y="82" class="ink sub">At horizon 2 the first generator acts on the right and the shifted generator acts on the left.</text>
+
+  <rect x="48" y="116" width="540" height="546" rx="20" class="panelBlue"/>
+  <text x="76" y="154" class="ink head">POSITIVE-NORM PATH</text>
+  <circle cx="190" cy="198" r="26" fill="#527394"/>
+  <circle cx="446" cy="198" r="26" fill="#315F55"/>
+  <text x="178" y="205" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700">p0</text>
+  <text x="434" y="205" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700">p1</text>
+  <path d="M220 198 L412 198" class="arrow" marker-end="url(#pathArrow)"/>
+  <text x="304" y="186" class="ink small">base map T</text>
+
+  <rect x="76" y="242" width="214" height="178" rx="14" class="paper"/>
+  <text x="96" y="274" class="ink body">A0 acts first</text>
+  <text x="96" y="318" class="ink math">A0 =</text>
+  <path d="M163 292 h-10 v76 h10 M244 292 h10 v76 h-10" class="bracket"/>
+  <text x="184" y="322" class="ink matrix">1</text>
+  <text x="221" y="322" class="ink matrix">1</text>
+  <text x="184" y="356" class="ink matrix">0</text>
+  <text x="221" y="356" class="ink matrix">1</text>
+  <text x="96" y="397" class="ink small">row sums 2 and 1; norm 2</text>
+
+  <rect x="312" y="242" width="248" height="178" rx="14" class="paper"/>
+  <text x="332" y="274" class="ink body">A1 acts second</text>
+  <text x="332" y="318" class="ink math">A1 =</text>
+  <path d="M399 292 h-10 v76 h10 M480 292 h10 v76 h-10" class="bracket"/>
+  <text x="420" y="322" class="ink matrix">1</text>
+  <text x="457" y="322" class="ink matrix">0</text>
+  <text x="420" y="356" class="ink matrix">0</text>
+  <text x="457" y="356" class="ink matrix">2</text>
+  <text x="332" y="397" class="ink small">row sums 1 and 2; norm 2</text>
+
+  <rect x="76" y="446" width="484" height="184" rx="16" class="green"/>
+  <text x="96" y="480" class="ink head">CHRONOLOGICAL PRODUCT A1 A0</text>
+  <text x="96" y="528" class="ink math">C(2,p0) =</text>
+  <path d="M245 500 h-11 v82 h11 M338 500 h11 v82 h-11" class="bracket"/>
+  <text x="269" y="533" class="ink matrix">1</text>
+  <text x="310" y="533" class="ink matrix">1</text>
+  <text x="269" y="570" class="ink matrix">0</text>
+  <text x="310" y="570" class="ink matrix">2</text>
+  <text x="376" y="526" class="ink body">row sums: 2, 2</text>
+  <text x="376" y="558" class="ink body">norm: 2 ≤ 4</text>
+  <text x="96" y="610" class="ink small">the factor budget is 2 · 2 = 4</text>
+
+  <rect x="612" y="116" width="540" height="546" rx="20" class="panelClay"/>
+  <text x="640" y="154" class="ink head">EXACT-COLLAPSE PATH</text>
+  <circle cx="754" cy="198" r="26" fill="#B36B3D"/>
+  <circle cx="1010" cy="198" r="26" fill="#6C8A5B"/>
+  <text x="742" y="205" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700">z0</text>
+  <text x="998" y="205" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="700">z1</text>
+  <path d="M784 198 L976 198" class="arrow" marker-end="url(#pathArrow)"/>
+  <text x="868" y="186" class="ink small">base map T</text>
+
+  <rect x="640" y="242" width="214" height="178" rx="14" class="paper"/>
+  <text x="660" y="274" class="ink body">B0 acts first</text>
+  <text x="660" y="318" class="ink math">B0 =</text>
+  <path d="M727 292 h-10 v76 h10 M808 292 h10 v76 h-10" class="bracket"/>
+  <text x="748" y="322" class="ink matrix">1</text>
+  <text x="785" y="322" class="ink matrix">0</text>
+  <text x="748" y="356" class="ink matrix">0</text>
+  <text x="785" y="356" class="ink matrix">0</text>
+  <text x="660" y="397" class="ink small">nonzero projection; norm 1</text>
+
+  <rect x="876" y="242" width="248" height="178" rx="14" class="paper"/>
+  <text x="896" y="274" class="ink body">B1 acts second</text>
+  <text x="896" y="318" class="ink math">B1 =</text>
+  <path d="M963 292 h-10 v76 h10 M1044 292 h10 v76 h-10" class="bracket"/>
+  <text x="984" y="322" class="ink matrix">0</text>
+  <text x="1021" y="322" class="ink matrix">0</text>
+  <text x="984" y="356" class="ink matrix">0</text>
+  <text x="1021" y="356" class="ink matrix">1</text>
+  <text x="896" y="397" class="ink small">nonzero projection; norm 1</text>
+
+  <rect x="640" y="446" width="484" height="184" rx="16" class="paper"/>
+  <text x="660" y="480" class="ink head">CHRONOLOGICAL PRODUCT B1 B0</text>
+  <text x="660" y="528" class="ink math">C(2,z0) =</text>
+  <path d="M809 500 h-11 v82 h11 M902 500 h11 v82 h-11" class="bracket"/>
+  <text x="833" y="533" class="ink matrix">0</text>
+  <text x="874" y="533" class="ink matrix">0</text>
+  <text x="833" y="570" class="ink matrix">0</text>
+  <text x="874" y="570" class="ink matrix">0</text>
+  <text x="940" y="526" class="ink body">row sums: 0, 0</text>
+  <text x="940" y="558" class="ink body">norm: 0 ≤ 1</text>
+  <text x="660" y="610" class="ink small">nonzero factors can have a zero product</text>
+
+  <rect x="48" y="686" width="1104" height="46" rx="13" class="paper"/>
+  <text x="76" y="716" class="ink body">Pointwise result: N2(p0) = 2, while N2(z0) = 0. Probability weights are not used in either calculation.</text>
+</svg>
