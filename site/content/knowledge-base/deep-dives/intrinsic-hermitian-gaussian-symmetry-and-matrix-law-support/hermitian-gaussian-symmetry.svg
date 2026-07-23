@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="820" height="590"
      viewBox="0 0 820 590" role="img"
      aria-labelledby="hermitianSymmetryTitle hermitianSymmetryDesc">
-  <title id="hermitianSymmetryTitle">Two checked RMT-07 paths and the unproved RMT-08 bridge</title>
-  <desc id="hermitianSymmetryDesc">The upper path starts with the existing coordinate Gaussian law, applies measurable Hermitian assembly, and proves the resulting ambient matrix law has mass one on the Hermitian set. The lower path equips Hermitian matrices with Frobenius Euclidean geometry, proves unitary congruence is a real linear isometry, and therefore proves the intrinsic standard Gaussian is invariant. A dashed bridge from the coordinate matrix law to a scaled intrinsic standard Gaussian is explicitly reserved for RMT-08.</desc>
+  <title id="hermitianSymmetryTitle">Two checked random-matrix-theory milestone 07 paths and its comparison boundary</title>
+  <desc id="hermitianSymmetryDesc">The upper path starts with the existing coordinate Gaussian law, applies measurable Hermitian assembly, and proves the resulting ambient matrix law has mass one on the Hermitian set. The lower path equips Hermitian matrices with Frobenius Euclidean geometry, proves unitary congruence is a real linear isometry, and therefore proves the intrinsic standard Gaussian is invariant. A dashed comparison from the coordinate matrix law to a scaled intrinsic standard Gaussian is not proved by the milestone 07 module shown here; the subsequent milestone 08 now proves it.</desc>
   <rect width="820" height="590" fill="#F7F4F0"/>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
@@ -23,12 +23,13 @@
   </defs>
 
   <text x="24" y="30" class="t title">Support and intrinsic symmetry are checked separately</text>
-  <text x="24" y="50" class="t m">The dashed comparison theorem is the exact missing bridge to invariance of the coordinate-built matrix law.</text>
+  <text x="24" y="50" class="t m">At milestone 07, the dashed comparison was the missing bridge to invariance of the coordinate-built matrix law.</text>
 
   <rect x="24" y="78" width="186" height="92" rx="12" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="117" y="106" text-anchor="middle" class="t h">RMT-06 COORDINATE LAW</text>
-  <text x="117" y="133" text-anchor="middle" class="t s">independent Gaussian</text>
-  <text x="117" y="153" text-anchor="middle" class="t s">free entries</text>
+  <text x="117" y="101" text-anchor="middle" class="t h">MILESTONE 06</text>
+  <text x="117" y="120" text-anchor="middle" class="t h">COORDINATE LAW</text>
+  <text x="117" y="143" text-anchor="middle" class="t s">independent Gaussian</text>
+  <text x="117" y="159" text-anchor="middle" class="t s">free entries</text>
 
   <path d="M212 124 L248 124" fill="none" stroke="#A67C52" stroke-width="2" marker-end="url(#symmetryArrow)"/>
   <rect x="254" y="78" width="224" height="92" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
@@ -68,9 +69,9 @@
   <path d="M796 170 C812 280,812 414,500 448" fill="none" stroke="#8A837A" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#futureArrow)"/>
   <path d="M676 352 C676 420,523 418,380 448" fill="none" stroke="#8A837A" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#futureArrow)"/>
   <rect x="210" y="450" width="400" height="92" rx="12" fill="#EFEDE9" stroke="#8A837A" stroke-width="1.5" stroke-dasharray="7 5"/>
-  <text x="410" y="478" text-anchor="middle" class="t h">RMT-08 COMPARISON BRIDGE: NOT YET CHECKED</text>
+  <text x="410" y="478" text-anchor="middle" class="t h">COMPARISON BRIDGE: NOT IN MILESTONE 07</text>
   <text x="410" y="505" text-anchor="middle" class="t s">coordinate-built law must match the scaled intrinsic Gaussian</text>
-  <text x="410" y="527" text-anchor="middle" class="t m">then invariance of the actual GUE matrix law can be transported</text>
+  <text x="410" y="527" text-anchor="middle" class="t m">then invariance of the coordinate-built ensemble law can be transported</text>
 
-  <text x="24" y="574" class="t m">RMT-07 proves geometry, support, and intrinsic symmetry, not a density, coordinate-law equivalence, or GUE matrix-law invariance.</text>
+  <text x="24" y="574" class="t m">Milestone 07: geometry, support, and intrinsic symmetry. No density or ensemble-law invariance.</text>
 </svg>

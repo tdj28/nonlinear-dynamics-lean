@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620" role="img" aria-labelledby="lawTitle lawDesc">
+  <title id="lawTitle">Hermitian support does not imply invariance of a probability law</title>
+  <desc id="lawDesc">Permutation congruence swaps two distinct Hermitian matrices H and H prime. A Dirac law has weights one and zero on those two points, which become zero and one after the swap, so the law changes even though all mass remains Hermitian. A balanced two-point law has weights one half and one half before and after the swap, so it is invariant under this permutation although each sampled matrix changes. This finite law is not an intrinsic Gaussian and does not prove invariance under every unitary matrix.</desc>
+  <rect width="960" height="620" fill="#F7F1E7"/>
+  <style>
+    .text{font-family:Inter,Arial,Helvetica,sans-serif;fill:#18283C}
+    .title{font-size:22px;font-weight:700}.head{font-size:15px;font-weight:700}
+    .body{font-size:14px}.small{font-size:12px}.muted{font-size:12px;fill:#4C5968}
+    .panel{fill:#FFFDF8;stroke:#B9AA98;stroke-width:1.5}
+    .blue{fill:#E7F0F7;stroke:#4C6E91;stroke-width:1.5}
+    .orange{fill:#F5E8DB;stroke:#A75D26;stroke-width:1.5}
+    .green{fill:#E8F1E3;stroke:#557B4C;stroke-width:1.6}
+    .arrow{fill:none;stroke:#59697A;stroke-width:2;marker-end:url(#lawArrow)}
+  </style>
+  <defs>
+    <marker id="lawArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#59697A"/>
+    </marker>
+  </defs>
+
+  <text x="28" y="36" class="text title">Support asks where mass lives; invariance asks how weights move</text>
+  <text x="28" y="59" class="text muted">Exact two-point toy laws on the Hermitian matrices H and H' from the running example.</text>
+
+  <rect x="28" y="84" width="904" height="105" rx="14" class="blue"/>
+  <text x="52" y="114" class="text head">The permutation congruence swaps the two points</text>
+  <rect x="250" y="130" width="136" height="42" rx="9" class="panel"/>
+  <text x="318" y="157" text-anchor="middle" class="text body">H: top-left 1</text>
+  <path d="M392 151 L560 151" class="arrow"/>
+  <rect x="566" y="130" width="154" height="42" rx="9" class="panel"/>
+  <text x="643" y="157" text-anchor="middle" class="text body">H': top-left 3</text>
+  <text x="744" y="157" class="text small">and applying it again returns H</text>
+
+  <rect x="28" y="216" width="904" height="148" rx="14" class="orange"/>
+  <text x="52" y="246" class="text head">Nonexample: Dirac law at H</text>
+  <text x="52" y="271" class="text body">before swap: weights on (H, H') = (1, 0)</text>
+  <path d="M370 292 L558 292" class="arrow"/>
+  <text x="52" y="312" class="text body">after swap:</text>
+  <text x="572" y="297" class="text body">weights on (H, H') = (0, 1)</text>
+  <text x="52" y="342" class="text small">Hermitian support before and after: mass 1. Law invariant: no, because (1,0) != (0,1).</text>
+
+  <rect x="28" y="391" width="904" height="148" rx="14" class="green"/>
+  <text x="52" y="421" class="text head">Comparison: balanced two-point law</text>
+  <text x="52" y="446" class="text body">before swap: weights on (H, H') = (1/2, 1/2)</text>
+  <path d="M370 467 L558 467" class="arrow"/>
+  <text x="52" y="487" class="text body">after swap:</text>
+  <text x="572" y="472" class="text body">weights on (H, H') = (1/2, 1/2)</text>
+  <text x="52" y="517" class="text small">Every point moves, but the law is unchanged under this one permutation because the weights are exchanged equally.</text>
+
+  <rect x="118" y="559" width="724" height="39" rx="10" class="panel"/>
+  <text x="144" y="583" class="text small">Boundary: this balanced finite law is not Gaussian and is not claimed invariant under every unitary congruence.</text>
+</svg>

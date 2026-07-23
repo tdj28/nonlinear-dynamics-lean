@@ -2,17 +2,17 @@
 title: "Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support"
 slug: "intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support"
 date: 2026-07-21
-summary: "A textbook ascent through Frobenius matrix geometry, the Hermitian real Euclidean subspace, unitary-congruence isometries, intrinsic standard-Gaussian symmetry, and mass-one support of the coordinate-built Gaussian unitary ensemble law."
-lead: "RMT-07 proves two strong theorems on parallel tracks and makes the unproved bridge between them impossible to mistake."
+summary: "An exact two-by-two congruence calculation grows into intrinsic Hermitian Euclidean geometry, Gaussian isometry symmetry, and the precise difference between Hermitian support and invariance of a matrix law."
+lead: "Swap the coordinates of one concrete Hermitian matrix, verify every invariant by hand, then learn why a changed sample can coexist with an unchanged probability law."
 draft: false
 pro_reviewed: false
 level: "Finite matrix probability through Euclidean Gaussian symmetry"
-reading_time: "65 to 85 minutes"
-prerequisites: "Hermitian matrices, finite-dimensional inner products, pushforward measures, and the coordinate-built Gaussian unitary ensemble law; each is reviewed before use"
+reading_time: "80 to 105 minutes"
+prerequisites: "Complex conjugation and two-by-two matrix multiplication; Hermitian matrices, probability laws, support, Euclidean geometry, and Gaussianity are introduced or linked when needed"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry"
 toc: true
 og_image: "intrinsic-hermitian-gaussian-symmetry-card.png"
-og_image_alt: "Frobenius Euclidean geometry restricts to the Hermitian real subspace, unitary congruence becomes an isometry, and the intrinsic standard Gaussian is invariant; separately, the coordinate-built matrix law has Hermitian support, while the comparison bridge remains for RMT-08."
+og_image_alt: "A two-by-two Hermitian matrix reconstructed from coordinates changes under coordinate-swap congruence, while Hermiticity, trace four, and squared Frobenius norm twenty remain unchanged."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -29,9 +29,203 @@ received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
 
+## Base camp: one matrix you can audit entry by entry
+
+Start with four real coordinates:
+
+\[
+d_0=1,\qquad d_1=3,\qquad x=1,\qquad y=2.
+\]
+
+The two diagonal coordinates are real. The complex strict-upper coordinate is
+
+\[
+z=x+iy=1+2i.
+\]
+
+The {{< refterm "hermitian-matrix" "Hermitian" >}} reconstruction reflects
+that entry across the diagonal and takes its complex conjugate:
+
+\[
+H=
+\begin{bmatrix}
+1 & 1+2i\\
+1-2i & 3
+\end{bmatrix}.
+\]
+
+The {{< refterm "conjugate-transpose" "conjugate transpose" >}} \(H^*\)
+transposes the entries and conjugates each one. The diagonal entries remain
+\(1\) and \(3\), and
+
+\[
+\overline{1+2i}=1-2i.
+\]
+
+Therefore \(H^*=H\). That equality is the definition of Hermiticity.
+
+### Act by a concrete unitary permutation
+
+Let
+
+\[
+P=
+\begin{bmatrix}
+0&1\\
+1&0
+\end{bmatrix}.
+\]
+
+The matrix \(P\) swaps the two coordinate axes. It is real and symmetric, so
+\(P^*=P\), and direct multiplication gives
+
+\[
+P^*P=P^2=
+\begin{bmatrix}
+1&0\\
+0&1
+\end{bmatrix}.
+\]
+
+A matrix satisfying \(P^*P=PP^*=I\) is **unitary**. Its **congruence action**
+on a matrix \(X\) is the two-sided map
+
+\[
+C_P(X)=PXP^*.
+\]
+
+Multiply the running example in two visible steps:
+
+\[
+PH=
+\begin{bmatrix}
+1-2i&3\\
+1&1+2i
+\end{bmatrix},
+\qquad
+H'=PHP^*=
+\begin{bmatrix}
+3&1-2i\\
+1+2i&1
+\end{bmatrix}.
+\]
+
+The sample changed: \(H'\ne H\), already because the upper-left entries are
+\(3\) and \(1\). But \(H'\) is still Hermitian because its lower-left entry is
+the conjugate of its upper-right entry.
+
+### Verify trace and Frobenius geometry numerically
+
+The {{< refterm "matrix-trace" "trace" >}} is the sum of diagonal entries:
+
+\[
+\operatorname{Tr}(H)=1+3=4,
+\qquad
+\operatorname{Tr}(H')=3+1=4.
+\]
+
+The squared {{< refterm "hermitian-frobenius-geometry" "Frobenius norm" >}}
+is the sum of squared entry magnitudes. Because
+
+\[
+|1+2i|^2=|1-2i|^2=1^2+2^2=5,
+\]
+
+we obtain
+
+\[
+\begin{aligned}
+\lVert H\rVert_F^2&=1+5+5+9=20,\\
+\lVert H'\rVert_F^2&=9+5+5+1=20.
+\end{aligned}
+\]
+
+The intrinsic real coordinate vectors make the same norm visible:
+
+\[
+q=(1,3,\sqrt2,2\sqrt2),
+\qquad
+q'=(3,1,\sqrt2,-2\sqrt2).
+\]
+
+Both have squared Euclidean norm
+
+\[
+1^2+3^2+(\sqrt2)^2+(2\sqrt2)^2=1+9+2+8=20.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="two-by-two-hermitian-congruence-ledger.svg"
+  alt="Coordinates one, three, and one plus two i reconstruct a Hermitian matrix; coordinate-swap congruence produces a different Hermitian matrix while both traces remain four and both squared Frobenius norms remain twenty."
+  caption="**Finding:** the exact coordinates \(d_0=1,d_1=3,z=1+2i\) reconstruct \(H\). Congruence by the coordinate-swap permutation produces the distinct matrix \(H'\), with top-left entry \(3\) instead of \(1\). Both matrices remain Hermitian, both have trace \(4\), and both have squared Frobenius norm \(20\). The intrinsic vectors \(q=(1,3,\sqrt2,2\sqrt2)\) and \(q'=(3,1,\sqrt2,-2\sqrt2)\) expose the same norm preservation. These are exact toy values, not Gaussian samples."
+>}}
+
+## Pointwise change is not law change
+
+A {{< refterm "probability-law" "probability law" >}} assigns probability
+mass to measurable sets of possible matrices. If \(T=C_P\) is the congruence
+map, law invariance means the exact {{< refterm "pushforward-measure"
+"pushforward" >}} equality
+
+\[
+T_*\mu=\mu.
+\]
+
+This does **not** say \(T(H)=H\) for every sample. The running example proves
+the opposite: \(T(H)=H'\ne H\). An invariant law may redistribute individual
+points while leaving the total probability of every measurable event
+unchanged.
+
+### Support alone does not imply invariance
+
+The **support claim used in this chapter** is the mass-one statement that a law
+assigns probability \(1\) to the measurable Hermitian subset of ambient matrix
+space. It says where the law lives, not how its mass is arranged there.
+
+Consider the deterministic Dirac law \(\delta_H\), which places all mass on the
+single matrix \(H\). It has Hermitian mass one. Yet
+
+\[
+T_*\delta_H=\delta_{H'}\ne\delta_H.
+\]
+
+For the measurable event \(\{H\}\), the original law gives mass \(1\), while
+the pushed law gives mass \(0\). A singleton is closed, hence Borel-measurable,
+in this finite-dimensional matrix space. Hermitian support has survived, but
+invariance has failed.
+
+For comparison, take the balanced two-point law
+
+\[
+\mu_{\mathrm{pair}}=\frac12\delta_H+\frac12\delta_{H'}.
+\]
+
+Because applying \(T\) swaps \(H\) and \(H'\), the two weights are exchanged:
+
+\[
+T_*\mu_{\mathrm{pair}}
+=\frac12\delta_{H'}+\frac12\delta_H
+=\mu_{\mathrm{pair}}.
+\]
+
+Every sampled point moves, but this law is unchanged under this one
+permutation. The balanced two-point law is not Gaussian and is not claimed to
+be invariant under every unitary congruence.
+
+{{< reference-figure
+  wide="true"
+  src="support-versus-swap-invariance.svg"
+  alt="A Dirac law with weights one and zero on two Hermitian matrices becomes weights zero and one after permutation and is not invariant, while balanced half weights remain unchanged even though the two matrices swap."
+  caption="**Finding:** both toy laws assign total mass \(1\) to Hermitian matrices. The Dirac weights \((1,0)\) become \((0,1)\), so support does not imply invariance. Balanced weights \((1/2,1/2)\) remain \((1/2,1/2)\), even though every point is exchanged. This proves invariance only for the displayed permutation on this finite two-point law. It makes no Gaussian or all-unitary claim."
+>}}
+
+With the sample-versus-law distinction fixed numerically, we can climb to the
+intrinsic Euclidean carrier and Mathlib's standard Gaussian.
+
 The seventh random-matrix-theory milestone (RMT-07) supplies the geometry that
 the name *Gaussian unitary ensemble* had been promising but that the earlier
-coordinate construction did not yet prove. It equips finite complex matrices
+coordinate construction had not proved. It equips finite complex matrices
 with their Frobenius Euclidean structure, cuts out the Hermitian matrices as a
 real Euclidean subspace, proves that unitary congruence acts by real linear
 isometries there, and invokes Mathlib's isometry theorem to show that the
@@ -46,7 +240,7 @@ Those are substantial results. They still do not prove that the
 coordinate-built Gaussian unitary ensemble (GUE) matrix law is unitarily
 invariant. That final implication needs a comparison theorem identifying the
 coordinate law with a scaled intrinsic standard Gaussian. RMT-07 exposes the
-two endpoints of that comparison; RMT-08 must build the bridge.
+two endpoints of that comparison and leaves the bridge to RMT-08.
 
 {{< panel "info" >}}
 **Subsequent milestone.** RMT-08 now builds that normalized-coordinate
@@ -60,7 +254,8 @@ The remainder of this chapter preserves the exact boundary visible at RMT-07.
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [Two paths, one missing bridge](#two-paths-one-missing-bridge) | Separate support from intrinsic symmetry |
+| First encounter | [One auditable matrix](#base-camp-one-matrix-you-can-audit-entry-by-entry) | Reconstruct, conjugate, and verify the (n=2) ledger |
+| Law route | [Pointwise change is not law change](#pointwise-change-is-not-law-change) | Separate Hermitian support from measure invariance |
 | Geometry route | [Package matrices as Euclidean vectors](#camp-two-package-matrices-as-euclidean-vectors) | Recover the trace inner product and Frobenius norm |
 | Factor-two route | [Read the Hermitian metric in free coordinates](#camp-four-read-the-hermitian-metric-in-free-coordinates) | Derive the square-root-of-two orthonormal rescaling |
 | Symmetry route | [Unitary congruence in the ambient space](#camp-five-unitary-congruence-in-the-ambient-space) | Follow congruence to an intrinsic real isometry |
@@ -73,30 +268,38 @@ The remainder of this chapter preserves the exact boundary visible at RMT-07.
 
 By the summit, you should be able to:
 
-1. distinguish an ambient matrix, an ambient Frobenius vector, an intrinsic
+1. reconstruct the running \(2\times2\) Hermitian matrix from its free
+   coordinates and compute its permutation congruence;
+2. verify Hermiticity, trace (4), squared Frobenius norm (20), and
+   pointwise change in that exact example;
+3. distinguish a moved sample from an invariant probability law;
+4. use the Dirac nonexample to show why Hermitian support does not imply
+   invariance;
+5. distinguish an ambient matrix, an ambient Frobenius vector, an intrinsic
    Hermitian vector, and the Hermitian subset of matrix space;
-2. explain why Hermitian matrices form a real rather than complex subspace;
-3. derive \(\langle X,Y\rangle_F=\operatorname{Tr}(X^*Y)\);
-4. derive the factor of two in the Hermitian Frobenius norm;
-5. identify \(d_i,\sqrt2 x_{ij},\sqrt2 y_{ij}\) as the natural real
+6. explain why Hermitian matrices form a real rather than complex subspace;
+7. derive \(\langle X,Y\rangle_F=\operatorname{Tr}(X^*Y)\);
+8. derive the factor of two in the Hermitian Frobenius norm;
+9. identify \(d_i,\sqrt2 x_{ij},\sqrt2 y_{ij}\) as the natural real
    orthonormal coordinates;
-6. prove on paper that \(X\mapsto UXU^*\) has inverse
+10. prove on paper that \(X\mapsto UXU^*\) has inverse
    \(X\mapsto U^*XU\) when \(U\) is unitary;
-7. explain why cyclicity of trace turns that equivalence into an isometry;
-8. explain why congruence restricts to the Hermitian subspace;
-9. state Mathlib's intrinsic standard-Gaussian isometry theorem;
-10. separate intrinsic Gaussian invariance from invariance of an independently
+11. explain why cyclicity of trace turns that equivalence into an isometry;
+12. explain why congruence restricts to the Hermitian subspace;
+13. state Mathlib's intrinsic standard-Gaussian isometry theorem;
+14. separate intrinsic Gaussian invariance from invariance of an independently
     constructed coordinate law;
-11. prove that a pushforward through a pointwise Hermitian map has Hermitian
+15. prove that a pushforward through a pointwise Hermitian map has Hermitian
     support; and
-12. state the scaled-measure comparison that RMT-08 must prove.
+16. state the scaled-measure comparison that was still required at the RMT-07
+    stopping point and is proved in RMT-08.
 
-## Two paths, one missing bridge
+## Two paths and the bridge missing at RMT-07
 
 {{< reference-figure
   src="hermitian-gaussian-symmetry.svg"
-  alt="The upper checked path sends the RMT-06 independent Gaussian coordinate law through measurable Hermitian assembly and proves the resulting ambient matrix law has Hermitian support. The lower checked path equips matrices with Frobenius geometry, restricts unitary congruence to a real isometry of the Hermitian subspace, and proves intrinsic standard Gaussian invariance. Dashed arrows meet at an RMT-08 comparison bridge that is not yet checked."
-  caption="**Finding:** RMT-07 proves support of the existing matrix law and symmetry of an intrinsic Hermitian Gaussian, but these are different measures presented on different spaces. The dashed comparison (coordinate-built GUE equals a scaled intrinsic Gaussian after the relevant transport) is the precise RMT-08 obligation. No density or Jacobian argument is smuggled across that gap."
+  alt="At the RMT-07 stopping point, the upper checked path sends the RMT-06 independent Gaussian coordinate law through measurable Hermitian assembly and proves the resulting ambient matrix law has Hermitian support. The lower checked path equips matrices with Frobenius geometry, restricts unitary congruence to a real isometry of the Hermitian subspace, and proves intrinsic standard Gaussian invariance. Dashed arrows mark the comparison bridge absent from the RMT-07 module; the subsequent RMT-08 milestone now checks that bridge."
+  caption="**Finding:** within the RMT-07 module, support of the existing matrix law and symmetry of an intrinsic Hermitian Gaussian are proved for different measures presented on different spaces. The dashed comparison (coordinate-built GUE equals a scaled intrinsic Gaussian after the relevant transport) records the precise obligation that was missing at this stopping point and is now discharged by RMT-08. No density or Jacobian argument is smuggled across the historical module boundary."
 >}}
 
 The upper path begins with the RMT-06 coordinate probability measure
@@ -120,7 +323,7 @@ by a real linear isometry. Mathlib's intrinsic standard Gaussian
 (C_U)_*\gamma_n=\gamma_n.
 \]
 
-RMT-07 does not prove \(\mu_n=\gamma_n\), and the equality would in any case
+The RMT-07 module does not prove \(\mu_n=\gamma_n\), and the equality would in any case
 miss the Wigner scale. The expected statement uses the scalar
 \(\sqrt{s_n}\), where \(s_n\) is the RMT-06 variance scale, plus the map that
 forgets the intrinsic Hermitian subtype and returns an ordinary matrix.
@@ -128,8 +331,9 @@ forgets the intrinsic Hermitian subtype and returns an ordinary matrix.
 {{< checkpoint stage="Orientation" title="Do not join the paths early" >}}
 Support says where \(\mu_n\) lives. Intrinsic symmetry says what unitary
 isometries do to \(\gamma_n\). Neither statement identifies \(\mu_n\) with
-\(\gamma_n\). RMT-08 must provide that comparison before the project can claim
-unitary invariance of <code>GUE.matrixLaw</code>.
+\(\gamma_n\). At the RMT-07 stopping point, that comparison was still required
+before the project could claim unitary invariance of
+<code>GUE.matrixLaw</code>; RMT-08 now provides it.
 {{< /checkpoint >}}
 
 ## Base camp: four related spaces
@@ -550,7 +754,7 @@ structure and the module structure expected by the theorem. It changes no
 mathematics: the map remains the same real linear isometry, and the conclusion
 remains exact equality of measures.
 
-## Camp eight: the exact RMT-08 bridge
+## Camp eight: the bridge absent from RMT-07
 
 Let \(s_n\) be the RMT-06 variance scale: \(s_0=0\) and \(s_n=1/n\) for
 positive \(n\). Let
@@ -561,18 +765,20 @@ S_n(H)=\sqrt{s_n}\,H
 
 on \(\mathcal H_n\), and let
 \(J_n:\mathcal H_n\to\mathcal M_n\) forget the subtype and Euclidean
-packaging. The intended comparison has the schematic form
+packaging. At the RMT-07 stopping point, the required comparison had the
+schematic form
 
 \[
 \boxed{
 \mu_n=(J_n)_*\bigl((S_n)_*\operatorname{stdGaussian}(\mathcal H_n)\bigr)}.
 \]
 
-Depending on the final Lean API, RMT-08 may state the equality first on the
-coordinate space, first on \(\mathcal H_n\), or directly in ambient matrix
-space. The invariant mathematical content is the same: the diagonal and the
+Several Lean interfaces could express that equality: first on coordinate
+space, first on \(\mathcal H_n\), or directly in ambient matrix space. The
+invariant mathematical content is the same: the diagonal and the
 square-root-of-two-rescaled upper coordinates must become independent centered
-Gaussians of common variance \(s_n\).
+Gaussians of common variance \(s_n\). RMT-08 subsequently chooses and checks a
+normalized-coordinate route; its linked chapter audits that later module.
 
 Once this equality is checked, unitary invariance of \(\mu_n\) follows because
 scalar multiplication commutes with unitary congruence and the intrinsic
@@ -589,10 +795,11 @@ standard Gaussian is invariant. Schematically,
 \]
 
 Every equality in that chain needs the relevant measurable-map composition or
-commutation lemma. RMT-07 supplies the third equality. It does not supply the
-first comparison, so the full chain is not yet a checked project theorem.
+commutation lemma. RMT-07 supplies the third equality but not the first
+comparison, so the full chain is not a theorem of the RMT-07 module. The
+subsequent RMT-08 module checks the missing comparison and transport.
 
-### What RMT-08 must not hide
+### What the next milestone had to make visible
 
 A trustworthy comparison should make all of the following visible:
 
@@ -610,6 +817,317 @@ Invoking a familiar density is not a substitute. A density would require a
 chosen Lebesgue measure on \(\mathcal H_n\), a volume normalization, and a
 Jacobian calculation. The coordinate-to-intrinsic product-measure route can
 prove the comparison without introducing that extra layer.
+
+## In Lean: six bridges from entries to measure equality
+
+Each bridge pairs a sentence a mathematician would say, the paper statement,
+the exact Lean spelling, and a token map. Together they separate representation,
+geometry, subtype preservation, measurability, Gaussian symmetry, and support.
+
+### Bridge 1: flattening does not change an entry
+
+{{< lean-bridge
+  human="Package an ordinary matrix as a Frobenius vector and immediately restore it; the original matrix returns exactly."
+  math="\(F^{-1}(F(A))=A.\)"
+  lean="frobeniusToMatrix (matrixToFrobenius A) = A"
+>}}
+
+- <code>matrixToFrobenius A</code> stores the \(n^2\) entries in Mathlib's
+  finite \(L^2\) Euclidean carrier.
+- <code>frobeniusToMatrix</code> reads those entries back as an ordinary square
+  matrix.
+- The checked theorem
+  <code>frobeniusToMatrix_matrixToFrobenius</code> proves the equality by
+  definitional reduction. It does not alter a probability law or impose
+  Hermiticity.
+{{< /lean-bridge >}}
+
+### Bridge 2: the Euclidean inner product is a trace
+
+{{< lean-bridge
+  human="The Frobenius inner product of x and y equals the trace of the conjugate transpose of X times Y."
+  math="\(\langle x,y\rangle_{\mathbb C}=\operatorname{Tr}(X^*Y).\)"
+  lean="inner_frobenius_eq_trace x y"
+>}}
+
+- <code>inner ℂ x y</code> is the complex inner product on
+  <code>FrobeniusMatrix n</code>.
+- <code>frobeniusToMatrix x</code> and <code>frobeniusToMatrix y</code> are the
+  ordinary matrices \(X\) and \(Y\).
+- <code>ᴴ</code> is Lean's postfix conjugate-transpose notation.
+- <code>Matrix.trace</code> sums the diagonal after matrix multiplication.
+- The theorem is geometric algebra. It contains no Gaussian or support claim.
+{{< /lean-bridge >}}
+
+### Bridge 3: congruence stays inside the Hermitian carrier
+
+{{< lean-bridge
+  human="If x carries a proof of Hermiticity, then U x U star carries one too."
+  math="\(H=H^*\Longrightarrow(UHU^*)^*=UHU^*.\)"
+  lean="hermitianCongruence U x : HermitianEuclidean n"
+>}}
+
+- <code>x : HermitianEuclidean n</code> contains a Frobenius vector and a proof
+  that its matrix is Hermitian.
+- <code>hermitianCongruence U x</code> returns the same subtype, so its result
+  includes the new Hermiticity proof.
+- This constructor is defined for every square \(U\). Unitarity is needed only
+  when the action is bundled as an invertible isometry.
+- The compatibility theorem
+  <code>hermitianToMatrix_hermitianCongruence</code> says forgetting the subtype
+  exposes exactly the ambient map \(H\mapsto UHU^*\).
+{{< /lean-bridge >}}
+
+### Bridge 4: unitary congruence is a measurable real isometry
+
+{{< lean-bridge
+  human="For unitary U, congruence is an invertible real-linear isometry of intrinsic Hermitian space."
+  math="\(C_U:\mathcal H_n\simeq_{\mathbb R}^{\mathrm{iso}}\mathcal H_n.\)"
+  lean="hermitianUnitaryCongruenceLinearIsometryEquiv U"
+>}}
+
+- <code>U : Matrix.unitaryGroup (Fin n) ℂ</code> bundles both unitary
+  identities.
+- <code>≃ₗᵢ[ℝ]</code>, visible in the declaration's type, means a real-linear
+  isometric equivalence.
+- The scalar is \(\mathbb R\), not \(\mathbb C\), because multiplying a
+  nonzero Hermitian matrix by \(i\) usually destroys Hermiticity.
+- A linear isometry is continuous. On these finite-dimensional Borel spaces it
+  is measurable, which is the transport interface used by the Gaussian map
+  theorem. The module does not add a redundant standalone measurability theorem
+  for this bundled map.
+{{< /lean-bridge >}}
+
+### Bridge 5: the intrinsic standard Gaussian law is invariant
+
+{{< lean-bridge
+  human="Push the intrinsic standard Gaussian through unitary congruence; the probability measure is unchanged."
+  math="\((C_U)_*\gamma_n=\gamma_n.\)"
+  lean="map_stdGaussian_hermitianUnitaryCongruence U"
+>}}
+
+The exact conclusion is:
+
+~~~lean
+(stdGaussian (HermitianEuclidean n)).map
+    (hermitianUnitaryCongruenceLinearIsometryEquiv U) =
+  stdGaussian (HermitianEuclidean n)
+~~~
+
+- <code>stdGaussian (HermitianEuclidean n)</code> is Mathlib's canonical
+  Gaussian on the real inner-product carrier.
+- <code>.map</code> is pushforward by the displayed isometry.
+- Equality is equality of measures, not equality of individual matrices.
+- This theorem concerns the intrinsic standard Gaussian. It is not, by itself,
+  a theorem about <code>GUE.matrixLaw</code>; the subsequent RMT-08 module adds
+  the required comparison and transport.
+{{< /lean-bridge >}}
+
+### Bridge 6: the ambient matrix law has Hermitian mass one
+
+{{< lean-bridge
+  human="The coordinate-built matrix law assigns probability one to the measurable set of Hermitian matrices."
+  math="\(\mu_n(\operatorname{Herm}_n)=1.\)"
+  lean="GUE.matrixLaw_hermitianSet n"
+>}}
+
+- <code>GUE.matrixLaw n</code> is a measure on all complex \(n\times n\)
+  matrices.
+- <code>RandomMatrix.hermitianSet n</code> is a measurable subset of that
+  ambient type, not the intrinsic subtype.
+- The companion theorem <code>GUE.matrixLaw_ae_isHermitian n</code> says the
+  sampled ambient matrix is Hermitian almost everywhere.
+- <code>GUE.matrixLaw_compl_hermitianSet n</code> gives complement mass zero.
+- None of the three support forms specifies how mass is distributed inside the
+  Hermitian set.
+{{< /lean-bridge >}}
+
+### Try it locally: execute the two-by-two ledger
+
+The exact project matrix type belongs to Mathlib, so the laptop worksheet uses
+a small pair of integers for each complex entry and four fields for a
+two-by-two matrix. It checks the same multiplication and weight bookkeeping
+without entering the project. Save this as
+`/tmp/HermitianCongruenceTutorial.lean`:
+
+~~~lean
+import Std
+
+namespace HermitianCongruenceTutorial
+
+structure CInt where
+  re : Int
+  im : Int
+  deriving DecidableEq, Repr
+
+def cAdd (z w : CInt) : CInt :=
+  ⟨z.re + w.re, z.im + w.im⟩
+
+def cMul (z w : CInt) : CInt :=
+  ⟨z.re * w.re - z.im * w.im,
+   z.re * w.im + z.im * w.re⟩
+
+def cConj (z : CInt) : CInt :=
+  ⟨z.re, -z.im⟩
+
+def normSq (z : CInt) : Int :=
+  z.re * z.re + z.im * z.im
+
+structure Matrix2 where
+  a00 : CInt
+  a01 : CInt
+  a10 : CInt
+  a11 : CInt
+  deriving DecidableEq, Repr
+
+def entries (A : Matrix2) : List (Int × Int) :=
+  [⟨A.a00.re, A.a00.im⟩, ⟨A.a01.re, A.a01.im⟩,
+   ⟨A.a10.re, A.a10.im⟩, ⟨A.a11.re, A.a11.im⟩]
+
+def mmul (A B : Matrix2) : Matrix2 :=
+  ⟨cAdd (cMul A.a00 B.a00) (cMul A.a01 B.a10),
+   cAdd (cMul A.a00 B.a01) (cMul A.a01 B.a11),
+   cAdd (cMul A.a10 B.a00) (cMul A.a11 B.a10),
+   cAdd (cMul A.a10 B.a01) (cMul A.a11 B.a11)⟩
+
+def conjTranspose (A : Matrix2) : Matrix2 :=
+  ⟨cConj A.a00, cConj A.a10, cConj A.a01, cConj A.a11⟩
+
+def congruence (U H : Matrix2) : Matrix2 :=
+  mmul (mmul U H) (conjTranspose U)
+
+def isHermitian (A : Matrix2) : Bool :=
+  A.a00.im == 0 && A.a11.im == 0 && A.a10 == cConj A.a01
+
+def trace (A : Matrix2) : CInt :=
+  cAdd A.a00 A.a11
+
+def frobeniusSq (A : Matrix2) : Int :=
+  normSq A.a00 + normSq A.a01 + normSq A.a10 + normSq A.a11
+
+def H : Matrix2 :=
+  ⟨⟨1, 0⟩, ⟨1, 2⟩, ⟨1, -2⟩, ⟨3, 0⟩⟩
+
+def P : Matrix2 :=
+  ⟨⟨0, 0⟩, ⟨1, 0⟩, ⟨1, 0⟩, ⟨0, 0⟩⟩
+
+def Hswap : Matrix2 :=
+  congruence P H
+
+def diracWeights : List Nat := [1, 0]
+def balancedWeights : List Nat := [1, 1]
+def pushBySwap (weights : List Nat) : List Nat := weights.reverse
+
+#eval entries H
+#eval entries Hswap
+#eval (isHermitian H, isHermitian Hswap, H == Hswap)
+#eval ((trace H).re, (trace Hswap).re)
+#eval (frobeniusSq H, frobeniusSq Hswap)
+#eval (diracWeights, pushBySwap diracWeights)
+#eval (balancedWeights, pushBySwap balancedWeights)
+
+example : entries Hswap = [(3, 0), (1, -2), (1, 2), (1, 0)] := by
+  decide
+
+example : isHermitian H = true ∧ isHermitian Hswap = true := by
+  decide
+
+example : trace H = trace Hswap := by
+  decide
+
+example : frobeniusSq H = 20 ∧ frobeniusSq Hswap = 20 := by
+  decide
+
+example : pushBySwap diracWeights ≠ diracWeights := by
+  decide
+
+example : pushBySwap balancedWeights = balancedWeights := by
+  decide
+
+end HermitianCongruenceTutorial
+~~~
+
+Type these commands on a normal Mac or Linux machine with Elan installed:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/HermitianCongruenceTutorial.lean
+~~~
+
+**Resource profile: small standalone Lean plus `Std`, safe on a normal Mac or
+Linux host.** It does not import Mathlib, enter the Lake project, restore a
+cache, or check the repository module.
+
+The file was executed with that exact command and printed:
+
+~~~text
+[(1, 0), (1, 2), (1, -2), (3, 0)]
+[(3, 0), (1, -2), (1, 2), (1, 0)]
+(true, true, false)
+(4, 4)
+(20, 20)
+([1, 0], [0, 1])
+([1, 1], [1, 1])
+~~~
+
+Read the output from top to bottom: the first two lines are the entries of
+\(H\) and \(H'\) in row-major order; both Hermitian checks are true while
+matrix equality is false; trace and squared Frobenius norm are preserved; the
+Dirac weight vector changes under the swap; and equal half-weight numerators
+remain unchanged. The balanced weights use denominator \(2\), so `[1, 1]`
+means \((1/2,1/2)\).
+
+The six `example` blocks are kernel-checked finite algebra. They do not prove
+that `P` inhabits Mathlib's unitary group, construct a Borel measure, define an
+intrinsic Gaussian, or verify the project theorem.
+
+### Try it in the repository: inspect the exact module
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean).
+On an approved Linux builder with the pinned dependencies provisioned, put this
+probe in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped Matrix RealInnerProductSpace
+open NonlinearDynamics.Random
+
+#check RandomMatrix.frobeniusToMatrix_matrixToFrobenius
+#check RandomMatrix.frobeniusMatrixLinearEquiv
+#check RandomMatrix.hermitianSubmodule
+#check RandomMatrix.measurable_hermitianToMatrix
+#check RandomMatrix.inner_frobenius_eq_trace
+#check RandomMatrix.frobeniusCongruence_inner
+#check RandomMatrix.hermitianCongruence
+#check RandomMatrix.hermitianToMatrix_hermitianCongruence
+#check RandomMatrix.hermitianUnitaryCongruenceLinearIsometryEquiv
+#check RandomMatrix.map_stdGaussian_hermitianUnitaryCongruence
+#check RandomMatrix.measurableSet_hermitianSet
+#check GUE.matrixLaw_hermitianSet
+#check GUE.matrixLaw_ae_isHermitian
+#check GUE.matrixLaw_compl_hermitianSet
+~~~
+
+Each `#check` asks Lean to report the exact type of a checked declaration. It
+does not run a simulation or infer an unlisted density, law comparison,
+coordinate-built Gaussian unitary ensemble invariance theorem, or spectral
+consequence.
+
+**Resource profile: exact repository module plus Mathlib, cloud-only for this
+project.** From the repository root, run:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
+~~~
+
+Use that guarded target only on approved Linux compute. This Mac remains a
+source, Hugo, and small standalone tutorial host.
+{{< /repo-check >}}
 
 ## The checked declaration map
 
@@ -653,19 +1171,14 @@ All 27 declarations compile under Lean 4.32.0 and the pinned Mathlib 4.32.0
 dependency with warnings treated as errors. The module contains no
 <code>sorry</code> or <code>admit</code>.
 
-### Reproduce the check
+### Validation boundary
 
-From the repository root:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
-~~~
-
-This command checks the geometry, support, and intrinsic Gaussian symmetry
-proofs. It does not numerically sample a matrix, compare empirical histograms,
-or test the unformalized RMT-08 measure equality.
+The preceding `repo-check` gives the copyable import, exact declaration probe,
+module path, and guarded Linux command. It checks the geometry, support, and
+intrinsic Gaussian symmetry proofs. The standalone worksheet checks only the
+displayed two-by-two arithmetic. Neither command numerically samples a matrix,
+compares empirical histograms, or turns a support theorem into a density or
+law-invariance theorem.
 
 ## Checked theorem versus classical GUE context
 
@@ -681,10 +1194,10 @@ matrices. These descriptions are equivalent after every variance, metric, and
 reference-measure convention is aligned.
 
 RMT-07 checks the Euclidean geometry, intrinsic isotropic-Gaussian symmetry,
-and support of the coordinate presentation. It does not yet check the
-equivalence between the two presentations.
+and support of the coordinate presentation. The RMT-07 module does not check
+the equivalence between the two presentations; RMT-08 subsequently does.
 
-| Layer | RMT-07 status | Needed later |
+| Layer | RMT-07 status | Beyond the RMT-07 module |
 |---|---|---|
 | Frobenius matrix inner product and norm | Checked | Optional basis lemmas |
 | Hermitian real Euclidean subtype | Checked | Explicit free-coordinate isometry |
@@ -749,7 +1262,8 @@ Gaussianity, independence, density, or unitary symmetry on its own.
 
 Matching scalar variances is persuasive but insufficient. Equality of full
 joint measures requires the correct bundled coordinate map, independence, and
-transport theorem. This is the RMT-08 obligation.
+transport theorem. This is the obligation left open by RMT-07 and discharged
+in RMT-08.
 
 ### Hiding scale in the word standard
 
@@ -777,40 +1291,51 @@ limit. Those require new measurable and analytic layers.
 
 ## Exercises
 
-1. **Packaging.** Prove directly that <code>frobeniusToMatrix</code> and
+1. **Running reconstruction.** Starting from
+   \(d_0=1,d_1=3,z=1+2i\), reconstruct \(H\), calculate \(H^*\), and multiply
+   \(PHP^*\) entry by entry. Which single entry proves \(H'\ne H\)?
+2. **Running invariant ledger.** Recompute both traces and both squared
+   Frobenius norms without using the displayed answers. Then check the norm
+   again from \(q\) and \(q'\).
+3. **Running law test.** For the event \(\{H\}\), evaluate its mass under
+   \(\delta_H\), \(T_*\delta_H\), \(\mu_{\mathrm{pair}}\), and
+   \(T_*\mu_{\mathrm{pair}}\). Which equalities are pointwise and which are
+   equalities of measures?
+4. **Packaging.** Prove directly that <code>frobeniusToMatrix</code> and
    <code>matrixToFrobenius</code> preserve every entry.
-2. **Trace inner product.** Expand \(\operatorname{Tr}(X^*Y)\) for
+5. **Trace inner product.** Expand \(\operatorname{Tr}(X^*Y)\) for
    \(2\times2\) matrices and compare it with the four-coordinate complex
    Euclidean inner product.
-3. **Real subspace.** Show that Hermitian matrices are closed under real
+6. **Real subspace.** Show that Hermitian matrices are closed under real
    scalar multiplication and give a nonzero example for which multiplication
-   by \(i\) leaves the subspace.
-4. **Dimension.** Count the real free coordinates of an \(n\times n\)
+   by \(i\) takes the matrix outside the subspace.
+7. **Dimension.** Count the real free coordinates of an \(n\times n\)
    Hermitian matrix and obtain \(n^2\).
-5. **Factor two.** Derive the Frobenius squared norm of a \(3\times3\)
+8. **Factor two.** Derive the Frobenius squared norm of a \(3\times3\)
    Hermitian matrix from its diagonal and strict-upper coordinates.
-6. **Orthonormalization.** Explain why multiplying both real components of
+9. **Orthonormalization.** Explain why multiplying both real components of
    every strict-upper coordinate by \(\sqrt2\) corrects the metric.
-7. **Inverse action.** Verify \(C_{U^*}\circ C_U=\mathrm{id}\) using both
+10. **Inverse action.** Verify \(C_{U^*}\circ C_U=\mathrm{id}\) using both
    unitary identities.
-8. **Trace cycle.** Locate exactly where cyclicity of trace is used in the
+11. **Trace cycle.** Locate exactly where cyclicity of trace is used in the
    proof that congruence preserves the Frobenius inner product.
-9. **Restriction.** Prove that \(UHU^*\) is Hermitian without assuming \(U\)
+12. **Restriction.** Prove that \(UHU^*\) is Hermitian without assuming \(U\)
    unitary. Which later property does require unitarity?
-10. **Gaussian scale.** If upper real and imaginary parts have variance
+13. **Gaussian scale.** If upper real and imaginary parts have variance
     \(s/2\), compute the variances after square-root-of-two rescaling.
-11. **Support.** Starting from \(\mu=A_*\nu\), prove
+14. **Support.** Starting from \(\mu=A_*\nu\), prove
     \(\mu(S)=1\) when \(A^{-1}(S)\) is the whole source and \(\nu\) is a
     probability measure.
-12. **Counterexample.** Give a point mass with Hermitian support that is not
+15. **Counterexample.** Give a point mass with Hermitian support that is not
     invariant under every unitary congruence.
-13. **Lean.** Find the declaration that connects restricted congruence to the
+16. **Lean.** Find the declaration that connects restricted congruence to the
     pre-existing ambient <code>RandomMatrix.congruence</code> map.
-14. **Boundary.** Explain what the intrinsic Gaussian and congruence action
+17. **Boundary.** Explain what the intrinsic Gaussian and congruence action
     become at \(n=0\).
-15. **RMT-08 design.** Write a precise source type, target type, and coordinate
-    formula for the real-linear isometry that should identify free Hermitian
-    coordinates with \(\mathcal H_n\).
+18. **RMT-07 boundary design.** Write a precise source type, target type, and
+    coordinate formula for the real-linear isometry needed to identify free
+    Hermitian coordinates with \(\mathcal H_n\), then compare your design with
+    the linked RMT-08 chapter.
 
 ## Summit register
 
@@ -829,8 +1354,8 @@ The factor-of-two identity explains how the paths should meet. In orthonormal
 Hermitian coordinates, diagonal variables remain unchanged while upper real
 and imaginary variables receive a factor \(\sqrt2\). The RMT-06 variances then
 all become \(s_n\), predicting a \(\sqrt{s_n}\)-scaled intrinsic standard
-Gaussian. RMT-08 must turn that prediction into an equality of measures and
-only then transport intrinsic symmetry to <code>GUE.matrixLaw</code>.
+Gaussian. That is the equality and symmetry transport absent from the RMT-07
+module and subsequently checked in RMT-08.
 
 No density, volume Jacobian, coordinate-law unitary invariance, eigenvalue
 law, moment, spectral statistic, semicircle theorem, or universality result is

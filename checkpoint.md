@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 19:05 PDT
+Last updated: 2026-07-22 19:21 PDT
 
-Audited baseline: `main` at `da4d884`
+Audited baseline: `main` at `bc77be8`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **5 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **6 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -248,6 +248,15 @@ almost-everywhere measurability, and the empty-index Dirac boundary. Two
 numeric figures, six Lean bridges, a guarded project probe, and a second locally
 executed `Std` enumeration make the path reproducible without running Mathlib
 on the workstation.
+*Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support* now follows the
+exact matrix with rows `(1, 1 + 2i)` and `(1 - 2i, 3)` through swap congruence,
+preserving trace `4` and Frobenius square `20` while visibly changing the
+point. A Dirac law and a balanced two-point law then separate Hermitian support
+from invariance under that swap. Three accessible figures, six Lean bridges,
+and an executed `Std` worksheet expose the geometry and measure layers. The
+chapter preserves the historical RMT-07 boundary while explicitly identifying
+the comparison subsequently checked in RMT-08; its deterministic page-owned
+card reproduces the exact congruence ledger.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3135,6 +3144,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `bc77be8`: rebuild *Finite Product Probability Spaces and Independent
+  Gaussian Fields* around the complete four-bit outcome table, cylinder-event
+  preimages, product-law and parity boundaries, six Lean bridges, two numeric
+  figures, and a locally executed `Std` enumeration.
 - `da4d884`: rebuild *Gaussian Laws, Independence, and Normalization* around
   one complete experiment, exact scaling and parity ledgers, six Lean bridges,
   an executed local worksheet, and an adversarially repaired readable card.
