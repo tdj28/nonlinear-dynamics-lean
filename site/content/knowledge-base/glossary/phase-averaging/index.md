@@ -1,50 +1,113 @@
 ---
 title: "Phase averaging"
 slug: "phase-averaging"
-summary: "Phase averaging sums fixed-block estimates across every residue phase, turning a rectangular grid of powered-map samples into one consecutive finite Birkhoff sum while keeping boundary and zero-block cases explicit."
+summary: "Phase averaging adds one fixed-block estimate from every residue phase, reindexes the resulting rectangle as consecutive orbit starts, and divides only when the block length is positive."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging"
 og_image: "phase-averaging-card.png"
-og_image_alt: "Warm-paper teaching card showing a grid of fixed-block samples collected across every phase, reindexed into consecutive sliding starts, with boundary gaps removed only by positive-time nonpositivity. The card states that zero block length is vacuous and no limit theorem is proved."
+og_image_alt: "Four residue-phase rows contain starts zero through eleven exactly once and have row sums fifteen, eighteen, twenty-one, and twenty-four, totaling seventy-eight; a second exact ledger shows how negative boundary terms turn a horizon cost of minus eighteen into the weaker block bound minus twelve without assuming the time-zero value is nonpositive."
 ---
 
-**Phase averaging** is a finite reindexing method for shifted-subadditive
-processes. Choose a block length, write one block estimate for every possible
-offset inside that block, and add those estimates. The powered-map samples then
-cover every consecutive start time exactly once.
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted open working note. Human review of
+the mathematics, Lean interpretation, sources, figure, and accessibility is
+still pending. The finite calculations below are exact, but publication does
+not mean the page has passed that review.
+{{< /panel >}}
 
-The word *averaging* has a narrow meaning here. The phases form a finite,
-deterministic list. No phase is sampled randomly, no expectation is taken, and
-no time limit is formed. Division by the number of phases appears only after
-the exact finite sum has been proved and only when the block length is
-positive.
+Start with one orbit, the sequence of states
 
-This construction continues the
-{{< refterm "orbit-majorant-centering" "orbit-majorant centering" >}}
-reduction. Centering supplies a shifted-subadditive process that is nonpositive
-at every positive horizon. Phase averaging uses that sign to remove two finite
-gaps, then replaces a grid of fixed-block samples by one ordinary
-{{< refterm "birkhoff-sum" "Birkhoff sum" >}}.
+\[
+\omega,\ T\omega,\ T^2\omega,\ T^3\omega,\ldots
+\]
+
+obtained by repeatedly applying a map \(T\). The notation \(T^k\omega\) means
+"apply \(T\) exactly \(k\) times to the starting state \(\omega\)." See
+{{< refterm "orbit-and-iterate" "orbit and iterate" >}} for that basic
+language.
+
+Suppose the observable \(g\) writes the next positive integer at the \(k\)-th
+orbit start:
+
+\[
+g(T^k\omega)=k+1.
+\]
+
+We want the finite orbit sum through start \(11\):
+
+\[
+1+2+\cdots+12=78.
+\]
+
+Now deliberately scramble those twelve terms. Choose block length \(b=4\)
+and take \(q=3\) samples in each **phase**. A phase is one offset inside a
+block, so the four phases are \(s=0,1,2,3\). Within one phase, advance four
+orbit steps at a time:
+
+| Phase \(s\) | Orbit starts \(4j+s\), for \(j=0,1,2\) | Observed values | Row sum |
+|---:|---|---|---:|
+| \(0\) | \(0,4,8\) | \(1,5,9\) | \(15\) |
+| \(1\) | \(1,5,9\) | \(2,6,10\) | \(18\) |
+| \(2\) | \(2,6,10\) | \(3,7,11\) | \(21\) |
+| \(3\) | \(3,7,11\) | \(4,8,12\) | \(24\) |
+
+Adding the rows gives
+
+\[
+15+18+21+24=78.
+\]
+
+Every start from \(0\) through \(11\) appears exactly once. Grouping by phase
+changed the order of addition, not the terms being added.
+
+Here is the nearest failure: keeping only phase \(0\) gives \(15\), not \(78\).
+The identity needs **every** residue phase \(0\le s\lt b\). Repeating one
+phase would duplicate some starts; omitting one would leave holes.
 
 {{< reference-figure
+  wide="true"
   src="phase-grid-to-sliding-starts.svg"
-  alt="A four-row by three-column grid lists block starts for phases zero through three. Reading the grid by orbit time gives the twelve consecutive starts zero through eleven. A second strip decomposes the longer horizon into an initial gap, three complete blocks, and a terminal gap; positive-time nonpositivity removes the two gaps."
-  caption="**Finding:** four deterministic phases with three block samples each contain exactly the twelve consecutive start times from zero through eleven. This is the concrete four-by-three instance of the general phase-grid reindexing. For each phase estimate, the longer horizon also contains an initial gap and a terminal gap. Positive-time nonpositivity can remove those gaps, with a separate zero-phase argument avoiding any sign assumption on the time-zero value. The plate shows finite indexing only. It does not assert a Birkhoff limit, a subadditive ergodic theorem, or convergence of any normalized process."
+  alt="Four phase rows list starts zero, four, eight; one, five, nine; two, six, ten; and three, seven, eleven. Their value sums are fifteen, eighteen, twenty-one, and twenty-four, totaling seventy-eight, exactly the consecutive sum from one through twelve. Below, a one-point process with time-zero value one and positive-time value minus the horizon shows a phase-one boundary ledger of minus one, minus twelve, and minus five, totaling the horizon value minus eighteen; removing the two nonpositive gaps leaves the valid weaker bound minus eighteen at most minus twelve."
+  caption="**Two exact ledgers:** with block length \(4\) and three samples per phase, the four rows have starts \((0,4,8)\), \((1,5,9)\), \((2,6,10)\), and \((3,7,11)\). For the observable \(g(T^k\omega)=k+1\), their sums are \(15,18,21,24\), so the phase total is \(78\), the same as \(1+\cdots+12\). The lower panel uses the one-point process \(X_0=1\) and \(X_n=-n\) for \(n\gt0\), with \(b=4\), \(q=3\), \(r=2\), and phase \(s=1\). Its initial gap contributes \(-1\), its three complete blocks contribute \(3(-4)=-12\), and its terminal gap of length \(5\) contributes \(-5\), exactly totaling \(X_{18}=-18\). Removing the two nonpositive gap values gives the weaker but useful bound \(-18\le-12\). At phase zero, the proof uses three blocks plus a length-six terminal gap and never inserts the positive value \(X_0=1\). These are finite toy calculations, not measurements or convergence evidence."
 >}}
 
-## The exact finite reindexing
+## What phase averaging means
 
-Let \(\Omega\) be a state space, let \(T:\Omega\to\Omega\) be a self-map,
-and let \(g:\Omega\to M\) take values in an additive commutative monoid \(M\).
-The commutative-monoid assumption means finite sums have a zero, are
-associative, and may be reordered. Choose natural numbers \(b\) and \(q\):
+**Phase averaging** is a deterministic finite-sum method. Choose a block
+length, write one fixed-block estimate for every offset inside that block, add
+the estimates, and only then divide by the number of phases when that number
+is positive.
 
-- \(b\) is the block length and also the number of residue phases;
-- \(q\) is the number of fixed-block samples taken in each phase; and
-- \(s\), with \(0\le s\lt b\), is one **phase**, meaning an offset inside a
-  block.
+The word *averaging* is narrow here:
+
+- no phase is selected at random;
+- no {{< refterm "expectation" "expectation" >}} is taken;
+- no time horizon tends to infinity; and
+- no theorem about convergence is hidden in the notation.
+
+The construction follows
+{{< refterm "orbit-majorant-centering" "orbit-majorant centering" >}}.
+Centering supplies a shifted-subadditive process whose values are nonpositive
+at every positive horizon. Phase averaging uses that sign to remove two finite
+boundary gaps. It then uses an exact reindexing to replace a rectangle of
+fixed-block samples by one ordinary {{< refterm "birkhoff-sum" "Birkhoff sum" >}},
+meaning a finite sum along consecutive orbit iterates.
+
+## The general finite reindexing
+
+Let \(\Omega\) be a state space, let \(T:\Omega\to\Omega\) be a self-map, and
+let \(g:\Omega\to M\) take values in an additive commutative monoid \(M\).
+That algebraic phrase means that the values have a zero, addition is
+associative, and finite sums may be reordered.
+
+Let \(b,q\in\mathbb N\), where \(\mathbb N\) is the set of nonnegative whole
+numbers:
+
+- \(b\) is the block length and the number of residue phases;
+- \(q\) is the number of samples in each phase; and
+- \(s\), with \(0\le s\lt b\), is the offset that labels one phase.
 
 The phase-\(s\) sum is
 
@@ -52,21 +115,15 @@ The phase-\(s\) sum is
 \begin{aligned}
 B_s(\omega)
 &=\operatorname{BSum}\!\left(T^b,g,q,T^s\omega\right) \\
-&=\sum_{\substack{j\in\mathbb N\\j\lt q}}
-  g\!\left(T^{bj+s}\omega\right).
+&=\sum_{j=0}^{q-1}g\!\left(T^{bj+s}\omega\right).
 \end{aligned}
 \]
 
-The exponent \(bj+s\) says: begin at offset \(s\), then advance one complete
-block between samples. Mathlib's finite Birkhoff-sum definition and its
-successor and addition laws supply this exact bookkeeping
-([official Birkhoff-sum documentation](#ref-phase-mathlib-birkhoff),
-[pinned source](#ref-phase-mathlib-birkhoff-pinned)). The iterate identity
-\((T^b)^j=T^{bj}\) is likewise a finite function-iteration law
-([pinned iterate source](#ref-phase-mathlib-iterate)).
+The first input \(T^b\) says that successive samples in this row are \(b\)
+ordinary orbit steps apart. The starting state \(T^s\omega\) chooses the
+phase.
 
-Now sum over all \(b\) phases. Every natural number \(k\lt bq\) has one unique
-representation
+Every natural number \(k\lt bq\) has a unique quotient-remainder form
 
 \[
 k=bj+s,
@@ -76,91 +133,161 @@ j\lt q,
 s\lt b.
 \]
 
-Therefore the rectangular phase grid is exactly one consecutive orbit sum:
+Therefore the rectangular grid and the consecutive orbit sum contain exactly
+the same terms:
 
 \[
 \boxed{
-\sum_{\substack{s\in\mathbb N\\s\lt b}}
+\sum_{s=0}^{b-1}
   \operatorname{BSum}\!\left(T^b,g,q,T^s\omega\right)
 {} =
 \operatorname{BSum}(T,g,bq,\omega).
 }
 \]
 
-Lean names this identity <code>sum_phase_birkhoffSum</code>. It needs no
-measurable space, measure, preservation property, probability law,
-integrability, or ergodicity. It is a theorem about finite sums and natural
-indices.
+This is equality, not an approximation. It needs no
+{{< refterm "measure" "measure" >}} assigning weights to sets, no
+{{< refterm "probability-law" "probability law" >}}, no
+{{< refterm "measurable-function" "measurability" >}}, no
+{{< refterm "integrability" "integrability" >}}, no preservation property,
+and no {{< refterm "ergodicity" "ergodicity" >}}. It is a theorem about
+finite sums and natural-number indices. Commutativity matters: the left side
+groups by phase, while the right side orders by orbit time. Order-sensitive
+noncommutative products need a different statement.
 
-Commutativity matters because the left side groups terms by phase while the
-right side orders them by orbit time. For real-valued processes that
-reordering is harmless. One should not silently transplant the same statement
-to an order-sensitive noncommutative product.
+Mathlib's finite Birkhoff-sum laws and function-iterate laws supply the
+upstream bookkeeping
+([official Birkhoff-sum documentation](#ref-phase-mathlib-birkhoff),
+[pinned Birkhoff source](#ref-phase-mathlib-birkhoff-pinned),
+[pinned iterate source](#ref-phase-mathlib-iterate)).
 
-## A four-by-three arithmetic check
+## In Lean: reindex the whole phase grid
 
-Take \(b=4\) phases and \(q=3\) samples per phase. The phase grid contains
-these start times:
+{{< lean-bridge
+  human="Adding all b phase rows, with q samples in each row, gives the consecutive orbit sum with b times q samples."
+  math="\(\displaystyle \sum_{s=0}^{b-1}\sum_{j=0}^{q-1}g(T^{bj+s}\omega)=\sum_{k=0}^{bq-1}g(T^k\omega).\)"
+  lean="sum_phase_birkhoffSum T g b q ω"
+>}}
 
-| Phase | Powered-map start times |
-|---|---|
-| \(s=0\) | \(0,4,8\) |
-| \(s=1\) | \(1,5,9\) |
-| \(s=2\) | \(2,6,10\) |
-| \(s=3\) | \(3,7,11\) |
+- <code>sum_phase_birkhoffSum</code> is the checked theorem name.
+- <code>T</code> is the original map and <code>g</code> is the observable.
+- <code>b</code> is both the iterate stride and the number of phases.
+- <code>q</code> is the number of entries in each phase row.
+- <code>ω</code> is the starting state.
+- In the theorem's displayed type, <code>Finset.range b</code> is the finite set
+  \(0,1,\ldots,b-1\), <code>∑</code> adds over it, and
+  <code>T^[s]</code> is Lean syntax for the \(s\)-fold iterate \(T^s\).
+- The invisible typeclass <code>[AddCommMonoid M]</code> records exactly the
+  algebra needed to regroup the finite sum.
+{{< /lean-bridge >}}
 
-Every start from zero through eleven appears once. Nothing appears twice, and
-nothing in that range is skipped.
+The exact declaration is more informative than a call site because it shows
+the weak assumptions:
 
-For a numerical check, suppose
-\(g(T^k\omega)=k+1\) over these twelve starts. The four phase sums are
+~~~lean
+theorem sum_phase_birkhoffSum
+    {M : Type*} [AddCommMonoid M] {Ω : Type*}
+    (T : Ω → Ω) (g : Ω → M) (b q : ℕ) (ω : Ω) :
+    ∑ s ∈ Finset.range b,
+        birkhoffSum (T^[b]) g q (T^[s] ω) =
+      birkhoffSum T g (b * q) ω
+~~~
+
+## A numeric boundary process, including the time-zero trap
+
+The reindexing identity does not yet compare a long-horizon subadditive value
+with the block rows. For that comparison, use a second exact example.
+
+Take a state space with one point, let \(T\) be the identity map, and define
 
 \[
-\begin{aligned}
-B_0&=1+5+9=15, \\
-B_1&=2+6+10=18, \\
-B_2&=3+7+11=21, \\
-B_3&=4+8+12=24.
-\end{aligned}
+X_0=1,
+\qquad
+X_n=-n\quad\text{for }n\gt0.
 \]
 
-Adding by phase gives \(15+18+21+24=78\). Reading consecutively gives
-\(1+2+\cdots+12=78\). Phase averaging does not estimate one sum by the other;
-it proves that they are the same finite sum under a different grouping.
-
-## Boundary geometry for a subadditive process
-
-The reindexing identity alone says nothing about a subadditive process at a
-long horizon. That connection comes from a separate inequality.
-
-Let \(X_n(\omega)\) be a real-valued process satisfying shifted
-subadditivity:
+This process is **shifted-subadditive**, meaning
 
 \[
-X_{m+n}(\omega)\le X_n(T^m\omega)+X_m(\omega).
+X_{m+n}(\omega)
+\le
+X_n(T^m\omega)+X_m(\omega).
 \]
 
-Fix \(b,q,r\in\mathbb N\), and define the longer horizon
+When \(m,n\gt0\), equality holds because
+
+\[
+-(m+n)=(-n)+(-m).
+\]
+
+If either index is zero, the \(X_0=1\) on the right only makes the inequality
+easier to satisfy. Thus this is a real example in which every positive-time
+value is nonpositive but the time-zero value is positive.
+
+Choose \(b=4\), \(q=3\), terminal parameter \(r=2\), and phase \(s=1\). The
+theorem's horizon is
+
+\[
+N=bq+b+r=4\cdot3+4+2=18.
+\]
+
+The phase-one decomposition has:
+
+- an initial gap of length \(1\), contributing \(X_1=-1\);
+- three complete blocks of length \(4\), contributing
+  \(3X_4=3(-4)=-12\); and
+- a terminal gap of length \(b+r-s=5\), contributing \(X_5=-5\).
+
+The boundary-retaining estimate is equality in this model:
+
+\[
+X_{18}=-18
+{} =
+-12-5-1.
+\]
+
+Both gap values are nonpositive, so discarding them increases the right side:
+
+\[
+X_{18}=-18\le-12.
+\]
+
+The near-miss is phase \(s=0\). A careless proof might insert \(X_0\) and then
+discard it, but \(X_0=1\gt0\). That inference is invalid. The checked proof
+instead starts directly with three complete blocks and the length-six terminal
+gap:
+
+\[
+X_{18}
+\le
+3X_4+X_6
+{} =
+-12-6
+{} =
+-18.
+\]
+
+It never needs a sign hypothesis at time zero.
+
+## The general boundary geometry
+
+Let \(X_n(\omega)\) be any real-valued shifted-subadditive process. Fix
+\(b,q,r\in\mathbb N\) and use the exact horizon
 
 \[
 N=bq+b+r.
 \]
 
-Here \(r\) is a terminal tail parameter. It is not assumed to be less than
-\(b\). For any phase \(s\lt b\), natural-number arithmetic gives
+The terminal parameter \(r\) is unrestricted; the theorem does not assume
+\(r\lt b\). For any phase \(s\lt b\), natural-number arithmetic gives
 
 \[
 N=s+bq+(b+r-s).
 \]
 
-This equality identifies three consecutive pieces:
-
-1. an initial gap of length \(s\);
-2. \(q\) complete blocks, each of length \(b\); and
-3. a terminal gap of length \(b+r-s\).
-
-Repeated shifted subadditivity first separates the initial gap and then
-separates the complete blocks from the terminal gap. The exact result is
+The three pieces are an initial gap of length \(s\), \(q\) complete blocks of
+length \(b\), and a terminal gap of length \(b+r-s\). Repeated
+shifted-subadditivity gives
 
 \[
 \begin{aligned}
@@ -171,114 +298,255 @@ X_N(\omega)\le{}&
 \end{aligned}
 \]
 
-This is the boundary-retaining theorem. Lean names it
-<code>le_phase_birkhoffSum_add_boundaries</code>. It consumes the candidate's
-shifted-subadditive field, but it does not use that candidate's integrability
-field.
+The condition \(s\lt b\) ensures \(b+r-s\ge1\), so the terminal gap is
+strictly positive even when \(r=0\).
 
-The hypothesis \(s\lt b\) has two jobs. It makes \(s\) a genuine residue
-phase, and it ensures
+## In Lean: retain every boundary term
+
+{{< lean-bridge
+  human="At phase s, the long-horizon cost is at most the q complete block costs plus the terminal-gap cost plus the initial-gap cost."
+  math="\(X_{bq+b+r}(\omega)\le \operatorname{BSum}(T^b,X_b,q,T^s\omega)+X_{b+r-s}(T^{bq+s}\omega)+X_s(\omega).\)"
+  lean="hX.le_phase_birkhoffSum_add_boundaries b q r s hs ω"
+>}}
+
+- <code>hX</code> is a bundled
+  <code>IsIntegrableSubadditiveProcessCandidate T μ X</code>. Its
+  <code>add_le</code> field is the shifted-subadditive inequality.
+- <code>b q r s</code> are the block length, blocks per phase, terminal
+  parameter, and phase.
+- <code>hs : s &lt; b</code> certifies that \(s\) is a valid phase. The symbol
+  <code>&lt;</code> is the ordinary strict order on natural numbers.
+- <code>T^[s] ω</code> is the shifted starting point \(T^s\omega\).
+- <code>(T^[b])^[q]</code> advances \(q\) times by the powered map \(T^b\),
+  which reaches \(T^{bq}\).
+- The proof consumes <code>hX.add_le</code>; the public receiver still carries
+  the candidate's measurability and integrability fields.
+{{< /lean-bridge >}}
+
+This theorem keeps both boundary values visible. No sign assumption has been
+used yet.
+
+## Positive-time nonpositivity removes the gaps
+
+Now assume
 
 \[
-b+r-s\ge1.
+n\ne0
+\quad\Longrightarrow\quad
+X_n(\omega)\le0
 \]
 
-Thus the terminal gap is always positive, even when \(r=0\). That strict
-positivity is what permits the next step.
-
-## Why positive-time nonpositivity removes the gaps
-
-Assume
+for every state \(\omega\). For \(0\lt s\lt b\), both gap lengths are positive,
+so both boundary values are nonpositive and may be removed from an upper bound:
 
 \[
-n\ne0\quad\Longrightarrow\quad X_n(\omega)\le0
-\]
-
-for every sample \(\omega\). This is positive-time nonpositivity. It deliberately
-says nothing about \(X_0\).
-
-When \(0\lt s\lt b\), both boundary lengths are positive:
-
-\[
-s\ne0,
-\qquad
-b+r-s\ne0.
-\]
-
-Both boundary values on the right side are therefore nonpositive. Removing
-them makes the right side larger, so the valid upper bound remains
-
-\[
-X_N(\omega)\le
+X_N(\omega)
+\le
 \operatorname{BSum}\!\left(T^b,X_b,q,T^s\omega\right).
 \]
 
-The zero phase needs separate care. Subadditivity does not force \(X_0=0\),
-and it does not force \(X_0\le0\). In fact, shifted subadditivity forces
-\(X_0\ge0\). Consequently one may not obtain the \(s=0\) estimate by inserting
-an \(X_0\) prefix and then pretending that prefix is nonpositive.
+For \(s=0\), the proof takes the separate direct route shown in the numeric
+example. This case split is why the theorem requires no claim about \(X_0\).
 
-Instead, at \(s=0\) the proof starts directly with \(q\) complete blocks and
-one terminal gap of length \(b+r\):
+## In Lean: remove only positive-time gaps
 
-\[
-X_N(\omega)\le
-\operatorname{BSum}\!\left(T^b,X_b,q,\omega\right)
-+X_{b+r}\!\left(T^{bq}\omega\right).
-\]
+{{< lean-bridge
+  human="If every positive-horizon process value is nonpositive, the initial and terminal gaps can be removed from the phase bound, with phase zero handled separately."
+  math="\(\bigl[\forall n\ne0,\ \forall\omega,\ X_n(\omega)\le0\bigr]\Longrightarrow X_{bq+b+r}(\omega)\le\operatorname{BSum}(T^b,X_b,q,T^s\omega).\)"
+  lean="hX.le_phase_birkhoffSum hnonpos b q r s hs ω"
+>}}
 
-The existence of phase zero implies \(b\gt0\), so \(b+r\gt0\). The terminal
-term is nonpositive and can be removed. This route proves the same phase bound
-without ever asking for a sign at time zero.
+- <code>hnonpos</code> has exact type
+  <code>∀ n, n ≠ 0 → ∀ ω, X n ω ≤ 0</code>. The proof must supply
+  <code>n ≠ 0</code> before using the sign.
+- <code>le_phase_birkhoffSum</code> is the boundary-dropping theorem, distinct
+  from the preceding boundary-retaining theorem.
+- <code>hs</code> proves \(s\lt b\). It also implies that a phase exists only
+  when \(b\gt0\).
+- The conclusion is **pointwise** at the explicit state <code>ω</code>, meaning
+  it gives a separate inequality for each starting state. There is no
+  {{< refterm "almost-everywhere" "almost-everywhere" >}} quantifier and no
+  limit.
+{{< /lean-bridge >}}
 
-Lean packages the result as <code>le_phase_birkhoffSum</code>. The distinction
-between positive-time nonpositivity and \(X_0=0\) is not a technical nuisance.
-It is exactly what allows the theorem to apply after orbit-majorant centering
-without adding a false time-zero premise.
+## Sum first, divide only for a positive block length
 
-## Sum first, divide only at positive block length
-
-The phase bound has the same left side for every \(s\lt b\). Summing all
+The left side of the phase bound is the same for every \(s\lt b\). Summing all
 \(b\) inequalities gives
 
 \[
-b\,X_{bq+b+r}(\omega)\le
-\sum_{\substack{s\in\mathbb N\\s\lt b}}
+b\,X_{bq+b+r}(\omega)
+\le
+\sum_{s=0}^{b-1}
   \operatorname{BSum}\!\left(T^b,X_b,q,T^s\omega\right).
 \]
 
-Apply the exact reindexing identity to the right side:
+Apply the exact phase-grid reindexing to the right side:
 
 \[
 \boxed{
-b\,X_{bq+b+r}(\omega)\le
+b\,X_{bq+b+r}(\omega)
+\le
 \operatorname{BSum}(T,X_b,bq,\omega).
 }
 \]
 
-This multiplication form is
-<code>natCast_mul_le_birkhoffSum_phase_average</code>. The cast in the Lean name
-records that the natural block length \(b\) is viewed as a real scalar before
-it multiplies \(X_{bq+b+r}\).
-
-If \(b\ne0\), then its real cast is positive and division preserves the
-inequality:
+This multiplication form remains a valid total statement at \(b=0\). If
+\(b\ne0\), then \(b\gt0\), so division preserves the inequality:
 
 \[
 \boxed{
-X_{bq+b+r}(\omega)\le
+X_{bq+b+r}(\omega)
+\le
 \frac{1}{b}\operatorname{BSum}(T,X_b,bq,\omega).
 }
 \]
 
-Lean exposes this as <code>le_birkhoffSum_phase_average_div</code>. This is the
-literal arithmetic average over the \(b\) deterministic phase inequalities.
-It is not an expectation over random phases and not a Birkhoff average in a
-time-asymptotic theorem.
+This last expression is the literal arithmetic average of the \(b\) phase
+inequalities. It is neither a random expectation nor an asymptotic Birkhoff
+average.
+
+## In Lean: keep multiplication total, then divide with evidence
+
+{{< lean-bridge
+  human="Adding all phase inequalities multiplies the common long-horizon value by b and turns the phase rectangle into one consecutive Birkhoff sum."
+  math="\(bX_{bq+b+r}(\omega)\le\operatorname{BSum}(T,X_b,bq,\omega).\)"
+  lean="hX.natCast_mul_le_birkhoffSum_phase_average hnonpos b q r ω"
+>}}
+
+- <code>natCast</code> in the theorem name records that the natural number
+  \(b\) is cast to a real number before multiplying the real value \(X_N\).
+- <code>mul</code> records the multiplication form; this version does not need
+  <code>b ≠ 0</code>.
+- <code>birkhoffSum T (X b) (b * q) ω</code> sums the block observable
+  <code>X b</code> at the first \(bq\) consecutive starts of the original map.
+- The theorem is finite and pointwise. Its name does not imply a limiting
+  average.
+{{< /lean-bridge >}}
+
+For the division form, the extra evidence is explicit:
+
+{{< lean-bridge
+  human="When b is nonzero, divide the summed phase inequality by the positive real number b."
+  math="\(b\ne0\Longrightarrow X_{bq+b+r}(\omega)\le\operatorname{BSum}(T,X_b,bq,\omega)/b.\)"
+  lean="hX.le_birkhoffSum_phase_average_div hnonpos b q r hb ω"
+>}}
+
+- <code>hb : b ≠ 0</code> proves that the denominator is positive after the
+  natural number is cast to \(\mathbb R\).
+- <code>/ (b : ℝ)</code> in the theorem's conclusion is real division.
+- Lean's real-number operations assign a formal value even to division by
+  zero, but this theorem does not rely on that convention: it requires the
+  nonzero witness before division.
+{{< /lean-bridge >}}
+
+## A tiny standalone Lean worksheet a human can type
+
+**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+worksheet verifies the \(4\times3\) phase ledger and the one-point boundary
+arithmetic. It does not import Mathlib, define a Birkhoff sum, or prove the
+general phase theorem.
+
+Save the following as <code>PhaseAveragingTutorial.lean</code> in any scratch
+directory:
+
+~~~lean
+import Std
+
+namespace PhaseAveragingTutorial
+
+def phaseStarts (b q s : Nat) : List Nat :=
+  (List.range q).map (fun j => b * j + s)
+
+def orbitValue (k : Nat) : Nat := k + 1
+
+def sumValues (starts : List Nat) : Nat :=
+  starts.foldl (fun total k => total + orbitValue k) 0
+
+def phaseSum (b q s : Nat) : Nat :=
+  sumValues (phaseStarts b q s)
+
+def allPhaseSums (b q : Nat) : List Nat :=
+  (List.range b).map (fun s => phaseSum b q s)
+
+def totalByPhase (b q : Nat) : Nat :=
+  (allPhaseSums b q).foldl (fun total row => total + row) 0
+
+def consecutiveSum (b q : Nat) : Nat :=
+  sumValues (List.range (b * q))
+
+#eval allPhaseSums 4 3
+#eval [totalByPhase 4 3, consecutiveSum 4 3]
+
+example : phaseStarts 4 3 0 = [0, 4, 8] := by decide
+example : phaseStarts 4 3 3 = [3, 7, 11] := by decide
+example : allPhaseSums 4 3 = [15, 18, 21, 24] := by decide
+example : totalByPhase 4 3 = 78 := by decide
+example : consecutiveSum 4 3 = 78 := by decide
+example : phaseSum 4 3 0 ≠ consecutiveSum 4 3 := by decide
+
+def positiveAtZero (n : Nat) : Int :=
+  if n = 0 then 1 else -(Int.ofNat n)
+
+def phaseOneBoundaryLedger : Int :=
+  positiveAtZero 1 + 3 * positiveAtZero 4 + positiveAtZero 5
+
+#eval [positiveAtZero 0, positiveAtZero 18, phaseOneBoundaryLedger]
+
+example : positiveAtZero 0 = 1 := by decide
+example : positiveAtZero 18 = -18 := by decide
+example : phaseOneBoundaryLedger = -18 := by decide
+example : positiveAtZero 18 ≤ 3 * positiveAtZero 4 := by decide
+
+end PhaseAveragingTutorial
+~~~
+
+From the directory containing the file, type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean PhaseAveragingTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this page. Its output rows were <code>[15, 18, 21, 24]</code>,
+<code>[78, 78]</code>, and <code>[1, -18, -18]</code>. The last inequality
+checks the boundary-dropped arithmetic \(-18\le3(-4)=-12\). This is suitable
+for an ordinary Mac or Linux machine because it imports only <code>Std</code>
+and performs a few finite computations. It does not compile this repository or
+download a Mathlib cache.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
+copy of the repository, create a scratch query containing:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
+
+open MeasureTheory Finset Function
+open NonlinearDynamics.Random.RandomCocycles
+
+#check sum_phase_birkhoffSum
+#check IsIntegrableSubadditiveProcessCandidate.le_phase_birkhoffSum_add_boundaries
+#check IsIntegrableSubadditiveProcessCandidate.le_phase_birkhoffSum
+#check IsIntegrableSubadditiveProcessCandidate.natCast_mul_le_birkhoffSum_phase_average
+#check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_phase_average_div
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_natCast_mul_le_birkhoffSum_phase_average
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_le_birkhoffSum_phase_average_div
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_natCast_mul_le_birkhoffSum_phase_average
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for the exact declaration
+type. The guarded command below checks the authoritative project module, not
+the tiny standalone worksheet. It belongs on approved Linux compute and must
+not be run on this Mac workstation.
+{{< /repo-check >}}
 
 ## Every degenerate index says something different
 
-The total Lean statements include all natural inputs, but their information
+The total Lean statements accept every natural input, but their information
 content changes at the boundary.
 
 ### Zero block length
@@ -290,67 +558,41 @@ empty sum:
 0=0.
 \]
 
-The multiplication inequality also becomes
-
-\[
-0\cdot X_r(\omega)\le\operatorname{BSum}(T,X_0,0,\omega),
-\]
-
-which simplifies to \(0\le0\). It is valid and completely vacuous. There is
-no phase \(s\) satisfying \(s\lt0\), so the phase-specific theorems have no
-instance at this block length. The division theorem explicitly requires
-\(b\ne0\) and cannot be used.
+The multiplication inequality also simplifies to \(0\le0\). It is valid and
+vacuous. There is no phase \(s\lt0\), and the division theorem cannot be used
+because it requires \(b\ne0\).
 
 ### Zero samples per phase
 
-At \(q=0\), each phase Birkhoff sum is empty. For positive \(b\), the summed
+At \(q=0\), every phase Birkhoff sum is empty. For positive \(b\), the summed
 inequality becomes
 
 \[
-b\,X_{b+r}(\omega)\le0.
+bX_{b+r}(\omega)\le0.
 \]
 
-Unlike the \(b=0\) case, this statement is informative. The horizon \(b+r\)
-is positive, so it follows from positive-time nonpositivity.
+Unlike the \(b=0\) statement, this is informative: \(b+r\) is positive, so the
+result follows from positive-time nonpositivity.
 
 ### Unit block length
 
-At \(b=1\), there is exactly one phase, \(s=0\). The powered map \(T^1\) is
-the original map, division is by one, and the result reads
+At \(b=1\), there is exactly one phase, \(s=0\). The powered map \(T^1\) is the
+original map, division is by one, and the theorem reads
 
 \[
-X_{q+1+r}(\omega)\le\operatorname{BSum}(T,X_1,q,\omega).
+X_{q+1+r}(\omega)
+\le
+\operatorname{BSum}(T,X_1,q,\omega).
 \]
 
-This is a useful sanity check: phase averaging adds no artificial multiplicity
-when only one phase exists.
+Phase averaging adds no artificial multiplicity when only one phase exists.
 
 ### Unrestricted terminal parameter
 
-No theorem assumes \(r\lt b\). If \(r\) is much larger than \(b\), the terminal
-gap is longer, but it remains positive and hence nonpositive as a process
-value. A later quotient-and-remainder or asymptotic argument may choose
-\(r\lt b\) for its own reason. That condition is not part of this finite
-estimate.
-
-## A positive value at time zero is allowed
-
-Consider a one-point state space with identity base map and define
-
-\[
-X_0=1,
-\qquad
-X_n=-n\quad\text{for }n\gt0.
-\]
-
-For positive \(m,n\), shifted subadditivity holds with equality. If either
-index is zero, the extra \(X_0=1\) only makes the right side larger. Every
-positive horizon is nonpositive, yet \(X_0\) is strictly positive.
-
-The phase and phase-average inequalities remain valid for this process. The
-example proves that an assumption \(X_0=0\) would be stronger than the finite
-argument needs. It also explains why the zero phase must avoid discarding an
-\(X_0\) prefix.
+The theorem never assumes \(r\lt b\). A large \(r\) produces a longer terminal
+gap, but that gap remains positive and its process value remains nonpositive.
+A later quotient-and-remainder argument may impose \(r\lt b\) for another
+reason; this finite estimate does not.
 
 ## Orbit-majorant-centered and cocycle forms
 
@@ -363,54 +605,46 @@ Y_n(\omega)
 X_n(\omega)-\operatorname{BSum}(T,X_1,n,\omega).
 \]
 
-The preceding module proves two facts used here:
-
-1. \(Y\) remains shifted-subadditive; and
-2. \(Y_n\le0\) for every \(n\ne0\), without assuming \(X_0=0\).
-
-Substituting \(Y\) into the phase-average theorem gives
+The centering module proves that \(Y\) remains shifted-subadditive and that
+\(Y_n\le0\) whenever \(n\ne0\), without assuming \(X_0=0\). Substituting \(Y\)
+into the phase theorem gives
 
 \[
-b\,Y_{bq+b+r}(\omega)\le
+bY_{bq+b+r}(\omega)
+\le
 \operatorname{BSum}(T,Y_b,bq,\omega),
 \]
 
-and, when \(b\ne0\), the corresponding division form. These are
+and the corresponding division form for \(b\ne0\). Lean names these
 <code>centeredProcess_natCast_mul_le_birkhoffSum_phase_average</code> and
-<code>centeredProcess_le_birkhoffSum_phase_average_div</code>. Neither theorem
-asks for a new \(X_0=0\) premise or a measure-preservation proof for \(T\).
+<code>centeredProcess_le_birkhoffSum_phase_average_div</code>.
 
-The discrete matrix-cocycle specialization replaces \(Y_n\) by the centered
-log-positive norm observable. Its multiplication theorem works even when the
-matrix index type is empty. It requires no separate generator-integrability
-hypothesis, probability normalization, ergodicity assumption, or
-positive-dimensionality witness. It remains a statement about the
-log-positive envelope, not a signed Lyapunov exponent.
+The matrix-cocycle specialization replaces \(Y_n\) by the centered
+log-positive norm observable. Its multiplication theorem remains valid when
+the finite matrix index type is empty. It requires no additional
+generator-integrability, probability-normalization, ergodicity, or
+positive-dimension hypothesis. It is still a statement about a log-positive
+envelope, not a signed Lyapunov exponent.
 
-## The wrapper ledger
+## Keep proof dependencies separate from bundled assumptions
 
 There is an important difference between a premise carried by an interface and
 a field actually used in a proof.
 
-| Declaration family | Mathematical facts consumed by the proof | Structure still carried by the public input |
+| Declaration family | Facts consumed by the proof | Structure carried by the public input |
 |---|---|---|
 | phase-grid reindexing | finite addition and iterate arithmetic | none |
 | boundary-retaining candidate method | shifted subadditivity | measurable space, measure, and finite-horizon integrability inside the candidate |
-| boundary-dropping phase and phase-average methods | shifted subadditivity and positive-time nonpositivity | the same candidate wrapper |
-| centered-process phase averages | shifted subadditivity through the centering lemmas and their positive-time sign | the original candidate wrapper; no new preservation argument |
-| centered matrix-cocycle phase average | the cocycle's checked finite algebra and sign | a cocycle object that already stores a measure-preserving base |
+| boundary-dropping phase methods | shifted subadditivity and positive-time nonpositivity | the same candidate wrapper |
+| centered-process phase averages | centering's shifted subadditivity and positive-time sign | the original candidate wrapper; no new preservation argument |
+| centered matrix-cocycle phase average | checked finite cocycle algebra and sign | a cocycle object that already stores a measure-preserving base |
 
-Thus it is accurate to say that the generic candidate proofs consume only the
-<code>add_le</code> field, but inaccurate to say their public theorem statements
-have no integrability premise at all. A caller still supplies an
+Thus the generic proofs consume only the candidate's <code>add_le</code> field,
+but their public statements still receive an
 <code>IsIntegrableSubadditiveProcessCandidate</code>. Likewise, the direct
-cocycle theorem does not use base preservation, but the input cocycle already
-bundles it.
-
-This wrapper bookkeeping prevents two opposite mistakes. One should not add
-probability or ergodicity merely because the topic is ergodic theory. One
-should also not erase assumptions that remain present in a bundled public
-interface merely because a particular proof projection ignores them.
+cocycle proof does not use base preservation, but the cocycle input already
+bundles it. This ledger avoids both adding irrelevant assumptions and erasing
+assumptions still present in a public receiver type.
 
 ## The printed index mismatch this theorem repairs
 
@@ -429,86 +663,57 @@ at most \(mk\). With \(m\) displayed phases, those two counts are not
 compatible as written
 ([Lalley, pp. 1–2](#ref-phase-lalley)).
 
-The Lean theorem makes the repair explicit. Its \(q\) complete \(b\)-blocks
-and \(b+r\) boundary positions have horizon \(bq+b+r\). Averaging over the
-\(b\) phases reindexes exactly \(bq\) sliding-block starts. An alternative
-asymptotic repair could retain the shorter horizon and use one fewer complete
-block layer. The present finite API chooses the longer horizon because it
-matches every term in the displayed phase decomposition directly.
+The checked theorem makes one repair explicit. Its \(q\) complete
+\(b\)-blocks and \(b+r\) boundary positions have horizon \(bq+b+r\). Averaging
+over the \(b\) phases reindexes exactly \(bq\) sliding-block starts. An
+alternative asymptotic repair could keep the shorter horizon and use one fewer
+complete-block layer. This finite API chooses the longer horizon because it
+matches every term in the displayed decomposition directly.
 
-This correction does not challenge Kingman's theorem. It repairs a finite
-index display used on the way to an asymptotic estimate. The asymptotic theorem
-itself is a separate result with measure-theoretic hypotheses
+This correction does not challenge Kingman's theorem. It repairs finite index
+bookkeeping used on the way to an asymptotic estimate. The asymptotic theorem
+has additional measure-theoretic hypotheses and is a separate result
 ([Kingman, 1968](#ref-phase-kingman)).
-
-## Lean landmarks
-
-The eight public declarations appear in dependency order:
-
-~~~lean
-import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
-
-open NonlinearDynamics.Random.RandomCocycles
-
-#check sum_phase_birkhoffSum
-#check IsIntegrableSubadditiveProcessCandidate.le_phase_birkhoffSum_add_boundaries
-#check IsIntegrableSubadditiveProcessCandidate.le_phase_birkhoffSum
-#check IsIntegrableSubadditiveProcessCandidate.natCast_mul_le_birkhoffSum_phase_average
-#check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_phase_average_div
-#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_natCast_mul_le_birkhoffSum_phase_average
-#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_le_birkhoffSum_phase_average_div
-#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_natCast_mul_le_birkhoffSum_phase_average
-~~~
-
-The first declaration is a pure identity. The next four expose the generic
-boundary, phase, multiplication, and division layers. The following two
-specialize the aggregate forms to orbit-majorant centering. The last theorem
-is the direct centered log-positive matrix-cocycle specialization.
-
-Private helper theorems carry the raw <code>add_le</code> proofs internally.
-They are implementation routes, not additional public API declarations.
 
 ## What phase averaging does not claim
 
-This finite construction proves an exact reindexing and pointwise upper
+This construction proves an exact finite reindexing and pointwise upper
 bounds. It does not prove or imply:
 
 - a random or expectation-valued average over phases;
 - a pointwise or mean Birkhoff ergodic theorem;
-- convergence of a Birkhoff average;
-- almost-everywhere, in-probability, in-distribution, or \(L^1\) convergence;
+- convergence almost everywhere, in probability, in distribution, or in
+  \(L^1\);
 - Kingman's subadditive ergodic theorem;
-- a limsup passage from the finite inequality;
-- an invariant limiting function or an invariant-integral formula;
+- a {{< refterm "limit-superior" "limit-superior" >}} passage from the finite
+  inequality;
+- an invariant limiting function or invariant-integral formula;
 - interchange of a limit and an integral;
-- a maximal inequality or an ordered interval-packing lemma;
+- a {{< refterm "finite-maximal-ergodic-inequality" "maximal inequality" >}}
+  or an ordered interval-packing lemma;
 - probability normalization, ergodicity, independence, or mixing;
-- a lower estimate complementary to the present upper estimate;
-- a Lyapunov exponent or Oseledets splitting;
+- a lower estimate complementary to this upper estimate;
+- a Lyapunov exponent, meaning an asymptotic exponential growth rate, or an
+  Oseledets splitting into invariant growth directions;
 - recovery of contraction discarded by a log-positive norm observable; or
-- information at zero block length beyond the vacuous identity \(0\le0\).
+- information at zero block length beyond the vacuous inequality \(0\le0\).
 
-The distinction is especially important because the right side is a finite
-Birkhoff sum. Naming that object does not import any theorem about its
-normalized limit. The current module deliberately stops before the analytic
-machinery that would justify an asymptotic passage.
+The right side is a finite Birkhoff sum. Merely naming that object does not
+import any theorem about its normalized limit.
 
 ## Where to continue
 
-The
 {{< refterm "orbit-majorant-centering" "Orbit-majorant centering" >}}
-entry explains why the input process is shifted-subadditive and nonpositive at
-positive horizons. The
-{{< refterm "birkhoff-sum" "Birkhoff sum" >}}
-entry develops the finite orbit-sum and powered-map conventions used in every
-phase row.
+explains why the centered input is shifted-subadditive and nonpositive at
+positive horizons. {{< refterm "birkhoff-sum" "Birkhoff sum" >}} develops the
+finite orbit-sum and powered-map conventions used in every row.
 
 The
 [Development Notebook]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}})
-maps the complete Lean implementation and its edge probes. The
+maps the complete Lean implementation and edge probes. The
 [full Deep Dive]({{< relref "/knowledge-base/deep-dives/finite-phase-averaging-for-nonpositive-subadditive-processes" >}})
-builds a longer textbook route through the proof geometry, source correction,
-and future analytic dependencies.
+builds a longer route through the proof geometry, source correction, and
+future analytic dependencies.
 
 The complementary finite construction is
 {{< refterm "ordered-interval-packing" "ordered interval packing" >}}. Its
@@ -544,10 +749,10 @@ displays and their following remainder count.
 
 <a id="ref-phase-kingman"></a>**J. F. C. Kingman.**
 [The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
+*Journal of the Royal Statistical Society: Series B* 30(3), 499–510, 1968.
 This primary source establishes the asymptotic subadditive ergodic theory that
-motivates the finite phase method. The present glossary entry does not claim
-or formalize Kingman's convergence theorem.
+motivates the finite phase method. This glossary entry does not claim
+Kingman's convergence theorem.
 
 The exact upstream Mathlib revision audited for this entry is commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),

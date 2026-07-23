@@ -7,28 +7,180 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit"
 og_image: "uniform-integrability-card.png"
-og_image_alt: "Warm-paper glossary card showing one common tail threshold applied to every member of a function family before a Vitali bridge upgrades pointwise convergence to integrable-norm convergence."
+og_image_alt: "On geometric atoms, tame spike tails fall from one half to one over 4096 as a shared threshold grows from two to sixteen, while concentrating spike tails remain exactly one."
 ---
 
-**Uniform integrability** is family-wide control of integrable mass. An
-individual function can have finite integral while placing most of that
-integral on a very small set. A uniformly integrable family rules out doing
-this more and more severely as the family index changes. One threshold or one
-small-set tolerance works for every member at once.
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted public working note. Human review
+of the mathematics, Lean interpretation, sources, figure, and accessibility
+remains pending. Publication does not change <code>pro_reviewed: false</code>.
+{{< /panel >}}
 
-Random-matrix-theory milestone 27 (RMT-27) needs that uniform quantifier to
-upgrade almost-everywhere convergence of Birkhoff averages to convergence in
-\(L^1\), the integrable norm. The complete checked narrative is
-[Identifying the Finite-Measure Birkhoff Limit in Lean]({{< relref "/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean" >}}).
-The textbook chapter is
-[Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}}).
+## Start with two spike families
+
+Take the sample space
+
+\[
+\Omega=\{0,1,2,\ldots\}
+\]
+
+and declare every subset of \(\Omega\) measurable. On this discrete measurable
+space, assign the point \(k\) probability
+
+\[
+\mu(\{k\})=2^{-(k+1)}.
+\]
+
+The geometric series sums to one, so \(\mu\) is a
+{{< refterm "probability-measure" "probability measure" >}}. The singleton
+\(A_n=\{n\}\) is an {{< refterm "event" "event" >}}, and its probability
+\(2^{-(n+1)}\) becomes very small as \(n\) grows.
+
+Define two real-valued function families on this same space:
+
+\[
+F_n(k)=(n+1)\mathbf 1_{A_n}(k),
+\qquad
+G_n(k)=2^{n+1}\mathbf 1_{A_n}(k).
+\]
+
+Here \(\mathbf 1_{A_n}\) is one on \(A_n\) and zero elsewhere. Thus each
+function has exactly one nonzero value. Its integral is simply
+
+\[
+\text{height of the spike}\times\text{probability of its supporting atom}.
+\]
+
+The first values are completely explicit:
+
+| index \(n\) | atom probability \(\mu(A_n)\) | height of \(F_n\) | \(\int |F_n|\,d\mu\) | height of \(G_n\) | \(\int |G_n|\,d\mu\) |
+|---:|---:|---:|---:|---:|---:|
+| \(0\) | \(1/2\) | \(1\) | \(1/2\) | \(2\) | \(1\) |
+| \(1\) | \(1/4\) | \(2\) | \(1/2\) | \(4\) | \(1\) |
+| \(2\) | \(1/8\) | \(3\) | \(3/8\) | \(8\) | \(1\) |
+| \(3\) | \(1/16\) | \(4\) | \(1/4\) | \(16\) | \(1\) |
+| \(7\) | \(1/256\) | \(8\) | \(1/32\) | \(256\) | \(1\) |
+
+Every \(F_n\) and every \(G_n\) is
+{{< refterm "integrability" "integrable" >}} because it has a finite
+integral. For a real function \(H\), its \(L^1\) norm is
+\(\lVert H\rVert_1=\int |H|\,d\mu\). Both families even have a common
+\(L^1\)-norm bound: the norms of the \(F_n\) are at most \(1/2\), while every
+\(G_n\) has norm exactly \(1\). Nevertheless, only the \(F_n\) family is
+uniformly integrable.
+
+There is also pointwise convergence in both cases. Fix \(k\in\Omega\). The
+value \(F_n(k)\), or \(G_n(k)\), is nonzero only once, when \(n=k\). It is zero
+for every later index, so
+
+\[
+F_n(k)\longrightarrow 0,
+\qquad
+G_n(k)\longrightarrow 0.
+\]
+
+The \(G_n\) family is the warning: pointwise convergence and bounded
+\(L^1\) norms still do not force \(L^1\) convergence. Indeed,
+
+\[
+\lVert F_n\rVert_1=\frac{n+1}{2^{n+1}}\longrightarrow0,
+\qquad
+\lVert G_n\rVert_1=1.
+\]
 
 {{< reference-figure
   wide="true"
   src="uniform-integrability.svg"
-  alt="Every function in one family passes through the same large-value threshold. Each resulting tail has integrable norm below the same requested tolerance. Combined with almost-everywhere convergence on a finite measure space, this uniform tail control leads through the Vitali theorem to integrable-norm convergence."
-  caption="**Finding:** the order of quantifiers is the content. After a tolerance is requested, one common threshold controls the large-value tail of every family member. RMT-27 obtains this for all orbit translates from identical distribution, preserves it under Cesaro averaging, and combines it with almost-everywhere convergence through Mathlib's finite-measure Vitali theorem. The diagram states logical dependencies, not measured tail sizes."
+  alt="On geometric atoms, the tame spike family has largest retained integrals one half, one quarter, one thirty-second, and one over 4096 at thresholds 2, 4, 8, and 16, while the concentrating family retains integral one at every threshold."
+  caption="**Finding:** the two families use the same atoms of probabilities \(1/2,1/4,1/8,\ldots\) and both converge pointwise to zero. For the tame family \(F_n=(n+1)\mathbf 1_{\{n\}}\), one common threshold makes every retained tail small: the worst tail integrals at thresholds \(2,4,8,16\) are \(1/2,1/4,1/32,1/4096\). For the concentrating family \(G_n=2^{n+1}\mathbf 1_{\{n\}}\), each shrinking support still carries integral one, so its worst tail integral remains one. These are exact toy values, not empirical measurements."
 >}}
+
+## Compute what the common threshold measures
+
+For a family \(H_n\), define its worst large-value tail at threshold \(C\) by
+
+\[
+\tau_H(C)
+{}=\sup_n\int_{\{|H_n|\ge C\}}|H_n|\,d\mu.
+\]
+
+The inequality is inclusive: a value exactly equal to \(C\) remains in the
+tail. Uniform integrability at exponent one asks for one threshold \(C\) that
+works for every family index after a tolerance has been requested:
+
+\[
+\forall\varepsilon\gt0\;\exists C\ge0\;\forall n,
+\qquad
+\int_{\{|H_n|\ge C\}}|H_n|\,d\mu\le\varepsilon.
+\]
+
+The decisive order is
+
+\[
+\boxed{\forall\varepsilon\;\exists C\;\forall n.}
+\]
+
+A separate threshold \(C_n\) for each function would merely recover
+individual integrability. The threshold must be shared by the whole family.
+
+For \(F_n\), let \(m=n+1\). Its only possible nonzero tail contribution is
+
+\[
+\int_{\{|F_n|\ge C\}}|F_n|\,d\mu
+{}=
+\begin{cases}
+m/2^m,&m\ge C,\\
+0,&m\lt C.
+\end{cases}
+\]
+
+The sequence \(m/2^m\) is nonincreasing for positive integers \(m\) and is
+strictly decreasing after \(m=1\). At an integer threshold \(M\ge2\), the
+largest surviving contribution therefore occurs at \(m=M\):
+
+| common threshold \(C\) | largest \(F_n\) tail | index attaining it | largest \(G_n\) tail |
+|---:|---:|---:|---:|
+| \(2\) | \(2/4=1/2\) | \(n=1\) | \(1\) |
+| \(4\) | \(4/16=1/4\) | \(n=3\) | \(1\) |
+| \(8\) | \(8/256=1/32\) | \(n=7\) | \(1\) |
+| \(16\) | \(16/65536=1/4096\) | \(n=15\) | \(1\) |
+
+Because \(M/2^M\to0\), given any \(\varepsilon\gt0\) we can choose \(M\)
+with \(M/2^M\lt\varepsilon\). The threshold \(C=M\) then makes every
+\(F_n\) tail smaller than \(\varepsilon\). Thus the \(F_n\) are uniformly
+integrable even though their spike heights \(n+1\) are unbounded. Uniform
+integrability does not mean a common pointwise height bound.
+
+For \(G_n\), the spike height is \(2^{n+1}\) and its supporting atom has
+probability \(2^{-(n+1)}\). Their product is always one. Given any finite
+threshold \(C\), choose \(n\) with \(2^{n+1}\ge C\). The whole spike remains,
+so
+
+\[
+\int_{\{|G_n|\ge C\}}|G_n|\,d\mu=1.
+\]
+
+Consequently \(\tau_G(C)=1\) for every finite \(C\). No threshold can meet,
+for example, the tolerance \(\varepsilon=1/2\).
+
+The same failure appears in small-set language. The events \(A_n\) satisfy
+\(\mu(A_n)\to0\), but
+
+\[
+\int_{A_n}|G_n|\,d\mu=1
+\qquad\text{for every }n.
+\]
+
+Mass is concentrating on smaller and smaller events without becoming smaller
+in the integral. This is exactly what uniform integrability forbids.
+
+Random Matrix Theory milestone 27 (RMT-27) needs that uniform control to
+upgrade {{< refterm "almost-everywhere" "almost-everywhere" >}} convergence
+of Birkhoff averages to convergence in
+\(L^1\). The complete checked narrative is
+[Identifying the Finite-Measure Birkhoff Limit in Lean]({{< relref "/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean" >}}).
+The textbook chapter is
+[Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}}).
 
 ## The two Mathlib predicates
 
@@ -36,14 +188,17 @@ Mathlib deliberately distinguishes two related notions. Let \(\Omega\) be a
 measurable space, let \(\mu\) be a measure on it, let \(I\) be an index type,
 and let \(F_i:\Omega\to E\) be a family of functions into a normed additive
 space \(E\). For an extended nonnegative exponent \(p\), the predicate
-<code>UnifIntegrable F p μ</code> is the small-set condition
+<code>UnifIntegrable F p μ</code> is the small-set condition:
+
+The exact pinned source declaration, with Mathlib's local type-variable names,
+is:
 
 ~~~lean
-def UnifIntegrable (F : I → Ω → E) (p : ℝ≥0∞) (μ : Measure Ω) : Prop :=
-  ∀ ⦃ε : ℝ⦄, 0 < ε →
-    ∃ δ : ℝ, 0 < δ ∧
-      ∀ i S, MeasurableSet S → μ S ≤ ENNReal.ofReal δ →
-        eLpNorm (S.indicator (F i)) p μ ≤ ENNReal.ofReal ε
+def UnifIntegrable {_ : MeasurableSpace α} (f : ι → α → β)
+    (p : ℝ≥0∞) (μ : Measure α) : Prop :=
+  ∀ ⦃ε : ℝ⦄ (_ : 0 < ε), ∃ (δ : ℝ) (_ : 0 < δ), ∀ i s,
+    MeasurableSet s → μ s ≤ ENNReal.ofReal δ →
+      eLpNorm (s.indicator (f i)) p μ ≤ ENNReal.ofReal ε
 ~~~
 
 In words: for every positive tolerance \(\varepsilon\), there is one positive
@@ -57,11 +212,11 @@ extended-nonnegative \(L^p\) norm.
 The capitalized predicate used directly by RMT-27 is stronger:
 
 ~~~lean
-def UniformIntegrable (F : I → Ω → E) (p : ℝ≥0∞)
-    (μ : Measure Ω) : Prop :=
-  (∀ i, AEStronglyMeasurable (F i) μ) ∧
-  UnifIntegrable F p μ ∧
-  ∃ C : ℝ≥0, ∀ i, eLpNorm (F i) p μ ≤ C
+def UniformIntegrable {_ : MeasurableSpace α} (f : ι → α → β)
+    (p : ℝ≥0∞) (μ : Measure α) : Prop :=
+  (∀ i, AEStronglyMeasurable (f i) μ) ∧
+  UnifIntegrable f p μ ∧
+  ∃ C : ℝ≥0, ∀ i, eLpNorm (f i) p μ ≤ C
 ~~~
 
 It bundles three facts:
@@ -114,75 +269,6 @@ other prevents mass from escaping to values of growing magnitude. Finite total
 measure is part of Mathlib's equivalence theorem and should not be erased when
 using that API.
 
-## Worked comparison: bounded norms are not enough
-
-Let \(\Omega=(0,1)\) with Lebesgue measure. For every positive integer \(n\),
-define
-
-\[
-F_n(x)=n\,\mathbf 1_{(0,n^{-2})}(x).
-\]
-
-Its \(L^1\) norm is
-
-\[
-\lVert F_n\rVert_1
-{} =
-n\cdot n^{-2}=\frac1n.
-\]
-
-The family is uniformly integrable. Given \(\varepsilon\gt0\), choose a
-positive integer \(N\) with \(1/N\lt\varepsilon\), and use the common tail
-threshold \(C=N\). If \(n\lt N\), then \(|F_n|=n\lt C\) everywhere, so its
-large-value tail is empty. If \(n\ge N\), the tail is its support and has
-integral
-
-\[
-\int_{\{|F_n|\ge C\}}|F_n|\,dx
-{} =
-\frac1n
-\le\frac1N
-\lt\varepsilon.
-\]
-
-Now compare
-
-\[
-G_n(x)=n\,\mathbf 1_{(0,n^{-1})}(x).
-\]
-
-Every member is integrable and the family has the uniform norm bound
-
-\[
-\lVert G_n\rVert_1=n\cdot n^{-1}=1.
-\]
-
-Nevertheless, it is not uniformly integrable. Given any finite threshold
-\(C\), choose an integer \(n\ge C\). The full support lies in the
-large-value tail, so
-
-\[
-\int_{\{|G_n|\ge C\}}|G_n|\,dx=1.
-\]
-
-No common threshold can make all tails smaller than, for example,
-\(\varepsilon=1/2\).
-
-Both sequences converge pointwise to zero for every \(x\in(0,1)\): eventually
-their shrinking support no longer contains a fixed positive \(x\). Yet their
-norm behavior differs:
-
-\[
-\lVert F_n-0\rVert_1=\frac1n\longrightarrow0,
-\qquad
-\lVert G_n-0\rVert_1=1.
-\]
-
-This is the exact gap the Vitali theorem closes. Pointwise or
-almost-everywhere convergence plus bounded \(L^1\) norms does not force
-\(L^1\) convergence. Uniform integrability supplies the missing no-escape
-condition.
-
 ## Why measure-preserving orbit translates are uniform
 
 Let \(T:\Omega\to\Omega\) preserve a finite measure \(\mu\), and let
@@ -193,9 +279,13 @@ F_i(\omega)=f(T^i\omega),
 \qquad i\in\mathbb N.
 \]
 
-Measure preservation says that the pushforward of \(\mu\) through every
+{{< refterm "measure-preserving-transformation" "Measure preservation" >}}
+says that the pushforward of \(\mu\) through every
 iterate \(T^i\) is again \(\mu\). Therefore every \(F_i\) has the same
-distribution as \(f\). In Lean, RMT-27 first proves
+pushforward distribution as \(f\). When \(\mu\) is probability normalized,
+that pushforward is a {{< refterm "probability-law" "probability law" >}}; on
+the module's general finite measure it is a finite measure with the same total
+mass as \(\mu\). In Lean, RMT-27 first proves
 
 ~~~lean
 theorem identDistrib_orbit_iterate
@@ -320,36 +410,194 @@ The logical chain is therefore
 Every arrow is represented by a checked theorem. Pointwise convergence alone
 would skip the indispensable middle of the argument.
 
-## Lean interface used by RMT-27
+## In Lean: read the small-set definition
 
-The pinned Mathlib interface consists of:
+{{< lean-bridge
+  human="After a positive error tolerance is chosen, one positive measure cutoff must control the restricted norm of every family member on every measurable set below that cutoff."
+  math="\(\forall\varepsilon\gt0\;\exists\delta\gt0\;\forall i\;\forall S\text{ measurable},\ \mu(S)\le\delta\Longrightarrow\lVert\mathbf 1_S F_i\rVert_{L^p(\mu)}\le\varepsilon.\)"
+  lean="UnifIntegrable F p μ"
+>}}
 
-- <code>UnifIntegrable</code>, uniform small-set \(L^p\) control;
-- <code>UniformIntegrable</code>, the measurable, small-set-controlled,
-  uniformly norm-bounded bundle;
-- <code>uniformIntegrable_iff</code>, the finite-measure tail criterion;
-- <code>MemLp.uniformIntegrable_of_identDistrib</code>, the route from one
-  \(L^p\) law and identical distributions to the whole family;
-- <code>uniformIntegrable_average</code>, Cesaro closure;
-- <code>UniformIntegrable.integrable_of_ae_tendsto</code>, integrability of an
-  almost-everywhere limit; and
-- <code>tendsto_Lp_finite_of_tendsto_ae</code>, the finite-measure Vitali
-  upgrade.
+- <code>∀ ⦃ε : ℝ⦄</code> introduces every real tolerance. The braces make
+  this argument implicit when the predicate is applied.
+- <code>0 &lt; ε</code> and <code>0 &lt; δ</code> record positivity.
+- <code>∀ i S</code> places the family index and set after the same cutoff.
+  That position is the family-wide quantifier.
+- <code>MeasurableSet S</code> is the regularity needed for restriction.
+- <code>μ S ≤ ENNReal.ofReal δ</code> compares the extended-nonnegative
+  measure with a real cutoff converted by <code>ENNReal.ofReal</code>.
+- <code>S.indicator (F i)</code> is the member restricted to \(S\).
+{{< /lean-bridge >}}
 
-The project module contributes:
+The predicate controls where \(L^p\) mass may hide. It does not mention
+pointwise convergence or choose a candidate limit.
 
-- <code>identDistrib_orbit_iterate</code>;
-- <code>uniformIntegrable_orbit_iterate</code>;
-- <code>uniformIntegrable_birkhoffAverage</code>;
-- <code>integrable_birkhoffLimit</code>; and
-- <code>tendsto_L1_birkhoffAverage_birkhoffLimit</code>.
+## In Lean: use the finite-measure tail criterion
 
-These are general analytic declarations inside the additive Birkhoff layer.
-They do not rely on an ergodicity premise or on a random-matrix cocycle.
+{{< lean-bridge
+  human="On a finite measure space, the measurable family is uniformly integrable exactly when one large-value threshold makes every member's retained tail norm as small as requested."
+  math="\(\operatorname{UniformIntegrable}(F,p,\mu)\iff\left[\text{measurability and }\forall\varepsilon\gt0\;\exists C\ge0\;\forall i,\ \lVert\mathbf 1_{\{\lVert F_i\rVert\ge C\}}F_i\rVert_{L^p(\mu)}\le\varepsilon\right].\)"
+  lean="uniformIntegrable_iff hp hp'"
+>}}
+
+- <code>[IsFiniteMeasure μ]</code> is an instance required by this theorem.
+- <code>hp : 1 ≤ p</code> rules out exponents below one.
+- <code>hp' : p ≠ ∞</code> rules out the top exponent.
+- <code>C : ℝ≥0</code> makes the threshold nonnegative by type.
+- <code>{ x | C ≤ ‖F i x‖₊ }</code> is the inclusive large-value event.
+- <code>‖F i x‖₊</code> is the nonnegative-real norm of the value.
+{{< /lean-bridge >}}
+
+This bridge is the exact Mathlib result behind the spike calculation. The
+mathematics on this page used \(p=1\), but the theorem is parameterized by
+every finite extended-nonnegative exponent \(p\) with \(1\le p\).
+
+## In Lean: orbit translates share one control
+
+{{< lean-bridge
+  human="Every orbit translate of one integrable observable belongs to a uniformly integrable family when the base map preserves a finite measure."
+  math="\(T_*\mu=\mu\ \land\ f\in L^1(\mu)\Longrightarrow\operatorname{UniformIntegrable}\bigl((f\circ T^i)_{i\in\mathbb N},1,\mu\bigr).\)"
+  lean="uniformIntegrable_orbit_iterate hT hf"
+>}}
+
+- <code>hT : MeasurePreserving T μ μ</code> certifies measurability of
+  \(T\) and preservation of the same measure \(\mu\).
+- <code>hf : Integrable f μ</code> is the \(L^1\) premise.
+- <code>T^[i]</code> is Lean notation for the \(i\)-fold iterate of \(T\).
+- The result is
+  <code>UniformIntegrable (fun i ω ↦ f ((T^[i]) ω)) 1 μ</code>.
+- No ergodicity, mixing, or independence premise occurs.
+{{< /lean-bridge >}}
+
+The complete project proof is short because the pinned identical-distribution
+theorem performs the family-wide analytic step:
+
+~~~lean
+theorem uniformIntegrable_orbit_iterate
+    [IsFiniteMeasure μ]
+    (hT : MeasurePreserving T μ μ) (hf : Integrable f μ) :
+    UniformIntegrable (fun i ω ↦ f ((T^[i]) ω)) 1 μ := by
+  apply ProbabilityTheory.MemLp.uniformIntegrable_of_identDistrib
+    (f := fun i ω ↦ f ((T^[i]) ω)) (j := 0) (p := 1)
+    le_rfl ENNReal.one_ne_top
+    (by simpa only [Function.iterate_zero, id_eq] using
+      (memLp_one_iff_integrable.mpr hf))
+  intro i
+  simpa only [Function.iterate_zero, id_eq] using
+    (identDistrib_orbit_iterate hT hf.aemeasurable i)
+~~~
+
+Index zero is the reference member because \(T^0\) is the identity. The last
+line proves that every other member has the same distribution as that
+reference.
+
+## A tiny standalone Lean worksheet a human can type
+
+**Resource label: tiny Lean standard-library (<code>Std</code>) check on macOS
+or Linux.** The following file records a retained integral as a pair
+<code>(numerator, denominator)</code>. For example, <code>(4, 16)</code>
+means the exact value \(4/16\). It checks the spike arithmetic and the
+inclusive threshold rule without importing Mathlib, defining a measure, or
+proving the infinite-family supremum.
+
+Save this as <code>UniformIntegrabilityTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace UniformIntegrabilityTutorial
+
+def atomDenominator (n : Nat) : Nat :=
+  2 ^ (n + 1)
+
+def tameHeight (n : Nat) : Nat :=
+  n + 1
+
+def concentratingHeight (n : Nat) : Nat :=
+  atomDenominator n
+
+def tailNumerator (height : Nat → Nat) (threshold n : Nat) : Nat :=
+  if threshold ≤ height n then height n else 0
+
+def tailFraction (height : Nat → Nat) (threshold n : Nat) : Nat × Nat :=
+  (tailNumerator height threshold n, atomDenominator n)
+
+#eval (List.range 5).map (tailFraction tameHeight 4)
+#eval (List.range 5).map (tailFraction concentratingHeight 4)
+#eval [tailFraction tameHeight 2 1, tailFraction tameHeight 4 3,
+  tailFraction tameHeight 8 7, tailFraction tameHeight 16 15]
+#eval [tailFraction concentratingHeight 2 0,
+  tailFraction concentratingHeight 4 1,
+  tailFraction concentratingHeight 8 2,
+  tailFraction concentratingHeight 16 3]
+
+example : tailFraction tameHeight 4 2 = (0, 8) := by decide
+example : tailFraction tameHeight 4 3 = (4, 16) := by decide
+example : tailFraction tameHeight 8 7 = (8, 256) := by decide
+example : tailFraction concentratingHeight 4 1 = (4, 4) := by decide
+example : tailFraction concentratingHeight 16 3 = (16, 16) := by decide
+
+end UniformIntegrabilityTutorial
+~~~
+
+From the directory containing the file, type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean UniformIntegrabilityTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this page. Its first output was
+<code>[(0, 2), (0, 4), (0, 8), (4, 16), (5, 32)]</code>. The second was
+<code>[(0, 2), (4, 4), (8, 8), (16, 16), (32, 32)]</code>. The third was
+<code>[(2, 4), (4, 16), (8, 256), (16, 65536)]</code>, and the fourth was
+<code>[(2, 2), (4, 4), (8, 8), (16, 16)]</code>. These are the
+decisive table entries. The tame numerators have rapidly growing denominators,
+while every concentrating fraction has equal numerator and denominator. This
+bounded worksheet does not download or build the project or Mathlib.
+
+## Try the exact declarations in the repository
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, checked only on an approved
+Linux builder.** A human can place the following commands in a project scratch
+file or compare them with the named module:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
+
+#check MeasureTheory.UnifIntegrable
+#check MeasureTheory.UniformIntegrable
+#check MeasureTheory.uniformIntegrable_iff
+#check MeasureTheory.uniformIntegrable_average
+#check ProbabilityTheory.MemLp.uniformIntegrable_of_identDistrib
+#check MeasureTheory.UniformIntegrable.integrable_of_ae_tendsto
+#check MeasureTheory.tendsto_Lp_finite_of_tendsto_ae
+#check NonlinearDynamics.Random.RandomCocycles.identDistrib_orbit_iterate
+#check NonlinearDynamics.Random.RandomCocycles.uniformIntegrable_orbit_iterate
+#check NonlinearDynamics.Random.RandomCocycles.uniformIntegrable_birkhoffAverage
+#check NonlinearDynamics.Random.RandomCocycles.integrable_birkhoffLimit
+#check NonlinearDynamics.Random.RandomCocycles.tendsto_L1_birkhoffAverage_birkhoffLimit
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for an existing declaration
+and its exact type. The guarded command below checks the complete
+<code>PointwiseBirkhoffLimit.lean</code> module. It must not be run on the Mac
+workstation because it imports the project and Mathlib.
+{{< /repo-check >}}
 
 ## Boundaries and nonclaims
 
-- **Uniform boundedness is not enough at \(p=1\).** The family \(G_n\) above
+- **A finite family is different.** A genuinely finite collection of
+  \(L^p\) functions is uniformly integrable under Mathlib's usual
+  \(1\le p\lt\infty\) assumptions. The escaping-spike obstruction needs new
+  behavior to keep appearing along an infinite family.
+- **A common pointwise bound is sufficient, not necessary.** On a finite
+  measure space, a common height bound eventually makes every large-value
+  tail empty. The tame \(F_n\) family is uniformly integrable even though its
+  heights \(n+1\) are unbounded.
+- **Uniform \(L^1\)-norm boundedness is not enough.** The family \(G_n\) above
   has norm exactly one and still fails uniform integrability.
 - **Individual integrability is not uniform integrability.** Letting the
   threshold depend on the family index loses the crucial quantifier.
@@ -380,8 +628,23 @@ They do not rely on an ergodicity premise or on a random-matrix cocycle.
 Uniform integrability does not establish ergodicity, mixing, Kingman's
 subadditive theorem, a Lyapunov exponent, or an Oseledets splitting.
 
+## Check your understanding
+
+1. For \(F_3\), what remains in the tail at thresholds \(C=3\), \(C=4\), and
+   \(C=5\)?
+2. Why does the threshold \(C=8\) retain the \(F_7\) contribution \(1/32\) but
+   remove every \(F_n\) with \(n\le6\)?
+3. At threshold \(C=100\), how could you choose an index whose \(G_n\) tail
+   still has integral one?
+4. Explain why \(\sup_n\lVert G_n\rVert_1=1\) does not control where that
+   integral is located.
+5. What convergence hypothesis must be added before the Vitali theorem can
+   conclude \(L^1\) convergence?
+
 ## Related concepts
 
+- {{< refterm "integrability" "Integrability" >}} is a one-function
+  condition; uniform integrability coordinates an entire family.
 - {{< refterm "conditional-expectation" "Conditional expectation" >}} is the
   target identified after uniform integrability permits integral passage.
 - {{< refterm "invariant-sigma-algebra" "Invariant sigma algebra" >}}

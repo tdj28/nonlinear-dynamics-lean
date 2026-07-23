@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:51 PDT
+Last updated: 2026-07-22 18:04 PDT
 
-Audited baseline: `main` at `56c30a6`
+Audited baseline: `main` at `effc1ae`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -147,26 +147,35 @@ Shared `lean-bridge` and `repo-check` shortcodes provide the visual translation
 and reproducible-command rhythm without replacing page-specific explanations.
 The first exemplar wave upgrades “Almost everywhere,” retitles and rebuilds
 “Probability distribution (law),” and adds the missing “Null set” foundation.
-All remain public working notes with `pro_reviewed: false`. Continue through
-all glossary entries before beginning the Deep Dive pass, validate and push
-small coherent batches, and do not resume RMT-35 formalization while this
-reader-catch-up phase is active.
+All remain public working notes with `pro_reviewed: false`. The example-first
+glossary **content** pass is complete; a reproducibility/tutorial cleanup
+remains active, and the Deep Dive textbook pass has begun in parallel. Continue
+to validate and push small coherent batches, and do not resume RMT-35
+formalization while this reader-catch-up phase is active.
 
-The current wave brings **59 of 62 glossary chapters** through the full
-example-first rebuild. The two newest chapters compute a forward Koopman
-coboundary and orbit-majorant centering without hiding the sign or centering
-conventions. The first turns potentials `(3, -2, 1, 0)` into changes
-`(-5, 3, -1, 3)`, verifies endpoint cancellation through horizons zero to
-five, and catches the reverse-subtraction near miss. The second follows a
-three-state orbit, subtracts triangular penalties, and contrasts the
-pointwise remainder `(-1, -1, -1)` with expectation-centering
-`(-2/3, -5/3, 7/3)`. Each page has exact human/paper/Lean bridges, a numeric
-accessible SVG that is also its reproducible card, and a `Std` worksheet
-executed with Lean 4.32.0 on the Mac. The orbit worksheet exposed and fixed
-three rational checks that required `native_decide` rather than `decide`.
-This is intentional teaching use of local Lean; project imports, Mathlib work,
-dependency builds, caches, and large proof checks remain on freshly approved
-Linux cloud compute.
+The current wave brings **all 62 glossary chapters** through the full
+example-first rebuild. The final three chapters make uniform integrability,
+phase averaging, and ordered interval packing finite and executable. They
+compare tame and concentrating spike tails at thresholds `2, 4, 8, 16`;
+reindex four phase rows with sums `15, 18, 21, 24` into the consecutive
+total `78` while protecting the positive time-zero boundary; and contrast a
+valid half-open packing with length/union ledger `(6, 6)` against an
+overlapping near-miss `(7, 6)`. Each page has exact human/paper/Lean bridges,
+a numeric accessible SVG that is also its reproducible card, and a `Std`
+worksheet executed with Lean 4.32.0 on the Mac. This is intentional teaching
+use of local Lean; project imports, Mathlib work, dependency builds, caches,
+and large proof checks remain on freshly approved Linux cloud compute.
+
+A read-only contract audit of the first 59 completed pages found no missing
+computed example, boundary case, reference figure, accessible alt/caption,
+human/paper/Lean bridge, token map, repository check, module target, or public
+review marker. It did find one SVG without explicit dimensions, one stale
+“worksheet not run” sentence, twenty early pages without page-owned card
+generators, fifteen existing card generators whose `--verify` comparison is
+stale, and seventeen early foundational pages without a tiny local `Std`
+tutorial. Treat those findings as required final glossary cleanup under the
+owner's reader-walkthrough direction; do not call the glossary release closed
+merely because all 62 content rewrites exist.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -1032,7 +1041,7 @@ declaration visibility.
   Selection*, followed by *The Guarded Real-Liminf Bridge to Log-Positive
   Kingman Convergence*, followed by *The Forward-and-Inverse Tail Sandwich for
   Finite-Time Real Log Norms*.
-- Fifty-nine glossary chapters, now including integrable generator log tails,
+- Sixty-two glossary chapters, now including integrable generator log tails,
   the finite orbit visit count,
   limit superior, limit inferior, ergodicity, normalized space
   averages, the invariant sigma algebra,
@@ -3054,6 +3063,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `effc1ae`: telescope a forward Koopman coboundary on a four-cycle and
+  contrast orbit-majorant with expectation centering on a three-cycle;
+  execute both local `Std` worksheets, fix the rational checks to use
+  `native_decide`, and regenerate both numeric cards.
 - `56c30a6`: construct a positive-time average sequence with moving
   fixed-scale Cauchy witnesses, and compute conditional expectation on every
   visible event of a four-state probability space; execute both local

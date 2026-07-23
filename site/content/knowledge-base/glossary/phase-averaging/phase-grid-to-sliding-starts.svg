@@ -1,105 +1,147 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="760"
-     viewBox="0 0 760 760" role="img"
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="930"
+     viewBox="0 0 1000 930" role="img"
      aria-labelledby="phaseGridTitle phaseGridDesc">
-  <title id="phaseGridTitle">Four phase rows become twelve consecutive sliding starts</title>
-  <desc id="phaseGridDesc">A toy grid has four residue phases and three complete-block samples in each phase. Phase zero contains starts zero, four, and eight; phase one contains one, five, and nine; phase two contains two, six, and ten; phase three contains three, seven, and eleven. Reordering by orbit time gives every start from zero through eleven exactly once. A separate strip shows an initial gap, three complete blocks, and a terminal gap. Positive-time nonpositivity removes the gaps, while the zero phase uses a proof that never inserts a time-zero prefix.</desc>
-  <rect width="760" height="760" fill="#F7F4F0"/>
+  <title id="phaseGridTitle">Exact phase regrouping and boundary removal</title>
+  <desc id="phaseGridDesc">The upper panel groups twelve orbit starts into four residue phases. Phase zero has starts zero, four, and eight with values one, five, and nine, totaling fifteen. The other row totals are eighteen, twenty-one, and twenty-four. All rows total seventy-eight, matching the consecutive values one through twelve. The lower panel uses a one-point process whose time-zero value is positive one and whose positive-time value is minus the horizon. At block length four, three blocks, terminal parameter two, and phase one, an initial gap value minus one, block total minus twelve, and terminal gap value minus five total the horizon value minus eighteen. Removing only the nonpositive gaps gives minus eighteen at most minus twelve. Phase zero follows a direct route that never discards the positive time-zero value.</desc>
+
+  <rect width="1000" height="930" fill="#F7F4F0"/>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:20px;font-weight:700}
-    .h{font-size:14px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .phase{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .start{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .gap{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .arrow{fill:none;stroke:#A67C52;stroke-width:2.3;marker-end:url(#arrowhead)}
+    .title{font-size:22px;font-weight:700}
+    .h{font-size:15px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.6}
+    .phase{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .kept{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}
+    .gap{fill:#F3E8E0;stroke:#8A623E;stroke-width:1.8;stroke-dasharray:8 5}
+    .warning{fill:#F3E8E0;stroke:#8A623E;stroke-width:1.6}
+    .arrow{fill:none;stroke:#8A623E;stroke-width:2.4;marker-end:url(#arrowhead)}
+    .divider{stroke:#A89B8C;stroke-width:1.3;stroke-dasharray:5 4}
   </style>
   <defs>
-    <marker id="arrowhead" markerWidth="8" markerHeight="8"
-            refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    <marker id="arrowhead" markerWidth="9" markerHeight="9"
+            refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#8A623E"/>
     </marker>
   </defs>
 
-  <text x="24" y="32" class="t title">A phase grid is one consecutive run in disguise</text>
-  <text x="24" y="55" class="t m">Toy instance: four residue phases, three complete-block samples per phase</text>
+  <text x="24" y="35" class="t title">Every residue phase, then only safe boundary removal</text>
+  <text x="24" y="59" class="t m">Two exact toy ledgers: four-by-three regrouping and a positive-at-time-zero process</text>
 
-  <rect x="24" y="78" width="712" height="286" rx="14" class="neutral"/>
-  <text x="44" y="108" class="t h">Group the starts by phase</text>
-  <text x="201" y="136" class="t m">block round one</text>
-  <text x="372" y="136" class="t m">block round two</text>
-  <text x="542" y="136" class="t m">block round three</text>
+  <rect x="24" y="80" width="952" height="374" rx="16" class="neutral"/>
+  <text x="46" y="112" class="t h">1. Regroup twelve consecutive starts into four phase rows</text>
+  <text x="46" y="134" class="t m">Block length four; three samples in each phase; value at start k is k plus one</text>
 
-  <rect x="44" y="151" width="130" height="40" rx="8" class="phase"/>
-  <text x="76" y="176" class="t h">phase zero</text>
-  <rect x="194" y="151" width="146" height="40" rx="8" class="start"/>
-  <text x="231" y="176" class="t s">start zero</text>
-  <rect x="365" y="151" width="146" height="40" rx="8" class="start"/>
-  <text x="401" y="176" class="t s">start four</text>
-  <rect x="536" y="151" width="176" height="40" rx="8" class="start"/>
-  <text x="583" y="176" class="t s">start eight</text>
+  <text x="62" y="163" class="t m">phase</text>
+  <text x="228" y="163" class="t m">first sample</text>
+  <text x="420" y="163" class="t m">second sample</text>
+  <text x="612" y="163" class="t m">third sample</text>
+  <text x="829" y="163" class="t m">row sum</text>
 
-  <rect x="44" y="203" width="130" height="40" rx="8" class="phase"/>
-  <text x="76" y="228" class="t h">phase one</text>
-  <rect x="194" y="203" width="146" height="40" rx="8" class="start"/>
-  <text x="234" y="228" class="t s">start one</text>
-  <rect x="365" y="203" width="146" height="40" rx="8" class="start"/>
-  <text x="403" y="228" class="t s">start five</text>
-  <rect x="536" y="203" width="176" height="40" rx="8" class="start"/>
-  <text x="586" y="228" class="t s">start nine</text>
+  <rect x="46" y="175" width="126" height="48" rx="9" class="phase"/>
+  <text x="76" y="204" class="t h">phase 0</text>
+  <rect x="188" y="175" width="176" height="48" rx="9" class="kept"/>
+  <text x="218" y="196" class="t s">start 0</text>
+  <text x="294" y="196" class="t s">value 1</text>
+  <rect x="380" y="175" width="176" height="48" rx="9" class="kept"/>
+  <text x="410" y="196" class="t s">start 4</text>
+  <text x="486" y="196" class="t s">value 5</text>
+  <rect x="572" y="175" width="176" height="48" rx="9" class="kept"/>
+  <text x="602" y="196" class="t s">start 8</text>
+  <text x="678" y="196" class="t s">value 9</text>
+  <rect x="764" y="175" width="188" height="48" rx="9" class="neutral"/>
+  <text x="814" y="204" class="t h">1 + 5 + 9 = 15</text>
 
-  <rect x="44" y="255" width="130" height="40" rx="8" class="phase"/>
-  <text x="76" y="280" class="t h">phase two</text>
-  <rect x="194" y="255" width="146" height="40" rx="8" class="start"/>
-  <text x="234" y="280" class="t s">start two</text>
-  <rect x="365" y="255" width="146" height="40" rx="8" class="start"/>
-  <text x="405" y="280" class="t s">start six</text>
-  <rect x="536" y="255" width="176" height="40" rx="8" class="start"/>
-  <text x="587" y="280" class="t s">start ten</text>
+  <rect x="46" y="232" width="126" height="48" rx="9" class="phase"/>
+  <text x="76" y="261" class="t h">phase 1</text>
+  <rect x="188" y="232" width="176" height="48" rx="9" class="kept"/>
+  <text x="218" y="253" class="t s">start 1</text>
+  <text x="294" y="253" class="t s">value 2</text>
+  <rect x="380" y="232" width="176" height="48" rx="9" class="kept"/>
+  <text x="410" y="253" class="t s">start 5</text>
+  <text x="486" y="253" class="t s">value 6</text>
+  <rect x="572" y="232" width="176" height="48" rx="9" class="kept"/>
+  <text x="598" y="253" class="t s">start 9</text>
+  <text x="672" y="253" class="t s">value 10</text>
+  <rect x="764" y="232" width="188" height="48" rx="9" class="neutral"/>
+  <text x="806" y="261" class="t h">2 + 6 + 10 = 18</text>
 
-  <rect x="44" y="307" width="130" height="40" rx="8" class="phase"/>
-  <text x="70" y="332" class="t h">phase three</text>
-  <rect x="194" y="307" width="146" height="40" rx="8" class="start"/>
-  <text x="230" y="332" class="t s">start three</text>
-  <rect x="365" y="307" width="146" height="40" rx="8" class="start"/>
-  <text x="398" y="332" class="t s">start seven</text>
-  <rect x="536" y="307" width="176" height="40" rx="8" class="start"/>
-  <text x="576" y="332" class="t s">start eleven</text>
+  <rect x="46" y="289" width="126" height="48" rx="9" class="phase"/>
+  <text x="76" y="318" class="t h">phase 2</text>
+  <rect x="188" y="289" width="176" height="48" rx="9" class="kept"/>
+  <text x="218" y="310" class="t s">start 2</text>
+  <text x="294" y="310" class="t s">value 3</text>
+  <rect x="380" y="289" width="176" height="48" rx="9" class="kept"/>
+  <text x="410" y="310" class="t s">start 6</text>
+  <text x="486" y="310" class="t s">value 7</text>
+  <rect x="572" y="289" width="176" height="48" rx="9" class="kept"/>
+  <text x="594" y="310" class="t s">start 10</text>
+  <text x="672" y="310" class="t s">value 11</text>
+  <rect x="764" y="289" width="188" height="48" rx="9" class="neutral"/>
+  <text x="806" y="318" class="t h">3 + 7 + 11 = 21</text>
 
-  <path d="M380 370 L380 399" class="arrow"/>
+  <rect x="46" y="346" width="126" height="48" rx="9" class="phase"/>
+  <text x="76" y="375" class="t h">phase 3</text>
+  <rect x="188" y="346" width="176" height="48" rx="9" class="kept"/>
+  <text x="218" y="367" class="t s">start 3</text>
+  <text x="294" y="367" class="t s">value 4</text>
+  <rect x="380" y="346" width="176" height="48" rx="9" class="kept"/>
+  <text x="410" y="367" class="t s">start 7</text>
+  <text x="486" y="367" class="t s">value 8</text>
+  <rect x="572" y="346" width="176" height="48" rx="9" class="kept"/>
+  <text x="594" y="367" class="t s">start 11</text>
+  <text x="672" y="367" class="t s">value 12</text>
+  <rect x="764" y="346" width="188" height="48" rx="9" class="neutral"/>
+  <text x="806" y="375" class="t h">4 + 8 + 12 = 24</text>
 
-  <rect x="24" y="409" width="712" height="128" rx="14" class="neutral"/>
-  <text x="44" y="438" class="t h">Read the same starts in orbit order</text>
-  <rect x="44" y="454" width="652" height="32" rx="8" class="start"/>
-  <text x="71" y="475" class="t s">zero</text>
-  <text x="171" y="475" class="t s">one</text>
-  <text x="269" y="475" class="t s">two</text>
-  <text x="363" y="475" class="t s">three</text>
-  <text x="473" y="475" class="t s">four</text>
-  <text x="572" y="475" class="t s">five</text>
-  <rect x="44" y="493" width="652" height="32" rx="8" class="start"/>
-  <text x="75" y="514" class="t s">six</text>
-  <text x="164" y="514" class="t s">seven</text>
-  <text x="266" y="514" class="t s">eight</text>
-  <text x="370" y="514" class="t s">nine</text>
-  <text x="474" y="514" class="t s">ten</text>
-  <text x="569" y="514" class="t s">eleven</text>
+  <rect x="46" y="407" width="906" height="32" rx="9" class="kept"/>
+  <text x="72" y="428" class="t h">All starts 0 through 11 occur once: 15 + 18 + 21 + 24 = 78 = 1 + 2 + ... + 12</text>
 
-  <rect x="24" y="558" width="712" height="118" rx="14" class="neutral"/>
-  <text x="44" y="587" class="t h">Each phase bound also carries two gaps</text>
-  <rect x="44" y="604" width="174" height="52" rx="9" class="gap"/>
-  <text x="88" y="626" class="t h">initial gap</text>
-  <text x="77" y="646" class="t m">length is the phase</text>
-  <rect x="228" y="604" width="282" height="52" rx="9" class="phase"/>
-  <text x="294" y="626" class="t h">three complete blocks</text>
-  <text x="284" y="646" class="t m">the sampled block costs</text>
-  <rect x="520" y="604" width="192" height="52" rx="9" class="gap"/>
-  <text x="564" y="626" class="t h">terminal gap</text>
-  <text x="550" y="646" class="t m">always positive here</text>
+  <rect x="24" y="476" width="952" height="386" rx="16" class="neutral"/>
+  <text x="46" y="508" class="t h">2. Keep both gaps first; remove them only after proving their sign</text>
+  <text x="46" y="530" class="t m">One-point process: time-zero value is +1; every positive-time value is minus its horizon</text>
 
-  <rect x="24" y="698" width="712" height="46" rx="11" class="start"/>
-  <text x="123" y="718" class="t h">Positive-time nonpositivity removes the gaps</text>
-  <text x="121" y="736" class="t m">The zero phase uses a proof that never inserts a time-zero prefix</text>
+  <rect x="46" y="552" width="166" height="118" rx="12" class="phase"/>
+  <text x="78" y="579" class="t h">long horizon</text>
+  <text x="79" y="604" class="t s">length 18</text>
+  <line x1="67" y1="617" x2="191" y2="617" class="divider"/>
+  <text x="72" y="643" class="t h">process value -18</text>
+
+  <path d="M220 611 L252 611" class="arrow"/>
+
+  <rect x="264" y="552" width="168" height="118" rx="12" class="gap"/>
+  <text x="296" y="579" class="t h">initial gap</text>
+  <text x="301" y="604" class="t s">length 1</text>
+  <line x1="284" y1="617" x2="412" y2="617" class="divider"/>
+  <text x="294" y="643" class="t h">gap value -1</text>
+
+  <rect x="446" y="552" width="250" height="118" rx="12" class="kept"/>
+  <text x="496" y="579" class="t h">three complete blocks</text>
+  <text x="497" y="604" class="t s">each block has length 4</text>
+  <line x1="468" y1="617" x2="674" y2="617" class="divider"/>
+  <text x="496" y="643" class="t h">block total 3 x -4 = -12</text>
+
+  <rect x="710" y="552" width="242" height="118" rx="12" class="gap"/>
+  <text x="771" y="579" class="t h">terminal gap</text>
+  <text x="784" y="604" class="t s">length 5</text>
+  <line x1="732" y1="617" x2="930" y2="617" class="divider"/>
+  <text x="776" y="643" class="t h">gap value -5</text>
+
+  <rect x="46" y="691" width="906" height="55" rx="10" class="phase"/>
+  <text x="70" y="714" class="t h">Boundary-retaining ledger</text>
+  <text x="70" y="735" class="t s">Initial -1 plus blocks -12 plus terminal -5 totals horizon -18; lengths 1 + 12 + 5 account for all 18 positions.</text>
+
+  <path d="M500 750 L500 772" class="arrow"/>
+
+  <rect x="46" y="780" width="430" height="61" rx="10" class="kept"/>
+  <text x="68" y="805" class="t h">After safe removal</text>
+  <text x="68" y="827" class="t s">Both gap values are nonpositive, so -18 is at most -12.</text>
+
+  <rect x="496" y="780" width="456" height="61" rx="10" class="warning"/>
+  <text x="518" y="805" class="t h">Phase-zero near-miss</text>
+  <text x="518" y="827" class="t s">Time-zero value is +1. Use blocks -12 plus terminal -6; do not discard +1.</text>
+
+  <rect x="24" y="882" width="952" height="34" rx="10" class="kept"/>
+  <text x="107" y="904" class="t h">Finite conclusion: all phases reindex exactly; only positive-time nonpositive gaps may be removed.</text>
 </svg>

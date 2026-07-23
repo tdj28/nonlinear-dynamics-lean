@@ -7,30 +7,103 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking"
 og_image: "ordered-interval-packing-card.png"
-og_image_alt: "Warm-paper glossary card showing an initial uncovered gap, a positive-length interval, an optional zero gap, a singleton interval, and an interval abutting that singleton without overlap. The footer reads ordered, half-open, disjoint, and finite horizon."
+og_image_alt: "On ten positions, half-open intervals one-to-three, three-to-four, and six-to-nine cover six distinct points and all five marks; replacing the singleton by two-to-four creates one overlap, length sum seven, and union size six."
 ---
+
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted open working note. Human review of
+the mathematics, Lean interpretation, sources, figure, and accessibility is
+still pending. The finite calculations below are exact, but publication does
+not mean the page has passed that review.
+{{< /panel >}}
+
+Start with a horizon of ten natural-number positions,
+
+\[
+\{0,1,2,3,4,5,6,7,8,9\},
+\]
+
+and mark
+
+\[
+B=\{1,2,3,6,8\}.
+\]
+
+A **marked start** is a position eligible to begin a selected interval. The
+selector contract also promises to cover every mark, but a mark need not
+become the left endpoint of an interval. Select the three half-open intervals
+
+\[
+P=\bigl([1,3),[3,4),[6,9)\bigr).
+\]
+
+Half-open means “include the left endpoint and exclude the right endpoint.”
+The three intervals therefore cover
+
+\[
+\begin{aligned}
+[1,3)&=\{1,2\},\\
+[3,4)&=\{3\},\\
+[6,9)&=\{6,7,8\}.
+\end{aligned}
+\]
+
+Their union is
+
+\[
+U=\{1,2,3,6,7,8\}.
+\]
+
+Everything can be checked by hand:
+
+- the lengths are \(2\), \(1\), and \(3\), so their sum is \(6\);
+- the union \(U\) also has exactly \(6\) positions;
+- the endpoint tests are \(3\le3\) and \(4\le6\), so the intervals are in
+  chronological order and do not overlap; and
+- \(B\subseteq U\), so all five marks are covered.
+
+The equality \(3\le3\) is a boundary case, not an error. The first interval
+excludes \(3\), while the second includes it, so the intervals **abut** at
+\(3\) without sharing a position. The interval \([3,4)\) is also a legitimate
+one-position interval. Finally, the mark \(2\) is covered by \([1,3)\), even
+though no selected interval starts at \(2\).
+
+Here is the tempting near-miss. Replace \([3,4)\) by \([2,4)\). The endpoint
+test would become \(3\le2\), which is false, and the two intervals would both
+contain position \(2\). Their lengths would add to
+
+\[
+2+2+3=7,
+\]
+
+but their union would still have only the six positions
+\(\{1,2,3,6,7,8\}\). This one overlap destroys the exact equation “covered
+cardinality equals the sum of interval lengths.”
+
+{{< reference-figure
+  wide="true"
+  src="ordered-packing-on-a-finite-horizon.svg"
+  alt="On positions zero through nine, the valid intervals one-to-three, three-to-four, and six-to-nine cover six positions and all five marks; the first two abut. A comparison replaces the singleton by two-to-four, causing an overlap at position two and making length sum seven while the union still has size six."
+  caption="**The complete finite check:** the valid half-open intervals are \([1,3)\), \([3,4)\), and \([6,9)\). They cover \(U=\{1,2,3,6,7,8\}\), their lengths sum to \(2+1+3=6=|U|\), and they cover every mark in \(B=\{1,2,3,6,8\}\). The first two abut because \(3\le3\); position \(3\) belongs only to the second. The lower comparison is deliberately invalid: \([1,3)\) and \([2,4)\) overlap at \(2\), so the length sum is \(7\) while the union still has cardinality \(6\). The final strip decodes the valid horizon as gap \(1\), length \(2\), zero gap, length \(1\), gap \(2\), length \(3\), and terminal tail \(1\), which totals \(10\). Marks are labeled independently of selected starts, so the figure also shows why coverage does not record selection provenance. This is exact toy data, not an empirical measurement or a density claim."
+>}}
 
 An **ordered interval packing** is a finite chronological family of
 positive-length half-open intervals inside a finite natural-number horizon.
-RMT-21 encodes the family by the gaps before successive intervals rather than
-by an arbitrary list plus a separate proof that the list is valid.
+The twenty-first Random Matrix Theory milestone (RMT-21) encodes that family
+by the gaps before successive intervals rather than by an arbitrary list plus
+a separate proof that the list is valid.
 
-The term has a narrow meaning here. A packing is not a probability
-distribution, an asymptotic density, a topological cover, or an assertion that
-the selected intervals are optimal. It is finite data with checked endpoint,
-coverage, and cardinality properties.
+The term has a narrow meaning here. A packing is not a
+{{< refterm "probability-law" "probability distribution" >}}, an asymptotic
+density, a topological cover, or an assertion that the selected intervals are
+optimal. It is finite data with checked endpoint, coverage, and cardinality
+properties.
 
 The construction continues the finite upper estimate developed by
 {{< refterm "phase-averaging" "phase averaging" >}}. Phase averaging gathers
 fixed-block estimates. Ordered interval packing handles the complementary
 geometry in which different marked starts may choose different positive
 lengths.
-
-{{< reference-figure
-  src="ordered-packing-on-a-finite-horizon.svg"
-  alt="A toy horizon from zero through nine contains selected intervals covering positions one and two, position three alone, and positions six through eight. The first two selected intervals abut. Marked starts one, two, three, six, and eight all lie in the selected union. Separate rows show the ordered endpoints and covered positions."
-  caption="**Finding:** a packing can contain a singleton interval and adjacent intervals without overlap. In this toy horizon the selected intervals are `[1,3)`, `[3,4)`, and `[6,9)`. Their covered positions are `{1,2,3,6,7,8}` and their total covered length is six. The marked starts `{1,2,3,6,8}` are all covered, although not every mark begins a selected interval. That last distinction separates coverage from selection provenance. The example is finite and illustrative, not empirical data or an asymptotic density claim."
->}}
 
 ## The half-open convention
 
@@ -404,6 +477,268 @@ packing has cost zero, so \(X_0\le\operatorname{cost}(P)\) is false.
 This countermodel explains the explicit positive-horizon premise in the weak
 packing and greedy theorems. Adding \(X_0=0\) globally would hide the exact
 boundary and unnecessarily strengthen the useful positive-time result.
+
+## In Lean: a covered position has an interval witness
+
+The first bridge connects the visible union of positions to the stored list
+of endpoint pairs.
+
+{{< lean-bridge
+  human="A natural-number position j is covered exactly when at least one decoded interval starts at or before j and ends strictly after j."
+  math="\(j\in\operatorname{coveredFinset}(P)\iff\exists I\in\operatorname{intervals}(P),\ I_1\le j\lt I_2.\)"
+  lean="P.mem_coveredFinset_iff_exists_interval"
+>}}
+
+- <code>P : OrderedNatIntervalPacking N</code> is a packing whose complete
+  ambient horizon has length <code>N</code>.
+- <code>j ∈ P.coveredFinset</code> is finite-set membership.
+- <code>↔</code> means “if and only if”; Lean requires proofs in both
+  directions.
+- <code>∃ I ∈ P.intervals</code> means “there exists an endpoint pair
+  <code>I</code> in the decoded interval list.”
+- For a pair <code>I : ℕ × ℕ</code>, <code>I.1</code> is its start and
+  <code>I.2</code> is its excluded endpoint.
+- The strict comparison <code>j &lt; I.2</code> is where the half-open
+  convention appears in syntax.
+{{< /lean-bridge >}}
+
+The exact checked declaration is:
+
+~~~lean
+theorem mem_coveredFinset_iff_exists_interval {N j : ℕ}
+    (P : OrderedNatIntervalPacking N) :
+    j ∈ P.coveredFinset ↔
+      ∃ I ∈ P.intervals, I.1 ≤ j ∧ j < I.2
+~~~
+
+For the opening example, this theorem says that the witness for position \(2\)
+may be the pair \((1,3)\), while no witness exists for position \(4\).
+
+## In Lean: order allows equality at a shared boundary
+
+The gap-length-tail representation makes a statement about every earlier and
+later decoded pair, not only consecutive pairs.
+
+{{< lean-bridge
+  human="Whenever interval I appears before interval J, I ends no later than J begins."
+  math="\(I\text{ earlier than }J\Longrightarrow I_2\le J_1.\)"
+  lean="P.intervals_pairwise"
+>}}
+
+- <code>P.intervals</code> is a <code>List (ℕ × ℕ)</code> in chronological
+  order.
+- <code>List.Pairwise</code> applies the supplied relation to each
+  earlier-later pair in that list.
+- <code>fun I J =&gt; I.2 ≤ J.1</code> is the relation: the first endpoint
+  pair's stop is at most the second pair's start.
+- The token <code>≤</code>, rather than <code>&lt;</code>, admits abutting
+  intervals. In the numeric example it accepts <code>3 ≤ 3</code>.
+- <code>intervals_pairwiseDisjoint_Ico</code> turns this endpoint order into
+  pairwise disjointness of the corresponding half-open sets.
+{{< /lean-bridge >}}
+
+Here are both exact project statements:
+
+~~~lean
+theorem intervals_pairwise {N : ℕ} (P : OrderedNatIntervalPacking N) :
+    P.intervals.Pairwise (fun I J => I.2 ≤ J.1)
+
+theorem intervals_pairwiseDisjoint_Ico {N : ℕ}
+    (P : OrderedNatIntervalPacking N) :
+    P.intervals.Pairwise
+      (fun I J => Disjoint (Set.Ico I.1 I.2) (Set.Ico J.1 J.2))
+~~~
+
+The first statement is the arithmetic interface. The second is the set-level
+consequence. Neither says there must be a positive gap between intervals.
+
+## In Lean: disjoint lengths become exact covered cardinality
+
+{{< lean-bridge
+  human="The number of distinct covered positions is exactly the sum of the selected interval lengths."
+  math="\(\left|\operatorname{coveredFinset}(P)\right|=\operatorname{coveredLength}(P).\)"
+  lean="P.card_coveredFinset"
+>}}
+
+- <code>.card</code> counts distinct elements of a finite set.
+- <code>coveredLength</code> recursively adds each stored positive length.
+- The theorem's proof uses the structural separation between the first
+  half-open interval and the shifted tail, then applies finite disjoint-union
+  cardinality.
+- The near-miss family is intentionally not a value of this packing type: its
+  overlap would make the left side \(6\) and the naive length sum \(7\).
+{{< /lean-bridge >}}
+
+The exact declaration has no extra disjointness hypothesis because valid
+values of the type already carry that geometry:
+
+~~~lean
+theorem card_coveredFinset {N : ℕ} (P : OrderedNatIntervalPacking N) :
+    P.coveredFinset.card = P.coveredLength
+~~~
+
+Coverage then gives a one-sided count. If
+<code>hcover : P.Covers marked</code>, the term
+
+~~~lean
+P.card_le_coveredLength_of_covers marked hcover
+~~~
+
+has type <code>marked.card ≤ P.coveredLength</code>. It need not be an
+equality because one interval can cover several marked starts.
+
+## In Lean: the selector returns two different certificates
+
+{{< lean-bridge
+  human="If all marked starts are below H and every prescribed length is positive and at most m, some packing in the enlarged horizon H plus m both covers every mark and uses only prescribed marked starts."
+  math="\(B\subseteq\{0,\ldots,H-1\},\ \forall j\in B,\ 0\lt\ell(j)\le m\Longrightarrow\exists P\in\operatorname{Packing}(H+m),\ \operatorname{Covers}(P,B)\land\operatorname{SelectedFrom}(P,B,\ell).\)"
+  lean="OrderedNatIntervalPacking.exists_orderedPacking_covering H m marked length hmarked hlength"
+>}}
+
+- <code>hmarked : marked ⊆ Finset.range H</code> puts every eligible start in
+  the old horizon. <code>Finset.range H</code> contains \(0\) through \(H-1\).
+- <code>hlength</code> proves both <code>0 &lt; length j</code> and
+  <code>length j ≤ m</code> for every marked <code>j</code>.
+- <code>∃ P : OrderedNatIntervalPacking (H + m)</code> returns a packing in
+  the enlarged horizon; it does not compute a canonical value exposed as a
+  public function.
+- <code>P.Covers marked</code> says every mark lies in the selected union.
+- <code>P.SelectedFrom marked length</code> says every chosen interval starts
+  at a mark and has that mark's prescribed length.
+- The conjunction <code>∧</code> matters. Neither certificate implies the
+  other, and the theorem deliberately returns both.
+{{< /lean-bridge >}}
+
+The exact conclusion is:
+
+~~~lean
+∃ P : OrderedNatIntervalPacking (H + m),
+  P.Covers marked ∧ P.SelectedFrom marked length
+~~~
+
+This is an existence theorem for a valid finite selection. It does not say
+the output has the fewest intervals, the greatest covered length, or a unique
+shape.
+
+## A tiny standalone Lean worksheet a human can type
+
+**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+complete file reproduces the opening packing, its exact covered set, the
+abutment boundary, and the overlapping near-miss. It does not import Mathlib
+or this project, and it does not prove the general structural theorems above.
+
+Save the following as <code>OrderedPackingTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace OrderedPackingTutorial
+
+abbrev NatInterval := Nat × Nat
+
+def packing : List NatInterval :=
+  [(1, 3), (3, 4), (6, 9)]
+
+def nearMiss : List NatInterval :=
+  [(1, 3), (2, 4), (6, 9)]
+
+def marked : List Nat := [1, 2, 3, 6, 8]
+
+def inside (I : NatInterval) (j : Nat) : Bool :=
+  decide (I.1 ≤ j ∧ j < I.2)
+
+def coveredPositions (family : List NatInterval) : List Nat :=
+  (List.range 10).filter fun j => family.any fun I => inside I j
+
+def intervalLength (I : NatInterval) : Nat :=
+  I.2 - I.1
+
+def totalLength (family : List NatInterval) : Nat :=
+  family.foldl (fun total I => total + intervalLength I) 0
+
+def isOrdered : List NatInterval → Bool
+  | [] => true
+  | [_] => true
+  | I :: J :: rest =>
+      decide (I.2 ≤ J.1) && isOrdered (J :: rest)
+
+def allMarksCovered (family : List NatInterval) : Bool :=
+  marked.all fun j => (coveredPositions family).contains j
+
+#eval coveredPositions packing
+#eval [totalLength packing, (coveredPositions packing).length]
+#eval [isOrdered packing, allMarksCovered packing]
+#eval coveredPositions nearMiss
+#eval [totalLength nearMiss, (coveredPositions nearMiss).length]
+#eval isOrdered nearMiss
+
+example : coveredPositions packing = [1, 2, 3, 6, 7, 8] := by decide
+example : totalLength packing = 6 := by decide
+example : (coveredPositions packing).length = 6 := by decide
+example : isOrdered packing = true := by decide
+example : allMarksCovered packing = true := by decide
+example : inside (1, 3) 3 = false := by decide
+example : inside (3, 4) 3 = true := by decide
+example : coveredPositions nearMiss = [1, 2, 3, 6, 7, 8] := by decide
+example : totalLength nearMiss = 7 := by decide
+example : isOrdered nearMiss = false := by decide
+
+end OrderedPackingTutorial
+~~~
+
+From the directory containing that file, type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean OrderedPackingTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this page. Its output was:
+
+~~~text
+[1, 2, 3, 6, 7, 8]
+[6, 6]
+[true, true]
+[1, 2, 3, 6, 7, 8]
+[7, 6]
+false
+~~~
+
+This command is suitable for an ordinary Mac or Linux machine because the
+worksheet imports only <code>Std</code>. The first pair <code>[6, 6]</code>
+records “length sum equals union size” for the valid packing. The second pair
+<code>[7, 6]</code> records the exact failure caused by the overlap. The
+worksheet is finite executable arithmetic, not a replacement for the
+Mathlib-backed proof that every value of the project type is valid.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
+copy of the repository, a reader can create a scratch query containing:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check OrderedNatIntervalPacking
+#check OrderedNatIntervalPacking.mem_coveredFinset_iff_exists_interval
+#check OrderedNatIntervalPacking.intervals_pairwise
+#check OrderedNatIntervalPacking.intervals_pairwiseDisjoint_Ico
+#check OrderedNatIntervalPacking.card_coveredFinset
+#check OrderedNatIntervalPacking.card_le_coveredLength_of_covers
+#check OrderedNatIntervalPacking.exists_orderedPacking_covering
+#check OrderedNatIntervalPacking.le_mul_card_of_greedy_cover
+#check OrderedNatIntervalPacking.lt_mul_card_of_greedy_cover
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for the exact declaration
+type. The guarded command below checks the authoritative RMT-21 source module,
+not the tiny standalone worksheet. It belongs on approved Linux compute and
+must not be run on this Mac workstation.
+{{< /repo-check >}}
 
 ## Lean landmarks
 
