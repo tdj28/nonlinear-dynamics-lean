@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:46 PDT
+Last updated: 2026-07-22 17:51 PDT
 
-Audited baseline: `main` at `69be855`
+Audited baseline: `main` at `56c30a6`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -152,15 +152,18 @@ all glossary entries before beginning the Deep Dive pass, validate and push
 small coherent batches, and do not resume RMT-35 formalization while this
 reader-catch-up phase is active.
 
-The current wave brings **57 of 62 glossary chapters** through the full
-example-first rebuild. The two newest chapters make fixed-scale Cauchy failure
-and conditional expectation fully concrete. One constructs positive-time
-averages `-1, 1, -1, 1, ...`, exhibits moving witness pairs after three sample
-cutoffs, and contrasts a constant tail. The other groups four equally likely
-states into two visible cells, replaces values `(1, 3, 2, 6)` by
-`(2, 2, 4, 4)`, and checks every visible-set integral. Each page now has exact
-human/paper/Lean bridges, a numeric accessible SVG that is also its
-reproducible card, and a `Std` worksheet executed with Lean 4.32.0 on the Mac.
+The current wave brings **59 of 62 glossary chapters** through the full
+example-first rebuild. The two newest chapters compute a forward Koopman
+coboundary and orbit-majorant centering without hiding the sign or centering
+conventions. The first turns potentials `(3, -2, 1, 0)` into changes
+`(-5, 3, -1, 3)`, verifies endpoint cancellation through horizons zero to
+five, and catches the reverse-subtraction near miss. The second follows a
+three-state orbit, subtracts triangular penalties, and contrasts the
+pointwise remainder `(-1, -1, -1)` with expectation-centering
+`(-2/3, -5/3, 7/3)`. Each page has exact human/paper/Lean bridges, a numeric
+accessible SVG that is also its reproducible card, and a `Std` worksheet
+executed with Lean 4.32.0 on the Mac. The orbit worksheet exposed and fixed
+three rational checks that required `native_decide` rather than `decide`.
 This is intentional teaching use of local Lean; project imports, Mathlib work,
 dependency builds, caches, and large proof checks remain on freshly approved
 Linux cloud compute.
@@ -1029,7 +1032,7 @@ declaration visibility.
   Selection*, followed by *The Guarded Real-Liminf Bridge to Log-Positive
   Kingman Convergence*, followed by *The Forward-and-Inverse Tail Sandwich for
   Finite-Time Real Log Norms*.
-- Fifty-seven glossary chapters, now including integrable generator log tails,
+- Fifty-nine glossary chapters, now including integrable generator log tails,
   the finite orbit visit count,
   limit superior, limit inferior, ergodicity, normalized space
   averages, the invariant sigma algebra,
@@ -3051,6 +3054,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `56c30a6`: construct a positive-time average sequence with moving
+  fixed-scale Cauchy witnesses, and compute conditional expectation on every
+  visible event of a four-state probability space; execute both local
+  `Std` worksheets and regenerate both exact worked-example cards.
 - `69be855`: calculate a normalized average from two weighted atoms, preserve
   it under fivefold measure scaling, and identify its probability
   specialization; execute the local `Std` ledger and regenerate the card.

@@ -1,67 +1,196 @@
 ---
 title: "Orbit-majorant centering"
 slug: "orbit-majorant-centering"
-summary: "Orbit-majorant centering subtracts the additive orbit sum of a process's one-step observable, leaving a shifted-subadditive remainder that is nonpositive at positive horizons, without claiming mean zero or convergence."
+summary: "Orbit-majorant centering subtracts the additive sum of one-step values along each orbit, producing a nonpositive subadditive remainder rather than a mean-zero random variable."
 draft: false
 pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering"
 og_image: "orbit-majorant-centering-card.png"
-og_image_alt: "Warm-paper teaching card showing a finite process minus its one-step orbit sum, producing a shifted-subadditive remainder that is nonpositive at positive horizons. A comparison warns that this operation is not expectation centering and proves no limit theorem."
+og_image_alt: "On a three-state cycle with readings 3, minus 1, and 2, orbit-majorant centering produces the remainders 0, minus 1, minus 3, and minus 6 at horizons one through four. At horizon two it gives minus 1 at every start, unlike scalar expectation-centering, which gives minus two thirds, minus five thirds, and seven thirds."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
-mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+**Editorial status.** This is an AI-assisted public working note. Human review
+of the mathematics, Lean interpretation, sources, figure, and accessibility
+remains pending. Publication does not change <code>pro_reviewed: false</code>.
 {{< /panel >}}
 
-**Orbit-majorant centering** is this project's name for subtracting a finite
-additive orbit bound from a shifted-subadditive process. If \(X_n(\omega)\) is
-the value of a process after \(n\) steps and \(T\) advances the base state, the
-operation forms
+## Start with a three-state orbit
+
+Take the finite state space
+\(\Omega=\{a,b,c\}\). Let one time step move cyclically,
 
 \[
-Y_n(\omega)
-{} =
-X_n(\omega)
--\sum_{j=0}^{n-1}X_1(T^j\omega).
+T(a)=b,\qquad T(b)=c,\qquad T(c)=a,
 \]
 
-The subtracted term is the
-{{< refterm "birkhoff-sum" "Birkhoff sum" >}} of the one-step observable
-\(X_1\). Shifted subadditivity makes that sum a pointwise upper bound at every
-positive horizon. Consequently \(Y_n\le0\) for \(n\ne0\), and the family
-\(Y_n\) remains shifted-subadditive.
+and attach the one-step readings
 
-The word **centering** needs care. Nothing here subtracts an expectation, and
-nothing here says that \(Y_n\) has mean zero. This is a finite algebraic
-reduction used in standard routes toward subadditive ergodic theorems. The
-term *orbit-majorant centering* is project-specific terminology chosen to keep
-that operation distinct from statistical mean centering
-([Karlsson and Margulis](#ref-orbit-centering-karlsson-margulis),
-[Lalley](#ref-orbit-centering-lalley)).
+\[
+g(a)=3,\qquad g(b)=-1,\qquad g(c)=2.
+\]
+
+Starting at \(a\), the readings are \(3,-1,2,3,\ldots\). Their first
+\(n\)-term orbit sum is
+
+\[
+S_n(\omega)=\sum_{j=0}^{n-1}g(T^j\omega).
+\]
+
+Now subtract the triangular penalty
+
+\[
+c_n=\frac{n(n-1)}2
+\]
+
+and define a finite-time process
+
+\[
+X_n(\omega)=S_n(\omega)-c_n.
+\]
+
+This is a real, checkable example of a **shifted-subadditive process**. That
+phrase means that the value over a combined time interval is at most the value
+over the first interval plus the value over the shifted second interval:
+
+\[
+X_{m+n}(\omega)
+\le X_m(\omega)+X_n(T^m\omega).
+\]
+
+Indeed, orbit sums split exactly, while
+
+\[
+c_{m+n}=c_m+c_n+mn.
+\]
+
+Therefore
+
+\[
+X_m(\omega)+X_n(T^m\omega)-X_{m+n}(\omega)=mn\ge0.
+\]
+
+The nonnegative number \(mn\) is the visible slack in the inequality. No
+measure, probability, limit, or integrability argument is hiding in this
+calculation.
+
+## Compute the majorant and remainder
+
+The one-step value of this process is
+
+\[
+X_1(\omega)=S_1(\omega)-c_1=g(\omega).
+\]
+
+So the orbit sum of \(X_1\) is exactly \(S_n\). It is a **majorant**, or
+pointwise upper bound, because
+
+\[
+X_n(\omega)=S_n(\omega)-c_n\le S_n(\omega).
+\]
+
+Orbit-majorant centering subtracts that upper bound:
+
+\[
+Y_n(\omega)=X_n(\omega)-S_n(\omega)=-c_n.
+\]
+
+At the starting state \(a\), every term can be checked by hand:
+
+| Horizon \(n\) | Readings used | Orbit majorant \(S_n(a)\) | Penalty \(c_n\) | Process \(X_n(a)\) | Centered \(Y_n(a)\) | Normalized split |
+|---:|---|---:|---:|---:|---:|---|
+| 0 | none | 0 | 0 | 0 | 0 | totalized boundary: \(0=0+0\) |
+| 1 | \(3\) | 3 | 0 | 3 | 0 | \(3=0+3\) |
+| 2 | \(3,-1\) | 2 | 1 | 1 | -1 | \(1/2=-1/2+1\) |
+| 3 | \(3,-1,2\) | 4 | 3 | 1 | -3 | \(1/3=-1+4/3\) |
+| 4 | \(3,-1,2,3\) | 7 | 6 | 1 | -6 | \(1/4=-3/2+7/4\) |
+
+The normalized column checks the identity
+
+\[
+\frac{X_n(\omega)}n
+{} =
+\frac{Y_n(\omega)}n+\frac{S_n(\omega)}n
+\]
+
+at several positive horizons. The last summand is the finite
+{{< refterm "birkhoff-sum" "Birkhoff average" >}} of the one-step
+observable. The identity is arithmetic; it does not say that any term has a
+limit.
 
 {{< reference-figure
   src="orbit-majorant-centering-versus-mean-centering.svg"
-  alt="Three labeled operations begin with the same finite process. Orbit-majorant centering subtracts the one-step orbit sum and preserves shifted subadditivity while making positive horizons nonpositive. Expectation centering on a probability base subtracts a scalar mean and targets mean zero, but supplies no pointwise sign or automatic subadditivity. Time normalization divides by the horizon and changes scale without centering."
-  caption="**Finding:** orbit-majorant centering, expectation centering, and time normalization answer different questions. RMT-19 formalizes only the first operation. Its output is pointwise nonpositive at positive horizons and remains shifted-subadditive. The plate does not assert mean zero, convergence, a Birkhoff theorem, or a subadditive ergodic theorem."
+  alt="A worked three-state cycle has readings 3, minus 1, and 2. Starting at a, its orbit sums at horizons one through four are 3, 2, 4, and 7. Subtracting triangular penalties 0, 1, 3, and 6 produces centered remainders 0, minus 1, minus 3, and minus 6. At horizon two, orbit centering gives minus 1 for all three starts, while subtracting the scalar mean five thirds gives minus two thirds, minus five thirds, and seven thirds."
+  caption="**Finding:** the one-step orbit sum is a sample-dependent additive upper bound for this subadditive process. Subtracting it leaves the exact remainder \(-n(n-1)/2\), so the values at horizons one through four are \(0,-1,-3,-6\). At horizon two the orbit-centered value is \(-1\) at every start and has mean \(-1\). Scalar expectation-centering instead subtracts \(5/3\) from the three process values \(1,0,4\), producing \(-2/3,-5/3,7/3\), whose mean is zero but whose signs differ. The figure shows finite arithmetic only; it does not assert convergence or an ergodic theorem."
 >}}
 
-## The operational definition
+## Why this is not expectation centering
 
-Let \(\Omega\) be a state space, let \(T:\Omega\to\Omega\) be a self-map, and
-let \(X:\mathbb N\to\Omega\to\mathbb R\) be a real-valued finite-time process.
-Mathlib defines the length-\(n\) Birkhoff sum of an observable \(f\) by
+Put the uniform {{< refterm "probability-measure" "probability measure" >}}
+on the three states, so each state has probability \(1/3\). An
+{{< refterm "expectation" "expectation" >}} is then the ordinary average of
+the three values. At horizon two,
 
 \[
-\operatorname{BSum}(T,f,n,\omega)
-{} =
-\sum_{\substack{j\in\mathbb N\\j\lt n}}f(T^j\omega).
+X_2(a)=1,\qquad X_2(b)=0,\qquad X_2(c)=4,
 \]
 
-The RMT-19 definition specializes \(f\) to \(X_1\):
+and hence
+
+\[
+\mathbb E[X_2]=\frac{1+0+4}{3}=\frac53.
+\]
+
+Expectation centering subtracts this one scalar from every sample:
+
+\[
+\begin{array}{c|ccc}
+\omega&a&b&c\\ \hline
+X_2(\omega)-\mathbb E[X_2]&-\frac23&-\frac53&\frac73.
+\end{array}
+\]
+
+Those three values average to zero, but one is positive. Orbit-majorant
+centering subtracts the sample-dependent orbit sums
+\(S_2(a)=2\), \(S_2(b)=1\), and \(S_2(c)=5\), giving
+
+\[
+Y_2(a)=Y_2(b)=Y_2(c)=-1.
+\]
+
+These values are pointwise nonpositive, but their expectation is \(-1\), not
+zero. The two operations solve different problems:
+
+| Operation | Quantity subtracted | Conclusion earned in this example |
+|---|---|---|
+| orbit-majorant centering | \(S_n(\omega)\), which depends on the sample and horizon | \(Y_n(\omega)\le0\), with shifted subadditivity preserved |
+| expectation centering | the scalar \(\mathbb E[X_n]\) | the centered values have expectation zero |
+| time normalization | division by positive \(n\) | values are expressed per step |
+
+Expectation centering requires a measure and enough
+{{< refterm "integrability" "integrability" >}} to define the expectation.
+Orbit-majorant centering is finite pointwise algebra and needs neither. Merely
+subtracting a different expected value at each horizon also does not preserve
+the original pointwise subadditive inequality automatically.
+
+## The general construction
+
+Let \(\Omega\) be any state space, let \(T:\Omega\to\Omega\) advance the
+state by one time step, and let
+\(X:\mathbb N\to\Omega\to\mathbb R\) be a process. Its one-step orbit sum is
+
+\[
+\operatorname{BSum}(T,X_1,n,\omega)
+{} =
+\sum_{j=0}^{n-1}X_1(T^j\omega).
+\]
+
+Mathlib's finite definition and its exact addition law supply this algebra
+([official documentation](#ref-orbit-centering-mathlib-basic),
+[pinned source](#ref-orbit-centering-mathlib-basic-pinned)).
+
+The project defines
 
 \[
 \operatorname{Center}(T,X,n,\omega)
@@ -69,325 +198,187 @@ The RMT-19 definition specializes \(f\) to \(X_1\):
 X_n(\omega)-\operatorname{BSum}(T,X_1,n,\omega).
 \]
 
-Lean writes the same construction as
-<code>centeredProcess T X n ω</code>. The definition needs no measurable
-space, measure, probability law, or dynamical hypothesis. It subtracts two
-real numbers at one sample and one finite horizon. Mathlib's finite-sum
-definition, empty-sum law, successor laws, and addition law are the exact
-upstream algebra used here
-([official documentation](#ref-orbit-centering-mathlib-basic),
-[pinned source](#ref-orbit-centering-mathlib-basic-pinned)).
-
-There is also an exact unnormalized identity, true simply by rearranging the
-definition:
-
-\[
-X_n(\omega)
-{} =
-Y_n(\omega)+\operatorname{BSum}(T,X_1,n,\omega).
-\]
-
-Calling the second term a **majorant** records an additional theorem, not a
-feature of subtraction alone. That theorem comes from the shifted-subadditive
-law
-
-\[
-X_{m+n}(\omega)
-\le
-X_n(T^m\omega)+X_m(\omega).
-\]
-
-Repeatedly split off one step. For positive \(n\), the resulting terms are
-\(X_1(\omega),X_1(T\omega),\ldots,X_1(T^{n-1}\omega)\), so
-
-\[
-X_n(\omega)
-\le
-\operatorname{BSum}(T,X_1,n,\omega).
-\]
-
-Subtracting the right side gives \(Y_n(\omega)\le0\). This deduction is
-pointwise. Integrability stored in the project's process-candidate structure
-is not consumed by the inequality.
-
-## Three operations that should not share a conclusion
-
-Orbit-majorant centering is easy to misread because two familiar operations
-also alter the location or scale of a quantity.
-
-| Operation | What is removed or changed | Intended result | What does not follow automatically |
-|---|---|---|---|
-| orbit-majorant centering | the sample-dependent finite orbit sum of \(X_1\) | a shifted-subadditive remainder, nonpositive at positive horizons and uniformly so when \(X_0=0\) | mean zero or convergence |
-| expectation centering | a scalar such as \(\mathbb E[X_n]\) | zero expectation on a probability space, when the expectation exists | pointwise nonpositivity or preservation of subadditivity |
-| time normalization | division by the horizon \(n\) | a per-step scale | centering, a sign, or existence of a limit |
-
-Expectation centering is measure-theoretic. It needs a probability measure and
-enough integrability for the expectation to be meaningful. Even then,
-\(X_n-\mathbb E[X_n]\) generally takes both signs. Subtracting expectations
-also does not automatically preserve the original pointwise subadditive
-inequality: the inequality between expectations has the wrong logical form
-to justify subtracting a different scalar from each horizon.
-
-Orbit-majorant centering is samplewise instead. The amount removed depends on
-\(\omega\) through the orbit. Its useful properties come from an exact additive
-cocycle law for that orbit sum. It may have a nonzero, negative, or undefined
-expectation, depending on the surrounding analytic assumptions.
-
-Time normalization changes scale rather than origin. For \(n\gt0\), it forms
-\(X_n/n\). A sequence can be nonpositive without its normalized values
-converging, and it can have normalized convergence without being centered in
-either sense. Lean's division on real numbers is total, so the expression at
-\(n=0\) exists, but totalization is not evidence about a dynamical limit.
-
-## The two boundary times
-
-The empty Birkhoff sum is zero. Therefore
-
-\[
-Y_0(\omega)=X_0(\omega).
-\]
-
-Shifted subadditivity at \(m=n=0\) implies only
-
-\[
-X_0(\omega)\le X_0(\omega)+X_0(\omega),
-\]
-
-which forces \(X_0(\omega)\ge0\). It does not force \(X_0=0\). Thus the
-positive-horizon statement \(Y_n\le0\) needs no time-zero assumption, while a
-single theorem covering every \(n\in\mathbb N\) needs the exact normalization
-\(X_0=0\).
-
-The constant-one process exposes the obstruction. Put \(X_n(\omega)=1\) for
-every \(n\) and \(\omega\). It satisfies \(1\le1+1\), hence it is
-shifted-subadditive, but \(Y_0=1\). No assumption-free theorem can conclude
-that the centered process is nonpositive at time zero.
-
-At one step, the opposite simplification occurs:
-
-\[
-Y_1(\omega)
-{} =
-X_1(\omega)-X_1(\omega)
-{} =0.
-\]
-
-This identity is unconditional. It follows from the one-term Birkhoff-sum
-law, not from integrability or normalization. The Lean lemmas
-<code>centeredProcess_zero</code> and <code>centeredProcess_one</code> preserve
-both boundaries as visible API facts.
-
-## Why shifted subadditivity survives
-
-The finite orbit sum is additive across a split:
-
-\[
-\begin{aligned}
-\operatorname{BSum}(T,X_1,m+n,\omega)
-&=\operatorname{BSum}(T,X_1,m,\omega) \\
-&\quad+\operatorname{BSum}(T,X_1,n,T^m\omega).
-\end{aligned}
-\]
-
-Subtract this equality from the shifted-subadditive inequality for \(X\). The
-terms align exactly, giving
-
-\[
-Y_{m+n}(\omega)
-\le
-Y_n(T^m\omega)+Y_m(\omega).
-\]
-
-There is no limiting argument here. The proof uses
-<code>birkhoffSum_add</code> and ordered-ring arithmetic. In particular, it
-does not need \(X_0=0\): if a candidate begins with a positive \(X_0\), its
-centered family retains that value and still satisfies the shifted law.
-
-This preservation property is the real reason to subtract an **additive**
-orbit object. An arbitrary upper bound could make \(Y_n\le0\) while destroying
-the split identity needed by later subadditive arguments.
-
-## When the centered family is integrable
-
-Suppose each \(X_n\) is integrable with respect to a measure \(\mu\), and
-suppose \(T\) preserves \(\mu\). Every iterate \(T^j\) then preserves the same
-measure. Integrability of \(X_1\) transports to
-\(\omega\mapsto X_1(T^j\omega)\), and a finite sum of those terms is
-integrable. Finally, the difference of two integrable real functions is
-integrable.
-
-RMT-19 packages this route in
-<code>integrable_centeredProcess</code> and
-<code>centeredProcess_candidate</code>. The latter says that centering returns
-another integrable shifted-subadditive-process candidate. Measure preservation
-is used for this analytic package, not for the pointwise definition,
-nonpositivity, or shifted inequality. Probability normalization and
-ergodicity are unnecessary throughout this finite step
-([measure-preserving iterates](#ref-orbit-centering-mathlib-preserving),
-[integrability transport](#ref-orbit-centering-mathlib-integrable)).
-
-Without a suitable condition on \(T\), composition can destroy measurability
-or integrability. Storing integrability of \(X_1\) alone does not certify the
-orbit terms \(X_1\circ T^j\). The explicit preservation premise records the
-actual bridge used by the proof.
-
-## An assumption ledger for the construction
-
-The operation is easiest to reuse when each conclusion is paired with the
-smallest premise that produces it. The RMT-19 API deliberately does not bundle
-all assumptions into one theorem.
-
-| Conclusion | Premise actually doing the work | Premises not needed |
-|---|---|---|
-| define \(Y_n\) | two real-valued finite functions at the chosen horizon | measurability, a measure, preservation, probability, ergodicity |
-| \(Y_n\le0\) for \(n\ne0\) | shifted subadditivity | \(X_0=0\), integrability, preservation |
-| \(Y_n\le0\) for every \(n\) | shifted subadditivity and \(X_0=0\) | probability and ergodicity |
-| shifted subadditivity of \(Y\) | shifted subadditivity of \(X\) and the finite addition law | time-zero normalization and every measure-theoretic premise |
-| integrability of each \(Y_n\) | integrability of \(X_n\) and preservation by \(T\) | probability and ergodicity |
-| normalized decomposition | real arithmetic and the definition of Birkhoff average | every process or measure hypothesis |
-
-This table explains why the pure definition lives outside the process-candidate
-namespace, while the methods that use integrability live on the checked
-candidate. It also explains the two cocycle routes. A bare cocycle already
-supplies the pointwise shifted inequality and the exact zero-time identity, so
-its centered process is nonpositive and subadditive without an integrability
-package. The hypothesis <code>HasIntegrableGeneratorLogPlus</code> is introduced
-only when the result itself promises an integrable candidate.
-
-The word **majorant** also has a narrow scope. It says
-\(X_n(\omega)\le\operatorname{BSum}(T,X_1,n,\omega)\) at the same sample and
-horizon. It does not say that the two sides are close, that their difference
-is bounded below, or that the orbit sum is the least possible upper bound. In
-the square-root example below, the gap grows from zero to a negative remainder
-of increasing magnitude. In an additive process, by contrast, the gap is
-identically zero. Both behaviors satisfy the same RMT-19 interface.
-
-Nor should the centered term be called noise or an error term without extra
-structure. It is an exact algebraic remainder. Whether it is negligible after
-time normalization is a new asymptotic question, not part of the definition.
-
-## The exact normalized identity
-
-Mathlib defines the Birkhoff average as the finite Birkhoff sum multiplied by
-the inverse of the horizon. For real-valued observables,
-
-\[
-\operatorname{BAvg}(T,X_1,n,\omega)
-{} =
-\frac{1}{n}\operatorname{BSum}(T,X_1,n,\omega).
-\]
-
-Dividing the unnormalized decomposition by \(n\) gives RMT-19's exact identity
-
-\[
-\frac{X_n(\omega)}{n}
-{} =
-\frac{Y_n(\omega)}{n}
-{} +
-\operatorname{BAvg}(T,X_1,n,\omega).
-\]
-
-Lean proves this for every natural \(n\), with no measurability or dynamical
-assumptions. At \(n=0\), real division by zero is totalized to zero and
-Mathlib's zero-time Birkhoff average is also zero
-([pinned average definition](#ref-orbit-centering-mathlib-average)). The
-identity therefore reduces to \(0=0\). It does **not** recover \(X_0\), imply
-\(X_0=0\), or license division by zero in informal field algebra.
-
-For positive \(n\), the equation genuinely decomposes the normalized process
-into a normalized nonpositive remainder and an additive orbit average. It
-still says nothing about whether either term converges as \(n\to\infty\).
-Birkhoff convergence is a separate theorem with measure-theoretic hypotheses;
-the pinned Mathlib file imported here supplies the finite average definition,
-not such a pointwise ergodic theorem.
-
-## Worked singleton example: square-root growth
-
-Take the one-point state space \(\Omega=\{\star\}\), let \(T\) be the identity,
-and define
-
-\[
-X_n(\star)=\sqrt n.
-\]
-
-This process has \(X_0=0\) and \(X_1=1\). It is subadditive because, for
-natural \(m,n\), both sides are nonnegative and
-
-\[
-(\sqrt m+\sqrt n)^2
-{} =m+n+2\sqrt{mn}
-\ge m+n.
-\]
-
-The one-step observable is constantly one. Since the base orbit never leaves
-the singleton, its length-\(n\) Birkhoff sum is exactly \(n\). The centered
-process is therefore
-
-\[
-Y_n(\star)=\sqrt n-n.
-\]
-
-The two boundary times are visible: \(Y_0=0\) and \(Y_1=0\). At \(n=4\),
-
-\[
-X_4=2,
-\qquad
-\operatorname{BSum}(T,X_1,4,\star)=4,
-\qquad
-Y_4=-2.
-\]
-
-The normalized identity becomes an arithmetic check:
-
-\[
-\frac{X_4}{4}
-{} =\frac12
-{} =-\frac12+1
-{} =\frac{Y_4}{4}
-  +\operatorname{BAvg}(T,X_1,4,\star).
-\]
-
-This example distinguishes all three operations. Orbit-majorant centering
-subtracts \(n\), so the value at four becomes \(-2\). Expectation centering on
-the one-point probability space would subtract \(X_4=2\), so the value would
-be zero. Time normalization divides \(X_4\) by four, so the value becomes
-\(1/2\). These outputs answer different questions even in the simplest
-deterministic system.
-
-The explicit formula happens to have elementary asymptotic behavior. That is
-a property of this chosen example, not a conclusion of the RMT-19 interface.
-
-## Matrix-cocycle specialization
-
-For a discrete matrix cocycle \(C\), the process being centered is the
-finite-time log-positive norm observable. Its one-step Birkhoff sum is
-definitionally the previously constructed <code>orbitLogPlusSum</code>. RMT-19
-defines <code>centeredLogPlusNormObservable</code> by the generic operation and
-proves
-
-\[
-\begin{aligned}
-&C.\operatorname{centeredLogPlusNormObservable}(n,\omega) \\
-&\quad={}
-C.\operatorname{logPlusNormObservable}(n,\omega)
--C.\operatorname{orbitLogPlusSum}(n,\omega).
-\end{aligned}
-\]
-
-The existing pointwise orbit-sum majorant proves nonpositivity, including
-time zero because the cocycle log-positive observable already vanishes there.
-The centered cocycle process remains shifted-subadditive without the
-one-step integrability hypothesis. Only the candidate-packaging theorem uses
-<code>HasIntegrableGeneratorLogPlus</code>.
-
-This is still a log-positive envelope. It records expansion above norm one
-and does not reconstruct contraction erased by the positive logarithm. A
-centered log-positive remainder is not a signed Lyapunov exponent.
-
-## Lean landmarks
-
-The following commands expose the generic and cocycle interfaces in source
-order:
+The name **orbit-majorant centering** is project terminology. It records both
+the orbit sum being subtracted and the theorem that this sum bounds a
+shifted-subadditive process at positive horizons. In Lean, the definition
+itself is more neutrally named <code>centeredProcess</code>.
+
+## In Lean: define the centered process
+
+{{< lean-bridge
+  human="At time n and starting point omega, subtract the sum of the one-step process values seen along the first n points of omega's orbit."
+  math="\(Y_n(\omega)=X_n(\omega)-\sum_{j=0}^{n-1}X_1(T^j\omega).\)"
+  lean="centeredProcess T X n ω"
+>}}
+
+- <code>T</code> is the one-step self-map.
+- <code>X n ω</code> is the original finite-time value at horizon
+  <code>n</code> and sample <code>ω</code>.
+- <code>X 1</code> is the function \(\omega\mapsto X_1(\omega)\).
+- <code>birkhoffSum T (X 1) n ω</code> adds that function over indices
+  <code>0, ..., n - 1</code>.
+- <code>centeredProcess</code> subtracts the finite sum. The definition does
+  not mention a measure or an expectation.
+{{< /lean-bridge >}}
+
+The exact project definition is:
+
+~~~lean
+def centeredProcess {Ω : Type uΩ} (T : Ω → Ω) (X : ℕ → Ω → ℝ)
+    (n : ℕ) (ω : Ω) : ℝ :=
+  X n ω - birkhoffSum T (X 1) n ω
+~~~
+
+## In Lean: use the one-step majorant
+
+{{< lean-bridge
+  human="For every nonzero horizon, shifted subadditivity makes the one-step orbit sum at least as large as the original process value."
+  math="\(n\ne0\Longrightarrow X_n(\omega)\le\sum_{j=0}^{n-1}X_1(T^j\omega).\)"
+  lean="hX.oneStepBirkhoffMajorant_of_ne_zero n hn ω"
+>}}
+
+- <code>hX</code> packages the shifted-subadditive law and finite-horizon
+  integrability for <code>X</code>.
+- <code>hn : n ≠ 0</code> records the positive-horizon boundary without
+  converting the natural number to an ordered scalar.
+- <code>oneStepBirkhoffMajorant</code> is the all-horizon variant. It also asks
+  for <code>hX0 : X 0 = 0</code>.
+- The proof of this inequality consumes only <code>hX.add_le</code>. The
+  structure contains integrability, but the pointwise induction does not use
+  it.
+{{< /lean-bridge >}}
+
+Subtracting the upper bound proves
+<code>centeredProcess T X n ω ≤ 0</code> for <code>n ≠ 0</code>. The additive
+splitting law for <code>birkhoffSum</code> also proves that the centered family
+remains shifted-subadditive.
+
+## In Lean: split the normalized value
+
+{{< lean-bridge
+  human="After division by the horizon, the original value is exactly the normalized centered remainder plus the average of the one-step values along the orbit."
+  math="\(\displaystyle\frac{X_n(\omega)}n=\frac{Y_n(\omega)}n+\operatorname{BAvg}(T,X_1,n,\omega).\)"
+  lean="normalized_eq_centered_add_birkhoffAverage n ω"
+>}}
+
+- The theorem is an equality, not a convergence assertion.
+- <code>birkhoffAverage ℝ T (X 1) n ω</code> is the real-valued orbit sum
+  scaled by the inverse of the natural-number cast of <code>n</code>.
+- The pinned average definition makes that scaling explicit
+  ([source](#ref-orbit-centering-mathlib-average)).
+- Lean's real division is total at <code>n = 0</code>. The theorem then reduces
+  to <code>0 = 0 + 0</code>; it does not recover <code>X 0 ω</code> or justify
+  informal division by zero.
+- No measurable space, measure, preservation, probability, or ergodicity
+  parameter occurs in this identity.
+{{< /lean-bridge >}}
+
+## A tiny standalone Lean/Std worksheet
+
+**Resource label: tiny local check.** This complete file reproduces the
+three-state arithmetic with integers and exact rational numbers. It imports
+<code>Std</code>, not Mathlib or this repository. Save it as
+<code>OrbitMajorantTutorial.lean</code> in a scratch directory.
+
+~~~lean
+import Std
+
+namespace OrbitMajorantTutorial
+
+inductive State where
+  | a | b | c
+deriving Repr, DecidableEq
+
+def step : State → State
+  | .a => .b
+  | .b => .c
+  | .c => .a
+
+def reading : State → Int
+  | .a => 3
+  | .b => -1
+  | .c => 2
+
+def iterate : Nat → State → State
+  | 0, x => x
+  | n + 1, x => iterate n (step x)
+
+def orbitSum : Nat → State → Int
+  | 0, _ => 0
+  | n + 1, x => orbitSum n x + reading (iterate n x)
+
+def penalty : Nat → Nat
+  | 0 => 0
+  | n + 1 => penalty n + n
+
+def process (n : Nat) (x : State) : Int :=
+  orbitSum n x - Int.ofNat (penalty n)
+
+def centered (n : Nat) (x : State) : Int :=
+  process n x - orbitSum n x
+
+def normalized (z : Int) (n : Nat) : Rat :=
+  (z : Rat) / (n : Rat)
+
+def states : List State := [.a, .b, .c]
+
+def processMean (n : Nat) : Rat :=
+  let total : Int := states.foldl (fun s x => s + process n x) 0
+  (total : Rat) / 3
+
+def expectationCentered (n : Nat) (x : State) : Rat :=
+  (process n x : Rat) - processMean n
+
+def subadditiveSlack (m n : Nat) (x : State) : Int :=
+  process m x + process n (iterate m x) - process (m + n) x
+
+#eval (List.range 5).map (fun n => orbitSum n .a)
+#eval (List.range 5).map (fun n => process n .a)
+#eval (List.range 5).map (fun n => centered n .a)
+#eval states.map (fun x => process 2 x)
+#eval states.map (expectationCentered 2)
+
+example : (List.range 5).map (fun n => orbitSum n .a) =
+    [0, 3, 2, 4, 7] := by decide
+
+example : (List.range 5).map (fun n => centered n .a) =
+    [0, 0, -1, -3, -6] := by decide
+
+example : subadditiveSlack 2 3 .b = 6 := by decide
+
+example : normalized (process 4 .a) 4 = (1 : Rat) / 4 := by native_decide
+
+example : normalized (process 4 .a) 4 =
+    normalized (centered 4 .a) 4 + normalized (orbitSum 4 .a) 4 := by
+  native_decide
+
+example : states.map (expectationCentered 2) =
+    [(-2 : Rat) / 3, (-5 : Rat) / 3, (7 : Rat) / 3] := by native_decide
+
+end OrbitMajorantTutorial
+~~~
+
+From the directory containing the file, a human types:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean OrbitMajorantTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this page. Its first three outputs were <code>[0, 3, 2, 4, 7]</code>,
+<code>[0, 3, 1, 1, 1]</code>, and <code>[0, 0, -1, -3, -6]</code>. The next
+output was <code>[1, 0, 4]</code>; the final output displayed
+<code>[(-2 : Rat)/3, (-5 : Rat)/3, (7 : Rat)/3]</code>. The integer examples
+use <code>decide</code>, while the rational equalities deliberately use
+<code>native_decide</code> so Lean evaluates normalized rational arithmetic.
+This bounded worksheet is suitable for an ordinary Mac or Linux machine.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
+repository copy, create a query file containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
@@ -408,67 +399,84 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.centeredLogPlusNormObservable
 #check DiscreteMatrixCocycle.centeredLogPlusNormObservable_nonpos
 #check DiscreteMatrixCocycle.centeredLogPlusNormObservable_add_le
-#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.centeredLogPlusNormObservable_candidate
-#check DiscreteMatrixCocycle.logPlusNormObservable_normalized_eq_centered_add_birkhoffAverage
 ~~~
 
-The theorem names encode the boundary. The suffix
-<code>of_ne_zero</code> excludes only the zero horizon. The unsuffixed majorant
-and nonpositivity theorem ask for \(X_0=0\). Names containing
-<code>integrable</code> or <code>candidate</code> are the only generic centering
-results that require measure preservation.
+Each <code>#check</code> asks the pinned elaborator for an exact declaration
+type. The guarded command below checks the authoritative module, including its
+Mathlib imports, on approved Linux compute. It must not be run on this Mac.
+{{< /repo-check >}}
+
+## Boundary cases and assumption ledger
+
+| Claim | Premise doing the work | Important boundary |
+|---|---|---|
+| define \(Y_n\) | finite subtraction | no measure is needed |
+| \(Y_n\le0\) for \(n\ne0\) | shifted subadditivity | no time-zero normalization is needed |
+| \(Y_n\le0\) for every \(n\) | shifted subadditivity and \(X_0=0\) | a general process may retain positive \(X_0\) |
+| shifted subadditivity of \(Y\) | additivity of the orbit sum | no probability or ergodicity is needed |
+| integrability of every \(Y_n\) | integrability of \(X_n\) and preservation by \(T\) | composition needs an analytic transport theorem |
+| normalized splitting | real arithmetic | at \(n=0\) the totalized equality is only \(0=0\) |
+
+The time-zero premise is genuinely necessary for a uniform sign theorem. The
+constant process \(X_n(\omega)=1\) is shifted-subadditive because
+\(1\le1+1\), but its centered time-zero value is
+\(Y_0(\omega)=X_0(\omega)=1\). At one step, by contrast,
+\(Y_1=X_1-X_1=0\) for every process.
+
+The word **majorant** is also narrow. It says that the orbit sum lies above
+\(X_n\) at the same sample and horizon. It does not say the bound is close,
+least possible, or bounded away from \(-\infty\) after subtraction. In the
+worked example the negative gap grows quadratically.
+
+## Matrix-cocycle specialization
+
+For a discrete matrix cocycle, the project applies the same construction to
+the finite-time log-positive norm observable. Its one-step Birkhoff sum is the
+already defined <code>orbitLogPlusSum</code>. The resulting
+<code>centeredLogPlusNormObservable</code> is pointwise nonpositive and remains
+shifted-subadditive. The hypothesis
+<code>HasIntegrableGeneratorLogPlus</code> enters only when the result promises
+an integrable process candidate.
+
+This specialization still uses a log-positive envelope. It records expansion
+above norm one and deliberately discards signed contraction. A centered
+log-positive remainder is not a signed Lyapunov exponent.
 
 ## What this term does not claim
 
-Orbit-majorant centering proves a finite decomposition, a positive-horizon
-pointwise upper bound, preservation of shifted subadditivity, and conditional
-finite-horizon integrability. It does not prove or imply:
+Orbit-majorant centering establishes finite algebra. By itself it does not
+establish:
 
-- expectation centering or zero mean;
-- a lower bound on the centered process;
-- a bound on its absolute value or negative tail;
-- uniform integrability over the horizon;
+- expectation zero or statistical unbiasedness;
+- a lower bound or absolute-value bound for the centered process;
 - convergence pointwise, almost everywhere, in probability, in distribution,
   or in \(L^1\);
-- convergence of the Birkhoff averages in the normalized identity;
-- Birkhoff's pointwise ergodic theorem or a mean ergodic theorem;
-- Kingman's subadditive ergodic theorem or a maximal inequality;
-- invariance or almost-everywhere constancy of a limiting field;
-- equality between a samplewise limit and an integrated Fekete rate;
+- convergence of the Birkhoff average in the normalized identity;
+- Birkhoff's pointwise ergodic theorem or Kingman's subadditive ergodic theorem;
+- equality between a samplewise limit and an integrated growth rate;
 - permission to exchange a limit and an integral;
 - probability normalization, ergodicity, independence, mixing, or decay of
-  correlations;
-- a signed logarithmic growth rate, Lyapunov exponent, or Oseledets splitting;
-  or
-- recovery of contraction discarded by the log-positive observable.
+  correlations; or
+- a signed logarithmic growth rate, Lyapunov exponent, or Oseledets splitting.
 
-Standard proofs use the same subtractive reduction as one ingredient before
-later applications of Birkhoff or Kingman
-([Karlsson and Margulis](#ref-orbit-centering-karlsson-margulis),
-[Lalley](#ref-orbit-centering-lalley)). RMT-19 deliberately freezes only the
-finite ingredient. Kingman's original theorem is cited for the asymptotic
-destination, not as evidence that the present Lean module has reached it
-([Kingman, 1968](#ref-orbit-centering-kingman)).
+The finite reduction is one ingredient in standard routes toward subadditive
+ergodic theorems. The later limit arguments require their own hypotheses and
+proofs ([Karlsson and Margulis](#ref-orbit-centering-karlsson-margulis),
+[Lalley](#ref-orbit-centering-lalley)).
 
 ## Where to continue
 
-The
-{{< refterm "birkhoff-sum" "Birkhoff sum" >}}
-entry develops the finite orbit-sum definition, successor and addition laws,
-powered-map sampling, and the zero-count boundary used here.
-
-The
-{{< refterm "phase-averaging" "Phase averaging" >}}
-entry is the next finite layer. It sums fixed-block bounds across every
-residue phase, keeps the two boundary gaps explicit, and reindexes the phase
-grid as one consecutive sliding Birkhoff sum without claiming convergence.
+The {{< refterm "birkhoff-sum" "Birkhoff sum" >}} entry develops the finite
+sum, its indexing, and its addition law. The
+{{< refterm "phase-averaging" "phase averaging" >}} entry uses the centered
+remainder in the next finite block estimate.
 
 The
 [Development Notebook]({{< relref "/development-notebook/2026/07/orbit-majorant-centering-for-subadditive-cocycles" >}})
-maps every declaration to its checked Lean proof. The
+maps the declarations to their checked proof architecture. The
 [full Deep Dive]({{< relref "/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes" >}})
-places the same reduction inside the longer route toward subadditive ergodic
-infrastructure. Both remain separate from this compact definition layer.
+develops the longer route toward subadditive ergodic theory. Both are public
+working notes and remain distinct from this glossary definition.
 
 ## References
 
@@ -479,44 +487,27 @@ states its zero, one, successor, and addition laws.
 
 <a id="ref-orbit-centering-mathlib-basic-pinned"></a>**Mathlib contributors.**
 [Pinned Birkhoff-sum source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/BirkhoffSum/Basic.lean#L30-L57),
-Mathlib commit <code>81a5d257</code>. These exact lines define
-<code>birkhoffSum</code> and prove the finite identities consumed by RMT-19.
+Mathlib commit <code>81a5d257</code>. These lines define
+<code>birkhoffSum</code> and prove the finite identities used by the project.
 
 <a id="ref-orbit-centering-mathlib-average"></a>**Mathlib contributors.**
 [Pinned Birkhoff-average source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/BirkhoffSum/Average.lean#L34-L55),
 Mathlib commit <code>81a5d257</code>. The source defines normalization by the
 inverse natural-number cast and proves that the zero-time average is zero.
 
-<a id="ref-orbit-centering-mathlib-preserving"></a>**Mathlib contributors.**
-[Measure-preserving iterates at the pinned revision](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/Ergodic/MeasurePreserving.lean#L191-L196),
-Mathlib commit <code>81a5d257</code>. The theorem shows that every natural
-iterate of a measure-preserving self-map preserves the same measure.
-
-<a id="ref-orbit-centering-mathlib-integrable"></a>**Mathlib contributors.**
-[Integrability transport at the pinned revision](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/L1Space/Integrable.lean#L381-L390),
-Mathlib commit <code>81a5d257</code>. The theorem transports an integrable
-observable through a measure-preserving map.
-
 <a id="ref-orbit-centering-karlsson-margulis"></a>**Anders Karlsson and Gregory A. Margulis.**
 [A Multiplicative Ergodic Theorem and Nonpositively Curved Spaces](https://www.unige.ch/math/folks/karlsson/kama.pdf),
 *Communications in Mathematical Physics* 208(1), 107-123, 1999,
 [doi:10.1007/s002200050750](https://doi.org/10.1007/s002200050750).
 On printed page 117, the proof subtracts the additive one-step orbit cocycle
-from a general subadditive cocycle and reduces to a nonpositive subadditive
-cocycle. The paper's later ergodic conclusions are not imported into RMT-19.
+from a general subadditive cocycle before later ergodic arguments.
 
 <a id="ref-orbit-centering-lalley"></a>**Steven P. Lalley.**
 [Kingman's Subadditive Ergodic Theorem](https://galton.uchicago.edu/~lalley/Courses/Graz/Kingman.pdf),
 lecture notes, 3 pages, accessed 2026-07-21. Page 1 writes the same one-step
-subtractive reduction explicitly and then uses Birkhoff's theorem only in the
-later asymptotic argument.
-
-<a id="ref-orbit-centering-kingman"></a>**J. F. C. Kingman.**
-[The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
-This primary source establishes the subadditive ergodic theory that motivates
-the finite reduction. RMT-19 does not formalize Kingman's convergence theorem.
+subtractive reduction and uses Birkhoff's theorem only later.
 
 The exact upstream Mathlib revision audited for this entry is commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the v4.32.0 revision pinned by <code>formalization/lake-manifest.json</code>.
+the v4.32.0 revision pinned by
+<code>formalization/lake-manifest.json</code>.
