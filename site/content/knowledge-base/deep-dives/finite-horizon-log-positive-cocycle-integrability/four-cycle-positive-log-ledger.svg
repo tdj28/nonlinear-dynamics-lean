@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="fourCycleTitle fourCycleDesc">
+  <title id="fourCycleTitle">Exact positive-log integrability ledger on a uniform four-state cycle</title>
+  <desc id="fourCycleDesc">Four equally likely states form a clockwise cycle. Their one-step generator norms are one half, two, one quarter, and four. In log base two units the signed exponents are minus one, one, minus two, and two, while their positive parts are zero, one, zero, and two. A horizon-two table shows positive logs zero, zero, zero, one and orbit budgets one, one, two, two. Their uniform means are one quarter and three halves, illustrating pointwise domination and finite integrability.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+    .eyebrow{font-size:17px;font-weight:700;letter-spacing:1.5px;fill:#A45524}
+    .title{font-size:31px;font-weight:700}
+    .sub{font-size:17px;fill:#4D5B6B}
+    .state{font-size:20px;font-weight:700}
+    .label{font-size:14px;fill:#4D5B6B}
+    .value{font-size:22px;font-weight:700}
+    .th{font-size:15px;font-weight:700;fill:#FFFDF8}
+    .td{font-size:17px}
+    .badge{font-size:18px;font-weight:700}
+    .small{font-size:14px;fill:#4D5B6B}
+  </style>
+  <defs>
+    <marker id="cycleArrow" markerWidth="10" markerHeight="10"
+            refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#A45524"/>
+    </marker>
+  </defs>
+
+  <text x="60" y="48" class="sans eyebrow">EXACT FINITE PROBABILITY LEDGER</text>
+  <text x="60" y="88" class="serif title">One expanding tail controls every fixed horizon</text>
+  <text x="60" y="118" class="sans sub">Uniform mass 1/4 at each state · base map T moves clockwise · logarithms measured in units of log 2</text>
+
+  <path d="M264 235 H376" stroke="#A45524" stroke-width="4"
+        fill="none" marker-end="url(#cycleArrow)"/>
+  <path d="M514 235 H626" stroke="#A45524" stroke-width="4"
+        fill="none" marker-end="url(#cycleArrow)"/>
+  <path d="M764 235 H876" stroke="#A45524" stroke-width="4"
+        fill="none" marker-end="url(#cycleArrow)"/>
+  <path d="M1015 290 C1030 350 170 350 185 290" stroke="#A45524"
+        stroke-width="4" fill="none" marker-end="url(#cycleArrow)"/>
+
+  <g transform="translate(70 150)">
+    <rect width="194" height="140" rx="18" fill="#FFFDF8" stroke="#6D7F91" stroke-width="2"/>
+    <text x="18" y="31" class="sans state">state 0</text>
+    <text x="18" y="58" class="sans label">generator norm</text>
+    <text x="174" y="58" text-anchor="end" class="serif value">1/2</text>
+    <text x="18" y="88" class="sans label">signed exponent</text>
+    <text x="174" y="88" text-anchor="end" class="serif value">−1</text>
+    <text x="18" y="119" class="sans label">P₁ / log 2</text>
+    <text x="174" y="119" text-anchor="end" class="serif value">0</text>
+  </g>
+  <g transform="translate(320 150)">
+    <rect width="194" height="140" rx="18" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+    <text x="18" y="31" class="sans state">state 1</text>
+    <text x="18" y="58" class="sans label">generator norm</text>
+    <text x="174" y="58" text-anchor="end" class="serif value">2</text>
+    <text x="18" y="88" class="sans label">signed exponent</text>
+    <text x="174" y="88" text-anchor="end" class="serif value">+1</text>
+    <text x="18" y="119" class="sans label">P₁ / log 2</text>
+    <text x="174" y="119" text-anchor="end" class="serif value">1</text>
+  </g>
+  <g transform="translate(570 150)">
+    <rect width="194" height="140" rx="18" fill="#FFFDF8" stroke="#6D7F91" stroke-width="2"/>
+    <text x="18" y="31" class="sans state">state 2</text>
+    <text x="18" y="58" class="sans label">generator norm</text>
+    <text x="174" y="58" text-anchor="end" class="serif value">1/4</text>
+    <text x="18" y="88" class="sans label">signed exponent</text>
+    <text x="174" y="88" text-anchor="end" class="serif value">−2</text>
+    <text x="18" y="119" class="sans label">P₁ / log 2</text>
+    <text x="174" y="119" text-anchor="end" class="serif value">0</text>
+  </g>
+  <g transform="translate(820 150)">
+    <rect width="194" height="140" rx="18" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+    <text x="18" y="31" class="sans state">state 3</text>
+    <text x="18" y="58" class="sans label">generator norm</text>
+    <text x="174" y="58" text-anchor="end" class="serif value">4</text>
+    <text x="18" y="88" class="sans label">signed exponent</text>
+    <text x="174" y="88" text-anchor="end" class="serif value">+2</text>
+    <text x="18" y="119" class="sans label">P₁ / log 2</text>
+    <text x="174" y="119" text-anchor="end" class="serif value">2</text>
+  </g>
+  <rect x="1040" y="176" width="100" height="88" rx="16" fill="#16243A"/>
+  <text x="1090" y="207" text-anchor="middle" class="sans th">each mass</text>
+  <text x="1090" y="244" text-anchor="middle" class="serif value" fill="#FFFDF8" style="fill:#FFFDF8">1/4</text>
+
+  <text x="70" y="385" class="sans state">Horizon two: exact pointwise domination</text>
+  <text x="70" y="412" class="sans small">P₂ is the positive part of the signed two-step sum; S₂ adds the two one-step positive parts.</text>
+
+  <rect x="70" y="435" width="700" height="44" rx="10" fill="#16243A"/>
+  <text x="130" y="463" text-anchor="middle" class="sans th">start</text>
+  <text x="290" y="463" text-anchor="middle" class="sans th">two exponents</text>
+  <text x="470" y="463" text-anchor="middle" class="sans th">P₂ / log 2</text>
+  <text x="650" y="463" text-anchor="middle" class="sans th">S₂ / log 2</text>
+  <g class="sans td">
+    <rect x="70" y="479" width="700" height="42" fill="#FFFDF8"/>
+    <text x="130" y="506" text-anchor="middle">0</text><text x="290" y="506" text-anchor="middle">−1, +1</text><text x="470" y="506" text-anchor="middle">0</text><text x="650" y="506" text-anchor="middle">1</text>
+    <rect x="70" y="521" width="700" height="42" fill="#EEF3F6"/>
+    <text x="130" y="548" text-anchor="middle">1</text><text x="290" y="548" text-anchor="middle">+1, −2</text><text x="470" y="548" text-anchor="middle">0</text><text x="650" y="548" text-anchor="middle">1</text>
+    <rect x="70" y="563" width="700" height="42" fill="#FFFDF8"/>
+    <text x="130" y="590" text-anchor="middle">2</text><text x="290" y="590" text-anchor="middle">−2, +2</text><text x="470" y="590" text-anchor="middle">0</text><text x="650" y="590" text-anchor="middle">2</text>
+    <rect x="70" y="605" width="700" height="42" fill="#EEF3F6"/>
+    <text x="130" y="632" text-anchor="middle">3</text><text x="290" y="632" text-anchor="middle">+2, −1</text><text x="470" y="632" text-anchor="middle">1</text><text x="650" y="632" text-anchor="middle">2</text>
+  </g>
+  <rect x="70" y="647" width="700" height="1.5" fill="#6D7F91"/>
+
+  <g transform="translate(815 416)">
+    <rect width="325" height="92" rx="18" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+    <text x="22" y="32" class="sans label">uniform mean of P₂ / log 2</text>
+    <text x="303" y="35" text-anchor="end" class="serif value">1/4</text>
+    <text x="22" y="67" class="sans label">uniform mean of S₂ / log 2</text>
+    <text x="303" y="70" text-anchor="end" class="serif value">3/2</text>
+  </g>
+  <g transform="translate(815 528)">
+    <rect width="325" height="92" rx="18" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="22" y="31" class="sans label">one-step mean of P₁ / log 2</text>
+    <text x="303" y="35" text-anchor="end" class="serif value">3/4</text>
+    <text x="22" y="66" class="sans small">finite list ⇒ measurable and integrable</text>
+  </g>
+  <g transform="translate(815 640)">
+    <rect width="325" height="66" rx="16" fill="#16243A"/>
+    <text x="162" y="28" text-anchor="middle" class="sans th">POINTWISE: 0 ≤ P₂ ≤ S₂</text>
+    <text x="162" y="50" text-anchor="middle" class="sans small" style="fill:#D9E1EA">therefore the finite means obey the same bound</text>
+  </g>
+
+  <text x="70" y="718" class="sans small">At horizon four, every signed exponent sum is 0, so every P₄ is 0 while every orbit budget S₄ is 3.</text>
+  <text x="70" y="742" class="sans small">This is a finite calculation, not an independence, ergodic, limiting, or Lyapunov claim.</text>
+</svg>

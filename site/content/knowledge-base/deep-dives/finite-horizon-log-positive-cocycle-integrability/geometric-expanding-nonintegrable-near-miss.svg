@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720"
+     viewBox="0 0 1200 720" role="img"
+     aria-labelledby="tailMissTitle tailMissDesc">
+  <title id="tailMissTitle">A measurable expanding generator whose positive logarithm is not integrable under a probability measure</title>
+  <desc id="tailMissDesc">On atom n, the probability mass is one over two to the n plus one and the one-dimensional generator norm is exponential of two to the n. Its positive logarithm is two to the n. Multiplying the observable by the atom mass always gives one half. A six-row ledger displays these constant contributions and a staircase of partial integrals one half, one, three halves, two, five halves, and three, showing divergence despite probability normalization, measurability, and an identity measure-preserving base.</desc>
+  <rect width="1200" height="720" fill="#F7F1E7"/>
+  <style>
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+    .eyebrow{font-size:17px;font-weight:700;letter-spacing:1.5px;fill:#A45524}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:17px;fill:#4D5B6B}
+    .th{font-size:14px;font-weight:700;fill:#FFFDF8}
+    .td{font-size:16px}
+    .note{font-size:15px;fill:#4D5B6B}
+    .big{font-size:25px;font-weight:700}
+    .step{font-size:14px;font-weight:700}
+  </style>
+
+  <text x="60" y="48" class="sans eyebrow">GENUINE NONINTEGRABLE NEAR MISS</text>
+  <text x="60" y="88" class="serif title">Probability and measurability do not make the tail finite</text>
+  <text x="60" y="118" class="sans sub">Identity base · one-dimensional invertible generator · geometric probability mass 2⁻ⁿ⁻¹</text>
+
+  <rect x="60" y="150" width="1080" height="76" rx="18" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+  <text x="90" y="182" class="sans note">At atom n</text>
+  <text x="210" y="194" class="serif big">‖A(n)‖ = exp(2ⁿ)</text>
+  <text x="530" y="194" class="serif big">P₁(n) = log⁺ ‖A(n)‖ = 2ⁿ</text>
+  <text x="865" y="178" class="sans note">weighted term</text>
+  <text x="865" y="207" class="serif big">2⁻ⁿ⁻¹ · 2ⁿ = 1/2</text>
+
+  <rect x="60" y="252" width="780" height="42" rx="9" fill="#16243A"/>
+  <text x="105" y="279" text-anchor="middle" class="sans th">atom n</text>
+  <text x="235" y="279" text-anchor="middle" class="sans th">mass</text>
+  <text x="370" y="279" text-anchor="middle" class="sans th">P₁(n)</text>
+  <text x="525" y="279" text-anchor="middle" class="sans th">same value</text>
+  <text x="705" y="279" text-anchor="middle" class="sans th">mass × P₁(n)</text>
+  <g class="sans td">
+    <rect x="60" y="294" width="780" height="46" fill="#FFFDF8"/>
+    <text x="105" y="324" text-anchor="middle">0</text><text x="235" y="324" text-anchor="middle">1/2</text><text x="370" y="324" text-anchor="middle">1</text><text x="525" y="324" text-anchor="middle">1</text><text x="705" y="324" text-anchor="middle">1/2</text>
+    <rect x="60" y="340" width="780" height="46" fill="#EEF3F6"/>
+    <text x="105" y="370" text-anchor="middle">1</text><text x="235" y="370" text-anchor="middle">1/4</text><text x="370" y="370" text-anchor="middle">2</text><text x="525" y="370" text-anchor="middle">2</text><text x="705" y="370" text-anchor="middle">1/2</text>
+    <rect x="60" y="386" width="780" height="46" fill="#FFFDF8"/>
+    <text x="105" y="416" text-anchor="middle">2</text><text x="235" y="416" text-anchor="middle">1/8</text><text x="370" y="416" text-anchor="middle">4</text><text x="525" y="416" text-anchor="middle">4</text><text x="705" y="416" text-anchor="middle">1/2</text>
+    <rect x="60" y="432" width="780" height="46" fill="#EEF3F6"/>
+    <text x="105" y="462" text-anchor="middle">3</text><text x="235" y="462" text-anchor="middle">1/16</text><text x="370" y="462" text-anchor="middle">8</text><text x="525" y="462" text-anchor="middle">8</text><text x="705" y="462" text-anchor="middle">1/2</text>
+    <rect x="60" y="478" width="780" height="46" fill="#FFFDF8"/>
+    <text x="105" y="508" text-anchor="middle">4</text><text x="235" y="508" text-anchor="middle">1/32</text><text x="370" y="508" text-anchor="middle">16</text><text x="525" y="508" text-anchor="middle">16</text><text x="705" y="508" text-anchor="middle">1/2</text>
+    <rect x="60" y="524" width="780" height="46" fill="#EEF3F6"/>
+    <text x="105" y="554" text-anchor="middle">5</text><text x="235" y="554" text-anchor="middle">1/64</text><text x="370" y="554" text-anchor="middle">32</text><text x="525" y="554" text-anchor="middle">32</text><text x="705" y="554" text-anchor="middle">1/2</text>
+  </g>
+
+  <g transform="translate(875 252)">
+    <rect width="265" height="318" rx="18" fill="#FFFDF8" stroke="#A45524" stroke-width="2"/>
+    <text x="132" y="34" text-anchor="middle" class="sans step">POSITIVE-LOG PARTIAL INTEGRAL</text>
+    <line x1="44" y1="269" x2="231" y2="269" stroke="#6D7F91" stroke-width="2"/>
+    <line x1="44" y1="269" x2="44" y2="65" stroke="#6D7F91" stroke-width="2"/>
+    <path d="M44 239 H72 V209 H101 V179 H130 V149 H159 V119 H188 V89 H217"
+          fill="none" stroke="#A45524" stroke-width="7" stroke-linejoin="round"/>
+    <g class="sans step" fill="#A45524">
+      <text x="62" y="235">1/2</text>
+      <text x="91" y="205">1</text>
+      <text x="117" y="175">3/2</text>
+      <text x="149" y="145">2</text>
+      <text x="174" y="115">5/2</text>
+      <text x="207" y="85">3</text>
+    </g>
+    <text x="132" y="296" text-anchor="middle" class="sans note">after N atoms: N/2</text>
+  </g>
+
+  <rect x="60" y="604" width="330" height="68" rx="16" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+  <text x="225" y="633" text-anchor="middle" class="sans step">PROBABILITY MASS</text>
+  <text x="225" y="659" text-anchor="middle" class="serif big">∑ 2⁻ⁿ⁻¹ = 1</text>
+  <rect x="410" y="604" width="330" height="68" rx="16" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+  <text x="575" y="633" text-anchor="middle" class="sans step">OBSERVABLE</text>
+  <text x="575" y="659" text-anchor="middle" class="serif big">measurable</text>
+  <rect x="760" y="604" width="380" height="68" rx="16" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+  <text x="950" y="633" text-anchor="middle" class="sans step">POSITIVE-LOG INTEGRAL</text>
+  <text x="950" y="659" text-anchor="middle" class="serif big">1/2 + 1/2 + ··· = ∞</text>
+
+  <text x="60" y="703" class="sans note">The identity base preserves this probability measure, yet the explicit RMT-15 one-step integrability hypothesis fails.</text>
+</svg>

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:54 PDT
+Last updated: 2026-07-22 20:59 PDT
 
-Audited baseline: `main` at `44dfba5`
+Audited baseline: `main` at `5f7eb59`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **18 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **19 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -400,6 +400,20 @@ executed `Std` worksheet make those assumptions executable. An oscillating
 two-row example explicitly blocks the false inference from convergence of
 integrated scalars to samplewise convergence, preserving the RMT-17 boundary
 even while the chapter notes the later project-local RMT-32 endpoint.
+*Finite-Horizon Log-Positive Cocycle Integrability* now follows a uniform
+four-state cycle with scalar generator norms `1/2`, `2`, `1/4`, and `4`.
+Its horizon-two ledger computes the exact positive-log values `(0,0,0,1)` and
+the orbit budgets `(1,1,2,2)`, proving pointwise domination before averaging;
+at horizon four the product logarithm cancels to zero while every orbit budget
+equals `3`. A raw measure with mass `2` per state then separates finite
+integrability from expectation language. The genuine countable near miss uses
+mass `2⁻ⁿ⁻¹` and generator norm `exp(2ⁿ)`, so every weighted positive-log term
+is `1/2` and the integral diverges despite probability normalization and
+measurability. Two accessible numeric figures, seven Lean bridges, the exact
+sixteen-declaration map, and an executed `Std` worksheet make the finite-tail
+hypothesis and its one-sided sign boundary concrete. The worksheet is the
+intended lightweight local exercise; all Mathlib-backed module checks remain
+guarded Linux-cloud work.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3287,6 +3301,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `5f7eb59`: rebuild *Probability Normalization and Ergodic Rigidity Before
+  Kingman* around probability-versus-raw mass, swap and identity dynamics,
+  invariant-event and invariant-function rigidity, seven Lean bridges, and an
+  oscillating-row warning against inferring samplewise convergence.
 - `44dfba5`: rebuild *Integrated Log-Positive Cocycle Growth and Its
   Deterministic Fekete Limit* around two exact sample rows, an active zero-time
   boundary, a failed-subadditivity near miss, six Lean bridges, and a local

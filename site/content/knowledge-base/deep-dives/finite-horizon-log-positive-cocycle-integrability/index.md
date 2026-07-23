@@ -2,17 +2,17 @@
 title: "Finite-Horizon Log-Positive Cocycle Integrability"
 slug: "finite-horizon-log-positive-cocycle-integrability"
 date: 2026-07-21
-summary: "A textbook derivation of a real nonnegative log-positive cocycle envelope, its shifted one-step orbit-sum majorant, and the propagation of one explicit generator integrability hypothesis to every finite horizon."
-lead: "The full extended log norm remembers collapse and contraction, but ordinary integrability needs a manageable real majorant. The positive logarithm supplies exactly that upper-growth envelope, provided we remain honest about the information it discards and stop before any asymptotic theorem."
+summary: "Compute an exact four-state positive-log ledger, watch a geometric expanding tail defeat integrability, and then follow the checked Lean proof from one explicit generator hypothesis to every fixed finite horizon."
+lead: "On a uniform four-state cycle, one-step positive logs have mean three quarters of log two, the two-step cocycle has mean one quarter, and its orbit-sum budget has mean three halves. Those finite numbers expose every job in the theorem before the general measure theory begins."
 draft: false
 pro_reviewed: false
-level: "Random matrix cocycles, positive logarithms, finite orbit sums, measure-preserving pullbacks, domination, and Bochner integrability"
-reading_time: "85 to 115 minutes"
-prerequisites: "Finite-time cocycle norm and extended-log-norm observables, one-sided shifted cocycle products, measurable real functions, finite sums, and basic measure-theoretic integrability; no ergodic theorem is assumed"
+level: "From finite weighted sums to measure-preserving pullbacks, Bochner integrability, and finite cocycle domination"
+reading_time: "100 to 130 minutes"
+prerequisites: "Arithmetic with fractions and powers; measures, measurable functions, integrability, cocycles, and Lean syntax are introduced from the finite example"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability"
 toc: true
 og_image: "finite-horizon-log-positive-cocycle-integrability-card.png"
-og_image_alt: "Under an explicit one-step positive-log integrability hypothesis, the observable is pulled back along a measure-preserving base orbit, assembled into a finite integrable sum, and used to dominate every finite-horizon positive-log norm, while a side branch warns that collapse and contraction were discarded."
+og_image_alt: "A uniform four-state cycle with generator norms one half, two, one quarter, and four. The horizon-two positive-log values zero, zero, zero, one are pointwise below orbit budgets one, one, two, two, all measured in units of log two."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,111 +24,748 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+prose, sources, exact examples, Lean declaration map, worksheet, figures, and
+accessibility have not yet received the required human and Pro reviews. The
+page is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-RMT-14 assigned every finite value of a one-sided complex matrix cocycle two
-sizes. The ordinary norm
+## Begin with four states and one exact ledger
+
+Take four base states
 
 \[
-N_k(\omega)=\lVert C(k,\omega)\rVert_\infty
+\Omega=\{0,1,2,3\}
 \]
 
-is a nonnegative real. The zero-faithful extended log norm
+and let the base map move one place clockwise:
 
 \[
-L_k(\omega)
+T(0)=1,\qquad T(1)=2,\qquad T(2)=3,\qquad T(3)=0.
+\]
+
+Put mass \(1/4\) at each state. This is a probability measure because the four
+masses add to one. The map \(T\) preserves it because \(T\) merely permutes
+four equally weighted points. Every subset is an event and every real-valued
+function is measurable on this finite discrete space.
+
+Now use one-dimensional matrices. At the four states, choose the positive
+generator values
+
+\[
+A(0)=\frac12,\qquad
+A(1)=2,\qquad
+A(2)=\frac14,\qquad
+A(3)=4.
+\]
+
+Regarded as \(1\times1\) complex matrices, their operator norms are just their
+absolute values. Each is a power of two:
+
+\[
+\lVert A(i)\rVert=2^{e_i},
+\qquad
+(e_0,e_1,e_2,e_3)=(-1,1,-2,2).
+\]
+
+We will measure logarithms in units of \(\log2\). This removes numerical
+approximations without changing any inequality:
+
+\[
+\frac{\log \lVert A(i)\rVert}{\log2}=e_i.
+\]
+
+The positive logarithm keeps only the positive part,
+
+\[
+\log^+r=\max\{0,\log r\}.
+\]
+
+Therefore the one-step observable, again in units of \(\log2\), is
+
+\[
+\left(
+\frac{P_1(0)}{\log2},
+\frac{P_1(1)}{\log2},
+\frac{P_1(2)}{\log2},
+\frac{P_1(3)}{\log2}
+\right)
+=(0,1,0,2).
+\]
+
+The contractions \(1/2\) and \(1/4\) contribute zero. The expansions \(2\)
+and \(4\) contribute one and two.
+
+Because the measure is uniform, the integral is the ordinary average:
+
+\[
+\int_\Omega P_1\,d\mu
 {} =
-\operatorname{ENNReal.log}\lVert C(k,\omega)\rVert_{\mathrm e}
+\frac{0+1+0+2}{4}\log2
+{} =
+\frac34\log2.
 \]
 
-takes values in the extended reals and sends a zero matrix exactly to bottom.
-That is the correct finite-time object for remembering contraction and
-annihilation.
+This number is finite. In this example the explicit one-step integrability
+hypothesis is true.
 
-RMT-15 asks a narrower analytic question. What explicit one-step hypothesis is
-enough to prove that the **positive part** of logarithmic norm growth is
-integrable at every finite horizon? The answer uses a second observable,
+### Compute the two-step cocycle before bounding it
+
+For a generator-presented one-sided cocycle,
 
 \[
-P_k(\omega)=\log^+N_k(\omega),
+C(2,i)=A(Ti)A(i).
 \]
 
-and a finite orbit-sum majorant,
+Multiplying powers of two adds their signed exponents. Taking positive log
+afterward keeps the positive part of that total. The four exact calculations
+are:
+
+| Start \(i\) | Signed exponents | Product norm | \(P_2(i)/\log2\) |
+|---:|---:|---:|---:|
+| \(0\) | \(-1+1=0\) | \(1\) | \(0\) |
+| \(1\) | \(1-2=-1\) | \(1/2\) | \(0\) |
+| \(2\) | \(-2+2=0\) | \(1\) | \(0\) |
+| \(3\) | \(2-1=1\) | \(2\) | \(1\) |
+
+So
 
 \[
-S_k(\omega)=\sum_{j=0}^{k-1}P_1(T^j\omega).
+\int_\Omega P_2\,d\mu=\frac14\log2.
 \]
 
-The Lean module proves \(0\le P_k\le S_k\), states ordinary integrability of
-\(P_1\) as an explicit assumption, transports that assumption along every
-measure-preserving base iterate, adds the finite family, and concludes that
-\(P_k\) is integrable for every natural \(k\).
+The theorem does not compute \(P_2\) from an average. It first constructs the
+pointwise orbit budget
 
-This is an integrability envelope, not a Lyapunov observable. It discards
-negative logarithmic growth and exact collapse. The module proves no
-integrability of \(L_k\), no probability normalization, no ergodicity, no
-normalized limit, and no subadditive or multiplicative ergodic theorem.
+\[
+S_2(i)=P_1(i)+P_1(Ti).
+\]
+
+Its four values in \(\log2\)-units are
+
+\[
+(1,1,2,2).
+\]
+
+Thus
+
+\[
+\int_\Omega S_2\,d\mu
+{} =
+\frac{1+1+2+2}{4}\log2
+{} =
+\frac32\log2.
+\]
+
+At every state,
+
+\[
+0\le P_2(i)\le S_2(i).
+\]
+
+The inequality is strict at all four states in this example. Positive parts
+do not add exactly: a later expansion can cancel an earlier contraction in the
+signed product, while \(S_2\) has already clipped the contraction to zero.
+
+At horizon four, every orbit sees all four signed exponents. Their sum is
+zero, so \(P_4=0\) everywhere. But every orbit sum is
+\(S_4=(0+1+0+2)\log2=3\log2\). A useful majorant need not be sharp.
+
+{{< reference-figure
+  wide="true"
+  src="four-cycle-positive-log-ledger.svg"
+  alt="Four equally likely states form a cycle. Their generator norms are one half, two, one quarter, and four; signed base-two exponents are minus one, one, minus two, and two; one-step positive-log coefficients are zero, one, zero, and two. At horizon two the positive-log coefficients zero, zero, zero, one are below orbit budgets one, one, two, two. Their uniform means are one quarter and three halves."
+  caption="**Exact finite ledger:** the uniform one-step mean is \(\frac34\log2\). At horizon two, \(P_2/\log2=(0,0,0,1)\) while \(S_2/\log2=(1,1,2,2)\), giving means \(1/4\) and \(3/2\). The base is measure preserving because it is a permutation; no independence, limiting theorem, or Lyapunov exponent is involved."
+>}}
+
+## What the measure-theory words mean here
+
+The finite ledger is already a complete small model of the vocabulary.
+
+- A {{< refterm "measurable-space" "measurable space" >}} specifies which
+  subsets count as events. Here every subset of \(\Omega\) is an event.
+- A {{< refterm "measure" "measure" >}} assigns nonnegative mass to events.
+  Here the mass of a set is the number of its points divided by four.
+- A {{< refterm "probability-measure" "probability measure" >}} has total mass
+  one. That is why the integral above can also be called an expectation.
+- A {{< refterm "measurable-function" "measurable function" >}} respects the
+  selected events. Every function out of this finite discrete space does.
+- A real function is {{< refterm "integrability" "integrable" >}} when its
+  absolute size has finite integral. A finite list of finite values with finite
+  weights is automatically integrable.
+- A {{< refterm "null-set" "null set" >}} has mass zero. Because every point
+  here has positive mass, the only null set is the empty set.
+- A claim holding {{< refterm "almost-everywhere" "almost everywhere" >}} may
+  fail on a null set. In this finite example that means it holds everywhere.
+
+For a function \(f:\Omega\to\mathbb R\), the integral is the weighted sum
+
+\[
+\int_\Omega f\,d\mu
+{} =
+\frac14f(0)+\frac14f(1)+\frac14f(2)+\frac14f(3).
+\]
+
+For integrability one inserts absolute values:
+
+\[
+\int_\Omega |f|\,d\mu\lt\infty.
+\]
+
+The target observable \(P_k\) is nonnegative, so \(|P_k|=P_k\). This small
+identity is exactly the final step used by the Lean proof.
+
+### A measure need not be a probability measure
+
+The target module accepts an arbitrary raw measure \(\mu\). To see the
+difference, give each of the same four states mass \(2\). The total mass is
+\(8\), not \(1\). The one-step integral in \(\log2\)-units becomes
+
+\[
+2(0+1+0+2)=6.
+\]
+
+It is still finite, so \(P_1\) is integrable. But \(6\log2\) is not an
+expectation under that unnormalized measure. “Integral” is the correct general
+word; “expectation” is reserved for a probability measure.
+
+Measure preservation also has a precise job. It says that moving all mass
+through \(T\) does not change the measure. Consequently, if \(P_1\) is already
+integrable, then each shifted function
+
+\[
+\omega\longmapsto P_1(T^j\omega)
+\]
+
+is integrable. Preservation transports an existing fact. It does not turn an
+arbitrary measurable function into an integrable one.
+
+## The explicit hypothesis can genuinely fail
+
+Finite spaces hide heavy tails. Move to the countable space
+\(\Omega=\mathbb N\), keep the identity base \(T(n)=n\), and put geometric
+probability mass
+
+\[
+\mu\{n\}=2^{-(n+1)}
+\]
+
+at atom \(n\). The masses sum to one. The identity map preserves them, and
+every function is measurable for the discrete measurable structure.
+
+Choose a one-dimensional expanding generator with norm
+
+\[
+\lVert A(n)\rVert=\exp(2^n).
+\]
+
+Then
+
+\[
+P_1(n)=\log^+\lVert A(n)\rVert=2^n.
+\]
+
+Every atom contributes exactly the same amount to the integral:
+
+\[
+\mu\{n\}P_1(n)
+{} =
+2^{-(n+1)}2^n
+{} =
+\frac12.
+\]
+
+Therefore the first \(N\) atoms already contribute \(N/2\), and
+
+\[
+\int_{\mathbb N}P_1\,d\mu
+{} =
+\frac12+\frac12+\frac12+\cdots
+{} =
+\infty.
+\]
+
+This is not merely a large finite sample. The algebra proves every summand is
+\(1/2\), so the partial integrals are unbounded. Probability normalization,
+ordinary measurability, and measure preservation are all present, yet
+<code>HasIntegrableGeneratorLogPlus</code> is false.
+
+{{< reference-figure
+  wide="true"
+  src="geometric-expanding-nonintegrable-near-miss.svg"
+  alt="On atom n, a geometric probability has mass one over two to the n plus one and a scalar generator has norm exponential of two to the n. Its one-step positive log is two to the n, so every weighted contribution is one half. Six rows and a staircase show partial integrals one half, one, three halves, two, five halves, and three, continuing as N over two."
+  caption="**A genuine failed hypothesis:** the identity base preserves a probability measure and the one-step observable is measurable, but its positive-log integral diverges because every atom contributes \(1/2\). RMT-15 states one-step integrability explicitly precisely because the other assumptions cannot create it."
+>}}
+
+### The opposite sign is a wrong-level near miss
+
+Replace the generator norm by
+
+\[
+\lVert A(n)\rVert=\exp(-2^n).
+\]
+
+Now every norm is at most one, so \(P_1(n)=0\). The RMT-15 hypothesis holds
+trivially. But the signed logarithm has magnitude \(2^n\), and its weighted
+absolute integral again contains \(1/2\) at every atom. The inverse norm has
+the same expanding tail.
+
+This does not contradict RMT-15. Positive log deliberately erased the
+contraction before integrability was discussed. A later project module checks
+this geometric contraction model as a counterexample separating forward
+positive-log integrability from inverse-tail and signed-real-log
+integrability. The target module makes neither stronger claim.
 
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [The proof pipeline in one picture](#the-proof-pipeline-in-one-picture) | See one-step integrability become a finite-horizon conclusion |
-| Information route | [What positive log keeps and destroys](#camp-one-what-positive-log-keeps-and-destroys) | Distinguish an upper-tail envelope from the zero-faithful extended log norm |
-| Algebra route | [Finite-time subadditivity](#camp-three-finite-time-subadditivity) | Follow the shifted later block through the positive-log product estimate |
-| Orbit route | [Build the one-step orbit sum](#camp-four-build-the-one-step-orbit-sum) | Understand the empty sum, successor rule, measurability, and domination induction |
-| Measure route | [State the missing assumption](#camp-five-state-the-missing-assumption) | Separate measure preservation from integrability and probability |
-| Proof route | [Domination closes the finite-horizon theorem](#camp-eight-domination-closes-the-finite-horizon-theorem) | Audit the absolute-value reduction and integrable majorant |
-| Lean route | [The complete sixteen-declaration map](#the-complete-sixteen-declaration-map) | Check every public name and assumption in source order |
-| Integrity route | [The boundary of the result](#summit-the-boundary-of-the-result) | Reject every asymptotic or contraction-sensitive overread |
+| First encounter | [Four states and one ledger](#begin-with-four-states-and-one-exact-ledger) | Compute \(P_1\), \(P_2\), and \(S_2\) exactly |
+| Vocabulary route | [What the words mean](#what-the-measure-theory-words-mean-here) | Separate measure, probability, measurability, and integrability |
+| Failure route | [The explicit hypothesis can fail](#the-explicit-hypothesis-can-genuinely-fail) | See a genuine measurable nonintegrable positive tail |
+| Lean route | [Seven bridges](#in-lean-seven-bridges-from-the-ledger-to-the-theorem) | Translate human statements into exact project syntax |
+| Hands-on route | [Run the worksheet](#type-the-ledgers-yourself-with-lean-and-std) | Recheck both finite and geometric arithmetic locally |
+| Proof route | [Why the propagation works](#why-the-finite-horizon-propagation-works) | Follow pullbacks, finite sums, and domination |
+| Interface route | [The complete declaration map](#the-complete-sixteen-declaration-map) | Audit every public name and its assumptions |
+| Summit route | [What has and has not been proved](#summit-what-has-and-has-not-been-proved) | Keep finite integrability separate from asymptotic dynamics |
 
 ### Learning objectives
 
-By the summit, a reader should be able to:
+By the summit, you should be able to compute the four-state ledger without a
+calculator; explain why a finite weighted list is integrable; distinguish a
+raw integral from an expectation; produce the geometric heavy-tail
+counterexample; explain what positive log erases; read seven Lean bridges
+token by token; run the bounded <code>Std</code> worksheet; derive the
+orbit-sum majorant; reconstruct the pullback and domination proof; audit all
+sixteen public declarations; and state which probability, tail, uniform-time,
+ergodic, and Lyapunov conclusions remain outside the file.
 
-1. define Mathlib's positive logarithm on a nonnegative real norm;
-2. explain why it is real-valued, continuous, measurable, and nonnegative;
-3. identify the collapse, contraction, and unit-norm regimes that it merges;
-4. distinguish \(P_k\) from the extended-real \(L_k\);
-5. explain why integrability of \(P_k\) does not imply integrability of \(L_k\);
-6. derive positive-log subadditivity from norm submultiplicativity;
-7. preserve the later shifted base point in that inequality;
-8. compute the one-step orbit sum and its successor recurrence;
-9. prove the orbit sum measurable by finite-sum closure;
-10. derive \(P_k\le S_k\) by induction;
-11. state <code>HasIntegrableGeneratorLogPlus</code> exactly;
-12. distinguish an arbitrary preserved measure from a probability measure;
-13. explain how measure-preserving iterates transport integrability;
-14. explain why a finite sum of shifted one-step terms is integrable;
-15. follow the final domination proof in Mathlib's <code>Integrable.mono'</code> interface;
-16. locate every positive- and empty-dimensional edge case; and
-17. list the missing ingredients before a Lyapunov exponent or ergodic limit.
+## In Lean: seven bridges from the ledger to the theorem
 
-## The proof pipeline in one picture
+All seven bridges below belong to
+<code>NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability</code>.
+The human sentence, paper formula, and Lean expression say the same thing at
+three levels.
 
-{{< reference-figure
-  src="finite-horizon-log-positive-integrability.svg"
-  alt="An explicit one-step positive-log integrability hypothesis is transported along every iterate of a measure-preserving base, producing integrable pulled-back terms whose finite orbit sum dominates the finite-horizon positive-log norm. A separate warning branch states that collapse and contraction were clipped away before this pipeline began."
-  caption="**Finding:** one explicit integrability assumption on the generator's positive-log norm survives every measure-preserving base pullback, finite addition builds an integrable orbit sum, and pointwise domination transfers integrability to the finite-horizon positive-log observable. The side branch is part of the theorem's meaning: collapse and contraction were already clipped to zero, so the pipeline gives no negative-growth control, extended-log integrability, normalized limit, or Lyapunov exponent."
+### Bridge one: define the real nonnegative envelope
+
+{{< lean-bridge
+  human="At a fixed horizon and base state, take the positive logarithm of the cocycle matrix norm."
+  math="\(P_k(\omega)=\log^+\lVert C(k,\omega)\rVert_\infty\in\mathbb R.\)"
+  lean="C.logPlusNormObservable k ω : ℝ"
 >}}
 
-The figure contains two logical threads. The central thread is the proof of
-finite-horizon integrability. The side thread records the information loss that
-makes the proof unsuitable as a complete growth theory.
+- <code>C</code> is the bundled discrete matrix cocycle.
+- <code>k</code> is a natural-number factor count.
+- <code>ω</code> is one base state.
+- <code>normObservable</code> computes the finite matrix norm.
+- <code>log⁺</code> is Mathlib's <code>Real.posLog</code>, namely the maximum
+  of zero and the real logarithm.
+- The codomain is <code>ℝ</code>, so exact collapse and contraction have no
+  bottom value here.
+{{< /lean-bridge >}}
 
-## Base camp: the inherited finite-time cocycle
+The companion theorem
+<code>C.logPlusNormObservable_nonneg k ω</code> supplies
+\(0\le P_k(\omega)\).
 
-Fix a measurable base type \(\Omega\), a finite matrix index type \(\iota\)
-with decidable equality, an arbitrary measure \(\mu\), and a bundled
-<code>DiscreteMatrixCocycle μ</code>. The cocycle supplies:
+### Bridge two: split a finite history
 
-- a measurable base map \(T:\Omega\to\Omega\) that preserves \(\mu\);
-- a measurable complex matrix generator \(A\);
-- finite products \(C(k,\omega)\) with newest factor on the left; and
-- the exact split
+{{< lean-bridge
+  human="The positive log of the full history is at most the shifted later-block positive log plus the early-block positive log."
+  math="\(P_{m+k}(\omega)\le P_k(T^m\omega)+P_m(\omega).\)"
+  lean="C.logPlusNormObservable_add_le m k ω"
+>}}
+
+- <code>m + k</code> is the total horizon.
+- <code>C.base^[m] ω</code> is \(T^m\omega\), the base state after the early
+  block.
+- The shifted \(k\)-block acts later and appears on the left in the matrix
+  product.
+- The first inequality comes from matrix-norm submultiplicativity.
+- <code>Real.posLog_mul</code> turns the product budget into an additive
+  positive-log budget.
+{{< /lean-bridge >}}
+
+### Bridge three: add the shifted one-step costs
+
+{{< lean-bridge
+  human="For a finite horizon, add the one-step positive logs observed along the first k base states."
+  math="\(S_k(\omega)=\sum_{j=0}^{k-1}P_1(T^j\omega).\)"
+  lean="C.orbitLogPlusSum k ω"
+>}}
+
+- <code>Finset.range k</code> contains \(0,\ldots,k-1\).
+- <code>C.base^[j] ω</code> is the \(j\)-fold base iterate.
+- Every summand uses horizon one.
+- At <code>k = 0</code>, the finite range is empty and the sum is zero.
+- This is a deterministic finite sum along one orbit, not a sum of independent
+  random variables.
+{{< /lean-bridge >}}
+
+### Bridge four: append the newest term
+
+{{< lean-bridge
+  human="Increasing the horizon by one appends the one-step cost at the kth base iterate."
+  math="\(S_{k+1}(\omega)=S_k(\omega)+P_1(T^k\omega).\)"
+  lean="C.orbitLogPlusSum_succ k"
+>}}
+
+- The theorem is equality of functions.
+- Supplying <code>ω</code> evaluates both sides at one state.
+- <code>Finset.sum_range_succ</code> is the finite-list arithmetic behind the
+  identity.
+- The index \(k\) is the newly appended term because counting starts at zero.
+{{< /lean-bridge >}}
+
+### Bridge five: the orbit sum dominates pointwise
+
+{{< lean-bridge
+  human="At every state and fixed finite horizon, the cocycle positive log lies below the one-step orbit budget."
+  math="\(P_k(\omega)\le S_k(\omega).\)"
+  lean="C.logPlusNormObservable_le_orbitLogPlusSum k ω"
+>}}
+
+- This is pointwise, stronger than an almost-everywhere inequality.
+- The proof inducts on <code>k</code>.
+- The successor step splits the horizon as <code>k + 1</code>.
+- Bridge two creates the newest one-step term; bridge four identifies the
+  resulting sum.
+- No measure, integral, or probability arithmetic is used in this proof.
+{{< /lean-bridge >}}
+
+### Bridge six: name the missing analytic assumption
+
+{{< lean-bridge
+  human="Assume explicitly that the one-step positive-log generator norm is integrable against the stated measure."
+  math="\(P_1\in L^1(\mu).\)"
+  lean="C.HasIntegrableGeneratorLogPlus"
+>}}
+
+- The name unfolds to
+  <code>Integrable (C.logPlusNormObservable 1) μ</code>.
+- <code>Integrable</code> is Mathlib's Bochner-integrability predicate.
+- For a real function it includes suitable almost-everywhere measurability and
+  a finite integral of the absolute value.
+- The target module already proves ordinary measurability, but that does not
+  imply a finite integral.
+- The geometric expanding model above is a concrete counterexample to any
+  attempted automatic proof.
+{{< /lean-bridge >}}
+
+### Bridge seven: propagate to every fixed horizon
+
+{{< lean-bridge
+  human="Under the one-step hypothesis, the positive-log norm at every natural finite horizon is integrable."
+  math="\(P_k\in L^1(\mu)\quad\text{for every }k\in\mathbb N.\)"
+  lean="hC.integrable_logPlusNormObservable k"
+>}}
+
+- <code>hC</code> is evidence for bridge six.
+- <code>hC.integrable_at_base_iterate j</code> first transports integrability
+  to \(P_1\circ T^j\).
+- <code>hC.integrable_orbitLogPlusSum k</code> adds the finite family.
+- <code>Integrable.mono'</code> transfers integrability from \(S_k\) to
+  \(P_k\).
+- Nonnegativity rewrites \(\lvert P_k\rvert\) as \(P_k\), and bridge five
+  supplies the required domination.
+- “Every \(k\)” means each fixed natural horizon. It is not one
+  uniform-in-\(k\) integrable bound.
+{{< /lean-bridge >}}
+
+### Check the exact project interface
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, approved Linux compute only for
+this project.** Put these commands in a temporary project scratch file if you
+want to inspect every public declaration:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#print DiscreteMatrixCocycle.logPlusNormObservable
+#check DiscreteMatrixCocycle.logPlusNormObservable_nonneg
+#check DiscreteMatrixCocycle.logPlusNormObservable_zero
+#check DiscreteMatrixCocycle.logPlusNormObservable_one
+#check DiscreteMatrixCocycle.measurable_logPlusNormObservable
+#check DiscreteMatrixCocycle.logPlusNormObservable_add_le
+#check DiscreteMatrixCocycle.logPlusNormObservable_eq_zero_of_isEmpty
+#print DiscreteMatrixCocycle.orbitLogPlusSum
+#check DiscreteMatrixCocycle.orbitLogPlusSum_zero
+#check DiscreteMatrixCocycle.orbitLogPlusSum_succ
+#check DiscreteMatrixCocycle.measurable_orbitLogPlusSum
+#check DiscreteMatrixCocycle.logPlusNormObservable_le_orbitLogPlusSum
+#print DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_at_base_iterate
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_orbitLogPlusSum
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable
+~~~
+
+The command rendered below checks the authoritative source file with the
+pinned toolchain and manifest and treats warnings as errors. It belongs on an
+approved Linux builder because this import reaches Mathlib.
+{{< /repo-check >}}
+
+## Type the ledgers yourself with Lean and Std
+
+The project theorem uses Mathlib matrices, measures, iterates, and Bochner
+integrability. The arithmetic that motivates it is much smaller. The following
+worksheet imports only <code>Std</code>, represents logarithms by their exact
+coefficients, and checks the finite and geometric ledgers without compiling
+Mathlib.
+
+Create a scratch directory outside <code>formalization/</code>. Save the exact
+block below as <code>FiniteHorizonLogPlusIntegrabilityTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace FiniteHorizonLogPlusIntegrabilityTutorial
+
+/-
+The four generator norms are powers of two:
+
+  state       0     1     2     3
+  norm       1/2    2    1/4    4
+  exponent    -1    1     -2    2
+
+All logarithms below are measured in units of log 2.  This keeps every
+calculation exact while preserving the positive-log arithmetic.
+-/
+
+def exponentAt (state : Nat) : Int :=
+  match state % 4 with
+  | 0 => -1
+  | 1 => 1
+  | 2 => -2
+  | _ => 2
+
+def base (state : Nat) : Nat :=
+  (state + 1) % 4
+
+def positivePart (z : Int) : Nat :=
+  z.toNat
+
+def oneStepPositive (state : Nat) : Nat :=
+  positivePart (exponentAt state)
+
+def signedExponent (state horizon : Nat) : Int :=
+  (List.range horizon).foldl
+    (fun total j => total + exponentAt (state + j)) 0
+
+def horizonPositive (state horizon : Nat) : Nat :=
+  positivePart (signedExponent state horizon)
+
+def orbitBudget (state horizon : Nat) : Nat :=
+  ((List.range horizon).map
+    (fun j => oneStepPositive (state + j))).sum
+
+structure HorizonLedger where
+  start : Nat
+  signedExponent : Int
+  horizonPositive : Nat
+  orbitBudget : Nat
+  deriving Repr, DecidableEq
+
+def ledgerAt (horizon start : Nat) : HorizonLedger :=
+  { start := start
+    signedExponent := signedExponent start horizon
+    horizonPositive := horizonPositive start horizon
+    orbitBudget := orbitBudget start horizon }
+
+def horizonTwoLedger : List HorizonLedger :=
+  (List.range 4).map (ledgerAt 2)
+
+def horizonFourLedger : List HorizonLedger :=
+  (List.range 4).map (ledgerAt 4)
+
+def fairMean (values : List Nat) : Rat :=
+  (values.sum : Rat) / values.length
+
+def oneStepMean : Rat :=
+  fairMean ((List.range 4).map oneStepPositive)
+
+def horizonTwoMean : Rat :=
+  fairMean ((List.range 4).map (fun state => horizonPositive state 2))
+
+def horizonTwoBudgetMean : Rat :=
+  fairMean ((List.range 4).map (fun state => orbitBudget state 2))
+
+/-
+The same four atoms with raw mass 2 each have total mass 8.  Their integral
+is still finite, but it is not an expectation until the measure is normalized.
+-/
+
+def rawMassTwoOneStepIntegral : Nat :=
+  2 * ((List.range 4).map oneStepPositive).sum
+
+/-
+Near miss on the countable probability space Nat:
+
+  mass at n                 = 1 / 2^(n+1)
+  generator norm           = exp (-(2^n))
+  positive log             = 0
+  missing negative magnitude = 2^n
+
+Each missing-tail contribution is exactly 1/2, so its partial sums grow
+without bound even though the positive-log integral is zero.
+-/
+
+def tailWeight (n : Nat) : Rat :=
+  1 / (2 ^ (n + 1) : Nat)
+
+def missingNegativeMagnitude (n : Nat) : Nat :=
+  2 ^ n
+
+def missingTailContribution (n : Nat) : Rat :=
+  tailWeight n * missingNegativeMagnitude n
+
+def missingTailPartialSum (count : Nat) : Rat :=
+  ((List.range count).map missingTailContribution).sum
+
+def forwardPositivePartialSum (count : Nat) : Rat :=
+  ((List.range count).map (fun _ => (0 : Rat))).sum
+
+/-
+Flipping the sign in the exponent gives the expanding generator
+exp (2^n).  Then the very same contributions belong to the positive log,
+so the RMT-15 one-step hypothesis itself fails.
+-/
+
+def expandingPositiveContribution (n : Nat) : Rat :=
+  tailWeight n * missingNegativeMagnitude n
+
+def expandingPositivePartialSum (count : Nat) : Rat :=
+  ((List.range count).map expandingPositiveContribution).sum
+
+structure TailLedger where
+  atom : Nat
+  weight : Rat
+  positiveLog : Nat
+  missingNegativeMagnitude : Nat
+  weightedMissingTail : Rat
+  deriving Repr, DecidableEq
+
+def tailLedger (count : Nat) : List TailLedger :=
+  (List.range count).map fun n =>
+    { atom := n
+      weight := tailWeight n
+      positiveLog := 0
+      missingNegativeMagnitude := missingNegativeMagnitude n
+      weightedMissingTail := missingTailContribution n }
+
+#eval (List.range 4).map exponentAt
+#eval (List.range 4).map oneStepPositive
+#eval horizonTwoLedger
+#eval horizonFourLedger
+#eval [oneStepMean, horizonTwoMean, horizonTwoBudgetMean]
+#eval rawMassTwoOneStepIntegral
+#eval (List.range 6).map missingTailContribution
+#eval (List.range 6).map missingTailPartialSum
+#eval (List.range 6).map forwardPositivePartialSum
+#eval (List.range 6).map expandingPositivePartialSum
+
+example : (List.range 4).map exponentAt = [-1, 1, -2, 2] := by
+  native_decide
+
+example : (List.range 4).map oneStepPositive = [0, 1, 0, 2] := by
+  native_decide
+
+example : horizonTwoLedger =
+    [ { start := 0, signedExponent := 0,
+        horizonPositive := 0, orbitBudget := 1 },
+      { start := 1, signedExponent := -1,
+        horizonPositive := 0, orbitBudget := 1 },
+      { start := 2, signedExponent := 0,
+        horizonPositive := 0, orbitBudget := 2 },
+      { start := 3, signedExponent := 1,
+        horizonPositive := 1, orbitBudget := 2 } ] := by
+  native_decide
+
+example : horizonTwoLedger.all
+    (fun row => decide (row.horizonPositive ≤ row.orbitBudget)) := by
+  native_decide
+
+example : horizonFourLedger.map
+    (fun row => (row.horizonPositive, row.orbitBudget)) =
+      [(0, 3), (0, 3), (0, 3), (0, 3)] := by
+  native_decide
+
+example : oneStepMean = 3 / 4 := by native_decide
+example : horizonTwoMean = 1 / 4 := by native_decide
+example : horizonTwoBudgetMean = 3 / 2 := by native_decide
+example : rawMassTwoOneStepIntegral = 6 := by native_decide
+
+example : (List.range 6).map missingTailContribution =
+    [1 / 2, 1 / 2, 1 / 2, 1 / 2, 1 / 2, 1 / 2] := by
+  native_decide
+
+example : missingTailPartialSum 8 = 4 := by native_decide
+example : forwardPositivePartialSum 8 = 0 := by native_decide
+example : expandingPositivePartialSum 8 = 4 := by native_decide
+
+end FiniteHorizonLogPlusIntegrabilityTutorial
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  FiniteHorizonLogPlusIntegrabilityTutorial.lean
+~~~
+
+**Resource label: small standalone Lean tutorial, ordinary Mac or Linux.**
+This exact worksheet was executed with Lean 4.32.0 and printed this complete
+transcript:
+
+~~~text
+[-1, 1, -2, 2]
+[0, 1, 0, 2]
+[{ start := 0, signedExponent := 0, horizonPositive := 0, orbitBudget := 1 },
+ { start := 1, signedExponent := -1, horizonPositive := 0, orbitBudget := 1 },
+ { start := 2, signedExponent := 0, horizonPositive := 0, orbitBudget := 2 },
+ { start := 3, signedExponent := 1, horizonPositive := 1, orbitBudget := 2 }]
+[{ start := 0, signedExponent := 0, horizonPositive := 0, orbitBudget := 3 },
+ { start := 1, signedExponent := 0, horizonPositive := 0, orbitBudget := 3 },
+ { start := 2, signedExponent := 0, horizonPositive := 0, orbitBudget := 3 },
+ { start := 3, signedExponent := 0, horizonPositive := 0, orbitBudget := 3 }]
+[(3 : Rat)/4, (1 : Rat)/4, (3 : Rat)/2]
+6
+[(1 : Rat)/2, (1 : Rat)/2, (1 : Rat)/2, (1 : Rat)/2, (1 : Rat)/2, (1 : Rat)/2]
+[0, (1 : Rat)/2, 1, (3 : Rat)/2, 2, (5 : Rat)/2]
+[0, 0, 0, 0, 0, 0]
+[0, (1 : Rat)/2, 1, (3 : Rat)/2, 2, (5 : Rat)/2]
+~~~
+
+The first two lines are the signed exponents and their positive parts. The
+next two ledgers give horizons two and four. The three rational means are
+\(3/4\), \(1/4\), and \(3/2\); the raw mass-two integral is \(6\). The next
+line shows six identical geometric contributions of \(1/2\). The final three
+lines show their partial sums: the missing contraction tail grows as \(N/2\),
+the contraction's forward positive log stays zero, and the expanding positive
+tail again grows as \(N/2\).
+
+<code>native_decide</code> does not estimate these values. It evaluates exact
+integer and rational computations and asks Lean's kernel to accept the
+resulting proof. The worksheet models logarithms by exact coefficients; it
+does not reimplement Mathlib's analytic logarithm, matrix norm, measure, or
+<code>Integrable</code> predicate. Those authoritative interfaces remain the
+cloud-only project check above.
+
+## Why the finite-horizon propagation works
+
+Return to the general setting. Fix:
+
+- a base type \(\Omega\) with a measurable-space structure;
+- a finite matrix index type \(\iota\) with decidable equality;
+- an arbitrary measure \(\mu\) on \(\Omega\); and
+- a bundled <code>DiscreteMatrixCocycle μ</code>.
+
+The cocycle stores a measurable generator \(A\), a measurable
+measure-preserving base map \(T\), and the newest-factor-left finite product
 
 \[
 C(m+k,\omega)
@@ -136,8 +773,13 @@ C(m+k,\omega)
 C(k,T^m\omega)C(m,\omega).
 \]
 
-RMT-14 adds the maximum absolute row-sum norm \(N_k\), ordinary measurability,
-and the finite bound
+The predecessor module defines
+
+\[
+N_k(\omega)=\lVert C(k,\omega)\rVert_\infty
+\]
+
+using the maximum absolute row-sum matrix norm and proves
 
 \[
 N_{m+k}(\omega)
@@ -145,198 +787,81 @@ N_{m+k}(\omega)
 N_k(T^m\omega)N_m(\omega).
 \]
 
-It also adds \(L_k\), the extended log norm that is bottom exactly when the
-matrix is zero. RMT-15 imports this complete layer and does not redefine its
-norm convention or zero policy.
+### Positive log keeps only expansion
 
-## Camp one: what positive log keeps and destroys
-
-Mathlib defines the positive logarithm by
+The target defines
 
 \[
-\log^+r=\max(0,\operatorname{Real.log}r).
+P_k(\omega)=\log^+N_k(\omega)
 \]
 
-The file opens the scoped notation <code>Real</code>, so Lean prints
-<code>log⁺</code>. On nonnegative inputs, the behavior is
+as an ordinary real number. For nonnegative norm inputs:
 
 \[
-\log^+r
-{} =
+\log^+r=
 \begin{cases}
-0, & 0\le r\le1,\\
-\log r, & 1\le r.
+0,&0\le r\le1,\\
+\log r,&1\le r.
 \end{cases}
 \]
 
-This function is continuous at zero because Lean's total
-<code>Real.log</code> has value zero there and positive log is identically zero
-through the unit interval. Continuity makes measurability easy.
+| Norm regime | \(P_k\) records |
+|---|---:|
+| exact zero | \(0\) |
+| strict contraction \(0\lt r\lt1\) | \(0\) |
+| neutral norm \(r=1\) | \(0\) |
+| expansion \(r\gt1\) | \(\log r\) |
 
-The price is information loss:
+The first three cases collapse to one value. This is why \(P_k\) is an upper
+integrability envelope, not the predecessor's zero-faithful extended log norm
+and not a signed growth rate.
 
-| Norm regime | Zero-faithful \(L_k\) | Envelope \(P_k\) |
-|---|---:|---:|
-| Exact zero | \(\bot\) | \(0\) |
-| Strictly between zero and one | Negative real | \(0\) |
-| Exactly one | \(0\) | \(0\) |
-| Above one | Positive real log | Same positive real log |
+Mathlib proves that <code>Real.posLog</code> is continuous, hence measurable.
+Composing it with the predecessor's measurable norm observable gives
+<code>measurable_logPlusNormObservable</code>.
 
-The first three rows become indistinguishable. That is why the word
-“envelope” appears throughout this chapter.
-
-### Declaration 1: <code>logPlusNormObservable</code>
-
-The first definition applies positive log to the real norm observable:
-
-~~~lean
-def logPlusNormObservable
-    (C : DiscreteMatrixCocycle (ι := ι) μ) (k : ℕ) : Ω → ℝ :=
-  fun ω ↦ log⁺ (C.normObservable k ω)
-~~~
-
-Its codomain is \(\mathbb R\), not <code>EReal</code>. Time \(k\) remains a
-fixed natural parameter. No integral or normalization is part of the
-definition.
-
-### Declaration 2: <code>logPlusNormObservable_nonneg</code>
-
-For every horizon and outcome,
+At time zero, the cocycle value is the identity. In nonempty matrix dimension
+its norm is one; in empty dimension its norm is zero. Positive log sends both
+to zero, so
 
 \[
-0\le P_k(\omega).
+P_0=0
 \]
 
-The proof is the upstream theorem <code>Real.posLog_nonneg</code>. This
-pointwise sign fact later lets Lean rewrite the real norm
-\(\lvert P_k(\omega)\rvert\) as \(P_k(\omega)\) in the domination proof.
+without a <code>Nonempty ι</code> assumption. In empty dimension every matrix
+value has norm zero and every \(P_k\) is identically zero.
 
-## Camp two: zero time, one step, measurability, and empty dimension
+### Finite-time subadditivity
 
-### Declaration 3: <code>logPlusNormObservable_zero</code>
-
-RMT-15 proves
-
-\[
-P_0(\omega)=0
-\]
-
-in every finite matrix dimension. The proof explicitly splits the index type
-into empty and nonempty cases.
-
-In nonempty dimension, \(N_0=1\), so \(\log^+1=0\). In empty dimension,
-\(N_0=0\), so \(\log^+0=0\). The theorem therefore needs neither
-<code>Nonempty ι</code> nor <code>IsEmpty ι</code> in its public signature.
-
-This is convenient for the envelope but demonstrates its lossiness. The
-RMT-14 extended log norm distinguishes those two branches at time zero: zero
-in positive dimension and bottom in empty dimension.
-
-### Declaration 4: <code>logPlusNormObservable_one</code>
-
-At one step, the cocycle value is the generator, hence
-
-\[
-P_1(\omega)=\log^+\lVert A(\omega)\rVert_\infty.
-\]
-
-This equality of functions is the term named in the later integrability
-assumption. No nonzero-generator hypothesis appears.
-
-### Declaration 5: <code>measurable_logPlusNormObservable</code>
-
-RMT-14 already proves \(N_k:\Omega\to\mathbb R\) measurable. Mathlib proves
-<code>Real.continuous_posLog</code>, hence the positive logarithm is measurable.
-Composition gives ordinary measurability of \(P_k\) at every fixed horizon.
-
-This is not integrability. A measurable nonnegative function may have an
-infinite integral with respect to \(\mu\).
-
-### Declaration 6: <code>logPlusNormObservable_add_le</code>
-
-The module turns norm submultiplicativity into
-
-\[
-P_{m+k}(\omega)
-\le
-P_k(T^m\omega)+P_m(\omega).
-\]
-
-Camp three derives the exact proof.
-
-### Declaration 7: <code>logPlusNormObservable_eq_zero_of_isEmpty</code>
-
-If \(\iota\) is empty, RMT-14 says every finite norm \(N_k\) is zero. RMT-15
-simplifies the definition to prove
-
-\[
-P_k=\bigl(\omega\mapsto0\bigr)
-\]
-
-for every horizon. It does not globally assume positive matrix dimension.
-
-## Camp three: finite-time subadditivity
-
-Start from the checked norm inequality
-
-\[
-N_{m+k}(\omega)
-\le
-N_k(T^m\omega)N_m(\omega).
-\]
-
-Both sides are nonnegative. Mathlib's
-<code>Real.posLog_le_posLog</code> therefore transports the inequality through
-the positive logarithm. Its two-factor estimate then gives
+Pass the norm split through the monotone positive logarithm:
 
 \[
 \begin{aligned}
 P_{m+k}(\omega)
-&\le \log^+\!\left(N_k(T^m\omega)N_m(\omega)\right)\\
-&\le P_k(T^m\omega)+P_m(\omega).
+&=\log^+N_{m+k}(\omega)\\
+&\le
+\log^+\!\left(
+N_k(T^m\omega)N_m(\omega)
+\right)\\
+&\le
+\log^+N_k(T^m\omega)+\log^+N_m(\omega).
 \end{aligned}
 \]
 
-Unlike the extended logarithm's exact product-to-sum law, positive log only
-supplies an inequality. If one factor contracts and another expands, clipping
-the contracting contribution to zero enlarges the right side.
+The first inequality uses norm nonnegativity and positive-log monotonicity.
+The second is Mathlib's product inequality
+<code>Real.posLog_mul</code>. It is an inequality rather than an equality
+because clipping can discard negative logarithms before addition.
 
-The shifted base point remains essential. The later \(k\)-step block begins
-after the early \(m\)-step orbit, so its observable is evaluated at
-\(T^m\omega\). Real addition is commutative, but that does not license moving
-the matrix block back to the wrong base state.
-
-## Camp four: build the one-step orbit sum
-
-### Declaration 8: <code>orbitLogPlusSum</code>
+### Induct to the one-step orbit budget
 
 Define
 
 \[
-S_k(\omega)
-{} =
-\sum_{j\in\operatorname{range}(k)}P_1(T^j\omega)
-{} =
-\sum_{j=0}^{k-1}P_1(T^j\omega).
+S_k(\omega)=\sum_{j=0}^{k-1}P_1(T^j\omega).
 \]
 
-The sum follows the same forward base orbit used to generate the cocycle.
-Each summand is the one-step expanding envelope seen at the correct shifted
-environment.
-
-### Declaration 9: <code>orbitLogPlusSum_zero</code>
-
-The range of zero is empty, so
-
-\[
-S_0=\bigl(\omega\mapsto0\bigr).
-\]
-
-This is an equality of functions, not merely a pointwise simplification.
-
-### Declaration 10: <code>orbitLogPlusSum_succ</code>
-
-Extending the horizon appends the newest one-step term:
+The empty sum is zero and
 
 \[
 S_{k+1}(\omega)
@@ -344,32 +869,8 @@ S_{k+1}(\omega)
 S_k(\omega)+P_1(T^k\omega).
 \]
 
-Lean obtains this from <code>Finset.sum_range_succ</code>. The index \(k\) is
-the first base state not already included in the range of \(k\).
-
-### Declaration 11: <code>measurable_orbitLogPlusSum</code>
-
-Every base iterate \(T^j\) is measurable because the stored
-measure-preserving map is measurable. Declaration 5 gives measurability of
-\(P_1\). Composing them makes every summand measurable, and
-<code>Finset.measurable_sum</code> closes the finite sum.
-
-The proof does not use integrability. Measurability of \(S_k\) is unconditional
-within the cocycle interface.
-
-### Declaration 12: <code>logPlusNormObservable_le_orbitLogPlusSum</code>
-
-The main pointwise majorization is
-
-\[
-P_k(\omega)\le S_k(\omega).
-\]
-
-The proof is induction on \(k\).
-
-At zero, declarations 3 and 9 make both sides zero. For the successor step,
-declaration 6 is applied with an early prefix of length \(k\) and a later block
-of length one:
+Now induct on \(k\). The base case is \(P_0=0=S_0\). For the successor,
+finite-time subadditivity at the split \(k+1\) gives
 
 \[
 P_{k+1}(\omega)
@@ -377,440 +878,184 @@ P_{k+1}(\omega)
 P_1(T^k\omega)+P_k(\omega).
 \]
 
-The induction hypothesis replaces \(P_k\) by \(S_k\). Declaration 10 then
-identifies the result with \(S_{k+1}\), after a final commutation of real
-addition. The matrix product itself is never commuted.
-
-## Camp five: state the missing assumption
-
-### Declaration 13: <code>HasIntegrableGeneratorLogPlus</code>
-
-The module names exactly one new hypothesis:
-
-~~~lean
-def HasIntegrableGeneratorLogPlus
-    (C : DiscreteMatrixCocycle (ι := ι) μ) : Prop :=
-  Integrable (C.logPlusNormObservable 1) μ
-~~~
-
-In mathematical notation,
+Apply the induction hypothesis \(P_k\le S_k\), commute the two real summands,
+and recognize \(S_{k+1}\). Therefore
 
 \[
-P_1\in L^1(\mu).
+0\le P_k(\omega)\le S_k(\omega)
 \]
 
-Mathlib's <code>Integrable</code> combines almost-everywhere strong
-measurability with finiteness of the integral of the norm. Declaration 5 has
-already proved the stronger ordinary measurability of this particular
-real-valued function. Because \(P_1\) is nonnegative, the remaining size
-condition controls only the positive logarithmic tail of the generator norm.
+for every state, not merely almost everywhere.
 
-This assumption is not derived from <code>C.base_preserving</code>. Measure
-preservation says how integrals behave after composing with the base map. It
-does not say the original integrand has a finite integral.
+### Transport, add, dominate
 
-The measure remains a raw <code>Measure Ω</code>. There is no
-<code>IsProbabilityMeasure μ</code> instance, no assertion
-\(\mu(\Omega)=1\), and no expectation notation.
-
-## Camp six: pull integrability along the base orbit
-
-### Declaration 14: <code>HasIntegrableGeneratorLogPlus.integrable_at_base_iterate</code>
-
-For every natural \(j\), the cocycle already proves
+Assume
 
 \[
-T^j\text{ preserves }\mu.
+\operatorname{Integrable}(P_1,\mu).
 \]
 
-Mathlib's
-<code>MeasurePreserving.integrable_comp_of_integrable</code> then transports
-the one-step assumption:
+The bundled cocycle proves that every natural iterate \(T^j\) is
+measure-preserving. Mathlib's pullback theorem transports the assumption to
 
 \[
-\omega\longmapsto P_1(T^j\omega)
-\quad\text{is integrable with respect to }\mu.
+P_1\circ T^j.
 \]
 
-The theorem uses composition explicitly. It neither asserts independence of
-the shifted terms nor gives them a joint law. Their integrals are preserved
-because the base iterate preserves the same measure.
+There are only \(k\) such terms in \(S_k\). Finite sums of integrable
+functions are integrable, so \(S_k\) is integrable. No independence,
+identical-distribution assumption, infinite series, or convergence theorem is
+needed.
 
-## Camp seven: add the finite majorant
-
-### Declaration 15: <code>HasIntegrableGeneratorLogPlus.integrable_orbitLogPlusSum</code>
-
-Declaration 14 proves each summand in \(S_k\) integrable. Mathlib's
-<code>integrable_finsetSum</code> then gives
+Finally, \(P_k\) is measurable, \(P_k\ge0\), and \(P_k\le S_k\). Hence
 
 \[
-S_k\in L^1(\mu)
+|P_k|=P_k\le S_k.
 \]
 
-for every finite \(k\). There is no infinite series, monotone-convergence
-argument, or uniform-in-\(k\) bound. The theorem closes because
-<code>Finset.range k</code> is finite.
+Mathlib's dominated-integrability method <code>Integrable.mono'</code>
+therefore proves \(P_k\) integrable.
 
-## Camp eight: domination closes the finite-horizon theorem
-
-### Declaration 16: <code>HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable</code>
-
-The final theorem states
-
-\[
-P_k\in L^1(\mu)
-\]
-
-for every natural \(k\), under declaration 13.
-
-Mathlib's <code>Integrable.mono'</code> needs three ingredients:
-
-1. an integrable real majorant, supplied by declaration 15;
-2. almost-everywhere strong measurability of \(P_k\), supplied by declaration
-   5; and
-3. an almost-everywhere norm bound.
-
-The third goal initially has the Banach-space form
-
-\[
-\lvert P_k(\omega)\rvert\le S_k(\omega).
-\]
-
-Declaration 2 rewrites the absolute value of the nonnegative left side to
-\(P_k(\omega)\). Declaration 12 then supplies the desired pointwise inequality,
-which is stronger than the almost-everywhere requirement.
-
-This proof concludes only finite-horizon integrability. It gives no single
-integrable function dominating all horizons and no statement about the
-sequence after division by \(k\).
+{{< reference-figure
+  src="finite-horizon-log-positive-integrability.svg"
+  alt="An explicit one-step positive-log integrability hypothesis is transported along every iterate of a measure-preserving base, producing integrable pulled-back terms whose finite orbit sum dominates the finite-horizon positive-log norm. A warning branch states that contraction and exact collapse were clipped away."
+  caption="**The general proof pipeline:** an explicit one-step \(L^1\) fact is pulled back by preserved base iterates, finite addition builds an integrable \(S_k\), and \(0\le P_k\le S_k\) transfers integrability. The warning branch is essential: positive log discarded contraction and collapse before the argument began."
+>}}
 
 ## The complete sixteen-declaration map
 
-All declarations share a measurable base space \(\Omega\), a finite matrix
-index type \(\iota\) with decidable equality, an arbitrary measure \(\mu\), and
-a bundled complex <code>DiscreteMatrixCocycle</code>. The final three theorems
-add only the named one-step integrability hypothesis.
-
-| # | Declaration | Additional assumption | Checked content |
-|---:|---|---|---|
-| 1 | <code>logPlusNormObservable</code> | None | Defines the real positive logarithm of the finite-time cocycle norm |
-| 2 | <code>logPlusNormObservable_nonneg</code> | None | Proves pointwise nonnegativity |
-| 3 | <code>logPlusNormObservable_zero</code> | None | Time-zero envelope is identically zero in every finite dimension |
-| 4 | <code>logPlusNormObservable_one</code> | None | One-step envelope is positive log of the generator norm |
-| 5 | <code>measurable_logPlusNormObservable</code> | None | Every fixed-horizon envelope is ordinarily measurable |
-| 6 | <code>logPlusNormObservable_add_le</code> | None | Positive-log growth is subadditive across the shifted cocycle split |
-| 7 | <code>logPlusNormObservable_eq_zero_of_isEmpty</code> | <code>IsEmpty ι</code> | Every envelope is zero in empty matrix dimension |
-| 8 | <code>orbitLogPlusSum</code> | None | Defines the finite sum of shifted one-step envelopes |
-| 9 | <code>orbitLogPlusSum_zero</code> | None | Empty orbit sum is the constant zero function |
-| 10 | <code>orbitLogPlusSum_succ</code> | None | A successor horizon appends the newest shifted term |
-| 11 | <code>measurable_orbitLogPlusSum</code> | None | Every finite orbit sum is ordinarily measurable |
-| 12 | <code>logPlusNormObservable_le_orbitLogPlusSum</code> | None | Finite-horizon envelope is pointwise bounded by the orbit sum |
-| 13 | <code>HasIntegrableGeneratorLogPlus</code> | None | Names integrability of the one-step envelope as a proposition |
-| 14 | <code>HasIntegrableGeneratorLogPlus.integrable_at_base_iterate</code> | Declaration 13 | Every shifted one-step pullback is integrable |
-| 15 | <code>HasIntegrableGeneratorLogPlus.integrable_orbitLogPlusSum</code> | Declaration 13 | Every finite orbit sum is integrable |
-| 16 | <code>HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable</code> | Declaration 13 | Every finite-horizon positive-log norm is integrable |
-
-No declaration adds positive matrix dimension, probability normalization,
-ergodicity, invertibility, nonvanishing, or a moment condition beyond the
-explicit one-step positive-log integrability proposition.
-
-## Assumption and type ledger
-
-| Object or assumption | Type or role | What it supplies | What it does not supply |
-|---|---|---|---|
-| Base measure | <code>Measure Ω</code> | The measure used by preservation and integrability | Probability mass, finiteness, sigma-finiteness, or expectation |
-| Base map | <code>Ω → Ω</code> with measure preservation | Measurable natural iterates and integrability-preserving pullbacks | Ergodicity, mixing, independence, or invertibility |
-| Finite cocycle norm | <code>Ω → ℝ</code> | Measurable nonnegative maximum-row-sum size | A law, expectation, or limit |
-| Extended log norm \(L_k\) | <code>Ω → EReal</code> | Bottom-at-zero, negative contraction, finite-time subadditivity | Integrability in RMT-15 |
-| Positive-log envelope \(P_k\) | <code>Ω → ℝ</code> | Measurability, nonnegativity, finite-time subadditivity | Collapse or contraction information |
-| Orbit sum \(S_k\) | <code>Ω → ℝ</code> | A finite nonnegative majorant assembled from one-step terms | Uniform-in-time or asymptotic domination |
-| Generator assumption | <code>Integrable P₁ μ</code> | Integrability of every shifted term and finite horizon | Negative-log control, probability, ergodicity, or a limit theorem |
-
-The word “integrable” here always refers to the displayed raw measure. It is
-not silently upgraded to “finite expected value.”
-
-## Why the positive tail is useful and insufficient
-
-Long products can become large because one or more finite factors have large
-operator norm. The inequality
-
-\[
-P_k(\omega)\le\sum_{j=0}^{k-1}P_1(T^j\omega)
-\]
-
-reduces control of that expanding part to repeated copies of one generator
-observable. This is exactly the sort of reduction a later limit theorem may
-need: it replaces a complicated \(k\)-step matrix product by a finite sum of
-one-step scalar upper bounds.
-
-The reduction is one-sided in two different senses.
-
-First, it is an **upper-growth** estimate. Norm submultiplicativity and
-positive-log clipping can only enlarge the scalar budget. Cancellation between
-matrix factors, changes in maximizing directions, and contraction after
-expansion all create slack.
-
-Second, it controls only the **positive logarithmic part**. A full logarithm
-can have a large negative part even when its positive part vanishes. If a
-cocycle value is exactly zero, the extended logarithm is bottom while the
-positive-log envelope is zero. If a nonzero value has norm very close to zero,
-its extended log is a large negative real while its envelope is again zero.
-
-These two facts explain the next dependency barrier. A theorem about a top
-Lyapunov growth rate may use an integrable positive generator log as one
-hypothesis, but a theorem about invertible splittings, negative exponents, or
-inverse dynamics generally needs additional control. RMT-15 does not guess
-that control. It exposes the positive envelope as one reusable component and
-leaves every negative or inverse convention to a later module.
-
-### Integrability without probability
-
-The propagation proof works for an arbitrary measure because each step is a
-general measure-theoretic closure law:
-
-1. a measure-preserving pullback keeps an already integrable function
-   integrable;
-2. a finite sum of integrable real functions is integrable; and
-3. a measurable real function dominated in norm by an integrable real
-   function is integrable.
-
-None of these principles needs total mass one. This generality is useful, but
-it also limits the vocabulary. The theorem proves an integral is finite. It
-does not define a mean growth rate, an expectation, or a typical random
-outcome. Those notions require probability structure to be added explicitly.
-
-## A complete one-dimensional calculation
-
-Consider four one-dimensional generator matrices whose chronological absolute
-values are
-
-\[
-\frac12,\qquad 3,\qquad \frac14,\qquad 4.
-\]
-
-Because one-dimensional matrix multiplication is scalar multiplication, the
-four-step norm is
-
-\[
-N_4
-{} =
-\frac12\cdot3\cdot\frac14\cdot4
-{} =
-\frac32.
-\]
-
-The finite-horizon envelope is therefore
-
-\[
-P_4=\log\!\left(\frac32\right).
-\]
-
-The one-step positive logs are
-
-\[
-0,\qquad\log3,\qquad0,\qquad\log4,
-\]
-
-so the orbit sum is
-
-\[
-S_4=\log3+\log4=\log12.
-\]
-
-The checked style of bound gives \(P_4\le S_4\). The gap is intentional: the
-envelope threw away the two negative logarithms that would have reduced the
-sum. If the first factor were zero instead, then the full extended log norm
-would be bottom, while both the finite-horizon positive log and the zero
-factor's one-step positive log would be zero. Integrability of the envelope
-would remain silent about collapse.
-
-These values are a teaching example, not measured random-matrix data.
-
-## Empty dimension is easier only because information was clipped
-
-In empty matrix dimension, every finite matrix is the unique empty matrix and
-its selected norm is zero. RMT-14 therefore gives \(L_k=\bot\), faithfully
-recording exact collapse. RMT-15 instead gives \(P_k=0\) for all \(k\).
-
-The orbit sum is then mathematically a finite sum of zeros. The checked module
-exports the zero theorem for \(P_k\), but it does not add separate named
-empty-dimension declarations for \(S_k\) or
-<code>HasIntegrableGeneratorLogPlus</code>. Downstream code can derive those
-specializations from the general definitions when useful.
-
-This comparison is the cleanest warning against calling \(P_k\) a Lyapunov
-observable. The envelope behaves especially well at zero precisely because it
-forgets the most contracting endpoint.
-
-## Proof architecture
-
-The sixteen declarations form four layers.
-
-### Positive-log observable layer
-
-- RMT-14 supplies <code>normObservable</code> and its measurability.
-- <code>Real.posLog_nonneg</code>, <code>Real.posLog_zero</code>, and
-  <code>Real.posLog_one</code> settle the sign and time-zero branches.
-- <code>Real.continuous_posLog.measurable</code> supplies the scalar
-  measurable map.
-- <code>Real.posLog_le_posLog</code> and <code>Real.posLog_mul</code> turn norm
-  submultiplicativity into positive-log subadditivity.
-
-### Orbit-sum layer
-
-- <code>Finset.range</code> fixes the finite chronology.
-- <code>Finset.sum_range_succ</code> exposes the newest term.
-- finite-sum measurability builds \(S_k\).
-- induction combines the successor cocycle split with the orbit-sum recurrence.
-
-### Pullback-integrability layer
-
-- RMT-13 supplies measure preservation for every natural base iterate.
-- <code>MeasurePreserving.integrable_comp_of_integrable</code> transports the
-  generator hypothesis to each shifted term.
-- <code>integrable_finsetSum</code> integrates the finite orbit sum.
-
-### Domination layer
-
-- declaration 5 supplies almost-everywhere strong measurability;
-- declaration 2 converts the real norm of \(P_k\) to \(P_k\); and
-- declaration 12 supplies the bound consumed by <code>Integrable.mono'</code>.
-
-No proof uses an infinite sum, expectation, conditional expectation,
-subadditive ergodic theorem, singular value, determinant, inverse, or matrix
-derivative.
-
-## Common wrong turns
-
-### Calling positive log the logarithm of the norm
-
-It agrees with the ordinary log only above unit norm. At zero and below one it
-is clipped to zero. Use “positive-log envelope” or “log-positive norm,” not an
-unqualified “log norm,” when the distinction matters.
-
-### Inferring extended-log integrability
-
-The theorem concerns \(P_k:\Omega\to\mathbb R\). The predecessor
-\(L_k:\Omega\to\mathrm{EReal}\) may be bottom wherever the matrix vanishes and
-may have an uncontrolled negative tail. No theorem in RMT-15 transfers
-integrability from \(P_k\) to \(L_k\).
-
-### Treating measure preservation as an integrability bound
-
-Preservation transports an integrability fact after it is supplied. It does
-not make an arbitrary measurable function integrable. Declaration 13 is an
-assumption for exactly this reason.
-
-### Calling the integral an expectation
-
-The measure is not assumed to have total mass one. An integral against a raw
-measure becomes an expectation only after a probability structure or explicit
-normalization is proved.
-
-### Reading the orbit sum as an independent sum
-
-All terms come from one base orbit. No independence or identical-distribution
-hypothesis appears. Finite-sum integrability needs neither.
-
-### Forgetting the base shift
-
-The newest one-step term at a successor horizon is evaluated at
-\(T^k\omega\). Replacing it by \(P_1(\omega)\) would describe repeated use of
-one environment, not the generator sampled along the orbit.
-
-### Claiming uniform control in time
-
-For every fixed \(k\), a finite sum is integrable. The module gives no bound on
-the integral that is uniform in \(k\) and no integrable random variable
-dominating the whole sequence.
-
-### Invoking Kingman immediately
-
-RMT-15 supplies a finite subadditive family and a positive-tail integrability
-envelope. A checked theorem application must still match the theorem's exact
-codomain, stationarity convention, probability hypotheses, lower-tail policy,
-and limit statement. None is invoked here.
-
-### Calling the conclusion a Lyapunov exponent
-
-A Lyapunov exponent is a normalized asymptotic growth quantity. RMT-15 defines
-neither division by time nor a limit and proves no invariant splitting.
-
-### Assuming a Jacobian origin
-
-The generator remains an arbitrary measurable complex matrix map. A nonlinear
-derivative interpretation needs a separately formalized state space,
-differentiability, coordinate representation, and chain rule.
-
-## Exercises from trailhead to summit
-
-### Trailhead
-
-1. Evaluate \(\log^+r\) at \(r=0\), \(r=1/2\), \(r=1\), and \(r=3\).
-2. State which of those four values can be distinguished by the extended log
-   norm but not by positive log.
-3. Explain why \(P_0=0\) in both positive and empty matrix dimension.
-4. Verify the four-factor scalar example and its orbit-sum upper bound.
-5. Give two nonzero matrices whose product is zero, then compare the extended
-   and positive log norms of the product.
-
-### Mid-mountain
-
-6. Derive positive-log subadditivity from norm submultiplicativity and the two
-   Mathlib positive-log inequalities.
-7. Expand \(S_3(\omega)\) with every shifted base point written explicitly.
-8. Prove the successor identity for \(S_k\) from the finite range.
-9. Reconstruct the induction proving \(P_k\le S_k\).
-10. Explain which steps use ordinary measurability and which use measure
-    preservation.
-11. Show why integrability of \(P_1\) transports to \(P_1\circ T^j\).
-12. Explain why a finite sum needs no independence assumption.
+The file exposes exactly sixteen public declarations in source order.
+
+| # | Declaration | Exact role |
+|---:|---|---|
+| 1 | <code>logPlusNormObservable</code> | Defines \(P_k:\Omega\to\mathbb R\) |
+| 2 | <code>logPlusNormObservable_nonneg</code> | Proves \(0\le P_k(\omega)\) pointwise |
+| 3 | <code>logPlusNormObservable_zero</code> | Proves \(P_0=0\) in every finite dimension |
+| 4 | <code>logPlusNormObservable_one</code> | Identifies \(P_1(\omega)=\log^+\lVert A(\omega)\rVert\) |
+| 5 | <code>measurable_logPlusNormObservable</code> | Proves ordinary measurability of every fixed \(P_k\) |
+| 6 | <code>logPlusNormObservable_add_le</code> | Proves the shifted finite-time subadditivity inequality |
+| 7 | <code>logPlusNormObservable_eq_zero_of_isEmpty</code> | Makes every \(P_k\) zero in empty matrix dimension |
+| 8 | <code>orbitLogPlusSum</code> | Defines \(S_k=\sum_{j\lt k}P_1\circ T^j\) |
+| 9 | <code>orbitLogPlusSum_zero</code> | Proves the empty orbit sum is zero |
+| 10 | <code>orbitLogPlusSum_succ</code> | Appends the term at base iterate \(k\) |
+| 11 | <code>measurable_orbitLogPlusSum</code> | Proves the finite orbit sum measurable |
+| 12 | <code>logPlusNormObservable_le_orbitLogPlusSum</code> | Proves \(P_k\le S_k\) pointwise |
+| 13 | <code>HasIntegrableGeneratorLogPlus</code> | Names the explicit assumption \(\operatorname{Integrable}(P_1,\mu)\) |
+| 14 | <code>HasIntegrableGeneratorLogPlus.integrable_at_base_iterate</code> | Transports integrability through \(T^j\) |
+| 15 | <code>HasIntegrableGeneratorLogPlus.integrable_orbitLogPlusSum</code> | Adds the finite integrable family |
+| 16 | <code>HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable</code> | Dominates \(P_k\) by \(S_k\) and concludes integrability |
+
+The ambient assumptions are a measurable base type, a finite matrix index type
+with decidable equality, and an arbitrary measure. There is no global
+<code>Nonempty ι</code>, probability, finite-measure, sigma-finite, ergodic,
+invertible-base, or independence assumption.
+
+The bundled cocycle receiver still carries its base-preservation and
+measurability fields even when an early pointwise theorem does not consume
+them. That packaging should not be mistaken for additional theorem-specific
+hypotheses.
+
+## Edge cases worth keeping visible
+
+### Horizon zero
+
+The conclusion theorem retains the one-step hypothesis even at \(k=0\),
+because it is stated uniformly for every natural \(k\). But \(P_0=0\) is
+integrable without that hypothesis. A sharper zero-only theorem would be easy;
+the uniform interface is more convenient.
+
+### Empty matrix dimension
+
+When \(\iota\) is empty, every square matrix is the unique empty matrix and its
+selected norm is zero. The positive-log observable is identically zero at
+every horizon. This is why the target's time-zero theorem needs no inhabited
+coordinate type even though the predecessor's norm-one theorem does.
+
+### Zero measure
+
+Under the zero measure, every suitably measurable finite real function is
+integrable because all integrals vanish. The theorem allows this degenerate
+case. It does not silently normalize the measure.
+
+### Pointwise versus almost everywhere
+
+The cocycle inequality \(P_k\le S_k\) is pointwise. The final Mathlib
+integrability interface asks only for an almost-everywhere norm bound, so the
+proof converts the stronger statement into the weaker form automatically.
+
+### Finite horizons versus one uniform bound
+
+For each fixed \(k\), the sum \(S_k\) has finitely many integrable terms. This
+does not exhibit one integrable random variable dominating \(P_k\) for all
+\(k\), and it does not justify exchanging a limit with an integral.
+
+## Exercises from foothill to summit
+
+### Foothill
+
+1. Recompute the four one-step positive-log coefficients.
+2. Multiply the four horizon-two scalar pairs and recover
+   \(P_2/\log2=(0,0,0,1)\).
+3. Compute \(S_2/\log2=(1,1,2,2)\).
+4. Verify all four pointwise inequalities \(P_2\le S_2\).
+5. Replace uniform masses by \(1/10,2/10,3/10,4/10\). Decide whether the same
+   clockwise cycle preserves the new probability measure.
+6. Give each state raw mass two and explain why the word “expectation” is no
+   longer appropriate.
+
+### Ridge
+
+7. Expand \(S_3(\omega)\) with all three base iterates visible.
+8. Derive \(S_{k+1}=S_k+P_1\circ T^k\) from a finite range.
+9. Prove \(P_k\le S_k\) by induction on paper.
+10. In the expanding geometric model, prove the masses sum to one.
+11. Prove every weighted positive-log contribution is \(1/2\).
+12. Explain why an identity base is measure preserving but does not create
+    integrability.
+13. Change the sign of the geometric exponent and distinguish the forward
+    positive tail from the missing signed tail.
 
 ### Summit
 
-13. Translate <code>Integrable.mono'</code> into the three obligations used by
-    declaration 16.
-14. Construct a cocycle with \(P_1=0\) everywhere but an extended log norm
-    equal to bottom somewhere.
-15. Explain why positive-tail integrability does not control inverse norms.
-16. List the additional choices required before a precise Kingman theorem can
-    be stated in this project.
-17. List the stronger hypotheses usually associated with an Oseledets
-    splitting and identify which are absent here.
-18. Design a separate derivative-cocycle theorem and name the chain-rule facts
-    it would need.
+14. Translate <code>Integrable.mono'</code> into measurability, an integrable
+    majorant, and an almost-everywhere norm bound.
+15. Audit all sixteen declarations against their exact assumptions.
+16. Explain why no independence hypothesis appears in the finite-sum proof.
+17. State an additional hypothesis that would control the inverse-generator
+    positive log.
+18. State what probability and asymptotic assumptions would be needed before
+    invoking a precise subadditive ergodic theorem.
+19. Explain why an integrable \(P_k\) does not make the predecessor's
+    extended-real log norm integrable.
+20. Design a derivative-cocycle interface for a nonlinear random dynamical
+    system and list the chain-rule and measurability facts it would require.
 
-## Reproduce the checked slice
+## Reproduce the chapter without crossing the host boundary
 
-From the repository root, load the pinned Lean toolchain and compile the
-module with warnings treated as errors:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
-~~~
-
-Build the named module and its dependencies:
+The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
+Linux host. From the repository root, the page-owned and workstation-safe
+checks are:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
-~~~
-
-Return to the repository root and check the complete teaching surface:
-
-~~~sh
-cd ..
+site/content/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability/generate-card.sh --verify
 make site-check
+git diff --check
 ~~~
 
-The repository-wide gate is <code>make check</code>. Passing automated checks
-does not complete human review. This page is published as an open working note
-while mathematical, source, accessibility, and editorial reviews remain
-pending.
+These commands do not compile the project. The exact target imports Mathlib,
+so its warning-fatal check belongs on approved Linux compute:
 
-## Summit: the boundary of the result
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
+~~~
+
+The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
+This teaching rebuild does not claim that the project module was recompiled on
+the Mac. Passing technical checks would still leave human mathematical,
+source, accessibility, scientific-integrity, and editorial review pending.
+
+## Summit: what has and has not been proved
 
 | Topic | Status in RMT-15 |
 |---|---|
@@ -819,100 +1064,90 @@ pending.
 | Time-zero value zero in every finite dimension | Checked |
 | One-step generator identity | Checked |
 | Ordinary measurability at each fixed horizon | Checked |
-| Positive-log subadditivity across the shifted split | Checked |
-| Empty-dimensional envelope identically zero | Checked |
+| Shifted positive-log subadditivity | Checked pointwise |
+| Empty-dimensional observable identically zero | Checked |
 | Finite shifted one-step orbit sum | Defined |
 | Empty-sum and successor identities | Checked |
 | Orbit-sum measurability | Checked |
-| Pointwise finite-horizon domination by the orbit sum | Checked |
+| Pointwise domination \(P_k\le S_k\) | Checked |
 | One-step positive-log integrability | Explicit hypothesis |
 | Integrability after every natural base iterate | Checked under the hypothesis |
 | Integrability of every finite orbit sum | Checked under the hypothesis |
-| Integrability of every finite-horizon positive-log norm | Checked under the hypothesis |
-| Integrability of the extended-real log norm | Not proved |
-| Control of contraction, bottom values, or a negative logarithmic tail | Not proved and deliberately erased by positive log |
-| Inverse-norm or smallest-singular-value integrability | Not stated |
+| Integrability of every fixed finite-horizon \(P_k\) | Checked under the hypothesis |
 | Probability normalization or expectation | Not assumed or defined |
-| Ergodicity, mixing, independence, or identical distribution | Not assumed or proved |
+| Automatic integrability from measurability or preservation | False; the geometric example shows failure |
+| Signed or extended-log integrability | Not proved |
+| Negative tail, inverse norm, or smallest singular value control | Not proved |
 | Uniform-in-time integrable domination | Not proved |
-| Normalized finite-time growth | Not defined |
-| Almost-sure or integral convergence | Not proved |
-| Kingman or Furstenberg-Kesten theorem | Not invoked |
-| Lyapunov exponent or spectrum | Not defined or proved |
-| Oseledets filtration or invariant splitting | Not invoked or proved |
+| Independence, identical distribution, mixing, or ergodicity | Not assumed |
+| Normalized samplewise or integrated limit | Not defined or proved |
+| Kingman or Furstenberg–Kesten conclusion | Not invoked |
+| Lyapunov exponent, spectrum, filtration, or splitting | Not defined or proved |
 | Two-sided time or invertible cocycle | Not assumed |
 | Nonlinear derivative or random-Jacobian representation | Not connected |
 
-The checked summit is modest but useful: one integrable generator envelope
-controls the positive part of every finite-horizon norm through a completely
-explicit orbit-sum proof.
+The checked result is finite and exact: one existing integrability fact for
+the expanding one-step envelope propagates through preserved pullbacks, finite
+addition, and pointwise domination to every fixed horizon.
 
 ## Where to continue
 
 [Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
-is the immediate RMT-16 successor. It integrates the finite-horizon envelopes,
-uses preservation under the same explicit one-step integrability hypothesis to
-obtain a subadditive real sequence, and proves convergence of its positive-time
-normalized values by Mathlib's deterministic Fekete theorem. It still makes no
-probability, ergodic, samplewise, or Lyapunov claim.
+is the immediate successor. It integrates these finite-horizon envelopes and
+uses a deterministic Fekete argument. It still does not turn RMT-15 into a
+samplewise ergodic or Lyapunov theorem.
+
+[Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables" >}})
+is the immediate predecessor. It develops the maximum absolute row-sum norm
+and the zero-faithful extended log norm whose contraction and collapse data
+the present positive envelope discards.
+
+[Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}})
+supplies the base orbit, measure-preserving natural iterates, and exact
+later-block-left product law.
 
 The
 {{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}}
-glossary entry is the compact guide to clipping, the orbit majorant, and the
-measure-theoretic assumption.
-
-[Finite-Time Norm and Extended-Log-Norm Observables for Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables" >}})
-is the immediate predecessor. It develops the exact row-sum norm, the
-zero-faithful extended logarithm, and finite-time subadditivity before any
-integrability choice.
-
-[Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}})
-supplies the base orbit, measure-preserving natural iterates, and the exact
-later-block-left product law.
-
-The next asymptotic layer must choose a precise theorem and encode every one of
-its hypotheses. In particular, it must decide how to handle the negative or
-bottom part of \(L_k\), whether \(\mu\) becomes a probability measure, whether
-ergodicity is assumed, and what kind of limit is sought. Those decisions are
-not retroactively included in RMT-15.
+glossary entry is the compact companion for the clipping and majorization
+strategy.
 
 ## References
 
 <a id="ref-log-plus-deep-poslog"></a>**Mathlib contributors.**
 [The positive part of the logarithm](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/SpecialFunctions/Log/PosLog.html),
 Mathlib 4 documentation. This official source defines
-<code>Real.posLog</code> and proves its nonnegativity, zero and one values,
-continuity, monotonicity on nonnegative inputs, and product upper bound.
+<code>Real.posLog</code> and records its nonnegativity, endpoint values,
+continuity, monotonicity on nonnegative inputs, and product inequality.
 
 <a id="ref-log-plus-deep-integrable"></a>**Mathlib contributors.**
 [Bochner integrability](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Function/L1Space/Integrable.html),
-Mathlib 4 documentation. This official source supplies
+Mathlib 4 documentation. The pinned local source supplies the exact
 <code>MeasurePreserving.integrable_comp_of_integrable</code>,
-<code>integrable_finsetSum</code>, and <code>Integrable.mono'</code>.
+<code>integrable_finsetSum</code>, and <code>Integrable.mono'</code>
+interfaces used by the target.
 
 <a id="ref-log-plus-deep-measure-preserving"></a>**Mathlib contributors.**
 [Measure-preserving maps](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/MeasurePreserving.html),
-Mathlib 4 documentation. The exact local API authority is the pinned checkout;
-RMT-13 packages natural-iterate preservation for the cocycle base.
+Mathlib 4 documentation. RMT-13 packages natural-iterate preservation for the
+cocycle base.
 
 <a id="ref-log-plus-deep-furstenberg-kesten"></a>**Harry Furstenberg and Harry Kesten.**
 [Products of Random Matrices](https://doi.org/10.1214/aoms/1177705909),
-*The Annals of Mathematical Statistics* 31(2), 457-469, 1960. This primary
+*The Annals of Mathematical Statistics* 31(2), 457–469, 1960. This primary
 source motivates logarithmic growth of random matrix products. RMT-15 proves
 none of its asymptotic conclusions.
 
 <a id="ref-log-plus-deep-kingman"></a>**J. F. C. Kingman.**
 [The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
-This primary source establishes a subadditive ergodic theorem under additional
-measure-theoretic hypotheses. RMT-15 supplies only a finite-time positive-tail
-integrability layer.
+*Journal of the Royal Statistical Society: Series B* 30(3), 499–510, 1968.
+The target supplies only a finite-time integrability layer, not the hypotheses
+or conclusion of the subadditive ergodic theorem.
 
 <a id="ref-log-plus-deep-oseledets"></a>**V. I. Oseledets.**
 [A multiplicative ergodic theorem. Characteristic Ljapunov exponents of dynamical systems](https://www.mathnet.ru/eng/mmo214),
-*Transactions of the Moscow Mathematical Society* 19 (1968), 197-231. This
-primary source is an asymptotic destination. The present module proves no
-exponent, spectrum, filtration, or splitting.
+*Transactions of the Moscow Mathematical Society* 19 (1968), 197–231. This
+is an asymptotic destination; the present module proves no exponent, spectrum,
+filtration, or splitting.
 
 The exact upstream Lean source audited for this chapter is Mathlib commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
