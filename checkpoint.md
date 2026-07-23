@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:10 PDT
+Last updated: 2026-07-22 21:13 PDT
 
-Audited baseline: `main` at `078b3ab`
+Audited baseline: `main` at `9836deb`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **20 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **21 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -427,6 +427,19 @@ finite algebra from the additional preservation needed for finite-sum
 integrability. Probability, ergodicity, independence, uniform-time control,
 and convergence remain explicit nonclaims; all Mathlib/project checks remain
 guarded Linux-cloud work.
+*Orbit-Majorant Centering for Subadditive Processes* now follows a uniform
+three-state cycle with one-step values `(9,1,2)`. The process
+`Xₙ=Sₙ-n(n-1)` has horizon-three majorant `S₃=12`, process value `X₃=6`, and
+centered residual `Y₃=-6` at every state. Splitting `3=1+2` at state two makes
+the correct later start and bound `6≤8+2`; shifting by the later length instead
+produces the explicit false inequality `6≤1+2`. Expectation centering,
+reversed subtraction, unshifted repeated subtraction, and a nonnormalized
+constant-one time-zero process expose four distinct nearby operations. Two
+accessible numeric figures, seven Lean bridges, all eighteen public
+declarations plus two private helpers, and a byte-identical executed `Std`
+worksheet separate finite nonpositive slack from expectation-zero,
+probability, ergodicity, and convergence claims. Exact Mathlib/project checks
+remain guarded Linux-cloud work.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3314,6 +3327,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `9836deb`: rebuild *Finite Block Decomposition for Subadditive Processes*
+  around one eleven-step ledger, two correct temporal cuts, a false
+  wrong-shift bound, zero-count and zero-block-length boundaries, seven Lean
+  bridges, and an executed local `Std` worksheet.
 - `078b3ab`: rebuild *Finite-Horizon Log-Positive Cocycle Integrability*
   around a four-state positive-log ledger, exact finite domination, raw-measure
   scope, a genuinely nonintegrable expanding probability tail, seven Lean

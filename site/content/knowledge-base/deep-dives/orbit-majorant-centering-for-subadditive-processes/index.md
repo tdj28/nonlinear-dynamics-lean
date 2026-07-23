@@ -2,17 +2,17 @@
 title: "Orbit-Majorant Centering for Subadditive Processes"
 slug: "orbit-majorant-centering-for-subadditive-processes"
 date: 2026-07-21
-summary: "A textbook treatment of subtracting the additive one-step orbit majorant from a subadditive process, preserving subadditivity and, under one-step measure preservation, finite-horizon integrability."
-lead: "At every positive horizon, a subadditive process never exceeds the sum of its one-step costs along the orbit. Subtract that majorant and the residual is nonpositive, uniformly including time zero when the process starts exactly at zero. The split is finite algebra, not expectation centering or a limit theorem."
+summary: "Compute an exact three-state orbit ledger, subtract its additive one-step majorant, catch a wrong shift that makes six less than or equal to three, and then follow the checked Lean interfaces for nonpositivity, subadditivity, integrability, and finite normalization."
+lead: "On a uniform three-state cycle, the one-step values are nine, one, and two. At horizon three the orbit majorant is twelve, the process is six, and the centered residual is minus six at every state: a complete finite model of the theorem before any abstract Birkhoff notation appears."
 draft: false
 pro_reviewed: false
-level: "Finite Birkhoff sums, shifted subadditivity, measure preservation, integrability, normalized finite-time identities, and one-sided discrete matrix cocycles"
-reading_time: "125 to 170 minutes"
-prerequisites: "Natural-number induction, real inequalities, finite sums, function iterates, integrable functions, measure-preserving maps, and the log-positive norm observable; no ergodic theorem is assumed"
+level: "From a finite orbit ledger to shifted subadditivity, Birkhoff sums, measure-preserving pullbacks, integrable centered families, and a finite normalized split"
+reading_time: "110 to 145 minutes"
+prerequisites: "Finite sums, integer inequalities, and weighted averages; measurable functions, integrability, Birkhoff sums, process candidates, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering"
 toc: true
 og_image: "orbit-majorant-centering-for-subadditive-processes-card.png"
-og_image_alt: "A finite process value has its additive one-step orbit sum subtracted, leaving a centered residual labeled nonpositive after time zero. A warning says the exact split does not prove convergence."
+og_image_alt: "A uniform three-state cycle with one-step values nine, one, and two, followed by a horizon ledger. At horizon three the one-step orbit majorant is twelve, the process is six, and the centered residual is minus six at every state."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -23,322 +23,846 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The mathematics,
-Lean declaration map, sources, figures, and accessibility have not yet passed
-the required human and Pro reviews. The page is publicly available as an open
-working note while those reviews remain pending.
+**Editorial status.** This is an AI-assisted working draft. The mathematical
+prose, sources, exact examples, Lean declaration map, worksheet, figures, and
+accessibility have not yet received the required human and Pro reviews. The
+page is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-The word *centering* usually suggests subtracting an expectation. That is not
-the operation in this chapter. No mean is computed, no probability measure is
-required, and the result is not asserted to have mean zero. We instead
-subtract a pointwise additive upper bound built from the one-step observable
-along the orbit. The operation is better read as **orbit-majorant
-compensation**.
+## Begin with a three-state orbit
 
-Fix a space of outcomes \(\Omega\), a self-map \(T:\Omega\to\Omega\), and a
-real-valued process \(X_n(\omega)\), where \(n\in\mathbb N\) is a finite
-horizon and \(\omega\in\Omega\) is the initial outcome. Suppose the process is
-shifted-subadditive:
+Take the finite base space
 
 \[
+\Omega=\{0,1,2\}
+\]
+
+and let \(T\) move clockwise:
+
+\[
+0\longmapsto1\longmapsto2\longmapsto0.
+\]
+
+Give every state probability \(1/3\). The map preserves this measure because
+it permutes equally weighted atoms. Every subset is measurable, and every
+real-valued function on this finite discrete space is measurable.
+
+Define the one-step values
+
+\[
+X_1(0)=9,\qquad X_1(1)=1,\qquad X_1(2)=2.
+\]
+
+Their one-step expectation is
+
+\[
+\frac{9+1+2}{3}=4.
+\]
+
+The finite one-step orbit sum is
+
+\[
+S_n(\omega)
+{} =
+\sum_{j=0}^{n-1}X_1(T^j\omega).
+\]
+
+Now define the complete process by subtracting a deterministic penalty:
+
+\[
+X_n(\omega)=S_n(\omega)-n(n-1).
+\]
+
+This is not circular. The right side uses the already specified one-step
+function \(X_1\); the penalty vanishes at \(n=1\), so the formula reproduces
+the three one-step values exactly.
+
+Finally, subtract the one-step orbit sum:
+
+\[
+Y_n(\omega)=X_n(\omega)-S_n(\omega).
+\]
+
+For this model,
+
+\[
+Y_n(\omega)=-n(n-1)
+\]
+
+at every state. The residual is zero at horizons zero and one, then strictly
+negative.
+
+### Why this process is genuinely subadditive
+
+The orbit sum has the exact shifted addition law
+
+\[
+S_{m+n}(\omega)
+{} =
+S_m(\omega)+S_n(T^m\omega).
+\]
+
+The penalty satisfies
+
+\[
+(m+n)(m+n-1)
+{} =
+m(m-1)+n(n-1)+2mn.
+\]
+
+Subtract the second identity from the first:
+
+\[
+\begin{aligned}
 X_{m+n}(\omega)
-\le
+&=
+X_m(\omega)+X_n(T^m\omega)-2mn\\
+&\le
 X_n(T^m\omega)+X_m(\omega).
+\end{aligned}
 \]
 
-The one-step orbit sum is
+So this is an exact shifted-subadditive process. The gap in the inequality is
+\(2mn\), independent of the state.
+
+### Read the finite horizon ledger
+
+The first five horizons are:
+
+| Horizon \(n\) | \(S_n\) at states \(0,1,2\) | \(X_n\) at states \(0,1,2\) | \(Y_n=X_n-S_n\) |
+|---:|---:|---:|---:|
+| \(0\) | \([0,0,0]\) | \([0,0,0]\) | \([0,0,0]\) |
+| \(1\) | \([9,1,2]\) | \([9,1,2]\) | \([0,0,0]\) |
+| \(2\) | \([10,3,11]\) | \([8,1,9]\) | \([-2,-2,-2]\) |
+| \(3\) | \([12,12,12]\) | \([6,6,6]\) | \([-6,-6,-6]\) |
+| \(4\) | \([21,13,14]\) | \([9,1,2]\) | \([-12,-12,-12]\) |
+
+The target theorem calls \(S_n\) a majorant because
 
 \[
-A_n(\omega)
-{} =
-\sum_{j=0}^{n-1} X_1(T^j\omega).
+X_n(\omega)\le S_n(\omega)
 \]
 
-The centered residual is
+pointwise. In this model the difference is exactly \(n(n-1)\).
+
+At horizon three, the finite normalized split is especially transparent:
 
 \[
-Y_n(\omega)
+\frac{X_3}{3}
 {} =
-X_n(\omega)-A_n(\omega).
+\frac{Y_3}{3}+\frac{S_3}{3},
+\qquad
+2=-2+4.
 \]
 
-Repeated subadditivity gives \(X_n(\omega)\le A_n(\omega)\) for every positive
-horizon. Thus \(Y_n(\omega)\le0\) when \(n\ne0\). If the process also satisfies
-the exact normalization \(X_0=0\), the same statement holds uniformly at time
-zero. More surprisingly, subtracting \(A_n\) preserves shifted
-subadditivity. If the original finite horizons are integrable and \(T\)
-preserves the measure, every \(Y_n\) is integrable too.
+This is an equality of three finite numbers. It does not assert that any
+sequence converges as \(n\) grows.
 
-These are strong finite facts. They still do not imply that \(Y_n/n\),
-\(A_n/n\), or \(X_n/n\) converges. The nineteenth random-matrix-theory
-milestone (RMT-19) builds a reduction that later ergodic arguments may use. It
-does not smuggle an ergodic theorem into the word *average*.
+{{< reference-figure
+  wide="true"
+  src="three-cycle-centered-process-ledger.svg"
+  alt="Three equally likely states form a cycle with one-step values nine, one, and two. A table gives the orbit-majorant, process, and centered residual vectors from horizons zero through four. At horizon three they are twelve, six, and minus six at every state. A normalized badge shows two equals minus two plus four, and an analytic badge shows absolute means six for the process and residual."
+  caption="**Exact finite ledger:** \(S_n\) adds the one-step values along the orbit, \(X_n=S_n-n(n-1)\), and \(Y_n=X_n-S_n=-n(n-1)\). At horizon three, the normalized identity is \(2=-2+4\). Because the base is finite and discrete, every displayed function is measurable; the finite absolute means establish integrability without an asymptotic theorem."
+>}}
+
+## Measurability and integrability are visible here
+
+On this finite probability space, the integral of a function
+\(f:\Omega\to\mathbb R\) is
+
+\[
+\int_\Omega f\,d\mu
+{} =
+\frac{f(0)+f(1)+f(2)}{3}.
+\]
+
+Integrability asks for a finite integral of the absolute value:
+
+\[
+\int_\Omega |f|\,d\mu\lt\infty.
+\]
+
+At horizon three,
+
+\[
+\int_\Omega |X_3|\,d\mu=6,
+\qquad
+\int_\Omega |Y_3|\,d\mu=6,
+\qquad
+\int_\Omega |S_3|\,d\mu=12.
+\]
+
+All are finite. The same reasoning works at every fixed horizon because each
+function is a finite list of finite real numbers.
+
+This small model separates three interfaces:
+
+- {{< refterm "measurable-function" "measurability" >}} says the values can be
+  used in measure-theoretic events and integrals;
+- {{< refterm "integrability" "integrability" >}} says the absolute integral
+  is finite; and
+- {{< refterm "measure-preserving-transformation" "measure preservation" >}}
+  says orbit shifts do not distort the underlying measure.
+
+The general Lean theorem cannot use “finite list” as its proof. Instead, the
+candidate supplies integrability of every \(X_n\), and measure preservation
+transports integrability of \(X_1\) to \(X_1\circ T^j\). Finite-sum closure
+then proves the Birkhoff sum integrable. Subtracting two integrable real
+functions proves the centered horizon integrable.
+
+No probability normalization is required by the module. The uniform
+probability measure only makes this example and its expectations concrete.
+
+## The shift is determined by the early block
+
+Now use the same model to split horizon three as
+
+\[
+3=m+n,\qquad m=1,\quad n=2,
+\]
+
+starting at state \(\omega=2\).
+
+The early block has length one:
+
+\[
+X_1(2)=2.
+\]
+
+After consuming it, the later block begins at
+
+\[
+T^m\omega=T^1(2)=0.
+\]
+
+The correct later value is
+
+\[
+X_2(0)=8.
+\]
+
+The shifted-subadditive theorem therefore reads
+
+\[
+X_3(2)=6\le X_2(T^1(2))+X_1(2)=8+2=10.
+\]
+
+The gap is \(4=2mn\), exactly as the process formula predicted.
+
+The orbit majorant splits with equality:
+
+\[
+S_3(2)
+{} =
+S_1(2)+S_2(T^1(2))
+{} =
+2+10
+{} =
+12.
+\]
+
+The exponent on \(T\) is \(m\), the length of the early block. It is not the
+length \(n\) of the later block.
+
+### A wrong shift that actually breaks the inequality
+
+If one mistakenly starts the later block at \(T^n\omega=T^2(2)=1\), then
+
+\[
+X_2(1)=1.
+\]
+
+The false calculation becomes
+
+\[
+6\le1+2=3,
+\]
+
+which is wrong. This is more than an aesthetic indexing complaint: the
+incorrect shift produces a false theorem on a three-point example.
+
+### Two other seductive meanings of “centered”
+
+The project definition subtracts majorant from process:
+
+\[
+Y_3=X_3-S_3=6-12=-6.
+\]
+
+Reversing the subtraction gives \(S_3-X_3=+6\), destroying the
+nonpositivity conclusion.
+
+Subtracting the expectation of \(X_1\) is a different legitimate operation:
+
+\[
+X_1-\mathbb E[X_1]=(5,-3,-2).
+\]
+
+That vector has mean zero, but it is neither identically zero nor pointwise
+nonpositive. The project theorem is not expectation centering. It is
+pointwise compensation by an additive orbit majorant.
+
+{{< reference-figure
+  wide="true"
+  src="shift-and-centering-near-misses.svg"
+  alt="Starting at state two, a horizon-three process is split into an early block of length one and later block of length two. The correct later start is T to the first power of state two, state zero, and six is at most eight plus two. The wrong T squared start is state one and gives the false inequality six is at most one plus two. Three lower cards compare the correct residual minus six, the wrong-sign residual plus six, and expectation-centered values five, minus three, minus two."
+  caption="**Shift and sign audit:** the later block starts at \(T^m\omega\) because \(m\) early steps have been consumed. Replacing it by \(T^n\omega\) makes \(6\le3\) in this ledger. The lower cards separate orbit-majorant compensation from reversed subtraction and from expectation centering."
+>}}
 
 ## Choose a route up
 
-| Route | Start | Destination |
+| Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [The finite operation in one picture](#the-finite-operation-in-one-picture) | See what is subtracted and what remains |
-| Algebra route | [Why the one-step sum majorizes every positive horizon](#why-the-one-step-sum-majorizes-every-positive-horizon) | Reconstruct the induction and its exact hypotheses |
-| Boundary route | [Positive time and time zero are different theorems](#positive-time-and-time-zero-are-different-theorems) | Understand the constant-one countermodel |
-| Structure route | [The centered residual is still subadditive](#the-centered-residual-is-still-subadditive) | Follow cancellation through the Birkhoff-sum addition law |
-| Analysis route | [Integrability enters at one narrow gate](#integrability-enters-at-one-narrow-gate) | Separate pointwise algebra from measure theory |
-| Example route | [The singleton square-root process](#the-singleton-square-root-process) | Compute a strict residual by hand |
-| Limit route | [An exact normalized split is not a convergence theorem](#an-exact-normalized-split-is-not-a-convergence-theorem) | Locate both unresolved asymptotic branches |
-| Cocycle route | [The thin matrix-cocycle specialization](#the-thin-matrix-cocycle-specialization) | See which statements need the integrability hypothesis |
-| Lean route | [The complete eighteen-declaration map](#the-complete-eighteen-declaration-map) | Audit the public source order and both private helpers |
-| Summit route | [Forty solved exercises](#forty-solved-exercises) | Test definitions, proofs, countermodels, and theorem design |
+| First encounter | [The three-state orbit](#begin-with-a-three-state-orbit) | Compute \(S_n\), \(X_n\), and \(Y_n\) exactly |
+| Analytic route | [Measurability and integrability](#measurability-and-integrability-are-visible-here) | Connect finite absolute means to the general interfaces |
+| Shift route | [The early block decides the shift](#the-shift-is-determined-by-the-early-block) | See \(T^m\omega\) and a numerical failure of \(T^n\omega\) |
+| Lean route | [Seven bridges](#in-lean-seven-bridges-from-orbit-slack-to-the-cocycle) | Translate each human claim into exact syntax |
+| Hands-on route | [Run the worksheet](#type-the-entire-ledger-with-lean-and-std) | Recheck every integer, rational mean, and failed inequality |
+| Proof route | [Why the generic theorem works](#why-the-generic-theorem-works) | Follow majorization, cancellation, and integrability |
+| Interface route | [The complete declaration map](#the-complete-eighteen-declaration-map) | Audit all public declarations and private helpers |
+| Summit route | [What has and has not been proved](#summit-what-has-and-has-not-been-proved) | Keep the finite split separate from limits |
 
 ### Learning objectives
 
-By the end, a careful reader should be able to:
+By the summit, you should be able to reproduce the three-state ledger; prove
+its shifted subadditivity with exact slack \(2mn\); explain why the correct
+later start is \(T^m\omega\); distinguish orbit-majorant and expectation
+centering; read seven Lean bridges token by token; execute the bounded
+<code>Std</code> worksheet; explain how preservation transports
+integrability; reconstruct centered subadditivity by cancellation; audit all
+eighteen public declarations and two private helpers; and state precisely
+which normalized, ergodic, cocycle, and Lyapunov conclusions remain absent.
 
-1. distinguish orbit-majorant compensation from subtracting an expectation;
-2. define the finite one-step Birkhoff sum with the correct orbit samples;
-3. derive the positive-horizon majorant directly from shifted subadditivity;
-4. explain why integrability is absent from that induction;
-5. identify the separate time-zero normalization needed for a uniform bound;
-6. use the constant-one process as a minimal countermodel;
-7. derive positive-horizon and uniform nonpositivity of the residual;
-8. prove that subtracting an additive orbit sum preserves subadditivity;
-9. state the exact Birkhoff-sum addition identity used in that proof;
-10. explain why no probability or ergodicity premise enters the algebra;
-11. locate the one-step measure-preservation premise used for integrability;
-12. package the residual as another integrable subadditive candidate;
-13. explain why candidate packaging does not require \(X_0=0\);
-14. derive the exact normalized decomposition;
-15. check the totalized \(n=0\) branch without informal division by zero;
-16. compute the singleton process \(X_n=\sqrt n\);
-17. explain why its residual is not mean zero under a Dirac measure;
-18. recognize additive processes as the zero-residual boundary;
-19. build an additive example whose orbit averages fail to converge;
-20. distinguish a finite Birkhoff average from a pointwise Birkhoff theorem;
-21. read the cocycle orbit-sum bridge as definitional equality;
-22. identify the cocycle results that use only the cocycle object;
-23. identify the single cocycle result that uses one-step integrability;
-24. explain why the empty matrix index remains valid;
-25. distinguish log-positive expansion control from signed logarithmic growth;
-26. audit all eighteen public declarations and two private helpers in order;
-27. match every theorem to the fields and premises its proof actually uses;
-28. state what Kingman, Lalley, and Karlsson-Margulis contribute only as later
-    context; and
-29. reject every unsupported limit, exponent, or invariant-splitting claim.
+## In Lean: seven bridges from orbit slack to the cocycle
 
-## The common setup and the notation ledger
+### Bridge one: subtract the finite one-step Birkhoff sum
 
-The Lean structure
-<code>IsIntegrableSubadditiveProcessCandidate T μ X</code> comes from RMT-17.
-It stores two fields:
-
-- <code>integrable</code>: every function \(X_n:\Omega\to\mathbb R\) is
-  integrable with respect to a measure \(\mu\); and
-- <code>add_le</code>: the shifted-subadditive inequality holds pointwise.
-
-The structure stores neither measure preservation nor probability nor
-ergodicity. Those concepts remain separate so that each theorem can request
-only what it consumes. This module continues that discipline.
-
-For compact notation, write
-
-\[
-\begin{aligned}
-A_n(\omega)
-&= \operatorname{birkhoffSum}(T,X_1,n,\omega), \\
-Y_n(\omega)
-&= X_n(\omega)-A_n(\omega).
-\end{aligned}
-\]
-
-Mathlib defines the Birkhoff sum as the finite sum of \(X_1\) over the first
-\(n\) orbit points. It provides the zero, one, successor, and addition laws
-used below ([Mathlib Birkhoff sums](#ref-centering-birkhoff-basic)). In
-particular,
-
-\[
-\begin{aligned}
-A_0(\omega) &= 0, \\
-A_1(\omega) &= X_1(\omega), \\
-A_{m+n}(\omega)
-&= A_m(\omega)+A_n(T^m\omega).
-\end{aligned}
-\]
-
-The last equation says that \(A\) is additive with the same shifted time
-orientation used by \(X\). That exact match is why subtraction works.
-
-The term *majorant* means pointwise upper bound. It does not mean expectation,
-essential supremum, deterministic constant, uniform bound over outcomes, or
-asymptotic envelope. The value \(A_n(\omega)\) depends on the entire finite
-orbit segment beginning at \(\omega\).
-
-## The finite operation in one picture
-
-{{< reference-figure
-  src="additive-majorant-and-nonpositive-residual.svg"
-  alt="The finite process value lies below its additive one-step orbit sum. Subtracting that orbit sum leaves a centered residual that is nonpositive at positive horizons, with a separate time-zero normalization condition."
-  caption="**Finding:** shifted subadditivity turns the sum of successive one-step observations into a pointwise upper bound for every positive finite horizon. The centered residual records the slack left after subtracting that bound, so it cannot be positive. At time zero the residual equals the original time-zero value, which is why uniform nonpositivity needs the exact normalization \(X_0=0\). The plate is finite and pointwise. It depicts no expectation, probability law, or limiting behavior."
+{{< lean-bridge
+  human="At horizon n, subtract the sum of the one-step process values along the first n orbit states."
+  math="\(Y_n(\omega)=X_n(\omega)-\sum_{j=0}^{n-1}X_1(T^j\omega).\)"
+  lean="centeredProcess T X n ω"
 >}}
 
-The diagram has three distinct objects. The process value \(X_n(\omega)\) is
-one number attached to the whole horizon. The orbit majorant \(A_n(\omega)\)
-is a sum of \(n\) one-step numbers at successively shifted outcomes. The
-residual \(Y_n(\omega)\) is their difference. Calling all three “growth” would
-hide the proof structure.
+- <code>T</code> is the base self-map.
+- <code>X</code> has type <code>ℕ → Ω → ℝ</code>.
+- <code>n</code> is the finite horizon and <code>ω</code> the starting state.
+- <code>birkhoffSum T (X 1) n ω</code> samples indices
+  \(0,\ldots,n-1\).
+- The subtraction order is process minus orbit majorant.
+- No measure, probability, integrability, or convergence premise appears in
+  the definition.
+{{< /lean-bridge >}}
 
-At one step there is no slack:
+The simplification theorems say
+<code>centeredProcess T X 0 = X 0</code> and
+<code>centeredProcess T X 1 = 0</code>. At time zero the Birkhoff sum is empty;
+at time one it is exactly \(X_1\).
 
-\[
-Y_1(\omega)
-{} =
-X_1(\omega)-X_1(\omega)
-{} = 0.
-\]
+### Bridge two: majorize every positive horizon
 
-At zero steps there is no orbit sum, so
+{{< lean-bridge
+  human="For a positive horizon, shifted subadditivity makes the one-step orbit sum a pointwise upper bound."
+  math="\(n\ne0\Longrightarrow X_n(\omega)\le\sum_{j=0}^{n-1}X_1(T^j\omega).\)"
+  lean="hX.oneStepBirkhoffMajorant_of_ne_zero n hn ω"
+>}}
 
-\[
-Y_0(\omega)=X_0(\omega).
-\]
+- <code>hX</code> is an
+  <code>IsIntegrableSubadditiveProcessCandidate T μ X</code>.
+- <code>hn : n ≠ 0</code> selects the positive-horizon theorem.
+- The proof uses only <code>hX.add_le</code>, not the candidate's
+  integrability field.
+- The induction appends \(X_1(T^n\omega)\) at the correct shifted state.
+- A separate theorem
+  <code>hX.oneStepBirkhoffMajorant hX0 n ω</code> includes \(n=0\) when
+  <code>hX0 : X 0 = 0</code>.
+{{< /lean-bridge >}}
 
-Those two endpoint formulas are public simplification theorems. They are not
-decorative conveniences. Together they show why “centered” cannot mean
-“automatically zero at the origin”: the subtraction has nothing to remove at
-time zero.
+### Bridge three: turn the majorant into a sign theorem
 
-## Why the one-step sum majorizes every positive horizon
+{{< lean-bridge
+  human="Subtracting the pointwise upper bound leaves a nonpositive residual."
+  math="\(Y_n(\omega)\le0.\)"
+  lean="hX.centeredProcess_nonpos hX0 n ω"
+>}}
 
-The majorant proof is induction on a positive horizon. Write a positive
-natural number as \(n+1\). The base case is one step, where both sides are
-\(X_1(\omega)\). For the successor step, shifted subadditivity gives
+- The uniform theorem uses exact time-zero normalization
+  <code>hX0 : X 0 = 0</code>.
+- Without it, use
+  <code>centeredProcess_nonpos_of_ne_zero n hn ω</code>.
+- The proof is the ordered-ring equivalence
+  <code>sub_nonpos.mpr</code>.
+- It is pointwise, not almost everywhere.
+- It does not claim the residual has mean zero.
+{{< /lean-bridge >}}
 
-\[
-X_{(n+1)+1}(\omega)
-\le
-X_1(T^{n+1}\omega)+X_{n+1}(\omega).
-\]
+### Bridge four: preserve the shifted-subadditive structure
 
-Apply the induction hypothesis to the second term:
+{{< lean-bridge
+  human="The centered residual obeys the same shifted subadditive inequality as the original process."
+  math="\(Y_{m+n}(\omega)\le Y_n(T^m\omega)+Y_m(\omega).\)"
+  lean="hX.centeredProcess_add_le m n ω"
+>}}
+
+- The later block is evaluated at <code>T^[m] ω</code>.
+- <code>birkhoffSum_add</code> splits the orbit sum at that same state.
+- Subtracting an exact additive identity from a subadditive inequality leaves
+  a subadditive inequality.
+- Integrability and \(X_0=0\) are not used by this proof.
+- The three-state wrong-shift calculation above shows why replacing
+  <code>m</code> by <code>n</code> is invalid.
+{{< /lean-bridge >}}
+
+### Bridge five: preserve finite-horizon integrability
+
+{{< lean-bridge
+  human="If the base preserves the measure, every centered finite-horizon function is integrable."
+  math="\(T_*\mu=\mu\Longrightarrow Y_n\in L^1(\mu).\)"
+  lean="hX.integrable_centeredProcess hT n"
+>}}
+
+- <code>hX.integrable n</code> gives integrability of \(X_n\).
+- <code>hT : MeasurePreserving T μ μ</code> transports one-step
+  integrability along all orbit iterates.
+- <code>integrable_birkhoffSum_blocks</code> adds the finite family.
+- <code>Integrable.sub</code> closes under subtraction.
+- Probability normalization, ergodicity, and time-zero normalization are not
+  required.
+{{< /lean-bridge >}}
+
+The companion
+<code>hX.centeredProcess_candidate hT</code> packages both this integrability
+field and bridge four into a new process candidate.
+
+### Bridge six: split the normalized finite value
+
+{{< lean-bridge
+  human="Dividing the defining equality by the horizon separates the original value into a centered quotient and a one-step Birkhoff average."
+  math="\(X_n(\omega)/n=Y_n(\omega)/n+\frac1n\sum_{j=0}^{n-1}X_1(T^j\omega).\)"
+  lean="normalized_eq_centered_add_birkhoffAverage n ω"
+>}}
+
+- <code>(n : ℝ)</code> coerces the natural horizon to a real number.
+- <code>birkhoffAverage ℝ T (X 1) n ω</code> is the totalized finite average.
+- At <code>n = 0</code>, real division and the Birkhoff average both
+  totalize to zero; the identity remains true.
+- The theorem needs no measurability, integrability, or preservation.
+- An equality for every finite \(n\) is not a convergence theorem for either
+  right-hand branch.
+{{< /lean-bridge >}}
+
+### Bridge seven: specialize the reduction to cocycle positive-log growth
+
+{{< lean-bridge
+  human="For the matrix cocycle, subtract the existing one-step log-positive orbit sum from the finite-horizon log-positive norm."
+  math="\(Y_n^C(\omega)=P_n(\omega)-S_n(\omega)\le0.\)"
+  lean="C.centeredLogPlusNormObservable_nonpos n ω"
+>}}
+
+- <code>C.centeredLogPlusNormObservable n</code> is
+  <code>centeredProcess C.base C.logPlusNormObservable n</code>.
+- The prior <code>orbitLogPlusSum</code> is definitionally the corresponding
+  Mathlib Birkhoff sum.
+- The pointwise sign theorem needs the cocycle but not its integrability
+  hypothesis.
+- Shifted subadditivity is
+  <code>C.centeredLogPlusNormObservable_add_le m n ω</code>.
+- Only
+  <code>hC.centeredLogPlusNormObservable_candidate</code> needs
+  <code>HasIntegrableGeneratorLogPlus</code>.
+- Positive log still erases contraction and exact collapse before centering.
+{{< /lean-bridge >}}
+
+### Check the exact project interface
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, approved Linux compute only for
+this project.** A temporary project scratch file can inspect the complete
+public surface:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#print centeredProcess
+#check centeredProcess_zero
+#check centeredProcess_one
+#check IsIntegrableSubadditiveProcessCandidate.oneStepBirkhoffMajorant_of_ne_zero
+#check IsIntegrableSubadditiveProcessCandidate.oneStepBirkhoffMajorant
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_nonpos_of_ne_zero
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_nonpos
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_add_le
+#check IsIntegrableSubadditiveProcessCandidate.integrable_centeredProcess
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_candidate
+#check normalized_eq_centered_add_birkhoffAverage
+#check DiscreteMatrixCocycle.birkhoffSum_logPlusNormObservable_one_eq_orbitLogPlusSum
+#print DiscreteMatrixCocycle.centeredLogPlusNormObservable
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_apply
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_nonpos
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_add_le
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.centeredLogPlusNormObservable_candidate
+#check DiscreteMatrixCocycle.logPlusNormObservable_normalized_eq_centered_add_birkhoffAverage
+~~~
+
+The two raw-algebra helpers are private and therefore absent from this
+external interface. The guarded command rendered below checks the
+authoritative module on approved Linux compute with the pinned toolchain,
+manifest, and warnings fatal.
+{{< /repo-check >}}
+
+## Type the entire ledger with Lean and Std
+
+The project theorem uses Mathlib's Birkhoff sums, measures, integrability, and
+cocycle interfaces. The complete finite arithmetic can be checked first by a
+bounded file that imports only <code>Std</code>.
+
+Create a scratch directory outside <code>formalization/</code>. Save this
+exact block as <code>OrbitMajorantCenteringTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace OrbitMajorantCenteringTutorial
+
+/-
+Three equally weighted states form the cycle 0 → 1 → 2 → 0.
+The one-step process values are 9, 1, and 2.
+
+The finite process is deliberately subadditive:
+
+  X_n(ω) = S_n(ω) - n(n - 1),
+
+where S_n is the orbit sum of the one-step values.  Its centered residual is
+therefore Y_n(ω) = -n(n - 1).
+-/
+
+def nextState (state : Nat) : Nat :=
+  (state + 1) % 3
+
+def iterateState (steps state : Nat) : Nat :=
+  (state + steps) % 3
+
+def oneStep (state : Nat) : Int :=
+  match state % 3 with
+  | 0 => 9
+  | 1 => 1
+  | _ => 2
+
+def orbitSum (state horizon : Nat) : Int :=
+  ((List.range horizon).map
+    (fun j => oneStep (iterateState j state))).sum
+
+def penalty (horizon : Nat) : Int :=
+  (horizon : Int) * ((horizon : Int) - 1)
+
+def process (state horizon : Nat) : Int :=
+  orbitSum state horizon - penalty horizon
+
+def oneStepMajorant (state horizon : Nat) : Int :=
+  ((List.range horizon).map
+    (fun j => process (iterateState j state) 1)).sum
+
+def centered (state horizon : Nat) : Int :=
+  process state horizon - oneStepMajorant state horizon
+
+def processVector (horizon : Nat) : List Int :=
+  (List.range 3).map (fun state => process state horizon)
+
+def majorantVector (horizon : Nat) : List Int :=
+  (List.range 3).map (fun state => oneStepMajorant state horizon)
+
+def centeredVector (horizon : Nat) : List Int :=
+  (List.range 3).map (fun state => centered state horizon)
+
+def uniformMean (values : List Int) : Rat :=
+  (values.sum : Rat) / values.length
+
+def uniformAbsoluteMean (values : List Int) : Rat :=
+  (((values.map Int.natAbs).sum : Nat) : Rat) / values.length
+
+structure HorizonLedger where
+  horizon : Nat
+  majorant : List Int
+  process : List Int
+  centered : List Int
+  processMean : Rat
+  centeredAbsoluteMean : Rat
+  deriving Repr, DecidableEq
+
+def horizonLedger (horizon : Nat) : HorizonLedger :=
+  { horizon := horizon
+    majorant := majorantVector horizon
+    process := processVector horizon
+    centered := centeredVector horizon
+    processMean := uniformMean (processVector horizon)
+    centeredAbsoluteMean := uniformAbsoluteMean (centeredVector horizon) }
+
+structure ShiftLedger where
+  start : Nat
+  earlyLength : Nat
+  laterLength : Nat
+  fullProcess : Int
+  earlyProcess : Int
+  correctLaterStart : Nat
+  correctLaterProcess : Int
+  correctRightSide : Int
+  correctInequality : Bool
+  wrongLaterStart : Nat
+  wrongLaterProcess : Int
+  wrongRightSide : Int
+  wrongInequality : Bool
+  fullMajorant : Int
+  correctMajorantPieces : Int × Int
+  wrongMajorantPieces : Int × Int
+  deriving Repr, DecidableEq
+
+def shiftLedger : ShiftLedger :=
+  let state := 2
+  let m := 1
+  let n := 2
+  let full := process state (m + n)
+  let early := process state m
+  let correctStart := iterateState m state
+  let correctLater := process correctStart n
+  let correctRight := correctLater + early
+  let wrongStart := iterateState n state
+  let wrongLater := process wrongStart n
+  let wrongRight := wrongLater + early
+  { start := state
+    earlyLength := m
+    laterLength := n
+    fullProcess := full
+    earlyProcess := early
+    correctLaterStart := correctStart
+    correctLaterProcess := correctLater
+    correctRightSide := correctRight
+    correctInequality := decide (full ≤ correctRight)
+    wrongLaterStart := wrongStart
+    wrongLaterProcess := wrongLater
+    wrongRightSide := wrongRight
+    wrongInequality := decide (full ≤ wrongRight)
+    fullMajorant := oneStepMajorant state (m + n)
+    correctMajorantPieces :=
+      (oneStepMajorant state m, oneStepMajorant correctStart n)
+    wrongMajorantPieces :=
+      (oneStepMajorant state m, oneStepMajorant wrongStart n) }
+
+def wrongSignCentered (state horizon : Nat) : Int :=
+  oneStepMajorant state horizon - process state horizon
+
+def expectationCenteredOneStep (state : Nat) : Int :=
+  process state 1 - 4
+
+def unshiftedRepeatedCentering (state horizon : Nat) : Int :=
+  process state horizon - (horizon : Int) * process state 1
+
+def constantOneProcess (_state _horizon : Nat) : Int :=
+  1
+
+def constantOneCentered (horizon : Nat) : Int :=
+  constantOneProcess 0 horizon -
+    ((List.range horizon).map
+      (fun _ => constantOneProcess 0 1)).sum
+
+def normalizedHorizonThree : Rat × Rat × Rat :=
+  ((process 0 3 : Rat) / 3,
+    (centered 0 3 : Rat) / 3,
+    (oneStepMajorant 0 3 : Rat) / 3)
+
+#eval (List.range 3).map oneStep
+#eval (List.range 5).map horizonLedger
+#eval shiftLedger
+#eval (List.range 3).map (fun state => wrongSignCentered state 3)
+#eval (List.range 3).map expectationCenteredOneStep
+#eval (centered 2 3, unshiftedRepeatedCentering 2 3)
+#eval (List.range 4).map constantOneCentered
+#eval normalizedHorizonThree
+
+example : (List.range 3).map oneStep = [9, 1, 2] := by
+  native_decide
+
+example : majorantVector 2 = [10, 3, 11] := by native_decide
+example : processVector 2 = [8, 1, 9] := by native_decide
+example : centeredVector 2 = [-2, -2, -2] := by native_decide
+
+example : majorantVector 3 = [12, 12, 12] := by native_decide
+example : processVector 3 = [6, 6, 6] := by native_decide
+example : centeredVector 3 = [-6, -6, -6] := by native_decide
+
+example : (List.range 9).all fun horizon =>
+    (List.range 3).all fun state =>
+      decide (process state horizon ≤ oneStepMajorant state horizon) := by
+  native_decide
+
+example : shiftLedger.correctLaterStart = 0 := by native_decide
+example : shiftLedger.correctRightSide = 10 := by native_decide
+example : shiftLedger.correctInequality = true := by native_decide
+example : shiftLedger.wrongLaterStart = 1 := by native_decide
+example : shiftLedger.wrongRightSide = 3 := by native_decide
+example : shiftLedger.wrongInequality = false := by native_decide
+example : shiftLedger.correctMajorantPieces = (2, 10) := by native_decide
+example : shiftLedger.wrongMajorantPieces = (2, 3) := by native_decide
+
+example : uniformAbsoluteMean (processVector 3) = 6 := by native_decide
+example : uniformAbsoluteMean (centeredVector 3) = 6 := by native_decide
+example : normalizedHorizonThree = (2, -2, 4) := by native_decide
+
+example : (List.range 3).map expectationCenteredOneStep = [5, -3, -2] := by
+  native_decide
+
+example : (List.range 4).map constantOneCentered = [1, 0, -1, -2] := by
+  native_decide
+
+end OrbitMajorantCenteringTutorial
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean OrbitMajorantCenteringTutorial.lean
+~~~
+
+**Resource label: small standalone Lean tutorial, ordinary Mac or Linux.**
+This exact worksheet was executed with Lean 4.32.0 and printed this complete
+transcript:
+
+~~~text
+[9, 1, 2]
+[{ horizon := 0,
+   majorant := [0, 0, 0],
+   process := [0, 0, 0],
+   centered := [0, 0, 0],
+   processMean := 0,
+   centeredAbsoluteMean := 0 },
+ { horizon := 1,
+   majorant := [9, 1, 2],
+   process := [9, 1, 2],
+   centered := [0, 0, 0],
+   processMean := 4,
+   centeredAbsoluteMean := 0 },
+ { horizon := 2,
+   majorant := [10, 3, 11],
+   process := [8, 1, 9],
+   centered := [-2, -2, -2],
+   processMean := 6,
+   centeredAbsoluteMean := 2 },
+ { horizon := 3,
+   majorant := [12, 12, 12],
+   process := [6, 6, 6],
+   centered := [-6, -6, -6],
+   processMean := 6,
+   centeredAbsoluteMean := 6 },
+ { horizon := 4,
+   majorant := [21, 13, 14],
+   process := [9, 1, 2],
+   centered := [-12, -12, -12],
+   processMean := 4,
+   centeredAbsoluteMean := 12 }]
+{ start := 2,
+  earlyLength := 1,
+  laterLength := 2,
+  fullProcess := 6,
+  earlyProcess := 2,
+  correctLaterStart := 0,
+  correctLaterProcess := 8,
+  correctRightSide := 10,
+  correctInequality := true,
+  wrongLaterStart := 1,
+  wrongLaterProcess := 1,
+  wrongRightSide := 3,
+  wrongInequality := false,
+  fullMajorant := 12,
+  correctMajorantPieces := (2, 10),
+  wrongMajorantPieces := (2, 3) }
+[6, 6, 6]
+[5, -3, -2]
+(-6, 0)
+[1, 0, -1, -2]
+(2, -2, 4)
+~~~
+
+The first line is the one-step function. The next record list is the complete
+horizon-zero-through-four ledger. The shift record contains both the valid
+right side \(10\) and invalid right side \(3\), with the corresponding Boolean
+checks. The remaining lines expose the wrong sign, expectation centering,
+unshifted repeated subtraction, the constant-one time-zero boundary, and the
+normalized triple \(2,-2,4\).
+
+The <code>example</code> declarations ask Lean to prove all recorded values.
+The nested Boolean check additionally verifies \(X_n\le S_n\) at all three
+states for horizons zero through eight. This worksheet models the finite
+arithmetic only. Mathlib's actual <code>birkhoffSum</code>,
+<code>MeasurePreserving</code>, <code>Integrable</code>, and cocycle
+interfaces remain the cloud-only project check above.
+
+## Why the generic theorem works
+
+### The candidate separates algebra from analysis
+
+The predecessor defines
+<code>IsIntegrableSubadditiveProcessCandidate T μ X</code> with exactly two
+fields:
+
+~~~lean
+integrable : ∀ k, Integrable (X k) μ
+add_le : ∀ m n ω, X (m + n) ω ≤ X n (T^[m] ω) + X m ω
+~~~
+
+The structure does not store probability normalization, measure preservation,
+ergodicity, invertibility, or a limit. Measure preservation is requested only
+when a theorem actually pulls functions along the base orbit.
+
+### Positive-horizon majorization is pure induction
+
+For \(n=1\), the Birkhoff sum contains only \(X_1(\omega)\), so the bound is
+equality. For the successor, shifted subadditivity gives
 
 \[
 X_{n+1}(\omega)
 \le
-A_{n+1}(\omega).
+X_1(T^n\omega)+X_n(\omega).
 \]
 
-Then
+Apply the induction hypothesis to the second term and use Mathlib's successor
+identity
 
 \[
-X_{(n+1)+1}(\omega)
-\le
-X_1(T^{n+1}\omega)+A_{n+1}(\omega).
-\]
-
-The successor law for the Birkhoff sum identifies the right side, up to the
-commutativity of real addition, with \(A_{(n+1)+1}(\omega)\). The induction
-closes.
-
-Notice what the proof never mentions: \(\mu\), measurability, integrability,
-measure preservation, probability, or ergodicity. It consumes only the raw
-shifted-subadditive inequality. The Lean file makes this mechanically visible
-through the private helper
-<code>oneStepBirkhoffMajorant_of_add_le</code>. The public method receives the
-convenient candidate bundle but immediately passes only its <code>add_le</code>
-field to the helper.
-
-This field audit prevents a common formalization mistake. A theorem may be
-stated as a method on a rich structure for discoverability, yet its proof may
-use only one field. The documentation must report the proof's true
-mathematical dependency, not every assumption available in the local context.
-
-## Positive time and time zero are different theorems
-
-For \(n\ne0\), the induction proves
-
-\[
-X_n(\omega)\le A_n(\omega)
-\]
-
-without any condition on \(X_0\). Consequently,
-
-\[
-Y_n(\omega)\le0
-\]
-
-at every positive horizon.
-
-At \(n=0\), the proposed majorant reads
-
-\[
-X_0(\omega)\le A_0(\omega)=0.
-\]
-
-Shifted subadditivity by itself points in the opposite direction. Setting both
-horizons to zero yields \(X_0(\omega)\le X_0(\omega)+X_0(\omega)\), hence
-\(0\le X_0(\omega)\). Therefore a uniform majorant can hold only when
-\(X_0(\omega)=0\) pointwise. RMT-18 already isolated that boundary; RMT-19
-uses it rather than hiding it.
-
-The constant-one process is the smallest countermodel. Take the singleton
-space \(\Omega=\{\ast\}\), the identity map, and
-
-\[
-X_n(\ast)=1
-\]
-
-for every \(n\). It is subadditive because \(1\le1+1\). At a positive horizon,
-\(A_n(\ast)=n\), so \(Y_n(\ast)=1-n\le0\). At time zero,
-\(A_0(\ast)=0\) and \(Y_0(\ast)=1\). Thus uniform nonpositivity is false.
-
-This example also separates candidate packaging from normalization. Under a
-Dirac measure, every constant horizon is integrable. The identity map
-preserves that measure. The centered family can therefore be packaged as an
-integrable subadditive candidate even though \(Y_0=1\). Candidate packaging
-records integrability and subadditivity, not zero initialization.
-
-## The centered residual is still subadditive
-
-The preservation proof is a cancellation argument. Begin with
-
-\[
-Y_{m+n}(\omega)
+\operatorname{birkhoffSum}(T,X_1,n+1,\omega)
 {} =
-X_{m+n}(\omega)-A_{m+n}(\omega).
+\operatorname{birkhoffSum}(T,X_1,n,\omega)+X_1(T^n\omega).
 \]
 
-Use shifted subadditivity for \(X\) and exact additivity for \(A\):
+Only the candidate's <code>add_le</code> field is read. The private helper
+<code>oneStepBirkhoffMajorant_of_add_le</code> makes that dependency explicit.
+
+At \(n=0\), the Birkhoff sum is zero while subadditivity alone only forces
+\(X_0\ge0\). Exact normalization \(X_0=0\) is therefore a separate premise
+for the uniform theorem.
+
+### The constant-one boundary
+
+On a singleton, let \(X_n=1\) for every \(n\). Then
 
 \[
-\begin{aligned}
-Y_{m+n}(\omega)
-&\le
-X_n(T^m\omega)+X_m(\omega) \\
-&\qquad-
-\bigl(A_m(\omega)+A_n(T^m\omega)\bigr).
-\end{aligned}
+1\le1+1,
 \]
 
-Regroup the real terms:
+so the process is subadditive and every horizon is integrable. Its centered
+values are
 
 \[
-Y_{m+n}(\omega)
-\le
-Y_n(T^m\omega)+Y_m(\omega).
+(1,0,-1,-2,\ldots).
 \]
 
-No sign information was used. No time-zero normalization was used. In fact,
-the same algebra would preserve shifted subadditivity after subtracting any
-additive process with the matching shift orientation. The one-step Birkhoff
-sum is chosen because subadditivity proves it is a majorant at positive time.
+Positive horizons are nonpositive, but \(Y_0=1\). This tiny model proves that
+the <code>X 0 = 0</code> premise cannot simply be deleted from the uniform
+nonpositivity theorem.
 
-Lean records this reasoning in the private helper
-<code>centeredProcess_add_le_of_add_le</code>. The helper unfolds the centered
-definition, rewrites the orbit sum with <code>birkhoffSum_add</code>, and lets
-linear arithmetic finish from the raw <code>add_le</code> premise. Once again,
-the private theorem exposes the minimal algebra even though the public method
-is attached to the candidate structure.
+### Centered subadditivity is cancellation
 
-The orientation is worth checking carefully. Mathlib's addition law is
+Let \(A_n\) denote the Birkhoff sum of \(X_1\). Mathlib proves
 
 \[
 A_{m+n}(\omega)
@@ -346,955 +870,345 @@ A_{m+n}(\omega)
 A_m(\omega)+A_n(T^m\omega).
 \]
 
-The project structure writes its subadditive upper bound as the shifted later
-term followed by the earlier term. Real addition is commutative, so their
-visible order can be rearranged. Their sample points cannot. Replacing
-\(A_n(T^m\omega)\) by \(A_n(\omega)\) would break the proof.
-
-## Integrability enters at one narrow gate
-
-Suppose now that every \(X_n\) is integrable with respect to \(\mu\), and that
-\(T\) preserves \(\mu\). Each shifted one-step term
+Subtract this equality from
 
 \[
-\omega\longmapsto X_1(T^j\omega)
-\]
-
-is integrable because every iterate \(T^j\) preserves \(\mu\), and composition
-with a measure-preserving map preserves integrability. A finite sum of such
-terms is integrable. These closure properties are supplied by Mathlib's
-integrability library ([pinned integrability results](#ref-centering-integrable)),
-while the preservation premise is the standard Mathlib package
-([pinned measure-preserving definition](#ref-centering-preserving)).
-
-RMT-18 already proved the reusable block-sum theorem. RMT-19 invokes it with
-block length one. Since \(T^1=T\), the separate premise
-<code>MeasurePreserving T μ μ</code> is exactly what the proof needs. It does
-not ask for probability normalization or ergodicity.
-
-Now \(Y_n=X_n-A_n\) is the difference of two integrable real-valued functions,
-so \(Y_n\) is integrable. Combining that result with the algebraic
-subadditivity theorem packages \(Y\) as another
-<code>IsIntegrableSubadditiveProcessCandidate</code>.
-
-The assumptions divide cleanly:
-
-| Result | Raw shifted subadditivity | Integrability of every \(X_n\) | \(T\) preserves \(\mu\) | \(X_0=0\) | Probability | Ergodicity |
-|---|---:|---:|---:|---:|---:|---:|
-| Positive majorant | Yes | No | No | No | No | No |
-| Uniform majorant | Yes | No | No | Yes | No | No |
-| Positive residual nonpositivity | Yes | No | No | No | No | No |
-| Uniform residual nonpositivity | Yes | No | No | Yes | No | No |
-| Centered subadditivity | Yes | No | No | No | No | No |
-| Centered horizon integrable | No new algebra | Yes | Yes | No | No | No |
-| Centered candidate | Yes | Yes | Yes | No | No | No |
-| Normalized finite identity | No | No | No | No | No | No |
-
-The phrase “No new algebra” means that the integrability theorem does not need
-subadditivity to prove closure under subtraction. Its receiver is a candidate,
-and it uses the receiver's integrability field. The candidate constructor then
-combines that analytic result with the separately proved subadditivity result.
-
-Zero measure is a useful boundary test. Every real function is integrable with
-respect to the zero measure, and the identity map preserves the zero measure.
-The centered-candidate theorem still applies. This confirms that no hidden
-<code>IsProbabilityMeasure</code> premise entered through a convenient lemma.
-
-## The singleton square-root process
-
-Take \(\Omega=\{\ast\}\), \(T\) equal to the identity, and
-
-\[
-X_n(\ast)=\sqrt n.
-\]
-
-The elementary inequality
-
-\[
-\sqrt{m+n}\le\sqrt m+\sqrt n
-\]
-
-makes this a subadditive process. Its one-step value is \(X_1=1\), so the
-orbit majorant is simply
-
-\[
-A_n(\ast)=n.
-\]
-
-The centered residual is therefore
-
-\[
-Y_n(\ast)=\sqrt n-n.
-\]
-
-At \(n=4\), the full ledger is
-
-\[
-\begin{aligned}
-X_4(\ast) &= 2, \\
-A_4(\ast) &= 4, \\
-Y_4(\ast) &= -2.
-\end{aligned}
-\]
-
-After normalization,
-
-\[
-\frac{X_4(\ast)}{4}
-{} =
-\frac{Y_4(\ast)}{4}+
-\frac{A_4(\ast)}{4}
-{} =
--\frac12+1
-{} =
-\frac12.
-\]
-
-This example shows three things at once. First, the additive majorant can be
-strictly larger than the process. Second, the residual can have a linear
-negative component even though the original process is nonnegative. Third,
-“centered” does not mean mean zero. Under the Dirac probability measure at
-\(\ast\), the expectation of \(Y_4\) is \(-2\), not zero.
-
-The example happens to have limits: \(X_n/n\to0\), \(A_n/n\to1\), and
-\(Y_n/n\to-1\). Those limits are proved by elementary analysis external to
-RMT-19. The finite identity merely remains consistent with their cancellation.
-It did not establish any of them.
-
-At the opposite boundary, suppose \(X_n=A_n\) is itself the Birkhoff-sum
-process generated by \(X_1\). Then \(Y_n=0\) for every \(n\). Additive
-processes are the zero-slack examples for this chosen majorant. A strictly
-subadditive process records its lost additivity in a residual that is
-nonpositive at positive horizons, and also at time zero when \(X_0=0\).
-
-## An exact normalized split is not a convergence theorem
-
-Mathlib defines the finite Birkhoff average over the real numbers as the
-Birkhoff sum scaled by the inverse of the natural-number horizon
-([Mathlib Birkhoff averages](#ref-centering-birkhoff-average)). Thus the
-definition is total at \(n=0\): the inverse of zero in \(\mathbb R\) is zero,
-and the empty sum is zero.
-
-For every \(n\) and \(\omega\), pure field algebra gives
-
-\[
-\begin{aligned}
-\frac{X_n(\omega)}{n}
-&=
-\frac{Y_n(\omega)}{n}
-\\
-&\quad{}+\operatorname{birkhoffAverage}_{j\lt n}
-  \bigl(X_1(T^j\omega)\bigr).
-\end{aligned}
-\]
-
-The notation on the right denotes the average of the first \(n\) one-step
-orbit observations. At \(n=0\), all three terms are zero under Lean's
-totalized field operations, regardless of the value of \(X_0\). This is why
-the normalized identity needs no time-zero normalization even though uniform
-nonpositivity does.
-
-{{< reference-figure
-  src="normalized-split-without-a-limit.svg"
-  alt="The normalized process value splits into a normalized centered residual and a one-step orbit average. Both branches retain separate unresolved convergence questions."
-  caption="**Finding:** normalization rewrites each finite process value as the sum of two finite contributions. One is the normalized subadditive slack; the other is the average of the one-step observable along the orbit. The identity says nothing about whether either contribution converges, whether their limits are integrable, or whether cancellation occurs. A pointwise ergodic theorem and a subadditive ergodic theorem are additional results, not consequences of the diagram."
->}}
-
-Why can the right branch fail to converge? Take the one-sided binary sequence
-space, let \(T\) delete the first bit, and let \(g(\omega)\) read the first bit.
-Choose one outcome made of alternating blocks of zeros and ones, each new block
-so much longer than everything before it that the empirical frequency is near
-zero after a zero block and near one after a one block. Define
-
-\[
-X_n(\omega)=\sum_{j=0}^{n-1}g(T^j\omega).
-\]
-
-This process is additive, so \(Y_n=0\). Along the chosen outcome, \(X_n/n\) is
-exactly the nonconvergent empirical frequency. The normalized identity reduces
-to that same Birkhoff average and cannot improve it. Measure-theoretic
-hypotheses and an actual pointwise theorem would be needed to obtain an
-almost-everywhere conclusion.
-
-Kingman's original theorem belongs to that later asymptotic layer
-([Kingman, 1968](#ref-centering-kingman)). Lalley's notes give a clear teaching
-route through finite blocking and the eventual subadditive ergodic argument
-([Lalley](#ref-centering-lalley)). RMT-19 proves only the finite compensation
-identity that may be used before such a theorem. It does not instantiate,
-reprove, or invoke Kingman.
-
-## The thin matrix-cocycle specialization
-
-Let \(C\) be the project's one-sided discrete complex matrix cocycle over a
-measure-preserving base. Its finite log-positive norm observable is
-
-\[
-L_n(\omega)=\log^+\lVert C_n(\omega)\rVert.
-\]
-
-The project already proved
-
-\[
-L_{m+n}(\omega)
+X_{m+n}(\omega)
 \le
-L_n(C.\mathrm{base}^m\omega)+L_m(\omega)
+X_n(T^m\omega)+X_m(\omega).
 \]
 
-and the pointwise one-step orbit majorant
+Regrouping produces
 
 \[
-L_n(\omega)
+Y_{m+n}(\omega)
 \le
-\sum_{j=0}^{n-1}L_1(C.\mathrm{base}^j\omega).
+Y_n(T^m\omega)+Y_m(\omega).
 \]
 
-RMT-19 adds a thin specialization rather than duplicating those theorems. The
-existing <code>orbitLogPlusSum</code> is definitionally the Birkhoff sum of
-<code>logPlusNormObservable 1</code>. The centered cocycle observable is
+The source's first private helper,
+<code>centeredProcess_add_le_of_add_le</code>, performs exactly this rewrite
+and finishes with linear arithmetic. It needs neither integrability nor
+time-zero normalization.
+
+### Integrability uses preservation at one narrow gate
+
+The candidate already says \(X_n\) and \(X_1\) are integrable. If \(T\)
+preserves \(\mu\), then every iterate \(T^j\) preserves \(\mu\), so
 
 \[
-R_n(\omega)
-{} =
-L_n(\omega)-\mathrm{orbitLogPlusSum}_n(\omega).
+X_1\circ T^j
 \]
 
-The pointwise theorem \(R_n(\omega)\le0\) uses the cocycle's already checked
-majorant directly. Centered subadditivity uses the raw cocycle
-<code>logPlusNormObservable_add_le</code> theorem through the private algebraic
-helper. Neither result requires
-<code>HasIntegrableGeneratorLogPlus</code>.
+is integrable. The finite Birkhoff sum is integrable by finite-sum closure.
+Then
 
-Only the candidate-packaging theorem uses the hypothesis \(hC\) that the
-one-step log-positive observable is integrable. From \(hC\), the earlier module
-provides integrability of every \(L_n\). From the cocycle bundle, the base map
-preserves \(\mu\). Generic centered integrability then applies, and the direct
-pointwise subadditivity theorem supplies the second candidate field.
+\[
+Y_n=X_n-A_n
+\]
 
-The empty matrix index remains legal. In empty dimension the project's norm
-observable and log-positive observable vanish at every finite horizon. The
-orbit sum and centered observable vanish as well. No theorem in this slice
-requires a positive dimension merely to avoid an empty finite sum.
+is integrable by closure under subtraction.
 
-The scalar cases clarify what the residual measures. If a constant scalar
-generator expands by a factor above one at every step, log-positive growth is
-additive and the centered residual is zero. If one step expands by two and a
-later step contracts by one half, the two-step product has norm one, so its
-log-positive value is zero, while the one-step log-positive orbit sum still
-contains the positive logarithm of two. The residual records negative slack.
-It does not restore the signed logarithm discarded by \(\log^+\).
-
-That distinction blocks a premature Lyapunov claim. Even if a future theorem
-proved convergence of \(L_n/n\), the result would concern the positive-log
-envelope chosen for integrability, not automatically the signed top exponent
-of an invertible cocycle. Invertibility, negative tails, and vector-direction
-information are absent here.
-
-Karlsson and Margulis study a far stronger geometric destination: integrable
-cocycles of nonexpanding maps over an ergodic measure-preserving system and
-almost-sure geodesic tracking in nonpositively curved spaces
-([Karlsson and Margulis, 1999](#ref-centering-karlsson-margulis)). That work
-helps locate multiplicative ergodic theory on the larger map. RMT-19 proves no
-geodesic ray, tracking rate, nonpositive-curvature statement, or Oseledets
-conclusion.
+Without preservation, composition can move mass into a heavy part of an
+integrable function and destroy integrability. The premise is analytic, not
+decorative.
 
 ## The complete eighteen-declaration map
 
-The following table follows the Lean source exactly. Names are shown without
-the common namespace prefix when the table remains unambiguous.
+The source contains two private raw-algebra helpers and eighteen public
+declarations.
 
-| No. | Declaration | What it establishes | Exact boundary |
-|---:|---|---|---|
-| 1 | <code>centeredProcess</code> | Defines \(Y_n=X_n-A_n\) | Pure algebra; no measurable structure |
-| 2 | <code>centeredProcess_zero</code> | \(Y_0=X_0\) as a function equality | Explains the time-zero boundary |
-| 3 | <code>centeredProcess_one</code> | \(Y_1=0\) as a function equality | No hypothesis on \(X\) |
-| 4 | <code>oneStepBirkhoffMajorant_of_ne_zero</code> | \(X_n\le A_n\) for \(n\ne0\) | Proof consumes only <code>add_le</code> |
-| 5 | <code>oneStepBirkhoffMajorant</code> | \(X_n\le A_n\) for every \(n\) | Adds exactly \(X_0=0\) |
-| 6 | <code>centeredProcess_nonpos_of_ne_zero</code> | \(Y_n\le0\) for \(n\ne0\) | No time-zero normalization |
-| 7 | <code>centeredProcess_nonpos</code> | \(Y_n\le0\) for every \(n\) | Requires \(X_0=0\) |
-| 8 | <code>centeredProcess_add_le</code> | \(Y\) remains shifted-subadditive | Uses only <code>add_le</code> |
-| 9 | <code>integrable_centeredProcess</code> | Every \(Y_n\) is integrable | Uses candidate integrability and preservation of \(T\) |
-| 10 | <code>centeredProcess_candidate</code> | Packages \(Y\) as another candidate | No \(X_0=0\), probability, or ergodicity |
-| 11 | <code>normalized_eq_centered_add_birkhoffAverage</code> | Exact normalized finite split | Total at \(n=0\); no analytic premise |
-| 12 | <code>birkhoffSum_logPlusNormObservable_one_eq_orbitLogPlusSum</code> | Identifies two existing finite sums | Definitional equality, proved by <code>rfl</code> |
-| 13 | <code>centeredLogPlusNormObservable</code> | Defines the cocycle residual \(R_n\) | No integrability premise |
-| 14 | <code>centeredLogPlusNormObservable_apply</code> | Unfolds \(R_n=L_n-\mathrm{orbitLogPlusSum}_n\) | Definitional equality |
-| 15 | <code>centeredLogPlusNormObservable_nonpos</code> | \(R_n\le0\) pointwise | Uses \(C\) directly, including \(n=0\) |
-| 16 | <code>centeredLogPlusNormObservable_add_le</code> | \(R\) remains shifted-subadditive | Uses \(C\) directly |
-| 17 | <code>HasIntegrableGeneratorLogPlus.centeredLogPlusNormObservable_candidate</code> | Packages \(R\) as an integrable candidate | This is the only cocycle declaration that needs \(hC\) |
-| 18 | <code>logPlusNormObservable_normalized_eq_centered_add_birkhoffAverage</code> | Specializes the exact normalized split | Pointwise; no \(hC\) |
+### Private helpers in source order
 
-Two private helpers make the field audit explicit:
-
-| Source position | Private helper | Minimal input | Proof job |
-|---:|---|---|---|
-| first | <code>centeredProcess_add_le_of_add_le</code> | A raw shifted <code>add_le</code> inequality | Cancels the Birkhoff-sum addition law from the process inequality |
-| second | <code>oneStepBirkhoffMajorant_of_add_le</code> | A raw shifted <code>add_le</code> inequality and \(n\ne0\) | Inducts over positive horizons without reading integrability |
-
-Both helpers precede the candidate namespace. Their logical use appears later
-in a different order: the majorant helper powers declarations 4 and 5, while
-the subadditivity helper powers declarations 8 and 16.
-
-## Countermodel and boundary ledger
-
-| Probe | What compiles or computes | What it rules out |
-|---|---|---|
-| Constant-one process on a singleton | Positive majorant and positive residual nonpositivity; \(Y_0=1\) | Uniform nonpositivity without \(X_0=0\) |
-| Zero horizon | Normalized identity reduces to \(0=0+0\) | Informal cancellation by a nonzero horizon |
-| Zero measure | Centered candidate packaging still works | Hidden probability normalization |
-| Identity base | Preservation is sufficient even with no mixing | Hidden ergodicity premise |
-| Additive Birkhoff-sum process | Centered residual is exactly zero | Claim that centering must create strict negativity |
-| Singleton square-root process | Centered residual is strictly negative for \(n\gt1\) | Claim that centered means mean zero |
-| Nonconvergent binary orbit | Exact split holds while the orbit average fails to converge | Any limit inferred from algebra alone |
-| Empty matrix index | Cocycle pointwise and candidate statements remain valid | Hidden positive-dimension premise |
-| Expansion followed by contraction | Log-positive residual records slack but not signed loss | Identification with a signed Lyapunov exponent |
-
-These are not random curiosities. Each probe targets a tempting but invalid
-assumption deletion or conclusion upgrade. Compiling boundary examples is part
-of theorem design because Lean otherwise verifies only the statement we wrote,
-not the stronger informal story a reader might hear.
-
-## Forty solved exercises
-
-The exercises climb from direct expansion to theorem design. Each solution is
-included so the section can serve as a self-study chapter rather than an answer
-key hidden elsewhere.
-
-### Base camp: compute the finite objects
-
-#### Exercise 1: expand a three-step orbit sum
-
-Expand \(A_3(\omega)\) and name the three sample points.
-
-**Solution.** By the definition of a Birkhoff sum,
-
-\[
-A_3(\omega)
-{} =
-X_1(\omega)+X_1(T\omega)+X_1(T^2\omega).
-\]
-
-The sample points are \(\omega\), \(T\omega\), and \(T^2\omega\). The third
-term is not evaluated at \(T^3\omega\), because a length-three sum uses the
-indices zero, one, and two.
-
-#### Exercise 2: compute both endpoint residuals
-
-Show directly that \(Y_0=X_0\) and \(Y_1=0\).
-
-**Solution.** The zero-step Birkhoff sum is empty, hence \(A_0=0\). Therefore
-\(Y_0=X_0-A_0=X_0\). The one-step sum contains only the zeroth orbit point, so
-\(A_1(\omega)=X_1(\omega)\). Therefore
-\(Y_1(\omega)=X_1(\omega)-X_1(\omega)=0\). Neither calculation uses
-subadditivity.
-
-#### Exercise 3: compute the constant-one residual
-
-On the singleton identity system, let \(X_n=1\). Find \(A_n\) and \(Y_n\).
-
-**Solution.** Every one-step summand is one, and there are \(n\) summands, so
-\(A_n=n\). Thus \(Y_n=1-n\). It is zero at \(n=1\), negative for \(n\gt1\),
-and equal to one at \(n=0\). This one computation separates the
-positive-horizon theorem from its uniform version.
-
-#### Exercise 4: check the square-root example at four steps
-
-For \(X_n=\sqrt n\), compute \(X_4\), \(A_4\), \(Y_4\), and all three
-normalized terms.
-
-**Solution.** Since \(X_1=1\), \(A_4=4\). Also \(X_4=2\), hence \(Y_4=-2\).
-Dividing by four gives \(X_4/4=1/2\), \(Y_4/4=-1/2\), and \(A_4/4=1\).
-The normalized identity is \(1/2=-1/2+1\). Under a Dirac measure, the mean of
-the residual is still \(-2\).
-
-#### Exercise 5: justify square-root subadditivity
-
-Prove \(\sqrt{m+n}\le\sqrt m+\sqrt n\) for nonnegative \(m,n\).
-
-**Solution.** Both sides are nonnegative. Squaring the right side gives
-
-\[
-(\sqrt m+\sqrt n)^2
-{} =
-m+n+2\sqrt{mn}
-\ge m+n.
-\]
-
-Monotonicity of the square root on nonnegative reals then yields the desired
-inequality. Natural numbers embed as nonnegative reals, so the singleton
-process is subadditive.
-
-#### Exercise 6: identify the zero-residual boundary
-
-Suppose \(X_n(\omega)=A_n(\omega)\) for every \(n,\omega\). What is \(Y\), and
-is it subadditive?
-
-**Solution.** The definition gives \(Y_n=X_n-A_n=0\) identically. The zero
-process is additive and therefore subadditive with equality at every split.
-This shows that orbit-majorant centering measures slack relative to this
-particular additive process; it need not create a nontrivial residual.
-
-#### Exercise 7: compare with expectation centering
-
-Why does \(Y_n=X_n-A_n\) not imply \(\int Y_n\,d\mu=0\)?
-
-**Solution.** Expectation centering would subtract the scalar
-\(\int X_n\,d\mu\), or another scalar chosen to match the mean. Here \(A_n\)
-is a function of \(\omega\), assembled from orbit observations. There is no
-identity saying its integral equals the integral of \(X_n\). The square-root
-Dirac example gives an explicit mean of \(-2\) at time four.
-
-#### Exercise 8: evaluate the normalized identity at zero
-
-What does declaration 11 say at \(n=0\)?
-
-**Solution.** In Lean's real field, division by zero is total and produces
-zero. Mathlib's zero-step Birkhoff average is also zero because it scales an
-empty sum. Thus the identity becomes \(0=0+0\), regardless of \(X_0\).
-No cancellation of a nonzero denominator occurs, and no premise \(X_0=0\) is
-needed.
-
-#### Exercise 9: evaluate the normalized identity at one
-
-Simplify declaration 11 at \(n=1\).
-
-**Solution.** The centered residual is \(Y_1=0\). The one-step Birkhoff average
-is \(X_1(\omega)\). Therefore the right side is
-\(0+X_1(\omega)\), equal to the left side \(X_1(\omega)/1\). This boundary
-check agrees with both public simplification theorems.
-
-#### Exercise 10: detect an orientation error
-
-Why is \(A_{m+n}(\omega)=A_m(\omega)+A_n(\omega)\) generally false?
-
-**Solution.** The later \(n\) terms begin after the first \(m\) orbit steps.
-Their first sample is \(T^m\omega\), not \(\omega\). The correct identity is
-\(A_{m+n}(\omega)=A_m(\omega)+A_n(T^m\omega)\). The unshifted formula would
-repeat the beginning of the orbit and omit its later segment.
-
-### Mid-mountain: rebuild the proof architecture
-
-#### Exercise 11: prove the positive majorant base case
-
-What must be shown when the positive horizon is one?
-
-**Solution.** One must show
-\(X_1(\omega)\le A_1(\omega)\). The one-step sum is definitionally
-\(X_1(\omega)\), so the goal is reflexivity. Subadditivity is not used in the
-base case; it enters only when another step is appended.
-
-#### Exercise 12: prove the positive majorant successor step
-
-Assume \(X_{n+1}(\omega)\le A_{n+1}(\omega)\). Derive the next case.
-
-**Solution.** Shifted subadditivity with the split \((n+1)+1\) gives
-
-\[
-X_{(n+1)+1}(\omega)
-\le
-X_1(T^{n+1}\omega)+X_{n+1}(\omega).
-\]
-
-Replace the last term by \(A_{n+1}(\omega)\) using the induction hypothesis.
-The Birkhoff successor law says that this sum is
-\(A_{(n+1)+1}(\omega)\), after commuting the two real summands.
-
-#### Exercise 13: audit the majorant's fields
-
-Which field of the candidate structure does declaration 4 actually read?
-
-**Solution.** It reads only <code>add_le</code>. The public theorem passes that
-field to <code>oneStepBirkhoffMajorant_of_add_le</code>. The candidate's
-<code>integrable</code> field is available in the local structure but is not
-used by the proof. There is no measure-preservation argument in the induction.
-
-#### Exercise 14: extend the positive theorem uniformly
-
-How does declaration 5 use \(X_0=0\)?
-
-**Solution.** It splits on \(n\). When \(n=0\), rewriting by \(X_0=0\) makes
-the desired bound \(0\le0\). When \(n\) is a successor, it calls the raw
-positive-horizon helper and does not use the normalization. The extra
-hypothesis repairs exactly one branch.
-
-#### Exercise 15: refute uniform nonpositivity without normalization
-
-Give the shortest counterargument.
-
-**Solution.** Use the constant-one process on a singleton. It is integrable
-and shifted-subadditive. At time zero its Birkhoff sum is empty, so
-\(Y_0=1-0=1\), which is not nonpositive. The positive-horizon theorem remains
-true, so the countermodel targets only the attempted uniform strengthening.
-
-#### Exercise 16: derive centered subadditivity
-
-Starting from the two addition laws, show the centered inequality.
-
-**Solution.** Substitute the subadditive bound for \(X_{m+n}\) and the exact
-addition formula for \(A_{m+n}\):
-
-\[
-\begin{aligned}
-Y_{m+n}(\omega)
-&\le X_n(T^m\omega)+X_m(\omega) \\
-&\qquad-A_n(T^m\omega)-A_m(\omega) \\
-&=Y_n(T^m\omega)+Y_m(\omega).
-\end{aligned}
-\]
-
-Only ordered-ring algebra remains after the two structural facts are supplied.
-
-#### Exercise 17: generalize the subtraction principle
-
-Let \(B\) be any shifted-additive process. Does \(X-B\) remain subadditive?
-
-**Solution.** Yes. If
-\(B_{m+n}(\omega)=B_n(T^m\omega)+B_m(\omega)\), subtract that equality from
-the shifted-subadditive inequality for \(X\). Regrouping gives
-\((X-B)_{m+n}\le(X-B)_n\circ T^m+(X-B)_m\). The Birkhoff sum is one canonical
-choice of \(B\), not the only algebraically possible one.
-
-#### Exercise 18: trace integrability of the orbit sum
-
-Why is \(A_n\) integrable when \(T\) preserves \(\mu\)?
-
-**Solution.** Candidate integrability gives integrability of \(X_1\).
-Measure preservation passes to every iterate \(T^j\), so each composition
-\(X_1\circ T^j\) is integrable. The orbit sum contains finitely many such
-terms, and integrability is closed under finite sums. No ergodicity or
-probability normalization is involved.
-
-#### Exercise 19: package the centered candidate
-
-Which two proofs fill its fields, and why is \(X_0=0\) absent?
-
-**Solution.** Declaration 9 fills the <code>integrable</code> field for each
-centered horizon. Declaration 8 fills <code>add_le</code>. Neither field in
-the candidate structure requires a time-zero value, so the constructor has no
-reason to request \(X_0=0\). The constant-one candidate confirms this
-boundary is intentional.
-
-#### Exercise 20: test the zero-measure boundary
-
-Why does centered candidate packaging work for the zero measure?
-
-**Solution.** Every function is integrable with respect to the zero measure,
-because every integral of its norm is zero. The identity map preserves the
-zero measure. If the raw process is shifted-subadditive, the generic theorem
-therefore packages its centered family. This test would fail if a hidden
-probability instance were required.
-
-### High camp: averages and cocycles
-
-#### Exercise 21: construct a nonconvergent orbit average
-
-Describe one binary orbit whose empirical frequency does not converge.
-
-**Solution.** Concatenate a block of zeros, then a much longer block of ones,
-then a much longer block of zeros, and continue, choosing each block longer
-than the total preceding length by an increasing factor. At the end of a zero
-block the proportion of ones is near zero; at the end of a one block it is
-near one. Those two subsequences have different limits.
-
-#### Exercise 22: explain why the exact split cannot repair that example
-
-Take \(X_n\) to be the additive sum of the bits. What happens?
-
-**Solution.** Because \(X\) already equals its one-step Birkhoff sum, the
-centered residual is zero. Declaration 11 then says only that
-\(X_n/n\) equals the finite orbit average. Along the constructed outcome that
-average does not converge. An identity that leaves the entire problem in one
-branch cannot prove convergence of that branch.
-
-#### Exercise 23: compute a constant scalar expansion
-
-Let every one-dimensional generator equal a scalar \(a\) with
-\(\lvert a\rvert\gt1\). What is the centered log-positive residual?
-
-**Solution.** The \(n\)-step product has norm \(\lvert a\rvert^n\), so its
-log-positive observable is \(n\log\lvert a\rvert\). Every one-step orbit term
-is \(\log\lvert a\rvert\), and their sum is the same value. The centered
-residual is zero. Submultiplicativity is exact in this scalar constant case.
-
-#### Exercise 24: compute expansion followed by contraction
-
-Use scalar factors two and one half. What slack appears after two steps?
-
-**Solution.** The product has norm one, whose log-positive value is zero. The
-first one-step log-positive value is \(\log2\), while the contraction's
-log-positive value is zero. The orbit majorant is therefore \(\log2\), and
-the centered residual is \(-\log2\). The signed contraction was erased before
-centering; the residual records only slack in the positive-log bound.
-
-#### Exercise 25: audit empty matrix dimension
-
-Why do the cocycle declarations remain meaningful when the index type is
-empty?
-
-**Solution.** The project defines its finite matrix norms and log-positive
-observables uniformly over finite index types. In empty dimension the
-observable is zero. Finite Birkhoff sums of zero are zero, so the centered
-observable is zero and satisfies every pointwise inequality. No division by
-the dimension appears in RMT-19.
-
-#### Exercise 26: locate the only cocycle use of \(hC\)
-
-Which declaration needs <code>HasIntegrableGeneratorLogPlus</code>, and why?
-
-**Solution.** Declaration 17 needs \(hC\) to package the centered cocycle
-family as an integrable candidate. The hypothesis propagates one-step
-integrability to every finite log-positive horizon. The pointwise bridge,
-definition, apply formula, nonpositivity, subadditivity, and normalized
-identity do not integrate anything and therefore do not need \(hC\).
-
-#### Exercise 27: explain the <code>rfl</code> bridge
-
-Why can declaration 12 be proved by reflexivity?
-
-**Solution.** The earlier <code>orbitLogPlusSum</code> definition expands to
-the same finite sum as
-<code>birkhoffSum C.base (C.logPlusNormObservable 1) n</code>. Their wrappers,
-index range, iterate convention, and summand agree definitionally. No theorem
-about matrices or measures is needed to identify them.
-
-#### Exercise 28: separate log-positive growth from signed growth
-
-Why can the centered observable not recover a signed Lyapunov exponent?
-
-**Solution.** The positive logarithm maps every norm at most one to zero.
-Information about contraction magnitude is already gone. Subtracting an
-orbit sum of the same truncated observable can reveal slack in its additive
-upper bound, but it cannot reconstruct discarded negative logarithms,
-invertibility, vector directions, or invariant subspaces.
-
-#### Exercise 29: delete probability and ergodicity
-
-Which RMT-19 declarations survive, and what changes?
-
-**Solution.** All eighteen public declarations survive because none assumes
-either probability normalization or ergodicity. The generic integrability
-statements still need an arbitrary measure and explicit preservation, and the
-cocycle candidate still needs \(hC\). What disappears are only interpretations
-and future routes that would call a probability-space ergodic theorem.
-
-#### Exercise 30: place Karlsson-Margulis correctly
-
-What does that reference contribute to this chapter?
-
-**Solution.** It marks a later geometric destination for integrable cocycles
-over ergodic measure-preserving systems, with almost-sure tracking in
-nonpositively curved spaces. It supplies context for why cocycle asymptotics
-matter. It supplies no lemma used by RMT-19 and authorizes no geodesic,
-Oseledets, or convergence claim here.
-
-### Summit: theorem design and review
-
-#### Exercise 31: recite the public source partition
-
-How are the eighteen declarations grouped?
-
-**Solution.** Declarations 1 through 3 define and simplify the generic
-residual. Declarations 4 through 10 give candidate methods for majorants,
-nonpositivity, subadditivity, integrability, and repackaging. Declaration 11
-is the generic normalized identity. Declarations 12 through 18 are the thin
-cocycle bridge, definition, properties, candidate wrapper, and normalized
-specialization.
-
-#### Exercise 32: recite the private helper order
-
-Which helper appears first, and why should prose record the order?
-
-**Solution.** <code>centeredProcess_add_le_of_add_le</code> appears first;
-<code>oneStepBirkhoffMajorant_of_add_le</code> appears second. The public
-majorant uses the second helper before later public declarations use the
-first. Recording textual source order lets readers audit the actual file
-rather than reconstructing a tidier but inaccurate narrative order.
-
-#### Exercise 33: remove integrability from the majorant
-
-Can declaration 4 be stated using only raw algebra?
-
-**Solution.** Yes. Its private helper already has exactly that signature: a
-raw shifted-subadditive inequality, a positive horizon, and an outcome. The
-public method remains attached to the candidate structure for discoverability
-and reuse. The helper prevents the stronger bundle from obscuring the theorem's
-true mathematical dependency.
-
-#### Exercise 34: explain why arbitrary composition threatens integrability
-
-Why retain measure preservation in declaration 9?
-
-**Solution.** An integrable function need not remain integrable after
-composition with an arbitrary map. For example, on natural numbers with
-exponentially decaying mass, a moderately growing integrable function can
-become exponentially growing after a map that sends \(k\) to \(2^k\).
-Measure preservation controls the pullback integral and blocks that failure.
-
-#### Exercise 35: remove \(X_0=0\) from candidate packaging
-
-Is the resulting theorem still sound?
-
-**Solution.** Yes, and declaration 10 already omits it. The centered process
-remains subadditive without normalization, and its horizons remain integrable
-under preservation. The constant-one example has \(Y_0=1\) yet still forms a
-valid candidate. Adding \(X_0=0\) would be a convenient but unnecessary
-restriction.
-
-#### Exercise 36: write the no-limit referee report
-
-Reject the claim “declaration 11 proves \(X_n/n\) converges.”
-
-**Solution.** Declaration 11 is a pointwise algebraic equality at each finite
-horizon. It provides no convergence theorem for the centered quotient and no
-pointwise ergodic theorem for the one-step average. Either branch can retain
-the whole asymptotic difficulty, as the additive nonconvergent binary example
-shows. The claim must be withdrawn until separate hypotheses and limit
-theorems are formalized.
-
-#### Exercise 37: motivate phase averaging as a next finite step
-
-Why might one study several shifted block phases next?
-
-**Solution.** A single block decomposition privileges one starting phase.
-Averaging finite inequalities over the possible offsets can spread boundary
-terms across phases and prepare estimates used in classical subadditive
-arguments. That remains finite combinatorics. It must be formalized with its
-own exact remainder ledger before any almost-everywhere conclusion is stated.
-
-#### Exercise 38: design an assumption-deletion test
-
-How should a proposed weaker theorem be audited before publication?
-
-**Solution.** Identify every field the proof reads, write a private or
-standalone raw helper with only those inputs, and compile boundary probes:
-zero horizon, nonnormalized time zero, zero measure, identity or periodic
-base, and empty index where relevant. Then construct a countermodel for each
-premise one hopes to remove. A passing happy-path example is not enough.
-
-#### Exercise 39: reject an Oseledets upgrade
-
-Why is an invariant splitting far beyond this module?
-
-**Solution.** RMT-19 handles one scalar log-positive norm envelope. An
-Oseledets theorem requires a multiplicative cocycle framework with substantial
-measurability and integrability assumptions, almost-everywhere asymptotics,
-signed growth rates, and invariant vector-space structure. None of those
-objects is constructed by subtracting a finite one-step orbit sum.
-
-#### Exercise 40: summarize the summit in one argument
-
-What is the strongest honest description of RMT-19?
-
-**Solution.** RMT-19 defines the residual obtained by subtracting the additive
-one-step Birkhoff majorant from a finite shifted-subadditive process. It proves
-positive-horizon nonpositivity, isolates the exact time-zero normalization for
-a uniform form, preserves shifted subadditivity, preserves finite-horizon
-integrability under one-step measure preservation, and gives a totalized
-normalized identity. Its cocycle layer is pointwise except for one explicit
-integrability wrapper. It proves no asymptotic theorem.
-
-## Read and reproduce the checked Lean slice
-
-The leaf module is
-<code>NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering</code>. It
-imports the finite-block results from RMT-18 and Mathlib's Birkhoff-average
-definition. The new public surface is intentionally small: eighteen
-declarations and two private proof helpers.
-
-From the repository root, load the pinned Lean toolchain and compile the leaf
-with warnings treated as errors:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
-~~~
-
-Build the module and its dependencies:
-
-~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
-~~~
-
-Compile the cocycle aggregator and root aggregator directly if auditing import
-discipline:
-
-~~~sh
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles.lean
-lake env lean -DwarningAsError=true NonlinearDynamics.lean
-~~~
-
-Return to the repository root and validate teaching source plus Hugo links:
-
-~~~sh
-cd ..
-python3 scripts/check_teaching_source_hygiene.py
-make site-check
-~~~
-
-The repository-wide gate is <code>make check</code>. A successful build proves
-that Lean accepted the declarations and that the site source passed its
-automated checks. It does not perform the pending human mathematical,
-accessibility, source, or editorial review. This page is publicly available as
-an open working note while those reviews remain pending.
-
-## What the milestone establishes
-
-| Question | Checked answer |
+| Helper | Exact dependency |
 |---|---|
-| What is centered? | The finite process after subtracting its one-step orbit sum |
-| Is the operation expectation centering? | No |
-| Does the residual equal the original at time zero? | Yes |
-| Does the residual vanish at one step? | Yes |
-| Is the one-step sum a positive-horizon majorant? | Yes, from raw shifted subadditivity |
-| Is the majorant uniform at time zero? | Yes only under \(X_0=0\) |
-| Is the residual nonpositive at positive horizons? | Yes |
-| Is it uniformly nonpositive? | Yes only under \(X_0=0\) |
-| Does centering preserve shifted subadditivity? | Yes, by finite algebra |
-| Does centering preserve finite-horizon integrability? | Yes when \(T\) preserves \(\mu\) |
-| Does centered candidate packaging require \(X_0=0\)? | No |
-| Does any generic result require probability? | No |
-| Does any generic result require ergodicity? | No |
-| Is the normalized identity valid at \(n=0\)? | Yes, under totalized field operations |
-| Is the cocycle orbit sum really a Birkhoff sum? | Yes, definitionally |
-| Do cocycle pointwise results require \(hC\)? | No |
-| Which cocycle result requires \(hC\)? | Only centered candidate packaging |
-| Does empty matrix dimension remain valid? | Yes |
-| Does the slice establish convergence? | No |
+| <code>centeredProcess_add_le_of_add_le</code> | A raw shifted-subadditive inequality and the Birkhoff addition law |
+| <code>oneStepBirkhoffMajorant_of_add_le</code> | A raw shifted-subadditive inequality, positive horizon, and induction |
 
-## Exhaustive nonclaims
+### Public declarations in source order
 
-The module and this chapter do not prove or define any of the following:
+| # | Declaration | Exact role |
+|---:|---|---|
+| 1 | <code>centeredProcess</code> | Defines \(Y_n=X_n-\operatorname{birkhoffSum}(X_1)\) |
+| 2 | <code>centeredProcess_zero</code> | Proves \(Y_0=X_0\) |
+| 3 | <code>centeredProcess_one</code> | Proves \(Y_1=0\) |
+| 4 | <code>oneStepBirkhoffMajorant_of_ne_zero</code> | Majorizes every positive horizon |
+| 5 | <code>oneStepBirkhoffMajorant</code> | Includes time zero under \(X_0=0\) |
+| 6 | <code>centeredProcess_nonpos_of_ne_zero</code> | Makes every positive-horizon residual nonpositive |
+| 7 | <code>centeredProcess_nonpos</code> | Makes every residual nonpositive under \(X_0=0\) |
+| 8 | <code>centeredProcess_add_le</code> | Preserves shifted subadditivity |
+| 9 | <code>integrable_centeredProcess</code> | Proves each \(Y_n\) integrable when \(T\) preserves \(\mu\) |
+| 10 | <code>centeredProcess_candidate</code> | Repackages the centered family as an integrable subadditive candidate |
+| 11 | <code>normalized_eq_centered_add_birkhoffAverage</code> | Gives the totalized finite normalized identity |
+| 12 | <code>birkhoffSum_logPlusNormObservable_one_eq_orbitLogPlusSum</code> | Identifies the cocycle orbit sum definitionally |
+| 13 | <code>centeredLogPlusNormObservable</code> | Defines the cocycle-centered positive-log process |
+| 14 | <code>centeredLogPlusNormObservable_apply</code> | Expands it as \(P_n-S_n\) |
+| 15 | <code>centeredLogPlusNormObservable_nonpos</code> | Proves cocycle-centered nonpositivity without integrability |
+| 16 | <code>centeredLogPlusNormObservable_add_le</code> | Proves cocycle-centered shifted subadditivity |
+| 17 | <code>centeredLogPlusNormObservable_candidate</code> | Packages the cocycle family under one-step integrability |
+| 18 | <code>logPlusNormObservable_normalized_eq_centered_add_birkhoffAverage</code> | Specializes the finite normalized identity |
 
-1. expectation centering of \(X_n\);
-2. a mean-zero property for \(Y_n\);
-3. equality between \(\int A_n\,d\mu\) and \(\int X_n\,d\mu\);
-4. probability normalization of \(\mu\);
-5. ergodicity of \(T\);
-6. invertibility of \(T\);
-7. mixing, weak mixing, or independence;
-8. identical distribution of one-step observations;
-9. stationarity beyond the explicit orbit presentation;
-10. convergence of \(A_n/n\) at any outcome;
-11. almost-everywhere convergence of \(A_n/n\);
-12. convergence of \(Y_n/n\);
-13. almost-everywhere convergence of \(Y_n/n\);
-14. convergence of \(X_n/n\);
-15. almost-everywhere convergence of \(X_n/n\);
-16. convergence in probability or in measure;
-17. convergence in \(L^1\) or any other \(L^p\) space;
-18. uniform integrability of a normalized family;
-19. domination sufficient for exchanging a limit and an integral;
-20. a pointwise Birkhoff ergodic theorem;
-21. a mean ergodic theorem;
-22. Kingman's subadditive ergodic theorem;
-23. a maximal inequality;
-24. a phase-averaged block estimate;
-25. an invariant limiting random variable;
-26. constancy of a limit under ergodicity;
-27. identification of a limit with an infimum of expected rates;
-28. a signed logarithmic growth process;
-29. a top Lyapunov exponent;
-30. a lower or negative Lyapunov exponent;
-31. a Furstenberg-Kesten theorem;
-32. an Oseledets multiplicative ergodic theorem;
-33. an invariant filtration or splitting;
-34. invertibility of cocycle matrices;
-35. control of negative logarithmic tails;
-36. a geodesic tracking theorem;
-37. a nonpositive-curvature hypothesis or conclusion;
-38. a stochastic-stability statement;
-39. a thermodynamic or infinite-volume limit; or
-40. any assertion that a finite identity supplies an asymptotic theorem.
+Declarations 4 through 10 are methods in the
+<code>IsIntegrableSubadditiveProcessCandidate</code> namespace. Declarations
+12 through 18 live in the <code>DiscreteMatrixCocycle</code> namespace.
 
-The long list is deliberate. The notation \(A_n/n\) looks like an ergodic
-average, and the notation \(X_n/n\) looks like a growth rate. Those visual
-similarities are invitations to ask the next theorem, not licenses to assume
-its conclusion.
+## The cocycle specialization is intentionally thin
+
+For a discrete matrix cocycle, the earlier module defines
+
+\[
+P_n(\omega)=\log^+\lVert C(n,\omega)\rVert
+\]
+
+and its one-step orbit sum
+
+\[
+S_n(\omega)=\sum_{j=0}^{n-1}P_1(T^j\omega).
+\]
+
+The target proves by reflexivity that this \(S_n\) is Mathlib's
+<code>birkhoffSum</code> with the same base, range, and iterate convention.
+It then defines
+
+\[
+Y_n^C=P_n-S_n.
+\]
+
+The earlier pointwise majorant \(P_n\le S_n\) immediately yields
+\(Y_n^C\le0\), including time zero because \(P_0=0\). The earlier shifted
+subadditivity of \(P_n\) feeds the raw centering helper and proves shifted
+subadditivity of \(Y^C\).
+
+These pointwise facts need no
+<code>HasIntegrableGeneratorLogPlus</code>. That hypothesis enters only when
+declaration 17 packages every centered horizon as integrable.
+
+The cocycle normalized identity is
+
+\[
+\frac{P_n(\omega)}{n}
+{} =
+\frac{Y_n^C(\omega)}{n}
+{} +
+\operatorname{birkhoffAverage}(T,P_1,n,\omega).
+\]
+
+It remains a finite equality. Positive log has already clipped contraction,
+so the residual cannot reconstruct signed logarithmic growth, inverse norms,
+or an Oseledets splitting.
+
+{{< reference-figure
+  src="normalized-split-without-a-limit.svg"
+  alt="A normalized finite process value splits into a normalized centered residual and a one-step orbit average. Both branches carry unresolved convergence questions, and a footer says that exact equality at every finite horizon is not a limit theorem."
+  caption="**Finite identity, open asymptotics:** dividing the defining equality by \(n\) reorganizes the same finite quantities. A limit for the left side still requires control of both right-hand branches through additional theorems and assumptions."
+>}}
+
+## Edge cases that determine the theorem statements
+
+### Time zero is totalized, not ignored
+
+Mathlib's real division and Birkhoff average are total at zero:
+
+\[
+0^{-1}=0,\qquad \operatorname{birkhoffAverage}(T,f,0,\omega)=0.
+\]
+
+Therefore declaration 11 is algebraically true at \(n=0\). This does not make
+\(X_0/0\) a classical growth rate; it records Lean's totalized field
+operations.
+
+### Candidate packaging does not need \(X_0=0\)
+
+The centered candidate needs integrability and shifted subadditivity. Neither
+field asks for nonpositivity or a normalized time-zero value. The constant-one
+model has \(Y_0=1\) and still forms a valid centered candidate.
+
+### The zero measure is allowed
+
+The generic module assumes an arbitrary measure. Under the zero measure,
+integrability is trivial and the identity map preserves the measure. No hidden
+probability instance appears.
+
+### Empty matrix dimension is allowed
+
+The cocycle layer assumes a finite matrix index type but not a nonempty one.
+In empty dimension the positive-log observable and its orbit sum are both
+zero, so the centered cocycle process is zero.
+
+### Additive processes are the zero-residual boundary
+
+If \(X_n\) already equals the Birkhoff sum of \(X_1\), then \(Y_n=0\). The
+normalized identity reduces to
+
+\[
+X_n/n=\operatorname{birkhoffAverage}(T,X_1,n).
+\]
+
+That still does not force the orbit average to converge. One can build a
+single binary orbit with alternating blocks whose lengths dominate everything
+before them; its empirical averages have subsequences near zero and one.
+
+## Exercises from foothill to summit
+
+### Foothill
+
+1. Starting at each state, compute \(S_2\) and recover
+   \([10,3,11]\).
+2. Subtract \(2(2-1)\) and recover \(X_2=[8,1,9]\).
+3. Verify \(Y_2=[-2,-2,-2]\).
+4. Compute the three absolute means at horizon three.
+5. Check \(2=-2+4\) in the normalized horizon-three split.
+6. Explain why every function in the ledger is measurable.
+
+### Ridge
+
+7. Prove the exact penalty identity with the \(2mn\) cross term.
+8. Derive shifted subadditivity for the three-state process.
+9. Recompute the \(m=1,n=2,\omega=2\) correct split.
+10. Replace \(T^m\omega\) by \(T^n\omega\) and identify the false inequality.
+11. Prove the Birkhoff addition law by dividing the index range into its first
+    \(m\) and next \(n\) terms.
+12. Reconstruct positive-horizon majorization by induction.
+13. Use the constant-one process to refute uniform nonpositivity without
+    \(X_0=0\).
+14. Explain why expectation centering has mean zero but does not prove the
+    target sign theorem.
+
+### Summit
+
+15. Translate <code>integrable_centeredProcess</code> into its three closure
+    operations.
+16. Audit all eighteen public declarations and identify which proof fields
+    each consumes.
+17. Explain why the normalized identity has no analytic premises.
+18. Build an additive process whose normalized orbit sum fails to converge.
+19. State the additional assumptions and theorem needed to obtain an
+    almost-everywhere Birkhoff limit.
+20. State the stronger assumptions needed for a subadditive ergodic limit.
+21. Explain why the cocycle-centered positive-log process cannot recover
+    negative logarithmic growth.
+22. Describe what a derivative-cocycle bridge would need before this scalar
+    reduction could speak about nonlinear dynamics.
+
+## Reproduce the chapter without crossing the host boundary
+
+The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
+Linux host. From the repository root, the page-owned and workstation-safe
+checks are:
+
+~~~sh
+site/content/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes/generate-card.sh --verify
+make content-hygiene
+make site-check
+git diff --check
+~~~
+
+These commands do not compile the project. The target module imports Mathlib,
+so its warning-fatal check belongs on approved Linux compute:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
+~~~
+
+The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
+This teaching rebuild does not claim that any project module was recompiled on
+the Mac. Passing automated gates would still leave human mathematical,
+source, accessibility, scientific-integrity, and editorial review pending.
+
+## Summit: what has and has not been proved
+
+| Topic | Status in RMT-19 |
+|---|---|
+| Centered process \(X_n-\) one-step Birkhoff sum | Defined |
+| Time-zero value | Exactly \(X_0\) |
+| One-step centered value | Exactly zero |
+| Positive-horizon one-step majorant | Checked from shifted subadditivity |
+| Uniform majorant including zero | Checked under \(X_0=0\) |
+| Positive-horizon centered nonpositivity | Checked |
+| Uniform centered nonpositivity | Checked under \(X_0=0\) |
+| Centered shifted subadditivity | Checked by finite algebra |
+| Centered finite-horizon integrability | Checked under measure preservation |
+| Centered candidate packaging | Checked; no \(X_0=0\) needed |
+| Totalized finite normalized identity | Checked |
+| Cocycle Birkhoff-sum bridge | Definitionally checked |
+| Cocycle-centered pointwise sign and subadditivity | Checked without integrability |
+| Cocycle-centered integrable candidate | Checked under one-step positive-log integrability |
+| Probability normalization or expectation centering | Not assumed |
+| Mean-zero centered residual | Not proved and generally false |
+| Ergodicity, mixing, independence, or invertible base | Not assumed |
+| Convergence of the one-step Birkhoff average | Not proved |
+| Convergence of the normalized centered residual | Not proved |
+| Convergence of the normalized original process | Not proved |
+| Pointwise Birkhoff or Kingman theorem | Not invoked |
+| Signed logarithmic growth or inverse-tail control | Not proved |
+| Lyapunov exponent, spectrum, filtration, or splitting | Not defined or proved |
+| Nonlinear derivative or random-Jacobian representation | Not connected |
+
+The strongest honest summary is finite: subtracting the exact additive
+one-step orbit route exposes a nonpositive residual, preserves the
+shifted-subadditive structure, and, under measure preservation, preserves
+finite-horizon integrability. The normalized split prepares later arguments
+but proves no limit.
 
 ## Where to continue
 
 [Finite Block Decomposition for Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-block-decomposition-for-subadditive-processes" >}})
-is the immediate predecessor. It proves the finite block-and-remainder bounds
-from which the one-step majorant can also be viewed as the special block
-length one case.
+is the immediate predecessor. It develops exact block-and-remainder bounds;
+the present one-step majorant is the block-length-one reduction.
 
 [Orbit-Majorant Centering Before Any Ergodic Limit]({{< relref "/development-notebook/2026/07/orbit-majorant-centering-for-subadditive-cocycles" >}})
 is the Development Notebook companion that follows the Lean implementation
-line by line, records the compiled boundary probes, and gives the exact
-commands used for the milestone.
+and records its boundary probes.
 
 The {{< refterm "orbit-majorant-centering" "orbit-majorant centering" >}}
-glossary chapter is the compact operational definition and counterexample
-reference. The {{< refterm "birkhoff-sum" "Birkhoff sum" >}} chapter isolates
-the finite orbit-sum convention used throughout.
+glossary entry gives the compact operational definition. The
+{{< refterm "birkhoff-sum" "Birkhoff sum" >}} entry isolates the finite orbit
+convention.
 
 [Finite Phase Averaging for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-phase-averaging-for-nonpositive-subadditive-processes" >}})
-is the immediate successor. It sums the shifted block bounds over every
-residue phase, keeps the exact horizon \(bq+b+r\), and turns the powered-map
-sums into one finite sliding Birkhoff sum along the original base map. The
-{{< refterm "phase-averaging" "phase averaging" >}} glossary chapter gives
-the compact definition, while
-[Average the Phases: Sliding-Block Bounds for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}})
-maps that successor's checked Lean implementation.
-
-The successor also documents a finite indexing inconsistency in the
-motivating phase display from [Lalley's notes](#ref-centering-lalley) and states
-the repaired count explicitly. It remains a finite theorem. A pointwise or
-almost-everywhere result still belongs only after the required
-measure-theoretic infrastructure is formalized.
+is the immediate finite successor. It averages shifted block bounds across
+residue phases. It remains finite combinatorics, not an almost-everywhere
+theorem.
 
 ## References
-
-All web links below were checked on 2026-07-21. The pinned local Mathlib
-checkout is the authority for exact declaration names and definitions.
 
 <a id="ref-centering-birkhoff-basic"></a>**Mathlib contributors.**
 [Birkhoff sums](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/BirkhoffSum/Basic.html),
 Mathlib 4 documentation. The exact pinned source defines the finite sum and
-its zero, one, successor, and addition laws in
-[lines 31 through 57 at commit 81a5d257](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/BirkhoffSum/Basic.lean#L31-L57).
-These are the finite algebraic identities used by both private helpers.
+its zero, one, successor, and shifted addition laws.
 
 <a id="ref-centering-birkhoff-average"></a>**Mathlib contributors.**
 [Birkhoff averages](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/BirkhoffSum/Average.html),
-Mathlib 4 documentation. The pinned
-[definition and zero/one laws](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/BirkhoffSum/Average.lean#L42-L59)
-record the totalized finite average used in declaration 11.
+Mathlib 4 documentation. The pinned definition records the totalized finite
+average used by the normalized identity.
 
 <a id="ref-centering-preserving"></a>**Mathlib contributors.**
 [Measure-preserving maps](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/MeasurePreserving.html),
-Mathlib 4 documentation. The pinned
-[definition](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/Ergodic/MeasurePreserving.lean#L43-L48)
-is the exact analytic premise used to transport integrability along the base
-orbit.
+Mathlib 4 documentation. This is the analytic interface used to transport
+integrability along the orbit.
 
 <a id="ref-centering-integrable"></a>**Mathlib contributors.**
 [Integrable functions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Function/L1Space/Integrable.html),
-Mathlib 4 documentation. The pinned source records
-[composition under measure preservation and finite-sum closure](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/L1Space/Integrable.lean#L381-L449).
-Those closure results explain why the finite orbit sum and centered difference
-are integrable.
+Mathlib 4 documentation. The pinned source supplies composition under
+measure preservation and closure under finite sums and subtraction.
 
 <a id="ref-centering-kingman"></a>**J. F. C. Kingman.**
 [The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
-This is the primary asymptotic context. RMT-19 proves a finite reduction only
-and neither invokes nor reproduces Kingman's theorem.
+*Journal of the Royal Statistical Society: Series B* 30(3), 499–510, 1968.
+This is primary asymptotic context. RMT-19 proves a finite reduction only.
 
 <a id="ref-centering-lalley"></a>**Steven P. Lalley.**
 [Kingman's Subadditive Ergodic Theorem](https://galton.uchicago.edu/~lalley/Courses/Graz/Kingman.pdf),
 University of Chicago lecture notes, undated, accessed 2026-07-21. These notes
-are used only as a teaching guide to the later finite-block and ergodic proof
-architecture, not as the source of an upstream Lean theorem.
+serve only as a teaching guide to later proof architecture.
 
 <a id="ref-centering-karlsson-margulis"></a>**Anders Karlsson and Gregory A.
 Margulis.**
 [A Multiplicative Ergodic Theorem and Nonpositively Curved Spaces](https://doi.org/10.1007/s002200050750),
-*Communications in Mathematical Physics* 208, 107-123, 1999. This paper is a
-later geometric destination for integrable cocycles. Its almost-sure geodesic
-tracking conclusion is not claimed, used, or formalized in RMT-19.
+*Communications in Mathematical Physics* 208, 107–123, 1999. This paper is a
+later geometric destination. Its almost-sure tracking theorem is not used or
+formalized here.
 
 The exact upstream revision audited for this chapter is Mathlib commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),

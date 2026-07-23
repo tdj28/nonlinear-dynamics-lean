@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720"
+     viewBox="0 0 1200 720" role="img"
+     aria-labelledby="shiftMissTitle shiftMissDesc">
+  <title id="shiftMissTitle">Correct shifted split and three seductive centering mistakes</title>
+  <desc id="shiftMissDesc">Starting at state two, split horizon three into an early block of length one and a later block of length two. The correct later block begins at T to the first power of state two, which is state zero. Its process value eight plus the early value two gives ten, correctly bounding the full value six. The wrong shift T squared begins at state one, giving later value one and right side three, so six less than or equal to three is false. The lower row compares the correct residual minus six, the wrong-sign residual plus six, and expectation-centering values five, minus three, minus two, whose mean is zero but which are neither identically zero nor pointwise nonpositive.</desc>
+  <rect width="1200" height="720" fill="#F7F1E7"/>
+  <style>
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+    .eyebrow{font-size:17px;font-weight:700;letter-spacing:1.5px;fill:#A45524}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:17px;fill:#4D5B6B}
+    .h{font-size:17px;font-weight:700}
+    .label{font-size:14px;fill:#4D5B6B}
+    .value{font-size:23px;font-weight:700}
+    .small{font-size:14px;fill:#4D5B6B}
+    .white{fill:#FFFDF8}
+  </style>
+  <defs>
+    <marker id="shiftArrow" markerWidth="10" markerHeight="10"
+            refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#A45524"/>
+    </marker>
+  </defs>
+
+  <text x="60" y="48" class="sans eyebrow">SHIFT AND CENTERING AUDIT</text>
+  <text x="60" y="88" class="serif title">The exponent on T is the length of the early block</text>
+  <text x="60" y="118" class="sans sub">Start at state 2 · split 3 = 1 + 2 · full process value X₃(2) = 6</text>
+
+  <rect x="60" y="150" width="1080" height="210" rx="20" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+  <text x="85" y="183" class="sans h">CORRECT: later block starts at Tᵐω with m = 1</text>
+  <g transform="translate(90 207)">
+    <rect width="190" height="104" rx="16" fill="#FFFDF8" stroke="#6D7F91" stroke-width="2"/>
+    <text x="18" y="28" class="sans label">start ω</text><text x="168" y="32" text-anchor="end" class="serif value">2</text>
+    <text x="18" y="59" class="sans label">early X₁(2)</text><text x="168" y="63" text-anchor="end" class="serif value">2</text>
+    <text x="18" y="88" class="sans small">one state consumed</text>
+  </g>
+  <path d="M296 259 H385" stroke="#A45524" stroke-width="4" fill="none" marker-end="url(#shiftArrow)"/>
+  <text x="340" y="244" text-anchor="middle" class="sans label">T¹</text>
+  <g transform="translate(405 207)">
+    <rect width="230" height="104" rx="16" fill="#FFFDF8" stroke="#6D7F91" stroke-width="2"/>
+    <text x="18" y="28" class="sans label">correct later start</text><text x="208" y="32" text-anchor="end" class="serif value">0</text>
+    <text x="18" y="59" class="sans label">later X₂(0)</text><text x="208" y="63" text-anchor="end" class="serif value">8</text>
+    <text x="18" y="88" class="sans small">states 0 then 1</text>
+  </g>
+  <g transform="translate(680 207)">
+    <rect width="420" height="104" rx="16" fill="#16243A"/>
+    <text x="210" y="31" text-anchor="middle" class="sans label white">shifted-subadditive bound</text>
+    <text x="210" y="66" text-anchor="middle" class="serif value white" style="fill:#FFFDF8">6 ≤ 8 + 2 = 10</text>
+    <text x="210" y="90" text-anchor="middle" class="sans small white" style="fill:#D9E1EA">orbit sums also split exactly: 12 = 10 + 2</text>
+  </g>
+
+  <rect x="60" y="382" width="1080" height="126" rx="20" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+  <text x="85" y="415" class="sans h">WRONG SHIFT: using Tⁿω with n = 2 skips to state 1</text>
+  <text x="85" y="451" class="sans label">early block</text>
+  <text x="180" y="456" class="serif value">X₁(2) = 2</text>
+  <text x="385" y="451" class="sans label">wrong later block</text>
+  <text x="530" y="456" class="serif value">X₂(1) = 1</text>
+  <rect x="760" y="411" width="340" height="68" rx="14" fill="#A45524"/>
+  <text x="930" y="440" text-anchor="middle" class="sans label white">false conclusion</text>
+  <text x="930" y="468" text-anchor="middle" class="serif value white" style="fill:#FFFDF8">6 ≤ 1 + 2 = 3 ✗</text>
+  <text x="85" y="486" class="sans small">The wrong process pieces total 2 + 1 = 3, not the true full process value X₃(2) = 6.</text>
+
+  <text x="60" y="555" class="sans h">Three operations that sound like “centering”</text>
+  <g transform="translate(60 580)">
+    <rect width="335" height="100" rx="18" fill="#EAF1E5" stroke="#5C7A50" stroke-width="2"/>
+    <text x="20" y="29" class="sans label">project definition at n = 3</text>
+    <text x="20" y="61" class="serif value">Y₃ = X₃ − S₃ = −6</text>
+    <text x="20" y="85" class="sans small">nonpositive slack</text>
+  </g>
+  <g transform="translate(433 580)">
+    <rect width="335" height="100" rx="18" fill="#F3E8E0" stroke="#A45524" stroke-width="2"/>
+    <text x="20" y="29" class="sans label">wrong subtraction order</text>
+    <text x="20" y="61" class="serif value">S₃ − X₃ = +6</text>
+    <text x="20" y="85" class="sans small">wrong sign; not nonpositive</text>
+  </g>
+  <g transform="translate(805 580)">
+    <rect width="335" height="100" rx="18" fill="#E8F0F7" stroke="#416B91" stroke-width="2"/>
+    <text x="20" y="29" class="sans label">subtract E[X₁] = 4</text>
+    <text x="20" y="61" class="serif value">[5, −3, −2]</text>
+    <text x="20" y="85" class="sans small">mean zero, but not pointwise zero</text>
+  </g>
+
+  <text x="60" y="708" class="sans small">Only the first operation is orbit-majorant compensation. Expectation centering is valid mathematics, but it proves a different statement.</text>
+</svg>
