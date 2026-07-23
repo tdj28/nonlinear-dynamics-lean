@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720"
+     viewBox="0 0 1000 720" role="img"
+     aria-labelledby="reconstructionTitle reconstructionDesc">
+  <title id="reconstructionTitle">Four real coordinates reconstruct one two-by-two Hermitian matrix</title>
+  <desc id="reconstructionDesc">The coordinate ledger contains diagonal values 2 and minus 1, upper real part 1, and upper imaginary part 2. Direct assembly puts the diagonal values in place, puts real 1 and imaginary plus 2 above the diagonal, and puts real 1 and imaginary minus 2 below it. A near-miss keeps imaginary plus 2 below the diagonal and fails conjugate symmetry.</desc>
+  <rect width="1000" height="720" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:19px;font-weight:700}
+    .h{font-size:15px;font-weight:700}
+    .s{font-size:13px}
+    .m{font-size:12px;fill:#5A544C}
+    .v{font-size:17px;font-weight:700}
+  </style>
+  <defs>
+    <marker id="reconstructionArrow" markerWidth="8" markerHeight="8"
+            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <pattern id="determinedPattern" width="8" height="8"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#F3E8E0"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#D7B99B" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <text x="30" y="34" class="t title">One four-number ledger, one exact matrix, one revealing near-miss</text>
+  <text x="30" y="58" class="t m">Every visible value comes from the running example; labels and patterns carry the meaning without relying on color.</text>
+
+  <rect x="30" y="86" width="260" height="520" rx="14"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
+  <text x="160" y="118" text-anchor="middle" class="t h">FREE COORDINATE LEDGER</text>
+  <text x="160" y="140" text-anchor="middle" class="t m">four real choices</text>
+
+  <rect x="54" y="166" width="212" height="76" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="70" y="191" class="t s">diagonal, row 0</text>
+  <text x="250" y="218" text-anchor="end" class="t v">2</text>
+
+  <rect x="54" y="258" width="212" height="76" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="70" y="283" class="t s">diagonal, row 1</text>
+  <text x="250" y="310" text-anchor="end" class="t v">-1</text>
+
+  <rect x="54" y="350" width="212" height="76" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="70" y="375" class="t s">upper entry, real part</text>
+  <text x="250" y="402" text-anchor="end" class="t v">1</text>
+
+  <rect x="54" y="442" width="212" height="76" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="70" y="467" class="t s">upper entry, imaginary part</text>
+  <text x="250" y="494" text-anchor="end" class="t v">+2</text>
+
+  <text x="160" y="551" text-anchor="middle" class="t h">COUNT: 4 REAL NUMBERS</text>
+  <text x="160" y="574" text-anchor="middle" class="t m">no independent lower entry</text>
+
+  <path d="M292 204 C324 204,324 203,354 203" fill="none"
+        stroke="#A67C52" stroke-width="2" marker-end="url(#reconstructionArrow)"/>
+  <path d="M292 296 C340 296,438 325,502 325" fill="none"
+        stroke="#A67C52" stroke-width="2" marker-end="url(#reconstructionArrow)"/>
+  <path d="M292 388 C322 388,323 218,494 218" fill="none"
+        stroke="#A67C52" stroke-width="2" marker-end="url(#reconstructionArrow)"/>
+  <path d="M292 480 C320 480,329 240,494 240" fill="none"
+        stroke="#A67C52" stroke-width="2" marker-end="url(#reconstructionArrow)"/>
+
+  <rect x="330" y="86" width="350" height="520" rx="14"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
+  <text x="505" y="118" text-anchor="middle" class="t h">DIRECT ASSEMBLY</text>
+  <text x="505" y="140" text-anchor="middle" class="t m">rows and columns 0, 1</text>
+
+  <rect x="355" y="163" width="140" height="100" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="425" y="187" text-anchor="middle" class="t m">row 0, column 0</text>
+  <text x="425" y="220" text-anchor="middle" class="t v">real 2</text>
+  <text x="425" y="244" text-anchor="middle" class="t m">diagonal</text>
+
+  <rect x="505" y="163" width="140" height="100" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="575" y="187" text-anchor="middle" class="t m">row 0, column 1</text>
+  <text x="575" y="216" text-anchor="middle" class="t h">real 1</text>
+  <text x="575" y="239" text-anchor="middle" class="t h">imaginary +2</text>
+
+  <rect x="355" y="275" width="140" height="100" rx="10"
+        fill="url(#determinedPattern)" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="425" y="299" text-anchor="middle" class="t m">row 1, column 0</text>
+  <text x="425" y="328" text-anchor="middle" class="t h">real 1</text>
+  <text x="425" y="351" text-anchor="middle" class="t h">imaginary -2</text>
+
+  <rect x="505" y="275" width="140" height="100" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
+  <text x="575" y="299" text-anchor="middle" class="t m">row 1, column 1</text>
+  <text x="575" y="332" text-anchor="middle" class="t v">real -1</text>
+  <text x="575" y="356" text-anchor="middle" class="t m">diagonal</text>
+
+  <path d="M576 265 C576 306,534 325,498 325" fill="none"
+        stroke="#A67C52" stroke-width="2.4" stroke-dasharray="6 4"
+        marker-end="url(#reconstructionArrow)"/>
+  <text x="505" y="421" text-anchor="middle" class="t h">CONJUGATE THE REFLECTED ENTRY</text>
+  <text x="505" y="445" text-anchor="middle" class="t s">keep real 1; change imaginary +2 to -2</text>
+  <rect x="363" y="472" width="284" height="80" rx="10"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="505" y="502" text-anchor="middle" class="t h">HERMITIAN CHECK PASSES</text>
+  <text x="505" y="526" text-anchor="middle" class="t s">diagonal real; lower is conjugate of upper</text>
+
+  <rect x="720" y="86" width="250" height="520" rx="14"
+        fill="#FBF9F6" stroke="#C4B8A8" stroke-width="1.6"/>
+  <text x="845" y="118" text-anchor="middle" class="t h">NEAR-MISS</text>
+  <text x="845" y="140" text-anchor="middle" class="t m">plain copying is not enough</text>
+
+  <rect x="748" y="180" width="194" height="92" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.4"/>
+  <text x="845" y="207" text-anchor="middle" class="t m">upper entry</text>
+  <text x="845" y="235" text-anchor="middle" class="t h">real 1, imaginary +2</text>
+  <text x="845" y="257" text-anchor="middle" class="t m">supplied</text>
+
+  <path d="M845 276 L845 328" fill="none" stroke="#A67C52"
+        stroke-width="2" marker-end="url(#reconstructionArrow)"/>
+  <text x="865" y="305" class="t m">copy only</text>
+
+  <rect x="748" y="334" width="194" height="92" rx="10"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"
+        stroke-dasharray="7 4"/>
+  <text x="845" y="361" text-anchor="middle" class="t m">lower entry</text>
+  <text x="845" y="389" text-anchor="middle" class="t h">real 1, imaginary +2</text>
+  <text x="845" y="411" text-anchor="middle" class="t m">wrong sign</text>
+
+  <line x1="773" y1="450" x2="917" y2="548" stroke="#934F1F" stroke-width="4"/>
+  <line x1="917" y1="450" x2="773" y2="548" stroke="#934F1F" stroke-width="4"/>
+  <text x="845" y="579" text-anchor="middle" class="t h">HERMITIAN CHECK FAILS</text>
+
+  <rect x="30" y="630" width="940" height="60" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="500" y="655" text-anchor="middle" class="t h">TAKEAWAY: THE LOWER ENTRY IS DETERMINED, NOT A FIFTH OR SIXTH REAL CHOICE</text>
+  <text x="500" y="678" text-anchor="middle" class="t s">For a two-by-two Hermitian matrix, four real inputs reconstruct every cell and conjugation is the decisive operation.</text>
+</svg>

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:09 PDT
+Last updated: 2026-07-22 18:13 PDT
 
-Audited baseline: `main` at `2185d11`
+Audited baseline: `main` at `3136b81`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -178,6 +178,15 @@ the glossary release closed merely because all 62 content rewrites exist. The
 separate stale “worksheet not run” finding is already cleared: the exact
 parity/Fekete `Std` file now runs under Lean 4.32.0 and prints the seven
 recorded ratios followed by `true` and `true`.
+
+The Deep Dive textbook pass is now **1 of 36 chapters complete**. *Finite
+Hermitian Matrices from Coordinates* carries the exact ledger
+`(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
+near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
+cross inner product `-1`. It has three complementary accessible figures,
+four human/paper/Lean bridges, a token map at each bridge, a cloud-only
+project check, and a local `Std` tutorial executed successfully under Lean
+4.32.0 with outputs `[true, true, false]` and `[10, 15, -1, 20]`.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3065,6 +3074,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `3136b81`: rerun the exact parity/Fekete `Std` tutorial under Lean
+  4.32.0, record its seven normalized ratios and two successful finite
+  checks, and clear the stale workstation-execution claim.
 - `2185d11`: finish the 62-page example-first glossary content pass with
   exact spike-tail, residue-phase, and ordered-packing ledgers; execute all
   three local `Std` worksheets, regenerate their numeric cards, and record

@@ -2,17 +2,17 @@
 title: "Finite Hermitian Matrices from Coordinates"
 slug: "finite-hermitian-matrices-from-coordinates"
 date: 2026-07-21
-summary: "A textbook ascent from the nonredundant real and complex coordinates of a finite Hermitian matrix to direct assembly, Hermiticity, measurability, and the exact zero-dimensional boundary."
-lead: "A Hermitian matrix does not have a free complex variable in every entry. Its true coordinates are a real diagonal and a complex strict upper triangle, assembled without hiding a scale."
+summary: "Build one exact two-by-two Hermitian matrix from four real coordinates, then climb through reconstruction, dimension counting, Frobenius geometry, measurability, Lean syntax, and the zero-dimensional boundary."
+lead: "Start with four integers, watch conjugate reflection fill a matrix, and keep the same example in view until the abstract coordinate map and its Lean proof feel inevitable."
 draft: false
 pro_reviewed: false
 level: "Finite matrix foundations to measurable assembly"
-reading_time: "50 to 70 minutes"
-prerequisites: "Finite sets, complex conjugation, matrices, and functions; measurable spaces and Lean subtypes are introduced when necessary"
+reading_time: "65 to 85 minutes"
+prerequisites: "Arithmetic with complex numbers and two-by-two matrices; finite types, measurable spaces, and Lean subtypes are introduced when they first appear"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates"
 toc: true
 og_image: "finite-hermitian-coordinates-card.png"
-og_image_alt: "A warm-paper teaching card routes real diagonal, complex strict-upper, and conjugate-reflected lower entries through one deterministic map to a Hermitian matrix."
+og_image_alt: "Four real coordinates two, minus one, one, and two reconstruct a two-by-two Hermitian matrix; the lower imaginary part changes sign under conjugation, while a copied-sign near-miss fails the symmetry test."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -29,23 +29,83 @@ received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
 
-A finite complex Hermitian matrix satisfies one compact equation,
-\(H^*=H\), but that equation hides a precise coordinate geometry. The diagonal
-entries are real. An entry above the diagonal is complex and free. The
-reflected entry below the diagonal is its complex conjugate and is therefore
-not a second free coordinate.
+## Start with four integers and one forced reflection
 
-This chapter turns that geometry into a deterministic program. It defines the
-strict-upper index type, counts the real degrees of freedom, inserts every
-supplied coordinate exactly once, proves Hermiticity by the three possible
-index orderings, and proves measurability entry by entry. It also treats
-dimension zero as an ordinary executable case.
+Take two real diagonal coordinates and one complex strict-upper coordinate:
 
-No probability measure enters this construction. No coordinate is declared
-Gaussian or independent. No Gaussian unitary ensemble (GUE) normalization,
-matrix law, unitary invariance, spectral statistic, or asymptotic theorem is
-selected. The chapter builds the deterministic bridge that those later layers
-may use.
+\[
+d_0=2,
+\qquad
+d_1=-1,
+\qquad
+u_{01}=1+2i.
+\]
+
+The subscripts record destinations. The number \(d_0\) goes in row 0, column
+0; \(d_1\) goes in row 1, column 1; and \(u_{01}\) goes in row 0, column 1.
+The remaining cell is not a fourth matrix-entry choice. It is forced to be
+the complex conjugate \(\overline{u_{01}}=1-2i\):
+
+\[
+H=
+\begin{bmatrix}
+2 & 1+2i\\
+1-2i & -1
+\end{bmatrix}.
+\]
+
+Check the defining symmetry entry by entry. The diagonal values are real,
+and the off-diagonal pair obeys
+
+\[
+H_{10}=1-2i=\overline{1+2i}=\overline{H_{01}}.
+\]
+
+Therefore the conjugate transpose of \(H\) is \(H\) itself. The four real
+numbers
+
+\[
+q=(d_0,d_1,\operatorname{Re}u_{01},\operatorname{Im}u_{01})
+=(2,-1,1,2)
+\]
+
+are enough to reconstruct all four complex matrix positions. This tuple
+\(q\) is the running example for the whole chapter.
+
+Now copy the upper entry into the lower slot without changing the sign of its
+imaginary part:
+
+\[
+M=
+\begin{bmatrix}
+2 & 1+2i\\
+1+2i & -1
+\end{bmatrix}.
+\]
+
+This near-miss is not Hermitian because
+\(M_{10}=1+2i\ne1-2i=\overline{M_{01}}\). Reflection alone is not enough;
+reflection **and complex conjugation** are the rule.
+
+{{< reference-figure
+  wide="true"
+  src="two-by-two-coordinate-reconstruction.svg"
+  alt="Four real inputs, two diagonal values and the real and imaginary parts of one upper entry, reconstruct the matrix with rows two comma one plus two i and one minus two i comma minus one. A near-miss copies plus two as the lower imaginary part instead of changing it to minus two."
+  caption="**Finding:** the coordinate ledger \((2,-1,1,2)\) supplies exactly four real choices. Assembly places 2 and -1 on the diagonal, places real part 1 and imaginary part +2 above the diagonal, and forces real part 1 and imaginary part -2 below it. The near-miss keeps +2 below the diagonal and therefore fails conjugate symmetry. These are exact toy values, not sampled data or an ensemble normalization."
+>}}
+
+A finite complex Hermitian matrix satisfies the compact equation \(H^*=H\).
+The example shows what that equation means operationally: diagonal entries
+are real, strict-upper entries are free, and strict-lower entries are
+determined. This chapter turns that geometry into a deterministic program,
+then separates what the checked Lean module proves from later dimension,
+Euclidean-geometry, probability, and spectral layers.
+
+No {{< refterm "probability-measure" "probability measure" >}} enters this
+construction. No coordinate is declared Gaussian or independent. No
+Gaussian unitary ensemble (GUE) normalization, matrix law, unitary invariance,
+spectral statistic, or asymptotic theorem is selected. The chapter builds the
+deterministic bridge that those later layers may use.
 
 ## Choose a route up
 
@@ -54,9 +114,11 @@ may use.
 | First encounter | [The symmetry constraint removes redundant data](#base-camp-the-symmetry-constraint-removes-redundant-data) | Read a Hermitian matrix as free coordinates plus reflection |
 | Dimension route | [Count the real degrees of freedom](#camp-one-count-the-real-degrees-of-freedom) | Derive the \(n^2\) real-coordinate count |
 | Construction route | [Insert coordinates directly](#camp-three-insert-coordinates-directly) | Understand the diagonal, upper, and lower branches |
+| Geometry route | [Reflection changes the coordinate metric](#geometry-ridge-reflection-changes-the-coordinate-metric) | Compute norms and an inner product from the same raw ledger |
 | Proof route | [Hermiticity is a three-case proof](#camp-five-hermiticity-is-a-three-case-proof) | Follow the exact entrywise argument used in Lean |
 | Measurability route | [Measurability reduces to scalar coordinates](#camp-six-measurability-reduces-to-scalar-coordinates) | See why no measure or law is required |
-| Lean route | [The checked declaration map](#the-checked-declaration-map) | Audit all 17 public declarations |
+| Hands-on Lean route | [Type the running example yourself](#type-the-running-example-yourself-with-lean-and-std) | Run a bounded <code>Std</code> worksheet on Mac or Linux |
+| Project Lean route | [The checked declaration map](#the-checked-declaration-map) | Audit all 17 public declarations on an approved Linux builder |
 | Boundary route | [Dimension zero is not an exception](#camp-eight-dimension-zero-is-not-an-exception) | Understand the unique empty coordinate point and matrix |
 
 ### Learning objectives
@@ -70,11 +132,15 @@ By the summit, you should be able to:
    supplied;
 4. evaluate the direct assembly map in all three index-order cases;
 5. show why an \(X+X^*\) implementation doubles a supplied real diagonal;
-6. prove Hermiticity entry by entry using order trichotomy;
-7. reduce matrix-valued measurability to scalar coordinate maps;
-8. distinguish assembly from a bundled measurable Hermitian random matrix;
-9. explain the zero-dimensional coordinate and matrix spaces; and
-10. separate the 17 checked Lean declarations from unproved dimension,
+6. compute the running matrix's Frobenius square and its inner product with a
+   second matrix from the raw coordinate ledger;
+7. explain why raw upper coordinates receive weight two in matrix geometry;
+8. prove Hermiticity entry by entry using order trichotomy;
+9. reduce matrix-valued measurability to scalar coordinate maps;
+10. distinguish assembly from a bundled measurable Hermitian random matrix;
+11. run the bounded <code>Std</code> reconstruction and near-miss worksheet;
+12. explain the zero-dimensional coordinate and matrix spaces; and
+13. separate the 17 checked Lean declarations from unproved dimension,
     inverse, probability, and spectral statements.
 
 ## The assembly program in one picture
@@ -180,9 +246,17 @@ d_0 & u_{01}\\
 \end{bmatrix}.
 \]
 
-The two real diagonal coordinates plus the two real components of \(u_{01}\)
-give \(4=2^2\) real coordinates. For \(n=3\), three real diagonal coordinates
-and three complex upper coordinates give \(3+2\cdot3=9=3^2\).
+The running ledger \(q=(2,-1,1,2)\) is exactly this case. Its first two
+numbers are the real diagonal; its last two are the real and imaginary parts
+of the one complex upper value. Thus it has
+
+\[
+2+2\binom22=2+2=4=2^2
+\]
+
+real coordinates. The lower-left matrix cell consumes no new degree of
+freedom. For \(n=3\), three real diagonal coordinates and three complex upper
+coordinates give \(3+2\cdot3=9=3^2\).
 
 These counts are mathematical context. The RMT-05 Lean module does not define
 a basis, prove the cardinality formula for <code>StrictUpperIndex</code>, or
@@ -227,6 +301,25 @@ abbrev HermitianCoordinateSpace (n : ℕ) :=
 
 It is an abbreviation for a product of function spaces. It does not carry
 proof fields, a measure, or a normalization ledger.
+
+### In Lean: the input type records only free entries
+
+{{< lean-bridge
+  human="A size-n coordinate point is a real number for every diagonal position together with a complex number for every strict-upper position."
+  math="\((d,u)\in(\operatorname{Fin}(n)\to\mathbb R)\times(I_n^{\lt}\to\mathbb C)\)."
+  lean="(Fin n → ℝ) × (StrictUpperIndex n → ℂ)"
+>}}
+
+- <code>Fin n</code> is the type of row or column indices from zero through
+  \(n-1\), with the bound carried in the value.
+- <code>→</code> is a function type. Thus <code>Fin n → ℝ</code> assigns one
+  real number to each diagonal position.
+- <code>StrictUpperIndex n</code> contains pairs together with a proof that the
+  row is strictly smaller than the column.
+- <code>×</code> is a product type. A coordinate point contains both families.
+- There is no strict-lower factor. Its omission is the type-level expression
+  of conjugate reflection.
+{{< /lean-bridge >}}
 
 ## Camp three: insert coordinates directly
 
@@ -280,36 +373,42 @@ Their Lean names are
 <code>hermitianFromCoordinates_apply_upper</code>, and
 <code>hermitianFromCoordinates_apply_lower</code>.
 
-### A complete three-by-three assembly
+### Reconstruct the running matrix one branch at a time
 
-Let
-
-\[
-d_0=2,\qquad d_1=-1,\qquad d_2=4
-\]
-
-and choose
+For \(q=(2,-1,1,2)\), the diagonal function returns \(d_0=2\) and
+\(d_1=-1\). The strict-upper function has one input, the pair \((0,1)\), and
+returns \(u_{01}=1+2i\). The three branches now give
 
 \[
-u_{01}=1+2i,\qquad
-u_{02}=-3+i,\qquad
-u_{12}=5-2i.
+\begin{aligned}
+H_{00}&=d_0=2,\\
+H_{01}&=u_{01}=1+2i,\\
+H_{10}&=\overline{u_{01}}=1-2i,\\
+H_{11}&=d_1=-1.
+\end{aligned}
 \]
 
-Direct assembly gives
+Reading those four results by rows reconstructs the opening matrix exactly.
+Nothing is sampled, averaged, or scaled during this computation.
 
-\[
-H=
-\begin{bmatrix}
-2 & 1+2i & -3+i\\
-1-2i & -1 & 5-2i\\
--3-i & 5+2i & 4
-\end{bmatrix}.
-\]
+### In Lean: a lower entry is the conjugate of a proved upper position
 
-The diagonal values appear unchanged. Every lower entry is the conjugate of
-the reflected upper entry. These values are a toy calculation, not empirical
-measurements, random samples, or a selected ensemble convention.
+{{< lean-bridge
+  human="When column j comes before row i, the assembled entry at row i, column j is the conjugate of the supplied entry at the reflected strict-upper position."
+  math="\(j\lt i\Longrightarrow H_{ij}=\overline{u_{ji}}\)."
+  lean="RandomMatrix.hermitianFromCoordinates d u i j = star (u ⟨(j, i), hji⟩)"
+>}}
+
+- <code>hji : j &lt; i</code> is evidence that the reflected pair really lies
+  in the strict upper triangle.
+- <code>⟨(j, i), hji⟩</code> packages the pair and its proof as one
+  <code>StrictUpperIndex n</code> value.
+- <code>u ...</code> retrieves the supplied complex coordinate.
+- <code>star</code> is complex conjugation in this type.
+- The exact project theorem is
+  <code>RandomMatrix.hermitianFromCoordinates_apply_lower</code>; the displayed
+  equation is its conclusion after the variables are instantiated.
+{{< /lean-bridge >}}
 
 ## Camp four: why \(X+X^*\) is the wrong insertion map
 
@@ -351,6 +450,111 @@ Hermiticity alone cannot tell whether a diagonal was intended to be \(d_i\),
 \(2d_i\), or \(d_i/\sqrt n\). The direct constructor preserves the supplied
 coordinates. Any later scale belongs in the probabilistic model.
 {{< /checkpoint >}}
+
+## Geometry ridge: reflection changes the coordinate metric
+
+The running ledger is a perfect encoding, but its ordinary unweighted dot
+product is not yet the Frobenius geometry of the assembled matrix. The reason
+is visible: one strict-upper complex coordinate occupies two matrix cells.
+
+The squared Frobenius norm adds the squared magnitude of every entry. For the
+running matrix,
+
+\[
+\begin{aligned}
+\lVert H\rVert_F^2
+&=|2|^2+|-1|^2+|1+2i|^2+|1-2i|^2\\
+&=4+1+5+5\\
+&=15.
+\end{aligned}
+\]
+
+By contrast, the unweighted square of the four-number ledger is
+
+\[
+\lVert q\rVert_{\mathrm{raw}}^2
+=2^2+(-1)^2+1^2+2^2
+=10.
+\]
+
+The missing \(5\) is the second matrix copy of the upper entry. If a raw
+coordinate is written \((d_0,d_1,a,b)\), the matrix-induced squared norm is
+
+\[
+\lVert(d_0,d_1,a,b)\rVert_{\mathrm{weighted}}^2
+=d_0^2+d_1^2+2(a^2+b^2).
+\]
+
+That weight also controls cross inner products. Compare \(H\) with the
+Hermitian matrix encoded by
+
+\[
+r=(1,3,-2,1),
+\qquad
+K=
+\begin{bmatrix}
+1 & -2+i\\
+-2-i & 3
+\end{bmatrix}.
+\]
+
+The real Frobenius inner product is the real part of the entrywise complex
+inner product:
+
+\[
+\langle H,K\rangle_{F,\mathbb R}
+=\operatorname{Re}\!\left(
+\sum_{i,j}\overline{H_{ij}}K_{ij}
+\right).
+\]
+
+In raw coordinates it becomes
+
+\[
+\begin{aligned}
+\langle q,r\rangle_{\mathrm{weighted}}
+&=2\cdot1+(-1)\cdot3
+  +2\bigl(1\cdot(-2)+2\cdot1\bigr)\\
+&=2-3+2(0)\\
+&=-1.
+\end{aligned}
+\]
+
+The same ledger gives \(\lVert K\rVert_F^2=1+9+2(4+1)=20\). Thus the
+three exact geometric outputs for this pair are
+
+\[
+\lVert H\rVert_F^2=15,
+\qquad
+\langle H,K\rangle_{F,\mathbb R}=-1,
+\qquad
+\lVert K\rVert_F^2=20.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="two-by-two-coordinate-geometry.svg"
+  alt="The first raw ledger two, minus one, one, two has unweighted square ten but matrix-weighted square fifteen because the upper real and imaginary pair is counted twice. A second ledger one, three, minus two, one has weighted square twenty. Their diagonal inner contribution is minus one, their upper contribution is zero even after doubling, and their total real Frobenius inner product is minus one."
+  caption="**Finding:** conjugate reflection changes geometry even though it adds no new freedom. For \(q=(2,-1,1,2)\), the ordinary raw-ledger square is 10 while the assembled Frobenius square is 15. For \(r=(1,3,-2,1)\), the Frobenius square is 20. Their diagonal cross contribution is -1; the upper real-imaginary dot product is zero, so doubling it still contributes zero and the total inner product is -1. This is exact finite arithmetic, not empirical evidence."
+>}}
+
+There are two equivalent ways to remember the factor of two:
+
+1. keep the raw upper real and imaginary parts \((a,b)\) and use the weighted
+   inner product above; or
+2. replace them by \((\sqrt2a,\sqrt2b)\), after which the ordinary Euclidean
+   dot product has the right size.
+
+For the running example, the second convention stores
+\((2,-1,\sqrt2,2\sqrt2)\), whose ordinary squared length is
+\(4+1+2+8=15\). The RMT-05 module in this chapter does **not** formalize this
+inner-product structure or the normalized-coordinate equivalence. Those are
+later checked layers explained in
+{{< refterm "normalized-hermitian-coordinates" "normalized Hermitian coordinates" >}}
+and
+{{< refterm "hermitian-frobenius-geometry" "Hermitian Frobenius geometry" >}}.
+The present module supplies the unscaled assembly map on which that geometry
+is built.
 
 ## Camp five: Hermiticity is a three-case proof
 
@@ -397,6 +601,11 @@ Real numbers are fixed by complex conjugation, so
 \overline{H_{ii}}=\overline{d_i}=d_i=H_{ii}.
 \]
 
+This is why the diagonal input type is \(\mathbb R\), not \(\mathbb C\). A
+putative diagonal value \(2+i\) would become \(2-i\) under conjugation and
+would fail the diagonal equation. The type rules out that near-miss before a
+proof starts.
+
 ### Case three: \(j\lt i\)
 
 This is the reflected version of case one:
@@ -415,6 +624,26 @@ architecture. It rewrites Hermiticity to the entrywise criterion, splits with
 <code>lt_trichotomy i j</code>, and applies the three entry simplification
 theorems. There is no probability space and no almost-everywhere qualifier.
 The result holds for every coordinate input.
+
+### In Lean: assembly is Hermitian for every input
+
+{{< lean-bridge
+  human="Every real diagonal and complex strict-upper family assembles to a Hermitian matrix, with no exceptional coordinate points."
+  math="\(\forall d\,u,\;\operatorname{assemble}(d,u)^*=\operatorname{assemble}(d,u)\)."
+  lean="(RandomMatrix.hermitianFromCoordinates d u).IsHermitian"
+>}}
+
+- The parentheses first build the matrix from <code>d</code> and <code>u</code>.
+- <code>.IsHermitian</code> is Mathlib's predicate that the conjugate transpose
+  equals the original matrix.
+- The exact theorem
+  <code>RandomMatrix.hermitianFromCoordinates_isHermitian d u</code> produces
+  a proof of this proposition.
+- No symbol for a measure, an outcome, or "almost every" occurs. The claim is
+  pointwise in the coordinate input.
+- In the proof source, <code>lt_trichotomy i j</code> creates the upper,
+  diagonal, and lower cases used in the hand argument.
+{{< /lean-bridge >}}
 
 ### Physics window: reality and conjugate couplings
 
@@ -512,6 +741,27 @@ probability measure on the coordinate space and push it forward through
 <code>hermitianCoordinateMap</code>. RMT-05 does not perform that pushforward
 or choose a source measure.
 
+### In Lean: coordinatewise measurability lifts through assembly
+
+{{< lean-bridge
+  human="If every diagonal coordinate process and every strict-upper coordinate process is measurable, then the assembled matrix-valued process is measurable."
+  math="\(\bigl[\forall i,\ d_i\text{ measurable}\bigr]\land\bigl[\forall q,\ u_q\text{ measurable}\bigr]\Longrightarrow\bigl[\omega\mapsto\operatorname{assemble}(d(\omega),u(\omega))\text{ measurable}\bigr].\)"
+  lean="Measurable fun ω ↦ RandomMatrix.hermitianFromCoordinates (d ω) (u ω)"
+>}}
+
+- <code>fun ω ↦ ...</code> is an anonymous function of the outcome
+  <code>ω</code>.
+- <code>d ω</code> and <code>u ω</code> are the two coordinate families at that
+  outcome.
+- <code>Measurable</code> is a predicate on the whole matrix-valued function.
+- The theorem
+  <code>RandomMatrix.measurable_hermitianFromCoordinates hd hu</code> proves
+  the displayed proposition from coordinatewise hypotheses <code>hd</code> and
+  <code>hu</code>.
+- A measurable space tells Lean which preimages are legitimate events. No
+  measure, probability mass, density, or expectation is introduced here.
+{{< /lean-bridge >}}
+
 {{< checkpoint stage="Camp six" title="Measurable is not distributed" >}}
 A measurable assembly map can transport a measure after one is supplied.
 Measurability alone does not provide that source measure, an exact coordinate
@@ -575,6 +825,137 @@ random law. They eliminate the impossible row index. This settles the
 deterministic boundary. A later dimension-dependent ensemble still needs its
 own explicit \(n=0\) probability policy.
 
+## Type the running example yourself with Lean and Std
+
+The project theorem uses Mathlib's complex numbers, matrices, measurable
+spaces, and Hermitian predicate. Before loading that machinery, a learner can
+model the same finite bookkeeping with two small structures. The worksheet
+below imports only Lean's <code>Std</code> library. It is intentionally bounded
+and suitable for an ordinary Mac or Linux machine.
+
+Create a scratch directory outside <code>formalization/</code>. Save the exact
+block below as <code>HermitianCoordinatesTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace HermitianCoordinatesTutorial
+
+structure ComplexInt where
+  re : Int
+  im : Int
+  deriving Repr, DecidableEq
+
+def ComplexInt.conj (z : ComplexInt) : ComplexInt :=
+  { re := z.re, im := -z.im }
+
+structure Hermitian2Coordinates where
+  d0 : Int
+  d1 : Int
+  upper : ComplexInt
+  deriving Repr, DecidableEq
+
+structure Matrix2 where
+  a00 : ComplexInt
+  a01 : ComplexInt
+  a10 : ComplexInt
+  a11 : ComplexInt
+  deriving Repr, DecidableEq
+
+def Matrix2.IsHermitian (A : Matrix2) : Prop :=
+  A.a00.im = 0 ∧
+  A.a11.im = 0 ∧
+  A.a10 = A.a01.conj
+
+instance (A : Matrix2) : Decidable (Matrix2.IsHermitian A) := by
+  unfold Matrix2.IsHermitian
+  infer_instance
+
+def assemble (x : Hermitian2Coordinates) : Matrix2 :=
+  { a00 := { re := x.d0, im := 0 }
+    a01 := x.upper
+    a10 := x.upper.conj
+    a11 := { re := x.d1, im := 0 } }
+
+def extract (A : Matrix2) : Hermitian2Coordinates :=
+  { d0 := A.a00.re
+    d1 := A.a11.re
+    upper := A.a01 }
+
+def rawLedgerSq (x : Hermitian2Coordinates) : Int :=
+  x.d0 * x.d0 + x.d1 * x.d1 +
+    x.upper.re * x.upper.re + x.upper.im * x.upper.im
+
+def frobeniusSq (x : Hermitian2Coordinates) : Int :=
+  x.d0 * x.d0 + x.d1 * x.d1 +
+    2 * (x.upper.re * x.upper.re + x.upper.im * x.upper.im)
+
+def frobeniusInner
+    (x y : Hermitian2Coordinates) : Int :=
+  x.d0 * y.d0 + x.d1 * y.d1 +
+    2 * (x.upper.re * y.upper.re + x.upper.im * y.upper.im)
+
+def q : Hermitian2Coordinates :=
+  { d0 := 2
+    d1 := -1
+    upper := { re := 1, im := 2 } }
+
+def r : Hermitian2Coordinates :=
+  { d0 := 1
+    d1 := 3
+    upper := { re := -2, im := 1 } }
+
+def nearMiss : Matrix2 :=
+  { a00 := { re := 2, im := 0 }
+    a01 := { re := 1, im := 2 }
+    a10 := { re := 1, im := 2 }
+    a11 := { re := -1, im := 0 } }
+
+#eval [decide (extract (assemble q) = q),
+  decide (Matrix2.IsHermitian (assemble q)),
+  decide (Matrix2.IsHermitian nearMiss)]
+
+#eval [rawLedgerSq q, frobeniusSq q,
+  frobeniusInner q r, frobeniusSq r]
+
+example : extract (assemble q) = q := by decide
+example : Matrix2.IsHermitian (assemble q) := by decide
+example : ¬ Matrix2.IsHermitian nearMiss := by decide
+example : rawLedgerSq q = 10 := by decide
+example : frobeniusSq q = 15 := by decide
+example : frobeniusInner q r = -1 := by decide
+example : frobeniusSq r = 20 := by decide
+
+end HermitianCoordinatesTutorial
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean HermitianCoordinatesTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this chapter. Its output was
+
+~~~text
+[true, true, false]
+[10, 15, -1, 20]
+~~~
+
+Read the first line as: extraction reconstructs \(q\); assembled \(q\) is
+Hermitian; the copied-without-conjugating near-miss is not. Read the second as
+the raw ledger square, \(H\)'s Frobenius square, the real Frobenius inner
+product of \(H\) with \(K\), and \(K\)'s Frobenius square. Each
+<code>example</code> asks the kernel to certify the corresponding equality.
+
+This miniature uses integer real-imaginary pairs, not Mathlib's
+<code>ℂ</code> or <code>Matrix</code>. It does not prove the general
+dimension count, measurable assembly, or the project theorem. Most
+importantly, the command loads only the pinned Lean compiler and
+<code>Std</code>; it does not run Lake, import Mathlib, or compile this project.
+
 ## The checked declaration map
 
 The module
@@ -602,22 +983,51 @@ interpretations that the declaration does not add.
 | <code>HermitianRandomMatrix.ofCoordinates</code> | Bundled measurable pointwise-Hermitian sample map | A base probability measure |
 | <code>HermitianRandomMatrix.ofCoordinates_apply</code> | Bundle evaluation reduces to direct assembly | Any law or moment statement |
 
-All 17 declarations compile with warnings treated as errors under Lean 4.32.0
-and the pinned Mathlib 4.32.0 dependency. The module contains no
-<code>sorry</code> or <code>admit</code>.
+The repository's recorded cloud validation compiled all 17 declarations with
+warnings treated as errors under Lean 4.32.0 and the pinned Mathlib 4.32.0
+dependency. The module contains no <code>sorry</code> or <code>admit</code>.
+This educational rewrite does not claim a new project build on the Mac; the
+guarded Linux command below is the exact route for a fresh replay.
 
-### Reproduce the check
+### Inspect and check the exact project interfaces
 
-From the repository root:
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean).
+On an approved Linux builder with the pinned project dependencies already
+provisioned, a learner can put these exact lines in a temporary project
+scratch file:
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
+
+open Matrix MeasureTheory
+open scoped Matrix
+open NonlinearDynamics.Random
+
+#check StrictUpperIndex
+#check HermitianCoordinateSpace
+#print RandomMatrix.hermitianFromCoordinates
+#check RandomMatrix.hermitianFromCoordinates_apply_diag
+#check RandomMatrix.hermitianFromCoordinates_apply_upper
+#check RandomMatrix.hermitianFromCoordinates_apply_lower
+#check RandomMatrix.hermitianFromCoordinates_isHermitian
+#check RandomMatrix.measurable_hermitianFromCoordinates
+#check RandomMatrix.hermitianCoordinateMap
+#check RandomMatrix.measurable_hermitianCoordinateMap
+#check RandomMatrix.hermitianFromCoordinates_zero
+#check RandomMatrix.hermitianCoordinateMap_zero
+#check HermitianRandomMatrix.ofCoordinates
+#check HermitianRandomMatrix.ofCoordinates_apply
 ~~~
 
-The command checks the actual module. It does not execute a random simulation,
-estimate a spectrum, or validate an unformalized probability convention.
+<code>import</code> loads the exact project module and its pinned Mathlib
+dependencies. <code>#print</code> shows the constructor body, while each
+<code>#check</code> asks Lean to elaborate an existing declaration and report
+its type. These commands neither sample a random matrix nor establish any
+probability law. The guarded command below checks the authoritative source
+file with the repository's cloud-build policy.
+{{< /repo-check >}}
 
 ## Checked Lean and mathematical context are different layers
 
@@ -640,6 +1050,7 @@ identity in this module, or establish invariance under unitary conjugation.
 | Layer | Available now | Still separate |
 |---|---|---|
 | Algebraic coordinates | Strict-upper type, coordinate product, entry insertion | Extractor, inverse, real-linear equivalence |
+| Coordinate geometry | Exact paper calculation for the running two-by-two ledgers | RMT-05 has no norm, inner-product, isometry, or dimension declaration |
 | Symmetry | Pointwise Hermiticity for every input | Spectral applications in this module |
 | Measurability | Coordinatewise assembly and canonical map | A base measure or probability law |
 | Boundary | Unique zero-dimensional output is zero | A zero-dimensional ensemble policy |
@@ -699,6 +1110,14 @@ the proof begins.
 Universal symmetrization doubles a real diagonal. It is not a transparent
 insertion of already named coordinates.
 
+### Giving the raw ledger the ordinary Euclidean dot product
+
+The raw upper real and imaginary coordinates each appear in two matrix cells.
+Without a factor of two in the coordinate metric, the running ledger has
+squared length 10 while its assembled matrix has Frobenius square 15. Use the
+weighted metric, or rescale upper coordinates by \(\sqrt2\), and state which
+convention is active.
+
 ### Calling measurability a probability law
 
 A measurable function has well-formed preimages. It has no distribution until
@@ -733,17 +1152,24 @@ claims and label the count as context.
    one complex strict-upper coordinate \(x+iy\).
 3. **Reflect.** Verify the entrywise Hermitian equation for \(j\lt i\) without
    citing the upper case.
-4. **Diagnose.** Build the upper-triangular temporary matrix for the worked
+4. **Geometry.** Recompute \(\lVert H\rVert_F^2=15\) directly from the four
+   matrix entries, then recover the same answer from the weighted ledger.
+5. **Cross term.** Expand
+   \(\operatorname{Re}\sum_{i,j}\overline{H_{ij}}K_{ij}\) and verify that
+   the two off-diagonal contributions have real part zero.
+6. **Diagnose.** Build the upper-triangular temporary matrix for the worked
    example and compute the diagonal of \(X+X^*\).
-5. **Measure.** Explain why conjugating a measurable complex coordinate
+7. **Measure.** Explain why conjugating a measurable complex coordinate
    preserves measurability but need not leave its law unchanged.
-6. **Boundary.** Prove that any two matrices indexed by <code>Fin 0</code>
+8. **Boundary.** Prove that any two matrices indexed by <code>Fin 0</code>
    are equal.
-7. **Lean.** Locate the branch in
+9. **Lean.** Change <code>nearMiss.a10.im</code> from 2 to -2 in the standalone
+   worksheet and predict which output changes before rerunning it.
+10. **Project Lean.** Locate the branch in
    <code>measurable_hermitianFromCoordinates</code> where conjugation is used.
-8. **Design.** State the type of an inverse that extracts coordinates from a
+11. **Design.** State the type of an inverse that extracts coordinates from a
    Hermitian matrix subtype.
-9. **Scope.** Separate the hypotheses for a pushforward probability law from
+12. **Scope.** Separate the hypotheses for a pushforward probability law from
    those needed for unitary invariance.
 
 ## Summit register
@@ -753,11 +1179,13 @@ normalization-free coordinate space, direct assembly, exact entry formulas,
 pointwise Hermiticity, coordinatewise and canonical measurability, an explicit
 zero-dimensional result, and a bundled measurable Hermitian sample map.
 
-The mathematical count explains \(n^2\) real degrees of freedom, but it is not
-yet a named Lean theorem. The module does not define an inverse, probability
-measure, coordinate law, independence, Gaussian ensemble, density,
-normalization, unitary invariance, eigenvalue map, trace expectation, or
-asymptotic result.
+The mathematical count explains \(n^2\) real degrees of freedom, and the
+running example explains the weighted norm and inner product. Neither is a
+named theorem in this RMT-05 module. The standalone <code>Std</code> worksheet
+checks only its finite integer model. The project module does not define an
+inverse, dimension theorem, Frobenius isometry, probability measure,
+coordinate law, independence, Gaussian ensemble, density, normalization,
+unitary invariance, eigenvalue map, trace expectation, or asymptotic result.
 
 That boundary is the achievement. A later probability module can now make
 every distributional choice visibly rather than hiding one in matrix
@@ -789,6 +1217,12 @@ which supplies the Wigner ledger, canonical product measure, exact
 independence architecture, and matrix pushforward.
 
 ## References
+
+**Lean contributors.**
+[Subtypes](https://lean-lang.org/doc/reference/latest/Basic-Types/Subtypes/),
+The Lean Language Reference. This official reference explains the
+value-plus-proof packaging used by <code>StrictUpperIndex</code> and the
+notation <code>{x : α // p x}</code>.
 
 **Mathlib contributors.**
 [Hermitian matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/Matrix/Hermitian.html),
