@@ -705,12 +705,17 @@ lake build NonlinearDynamics.Random.RandomCocycles.NormObservables
 
 The first command checks the source file directly and promotes warnings to
 errors. The second builds the named module through Lake's dependency graph.
-To build the complete formalization and teaching site from the repository
-root, run:
+Starting from the repository root, build the complete formalization and check
+the public teaching content:
 
 ~~~sh
 source "$HOME/.elan/env"
-make check
+cd formalization
+lake build
+
+cd ..
+make content-hygiene
+make site-check
 ~~~
 
 The toolchain and Mathlib revision are pinned by

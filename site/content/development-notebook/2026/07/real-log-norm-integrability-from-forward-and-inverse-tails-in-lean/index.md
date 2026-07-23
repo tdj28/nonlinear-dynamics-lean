@@ -1012,13 +1012,12 @@ cd formalization
 lake env lean -DwarningAsError=true NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean
 lake build NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
 cd ..
-make -j1 check
+hugo --source site --panicOnWarning --printPathWarnings
 ~~~
 
 The direct leaf command is the fastest way to inspect theorem and axiom output.
-The named Lake build verifies module integration. `make -j1 check` builds the
-whole Lean project, validates the checkpoint and proof-to-prose map, runs the
-teaching-source gates, and performs the warning-fatal Hugo check.
+The named Lake build verifies module integration. The final command performs a
+warning-fatal build of the public teaching site.
 
 Regenerate and verify this page's deterministic card from any working
 directory:
@@ -1037,10 +1036,9 @@ make content-hygiene
 make site-check
 ~~~
 
-To inspect the draft interactively, run `make blog-serve` for local access or
-`make blog-serve-tailscale` for the human-approved private Tailscale route.
-Both use port 1333. A remote compute builder remains an acceleration mechanism,
-not a second source of truth.
+To inspect the draft interactively, run `make blog-serve` and open
+`http://127.0.0.1:1333/`. The checked source remains the mathematical source of
+truth.
 
 ## Exercises with fully worked solutions
 

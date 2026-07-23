@@ -288,8 +288,9 @@ limit, spectral form factor, or out-of-time-order correlator is proved here.
 
 The numeric worksheet later in the chapter checks the size-two arithmetic
 using only <code>Std</code>. The interfaces in this section are different: they
-are the exact Mathlib-backed project declarations, so their literal repository
-checks belong on an approved Linux builder.
+are **full project checks** of exact Mathlib-backed declarations. Install the
+repository's pinned dependencies first; these checks may require substantial
+disk space and memory.
 
 ### Bridge one: the ordered spectrum is a function on finite slots
 
@@ -455,9 +456,8 @@ asymptotic limit.
 ### Try the exact RMT-10A declarations in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
-On an approved Linux builder, place this probe in a temporary project scratch
-file:
+**Full project check: pinned project plus Mathlib.** Place this probe in a
+temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum
@@ -483,15 +483,14 @@ open NonlinearDynamics.Random
 
 <code>#print</code> exposes definition bodies. <code>#check</code> asks the
 pinned elaborator for exact declaration types. Notice that the final two names
-retain the hypothesis in their names. The guarded command rendered below
+retain the hypothesis in their names. The full project command rendered below
 checks the authoritative RMT-10A source, not the temporary probe.
 {{< /repo-check >}}
 
 ### Try the exact RMT-10B measurability bridge
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity" >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
-Type this separate probe on the approved Linux builder:
+**Full project check: pinned project plus Mathlib.** Type this separate probe:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -511,13 +510,13 @@ open NonlinearDynamics.Random
 
 These are unconditional successor declarations. Their module first proves the
 perturbation bound, then continuity, then measurability. The generated command
-checks that exact leaf with warnings fatal through the repository guard.
+checks that exact leaf with the repository's pinned dependencies.
 {{< /repo-check >}}
 
 ### Try the exact RMT-10C law and mean interfaces
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum" >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+**Full project check: pinned project plus Mathlib.**
 The final probe distinguishes the sample measure, its law, and its mean:
 
 ~~~lean
@@ -1598,38 +1597,23 @@ They do not prove tightness, convergence, a semicircle law, or universality.
     project's Wigner-scaled GUE. Compare your route with RMT-10C and mark which
     steps belong to deterministic algebra, integrability, and law transport.
 
-## Reproduce the chapter without crossing the host boundary
+## Reproduce the chapter
 
 On an ordinary Mac or Linux machine, a reader may run the bounded
-<code>Std</code> worksheet exactly as shown above. From the repository root,
-the workstation may also verify the page-owned card and the static site:
+<code>Std</code> worksheet exactly as shown above. The exact RMT-10A, RMT-10B,
+and RMT-10C modules import Mathlib and are full project checks. From the
+repository root, run:
 
 ~~~sh
-site/content/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures/generate-card.sh --verify
-make site-check
-git diff --check
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean
+lake env lean NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
+lake env lean NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean
 ~~~
 
-These commands do not compile the project. The exact RMT-10A, RMT-10B, and
-RMT-10C modules import Mathlib and therefore belong on approved Linux compute.
-The three <strong>Try it in the repository</strong> panels above render the
-guarded commands separately:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean
-
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
-
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean
-~~~
-
-The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code> on an
-approved Linux builder. This rebuild does not claim that any project module
-was recompiled on the Mac. A green technical build would still not complete
-the pending human mathematical, editorial, scientific-integrity, and
+These commands use the pinned project dependencies and may require substantial
+disk space and memory. A green technical build would still not complete the
+pending human mathematical, editorial, scientific-integrity, and
 accessibility reviews.
 
 ## Where to continue

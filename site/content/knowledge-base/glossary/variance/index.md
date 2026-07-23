@@ -185,7 +185,7 @@ For an almost-everywhere measurable \(X\), the integral formula appears as:
   not erase the infinite-variance totalization caveat in the next section.
 {{< /lean-bridge >}}
 
-### Type the two-point arithmetic on this Mac or on Linux
+### Standalone tutorial
 
 This first worksheet imports only Lean's small <code>Std</code> library. It
 checks the arithmetic of the \(-1,3\) example without restoring Mathlib or
@@ -217,9 +217,10 @@ probability weights gives variance \(4\). Change the claimed right-hand side
 to <code>2 * 5</code> and Lean should reject the file. That deliberate failure
 is the quickest way to feel the difference between evaluation and proof.
 
-### Inspect the exact project interface on approved Linux compute
+### Full project check
 
-On the provisioned project builder, a human can put this in a scratch Lean file:
+On a clone with the repository's pinned dependencies
+installed, a human can put this in a scratch Lean file:
 
 ~~~lean
 import NonlinearDynamics.Random.GaussianPrimitives

@@ -78,11 +78,16 @@ Dive, follow the complete educational contract in
   not satisfy this requirement.
 - Whenever a page says **In Lean**, pair the human statement, paper
   mathematics, exact Lean syntax, and a literal repository command the reader
-  can type. Explain the important syntax token by token and label the resource
-  profile: small standalone tutorials may run on a normal Mac or Linux host;
-  exact project/Mathlib checks use the guarded Linux workflow. Do not remove
-  useful Lean tutorials merely because this particular workstation avoids
-  heavyweight builds.
+  can type. Explain the important syntax token by token and label the
+  reader-facing resource profile: a **standalone tutorial** uses Lean core or
+  `Std`, while a **full project check** uses the repository's pinned Lean and
+  Mathlib dependencies and may require substantial disk space or build time.
+  Give portable macOS/Linux instructions. Never mention the owner's
+  workstation, RunPod, cloud approval, contributor-only guards, private
+  networking, or internal release operations in rendered teaching prose.
+  Those constraints belong only in `AGENTS.md`, the project skill, and
+  `checkpoint.md`. Do not remove useful Lean tutorials merely because this
+  particular workstation avoids heavyweight builds.
 - Introduce prerequisite vocabulary before use. Recurring foundations such as
   null sets, probability distributions, events, measures, random variables,
   and measurable functions require substantive glossary entries and links,

@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
     paths:
+      - ".env.example"
+      - "README.md"
+      - "Makefile"
+      - "scripts/check_public_reader_language.py"
+      - "scripts/check_teaching_source_hygiene.py"
+      - "scripts/test_check_teaching_source_hygiene.py"
       - "site/**"
       - "formalization/NonlinearDynamics/**"
       - ".github/workflows/pages.yml"

@@ -877,9 +877,9 @@ contraction and is not a signed Lyapunov observable.
 
 Each bridge below says the same fact three ways: first as a sentence a human
 might write, then as mathematics, then as the exact Lean interface. The
-project declarations import Mathlib and belong on the guarded Linux builder.
-The later `Std` worksheet is intentionally small enough for an ordinary Mac
-or Linux computer.
+project declarations are **full project checks** that import Mathlib. The
+later `Std` worksheet is a **standalone tutorial** small enough for an
+ordinary macOS or Linux computer.
 
 ### Lean bridge 1: the data itself enforces positive lengths
 
@@ -1082,19 +1082,17 @@ open NonlinearDynamics.Random.RandomCocycles
 `#check` asks Lean to print the inferred type without constructing new data or
 running a proof. These queries correspond in order to the seven bridges above.
 
-On an approved Linux builder, from the repository root, a human types:
+After installing the repository's pinned dependencies, a human types this from
+the repository root:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
 ~~~
 
-This is a **project/Mathlib check**. It restores or builds substantial
-dependencies and must use the guarded Linux workflow, such as a
-human-approved Runpod. Do not run it on the Mac workstation. The command
-checks the source file containing all seven declarations with warnings treated
-as errors and with the pinned manifest integrity gate.
+This is a **full project check**. It may compile substantial dependencies and
+therefore may require substantial disk space and memory. The command checks
+the source file containing all seven declarations.
 {{< /repo-check >}}
 
 ## The checked declaration architecture
@@ -2180,7 +2178,7 @@ elan run leanprover/lean4:v4.32.0 lean \
 ~~~
 
 This is a **small standalone tutorial**. It imports only `Std`, uses short
-lists, and is suitable for a normal Mac or Linux host. It does not validate
+lists, and is suitable for a normal macOS or Linux host. It does not validate
 the Mathlib project module. Successful execution prints exactly:
 
 ~~~text
@@ -2237,23 +2235,19 @@ belong to the larger \(H=10,m=4\) greedy worksheet.
 
 The source-order entry point is
 <code>NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking</code>.
-From the repository root on an approved Linux builder, the intended direct
-audit is:
+From the repository root, the direct full project check is:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
-CLOUD_LEAN_BUILD=1 make check
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean
 ~~~
 
 The integrated repository module has 1,131 lines and SHA-256
 <code>732187ce77b5efa14df3a992f194d5dce4dfc8d9f5fa6dbaf658c5ed41ef4f4d</code>.
 That hash records the exact source audited for this chapter; the repository
-module is the present authority. These are **project/Mathlib checks**, not
-standalone tutorials. They restore or compile substantial dependencies and
-must run through the guarded cloud workflow. The Mac workstation is for
-editing, Hugo, static checks, and the bounded `Std` worksheet above.
+module is the present authority. This is a **full project check**, not a
+standalone tutorial. It may compile substantial dependencies and therefore
+may require substantial disk space and memory.
 
 ## What the milestone establishes
 

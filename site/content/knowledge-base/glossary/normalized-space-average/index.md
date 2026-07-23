@@ -309,7 +309,7 @@ for integrable real observables under the exact listed assumptions.
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 worksheet verifies only the two finite integer ledgers. It does not import
 Mathlib, construct a measure, or prove an ergodic theorem.
 
@@ -376,13 +376,14 @@ are exact integers. It stores the probability weights \(2/3\) and \(1/3\) as
 the common numerator ledger \((2,1)\) over denominator \(3\). It is a check of
 the finite arithmetic, not an implementation of real integration or rational
 probability measures. This exact worksheet was executed successfully with the
-pinned Lean 4.32.0 compiler on the Mac.
+pinned Lean 4.32.0 compiler.
 
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-copy of the repository, a reader can create a scratch query containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project query containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
@@ -401,9 +402,9 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for the exact declaration
-type. The guarded command below checks the authoritative RMT-28 source module,
-not the tiny standalone worksheet. It belongs on approved Linux compute and
-must not be run on this Mac workstation.
+type. The full-project command below checks the authoritative RMT-28 source module,
+not the standalone worksheet. It uses the repository's pinned Lean and Mathlib
+dependencies.
 {{< /repo-check >}}
 
 ## Totalized edge cases are conventions, not averages with evidence

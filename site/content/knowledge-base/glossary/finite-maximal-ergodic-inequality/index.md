@@ -445,7 +445,9 @@ This exact worksheet was executed successfully with Lean 4.32.0 and printed:
 This worksheet does not define measures, integrals, or Mathlib's theorem.
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.**
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
@@ -463,8 +465,9 @@ open NonlinearDynamics.Random.RandomCocycles
 #check measureReal_finiteBirkhoffAverageExceedanceSet_le
 ~~~
 
-The guarded command below checks the authoritative module on approved Linux
-compute. No project or Mathlib build belongs on this workstation.
+The full-project command below checks the authoritative module with the
+repository's pinned dependencies installed; allow substantial disk space and
+memory.
 {{< /repo-check >}}
 
 ## What the inequality does not claim

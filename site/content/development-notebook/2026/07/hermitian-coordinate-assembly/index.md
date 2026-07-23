@@ -620,17 +620,21 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean
 ```
 
-To build the whole library and the draft teaching site, return to the
-repository root and run:
+Starting from the repository root, build the whole library and check the
+public teaching content:
 
 ```sh
+cd formalization
+lake build
+
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
 The first command checks this file directly and promotes warnings to errors.
-The second rebuilds the complete Lean target, validates the proof-to-prose
-coverage and checkpoint, and renders all Hugo drafts with warnings fatal.
+The full build checks the complete import graph. The final two commands inspect
+the public teaching content and render the site.
 
 For a small API-oriented session, the following file is complete Lean code:
 

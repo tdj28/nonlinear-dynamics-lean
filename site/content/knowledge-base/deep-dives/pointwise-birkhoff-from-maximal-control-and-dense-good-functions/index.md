@@ -1209,7 +1209,8 @@ pairs a human sentence, paper mathematics, exact Lean syntax, and a token map.
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff" >}}
 
-On an approved Linux builder, place this probe in a project scratch file:
+For a **full project check**, place this probe in a project scratch file after
+installing the repository's pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
@@ -1227,18 +1228,16 @@ open NonlinearDynamics.Random.RandomCocycles
 #check ae_mem_birkhoffConvergenceSet_of_integrable
 ~~~
 
-From the repository root on that approved Linux host, type:
+From the repository root, type:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean
 ~~~
 
-This is a **project/Mathlib check**. It can restore or compile substantial
-dependencies and must not run on the Mac workstation. The guarded target
-checks the pinned manifest and validates the authoritative 580-line module
-with warnings treated as errors.
+This is a **full project check**. It may compile substantial dependencies and
+therefore may require substantial disk space and memory. It validates the
+authoritative 580-line module.
 {{< /repo-check >}}
 
 ## Run the eight-cycle closure ledger with `Std`
@@ -2278,28 +2277,21 @@ sequence of Birkhoff averages \(A_nf(\omega)\) converges to some real number
 for \(\mu\)-almost every \(\omega\), without a probability, ergodicity, or
 invertibility premise and without identifying the limit.
 
-## Reproduce the right layer on the right machine
+## Choose the appropriate runnable path
 
 There are two deliberately separate runnable paths in this chapter.
 
 - The `Std` worksheet is a tiny eight-state arithmetic tutorial. A reader may
-  run it on an ordinary Mac or Linux host with the pinned Lean 4.32 compiler.
+  run it on an ordinary macOS or Linux host with the pinned Lean 4.32
+  compiler.
 - The exact <code>PointwiseBirkhoff</code> import, public declarations,
-  Mathlib representatives, \(L^p\) spaces, and warning-fatal source check
-  belong to the guarded Linux/RunPod command in
+  Mathlib representatives, \(L^p\) spaces, and source check use the full
+  project command in
   [Type-check the exact project interface](#type-check-the-exact-project-interface).
 
 The distinction is about resource use, not pedagogy. Readers should type and
-modify the small tutorial locally. The project proof remains fully visible,
-but this workstation does not rebuild Mathlib or the Lake cache.
-
-The Hugo teaching layer can be checked safely from the repository root on the
-workstation:
-
-~~~sh
-make site-check
-git diff --check
-~~~
+modify the standalone tutorial. The full project check loads the repository's
+pinned Mathlib dependencies and may require more disk space and memory.
 
 The declaration and probe manifests above are checked against the exact
 source hash and the repository's pinned toolchain, rather than a globally

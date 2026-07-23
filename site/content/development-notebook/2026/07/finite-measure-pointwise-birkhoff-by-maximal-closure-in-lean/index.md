@@ -561,15 +561,15 @@ source "$HOME/.elan/env"
 cd formalization
 lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean
-lake build NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
+lake build
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
-The first command checks the leaf module with warnings fatal. The second asks
-Lake for the module target and its dependencies. `make check` validates the
-whole Lean tree, proof-to-prose coverage, checkpoint contract, teaching-source
-hygiene, and warning-fatal Hugo render.
+The direct Lean command checks the leaf module with warnings fatal.
+`lake build` checks the complete project import graph. The final two commands
+inspect the public teaching content and render the site.
 
 To inspect only the theorem signature in a scratch file:
 

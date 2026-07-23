@@ -1075,7 +1075,7 @@ idea appears in the general interface.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/KoopmanL2Mean.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/KoopmanL2Mean.lean).
-On an approved Linux builder, save the following temporary query file as
+For a **full project check**, save the following temporary query file as
 <code>formalization/NonlinearDynamics/KoopmanL2MeanChecks.lean</code>:
 
 ~~~lean
@@ -1109,22 +1109,21 @@ open NonlinearDynamics.Random.RandomCocycles
 Then type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/KoopmanL2MeanChecks.lean
+cd formalization
+lake env lean NonlinearDynamics/KoopmanL2MeanChecks.lean
 ~~~
 
 The twenty checks follow the public declarations in source order. Delete the
 temporary query file after the check. To compile the authoritative module
-itself with warnings treated as errors, type:
+itself, type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/KoopmanL2Mean.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/KoopmanL2Mean.lean
 ~~~
 
-Both commands import the pinned Mathlib graph and belong on approved Linux
-compute, such as the project RunPod builder. They are intentionally guarded
-against execution on this Mac.
+Both commands import the pinned Mathlib graph and may require substantial disk
+space and memory.
 {{< /repo-check >}}
 
 ## Type the two-state and typewriter ledgers yourself with Lean and `Std`
@@ -1296,12 +1295,11 @@ typewriter output, <code>true</code> means â€œthe point lies in this interval.â€
 The final two lines say that \(5/8\) leaves the leftmost intervals after level
 zero, while \(0\) never leaves them.
 
-**Resource profile: tiny standalone tutorial, safe on a normal Mac or Linux
-machine.** It imports only <code>Std</code> and never opens the project's
-Mathlib dependency graph. This exact file and Lean output were checked with
-the pinned Lean 4.32.0 toolchain on the Mac. The exact project declarations
-remain cloud-only and use the guarded commands in the preceding repository
-box.
+**Standalone tutorial, suitable for a normal macOS or Linux machine.** It
+imports only <code>Std</code> and never opens the project's Mathlib dependency
+graph. This exact file and Lean output were checked with the pinned Lean 4.32.0
+toolchain. The exact project declarations use the full project commands in the
+preceding repository box.
 
 ## Complete source-order declaration and helper map
 

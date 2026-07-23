@@ -32,6 +32,21 @@ accessibility, and human-signoff obligations still apply. Perform and document
 them manually when no local helper exists, and keep the page a draft whenever
 a required review cannot yet be completed.
 
+## Keep contributor infrastructure out of public prose
+
+Development Notebook entries may teach two reader-facing execution paths:
+
+- a **standalone tutorial** that imports only Lean core or `Std` and can run on
+  macOS or Linux; and
+- a **full project check** that uses the repository's pinned Lean and Mathlib
+  dependencies and may require substantial disk space or build time.
+
+Use portable commands for both. Never mention the owner's workstation, RunPod,
+cloud approval, contributor-only guards, private networking, retained caches,
+or internal release operations in rendered Notebook prose. Those constraints
+belong only in this ignored `AGENTS.md`, the project skill, and
+`checkpoint.md`.
+
 ## Human-approved RunPod acceleration gate
 
 RunPod is an optional acceleration layer for memory-heavy Lean builds and full

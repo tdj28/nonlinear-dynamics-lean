@@ -713,7 +713,8 @@ mathematics, exact Lean syntax, and the tokens that carry the proof.
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure" >}}
 
-On an approved Linux builder, place this probe in a project scratch file:
+For a **full project check**, place this probe in a project scratch file after
+installing the repository's pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveAllLengthBadBlockMeasure
@@ -733,18 +734,16 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusAllLengthBadBlockSet_le_rateRatio
 ~~~
 
-From the repository root on that approved Linux host, type:
+From the repository root, type:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean
 ~~~
 
-This is a **project/Mathlib check**. It can restore or compile substantial
-dependencies and must not run on the Mac workstation. The guarded target
-checks the pinned manifest and validates the authoritative 481-line source
-with warnings treated as errors.
+This is a **full project check**. It may compile substantial dependencies and
+therefore may require substantial disk space and memory. It validates the
+authoritative 481-line source.
 {{< /repo-check >}}
 
 ## Run both two-atom ledgers with `Std`
@@ -876,7 +875,7 @@ elan run leanprover/lean4:v4.32.0 lean \
   /tmp/AllLengthBadBlockDeepDiveTutorial.lean
 ~~~
 
-This is a **small standalone tutorial** suitable for a normal Mac or Linux
+This is a **standalone tutorial** suitable for a normal macOS or Linux
 host. It imports only `Std`, enumerates two atoms, and does not compile Mathlib
 or this project. Successful execution prints exactly:
 
@@ -1159,27 +1158,19 @@ What must replace one-witness membership?
 lower-liminf interpretation, a proved one-sided preimage inclusion, and an
 almost-invariance upgrade using preservation plus finite mass.
 
-## Reproduce the right layer on the right machine
+## Choose the appropriate runnable path
 
 There are two deliberately separate runnable paths.
 
 - The `Std` worksheet is a tiny two-atom arithmetic tutorial suitable for an
-  ordinary Mac or Linux host.
+  ordinary macOS or Linux host.
 - The exact project import, extended-measure API, `Measure.real`, filter
-  limits, candidate interface, and warning-fatal leaf check belong to the
-  guarded Linux/RunPod command in
+  limits, candidate interface, and source check use the full project command in
   [Type-check the exact project interface](#type-check-the-exact-project-interface).
 
 The distinction is about resource use, not pedagogy. Readers should type,
-run, and modify the finite tutorial locally. The Mathlib-backed proof remains
-fully visible without rebuilding the project cache on this workstation.
-
-The Hugo teaching layer can be checked safely from the repository root:
-
-~~~sh
-make site-check
-git diff --check
-~~~
+run, and modify the standalone tutorial. The Mathlib-backed proof remains fully
+visible; checking it may require substantial disk space and memory.
 
 The paired [Development Notebook]({{< relref "/development-notebook/2026/07/all-positive-length-centered-bad-block-control-in-lean" >}})
 gives the implementation ledger and review history.

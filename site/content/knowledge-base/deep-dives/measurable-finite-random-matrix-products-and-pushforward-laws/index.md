@@ -274,9 +274,10 @@ whereas \(Q\) would place mass \(1/4\) there.
 
 ## Type the finite ledger in Lean with <code>Std</code>
 
-The general project theorem imports Mathlib and belongs on approved Linux
-cloud compute. The exact two-outcome arithmetic is small enough for a normal
-Mac or Linux computer. Save the following byte-for-byte as
+The general project theorem is a **full project check**: it imports Mathlib and
+may require substantial disk space and memory. The exact two-outcome
+arithmetic is a **standalone tutorial** for a normal macOS or Linux computer.
+Save the following byte-for-byte as
 <code>/tmp/MeasurableFiniteProducts2.lean</code>:
 
 ~~~lean
@@ -394,8 +395,7 @@ elan run leanprover/lean4:v4.32.0 lean \
   /tmp/MeasurableFiniteProducts2.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 { a00 := 2, a01 := 2, a10 := 0, a11 := 1 }
@@ -689,8 +689,8 @@ applies <code>forwardProduct_add</code> at the chosen outcome.
 {{< /lean-bridge >}}
 
 {{< repo-check >}}
-On an approved Linux builder, a reader can put these lines in a temporary
-project scratch file:
+**Full project check.** Put these lines in a temporary project scratch file
+after installing the repository's pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
@@ -815,7 +815,7 @@ import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
 
 The first type displays the bounded prefix premise. The second confirms the
 induction step's pointwise multiplication rule. Run the authoritative module
-with the guarded cloud command below.
+with the full project command below.
 {{< /repo-check >}}
 
 ### Why complex matrices?
@@ -952,7 +952,7 @@ import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
 
 The first two checks reveal where ordinary measurability evidence enters. The
 third is the checked preimage-evaluation theorem matching the opening ledger.
-The command below runs only on the approved Linux project builder.
+The full project command below checks the authoritative module.
 {{< /repo-check >}}
 
 ## Camp six: calibrate the law at zero and one step
@@ -1039,7 +1039,7 @@ import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
 ~~~
 
 The zero theorem carries a source probability typeclass; the one-step equality
-does not. Use the guarded cloud command below to check their authoritative
+does not. Use the full project command below to check their authoritative
 types and proofs.
 {{< /repo-check >}}
 
@@ -1145,7 +1145,7 @@ import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
 
 The first result is evidence about a raw measure, the second is a bundled
 probability measure, and the third proves their underlying measures coincide.
-The exact project file is cloud-only and checked by the guarded command below.
+The exact project file is checked by the full project command below.
 {{< /repo-check >}}
 
 ## The complete declaration map
@@ -1383,27 +1383,16 @@ That command checks exact integer matrix arithmetic, finite preimages, rational
 atom weights, the dependence witness, and the same-law/different-map example.
 It imports <code>Std</code>, not Mathlib.
 
-The authoritative project theorem belongs on approved Linux cloud compute with
-the pinned project cache. From the repository root there, type:
+For the **full project check**, install the repository's pinned Lean and
+Mathlib dependencies. From the repository root, type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
 ~~~
 
-The guarded target verifies the committed manifest digest and checks the
-Mathlib-backed module with warnings treated as errors. Do not replace it with
-raw <code>lake</code> or project <code>lean</code> commands on the Mac.
-
-Site authoring and static validation remain workstation-safe:
-
-~~~sh
-make content-hygiene
-make site-check
-~~~
-
-The repository-wide <code>make check</code> gate is also cloud-only because it
-includes the Lean project build. Passing a technical gate does not complete
+This checks the Mathlib-backed module and may require substantial disk space
+and memory. Passing a technical gate does not complete
 human review. This page remains an open working note while mathematical,
 source, accessibility, and editorial reviews are pending.
 

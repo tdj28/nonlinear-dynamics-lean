@@ -430,7 +430,7 @@ settles every \(k\).
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 worksheet computes exact finite sums for the two cold-open models. It does not
 import Mathlib, define filters, or prove that an infinite sequence converges.
 
@@ -513,13 +513,14 @@ what justify the infinite conclusions.
 This command is appropriate on an ordinary Mac or Linux machine: it imports
 only <code>Std</code> and compiles one tiny file. It is intentionally separate
 from the project and Mathlib checks below. This exact worksheet was executed
-successfully with the pinned Lean 4.32.0 compiler on the Mac.
+successfully with the pinned Lean 4.32.0 compiler.
 
 ## Try the exact project declarations
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** A human can type the following
-query worksheet in a deliberately provisioned repository clone:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
@@ -538,9 +539,9 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for a declaration's exact
-type. The guarded command below compiles the authoritative RMT-22 module. It
-requires the project and Mathlib cache, so it belongs on approved Linux cloud
-compute rather than this Mac workstation.
+type. The full-project command below compiles the authoritative RMT-22 module. It
+uses the repository's pinned Lean and Mathlib dependencies and may require
+substantial disk space and memory.
 {{< /repo-check >}}
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff" >}}
@@ -559,8 +560,8 @@ open NonlinearDynamics.Random.RandomCocycles
 That theorem assumes a finite measure, measure-preserving dynamics, and an
 integrable real observable. Its conclusion is the exact almost-everywhere
 Lean sentence displayed above. It does not identify the value of the limit.
-The guarded command compiles the later authoritative module only on an
-approved Linux builder.
+The full-project command compiles the later authoritative module with the
+repository's pinned dependencies.
 {{< /repo-check >}}
 
 ## Candidate and matrix-cocycle views

@@ -630,11 +630,16 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean
 ```
 
-Build the complete repository and teaching site with:
+Starting from the repository root, build the complete formalization and check
+the public teaching content with:
 
 ```sh
+cd formalization
+lake build
+
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
 The module ends with five axiom reports:

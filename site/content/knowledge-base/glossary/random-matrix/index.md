@@ -282,7 +282,7 @@ rational arithmetic.
 
 This bounded tutorial imports only <code>Std</code> and can run on a normal Mac
 or Linux machine. The general matrix alias and measurability theorem below are
-Mathlib-backed project interfaces and remain cloud-only checks.
+Mathlib-backed project interfaces and are full project checks.
 
 Here is the exact base definition from the checked project module:
 
@@ -312,8 +312,9 @@ other.
 {{< repo-check >}}
 The authoritative source is
 [`formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean`](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean).
-These are literal commands a learner can type in a temporary Lean file on an
-approved Linux builder:
+These are literal commands a learner can type in a temporary Lean file inside a
+clone with the repository's pinned dependencies
+installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Basic
@@ -324,7 +325,7 @@ import NonlinearDynamics.Random.RandomMatrices.Basic
 ~~~
 
 <code>#print</code> unfolds the abbreviation. Each <code>#check</code> asks Lean
-to elaborate the named theorem and show its type. The guarded shell command
+to elaborate the named theorem and show its type. The full-project command
 below checks the authoritative module rather than the temporary probe.
 {{< /repo-check >}}
 

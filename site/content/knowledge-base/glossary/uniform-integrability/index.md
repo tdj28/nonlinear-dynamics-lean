@@ -493,8 +493,7 @@ reference.
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check on macOS
-or Linux.** The following file records a retained integral as a pair
+**Standalone tutorial.** The following file records a retained integral as a pair
 <code>(numerator, denominator)</code>. For example, <code>(4, 16)</code>
 means the exact value \(4/16\). It checks the spike arithmetic and the
 inclusive threshold rule without importing Mathlib, defining a measure, or
@@ -560,9 +559,10 @@ bounded worksheet does not download or build the project or Mathlib.
 ## Try the exact declarations in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, checked only on an approved
-Linux builder.** A human can place the following commands in a project scratch
-file or compare them with the named module:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a project scratch file containing the following commands, or compare
+them with the named module:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
@@ -582,9 +582,9 @@ import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for an existing declaration
-and its exact type. The guarded command below checks the complete
-<code>PointwiseBirkhoffLimit.lean</code> module. It must not be run on the Mac
-workstation because it imports the project and Mathlib.
+and its exact type. The full-project command below checks the complete
+<code>PointwiseBirkhoffLimit.lean</code> module. It uses the repository's
+pinned Lean and Mathlib dependencies.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

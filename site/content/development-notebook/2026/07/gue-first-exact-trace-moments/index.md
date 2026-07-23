@@ -786,10 +786,18 @@ lake env lean -DwarningAsError=true \
 ```
 
 The direct command checks the complete RMT-09 module with warnings promoted to
-errors under the pinned [Mathlib 4.32.0 release](#ref-mathlib-release). Run
-`make check` from the repository root to rebuild the full Lean
-library, validate checkpoint and proof-to-prose coverage, and render every
-Hugo draft with warnings fatal.
+errors under the pinned [Mathlib 4.32.0 release](#ref-mathlib-release).
+Starting from the repository root, build the full Lean library and check the
+public teaching content with:
+
+```sh
+cd formalization
+lake build
+
+cd ..
+make content-hygiene
+make site-check
+```
 
 This complete Lean snippet inspects the entire public interface:
 

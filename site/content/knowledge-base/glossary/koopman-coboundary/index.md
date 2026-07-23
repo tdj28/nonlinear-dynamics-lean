@@ -397,7 +397,7 @@ Tendsto (fun n ↦ birkhoffAverage ℝ T
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 file computes only the finite four-cycle arithmetic. It does not import
 Mathlib, prove the general telescope, construct an \(L^2\) operator, or check
 the project module.
@@ -491,8 +491,9 @@ has a finite state space.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** On an approved Linux builder,
-a human can place this query in a scratch file inside the provisioned project:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Place this query in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
@@ -516,9 +517,9 @@ open NonlinearDynamics.Random.RandomCocycles
 
 Each <code>#check</code> asks the pinned elaborator for the exact declaration
 type. <code>#print</code> also shows the theorem body and inferred parameters.
-The guarded command printed below checks the authoritative RMT-25 source file;
-it is intentionally separate from the tiny local worksheet and must not be
-run on this Mac workstation.
+The full-project command printed below checks the authoritative RMT-25 source
+file. It is separate from the standalone tutorial and uses the repository's
+pinned dependencies.
 {{< /repo-check >}}
 
 ## What this term does not claim

@@ -295,8 +295,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/MeasurableSpaceScratch.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact standalone worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [true, true, true, true]
@@ -310,10 +309,11 @@ the complement of the even faces is the odd set and that the tempting
 three-event family omits it. This is a finite model of the closure rules, not
 a replacement for Mathlib's general countable-union structure.
 
-### Check the exact project theorem on Linux
+### Full project check
 
-The next worksheet uses Mathlib and the repository's matrix interface. Type it
-only on an approved Linux builder provisioned with the pinned project cache:
+The next worksheet is a full project check. It uses the repository's pinned
+Lean and Mathlib dependencies and may require substantial disk space and
+memory:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Basic

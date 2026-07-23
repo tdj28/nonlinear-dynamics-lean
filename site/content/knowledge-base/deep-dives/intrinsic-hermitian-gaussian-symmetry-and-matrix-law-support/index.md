@@ -1047,16 +1047,16 @@ example : pushBySwap balancedWeights = balancedWeights := by
 end HermitianCongruenceTutorial
 ~~~
 
-Type these commands on a normal Mac or Linux machine with Elan installed:
+Type these commands on a normal macOS or Linux machine with Elan installed:
 
 ~~~sh
 source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/HermitianCongruenceTutorial.lean
 ~~~
 
-**Resource profile: small standalone Lean plus `Std`, safe on a normal Mac or
-Linux host.** It does not import Mathlib, enter the Lake project, restore a
-cache, or check the repository module.
+**Standalone tutorial: Lean plus `Std`, suitable for a normal macOS or Linux
+host.** It does not import Mathlib, enter the Lake project, or check the
+repository module.
 
 The file was executed with that exact command and printed:
 
@@ -1086,8 +1086,8 @@ intrinsic Gaussian, or verify the project theorem.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean).
-On an approved Linux builder with the pinned dependencies provisioned, put this
-probe in a temporary project scratch file:
+After installing the repository's pinned dependencies, put this probe in a
+temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry
@@ -1117,16 +1117,16 @@ does not run a simulation or infer an unlisted density, law comparison,
 coordinate-built Gaussian unitary ensemble invariance theorem, or spectral
 consequence.
 
-**Resource profile: exact repository module plus Mathlib, cloud-only for this
-project.** From the repository root, run:
+**Full project check: exact repository module plus Mathlib.** From the
+repository root, run:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
 ~~~
 
-Use that guarded target only on approved Linux compute. This Mac remains a
-source, Hugo, and small standalone tutorial host.
+This command may compile substantial dependencies and therefore may require
+substantial disk space and memory.
 {{< /repo-check >}}
 
 ## The checked declaration map
@@ -1168,13 +1168,12 @@ theorems live in <code>NonlinearDynamics.Random.GUE</code>.
 | <code>GUE.matrixLaw_compl_hermitianSet</code> | Proves the non-Hermitian complement has matrix-law mass zero | No unitary-invariance theorem |
 
 All 27 declarations compile under Lean 4.32.0 and the pinned Mathlib 4.32.0
-dependency with warnings treated as errors. The module contains no
-<code>sorry</code> or <code>admit</code>.
+dependency. The module contains no <code>sorry</code> or <code>admit</code>.
 
 ### Validation boundary
 
 The preceding `repo-check` gives the copyable import, exact declaration probe,
-module path, and guarded Linux command. It checks the geometry, support, and
+module path, and full project command. It checks the geometry, support, and
 intrinsic Gaussian symmetry proofs. The standalone worksheet checks only the
 displayed two-by-two arithmetic. Neither command numerically samples a matrix,
 compares empirical histograms, or turns a support theorem into a density or

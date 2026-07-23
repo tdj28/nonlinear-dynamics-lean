@@ -242,7 +242,7 @@ HasLaw X (gaussianReal 0 (1 : ℝ≥0)) P
 ~~~
 
 where <code>HasLaw</code> combines almost-everywhere measurability with the
-exact pushforward identity. The cloud-only repository command that checks this
+exact pushforward identity. The full project command that checks this
 definition and all following project bridges appears in the final
 <code>repo-check</code>. The local <code>Std</code> worksheet later in this
 chapter checks only the finite ledger.
@@ -324,8 +324,8 @@ zero-variance branch.
 
 The corresponding one-way theorem
 <code>ae_eq_const_of_variance_zero</code> can obtain the probability-measure
-instance from the exact law itself. Both belong to the cloud-only project
-module checked by the repository command below.
+instance from the exact law itself. Both belong to the full project module
+checked by the repository command below.
 {{< /lean-bridge >}}
 
 ### Lean bridge: the type displays the square
@@ -345,8 +345,8 @@ module checked by the repository command below.
 
 The theorem is <code>HasRealGaussianLaw.const_mul</code>. The square is visible
 in the conclusion, so a reader cannot accidentally interpret the input
-variance as a standard deviation. Replay the exact theorem with the guarded
-cloud command in the repository check; replay the numeric table locally with
+variance as a standard deviation. Replay the exact theorem with the Full
+project command in the repository check; replay the numeric table with
 the standalone worksheet.
 {{< /lean-bridge >}}
 
@@ -480,7 +480,7 @@ structure IndependentRealGaussianFamily
 - Ordinary measurability is a separate field because the exact law supplies
   only almost-everywhere measurability.
 
-The exact source is checked by the guarded cloud command near the end. The
+The exact source is checked by the full project command near the end. The
 standalone local worksheet mirrors the three-coordinate parameter ledger but
 does not pretend to implement <code>Measure</code>, <code>HasLaw</code>, or
 <code>iIndepFun</code>.
@@ -543,7 +543,7 @@ factorization properties.
 
 The project theorem is
 <code>IndependentRealGaussianFamily.jointHasLaw</code>. It requires
-<code>[Fintype ι]</code> at exactly this product step. The same cloud-only
+<code>[Fintype ι]</code> at exactly this product step. The same full project
 module also proves <code>jointHasGaussianLaw</code>, which forgets the explicit
 parameter ledger and retains qualitative joint Gaussianity.
 {{< /lean-bridge >}}
@@ -620,16 +620,17 @@ gaussianProductMeasure_iIndepFun m v
 For an empty finite index type, the function space has one empty tuple and the
 product measure is Dirac at that tuple. This is a scalar product-space policy.
 It does not decide any later zero-dimensional matrix-ensemble convention. Use
-the guarded repository check to elaborate these exact Mathlib-dependent
+the full project check to elaborate these exact Mathlib-dependent
 declarations.
 {{< /lean-bridge >}}
 
 ## Type and run the finite ledger yourself
 
-The measure-theoretic declarations above import Mathlib and belong on an
-approved Linux project builder. The finite arithmetic and type distinctions
-from the opening example are small enough to run on an ordinary Mac or Linux
-machine. This worksheet imports only Lean's <code>Std</code> library.
+The measure-theoretic declarations above import Mathlib and are full project
+checks that may require substantial disk space and memory. The finite
+arithmetic and type distinctions from the opening example form a standalone
+tutorial for an ordinary macOS or Linux machine. This worksheet imports only
+Lean's <code>Std</code> library.
 
 Open a text editor, create <code>/tmp/GaussianFamilyTutorial.lean</code>, and
 type the following code. Typing it matters: each definition makes one layer
@@ -813,12 +814,12 @@ belong to the next resource layer.
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/GaussianPrimitives.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/GaussianPrimitives.lean).
 It imports the pinned Mathlib Gaussian and independence APIs. Type the probe
-below into a temporary project scratch file only on an approved Linux builder
-with the project dependencies provisioned.
+below into a temporary project scratch file after installing the repository's
+pinned dependencies.
 
 {{< repo-check module="NonlinearDynamics.Random.GaussianPrimitives" >}}
-**Resource label: exact repository module plus Mathlib, cloud-only for this
-project.** The following probe asks Lean for the types of the declarations
+**Full project check: exact repository module plus Mathlib.** The following
+probe asks Lean for the types of the declarations
 used throughout the chapter:
 
 ~~~lean
@@ -846,10 +847,9 @@ open NonlinearDynamics.Random
 
 <code>import</code> loads the exact project module. Each <code>#check</code>
 asks Lean to elaborate an existing name and report its type; it neither draws
-samples nor proves a new theorem. The guarded command rendered immediately
-below checks the authoritative source file with warnings treated according to
-repository policy. Do not replace it with a local Lake or project command on
-this Mac.
+samples nor proves a new theorem. The full project command rendered immediately
+below checks the authoritative source file with the repository's pinned
+toolchain and dependencies.
 {{< /repo-check >}}
 
 ## What the checked module proves
@@ -972,7 +972,7 @@ normalization.
 | “<code>HasLaw</code> proves ordinary measurability.” | Its field is almost-everywhere measurability. | Store <code>Measurable</code> separately when needed. |
 | “A list of means and variances identifies the joint law.” | Moments do not determine dependence in general. | Prove the complete pushforward or product law. |
 | “Standard complex Gaussian has one universal scale.” | Component and total-spread conventions differ. | Fill the normalization ledger explicitly. |
-| “The local worksheet checked the Gaussian theorem.” | It checked finite integer bookkeeping only. | Run exact Mathlib/project declarations on the guarded Linux builder. |
+| “The standalone worksheet checked the Gaussian theorem.” | It checked finite integer bookkeeping only. | Run the exact Mathlib/project declaration as a full project check. |
 
 ## Exercises: keep using the same coordinates
 
@@ -1008,9 +1008,8 @@ normalization.
     empty product?
 13. **Normalization.** Derive the component variances and total squared spread
     of \((U+iV)/2\). Which familiar convention, if either, does it match?
-14. **Resource boundary.** Explain why the local worksheet is safe on a
-    normal workstation while the project probe belongs on approved Linux
-    compute.
+14. **Resource boundary.** Explain why the standalone tutorial is small while
+    the full project probe loads the repository's pinned Mathlib dependencies.
 15. **Research boundary.** Name three additional declarations required before
     an exact real product family becomes a unitary-invariant random matrix
     law.
@@ -1058,7 +1057,7 @@ its degenerate boundary. The word “standard” does not supply a normalization
   [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
   for the next product-space layer.
 - [Finite GUE from Independent Gaussian Coordinates]({{< relref "/knowledge-base/deep-dives/finite-gue-from-independent-gaussian-coordinates" >}})
-  shows where an approved dimension-dependent matrix normalization is finally
+  shows where a specified dimension-dependent matrix normalization is finally
   selected.
 
 ## References

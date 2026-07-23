@@ -759,10 +759,11 @@ cd formalization
 lake build
 ~~~
 
-From the repository root, run every formalization and teaching gate:
+From the repository root, check the public teaching content:
 
 ~~~sh
-make check
+make content-hygiene
+make site-check
 ~~~
 
 This import-level snippet checks all sixteen declarations in source order:

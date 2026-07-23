@@ -360,8 +360,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/ExpectationScratch.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact standalone worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [-3, 4, 5]
@@ -372,15 +371,15 @@ workstation. It printed:
 ~~~
 
 The three entries on the first line are the weighted contributions in sixths,
-not sampled payoffs. The proof lines make Lean check the same total and the
+not sampled payoffs. The proof lines ask Lean to check the same total and the
 linearity example \(Y=2X+3\). This bounded worksheet neither imports Mathlib
 nor constructs a measure-theoretic integral.
 
-### Check the exact project interface on Linux
+### Full project check
 
 The next worksheet uses the repository's Mathlib-backed integral interface.
-Type it only on an approved Linux builder provisioned with the pinned project
-cache:
+Type it in a clone with the repository's pinned Lean and Mathlib dependencies
+installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
@@ -403,7 +402,8 @@ example (hX : Integrable X μ) (hY : Integrable Y μ) :
 ~~~
 
 The first <code>#check</code> asks for Mathlib's integral-linearity theorem.
-The next two inspect the project's guarded expectation definition and its
+The next two inspect the project's probability-normalized expectation
+definition and its
 equality with the raw integrated observable. The local variables make the
 line <code>#check ∫ ω, X ω ∂μ</code> meaningful. Finally, the
 <code>example</code> asks Lean to verify additivity from explicit
@@ -418,8 +418,8 @@ That module imports the finite-horizon log-positive observable and its
 integrability theory, requires <code>[IsProbabilityMeasure μ]</code> before
 using the expectation name, and proves by <code>rfl</code> that the named
 expectation equals <code>integratedLogPlusNorm</code>. The worksheet above uses
-the same project import and exact declaration names. The repository's guarded
-build command checks the complete module on the approved Linux builder.
+the same project import and exact declaration names. The full-project command
+checks the complete module with the repository's pinned dependencies installed.
 {{< /repo-check >}}
 
 ## Distinctions and failure modes

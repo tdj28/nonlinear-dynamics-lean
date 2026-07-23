@@ -333,7 +333,8 @@ the finite arithmetic and order convention, not Mathlib's generic matrix API.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean).
-On an approved Linux builder, a human can type:
+In a clone with the repository's pinned Lean and Mathlib dependencies
+installed, a human can type:
 
 ~~~lean
 import NonlinearDynamics.Random.MatrixProducts.FiniteProducts
@@ -348,8 +349,9 @@ import NonlinearDynamics.Random.MatrixProducts.FiniteProducts
 
 These checks expose the definition, identity horizon, successor order, block
 split, constant-sequence calibration, and chronological vector action. The
-guarded command below checks the pinned project module and Mathlib dependencies
-in the cloud.
+full-project command below checks the pinned project module and Mathlib dependencies
+with the repository's pinned dependencies
+installed.
 {{< /repo-check >}}
 
 ## What the definition does not say

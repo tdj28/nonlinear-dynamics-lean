@@ -793,19 +793,20 @@ cd ..
 The direct `lean` command checks this module with every warning promoted to an
 error. `lake build` checks the complete import graph.
 
-Run the proof-to-prose and Hugo gates:
+Starting from the repository root, build the complete formalization and check
+the public teaching content:
 
 ```sh
-python3 scripts/check_lean_notebook_coverage.py
+cd formalization
+lake build
+
+cd ..
+make content-hygiene
 make site-check
-make check
-git diff --check
 ```
 
-The coverage script confirms that this substantive Lean file maps to this
-draft, every public named declaration appears in the prose, and the social
-card is a 1200 by 630 PNG. `make site-check` renders all drafts with Hugo
-warnings fatal. `make check` runs the complete repository gate.
+`lake build` checks the complete project import graph. The final two commands
+inspect the public teaching content and render the site.
 
 Regenerate the card from any working directory:
 

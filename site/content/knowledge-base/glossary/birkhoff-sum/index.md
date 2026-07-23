@@ -582,7 +582,7 @@ def birkhoffAverage (f : α → α) (g : α → M) (n : ℕ) (x : α) : M :=
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 file recreates only the four-state arithmetic. It does not import Mathlib,
 define Mathlib's generic Birkhoff sum, or prove a convergence theorem.
 
@@ -649,8 +649,9 @@ ordinary Mac or Linux machine because the worksheet imports only
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** A human can type this query
-worksheet in a deliberately provisioned copy of the repository:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
@@ -673,9 +674,9 @@ open NonlinearDynamics.Random.RandomCocycles
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
 type. The project theorem names identify the terminal-remainder,
-remainder-first, and finite-integrability layers. The guarded command below
-checks the authoritative RMT-18 source module on approved Linux compute. It
-does not run on this Mac workstation.
+remainder-first, and finite-integrability layers. The full-project command below
+checks the authoritative RMT-18 source module with the repository's pinned Lean
+and Mathlib dependencies installed.
 {{< /repo-check >}}
 
 ## Where to continue

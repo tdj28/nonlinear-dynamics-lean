@@ -338,7 +338,7 @@ hold at every \(\omega\), not merely
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** The two matrices are
+**Standalone tutorial.** The two matrices are
 powers of two, so the worksheet records each signed logarithm by its exact
 integer coefficient of \(\log2\). Thus \(2\) has coefficient \(1\), while
 \(1/4=2^{-2}\) has coefficient \(-2\). This checks the arithmetic and the
@@ -429,9 +429,9 @@ measures, logarithms, or integrability theorem.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-copy of the repository, a human can put the following in a temporary project
-worksheet:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
@@ -449,9 +449,9 @@ import NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
 
 Each <code>#check</code> asks the pinned elaborator for the exact type of a
 declaration. The long namespace identifies the declarations without relying on
-local <code>open</code> commands. The guarded command below checks the complete
-authoritative RMT-34 module on approved Linux compute. It intentionally does
-not run on this Mac workstation.
+local <code>open</code> commands. The full-project command below checks the complete
+authoritative RMT-34 module with the repository's pinned Lean and Mathlib
+dependencies installed.
 {{< /repo-check >}}
 
 ## Why this condition matters for cocycle growth
@@ -489,7 +489,7 @@ deterministic integrated signed growth rate.
 That downstream theorem explains why the present hypothesis is valuable, but
 it must not be read backward into this page. This page's pinned source and
 hash cover RMT-34 only. The RMT-35 source still needs its own teaching layer
-and cloud release gate, and the tail package by itself proves no asymptotic
+and full project validation, and the tail package by itself proves no asymptotic
 convergence.
 
 ## Near-misses and boundary cases
@@ -595,7 +595,7 @@ does not replace the two-sided tail package.
   decomposition into directions with different rates.
 - Pointwise units do not construct an invertible two-sided base system.
 - The small <code>Std</code> worksheet checks integer arithmetic only. The
-  guarded Linux project command is the check for the exact Mathlib-backed
+  full-project command is the check for the exact Mathlib-backed
   source.
 
 ## Check your understanding

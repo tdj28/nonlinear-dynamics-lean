@@ -1000,9 +1000,17 @@ lake env lean -DwarningAsError=true \
 ```
 
 The direct command checks the complete RMT-08 module with warnings promoted to
-errors. Run `make check` from the repository root to rebuild the full Lean
-library, validate checkpoint and proof-to-prose coverage, and render every Hugo
-draft with warnings fatal.
+errors. Starting from the repository root, build the full Lean library and
+check the public teaching content with:
+
+```sh
+cd formalization
+lake build
+
+cd ..
+make content-hygiene
+make site-check
+```
 
 This complete Lean snippet inspects the main bridge and symmetry interfaces:
 

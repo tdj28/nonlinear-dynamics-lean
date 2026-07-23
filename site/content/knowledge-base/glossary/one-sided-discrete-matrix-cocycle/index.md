@@ -485,12 +485,12 @@ addition, and multiplication obeying the usual distributive laws, but not
 necessarily subtraction or division. The measurable bundle specializes its
 matrix entries to complex numbers.
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** This file imports only Lean's
+**Standalone tutorial.** This file imports only Lean's
 <code>Std</code> library. It does not import Mathlib or this project, and it
-does not build the project's Mathlib cache. It verifies the three-state orbit,
-the two matrix products, and the \(m=1,k=1\) split.
+verifies the three-state orbit, the two matrix products, and the \(m=1,k=1\)
+split.
 
 Save the following as <code>CocycleWorksheet.lean</code> in a temporary
 directory outside the repository:
@@ -578,9 +578,11 @@ Mathlib; it does not replace the project's generic matrix theorems.
 ## Try it in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** The authoritative source is
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean).
-On an approved Linux builder with the project cache provisioned, create a
+Create a
 temporary probe and type:
 
 ~~~lean
@@ -600,16 +602,15 @@ import NonlinearDynamics.Random.RandomCocycles.Discrete
 
 Each <code>#check</code> asks the pinned elaborator to display the exact type of
 one checked declaration. To check the authoritative module itself, type this
-literal guarded command from the repository root:
+literal full-project command from the repository root:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/Discrete.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/Discrete.lean
 ~~~
 
-That project command belongs on an approved Linux builder. Do not run it on
-the Mac workstation; the repository deliberately keeps Mathlib builds in the
-cloud.
+That full project check uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Boundary cases and nonclaims

@@ -554,12 +554,12 @@ theorem measureReal_birkhoffAverageExceedanceSet_le
       (∫ ω, max (g ω) 0 ∂μ) / a
 ~~~
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** This worksheet imports only Lean's
-<code>Std</code> library. It does not import Mathlib or this project, and it
-does not build a project cache. It computes integer orbit sums for the exact
-four-cycle above. At positive time \(n\), the threshold test
+**Standalone tutorial.** This worksheet imports only Lean's
+<code>Std</code> library. It does not import Mathlib or this project. It
+computes integer orbit sums for the exact four-cycle above. At positive time
+\(n\), the threshold test
 
 \[
 \frac12\lt\frac{S_n}{n}
@@ -649,17 +649,18 @@ lower bound is three, and no point has a witness from six through twelve. The
 paper bound \(S_n\le3\) proves the stronger statement for every \(n\ge6\);
 the finite program is not presented as a proof about infinitely many times.
 This exact worksheet was executed successfully with the pinned Lean 4.32.0
-compiler on the Mac; it imports only <code>Std</code> and does not load the
+compiler; it imports only <code>Std</code> and does not load the
 project or Mathlib.
 
 ## Try it in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** The authoritative checked
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative checked
 source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean).
-On an approved Linux builder with the project cache provisioned, a human can
-type the following in a temporary project probe:
+Create a temporary project probe containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
@@ -692,8 +693,9 @@ The first group follows the repository proof from finite witnesses through
 measurability, measure limits, and the weak bound. The final three queries
 expose the pinned Mathlib interfaces for continuity from below, real-valued
 measure projection, and continuity of that projection away from infinity.
-The guarded command rendered below checks the complete authoritative module.
-It belongs on approved Linux compute, not on this Mac workstation.
+The full-project command rendered below checks the complete authoritative module
+with the repository's pinned Lean and Mathlib dependencies
+installed.
 {{< /repo-check >}}
 
 ## Boundary cases and nonclaims

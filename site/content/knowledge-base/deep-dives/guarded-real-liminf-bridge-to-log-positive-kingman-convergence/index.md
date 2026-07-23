@@ -1055,7 +1055,7 @@ observable is the nonnegative envelope chosen by this project.
 Each bridge below has four layers: the sentence a mathematician says, the
 paper formula, the exact checked Lean interface, and a token map. Read them in
 order once; afterward the declaration names become a compact proof roadmap.
-The literal guarded repository command appears after bridge seven.
+The literal full project command appears after bridge seven.
 
 ### Bridge 1: normalize at every natural time
 
@@ -1191,9 +1191,8 @@ The literal guarded repository command appears after bridge seven.
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman" >}}
 
-**Resource label: pinned project plus Mathlib, approved Linux cloud compute
-only.** Put the following probe in a temporary file inside
-<code>formalization/</code> on the approved builder:
+**Full project check: pinned project plus Mathlib.** Put the following probe
+in a temporary file inside <code>formalization/</code>:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
@@ -1215,18 +1214,17 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_tendsto_normalizedLogPlusNormObservable
 ~~~
 
-From the repository root on that approved Linux host, type:
+From the repository root, type:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean
 ~~~
 
-This is the authoritative project/Mathlib check. It verifies the pinned
-manifest and checks the complete 627-line source with warnings fatal. It may
-restore or compile substantial dependencies. Do **not** run this command, raw
-<code>lake</code>, or a project import on the Mac workstation.
+This authoritative project/Mathlib check uses the repository's pinned
+dependencies and checks the complete 627-line source. It may compile
+substantial dependencies and therefore may require substantial disk space and
+memory.
 {{< /repo-check >}}
 
 ## Run the exact finite ledger with Lean and `Std`
@@ -1392,9 +1390,9 @@ elan run leanprover/lean4:v4.32.0 lean \
   /tmp/GuardedRealLiminfTutorial.lean
 ~~~
 
-**Resource label: small standalone Lean 4.32.0 plus `Std`, suitable for an
-ordinary Mac or Linux host.** This exact file ran in 3.4 seconds on the
-workstation and printed the following complete transcript:
+**Standalone tutorial: Lean 4.32.0 plus `Std`, suitable for an ordinary macOS
+or Linux host.** This exact file ran in 3.4 seconds and printed the following
+complete transcript:
 
 ~~~text
 [{ n := 0, value := 0, belowInnerQ := false },
@@ -1495,8 +1493,7 @@ identity and Boolean window. The field
 <code>sourceProvedTotalizedRealLiminf := 0</code> is an explicit reference to
 the paired Mathlib proof, not a reimplementation of liminf in <code>Std</code>.
 The infinite frequency, eventual boundedness, totalized real-liminf, null-set,
-Birkhoff, and cocycle claims remain exactly the guarded cloud-only project
-interfaces above.
+Birkhoff, and cocycle claims remain exactly the full project interfaces above.
 
 ## Audit every checked interface
 
@@ -1589,9 +1586,9 @@ Finally, the source contains exactly 11 explicit axiom-audit probes:
 #print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_tendsto_normalizedLogPlusNormObservable
 ~~~
 
-These lines are part of the source manifest, not a substitute for the guarded
-cloud check. Their printed results belong to the Linux build transcript; this
-chapter does not fabricate them from a workstation-only text scan.
+These lines are part of the source manifest, not a substitute for the full
+project check. Their printed results come from the checked build rather than
+from text inspection alone.
 
 ### Pinned Mathlib API ledger
 

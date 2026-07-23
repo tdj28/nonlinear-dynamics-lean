@@ -1049,11 +1049,12 @@ and \(T^2\) is not ergodic.
 
 ## Run the finite worksheet on Mac or Linux
 
-The theorem module imports Mathlib and belongs on the cloud builder. The
-following teaching file is deliberately smaller: it imports only Lean's
-`Std`, defines its own two-point state space, computes exact rational
-averages, and asks Lean to verify every displayed ledger. It is appropriate
-for an ordinary Mac or Linux computer with Elan installed.
+The theorem module is a **full project check**: it imports Mathlib and may
+require substantial disk space and memory. The following teaching file is a
+**standalone tutorial**: it imports only Lean's `Std`, defines its own
+two-point state space, computes exact rational averages, and asks Lean to
+verify every displayed ledger. It is appropriate for an ordinary macOS or
+Linux computer with Elan installed.
 
 Save this block byte for byte as
 <code>/tmp/ErgodicBirkhoffNormalizedTutorial.lean</code>:
@@ -1232,8 +1233,8 @@ lets a learner inspect every finite mechanism that motivates its hypotheses.
 
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean).
-On an approved Linux builder with the project dependencies provisioned, put
-this interface probe in a temporary project scratch file:
+After installing the repository's pinned dependencies, put this interface
+probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
@@ -1253,30 +1254,22 @@ The six names occur in source order and are exactly the module's public
 interface. Private helpers and anonymous boundary probes are intentionally not
 addressable from an importing file.
 
-From the repository root on that approved Linux host, type:
+From the repository root, type:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean
+cd formalization
+lake env lean -DwarningAsError=true \
+  NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean
 ~~~
 
-This is the exact warning-fatal, Mathlib-backed leaf check. It may restore or
-compile substantial dependencies, so it belongs on a human-approved RunPod or
-other Linux cloud builder, not on the Mac workstation. Do not replace the
-guarded target with raw `lake` commands.
+This exact Mathlib-backed leaf check may compile substantial dependencies and
+therefore may require substantial disk space and memory.
 {{< /repo-check >}}
 
-The broader guarded release gate on the same approved Linux builder is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
-
 The module ends with six <code>#print axioms</code> commands, one per public
-theorem. Passing the leaf or release gate establishes elaboration against the
-pinned toolchain and rejects warnings and unfinished placeholders; it does
-not complete the pending human and configured Pro review.
+theorem. Successful warning-fatal elaboration against the pinned toolchain
+rules out unfinished placeholders; it does not complete the pending human and
+configured Pro review.
 
 ## Thirty solved exercises
 

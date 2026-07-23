@@ -385,12 +385,11 @@ The typeclass <code>[Fintype ι]</code> supplies the finite diagonal over which
 trace sums. <code>[DecidableEq ι]</code> supports the finite square matrix
 identity used at exponent zero and the matrix-power API.
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** This worksheet imports only Lean's
-<code>Std</code> library. It does not import Mathlib or this project, and it
-does not build a project cache. It verifies the concrete integer arithmetic,
-not the general spectral theorem.
+**Standalone tutorial.** This worksheet imports only Lean's
+<code>Std</code> library. It does not import Mathlib or this project. It
+verifies the concrete integer arithmetic, not the general spectral theorem.
 
 Save the following as <code>TracePowerScratch.lean</code>:
 
@@ -443,9 +442,11 @@ without pretending to replace Mathlib's generic <code>Matrix</code> API.
 ## Project declaration workflow
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** The authoritative source is
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/Observables.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Observables.lean).
-On a provisioned copy of the repository, a human can type this worksheet in a
+A human can type this worksheet in a
 temporary Lean file:
 
 ~~~lean
@@ -461,8 +462,8 @@ import NonlinearDynamics.Random.RandomMatrices.Observables
 
 Each <code>#check</code> asks the pinned Lean elaborator to display the exact
 type of a project declaration. It does not rerun the hand calculation and does
-not prove a new theorem. The guarded command below checks the authoritative
-module on an approved Linux builder.
+not prove a new theorem. The full-project command below checks the
+authoritative module.
 {{< /repo-check >}}
 
 ## Normalization and other boundaries

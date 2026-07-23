@@ -118,7 +118,7 @@ deterministic bridge that those later layers may use.
 | Proof route | [Hermiticity is a three-case proof](#camp-five-hermiticity-is-a-three-case-proof) | Follow the exact entrywise argument used in Lean |
 | Measurability route | [Measurability reduces to scalar coordinates](#camp-six-measurability-reduces-to-scalar-coordinates) | See why no measure or law is required |
 | Hands-on Lean route | [Type the running example yourself](#type-the-running-example-yourself-with-lean-and-std) | Run a bounded <code>Std</code> worksheet on Mac or Linux |
-| Project Lean route | [The checked declaration map](#the-checked-declaration-map) | Audit all 17 public declarations on an approved Linux builder |
+| Project Lean route | [The checked declaration map](#the-checked-declaration-map) | Audit all 17 public declarations with the pinned project dependencies |
 | Boundary route | [Dimension zero is not an exception](#camp-eight-dimension-zero-is-not-an-exception) | Understand the unique empty coordinate point and matrix |
 
 ### Learning objectives
@@ -831,7 +831,7 @@ The project theorem uses Mathlib's complex numbers, matrices, measurable
 spaces, and Hermitian predicate. Before loading that machinery, a learner can
 model the same finite bookkeeping with two small structures. The worksheet
 below imports only Lean's <code>Std</code> library. It is intentionally bounded
-and suitable for an ordinary Mac or Linux machine.
+and suitable for an ordinary macOS or Linux machine.
 
 Create a scratch directory outside <code>formalization/</code>. Save the exact
 block below as <code>HermitianCoordinatesTutorial.lean</code>:
@@ -983,20 +983,18 @@ interpretations that the declaration does not add.
 | <code>HermitianRandomMatrix.ofCoordinates</code> | Bundled measurable pointwise-Hermitian sample map | A base probability measure |
 | <code>HermitianRandomMatrix.ofCoordinates_apply</code> | Bundle evaluation reduces to direct assembly | Any law or moment statement |
 
-The repository's recorded cloud validation compiled all 17 declarations with
-warnings treated as errors under Lean 4.32.0 and the pinned Mathlib 4.32.0
-dependency. The module contains no <code>sorry</code> or <code>admit</code>.
-This educational rewrite does not claim a new project build on the Mac; the
-guarded Linux command below is the exact route for a fresh replay.
+The repository's recorded project validation compiled all 17 declarations
+under Lean 4.32.0 and the pinned Mathlib 4.32.0 dependency. The module contains
+no <code>sorry</code> or <code>admit</code>.
+The full project command below is the exact route for a fresh replay.
 
 ### Inspect and check the exact project interfaces
 
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean).
-On an approved Linux builder with the pinned project dependencies already
-provisioned, a learner can put these exact lines in a temporary project
-scratch file:
+After installing the repository's pinned dependencies, put these exact lines
+in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
@@ -1025,8 +1023,8 @@ open NonlinearDynamics.Random
 dependencies. <code>#print</code> shows the constructor body, while each
 <code>#check</code> asks Lean to elaborate an existing declaration and report
 its type. These commands neither sample a random matrix nor establish any
-probability law. The guarded command below checks the authoritative source
-file with the repository's cloud-build policy.
+probability law. The full project command below checks the authoritative
+source file.
 {{< /repo-check >}}
 
 ## Checked Lean and mathematical context are different layers

@@ -275,7 +275,7 @@ remains shifted-subadditive.
 
 ## A tiny standalone Lean/Std worksheet
 
-**Resource label: tiny local check.** This complete file reproduces the
+**Standalone tutorial.** This complete file reproduces the
 three-state arithmetic with integers and exact rational numbers. It imports
 <code>Std</code>, not Mathlib or this repository. Save it as
 <code>OrbitMajorantTutorial.lean</code> in a scratch directory.
@@ -377,8 +377,9 @@ This bounded worksheet is suitable for an ordinary Mac or Linux machine.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-repository copy, create a query file containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a query file containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
@@ -402,8 +403,9 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
-type. The guarded command below checks the authoritative module, including its
-Mathlib imports, on approved Linux compute. It must not be run on this Mac.
+type. The full-project command below checks the authoritative module, including its
+Mathlib imports, with the repository's pinned Lean and Mathlib dependencies
+installed.
 {{< /repo-check >}}
 
 ## Boundary cases and assumption ledger

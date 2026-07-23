@@ -279,7 +279,7 @@ example : 2 * massSixths [.a, .b, .c] = 12 := by decide
 end ThreeAtomMeasure
 ~~~
 
-From any directory on a normal Mac or Linux host with the pinned compiler,
+From any directory on a normal macOS or Linux machine with the pinned compiler,
 type exactly:
 
 ~~~sh
@@ -305,7 +305,8 @@ general countably additive measure construction.
 ### Exact project and Mathlib interface
 
 Here is a complete worksheet a human can type into a scratch <code>.lean</code>
-file on a provisioned Linux build host for this project:
+file on a clone with the repository's pinned dependencies
+installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Laws
@@ -356,8 +357,9 @@ evaluation theorem <code>RandomMatrix.law_apply</code>, and separately proves
 that a probability source produces a probability law. <code>#check</code> in
 the worksheet above only asks Lean to elaborate a declaration or expression;
 the final <code>example</code> is the line that checks the stated theorem in the
-reader's scratch file. The repository's guarded build command checks the full
-module on the approved Linux builder.
+reader's scratch file. The full-project command checks the full
+module with the repository's pinned dependencies
+installed.
 {{< /repo-check >}}
 
 ## Distinctions and failure modes

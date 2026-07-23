@@ -719,11 +719,11 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomMatrices/Hermitian.lean
 ```
 
-To build the entire formalization instead:
+From the repository root, build the entire formalization with:
 
 ```sh
-cd ..
-make lean
+cd formalization
+lake build
 ```
 
 A successful file check returns to the shell without diagnostic output. A full

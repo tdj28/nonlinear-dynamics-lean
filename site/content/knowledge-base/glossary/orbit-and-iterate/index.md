@@ -323,7 +323,7 @@ The first two lines reproduce both orbit tables. The third confirms that
 different states \(u\) and \(b\) have the same image \(a\). This file is small
 enough for a normal Mac or Linux machine because it imports only
 <code>Std</code>. The matrix-valued, measurable project interface still
-requires the guarded Linux check below.
+requires the full project check below.
 
 ## Exact project usage: sampling a matrix along an orbit
 
@@ -358,8 +358,8 @@ property.
 {{< repo-check >}}
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean).
-A human can type this worksheet in a scratch buffer on a deliberately
-provisioned copy of the project:
+A human can type this worksheet in a scratch buffer inside a clone with the
+repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.Discrete
@@ -396,7 +396,7 @@ example {Ω : Type*} (T : Ω → Ω) (m n : ℕ) (ω : Ω) :
 
 The custom four-state type makes the first mathematical example executable.
 The three <code>rfl</code> proofs reduce the finite iterate exactly. The final
-example checks the rule for concatenating two time blocks. The guarded command
+example checks the rule for concatenating two time blocks. The full-project command
 below checks the complete project module containing the orbit-sampling
 definition and measurability theorem.
 {{< /repo-check >}}

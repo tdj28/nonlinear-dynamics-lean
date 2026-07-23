@@ -280,7 +280,7 @@ By the summit, a reader should be able to:
 31. derive the even and odd average formulas for the two-state swap;
 32. prove decimal-block nonconvergence from the limits \(10/11\) and \(1/11\);
 33. run the byte-identical standalone <code>Std</code> worksheet on a normal
-    Mac or Linux machine; and
+    macOS or Linux machine; and
 34. distinguish all thirty-seven public declarations from the imported helper
     APIs and twelve anonymous source probes.
 
@@ -800,8 +800,8 @@ conditional measure-theoretic consequences.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean).
-On an approved Linux builder, a human can put the following query block in a
-temporary project scratch file:
+For a **full project check**, put the following query block in a temporary
+project scratch file after installing the repository's pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
@@ -982,11 +982,11 @@ The first two lists are the orbit readings. The next two ledgers contain
 delete-one-prefix identity. The final line reproduces every endpoint count and
 fraction in the nonconvergence table.
 
-**Resource profile: tiny standalone tutorial, safe on a normal Mac or Linux
-machine.** It imports only <code>Std</code> and never opens this project's
-Mathlib dependency graph. This exact file and output were checked with the
-pinned Lean 4.32.0 toolchain on the Mac. The full project declarations remain
-cloud-only and use the guarded command in the preceding repository box.
+**Standalone tutorial, suitable for a normal macOS or Linux machine.** It
+imports only <code>Std</code> and never opens this project's Mathlib dependency
+graph. This exact file and output were checked with the pinned Lean 4.32.0
+toolchain. The full project declarations use the command in the preceding
+repository box.
 
 ## Thin wrappers should keep thin premises
 

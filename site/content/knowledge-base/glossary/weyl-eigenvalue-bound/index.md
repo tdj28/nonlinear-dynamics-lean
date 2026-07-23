@@ -329,7 +329,8 @@ general spectral statement.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean).
-On an approved Linux builder, a human can type:
+In a clone with the repository's pinned Lean and Mathlib dependencies
+installed, a human can type:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -341,8 +342,9 @@ import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
 ~~~
 
 These checks expose the perturbation, Lipschitz, continuity, and measurability
-layers in order. The guarded command below checks the complete pinned module
-and its Mathlib dependencies in the cloud.
+layers in order. The full-project command below checks the complete pinned module
+and its Mathlib dependencies with the repository's pinned dependencies
+installed.
 {{< /repo-check >}}
 
 ## Where to continue

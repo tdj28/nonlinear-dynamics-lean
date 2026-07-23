@@ -172,7 +172,7 @@ both the geometry test and the probability ledger.
   wide="true"
   src="commuting-gaussian-pushforwards.svg"
   alt="At size two, four independent normalized Gaussian slots each have variance one half. The point two, minus one, square root two, two square root two decodes into a Hermitian matrix whose rows are two, one plus two i and one minus two i, minus one. The coordinate square and Frobenius square both equal fifteen; omitting the square-root-two divisions gives twenty-five and the wrong upper variances."
-  caption="**Finding:** the same factor \\(1/\sqrt2\\) solves two obligations. It turns four common-variance real coordinates into the approved diagonal variance \\(1/2\\) and upper component variances \\(1/4\\), and it makes normalized Euclidean length equal Frobenius length. The numeric point is a deterministic geometry audit, not sampled data. The hatched lower panel is a deliberately wrong decoder."
+  caption="**Finding:** the same factor \\(1/\sqrt2\\) solves two obligations. It turns four common-variance real coordinates into the specified diagonal variance \\(1/2\\) and upper component variances \\(1/4\\), and it makes normalized Euclidean length equal Frobenius length. The numeric point is a deterministic geometry audit, not sampled data. The hatched lower panel is a deliberately wrong decoder."
 >}}
 
 {{< checkpoint stage="Exact ledger" title="Do not normalize by visual habit" >}}
@@ -298,9 +298,10 @@ is the layer at which invariance lives.
 
 ## Type and run the size-two arithmetic yourself
 
-The exact Gaussian measures and project theorems import Mathlib and belong on
-an approved Linux project builder. The finite matrix ledger can run locally.
-The following worksheet imports only Lean's <code>Std</code> library. It stores
+The exact Gaussian measures and project theorems are **full project checks**:
+they import Mathlib and may require substantial disk space and memory. The
+finite matrix ledger is a **standalone tutorial** for macOS or Linux. It
+imports only Lean's <code>Std</code> library and stores
 complex integers as pairs, checks Hermiticity plus the swap and phase
 congruences, and records variances in quarter-units so that \(1/2\) is the
 natural number 2 and \(1/4\) is 1.
@@ -432,7 +433,7 @@ elan run leanprover/lean4:v4.32.0 lean /tmp/NormalizedGUE2Tutorial.lean
 ~~~
 
 **Resource label: small standalone Lean plus <code>Std</code>, suitable for an
-ordinary Mac or Linux machine.** The command neither enters the Lake project
+ordinary macOS or Linux machine.** The command neither enters the Lake project
 nor downloads or builds Mathlib.
 
 The executed output is:
@@ -561,7 +562,7 @@ The norm identity from the opening example is the case \(x=y=z_0\).
 - The exact theorem is
   <code>RandomMatrix.normalizedHermitianAssembly_apply_upper</code>.
 
-**Run boundary.** Replay the theorem with the guarded primary-module check
+**Run boundary.** Replay the theorem with the full primary-module check
 near the end. The local worksheet verifies only its displayed size-two
 arithmetic.
 {{< /lean-bridge >}}
@@ -585,8 +586,8 @@ arithmetic.
   transport.
 
 **Run boundary.** The exact proof reindexes finite sums and uses Mathlib, so it
-belongs to the guarded Linux project check. The numeric \(15=15\) case is safe
-in the standalone worksheet.
+is a full project check. The numeric \(15=15\) case is safe in the standalone
+worksheet.
 {{< /lean-bridge >}}
 
 ## The coordinate law is a complete product law
@@ -651,8 +652,8 @@ product measure through measurable sum/product equivalences.
   <code>GUE.map_realToHermitianCoordinates_gaussianProduct</code>.
 
 **Run boundary.** This equality uses Mathlib finite product measures and must
-be checked through the cloud-only repository command. No claim in the local
-integer worksheet substitutes for it.
+be checked through the full project check. No claim in the local integer
+worksheet substitutes for it.
 {{< /lean-bridge >}}
 
 ## Standard Gaussian transport supplies the basis-neutral shape
@@ -716,8 +717,8 @@ dimension-dependent Wigner scale. These are separate responsibilities.
 - The theorem is <code>GUE.intrinsicLaw_eq_map_smul_stdGaussian</code>.
 
 **Run boundary.** The exact statement and its <code>stdGaussian_map</code>
-proof belong to the cloud-only project module. The local worksheet checks the
-size-two normalization but does not define <code>stdGaussian</code>.
+proof require the full project module. The local worksheet checks the size-two
+normalization but does not define <code>stdGaussian</code>.
 {{< /lean-bridge >}}
 
 ## Keep coordinate, intrinsic, and ambient carriers distinct
@@ -785,7 +786,7 @@ show that every ambient matrix lies in the image.
 - The theorem is
   <code>GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw</code>.
 
-**Run boundary.** The guarded module check elaborates the exact carrier types
+**Run boundary.** The full module check elaborates the exact carrier types
 and measurability. The local tutorial contains only the concrete matrices.
 {{< /lean-bridge >}}
 
@@ -857,13 +858,13 @@ measure equality from a picture.
 - <code>IsUnitaryConjugationInvariant</code> expands to a universal statement
   over <code>U : Matrix.unitaryGroup (Fin n) ℂ</code>.
 - <code>GUE.matrixLaw n</code> is the exact ambient law constructed from the
-  approved coordinate measure.
+  specified coordinate measure.
 - The predicate compares <code>Measure.map</code> with the original measure. It
   never asks for <code>U * H * Uᴴ = H</code> pointwise.
 - The checked theorem is
   <code>GUE.matrixLaw_isUnitaryConjugationInvariant</code>.
 
-**Run boundary.** This is the primary cloud-only repository theorem. The swap
+**Run boundary.** This is the primary full project theorem. The swap
 worksheet checks one deterministic congruence but cannot establish equality
 of Gaussian measures.
 {{< /lean-bridge >}}
@@ -941,9 +942,9 @@ transport.
 ### Inspect the geometry and support interfaces
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry" >}}
-**Resource label: predecessor project module plus Mathlib, cloud-only for this
-project.** On an approved Linux builder, put these lines in a temporary project
-scratch file:
+**Full project check: predecessor project module plus Mathlib.** Put these
+lines in a temporary project scratch file after installing the repository's
+pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry
@@ -965,15 +966,15 @@ open NonlinearDynamics.Random
 ~~~
 
 The <code>#check</code> commands inspect existing declarations; they do not
-sample a matrix. The guarded command rendered below checks the exact source
-file. Do not replace it with a local project or Lake command on this Mac.
+sample a matrix. The full project command rendered below checks the exact
+source file and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ### Inspect the normalization and invariance interfaces
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance" >}}
-**Resource label: primary project module plus Mathlib, cloud-only for this
-project.** Type this exact probe on the approved Linux builder:
+**Full project check: primary project module plus Mathlib.** Type this exact
+probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
@@ -1001,8 +1002,7 @@ open NonlinearDynamics.Random
 
 <code>import</code> loads the pinned source and dependencies. Each
 <code>#check</code> asks Lean to elaborate an exact declaration and display its
-type. The guarded command below checks the whole authoritative leaf. It is not
-a workstation command.
+type. The full project command below checks the whole authoritative leaf.
 {{< /repo-check >}}
 
 ## The complete RMT-08 declaration map
@@ -1049,10 +1049,9 @@ definition.
 | <code>GUE.map_intrinsicLaw_hermitianCongruence</code> | unitary congruence preserves intrinsic GUE |
 | <code>GUE.matrixLaw_isUnitaryConjugationInvariant</code> | every unitary congruence preserves ambient GUE law |
 
-The checked source has no <code>sorry</code> or <code>admit</code>. Its recorded
-cloud audit compiled the leaf and aggregators with warnings treated as errors
-against Lean 4.32.0 and pinned Mathlib 4.32.0. This rewrite does not claim a
-fresh project build on the Mac.
+The checked source has no <code>sorry</code> or <code>admit</code>. Its
+recorded project build compiled the leaf and aggregators with warnings treated
+as errors against Lean 4.32.0 and pinned Mathlib 4.32.0.
 
 ## Physics window: basis neutrality, stated narrowly
 
@@ -1123,8 +1122,9 @@ reversal, unfold energy levels, or prove universal spectral statistics.
     is Dirac without evaluating \(1/\sqrt0\).
 16. **Lean tokens.** Change <code>correctH</code> in the local worksheet to
     the matrix from exercise 2 and update every displayed output and example.
-17. **Resource boundary.** Explain why the worksheet is local-safe but the
-    two <code>repo-check</code> blocks require approved Linux compute.
+17. **Resource boundary.** Explain why the standalone worksheet is small while
+    the two full project checks load the repository's pinned Mathlib
+    dependencies.
 18. **Density boundary.** List the reference-volume and change-of-variables
     obligations needed before the classical exponential formula could become
     a checked alternative construction.

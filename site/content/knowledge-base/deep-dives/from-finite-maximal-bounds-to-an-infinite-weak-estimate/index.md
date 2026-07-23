@@ -1585,11 +1585,11 @@ gate visible.
 
 ## Run the five-state worksheet on a laptop
 
-The theorem module imports Mathlib and belongs on the approved Linux builder.
-The calculation from the opening example does not. The following complete
-worksheet imports only `Std`, uses integer partial sums instead of floating
-point averages, and is intentionally small enough for an ordinary Mac or
-Linux laptop.
+The theorem module is a **full project check**: it imports Mathlib and may
+require substantial disk space and memory. The calculation from the opening
+example is a **standalone tutorial**. The following complete worksheet imports
+only `Std`, uses integer partial sums instead of floating point averages, and
+is intentionally small enough for an ordinary macOS or Linux laptop.
 
 Create `/tmp/InfiniteHopfFiveStateTutorial.lean` with exactly this content:
 
@@ -1675,9 +1675,8 @@ true infinite event. A finite search alone would not prove that claim.
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal" >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean).
-On an approved Linux builder with the pinned project dependencies already
-provisioned, place these inspection commands in a temporary project scratch
-file:
+For a **full project check**, install the repository's pinned dependencies and
+place these inspection commands in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.InfiniteHopfMaximal
@@ -1696,22 +1695,15 @@ open NonlinearDynamics.Random.RandomCocycles
 #check measureReal_birkhoffAverageExceedanceSet_le
 ~~~
 
-The exact guarded module check from the repository root is:
+The exact module check from the repository root is:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean
 ~~~
 
-That Mathlib-backed command belongs only on a human-approved, provisioned
-Linux cloud builder. Do not run it on this Mac. The lightweight `Std`
-worksheet above is the local learning path.
-
-The guarded full release command on approved Linux cloud compute is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
+That Mathlib-backed command may require substantial disk space and memory. The
+lightweight `Std` worksheet above is the smaller learning path.
 
 Neither command changes `pro_reviewed: false`; technical validation and human
 review are separate gates.

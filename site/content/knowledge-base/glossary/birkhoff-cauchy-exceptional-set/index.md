@@ -407,9 +407,9 @@ The RMT-26 declarations attached directly to this term are:
 The later theorem <code>ae_mem_birkhoffConvergenceSet_of_dense_good</code>
 assembles those declarations into almost-everywhere convergence.
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** This complete file constructs
+**Standalone tutorial.** This complete file constructs
 integer partial sums whose positive-time averages alternate exactly between
 \(-1\) and \(1\). It then computes the moving witnesses for cutoffs
 \(1,4,7\) and contrasts the constant-average complement. It imports only
@@ -482,8 +482,9 @@ exist beyond every cutoff.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** On an approved Linux builder,
-a reader can put these queries in a temporary project worksheet:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
@@ -504,9 +505,9 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
-type. The guarded command rendered below checks the authoritative RMT-26
-module. It imports the project and Mathlib, so it belongs on approved Linux
-compute rather than this Mac workstation.
+type. The full-project command rendered below checks the authoritative RMT-26
+module. It uses the repository's pinned dependencies and may require substantial
+disk space and memory.
 {{< /repo-check >}}
 
 ## Related concepts

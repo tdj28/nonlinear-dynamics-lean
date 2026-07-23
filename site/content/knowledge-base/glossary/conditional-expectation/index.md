@@ -313,7 +313,7 @@ obligations. Finite measure does not mean probability measure.
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 worksheet verifies the integer numerators behind the four-state example.
 Dividing every sum by the common denominator \(4\) gives the probability
 integrals. It does not define Mathlib measures, sigma algebras, conditional
@@ -486,8 +486,9 @@ conclusions inferred from the finite example.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only.** On an approved
-Linux builder, a human can create a query worksheet containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
@@ -514,8 +515,8 @@ variable {T : Ω → Ω} {f g : Ω → ℝ}
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
-type. The guarded command below checks the authoritative RMT-27 module. It is
-not the tiny <code>Std</code> worksheet and must not run on this Mac.
+type. The full-project command below checks the authoritative RMT-27 module;
+it is separate from the standalone <code>Std</code> tutorial.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

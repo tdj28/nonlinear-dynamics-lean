@@ -343,7 +343,7 @@ The impossible substitution \(\delta\lt\delta\) would lose this room.
 
 ### A tiny standalone worksheet
 
-**Resource label: tiny Lean standard-library (`Std`) check.** Save the
+**Standalone tutorial.** Save the
 following as `LimitInferiorTutorial.lean`. It calculates the first eight exact
 rational values and their finite-window minima. It does not import Mathlib,
 define `Filter.liminf`, or prove the infinite limiting statement.
@@ -396,15 +396,15 @@ first four infinite tail floors because each listed lower-rail value is the
 smallest value that appears after its cutoff in the full sequence. The paper
 argument above, not this finite computation, proves the claim about all tails.
 This exact worksheet was executed successfully with the pinned Lean 4.32.0
-compiler on the Mac; it imports only <code>Std</code> and does not load the
+compiler; it imports only <code>Std</code> and does not load the
 project or Mathlib.
 
 ### Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** On a deliberately provisioned
-Linux clone, a reader can place these exact queries in the RMT-33 module or a
-temporary project file:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Place these exact queries in the RMT-33 module or a temporary project file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
@@ -425,9 +425,9 @@ open NonlinearDynamics.Random.RandomCocycles
 #check IsIntegrableSubadditiveProcessCandidate.ae_isBoundedUnder_ge_and_le_liminf_normalizedCenteredProcess
 ~~~
 
-The guarded command printed below checks the authoritative module named in the
-front matter. It is a project and Mathlib build, so it belongs on approved
-Linux compute. Do not run it on this Mac workstation.
+The full-project command printed below checks the authoritative module named in
+the front matter. It uses the repository's pinned Lean and Mathlib dependencies
+and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Liminf supplies only the lower half of convergence

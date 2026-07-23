@@ -463,12 +463,16 @@ Build the entire import graph:
 lake build
 ```
 
-Return to the repository root and validate both Lean and the draft-inclusive
-site:
+Starting from the repository root, build the complete formalization and check
+the public teaching content:
 
 ```sh
+cd formalization
+lake build
+
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
 ## Design decisions worth preserving

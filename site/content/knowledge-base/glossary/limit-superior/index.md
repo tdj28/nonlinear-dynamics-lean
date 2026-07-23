@@ -262,9 +262,9 @@ The comparison symbols are literal Lean syntax inside this code block. The
 mathematical display above uses TeX commands so Hugo passes it safely to
 KaTeX.
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** The following complete file
+**Standalone tutorial.** The following complete file
 computes the worked sequence and several finite windows. It imports
 <code>Std</code>, not Mathlib or this project.
 
@@ -316,7 +316,7 @@ index where the value is exactly \(1\).
 This worksheet deliberately does not import `Filter.limsup`. That interface
 lives in Mathlib and belongs to the separate project check below. This exact
 worksheet was executed successfully with the pinned Lean 4.32.0 compiler on
-the Mac.
+macOS; the same standalone command works on Linux.
 
 ## In Lean: the project's upper-limsup theorem
 
@@ -352,9 +352,10 @@ original base map. It does not infer that every powered map is ergodic.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-repository copy, a human can place the following in a scratch project file or
-compare the names with the checked module:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Place the following in a project scratch file, or compare the names with the
+checked module:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveUpperLimsup
@@ -373,9 +374,9 @@ open Filter MeasureTheory
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for the declaration's exact
-type. The guarded command rendered below checks the complete module on
-approved Linux compute. It must not be run on this Mac, because the module
-imports Mathlib and the project dependency tree.
+type. The full-project command rendered below checks the complete module on
+a machine with the repository's pinned Lean and Mathlib dependencies
+installed; allow substantial disk space and memory for the dependency tree.
 {{< /repo-check >}}
 
 ## Boundary cases and near-misses

@@ -824,7 +824,7 @@ the opening arithmetic. The worksheet below imports only Lean's
 <code>Std</code> library and models a \(2\)-by-\(2\) integer matrix as four
 named entries.
 
-This is a deliberately small tutorial. It is suitable for an ordinary Mac or
+This is a **standalone tutorial**. It is suitable for an ordinary macOS or
 Linux machine and does not invoke Lake or build Mathlib.
 
 Save the exact block below as
@@ -1238,9 +1238,8 @@ identifying the generator with a Jacobian matrix.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean).
-On an approved Linux builder with the pinned project dependencies already
-provisioned, a learner can put the following lines in a temporary project
-scratch file:
+For a **full project check**, install the repository's pinned dependencies and
+put the following lines in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.Discrete
@@ -1272,25 +1271,18 @@ declaration and report its type. <code>#print</code> exposes the four structure
 fields. These commands do not sample matrices, infer a probability law, or
 prove a Lyapunov theorem.
 
-Immediately below this prose, the repository-check panel renders the exact
-per-file command
-<code>CLOUD_LEAN_BUILD=1 make lean-file
-LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/Discrete.lean</code>. That
-guarded target checks the authoritative source with warnings treated as
-errors. It is intentionally a cloud/Linux command. This Mac is for the small
-<code>Std</code> worksheet, authoring, and static site checks; do not use it
-to rebuild the project or Mathlib cache.
-{{< /repo-check >}}
-
-The broader cloud release gate is:
+From the repository root, the exact per-file command is:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make check
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/Discrete.lean
 ~~~
 
-That full gate belongs on an explicitly approved Linux builder such as the
-project's Runpod workflow. Passing a technical gate still does not complete
-human or Pro review.
+This full project check may compile substantial dependencies and therefore may
+require substantial disk space and memory.
+{{< /repo-check >}}
+
+Passing a technical check still does not complete human or Pro review.
 
 ## Summit: what has and has not been proved
 

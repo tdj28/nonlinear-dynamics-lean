@@ -381,7 +381,8 @@ claims. This standalone command does not import Mathlib or build this project.
 The authoritative project source is
 [`formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean`](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean).
 A learner can put these lines in a temporary scratch file inside the
-`formalization` project on an approved Linux builder:
+`formalization` project in a clone with the repository's pinned Lean and Mathlib dependencies
+installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Hermitian
@@ -398,7 +399,7 @@ open scoped Matrix
 `import` loads the exact project module and its pinned dependencies. `#print`
 shows the definition behind a name. Each `#check` asks Lean to elaborate an
 identifier and report its type; it does not assert a new theorem. The literal
-guarded command below checks the authoritative project file itself.
+full-project command below checks the authoritative project file itself.
 {{< /repo-check >}}
 
 ## Distinctions that prevent common mistakes

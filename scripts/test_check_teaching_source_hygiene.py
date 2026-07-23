@@ -6,9 +6,11 @@ import unittest
 
 try:
     from scripts.check_teaching_source_hygiene import build_source_masks, check_text
+    from scripts.check_public_reader_language import check_public_text
 except ModuleNotFoundError:
     # ``unittest discover -s scripts`` puts scripts/ itself on sys.path.
     from check_teaching_source_hygiene import build_source_masks, check_text
+    from check_public_reader_language import check_public_text
 
 
 PASS_CASES = {
@@ -201,6 +203,74 @@ Rendered \(x\).
         unclosed = [issue for issue in issues if issue.code == "unclosed-delimiter"]
         self.assertEqual(1, len(unclosed))
         self.assertEqual(5, unclosed[0].line)
+
+
+class PublicReaderLanguageTests(unittest.TestCase):
+    def test_reader_facing_resource_language_is_accepted(self) -> None:
+        source = (
+            "Standalone tutorial: run this Lean core example on macOS or Linux.\n"
+            "Full project check: install the pinned Lean and Mathlib dependencies, "
+            "then run `lake env lean NonlinearDynamics/Example.lean`.\n"
+            "The eigenvalue lies in the cloud of sample points.\n"
+            "Check whether the eigenvalue lies in the cloud of sample points.\n"
+            "Test whether it remains in the cloud of sample points.\n"
+            "Point-cloud validation compares empirical spectra.\n"
+            "The sample-cloud project maps eigenvalues to nearby bins.\n"
+            "Make a final check that the theorem statement is accurate.\n"
+            "The command will make setup easier.\n"
+            "This will make Lean explanations accessible."
+        )
+        self.assertEqual([], check_public_text(source))
+
+    def test_contributor_infrastructure_language_is_rejected(self) -> None:
+        samples = (
+            "Put the worksheet in that approved Linux environment.",
+            "Run this only on the human-approved cloud builder.",
+            "CLOUD_LEAN_BUILD=1 make lean-file",
+            "Run make check from the repository root.",
+            "Run make -j1 check from the repository root.",
+            "Run make -J8 lean to build the formalization.",
+            "Run make -j 1 check from the repository root.",
+            "Run make --jobs=1 lean-file for a leaf module.",
+            "Run make --jobs 8 setup before compiling.",
+            "Run make -s -j4 workstation-check before publishing.",
+            "Run make -C . check from the repository root.",
+            "Run make --directory . lean to compile the project.",
+            "Run make LEAN_FILE=Foo.lean lean-file for a leaf module.",
+            "Use make lean to build the formalization.",
+            "Do not run this on the workstation.",
+            "This worksheet was executed on the Mac.",
+            "The broader Linux release gate is separate.",
+            "Use the RunPod cache.",
+            "Preview it over Tailscale.",
+            "This is a cloud-only project check.",
+            "Run the cloud probe below.",
+            "Run the cloud commands below.",
+            "The cloud validation is authoritative.",
+            "Wait for cloud approval before building.",
+            "Run the full project in the cloud.",
+            "Use a cloud machine for this check.",
+            "The remote compute builder is authoritative.",
+            "Use the guarded release command.",
+            "Use the guarded Linux command.",
+            "Use the guarded Make targets.",
+            "Replay the internal release gate.",
+            "Do not run the project on the Mac.",
+            "Serve the preview over the tailnet.",
+            "Use MagicDNS for the preview.",
+            "Restore the retained cache from the network volume.",
+        )
+        for source in samples:
+            with self.subTest(source=source):
+                self.assertTrue(check_public_text(source))
+
+    def test_portable_linux_host_language_is_accepted(self) -> None:
+        self.assertEqual(
+            [],
+            check_public_text(
+                "Run this standalone tutorial on a normal Mac or Linux host."
+            ),
+        )
 
 
 if __name__ == "__main__":

@@ -899,11 +899,12 @@ lake env lean NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
 cd ..
 ~~~
 
-A successful invocation exits silently with status zero. Back at the
-repository root, the broader repository build is:
+A successful invocation exits silently with status zero. From the repository
+root, build the complete formalization with:
 
 ~~~sh
-make lean
+cd formalization
+lake build
 ~~~
 
 To inspect the public contract in a scratch file, import the module and ask

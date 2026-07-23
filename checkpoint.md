@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 23:12 PDT
+Last updated: 2026-07-22 23:58 PDT
 
-Audited baseline: `main` at `e0e04c0`
+Audited baseline: `main` at `59ff224`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -63,6 +63,29 @@ ban on teaching readers how to run Lean.
 
 Historical local build results below remain valid evidence for their recorded
 commits. They are not instructions for future work.
+
+## Public Reader / Maintainer Infrastructure Boundary
+
+The owner corrected a public-teaching mistake on 2026-07-22: instructions such
+as “put the worksheet in the approved Linux environment” describe this
+project's maintainer operations, not mathematics or a reader workflow. They
+must never appear in the README, rendered Notebook or Knowledge Base prose,
+shared layouts, page-owned text assets, or mounted Lean source.
+
+- Public instructions now distinguish a **standalone tutorial** that imports
+  only Lean core or `Std` from a **full project check** that uses the pinned
+  Lean and Mathlib dependencies and may require substantial disk space or build
+  time. Both use portable macOS/Linux commands.
+- The shared `repo-check` component uses `cd formalization` followed by
+  `lake env lean <module-file>`. Reader prose must not name RunPod, approval
+  gates, the owner's machine, private networking, retained caches,
+  contributor-only Make targets, or internal release operations.
+- `scripts/check_public_reader_language.py` enforces that separation across
+  `README.md`, every Hugo source surface, and the mounted public Lean tree.
+  Its regression tests include the original offending sentence and indirect
+  variants. `make content-hygiene` and the GitHub Pages workflow run the gate.
+- The actual maintainer build-host policy remains mandatory but belongs only in
+  `AGENTS.md`, the project skill, and this checkpoint.
 
 ## GitHub Pages Publication Policy
 
@@ -1419,9 +1442,9 @@ bridge, or stable-manifold theorem.
   branch, and five `.gitkeep`-only Quantum Chaos branches.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
-  259,297 tokens across thirty-nine Notebook companions, 310,021 tokens across
-  thirty-six Deep Dives, and 178,777 tokens across sixty-two glossary chapters,
-  for 748,095 tokens across all 137 teaching bundles. Their deterministic
+  259,256 tokens across thirty-nine Notebook companions, 308,426 tokens across
+  thirty-six Deep Dives, and 178,822 tokens across sixty-two glossary chapters,
+  for 746,504 tokens across all 137 teaching bundles. Their deterministic
   visual layer contains 137 social cards and 316 conceptual SVGs.
 - Publication status: all 137 teaching pages are owner-authorized public
   working notes with `draft: false` and `pro_reviewed: false` pending human
@@ -3539,6 +3562,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `59ff224`: finish the 36-chapter Deep Dive textbook pass with the exact
+  forward/inverse real-log-norm tail sandwich, noncommuting inverse-order
+  example, three accessible figures, eight Lean bridges, and an executed
+  standalone `Std` worksheet.
 - `e0e04c0`: rebuild *The Guarded Real-Liminf Bridge to Log-Positive Kingman
   Convergence* around three exact sequence boundaries, the totalized-liminf
   guard, an exact closing squeeze, seven Lean bridges, and an executed local

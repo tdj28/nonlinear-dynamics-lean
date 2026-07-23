@@ -443,7 +443,9 @@ measure preservation.
 
 ## Exact source excerpts
 
-**Resource label: pinned project plus Mathlib.** The checked implementation is
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The checked implementation is
 in [<code>LogPlusIntegrability.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean).
 Its pointwise finite-horizon split first combines norm submultiplicativity,
 monotonicity of positive log, and the positive-log product inequality:
@@ -485,9 +487,9 @@ an almost-everywhere strongly measurable target, and an almost-everywhere norm
 bound. The project has a pointwise bound, so it is strong enough to discharge
 the almost-everywhere obligation.
 
-## Tiny local Lean/Std arithmetic worksheet
+## Standalone tutorial: arithmetic worksheet
 
-**Resource label: tiny standalone check.** The real logarithm is analytic, but
+**Standalone tutorial.** The real logarithm is analytic, but
 the opening example uses powers of two. We can therefore record every log size
 exactly by its coefficient of \(\log2\). This complete program imports only
 <code>Std</code>; it does not import Mathlib or the project.
@@ -553,9 +555,9 @@ or Bochner-integrability proof.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-copy of this repository, a reader can place these probes after the module
-import:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Place these probes after the module import:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
@@ -585,7 +587,7 @@ open NonlinearDynamics.Random.RandomCocycles
 
 Each <code>#check</code> asks the pinned elaborator for the exact type already
 proved in the repository. It does not rerun the proof in the browser. The
-guarded command below checks the complete module on approved Linux compute.
+full-project command below checks the complete module.
 {{< /repo-check >}}
 
 ## Empty matrix dimension

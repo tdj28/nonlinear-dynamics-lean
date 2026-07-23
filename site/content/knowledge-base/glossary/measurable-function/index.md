@@ -361,8 +361,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/MeasurableFunctionScratch.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact standalone worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [[], [1, 3, 5], [2, 4, 6], [1, 2, 3, 4, 5, 6]]
@@ -377,11 +376,12 @@ reproduce the exact-face counterexample. This computes the finite set ledger;
 it does not replace a proof of Mathlib's general
 <code>Measurable f</code> proposition.
 
-### Check the exact project theorem on Linux
+### Full project check
 
 This Mathlib-backed file exposes the definition through a single target event
-and then asks Lean for the project's coordinatewise theorem. Use it only on an
-approved Linux builder provisioned with the pinned repository cache.
+and then asks Lean for the project's coordinatewise theorem. This full project
+check uses the repository's pinned Lean and Mathlib dependencies and may
+require substantial disk space and memory.
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Basic
@@ -412,8 +412,9 @@ The authoritative project source is
 [formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean).
 The worksheet is pedagogical; the quoted
 <code>measurable_iff_entries</code> declaration is exact project source. Put
-the worksheet in a temporary <code>.lean</code> file on an approved Linux
-builder. The guarded command below checks the authoritative project module.
+the worksheet in a temporary <code>.lean</code> file inside
+<code>formalization</code>. The full-project command below checks the
+authoritative project module.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

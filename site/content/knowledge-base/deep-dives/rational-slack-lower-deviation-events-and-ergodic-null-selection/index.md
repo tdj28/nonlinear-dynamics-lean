@@ -1096,7 +1096,7 @@ carry its assumptions.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean).
-On an approved Linux builder, save this temporary query as
+For a **full project check**, save this temporary query as
 <code>formalization/NonlinearDynamics/SubadditiveLowerDeviationChecks.lean</code>:
 
 ~~~lean
@@ -1130,21 +1130,20 @@ open NonlinearDynamics.Random.RandomCocycles
 Then type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/SubadditiveLowerDeviationChecks.lean
+cd formalization
+lake env lean NonlinearDynamics/SubadditiveLowerDeviationChecks.lean
 ~~~
 
 Delete the temporary query file afterward. To compile the authoritative module
-itself with warnings treated as errors, type:
+itself, type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
 ~~~
 
-These commands import the pinned project and Mathlib. Run them only on an
-approved Linux cloud builder or another deliberately provisioned Linux host,
-never on this Mac.
+These commands import the pinned project and Mathlib and may require
+substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Type the finite witness and branch ledgers with Lean and `Std`
@@ -1340,11 +1339,10 @@ ledger shows same-target recurrence and the fixed \(-1/10\) margin expiring at
 equality when \(n=10\). The last `true` is the bounded exhaustive
 subadditivity check.
 
-**Resource profile: tiny standalone tutorial, safe on a normal Mac or Linux
-machine.** It imports only <code>Std</code> and never opens the project's
-Mathlib dependency graph. This exact file and output were checked with the
-pinned Lean 4.32.0 toolchain on the Mac. The exact project module remains
-cloud-only and uses the guarded commands above.
+**Standalone tutorial, suitable for a normal macOS or Linux machine.** It
+imports only <code>Std</code> and never opens the project's Mathlib dependency
+graph. This exact file and output were checked with the pinned Lean 4.32.0
+toolchain. The exact project module uses the full project commands above.
 
 ## Complete source-order declaration, helper, probe, and axiom map
 
@@ -1779,24 +1777,20 @@ the pinned Mathlib filter and lower-limit APIs. It then combines the null event
 with the existing upper-limsup and additive Birkhoff results. RMT-32 itself
 proves neither step.
 
-## Proof reproduction
+## Full project check
 
-On an approved Linux builder, from the repository root, run:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
-~~~
-
-For the complete project and teaching checks on that builder, run:
+After installing the repository's pinned dependencies, run this from the
+repository root:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make check
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean
 ~~~
 
-These guarded commands may restore and compile the pinned Mathlib graph, so
-they must not run on this Mac. The tiny <code>Std</code> worksheet above is
-the workstation-safe route for following the finite arithmetic interactively.
+This command may compile substantial parts of the pinned Mathlib graph and
+therefore may require substantial disk space and memory. The Standalone
+tutorial above remains the lighter route for following the finite arithmetic
+interactively.
 The paired
 [Development Notebook]({{< relref "/development-notebook/2026/07/countably-generated-centered-lower-deviation-events-in-lean" >}})
 contains the source-order proof ledger, compiled boundary inventory, and axiom

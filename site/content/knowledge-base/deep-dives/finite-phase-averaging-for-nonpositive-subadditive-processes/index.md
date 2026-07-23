@@ -248,8 +248,8 @@ By the summit, a reader should be able to:
 27. identify all four private proof helpers in source order;
 28. identify the three named private smoke declarations;
 29. audit the empty matrix-index boundary;
-30. run the bounded <code>Std</code> worksheet on a normal Mac or Linux host;
-31. reproduce the guarded warning-fatal cloud commands; and
+30. run the bounded <code>Std</code> worksheet on a normal macOS or Linux host;
+31. reproduce the full project checks; and
 32. state why no Birkhoff, Kingman, Lyapunov, or Oseledets conclusion follows.
 
 ## The common setup and notation ledger
@@ -335,7 +335,7 @@ ergodicity.
 
 The bridges below pair a human statement, paper mathematics, exact project
 syntax, and a token map. The standalone worksheet afterward executes the
-running integer example. The Mathlib-backed declarations remain cloud-only
+running integer example. The Mathlib-backed declarations are full project
 checks.
 
 ### Bridge 1: write one sparse phase row
@@ -623,8 +623,8 @@ horizon with the checked one.
 **Resource profile: small standalone tutorial, local-safe.** The
 <code>native_decide</code> examples certify this concrete finite
 representation. They do not establish Mathlib's generic reindexing theorem or
-the matrix-cocycle specialization. Those exact declarations use the guarded
-Linux-cloud workflow below.
+the matrix-cocycle specialization. Those exact declarations use the Full
+project checks below.
 
 ## Revisit the exact three-phase horizon
 
@@ -1490,19 +1490,19 @@ inequality. That combinatorics should remain independent of measure theory.
 Only afterward should a precise maximal inequality and almost-everywhere
 limit theorem be designed.
 
-## Check the exact project interfaces on Linux cloud compute
+## Full project checks
 
 The local worksheet checks the designed ten-step ledger only. The following
 two probes inspect the actual Mathlib-backed module and its centering
-predecessor. Run them only on an approved Linux builder.
+predecessor. Install the repository's pinned dependencies first; these checks
+may require substantial disk space and memory.
 
 ### The eight public phase-averaging declarations
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging" >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean).
-On the approved Linux builder, place this probe in a temporary project scratch
-file:
+Place this probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
@@ -1525,16 +1525,16 @@ bounds, two centered-process wrappers, and the cocycle specialization.
 Private proof helpers and smoke tests are intentionally absent from the
 downstream API.
 
-**Resource profile: exact repository module plus Mathlib, cloud-only for this
-project.** From the repository root on the approved Linux builder:
+**Full project check: exact repository module plus Mathlib.** From the
+repository root:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean
 ~~~
 
-The guarded target verifies the committed manifest and checks the leaf with
-warnings treated as errors. It refuses to act as a project build on the Mac.
+This checks the complete leaf with the repository's pinned toolchain and
+dependencies.
 {{< /repo-check >}}
 
 ### The centering predecessor that supplies the sign
@@ -1562,26 +1562,13 @@ exactly the sign expected by phase averaging. The second supplies shifted
 subadditivity. The cocycle declarations provide the same two properties for
 the final specialization without adding a generator-integrability premise.
 
-Run its guarded leaf check on the same approved Linux builder:
+From the repository root, check this leaf with:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
 ~~~
 {{< /repo-check >}}
-
-The workstation may validate the teaching layer without compiling the
-project:
-
-~~~sh
-make site-check
-~~~
-
-The full repository gate remains a cloud command:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
 
 These commands do not replace the pending human mathematical, source,
 accessibility, and editorial reviews. This page remains a public open working

@@ -222,11 +222,11 @@ on \(\mathbb R\). A set of whole measures belongs to a measure on
 
 ## Type and run the complete finite ledger
 
-The full GUE law, eigenvalue measurability, Giry join, and Bochner integrals use
-Mathlib and the project. Those checks stay on an approved Linux builder. The
-finite two-outcome arithmetic can run safely on an ordinary Mac or Linux
-machine in a standalone file importing only Lean's standard library
-<code>Std</code>.
+The full GUE law, eigenvalue measurability, Giry join, and Bochner integrals are
+**full project checks** that use Mathlib and may require substantial disk space
+and memory. The finite two-outcome arithmetic is a **standalone tutorial** that
+can run on an ordinary macOS or Linux machine using only Lean's standard
+library <code>Std</code>.
 
 Create <code>/tmp/GUESpectralLaw2Tutorial.lean</code> and type:
 
@@ -379,8 +379,8 @@ elan run leanprover/lean4:v4.32.0 lean /tmp/GUESpectralLaw2Tutorial.lean
 ~~~
 
 **Resource label: small standalone Lean plus <code>Std</code>, suitable for an
-ordinary Mac or Linux machine.** This command does not enter the Lake project,
-import Mathlib, fetch a cache, or compile the formalization.
+ordinary macOS or Linux machine.** This command does not enter the Lake
+project, import Mathlib, or compile the formalization.
 
 The executed output is:
 
@@ -479,11 +479,11 @@ related to the third only through a suitable integration theorem.
   theorem is
   <code>RandomMatrix.empiricalSpectralMeasure_succ_isProbability</code>.
 
-**Try it in the repository.** In the first cloud probe below, import
+**Try it in the repository.** In the first full project probe below, import
 <code>HermitianSpectrumContinuity</code>, use <code>#print</code> on
 <code>empiricalSpectralMeasure</code>, and use <code>#check</code> on its zero
-and positive-dimensional theorems. The literal guarded command checks the
-authoritative project leaf on approved Linux compute.
+and positive-dimensional theorems. The full project command checks the
+authoritative project leaf with its pinned dependencies.
 {{< /lean-bridge >}}
 
 ### Why the zero formula is not \(1/0\) handwaving
@@ -523,10 +523,11 @@ the source probability measure.
 - <code>GUE.instIsProbabilityMeasureEmpiricalSpectralLaw n</code> proves the
   outer measure has total mass one for every \(n\).
 
-**Try it in the repository.** The first cloud probe checks the unconditional
-measurability theorem. The second prints the exact outer-law definition and
-checks its probability instance. Those probes deliberately target two source
-leaves because construction and measurability are separate milestones.
+**Try it in the repository.** The first full project probe checks the
+unconditional measurability theorem. The second prints the exact outer-law
+definition and checks its probability instance. Those probes deliberately
+target two source leaves because construction and measurability are separate
+milestones.
 {{< /lean-bridge >}}
 
 ### Intrinsic and ambient routes agree
@@ -573,9 +574,9 @@ the underlying numeric measure.
   recovers <code>empiricalSpectralLaw (n + 1)</code>.
 
 **Try it in the repository.** Type the two <code>#check</code> lines from the
-second cloud probe and read the parentheses from the inside out. Then check the
-coercion theorem. The generated repository command checks RMT-10C with the
-pinned manifest and warnings fatal.
+second full project probe and read the parentheses from the inside out. Then
+check the coercion theorem. The generated repository command checks RMT-10C
+with the pinned dependencies.
 {{< /lean-bridge >}}
 
 ### The all-important \(n=0\) carrier audit
@@ -628,9 +629,9 @@ structure.
 - Join preserves setwise averages but generally forgets how entire empirical
   measures fluctuate from sample to sample.
 
-**Try it in the repository.** In the second cloud probe, use <code>#print</code>
+**Try it in the repository.** In the second full project probe, use <code>#print</code>
 to expose the definition body, then <code>#check</code> the zero and successor
-theorems. The exact cloud-only command is rendered beneath that probe.
+theorems. The exact full project command is rendered beneath that probe.
 {{< /lean-bridge >}}
 
 ### The missing moment-interchange bridge
@@ -687,7 +688,7 @@ eigenvalues are real.
   <code>RandomMatrix.empiricalSpectralMoment_one</code> and
   <code>RandomMatrix.empiricalSpectralMoment_two</code>.
 
-**Try it in the repository.** The second cloud probe imports RMT-10C and
+**Try it in the repository.** The second full project probe imports RMT-10C and
 checks both sample-moment identities. The local worksheet verifies their
 size-two diagonal arithmetic but does not elaborate the Mathlib integrals or
 matrix types.
@@ -737,10 +738,10 @@ as an expectation theorem without its integrability license.
 - The value \(1\) is specific to the repository's Wigner normalization. The
   two-outcome teaching law had expected second moment \(2\).
 
-**Try it in the repository.** Use the second cloud probe to check both
-integrability theorems before the three integral values. The guarded
-RMT-10C command checks the exact source module; the standalone worksheet is
-only the finite arithmetic companion.
+**Try it in the repository.** Use the second full project probe to check both
+integrability theorems before the three integral values. The RMT-10C command
+checks the exact source module; the standalone worksheet is only the finite
+arithmetic companion.
 {{< /lean-bridge >}}
 
 ### How the expectation proof reuses earlier work
@@ -788,19 +789,17 @@ sample moments, seven for laws and probability packaging, three for the joined
 mean, and seven for integrability and exact expectations. It also contains one
 private ambient trace-power abbreviation used only inside the proof.
 
-## Exact project checks belong on approved Linux compute
+## Full project checks
 
 The two blocks below are deliberately separate from the local worksheet. They
-import Mathlib and project modules, so use the guarded commands on an approved
-Linux builder with the pinned cache. Do not run them on the lightweight Mac
-workstation used for authoring this page.
+import Mathlib and project modules. Install the repository's pinned
+dependencies first; checking them may require substantial disk space and
+memory.
 
 ### Check the one-sample and measurability predecessors
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity" >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
-On the approved Linux builder, place this probe in a temporary project scratch
-file:
+**Full project check.** Place this probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -822,14 +821,14 @@ open NonlinearDynamics.Random
 ~~~
 
 <code>#print</code> shows the exact definition body. <code>#check</code> asks
-the pinned elaborator for each exact type. The guarded command rendered below
+the pinned elaborator for each exact type. The full project command rendered below
 checks the authoritative RMT-10B leaf with its RMT-10A imports.
 {{< /repo-check >}}
 
 ### Check the complete RMT-10C endpoint
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum" >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+**Full project check.**
 Type this second probe:
 
 ~~~lean
@@ -860,17 +859,9 @@ open NonlinearDynamics.Random
 
 The order is intentional: construct and package the law, join it, identify the
 sample moments, prove integrability, then read the exact expectations. The
-guarded command below checks the whole RMT-10C source leaf against the
-committed toolchain and manifest.
+full project command below checks the whole RMT-10C source leaf against the
+repository's pinned toolchain and dependencies.
 {{< /repo-check >}}
-
-The workstation-safe teaching-layer gate is:
-
-~~~sh
-make site-check
-~~~
-
-It builds and audits the Hugo site without compiling the Lean project.
 
 ## Boundaries and near-misses to keep visible
 

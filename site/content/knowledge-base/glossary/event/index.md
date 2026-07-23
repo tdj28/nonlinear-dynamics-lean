@@ -260,7 +260,7 @@ example : select (fun face => eventA face || eventB face) = [2, 4, 5, 6] := by
 end DieEvents
 ~~~
 
-From any directory on a normal Mac or Linux host with the pinned compiler,
+From any directory on a normal macOS or Linux machine with the pinned compiler,
 type exactly:
 
 ~~~sh
@@ -320,8 +320,8 @@ distinction made explicit in code.
 {{< repo-check >}}
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean).
-A human can type this worksheet in a scratch buffer on a deliberately
-provisioned copy of the project:
+A human can type this worksheet in a scratch buffer inside a clone with the
+repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
@@ -342,7 +342,7 @@ example {Ω : Type*} [MeasurableSpace Ω]
 
 The four <code>#check</code> commands ask Lean to report the checked project
 interfaces. The final <code>example</code> verifies that the complement of one
-measurable event intersected with another remains measurable. The guarded
+measurable event intersected with another remains measurable. The full-project
 command below checks the complete project module containing the convergence
 event and its measurability theorem.
 {{< /repo-check >}}

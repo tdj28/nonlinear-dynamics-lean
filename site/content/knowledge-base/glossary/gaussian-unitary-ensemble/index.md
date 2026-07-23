@@ -343,7 +343,9 @@ The first trace theorem is the parallel declaration
 
 ## Exact project excerpts
 
-**Resource label: pinned project plus Mathlib.** The scale functions in
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The scale functions in
 [<code>GaussianUnitaryEnsemble.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean)
 are:
 
@@ -393,9 +395,9 @@ It rewrites with the all-dimensions formula \(n^{-1}n\), then uses positivity
 of \(n+1\) to cancel the reciprocal. This proof is the formal endpoint of the
 worked \(n=2\) calculation.
 
-## Tiny local Lean/Std moment ledger
+## Standalone tutorial: moment ledger
 
-**Resource label: tiny standalone check.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code> and evaluates the rational arithmetic in the size-two
 example. It is not a random-variable construction and proves no Gaussian law,
 independence, matrix support, invariance, or spectral theorem.
@@ -456,8 +458,9 @@ the measure-theoretic and spectral content.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** A human can type this
-worksheet in a deliberately provisioned copy of the repository:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
@@ -488,8 +491,8 @@ import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
 type. The final import reaches the coordinate, geometry, invariance, moment,
-and finite-spectrum layers. The guarded command below checks that complete
-leaf module on an approved Linux builder.
+and finite-spectrum layers. The full-project command below checks that complete
+leaf module.
 {{< /repo-check >}}
 
 ## Dimension zero and positive dimension are different

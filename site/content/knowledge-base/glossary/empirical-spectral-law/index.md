@@ -351,7 +351,8 @@ Gaussian unitary ensemble.
 {{< repo-check >}}
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean).
-On a deliberately provisioned project clone, a human can type this import and
+On a clone with the repository's pinned dependencies
+installed, a human can type this import and
 declaration audit into a scratch file:
 
 ~~~lean
@@ -379,7 +380,7 @@ The first two declarations are the sample observable and its measurability
 gate. The next group exposes the raw law and its two probability wrappers.
 The ambient transport theorem, zero-dimensional law, joined mean, and
 positive-dimensional mass theorem make the type and boundary policies
-inspectable by name. The generated guarded command below checks the complete
+inspectable by name. The generated full-project command below checks the complete
 project module; it does not run the small <code>Std</code> worksheet.
 {{< /repo-check >}}
 

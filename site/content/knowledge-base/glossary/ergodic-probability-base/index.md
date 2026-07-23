@@ -431,12 +431,12 @@ theorem ergodicBase_ae_eq_const_of_ae_invariant
   hErg.ae_eq_const_of_ae_eq_comp_ae hg hinv
 ~~~
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** This worksheet imports only Lean's
-<code>Std</code> library. It does not import Mathlib or this project, and it
-does not build a project cache. It enumerates all sixteen events on four
-points and checks invariance by finite computation.
+**Standalone tutorial.** This worksheet imports only Lean's
+<code>Std</code> library. It does not import Mathlib or this project. It
+enumerates all sixteen events on four points and checks invariance by finite
+computation.
 
 Save the following as <code>ErgodicBaseWorksheet.lean</code> in a temporary
 directory outside the repository:
@@ -521,11 +521,12 @@ almost-everywhere equivalence.
 ## Try it in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** The authoritative project
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative project
 source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean).
-On an approved Linux builder with the project cache provisioned, a human can
-type the following in a temporary probe:
+Create a temporary project probe containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
@@ -547,16 +548,15 @@ import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
 
 Each <code>#check</code> asks the pinned elaborator to display the exact type
 of a declaration. To check the authoritative project module itself, type this
-literal guarded command from the repository root:
+literal full-project command from the repository root:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
 ~~~
 
-That project command belongs on an approved Linux builder. Do not run it on
-the Mac workstation; the repository deliberately keeps Mathlib builds in the
-cloud.
+That full project check uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

@@ -8,9 +8,15 @@
   </div>
   {{ with .Inner }}<div class="repo-check-body">{{ . | markdownify }}</div>{{ end }}
   <div class="repo-check-command">
-    <span>On an approved Linux builder, from the repository root</span>
-    <pre><code>CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE={{ $file }}</code></pre>
+    <span>Full project check, from the repository root</span>
+    <pre><code>cd formalization
+lake env lean -DwarningAsError=true {{ $file }}</code></pre>
   </div>
-  <p class="repo-check-boundary"><strong>Resource boundary:</strong> small standalone Lean-core or <code>Std</code> tutorials may run on an ordinary Mac or Linux machine. This exact file imports the pinned project and Mathlib, so use the guarded command on approved Linux compute or another deliberately provisioned build host. Do not trigger a Mathlib cache build on this workstation.</p>
+  <p class="repo-check-boundary">
+    <strong>Resource note:</strong> this exact file uses the repository's
+    pinned Lean and Mathlib dependencies. Initial project setup can require
+    substantial disk space and build time. For a lightweight first step on
+    macOS or Linux, use the page's standalone Lean-core or <code>Std</code>
+    tutorial.
+  </p>
 </section>

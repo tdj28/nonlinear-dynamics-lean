@@ -371,7 +371,8 @@ formalizes a finite arithmetic model, not the continuous GUE law.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean).
-On an approved Linux builder, a human can make a scratch file containing:
+In a clone with the repository's pinned Lean and Mathlib dependencies
+installed, a human can make a scratch file containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
@@ -383,8 +384,8 @@ import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
 ~~~
 
 The first and third checks expose the integrability licenses. The second and
-fourth expose the corresponding exact integral identities. The guarded command
-below checks the full pinned module and its Mathlib dependencies in the cloud.
+fourth expose the corresponding exact integral identities. The full-project command
+below checks the full pinned module and its Mathlib dependencies.
 {{< /repo-check >}}
 
 ## What these moments do not establish

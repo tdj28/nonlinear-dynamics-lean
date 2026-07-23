@@ -671,13 +671,16 @@ measurable spaces or measures, or construct the weighted law
 ### The checked project layer
 
 {{< repo-check >}}
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+
 The authoritative algebraic source is
 [formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean).
 The sample-map and law source is
 [formalization/NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean).
 
 A learner can place the following exact lines in a temporary scratch file
-inside the <code>formalization</code> project on an approved Linux builder:
+inside the <code>formalization</code> project:
 
 ~~~lean
 import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
@@ -702,17 +705,13 @@ open Matrix MeasureTheory
 dependencies. Each <code>#check</code> asks Lean to elaborate one declaration
 and print its type. It does not create a theorem or evaluate the toy matrices.
 
-From the repository root, a human runs the authoritative warning-fatal module
-check with:
+To check the authoritative module itself from the repository root, type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
 ~~~
 
-That project command is for an approved Linux cloud builder. The Mac
-workstation is for reading and editing source, Hugo checks, and the standalone
-<code>Std</code> worksheet; it is not a Mathlib build host.
 {{< /repo-check >}}
 
 ## Distinctions and boundary cases

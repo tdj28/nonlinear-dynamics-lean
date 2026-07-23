@@ -789,11 +789,16 @@ site/content/development-notebook/2026/07/independent-complex-gaussian-families/
 site/content/development-notebook/2026/07/independent-complex-gaussian-families/generate-card.sh --verify
 ```
 
-Run the complete repository gate before committing:
+Starting from the repository root, build the complete formalization and check
+the public teaching content:
 
 ```sh
-make check
-git diff --check
+cd formalization
+lake build
+
+cd ..
+make content-hygiene
+make site-check
 ```
 
 Preview all drafts locally on port 1333:
@@ -801,9 +806,6 @@ Preview all drafts locally on port 1333:
 ```sh
 make blog-serve
 ```
-
-For private tailnet access, use `make blog-serve-tailscale`. Neither command
-publishes the draft to the public internet.
 
 ## Worked finite family
 

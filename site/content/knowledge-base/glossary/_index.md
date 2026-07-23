@@ -62,12 +62,13 @@ The revised entries deliberately repeat a dependable ascent:
 4. a bridge from an ordinary human sentence, to paper notation, to Lean syntax;
 5. a tiny standalone Lean worksheet that is safe to run locally;
 6. the exact repository import and `#check` commands for the full formalization,
-   labeled as cloud-scale when they require Mathlib or the project cache.
+   labeled as full project checks when they require the pinned Lean and Mathlib dependencies.
 
 You do not need to understand every Lean token on the first read. Type the tiny
 worksheet, change one value, observe what fails, and return to the syntax map.
-The site reserves large project and Mathlib builds for the approved RunPod; it
-does **not** reserve learning Lean for the cloud.
+Full project checks need the repository's pinned Lean and Mathlib dependencies
+and may require substantial disk space and memory. Learning Lean does not: the
+standalone tutorials run on ordinary macOS or Linux computers.
 
 ## Where to go after probability
 

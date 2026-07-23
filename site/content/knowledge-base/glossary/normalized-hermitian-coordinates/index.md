@@ -371,7 +371,8 @@ general isometry. Those are Mathlib-backed project obligations.
 {{< repo-check >}}
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean).
-On a deliberately provisioned project clone, a human can put the following in
+On a clone with the repository's pinned dependencies
+installed, a human can put the following in
 a scratch file to inspect the exact interfaces:
 
 ~~~lean

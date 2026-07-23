@@ -367,7 +367,8 @@ should mean.
 
 ### Inspect the exact project interface
 
-On an approved Linux builder, a human can type:
+In a clone with the repository's pinned Lean and Mathlib dependencies
+installed, a human can type:
 
 ~~~lean
 import NonlinearDynamics.Random.ComplexGaussianFamilies
@@ -388,8 +389,8 @@ the canonical finite product witness, and the empty-index boundary.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean).
-This project-backed check imports Mathlib and therefore belongs on the approved
-Linux builder, not in the tiny local tutorial above.
+This is a full project check with the repository's pinned dependencies, not
+part of the standalone tutorial above.
 {{< /repo-check >}}
 
 The Lean module exposes each coordinate's exact real and imaginary laws,

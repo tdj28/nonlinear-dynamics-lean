@@ -988,21 +988,20 @@ The first command loads `elan` into the shell. The direct `lean` command
 checks this module with warnings promoted to errors. `lake build` then checks
 the complete import graph.
 
-Run the proof-to-prose and Hugo gates:
+Starting from the repository root, build the complete formalization and check
+the public teaching content:
 
 ```sh
-python3 scripts/check_lean_notebook_coverage.py
-hugo --source site --config hugo.yaml --buildDrafts \
-  --panicOnWarning --noBuildLock --renderToMemory
-make check
-git diff --check
+cd formalization
+lake build
+
+cd ..
+make content-hygiene
+make site-check
 ```
 
-`scripts/check_lean_notebook_coverage.py` confirms that this substantive Lean
-file is mapped to this draft, that every named declaration occurs in the
-prose, and that the social card is a 1200 by 630 PNG. The Hugo command builds
-drafts in memory with warnings fatal. `make check` runs the repository-wide
-Lean, checkpoint, coverage, and site gates.
+`lake build` checks the complete project import graph. The final two commands
+inspect the public teaching content and render the site.
 
 Regenerate the conceptual card from any working directory:
 

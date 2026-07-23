@@ -617,7 +617,9 @@ below every ratio whose horizon proof <code>hk : k ≠ 0</code> is supplied.
 
 ### Exact source excerpts
 
-**Resource label: pinned project plus Mathlib.** The current module defines the
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The current module defines the
 rate through Mathlib's subadditive limit and proves convergence in
 [<code>IntegratedLogPlusGrowth.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean):
 
@@ -672,7 +674,9 @@ The proof first uses the infimum to obtain the eventual lower bound. For an
 upper neighborhood, it chooses one positive horizon whose ratio is already
 below that neighborhood and applies the finite block-and-remainder estimate.
 
-**Resource label: pinned project plus Mathlib.** The successor
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The successor
 [<code>ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean)
 unfolds the positive-horizon infimum:
 
@@ -686,9 +690,9 @@ theorem HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_eq_sInf
   rfl
 ~~~
 
-### Tiny local Lean/Std parity worksheet
+### Standalone tutorial: parity worksheet
 
-**Resource label: tiny standalone check.** The following worksheet imports only
+**Standalone tutorial.** The following worksheet imports only
 <code>Std</code>. It computes the opening sequence exactly, reduces each
 positive ratio to a numerator-denominator pair, and checks subadditivity on the
 finite square \(0\leq m,n\leq20\). It does not define matrix norms, Bochner
@@ -737,7 +741,7 @@ def horizons : List Nat := [0, 1, 2, 3, 4, 5, 6]
 #eval boundedBelowByTwoOn 20
 ~~~
 
-Run it on a normal Mac or Linux host with the pinned small toolchain:
+Run it on a normal macOS or Linux machine with the pinned small toolchain:
 
 ~~~sh
 source "$HOME/.elan/env"
@@ -758,8 +762,9 @@ printed the displayed seven-row ledger followed by <code>true</code> and
 ### Try it in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only.** On an approved
-Linux builder, a human can create a worksheet containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
@@ -813,20 +818,20 @@ Each <code>#check</code> asks the pinned elaborator for an exact type. The
 current leaf owns the definition and convergence theorem:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
 ~~~
 
 The successor leaf owns the explicit infimum, upper-bound, and
 probability-expectation declarations:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
 ~~~
 
-Per repository policy, both commands are for an approved Linux cloud builder.
-Do not run them on the Mac workstation.
+Both full project checks use the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## What this rate does not establish

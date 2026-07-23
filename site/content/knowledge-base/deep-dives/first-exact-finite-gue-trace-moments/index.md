@@ -179,10 +179,10 @@ matrix can stand in for that operation.
 
 ## Type and run the finite ledger yourself
 
-The exact GUE measures and Bochner integrals use Mathlib and stay on an
-approved Linux project builder. The deterministic matrix arithmetic and the
-quarter-unit moment ledger fit in a small standalone Lean file that imports
-only <code>Std</code>.
+The exact GUE measures and Bochner integrals are **full project checks** that
+use Mathlib and may require substantial disk space and memory. The
+deterministic matrix arithmetic and quarter-unit moment ledger form a
+**standalone tutorial** that imports only <code>Std</code>.
 
 Create <code>/tmp/GUETraceMoments2Tutorial.lean</code> and type:
 
@@ -293,8 +293,8 @@ elan run leanprover/lean4:v4.32.0 lean /tmp/GUETraceMoments2Tutorial.lean
 ~~~
 
 **Resource label: small standalone Lean plus <code>Std</code>, suitable for an
-ordinary Mac or Linux machine.** This command does not enter the Lake project,
-import Mathlib, or build a project cache.
+ordinary macOS or Linux machine.** This command does not enter the Lake
+project, import Mathlib, or compile the formalization.
 
 The executed output is:
 
@@ -509,8 +509,8 @@ theorem first in each pair.
 - The exact theorem is <code>GUE.integrable_tracePower_one</code>.
 
 **Run boundary.** This proposition imports Mathlib's Bochner integral and the
-project GUE law. Check it through the guarded Linux module probe below, not
-with the local integer worksheet.
+project GUE law. Check it through the full project module probe below, not with
+the standalone integer worksheet.
 {{< /lean-bridge >}}
 
 ### Measurability is necessary but weaker
@@ -612,8 +612,8 @@ entries. Exact centered diagonal marginals are sufficient.
   <code>(matrixLaw_diagonal_hasLaw n i).mean_eq</code> at each index.
 - The exact theorem is <code>GUE.integral_tracePower_one</code>.
 
-**Run boundary.** The local worksheet checks \(2+(-1)=1\) for one sample and a
-zero centered-mean ledger. The law-level integral is a guarded Linux project
+**Run boundary.** The standalone worksheet checks \(2+(-1)=1\) for one sample
+and a zero centered-mean ledger. The law-level integral is a full project
 check.
 {{< /lean-bridge >}}
 
@@ -743,7 +743,7 @@ merely have matching variances. It licenses the pushforward integration step.
   <code>GUE.map_realToHermitianCoordinates_gaussianProduct</code>.
 
 **Run boundary.** This predecessor theorem and RMT-09's private composite to
-<code>matrixLaw n</code> both require the pinned Mathlib project on Linux.
+<code>matrixLaw n</code> both require the pinned Mathlib project.
 {{< /lean-bridge >}}
 
 Combining the measure equality with the pointwise norm identity gives
@@ -807,7 +807,8 @@ analytic result lands on the public ambient law.
 - The exact theorem is <code>GUE.integrable_tracePower_two</code>.
 
 **Run boundary.** The worksheet proves finite identities only. The norm-tail
-control and pushforward transfer are checked by the primary module on Linux.
+control and pushforward transfer are checked by the primary full project
+module.
 {{< /lean-bridge >}}
 
 ### Why no independence calculation appears
@@ -902,8 +903,8 @@ zero/successor split. The public theorem needs no assumption \(0\lt n\).
 - <code>(n : ℂ)</code> makes the complex codomain explicit.
 - The exact theorem is <code>GUE.integral_tracePower_two</code>.
 
-**Run boundary.** This is the cloud-only RMT-09 endpoint. The local worksheet
-checks the \(n=2\) arithmetic \(4(1/2)=2\), not the measure integral.
+**Run boundary.** This is the full project RMT-09 endpoint. The standalone
+worksheet checks the \(n=2\) arithmetic \(4(1/2)=2\), not the measure integral.
 {{< /lean-bridge >}}
 
 ### A two-by-two audit
@@ -1203,14 +1204,13 @@ RMT-09 answers each question explicitly.
     proof used here. List the extra reference-measure, normalization, and
     change-of-variables obligations introduced by the density route.
 
-## Check the exact project interfaces on Linux
+## Full project checks
 
 ### Inspect the geometry and normalized-law predecessors
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance" >}}
-**Resource label: predecessor project module plus Mathlib, cloud-only for this
-project.** On an approved Linux builder, place this probe in a temporary
-project scratch file:
+**Full project check: predecessor project module plus Mathlib.** Place this
+probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
@@ -1228,16 +1228,16 @@ open NonlinearDynamics.Random
 ~~~
 
 <code>#check</code> asks Lean to elaborate each exact declaration and display
-its type. It does not sample a matrix or evaluate an expectation. The guarded
-command rendered below checks the authoritative predecessor source file and
-must not be replaced by a local Lake command on this Mac.
+its type. It does not sample a matrix or evaluate an expectation. The full
+project command rendered below checks the authoritative predecessor source
+file.
 {{< /repo-check >}}
 
 ### Inspect all four RMT-09 endpoints
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments" >}}
-**Resource label: primary project module plus Mathlib, cloud-only for this
-project.** Type this exact probe on the approved Linux builder:
+**Full project check: primary project module plus Mathlib.** Type this exact
+probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
@@ -1255,15 +1255,10 @@ open NonlinearDynamics.Random
 ~~~
 
 The first two checks expose the observable and its earlier measurability gate.
-The final four are the complete public API of RMT-09. The guarded command below
-checks the whole leaf with the committed toolchain and manifest policy.
+The final four are the complete public API of RMT-09. The full project command
+below checks the whole leaf with the repository's pinned toolchain and
+dependencies.
 {{< /repo-check >}}
-
-The workstation-safe site gate remains:
-
-~~~sh
-make site-check
-~~~
 
 Passing technical checks does not change <code>pro_reviewed: false</code> or
 complete the pending human mathematical, editorial, and accessibility review.

@@ -800,7 +800,7 @@ syntax tokens that carry the hypothesis.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean).
-On an approved Linux builder, save this temporary query as
+For a **full project check**, save this temporary query as
 <code>formalization/NonlinearDynamics/SubadditiveUpperLimsupChecks.lean</code>:
 
 ~~~lean
@@ -824,21 +824,20 @@ open NonlinearDynamics.Random.RandomCocycles
 Then type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/SubadditiveUpperLimsupChecks.lean
+cd formalization
+lake env lean NonlinearDynamics/SubadditiveUpperLimsupChecks.lean
 ~~~
 
 Delete the temporary query file afterward. To compile the authoritative module
-itself with warnings treated as errors, type:
+itself, type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean
 ~~~
 
-These commands import the pinned project and Mathlib. Run them only on the
-approved Linux builder or another deliberately provisioned Linux host, never
-on this Mac.
+These commands import the pinned project and Mathlib and may require
+substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Type the finite process and lower-bound ledgers with Lean and `Std`
@@ -1003,11 +1002,10 @@ negative-square witness list says that the displayed horizon falls below the
 proposed lower bound. The final <code>false</code> is the invalid conclusion
 \(0\le-1\).
 
-**Resource profile: tiny standalone tutorial, safe on a normal Mac or Linux
-machine.** It imports only <code>Std</code> and never opens the project's
-Mathlib dependency graph. This exact file and output were checked with the
-pinned Lean 4.32.0 toolchain on the Mac. The exact project module remains
-cloud-only and uses the guarded commands above.
+**Standalone tutorial, suitable for a normal macOS or Linux machine.** It
+imports only <code>Std</code> and never opens the project's Mathlib dependency
+graph. This exact file and output were checked with the pinned Lean 4.32.0
+toolchain. The exact project module uses the full project commands above.
 
 ## Complete source-order declaration, private-helper, and probe map
 
@@ -1375,24 +1373,20 @@ continues through the later rational null-event layer, exposes Mathlib's exact
 real-boundedness gates, and completes the log-positive convergence assembly.
 This later result does not change the one-sided scope of RMT-29 itself.
 
-## Proof reproduction
+## Full project check
 
-On an approved Linux builder, from the repository root, run:
-
-```sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean
-```
-
-For the complete project and teaching checks on that builder, run:
+After installing the repository's pinned dependencies, run this from the
+repository root:
 
 ```sh
-CLOUD_LEAN_BUILD=1 make check
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean
 ```
 
-These guarded commands may restore and compile the pinned Mathlib graph, so
-they must not run on this Mac. The tiny <code>Std</code> worksheet above is
-the workstation-safe route for following the arithmetic interactively.
+This command may compile substantial parts of the pinned Mathlib graph and
+therefore may require substantial disk space and memory. The Standalone
+tutorial above remains the lighter route for following the arithmetic
+interactively.
 
 ## References
 

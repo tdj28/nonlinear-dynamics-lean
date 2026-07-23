@@ -476,9 +476,8 @@ field and bridge four into a new process candidate.
 ### Check the exact project interface
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, approved Linux compute only for
-this project.** A temporary project scratch file can inspect the complete
-public surface:
+**Full project check: pinned project plus Mathlib.** A temporary project
+scratch file can inspect the complete public surface:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
@@ -506,9 +505,8 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 The two raw-algebra helpers are private and therefore absent from this
-external interface. The guarded command rendered below checks the
-authoritative module on approved Linux compute with the pinned toolchain,
-manifest, and warnings fatal.
+external interface. The full project command rendered below checks the
+authoritative module with the pinned toolchain and dependencies.
 {{< /repo-check >}}
 
 ## Type the entire ledger with Lean and Std
@@ -795,7 +793,7 @@ The nested Boolean check additionally verifies \(X_n\le S_n\) at all three
 states for horizons zero through eight. This worksheet models the finite
 arithmetic only. Mathlib's actual <code>birkhoffSum</code>,
 <code>MeasurePreserving</code>, <code>Integrable</code>, and cocycle
-interfaces remain the cloud-only project check above.
+interfaces remain the full project check above.
 
 ## Why the generic theorem works
 
@@ -1090,30 +1088,19 @@ before them; its empirical averages have subsequences near zero and one.
 22. Describe what a derivative-cocycle bridge would need before this scalar
     reduction could speak about nonlinear dynamics.
 
-## Reproduce the chapter without crossing the host boundary
+## Reproduce the chapter
 
-The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
-Linux host. From the repository root, the page-owned and workstation-safe
-checks are:
-
-~~~sh
-site/content/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes/generate-card.sh --verify
-make content-hygiene
-make site-check
-git diff --check
-~~~
-
-These commands do not compile the project. The target module imports Mathlib,
-so its warning-fatal check belongs on approved Linux compute:
+The bounded <code>Std</code> worksheet above is a standalone tutorial for an
+ordinary macOS or Linux host. The target module imports Mathlib and is a full
+project check. From the repository root, run:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
 ~~~
 
-The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
-This teaching rebuild does not claim that any project module was recompiled on
-the Mac. Passing automated gates would still leave human mathematical,
+This command may require substantial disk space and memory. Passing automated
+checks would still leave human mathematical,
 source, accessibility, scientific-integrity, and editorial review pending.
 
 ## Summit: what has and has not been proved

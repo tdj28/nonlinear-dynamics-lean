@@ -293,7 +293,9 @@ case split.
 
 ## Exact project excerpts
 
-**Resource label: pinned project plus Mathlib.** The authoritative source is
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean).
 The checked assembler is:
 
@@ -352,9 +354,9 @@ theorem hermitianFromCoordinates_isHermitian {n : ℕ} (d : Fin n → ℝ)
 The three goals correspond to upper, diagonal, and lower positions. This is a
 direct proof of the same trichotomy visible in the diagrams.
 
-## Tiny local Lean/Std coordinate worksheet
+## Standalone tutorial: coordinate worksheet
 
-**Resource label: tiny standalone check.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code>. It models the concrete size-three ledger with rational real
 and imaginary parts. It checks the arithmetic, reflection, degree count, and
 round trip, but it does not import Mathlib or prove the project's matrix
@@ -447,8 +449,9 @@ as structures with rational <code>re</code> and <code>im</code> fields, then
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** A human can type the following
-worksheet in a deliberately provisioned copy of the repository:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
@@ -472,8 +475,8 @@ import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
 
 Each <code>#check</code> asks the pinned elaborator to print an exact
 declaration type. It does not run a simulation or establish an unstated
-inverse or dimension theorem. The guarded command below checks the complete
-source module on an approved Linux builder.
+inverse or dimension theorem. The full-project command below checks the
+complete source module.
 {{< /repo-check >}}
 
 ## Measurability enters only when coordinates vary

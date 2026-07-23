@@ -476,9 +476,8 @@ The companion theorem
 ### Check the exact project interface
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, approved Linux compute only for
-this project.** Put these commands in a temporary project scratch file if you
-want to inspect every public declaration:
+**Full project check: pinned project plus Mathlib.** Put these commands in a
+temporary project scratch file if you want to inspect every public declaration:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
@@ -503,9 +502,8 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_logPlusNormObservable
 ~~~
 
-The command rendered below checks the authoritative source file with the
-pinned toolchain and manifest and treats warnings as errors. It belongs on an
-approved Linux builder because this import reaches Mathlib.
+The full project command rendered below checks the authoritative source file
+with the pinned toolchain and dependencies. This import reaches Mathlib.
 {{< /repo-check >}}
 
 ## Type the ledgers yourself with Lean and Std
@@ -753,7 +751,7 @@ integer and rational computations and asks Lean's kernel to accept the
 resulting proof. The worksheet models logarithms by exact coefficients; it
 does not reimplement Mathlib's analytic logarithm, matrix norm, measure, or
 <code>Integrable</code> predicate. Those authoritative interfaces remain the
-cloud-only project check above.
+full project check above.
 
 ## Why the finite-horizon propagation works
 
@@ -1030,29 +1028,19 @@ does not exhibit one integrable random variable dominating \(P_k\) for all
 20. Design a derivative-cocycle interface for a nonlinear random dynamical
     system and list the chain-rule and measurability facts it would require.
 
-## Reproduce the chapter without crossing the host boundary
+## Reproduce the chapter
 
-The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
-Linux host. From the repository root, the page-owned and workstation-safe
-checks are:
-
-~~~sh
-site/content/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability/generate-card.sh --verify
-make site-check
-git diff --check
-~~~
-
-These commands do not compile the project. The exact target imports Mathlib,
-so its warning-fatal check belongs on approved Linux compute:
+The bounded <code>Std</code> worksheet above is a standalone tutorial for an
+ordinary macOS or Linux host. The exact target imports Mathlib and is a full
+project check. From the repository root, run:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
 ~~~
 
-The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
-This teaching rebuild does not claim that the project module was recompiled on
-the Mac. Passing technical checks would still leave human mathematical,
+This command may require substantial disk space and memory. Passing technical
+checks would still leave human mathematical,
 source, accessibility, scientific-integrity, and editorial review pending.
 
 ## Summit: what has and has not been proved

@@ -752,10 +752,11 @@ cd formalization
 lake build
 ~~~
 
-From the repository root, run the proof-to-prose and Hugo gates:
+From the repository root, check the public teaching content:
 
 ~~~sh
-make check
+make content-hygiene
+make site-check
 ~~~
 
 Useful local API reconnaissance:

@@ -273,7 +273,7 @@ This bounded file imports only <code>Std</code>, so it is suitable for a normal
 Mac or Linux machine. It checks the exact four-entry ledger and involution for
 this example. It does not import Mathlib, define its general
 <code>Matrix.conjTranspose</code>, or prove measurability. Those exact project
-obligations use the guarded Linux workflow below.
+obligations use the full project workflow below.
 
 The project's random-matrix foundation contains this exact checked theorem:
 
@@ -292,7 +292,7 @@ entry has indices <code>j i</code>. It is the composition of the original
 coordinate function with <code>star</code>, and complex conjugation is
 continuous, hence measurable.
 
-### Check the exact project declarations on Linux
+### Full project check
 
 The following scratch file imports the real project module, asks Lean for the
 relevant theorem types, and then proves the product and involution identities
@@ -331,9 +331,10 @@ The authoritative project source is
 [formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean).
 The worksheet above is pedagogical; the quoted
 <code>measurable_conjTranspose</code> declaration is the exact checked project
-source. Put the worksheet in a temporary <code>.lean</code> file on an
-approved Linux builder. The guarded command below checks the authoritative
-module itself.
+source. Put the worksheet in a temporary <code>.lean</code> file inside a clone
+with the repository's pinned dependencies
+installed. The full-project command
+below checks the authoritative module itself.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

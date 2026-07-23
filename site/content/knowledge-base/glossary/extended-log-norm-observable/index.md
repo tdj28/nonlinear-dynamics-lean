@@ -509,7 +509,9 @@ the real log-positive envelope.
 
 ## Exact source excerpts
 
-**Resource label: pinned project plus Mathlib.** The zero-faithful observable,
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The zero-faithful observable,
 collapse theorem, and measurability proof are in
 [<code>NormObservables.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/NormObservables.lean):
 
@@ -550,7 +552,9 @@ theorem logNormObservable_add_le
         ENNReal.log ‖C.value m ω‖ₑ := ENNReal.log_mul_add
 ~~~
 
-**Resource label: pinned project plus Mathlib.** The nonnegative envelope is
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The nonnegative envelope is
 defined separately in
 [<code>LogPlusIntegrability.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean):
 
@@ -568,9 +572,9 @@ theorem measurable_logPlusNormObservable
 These excerpts establish definitions and finite-horizon infrastructure. They
 do not establish an asymptotic exponent.
 
-## Tiny local Lean/Std symbolic worksheet
+## Standalone tutorial: symbolic worksheet
 
-**Resource label: tiny standalone check.** Transcendental real logarithms
+**Standalone tutorial.** Transcendental real logarithms
 belong to Mathlib, so this dependency-light worksheet uses an exact symbolic
 four-case ledger. It checks the branch logic with only <code>Std</code>; it
 does not implement <code>EReal</code>, matrix norms, or analytic logarithms.
@@ -636,8 +640,9 @@ are the pinned Mathlib and project declarations checked next.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** On an approved Linux builder,
-a human can create a worksheet containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
@@ -675,16 +680,15 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for the exact declaration
-type; it does not execute a numerical simulation. The repository's guarded
-leaf command is:
+type; it does not execute a numerical simulation. The full-project command is:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
 ~~~
 
-Per the project policy, run that command only on the approved Linux cloud
-builder, never on the Mac workstation.
+This full project check uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## What has and has not been formalized here

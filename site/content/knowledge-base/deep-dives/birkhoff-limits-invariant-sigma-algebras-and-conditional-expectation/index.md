@@ -304,8 +304,8 @@ By the summit, a reader should be able to:
 16. transport the theorem across almost-everywhere equal observables;
 17. read every public declaration and every boundary probe in the RMT-27 module;
 18. state exactly which assumptions the final theorem does not use; and
-19. run the tiny `Std` worksheet locally and reserve project/Mathlib checks
-    for the guarded Linux workflow.
+19. run the tiny `Std` worksheet and distinguish it from the full
+    project/Mathlib check.
 
 ## Common setup and three kinds of equality
 
@@ -1310,9 +1310,10 @@ Read a few syntax landmarks before modifying the file:
 - `#eval main` runs the worksheet. It computes evidence for this finite
   model; it is not a proof of the general ergodic theorem.
 
-This tutorial is intentionally safe for an ordinary Mac or Linux computer.
-It uses the pinned Lean 4.32 toolchain and `Std` only. The next check imports
-Mathlib and the project and therefore belongs on approved Linux cloud compute.
+This **standalone tutorial** is suitable for an ordinary macOS or Linux
+computer. It uses the pinned Lean 4.32 toolchain and `Std` only. The next check
+imports Mathlib and the project, so it may require substantial disk space and
+memory.
 
 ## Inspect and check the exact project interface
 
@@ -1320,9 +1321,8 @@ Mathlib and the project and therefore belongs on approved Linux cloud compute.
 
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean).
-On an approved Linux builder, typically a human-approved RunPod for this
-repository, place this public-interface probe in a temporary project scratch
-file:
+For a **full project check**, install the repository's pinned dependencies and
+place this public-interface probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
@@ -1349,23 +1349,17 @@ open NonlinearDynamics.Random.RandomCocycles
 #check ae_tendsto_birkhoffAverage_condExp
 ~~~
 
-The private helper is intentionally absent from that probe. The exact guarded
-leaf command, typed from the repository root, is:
+The private helper is intentionally absent from that probe. The exact full
+project leaf command, typed from the repository root, is:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean
 ~~~
 
-That command verifies the pinned manifest and treats warnings as errors. It
-may restore or compile substantial Mathlib dependencies, so do not run it on
-the Mac workstation. The full guarded release gate on an approved,
-provisioned Linux cloud builder is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
+That command uses the repository's pinned dependencies. It may compile
+substantial parts of Mathlib and therefore may require substantial disk space
+and memory.
 
 The leaf's five `#print axioms` commands audit representative declarations.
 The full gate additionally checks aggregators, proof-to-prose coverage,

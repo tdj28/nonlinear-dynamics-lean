@@ -394,7 +394,9 @@ theorem linfty_opNorm_mulVec (A : Matrix l m α) (v : m → α) :
 The use of <code>sup</code> rather than an arbitrarily chosen maximizing row
 makes the definition total even when there are no rows.
 
-**Resource label: pinned project plus Mathlib.** The project then iterates
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The project then iterates
 submultiplicativity in
 [<code>FiniteProducts.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean):
 
@@ -417,9 +419,9 @@ theorem linfty_opNorm_forwardProduct_le_prod (A : ℕ → Matrix ι ι 𝕜) (k 
 The induction follows the definition: the newest factor \(A_k\) is multiplied
 on the left, then its norm budget is appended to the scalar product.
 
-## Tiny local Lean/Std arithmetic worksheet
+## Standalone tutorial: arithmetic worksheet
 
-**Resource label: tiny standalone check.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code>. It calculates the integer matrix, row and column sums, two
 matrix-vector actions, and the corresponding numerical inequalities. It does
 not define Mathlib's norm instance or prove the general theorem.
@@ -499,8 +501,9 @@ both inequality checks. The displayed vectors should be \((4,2)\) and
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** A human can type this
-worksheet in a deliberately provisioned copy of the repository:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.MatrixProducts.FiniteProducts
@@ -525,8 +528,8 @@ open scoped Matrix.Norms.Operator
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
 type. Opening <code>Matrix.Norms.Operator</code> before the checks makes the
-intended norm instance explicit. The guarded command below checks the complete
-project source module on an approved Linux builder.
+intended norm instance explicit. The full-project command below checks the
+complete project source module.
 {{< /repo-check >}}
 
 ## Compare the nearby matrix norms

@@ -770,17 +770,21 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
 ```
 
-To rebuild the whole formalization and draft teaching site:
+Starting from the repository root, build the whole formalization and check the
+public teaching content:
 
 ```sh
+cd formalization
+lake build
+
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
 The direct command checks the geometry and support module with warnings
-promoted to errors. The repository command also builds every dependency,
-validates the proof-to-prose manifest and checkpoint, and renders every Hugo
-draft with warnings fatal.
+promoted to errors. The full build checks every dependency, and the final two
+commands inspect the public teaching content and render the site.
 
 This complete Lean snippet inspects the main interfaces:
 

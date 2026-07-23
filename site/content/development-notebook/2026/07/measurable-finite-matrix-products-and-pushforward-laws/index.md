@@ -808,11 +808,11 @@ cd formalization
 lake build
 ~~~
 
-From the repository root, run the proof-to-prose, source-hygiene, media, and
-Hugo gates:
+From the repository root, check the public teaching content:
 
 ~~~sh
-make check
+make content-hygiene
+make site-check
 ~~~
 
 This import-level snippet checks all twelve public declarations in source

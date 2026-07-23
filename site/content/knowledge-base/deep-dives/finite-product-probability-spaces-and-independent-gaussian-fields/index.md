@@ -193,7 +193,7 @@ auditable before the notation becomes abstract.
 | First encounter | [Two fair bits](#base-camp-two-fair-bits-with-no-hidden-rows) | Audit source weights, marginals, preimages, and the joint table |
 | Dependence route | [Three independence scopes](#camp-one-three-independence-scopes) | See why marginals, pairwise independence, and separate families are insufficient |
 | Measure route | [The exact product joint law](#camp-three-the-exact-product-joint-law) | Understand `Measure.pi` and law-level factorization |
-| Lean route | [The local worksheet](#try-it-locally-execute-the-four-row-arithmetic) | Type finite code locally, then inspect the exact cloud-only module |
+| Lean route | [The standalone worksheet](#try-it-locally-execute-the-four-row-arithmetic) | Type finite code, then inspect the exact full project module |
 | Geometry route | [Real scaling](#camp-six-real-scaling-preserves-the-cartesian-axes) | Track means, both variance functions, and independence under scaling |
 | Matrix route | [The ridge toward GUE](#the-ridge-toward-a-gaussian-matrix-law) | Identify every layer still missing before a named ensemble |
 
@@ -929,15 +929,15 @@ example : jointNumerators (fun ω => ω.y) parity = [1, 1, 1, 1] := by
 end FiniteProductTutorial
 ~~~
 
-Type these commands on a normal Mac or Linux machine with Elan installed:
+Type these commands on a normal macOS or Linux machine with Elan installed:
 
 ~~~sh
 source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/FiniteProductTutorial.lean
 ~~~
 
-**Resource profile: small standalone Lean plus `Std`, safe on a normal Mac or
-Linux host.** The command names the pinned compiler directly. It does not enter
+**Standalone tutorial: Lean plus `Std`, suitable for a normal macOS or Linux
+host.** The command names the pinned compiler directly. It does not enter
 the Lake project, restore Mathlib, or build the repository.
 
 The file was executed with that exact command and printed:
@@ -976,8 +976,8 @@ that anything in the worksheet is Gaussian.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean).
-On an approved Linux builder with the pinned project dependencies provisioned,
-put this probe in a temporary project scratch file:
+After installing the repository's pinned dependencies, put this probe in a
+temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.ComplexGaussianFamilies
@@ -1005,17 +1005,16 @@ open NonlinearDynamics.Random
 `#check` asks Lean to elaborate an existing declaration and report its type.
 These commands do not draw samples or estimate probabilities.
 
-**Resource profile: exact repository module plus Mathlib, cloud-only for this
-project.** Check the authoritative module from the repository root with:
+**Full project check: exact repository module plus Mathlib.** Check the
+authoritative module from the repository root with:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/ComplexGaussianFamilies.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/ComplexGaussianFamilies.lean
 ~~~
 
-Run that guarded target on the approved Linux builder. Do not run it on this
-Mac workstation: project policy keeps Mathlib caches and full Lean builds on
-cloud compute.
+This command may compile substantial dependencies and therefore may require
+substantial disk space and memory.
 {{< /repo-check >}}
 
 ## The checked Lean map
@@ -1042,7 +1041,7 @@ asymptotic claim.
 ### Validation boundary
 
 The preceding `repo-check` block gives the copyable import, declaration probe,
-exact module path, and guarded cloud command. The small local worksheet and the
+exact module path, and full project command. The small standalone worksheet and the
 Mathlib-backed repository module are intentionally separate validation layers.
 The former checks four finite rows; the latter checks the actual Gaussian law,
 measurability, mutual-independence, product-measure, and empty-index theorems.

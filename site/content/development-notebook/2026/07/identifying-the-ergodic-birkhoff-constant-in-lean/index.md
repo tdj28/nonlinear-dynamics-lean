@@ -1091,23 +1091,21 @@ lake env lean -DwarningAsError=true \
 The command checks every declaration, all fourteen private boundary helpers,
 all five anonymous examples, and the six axiom reports.
 
-Return to the repository root for the complete Lean and Hugo gate:
+Continue from `formalization/` to build the complete project, then check the
+public teaching content:
 
 ```sh
+lake build
+
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
 To preview this draft locally:
 
 ```sh
 make blog-serve
-```
-
-To serve drafts over the project-authorized Tailscale route on port 1333:
-
-```sh
-make blog-serve-tailscale
 ```
 
 The checked source remains authoritative if a rendered equation, line wrap,

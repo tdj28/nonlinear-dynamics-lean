@@ -228,9 +228,10 @@ non-Hermitian perturbation claim.
 
 ## Type the exact finite ledger with Lean and <code>Std</code>
 
-The general eigenvalue theorem imports Mathlib and must be checked on approved
-Linux cloud compute. Its decisive rational arithmetic fits in a small
-standalone worksheet importing only Lean's <code>Std</code> library. This
+The general eigenvalue theorem is a **full project check**: it imports Mathlib
+and may require substantial disk space and memory. Its decisive rational
+arithmetic fits in a **standalone tutorial** importing only Lean's
+<code>Std</code> library. This
 tutorial represents the two diagonal spectra directly and checks the
 non-Hermitian eigenvalues by evaluating their characteristic polynomials. It
 does not formalize matrix spectral theory.
@@ -321,8 +322,7 @@ elan run leanprover/lean4:v4.32.0 lean \
   /tmp/HermitianPerturbation2.lean
 ~~~
 
-The exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+The exact worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [(1 : Rat)/2, (1 : Rat)/4]
@@ -836,8 +836,9 @@ the public theorem
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean).
-On an approved Linux builder with the pinned project cache, put this exact
-source in a temporary project scratch file:
+**Full project check.** With the repository's pinned Lean and Mathlib
+dependencies installed, put this exact source in a temporary project scratch
+file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -850,8 +851,8 @@ open NonlinearDynamics.Random
 ~~~
 
 <code>#check</code> asks Lean to elaborate each declaration and display its
-type. The guarded command rendered below checks the complete Mathlib-backed
-module. It belongs on approved Linux cloud compute, not on this Mac.
+type. The full project command rendered below checks the complete
+Mathlib-backed module and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ### A diagonal check
@@ -952,8 +953,9 @@ when the index type is nonempty. The formal statement also covers the empty
 index type without inventing a maximum of an empty set.
 
 {{< repo-check >}}
-On an approved Linux builder with the pinned project cache, a human can place
-these exact lines in a temporary project scratch file:
+**Full project check.** With the repository's pinned Lean and Mathlib
+dependencies installed, place these exact lines in a temporary project scratch
+file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -965,8 +967,8 @@ open NonlinearDynamics.Random
 ~~~
 
 The first result targets \(\mathbb R\); the second targets
-<code>Fin n → ℝ</code>. The guarded command rendered below type-checks their
-authoritative Mathlib-backed module only on approved Linux cloud compute.
+<code>Fin n → ℝ</code>. The full project command rendered below type-checks
+their authoritative Mathlib-backed module.
 {{< /repo-check >}}
 
 ### What “1-Lipschitz” does and does not say
@@ -1019,8 +1021,8 @@ These are ordinary <code>Measurable</code> statements, not only
 almost-everywhere measurability under one selected law.
 
 {{< repo-check >}}
-On approved Linux cloud compute, put these exact lines in a temporary project
-scratch file:
+**Full project check.** Put these exact lines in a temporary project scratch
+file after installing the repository's pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -1034,9 +1036,8 @@ open NonlinearDynamics.Random
 ~~~
 
 The declarations expose two independent distinctions: one coordinate versus
-the whole vector, and continuity versus Borel measurability. The guarded
-command below checks the pinned project module and its Mathlib dependencies in
-the cloud.
+the whole vector, and continuity versus Borel measurability. The full project
+command below checks the pinned project module and its Mathlib dependencies.
 {{< /repo-check >}}
 
 ### From coordinates to a measure-valued map
@@ -1096,8 +1097,7 @@ weak, Wasserstein, or total-variation topology. The module uses the Giry
 measurable space and proves exactly the measurable statements displayed above.
 
 {{< repo-check >}}
-On an approved Linux builder, the exact measure-valued interfaces can be
-inspected with:
+**Full project check.** Inspect the exact measure-valued interfaces with:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -1110,8 +1110,8 @@ open NonlinearDynamics.Random
 ~~~
 
 These checks elaborate map measurability. They neither draw a random matrix
-nor name a pushforward law. The guarded command below checks the authoritative
-module on cloud compute.
+nor name a pushforward law. The full project command below checks the
+authoritative module.
 {{< /repo-check >}}
 
 ## Camp seven: the ambient observable and the GUE bridge
@@ -1173,8 +1173,8 @@ allows the pushforwards to compose honestly.
 {{< /lean-bridge >}}
 
 {{< repo-check >}}
-On an approved Linux builder, a reader can inspect the final measurable-map
-and law-level interfaces with:
+**Full project check.** Inspect the final measurable-map and law-level
+interfaces with:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
@@ -1186,8 +1186,8 @@ open NonlinearDynamics.Random
 ~~~
 
 The first line after the import checks a map property. The second checks an
-equality between two pushforward measures. The guarded command below checks
-the complete pinned project module in the cloud; it does not run on this Mac.
+equality between two pushforward measures. The full project command below
+checks the complete pinned project module.
 {{< /repo-check >}}
 
 In commuting-square form:
@@ -1510,28 +1510,17 @@ elan run leanprover/lean4:v4.32.0 lean \
 That command checks exact rational arithmetic and characteristic-polynomial
 substitution. It does not import Mathlib or compile this project.
 
-The authoritative module check belongs on approved Linux cloud compute with
-the pinned project cache. From the repository root there, type:
+For the **full project check**, install the repository's pinned Lean and
+Mathlib dependencies. From the repository root, type:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
 ~~~
 
-The guarded target verifies the committed manifest digest and checks the
-Mathlib-backed declarations. Do not replace it with a raw
-<code>lake build</code> or <code>lake env lean</code> command on the Mac.
-
-Site authoring and static validation remain workstation-safe:
-
-~~~sh
-make content-hygiene
-make site-check
-~~~
-
-The repository-wide <code>make check</code> gate is also cloud-only because it
-includes the Lean project build. A green technical build does not complete
-editorial review of this public working note. Human mathematical,
+This command checks the Mathlib-backed declarations and may require substantial
+disk space and memory. A green technical build does not complete editorial
+review of this public working note. Human mathematical,
 accessibility, and publication reviews remain pending.
 
 ## Where to continue

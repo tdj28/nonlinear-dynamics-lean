@@ -278,8 +278,8 @@ By the summit, you should be able to:
 13. explain why \(A_0=0\) is not a zero-time growth rate;
 14. identify the positive-index set inside <code>Subadditive.lim</code>;
 15. explain why normalized ratios need not be monotone;
-16. run a bounded <code>Std</code> worksheet on a normal Mac or Linux host;
-17. run the exact project check only through the guarded Linux command; and
+16. run a bounded <code>Std</code> worksheet on a normal macOS or Linux host;
+17. run the exact full project check with the pinned dependencies; and
 18. state why the result is neither samplewise nor a Lyapunov exponent.
 
 ## Camp one: a totalized integral needs an integrability ledger
@@ -756,7 +756,7 @@ For the uniform two-point measure, that numerator equals \(k\). The worksheet
 checks the two finite rows, the integrated numerator, an additive split, the
 formal zero boundary, and the failed near miss.
 
-This is a small standalone tutorial. It is suitable for an ordinary Mac or
+This is a **standalone tutorial**. It is suitable for an ordinary macOS or
 Linux host and does not invoke Lake, Mathlib, or a project build.
 
 Save the exact block below as
@@ -1041,9 +1041,8 @@ theorem. No almost-sure convergence theorem occurs in the source.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean).
-On an approved Linux builder with the pinned project dependencies already
-provisioned, a learner can place the following in a temporary project scratch
-file:
+For a **full project check**, install the repository's pinned dependencies and
+place the following in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
@@ -1071,22 +1070,17 @@ The <code>#check</code> commands ask Lean to report existing declaration
 types. They do not create a samplewise exponent, prove an ergodic theorem, or
 replace the source module's compilation.
 
-Immediately below this prose, the repository-check panel renders the exact
-guarded command
-<code>CLOUD_LEAN_BUILD=1 make lean-file
-LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean</code>.
-That check belongs on a provisioned, human-approved Linux cloud builder. This
-Mac is suitable for the small <code>Std</code> worksheet, Hugo authoring, and
-static checks; it must not rebuild this Mathlib-backed project.
-{{< /repo-check >}}
-
-The broader Linux release gate is:
+From the repository root, the exact command is:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make check
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
 ~~~
 
-Both commands use the repository's guarded workflow and pinned manifest.
+This full project check may compile substantial dependencies and therefore may
+require substantial disk space and memory.
+{{< /repo-check >}}
+
 Technical success does not complete human or Pro review.
 
 ## What the checked theorem does and does not say

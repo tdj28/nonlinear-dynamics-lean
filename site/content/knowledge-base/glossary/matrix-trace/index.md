@@ -259,7 +259,7 @@ the two rows of \(A^2\), followed by the trace ledger:
 This is a bounded <code>Std</code>-only model of the exact example, suitable on
 a normal Mac or Linux machine. Its record is not Mathlib's general matrix type,
 and it proves no measurability theorem. The project declaration and its
-guarded cloud check remain separate below.
+full project check remain separate below.
 
 This is the exact checked source declaration and proof:
 
@@ -283,8 +283,8 @@ not have real trace.
 {{< repo-check >}}
 The authoritative project source is
 [formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean).
-A learner can type the following in a temporary Lean file on an approved Linux
-builder:
+A learner can type the following in a temporary Lean file inside a clone with
+the repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Hermitian
@@ -296,7 +296,7 @@ import NonlinearDynamics.Random.RandomMatrices.Hermitian
 
 The import makes the project declarations available. Each <code>#check</code>
 asks Lean to elaborate a name and display its exact type; it does not prove a
-new theorem. The guarded command below checks the authoritative module itself.
+new theorem. The full-project command below checks the authoritative module itself.
 {{< /repo-check >}}
 
 ## Boundaries and convention checks

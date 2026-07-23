@@ -266,8 +266,9 @@ Together with signed subadditivity, this produces a reusable candidate for a
 downstream signed convergence layer. The repository's source-only RMT-35
 checkpoint now consumes that candidate to prove a pre-ergodic probability
 almost-everywhere limit for signed top growth. RMT-35 remains outside
-RMT-34's frozen checked surface and still awaits its paired teaching and
-release gates.
+RMT-34's frozen checked surface. Its Lean core exists, but its scalar boundary
+atlas, recommended countermodels, and dedicated proof-to-prose bundle remain
+unfinished.
 
 A second route reaches a narrower summit. If the already-constructed
 log-positive asymptotic rate is strictly positive, clipping eventually does
@@ -2670,8 +2671,7 @@ separate gates.
 #### Exercise 40: audit the downstream signed layer
 
 Which ingredients does the current source-only RMT-35 checkpoint add beyond
-RMT-34, and which teaching and release gates still separate that checkpoint
-from a released vertical slice?
+RMT-34, and which mathematical and teaching materials are still missing?
 
 **Solution.**
 
@@ -2692,11 +2692,10 @@ multiplicities, invariant filtration or splitting, or Oseledets theorem.
 That source checkpoint is not yet a released vertical slice. Its scalar
 boundary atlas and recommended countermodels remain unfinished; it has no
 paired Development Notebook, Deep Dive, glossary chapter, social card,
-hosted source snapshot, or coverage entry. The RMT-29 teaching layer must
-also document its generalized lower-bounded theorem. Browser and visual QA,
-snapshot identity, the proof-to-prose audit, and a checksum-identical guarded
-Linux cloud release gate remain outstanding. None of those pending gates
-changes the frozen 942-line RMT-34 surface audited in this chapter.
+hosted source snapshot, or coverage entry. The RMT-29 teaching layer must also
+document its generalized lower-bounded theorem. None of that missing
+mathematical or teaching work changes the frozen 942-line RMT-34 surface
+audited in this chapter.
 
 ## Final theorem cards
 
@@ -2763,10 +2762,10 @@ is the immediate asymptotic predecessor.
 
 ## Run the finite worksheet on Mac or Linux
 
-**Resource label: small standalone Lean 4 tutorial; safe on a normal Mac or
-Linux machine.** This worksheet imports only Lean's bundled
+**Standalone tutorial, suitable for a normal macOS or Linux machine.** This
+worksheet imports only Lean's bundled
 <code>Std</code> library. It does not import Mathlib, open the project, restore
-a Lake cache, or check RMT-34.
+project dependencies, or check RMT-34.
 
 Open a plain-text editor, create
 <code>/tmp/ForwardInverseTailSandwichTutorial.lean</code>, and type or paste
@@ -3003,7 +3002,7 @@ The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean),
 with a
 [site-hosted copy](/lean/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean)
-for direct reading. On an approved Linux builder, create a temporary project
+for direct reading. For a **full project check**, create a temporary project
 scratch file containing this source-order interface probe:
 
 ~~~lean
@@ -3052,50 +3051,17 @@ The final three expose every field of the one public structure. The module's
 examples and 11 axiom prints are source-level audit checks rather than public
 API.
 
-From the repository root on the approved Linux host, type:
+After installing the repository's pinned Lean and Mathlib dependencies, type
+this from the repository root:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean
 ~~~
 
-This is the exact warning-fatal, pinned Mathlib leaf check. It may restore or
-compile substantial dependencies, so it belongs on a human-approved RunPod or
-another approved Linux cloud builder. Do not run it on the Mac workstation
-and do not replace the guarded target with raw `lake` commands.
+This is the exact pinned Mathlib leaf check. It may compile substantial
+dependencies and therefore may require substantial disk space and memory.
 {{< /repo-check >}}
-
-After the leaf succeeds, the broader guarded project gate on that same
-approved Linux builder is:
-
-~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make check
-~~~
-
-The workstation-safe teaching-layer gates do not compile the Lean project:
-
-Regenerate and byte-verify this page's 1200 by 630 social card from any
-working directory:
-
-~~~bash
-site/content/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms/generate-card.sh
-site/content/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms/generate-card.sh --verify
-~~~
-
-Validate the page-owned visual sources and generator:
-
-~~~bash
-xmllint --noout site/content/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms/*.svg
-shellcheck site/content/knowledge-base/deep-dives/forward-and-inverse-tail-sandwich-for-finite-time-real-log-norms/generate-card.sh
-make content-hygiene
-make site-check
-~~~
-
-The card generator resolves its own directory and is independent of the
-caller's current working directory. The vector figures are conceptual, not
-empirical; they require no data receipt or provenance manifest.
 
 ## Primary and formal sources
 

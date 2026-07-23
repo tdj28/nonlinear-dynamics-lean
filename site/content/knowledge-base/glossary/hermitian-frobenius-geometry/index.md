@@ -549,13 +549,16 @@ of two.
 ### The checked project layer
 
 {{< repo-check >}}
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+
 The authoritative geometry source is
 [formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean).
 The normalized-coordinate isometry is in
 [formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean).
 
 A learner can put these exact lines in a temporary scratch file inside the
-<code>formalization</code> project on an approved Linux builder:
+<code>formalization</code> project:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleInvariance
@@ -579,19 +582,15 @@ open scoped Matrix NNReal ENNReal RealInnerProductSpace
 dependencies. Each <code>#check</code> asks Lean to elaborate one declaration
 and report its type. It does not prove a new theorem.
 
-From the repository root, a human runs the guarded warning-fatal checks with:
+From the repository root, a human runs the full-project checks with:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean
 
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean
+lake env lean NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean
 ~~~
 
-These project commands are for an approved Linux cloud builder. The Mac
-workstation is for reading and editing source, Hugo checks, and the standalone
-<code>Std</code> worksheet; it is not a Mathlib build host.
 {{< /repo-check >}}
 
 ## Distinctions and boundary cases

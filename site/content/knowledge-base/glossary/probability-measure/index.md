@@ -289,7 +289,7 @@ example : hasTotalMassOne 3 = false := by decide
 end ProbabilityMassGate
 ~~~
 
-From any directory on a normal Mac or Linux host with the pinned compiler,
+From any directory on a normal macOS or Linux machine with the pinned compiler,
 type exactly:
 
 ~~~sh
@@ -344,8 +344,8 @@ zero-or-one theorem for a measurable invariant event. The outcomes \(0\) and
 {{< repo-check >}}
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean).
-A human can type the following worksheet in a scratch buffer on a deliberately
-provisioned copy of the project:
+A human can type the following worksheet in a scratch buffer inside a clone
+with the repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
@@ -367,7 +367,7 @@ The first three <code>#check</code> commands expose Mathlib's class and its
 defining equation. The next two inspect real project declarations whose
 probability language is guarded by that class. The final <code>example</code>
 asks Lean to recover the mass-one equation from the typeclass assumption. The
-guarded command below checks the complete project module containing the exact
+full-project command below checks the complete project module containing the exact
 excerpt.
 {{< /repo-check >}}
 

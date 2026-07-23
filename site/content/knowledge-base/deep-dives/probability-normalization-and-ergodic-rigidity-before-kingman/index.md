@@ -327,7 +327,7 @@ It does not imply any row of this table except its own statement.
 Each bridge pairs a human sentence, paper mathematics, exact Lean syntax, and
 the tokens a reader must recognize. The finite worksheet after the bridges
 checks the opening arithmetic. The project declarations themselves belong to
-the guarded Linux-cloud workflow.
+the full project checks.
 
 ### Bridge 1: say that the measure is normalized
 
@@ -583,7 +583,8 @@ six oscillating mean numerators.
 **Resource profile: small standalone tutorial, local-safe.** The examples
 proved with <code>native_decide</code> certify this finite representation and
 its rational arithmetic. They do not prove the Mathlib-backed project
-theorems. Those exact checks remain on approved Linux cloud compute.
+theorems. Those exact checks require the repository's pinned Lean and Mathlib
+dependencies.
 
 ## Camp one: probability fixes scale
 
@@ -1550,19 +1551,19 @@ asymptotic structure.
 24. Audit the ten-declaration table against the Lean source and identify every
     assumption that appears in a signature but not a computational body.
 
-## Check the exact project interfaces on Linux cloud compute
+## Full project checks
 
 The local <code>Std</code> file certifies the finite ledger only. The following
-two checks inspect the actual Mathlib-backed project declarations. They are
-copyable, but project policy reserves them for an approved Linux builder.
+two checks inspect the actual Mathlib-backed project declarations. Install the
+repository's pinned dependencies first; these checks may require substantial
+disk space and memory.
 
 ### The ten declarations in this chapter
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase" >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean).
-On the approved Linux builder, put this probe in a temporary project scratch
-file:
+Put this probe in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
@@ -1588,17 +1589,16 @@ asks Lean to elaborate one existing public declaration and show its complete
 type. The list contains the one structure plus the other nine source-level
 declarations, in source order.
 
-**Resource profile: exact repository module plus Mathlib, cloud-only for this
-project.** From the repository root on the approved Linux builder, run:
+**Full project check: exact repository module plus Mathlib.** From the
+repository root, run:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
 ~~~
 
-The guarded target pins the committed toolchain and manifest, checks this leaf
-with warnings treated as errors, and refuses to run as a project build on the
-Mac workstation.
+This uses the repository's pinned toolchain and dependencies to check the
+complete leaf.
 {{< /repo-check >}}
 
 ### The deterministic predecessor that supplies the rate
@@ -1623,30 +1623,17 @@ open NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle
 #check HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm
 ~~~
 
-Run its guarded leaf check on the same approved Linux builder:
+From the repository root, check this leaf with:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
 ~~~
 
 The last declaration proves convergence of the deterministic real sequence
 \(I_k/k\). It quantifies over no surviving outcome \(\omega\), so it cannot be
 relabelled as a samplewise theorem.
 {{< /repo-check >}}
-
-The workstation may still validate the teaching layer without compiling the
-project:
-
-~~~sh
-make site-check
-~~~
-
-The full cloud release gate is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
 
 Automated success does not complete review of this public working note. Human
 mathematical, source, accessibility, and editorial reviews remain pending.

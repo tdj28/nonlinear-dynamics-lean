@@ -390,7 +390,7 @@ conditional-expectation uniqueness for that exact sub-sigma algebra.
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 file enumerates all \(64\) finite events and filters the four that pass the
 split map's exact preimage test. It recreates finite Boolean set membership;
 it does not define Mathlib measurable spaces, measures, null sets, or
@@ -445,7 +445,7 @@ elan run leanprover/lean4:v4.32.0 lean InvariantSigmaFiniteScratch.lean
 ~~~
 
 This exact worksheet was executed successfully with the pinned Lean 4.32.0
-compiler on the Mac and printed:
+compiler and printed:
 
 ~~~text
 64
@@ -461,8 +461,9 @@ and it does not load the project or Mathlib.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only.** On an approved
-Linux builder, a human can create a query worksheet containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
@@ -491,8 +492,8 @@ variable (hg : Measurable[MeasurableSpace.invariants T] g)
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
-type. The guarded command below checks the authoritative RMT-27 module. It does
-not run on this Mac workstation.
+type. The full-project command below checks the authoritative RMT-27 module with the
+repository's pinned dependencies installed.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

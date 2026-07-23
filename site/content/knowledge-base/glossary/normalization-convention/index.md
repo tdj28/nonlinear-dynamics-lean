@@ -331,11 +331,11 @@ The project-source worksheet below asks Lean for the exact type of both
 declarations. The project build, not a prose paraphrase, is the authority for
 their complete proofs.
 
-## Tiny local Lean/Std ledger
+## Standalone tutorial: exact ledger
 
-**Resource label: tiny standalone check.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code> and uses exact rational arithmetic. It does not import
-Mathlib or the project and does not build a project cache.
+Mathlib or the project.
 
 Save the following as <code>NormalizationLedgerScratch.lean</code>:
 
@@ -386,7 +386,9 @@ lets a reviewer check whether the divisor really matches the stated dimension.
 ## Project-source workflow
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** The main authoritative source
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The main authoritative source
 for the normalized spectral statement is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean).
 Its upstream scale and raw-moment declarations live in
@@ -410,8 +412,8 @@ import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
 
 Each <code>#check</code> displays the exact declaration type from the pinned
 source. It does not compute the local matrix example or compare conventions on
-the reader's behalf. The guarded command below checks the full spectrum module
-and its imported dependencies on an approved Linux builder.
+the reader's behalf. The full-project command below checks the full spectrum
+module and its imported dependencies.
 {{< /repo-check >}}
 
 ## Boundaries and failure modes

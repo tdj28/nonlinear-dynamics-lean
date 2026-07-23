@@ -345,8 +345,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/PushforwardScratch.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact standalone worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 ["a", "c"]
@@ -360,13 +359,13 @@ that transport retains total mass one. This finite ledger does not construct
 Mathlib's <code>Measure.map</code>; it makes the preimage arithmetic visible
 before the exact project interface below.
 
-### Check the exact project interface on Linux
+### Full project check
 
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean).
-A human can type the following worksheet in a scratch buffer on a deliberately
-provisioned Linux copy of the project:
+A human can type the following worksheet in a scratch buffer inside a clone with
+the repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Laws
@@ -379,7 +378,7 @@ import NonlinearDynamics.Random.RandomMatrices.Laws
 
 <code>#print</code> reveals the checked definition behind a name.
 <code>#check</code> asks Lean to elaborate a declaration and display its type;
-it does not assume or prove an extra theorem. The guarded command below checks
+it does not assume or prove an extra theorem. The full-project command below checks
 the complete module containing the exact excerpts above.
 {{< /repo-check >}}
 

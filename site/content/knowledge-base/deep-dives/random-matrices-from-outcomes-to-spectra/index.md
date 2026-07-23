@@ -516,8 +516,8 @@ lemmas used here
 ### Try the exact base declarations in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
-A learner can create a temporary probe on an approved Linux builder with:
+**Full project check: pinned project plus Mathlib.** A learner can create a
+temporary project probe with:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Basic
@@ -533,8 +533,8 @@ import NonlinearDynamics.Random.RandomMatrices.Basic
 
 <code>#print</code> unfolds the project abbreviation. Each
 <code>#check</code> asks the pinned elaborator for the exact type of a checked
-declaration. The generated guarded command below validates the authoritative
-module, not the temporary probe.
+declaration. The generated full project command below validates the
+authoritative module, not the temporary probe.
 {{< /repo-check >}}
 
 ## In Lean: from one Hermitian matrix to a random spectral law
@@ -783,9 +783,8 @@ measurability, pushforward law, or project declarations below.
 ### Try the exact spectral-law declarations in the repository
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum" >}}
-**Resource label: later project modules plus Mathlib, cloud-only for this
-project.** Type this probe only on an approved Linux host that has the pinned
-project cache:
+**Full project check: later project modules plus Mathlib.** Install the
+repository's pinned dependencies, then type this probe:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
@@ -802,8 +801,8 @@ import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
 
 These names span the deterministic sample spectrum, its zero-dimensional
 boundary, measurability of the measure-valued observable, the outer finite GUE
-law, and its mean measure. The guarded command below checks the full imported
-leaf. Do not replace it with a local project or Lake command on this Mac.
+law, and its mean measure. The full project command below checks the full
+imported leaf and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## What the repository has checked, and what it has not
@@ -935,9 +934,9 @@ itself.
 10. **Lean tokens.** In the local worksheet, change the red diagonal entry
     from \(2\) to \(3\). Update its eigenpair certificate, spectrum, event
     preimage, and mass ledger together.
-11. **Resource boundary.** Explain why the <code>Std</code> worksheet is safe
-    locally while the two <code>repo-check</code> modules belong on the guarded
-    Linux builder.
+11. **Resource boundary.** Explain why the <code>Std</code> standalone
+    tutorial is small while the two full project checks load the repository's
+    pinned Mathlib dependencies.
 12. **Research boundary.** Name one additional theorem needed before a finite
     spectral law can support a large-dimension universality claim.
 

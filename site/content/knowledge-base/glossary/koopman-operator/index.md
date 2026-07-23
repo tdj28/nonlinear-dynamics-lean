@@ -455,9 +455,9 @@ The operator-level statement is intentionally weaker:
 - At <code>n = 0</code>, both iterates are identities.
 {{< /lean-bridge >}}
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** This complete file reproduces the
+**Standalone tutorial.** This complete file reproduces the
 three-state cycle, both pullbacks, the uniform squared-norm numerators, and the
 non-preserving collapse. It imports <code>Std</code>, not Mathlib or this
 project.
@@ -543,14 +543,15 @@ equal masses gives squared \(L^2\) norm \(7\). The collapse has preimage counts
 This worksheet verifies finite function composition and integer arithmetic.
 It does not instantiate Mathlib's measure, \(L^2\), or continuous-linear-map
 interfaces. This exact worksheet was executed successfully with the pinned
-Lean 4.32.0 compiler on the Mac.
+Lean 4.32.0 compiler.
 
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-repository copy, a human can place the following commands in the imported
-module or in a separate project scratch file:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Place the following commands in the imported module or in a separate project
+scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.KoopmanL2Mean
@@ -570,8 +571,8 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for the declaration's exact
-type. The guarded command printed below checks the full Mathlib-backed project
-module on approved Linux compute. It must not be run on this Mac.
+type. The full-project command printed below checks the full Mathlib-backed project
+module.
 {{< /repo-check >}}
 
 ## Boundary cases and common confusions

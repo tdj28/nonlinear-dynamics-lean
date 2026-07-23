@@ -40,11 +40,12 @@ content-coverage: ## Check that every substantive Lean module has a comprehensiv
 content-coverage-test: ## Run regression tests for the Lean snapshot coverage contract
 	$(PYTHON) -m unittest discover -s scripts -p 'test_check_lean_notebook_coverage.py'
 
-content-hygiene-test: ## Run regression tests for the context-aware source gate
+content-hygiene-test: ## Run regression tests for source and public reader gates
 	$(PYTHON) -m unittest discover -s scripts -p 'test_check_teaching_source_hygiene.py'
 
-content-hygiene: ## Check rendered teaching prose for Markdown and TeX source hazards
+content-hygiene: ## Check teaching source hazards and public reader language
 	$(PYTHON) scripts/check_teaching_source_hygiene.py
+	$(PYTHON) scripts/check_public_reader_language.py
 
 site: ## Build the publication-ready Hugo site into public/
 	$(HUGO) --source site --config hugo.yaml --cleanDestinationDir

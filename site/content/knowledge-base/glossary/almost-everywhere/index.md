@@ -157,7 +157,7 @@ example : finiteAlmostEverywhere notSix = false := by decide
 end AlmostEverywhereDie
 ~~~
 
-From any directory on a normal Mac or Linux host with the pinned compiler,
+From any directory on a normal macOS or Linux machine with the pinned compiler,
 type exactly:
 
 ~~~sh
@@ -208,6 +208,24 @@ example {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
   Filter.Eventually.of_forall hP
 ~~~
 
+#### How a human types `Ω →`
+
+In a Lean-aware editor, type <code>\Omega</code> and then press Space to
+produce <code>Ω</code>. Type <code>\to</code> and then press Space to produce
+<code>→</code>. Thus a human can enter <code>Ω → Prop</code> as
+<code>\Omega</code>, Space, <code>\to</code>, Space, <code>Prop</code>.
+
+Unicode is convenient, not mandatory. Without input expansion, use an ASCII
+name and arrow:
+
+~~~lean
+variable (Omega : Type*)
+#check Omega -> Omega
+~~~
+
+Lean reads <code>Omega -> Omega</code> as the same kind of function type as
+<code>Ω → Ω</code>; only the variable's spelling differs.
+
 The <code>example</code> is pedagogical; the two <code>#check</code> lines
 point at declarations in the named project file.
 <code>Filter.Eventually.of_forall</code> performs the safe one-way conversion:
@@ -217,8 +235,18 @@ set.
 {{< repo-check >}}
 The exact checked source is
 <code>formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean</code>.
-Put the worksheet in that approved Linux environment, or inspect the two named
-declarations directly in the source file.
+**Full project check.** This worksheet uses the repository's pinned Lean and
+Mathlib dependencies and may require substantial disk space and memory. Save
+it as <code>formalization/AlmostEverywhereProjectScratch.lean</code>, then type:
+
+~~~sh
+cd formalization
+lake env lean AlmostEverywhereProjectScratch.lean
+~~~
+
+The command rendered below checks the authoritative project module instead of
+the pedagogical scratch file. You can also inspect the two named declarations
+directly in the source file.
 {{< /repo-check >}}
 
 ## Pointwise implies almost everywhere, not conversely

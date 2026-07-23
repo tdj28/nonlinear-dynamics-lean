@@ -225,12 +225,13 @@ another. Knowing only that the \(X\)-family is independent and the
 
 ## Type the finite ledger yourself with Lean and Std
 
-The exact Gaussian measure lives in Mathlib, so its project proof belongs on
-approved Linux compute. The arithmetic ledger is much smaller. The following
-file imports only Lean's <code>Std</code> library and uses integers and natural
-numbers to check every displayed finite value, including the copied-coordinate
-near-miss. Save it as <code>/tmp/ComplexGaussianLedger.lean</code> on a normal
-Mac or Linux computer:
+The exact Gaussian measure lives in Mathlib, so its proof is a **Full project
+check** that may require substantial disk space and memory. The arithmetic
+ledger is a **standalone tutorial**. The following file imports only Lean's
+<code>Std</code> library and uses integers and natural numbers to check every
+displayed finite value, including the copied-coordinate near-miss. Save it as
+<code>/tmp/ComplexGaussianLedger.lean</code> on a normal macOS or Linux
+computer:
 
 ~~~lean
 import Std
@@ -301,8 +302,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/ComplexGaussianLedger.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [1, -2]
@@ -327,7 +327,7 @@ pseudocovariance \(3\), while <code>(0, 2)</code> is the copied near-miss's
 This worksheet checks finite arithmetic and data transformations. It does not
 define a probability measure, prove Gaussianity or independence, or replace
 the Mathlib-backed project theorems. Those exact interfaces are identified
-with guarded cloud commands later in the chapter.
+with full project commands later in the chapter.
 
 A real Gaussian law has one axis. A complex Gaussian law has two. That extra
 axis creates choices that informal notation often erases: whether the real and
@@ -357,7 +357,7 @@ boundaries are stated here instead of being hidden behind a suggestive name.
 | Probability route | Product laws and pushforwards | Why exact marginals plus independence determine this law |
 | Geometry route | Variance along each axis | A complete map of circular, elliptical, line, and point branches |
 | Signal route | Covariance and pseudocovariance | A careful separation of properness from circular symmetry |
-| Project Lean route | <code>HasLaw</code> and a real-linear equivalence | Human, paper, and exact project syntax with guarded cloud commands |
+| Project Lean route | <code>HasLaw</code> and a real-linear equivalence | Human, paper, and exact project syntax with full project commands |
 | Random-matrix route | Normalization ledgers | A safe handoff toward complex matrix entries without naming GUE early |
 
 ### Learning objectives
@@ -549,8 +549,8 @@ moment calculation. It identifies the complete probability law.
   as Mathlib's <code>IndepFun</code> predicate under <code>P</code>.
 - The displayed term is exact Lean syntax for the conclusion. The preceding
   product-law certificate remains separately available as
-  <code>hZ.jointHasLaw</code>; both declarations are included in the cloud
-  worksheet below.
+  <code>hZ.jointHasLaw</code>; both declarations are included in the full
+  project worksheet below.
 {{< /lean-bridge >}}
 
 ## Camp two: the variance split determines support geometry
@@ -686,8 +686,8 @@ Linearity of integration gives
   to equality of their real and imaginary components, then invokes the exact
   real-coordinate mean theorems.
 - The displayed term is exact Lean syntax. The separate gate
-  <code>hZ.integrable</code> also appears in the cloud worksheet later in the
-  page.
+  <code>hZ.integrable</code> also appears in the full project worksheet later
+  in the page.
 {{< /lean-bridge >}}
 
 Complex second-order theory then splits into two quantities.
@@ -1125,13 +1125,13 @@ Mathlib's real <code>variance</code> API and the signal-processing quantities
 layer must define the desired complex second moments explicitly, prove their
 integrability, and then establish the sum and difference formulas.
 
-### Inspect the exact single-coordinate interfaces on Linux
+### Full project check of the exact single-coordinate interfaces
 
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/ComplexGaussian.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussian.lean).
-On an approved Linux builder with the pinned project cache provisioned, put
-these lines in a temporary project scratch file:
+After installing the repository's pinned dependencies, put these lines in a
+temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.ComplexGaussian
@@ -1165,11 +1165,11 @@ open NonlinearDynamics.Random
 <code>#print</code> exposes a definition body. <code>#check</code> asks Lean to
 elaborate an existing declaration and display its type. Neither command draws
 samples, estimates a moment, proves circular symmetry, or upgrades the
-unformalized density and pseudocovariance formulas. The guarded command below
+unformalized density and pseudocovariance formulas. The full project command below
 checks the authoritative module under Lean 4.32.0 and pinned Mathlib 4.32.0.
 {{< /repo-check >}}
 
-### Inspect the scaling and family interfaces on Linux
+### Full project check of the scaling and family interfaces
 
 {{< repo-check module="NonlinearDynamics.Random.ComplexGaussianFamilies" >}}
 The authoritative continuation is
@@ -1201,8 +1201,8 @@ exact Cartesian law, and mutual family independence occupy separate fields.
 The constructor from real pair-vectors requires an exact product law inside
 every pair and independence between pair-vectors. It never infers cross-family
 independence from two separately independent real families. This exact file
-imports Mathlib and the project, so its guarded check belongs on the approved
-Linux builder rather than this Mac workstation.
+imports Mathlib and the project, so checking it may require substantial disk
+space and memory.
 {{< /repo-check >}}
 
 ## The deliberate RMT-03 boundary before a family

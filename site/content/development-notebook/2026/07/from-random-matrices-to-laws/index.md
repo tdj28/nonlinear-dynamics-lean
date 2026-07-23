@@ -678,14 +678,14 @@ Build the complete formalization from `formalization/`:
 lake build
 ```
 
-Run the combined Lean, proof-to-prose, and Hugo gate from the repository root:
+From the repository root, check the public teaching content:
 
 ```sh
-make check
+make content-hygiene
+make site-check
 ```
 
-Preview drafts with `make blog-serve` at `http://127.0.0.1:1333/`. Private
-tailnet preview uses `make blog-serve-tailscale`.
+Preview drafts with `make blog-serve` at `http://127.0.0.1:1333/`.
 
 ## Design decisions and limitations
 

@@ -279,7 +279,7 @@ example : lawMassQuarters (fun _ => true) = 4 := by decide
 end TwoMatrixLaw
 ~~~
 
-From any directory on a normal Mac or Linux host with the pinned compiler,
+From any directory on a normal macOS or Linux machine with the pinned compiler,
 type exactly:
 
 ~~~sh
@@ -335,8 +335,8 @@ that fallback as a hidden probabilistic assumption.
 {{< repo-check >}}
 The authoritative source is
 [`formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean`](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean).
-A learner can put these lines in a temporary scratch file on an approved Linux
-builder to ask Lean for the checked declaration and its type:
+A learner can put these lines in a temporary scratch file inside a clone with
+the repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Laws

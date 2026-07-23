@@ -446,8 +446,8 @@ normalization utility. Their separate homes are part of the lesson.
 ### Try the exact target interfaces
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
-On an approved Linux builder, use a temporary scratch file containing:
+**Full project check: pinned project plus Mathlib.** Use a temporary project
+scratch file containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.NormObservables
@@ -472,15 +472,15 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.logNormObservable_eq_bot_of_isEmpty
 ~~~
 
-This is the complete fourteen-declaration target interface. The guarded
+This is the complete fourteen-declaration target interface. The full project
 command rendered below checks the authoritative module with the pinned
-manifest and warnings fatal.
+dependencies.
 {{< /repo-check >}}
 
 ### Inspect the separate positive-log and integrability successor
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability" >}}
-**Resource label: later pinned project module plus Mathlib, cloud-only.**
+**Full project check: later pinned project module plus Mathlib.**
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
@@ -503,7 +503,7 @@ pushforward probability law and proves no asymptotic limit.
 ### Inspect the much later real normalization boundary
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman" >}}
-**Resource label: much later pinned project module plus Mathlib, cloud-only.**
+**Full project check: much later pinned project module plus Mathlib.**
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
@@ -1227,8 +1227,8 @@ Read the output in layers:
 Likewise, <code>LogValue.bottom</code> models the zero policy without
 reimplementing Mathlib's <code>EReal</code>. Every integer product, norm,
 budget, branch, and <code>example</code> is kernel-checked. The project-level
-types and theorems remain the cloud-only interfaces in the earlier repository
-checks.
+types and theorems remain the full project interfaces in the earlier
+repository checks.
 
 The worksheet's <code>normalizeAt 0 = none</code> intentionally models the
 classical partial convention that normalization needs a positive horizon. It
@@ -1496,35 +1496,21 @@ derivative, chain rule, or tangent-space identification appears here.
 22. Normalize both running logarithm ledgers at horizon two, then explain why
     the target module proves neither a normalized-process theorem nor a limit.
 
-## Reproduce the chapter without crossing the host boundary
+## Reproduce the chapter
 
-The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
-Linux host. From the repository root, the page-owned and workstation-safe
-checks are:
-
-~~~sh
-site/content/knowledge-base/deep-dives/finite-time-norm-and-extended-log-norm-cocycle-observables/generate-card.sh --verify
-make site-check
-git diff --check
-~~~
-
-These commands do not compile the project. The exact target and comparison
-modules import Mathlib, so their checks belong on approved Linux compute:
+The bounded <code>Std</code> worksheet above is a standalone tutorial for an
+ordinary macOS or Linux host. The exact target and comparison modules import
+Mathlib and are full project checks. From the repository root, run:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/NormObservables.lean
-
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
-
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/NormObservables.lean
+lake env lean NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean
 ~~~
 
-The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
-This teaching rebuild does not claim that any project module was recompiled on
-the Mac. Passing the technical gates would still leave human mathematical,
+These commands may require substantial disk space and memory. Passing the
+technical gates would still leave human mathematical,
 source, accessibility, scientific-integrity, and editorial review pending.
 
 ## Summit: what has and has not been proved

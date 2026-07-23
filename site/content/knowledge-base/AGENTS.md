@@ -169,21 +169,28 @@ End every **In Lean** section with **Try it in the repository**:
 - distinguish a pedagogical excerpt from the exact checked project source; and
 - give the literal repository command used to check the named file.
 
-The standard single-file command is:
+The portable full-project command is:
 
 ```sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/path/to/Module.lean
+cd formalization
+lake env lean NonlinearDynamics/path/to/Module.lean
 ```
 
-That exact-project command belongs on an approved Linux builder or another
-machine deliberately provisioned with the pinned project cache. Small,
-self-contained Lean-core or `Std` tutorials may also include a local Mac/Linux
-command. Label the difference and never let a “small tutorial” silently trigger
-a Mathlib cache download or project compilation on this workstation. When
-teaching Mathlib syntax, link it to a real project module and show the guarded
-project command rather than leaving the reader with an isolated snippet and no
-way to check it.
+Describe it to readers as a **full project check**: it requires the
+repository's pinned Lean and Mathlib dependencies and the initial setup may use
+substantial disk space or build time. Small self-contained Lean-core or `Std`
+examples are **standalone tutorials** and may include a lightweight macOS/Linux
+command. The distinction is about dependencies, not about the reader's
+operating system.
+
+Never expose contributor infrastructure in rendered teaching prose. Do not
+mention the owner's workstation, RunPod, an approved cloud or Linux host,
+approval gates, private networking, contributor-only environment variables,
+guarded release commands, or where this project's maintainers choose to run
+large builds. Those operational constraints belong only in `AGENTS.md`, the
+project skill, and `checkpoint.md`. When teaching Mathlib syntax, link it to a
+real project module and show the portable project command rather than leaving
+the reader with an isolated snippet and no way to check it.
 
 Use the shared `lean-bridge` shortcode to present the human, paper, and Lean
 forms together, with a page-specific syntax map in its body. Use `repo-check`

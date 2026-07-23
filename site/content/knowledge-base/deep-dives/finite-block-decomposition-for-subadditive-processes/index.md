@@ -779,8 +779,8 @@ the twelve-state base, the additive process, a finite block sum, both correct
 orientations, the wrong shift, the constant-five time-zero boundary, and
 Lean's division-by-zero convention.
 
-This is a bounded local tutorial. It is suitable for a normal Mac or Linux
-host and does not invoke Lake, Mathlib, or a project build.
+This is a bounded **standalone tutorial**. It is suitable for a normal macOS
+or Linux host and does not invoke Lake, Mathlib, or a project build.
 
 Save the exact block below as
 <code>/tmp/SubadditiveFiniteBlocksTutorial.lean</code>:
@@ -1094,8 +1094,8 @@ collapse. Its finite block upper bound is not a signed growth exponent.
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean).
-On an approved Linux builder with the pinned dependencies already provisioned,
-a learner can put the following in a temporary project scratch file:
+For a **full project check**, install the repository's pinned dependencies and
+put the following in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
@@ -1124,20 +1124,12 @@ exponent.
 Immediately below this prose, the repository-check panel renders:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean
 ~~~
 
-That exact Mathlib-backed check belongs on a human-approved, provisioned Linux
-cloud builder. This Mac is for the small <code>Std</code> worksheet, source
-authoring, Hugo, and static QA. It must not compile this project module.
+That exact Mathlib-backed check may require substantial disk space and memory.
 {{< /repo-check >}}
-
-The broader guarded Linux release gate is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
 
 Passing either technical gate would not complete the pending human or Pro
 review.

@@ -712,17 +712,21 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean
 ```
 
-To rebuild the full formalization and all draft teaching content:
+Starting from the repository root, build the full formalization and check the
+public teaching content:
 
 ```sh
+cd formalization
+lake build
+
 cd ..
-make check
+make content-hygiene
+make site-check
 ```
 
 At this milestone the full Lean build checks 3,142 jobs. The direct command is
-the narrower reproducibility test for this module; `make check` also validates
-the proof-to-prose manifest, checkpoint structure, and Hugo site with warnings
-treated as fatal.
+the narrower reproducibility test for this module. The final two commands check
+the teaching content and render the Hugo site.
 
 This complete Lean snippet inspects the main API without placeholders:
 

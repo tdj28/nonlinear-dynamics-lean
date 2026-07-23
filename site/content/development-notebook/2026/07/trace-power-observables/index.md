@@ -786,13 +786,15 @@ lake env lean -DwarningAsError=true \
 To build the complete Lean library from the repository root:
 
 ```sh
-make lean
+cd formalization
+lake build
 ```
 
-To validate both Lean and every Hugo draft:
+From the repository root, check the public teaching content:
 
 ```sh
-make check
+make content-hygiene
+make site-check
 ```
 
 To read this draft locally beside the source:
@@ -801,13 +803,12 @@ To read this draft locally beside the source:
 make blog-serve
 ```
 
-Then open `http://127.0.0.1:1333/`. For private access from another device on
-the same tailnet, use `make blog-serve-tailscale`.
+Then open `http://127.0.0.1:1333/`.
 
 ### What success looks like
 
 The single-file command should exit without errors. It checks the exact module
-against the pinned Lean and Mathlib toolchain. `make lean` additionally checks
+against the pinned Lean and Mathlib toolchain. `lake build` additionally checks
 that the import graph exposes the module correctly to the project library.
 
 ## The next ridge: expectation and the moment method

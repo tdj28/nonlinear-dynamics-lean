@@ -173,6 +173,13 @@ For every Lean file containing substantive declarations:
 9. Expand technical acronyms on each standalone summary surface, including
    cards and conceptual figures, or replace them there with self-contained
    plain language.
+10. Keep maintainer infrastructure out of reader-facing prose. Public
+    tutorials distinguish a portable **standalone tutorial** from a **full
+    project check** that needs the pinned Lean and Mathlib dependencies. They
+    must not mention the owner's workstation, RunPod, cloud approval,
+    contributor-only guards, private networking, retained caches, or internal
+    release operations. Keep those constraints in `AGENTS.md`, this skill, and
+    `checkpoint.md`, and require `make content-hygiene` to reject future leaks.
 
 Never let the Lean tree outrun its public explanation.
 

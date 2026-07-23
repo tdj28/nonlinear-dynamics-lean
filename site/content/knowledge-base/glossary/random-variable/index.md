@@ -277,7 +277,7 @@ Because every face has mass \(1/6\), the last two counts give law masses
 \(3/6=1/2\). This tutorial checks only the exact finite ledger with
 <code>Std</code>, so it is bounded enough for a normal Mac or Linux machine. It
 does not define measures or prove measurability. The general Mathlib and
-project interfaces remain in the guarded Linux workflow below.
+project interfaces remain in the full project workflow below.
 
 Given a source measure <code>μ</code>, Lean writes the induced value-space law
 as <code>Measure.map X μ</code>. For a measurable target set <code>B</code>,
@@ -320,8 +320,8 @@ property. None is inferred merely from the function type.
 {{< repo-check >}}
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/GaussianPrimitives.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/GaussianPrimitives.lean).
-A human can type the following worksheet in a scratch buffer on a deliberately
-provisioned copy of the project:
+A human can type the following worksheet in a scratch buffer inside a clone
+with the repository's pinned dependencies installed:
 
 ~~~lean
 import NonlinearDynamics.Random.GaussianPrimitives
@@ -351,7 +351,7 @@ The first example verifies the important boundary case: a deterministic
 constant function is measurable. The second is the exact preimage computation
 behind a random variable's law. The <code>#check</code> commands expose the
 project fields that keep measurability, Gaussian law, and independence
-separate. The guarded command below checks the complete project module
+separate. The full-project command below checks the complete project module
 containing the exact excerpts.
 {{< /repo-check >}}
 

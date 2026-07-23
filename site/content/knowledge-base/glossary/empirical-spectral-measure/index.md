@@ -356,7 +356,9 @@ different spaces and have different total masses.
 
 ## Exact project excerpts
 
-**Resource label: pinned project plus Mathlib.** The authoritative deterministic
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative deterministic
 definitions are in
 [<code>HermitianSpectrum.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean):
 
@@ -420,9 +422,9 @@ noncomputable def empiricalSpectralLaw (n : ℕ) : Measure (Measure ℝ) :=
 The nested type <code>Measure (Measure ℝ)</code> is deliberate: the outer
 measure describes how the inner realized measures vary.
 
-## Tiny local Lean/Std multiplicity worksheet
+## Standalone tutorial: multiplicity worksheet
 
-**Resource label: tiny standalone check.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code>. It calculates the finite eigenvalue ledger using exact
 rationals. It does not define Dirac measures, diagonalize matrices, or prove
 the project trace theorems.
@@ -466,8 +468,9 @@ empty-list policy.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** A human can type this
-worksheet in a deliberately provisioned copy of the repository:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
@@ -500,8 +503,8 @@ import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
 
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
 type. The imported leaf module reaches deterministic spectra, continuity and
-measurability, GUE pushforwards, and normalized moments. The guarded command
-below checks that complete module on an approved Linux builder.
+measurability, GUE pushforwards, and normalized moments. The full-project
+command below checks that complete module.
 {{< /repo-check >}}
 
 ## Measurability is the bridge to a distribution

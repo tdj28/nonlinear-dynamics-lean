@@ -794,15 +794,14 @@ The file prints axiom footprints for:
 6. `centeredFeketeOffset_le_normalizedIntegral`; and
 7. `measureReal_centeredLogPlusBadBlockSet_le_rateRatio`.
 
-The source's recorded cloud validation found the expected Mathlib logical
-footprint. This teaching rebuild does not rerun those Mathlib declarations on
-the Mac.
+The source's recorded project validation found the expected Mathlib logical
+footprint.
 
 ## A tiny executable model using only `Std`
 
 The next worksheet reproduces the complete two-atom ledger without importing
-Mathlib or this project. It is a bounded tutorial suitable for a normal Mac or
-Linux machine. It is not a proof of the general measure theorem.
+Mathlib or this project. It is a **standalone tutorial** suitable for a normal
+macOS or Linux machine. It is not a proof of the general measure theorem.
 
 Save this exact block as
 <code>/tmp/SubadditiveBadBlockMeasureTutorial.lean</code>:
@@ -968,9 +967,8 @@ Read the last two lines carefully:
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean).
-On an approved Linux builder with the pinned project dependencies already
-provisioned, place these inspection commands in a temporary project scratch
-file:
+For a **full project check**, install the repository's pinned dependencies and
+place these inspection commands in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
@@ -990,23 +988,16 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.measureReal_centeredLogPlusBadBlockSet_le_rateRatio
 ~~~
 
-The exact guarded module check is:
+The exact module check from the repository root is:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean
 ~~~
 
-That Mathlib-backed command belongs only on a human-approved, provisioned
-Linux cloud builder. Do not run it on this Mac. The lightweight `Std` worksheet
-above is the intended local learning path.
+That Mathlib-backed command may require substantial disk space and memory. The
+lightweight `Std` worksheet above is the smaller learning path.
 {{< /repo-check >}}
-
-The guarded full release command on approved Linux cloud compute is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
 
 Neither command changes `pro_reviewed: false`; technical validation and human
 review are separate gates.

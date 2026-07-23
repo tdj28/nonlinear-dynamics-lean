@@ -565,7 +565,8 @@ theorem add_of_indep (hX : HasRealGaussianLaw X mX vX P)
 The authoritative project source is
 [formalization/NonlinearDynamics/Random/GaussianPrimitives.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/GaussianPrimitives.lean).
 A learner can put these lines in a temporary scratch file inside the
-<code>formalization</code> project on an approved Linux builder:
+<code>formalization</code> project. This full project check uses the
+repository's pinned Lean and Mathlib dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.GaussianPrimitives
@@ -587,7 +588,7 @@ open scoped ProbabilityTheory
 <code>import</code> loads the checked project module and its pinned Mathlib
 dependencies. Each <code>#check</code> asks Lean to elaborate the named
 declaration and report its type; it does not create a new theorem. The literal
-guarded command below checks the authoritative project file itself.
+full-project command below checks the authoritative project file itself.
 {{< /repo-check >}}
 
 ## Distinctions and boundary cases

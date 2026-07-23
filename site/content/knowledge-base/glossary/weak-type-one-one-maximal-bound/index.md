@@ -369,7 +369,9 @@ the common denominator \(4\) yields the checked integer inequality
 measures, integrals, or the maximal theorem.
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.**
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
@@ -384,8 +386,8 @@ open NonlinearDynamics.Random.RandomCocycles
 #check measureReal_birkhoffCauchyExceptionalSet_le
 ~~~
 
-The guarded command below checks the authoritative RMT-26 module on approved
-Linux compute. It must not trigger a project or Mathlib build on this Mac.
+The full-project command below checks the authoritative RMT-26 module with the
+repository's pinned Lean and Mathlib dependencies installed.
 {{< /repo-check >}}
 
 ## Related concepts

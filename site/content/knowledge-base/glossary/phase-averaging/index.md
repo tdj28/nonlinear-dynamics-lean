@@ -442,7 +442,7 @@ For the division form, the extra evidence is explicit:
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 worksheet verifies the \(4\times3\) phase ledger and the one-point boundary
 arithmetic. It does not import Mathlib, define a Birkhoff sum, or prove the
 general phase theorem.
@@ -513,14 +513,15 @@ this page. Its output rows were <code>[15, 18, 21, 24]</code>,
 <code>[78, 78]</code>, and <code>[1, -18, -18]</code>. The last inequality
 checks the boundary-dropped arithmetic \(-18\le3(-4)=-12\). This is suitable
 for an ordinary Mac or Linux machine because it imports only <code>Std</code>
-and performs a few finite computations. It does not compile this repository or
-download a Mathlib cache.
+and performs a few finite computations. It does not import Mathlib or the
+project.
 
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-copy of the repository, create a scratch query containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a scratch query containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
@@ -539,9 +540,9 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for the exact declaration
-type. The guarded command below checks the authoritative project module, not
-the tiny standalone worksheet. It belongs on approved Linux compute and must
-not be run on this Mac workstation.
+type. The full-project command below checks the authoritative project module, not
+the standalone worksheet. It uses the repository's pinned Lean and Mathlib
+dependencies.
 {{< /repo-check >}}
 
 ## Every degenerate index says something different

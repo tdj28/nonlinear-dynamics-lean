@@ -297,7 +297,7 @@ random law, a logarithmic-growth limit, or a Lyapunov exponent.
 
 The local worksheet later in the chapter checks the integer example with
 <code>Std</code>. The interfaces below are the exact Mathlib-backed project
-layer. Their repository commands are deliberately cloud-only.
+layer and use full project checks.
 
 ### Bridge one: an empty history acts as the identity
 
@@ -430,9 +430,8 @@ right base case for splitting and norm induction.
 ### Try the exact deterministic finite-product interfaces
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only for this project.**
-On an approved Linux builder, place this probe in a temporary project scratch
-file:
+**Full project check: pinned project plus Mathlib.** Place this probe in a
+temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.MatrixProducts.FiniteProducts
@@ -458,13 +457,13 @@ open NonlinearDynamics.Random
 This list is the complete thirteen-declaration public interface. <code>#print</code>
 shows the recursive orientation; each <code>#check</code> asks the pinned
 elaborator for a theorem's exact assumptions and conclusion. The rendered
-guarded command below checks the authoritative source file.
+full project command below checks the authoritative source file.
 {{< /repo-check >}}
 
 ### Inspect the separate measurable-law successor
 
 {{< repo-check module="NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts" >}}
-**Resource label: later pinned project module plus Mathlib, cloud-only.** The
+**Full project check: later pinned project module plus Mathlib.** The
 successor deliberately lives in another file:
 
 ~~~lean
@@ -1334,31 +1333,20 @@ invariant splitting.
 16. State a derivative-product bridge for iterates of a differentiable map.
     Identify which chain-rule and domain-invariance hypotheses it would need.
 
-## Reproduce the chapter without crossing the host boundary
+## Reproduce the chapter
 
-The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
-Linux host. From the repository root, workstation-safe checks are:
-
-~~~sh
-site/content/knowledge-base/deep-dives/ordered-finite-matrix-products-and-operator-norm-growth/generate-card.sh --verify
-make site-check
-git diff --check
-~~~
-
-These commands do not compile the project. The two exact modules import
-Mathlib, so their checks belong on approved Linux compute:
+The bounded <code>Std</code> worksheet above is a standalone tutorial for an
+ordinary macOS or Linux host. The two exact modules import Mathlib and are
+full project checks. From the repository root, run:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean
-
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean
+lake env lean NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
 ~~~
 
-The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
-This teaching rebuild does not claim either project module was recompiled on
-the Mac. Technical success would still not complete the pending human
+These commands may require substantial disk space and memory. Technical
+success would still not complete the pending human
 mathematical, source, accessibility, scientific-integrity, and editorial
 reviews.
 

@@ -484,9 +484,9 @@ changes made on a \(P\)-null set. Consistently, <code>HasLaw</code> asks only
 for almost-everywhere measurability; ordinary measurability would still not
 upgrade equality in law with a Dirac mass to pointwise equality everywhere.
 
-## Tiny local Lean/Std arithmetic worksheet
+## Standalone tutorial: arithmetic worksheet
 
-**Resource label: tiny standalone check.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code> and computes exact rational ledger values. It does not import
 Mathlib or the project, and it does not prove Gaussianity or independence.
 
@@ -538,10 +538,11 @@ The project declarations below carry the measure-theoretic content.
 ## Project-source workflow
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** The authoritative source is
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/ComplexGaussian.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussian.lean).
-A human can type this worksheet on a deliberately provisioned copy of the
-project:
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.ComplexGaussian
@@ -563,8 +564,8 @@ import NonlinearDynamics.Random.ComplexGaussian
 Each <code>#check</code> asks the pinned elaborator for an exact declaration
 type. The commands do not establish a planar density, pseudovariance, or
 circular symmetry theorem, because those declarations are not yet in this
-module. The guarded command below checks the complete source module on an
-approved Linux builder.
+module. The full-project command below checks the complete source module with the
+repository's pinned dependencies installed.
 {{< /repo-check >}}
 
 ## Distinctions and failure modes

@@ -398,8 +398,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/MeasurePreservingScratch.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact standalone worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [0, 3]
@@ -416,10 +415,11 @@ preimage has mass \(2/4\) instead of \(1/4\). This exhaustive finite test is
 possible because there are only sixteen events. It is not a general proof of
 <code>MeasurePreserving</code>.
 
-### Check the exact Mathlib certificate on Linux
+### Full project check
 
-The next worksheet uses the repository's Mathlib-backed certificate. Type it
-only on an approved Linux builder provisioned with the pinned project cache:
+The next worksheet is a full project check. It uses the repository's pinned
+Lean and Mathlib dependencies and may require substantial disk space and
+memory:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
@@ -458,8 +458,7 @@ cocycle and propagates it to iterates. The second uses a
 <code>MeasurePreserving T μ μ</code> hypothesis to carry integrability along
 finite orbits. The worksheet imports the latter module, which reaches both
 interfaces, and uses their exact checked declaration names. The repository's
-guarded build command checks the complete Birkhoff module on the approved
-Linux builder.
+full-project command checks the complete Birkhoff module.
 {{< /repo-check >}}
 
 ## Distinctions and failure modes

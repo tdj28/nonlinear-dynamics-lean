@@ -778,11 +778,14 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean
 ```
 
-Build through the project root and validate teaching content:
+Starting from the repository root, build the complete formalization and check
+the public teaching content:
 
-```text
-make lean
-make content-coverage
+```sh
+cd formalization
+lake build
+
+cd ..
 make content-hygiene
 make site-check
 ```

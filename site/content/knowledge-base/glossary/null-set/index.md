@@ -332,7 +332,8 @@ countable-union theorem. Those belong to the project-backed worksheet below.
 Two Mathlib lemmas encode the closure rules from the previous section.
 <code>measure_mono_null</code> transfers zero mass from a set to any subset,
 and <code>measure_iUnion_null</code> combines a countable family of null sets.
-On an approved Linux project builder, a human can type this worksheet:
+In a clone with the repository's pinned Lean and Mathlib dependencies
+installed, a human can type this worksheet:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
@@ -376,7 +377,7 @@ build a null cover, then descend to the event of interest.
 The authoritative checked source is
 [<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean).
 The worksheet's import and both fully qualified declaration names are copyable.
-The guarded command below checks the complete project module containing the
+The full-project command below checks the complete project module containing the
 two project theorems.
 {{< /repo-check >}}
 

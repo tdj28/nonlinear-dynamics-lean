@@ -830,7 +830,7 @@ they do neither operation.
 
 The first four bridges build the finite Hopf inequality. The last three turn
 it into a threshold-event estimate. Each Lean expression names an exact
-project declaration; the copyable module probe and guarded Linux command
+project declaration; the copyable module probe and full project command
 follow the bridges.
 
 ### Bridge 1: maximize every partial sum, including time zero
@@ -951,8 +951,8 @@ follow the bridges.
 
 {{< repo-check module="NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal" >}}
 
-On an approved Linux builder, a reader can place this probe in a project
-scratch file:
+For a **full project check**, place this probe in a project scratch file after
+installing the repository's pinned dependencies:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
@@ -969,18 +969,16 @@ open NonlinearDynamics.Random.RandomCocycles
 #check measureReal_finiteBirkhoffAverageExceedanceSet_le
 ~~~
 
-From the repository root on that approved Linux host, type:
+From the repository root, type:
 
 ~~~sh
-source "$HOME/.elan/env"
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/FiniteHopfMaximal.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/FiniteHopfMaximal.lean
 ~~~
 
-This is a **project/Mathlib check**. It may restore or compile substantial
-dependencies and must not run on the Mac workstation. The guarded target
-verifies the pinned manifest and checks the authoritative 509-line module with
-warnings treated as errors.
+This is a **full project check**. It may compile substantial dependencies and
+therefore may require substantial disk space and memory. It checks the
+authoritative 509-line module.
 {{< /repo-check >}}
 
 ## Run the entire four-cycle ledger with `Std`
@@ -1255,7 +1253,7 @@ elan run leanprover/lean4:v4.32.0 lean \
   /tmp/FiniteHopfMaximalDeepDiveTutorial.lean
 ~~~
 
-This is a **small standalone tutorial** suitable for a normal Mac or Linux
+This is a **standalone tutorial** suitable for a normal macOS or Linux
 host. It imports only `Std`, enumerates four states, and does not compile
 Mathlib or this project. Successful execution prints exactly:
 
@@ -1538,11 +1536,10 @@ The module prints the axioms of:
 - <code>finiteBirkhoffAverageExceedanceSet_integral_lower_bound</code>; and
 - <code>measureReal_finiteBirkhoffAverageExceedanceSet_le</code>.
 
-The project gate checks the module with warnings treated as errors and rejects
-<code>sorry</code>, <code>admit</code>, unsafe declarations, and custom project
-axioms. The expected theorem footprint is the standard Lean and Mathlib
-classical quotient infrastructure already present in prior milestones, not a
-new mathematical assumption.
+The checked module contains no <code>sorry</code>, <code>admit</code>, unsafe
+declarations, or custom project axioms. The expected theorem footprint is the
+standard Lean and Mathlib classical quotient infrastructure already present in
+prior milestones, not a new mathematical assumption.
 
 All Mathlib source links in this chapter point to the exact commit
 <code>81a5d257c8e410db227a6665ed08f64fea08e997</code>, corresponding to the

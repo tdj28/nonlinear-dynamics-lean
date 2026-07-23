@@ -622,7 +622,7 @@ shape.
 
 ## A tiny standalone Lean worksheet a human can type
 
-**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+**Standalone tutorial.** This
 complete file reproduces the opening packing, its exact covered set, the
 abutment boundary, and the overlapping near-miss. It does not import Mathlib
 or this project, and it does not prove the general structural theorems above.
@@ -715,8 +715,9 @@ Mathlib-backed proof that every value of the project type is valid.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-copy of the repository, a reader can create a scratch query containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project query containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveIntervalPacking
@@ -735,9 +736,9 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for the exact declaration
-type. The guarded command below checks the authoritative RMT-21 source module,
-not the tiny standalone worksheet. It belongs on approved Linux compute and
-must not be run on this Mac workstation.
+type. The full-project command below checks the authoritative RMT-21 source module,
+not the standalone worksheet. It uses the repository's pinned Lean and Mathlib
+dependencies.
 {{< /repo-check >}}
 
 ## Lean landmarks

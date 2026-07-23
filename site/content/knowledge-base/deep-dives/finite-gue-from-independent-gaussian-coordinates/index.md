@@ -246,8 +246,8 @@ does not remember which source law was pushed through it.
 {{< /lean-bridge >}}
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates" >}}
-On an approved Linux builder with the pinned project cache, a reader can place
-the following source in a temporary project scratch file:
+**Full project check.** After installing the repository's pinned dependencies,
+place the following source in a temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
@@ -267,18 +267,17 @@ open NonlinearDynamics.Random
 ~~~
 
 <code>#print</code> exposes a definition. <code>#check</code> asks Lean to
-elaborate an existing declaration and display its type. The guarded command
-rendered below checks the exact Mathlib-backed project module and belongs on
-Linux cloud compute, not on this Mac workstation.
+elaborate an existing declaration and display its type. The full project
+command rendered below checks the exact Mathlib-backed project module.
 {{< /repo-check >}}
 
 ## Type the complete finite ledger with Lean and Std
 
-The exact Gaussian measures and matrix libraries need Mathlib, so their checks
-stay on approved Linux compute. The size-two arithmetic and reflection logic
-fit in a small standalone worksheet importing only Lean's <code>Std</code>
-library. Save this exact file as <code>/tmp/GUEN2Ledger.lean</code> on a normal
-Mac or Linux host:
+The exact Gaussian measures and matrix libraries need Mathlib, so they are full
+project checks and may require substantial disk space and memory. The size-two
+arithmetic and reflection logic fit in a standalone worksheet importing only
+Lean's <code>Std</code> library. Save this exact file as
+<code>/tmp/GUEN2Ledger.lean</code> on a normal macOS or Linux host:
 
 ~~~lean
 import Std
@@ -386,8 +385,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/GUEN2Ledger.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 (0, 0, 0)
@@ -418,7 +416,7 @@ it is not Lean's full complex-number type and carries no Gaussian law.
 decision procedure; <code>decide</code> suffices for the finite integer and
 Boolean checks. This worksheet proves only the finite data transformations it
 defines. It does not define a Gaussian measure, prove independence, or replace
-the guarded Mathlib-backed module checks.
+the full Mathlib-backed module checks.
 
 A finite GUE matrix can now be summarized in one sentence: choose independent
 centered Gaussian free coordinates at the Wigner scale, assemble a Hermitian
@@ -1122,16 +1120,15 @@ public declarations.
 | <code>matrixLaw_zero</code> | Zero-dimensional matrix law is Dirac at the empty zero matrix | No positive-dimensional limit |
 
 All 26 declarations compile under Lean 4.32.0 and the pinned Mathlib 4.32.0
-dependency with warnings treated as errors. The module contains no
-<code>sorry</code> or <code>admit</code>.
+dependency. The module contains no <code>sorry</code> or <code>admit</code>.
 
-### Inspect the exact finite-law interfaces on Linux
+### Full project check of the exact finite-law interfaces
 
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean).
-On an approved Linux builder with the pinned project cache, put these lines in
-a temporary project scratch file:
+After installing the repository's pinned dependencies, put these lines in a
+temporary project scratch file:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble
@@ -1168,10 +1165,10 @@ open NonlinearDynamics.Random
 #check GUE.matrixLaw_zero
 ~~~
 
-The guarded command rendered below checks the authoritative module with Lean
-4.32.0 and pinned Mathlib 4.32.0. It type-checks definitions and proofs; it
-does not sample a matrix, estimate eigenvalues, or test an asymptotic claim.
-This exact project check belongs on approved Linux compute.
+The full project command rendered below checks the authoritative module with
+Lean 4.32.0 and pinned Mathlib 4.32.0. It type-checks definitions and proofs;
+it does not sample a matrix, estimate eigenvalues, or test an asymptotic
+claim. It may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Checked construction versus classical context
@@ -1218,7 +1215,7 @@ characterization has already been proved equivalent in Lean.
 
 {{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments" >}}
 The later moments module imports the geometry and invariance continuation, so
-one cloud-only scratch file can verify the exact theorem names that mark the
+one full project scratch file can verify the exact theorem names that mark the
 current boundary:
 
 ~~~lean

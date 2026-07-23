@@ -317,8 +317,7 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean /tmp/IntegrabilityScratch.lean
 ~~~
 
-This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
-workstation. It printed:
+This exact standalone worksheet was executed successfully with Lean 4.32.0. It printed:
 
 ~~~text
 [3, 4, 5]
@@ -334,11 +333,12 @@ cutoff and unbounded. This finite computation demonstrates the obstruction;
 it does not ask Lean Core to define an infinite series or prove Mathlib's
 <code>Integrable</code> predicate.
 
-### Check the exact project predicate on Linux
+### Full project check
 
 The following Mathlib-backed scratch file separates the two fields contained
-in an integrability proof. Use it only on an approved Linux builder
-provisioned with the pinned repository cache.
+in an integrability proof. This full project check uses the repository's pinned
+Lean and Mathlib dependencies and may require substantial disk space and
+memory.
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability
@@ -371,9 +371,11 @@ the proof obligations already bundled by <code>hf</code>.
 The authoritative project source is
 [formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean).
 The worksheet is pedagogical; the quoted project definition and theorem are
-exact checked source. Put the worksheet in a temporary <code>.lean</code> file
-on an approved Linux builder. The guarded command below checks the
-authoritative project module.
+exact checked source. Save it as
+<code>formalization/IntegrabilityProjectScratch.lean</code>, then type
+<code>cd formalization</code> followed by
+<code>lake env lean IntegrabilityProjectScratch.lean</code>. The full-project
+command below checks the authoritative project module instead.
 {{< /repo-check >}}
 
 ## Boundaries and nonclaims

@@ -711,9 +711,9 @@ The first line supplies orbit-average convergence to an invariant conditional
 expectation. The second collapses that invariant target to the integral. The
 proof therefore records which half of ergodicity does which job.
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: standalone finite computation.** This worksheet imports only
+**Standalone tutorial.** This worksheet imports only
 <code>Std</code>. It enumerates all \(64\) events, computes the invariant-event
 lists for the two six-state maps, checks the component-label function, prints
 six-step orbit sums, and prints the singleton-overlap pattern. It does not
@@ -802,7 +802,7 @@ elan run leanprover/lean4:v4.32.0 lean ErgodicityFiniteScratch.lean
 ~~~
 
 This exact worksheet was executed successfully with the pinned Lean 4.32.0
-compiler on the Mac and printed:
+compiler and printed:
 
 ~~~text
 [[], [0, 1, 2, 3, 4, 5]]
@@ -838,8 +838,9 @@ that an abstract measure-preserving system is ergodic. It imports only
 ## Try it in the repository
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib, cloud-only.** On an approved
-Linux builder, a human can create a worksheet containing:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Create a temporary project worksheet containing:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
@@ -885,19 +886,12 @@ Each <code>#check</code> asks the pinned elaborator for the declaration's exact
 type. The current project leaf is checked with:
 
 ~~~sh
-CLOUD_LEAN_BUILD=1 make lean-file \
-  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean
+cd formalization
+lake env lean NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean
 ~~~
 
-The full repository gate is:
-
-~~~sh
-CLOUD_LEAN_BUILD=1 make check
-~~~
-
-Per repository policy, these project and Mathlib commands belong on an
-approved Linux cloud builder with the pinned cache. Do not run them on the Mac
-workstation.
+This full project check uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
 {{< /repo-check >}}
 
 ## Boundary cases and common traps

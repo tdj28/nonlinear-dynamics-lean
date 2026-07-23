@@ -295,9 +295,9 @@ The proof first rewrites the count as a Birkhoff sum, integrates the preserved
 finite sum, evaluates the indicator integral, and simplifies the scalar
 arithmetic.
 
-## Tiny local Lean/Std worksheet
+## Standalone tutorial
 
-**Resource label: tiny standalone check.** The following complete file models
+**Standalone tutorial.** The following complete file models
 the uniform seven-cycle with natural-number arithmetic only. It imports
 <code>Std</code>, not Mathlib or this project.
 
@@ -352,8 +352,9 @@ measure-theoretic identity remains the project theorem checked below.
 ## Try the exact declarations in the project
 
 {{< repo-check >}}
-**Resource label: pinned project plus Mathlib.** In a deliberately provisioned
-repository copy, a human can ask for the exact declaration types:
+**Full project check.** This uses the repository's pinned Lean and Mathlib
+dependencies and may require substantial disk space and memory.
+Ask Lean for the exact declaration types:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveBadBlockMeasure
@@ -372,8 +373,8 @@ open MeasureTheory
 ~~~
 
 Each <code>#check</code> asks the pinned elaborator for an existing type. The
-guarded command below checks the complete project module on approved Linux
-compute and must not be run on this Mac.
+full-project command below checks the complete project module with the
+repository's pinned dependencies installed.
 {{< /repo-check >}}
 
 ## Boundary cases and near-misses
