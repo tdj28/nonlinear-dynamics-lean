@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760" role="img" aria-labelledby="wrong-target-title wrong-target-desc">
+  <title id="wrong-target-title">Four nearby wrong targets fail sigma-algebra, invariance, or normalization checks</title>
+  <desc id="wrong-target-desc">Conditioning on the trivial sigma algebra gives the constant seventeen fifths, whose integral on A is sixty-eight twenty-fifths instead of sixteen fifths. Conditioning on the full sigma algebra returns the original values and is not invariant because state a0 changes from one to seven. The singleton a0 is not invariant, and its original and one-step translated integrals are two fifths and fourteen fifths. Finally, using the A integral sixteen fifths as the A conditional value without dividing by A mass yields sixty-four twenty-fifths instead of sixteen fifths.</desc>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#292721}
+    .title{font-size:22px;font-weight:700}
+    .sub{font-size:16px;fill:#554F47}
+    .head{font-size:17px;font-weight:700}
+    .body{font-size:17px}
+    .small{font-size:15px;fill:#554F47}
+    .bad{font-size:19px;font-weight:700;fill:#8C3E32}
+  </style>
+  <rect width="1000" height="760" rx="20" fill="#F7F2E8"/>
+  <text class="t title" x="34" y="38">Boundary audit: nearby formulas fail for different reasons</text>
+  <text class="t sub" x="34" y="64">Each panel changes one ingredient of the correct invariant-atom computation.</text>
+
+  <rect x="34" y="96" width="450" height="270" rx="16" fill="#F4E8DF" stroke="#A06733" stroke-width="2"/>
+  <text class="t head" x="58" y="130">1. WRONG SIGMA ALGEBRA: TRIVIAL</text>
+  <text class="t body" x="58" y="170">candidate value everywhere = 17/5</text>
+  <text class="t body" x="58" y="205">candidate integral on A:</text>
+  <text class="t bad" x="58" y="240">(4/5)(17/5) = 68/25</text>
+  <text class="t body" x="58" y="275">required integral on A:</text>
+  <text class="t bad" x="58" y="310">16/5 = 80/25</text>
+  <text class="t small" x="58" y="344">The nonergodic sector information was erased.</text>
+
+  <rect x="516" y="96" width="450" height="270" rx="16" fill="#F4E8DF" stroke="#A06733" stroke-width="2"/>
+  <text class="t head" x="540" y="130">2. WRONG SIGMA ALGEBRA: FULL</text>
+  <text class="t body" x="540" y="170">candidate = original f = [1, 7, -3, 5]</text>
+  <text class="t body" x="540" y="205">invariance test at a0:</text>
+  <text class="t bad" x="540" y="240">f(T(a0)) = 7, but f(a0) = 1</text>
+  <text class="t body" x="540" y="282">Birkhoff limit at a0 = 4</text>
+  <text class="t small" x="540" y="326">The full sigma algebra remembers too much phase.</text>
+
+  <rect x="34" y="394" width="450" height="270" rx="16" fill="#FBF8F2" stroke="#8A8278" stroke-width="2"/>
+  <text class="t head" x="58" y="428">3. WRONG EVENT: {a0} IS NOT INVARIANT</text>
+  <text class="t body" x="58" y="468">preimage of {a0} = {a1}</text>
+  <text class="t body" x="58" y="510">integral on {a0} before:</text>
+  <text class="t bad" x="58" y="545">(2/5)(1) = 2/5</text>
+  <text class="t body" x="58" y="584">integral of f after one step:</text>
+  <text class="t bad" x="58" y="619">(2/5)(7) = 14/5</text>
+  <text class="t small" x="58" y="646">Invariant-set transport cannot be invoked.</text>
+
+  <rect x="516" y="394" width="450" height="270" rx="16" fill="#F4E8DF" stroke="#A06733" stroke-width="2"/>
+  <text class="t head" x="540" y="428">4. WRONG NORMALIZATION ON ATOM A</text>
+  <text class="t body" x="540" y="468">mistake: use integral_A f = 16/5 as the value</text>
+  <text class="t body" x="540" y="510">candidate integral on A:</text>
+  <text class="t bad" x="540" y="545">(4/5)(16/5) = 64/25</text>
+  <text class="t body" x="540" y="584">required integral on A:</text>
+  <text class="t bad" x="540" y="619">16/5 = 80/25</text>
+  <text class="t small" x="540" y="646">Correct value: (16/5) / (4/5) = 4.</text>
+
+  <rect x="34" y="694" width="932" height="42" rx="10" fill="#E5EDDF" stroke="#607B53" stroke-width="2"/>
+  <text class="t head" x="58" y="721">Correct target: exact invariant sigma algebra, exact invariant test sets, and mass-normalized atom values.</text>
+</svg>

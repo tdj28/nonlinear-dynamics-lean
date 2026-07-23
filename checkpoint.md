@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:05 PDT
+Last updated: 2026-07-22 22:12 PDT
 
-Audited baseline: `main` at `46489b6`
+Audited baseline: `main` at `6f8c7e5`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **29 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **30 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -535,6 +535,20 @@ bridges, all 29 public declarations plus seven probes and five axiom queries,
 a guarded cloud project check, and a byte-identical executed 258-line `Std`
 worksheet make the full-sequence mechanism reproducible without running
 Mathlib or the project on the workstation.
+*Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation* now
+uses a four-state probability space with weights `(2/5,2/5,1/10,1/10)`, two
+swapped invariant sectors, and observable values `(1,7,-3,5)`. The first six
+averages converge sectorwise to four and one. Dividing each sector integral by
+its mass produces the exact invariant conditional expectation `[4,4,1,1]`
+and preserves the whole integral `17/5`. A trivial target, the original
+full-information observable, a noninvariant singleton, and an unnormalized
+atom integral fail numerically as `68/25≠80/25`, `7≠1`, `2/5≠14/5`, and
+`64/25≠80/25`. Three accessible numeric figures, seven Lean bridges, all 18
+public declarations plus the private helper, five probes and five axiom
+queries, a guarded cloud interface check, and a byte-identical executed `Std`
+worksheet lead from exact finite conditioning to the checked almost-everywhere
+limit identification without confusing exact invariance with modulo-null
+triviality.
 *Finite Bad-Block Measure Bounds Before Kingman Lower Liminf* now makes the
 entire RMT-30 bridge explicit on a uniform amber/blue identity system. For
 `m=5`, `c=-3/4`, only amber at length five is strictly bad, so the event has
@@ -3436,6 +3450,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `6f8c7e5`: rebuild *Pointwise Birkhoff from Maximal Control and Dense Good
+  Functions* around an eight-cycle closure rehearsal, a dyadic approximation
+  ladder, strict and zero-scale boundaries, seven Lean bridges, and an
+  executed local `Std` worksheet.
 - `46489b6`: rebuild *Mean Is Not Pointwise: Koopman Geometry,
   Coboundaries, and the Missing Maximal Step* around an exact two-state
   projection/coboundary ledger and a dyadic typewriter diagnostic, with seven

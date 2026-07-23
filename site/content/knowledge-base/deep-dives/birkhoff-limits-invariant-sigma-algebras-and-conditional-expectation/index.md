@@ -3,7 +3,7 @@ title: "Birkhoff Limits, Invariant Sigma-Algebras, and Conditional Expectation"
 slug: "birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation"
 date: 2026-07-21
 summary: "A textbook derivation of the finite-measure pointwise Birkhoff theorem with its limit identified as conditional expectation onto the exact invariant sigma-algebra."
-lead: "Almost-everywhere convergence says that a long orbit settles, but not what value it settles on. This chapter builds the missing identification bridge: one total invariant limit representative, exact invariant measurability, uniform integrability, Vitali L1 convergence, restricted-measure integral transport, and the uniqueness principle for conditional expectation. A computed four-point system keeps every abstraction visible while the Lean proof climbs to the full finite-measure, possibly noninvertible theorem."
+lead: "Almost-everywhere convergence says that a long orbit settles, but not what value it settles on. Begin with a four-state probability model: compute its two invariant atoms, divide each weighted atom integral by its atom mass, and recover the exact Birkhoff limits 4 and 1. Then build the general identification bridge through one total invariant representative, uniform integrability, Vitali L1 convergence, restricted-measure transport, and conditional-expectation uniqueness."
 draft: false
 pro_reviewed: false
 level: "Finite measure theory, pointwise and L1 convergence, invariant sigma-algebras, conditional expectation, uniform integrability, and intermediate Lean theorem reading"
@@ -12,7 +12,7 @@ prerequisites: "Finite sums, limits of real sequences, measurable sets, integral
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit"
 toc: true
 og_image: "birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing orbit sectors feeding an exact invariant sigma-algebra, a total Birkhoff limit, uniform-integrability and L1 bridges, invariant-set integral identities, and conditional-expectation identification."
+og_image_alt: "Warm-paper Deep Dive card showing a four-state probability model split into invariant atoms of mass four fifths and one fifth. Their conditional-expectation values are computed as four and one, while the wrong global constant seventeen fifths fails the atom-A integral test."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -30,50 +30,239 @@ configured external Pro review remain pending. The checked Lean module is
 authoritative.
 {{< /panel >}}
 
-An orbit can forget its starting phase without forgetting which part of the
-state space it inhabits. That sentence contains the central idea of the
-pointwise ergodic theorem with limit identification.
+## Start with four states and one probability measure
 
-Let \(\Omega\) be a measurable state space, let \(\mu\) be a finite measure,
-let \(T:\Omega\to\Omega\) preserve \(\mu\), and let
-\(f:\Omega\to\mathbb R\) be integrable. The \(n\)-step Birkhoff average is
+Take the finite state space
 
 \[
-A_n f(\omega)
-{} =
-\frac{1}{n}\sum_{i=0}^{n-1} f\bigl(T^i\omega\bigr)
-\qquad(n\ge 1).
+\Omega=\{a_0,a_1,b_0,b_1\}.
 \]
 
-Random-matrix-theory milestone 26 (RMT-26) established that these averages
-converge for almost every \(\omega\). Repository milestone RMT-27 answers the
-next question: **what is the limit?** The checked answer is
+Let \(T\) swap \(a_0\) with \(a_1\) and swap \(b_0\) with \(b_1\). Give the
+four points probabilities
+
+\[
+\mu(a_0)=\mu(a_1)=\frac25,
+\qquad
+\mu(b_0)=\mu(b_1)=\frac1{10}.
+\]
+
+The normalization is exact:
+
+\[
+\frac25+\frac25+\frac1{10}+\frac1{10}=1.
+\]
+
+Equal weights within each two-cycle make \(T\) measure preserving. Choose the
+observable
+
+\[
+f(a_0)=1,\qquad
+f(a_1)=7,\qquad
+f(b_0)=-3,\qquad
+f(b_1)=5.
+\]
+
+For positive \(n\), the Birkhoff average is
+
+\[
+A_nf(\omega)
+{} =
+\frac1n\sum_{j=0}^{n-1}f\bigl(T^j\omega\bigr).
+\]
+
+Starting at \(a_0\), the first six averages are
+
+\[
+1,\quad4,\quad3,\quad4,\quad\frac{17}{5},\quad4.
+\]
+
+Starting at \(a_1\), they are
+
+\[
+7,\quad4,\quad5,\quad4,\quad\frac{23}{5},\quad4.
+\]
+
+Every even average in the \(a\)-cycle is \(4\), and the odd error has
+magnitude \(3/n\). Both \(a\)-states therefore have limit \(4\).
+
+The corresponding rows for \(b_0\) and \(b_1\) are
+
+\[
+\begin{aligned}
+b_0 &: -3,\ 1,\ -\frac13,\ 1,\ \frac15,\ 1,\\
+b_1 &: 5,\ 1,\ \frac73,\ 1,\ \frac95,\ 1.
+\end{aligned}
+\]
+
+Every even average in the \(b\)-cycle is \(1\), and both \(b\)-states have
+limit \(1\).
+
+{{< reference-figure
+  wide="true"
+  src="orbit-sectors.svg"
+  alt="A four-state probability system has two swapping cycles. States a0 and a1, each of weight two fifths, have observable values one and seven and averages tending to four. States b0 and b1, each of weight one tenth, have values negative three and five and averages tending to one."
+  caption="**Finding:** time averaging removes the phase within each two-cycle but retains the cycle label. The first six exact averages are listed for all four starts. The weights sum to one, so this is a probability model, and equal weights inside each cycle make the swap measure preserving. The values are exact toy arithmetic, not sampled observations. General invariant components need not be finite cycles."
+>}}
+
+### Enumerate the invariant information
+
+A set \(s\subseteq\Omega\) is exactly invariant when \(T^{-1}s=s\). In this
+model, an invariant set contains both members of a two-cycle or neither.
+Therefore the exact invariant sigma-algebra is
+
+\[
+\mathcal I_T
+{} =
+\{\varnothing,\ A,\ B,\ \Omega\},
+\]
+
+where
+
+\[
+A=\{a_0,a_1\},
+\qquad
+B=\{b_0,b_1\}.
+\]
+
+Its two nonempty atoms have masses
+
+\[
+\mu(A)=\frac45,
+\qquad
+\mu(B)=\frac15.
+\]
+
+An \(\mathcal I_T\)-measurable real function must be constant on \(A\) and
+constant on \(B\). Write those two values as \(c_A\) and \(c_B\).
+
+### Compute conditional expectation atom by atom
+
+Conditional expectation onto \(\mathcal I_T\) must preserve the integral on
+each invariant atom. On \(A\),
+
+\[
+\int_A f\,d\mu
+{} =
+\frac25(1)+\frac25(7)
+{} =
+\frac{16}{5}.
+\]
+
+Thus
+
+\[
+\frac45c_A=\frac{16}{5},
+\qquad
+c_A=\frac{16/5}{4/5}=4.
+\]
+
+On \(B\),
+
+\[
+\int_B f\,d\mu
+{} =
+\frac1{10}(-3)+\frac1{10}(5)
+{} =
+\frac15.
+\]
+
+Thus
+
+\[
+\frac15c_B=\frac15,
+\qquad
+c_B=\frac{1/5}{1/5}=1.
+\]
+
+The conditional expectation is therefore the exact vector
+
+\[
+\mathbb E_\mu[f\mid\mathcal I_T]
+{} =
+(4,4,1,1).
+\]
+
+It agrees point by point with the two Birkhoff limits. Its whole-space
+integral is also preserved:
+
+\[
+\int_\Omega f\,d\mu
+{} =
+\frac{17}{5}
+{} =
+\int_\Omega\mathbb E_\mu[f\mid\mathcal I_T]\,d\mu.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="four-point-conditional-expectation.svg"
+  alt="Conditional expectation is computed separately on invariant atom A of mass four fifths and atom B of mass one fifth. Dividing weighted integrals sixteen fifths and one fifth by those masses gives values four and one, preserving both atom integrals and the whole integral seventeen fifths."
+  caption="**Finding:** conditional expectation is a mass-normalized average on each positive-mass invariant atom. Atom \(A\) gives \((16/5)/(4/5)=4\); atom \(B\) gives \((1/5)/(1/5)=1\). Replacing the original values by \(4,4,1,1\) preserves the integral on \(A\), on \(B\), and hence on every event in \(\mathcal I_T\). The general Lean theorem does not require an atomic space; this finite model makes the defining integral tests visible."
+>}}
+
+### Audit four nearby wrong turns
+
+The correct answer is easy to damage at four nearby boundaries.
+
+1. **Sigma-algebra too small.** Conditioning on the trivial sigma-algebra gives
+   the global constant \(17/5\). Its integral on \(A\) is
+   \((4/5)(17/5)=68/25\), but the required value is
+   \(16/5=80/25\).
+2. **Sigma-algebra too large.** Conditioning on the full sigma-algebra
+   returns \(f\), which is not invariant because
+   \(f(Ta_0)=7\ne1=f(a_0)\).
+3. **Wrong test set.** The singleton \(\{a_0\}\) is measurable but not
+   invariant: \(T^{-1}\{a_0\}=\{a_1\}\). Its original integral is \(2/5\),
+   while the integral of \(f\circ T\) over it is \(14/5\). The
+   invariant-set transport theorem does not apply.
+4. **Wrong normalization.** Using the raw atom integral \(16/5\) as the value
+   on \(A\) forgets to divide by \(\mu(A)=4/5\). That candidate integrates to
+   \((4/5)(16/5)=64/25\), not \(16/5=80/25\).
+
+{{< reference-figure
+  wide="true"
+  src="wrong-target-boundaries.svg"
+  alt="Four numerical boundary panels show why the trivial sigma-algebra, full sigma-algebra, noninvariant singleton a0, and unnormalized atom value all fail. The mismatched values are sixty-eight twenty-fifths versus sixteen fifths, seven versus one, fourteen fifths versus two fifths, and sixty-four twenty-fifths versus sixteen fifths."
+  caption="**Finding:** nearby errors fail different contracts. The trivial sigma-algebra erases the nonergodic sector; the full sigma-algebra retains noninvariant phase; the singleton \(\{a_0\}\) is not an invariant test event; and the raw atom integral is not the atom's conditional value until it is divided by atom mass. Every mismatch is computed exactly from the same four-state probability model. These checks diagnose the finite example; they are not additional hypotheses of the general theorem."
+>}}
+
+## From the model to the finite-measure theorem
+
+An orbit can forget its starting phase without forgetting which invariant
+part of the state space it inhabits. That is the central idea of the
+pointwise ergodic theorem with limit identification.
+
+Let \(\Omega\) now be any measurable state space, let \(\mu\) be any finite
+measure, let \(T:\Omega\to\Omega\) preserve \(\mu\), and let
+\(f:\Omega\to\mathbb R\) be integrable. RMT-26 established that the Birkhoff
+averages converge for almost every \(\omega\). RMT-27 identifies the limit:
 
 \[
 A_n f(\omega)
 \longrightarrow
 \mathbb E_\mu\!\left[f\mid\mathcal I_T\right](\omega)
-\quad\text{for }\mu\text{-almost every }\omega,
+\quad\text{for }\mu\text{-almost every }\omega.
 \]
 
-where \(\mathcal I_T\) is the sigma-algebra of measurable sets satisfying the
-literal equation \(T^{-1}s=s\). The right side is conditional expectation,
-the unique integrable \(\mathcal I_T\)-measurable function that has the same
-integral as \(f\) on every set in \(\mathcal I_T\), up to almost-everywhere
-equality.
+Here \(\mathcal I_T\) is the sigma-algebra of measurable sets satisfying the
+literal equation \(T^{-1}s=s\). The right side is the unique integrable
+\(\mathcal I_T\)-measurable function having the same integral as \(f\) on
+every set in \(\mathcal I_T\), up to almost-everywhere equality.
 
-This is not merely a prettier name for an already known pointwise limit.
-Identification needs additional work. Pointwise convergence does not permit
-passing integrals to the limit. Invariance almost everywhere is not the same
-object as measurability for Mathlib's exact invariant sigma-algebra. A
-possibly noninjective transformation prevents a careless change-of-variables
-argument. An integrable Lean function may be only almost everywhere strongly
-measurable, while the invariant-space interface initially wants a literal
-strongly measurable representative.
+Identification is not merely a prettier name for an existing pointwise
+limit. Pointwise convergence does not permit passing integrals to the limit.
+Invariance almost everywhere is not the same object as measurability for
+Mathlib's exact invariant sigma-algebra. A possibly noninjective
+transformation prevents a careless change-of-variables argument. An
+integrable Lean function may be only almost everywhere strongly measurable,
+while the invariant-space interface initially wants a literal strongly
+measurable representative.
 
-RMT-27 resolves each obstruction without assuming probability normalization,
-ergodicity, injectivity, surjectivity, or invertibility. Its declaration-
-complete implementation diary is
+The finite example used a probability measure to make the arithmetic
+familiar. The checked theorem needs only finite total mass; it does not assume
+probability normalization, ergodicity, injectivity, surjectivity, or
+invertibility. Its declaration-complete implementation diary is
 [Identifying the Finite-Measure Birkhoff Limit in Lean]({{< relref "/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean" >}}).
 The reusable concepts have focused entries on the
 [invariant sigma-algebra]({{< relref "/knowledge-base/glossary/invariant-sigma-algebra" >}}),
@@ -84,7 +273,7 @@ and [uniform integrability]({{< relref "/knowledge-base/glossary/uniform-integra
 
 | Route | Begin | Destination |
 |---|---|---|
-| Concrete route | [A four-point system you can compute by hand](#a-four-point-system-you-can-compute-by-hand) | See the limit retain an orbit sector |
+| Concrete route | [Start with four states and one probability measure](#start-with-four-states-and-one-probability-measure) | Compute both invariant-atom limits exactly |
 | Information route | [Invariant sets are the information time cannot erase](#invariant-sets-are-the-information-time-cannot-erase) | Understand the target sigma-algebra |
 | Measure route | [Why almost-everywhere convergence is not enough](#why-almost-everywhere-convergence-is-not-enough) | Discover the need for uniform integrability |
 | Proof route | [The five bridges](#the-five-bridges) | Follow the full identification architecture |
@@ -115,7 +304,8 @@ By the summit, a reader should be able to:
 16. transport the theorem across almost-everywhere equal observables;
 17. read every public declaration and every boundary probe in the RMT-27 module;
 18. state exactly which assumptions the final theorem does not use; and
-19. run the warning-fatal Lean and repository checks locally.
+19. run the tiny `Std` worksheet locally and reserve project/Mathlib checks
+    for the guarded Linux workflow.
 
 ## Common setup and three kinds of equality
 
@@ -165,95 +355,6 @@ tail. Any identity claimed for every horizon must nevertheless respect this
 zero term. That is why the invariant-set integral identity for averages is
 stated only when \(n\ne0\), while the uniform-integrability statement covers
 the complete totalized sequence.
-
-## A four-point system you can compute by hand
-
-Let
-
-\[
-\Omega=\{a_0,a_1,b_0,b_1\}.
-\]
-
-Define \(T\) by swapping the two \(a\)-points and swapping the two
-\(b\)-points:
-
-\[
-T(a_0)=a_1,
-\quad T(a_1)=a_0,
-\quad T(b_0)=b_1,
-\quad T(b_1)=b_0.
-\]
-
-Give the atoms masses
-
-\[
-\mu(\{a_0\})=\mu(\{a_1\})=2,
-\qquad
-\mu(\{b_0\})=\mu(\{b_1\})=\frac12.
-\]
-
-The total mass is \(5\), so this is finite but not a probability measure.
-Equal masses within each two-cycle make \(T\) measure preserving. Choose the
-observable
-
-\[
-f(a_0)=1,
-\quad f(a_1)=7,
-\quad f(b_0)=-3,
-\quad f(b_1)=5.
-\]
-
-{{< reference-figure
-  wide="true"
-  src="orbit-sectors.svg"
-  alt="Two disjoint two-point orbit sectors retain different long-time averages: the mass-four a-sector tends to 4 and the mass-one b-sector tends to 1."
-  caption="The transformation swaps the two points inside each sector and never crosses between sectors. Each a-atom has mass 2 and each b-atom has mass one half, so total mass is 5. The observable values 1 and 7 average to 4 on the a-sector; values negative 3 and 5 average to 1 on the b-sector. The diagram is a finite teaching model, not a claim that general invariant components are finite cycles."
->}}
-
-Starting at \(a_0\), the first four positive-time averages are
-
-\[
-A_1f(a_0)=1,
-\quad
-A_2f(a_0)=4,
-\quad
-A_3f(a_0)=3,
-\quad
-A_4f(a_0)=4.
-\]
-
-At every even horizon the value is exactly \(4\), and the odd-horizon error
-from \(4\) has size \(3/n\). Therefore \(A_nf(a_0)\to4\). Starting at
-\(a_1\), the first values are \(7,4,5,4\), and the same limit appears.
-
-Starting at \(b_0\), one obtains
-
-\[
-A_1f(b_0)=-3,
-\quad
-A_2f(b_0)=1,
-\quad
-A_3f(b_0)=-\frac13,
-\quad
-A_4f(b_0)=1.
-\]
-
-Starting at \(b_1\), the values begin \(5,1,7/3,1\). Both sequences tend to
-\(1\).
-
-Thus the limit is not one global constant. It is the sector function
-
-\[
-g(a_0)=g(a_1)=4,
-\qquad
-g(b_0)=g(b_1)=1.
-\]
-
-This example already blocks a common overclaim: measure preservation alone
-does not imply that all long-time averages equal the whole-space average.
-The transformation is not ergodic because the \(a\)-sector is a nontrivial
-invariant set of positive measure whose complement also has positive
-measure.
 
 ## Invariant sets are the information time cannot erase
 
@@ -367,37 +468,16 @@ This is an information-preserving compression. The conditional expectation
 forgets distinctions unavailable to \(\mathcal B\), while preserving all
 integrals that can be tested using \(\mathcal B\)-measurable events.
 
-Take \(\mathcal B=\mathcal I_T\) in the four-point model. An
-\(\mathcal I_T\)-measurable function must be constant on each sector. Write
-its values as \(c_a\) and \(c_b\). Testing the \(a\)-sector gives
+In the opening probability model, \(\mathcal B=\mathcal I_T\) has atoms
+\(A\) and \(B\). The computation \(c_A=4\), \(c_B=1\) is exactly this
+characterization on a finite atomic space. The wrong-target ledger shows why
+one cannot replace \(\mathcal I_T\) by either the trivial or full
+sigma-algebra.
 
-\[
-2c_a+2c_a
-{} =
-2\cdot1+2\cdot7
-{} =16,
-\]
-
-so \(c_a=4\). Testing the \(b\)-sector gives
-
-\[
-\frac12c_b+\frac12c_b
-{} =
-\frac12(-3)+\frac12(5)
-{} =1,
-\]
-
-so \(c_b=1\). These are exactly the two orbit-average limits.
-
-{{< reference-figure
-  wide="true"
-  src="four-point-conditional-expectation.svg"
-  alt="On the four-point mass-five model, conditional expectation replaces values 1 and 7 by their sector value 4, and values negative 3 and 5 by their sector value 1, preserving each invariant-sector integral."
-  caption="Each sector is one atom of the exact invariant sigma-algebra. On the mass-four a-sector, the original integral and compressed integral are both 16. On the mass-one b-sector, both are 1. The whole-space integral is therefore 17 on either side. The arithmetic uses the displayed nonprobability masses; it is not an unweighted global average."
->}}
-
-Notice that total mass never needs to be divided out. The defining integral
-identity works for every finite measure, including a nonprobability measure.
+The defining integral identity works for every finite measure, including a
+nonprobability measure. Atomwise division was available in the example because
+both invariant atoms had positive mass; it is an explanatory computation, not
+the definition used by the general theorem.
 On a positive-mass ergodic system, a later corollary could prove that the
 conditional expectation is constant and then identify that constant as
 
@@ -434,11 +514,26 @@ An almost-everywhere statement of the form
 \]
 
 does not by itself provide a globally defined function \(\omega\mapsto c\).
-The module defines
 
-`birkhoffLimit T f ω`
+#### In Lean: choose one total representative
 
-using `Filter.limUnder`. At points where the sequence converges, this operator
+{{< lean-bridge
+  human="At every point, package the complete Birkhoff-average sequence into one real-valued limit representative; use its true limit when it converges and the canonical real fallback otherwise."
+  math="\\(L_{T,f}(\\omega):=\\operatorname{limUnder}_{n\\to\\infty} A_nf(\\omega).\\)"
+  lean="birkhoffLimit T f ω"
+>}}
+
+- `birkhoffLimit` is a total function, not a partially defined limit.
+- `T` is the base transformation and `f` is the observable.
+- `ω` is the starting point.
+- The source unfolds the name to
+  `limUnder atTop (fun n ↦ birkhoffAverage ℝ T f n ω)`.
+- `atTop` sends the natural horizon to infinity.
+- No measurable-space, measure, integrability, or convergence premise is
+  needed merely to define this representative.
+{{< /lean-bridge >}}
+
+At points where the sequence converges, `Filter.limUnder`
 returns its unique limit. At divergent points, it returns the canonical value
 provided by the nonempty real type. This fallback is not a mathematical claim
 about a divergent sequence. It makes the representative total so that Lean
@@ -467,6 +562,26 @@ pointwise equation
 \]
 
 for every \(\omega\), not merely almost every \(\omega\).
+
+#### In Lean: enter the exact invariant sigma-algebra
+
+{{< lean-bridge
+  human="A strongly measurable observable has a chosen limit that is measurable using only exactly invariant information."
+  math="\\(f\\text{ strongly measurable}\\Longrightarrow L_{T,f}: (\\Omega,\\mathcal I_T)\\to\\mathbb R\\text{ is measurable}.\\)"
+  lean="measurable_birkhoffLimit_invariants hT hf"
+>}}
+
+- `hT : Measurable T` supplies ordinary measurability of the dynamics.
+- `hf : StronglyMeasurable f` is the literal representative-level premise.
+- `Measurable[MeasurableSpace.invariants T]` changes the domain
+  sigma-algebra to the exact invariant one.
+- `birkhoffLimit_apply_base T f ω` supplies the pointwise equation
+  `birkhoffLimit T f (T ω) = birkhoffLimit T f ω`.
+- `MeasurableSpace.measurable_invariants_dom` combines ambient measurability
+  with that literal invariance.
+- The final identification is almost everywhere, but this intermediate
+  invariance equation is exact.
+{{< /lean-bridge >}}
 
 For a strongly measurable \(f\) and measurable \(T\), every finite Birkhoff
 average is strongly measurable. Mathlib's `StronglyMeasurable.limUnder`
@@ -512,6 +627,26 @@ Average these identities over \(i=0,\ldots,n-1\) for \(n\ne0\) to obtain
 \int_s f\,d\mu.
 \]
 
+### In Lean: preserve the integral on an exact invariant event
+
+{{< lean-bridge
+  human="For every positive horizon, averaging orbit translates does not change the integral over an exactly invariant measurable event."
+  math="\\(s\\in\\mathcal I_T,\\ n>0\\Longrightarrow\\int_sA_nf\\,d\\mu=\\int_sf\\,d\\mu.\\)"
+  lean="setIntegral_birkhoffAverage_eq hT hf hs hn"
+>}}
+
+- `hs : MeasurableSet[MeasurableSpace.invariants T] s` packages ambient
+  measurability and exact preimage invariance.
+- `hn : n ≠ 0` excludes the totalized horizon-zero average.
+- `setIntegral_orbit_iterate_eq` proves the equality for every individual
+  orbit translate.
+- `MeasurePreserving.restrict_preimage` transports the restricted measure
+  without injectivity or surjectivity.
+- `integral_finsetSum` and `integral_smul` average the termwise identities.
+- The conclusion concerns one exact invariant event, not an arbitrary
+  measurable set.
+{{< /lean-bridge >}}
+
 Finally, \(L^1\) convergence lets the left side pass to the chosen limit.
 
 ### Bridge 5: invoke conditional-expectation uniqueness
@@ -530,6 +665,28 @@ theorem. Hence
 
 Combining this equality with convergence to `birkhoffLimit` gives the final
 pointwise theorem.
+
+### In Lean: identify the chosen limit
+
+{{< lean-bridge
+  human="The total Birkhoff-limit representative equals conditional expectation onto exactly invariant information, outside one null set."
+  math="\\(L_{T,f}=\\mathbb E_\\mu[f\\mid\\mathcal I_T]\\quad\\mu\\text{-almost everywhere}.\\)"
+  lean="birkhoffLimit_ae_eq_condExp hT hf"
+>}}
+
+- `hT : MeasurePreserving T μ μ` supplies measurability, preservation of
+  orbit distributions, and restricted-measure transport.
+- `hf : Integrable f μ` supplies an \(L^1\) observable; it need not be
+  literally strongly measurable.
+- `birkhoffLimit_ae_eq_condExp_of_stronglyMeasurable` is the private helper
+  that first proves the identification for a strong representative.
+- `birkhoffLimit_ae_eq_of_ae_eq` transports the chosen limit across
+  almost-everywhere equal representatives.
+- `condExp_congr_ae` performs the corresponding transport for conditional
+  expectation.
+- `=ᵐ[μ]` means equality outside a \(\mu\)-null set, not pointwise equality
+  at every state.
+{{< /lean-bridge >}}
 
 ## Why almost-everywhere convergence is not enough
 
@@ -615,6 +772,26 @@ There is an important separation of roles:
   integrability interface;
 - no independence, mixing, or ergodicity is used.
 
+### In Lean: control every average with uniform integrability
+
+{{< lean-bridge
+  human="Measure preservation gives every orbit translate the same distribution as f; integrability and finite averaging then make the complete sequence of Birkhoff averages uniformly integrable."
+  math="\\(\\{f\\circ T^i\\}_{i\\ge0}\\text{ identically distributed}\\Longrightarrow\\{A_nf\\}_{n\\ge0}\\text{ uniformly integrable in }L^1.\\)"
+  lean="uniformIntegrable_birkhoffAverage hT hf"
+>}}
+
+- `[IsFiniteMeasure μ]` is the finite-total-mass instance used by this
+  selected interface.
+- `hT : MeasurePreserving T μ μ` gives
+  `identDistrib_orbit_iterate hT hf.aemeasurable i` for every \(i\).
+- `hf : Integrable f μ` supplies the \(L^1\) reference member.
+- `uniformIntegrable_orbit_iterate` controls the untranslated family.
+- `uniformIntegrable_average` passes control through finite Cesaro averages.
+- The horizon-zero average is the zero function and remains part of the
+  uniformly integrable sequence.
+- No independence or ergodicity premise occurs.
+{{< /lean-bridge >}}
+
 ## Vitali closes the convergence gap
 
 The finite-measure Vitali convergence theorem says, in the form used here,
@@ -631,6 +808,26 @@ one:
 \bigl(A_nf-\operatorname{birkhoffLimit}(T,f),1,\mu\bigr)
 \longrightarrow0.
 \]
+
+### In Lean: upgrade to \(L^1\) convergence
+
+{{< lean-bridge
+  human="Almost-everywhere convergence and uniform integrability force the Birkhoff averages to approach the chosen limit in absolute-mean norm."
+  math="\\(\\lVert A_nf-L_{T,f}\\rVert_{L^1(\\mu)}\\longrightarrow0.\\)"
+  lean="tendsto_L1_birkhoffAverage_birkhoffLimit hT hf"
+>}}
+
+- The result is a `Tendsto` statement indexed by natural horizons at
+  `atTop`.
+- `eLpNorm (...) 1 μ` is Mathlib's extended \(L^p\) norm at exponent one.
+- `birkhoffAverage ℝ T f n - birkhoffLimit T f` is the pointwise difference.
+- `tendsto_Lp_finite_of_tendsto_ae` is the finite-measure Vitali bridge.
+- `uniformIntegrable_birkhoffAverage hT hf` supplies the tail control.
+- `ae_tendsto_birkhoffAverage_birkhoffLimit hT hf` supplies the pointwise
+  convergence rail.
+- This theorem also consumes integrability of the chosen endpoint; pointwise
+  convergence alone does not prove the conclusion.
+{{< /lean-bridge >}}
 
 At exponent one and under the established measurability and integrability
 hypotheses, this is the formal \(L^1\)-convergence statement needed by the
@@ -779,6 +976,31 @@ has a distinct proof role.
 | 17 | `birkhoffLimit_ae_eq_condExp` | Identifies the chosen representative almost everywhere with conditional expectation, transporting through a strongly measurable representative when needed. |
 | 18 | `ae_tendsto_birkhoffAverage_condExp` | States the complete finite-measure pointwise Birkhoff theorem with the limit identified. |
 
+### Complete visibility and audit map
+
+The table above lists every public declaration in source order. The remaining
+top-level items are deliberately different kinds of source artifact:
+
+| Visibility or audit kind | Exact source item | What a reader may do with it |
+|---|---|---|
+| Private theorem | `birkhoffLimit_ae_eq_condExp_of_stronglyMeasurable` | Read it inside the module as the strong-representative uniqueness bridge; do not import or `#check` it as public API. |
+| Anonymous example 1 | zero measure with identity dynamics | Confirms that no positive-mass premise was added. |
+| Anonymous example 2 | identity dynamics for an arbitrary finite measure | Confirms that the target need not collapse to a global constant. |
+| Anonymous example 3 | the nonergodic two-Dirac `Bool` identity system | Compiles an explicit refutation of an implicit ergodicity premise. |
+| Anonymous example 4 | the nonconstant full-sigma-algebra identity target | Confirms that conditional expectation can retain all observable information. |
+| Anonymous example 5 | a constant, noninjective, nonsurjective `Bool` map with Dirac measure | Confirms that no embedding or inverse is required. |
+| Axiom audit 1 | `#print axioms measurable_birkhoffLimit_invariants` | Audits exact-invariant measurability. |
+| Axiom audit 2 | `#print axioms uniformIntegrable_birkhoffAverage` | Audits the uniform-integrability bridge. |
+| Axiom audit 3 | `#print axioms tendsto_L1_birkhoffAverage_birkhoffLimit` | Audits the Vitali \(L^1\) bridge. |
+| Axiom audit 4 | `#print axioms birkhoffLimit_ae_eq_condExp` | Audits the conditional-expectation identification. |
+| Axiom audit 5 | `#print axioms ae_tendsto_birkhoffAverage_condExp` | Audits the final public theorem. |
+
+Names such as `f'`, `hf'm`, `hff'`, and `hf'i` occur inside proofs as local
+representatives or facts. They are not declarations and do not enlarge the
+module API. The exact inventory is therefore 18 public declarations, one
+private theorem, five anonymous compiled boundary examples, and five axiom
+print commands.
+
 ### Declarations 1 through 4: make the limit canonical and invariant
 
 `birkhoffLimit` is a definition rather than a theorem. Its totality makes the
@@ -870,6 +1092,27 @@ theorem ae_tendsto_birkhoffAverage_condExp
         (nhds (μ[f | MeasurableSpace.invariants T] ω))
 ```
 
+### In Lean: state the complete pointwise theorem
+
+{{< lean-bridge
+  human="For almost every starting state, the complete sequence of Birkhoff averages converges to conditional expectation given exactly invariant information."
+  math="\\(A_nf(\\omega)\\longrightarrow\\mathbb E_\\mu[f\\mid\\mathcal I_T](\\omega)\\quad\\text{for }\\mu\\text{-almost every }\\omega.\\)"
+  lean="ae_tendsto_birkhoffAverage_condExp hT hf"
+>}}
+
+- `ae_` in the theorem name signals an almost-everywhere conclusion.
+- `Tendsto` is ordinary pointwise convergence of the natural-number sequence
+  at each surviving state.
+- `atTop` sends the horizon \(n\) through the entire tail \(0,1,2,\ldots\).
+- `nhds` turns the displayed conditional-expectation value into the target
+  neighborhood filter.
+- `μ[f | MeasurableSpace.invariants T]` is Mathlib's notation for real
+  conditional expectation under the exact invariant sigma-algebra.
+- `hT` and `hf` are the only explicit hypotheses; finite total mass is an
+  instance argument.
+- The theorem does not assert a rate or a constant target.
+{{< /lean-bridge >}}
+
 Read it from the outside inward.
 
 - `[IsFiniteMeasure μ]` says only that total mass is finite.
@@ -937,50 +1180,199 @@ every assumption present is logically minimal, but they prove that the listed
 stronger assumptions are absent from the checked theorem and unnecessary for
 these boundary systems.
 
-## Lean architecture and commands
+## Run the finite worksheet on Mac or Linux
 
-The module lives at
-`formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean`.
-It imports the RMT-26 convergence theorem together with pinned Mathlib modules
-for real conditional expectation, invariant measurable spaces, and identical
-distribution.
+The next file is a literal, executable version of the opening probability
+model. It imports only Lean's `Std` library: no Mathlib package and no project
+module. In mathematical notation, `step` is \(T\), `observable` is \(f\),
+`weight` is \(\mu\), `average state n` is \(A_nf(\text{state})\), and
+`invariantLimit` is the finite vector
+\(\mathbb E_\mu[f\mid\mathcal I_T]=(4,4,1,1)\).
 
-The source is organized in the same order as the mathematical proof:
+Save the following block byte for byte as
+`/tmp/BirkhoffInvariantConditionalExpectationTutorial.lean`:
 
-1. total limit and pointwise invariance;
-2. invariant measurability and almost-everywhere convergence;
-3. almost-everywhere representative transport;
-4. identical distribution and uniform integrability;
-5. Vitali \(L^1\) convergence;
-6. invariant-set integral transport;
-7. private strong-representative identification;
-8. public arbitrary-integrable identification;
-9. final pointwise theorem and boundary probes.
+~~~lean
+import Std
 
-From the repository root, load Elan and compile the leaf with warnings treated
-as errors:
+def states : List Nat := [0, 1, 2, 3]
 
-```sh
+def step : Nat → Nat
+  | 0 => 1
+  | 1 => 0
+  | 2 => 3
+  | _ => 2
+
+def observable : Nat → Rat
+  | 0 => 1
+  | 1 => 7
+  | 2 => -3
+  | _ => 5
+
+def weight : Nat → Rat
+  | 0 => 2 / 5
+  | 1 => 2 / 5
+  | 2 => 1 / 10
+  | _ => 1 / 10
+
+def iterate : Nat → Nat → Nat
+  | 0, state => state
+  | n + 1, state => step (iterate n state)
+
+def partialSum (state n : Nat) : Rat :=
+  (List.range n).foldl
+    (fun total j => total + observable (iterate j state))
+    0
+
+def average (state n : Nat) : Rat :=
+  if n = 0 then 0 else partialSum state n / n
+
+def invariantLimit : Nat → Rat
+  | 0 | 1 => 4
+  | _ => 1
+
+def atomA : List Nat := [0, 1]
+def atomB : List Nat := [2, 3]
+
+def integralOn (event : List Nat) (h : Nat → Rat) : Rat :=
+  event.foldl (fun total state => total + weight state * h state) 0
+
+def globalMean (_state : Nat) : Rat := 17 / 5
+
+def unnormalizedAtomAValue (_state : Nat) : Rat := 16 / 5
+
+def averagesThroughSix (state : Nat) : List Rat :=
+  [1, 2, 3, 4, 5, 6].map (average state)
+
+def main : IO Unit := do
+  IO.println s!"weights = {states.map weight}"
+  IO.println s!"total mass = {integralOn states (fun _ => 1)}"
+  IO.println s!"observable = {states.map observable}"
+  for state in states do
+    IO.println s!"state {state} averages = {averagesThroughSix state}"
+  IO.println s!"invariant conditional expectation = {states.map invariantLimit}"
+  IO.println s!"A atom: mass {integralOn atomA (fun _ => 1)}, original integral {integralOn atomA observable}, compressed integral {integralOn atomA invariantLimit}"
+  IO.println s!"B atom: mass {integralOn atomB (fun _ => 1)}, original integral {integralOn atomB observable}, compressed integral {integralOn atomB invariantLimit}"
+  IO.println s!"whole integral before and after = {(integralOn states observable, integralOn states invariantLimit)}"
+  IO.println s!"wrong trivial target on A: got {integralOn atomA globalMean}, need {integralOn atomA observable}"
+  IO.println s!"wrong full target invariant at state 0 = {decide (observable (step 0) = observable 0)}"
+  IO.println s!"noninvariant singleton integral before and after one step = {(integralOn [0] observable, integralOn [0] (fun state => observable (step state)))}"
+  IO.println s!"forgot atom normalization on A: got {integralOn atomA unnormalizedAtomAValue}, need {integralOn atomA observable}"
+
+#eval main
+~~~
+
+Open Terminal on macOS or a shell on Linux and type:
+
+~~~sh
 source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean
-```
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/BirkhoffInvariantConditionalExpectationTutorial.lean
+~~~
 
-Return to the repository root and run the full contract:
+This is the exact transcript:
 
-```sh
-cd ..
-make check
-git diff --check
-```
+~~~text
+weights = [2/5, 2/5, 1/10, 1/10]
+total mass = 1
+observable = [1, 7, -3, 5]
+state 0 averages = [1, 4, 3, 4, 17/5, 4]
+state 1 averages = [7, 4, 5, 4, 23/5, 4]
+state 2 averages = [-3, 1, -1/3, 1, 1/5, 1]
+state 3 averages = [5, 1, 7/3, 1, 9/5, 1]
+invariant conditional expectation = [4, 4, 1, 1]
+A atom: mass 4/5, original integral 16/5, compressed integral 16/5
+B atom: mass 1/5, original integral 1/5, compressed integral 1/5
+whole integral before and after = (17/5, 17/5)
+wrong trivial target on A: got 68/25, need 16/5
+wrong full target invariant at state 0 = false
+noninvariant singleton integral before and after one step = (2/5, 14/5)
+forgot atom normalization on A: got 64/25, need 16/5
+~~~
 
-The leaf ends with five `#print axioms` commands. Their output audits the
-logical dependencies of representative declarations. The repository policy
-also rejects `sorry`, `admit`, and unsupported guessed interfaces. A green
-leaf compile is necessary but not sufficient: `make check` also verifies
-aggregators, proof-to-prose coverage, teaching-source hygiene, checkpoint
-structure, and the draft Hugo build.
+Read a few syntax landmarks before modifying the file:
+
+- `Nat → Rat` is Lean's spelling of a function from natural-number state
+  labels to exact rational values. The model itself is the four labels in
+  `states`; every displayed integral folds over that list.
+- `| 0 => 1` is one branch of a definition by pattern matching.
+- The final wildcard branch `_` makes each function total on all natural
+  numbers. For the listed states it is exactly the \(b_1\) branch, and every
+  orbit starting in `states` stays in `states`.
+- `List.range n` is \([0,1,\ldots,n-1]\), the time indices in \(A_nf\).
+- `foldl` accumulates a finite sum, so `integralOn` is the exact discrete
+  integral \(\sum_{\omega\in s}\mu(\omega)h(\omega)\).
+- `if n = 0 then 0` mirrors the repository's totalized horizon-zero average.
+- `s!"..."` is an interpolated string; expressions inside braces are
+  evaluated before printing.
+- `decide (...)` computes the finite equality test used to expose the wrong
+  full-sigma-algebra target.
+- `#eval main` runs the worksheet. It computes evidence for this finite
+  model; it is not a proof of the general ergodic theorem.
+
+This tutorial is intentionally safe for an ordinary Mac or Linux computer.
+It uses the pinned Lean 4.32 toolchain and `Std` only. The next check imports
+Mathlib and the project and therefore belongs on approved Linux cloud compute.
+
+## Inspect and check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit" >}}
+
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean).
+On an approved Linux builder, typically a human-approved RunPod for this
+repository, place this public-interface probe in a temporary project scratch
+file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check birkhoffLimit
+#check tendsto_birkhoffAverage_birkhoffLimit_of_exists
+#check tendsto_birkhoffAverage_birkhoffLimit_of_mem
+#check birkhoffLimit_apply_base
+#check stronglyMeasurable_birkhoffLimit
+#check measurable_birkhoffLimit_invariants
+#check ae_tendsto_birkhoffAverage_birkhoffLimit
+#check birkhoffLimit_ae_eq_of_ae_eq
+#check identDistrib_orbit_iterate
+#check uniformIntegrable_orbit_iterate
+#check uniformIntegrable_birkhoffAverage
+#check integrable_birkhoffLimit
+#check tendsto_L1_birkhoffAverage_birkhoffLimit
+#check setIntegral_orbit_iterate_eq
+#check setIntegral_birkhoffAverage_eq
+#check setIntegral_birkhoffLimit_eq
+#check birkhoffLimit_ae_eq_condExp
+#check ae_tendsto_birkhoffAverage_condExp
+~~~
+
+The private helper is intentionally absent from that probe. The exact guarded
+leaf command, typed from the repository root, is:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean
+~~~
+
+That command verifies the pinned manifest and treats warnings as errors. It
+may restore or compile substantial Mathlib dependencies, so do not run it on
+the Mac workstation. The full guarded release gate on an approved,
+provisioned Linux cloud builder is:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+The leaf's five `#print axioms` commands audit representative declarations.
+The full gate additionally checks aggregators, proof-to-prose coverage,
+teaching-source hygiene, checkpoint structure, and the Hugo site. Neither
+technical command changes `pro_reviewed: false`; formal validation and human
+editorial review are separate gates.
+{{< /repo-check >}}
 
 ## Source ledger and theorem alignment
 
@@ -1100,11 +1492,11 @@ already supplies that machinery.
 
 ### Exercise 1: total mass of the four-point model
 
-Compute \(\mu(\Omega)\) and explain why the model is not a probability space.
+Compute \(\mu(\Omega)\) and verify that the model is a probability space.
 
-**Solution.** The two \(a\)-atoms contribute \(2+2=4\), and the two
-\(b\)-atoms contribute \(1/2+1/2=1\). Thus \(\mu(\Omega)=5\). A probability
-measure has total mass one, so this finite measure is not normalized as a
+**Solution.** The two \(a\)-states contribute \(2/5+2/5=4/5\), and the two
+\(b\)-states contribute \(1/10+1/10=1/5\). Thus
+\(\mu(\Omega)=4/5+1/5=1\), exactly the normalization required of a
 probability measure.
 
 ### Exercise 2: verify measure preservation
@@ -1157,21 +1549,23 @@ space.
 Verify that the sector function \(g\) and \(f\) have the same whole-space
 integral.
 
-**Solution.** For \(f\), the \(a\)-sector contributes \(16\) and the
-\(b\)-sector contributes \(1\), giving \(17\). For \(g\), the \(a\)-sector
-contributes \(2\cdot4+2\cdot4=16\), and the \(b\)-sector contributes
-\((1/2)\cdot1+(1/2)\cdot1=1\). Its total is also \(17\).
+**Solution.** For \(f\), the \(a\)-sector contributes \(16/5\) and the
+\(b\)-sector contributes \(1/5\), giving \(17/5\). For \(g\), the
+\(a\)-sector contributes
+\((2/5)\cdot4+(2/5)\cdot4=16/5\), and the \(b\)-sector contributes
+\((1/10)\cdot1+(1/10)\cdot1=1/5\). Its total is also \(17/5\).
 
-### Exercise 7: reject the global unweighted mean
+### Exercise 7: reject the wrong global target
 
-The four displayed values have unweighted mean \(5/2\). Why is this not the
-Birkhoff limit?
+The probability-weighted global mean is \(17/5\). Why is the constant
+function \(17/5\) not the Birkhoff limit?
 
 **Solution.** An orbit never samples all four points. It remains forever in
 one two-cycle. The invariant sigma-algebra remembers which cycle contains the
-state, so conditional expectation averages within that sector, yielding \(4\)
-or \(1\). The number \(5/2\) ignores both orbit structure and the nonuniform
-measure.
+state, so conditional expectation averages within that sector, yielding
+\(4\) or \(1\). Numerically, the constant \(17/5\) has integral
+\((4/5)(17/5)=68/25\) on \(A\), while \(f\) has integral
+\(16/5=80/25\) there. It therefore fails the defining invariant-event test.
 
 ### Exercise 8: distinguish exact and mod-null invariance
 
