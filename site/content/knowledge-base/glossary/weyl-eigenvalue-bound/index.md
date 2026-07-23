@@ -312,10 +312,19 @@ Run it with the installed pinned toolchain:
 elan run leanprover/lean4:v4.32.0 lean WeylBudget2.lean
 ~~~
 
-Lean should print \(5\), \(1\), \(4\), and \(16\). The first two theorems
-certify the correct ordered pairings after squaring. The third certifies that
-the crossed pairing fails this budget. This finite worksheet checks integer
-arithmetic; the project theorem below proves the general spectral statement.
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+5
+1
+4
+16
+~~~
+
+The first two theorems certify the correct ordered pairings after squaring.
+The third certifies that the crossed pairing fails this budget. This finite
+worksheet checks integer arithmetic; the project theorem below proves the
+general spectral statement.
 
 {{< repo-check >}}
 The authoritative source is

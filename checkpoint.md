@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:33 PDT
+Last updated: 2026-07-22 18:36 PDT
 
-Audited baseline: `main` at `34d2472`
+Audited baseline: `main` at `10efa90`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -187,12 +187,15 @@ There are therefore no missing page-owned generators and no missing bounded
 tutorials. The final asset-provenance wave replaces all fifteen stale generic
 generators with deterministic exports of each page's exact worked SVG. A live
 62-page audit now reports 62 executable generators, 62 successful `--verify`
-comparisons, and 62 pinned `Std` tutorial routes. A wording scan still finds
-five older tutorials described with hypothetical “should print” or “expected
-output” language; rerun and record those exact files before calling the
-glossary release fully closed. Treat those findings as required
-final glossary cleanup under the owner's reader-walkthrough direction; do not
-call the glossary release closed merely because all 62 content rewrites exist.
+comparisons, and 62 pinned `Std` tutorial routes. The final wording audit reruns
+the five residual hypothetical-output pages: Weyl's ordered eigenvalue budget,
+the invariant sigma algebra, the finite maximal inequality, the finite
+ergodicity models, and the two-point trace moment. All execute successfully
+with Lean 4.32.0; the only textual correction is Lean's exact rational rendering
+`(5 : Rat)/2`. With their verbatim output recorded, the **62-page glossary
+rebuild and reproducibility cleanup is complete**. Future semantic corrections
+and human review remain welcome, but no item from this corpus audit remains
+open.
 The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
@@ -3102,6 +3105,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `10efa90`: replace the final fifteen generic/stale card scripts with
+  deterministic exports of their pages' exact worked SVGs; all 62 glossary
+  generators now reproduce their checked cards byte for byte.
 - `34d2472`: close all missing glossary tutorial and generator coverage,
   including five executed matrix/dynamics lessons, a standalone orbit-recursion
   correction, and a nonempty zero-mass null-set experiment.

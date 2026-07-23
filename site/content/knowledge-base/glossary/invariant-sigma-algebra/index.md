@@ -444,14 +444,19 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean InvariantSigmaFiniteScratch.lean
 ~~~
 
-The three evaluations should print <code>64</code>, then
-<code>[[], [3, 4, 5], [0, 1, 2], [0, 1, 2, 3, 4, 5]]</code>, then
-<code>[2, 5]</code>. This command is suitable for an ordinary Mac or Linux
-machine because the worksheet imports only <code>Std</code>. The worksheet is a
-finite audit of the running example, not a proof of Mathlib's general
-measure-theoretic interface. This exact worksheet was executed successfully
-with the pinned Lean 4.32.0 compiler on the Mac; it imports only
-<code>Std</code> and does not load the project or Mathlib.
+This exact worksheet was executed successfully with the pinned Lean 4.32.0
+compiler on the Mac and printed:
+
+~~~text
+64
+[[], [3, 4, 5], [0, 1, 2], [0, 1, 2, 3, 4, 5]]
+[2, 5]
+~~~
+
+This command is suitable for an ordinary Mac or Linux machine because the
+worksheet imports only <code>Std</code>. The worksheet is a finite audit of the
+running example, not a proof of Mathlib's general measure-theoretic interface,
+and it does not load the project or Mathlib.
 
 ## Try the exact declarations in the project
 

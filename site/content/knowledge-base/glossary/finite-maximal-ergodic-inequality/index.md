@@ -435,9 +435,14 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean FiniteMaximalTutorial.lean
 ~~~
 
-Expected outputs are <code>[1, 3, 0, 3]</code> and
-<code>[true, true, false, true]</code>. This worksheet does not define
-measures, integrals, or Mathlib's theorem.
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+[1, 3, 0, 3]
+[true, true, false, true]
+~~~
+
+This worksheet does not define measures, integrals, or Mathlib's theorem.
 
 {{< repo-check >}}
 **Resource label: pinned project plus Mathlib.**

@@ -801,24 +801,39 @@ source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean ErgodicityFiniteScratch.lean
 ~~~
 
-The expected invariant-event outputs are:
+This exact worksheet was executed successfully with the pinned Lean 4.32.0
+compiler on the Mac and printed:
 
 ~~~text
 [[], [0, 1, 2, 3, 4, 5]]
 [[], [3, 4, 5], [0, 1, 2], [0, 1, 2, 3, 4, 5]]
+false
+true
+[(0, [2, 5, 8, 11, 14, 20], 60),
+ (1, [5, 8, 11, 14, 20, 2], 60),
+ (2, [8, 11, 14, 20, 2, 5], 60),
+ (3, [11, 14, 20, 2, 5, 8], 60),
+ (4, [14, 20, 2, 5, 8, 11], 60),
+ (5, [20, 2, 5, 8, 11, 14], 60)]
+[(0, [2, 5, 8, 2, 5, 8], 30),
+ (1, [5, 8, 2, 5, 8, 2], 30),
+ (2, [8, 2, 5, 8, 2, 5], 30),
+ (3, [11, 14, 20, 11, 14, 20], 90),
+ (4, [14, 20, 11, 14, 20, 11], 90),
+ (5, [20, 11, 14, 20, 11, 14], 90)]
+[(0, 1), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 1), (7, 0), (8, 0), (9, 0), (10, 0), (11, 0), (12, 1)]
 ~~~
 
-The first function check should print <code>false</code>; the second should
-print <code>true</code>. Every one-cycle six-step sum should be \(60\). Split
-starts \(0,1,2\) should have sum \(30\), and starts \(3,4,5\) should have sum
-\(90\). The overlap count for \(\{0\}\) should be \(1\) at
-\(n=0,6,12\) and \(0\) at the other displayed times.
+The first function check printed <code>false</code>; the second printed
+<code>true</code>. Every one-cycle six-step sum is \(60\). Split starts
+\(0,1,2\) have sum \(30\), and starts \(3,4,5\) have sum \(90\). The overlap
+count for \(\{0\}\) is \(1\) at \(n=0,6,12\) and \(0\) at the other displayed
+times.
 
 Dividing those counts by six gives the overlap probabilities in the figure.
 The worksheet is an executable audit of the finite arithmetic, not a proof
-that an abstract measure-preserving system is ergodic. This exact file was
-executed successfully with the pinned Lean 4.32.0 compiler on the Mac; it
-imports only <code>Std</code> and does not load the project or Mathlib.
+that an abstract measure-preserving system is ergodic. It imports only
+<code>Std</code> and does not load the project or Mathlib.
 
 ## Try it in the repository
 

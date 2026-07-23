@@ -356,9 +356,17 @@ Run it on a Mac or Linux machine with the pinned toolchain already installed:
 elan run leanprover/lean4:v4.32.0 lean TwoPointTraceMoment.lean
 ~~~
 
-Lean should print \(0\), \(10\), \(5\), and \(5/2\), then certify both exact
-equalities. This worksheet formalizes a finite arithmetic model, not the
-continuous GUE law.
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+0
+10
+5
+(5 : Rat)/2
+~~~
+
+Both exact equality examples elaborated without error. This worksheet
+formalizes a finite arithmetic model, not the continuous GUE law.
 
 {{< repo-check >}}
 The authoritative source is
