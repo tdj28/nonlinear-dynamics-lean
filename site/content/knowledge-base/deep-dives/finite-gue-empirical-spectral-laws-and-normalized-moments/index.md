@@ -31,9 +31,10 @@ authoritative where prose and code disagree.
 
 ## Start with two matrices you can completely see
 
-A **probability law** assigns mass to possible outcomes. In this first example
-the outcomes are just two \(2\)-by-\(2\) real diagonal matrices, which are also
-complex {{< refterm "hermitian-matrix" "Hermitian matrices" >}}:
+A **probability law** assigns mass to measurable subsets of a value space. In
+this first finite example it has two atoms, both \(2\)-by-\(2\) real diagonal
+matrices and therefore complex
+{{< refterm "hermitian-matrix" "Hermitian matrices" >}}:
 
 \[
 H_+=

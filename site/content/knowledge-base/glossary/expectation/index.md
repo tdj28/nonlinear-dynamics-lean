@@ -17,10 +17,13 @@ pending. The page is public so readers can follow the work while that review is
 still open.
 {{< /panel >}}
 
-The **expectation** of a random quantity is its probability-weighted average
-over the whole experiment. It combines every possible value with the
-probability of obtaining that value. It is not the result of one trial, and it
-need not be a value that any trial can produce.
+For an integrable real-valued random variable \(X\), its **expectation** is the
+integral \(\int X\,d\mathbb P\). A nonnegative random variable also has an
+extended expectation, which may equal \(+\infty\). On a finite or countable
+discrete space, the integral is a probability-weighted sum over atoms. For an
+atomless real law, it is not a sum of “the probability of each exact value”:
+every singleton has probability zero. Expectation is not the result at one
+outcome, and it need not belong to the range \(X(\Omega)\).
 
 Expectation is an integral with respect to a
 {{< refterm "probability-measure" "probability measure" >}}. The probability
@@ -61,8 +64,8 @@ X(M)=2.
 That single observation does not erase the other possibilities. The
 {{< refterm "probability-law" "law" >}} of \(X\) still assigns mass \(1/2\)
 to payoff \(-1\), mass \(1/3\) to payoff \(2\), and mass \(1/6\) to payoff
-\(5\). A realization is one selected value. A law is the complete weighted
-list of possible values.
+\(5\). A realization is one selected value. In this finite example, the law is
+the complete weighted list of its three atoms.
 
 ## Compute the weighted average exactly
 
@@ -98,7 +101,7 @@ X(\Omega)=\{-1,2,5\},
 \]
 
 Thus an expectation need not be attainable in a single realization. It is the
-center of the probability-weighted values, not an additional possible value.
+center of the probability-weighted values, not an additional attained value.
 
 {{< reference-figure
   src="three-outcome-expectation.svg"
@@ -141,8 +144,8 @@ Expectation can also be computed from the law
 \]
 
 The first integral averages over source outcomes. The second averages the
-identity function over possible payoff values. They agree because the law is
-the pushforward of \(\mathbb P\) through \(X\).
+identity function over the real value space. They agree because the law is the
+pushforward of \(\mathbb P\) through \(X\).
 
 ## Raw mass is not probability expectation
 
@@ -428,7 +431,7 @@ checks the complete module with the repository's pinned dependencies installed.
 | Tempting shortcut | What is wrong | Correct repair |
 |---|---|---|
 | "The expectation is what happened" | One realization is \(X(\omega)\); expectation averages the whole law | Keep the observed value and distribution-level average separate |
-| "The expectation must be a possible value" | Weighted centers can lie between or outside discrete listed values | Check the range \(X(\Omega)\) separately |
+| "The expectation must be an attained value" | A weighted center can lie between listed atoms and therefore outside the attained finite set | Check the range \(X(\Omega)\) separately |
 | "The most likely value is the expectation" | Mode and expectation answer different questions | Compute probability times value for every branch |
 | "Any raw integral is an expectation" | A measure may have total mass other than one | Require a probability measure or explicitly normalize a positive finite measure |
 | "The law and one sample contain the same information" | One sample selects one value; the law records weights for all values | Use repeated data to estimate the law, not to redefine it after one draw |

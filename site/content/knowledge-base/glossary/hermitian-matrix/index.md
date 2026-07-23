@@ -186,7 +186,7 @@ eigenvalues to be nonnegative, which this \(H\) fails.
 In finite-dimensional quantum models, a Hermitian matrix can represent an
 observable or Hamiltonian. Hermiticity makes its spectral values real. That
 statement does not by itself select a physical state, assign probabilities to
-the possible values, or establish a complete physical model.
+the spectral values, or establish a complete physical model.
 
 A {{< refterm "random-matrix" "random matrix" >}} is a function
 

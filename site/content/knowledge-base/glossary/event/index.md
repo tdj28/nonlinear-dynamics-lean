@@ -17,13 +17,22 @@ remains pending. It is public so readers can follow the educational rebuild
 while that review is open.
 {{< /panel >}}
 
-A probability **event** is a measurable set of possible outcomes. An
-experiment produces one outcome \(\omega\). The event \(A\) occurs when that
-outcome belongs to the set, written \(\omega\in A\).
+In a probability space \((\Omega,\mathcal F,\mathbb P)\), a probability
+**event** is a measurable subset \(A\in\mathcal F\) of the sample space
+\(\Omega\). After an outcome \(\omega\in\Omega\) is specified, the statement
+that \(A\) occurs means exactly
+
+\[
+\omega\in A.
+\]
+
+This is a set-membership statement. It does not assert
+\(\mathbb P(A)\gt0\): in a continuous model, a nonempty event may have
+probability zero.
 
 The logical types are different:
 
-- an **outcome** is one possible result;
+- an **outcome** is one element \(\omega\in\Omega\);
 - an **event** is a yes-or-no question represented by a set of results; and
 - a **probability** is mass assigned to that measurable set.
 

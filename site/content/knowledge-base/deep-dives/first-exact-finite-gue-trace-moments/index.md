@@ -34,7 +34,8 @@ an open working note while those reviews remain pending.
 The **Gaussian unitary ensemble (GUE)** is a
 {{< refterm "probability-law" "probability law" >}} on finite
 {{< refterm "hermitian-matrix" "Hermitian matrices" >}}. A probability law is
-an assignment of mass to possible matrices. It is not one matrix, and an
+an assignment of mass to measurable subsets of matrix space. It is not one
+matrix, and an
 {{< refterm "expectation" "expectation" >}} is a probability-weighted average
 under that law.
 

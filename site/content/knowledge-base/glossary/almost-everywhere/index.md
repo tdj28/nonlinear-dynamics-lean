@@ -285,9 +285,52 @@ P\text{ holds }\mathbb P\text{-almost everywhere}.
 \]
 
 There is no mathematical difference in the quantifier. The phrase changes to
-emphasize that the measure has total mass one. This does not make a null event
-logically impossible: the uniform experiment can produce the value \(1/2\),
-yet the event \(\{1/2\}\) has probability zero.
+emphasize that the measure has total mass one.
+
+To state the point without an ambiguous word such as “produce,” use the
+canonical model explicitly. Let
+
+\[
+\Omega=[0,1],
+\qquad
+\mathbb P=\text{uniform probability},
+\qquad
+X(\omega)=\omega.
+\]
+
+Then
+
+\[
+A=\left\{\omega:X(\omega)=\frac12\right\}
+ =\left\{\frac12\right\}\ne\varnothing,
+\qquad
+\mathbb P(A)=0.
+\]
+
+The nonempty set says that the canonical sample space contains an outcome at
+which \(X=1/2\). The zero says that this fiber carries no probability mass. It
+does **not** give the event a small positive probability. By contrast, every
+finite-resolution neighborhood has positive probability: for
+\(0\lt\varepsilon\le1/2\),
+
+\[
+\mathbb P\!\left(\left|X-\frac12\right|\lt\varepsilon\right)
+=2\varepsilon\gt0.
+\]
+
+Every singleton in \([0,1]\) has uniform probability zero, while their
+uncountable union is the whole interval and has probability one. There is no
+conflict with additivity: a probability measure is required to add over
+**countable** disjoint unions, not arbitrary uncountable unions.
+
+One more distinction matters. If all we know is that a random variable has the
+uniform law, then we know
+\(\mathbb P(X=1/2)=0\), but the law alone does not tell us whether the fiber
+\(\{\omega:X(\omega)=1/2\}\) is empty. For example, change the identity map
+only at \(\omega=1/2\), sending that point to \(0\). The new map never takes
+the value \(1/2\), but it has the same uniform law because it differs from the
+identity only on a null set. A probability law records mass, not the exact
+set-theoretic range of a particular sample map on null fibers.
 
 ## Changing the measure can reverse the answer
 

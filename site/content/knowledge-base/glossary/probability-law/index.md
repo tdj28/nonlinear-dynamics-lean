@@ -1,7 +1,7 @@
 ---
 title: "Probability distribution (law)"
 slug: "probability-law"
-summary: "A probability distribution, or law, is the probability measure induced on the possible values of a random object."
+summary: "A probability distribution, or law, is the pushforward probability measure induced by a random object on its measurable value space."
 draft: false
 pro_reviewed: false
 toc: true
@@ -17,12 +17,11 @@ pending. The page is publicly available as an open working note while that
 review remains pending.
 {{< /panel >}}
 
-The **probability distribution**, or **law**, of a random object tells us how
-probability is spread over its possible values. It is a probability measure on
-the value space, not the random object itself. The two names mean the same
-thing on this site.
+The **probability distribution**, or **law**, of a random object assigns mass
+to measurable subsets of its value space. It is a probability measure, not the
+random object itself. The two names mean the same thing on this site.
 
-## Start with two possible matrices
+## Start with a two-atom matrix law
 
 Let the outcome space be \(\Omega=\{\omega_0,\omega_1\}\), with
 
@@ -97,7 +96,7 @@ does not change the law. Changing a mass does. If both outcomes mapped to
 Suppose \(\Omega\) is the set of outcomes, \(\mathcal F\) is the collection of
 events to which probabilities may be assigned, and \(\mathbb P\) is a
 probability measure on those events. Let \(S\) be a
-{{< refterm "measurable-space" "measurable space" >}} of possible values. A
+{{< refterm "measurable-space" "measurable value space" >}}. A
 measurable function
 
 \[
@@ -172,8 +171,9 @@ the reference measure when saying "density."
 
 The distinction between a random object and its law is equally important.
 The random object \(X\) is a function of an outcome. Its law
-\(\mathcal L(X)\) is a measure on the possible values. Knowing the law does not
-reconstruct which outcome produced which value.
+\(\mathcal L(X)\) is a measure on the value space. Knowing the law does not
+reconstruct the fibers of \(X\), its exact set-theoretic range on null sets, or
+which outcome was mapped to which value.
 
 ## From a matrix law to an observable law
 
@@ -359,7 +359,7 @@ module itself.
 | Equal laws | Pointwise equality | Different functions, even on different spaces, can have the same law |
 | A marginal entry law | The joint matrix law | Marginals do not record dependence among entries |
 | A law | A density, PMF, or CDF | The law is a measure; the other objects are representations available in particular settings |
-| Support on Hermitian matrices | {{< refterm "unitary-invariance" "unitary invariance" >}} | Hermiticity restricts possible values; invariance is a symmetry of their probabilities |
+| Full law mass on Hermitian matrices | {{< refterm "unitary-invariance" "unitary invariance" >}} | The first makes the non-Hermitian locus null; the second is a symmetry of the law. Neither phrase alone identifies a particular sample map's pointwise range |
 | Measurability | Integrability | A measurable observable need not have a finite expectation |
 
 Knowing every one-entry marginal law is generally not enough to recover the

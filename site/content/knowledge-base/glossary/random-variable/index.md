@@ -18,8 +18,9 @@ while that review is open.
 {{< /panel >}}
 
 A real **random variable** is a measurable function that assigns a real number
-to every possible outcome. The function is fixed before the experiment. What
-varies from one realization to another is the outcome supplied to it.
+to every \(\omega\) in a sample space \(\Omega\). The function is fixed before
+an outcome is selected. What varies from one realization to another is the
+argument supplied to that function.
 
 In symbols,
 
@@ -147,7 +148,7 @@ produced \(2\). That information was merged by the many-to-one function \(X\).
 | Outcome \(\omega\) | one point of \(\Omega\) | \(4\) | What happened in this trial? |
 | Random variable \(X\) | a measurable function \(\Omega\to\mathbb R\) | odd maps to \(-1\), even maps to \(2\) | How is every outcome converted to a number? |
 | Realization \(X(\omega)\) | one real number | \(X(4)=2\) | What value did this outcome produce? |
-| Law \(\mathcal L(X)\) | a probability measure on \(\mathbb R\) | half at \(-1\), half at \(2\) | How is probability distributed over all possible values? |
+| Law \(\mathcal L(X)\) | a probability measure on \(\mathbb R\) | half at \(-1\), half at \(2\) | What mass does each measurable target set receive? |
 
 Changing the realized outcome does not change the function or its law.
 Changing the payoff rule changes the random variable and usually changes its

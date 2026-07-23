@@ -6,7 +6,7 @@ weight: 50
 author: "tdj28"
 summary: "A declaration-by-declaration climb from measurable matrix-valued maps to pushforward laws, congruence actions, probability preservation, and the exact statement of unitary invariance."
 lead: |
-  A realized matrix tells us what happened once. A probability law tells us how all possible realized matrices are distributed. This module crosses that bridge with pushforward measures, then states unitary invariance at the only level where an ensemble symmetry belongs: equality of laws.
+  A matrix-valued sample map and its probability law are different objects. The law is the pushforward measure that assigns mass to measurable sets of matrices; it does not recover the map's exact range or fibers on null sets. This module crosses that bridge with pushforward measures, then states unitary invariance at the only level where an ensemble symmetry belongs: equality of laws.
 key_result: |
   The law of a measurable random matrix is its pushforward measure. Measurable transformations compose at the level of laws, probability mass stays normalized, and a Dirac input gives a Dirac output. The module then defines unitary-conjugation invariance as equality of measures, while proving no Gaussian ensemble and making no GUE claim.
 draft: false
@@ -628,10 +628,11 @@ samples around an orbit while leaving the distribution unchanged.
 
 {{< panel "warning" >}}
 **Hermitian does not imply invariant.** Hermiticity restricts which matrices
-can occur. Unitary invariance restricts how probability mass is distributed
-among unitary-conjugacy orbits. A generic deterministic Hermitian matrix has a
-Hermitian-supported Dirac law, but unitary conjugation moves that law to a
-Dirac mass at a different matrix.
+lie in the pointwise range \(X(\Omega)\). Unitary invariance restricts how
+probability mass is distributed among unitary-conjugacy orbits. More exactly,
+if \(H^*=H\), \(U\) is unitary, and \(UHU^*\ne H\), then the law
+\(\delta_H\) gives full mass to the Hermitian locus while its conjugated
+pushforward is the distinct law \(\delta_{UHU^*}\).
 {{< /panel >}}
 
 ## Declaration inventory

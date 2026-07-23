@@ -112,8 +112,8 @@ every scalar event is measurable. For example,
 \]
 
 This one calculation already has the shape of a pushforward law: define a
-set of possible values, pull it back through the random object, and measure
-the resulting source event.
+measurable target set, pull it back through the random object, and measure the
+resulting source event.
 
 ### Check the red realization and its spectrum
 

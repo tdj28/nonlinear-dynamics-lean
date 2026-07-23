@@ -164,7 +164,7 @@ Both have squared Euclidean norm
 ## Pointwise change is not law change
 
 A {{< refterm "probability-law" "probability law" >}} assigns probability
-mass to measurable sets of possible matrices. If \(T=C_P\) is the congruence
+mass to measurable subsets of matrix space. If \(T=C_P\) is the congruence
 map, law invariance means the exact {{< refterm "pushforward-measure"
 "pushforward" >}} equality
 

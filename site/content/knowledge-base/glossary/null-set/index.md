@@ -171,16 +171,35 @@ The countable-union theorem cannot be applied to that display.
 
 ## Measure zero is not logical impossibility
 
-The mathematical outcome \(x=1/2\) belongs to \([0,1]\). Nothing in the set
-model forbids it, yet the singleton event has probability zero under the
-uniform law. By contrast, the impossible event is the empty set: it contains
-no outcome at all.
+Use the canonical realization
+
+\[
+\Omega=[0,1],
+\qquad
+\mathbb P=\text{uniform probability},
+\qquad
+X(\omega)=\omega.
+\]
+
+Its exact fiber at \(1/2\) satisfies
+
+\[
+\left\{\omega:X(\omega)=\frac12\right\}
+=\left\{\frac12\right\}\ne\varnothing,
+\qquad
+\mathbb P\!\left(X=\frac12\right)=0.
+\]
+
+The first statement is about membership in this particular sample map's
+range. The second is about mass. By contrast, the empty event contains no
+outcome at all.
 
 This distinction becomes especially important when moving between a model and
-physical measurement. An idealized continuous probability model can assign
-zero probability to every exact value even though every realized value is one
-of those exact values. Finite-resolution instruments report intervals, and
-those intervals can have positive probability.
+physical measurement. An atomless real probability law assigns zero
+probability to every singleton. That law alone does not say whether a
+particular singleton fiber is empty; it records only that the fiber has zero
+mass. Finite-resolution instruments report intervals, and those intervals can
+have positive probability.
 
 | Statement | What it says | Uniform \([0,1]\) example |
 |---|---|---|
@@ -235,10 +254,12 @@ calculation. It writes the defining equality directly.
 ### Run a finite null-set ledger locally
 
 The continuous singleton proof uses real analysis, but the logical distinction
-between **nonempty** and **zero mass** already appears in a four-outcome
-experiment. Give the two named ghost outcomes weight zero, give the other two
-outcomes weights two and three, and read every weight in fifths. The singleton
-event containing `ghostA` is visibly nonempty while its mass is zero.
+between **nonempty** and **zero mass** already appears on a four-element
+weighted carrier. Give the two named ghost elements weight zero, give the other
+two elements weights two and three, and read every weight in fifths. The
+singleton set containing `ghostA` is visibly nonempty while its mass is zero.
+This ledger compares set membership with measure; it does not assert that a
+sampling mechanism returns a zero-weight ghost.
 
 Save the following as `/tmp/NullSetTutorial.lean`:
 
@@ -389,7 +410,7 @@ two project theorems.
 | “A countable union of null sets is null.” | True. Countability is part of the theorem. |
 | “Any union of null sets is null.” | False. \([0,1]\) is an uncountable union of null singletons under uniform measure. |
 | “A subset of a null set is null.” | True as a zero-mass statement. Its measurability may use completion of the measure space. |
-| “Probability zero means the outcome cannot occur.” | False in a continuous model. It means the event carries zero probability mass. |
+| “If \(\mathbb P(N)=0\), then \(N=\varnothing\).” | False. A null event can be nonempty; zero mass and emptiness are different statements. |
 | “Null is a property of the set alone.” | False. It is always relative to a measure. |
 
 {{< panel "warning" >}}

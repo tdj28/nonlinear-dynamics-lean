@@ -82,7 +82,7 @@ entry contributes no new freedom.
 
 ### Assemble one deterministic coordinate point
 
-A law describes every possible outcome through a measure. To test the
+A law assigns mass to measurable subsets of its value space. To test the
 deterministic assembly map, choose one exact toy coordinate point:
 
 \[

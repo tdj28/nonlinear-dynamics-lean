@@ -169,6 +169,15 @@ Use an expert mathematical register throughout the public explanation:
   checks that term against a formal statement. That check does not by itself
   confirm that the formal statement matches the intended informal theorem or
   physical interpretation;
+- distinguish probability-zero events from empty events without the ambiguous
+  modal language “can occur,” “can happen,” or “can be produced.” For an
+  atomless law, state separately whether a measurable set is nonempty, whether
+  a particular sample map attains a value, whether the event itself has
+  positive mass, and, when the value space is topological, whether every
+  neighborhood has positive mass. A law or its topological support does not by
+  itself determine the exact range of a sample map on null fibers. When
+  explaining why uncountably many null singletons may fill a positive-mass
+  interval, name countable additivity explicitly;
 - remove canned transitions, promotional language, and anthropomorphic claims
   about what a formula, compiler, or diagram “wants,” “knows,” or “reveals”;
 - replace moralizing proxies such as “honest,” “dishonest,” “pretend,” or

@@ -102,6 +102,13 @@ Dive, follow the complete educational contract in
   does not “prove” an informal claim: Lean's elaborator constructs a candidate
   proof term and its kernel checks that term against the formal statement,
   whose fidelity to the intended mathematics must be audited separately.
+  In probability prose, distinguish a nonempty null event, membership in the
+  range of a particular sample map, membership in topological support,
+  positive mass for every neighborhood, and positive mass for the event
+  itself. Do not use “can occur,” “can happen,” or “can be produced” to blur
+  those claims, and do not infer exact range membership from a law or support.
+  Name countable additivity when contrasting null singletons with their
+  positive-mass uncountable union.
   Remove canned hype, anthropomorphic phrasing, and moralizing proxies such as
   “honest,” “pretend,” or “smuggle”; name the missing hypothesis, invalid
   implication, or unsupported claim instead.

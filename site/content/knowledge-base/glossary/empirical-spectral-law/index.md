@@ -22,8 +22,8 @@ An **empirical spectral law** is the
 random matrix's
 {{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}.
 One sampled matrix produces one measure on the real line. Repeating the
-experiment produces a probability distribution whose possible outcomes are
-those whole measures.
+experiment induces a probability distribution on a value space whose elements
+are whole measures.
 
 That sentence contains three levels:
 
@@ -160,7 +160,7 @@ sample-to-sample variation.
   wide="true"
   src="sample-law-mean.svg"
   alt="Two equally likely diagonal matrices have spectra two and zero, or zero and minus two. Their sample empirical measures each place mass one half on two locations. The empirical spectral law has those two whole measures as atoms, each with outer probability one half. The averaged empirical measure instead places masses one quarter, one half, and one quarter at minus two, zero, and two."
-  caption="**Finding:** the empirical spectral law retains the two possible measure-valued trials \(L_+\) and \(L_-\), each with probability \(1/2\). The averaged measure combines their inner masses into \(1/4\) at \(-2\), \(1/2\) at \(0\), and \(1/4\) at \(2\), thereby discarding which nonzero eigenvalue occurred alongside zero. At dimension zero, the sample outcome is the zero measure, while the outer law is still a probability law concentrated at that outcome. The plate is a finite toy model, not a Gaussian unitary ensemble calculation or an asymptotic claim."
+  caption="**Finding:** the empirical spectral law retains the two measure-valued atoms \(L_+\) and \(L_-\), each with probability \(1/2\). The averaged measure combines their inner masses into \(1/4\) at \(-2\), \(1/2\) at \(0\), and \(1/4\) at \(2\), thereby discarding which nonzero eigenvalue occurred alongside zero. At dimension zero, the sample outcome is the zero measure, while the outer law is still a probability law concentrated at that outcome. The plate is a finite toy model, not a Gaussian unitary ensemble calculation or an asymptotic claim."
 >}}
 
 ## The general pushforward definition

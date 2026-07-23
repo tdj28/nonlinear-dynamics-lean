@@ -69,31 +69,36 @@ Mutual independence is what turns them into the displayed product law.
 
 ### One output is not the law
 
-Suppose one trial produces
+Suppose the chosen sample map \(F\), whose law is the displayed product
+measure, has some \(\omega_1\in\Omega\) satisfying
 
 \[
 F(\omega_1)=(1,1,5).
 \]
 
 This triple is a **realization**, one value returned by the map \(F\). It is
-not the map itself, and it is not the probability law of that map.
+not the map itself, and it is not the probability law of that map. The
+existence of this exact fiber is an additional hypothesis about the chosen
+sample map, not a consequence of the displayed law.
 
-There is no conflict between naming an exact realization and the fact that a
-nondegenerate continuous law gives every singleton probability zero. Some
-real value is returned on each outcome even though no one preselected value
-has positive probability. Probability zero is not the same assertion as “the
-value is absent from the sample space.”
+This joint law gives every singleton zero mass because its first Gaussian
+marginal is atomless, even though its third coordinate is fixed at \(5\).
+Some value in \(\mathbb R^3\) is returned at each outcome, but the law only
+says that the preimage of each preselected value has probability zero. That
+preimage may be empty or nonempty; the law does not distinguish those cases.
 
-Now suppose three trials produce the recorded table
+Now consider the following hypothetical three-value record. These rows are
+chosen for arithmetic illustration; the product law neither supplies nor
+guarantees this exact data set.
 
 \[
 (1,1,5),\qquad(1,3,5),\qquad(1,2,5).
 \]
 
 The empirical column means are \((1,2,5)\). The law-level mean vector is
-\((0,2,5)\). There is no contradiction. Three observations happened to put
-the first column at 1 every time. A finite data table estimates or tests a
-law; it does not redefine the law.
+\((0,2,5)\). There is no contradiction. If the rows were an observed finite
+data table, their empirical mean would estimate the law-level mean; it would
+not redefine the law.
 
 ### A product event can be computed exactly
 
@@ -119,7 +124,7 @@ This calculation is exact. It is not estimated from the three rows above.
   wide="true"
   src="gaussian-product-law-stack.svg"
   alt="A numeric three-coordinate example starts with X of mean zero and variance one, Y of mean two and variance one, and an anchor fixed at five. The sample map returns triples. One realization is one one five. Three rows have empirical means one two five. The joint product law gives the event X at most zero, Y at most two, anchor equal five probability one quarter."
-  caption="**Finding:** one experiment contains several different objects. The map acts on every outcome; \\(1,1,5\\) is one realization; three realizations are a finite data set; and the product measure is the law on all possible triples. Mutual independence, not the list of marginals alone, justifies the exact rectangle probability \\(1/4\\)."
+  caption="**Finding:** several mathematical levels are separate. The map acts on every outcome. If its fiber over \\((1,1,5)\\) is nonempty, that triple is a realization even though the fiber has probability zero. The three displayed rows are a hypothetical finite data set, while the product measure is a law on \\(\mathbb R^3\\). Mutual independence, not the list of marginals alone, justifies the exact rectangle probability \\(1/4\\)."
 >}}
 
 {{< checkpoint stage="Running example" title="Say which object you mean" >}}

@@ -52,6 +52,12 @@ _EXPLICIT_MODEL_ROLE = re.compile(
     r"(?:consistent|satisfiable)\b",
     re.IGNORECASE,
 )
+_AMBIGUOUS_UNIFORM_EXPERIMENT = re.compile(
+    r"\b(?:the|a)\s+uniform\s+experiment\s+"
+    r"(?:can|could|may|might)\s+"
+    r"(?:produce|return|attain|hit)\b",
+    re.IGNORECASE,
+)
 
 # These are deliberately conservative.  They are command names (or fused
 # command remnants) with little plausible use as ordinary mathematical prose.
@@ -452,6 +458,23 @@ def _check_evidentiary_register(
     return issues
 
 
+def _check_uniform_experiment_modality(
+    text: str, style: str
+) -> list[SourceIssue]:
+    """Reject the original high-signal uniform-experiment wording."""
+
+    return [
+        _issue(
+            text,
+            "ambiguous-uniform-experiment",
+            "state the canonical sample map, its fiber, and the fiber's mass "
+            "instead of saying that a uniform experiment can produce a value",
+            match.start(),
+        )
+        for match in _AMBIGUOUS_UNIFORM_EXPERIMENT.finditer(style)
+    ]
+
+
 def _check_tex_delimiters(text: str, rendered: str) -> list[SourceIssue]:
     issues: list[SourceIssue] = []
     stack: list[tuple[str, int, int]] = []
@@ -611,6 +634,7 @@ def check_text(text: str) -> list[SourceIssue]:
     # Front-matter summaries and shortcode captions also reach readers, so the
     # register pass uses the broader style view rather than rendered body text.
     issues.extend(_check_evidentiary_register(text, masks.style))
+    issues.extend(_check_uniform_experiment_modality(text, masks.style))
     issues.extend(_check_tex_delimiters(text, masks.rendered))
     issues.extend(_check_bare_dollars(text, masks.rendered))
     return sorted(issues, key=lambda issue: (issue.offset, issue.code))

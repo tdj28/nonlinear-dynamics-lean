@@ -116,6 +116,16 @@ flowchart LR
     "proof claim inside code is literal": (
         "Use `the example proves the claim` only as a quoted bad pattern."
     ),
+    "null event levels stated exactly": (
+        "In the canonical model, A is nonempty and has probability zero. "
+        "Every neighborhood of the point has positive probability. "
+        "A different sample map with the same law need not attain the point."
+    ),
+    "unrelated production and attainment": (
+        "The proof can produce a measurable set whose measure is zero. "
+        "By compactness the function may attain its minimum; the exceptional "
+        "set has measure zero."
+    ),
 }
 
 
@@ -235,6 +245,11 @@ FAIL_CASES = {
     "example cannot vaguely validate existence": (
         "This example validates the existence of a fixed point.",
         {"epistemic-overreach"},
+    ),
+    "uniform experiment said to produce a value": (
+        "The uniform experiment can produce the value one half, yet the "
+        "singleton event has probability zero.",
+        {"ambiguous-uniform-experiment"},
     ),
 }
 

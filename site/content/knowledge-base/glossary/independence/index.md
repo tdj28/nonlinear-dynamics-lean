@@ -141,8 +141,7 @@ concentrated on two cells.
 ## The general definition
 
 Let \(\Omega\) be a sample space equipped with a probability measure
-\(\mathbb P\). Let \(S\) and \(T\) be measurable spaces of possible values,
-and let
+\(\mathbb P\). Let \(S\) and \(T\) be measurable target spaces, and let
 
 \[
 X:\Omega\longrightarrow S,

@@ -265,6 +265,15 @@ missing justification. Complete an adversarial register pass before
 publication: for each consequential sentence, ask whether its subject, verb,
 logical force, and scope would survive specialist scrutiny.
 
+For probability-zero events, avoid the ambiguous claims that an outcome “can
+occur,” “can happen,” or “can be produced.” State the exact level instead:
+whether the event is nonempty, whether a particular sample map attains the
+value, whether the value lies in topological support, whether every
+neighborhood has positive mass, or whether the event itself has positive mass.
+A law or support does not determine the sample map's exact range on null
+fibers. When null singletons form a positive-mass interval, explain that
+probability measures are countably additive and the union is uncountable.
+
 Do not use “honest,” “dishonest,” “pretend,” or “smuggle” as substitutes for
 mathematical criticism. State the defect: a hypothesis is absent, an
 implication is false, an object is undefined, a claim is unsupported, or the

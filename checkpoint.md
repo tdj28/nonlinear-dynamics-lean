@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-23 00:57 PDT
+Last updated: 2026-07-23 01:16 PDT
 
-Audited baseline: `main` at `7e5557d`
+Audited baseline: `main` at `296291a`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -56,9 +56,9 @@ The established trail, camp, ridge, climb, summit, and expedition vocabulary
 remains the site's intentional reader-navigation system; it does not carry
 evidentiary force.
 
-The article corpus now contains 746,612 body tokens by the checkpoint's
-deterministic counter: 259,246 in the Notebook, 308,460 in the Deep Dives, and
-178,906 in the glossary. No `draft` or `pro_reviewed` value changed. The
+The article corpus now contains 747,119 body tokens by the checkpoint's
+deterministic counter: 259,260 in the Notebook, 308,544 in the Deep Dives, and
+179,315 in the glossary. No `draft` or `pro_reviewed` value changed. The
 publication remains open work in progress with every article still marked
 `pro_reviewed: false`.
 
@@ -87,6 +87,60 @@ milestone. The macOS build-host policy remains unchanged. The project stays
 paused for the owner's reading and site-sculpting phase; the exact RMT-35
 release sequence below remains the next formalization milestone after the
 owner resumes it.
+
+## Probability-Zero Semantics Follow-Up
+
+On 2026-07-23 the owner rejected the sentence “the uniform experiment can
+produce the value \(1/2\), yet the event \(\{1/2\}\) has probability zero.”
+The objection is mathematically substantive: “can produce” conflates
+set-theoretic membership, range membership for a particular sample map,
+topological support, positive mass in every neighborhood, and positive mass
+for the singleton event.
+
+The Almost Everywhere chapter now uses the canonical realization
+\(\Omega=[0,1]\), \(X(\omega)=\omega\). It states separately that the fiber at
+\(1/2\) is nonempty, that its probability is zero, and that every
+positive-radius neighborhood has positive probability. It also explains
+countable additivity: the interval is an uncountable union of null
+singletons, so the countable-union theorem does not assign the interval mass
+zero. A second sample map, obtained by changing the identity only at
+\(\omega=1/2\), has the same uniform law while omitting \(1/2\) from its exact
+range. Thus a law determines the singleton's mass but not whether a particular
+null fiber is empty.
+
+A focused scan of all public Markdown repaired the same level-confusion in the
+Null Set, Event, Expectation, Random Variable, Probability Law, Empirical
+Spectral Law, Hermitian Matrix, and Independence glossary chapters; six
+probability and random-matrix Deep Dives; and the law-construction Notebook
+chapter. The
+Gaussian data example now labels its exact rows as hypothetical, and
+law-support prose no longer identifies a full-mass locus with a sample map's
+pointwise range.
+
+The project skill and Knowledge Base guides now require probability prose to
+name the exact level rather than say that a null outcome “can occur,” “can
+happen,” or “can be produced.” The teaching-source checker has a deliberately
+literal `ambiguous-uniform-experiment` regression for the original
+high-signal construction. Independent review rejected a broader modal regex
+because it produced both false positives and false negatives; contextual
+probability semantics remain part of the required human adversarial pass.
+
+Workstation-safe validation for this prose-only correction:
+
+- seven teaching-hygiene test methods, including precise and rejected
+  probability-language fixtures, pass;
+- 143 teaching Markdown files and 683 public source files pass the source and
+  reader-infrastructure checks;
+- twenty-three coverage regression tests and `make checkpoint-check` pass;
+- Hugo Extended 0.160.1 renders 415 pages warning-fatal;
+- the Almost Everywhere and Null Set cards reproduce byte-for-byte;
+- rendered Almost Everywhere checks at 1440x1000 and 390x844 show one heading,
+  no page overflow, no broken or alt-less images, no KaTeX errors or raw
+  delimiters, and no console warnings or errors; and
+- `git diff --check` is clean.
+
+No Lean, Lake, Mathlib, cache, or cloud command was run. The formalization
+pause and workstation build-host policy are unchanged.
 
 ## Durable Build-Host Policy
 
