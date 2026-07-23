@@ -7,35 +7,87 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks"
 og_image: "birkhoff-sum-card.png"
-og_image_alt: "Warm-paper teaching card showing a base orbit sampled at fixed block intervals, those sampled block costs collected into one finite Birkhoff sum, and a warning that a finite sum is not a convergence theorem."
+og_image_alt: "A four-state cycle has observable values three, minus one, four, and two; horizon three includes indices zero through two, giving sum six and average two while index three is excluded."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. Human review of the
+**Editorial status.** This is an AI-assisted working note. Human review of the
 mathematics, Lean interpretation, sources, figure, and accessibility remains
-pending. The page is publicly available as an open working note while that
-review remains pending.
+pending. The page is public so readers can follow the work while that review
+is still open.
 {{< /panel >}}
 
-A **Birkhoff sum** adds the values of one observable along the first finitely
-many points of an orbit. It is a finite algebraic object. It becomes relevant
-to ergodic theory because normalized Birkhoff sums are the quantities studied
-by pointwise and mean ergodic theorems, but the definition itself contains no
-limit, probability, measure preservation, integrability, or ergodicity. This
-separation is explicit in Mathlib's official definition and documentation
-([Mathlib Birkhoff sums](#ref-birkhoff-mathlib-basic)).
+Start with four states arranged in a cycle:
 
-For the finite-block estimates in the eighteenth random-matrix-theory
-milestone (RMT-18), the orbit map is not usually the one-step base map \(T\).
-It is the powered map \(T^{b}\), where \(b\) is a chosen block length. The
-observable is the complete-block cost \(X_b\). A Birkhoff sum then visits the
-start of each complete block and adds the cost of a block beginning there.
+\[
+a\xrightarrow{T}b\xrightarrow{T}c\xrightarrow{T}d\xrightarrow{T}a.
+\]
+
+The map \(T\) tells us where to move. A separate function \(g\), called an
+**observable**, tells us what number to read at each state:
+
+\[
+g(a)=3,\qquad g(b)=-1,\qquad g(c)=4,\qquad g(d)=2.
+\]
+
+Beginning at \(a\), the {{< refterm "orbit-and-iterate" "orbit" >}} states are
+
+\[
+a,\ b,\ c,\ d,\ a,\ldots
+\]
+
+and the observed readings are
+
+\[
+3,\ -1,\ 4,\ 2,\ 3,\ldots .
+\]
+
+A **Birkhoff sum of horizon \(n\)** adds the first \(n\) readings. The first
+six prefix sums are therefore:
+
+| horizon \(n\) | sampled indices | readings added | Birkhoff sum |
+|---:|---|---|---:|
+| \(0\) | none | empty sum | \(0\) |
+| \(1\) | \(0\) | \(3\) | \(3\) |
+| \(2\) | \(0,1\) | \(3+(-1)\) | \(2\) |
+| \(3\) | \(0,1,2\) | \(3+(-1)+4\) | \(6\) |
+| \(4\) | \(0,1,2,3\) | \(3+(-1)+4+2\) | \(8\) |
+| \(5\) | \(0,1,2,3,4\) | \(3+(-1)+4+2+3\) | \(11\) |
+
+At horizon \(3\), three terms are included and the last index is \(2\).
+The state \(d\), at index \(3\), is the **next** sample and is not included.
+This is the off-by-one convention to remember:
+
+\[
+\text{horizon }n
+=\text{number of samples},
+\qquad
+\text{last included index}=n-1
+\quad(n\gt0).
+\]
+
+The corresponding average at horizon \(3\) is \(6/3=2\). The sum is \(6\);
+the average is \(2\). Dividing is a separate operation.
 
 {{< reference-figure
+  wide="true"
   src="powered-orbit-sampling.svg"
-  alt="A seventeen-step horizon is decomposed into a two-step remainder followed by three five-step blocks. The powered base map advances from one block start to the next, and the block observable is sampled at orbit times two, seven, and twelve."
-  caption="**Finding:** the remainder-first decomposition of a seventeen-step horizon with five-step blocks leaves a two-step remainder and three complete blocks. After paying the remainder at the original sample, the finite Birkhoff sum samples the five-step block cost at orbit times two, seven, and twelve. The plate explains finite indexing only. It does not assert convergence, independence, or ergodicity of the powered map."
+  alt="A four-state cycle starting at a has readings three, minus one, four, and two. Horizon three highlights indices zero, one, and two, whose sum is six and average is two; the next state d at index three is explicitly excluded."
+  caption="**Worked orbit:** \(T\) cycles \(a\) to \(b\) to \(c\) to \(d\) and back to \(a\), while \(g\) reads \(3,-1,4,2\). At horizon \(3\), the Birkhoff sum samples indices \(0,1,2\), visits \(a,b,c\), and equals \(3+(-1)+4=6\). The last included index is \(2\); \(d\) at index \(3\) is next, not included. Dividing by the three samples gives average \(2\). The prefix ledger also records sums \(0,3,2,6,8,11\) for horizons \(0\) through \(5\). These are finite pointwise calculations, not a convergence theorem."
 >}}
+
+Nothing probabilistic was needed. We fixed one starting point, followed one
+finite orbit, evaluated one function, and added finitely many integers. A
+{{< refterm "probability-measure" "probability measure" >}},
+{{< refterm "measure-preserving-transformation" "measure preservation" >}},
+{{< refterm "integrability" "integrability" >}}, and
+{{< refterm "ergodic-probability-base" "ergodicity" >}} enter only in later
+theorems.
+
+For the finite-block estimates in the eighteenth Random Matrix Theory
+milestone (RMT-18), the same construction is reused with the powered orbit map
+\(T^b\) and the complete-block observable \(X_b\). That advanced use comes
+after the basic definition below.
 
 ## The exact finite definition
 
@@ -49,12 +101,40 @@ Let \(\Omega\) be a state space, let \(S:\Omega\to\Omega\) be a map, let
 \sum_{\substack{j\in\mathbb N\\j\lt q}} F\bigl(S^j\omega\bigr).
 \]
 
-Mathlib writes this as
+Mathlib, Lean's community mathematics library, writes this as
 <code>birkhoffSum S F q ω</code> and implements the finite index set as
 <code>Finset.range q</code>. Thus the first index is zero and the last index,
 when \(q\) is positive, is \(q-1\). At \(q=0\), the range is empty and the
 sum is zero. These are definitional finite-sum facts, not measure-theoretic
 claims ([pinned Mathlib source](#ref-birkhoff-mathlib-pinned)).
+
+## Four distinctions that prevent most mistakes
+
+1. **Orbit versus observable.** The orbit is the state sequence
+   \(\omega,S\omega,S^2\omega,\ldots\). The observable \(F\) turns each state
+   into an addable value. In the cold-open example, \(T(a)=b\), but
+   \(g(a)=3\). The map returns a state; the observable returns a number.
+2. **Horizon versus last index.** Horizon \(q\) means \(q\) samples, indexed
+   \(0\) through \(q-1\) when \(q\gt0\). Horizon \(3\) does not include index
+   \(3\).
+3. **Sum versus average.** The Birkhoff sum is
+   \(\sum_{j=0}^{q-1}F(S^j\omega)\). For positive \(q\), the Birkhoff average
+   divides that sum by \(q\). They have different values and different Lean
+   names.
+4. **Finite arithmetic versus convergence.** Computing one value at one
+   horizon proves nothing about what happens as \(q\to\infty\). A convergence
+   theorem needs additional analytic and dynamical hypotheses.
+
+Mathlib totalizes the zero-horizon average as zero:
+
+\[
+\operatorname{BAvg}(S,F,0,\omega)=0.
+\]
+
+On paper, “sum divided by the number of samples” is undefined at zero samples.
+The Lean definition uses the inverse of the scalar \(0\), which is \(0\) in
+the relevant division semiring, so its zero case is an explicit library
+convention rather than ordinary division by zero.
 
 The four inputs have distinct jobs:
 
@@ -447,30 +527,156 @@ The honest role of this layer is narrower and indispensable: it freezes the
 finite indexing and assumption boundaries that any later asymptotic proof must
 use correctly.
 
-## Lean landmarks
+## In Lean: the sum in three languages
 
-After importing the RMT-18 module, these commands expose the upstream finite
-sum and the project-level block interfaces:
+{{< lean-bridge
+  human="Starting at omega, follow the map S and add the first q values reported by the observable F."
+  math="\(\operatorname{BSum}(S,F,q,\omega)=\sum_{j=0}^{q-1}F(S^j\omega).\)"
+  lean="birkhoffSum S F q ω"
+>}}
+
+- <code>S</code> is the self-map that generates the orbit.
+- <code>F</code> is the observable being sampled. Its output lives in an
+  additive commutative monoid, so the values can be added and there is a zero.
+- <code>q : ℕ</code> is the number of samples, not the last sample index.
+- <code>ω</code> is the initial state.
+- <code>birkhoffSum</code> is unqualified because Mathlib defines it in the
+  root namespace.
+{{< /lean-bridge >}}
+
+This is Mathlib's exact pinned definition:
+
+~~~lean
+def birkhoffSum (f : α → α) (g : α → M) (n : ℕ) (x : α) : M :=
+  ∑ k ∈ range n, g (f^[k] x)
+~~~
+
+Here <code>range n</code> is the finite set of natural numbers strictly below
+<code>n</code>. The notation <code>f^[k]</code> means the \(k\)-fold iterate,
+and <code>∑</code> is a finite sum.
+
+## In Lean: sum and average are different definitions
+
+{{< lean-bridge
+  human="For a positive horizon n, divide the first-n orbit sum by n to obtain the orbit average."
+  math="\(\operatorname{BAvg}(T,g,n,\omega)=\frac{1}{n}\operatorname{BSum}(T,g,n,\omega).\)"
+  lean="birkhoffAverage ℝ T g n ω"
+>}}
+
+- <code>birkhoffAverage</code> calls <code>birkhoffSum</code> and scales it by
+  the inverse of the scalar cast of <code>n</code>.
+- The explicit <code>ℝ</code> tells Lean to perform the scaling with real
+  numbers.
+- At positive <code>n</code>, this is ordinary division by the number of
+  samples. At <code>n = 0</code>, Mathlib's total definition returns zero.
+- No arrow toward infinity appears in either definition. A term such as
+  <code>Tendsto</code> belongs to a separate convergence statement.
+{{< /lean-bridge >}}
+
+The exact pinned average definition is:
+
+~~~lean
+def birkhoffAverage (f : α → α) (g : α → M) (n : ℕ) (x : α) : M :=
+  (n : R)⁻¹ • birkhoffSum f g n x
+~~~
+
+## A tiny standalone Lean worksheet a human can type
+
+**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+file recreates only the four-state arithmetic. It does not import Mathlib,
+define Mathlib's generic Birkhoff sum, or prove a convergence theorem.
+
+Save it as <code>BirkhoffSumTutorial.lean</code>:
+
+~~~lean
+import Std
+
+inductive OrbitState where
+  | a | b | c | d
+deriving Repr, DecidableEq
+
+def step : OrbitState → OrbitState
+  | .a => .b
+  | .b => .c
+  | .c => .d
+  | .d => .a
+
+def reading : OrbitState → Int
+  | .a => 3
+  | .b => -1
+  | .c => 4
+  | .d => 2
+
+def iterate (T : OrbitState → OrbitState) : Nat → OrbitState → OrbitState
+  | 0, x => x
+  | n + 1, x => iterate T n (T x)
+
+def orbitSum (T : OrbitState → OrbitState) (g : OrbitState → Int) :
+    Nat → OrbitState → Int
+  | 0, _ => 0
+  | n + 1, x => orbitSum T g n x + g (iterate T n x)
+
+def lastIncludedIndex : Nat → Option Nat
+  | 0 => none
+  | n + 1 => some n
+
+#eval orbitSum step reading 0 .a
+#eval orbitSum step reading 1 .a
+#eval orbitSum step reading 2 .a
+#eval orbitSum step reading 3 .a
+#eval orbitSum step reading 4 .a
+#eval orbitSum step reading 5 .a
+#eval lastIncludedIndex 0
+#eval lastIncludedIndex 3
+
+example : orbitSum step reading 3 .a = 6 := by decide
+example : orbitSum step reading 4 .a = 8 := by decide
+example : lastIncludedIndex 3 = some 2 := by decide
+~~~
+
+From the directory containing the file, type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean BirkhoffSumTutorial.lean
+~~~
+
+The six sums should be \(0,3,2,6,8,11\). The last-index outputs should be
+<code>none</code> and <code>some 2</code>. This command is suitable for an
+ordinary Mac or Linux machine because the worksheet imports only
+<code>Std</code>.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** A human can type this query
+worksheet in a deliberately provisioned copy of the repository:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
-import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
+import Mathlib.Dynamics.BirkhoffSum.Average
 
 open NonlinearDynamics.Random.RandomCocycles
 
 #check birkhoffSum
+#check birkhoffSum_zero
+#check birkhoffSum_one
 #check birkhoffSum_succ
 #check birkhoffSum_succ'
+#check birkhoffSum_add
+#check birkhoffAverage
+#check birkhoffAverage_zero
 #check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_div_add_mod
 #check IsIntegrableSubadditiveProcessCandidate.le_mod_add_birkhoffSum_div
 #check IsIntegrableSubadditiveProcessCandidate.integrable_birkhoffSum_blocks
-#check sum_phase_birkhoffSum
 ~~~
 
-Read the long theorem names literally. <code>div_add_mod</code> signals the
-terminal-remainder form. <code>mod_add</code> signals the remainder-first form.
-<code>integrable</code> appears only in the theorem that actually makes an
-analytic claim.
+Each <code>#check</code> asks the pinned elaborator for an exact declaration
+type. The project theorem names identify the terminal-remainder,
+remainder-first, and finite-integrability layers. The guarded command below
+checks the authoritative RMT-18 source module on approved Linux compute. It
+does not run on this Mac workstation.
+{{< /repo-check >}}
 
 ## Where to continue
 

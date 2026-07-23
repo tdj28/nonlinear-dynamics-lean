@@ -1,70 +1,135 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="940"
-     viewBox="0 0 600 940" role="img"
-     aria-labelledby="poweredOrbitTitle poweredOrbitDesc">
-  <title id="poweredOrbitTitle">Powered-orbit sampling for finite blocks</title>
-  <desc id="poweredOrbitDesc">A seventeen-step horizon is split into a two-step remainder and three five-step blocks. After the remainder, the powered base advances by five steps between block starts at orbit times two, seven, and twelve. The diagram states that this is finite bookkeeping, not a convergence theorem.</desc>
-  <rect width="600" height="940" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:23px;font-weight:700}
-    .h{font-size:19px;font-weight:700}
-    .s{font-size:17px}
-    .m{font-size:16px;fill:#5A544C}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.8}
-    .remainder{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
-    .block{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
-    .sample{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
-    .arrow{fill:none;stroke:#A67C52;stroke-width:2.5;marker-end:url(#arrowhead)}
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760"
+     viewBox="0 0 1000 760" role="img"
+     aria-labelledby="birkhoffNumericTitle birkhoffNumericDesc">
+  <title id="birkhoffNumericTitle">A three-sample Birkhoff sum on a four-state cycle</title>
+  <desc id="birkhoffNumericDesc">A cycle moves from a to b to c to d and back to a. The observable readings are three, minus one, four, and two. Horizon three includes indices zero, one, and two, so the sum is six and the average is two. State d at index three is marked as the next excluded sample. A prefix ledger lists sums zero, three, two, six, eight, and eleven for horizons zero through five.</desc>
   <defs>
-    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    <pattern id="includedDots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#55715B"/>
+    </pattern>
+    <pattern id="excludedStripes" width="8" height="8" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(35)">
+      <rect width="2.5" height="8" fill="#A4664B"/>
+    </pattern>
+    <marker id="orbitArrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#776B5E"/>
     </marker>
+    <style>
+      .ink{fill:#25231F;font-family:Inter,Arial,Helvetica,sans-serif}
+      .muted{fill:#57514A;font-family:Inter,Arial,Helvetica,sans-serif}
+      .title{font-size:23px;font-weight:750}
+      .subtitle{font-size:13px}
+      .head{font-size:17px;font-weight:750}
+      .body{font-size:13px}
+      .small{font-size:11px}
+      .kicker{font-size:11px;font-weight:750;letter-spacing:1.1px}
+      .number{font-size:19px;font-weight:750}
+    </style>
   </defs>
 
-  <text x="24" y="38" class="t title">Powered-orbit sampling finds every block start</text>
-  <text x="24" y="66" class="t m">Worked finite example: seventeen steps, five-step blocks, remainder first</text>
+  <rect width="1000" height="760" fill="#F7F1E8"/>
+  <text x="32" y="38" class="ink title">Horizon three means three samples, not index three</text>
+  <text x="32" y="62" class="muted subtitle">The orbit supplies states; the observable supplies numbers; the finite sum adds indices zero through two.</text>
 
-  <rect x="24" y="92" width="552" height="144" rx="14" class="neutral"/>
-  <text x="48" y="124" class="t h">Decompose the horizon</text>
-  <rect x="48" y="146" width="188" height="66" rx="11" class="remainder"/>
-  <text x="72" y="174" class="t s" font-weight="700">two-step remainder</text>
-  <text x="68" y="199" class="t m">pay at original sample</text>
-  <text x="249" y="184" class="t s">then</text>
-  <rect x="298" y="146" width="254" height="66" rx="11" class="block"/>
-  <text x="321" y="174" class="t h">three complete blocks</text>
-  <text x="337" y="199" class="t m">five steps in each block</text>
+  <text x="40" y="94" class="muted kicker">START AT a AND FOLLOW T</text>
 
-  <path d="M300 241 L300 276" class="arrow"/>
+  <path d="M178 180 L216 180" fill="none" stroke="#776B5E" stroke-width="2.2"
+        marker-end="url(#orbitArrow)"/>
+  <path d="M363 180 L401 180" fill="none" stroke="#776B5E" stroke-width="2.2"
+        marker-end="url(#orbitArrow)"/>
+  <path d="M548 180 L586 180" fill="none" stroke="#776B5E" stroke-width="2.2"
+        marker-end="url(#orbitArrow)"/>
+  <path d="M733 180 L771 180" fill="none" stroke="#776B5E" stroke-width="2.2"
+        marker-end="url(#orbitArrow)"/>
 
-  <rect x="24" y="286" width="552" height="428" rx="14" class="neutral"/>
-  <text x="48" y="320" class="t h">Sample the complete-block cost at each start</text>
+  <g>
+    <rect x="40" y="112" width="138" height="136" rx="14" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/>
+    <rect x="40" y="112" width="138" height="18" rx="9" fill="url(#includedDots)"/>
+    <text x="109" y="153" text-anchor="middle" class="muted kicker">INDEX 0</text>
+    <text x="109" y="186" text-anchor="middle" class="ink number">state a</text>
+    <text x="109" y="215" text-anchor="middle" class="ink head">reading 3</text>
+    <text x="109" y="237" text-anchor="middle" class="muted small">included</text>
+  </g>
+  <g>
+    <rect x="225" y="112" width="138" height="136" rx="14" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/>
+    <rect x="225" y="112" width="138" height="18" rx="9" fill="url(#includedDots)"/>
+    <text x="294" y="153" text-anchor="middle" class="muted kicker">INDEX 1</text>
+    <text x="294" y="186" text-anchor="middle" class="ink number">state b</text>
+    <text x="294" y="215" text-anchor="middle" class="ink head">reading -1</text>
+    <text x="294" y="237" text-anchor="middle" class="muted small">included</text>
+  </g>
+  <g>
+    <rect x="410" y="112" width="138" height="136" rx="14" fill="#EEF3EC" stroke="#55715B" stroke-width="2"/>
+    <rect x="410" y="112" width="138" height="18" rx="9" fill="url(#includedDots)"/>
+    <text x="479" y="153" text-anchor="middle" class="muted kicker">INDEX 2</text>
+    <text x="479" y="186" text-anchor="middle" class="ink number">state c</text>
+    <text x="479" y="215" text-anchor="middle" class="ink head">reading 4</text>
+    <text x="479" y="237" text-anchor="middle" class="muted small">included, last</text>
+  </g>
+  <g>
+    <rect x="595" y="112" width="138" height="136" rx="14" fill="#F5E9E2" stroke="#A4664B" stroke-width="2" stroke-dasharray="7 5"/>
+    <rect x="595" y="112" width="138" height="18" rx="9" fill="url(#excludedStripes)"/>
+    <text x="664" y="153" text-anchor="middle" class="muted kicker">INDEX 3</text>
+    <text x="664" y="186" text-anchor="middle" class="ink number">state d</text>
+    <text x="664" y="215" text-anchor="middle" class="ink head">reading 2</text>
+    <text x="664" y="237" text-anchor="middle" class="muted small">next, excluded</text>
+  </g>
+  <g>
+    <rect x="780" y="112" width="138" height="136" rx="14" fill="#FBFAF7" stroke="#8A7C6D" stroke-width="1.6"/>
+    <text x="849" y="153" text-anchor="middle" class="muted kicker">INDEX 4</text>
+    <text x="849" y="186" text-anchor="middle" class="ink number">state a</text>
+    <text x="849" y="215" text-anchor="middle" class="ink head">reading 3</text>
+    <text x="849" y="237" text-anchor="middle" class="muted small">cycle repeats</text>
+  </g>
 
-  <rect x="70" y="344" width="460" height="82" rx="12" class="sample"/>
-  <text x="211" y="377" class="t h">first block cost</text>
-  <text x="215" y="405" class="t s">starts at orbit time two</text>
+  <path d="M40 268 L40 286 L548 286 L548 268" fill="none" stroke="#55715B" stroke-width="2.4"/>
+  <text x="294" y="307" text-anchor="middle" class="ink head">horizon 3: exactly these three cards</text>
 
-  <path d="M300 431 L300 469" class="arrow"/>
-  <text x="318" y="455" class="t m">powered map advances five steps</text>
+  <rect x="40" y="333" width="920" height="116" rx="16" fill="#FBFAF7" stroke="#8A7C6D" stroke-width="1.7"/>
+  <text x="64" y="360" class="muted kicker">TWO DIFFERENT OUTPUTS FROM THE SAME THREE READINGS</text>
+  <rect x="64" y="377" width="330" height="50" rx="10" fill="#EEF3EC" stroke="#55715B"/>
+  <text x="229" y="408" text-anchor="middle" class="ink head">sum: 3 + (-1) + 4 = 6</text>
+  <rect x="420" y="377" width="266" height="50" rx="10" fill="#E9EFF3" stroke="#3F5D73"/>
+  <text x="553" y="408" text-anchor="middle" class="ink head">average: 6 / 3 = 2</text>
+  <rect x="712" y="377" width="224" height="50" rx="10" fill="#F5E9E2" stroke="#A4664B"/>
+  <text x="824" y="398" text-anchor="middle" class="muted small">not included</text>
+  <text x="824" y="416" text-anchor="middle" class="ink body">the next reading +2</text>
 
-  <rect x="70" y="478" width="460" height="82" rx="12" class="sample"/>
-  <text x="197" y="511" class="t h">second block cost</text>
-  <text x="205" y="539" class="t s">starts at orbit time seven</text>
+  <rect x="40" y="475" width="920" height="137" rx="16" fill="#FCF8F2" stroke="#8A7C6D" stroke-width="1.7"/>
+  <text x="64" y="502" class="muted kicker">PREFIX LEDGER FROM THE SAME STARTING STATE</text>
+  <text x="64" y="536" class="ink body">horizon</text>
+  <text x="64" y="575" class="ink body">sum</text>
+  <g class="ink">
+    <text x="220" y="536" text-anchor="middle" class="head">0</text>
+    <text x="350" y="536" text-anchor="middle" class="head">1</text>
+    <text x="480" y="536" text-anchor="middle" class="head">2</text>
+    <text x="610" y="536" text-anchor="middle" class="head">3</text>
+    <text x="740" y="536" text-anchor="middle" class="head">4</text>
+    <text x="870" y="536" text-anchor="middle" class="head">5</text>
+    <text x="220" y="578" text-anchor="middle" class="number">0</text>
+    <text x="350" y="578" text-anchor="middle" class="number">3</text>
+    <text x="480" y="578" text-anchor="middle" class="number">2</text>
+    <text x="610" y="578" text-anchor="middle" class="number">6</text>
+    <text x="740" y="578" text-anchor="middle" class="number">8</text>
+    <text x="870" y="578" text-anchor="middle" class="number">11</text>
+  </g>
+  <path d="M182 545 L908 545" stroke="#C8B8A7" stroke-width="1.2"/>
 
-  <path d="M300 565 L300 603" class="arrow"/>
-  <text x="318" y="589" class="t m">powered map advances five steps</text>
+  <rect x="40" y="638" width="286" height="82" rx="13" fill="#EEF3EC" stroke="#55715B"/>
+  <text x="60" y="666" class="muted kicker">ORBIT VERSUS OBSERVABLE</text>
+  <text x="60" y="690" class="ink body">T chooses the next state.</text>
+  <text x="60" y="710" class="ink body">g reads a number there.</text>
 
-  <rect x="70" y="612" width="460" height="82" rx="12" class="sample"/>
-  <text x="208" y="645" class="t h">third block cost</text>
-  <text x="201" y="673" class="t s">starts at orbit time twelve</text>
+  <rect x="357" y="638" width="286" height="82" rx="13" fill="#E9EFF3" stroke="#3F5D73"/>
+  <text x="377" y="666" class="muted kicker">HORIZON VERSUS INDEX</text>
+  <text x="377" y="690" class="ink body">Three samples means last index two.</text>
+  <text x="377" y="710" class="ink body">Index three comes next.</text>
 
-  <path d="M300 719 L300 756" class="arrow"/>
+  <rect x="674" y="638" width="286" height="82" rx="13" fill="#F5E9E2" stroke="#A4664B"/>
+  <text x="694" y="666" class="muted kicker">FINITE, NOT ASYMPTOTIC</text>
+  <text x="694" y="690" class="ink body">This arithmetic proves no limit.</text>
+  <text x="694" y="710" class="ink body">No probability assumptions were used.</text>
 
-  <rect x="48" y="765" width="504" height="92" rx="13" class="block"/>
-  <text x="96" y="801" class="t h">The finite Birkhoff sum adds all three block costs</text>
-  <text x="132" y="831" class="t s">The powered base spaces the sampled starts.</text>
-
-  <rect x="24" y="876" width="552" height="52" rx="11" class="sample"/>
-  <text x="199" y="899" class="t h">Finite orbit bookkeeping only</text>
-  <text x="119" y="919" class="t m">No convergence or powered-map ergodicity follows</text>
+  <text x="40" y="746" class="muted subtitle">Patterns, borders, and direct labels distinguish included samples from the excluded next sample without relying on color.</text>
 </svg>

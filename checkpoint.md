@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:02 PDT
+Last updated: 2026-07-22 17:06 PDT
 
-Audited baseline: `main` at `36d8181`
+Audited baseline: `main` at `b883058`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -3038,6 +3038,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `b883058`: derive a wobbling integrated Fekete rate from an exact constant
+  matrix and contrast an ergodic four-cycle with a preserved split system;
+  execute both finite `Std` audits and regenerate example-bearing cards.
 - `36d8181`: pair the log-positive envelope with the stronger forward-and-
   inverse tail package; compute the four-state orbit and fair two-outcome
   sandwich, execute both `Std` worksheets, and make four worked cards
