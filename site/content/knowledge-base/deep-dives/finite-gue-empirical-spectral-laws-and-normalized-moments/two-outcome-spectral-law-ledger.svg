@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
+     viewBox="0 0 1200 630" role="img"
+     aria-labelledby="spectral-law-ledger-title spectral-law-ledger-desc">
+  <title id="spectral-law-ledger-title">A two-outcome matrix law becomes a law on empirical spectral measures and then a joined mean measure</title>
+  <desc id="spectral-law-ledger-desc">A fair source chooses the diagonal matrix with entries two and zero or the diagonal matrix with entries zero and minus two. Their sample empirical measures put half mass at each displayed eigenvalue. The outer law puts half mass on each whole sample measure. Joining gives one quarter mass at minus two, one half at zero, and one quarter at two. The normalized second moment is two in each sample, in the outer expectation, and in this finite joined mean by direct enumeration. A footer separates this toy calculation from the finite Gaussian unitary ensemble theorem.</desc>
+  <defs>
+    <marker id="spectral-law-arrow" markerWidth="10" markerHeight="8"
+            refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <pattern id="spectral-law-hatch" width="9" height="9"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#A67C52"
+            stroke-width="2" opacity="0.22"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:28px;font-weight:700}.sub{font-size:16px;fill:#5A544C}
+    .h{font-size:19px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}
+    .num{font-size:18px;font-weight:700}.tiny{font-size:12px;fill:#5A544C}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .axis{stroke:#5A544C;stroke-width:1.5}.stem{stroke:#4B6787;stroke-width:4}
+  </style>
+
+  <text x="44" y="45" class="t title">Two matrices, two sample measures, one law on measures, one joined mean</text>
+  <text x="44" y="73" class="t sub">Every number is exact; the carriers change even when a mass value happens to repeat.</text>
+
+  <rect x="40" y="101" width="250" height="238" rx="16" class="cream"/>
+  <text x="60" y="133" class="t h">1. Fair matrix law</text>
+  <text x="60" y="157" class="t m">Outer source weights</text>
+  <rect x="60" y="177" width="210" height="61" rx="10" class="blue"/>
+  <text x="77" y="202" class="t s">probability 1/2</text>
+  <text x="77" y="226" class="t num">H+ = diag(2, 0)</text>
+  <rect x="60" y="254" width="210" height="61" rx="10" class="blue"/>
+  <text x="77" y="279" class="t s">probability 1/2</text>
+  <text x="77" y="303" class="t num">H- = diag(0, -2)</text>
+
+  <line x1="297" y1="220" x2="325" y2="220" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#spectral-law-arrow)"/>
+
+  <rect x="338" y="101" width="352" height="238" rx="16" class="blue"/>
+  <text x="358" y="133" class="t h">2. One measure per sample</text>
+  <text x="358" y="157" class="t m">Each of two indexed eigenvalues gets mass 1/2.</text>
+  <text x="358" y="188" class="t num">L+ : half at 0, half at 2</text>
+  <line x1="390" y1="226" x2="638" y2="226" class="axis"/>
+  <line x1="420" y1="220" x2="420" y2="232" class="axis"/>
+  <line x1="514" y1="220" x2="514" y2="232" class="axis"/>
+  <line x1="608" y1="220" x2="608" y2="232" class="axis"/>
+  <line x1="514" y1="226" x2="514" y2="202" class="stem"/>
+  <circle cx="514" cy="198" r="6" fill="#4B6787"/>
+  <line x1="608" y1="226" x2="608" y2="202" class="stem"/>
+  <circle cx="608" cy="198" r="6" fill="#4B6787"/>
+  <text x="409" y="248" class="t tiny">-2</text>
+  <text x="509" y="248" class="t tiny">0</text>
+  <text x="603" y="248" class="t tiny">2</text>
+  <text x="358" y="278" class="t num">L- : half at -2, half at 0</text>
+  <text x="358" y="305" class="t s">m2(L+) = (4 + 0)/2 = 2</text>
+  <text x="518" y="305" class="t s">m2(L-) = (0 + 4)/2 = 2</text>
+
+  <line x1="697" y1="220" x2="725" y2="220" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#spectral-law-arrow)"/>
+
+  <rect x="738" y="101" width="422" height="238" rx="16" class="clay"/>
+  <text x="758" y="133" class="t h">3. Outer law Q on whole measures</text>
+  <text x="758" y="157" class="t m">Carrier: measures whose points are themselves measures.</text>
+  <rect x="758" y="179" width="178" height="106" rx="11" class="cream"/>
+  <text x="777" y="205" class="t s">outer mass 1/2</text>
+  <text x="777" y="231" class="t num">point = L+</text>
+  <text x="777" y="258" class="t tiny">inner atoms: 0, 2</text>
+  <rect x="961" y="179" width="178" height="106" rx="11" class="cream"/>
+  <text x="980" y="205" class="t s">outer mass 1/2</text>
+  <text x="980" y="231" class="t num">point = L-</text>
+  <text x="980" y="258" class="t tiny">inner atoms: -2, 0</text>
+  <text x="758" y="316" class="t s">Expected sample m2 = (1/2)2 + (1/2)2 = 2</text>
+
+  <line x1="949" y1="346" x2="949" y2="378" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#spectral-law-arrow)"/>
+  <text x="965" y="369" class="t m">join flattens one layer</text>
+
+  <rect x="168" y="391" width="864" height="145" rx="17" class="green"/>
+  <text x="190" y="424" class="t h">4. Joined mean measure on the real line</text>
+  <text x="190" y="450" class="t s">mean = quarter at -2 + half at 0 + quarter at 2</text>
+  <line x1="215" y1="505" x2="630" y2="505" class="axis"/>
+  <line x1="275" y1="499" x2="275" y2="511" class="axis"/>
+  <line x1="420" y1="499" x2="420" y2="511" class="axis"/>
+  <line x1="565" y1="499" x2="565" y2="511" class="axis"/>
+  <line x1="275" y1="505" x2="275" y2="487" class="stem"/>
+  <circle cx="275" cy="483" r="6" fill="#4B6787"/>
+  <line x1="420" y1="505" x2="420" y2="474" class="stem"/>
+  <circle cx="420" cy="470" r="6" fill="#4B6787"/>
+  <line x1="565" y1="505" x2="565" y2="487" class="stem"/>
+  <circle cx="565" cy="483" r="6" fill="#4B6787"/>
+  <text x="264" y="528" class="t tiny">-2</text>
+  <text x="415" y="528" class="t tiny">0</text>
+  <text x="560" y="528" class="t tiny">2</text>
+  <line x1="660" y1="419" x2="660" y2="511" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="690" y="452" class="t num">joined m2</text>
+  <text x="690" y="483" class="t s">= (1/4)4 + (1/2)0 + (1/4)4</text>
+  <text x="690" y="513" class="t num">= 2</text>
+
+  <rect x="40" y="557" width="1120" height="48" rx="12" class="clay"/>
+  <rect x="40" y="557" width="1120" height="48" rx="12"
+        fill="url(#spectral-law-hatch)" opacity="0.32"/>
+  <text x="60" y="587" class="t s">Toy law result: expected m2 = 2. Finite positive-dimensional GUE theorem: expected m2 = 1. This toy source is not GUE.</text>
+</svg>

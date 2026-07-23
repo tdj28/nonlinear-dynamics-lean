@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780"
+     viewBox="0 0 1200 780" role="img"
+     aria-labelledby="carrier-boundary-title carrier-boundary-desc">
+  <title id="carrier-boundary-title">Four spectral objects have different carriers, and dimension zero separates inner mass from outer mass</title>
+  <desc id="carrier-boundary-desc">The top row follows a diagonal matrix sample to one measure on the real line, then to a measure whose points are measures, then to one joined mean measure on the real line. The middle comparison says that outer-law mass at the whole measure L plus and mean-measure mass at the real point zero both equal one half in the toy example but answer different questions. The bottom row shows the zero-dimensional project policy: the sample empirical measure is the zero measure of total mass zero, the outer law is a Dirac probability law at that zero measure with total mass one, and joining returns the zero measure. A warning says the project has no theorem here interchanging unbounded moments through join.</desc>
+  <defs>
+    <marker id="carrier-boundary-arrow" markerWidth="10" markerHeight="8"
+            refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <pattern id="carrier-boundary-hatch" width="9" height="9"
+             patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#A67C52"
+            stroke-width="2" opacity="0.22"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="780" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:28px;font-weight:700}.sub{font-size:16px;fill:#5A544C}
+    .h{font-size:18px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}
+    .type{font-size:14px;font-weight:700;fill:#315F55}.num{font-size:18px;font-weight:700}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+  </style>
+
+  <text x="44" y="45" class="t title">Keep the carrier attached to every mass calculation</text>
+  <text x="44" y="73" class="t sub">Equal-looking numbers can answer different questions; dimension zero makes the distinction unavoidable.</text>
+
+  <rect x="42" y="105" width="235" height="150" rx="15" class="cream"/>
+  <text x="62" y="137" class="t h">Matrix sample</text>
+  <text x="62" y="169" class="t num">H+ = diag(2, 0)</text>
+  <text x="62" y="202" class="t type">HermitianEuclidean 2</text>
+  <text x="62" y="229" class="t m">A point in matrix space</text>
+
+  <line x1="283" y1="180" x2="318" y2="180" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#carrier-boundary-arrow)"/>
+
+  <rect x="330" y="105" width="245" height="150" rx="15" class="blue"/>
+  <text x="350" y="137" class="t h">Sample measure L+</text>
+  <text x="350" y="169" class="t s">half at 0, half at 2</text>
+  <text x="350" y="202" class="t type">Measure Real</text>
+  <text x="350" y="229" class="t m">A point in measure space</text>
+
+  <line x1="581" y1="180" x2="616" y2="180" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#carrier-boundary-arrow)"/>
+
+  <rect x="628" y="105" width="245" height="150" rx="15" class="clay"/>
+  <text x="648" y="137" class="t h">Outer law Q</text>
+  <text x="648" y="169" class="t s">half at L+, half at L-</text>
+  <text x="648" y="202" class="t type">Measure (Measure Real)</text>
+  <text x="648" y="229" class="t m">A law whose points are measures</text>
+
+  <line x1="879" y1="180" x2="914" y2="180" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#carrier-boundary-arrow)"/>
+
+  <rect x="926" y="105" width="232" height="150" rx="15" class="green"/>
+  <text x="946" y="137" class="t h">Joined mean</text>
+  <text x="946" y="169" class="t s">quarter, half, quarter</text>
+  <text x="946" y="202" class="t type">Measure Real</text>
+  <text x="946" y="229" class="t m">One averaged measure</text>
+
+  <rect x="42" y="289" width="1116" height="148" rx="16" class="blue"/>
+  <text x="64" y="323" class="t h">Same numeric value, different typed events</text>
+  <rect x="64" y="342" width="455" height="70" rx="11" class="cream"/>
+  <text x="84" y="370" class="t s">Outer question: how often is the whole outcome L+?</text>
+  <text x="84" y="398" class="t num">Q({L+}) = 1/2</text>
+  <rect x="681" y="342" width="455" height="70" rx="11" class="cream"/>
+  <text x="701" y="370" class="t s">Mean question: how much average mass lies at real zero?</text>
+  <text x="701" y="398" class="t num">mean({0}) = 1/2</text>
+  <text x="600" y="376" text-anchor="middle" class="t m">same numeric value</text>
+  <text x="600" y="398" text-anchor="middle" class="t m">different typed questions</text>
+
+  <rect x="42" y="471" width="1116" height="202" rx="16" class="green"/>
+  <text x="64" y="505" class="t h">Project boundary at matrix dimension n = 0</text>
+  <rect x="64" y="528" width="300" height="112" rx="11" class="cream"/>
+  <text x="84" y="558" class="t s">sample empirical measure</text>
+  <text x="84" y="588" class="t num">zero measure</text>
+  <text x="84" y="617" class="t type">inner total mass = 0</text>
+  <line x1="371" y1="584" x2="403" y2="584" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#carrier-boundary-arrow)"/>
+  <rect x="416" y="528" width="330" height="112" rx="11" class="cream"/>
+  <text x="436" y="558" class="t s">outer empirical spectral law</text>
+  <text x="436" y="588" class="t num">Dirac at the zero measure</text>
+  <text x="436" y="617" class="t type">outer total mass = 1</text>
+  <line x1="753" y1="584" x2="785" y2="584" stroke="#A67C52"
+        stroke-width="4" marker-end="url(#carrier-boundary-arrow)"/>
+  <rect x="798" y="528" width="338" height="112" rx="11" class="cream"/>
+  <text x="818" y="558" class="t s">join the outer Dirac law</text>
+  <text x="818" y="588" class="t num">zero measure</text>
+  <text x="818" y="617" class="t type">joined total mass = 0</text>
+
+  <rect x="42" y="705" width="1116" height="49" rx="12" class="clay"/>
+  <rect x="42" y="705" width="1116" height="49" rx="12"
+        fill="url(#carrier-boundary-hatch)" opacity="0.32"/>
+  <text x="64" y="735" class="t s">Checked here: expected sample moments. Not yet checked here: moving an unbounded moment integral through Giry join.</text>
+</svg>

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 19:51 PDT
+Last updated: 2026-07-22 20:05 PDT
 
-Audited baseline: `main` at `67fddfa`
+Audited baseline: `main` at `cde7fad`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **10 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **11 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -299,6 +299,17 @@ measures, and their Giry mean. Three accessible figures, seven Lean bridges,
 three guarded RMT-10A/B/C probes, and an executed `Std` eigenpair/atom ledger
 make the current conditional-versus-unconditional measurability boundary
 explicit, including the zero-dimensional inner-zero/outer-Dirac distinction.
+*Finite GUE Empirical Spectral Laws and Normalized Moments* now begins with a
+fair two-matrix teaching law and computes both sample measures, their outer law
+on measures, the joined mean with masses `(1/4, 1/2, 1/4)`, and normalized
+moment ledgers `[1, -1, 0]` and `[2, 2, 2, 2]`. The page keeps that toy source
+separate from the positive-dimensional finite-GUE expectation `1`, and it
+distinguishes same-valued mass questions on different carriers. Six Lean
+bridges, two guarded RMT-10B/C probes, two accessible figures, a 16-example
+local `Std` worksheet, and the zero-dimensional inner-mass-`0`/outer-mass-`1`
+boundary expose every type change. The chapter explicitly records that the
+project has not yet transported unbounded spectral moments through Giry join
+and makes no asymptotic or semicircle claim.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3186,6 +3197,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `cde7fad`: rebuild *Finite Hermitian Spectra and Empirical Measures* around
+  two checked eigenpairs, atom-by-atom sample measures, an isospectral
+  information-loss boundary, seven Lean bridges, three RMT-10 module probes,
+  and an executed local eigenpair worksheet.
 - `67fddfa`: rebuild *First Exact Finite Gaussian Unitary Ensemble Trace
   Moments* around sample values `(1, 15)`, ensemble expectations `(0, 2)`,
   three controlled near-misses, six Lean bridges, the exact RMT-09 declaration
