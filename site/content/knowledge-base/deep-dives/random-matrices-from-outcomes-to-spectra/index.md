@@ -2,607 +2,963 @@
 title: "Random Matrices: From Outcomes to Spectra"
 slug: "random-matrices-from-outcomes-to-spectra"
 date: 2026-07-20
-summary: "A guided ascent from probability spaces and measurable coordinates to Hermitian symmetry, spectral observables, and the foundations consumed by a finite Gaussian unitary ensemble law."
-lead: "Start with one random number. Add a second index. By the summit, the object is a random operator whose eigenvalues encode collective structure that no entry reveals alone."
+summary: "A worked ascent from one finite probability experiment to measurable matrix coordinates, Hermitian realizations, eigenvalues, empirical spectral measures, and a probability law on measures."
+lead: "A fair coin chooses one of two concrete matrices. We will follow that single experiment all the way from outcomes and entry maps to checked eigenpairs, sample spectral measures, and the law of the random measure, then translate every layer into Lean."
 draft: false
 pro_reviewed: false
-level: "Base camp to advanced"
-reading_time: "35 to 50 minutes"
-prerequisites: "Algebra of complex numbers; no prior measure theory or Lean required"
+level: "Base camp to finite spectral probability"
+reading_time: "55 to 75 minutes"
+prerequisites: "Basic arithmetic and two-by-two matrices; probability, measure theory, spectral measures, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.Basic"
+toc: true
 og_image: "random-matrices-card.png"
-og_image_alt: "A warm-paper teaching card showing an outcome becoming a structured matrix and then a spectrum of eigenvalue points."
+og_image_alt: "A fair red-or-blue outcome selects one of two exact two-by-two matrices, whose checked eigenvalue slots become one of two empirical spectral measures."
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The canonical
-author disclosure is intentionally pending until the human author has
-inspected the prose, cited sources, equations, and Lean artifacts. The page is
-publicly available as an open working note while that review remains pending.
+**Editorial status.** This is an AI-assisted public working note. Human review
+of the rebuilt prose, citations, equations, exact example, Lean tutorial, and
+accessible figures remains pending. The page stays
+<code>pro_reviewed: false</code> until that review is complete.
 {{< /panel >}}
 
-Random matrix theory begins with an object that sounds almost trivial: a
-matrix whose value is random. The subject becomes profound because matrices
-carry geometry. They act on vectors, encode couplings, possess eigenvalues,
-and remember symmetries. Randomness enters through the entries, but the most
-interesting questions concern the collective structure of the entire matrix.
+A random matrix is not a matrix with mysterious entries. It is a function:
+give it an outcome, and it returns one ordinary matrix. Probability enters
+through a measure on the outcomes. Spectral theory enters only after a matrix
+has been realized. A
+{{< refterm "probability-law" "probability distribution, or law" >}} enters
+only after measurability permits probability to be pushed through the
+function.
 
-This chapter builds that idea twice. The mathematical path begins with events
-and measurable functions, then reaches Hermitian matrices and spectra. The Lean
-path follows the same ascent, exposing each hidden assumption as a type,
-instance, definition, or theorem.
+Those layers are easy to blur in prose. We will keep them separate by carrying
+one exact finite example through the whole chapter.
 
-{{< panel "info" >}}
-**Current continuation.** This chapter began with the foundational matrix
-modules. The project has since constructed the Wigner-scaled finite Gaussian
-unitary ensemble (GUE) coordinate and matrix laws, including exact marginals,
-independence, the zero-dimensional Dirac boundary, intrinsic unitary
-invariance, and the first two integrable trace moments. RMT-10A also constructs
-the ordered finite Hermitian spectrum and zero-aware empirical spectral
-measure. Follow
-[Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
-for that current layer. Coordinatewise eigenvalue measurability, an
-unconditional random spectral law, densities, and large-dimension limits
-remain later work.
-{{< /panel >}}
+## The running experiment: one fair coin, two matrices
 
-## Choose a route up the mountain
-
-| Route | Begin here | Destination |
-|---|---|---|
-| First encounter | Sample spaces and random variables | Understand what a random matrix actually is |
-| Probability reader | Coordinate measurability | See why entrywise arguments are enough in finite dimensions |
-| Linear algebra reader | Hermitian symmetry | Connect matrix structure to real spectra |
-| Lean reader | The project encoding | Read every declaration in `RandomMatrices.Basic` |
-| Research horizon | Beyond the current file | See the path through finite GUE toward trace moments and random stability |
-
-### Learning objectives
-
-By the end, you should be able to:
-
-1. distinguish a matrix-valued random variable from its realization and its
-   {{< refterm "probability-law" "probability law" >}};
-2. explain why coordinate measurability is the correct measurable structure on a matrix space;
-3. derive the conjugate-transpose, addition, multiplication, and symmetrization closure results;
-4. explain why Hermitian matrices are the finite-dimensional gateway to spectral physics;
-5. read the core Lean proofs without treating typeclass inference as magic; and
-6. identify how the checked finite GUE law extends this foundation and which
-   density, symmetry, spectral, and moment theorems remain.
-
-## The complete ascent in one picture
-
-{{< mermaid >}}
-flowchart LR
-  A[Outcome omega] --> B[Random matrix X omega]
-  B --> C[Hermitian matrix H omega]
-  C --> D[Real eigenvalues]
-  D --> E[Spectral statistics]
-  F[Measurable space] -. makes X observable .-> B
-  G[Probability measure] -. gives X a law .-> B
-  H[Symmetry and normalization] -. define an ensemble .-> C
-{{< /mermaid >}}
-
-<p class="figure-note"><strong>Reading the map.</strong> An outcome selects a matrix. Measurability lets probability reach that matrix, and the checked law layer records the resulting pushforward measure. Hermitian symmetry makes spectral questions physically and mathematically well behaved. The later RMT-06 module now supplies Gaussian, dependence, and normalization data for one finite GUE law; its invariant and spectral analysis remain beyond this map.</p>
-
-## Base camp: from events to random variables
-
-Probability does not begin with numbers. It begins with a set
-\(\Omega\) of possible outcomes and a collection \(\mathcal F\) of
-events we agree can be measured. The pair
-\((\Omega,\mathcal F)\) is a
-{{< refterm "measurable-space" "measurable space" >}}. Adding a probability
-measure \(\mathbb P\) produces a probability space.
-
-A real random variable is then a measurable function
+Let the sample space be
 
 \[
-Y : \Omega \longrightarrow \mathbb R.
+\Omega=\{\mathrm{red},\mathrm{blue}\}.
 \]
 
-The function is measurable when every measurable target set pulls back to an
-event in \(\mathcal F\). If \(B\subseteq\mathbb R\) is measurable,
-then
+A **sample space** is simply the set of possible underlying outcomes. Declare
+every subset of \(\Omega\) to be an
+{{< refterm "event" "event" >}}, and assign the fair
+{{< refterm "probability-measure" "probability measure" >}}
 
 \[
-\{\omega : Y(\omega)\in B\}
-=Y^{-1}(B)
+\mathbb P(\{\mathrm{red}\})
+{} =
+\mathbb P(\{\mathrm{blue}\})
+{} =
+\frac12.
 \]
 
-must be an event to which \(\mathbb P\) can assign a probability.
-
-This definition is less about technical ceremony than about legal questions.
-Before asking for the probability that \(Y\) lands in a region, we must know
-that the region's preimage is visible to the measure.
-
-## First ridge: add matrix coordinates
-
-Replace the scalar target with a matrix space:
+Define the matrix-valued rule \(X\) by
 
 \[
-X : \Omega \longrightarrow \mathbb K^{m\times n}.
-\]
-
-Before measurability is established, this is only a matrix-valued map. It is a
-{{< refterm "random-matrix" "random matrix" >}} in the standard probability
-sense once that map is measurable. Each outcome \(\omega\) selects one
-ordinary matrix \(X(\omega)\). Fixing a row \(i\) and column \(j\)
-produces the scalar coordinate map
-
-\[
-X_{ij} : \Omega \longrightarrow \mathbb K,
-\qquad
-X_{ij}(\omega)=X(\omega)_{ij}.
-\]
-
-The natural measurable structure on matrices is the product structure generated
-by these coordinates. Under that structure,
-
-\[
-X \text{ is measurable}
-\quad\Longleftrightarrow\quad
-X_{ij} \text{ is measurable for every }i,j.
-\]
-
-This equivalence is the central theorem of the first Lean file. It is also a
-major simplification. Instead of reasoning directly about arbitrary measurable
-sets in a matrix space, later proofs can descend to scalar entries.
-
-{{< panel "definition" >}}
-**Three layers, kept separate.** The map \(X\) tells us which matrix each
-outcome selects. Its {{< refterm "probability-law" "law" >}} tells us how
-probability mass is distributed over matrix space through a
-{{< refterm "pushforward-measure" "pushforward measure" >}}. Conditions such
-as independence, identical distribution,
-Gaussianity, and Hermitian symmetry describe special classes of such maps or
-laws. None follows from the word "random."
-{{< /panel >}}
-
-## Why matrix entries do not have to be independent
-
-The coordinate criterion concerns measurability, not dependence. Consider the
-two-by-two Hermitian pattern
-
-\[
-H=
+X(\mathrm{red})
+{} =
+R=
 \begin{bmatrix}
-a & z \\
-\overline z & b
+2&0\\
+0&0
+\end{bmatrix},
+\qquad
+X(\mathrm{blue})
+{} =
+B=
+\begin{bmatrix}
+0&1\\
+1&0
 \end{bmatrix}.
 \]
 
-Once \(z\) is chosen, the reflected entry is forced to be
-\(\overline z\). Those coordinates are maximally dependent. They are still
-individually measurable, and therefore the matrix-valued map is measurable.
+The function \(X\) is the random matrix. The ordinary matrix \(R\) or \(B\)
+seen after one coin toss is a **realization**, also called a sample value.
+One realization is not the whole random matrix, just as one coin toss is not
+the coin-tossing rule.
 
-This distinction is now implemented by the finite GUE constructor. The
-independent primitive variables live on one triangle and the real diagonal.
-Hermitian reflection then determines the rest. Saying "all entries are
-independent" would destroy the defining symmetry.
+### Check every coordinate before invoking probability
 
-## The Lean representation: a matrix is a two-index function
+Write \(X_{ij}(\omega)=X(\omega)_{ij}\). In this example the four scalar
+coordinate functions have the following values:
 
-Mathlib represents a matrix with row type \(\iota\), column type
-\(\kappa\), and value type \(\mathbb K\) as `Matrix ι κ 𝕜`.
-The equivalence `Matrix.of` connects this type to the curried function space
-`ι → κ → 𝕜`.
+| Entry map | At red | At blue |
+|---|---:|---:|
+| \(X_{00}\) | \(2\) | \(0\) |
+| \(X_{01}\) | \(0\) | \(1\) |
+| \(X_{10}\) | \(0\) | \(1\) |
+| \(X_{11}\) | \(0\) | \(0\) |
 
-The project starts with the least opinionated matrix-valued map:
+Because every subset of the two-point source is measurable, the preimage of
+every scalar event is measurable. For example,
 
-```lean
+\[
+\{\omega:X_{00}(\omega)\gt1\}
+{} =
+\{\mathrm{red}\},
+\qquad
+\mathbb P\{X_{00}\gt1\}
+{} =
+\frac12.
+\]
+
+This one calculation already has the shape of a pushforward law: define a
+set of possible values, pull it back through the random object, and measure
+the resulting source event.
+
+### Check the red realization and its spectrum
+
+An **eigenvalue** of a matrix \(H\) is a scalar \(\lambda\) for which some
+nonzero vector \(v\) satisfies \(Hv=\lambda v\). Such a vector is an
+eigenvector. The matrix \(R\) is diagonal. Its standard basis vectors satisfy
+
+\[
+R
+\begin{bmatrix}1\\0\end{bmatrix}
+{} =
+2\begin{bmatrix}1\\0\end{bmatrix},
+\qquad
+R
+\begin{bmatrix}0\\1\end{bmatrix}
+{} =
+0\begin{bmatrix}0\\1\end{bmatrix}.
+\]
+
+Its two eigenvalue slots, counted with multiplicity, are therefore \(2\) and
+\(0\). Equivalently,
+
+\[
+\det(\lambda I-R)=\lambda(\lambda-2).
+\]
+
+### Check the blue realization and its spectrum
+
+The blue matrix swaps the two coordinates. The two diagonal directions obey
+
+\[
+B
+\begin{bmatrix}1\\1\end{bmatrix}
+{} =
+1\begin{bmatrix}1\\1\end{bmatrix},
+\qquad
+B
+\begin{bmatrix}1\\-1\end{bmatrix}
+{} =
+-1\begin{bmatrix}1\\-1\end{bmatrix}.
+\]
+
+Thus the blue eigenvalue slots are \(1\) and \(-1\). The characteristic
+polynomial confirms the same roots:
+
+\[
+\det(\lambda I-B)=\lambda^2-1=(\lambda-1)(\lambda+1).
+\]
+
+Both realizations are real symmetric, hence complex Hermitian. A
+{{< refterm "hermitian-matrix" "Hermitian matrix" >}} equals its own
+{{< refterm "conjugate-transpose" "conjugate transpose" >}}. Its finite
+eigenvalues are real, which is why Hermitian matrix models lead naturally to
+measures on the real line
+([Mathlib contributors](#ref-mathlib-spectrum)).
+
+### Turn each realized spectrum into one measure
+
+The {{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}
+places equal mass on every eigenvalue slot. Each realization here has two
+slots, so
+
+\[
+L_R=\frac12\delta_2+\frac12\delta_0,
+\qquad
+L_B=\frac12\delta_1+\frac12\delta_{-1}.
+\]
+
+The symbol \(\delta_x\) denotes the Dirac measure at \(x\): it puts one unit
+of mass at \(x\) and none elsewhere. Each \(L\) above has total mass one.
+It is one measure produced by one realized matrix.
+
+Now repeat the outer coin experiment. The
+{{< refterm "empirical-spectral-law" "empirical spectral law" >}} is
+
+\[
+\mathcal Q
+{} =
+\frac12\delta_{L_R}+\frac12\delta_{L_B}.
+\]
+
+The atoms of \(\mathcal Q\) are whole measures, not real eigenvalues. With
+outer probability \(1/2\), a sample from \(\mathcal Q\) returns \(L_R\); with
+outer probability \(1/2\), it returns \(L_B\).
+
+{{< reference-figure
+  wide="true"
+  src="coin-matrices-to-spectra.svg"
+  alt="The fair red outcome selects the diagonal matrix with eigenvalues two and zero, while the fair blue outcome selects the symmetric swap matrix with eigenvalues one and minus one. Each pair becomes an equally weighted sample spectral measure, and the outer law chooses either whole measure with probability one half."
+  caption="**Worked example:** red selects \(R=\operatorname{diag}(2,0)\), whose two eigenvalue slots give \(L_R=(1/2)\delta_2+(1/2)\delta_0\). Blue selects the symmetric swap matrix, whose slots \(1,-1\) give \(L_B=(1/2)\delta_1+(1/2)\delta_{-1}\). The fair outer law is \((1/2)\delta_{L_R}+(1/2)\delta_{L_B}\). The plate shows a finite teaching model, not a Gaussian ensemble, a fitted dataset, or an asymptotic law."
+>}}
+
+## One average is not the law on measures
+
+If we average the two sample measures, we obtain one measure on \(\mathbb R\):
+
+\[
+\overline L
+{} =
+\frac12L_R+\frac12L_B
+{} =
+\frac14\delta_2+
+\frac14\delta_1+
+\frac14\delta_0+
+\frac14\delta_{-1}.
+\]
+
+The types tell us why \(\mathcal Q\) and \(\overline L\) are different:
+
+| Object | Mathematical type | What one sample returns |
+|---|---|---|
+| \(X\) | \(\Omega\to\mathbb C^{2\times2}\) | one matrix |
+| \(L_X\) | \(\Omega\to\operatorname{Measure}(\mathbb R)\) | one spectral measure |
+| \(\mathcal Q\) | \(\operatorname{Measure}(\operatorname{Measure}(\mathbb R))\) | one whole spectral measure |
+| \(\overline L\) | \(\operatorname{Measure}(\mathbb R)\) | one real location, if sampled |
+
+The average forgets which eigenvalues arrived together. For example, under
+\(\mathcal Q\), eigenvalues \(2\) and \(0\) occur in the same matrix sample.
+The single measure \(\overline L\) retains their marginal masses but not that
+pairing.
+
+This distinction is central to the repository's typed-object ledger. A sample
+measure, its law on a space of measures, a bundled probability-valued law,
+and a **Giry barycenter**, which integrates the inner measures into one mean
+measure, are related constructions, not interchangeable names.
+
+## A nearby nonexample: equal spectra can hide different operators
+
+Consider
+
+\[
+Z=
+\begin{bmatrix}
+0&0\\
+0&0
+\end{bmatrix},
+\qquad
+N=
+\begin{bmatrix}
+0&1\\
+0&0
+\end{bmatrix}.
+\]
+
+Both characteristic polynomials are \(\lambda^2\), so both empirical
+spectral measures are \(\delta_0\). Yet \(Z\) kills every vector, while
+
+\[
+N
+\begin{bmatrix}0\\1\end{bmatrix}
+{} =
+\begin{bmatrix}1\\0\end{bmatrix}.
+\]
+
+The matrix \(N\) is nonzero, **nilpotent** because \(N^2=0\), and not
+Hermitian. This boundary teaches two rules:
+
+1. real eigenvalues do not imply Hermitian symmetry; and
+2. an empirical spectral measure does not determine the original matrix.
+
+The blue realization is recovered from this nonexample by unnormalized
+Hermitian symmetrization:
+
+\[
+N+N^*=B.
+\]
+
+Symmetrization changes the spectrum and the geometry. It is a constructor,
+not a harmless relabeling.
+
+{{< reference-figure
+  wide="true"
+  src="entry-gates-and-spectrum-boundary.svg"
+  alt="The red then blue coordinate pairs are upper-left two then zero, upper-right zero then one, lower-left zero then one, and lower-right zero then zero. The upper-left-greater-than-one event pulls back to red and has probability one half. Typed gates separate the matrix rule, measurability, matrix law, spectral map, and law on measures. The zero matrix and a nonzero square-zero matrix share two zero eigenvalue slots but act differently; the latter is not Hermitian."
+  caption="**Two gates and a boundary:** the red-then-blue coordinate pairs are \(2,0\) at upper left, \(0,1\) at upper right, \(0,1\) at lower left, and \(0,0\) at lower right. Thus the upper-left-entry event pulls back to red and has probability \(1/2\). Entrywise measurability licenses the matrix pushforward; measurability of the spectral observable separately licenses the outer law on measures. On the right, \(Z\) and the nonzero square-zero matrix \(N\) both yield \(\delta_0\), but \(N(0,1)=(1,0)\) and \(N\ne N^*\). The comparison shows that spectral data can discard operator geometry. It does not claim that all non-Hermitian matrices have real spectra."
+>}}
+
+## The abstract climb, now that every object has a face
+
+The running example instantiates five general layers.
+
+### 1. Outcomes and measurable events
+
+A {{< refterm "measurable-space" "measurable space" >}}
+\((\Omega,\mathcal F)\) consists of a set of outcomes and a collection
+\(\mathcal F\) of measurable events. A
+{{< refterm "measure" "measure" >}} \(\mu\) assigns sizes to those events.
+When \(\mu(\Omega)=1\), it is a probability measure. These are the foundations
+for random elements and their laws
+([Kallenberg](#ref-kallenberg)).
+
+Our finite example uses \(\mathcal F=\mathcal P(\Omega)\), the collection of
+all subsets. In an uncountable sample space, not every subset is automatically
+declared measurable, so the measurability obligation becomes substantive.
+
+### 2. A matrix-valued map
+
+For index sets \(\iota\) and \(\kappa\), a matrix-valued map is
+
+\[
+X:\Omega\longrightarrow\mathbb K^{\iota\times\kappa}.
+\]
+
+The project's base {{< refterm "random-matrix" "random matrix" >}} type is
+exactly this function. It deliberately stores neither a source measure nor a
+measurability proof. This makes the same function reusable under different
+measures and in deterministic arguments.
+
+In standard probability language, the map becomes a matrix-valued
+{{< refterm "random-variable" "random variable" >}} once it is measurable.
+A {{< refterm "measurable-function" "measurable function" >}} pulls every
+measurable target set back to a measurable source event.
+
+### 3. Entrywise measurability
+
+The project's matrix space carries the product measurable structure generated
+by its entries, even before the index types are assumed finite. Under the
+project instance,
+
+\[
+X\text{ is measurable}
+\quad\Longleftrightarrow\quad
+\omega\longmapsto X(\omega)_{ij}
+\text{ is measurable for every }i,j.
+\]
+
+This theorem concerns visibility to a measure. It says nothing about whether
+different entries are independent. In a Hermitian matrix, lower-triangular
+entries are conjugates of upper-triangular entries, so they are deliberately
+dependent.
+
+### 4. A realization and its spectral observable
+
+Fixing \(\omega\) gives one ordinary matrix \(X(\omega)\). If that matrix is
+Hermitian, its finite eigenvalues are real. The ordered eigenvalue vector and
+the empirical spectral measure are deterministic functions of that one
+realization.
+
+The project later proves that the ordered Hermitian eigenvalues are continuous,
+hence measurable, for its finite
+{{< refterm "hermitian-frobenius-geometry" "Frobenius geometry" >}}, the
+Euclidean geometry obtained by summing the squared magnitudes of all entries.
+This is a second measurability gate. Measurability of matrix entries does not
+make every nonlinear statistic measurable by magic; the statistic needs its
+own theorem.
+
+### 5. Pushforward laws
+
+Given a measurable map \(X\) and source measure \(\mu\), the
+{{< refterm "pushforward-measure" "pushforward" >}} law is
+
+\[
+\mathcal L_\mu(X)=X_*\mu.
+\]
+
+For every measurable matrix set \(D\),
+
+\[
+(X_*\mu)(D)=\mu(X^{-1}(D)).
+\]
+
+Applying the same construction to a measurable spectral-measure map produces
+a law whose points are measures. A probability distribution need not have a
+density; the running example is **atomic**, meaning its mass sits at finitely
+many individual points.
+
+## In Lean: from a bare carrier to Hermitian closure
+
+### The bare function is the first layer
+
+{{< lean-bridge
+  human="A project random matrix accepts an outcome and returns one matrix. The base type alone contains no probability measure and no measurability proof."
+  math="\(X:\Omega\longrightarrow\mathbb K^{\iota\times\kappa}.\)"
+  lean="X : NonlinearDynamics.Random.RandomMatrix Ω ι κ 𝕜"
+>}}
+
+- <code>Ω</code> is the outcome type.
+- <code>ι</code> and <code>κ</code> are the row and column index types.
+- <code>𝕜</code> is the scalar type, such as <code>ℝ</code> or <code>ℂ</code>.
+- <code>Matrix ι κ 𝕜</code> is Mathlib's two-index function type for matrices.
+- <code>RandomMatrix Ω ι κ 𝕜</code> unfolds to
+  <code>Ω → Matrix ι κ 𝕜</code>.
+- The arrow <code>→</code> is the same outcome-to-value arrow used on paper.
+{{< /lean-bridge >}}
+
+The checked definition is:
+
+~~~lean
 abbrev RandomMatrix
     (Ω : Type uΩ) (ι : Type uι) (κ : Type uκ) (𝕜 : Type u𝕜) :=
   Ω → Matrix ι κ 𝕜
-```
+~~~
 
-There is deliberately no probability measure in this abbreviation. There is
-not even a measurability field. `RandomMatrix` is therefore a convenient
-project name for the carrier type, not by itself a certificate that a term is
-a random variable in the standard measure-theoretic sense. The same underlying
-map can later be studied under different measures, and deterministic matrix
-families remain usable without carrying probabilistic baggage.
+An abbreviation introduces a project name without wrapping the function in a
+new data constructor. Applying <code>X</code> to <code>ω</code> still gives the
+realized matrix <code>X ω</code> directly.
 
-### Installing the missing measurable structure
+### The coordinate criterion is an equivalence
 
-At Mathlib 4.32.0, the imported modules do not supply the particular
-entrywise `MeasurableSpace` instance needed here. The project constructs it:
+{{< lean-bridge
+  human="The whole matrix-valued map is measurable exactly when every scalar entry map is measurable."
+  math="\(X\text{ measurable}\iff\forall i,j,\;[\omega\mapsto X(\omega)_{ij}]\text{ measurable}.\)"
+  lean="NonlinearDynamics.Random.RandomMatrix.measurable_iff_entries X : Measurable X ↔ ∀ i j, Measurable fun ω ↦ X ω i j"
+>}}
 
-```lean
-instance instMeasurableSpaceMatrix [MeasurableSpace 𝕜] :
-    MeasurableSpace (Matrix ι κ 𝕜) :=
-  MeasurableSpace.comap Matrix.of.symm inferInstance
-```
+- <code>Measurable X</code> is the matrix-level claim.
+- <code>↔</code> means both implications are proved.
+- <code>∀ i j</code> means every row index and every column index.
+- <code>fun ω ↦ ...</code> constructs the scalar entry function.
+- <code>X ω i j</code> first realizes the matrix at <code>ω</code>, then reads
+  row <code>i</code> and column <code>j</code>.
+- The theorem is about measurability only. No symbol here asserts independence,
+  identical distribution, Gaussianity, or Hermitian symmetry.
+{{< /lean-bridge >}}
 
-Read the right side from the inside out:
+The exact project proof is short because the matrix measurable structure was
+chosen entrywise:
 
-1. `inferInstance` finds the iterated function-space measurable structure on
-   `ι → κ → 𝕜`.
-2. `Matrix.of.symm` views a matrix as that two-argument function.
-3. `MeasurableSpace.comap` transports the measurable structure back to the
-   matrix type.
-
-The word **comap** is doing conceptual work. We know how coordinates should be
-measured on the function representation, so we pull that structure back along
-an equivalence.
-
-The claim above is release-specific. It was checked against
-[Mathlib 4.32.0](https://github.com/leanprover-community/mathlib4/releases/tag/v4.32.0),
-the version pinned by this repository. The
-[pinned matrix source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/LinearAlgebra/Matrix/Defs.lean)
-and
-[pinned measurable-space source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/MeasurableSpace/Basic.lean)
-make the implementation context reproducible even after the generated latest
-documentation changes.
-
-{{< panel "info" >}}
-**A maintainability note.** This is a global typeclass instance, even though
-its declaration name sits in the project namespace. If a future Mathlib
-release introduces the same canonical matrix instance, this project should
-remove or reconcile its local instance during the upgrade.
-{{< /panel >}}
-
-## The coordinate theorem, one proof step at a time
-
-The theorem statement is the mathematics we want:
-
-```lean
+~~~lean
 theorem measurable_iff_entries (X : RandomMatrix Ω ι κ 𝕜) :
     Measurable X ↔ ∀ i j, Measurable fun ω ↦ X ω i j := by
   rw [measurable_comap_iff]
   change Measurable (fun ω i j ↦ X ω i j) ↔ _
   simp only [measurable_pi_iff]
-```
+~~~
 
-The proof has three moves:
+Read the proof in three moves:
 
-1. `measurable_comap_iff` unfolds what measurability means after the target
-   structure was installed by a comap.
-2. `change` presents the matrix-valued function as an explicitly curried
-   coordinate function.
-3. `measurable_pi_iff` says that a function into a product of measurable
-   spaces is measurable exactly when each coordinate is measurable.
+1. <code>measurable_comap_iff</code> unfolds the measurable structure pulled
+   back from the curried function representation.
+2. <code>change</code> displays a matrix-valued function as a function of an
+   outcome, row, and column.
+3. <code>measurable_pi_iff</code> reduces product-valued measurability to all
+   coordinate maps.
 
-The short proof is not a trick. It succeeds because the instance was chosen to
-make the mathematical interface true by construction.
+This release-specific interface was checked against
+[Mathlib 4.32.0](#ref-mathlib-release). The exact
+[pinned matrix source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/LinearAlgebra/Matrix/Defs.lean)
+and
+[pinned measurable-space source](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/MeasurableSpace/Basic.lean)
+remain the implementation authority for the imported APIs
+([Mathlib contributors](#ref-mathlib-measurable)).
 
-{{< checkpoint stage="Base camp" title="Test the coordinate picture" >}}
-Imagine hiding every matrix except one coordinate at a time. If every resulting
-scalar observation is measurable, the product structure lets you reconstruct
-measurability of the entire matrix-valued map. Independence never entered the
-argument.
-{{< /checkpoint >}}
+### Build new measurable matrices entry by entry
 
-### Extracting one coordinate
+The base module proves that the operations needed for finite matrix theory
+preserve measurability.
 
-The next theorem packages the forward direction:
+| Operation | Why each output entry is measurable | Extra finite gate |
+|---|---|---|
+| Transpose | read the input entry with swapped indices | none |
+| Scalar map | compose one entry map with a measurable scalar function | none |
+| Constant matrix | every entry is a constant function | none |
+| Conjugate transpose | swap indices and take complex conjugation | none |
+| Addition | add two measurable scalar functions | none |
+| Multiplication | sum products of corresponding scalar functions | the shared index is finite |
 
-```lean
-theorem measurable_entry {X : RandomMatrix Ω ι κ 𝕜}
-    (hX : Measurable X) (i : ι) (j : κ) :
-    Measurable fun ω ↦ X ω i j :=
-  (measurable_iff_entries X).mp hX i j
-```
+For multiplication,
 
-This small lemma becomes the workhorse for every closure proof that follows.
+\[
+(XY)_{ik}=\sum_jX_{ij}Y_{jk}.
+\]
 
-## Closure under the operations matrix theory needs
+The theorem uses a finite sum over \(j\). It is not an infinite-dimensional
+operator theorem.
 
-The foundation proves that several pointwise matrix operations preserve
-measurability.
+#### Unnormalized Hermitian symmetrization
 
-| Operation | Entry-level reason |
+For a square complex matrix-valued map, the project defines
+
+\[
+\operatorname{sym}(X)(\omega)=X(\omega)+X(\omega)^*.
+\]
+
+It proves this constructor measurable when \(X\) is measurable. Separately, it
+proves the result Hermitian at every outcome without needing a measurability
+assumption. The constructor is intentionally **unnormalized**. Some contexts
+use \((A+A^*)/2\), but that scaling would change future distributional and
+spectral formulas even though Hermiticity remains true.
+
+{{< lean-bridge
+  human="At every outcome, add the realized complex matrix to its conjugate transpose. The result is Hermitian at every outcome, not merely almost surely."
+  math="\(\operatorname{sym}(X)(\omega)=X(\omega)+X(\omega)^*,\quad \operatorname{sym}(X)(\omega)^*=\operatorname{sym}(X)(\omega).\)"
+  lean="NonlinearDynamics.Random.RandomMatrix.hermitianSymmetrization_isHermitian X ω : (NonlinearDynamics.Random.RandomMatrix.hermitianSymmetrization X ω).IsHermitian"
+>}}
+
+- <code>hermitianSymmetrization X ω</code> applies the constructor and then
+  realizes it at <code>ω</code>.
+- <code>.IsHermitian</code> is the matrix property that the conjugate transpose
+  equals the matrix.
+- The explicit <code>ω</code> makes the statement pointwise.
+- The later almost-everywhere theorem uses
+  <code>Filter.Eventually.of_forall</code> to weaken this everywhere statement.
+{{< /lean-bridge >}}
+
+Pinned Mathlib's Hermitian algebra supplies the matrix property and closure
+lemmas used here
+([Mathlib contributors](#ref-mathlib-hermitian)).
+
+### Try the exact base declarations in the repository
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+A learner can create a temporary probe on an approved Linux builder with:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.Basic
+
+#print NonlinearDynamics.Random.RandomMatrix
+#check NonlinearDynamics.Random.RandomMatrix.measurable_iff_entries
+#check NonlinearDynamics.Random.RandomMatrix.measurable_entry
+#check NonlinearDynamics.Random.RandomMatrix.measurable_mul
+#check NonlinearDynamics.Random.RandomMatrix.hermitianSymmetrization
+#check NonlinearDynamics.Random.RandomMatrix.hermitianSymmetrization_isHermitian
+#check NonlinearDynamics.Random.RandomMatrix.hermitianSymmetrization_isHermitianAE
+~~~
+
+<code>#print</code> unfolds the project abbreviation. Each
+<code>#check</code> asks the pinned elaborator for the exact type of a checked
+declaration. The generated guarded command below validates the authoritative
+module, not the temporary probe.
+{{< /repo-check >}}
+
+## In Lean: from one Hermitian matrix to a random spectral law
+
+### Give one matrix a finite empirical measure
+
+For an intrinsic \(n\)-by-\(n\) Hermitian matrix \(H\), let
+
+\[
+\lambda_0(H)\geq\lambda_1(H)\geq\cdots\geq\lambda_{n-1}(H)
+\]
+
+be its real eigenvalues with multiplicity. The spectral counting measure is
+
+\[
+\kappa_H=\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}.
+\]
+
+Its total mass is \(n\). The empirical spectral measure is
+
+\[
+L_H=\frac1n\kappa_H
+\]
+
+when \(n\gt0\). Repeated eigenvalues contribute repeated atoms; replacing the
+vector by a set of distinct roots would lose multiplicity and produce the
+wrong trace moments.
+
+Viewing each real integration variable as a complex number, the first two
+counting-measure moments recover the ordinary complex matrix traces:
+
+\[
+\int x\,d\kappa_H(x)=\operatorname{Tr}(H),
+\qquad
+\int x^2\,d\kappa_H(x)=\operatorname{Tr}(H^2).
+\]
+
+The empirical moments divide these by \(n\) in positive dimension. In the
+running example,
+
+| Realization | First empirical moment | Second empirical moment |
+|---|---:|---:|
+| \(R\) with slots \(2,0\) | \((2+0)/2=1\) | \((2^2+0^2)/2=2\) |
+| \(B\) with slots \(1,-1\) | \((1-1)/2=0\) | \((1^2+(-1)^2)/2=1\) |
+
+At dimension zero, the finite sum has no atoms. The repository deliberately
+defines both the counting measure and empirical measure to be the zero measure.
+The empirical measure is therefore zero or probabilistic in all dimensions,
+and a bundled probability-measure wrapper appears only in positive dimension.
+No fake eigenvalue is inserted at zero.
+
+{{< lean-bridge
+  human="Give every ordered eigenvalue slot one Dirac atom, then scale the resulting counting measure by the inverse dimension."
+  math="\(\kappa_H=\sum_i\delta_{\lambda_i(H)},\qquad L_H=n^{-1}\kappa_H.\)"
+  lean="NonlinearDynamics.Random.RandomMatrix.spectralCountingMeasure H; NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure H"
+>}}
+
+- <code>H</code> is an intrinsic <code>HermitianEuclidean n</code> value.
+- <code>orderedHermitianEigenvalues H i</code> is the real eigenvalue in slot
+  <code>i : Fin n</code>.
+- <code>spectralCountingMeasure H</code> has type <code>Measure ℝ</code> and
+  adds one Dirac mass per slot.
+- <code>empiricalSpectralMeasure H</code> also has type
+  <code>Measure ℝ</code>; it applies the project's zero-aware normalization.
+- Neither expression is a probability law on matrices or on measures. Each is
+  a deterministic measure attached to one matrix <code>H</code>.
+{{< /lean-bridge >}}
+
+### Push a matrix law to a law on spectral measures
+
+The matrix-law layer makes measurability explicit:
+
+~~~lean
+noncomputable def law (X : RandomMatrix Ω ι ι ℂ) (_hX : Measurable X)
+    (μ : Measure Ω) : Measure (Matrix ι ι ℂ) :=
+  Measure.map X μ
+~~~
+
+The keyword <code>noncomputable</code> permits a classical mathematical
+definition that Lean is not promising to execute as a program. It does not
+weaken the proposition proved about the resulting measure.
+
+The proof argument <code>_hX</code> is semantically important even though the
+value of <code>Measure.map</code> does not store it. Mathlib's map operation is
+total and has fallback behavior outside the
+{{< refterm "almost-everywhere" "almost-everywhere" >}} measurable case. The
+project name <code>law</code> therefore demands evidence that the standard
+pushforward interpretation is licensed.
+
+{{< lean-bridge
+  human="Push the source measure through the measurable matrix-valued map. A measurable matrix set receives the mass of its preimage."
+  math="\(\mathcal L_\mu(X)=X_*\mu,\qquad (X_*\mu)(D)=\mu(X^{-1}(D)).\)"
+  lean="NonlinearDynamics.Random.RandomMatrix.law X hX μ; NonlinearDynamics.Random.RandomMatrix.law_apply X hX μ hD"
+>}}
+
+- <code>hX : Measurable X</code> is the gate that licenses the law.
+- <code>μ : Measure Ω</code> is the source measure.
+- <code>RandomMatrix.law X hX μ</code> has type
+  <code>Measure (Matrix ι ι ℂ)</code>.
+- <code>D</code> is a set of matrices and <code>hD : MeasurableSet D</code>
+  proves that it is a legal target event.
+- <code>law_apply</code> states the exact preimage evaluation rule.
+{{< /lean-bridge >}}
+
+At the later finite Gaussian unitary ensemble (GUE) layer, the repository has
+proved that the empirical-spectral-measure observable is measurable and names
+its pushforward law:
+
+{{< lean-bridge
+  human="Sample a finite Gaussian unitary ensemble matrix, turn it into one empirical spectral measure, and take the probability law of that measure-valued output."
+  math="\(\mathcal Q_n=(L_n)_*\mathbb P_n.\)"
+  lean="NonlinearDynamics.Random.GUE.empiricalSpectralLaw n = (NonlinearDynamics.Random.GUE.intrinsicLaw n).map NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure"
+>}}
+
+- <code>GUE.intrinsicLaw n</code> is a probability law on intrinsic Hermitian
+  matrices.
+- <code>RandomMatrix.empiricalSpectralMeasure</code> maps one matrix to one
+  <code>Measure ℝ</code>.
+- <code>.map</code> pushes the matrix law through that measurable observable.
+- The result has type <code>Measure (Measure ℝ)</code>. The outer measure is the
+  random law; each point in its carrier is an inner spectral measure.
+- This named project law is not the fair-coin law \(\mathcal Q\) computed
+  above. The coin model is a finite teaching analogue of the same typed path.
+{{< /lean-bridge >}}
+
+### Run the finite model locally with Lean and Std
+
+This first worksheet is deliberately tiny. It imports only Lean's
+<code>Std</code> library, uses two fixed integer matrices, and performs bounded
+list computations. It does not import Mathlib, open the repository's Lake
+project, download a cache, or prove measure-theoretic measurability.
+
+Create a scratch directory outside <code>formalization/</code>. Save the
+following as <code>CoinMatrixTutorial.lean</code>:
+
+~~~lean
+import Std
+
+inductive Outcome where
+  | red
+  | blue
+deriving Repr, DecidableEq
+
+structure Matrix2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+deriving Repr, DecidableEq
+
+abbrev Vec2 := Int × Int
+
+def outcomeLabel : Outcome → String
+  | .red => "red"
+  | .blue => "blue"
+
+def sampleMatrix : Outcome → Matrix2
+  | .red => ⟨2, 0, 0, 0⟩
+  | .blue => ⟨0, 1, 1, 0⟩
+
+def entries (A : Matrix2) : Int × Int × Int × Int :=
+  (A.a00, A.a01, A.a10, A.a11)
+
+def mulVec (A : Matrix2) (v : Vec2) : Vec2 :=
+  (A.a00 * v.1 + A.a01 * v.2,
+   A.a10 * v.1 + A.a11 * v.2)
+
+def scaleVec (lambda : Int) (v : Vec2) : Vec2 :=
+  (lambda * v.1, lambda * v.2)
+
+structure Eigenpair where
+  value : Int
+  vector : Vec2
+deriving Repr, DecidableEq
+
+def eigenpairs : Outcome → List Eigenpair
+  | .red => [⟨2, (1, 0)⟩, ⟨0, (0, 1)⟩]
+  | .blue => [⟨1, (1, 1)⟩, ⟨-1, (1, -1)⟩]
+
+def eigenpairOK (A : Matrix2) (pair : Eigenpair) : Bool :=
+  decide (mulVec A pair.vector = scaleVec pair.value pair.vector)
+
+def spectrum (omega : Outcome) : List Int :=
+  (eigenpairs omega).map (fun pair => pair.value)
+
+def spectralCertificate (omega : Outcome) : Bool :=
+  (eigenpairs omega).all (eigenpairOK (sampleMatrix omega))
+
+def outcomes : List Outcome := [.red, .blue]
+
+def largeFirstEntryPreimage : List String :=
+  (outcomes.filter (fun omega => decide ((sampleMatrix omega).a00 > 1))).map
+    outcomeLabel
+
+def quarterMass (x : Int) : Nat :=
+  outcomes.foldl (fun total omega => total + (spectrum omega).count x) 0
+
+def meanMassLedger : List (Int × Nat) :=
+  ([-1, 0, 1, 2] : List Int).map (fun x => (x, quarterMass x))
+
+#eval outcomes.map (fun omega =>
+  (outcomeLabel omega, entries (sampleMatrix omega)))
+#eval outcomes.map (fun omega => (outcomeLabel omega, spectrum omega))
+#eval outcomes.map (fun omega =>
+  (outcomeLabel omega, spectralCertificate omega))
+#eval largeFirstEntryPreimage
+#eval meanMassLedger
+
+example : spectralCertificate .red = true := by decide
+example : spectralCertificate .blue = true := by decide
+example : largeFirstEntryPreimage = ["red"] := by decide
+example : meanMassLedger = [(-1, 1), (0, 1), (1, 1), (2, 1)] := by decide
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean CoinMatrixTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0. It printed:
+
+~~~text
+[("red", 2, 0, 0, 0), ("blue", 0, 1, 1, 0)]
+[("red", [2, 0]), ("blue", [1, -1])]
+[("red", true), ("blue", true)]
+["red"]
+[(-1, 1), (0, 1), (1, 1), (2, 1)]
+~~~
+
+Read the output in order:
+
+1. the first line shows the two realized matrices in row-major entry order;
+2. the second shows the two eigenvalue-slot lists;
+3. the third verifies all four displayed eigenvector equations;
+4. the fourth computes the preimage of the upper-left-entry event; and
+5. the fifth records the averaged spectral mass in quarter-units, so each
+   listed eigenvalue has mass \(1/4\).
+
+The four <code>example</code> declarations ask Lean's kernel to check the same
+finite claims. This worksheet verifies the arithmetic and type separation of
+the toy model. It does **not** verify the general spectral theorem, matrix
+measurability, pushforward law, or project declarations below.
+
+### Try the exact spectral-law declarations in the repository
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum" >}}
+**Resource label: later project modules plus Mathlib, cloud-only for this
+project.** Type this probe only on an approved Linux host that has the pinned
+project cache:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
+
+#check NonlinearDynamics.Random.RandomMatrix.orderedHermitianEigenvalues
+#check NonlinearDynamics.Random.RandomMatrix.spectralCountingMeasure
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure
+#check NonlinearDynamics.Random.RandomMatrix.empiricalSpectralMeasure_zero
+#check NonlinearDynamics.Random.RandomMatrix.measurable_empiricalSpectralMeasure
+#check NonlinearDynamics.Random.GUE.empiricalSpectralLaw
+#check NonlinearDynamics.Random.GUE.empiricalSpectralLaw_zero
+#check NonlinearDynamics.Random.GUE.meanEmpiricalSpectralMeasure
+~~~
+
+These names span the deterministic sample spectrum, its zero-dimensional
+boundary, measurability of the measure-valued observable, the outer finite GUE
+law, and its mean measure. The guarded command below checks the full imported
+leaf. Do not replace it with a local project or Lake command on this Mac.
+{{< /repo-check >}}
+
+## What the repository has checked, and what it has not
+
+The page's primary module,
+<code>NonlinearDynamics.Random.RandomMatrices.Basic</code>, proves only the
+entrywise measurable foundation and its finite algebraic closure. Later
+modules now add substantial finite theory:
+
+| Layer | Checked repository contribution |
 |---|---|
-| Transpose | Output entry \((i,j)\) is input entry \((j,i)\) |
-| Scalar map | Compose each entry with a measurable scalar function |
-| Constant matrix | Every coordinate is a constant measurable function |
-| Conjugate transpose | Swap indices, then apply continuous complex conjugation |
-| Addition | Add two measurable scalar coordinates |
-| Multiplication | Take a finite sum of products of measurable coordinates |
+| Matrix carrier | outcome-to-matrix functions and the entrywise measurable structure |
+| Hermitian structure | pointwise and almost-everywhere Hermiticity, bundled measurable Hermitian matrices, and congruence |
+| Matrix law | measurable pushforwards, probability preservation, Dirac rules, and unitary-invariance interfaces |
+| Finite GUE | exact Wigner-scaled coordinate law, ambient matrix law, zero-dimensional Dirac boundary, and unitary invariance |
+| Finite observables | measurable trace powers and the first two exact integrable finite GUE trace moments |
+| Finite spectrum | ordered real Hermitian eigenvalues, counting and empirical measures, perturbation continuity, and measurability |
+| Spectral law | the finite GUE law on empirical spectral measures, its mean measure, and first two normalized expected sample moments |
 
-The multiplication theorem explains why the shared index has a `Fintype`
-assumption. Matrix multiplication uses
+Here GUE means **Gaussian unitary ensemble**. The project's convention is
+Wigner scaled: diagonal variance \(1/n\), off-diagonal real and imaginary
+variances \(1/(2n)\), ordinary matrix trace, and an order-one spectrum in
+positive dimension. That normalization belongs to the GUE modules, not to the
+bare <code>RandomMatrix</code> definition. Standard references explain why
+normalization ledgers and symmetry classes matter
+([Tao](#ref-tao-rmt); [Anderson, Guionnet, and Zeitouni](#ref-agz)).
 
-\[
-(XY)_{ik}=\sum_j X_{ij}Y_{jk}.
-\]
+For positive dimension, the complete convention ledger is:
 
-Each summand is measurable because products of measurable complex functions
-are measurable. The finite sum remains measurable. Infinite-dimensional
-operator products require a different analytic interface, so this theorem does
-not pretend to cover them.
+| Convention field | This project's finite GUE choice |
+|---|---|
+| Dimension | \(n\times n\), with a separate explicit Dirac policy at \(n=0\) |
+| Diagonal coordinates | independent centered real Gaussians of variance \(1/n\) |
+| Strict-upper coordinates | independent complex coordinates whose real and imaginary parts are independent centered Gaussians, each of variance \(1/(2n)\) |
+| Lower triangle | conjugate reflection of the strict upper triangle, not new independent data |
+| Density exponent | the associated classical convention is proportional to \(\exp[-n\operatorname{Tr}(H^2)/2]\); the repository has not proved a density theorem |
+| Spectral scale | the \(n^{-1/2}\) scale is already built into the entries, producing an order-one spectrum |
+| Trace | <code>Matrix.trace</code> is ordinary; empirical moments introduce the factor \(n^{-1}\) separately |
 
-## High camp: Hermitian symmetry
+The density row records the convention needed to compare literature formulas.
+It is explanatory context, not a checked density identity.
 
-For complex matrices, the
-{{< refterm "conjugate-transpose" "conjugate transpose" >}} is
+The checked {{< refterm "unitary-invariance" "unitary invariance" >}} statement
+is law-level symmetry: pushing the finite GUE matrix law through
+\(H\mapsto UHU^*\) leaves that law unchanged for every unitary \(U\). It is not
+pointwise equality \(UHU^*=H\).
 
-\[
-(A^*)_{ij}=\overline{A_{ji}}.
-\]
+The repository does **not** yet prove:
 
-A {{< refterm "hermitian-matrix" "Hermitian matrix" >}} satisfies
-\(A^*=A\). This is the matrix analogue of a self-adjoint operator.
+- a Hermitian-space or joint-eigenvalue density formula;
+- the semicircle law or any large-dimension spectral limit;
+- local spacing universality, edge statistics, or Tracy-Widom laws;
+- a Gaussian orthogonal or symplectic ensemble;
+- that an empirical spectral measure determines its matrix;
+- that a random Jacobian belongs to GUE;
+- a physical quantum-chaos conclusion from the finite GUE construction; or
+- any result merely because the running two-outcome worksheet computed it.
 
-The finite-dimensional spectral theorem gives the reward: a Hermitian complex
-matrix has real eigenvalues and can be diagonalized by a unitary change of
-basis. Hermitian realizations therefore have real spectra sample by sample,
-even though their entries may be complex
-([Mathlib contributors](#ref-mathlib-spectrum)).
+The first four absences are later random-matrix work. The remaining four are
+claim boundaries: spectra discard information, modeling assumptions must be
+stated, and a pedagogical computation is not a project theorem.
 
-Turning an ordered eigenvalue into a scalar random variable requires a separate
-measurability theorem. The current project has not yet proved that step.
+## Why physicists care, without skipping the assumptions
 
-That property is central in quantum mechanics. A finite-dimensional Hamiltonian
-is represented by a Hermitian matrix so that measured energy levels are real.
-Random matrix ensembles do not claim that a complicated Hamiltonian literally
-has independent random entries. They provide symmetry-constrained statistical
-models for spectral questions after microscopic detail is set aside.
-
-Historically, Wigner used random-matrix ideas to study the statistical behavior
-of complex nuclear spectra, and Dyson organized orthogonal, unitary, and
-symplectic symmetry classes
+Hermitian random matrices became central in mathematical physics because
+Hermitian operators model finite quantum observables and have real energy
+levels. Wigner used random-matrix ideas to study the statistics of complex
+nuclear spectra, and Dyson organized the orthogonal, unitary, and symplectic
+symmetry classes
 ([Wigner, 1955](#ref-wigner-1955);
 [Dyson, 1962](#ref-dyson-1962);
-[Dyson, 1962, Threefold Way](#ref-dyson-threefold)). Those works motivate the
-subject, but the present Lean file proves only the finite algebraic and
-measurable foundation.
+[Dyson, Threefold Way](#ref-dyson-threefold)).
 
-## A constructor that cannot miss Hermitian symmetry
-
-Given any square complex matrix \(A\), define
-
-\[
-\operatorname{sym}(A)=A+A^*.
-\]
-
-Then
-
-\[
-\operatorname{sym}(A)^*
-=(A+A^*)^*
-=A^*+A
-=A+A^*
-=\operatorname{sym}(A).
-\]
-
-The project calls this **unnormalized Hermitian symmetrization**. Some contexts
-use \((A+A^*)/2\), which is the projection onto the Hermitian part. Other
-random-matrix constructions use dimension-dependent scaling to control the
-spectral radius. Naming the current constructor as unnormalized prevents an
-algebraic convenience from silently becoming an ensemble convention.
-
-### A complete two-by-two example
-
-Take
-
-\[
-A=
-\begin{bmatrix}
-1+i & 2-i \\
-3+4i & -i
-\end{bmatrix}.
-\]
-
-Its conjugate transpose is
-
-\[
-A^*=
-\begin{bmatrix}
-1-i & 3-4i \\
-2+i & i
-\end{bmatrix},
-\]
-
-so
-
-\[
-A+A^*=
-\begin{bmatrix}
-2 & 5-5i \\
-5+5i & 0
-\end{bmatrix}.
-\]
-
-The diagonal is real, and the off-diagonal entries are conjugate pairs. This
-is not an observed dataset or a model fit. It is a toy calculation chosen so
-every part of the definition is visible.
-
-## Pointwise truth and almost-sure truth
-
-For a random matrix \(X\), symmetrization is applied sample by sample:
-
-\[
-\omega \longmapsto X(\omega)+X(\omega)^*.
-\]
-
-The project proves this matrix is Hermitian for **every** outcome. It then
-defines the weaker measure-dependent property
-
-\[
-X(\omega) \text{ is Hermitian for }\mu\text{-almost every }\omega.
-\]
-
-See {{< refterm "almost-everywhere" "almost everywhere" >}} for the distinction.
-Because a pointwise theorem allows no exceptions, the almost-everywhere result
-follows for any measure without further calculation.
-
-{{< checkpoint stage="High camp" title="Do not spend a stronger theorem" >}}
-The constructor is Hermitian at every sample. Keep that pointwise fact available
-for exact ensemble constructors, then derive an almost-everywhere theorem only
-when a measure-dependent API asks for it. Replacing the stronger statement too
-early would discard useful information.
-{{< /checkpoint >}}
-
-In Lean:
-
-```lean
-def IsHermitianAE (X : RandomMatrix Ω ι ι ℂ) (μ : Measure Ω) : Prop :=
-  ∀ᵐ ω ∂μ, (X ω).IsHermitian
-
-theorem hermitianSymmetrization_isHermitianAE
-    (X : RandomMatrix Ω ι ι ℂ) (μ : Measure Ω) :
-    IsHermitianAE (hermitianSymmetrization X) μ :=
-  Filter.Eventually.of_forall (hermitianSymmetrization_isHermitian X)
-```
-
-The proof term `Eventually.of_forall` is exactly the logical bridge: what is
-true everywhere is eventually true in the almost-everywhere filter.
-
-## What the base module proves
-
-The current foundation establishes:
-
-- a reusable matrix-valued map type;
-- the entrywise measurable structure on matrix spaces;
-- an if-and-only-if coordinate criterion for measurability;
-- measurable transpose, scalar mapping, constants, conjugate transpose,
-  addition, and finite matrix multiplication;
-- an explicitly unnormalized Hermitian symmetrization;
-- pointwise Hermitian symmetry of that constructor; and
-- the corresponding almost-everywhere statement for an arbitrary measure.
-
-Every item above is checked by Lean 4.32.0 against Mathlib 4.32.0.
-
-## Four more checked ridges
-
-The project now builds four modules on top of that base.
-
-`RandomMatrices.Hermitian` separates pointwise, almost-everywhere, and
-measurable Hermitian conditions. It bundles a measurable matrix that is
-Hermitian at every realization, proves real diagonal entries and real traces,
-and constructs congruence transforms \(AHA^*\) without pretending that an
-arbitrary \(A\) gives {{< refterm "unitary-invariance" "unitary invariance" >}}.
-Follow its complete proof narrative
-in [Packaging Hermitian Random Matrices]({{< relref "/development-notebook/2026/07/hermitian-random-matrices" >}}).
-
-`RandomMatrices.Observables` defines the scalar observable
-\(\omega\mapsto\operatorname{tr}(X(\omega)^k)\), proves it measurable,
-and proves it real for Hermitian realizations. It does not yet take an
-expectation. Follow that boundary in
-[Trace Powers Before Moments]({{< relref "/development-notebook/2026/07/trace-power-observables" >}}).
-
-<code>RandomMatrices.Laws</code> defines
-<code>RandomMatrix.law</code> as an explicit measurable pushforward, proves
-evaluation, composition, probability-measure, and Dirac rules, and gives
-bundled Hermitian laws. It defines
-<code>IsUnitaryConjugationInvariant</code>, proves the zero measure and the
-Dirac law at the zero matrix invariant, and proves
-<code>law_conjugateBy</code>. That last theorem identifies the law of
-\(AXA^*\) as a pushforward. It does not say that this law is unchanged. Read
-the complete declaration-by-declaration account in
-[From Random Matrices to Laws]({{< relref "/development-notebook/2026/07/from-random-matrices-to-laws" >}}).
-
-<code>RandomMatrices.HermitianCoordinates</code> defines the finite strict
-upper triangle, pairs it with a real diagonal, and assembles both directly
-into a Hermitian matrix. It proves the diagonal, upper, and lower entry
-formulas, pointwise Hermiticity, coordinatewise measurability, the canonical
-coordinate map, and the exact zero-dimensional boundary. It does not use
-\(X+X^*\), which would double a supplied real diagonal. Read the compact
-{{< refterm "hermitian-coordinate-space" "Hermitian coordinate space" >}}
-entry and the full
-[Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
-chapter.
-
-## What is not proved yet
-
-The checked stack now includes one joint probability measure for the real
-diagonal and complex strict upper coordinates, the Wigner-scaled finite GUE
-matrix law, and its exact entry marginals and independence architecture. It
-does not yet define or prove:
-
-- a Gaussian orthogonal ensemble (GOE);
-- a Hermitian-space density or support theorem for GUE;
-- eigenvalue measurability;
-- unitary invariance for the nontrivial GUE law;
-- integrability or expected trace moments;
-- a semicircle law; or
-- any claim about quantum chaos in a physical system.
-
-This list is not a disclaimer pasted onto a finished theory. It is the module
-boundary. Each missing concept will become a new formal interface with its own
-paired notebook entry.
-
-## The route beyond the finite GUE law
-
-RMT-06 has now completed the first four law-construction steps: it states the
-variance ledger, defines the complete joint coordinate measure, chooses the
-zero-dimensional policy, and pushes the measure through checked assembly. The
-remaining route is:
-
-1. prove Hermitian support at the law level;
-2. prove that unitary conjugation preserves the
-   {{< refterm "probability-law" "law" >}}; and
-3. establish integrability and compute small trace moments before attempting
-   asymptotic spectral laws.
-
-The order matters. If normalization is vague, two mathematically legitimate
-GUE conventions can produce different moment formulas. If the law is not
-separated from the sample function, unitary invariance is easy to state at the
-wrong level. If small moments are not checked first, an asymptotic theorem can
-hide a finite-dimensional mismatch.
-
-Every ensemble page therefore carries a normalization ledger:
-
-| Convention field | Question that must have one answer |
-|---|---|
-| Diagonal variance | What is the variance of each real diagonal coordinate? |
-| Off-diagonal variance | How is variance divided between real and imaginary parts? |
-| Density exponent | Which coefficient multiplies \(\operatorname{tr}(H^2)\) in the Gaussian density? |
-| Spectral scaling | Is the matrix divided by \(\sqrt n\), or is that scale already built into the entries? |
-| Trace convention | Does `trace` mean the ordinary trace or the normalized trace \(n^{-1}\operatorname{tr}\)? |
-
-Hermiticity alone fills none of these rows.
+That history motivates an ensemble. It does not prove that a particular
+Hamiltonian has independent Gaussian coordinates or that one finite sample
+already exhibits a universal limit. The project therefore formalizes the
+finite probability object and its normalization before asking asymptotic or
+physical questions.
 
 ## Two bridges back to nonlinear dynamics
 
-Random matrices are not a detour from dynamics.
-
 ### Random Jacobians
 
-For a random or uncertain dynamical system, the derivative along a state can
-be a random matrix. Its singular values and operator norm quantify one-step
-perturbation growth. Eigenvalues can diagnose a fixed linearization under the
-usual dynamical hypotheses, but they do not by themselves control transient
-growth for a nonnormal matrix. The measurable matrix layer built here can
-carry those Jacobians before any ensemble assumption is imposed.
+The derivative of a random or uncertain dynamical system can be a random
+matrix. Its action on perturbation vectors and its singular values can encode
+one-step growth. Eigenvalues of one fixed linearization answer a narrower
+question and can miss transient growth for a **nonnormal** matrix, one that
+does not commute with its conjugate transpose. The nilpotent boundary above
+already shows that eigenvalues can miss operator action.
+
+The measurable-matrix layer can carry such Jacobians without assuming they
+are Gaussian, Hermitian, independent, or identically distributed.
 
 ### Matrix cocycles
 
-Linearization along an orbit produces products
+Linearization along an orbit produces ordered products
 
 \[
 A_{t-1}\cdots A_1A_0.
 \]
 
-When the matrices depend on a random environment, a base transformation and a
-cocycle relation can organize them into a random matrix cocycle. Lyapunov
-exponents then describe long-time growth rates of such products under further
-hypotheses. The finite multiplication measurability theorem is a small but
-genuine first ingredient in that direction.
+A base transformation and generator can organize these matrices into a
+{{< refterm "one-sided-discrete-matrix-cocycle" "one-sided random matrix cocycle" >}}.
+Long-time norm growth then leads toward Lyapunov exponents, asymptotic
+exponential growth rates, under additional
+{{< refterm "integrability" "integrability" >}} and
+{{< refterm "ergodicity" "ergodicity" >}} hypotheses. The finite measurable
+multiplication theorem is one early ingredient, not a Lyapunov theorem by
+itself.
 
-## Exercises: from foothills to summit camp
+## Exercises: use the same example until every layer is yours
 
-1. **Coordinate check.** For a two-by-two real random matrix, write the four
-   scalar functions whose measurability is equivalent to matrix measurability.
-2. **Dependence check.** Explain why Hermitian symmetry prevents all off-diagonal
-   coordinates from being independent.
-3. **Algebra check.** Starting from \((AB)^*=B^*A^*\), determine when the
-   product of two Hermitian matrices is Hermitian.
-4. **Lean check.** Find the single point in `measurable_mul` where finiteness of
-   the shared index is used.
-5. **Design check.** Compare \(A+A^*\) with \((A+A^*)/2\). Which
-   theorem statements are unchanged, and which future distributional
-   statements would change?
-6. **Research check.** Formulate
-   {{< refterm "unitary-invariance" "unitary invariance" >}} as equality of
-   laws rather than pointwise equality of matrices.
+1. **Preimage.** Compute the source event where the lower-left entry equals
+   one. What probability does it have?
+2. **Realization.** Multiply both \(R\) and \(B\) by \((1,2)\). Which output
+   belongs to each outcome?
+3. **Eigenpairs.** Verify the four eigenvector equations without using the
+   characteristic polynomial.
+4. **Characteristic roots.** Expand both determinants
+   \(\det(\lambda I-R)\) and \(\det(\lambda I-B)\).
+5. **Sample moments.** Recompute the first two empirical moments in the table.
+6. **Outer event.** Let \(C\) be the set of empirical measures assigning
+   positive mass to \(\{2\}\). Compute \(\mathcal Q(C)\).
+7. **Law versus mean.** Construct a different law on measures whose mean is
+   \(\overline L\). Explain what sample-to-sample information changes.
+8. **Boundary.** Verify \(N^2=0\), \(N\ne0\), and \(N\ne N^*\).
+9. **Symmetrization.** Compute \((N+N^*)/2\). How do its eigenvalues compare
+   with the unnormalized blue matrix \(B\)?
+10. **Lean tokens.** In the local worksheet, change the red diagonal entry
+    from \(2\) to \(3\). Update its eigenpair certificate, spectrum, event
+    preimage, and mass ledger together.
+11. **Resource boundary.** Explain why the <code>Std</code> worksheet is safe
+    locally while the two <code>repo-check</code> modules belong on the guarded
+    Linux builder.
+12. **Research boundary.** Name one additional theorem needed before a finite
+    spectral law can support a large-dimension universality claim.
+
+## Where to continue
+
+- Start with {{< refterm "random-matrix" "Random matrix" >}} for a compact
+  account of the carrier, realization, measurability, and law distinction.
+- Continue to
+  [Finite Hermitian Matrices from Coordinates]({{< relref "/knowledge-base/deep-dives/finite-hermitian-matrices-from-coordinates" >}})
+  for direct assembly from nonredundant coordinates.
+- Use
+  [Finite Hermitian Spectra and Empirical Measures]({{< relref "/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures" >}})
+  for the ordered spectrum, multiplicity, zero-dimensional policy, and
+  deterministic measure layer.
+- Then read
+  [Hermitian Spectral Perturbation, Continuity, and Measurability]({{< relref "/knowledge-base/deep-dives/hermitian-spectral-perturbation-continuity-and-measurability" >}})
+  for the theorem that opens the spectral pushforward gate.
+- Finish the finite path with
+  [Finite Gaussian Unitary Ensemble Empirical Spectral Laws and Normalized Moments]({{< relref "/knowledge-base/deep-dives/finite-gue-empirical-spectral-laws-and-normalized-moments" >}}).
 
 ## References
 
 <a id="ref-mathlib-measurable"></a>
 **Mathlib contributors.**
 [Measurable spaces and measurable functions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/MeasurableSpace/Basic.html),
-Mathlib 4 documentation. Accessed 2026-07-20. This is the implementation-level
-source for Lean's measurable-space and measurable-function interfaces.
+Mathlib 4 documentation. Accessed 2026-07-20. This is the
+implementation-level source for Lean's measurable-space and
+measurable-function interfaces.
 
 <a id="ref-mathlib-release"></a>
 **Mathlib contributors.**
@@ -614,14 +970,14 @@ release against which the Lean declarations in this chapter were checked.
 **Mathlib contributors.**
 [Hermitian matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/LinearAlgebra/Matrix/Hermitian.html),
 Mathlib 4 documentation. Accessed 2026-07-20. This documents
-`Matrix.IsHermitian` and the algebraic closure lemmas used by the project.
+<code>Matrix.IsHermitian</code> and the algebraic closure lemmas used by the
+project.
 
 <a id="ref-mathlib-spectrum"></a>
 **Mathlib contributors.**
 [Spectral theory of matrices](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/Matrix/Spectrum.html),
 Mathlib 4 documentation. Accessed 2026-07-20. This documents the finite
-Hermitian spectral infrastructure that later project modules can build on; it
-is not imported by the current basic random-matrix file.
+Hermitian spectral infrastructure consumed by the later project modules.
 
 <a id="ref-tao-rmt"></a>
 **Terence Tao.**

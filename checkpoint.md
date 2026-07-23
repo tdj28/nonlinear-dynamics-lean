@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:17 PDT
+Last updated: 2026-07-22 18:21 PDT
 
-Audited baseline: `main` at `a78e552`
+Audited baseline: `main` at `3e99c23`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -183,14 +183,24 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **1 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **2 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
 cross inner product `-1`. It has three complementary accessible figures,
 four human/paper/Lean bridges, a token map at each bridge, a cloud-only
 project check, and a local `Std` tutorial executed successfully under Lean
-4.32.0 with outputs `[true, true, false]` and `[10, 15, -1, 20]`.
+4.32.0 with outputs `[true, true, false]` and `[10, 15, -1, 20]`. *Random
+Matrices: From Outcomes to Spectra* now follows one fair red/blue experiment
+from source events through two exact matrices, checked eigenpairs, empirical
+spectral measures, the outer law on measures, and their distinct mean measure.
+Its nilpotent boundary shows why equal spectra need not mean equal operators;
+two accessible numeric figures and six human/paper/Lean bridges expose every
+typed gate. Its `Std` worksheet was executed locally under Lean 4.32.0 and
+prints the two entry ledgers, spectra, four successful eigenpair certificates,
+the exact preimage `["red"]`, and the four quarter-mass atoms. The page-owned
+card now derives deterministically from that exact worked figure, while both
+Mathlib/project probes remain clearly cloud-only.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3078,6 +3088,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `3e99c23`: repair six foundational probability/measure teaching bundles
+  with deterministic worked-SVG card generators, explicit SVG dimensions,
+  and five tiny `Std` tutorials executed locally without Mathlib or Lake.
 - `a78e552`: rebuild the Hermitian-coordinate Deep Dive around one exact
   two-by-two matrix, conjugate-sign and diagonal-scaling near-misses, weighted
   Frobenius geometry, four Lean bridges, three figures, and a locally

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760"
+     viewBox="0 0 1000 760" role="img"
+     aria-labelledby="coinSpectrumTitle coinSpectrumDesc">
+  <title id="coinSpectrumTitle">A fair coin selects one of two matrices and therefore one of two empirical spectra</title>
+  <desc id="coinSpectrumDesc">The red outcome selects the diagonal matrix with rows two zero and zero zero, whose eigenvalue slots are two and zero. The blue outcome selects the symmetric swap matrix with rows zero one and one zero, whose eigenvalue slots are one and minus one. Each outcome has probability one half, and each of its two eigenvalue slots receives half of the sample spectral mass.</desc>
+  <rect width="1000" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:22px;font-weight:700}
+    .h{font-size:16px;font-weight:700}
+    .s{font-size:14px}
+    .m{font-size:12px;fill:#5A544C}
+    .card{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.6}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.6}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.6}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}
+    .cell{fill:#FFFDF8;stroke:#7F786D;stroke-width:1.2}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:2.4;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="28" y="38" class="t title">One fair coin, two matrices, two whole spectral measures</text>
+  <text x="28" y="62" class="t m">Follow each outcome from source probability to a realized matrix, its two eigenvalue slots, and equal spectral weights.</text>
+
+  <rect x="28" y="88" width="944" height="268" rx="14" class="clay"/>
+  <rect x="46" y="110" width="138" height="220" rx="12" class="card"/>
+  <text x="115" y="140" text-anchor="middle" class="t h">RED outcome</text>
+  <text x="115" y="166" text-anchor="middle" class="t s">probability 1/2</text>
+  <circle cx="115" cy="218" r="31" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/>
+  <text x="115" y="225" text-anchor="middle" class="t h">RED</text>
+  <text x="115" y="282" text-anchor="middle" class="t m">one sampled case</text>
+
+  <path d="M 192 220 H 235" class="arrow"/>
+  <rect x="246" y="110" width="210" height="220" rx="12" class="card"/>
+  <text x="351" y="140" text-anchor="middle" class="t h">Realized matrix</text>
+  <rect x="302" y="164" width="48" height="48" class="cell"/>
+  <rect x="350" y="164" width="48" height="48" class="cell"/>
+  <rect x="302" y="212" width="48" height="48" class="cell"/>
+  <rect x="350" y="212" width="48" height="48" class="cell"/>
+  <text x="326" y="194" text-anchor="middle" class="t h">2</text>
+  <text x="374" y="194" text-anchor="middle" class="t h">0</text>
+  <text x="326" y="242" text-anchor="middle" class="t h">0</text>
+  <text x="374" y="242" text-anchor="middle" class="t h">0</text>
+  <text x="351" y="287" text-anchor="middle" class="t m">horizontal scale 2</text>
+  <text x="351" y="306" text-anchor="middle" class="t m">vertical scale 0</text>
+
+  <path d="M 464 220 H 507" class="arrow"/>
+  <rect x="518" y="110" width="196" height="220" rx="12" class="blue"/>
+  <text x="616" y="140" text-anchor="middle" class="t h">Eigenvalue slots</text>
+  <circle cx="575" cy="204" r="31" fill="#FFFDF8" stroke="#4B6787" stroke-width="2"/>
+  <circle cx="657" cy="204" r="31" fill="#FFFDF8" stroke="#4B6787" stroke-width="2"/>
+  <text x="575" y="211" text-anchor="middle" class="t title">2</text>
+  <text x="657" y="211" text-anchor="middle" class="t title">0</text>
+  <text x="616" y="262" text-anchor="middle" class="t m">two slots, multiplicity kept</text>
+  <text x="616" y="286" text-anchor="middle" class="t m">diagonal entries reveal them</text>
+
+  <path d="M 722 220 H 765" class="arrow"/>
+  <rect x="776" y="110" width="178" height="220" rx="12" class="green"/>
+  <text x="865" y="140" text-anchor="middle" class="t h">Sample measure</text>
+  <line x1="810" y1="234" x2="920" y2="234" stroke="#7F786D" stroke-width="2"/>
+  <circle cx="823" cy="234" r="11" fill="#4B6787"/>
+  <circle cx="907" cy="234" r="11" fill="#4B6787"/>
+  <text x="823" y="270" text-anchor="middle" class="t s">0: half</text>
+  <text x="907" y="270" text-anchor="middle" class="t s">2: half</text>
+  <text x="865" y="302" text-anchor="middle" class="t m">total mass one</text>
+
+  <rect x="28" y="378" width="944" height="268" rx="14" class="blue"/>
+  <rect x="46" y="400" width="138" height="220" rx="12" class="card"/>
+  <text x="115" y="430" text-anchor="middle" class="t h">BLUE outcome</text>
+  <text x="115" y="456" text-anchor="middle" class="t s">probability 1/2</text>
+  <circle cx="115" cy="508" r="31" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <text x="115" y="515" text-anchor="middle" class="t h">BLUE</text>
+  <text x="115" y="572" text-anchor="middle" class="t m">one sampled case</text>
+
+  <path d="M 192 510 H 235" class="arrow"/>
+  <rect x="246" y="400" width="210" height="220" rx="12" class="card"/>
+  <text x="351" y="430" text-anchor="middle" class="t h">Realized matrix</text>
+  <rect x="302" y="454" width="48" height="48" class="cell"/>
+  <rect x="350" y="454" width="48" height="48" class="cell"/>
+  <rect x="302" y="502" width="48" height="48" class="cell"/>
+  <rect x="350" y="502" width="48" height="48" class="cell"/>
+  <text x="326" y="484" text-anchor="middle" class="t h">0</text>
+  <text x="374" y="484" text-anchor="middle" class="t h">1</text>
+  <text x="326" y="532" text-anchor="middle" class="t h">1</text>
+  <text x="374" y="532" text-anchor="middle" class="t h">0</text>
+  <text x="351" y="577" text-anchor="middle" class="t m">diagonal directions scale</text>
+  <text x="351" y="596" text-anchor="middle" class="t m">by 1 and minus 1</text>
+
+  <path d="M 464 510 H 507" class="arrow"/>
+  <rect x="518" y="400" width="196" height="220" rx="12" class="clay"/>
+  <text x="616" y="430" text-anchor="middle" class="t h">Eigenvalue slots</text>
+  <circle cx="575" cy="494" r="31" fill="#FFFDF8" stroke="#A67C52" stroke-width="2"/>
+  <circle cx="657" cy="494" r="31" fill="#FFFDF8" stroke="#A67C52" stroke-width="2"/>
+  <text x="575" y="501" text-anchor="middle" class="t title">1</text>
+  <text x="657" y="501" text-anchor="middle" class="t title">-1</text>
+  <text x="616" y="552" text-anchor="middle" class="t m">two checked eigenvectors</text>
+  <text x="616" y="576" text-anchor="middle" class="t m">characteristic roots agree</text>
+
+  <path d="M 722 510 H 765" class="arrow"/>
+  <rect x="776" y="400" width="178" height="220" rx="12" class="green"/>
+  <text x="865" y="430" text-anchor="middle" class="t h">Sample measure</text>
+  <line x1="810" y1="524" x2="920" y2="524" stroke="#7F786D" stroke-width="2"/>
+  <circle cx="823" cy="524" r="11" fill="#A67C52"/>
+  <circle cx="907" cy="524" r="11" fill="#A67C52"/>
+  <text x="823" y="560" text-anchor="middle" class="t s">-1: half</text>
+  <text x="907" y="560" text-anchor="middle" class="t s">1: half</text>
+  <text x="865" y="592" text-anchor="middle" class="t m">total mass one</text>
+
+  <rect x="28" y="672" width="944" height="60" rx="12" class="green"/>
+  <text x="500" y="698" text-anchor="middle" class="t h">Outer law: choose the entire red sample measure or the entire blue sample measure, each with probability 1/2.</text>
+  <text x="500" y="718" text-anchor="middle" class="t m">One sample measure is not the law of the random measure.</text>
+</svg>
