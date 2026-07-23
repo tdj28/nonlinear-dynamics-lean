@@ -3,7 +3,7 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-23 00:56 PDT
+Last updated: 2026-07-23 00:57 PDT
 
 Audited baseline: `main` at `7e5557d`
 
@@ -3633,6 +3633,12 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `ec0dc90`: complete the 150-document mathematical-register audit across the
+  glossary, Deep Dives, Development Notebook, indexes, project guides, and
+  checkpoint; add independent adversarial reviews and a context-aware
+  regression gate for evidentiary overreach.
+- `7e5557d`: separate portable reader-facing Lean commands from maintainer-only
+  build infrastructure throughout the public teaching site.
 - `59ff224`: finish the 36-chapter Deep Dive textbook pass with the exact
   forward/inverse real-log-norm tail sandwich, noncommuting inverse-order
   example, three accessible figures, eight Lean bridges, and an executed
