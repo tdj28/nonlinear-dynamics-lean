@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:59 PDT
+Last updated: 2026-07-22 19:05 PDT
 
-Audited baseline: `main` at `cf5a1a7`
+Audited baseline: `main` at `da4d884`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **4 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **5 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -238,6 +238,16 @@ check make every layer reproducible. An adversarial review corrected a
 source/realization conflation, figure overflow, missing disclosure metadata,
 and an unreadably small first card design. The same metadata audit restored
 the canonical AI disclosure on the completed random-matrices chapter.
+*Finite Product Probability Spaces and Independent Gaussian Fields* begins
+with all four fair-bit outcomes and computes the marginal masses, cylinder
+preimages, full joint table, and product law cell by cell. Matching-marginal
+and parity counterexamples separate dependence, pairwise independence, and
+mutual independence before the chapter climbs to finite complex Gaussian
+fields, canonical product measures, evaluation maps, ordinary versus
+almost-everywhere measurability, and the empty-index Dirac boundary. Two
+numeric figures, six Lean bridges, a guarded project probe, and a second locally
+executed `Std` enumeration make the path reproducible without running Mathlib
+on the workstation.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3125,6 +3135,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `da4d884`: rebuild *Gaussian Laws, Independence, and Normalization* around
+  one complete experiment, exact scaling and parity ledgers, six Lean bridges,
+  an executed local worksheet, and an adversarially repaired readable card.
 - `cf5a1a7`: rebuild *Complex Gaussian Coordinates and Geometry* around the
   exact `1 - 2i`, `(4, 1)` law ledger, copied-coordinate dependence boundary,
   support atlas, seven Lean bridges, and a locally executed `Std` lab.

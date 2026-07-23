@@ -2,17 +2,24 @@
 title: "Finite Product Probability Spaces and Independent Gaussian Fields"
 slug: "finite-product-probability-spaces-and-independent-gaussian-fields"
 date: 2026-07-21
-summary: "A textbook ascent from indexed complex Gaussian coordinates to mutual independence, exact finite product laws, canonical sample spaces, real scaling, and the boundary before a Gaussian matrix ensemble."
-lead: "A list of correct Gaussian marginals does not specify an independent field's joint law. The missing object is the joint law, and the missing proof is mutual independence at the right level."
+summary: "A worked four-outcome experiment grows into finite product measures, mutual independence, canonical complex Gaussian fields, and the exact Lean interfaces connecting them."
+lead: "Begin with four rows you can audit by hand, then climb from coordinate preimages and product weights to function-valued random variables and an exact finite Gaussian product law."
 draft: false
 pro_reviewed: false
-level: "Probability foundations to random-matrix high camp"
-reading_time: "55 to 75 minutes"
-prerequisites: "Random variables, finite sets, real and imaginary parts, and basic probability laws; measure-theory details are introduced as they become necessary"
+level: "Probability foundations to finite Gaussian fields"
+reading_time: "70 to 95 minutes"
+prerequisites: "Finite sets and fractions; events, laws, measurability, null sets, and Gaussian variables are introduced or linked when first used"
 lean_module: "NonlinearDynamics.Random.ComplexGaussianFamilies"
 toc: true
 og_image: "finite-gaussian-fields-card.png"
-og_image_alt: "A warm-paper teaching card shows a finite grid of complex Gaussian coordinates entering a product probability space, with separate labels for local laws, mutual independence, and the exact joint law."
+og_image_alt: "A four-row probability ledger shows outcomes 00, 01, 10, and 11, each with weight one quarter, producing fair coordinate marginals, exact cylinder-event preimages, and a joint product law."
+ai_disclosure: |
+  **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
+  and review this note. The author selected the questions, shaped the
+  exposition, has inspected the sources and artifacts cited here, and is
+  responsible for the final text and claims. This is an independent,
+  non-peer-reviewed Deep Dive. Verify claims against the cited primary
+  sources and any released artifacts before relying on them.
 ---
 
 {{< panel "warning" >}}
@@ -22,32 +29,171 @@ received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
 
-A single complex Gaussian variable is a two-dimensional real object. A finite
-family of them adds another dimension of structure: dependence across the
-index set. Every coordinate may have the right mean, the right real and
-imaginary variances, and even the right internal independence, while the family
-as a whole still fails to be independent.
+Four outcomes are enough to expose nearly every logical seam in a finite
+product probability space. We will compute all four rows, both coordinate
+laws, two event preimages, and the complete joint law. Only after those numbers
+are visible will we replace the bits by complex Gaussian coordinates.
 
-This chapter develops the exact finite layer needed before a random-matrix
-constructor. It begins with indexed sample maps, distinguishes three scopes of
-independence, identifies the full joint law as a finite product measure, and
-then moves to a canonical outcome space where sample points are coordinate
-assignments. It treats the empty product as a genuine boundary case and shows
-why real scaling is safer than an unqualified complex scaling theorem.
+That order matters. A product law is not a slogan saying that variables feel
+unrelated. It is a precise statement about the probability of every suitable
+coordinate event. In a four-row experiment, we can check the statement one
+cell at a time. In a continuous Gaussian field, Lean records the same idea
+through measures, measurable maps, exact laws, and mutual independence.
 
 The word **field** here means a finite indexed family of random variables. It
 does not mean a continuum Gaussian process, an algebraic field, or a quantum
 field. The index type may later label upper-triangular matrix positions, but no
 matrix ensemble is defined in this chapter.
 
+## Base camp: two fair bits with no hidden rows
+
+Let the **sample space**, the set of possible outcomes, be
+
+\[
+\Omega=\{00,01,10,11\}.
+\]
+
+Give every outcome weight \(1/4\). The resulting
+{{< refterm "probability-measure" "probability measure" >}} \(P\) has total
+mass
+
+\[
+P(\Omega)=\frac14+\frac14+\frac14+\frac14=1.
+\]
+
+Define two coordinate readouts:
+
+\[
+X(uv)=u,\qquad Y(uv)=v.
+\]
+
+For example, \(X(10)=1\) and \(Y(10)=0\). Each coordinate is a
+{{< refterm "random-variable" "random variable" >}}: a measurable map from
+the outcome space to a value space. In this finite worksheet every subset is
+declared measurable, so measurability is automatic. In the continuous setting
+later, it will not be automatic.
+
+Here is the complete experiment. There are no unlisted outcomes and no fitted
+or simulated values.
+
+| source outcome \(\omega\) | \(X(\omega)\) | \(Y(\omega)\) | \(P(\{\omega\})\) |
+|---:|---:|---:|---:|
+| \(00\) | \(0\) | \(0\) | \(1/4\) |
+| \(01\) | \(0\) | \(1\) | \(1/4\) |
+| \(10\) | \(1\) | \(0\) | \(1/4\) |
+| \(11\) | \(1\) | \(1\) | \(1/4\) |
+
+The {{< refterm "probability-law" "law" >}} or probability distribution of
+\(X\) collects source weights with the same \(X\)-value:
+
+\[
+\begin{aligned}
+P(X=0)&=P(\{00,01\})=\frac24=\frac12,\\
+P(X=1)&=P(\{10,11\})=\frac24=\frac12.
+\end{aligned}
+\]
+
+The same calculation gives
+
+\[
+P(Y=0)=P(Y=1)=\frac12.
+\]
+
+This is a real probability distribution with no density formula. A
+distribution is a measure; a density is only one possible description of some
+measures.
+
+### Pull an event back to the source
+
+An {{< refterm "event" "event" >}} is a measurable set of outcomes. If we ask
+for the target condition \(X=1\), its **preimage** is the source event
+
+\[
+X^{-1}(\{1\})=\{10,11\}.
+\]
+
+Therefore
+
+\[
+P(X=1)=P(\{10,11\})=\frac12.
+\]
+
+If both coordinates are constrained, then
+
+\[
+\{X=1,\;Y=0\}
+=X^{-1}(\{1\})\cap Y^{-1}(\{0\})
+=\{10\},
+\]
+
+so
+
+\[
+P(X=1,Y=0)=P(\{10\})=\frac14.
+\]
+
+An event that constrains selected coordinates and leaves the others free is a
+**cylinder event**. The event \(X=1\) is a cylinder in this two-coordinate
+product because \(Y\) may be either \(0\) or \(1\).
+
+{{< reference-figure
+  wide="true"
+  src="four-outcome-product-ledger.svg"
+  alt="Four equally weighted source outcomes produce all four coordinate pairs once; both coordinate marginals are one half, the cylinder X equals one has two outcomes, and the joint cylinder X equals one and Y equals zero has one outcome."
+  caption="**Finding:** the four source rows form the complete joint ledger. Every pair \((x,y)\) has mass \(1/4\); each coordinate value has marginal mass \(1/2\); the cylinder \(X=1\) pulls back to two rows with mass \(1/2\); and the joint cylinder \(X=1,Y=0\) pulls back to one row with mass \(1/4=(1/2)(1/2)\). These are exact toy probabilities, not measured frequencies. The worksheet is finite and non-Gaussian."
+>}}
+
+## The product statement, in four finite views
+
+Let \(\mu_X\) and \(\mu_Y\) be the two coordinate laws. Each gives weight
+\(1/2\) to \(0\) and \(1/2\) to \(1\). Their product measure gives a rectangle
+\(A\times B\) the weight
+
+\[
+(\mu_X\otimes\mu_Y)(A\times B)=\mu_X(A)\mu_Y(B).
+\]
+
+For singleton rectangles in the running example,
+
+\[
+\begin{aligned}
+P(X=x,Y=y)
+&=P(X=x)P(Y=y)\\
+&=\frac12\cdot\frac12\\
+&=\frac14
+\end{aligned}
+\]
+
+for every \(x,y\in\{0,1\}\). Because those four singleton rectangles exhaust
+the finite target, the complete joint law is the product law:
+
+\[
+\mathcal L_P(X,Y)=\mu_X\otimes\mu_Y.
+\]
+
+Here \(\mathcal L_P(X,Y)\) is the
+{{< refterm "pushforward-measure" "pushforward" >}} of \(P\) through
+\(\omega\mapsto(X(\omega),Y(\omega))\). Move each source weight to its observed
+pair, then combine weights that land at the same pair.
+
+For this finite experiment, the same fact has four equivalent readings:
+
+1. every pair occurs in exactly one of four equally weighted source rows;
+2. every joint singleton has mass \(1/4\), the product of its marginal masses;
+3. the \(2\times2\) joint table has four entries, all \(1/4\); and
+4. the law identity is \(\mathcal L_P(X,Y)=\mu_X\otimes\mu_Y\).
+
+The fourth form scales to continuous spaces. The first three make its meaning
+auditable before the notation becomes abstract.
+
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [One outcome, many coordinates](#base-camp-one-outcome-many-coordinates) | Read a finite random field as one function-valued variable |
+| First encounter | [Two fair bits](#base-camp-two-fair-bits-with-no-hidden-rows) | Audit source weights, marginals, preimages, and the joint table |
 | Dependence route | [Three independence scopes](#camp-one-three-independence-scopes) | See why marginals, pairwise independence, and separate families are insufficient |
 | Measure route | [The exact product joint law](#camp-three-the-exact-product-joint-law) | Understand `Measure.pi` and law-level factorization |
-| Lean route | [The checked family bundle](#camp-two-the-checked-family-bundle) | Match the formal interface to its mathematical obligations |
+| Lean route | [The local worksheet](#try-it-locally-execute-the-four-row-arithmetic) | Type finite code locally, then inspect the exact cloud-only module |
 | Geometry route | [Real scaling](#camp-six-real-scaling-preserves-the-cartesian-axes) | Track means, both variance functions, and independence under scaling |
 | Matrix route | [The ridge toward GUE](#the-ridge-toward-a-gaussian-matrix-law) | Identify every layer still missing before a named ensemble |
 
@@ -55,29 +201,33 @@ matrix ensemble is defined in this chapter.
 
 By the summit, you should be able to:
 
-1. distinguish a coordinate law from the law of the complete indexed field;
-2. explain independence inside a complex coordinate and across complex
+1. compute source weights, coordinate marginals, cylinder preimages, and the
+   complete joint table for the four-outcome experiment;
+2. distinguish a coordinate law from the law of the complete indexed field;
+3. explain independence inside a complex coordinate and across complex
    coordinates as separate claims;
-3. distinguish pairwise independence from mutual independence;
-4. exhibit two separately independent real families whose paired complex
+4. distinguish pairwise independence from mutual independence;
+5. exhibit two separately independent real families whose paired complex
    variables are not independent;
-5. state the exact finite product law of an independent Cartesian complex
+6. state the exact finite product law of an independent Cartesian complex
    Gaussian family;
-6. explain why ordinary coordinate measurability remains an explicit field;
-7. construct the canonical product probability space and its evaluation maps;
-8. derive the empty-index Dirac law without inventing an empty-matrix policy;
-9. track coordinate means and both variances under real scaling;
-10. explain why general complex scaling can rotate an anisotropic Cartesian
+7. explain why ordinary coordinate measurability remains an explicit field;
+8. construct the canonical product probability space and its evaluation maps;
+9. derive the empty-index Dirac law without inventing an empty-matrix policy;
+10. type and run the finite `Std` worksheet without entering the project;
+11. track coordinate means and both variances under real scaling;
+12. explain why general complex scaling can rotate an anisotropic Cartesian
     law out of the chosen independent axes; and
-11. list the representation and normalization decisions still required before
+13. list the representation and normalization decisions still required before
     a Gaussian unitary ensemble (GUE) law can be named.
 
 ## The dependence structure in one picture
 
 {{< reference-figure
+  wide="true"
   src="independence-scope-ladder.svg"
-  alt="Within each complex coordinate the real and imaginary parts need an exact product law; across indices the complex coordinates need mutual independence; separate real-family and imaginary-family independence leaves the cross-family block unresolved."
-  caption="**Finding:** independence has three scopes. A Cartesian law controls the real-imaginary pair inside one coordinate. Mutual independence controls the complex blocks across indices. Two separately independent real families leave an entire cross-family block unproved, even when each same-index pair happens to be independent. The final gap must be supplied by independent pair-vectors or an equivalent full joint law."
+  alt="Independent X and Y have four joint cells of mass one quarter; adding parity Z leaves every pair independent but gives triple zero mass one quarter instead of one eighth; copying X into D preserves fair marginals but places masses one half on the diagonal."
+  caption="**Finding:** three numeric ledgers separate three claims. The original pair has the product table. The parity triple is pairwise independent because every two-coordinate projection contains all four pairs once, but it is not mutually independent because \(P(000)=1/4\) while the product value is \(1/8\). The copied coordinate \(D=X\) has the same fair marginal as \(X\), but its joint table is diagonal rather than a product. All three plates use the same four equiprobable toy outcomes; none represents Gaussian data."
 >}}
 
 ## Base camp: one outcome, many coordinates
@@ -249,10 +399,16 @@ a negative variance while retaining zero as a legitimate degenerate case.
 
 ### Why ordinary measurability is stored
 
-The exact coordinate predicate is built on `HasLaw`. Mathlib's `HasLaw`
-contains an `AEMeasurable` field, meaning measurable after a change on a null
-set. Equality in law should ignore null-set changes, so that is the correct
-law-level notion.
+A {{< refterm "measurable-function" "measurable function" >}} pulls every
+measurable target event back to a measurable source event. The exact coordinate
+predicate is built on `HasLaw`. Mathlib's `HasLaw` contains an `AEMeasurable`
+field, meaning that the map agrees almost everywhere with an ordinarily
+measurable map. The exceptional outcomes lie inside a
+{{< refterm "null-set" "null set" >}}, a measurable set of probability zero.
+Probability zero is not the same assertion as logical impossibility: a
+nonempty set can have probability zero in a continuous space. Equality in law
+should ignore null-set changes, so almost-everywhere measurability is the
+correct law-level notion.
 
 The family structure asks for ordinary `Measurable (Z i)` as separate data.
 This stronger pointwise fact supports measurable coordinate transformations
@@ -260,7 +416,9 @@ and the canonical evaluation family. The theorem `aemeasurable` moves from the
 strong field to the weaker consequence. It does not attempt the invalid reverse
 direction.
 
-The distinction is developed further in the
+Ordinary measurability implies almost-everywhere measurability under every
+measure. The reverse implication does not identify the original map on the
+exceptional set. The distinction is developed further in the
 {{< refterm "almost-everywhere" "almost-everywhere" >}} entry.
 
 ### Coordinate consequences
@@ -578,6 +736,288 @@ The current module proves coordinate `MemLp`, coordinate integrability, and
 `jointHasGaussianLaw`. It does not name a complex linear-combination law with
 an explicit resulting variance ledger.
 
+## In Lean: six bridges from the worksheet to the project
+
+The bridges below pair a human sentence, paper mathematics, exact Lean syntax,
+and a token map. The first is a representation change. The remaining five name
+checked project interfaces.
+
+### Bridge 1: collect every coordinate into one value
+
+{{< lean-bridge
+  human="One source outcome omega produces a complete field: at index i, its value is Z i omega."
+  math="\(\mathbf Z(\omega)(i)=Z_i(\omega).\)"
+  lean="fun ω i ↦ Z i ω"
+>}}
+
+- <code>fun</code> begins an anonymous function.
+- <code>ω</code> is the source outcome and <code>i</code> is the coordinate
+  index, in that order.
+- <code>↦</code> separates inputs from output.
+- <code>Z i ω</code> applies the curried family first to the index and then to
+  the outcome.
+- The result has type <code>Ω → (ι → ℂ)</code>. One outcome returns one function
+  of the index.
+{{< /lean-bridge >}}
+
+### Bridge 2: ask for mutual family independence
+
+{{< lean-bridge
+  human="All coordinate random variables Z i are mutually independent under P."
+  math="\((Z_i)_{i\in\iota}\text{ is mutually independent under }P.\)"
+  lean="iIndepFun Z P"
+>}}
+
+- The initial lowercase <code>i</code> in <code>iIndepFun</code> signals an
+  indexed family.
+- <code>Z</code> has curried type <code>ι → Ω → ℂ</code>.
+- <code>P</code> is the source measure. Independence is relative to a measure.
+- This is mutual independence, not merely one proposition for each pair of
+  distinct indices.
+{{< /lean-bridge >}}
+
+### Bridge 3: turn coordinate laws into one product joint law
+
+{{< lean-bridge
+  human="The complete finite field has the product of its exact coordinate Gaussian laws."
+  math="\(\mathcal L_P(\mathbf Z)=\bigotimes_{i\in\iota}\Gamma^{\mathrm{cart}}_{m_i;v_{\mathrm R,i},v_{\mathrm I,i}}.\)"
+  lean="hZ.jointHasLaw"
+>}}
+
+The exact theorem type is:
+
+~~~lean
+HasLaw (fun ω i ↦ Z i ω)
+  (Measure.pi fun i ↦
+    cartesianComplexGaussian (m i) (vRe i) (vIm i)) P
+~~~
+
+- <code>hZ</code> is evidence that the family satisfies the structure's three
+  obligations.
+- <code>HasLaw</code> is an exact pushforward-measure identity, not a moment
+  approximation or a sampling command.
+- <code>Measure.pi</code> is Mathlib's finite product measure here.
+- <code>m i</code>, <code>vRe i</code>, and <code>vIm i</code> retain each
+  coordinate's mean and two Cartesian variances.
+- The theorem has a <code>[Fintype ι]</code> assumption. Finiteness enters where
+  this product-law interface needs it.
+{{< /lean-bridge >}}
+
+### Bridge 4: ordinary measurability supplies the AE version
+
+{{< lean-bridge
+  human="Coordinate i is ordinarily measurable, so it is also measurable almost everywhere under P."
+  math="\(Z_i\text{ measurable}\Longrightarrow Z_i\text{ is }P\text{-almost-everywhere measurable}.\)"
+  lean="(hZ.measurable i).aemeasurable"
+>}}
+
+- <code>hZ.measurable i</code> selects the ordinary measurability field at
+  index <code>i</code>.
+- The dot before <code>aemeasurable</code> invokes the implication from ordinary
+  to almost-everywhere measurability.
+- The project theorem
+  <code>IndependentCartesianComplexGaussianFamily.aemeasurable</code> packages
+  the same step.
+- No converse is claimed, and no exceptional null set is promoted to an empty
+  set.
+{{< /lean-bridge >}}
+
+### Bridge 5: evaluate the canonical product sample
+
+{{< lean-bridge
+  human="Under the canonical product measure, reading coordinate i has the requested Cartesian complex Gaussian law."
+  math="\(\mathcal L_{P_{\mathrm{can}}}(z\mapsto z(i))=\Gamma_i.\)"
+  lean="cartesianComplexGaussianProductMeasure_hasLaw_eval m vRe vIm i"
+>}}
+
+- <code>cartesianComplexGaussianProductMeasure</code> is the product measure on
+  <code>ι → ℂ</code>.
+- <code>hasLaw_eval</code> says the theorem concerns the evaluation map
+  <code>fun z : ι → ℂ ↦ z i</code>.
+- The companion theorem
+  <code>cartesianComplexGaussianProductMeasure_iIndepFun</code> proves mutual
+  independence of all evaluations.
+- Together they produce
+  <code>cartesianComplexGaussianProductMeasure_independentFamily</code>, the
+  canonical full structure.
+{{< /lean-bridge >}}
+
+### Bridge 6: identify the empty product
+
+{{< lean-bridge
+  human="When the finite index type is empty, the canonical product law is the point mass at the unique empty assignment."
+  math="\(\bigotimes_{i\in\varnothing}\Gamma_i=\delta_{z_{\varnothing}}.\)"
+  lean="cartesianComplexGaussianProductMeasure_eq_dirac_of_isEmpty m vRe vIm"
+>}}
+
+- <code>[IsEmpty ι]</code> is the typeclass assumption saying no value of type
+  <code>ι</code> exists.
+- <code>fun i ↦ isEmptyElim i</code> is the unique function from that empty type
+  into \(\mathbb C\).
+- <code>Measure.dirac</code> is the point-mass measure.
+- The theorem unfolds the canonical product and uses Mathlib's
+  <code>Measure.pi_of_empty</code>. It does not divide by the index cardinality.
+{{< /lean-bridge >}}
+
+### Try it locally: execute the four-row arithmetic
+
+This first file imports only Lean's small `Std` library. It deliberately models
+finite rows and integer numerators, not measure theory and not Gaussian laws.
+Save the following exact text as `/tmp/FiniteProductTutorial.lean`:
+
+~~~lean
+import Std
+
+namespace FiniteProductTutorial
+
+structure Outcome where
+  x : Nat
+  y : Nat
+  deriving DecidableEq, Repr
+
+def outcomes : List Outcome :=
+  [⟨0, 0⟩, ⟨0, 1⟩, ⟨1, 0⟩, ⟨1, 1⟩]
+
+def count (p : Outcome → Bool) : Nat :=
+  (outcomes.filter p).length
+
+def jointNumerators (first second : Outcome → Nat) : List Nat :=
+  [count fun ω => first ω == 0 && second ω == 0,
+   count fun ω => first ω == 0 && second ω == 1,
+   count fun ω => first ω == 1 && second ω == 0,
+   count fun ω => first ω == 1 && second ω == 1]
+
+def parity (ω : Outcome) : Nat :=
+  (ω.x + ω.y) % 2
+
+def sourceLedger : List (Nat × Nat × Nat) :=
+  outcomes.map fun ω => (ω.x, ω.y, 1)
+
+def cylinderXOne : List (Nat × Nat) :=
+  (outcomes.filter fun ω => ω.x == 1).map fun ω => (ω.x, ω.y)
+
+def jointCylinderXOneYZero : List (Nat × Nat) :=
+  (outcomes.filter fun ω => ω.x == 1 && ω.y == 0).map fun ω => (ω.x, ω.y)
+
+#eval sourceLedger
+#eval [count fun ω => ω.x == 0, count fun ω => ω.x == 1,
+  count fun ω => ω.y == 0, count fun ω => ω.y == 1]
+#eval cylinderXOne
+#eval jointCylinderXOneYZero
+#eval jointNumerators (fun ω => ω.x) (fun ω => ω.y)
+#eval jointNumerators (fun ω => ω.x) (fun ω => ω.x)
+#eval jointNumerators (fun ω => ω.x) parity
+#eval jointNumerators (fun ω => ω.y) parity
+#eval count fun ω => ω.x == 0 && ω.y == 0 && parity ω == 0
+
+example : sourceLedger =
+    [(0, 0, 1), (0, 1, 1), (1, 0, 1), (1, 1, 1)] := by
+  decide
+
+example : jointNumerators (fun ω => ω.x) (fun ω => ω.y) = [1, 1, 1, 1] := by
+  decide
+
+example : jointNumerators (fun ω => ω.x) (fun ω => ω.x) = [2, 0, 0, 2] := by
+  decide
+
+example : jointNumerators (fun ω => ω.x) parity = [1, 1, 1, 1] := by
+  decide
+
+example : jointNumerators (fun ω => ω.y) parity = [1, 1, 1, 1] := by
+  decide
+
+end FiniteProductTutorial
+~~~
+
+Type these commands on a normal Mac or Linux machine with Elan installed:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/FiniteProductTutorial.lean
+~~~
+
+**Resource profile: small standalone Lean plus `Std`, safe on a normal Mac or
+Linux host.** The command names the pinned compiler directly. It does not enter
+the Lake project, restore Mathlib, or build the repository.
+
+The file was executed with that exact command and printed:
+
+~~~text
+[(0, 0, 1), (0, 1, 1), (1, 0, 1), (1, 1, 1)]
+[2, 2, 2, 2]
+[(1, 0), (1, 1)]
+[(1, 0)]
+[1, 1, 1, 1]
+[2, 0, 0, 2]
+[1, 1, 1, 1]
+[1, 1, 1, 1]
+1
+~~~
+
+Every count is a numerator over the four equally weighted rows:
+
+- `[2, 2, 2, 2]` gives both values of both marginals, each with mass \(2/4\);
+- `[(1, 0), (1, 1)]` is the preimage of the cylinder \(X=1\);
+- `[(1, 0)]` is the preimage of \(X=1,Y=0\);
+- `[1, 1, 1, 1]` is the product joint table for \(X,Y\);
+- `[2, 0, 0, 2]` is the dependent diagonal table for \(X,X\);
+- the next two product tables verify pairwise independence of \(X,Z\) and
+  \(Y,Z\), where \(Z=X\mathbin{\mathrm{xor}}Y\); and
+- the final `1` says the all-zero triple occupies one of four rows, giving
+  probability \(1/4\), not the mutual-product value \(1/8\).
+
+The five `example` blocks are propositions checked by Lean's kernel. They
+certify list enumeration and natural-number arithmetic only. They do not
+construct a probability measure, prove a theorem about `Measure.pi`, or show
+that anything in the worksheet is Gaussian.
+
+### Try it in the repository: inspect the exact Gaussian interfaces
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean).
+On an approved Linux builder with the pinned project dependencies provisioned,
+put this probe in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.ComplexGaussianFamilies
+
+open MeasureTheory ProbabilityTheory
+open scoped ENNReal NNReal ProbabilityTheory
+open NonlinearDynamics.Random
+
+#print IndependentCartesianComplexGaussianFamily
+#check IndependentCartesianComplexGaussianFamily.measurable
+#check IndependentCartesianComplexGaussianFamily.hasLaw
+#check IndependentCartesianComplexGaussianFamily.independent
+#check IndependentCartesianComplexGaussianFamily.aemeasurable
+#check IndependentCartesianComplexGaussianFamily.of_independent_real_pair_laws
+#check IndependentCartesianComplexGaussianFamily.jointHasLaw
+#check IndependentCartesianComplexGaussianFamily.jointHasGaussianLaw
+#check cartesianComplexGaussianProductMeasure
+#check cartesianComplexGaussianProductMeasure_hasLaw_eval
+#check cartesianComplexGaussianProductMeasure_iIndepFun
+#check cartesianComplexGaussianProductMeasure_independentFamily
+#check cartesianComplexGaussianProductMeasure_eq_dirac_of_isEmpty
+~~~
+
+`#print` displays the structure and its three separate proof obligations. Each
+`#check` asks Lean to elaborate an existing declaration and report its type.
+These commands do not draw samples or estimate probabilities.
+
+**Resource profile: exact repository module plus Mathlib, cloud-only for this
+project.** Check the authoritative module from the repository root with:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/ComplexGaussianFamilies.lean
+~~~
+
+Run that guarded target on the approved Linux builder. Do not run it on this
+Mac workstation: project policy keeps Mathlib caches and full Lean builds on
+cloud compute.
+{{< /repo-check >}}
+
 ## The checked Lean map
 
 The public interface is organized by layer:
@@ -599,22 +1039,13 @@ The compiler-checked source is
 module makes no density, circularity, properness, matrix, spectral, or
 asymptotic claim.
 
-### Reproduce the check
+### Validation boundary
 
-From the repository root:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/ComplexGaussianFamilies.lean
-~~~
-
-To run the complete proof-to-prose and site gate:
-
-~~~sh
-make check
-~~~
+The preceding `repo-check` block gives the copyable import, declaration probe,
+exact module path, and guarded cloud command. The small local worksheet and the
+Mathlib-backed repository module are intentionally separate validation layers.
+The former checks four finite rows; the latter checks the actual Gaussian law,
+measurability, mutual-independence, product-measure, and empty-index theorems.
 
 ## The ridge toward a Gaussian matrix law
 
@@ -686,6 +1117,7 @@ language for it, and a future bridge must prove the equality of measures.
 
 | Wrong turn | Why it fails | Correct layer |
 |---|---|---|
+| "The four-row worksheet is a Gaussian model" | its values are finite bits and its weights only teach exact product arithmetic | use the Mathlib-backed coordinate measures for Gaussian claims |
 | "Every coordinate has the right law, so the field is independent" | marginals do not determine dependence | add `iIndepFun` or the exact product joint law |
 | "Every pair is independent, so the family is mutually independent" | higher-order constraints can remain | state mutual independence directly |
 | "The real family and imaginary family are each independent" | cross-family dependence is unproved | use independent pair-vectors or one global product law |
@@ -697,6 +1129,21 @@ language for it, and a future bridge must prove the equality of measures.
 | "An independent upper triangle is already GUE" | diagonal laws, scaling, assembly, and invariance remain | complete the matrix ledger and prove each bridge |
 
 ## Exercises
+
+Before leaving the four-row model, compute these without appealing to any
+Gaussian theorem:
+
+1. List the preimage of \(Y=0\) and add its source weights.
+2. Compute \(P(X=1\text{ or }Y=1)\) first by listing rows and then by
+   inclusion-exclusion.
+3. Write all three \(2\times2\) pair tables for \(X\), \(Y\), and
+   \(Z=X\mathbin{\mathrm{xor}}Y\). Explain why the triple constraint remains
+   invisible in those tables.
+4. Change the coordinate laws to \(P(X=1)=1/3\) and \(P(Y=1)=1/4\). Under the
+   product law, compute the four assignment weights and check that they sum to
+   one.
+5. In the local Lean worksheet, add a `bothOne` predicate and prove with
+   `decide` that its preimage has length one.
 
 {{< panel "exercise" >}}
 **Exercise 1: curry the field.** Starting from

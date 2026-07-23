@@ -1,72 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="470" viewBox="0 0 760 470" role="img" aria-labelledby="scopeTitle scopeDesc">
-  <title id="scopeTitle">Independence must be proved at three different scopes</title>
-  <desc id="scopeDesc">The first row joins real and imaginary axes inside one complex coordinate. The second row joins complex coordinates through mutual independence. The third row shows that separate independence within a real family and an imaginary family leaves cross-family dependence unknown.</desc>
-  <rect width="760" height="470" fill="#F7F4F0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="650" viewBox="0 0 960 650" role="img" aria-labelledby="scopeTitle scopeDesc">
+  <title id="scopeTitle">Numeric boundaries between mutual independence, pairwise independence, and matching marginals</title>
+  <desc id="scopeDesc">For independent fair bits X and Y, all four joint pairs have probability one quarter. For Z equal to X exclusive-or Y, every pair among X, Y, Z is independent, yet only four of eight triples occur and the triple zero zero zero has probability one quarter rather than the mutual-independence value one eighth. For D equal to X, both marginals are fair but the diagonal pairs each have probability one half and the off-diagonal pairs have probability zero, so matching marginals alone do not prove independence.</desc>
+  <rect width="960" height="650" fill="#F7F1E7"/>
   <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}
-    .s{font-size:12px}.m{font-size:11px;fill:#5A544C}
-    .real{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .imag{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .ok{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .unknown{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.8;stroke-dasharray:6 4}
-    .arrow{fill:none;stroke:#7F786D;stroke-width:2;marker-end:url(#arrow)}
+    .text{font-family:Inter,Arial,Helvetica,sans-serif;fill:#18283C}
+    .title{font-size:21px;font-weight:700}.head{font-size:15px;font-weight:700}
+    .body{font-size:13px}.small{font-size:11px}.muted{font-size:12px;fill:#4C5968}
+    .panel{fill:#FFFDF8;stroke:#B9AA98;stroke-width:1.5}
+    .ok{fill:#E8F1E3;stroke:#557B4C;stroke-width:1.5}
+    .warn{fill:#F5E8DB;stroke:#A75D26;stroke-width:1.5}
+    .blue{fill:#E7F0F7;stroke:#4C6E91;stroke-width:1.4}
+    .cell{fill:#FFFDF8;stroke:#9B8E7E;stroke-width:1}
+    .strong{font-weight:700}
   </style>
-  <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#7F786D"/>
-    </marker>
-  </defs>
 
-  <text x="24" y="28" class="t title">Three scopes of independence</text>
-  <text x="24" y="48" class="t m">A proof at one scope does not silently fill a gap at another.</text>
+  <text x="28" y="35" class="text title">Independence has levels: compute the event, do not guess</text>
+  <text x="28" y="58" class="text muted">Every displayed probability comes from the same four equally weighted source outcomes.</text>
 
-  <text x="24" y="87" class="t h">Inside one coordinate</text>
-  <rect x="205" y="65" width="90" height="54" rx="10" class="real"/>
-  <text x="223" y="97" class="t s">real law</text>
-  <text x="302" y="99" class="t h">+</text>
-  <rect x="320" y="65" width="110" height="54" rx="10" class="imag"/>
-  <text x="331" y="97" class="t s">imaginary law</text>
-  <text x="437" y="99" class="t h">+</text>
-  <rect x="456" y="65" width="114" height="54" rx="10" class="neutral"/>
-  <text x="481" y="87" class="t s">within-pair</text>
-  <text x="477" y="105" class="t s">independence</text>
-  <path d="M570 92 L591 92" class="arrow"/>
-  <rect x="595" y="65" width="141" height="54" rx="10" class="ok"/>
-  <text x="613" y="88" class="t h">exact Cartesian</text>
-  <text x="648" y="107" class="t m">block</text>
+  <rect x="28" y="81" width="278" height="218" rx="14" class="panel"/>
+  <text x="47" y="110" class="text head">1. X and Y: independent</text>
+  <text x="47" y="132" class="text small">Joint pair probabilities</text>
+  <g class="text body">
+    <rect x="47" y="147" width="116" height="48" class="ok"/><text x="66" y="176">00: 1/4</text>
+    <rect x="171" y="147" width="116" height="48" class="ok"/><text x="190" y="176">01: 1/4</text>
+    <rect x="47" y="203" width="116" height="48" class="ok"/><text x="66" y="232">10: 1/4</text>
+    <rect x="171" y="203" width="116" height="48" class="ok"/><text x="190" y="232">11: 1/4</text>
+  </g>
+  <text x="47" y="276" class="text small">Each cell = (1/2)(1/2).</text>
 
-  <line x1="24" y1="137" x2="736" y2="137" stroke="#D9D0C4" stroke-width="1"/>
+  <rect x="326" y="81" width="606" height="218" rx="14" class="panel"/>
+  <text x="346" y="110" class="text head">2. X, Y, Z = X xor Y: pairwise independent, not mutually independent</text>
+  <text x="346" y="133" class="text small">The complete triple table has only four outcomes:</text>
+  <g class="text body">
+    <rect x="346" y="148" width="132" height="47" class="blue"/><text x="371" y="177">000: 1/4</text>
+    <rect x="486" y="148" width="132" height="47" class="blue"/><text x="511" y="177">011: 1/4</text>
+    <rect x="626" y="148" width="132" height="47" class="blue"/><text x="651" y="177">101: 1/4</text>
+    <rect x="766" y="148" width="146" height="47" class="blue"/><text x="798" y="177">110: 1/4</text>
+  </g>
+  <text x="346" y="221" class="text body">Every two-coordinate table has 00, 01, 10, 11 once, each with probability 1/4.</text>
+  <rect x="346" y="239" width="566" height="42" rx="9" class="warn"/>
+  <text x="363" y="265" class="text body strong">But P(000) = 1/4, while mutual independence would require (1/2)^3 = 1/8.</text>
 
-  <text x="24" y="174" class="t h">Across complex coordinates</text>
-  <rect x="205" y="151" width="135" height="56" rx="10" class="neutral"/>
-  <text x="226" y="184" class="t s">complex blocks</text>
-  <text x="348" y="186" class="t h">+</text>
-  <rect x="369" y="151" width="173" height="56" rx="10" class="neutral"/>
-  <text x="386" y="174" class="t h">mutual independence</text>
-  <text x="409" y="195" class="t m">across all blocks</text>
-  <path d="M542 179 L572 179" class="arrow"/>
-  <rect x="576" y="151" width="160" height="56" rx="10" class="ok"/>
-  <text x="597" y="174" class="t h">exact field product</text>
-  <text x="614" y="195" class="t m">one joint measure</text>
+  <rect x="28" y="322" width="904" height="270" rx="14" class="panel"/>
+  <text x="48" y="352" class="text head">3. D = X: matching fair marginals, but dependence</text>
+  <text x="48" y="375" class="text body">X and D are each fair. Copying X into D concentrates all mass on the diagonal.</text>
 
-  <line x1="24" y1="225" x2="736" y2="225" stroke="#D9D0C4" stroke-width="1"/>
+  <text x="68" y="415" class="text small strong">Observed joint law of (X,D)</text>
+  <g class="text body">
+    <rect x="68" y="429" width="147" height="51" class="warn"/><text x="94" y="460">00: 1/2</text>
+    <rect x="223" y="429" width="147" height="51" class="cell"/><text x="254" y="460">01: 0</text>
+    <rect x="68" y="488" width="147" height="51" class="cell"/><text x="99" y="519">10: 0</text>
+    <rect x="223" y="488" width="147" height="51" class="warn"/><text x="249" y="519">11: 1/2</text>
+  </g>
 
-  <text x="24" y="263" class="t h">Unsafe shortcut</text>
-  <rect x="210" y="242" width="188" height="58" rx="10" class="real"/>
-  <text x="232" y="265" class="t h">real family independent</text>
-  <text x="244" y="287" class="t m">relations inside this row</text>
-  <rect x="210" y="315" width="188" height="58" rx="10" class="imag"/>
-  <text x="220" y="338" class="t h">imaginary family independent</text>
-  <text x="244" y="360" class="t m">relations inside this row</text>
-  <path d="M398 271 C445 271 448 300 487 306" class="arrow"/>
-  <path d="M398 344 C445 344 448 315 487 309" class="arrow"/>
-  <rect x="491" y="268" width="245" height="82" rx="10" class="unknown"/>
-  <text x="516" y="297" class="t h">cross-family dependence unknown</text>
-  <text x="516" y="321" class="t s">the two rows may reuse randomness</text>
-  <text x="516" y="340" class="t m">pair the blocks before claiming a product</text>
+  <text x="445" y="415" class="text small strong">Product of the two fair marginal laws</text>
+  <g class="text body">
+    <rect x="445" y="429" width="147" height="51" class="ok"/><text x="471" y="460">00: 1/4</text>
+    <rect x="600" y="429" width="147" height="51" class="ok"/><text x="626" y="460">01: 1/4</text>
+    <rect x="445" y="488" width="147" height="51" class="ok"/><text x="471" y="519">10: 1/4</text>
+    <rect x="600" y="488" width="147" height="51" class="ok"/><text x="626" y="519">11: 1/4</text>
+  </g>
+  <text x="774" y="451" class="text head">Not equal</text>
+  <text x="774" y="477" class="text body">1/2 != 1/4</text>
+  <text x="774" y="501" class="text body">0 != 1/4</text>
+  <text x="774" y="526" class="text small">Marginals do not</text>
+  <text x="774" y="543" class="text small">determine coupling.</text>
 
-  <rect x="24" y="400" width="712" height="46" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.4"/>
-  <text x="44" y="428" class="t s">Use exact pair laws within coordinates and mutual independence across pair-vectors to close every gap.</text>
+  <rect x="151" y="607" width="658" height="29" rx="9" class="ok"/>
+  <text x="176" y="627" class="text small strong">Mutual independence checks every finite group; pairwise checks only groups of size two.</text>
 </svg>

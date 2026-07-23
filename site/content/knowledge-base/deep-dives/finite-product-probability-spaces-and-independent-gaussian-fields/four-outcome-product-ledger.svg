@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620" role="img" aria-labelledby="productTitle productDesc">
+  <title id="productTitle">A four-outcome product experiment computed from source weights to coordinate laws</title>
+  <desc id="productDesc">Four equally weighted outcomes 00, 01, 10, and 11 map to the coordinate pair X,Y. Every joint pair has probability one quarter, each coordinate value has probability one half, the cylinder X equals one has preimage 10 and 11 with probability one half, and the joint cylinder X equals one and Y equals zero has preimage 10 with probability one quarter, equal to one half times one half.</desc>
+  <rect width="960" height="620" fill="#F7F1E7"/>
+  <style>
+    .text{font-family:Inter,Arial,Helvetica,sans-serif;fill:#18283C}
+    .title{font-size:22px;font-weight:700}.head{font-size:15px;font-weight:700}
+    .body{font-size:14px}.small{font-size:12px}.muted{font-size:12px;fill:#4C5968}
+    .panel{fill:#FFFDF8;stroke:#B9AA98;stroke-width:1.5}
+    .blue{fill:#E7F0F7;stroke:#4C6E91;stroke-width:1.5}
+    .orange{fill:#F5E8DB;stroke:#A75D26;stroke-width:1.5}
+    .green{fill:#E8F1E3;stroke:#557B4C;stroke-width:1.6}
+    .cell{fill:#FFFDF8;stroke:#9B8E7E;stroke-width:1}
+    .arrow{fill:none;stroke:#59697A;stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#59697A"/>
+    </marker>
+  </defs>
+
+  <text x="28" y="36" class="text title">Two fair bits: the complete product ledger</text>
+  <text x="28" y="59" class="text muted">Toy experiment, exact values: Omega has four outcomes and each source weight is 1/4.</text>
+
+  <rect x="28" y="84" width="410" height="322" rx="14" class="panel"/>
+  <text x="48" y="113" class="text head">Source outcome and coordinate readout</text>
+  <rect x="48" y="131" width="370" height="42" class="blue"/>
+  <text x="69" y="157" class="text head">outcome</text>
+  <text x="174" y="157" class="text head">X</text>
+  <text x="248" y="157" class="text head">Y</text>
+  <text x="322" y="157" class="text head">weight</text>
+
+  <g class="text body">
+    <rect x="48" y="173" width="370" height="49" class="cell"/>
+    <text x="82" y="203">00</text><text x="178" y="203">0</text><text x="252" y="203">0</text><text x="334" y="203">1/4</text>
+    <rect x="48" y="222" width="370" height="49" class="cell"/>
+    <text x="82" y="252">01</text><text x="178" y="252">0</text><text x="252" y="252">1</text><text x="334" y="252">1/4</text>
+    <rect x="48" y="271" width="370" height="49" class="cell"/>
+    <text x="82" y="301">10</text><text x="178" y="301">1</text><text x="252" y="301">0</text><text x="334" y="301">1/4</text>
+    <rect x="48" y="320" width="370" height="49" class="cell"/>
+    <text x="82" y="350">11</text><text x="178" y="350">1</text><text x="252" y="350">1</text><text x="334" y="350">1/4</text>
+  </g>
+  <text x="48" y="390" class="text small">Total source mass: 1/4 + 1/4 + 1/4 + 1/4 = 1.</text>
+
+  <rect x="462" y="84" width="470" height="155" rx="14" class="panel"/>
+  <text x="482" y="113" class="text head">Coordinate marginals</text>
+  <rect x="482" y="131" width="202" height="79" rx="10" class="blue"/>
+  <text x="501" y="158" class="text body">P(X = 0) = 2/4 = 1/2</text>
+  <text x="501" y="187" class="text body">P(X = 1) = 2/4 = 1/2</text>
+  <rect x="704" y="131" width="208" height="79" rx="10" class="orange"/>
+  <text x="723" y="158" class="text body">P(Y = 0) = 2/4 = 1/2</text>
+  <text x="723" y="187" class="text body">P(Y = 1) = 2/4 = 1/2</text>
+  <text x="482" y="228" class="text small">Both coordinate laws are the fair distribution on {0,1}.</text>
+
+  <rect x="462" y="259" width="470" height="147" rx="14" class="panel"/>
+  <text x="482" y="288" class="text head">Cylinder-event preimages</text>
+  <text x="482" y="319" class="text body">{X = 1} pulls back to {10, 11}</text>
+  <text x="482" y="343" class="text body">P(X = 1) = 1/4 + 1/4 = 1/2</text>
+  <text x="482" y="374" class="text body">{X = 1, Y = 0} pulls back to {10}</text>
+  <text x="482" y="398" class="text body">P(X = 1, Y = 0) = 1/4 = (1/2)(1/2)</text>
+
+  <path d="M233 407 L233 440 L330 440 L330 456" class="arrow"/>
+  <path d="M697 407 L697 440 L630 440 L630 456" class="arrow"/>
+  <rect x="120" y="461" width="720" height="126" rx="16" class="green"/>
+  <text x="145" y="492" class="text head">Joint law = product of the two marginal laws</text>
+  <text x="145" y="522" class="text body">P(X = x, Y = y) = P(X = x) P(Y = y) = (1/2)(1/2) = 1/4</text>
+  <text x="145" y="549" class="text body">for every pair (x,y) in {(0,0), (0,1), (1,0), (1,1)}.</text>
+  <text x="145" y="576" class="text small">This finite table is a product-law model. It is not a Gaussian sample or a numerical simulation.</text>
+</svg>
