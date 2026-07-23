@@ -21,46 +21,36 @@ magick -size 1200x630 xc:'#F3EFE6' \
   -fill '#16243A' -draw 'rectangle 0,0 1200,22 rectangle 0,542 1200,630' \
   -fill '#C16F2C' -font Helvetica -pointsize 20 \
   -annotate +68+76 'KNOWLEDGE BASE / DEEP DIVE' \
-  -fill '#16243A' -font Palatino-Roman -pointsize 46 \
-  -annotate +67+138 'Before the pointwise ergodic theorem' \
+  -fill '#16243A' -font Palatino-Roman -pointsize 47 \
+  -annotate +67+138 'Birkhoff convergence events' \
   -fill '#4D5B6B' -font Helvetica -pointsize 18 \
-  -annotate +70+181 'Build the convergence event, prove exact invariance, then stop at the honest fork.' \
+  -annotate +70+181 'One finite orbit converges. One bounded deterministic shift does not.' \
   -fill '#FBF9F6' -stroke '#C4B8A8' -strokewidth 2 \
   -draw 'roundrectangle 68,218 1132,506 18,18' \
   -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 2 \
-  -draw 'roundrectangle 96,270 330,394 14,14' \
+  -draw 'roundrectangle 94,246 530,424 14,14' \
   -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 17 \
-  -annotate +140+305 'FINITE AVERAGES' \
-  -fill '#5A544C' -stroke none -font Helvetica -pointsize 14 \
-  -annotate +128+342 'measurable at every horizon' -annotate +128+368 'convergence defines an event' \
-  -fill none -stroke '#A67C52' -strokewidth 4 \
-  -draw 'line 338,332 396,332 polygon 396,332 379,322 379,342' \
-  -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
-  -draw 'roundrectangle 408,270 642,394 14,14' \
-  -fill '#47633B' -stroke none -font Helvetica-Bold -pointsize 17 \
-  -annotate +461+305 'EXACT INVARIANCE' \
-  -fill '#5A544C' -font Helvetica -pointsize 14 \
-  -annotate +441+342 'delete one finite prefix' -annotate +448+368 'keep the same finite limit' \
-  -fill none -stroke '#A67C52' -strokewidth 4 \
-  -draw 'line 650,332 708,332 polygon 708,332 691,322 691,342' \
+  -annotate +126+281 'TWO-STATE SWAP' \
+  -fill '#16243A' -stroke none -font Palatino-Roman -pointsize 30 \
+  -annotate +129+329 'a: 0, 2, 0, 2, ...' \
+  -annotate +129+367 'b: 2, 0, 2, 0, ...' \
+  -fill '#47633B' -font Helvetica-Bold -pointsize 18 \
+  -annotate +129+405 'both average sequences converge to 1' \
   -fill '#F3E8E0' -stroke '#A67C52' -strokewidth 2 \
-  -draw 'roundrectangle 720,246 1104,316 14,14 roundrectangle 720,348 1104,418 14,14' \
+  -draw 'roundrectangle 558,246 1106,424 14,14' \
   -fill '#934F1F' -stroke none -font Helvetica-Bold -pointsize 17 \
-  -annotate +842+282 'ERGODIC BRANCH: NULL' \
-  -fill '#47633B' -font Helvetica-Bold -pointsize 17 \
-  -annotate +830+384 'ERGODIC BRANCH: CONULL' \
-  -fill '#934F1F' -stroke none -font Helvetica-Bold -pointsize 15 \
-  -annotate +785+462 'BLOCKED: invariance cannot choose the conull branch' \
-  -fill none -stroke '#934F1F' -strokewidth 4 \
-  -draw 'line 854,434 1070,434 line 951,423 973,445 line 973,423 951,445' \
-  -fill '#284E72' -stroke none -font Helvetica-Bold -pointsize 11 \
-  -annotate +96+441 'ALMOST-EVERYWHERE ROUTE' \
-  -fill '#5A544C' -font Helvetica -pointsize 12 \
-  -annotate +96+463 'measurable representative -> null-measurable event' \
-  -fill '#934F1F' -font Helvetica-Bold -pointsize 12 \
-  -annotate +96+486 'MISSING: an almost-everywhere membership theorem' \
+  -annotate +592+281 'BOUNDED DECIMAL-BLOCK SHIFT' \
+  -fill '#16243A' -font Helvetica -pointsize 18 \
+  -annotate +592+327 'endpoint averages:  9/10,  9/100' \
+  -annotate +592+361 '                         909/1000,  909/10000' \
+  -fill '#934F1F' -font Helvetica-Bold -pointsize 18 \
+  -annotate +592+405 'subsequence limits: 10/11 and 1/11' \
+  -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 2 \
+  -draw 'roundrectangle 94,444 1106,487 11,11' \
+  -fill '#47633B' -stroke none -font Helvetica-Bold -pointsize 16 \
+  -annotate +127+472 'EXACT PREFIX INVARIANCE  =>  NULL OR CONULL; A MEMBERSHIP THEOREM CHOOSES THE BRANCH' \
   -fill '#FFFDF8' -stroke none -font Helvetica -pointsize 15 \
-  -annotate +68+582 'MEASURABILITY  /  FINITE-PREFIX INVARIANCE  /  CONDITIONAL RIGIDITY' \
+  -annotate +68+582 'FINITE LEDGER  /  MEASURABLE EVENT  /  SAME-LIMIT SHIFT  /  CONDITIONAL RIGIDITY' \
   -strip -define png:exclude-chunk=date,time \
   "PNG:$output"
 

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:28 PDT
+Last updated: 2026-07-22 21:32 PDT
 
-Audited baseline: `main` at `ed872b1`
+Audited baseline: `main` at `ea48291`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **23 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **24 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -466,6 +466,18 @@ Two accessible numeric figures, seven shortcode Lean bridges, one guarded
 project probe, a complete manifest of 54 public and 13 private declarations,
 and a byte-identical executed `Std` worksheet make the finite geometry and
 cost bounds runnable without making a density, ergodic, or convergence claim.
+*Birkhoff Convergence Events Before the Pointwise Ergodic Theorem* now starts
+with the two-state swap whose readings `(0,2)` have averages converging to one
+from both starts. Its finite ledger computes every sum, average, absolute
+integral, and delete/restore-prefix identity through horizon eight. A separate
+bounded decimal-block observable has endpoint one-counts `9,9,909,909` and
+subsequential average limits `10/11` and `1/11`, proving that the convergence
+event definition alone supplies no membership. Two accessible numeric
+figures, seven Lean bridges, a source-order cloud probe, all 37 public
+declarations plus the helper and twelve-probe boundary map, and a
+byte-identical executed `Std` worksheet separate measurable/null-measurable
+event construction and conditional ergodic rigidity from the later theorem
+that actually proves almost-everywhere convergence.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3353,6 +3365,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `ea48291`: rebuild *Finite Ordered Interval Packing for Nonpositive
+  Subadditive Processes* around exact disjoint/overlapping ledgers, a full
+  leftmost-greedy selection, gap–length–tail decoding, sign and boundary
+  failures, seven Lean bridges, and an executed local `Std` worksheet.
 - `ed872b1`: rebuild *Finite Phase Averaging for Nonpositive Subadditive
   Processes* around three exact residue rows, explicit prefix and tail
   boundaries, wrong-sign and missing-block near misses, seven Lean bridges,

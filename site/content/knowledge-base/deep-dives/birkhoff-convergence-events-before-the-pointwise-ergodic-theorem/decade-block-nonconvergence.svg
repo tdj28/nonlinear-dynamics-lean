@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900"
+     role="img" aria-labelledby="decade-title decade-desc">
+  <title id="decade-title">A bounded deterministic orbit average that does not converge</title>
+  <desc id="decade-desc">On the natural-number shift, a zero-one observable alternates over decimal blocks. It is one on indices one through nine, zero on ten through ninety-nine, one on one hundred through nine hundred ninety-nine, and so on. Exact endpoint counts give averages nine tenths, nine hundredths, nine hundred nine thousandths, and nine hundred nine ten-thousandths. Two endpoint subsequences approach ten elevenths and one eleventh, so the full average sequence has no limit.</desc>
+  <defs>
+    <style>
+      .paper { fill: #F3EFE6; }
+      .ink { fill: #16243A; }
+      .muted { fill: #4D5B6B; }
+      .navy { fill: #284E72; }
+      .green { fill: #47633B; }
+      .rust { fill: #934F1F; }
+      .panel { fill: #FFFDF8; stroke: #C4B8A8; stroke-width: 2; }
+      .one { fill: #DCE8D6; stroke: #47633B; stroke-width: 2; }
+      .zero { fill: #F3E8E0; stroke: #934F1F; stroke-width: 2; }
+      .blue-panel { fill: #E8F0F7; stroke: #4B6787; stroke-width: 2; }
+      .green-panel { fill: #EAF1E5; stroke: #6F8D5E; stroke-width: 2; }
+      .rust-panel { fill: #F3E8E0; stroke: #A67C52; stroke-width: 2; }
+      .rule { stroke: #C4B8A8; stroke-width: 2; }
+      .title { font-family: Georgia, "Times New Roman", serif; font-size: 38px; font-weight: 700; }
+      .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 19px; }
+      .heading { font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+      .body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+      .mono { font-family: "Courier New", monospace; font-size: 18px; }
+      .mono-small { font-family: "Courier New", monospace; font-size: 15px; }
+    </style>
+  </defs>
+
+  <rect class="paper" x="0" y="0" width="1440" height="900"/>
+  <rect x="0" y="0" width="1440" height="20" fill="#16243A"/>
+  <text class="title ink" x="60" y="76">A bounded deterministic near miss: averages keep changing camp</text>
+  <text class="subtitle muted" x="60" y="110">Teaching model on Nat: T(k) = k + 1. Equal visual widths below are not a time scale.</text>
+
+  <rect class="panel" x="60" y="142" width="1320" height="252" rx="18"/>
+  <text class="heading navy" x="88" y="180">THE OBSERVABLE ALTERNATES ON GROWING DECIMAL BLOCKS</text>
+  <rect class="zero" x="88" y="216" width="115" height="92" rx="8"/>
+  <rect class="one" x="203" y="216" width="255" height="92" rx="8"/>
+  <rect class="zero" x="458" y="216" width="255" height="92" rx="8"/>
+  <rect class="one" x="713" y="216" width="255" height="92" rx="8"/>
+  <rect class="zero" x="968" y="216" width="340" height="92" rx="8"/>
+  <text class="heading rust" x="132" y="252">0</text>
+  <text class="small ink" x="113" y="281">k = 0</text>
+  <text class="heading green" x="318" y="252">1</text>
+  <text class="small ink" x="264" y="281">1 ≤ k &lt; 10</text>
+  <text class="heading rust" x="573" y="252">0</text>
+  <text class="small ink" x="500" y="281">10 ≤ k &lt; 100</text>
+  <text class="heading green" x="828" y="252">1</text>
+  <text class="small ink" x="742" y="281">100 ≤ k &lt; 1000</text>
+  <text class="heading rust" x="1124" y="252">0</text>
+  <text class="small ink" x="1011" y="281">1000 ≤ k &lt; 10000</text>
+  <text class="small muted" x="88" y="344">Continue forever: the block value flips whenever the index gains a decimal digit.</text>
+  <text class="small muted" x="88" y="370">The observable always equals 0 or 1. Nonconvergence is not caused by unbounded readings.</text>
+
+  <rect class="blue-panel" x="60" y="424" width="830" height="304" rx="18"/>
+  <text class="heading navy" x="88" y="462">EXACT ENDPOINT COUNTS</text>
+  <text class="mono-small ink" x="88" y="510">horizon N</text>
+  <text class="mono-small ink" x="320" y="510">10</text>
+  <text class="mono-small ink" x="438" y="510">100</text>
+  <text class="mono-small ink" x="556" y="510">1000</text>
+  <text class="mono-small ink" x="690" y="510">10000</text>
+  <line class="rule" x1="88" y1="525" x2="856" y2="525"/>
+  <text class="mono-small ink" x="88" y="563">number of ones</text>
+  <text class="mono-small ink" x="326" y="563">9</text>
+  <text class="mono-small ink" x="444" y="563">9</text>
+  <text class="mono-small ink" x="556" y="563">909</text>
+  <text class="mono-small ink" x="690" y="563">909</text>
+  <text class="mono-small ink" x="88" y="606">average A_N(0)</text>
+  <text class="mono-small ink" x="308" y="606">9/10</text>
+  <text class="mono-small ink" x="420" y="606">9/100</text>
+  <text class="mono-small ink" x="538" y="606">909/1000</text>
+  <text class="mono-small ink" x="672" y="606">909/10000</text>
+  <text class="mono-small ink" x="88" y="649">decimal</text>
+  <text class="mono-small green" x="308" y="649">0.9</text>
+  <text class="mono-small rust" x="420" y="649">0.09</text>
+  <text class="mono-small green" x="538" y="649">0.909</text>
+  <text class="mono-small rust" x="672" y="649">0.0909</text>
+  <text class="small muted" x="88" y="697">Each new block is nine times its left endpoint, so it dominates</text>
+  <text class="small muted" x="88" y="719">the entire earlier prefix and pulls the average toward its own value.</text>
+
+  <rect class="rust-panel" x="918" y="424" width="462" height="304" rx="18"/>
+  <text class="heading rust" x="946" y="462">TWO DIFFERENT SUBSEQUENTIAL LIMITS</text>
+  <text class="mono-small ink" x="946" y="515">A_(10^(2r+1))(0)  →  10/11</text>
+  <text class="mono-small ink" x="946" y="558">A_(10^(2r+2))(0)  →   1/11</text>
+  <line class="rule" x1="946" y1="585" x2="1352" y2="585"/>
+  <text class="body rust" x="946" y="624">10/11 is not 1/11.</text>
+  <text class="body ink" x="946" y="657">Therefore the full average sequence</text>
+  <text class="body ink" x="946" y="686">cannot converge to any real number.</text>
+
+  <rect class="green-panel" x="60" y="758" width="1320" height="96" rx="18"/>
+  <text class="heading green" x="88" y="794">WHAT THIS NEAR MISS PROVES, AND WHAT IT DOES NOT</text>
+  <text class="small ink" x="88" y="826">It proves that defining the convergence event does not put every start inside it. No measure is used here, so it does not contradict a pointwise ergodic theorem.</text>
+  <rect x="0" y="878" width="1440" height="22" fill="#16243A"/>
+</svg>

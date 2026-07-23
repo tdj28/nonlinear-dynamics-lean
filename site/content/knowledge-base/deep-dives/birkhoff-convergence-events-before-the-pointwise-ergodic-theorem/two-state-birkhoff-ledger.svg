@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980"
+     role="img" aria-labelledby="two-state-title two-state-desc">
+  <title id="two-state-title">Exact Birkhoff averages on a two-state swap</title>
+  <desc id="two-state-desc">A two-state deterministic orbit alternates between a with observable zero and b with observable two. Tables list the first nine totalized averages from both starts, a finite-horizon measurability and integrability ledger under the uniform probability measure, exact delete-one-prefix arithmetic, and formulas showing both average sequences converge to one.</desc>
+  <defs>
+    <style>
+      .paper { fill: #F3EFE6; }
+      .ink { fill: #16243A; }
+      .muted { fill: #4D5B6B; }
+      .navy { fill: #284E72; }
+      .green { fill: #47633B; }
+      .rust { fill: #934F1F; }
+      .panel { fill: #FFFDF8; stroke: #C4B8A8; stroke-width: 2; }
+      .blue-panel { fill: #E8F0F7; stroke: #4B6787; stroke-width: 2; }
+      .green-panel { fill: #EAF1E5; stroke: #6F8D5E; stroke-width: 2; }
+      .rust-panel { fill: #F3E8E0; stroke: #A67C52; stroke-width: 2; }
+      .rule { stroke: #C4B8A8; stroke-width: 2; }
+      .orbit { fill: none; stroke: #284E72; stroke-width: 4; }
+      .title { font-family: Georgia, "Times New Roman", serif; font-size: 38px; font-weight: 700; }
+      .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 19px; }
+      .heading { font-family: Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+      .body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+      .mono { font-family: "Courier New", monospace; font-size: 17px; }
+      .mono-small { font-family: "Courier New", monospace; font-size: 15px; }
+      .node { fill: #FFFDF8; stroke: #284E72; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect class="paper" x="0" y="0" width="1440" height="980"/>
+  <rect x="0" y="0" width="1440" height="20" fill="#16243A"/>
+  <text class="title ink" x="60" y="76">One orbit, two starts, one limiting average</text>
+  <text class="subtitle muted" x="60" y="110">Designed exact example: Ω = {a,b}, T swaps the states, g(a) = 0, g(b) = 2.</text>
+
+  <rect class="blue-panel" x="60" y="142" width="420" height="268" rx="18"/>
+  <text class="heading navy" x="88" y="180">THE DYNAMICAL SYSTEM</text>
+  <circle class="node" cx="174" cy="270" r="54"/>
+  <circle class="node" cx="366" cy="270" r="54"/>
+  <text class="title ink" x="160" y="282">a</text>
+  <text class="title ink" x="352" y="282">b</text>
+  <line x1="226" y1="242" x2="326" y2="242" stroke="#284E72" stroke-width="4"/>
+  <polygon points="340,242 322,231 322,253" fill="#284E72"/>
+  <line x1="314" y1="298" x2="214" y2="298" stroke="#284E72" stroke-width="4"/>
+  <polygon points="200,298 218,287 218,309" fill="#284E72"/>
+  <text class="small navy" x="258" y="205">T</text>
+  <text class="small navy" x="258" y="351">T</text>
+  <text class="body ink" x="112" y="375">g(a) = 0</text>
+  <text class="body ink" x="320" y="375">g(b) = 2</text>
+
+  <rect class="panel" x="505" y="142" width="875" height="268" rx="18"/>
+  <text class="heading navy" x="535" y="180">TOTALIZED AVERAGE LEDGER</text>
+  <text class="mono ink" x="535" y="220">n</text>
+  <text class="mono ink" x="640" y="220">0</text>
+  <text class="mono ink" x="716" y="220">1</text>
+  <text class="mono ink" x="792" y="220">2</text>
+  <text class="mono ink" x="868" y="220">3</text>
+  <text class="mono ink" x="944" y="220">4</text>
+  <text class="mono ink" x="1020" y="220">5</text>
+  <text class="mono ink" x="1096" y="220">6</text>
+  <text class="mono ink" x="1172" y="220">7</text>
+  <text class="mono ink" x="1248" y="220">8</text>
+  <line class="rule" x1="535" y1="235" x2="1346" y2="235"/>
+  <text class="mono ink" x="535" y="273">A_n(a)</text>
+  <text class="mono ink" x="640" y="273">0</text>
+  <text class="mono ink" x="716" y="273">0</text>
+  <text class="mono ink" x="792" y="273">1</text>
+  <text class="mono ink" x="856" y="273">2/3</text>
+  <text class="mono ink" x="944" y="273">1</text>
+  <text class="mono ink" x="1008" y="273">4/5</text>
+  <text class="mono ink" x="1096" y="273">1</text>
+  <text class="mono ink" x="1160" y="273">6/7</text>
+  <text class="mono ink" x="1248" y="273">1</text>
+  <text class="mono ink" x="535" y="316">A_n(b)</text>
+  <text class="mono ink" x="640" y="316">0</text>
+  <text class="mono ink" x="716" y="316">2</text>
+  <text class="mono ink" x="792" y="316">1</text>
+  <text class="mono ink" x="850" y="316">4/3</text>
+  <text class="mono ink" x="944" y="316">1</text>
+  <text class="mono ink" x="1002" y="316">6/5</text>
+  <text class="mono ink" x="1096" y="316">1</text>
+  <text class="mono ink" x="1154" y="316">8/7</text>
+  <text class="mono ink" x="1248" y="316">1</text>
+  <rect class="green-panel" x="535" y="342" width="811" height="48" rx="10"/>
+  <text class="mono-small green" x="557" y="372">A_2k(a) = A_2k(b) = 1; odd averages squeeze toward 1.</text>
+
+  <rect class="panel" x="60" y="438" width="820" height="356" rx="18"/>
+  <text class="heading navy" x="88" y="477">FINITE-HORIZON MEASURE LEDGER</text>
+  <text class="small muted" x="88" y="508">All subsets are measurable; μ(a) = μ(b) = 1/2.</text>
+  <text class="mono-small ink" x="88" y="550">horizon n</text>
+  <text class="mono-small ink" x="330" y="550">0</text>
+  <text class="mono-small ink" x="426" y="550">1</text>
+  <text class="mono-small ink" x="522" y="550">2</text>
+  <text class="mono-small ink" x="618" y="550">3</text>
+  <text class="mono-small ink" x="714" y="550">4</text>
+  <line class="rule" x1="88" y1="564" x2="846" y2="564"/>
+  <text class="mono-small ink" x="88" y="598">S_n(a), S_n(b)</text>
+  <text class="mono-small ink" x="314" y="598">0,0</text>
+  <text class="mono-small ink" x="410" y="598">0,2</text>
+  <text class="mono-small ink" x="506" y="598">2,2</text>
+  <text class="mono-small ink" x="602" y="598">2,4</text>
+  <text class="mono-small ink" x="698" y="598">4,4</text>
+  <text class="mono-small ink" x="88" y="635">A_n(a), A_n(b)</text>
+  <text class="mono-small ink" x="314" y="635">0,0</text>
+  <text class="mono-small ink" x="410" y="635">0,2</text>
+  <text class="mono-small ink" x="506" y="635">1,1</text>
+  <text class="mono-small ink" x="586" y="635">2/3,4/3</text>
+  <text class="mono-small ink" x="698" y="635">1,1</text>
+  <text class="mono-small ink" x="88" y="672">integral |S_n|</text>
+  <text class="mono-small ink" x="330" y="672">0</text>
+  <text class="mono-small ink" x="426" y="672">1</text>
+  <text class="mono-small ink" x="522" y="672">2</text>
+  <text class="mono-small ink" x="618" y="672">3</text>
+  <text class="mono-small ink" x="714" y="672">4</text>
+  <text class="mono-small ink" x="88" y="709">integral |A_n|</text>
+  <text class="mono-small ink" x="330" y="709">0</text>
+  <text class="mono-small ink" x="426" y="709">1</text>
+  <text class="mono-small ink" x="522" y="709">1</text>
+  <text class="mono-small ink" x="618" y="709">1</text>
+  <text class="mono-small ink" x="714" y="709">1</text>
+  <text class="small green" x="88" y="757">Every displayed function is measurable and has a finite absolute integral.</text>
+
+  <rect class="rust-panel" x="908" y="438" width="472" height="356" rx="18"/>
+  <text class="heading rust" x="936" y="477">DELETE AND RESTORE ONE PREFIX</text>
+  <text class="mono-small ink" x="936" y="521">S_5(a) = g(a) + S_4(Ta)</text>
+  <text class="mono-small ink" x="936" y="551">       = 0 + S_4(b) = 4.</text>
+  <text class="mono-small ink" x="936" y="598">A_4(Ta) = (5/4) A_5(a) - g(a)/4</text>
+  <text class="mono-small ink" x="936" y="628">        = (5/4)(4/5) - 0 = 1.</text>
+  <text class="mono-small ink" x="936" y="675">A_5(a) = g(a)/5 + (4/5) A_4(Ta)</text>
+  <text class="mono-small ink" x="936" y="705">       = 0 + (4/5)(1) = 4/5.</text>
+  <text class="small rust" x="936" y="752">The correction has one fixed value divided</text>
+  <text class="small rust" x="936" y="775">by a growing horizon, so it vanishes.</text>
+
+  <rect class="green-panel" x="60" y="824" width="1320" height="104" rx="18"/>
+  <text class="heading green" x="88" y="860">THE INFINITE CONCLUSION FOR THIS FINITE MODEL</text>
+  <text class="mono ink" x="88" y="895">A_(2k+1)(a) = 2k/(2k+1)  → 1;   A_(2k+1)(b) = (2k+2)/(2k+1) → 1.</text>
+  <text class="small ink" x="88" y="919">Both starts belong to the convergence event. This direct computation, not an ergodic dichotomy, proves E = Ω here.</text>
+  <rect x="0" y="958" width="1440" height="22" fill="#16243A"/>
+</svg>

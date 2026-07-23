@@ -2,17 +2,17 @@
 title: "Birkhoff Convergence Events Before the Pointwise Ergodic Theorem"
 slug: "birkhoff-convergence-events-before-the-pointwise-ergodic-theorem"
 date: 2026-07-21
-summary: "A textbook development of finite real Birkhoff averages, measurable convergence events, almost-everywhere representative transport, boundedness-free finite-prefix invariance, conditional ergodic zero-one laws, and the exact gap left for a pointwise ergodic theorem."
-lead: "Before proving that orbit averages converge, one can formalize the set on which convergence would occur. That set has real mathematical structure: it is measurable under ordinary measurability, null measurable for almost-everywhere representatives under quasi-measure preservation, exactly invariant under deleting one finite orbit prefix, and therefore conditionally rigid under ergodicity. None of those facts places a single point in the set. This chapter develops that distinction from finite sums to the edge of the pointwise theorem."
+summary: "Start with a two-state orbit whose averages converge to one and a bounded deterministic orbit whose averages oscillate, then climb through finite measurability, prefix invariance, convergence events, and conditional ergodic zero-one laws in Lean."
+lead: "The swap a to b to a with readings zero and two has averages that converge to one from both starts. A separate zero-one observable on successively longer decimal blocks has endpoint averages tending along two subsequences to ten elevenths and one eleventh, so it does not converge. Those exact models keep the logic honest while the chapter builds measurable convergence events, deletes one finite prefix in both directions, and derives conditional null-or-conull and probability zero-one consequences without pretending that rigidity proves full measure."
 draft: false
 pro_reviewed: false
 level: "Measure theory, filters and limits, finite orbit sums, quasi-measure-preserving dynamics, pre-ergodicity, quasi-ergodicity, and integrable subadditive-process interfaces"
-reading_time: "140 to 200 minutes"
+reading_time: "160 to 220 minutes, including the runnable Lean worksheet"
 prerequisites: "Finite sums, function iteration, real limits, measurable functions and sets, null sets, almost-everywhere equality, measure-preserving maps, and the definition of ergodicity; no pointwise ergodic theorem is assumed"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence"
 toc: true
 og_image: "birkhoff-convergence-events-before-the-pointwise-ergodic-theorem-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing finite Birkhoff averages entering a measurable invariant event, then an ergodic null-or-conull fork. A blocked final step says that a pointwise theorem is still needed to choose the conull branch."
+og_image_alt: "Warm-paper Deep Dive card comparing a two-state swap whose averages converge to one with a bounded decimal-block shift whose endpoint averages have subsequential limits ten elevenths and one eleventh. A bottom strip says exact prefix invariance gives a conditional null-or-conull fork and a membership theorem chooses the branch."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -28,6 +28,177 @@ Lean declaration map, figures, sources, and accessibility have not yet passed
 the required human and Pro reviews. The page is publicly available as an open
 working note while those reviews remain pending.
 {{< /panel >}}
+
+## Base camp: a two-state average you can finish by hand
+
+Let the state space be \(\Omega=\{a,b\}\). One deterministic update swaps the
+states:
+
+\[
+T(a)=b,\qquad T(b)=a.
+\]
+
+An **observable** is a function that assigns a reading to each state. Take
+
+\[
+g(a)=0,\qquad g(b)=2.
+\]
+
+Starting at \(a\), the readings are \(0,2,0,2,\ldots\). Starting at \(b\),
+they are \(2,0,2,0,\ldots\). Write \(S_n^g(x)\) for the sum of the first
+\(n\) readings from \(x\), and \(A_n^g(x)=S_n^g(x)/n\) for \(n\gt0\). Lean's
+totalized convention also sets \(A_0^g(x)=0\).
+
+The first values are completely explicit:
+
+| horizon \(n\) | \(0\) | \(1\) | \(2\) | \(3\) | \(4\) | \(5\) | \(6\) | \(7\) | \(8\) |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| \(A_n^g(a)\) | \(0\) | \(0\) | \(1\) | \(2/3\) | \(1\) | \(4/5\) | \(1\) | \(6/7\) | \(1\) |
+| \(A_n^g(b)\) | \(0\) | \(2\) | \(1\) | \(4/3\) | \(1\) | \(6/5\) | \(1\) | \(8/7\) | \(1\) |
+
+The table suggests a limit, but a finite table cannot prove one. The formulas
+for every \(k\ge1\) do:
+
+\[
+\begin{aligned}
+A_{2k}^g(a)&=A_{2k}^g(b)=1,\\
+A_{2k+1}^g(a)&=\frac{2k}{2k+1}\longrightarrow1,\\
+A_{2k+1}^g(b)&=\frac{2k+2}{2k+1}\longrightarrow1.
+\end{aligned}
+\]
+
+Both possible starts therefore have convergent averages with limit \(1\).
+The **convergence event** is the set of starting states whose full average
+sequence tends to some finite real number. For this model, it is the whole
+state space:
+
+\[
+E(T,g)=\{a,b\}=\Omega.
+\]
+
+That is a direct every-point calculation. It does not use ergodicity to
+choose a branch of a dichotomy.
+
+{{< reference-figure
+  wide="true"
+  src="two-state-birkhoff-ledger.svg"
+  alt="On the two-state swap with readings zero and two, the totalized averages from a through horizon eight are zero, zero, one, two thirds, one, four fifths, one, six sevenths, one. From b they are zero, two, one, four thirds, one, six fifths, one, eight sevenths, one. A uniform-measure ledger shows finite sums and averages are measurable and integrable. Exact five-term prefix arithmetic removes and restores the first reading. Even averages equal one, and odd averages tend to one."
+  caption="**Finding:** the exact formulas \(A_{2k}(a)=A_{2k}(b)=1\), \(A_{2k+1}(a)=2k/(2k+1)\), and \(A_{2k+1}(b)=(2k+2)/(2k+1)\) prove convergence to \(1\) from both starts. Under the uniform probability measure, every subset is measurable and every finite real-valued function is integrable; the displayed absolute integrals are \(0,1,2,3,4\) for the sums and \(0,1,1,1,1\) for the averages at horizons zero through four. The prefix equations are exact toy arithmetic, not sampled data or a general convergence theorem."
+>}}
+
+### A finite-horizon measurability and integrability ledger
+
+Give \(\Omega\) its full power-set
+{{< refterm "measurable-space" "measurable space" >}} and the uniform
+{{< refterm "probability-measure" "probability measure" >}}
+\(\mu(\{a\})=\mu(\{b\})=1/2\). Every subset is measurable, so every function
+from this two-point space to \(\mathbb R\) is a
+{{< refterm "measurable-function" "measurable function" >}}. Every such
+function with finite values is also
+{{< refterm "integrability" "integrable" >}}.
+
+Here is the complete finite ledger through horizon four:
+
+| \(n\) | \((S_n(a),S_n(b))\) | \((A_n(a),A_n(b))\) | \(\int |S_n|\,d\mu\) | \(\int |A_n|\,d\mu\) | measurable? | integrable? |
+|---:|---:|---:|---:|---:|---:|---:|
+| \(0\) | \((0,0)\) | \((0,0)\) | \(0\) | \(0\) | yes | yes |
+| \(1\) | \((0,2)\) | \((0,2)\) | \(1\) | \(1\) | yes | yes |
+| \(2\) | \((2,2)\) | \((1,1)\) | \(2\) | \(1\) | yes | yes |
+| \(3\) | \((2,4)\) | \((2/3,4/3)\) | \(3\) | \(1\) | yes | yes |
+| \(4\) | \((4,4)\) | \((1,1)\) | \(4\) | \(1\) | yes | yes |
+
+The general Lean theorems mirror this elementary ledger. Measurability of
+\(T\) and \(g\) makes every finite sum and average measurable. Measure
+preservation plus integrability of \(g\) makes every finite sum and average
+integrable. Those are finite-horizon statements; they do not yet discuss a
+limit.
+
+### Delete one reading, then restore it
+
+The basic prefix identity is
+
+\[
+S_{n+1}^g(\omega)=g(\omega)+S_n^g(T\omega).
+\]
+
+For \(n=4\) and \(\omega=a\), every number is visible:
+
+\[
+S_5^g(a)=g(a)+S_4^g(Ta)=0+S_4^g(b)=0+4=4.
+\]
+
+Normalize and solve in either direction:
+
+\[
+\begin{aligned}
+A_4^g(Ta)
+&=\frac54A_5^g(a)-\frac{g(a)}4
+=\frac54\frac45-0=1,\\
+A_5^g(a)
+&=\frac{g(a)}5+\frac45A_4^g(Ta)
+=0+\frac45\cdot1=\frac45.
+\end{aligned}
+\]
+
+The first line deletes the initial reading; the second restores it. For a
+general fixed value \(g(\omega)\), its normalized contribution is divided by
+a growing horizon and tends to zero. That is the mechanism behind the
+same-limit theorem later in the chapter.
+
+## A deterministic near miss: bounded readings need not settle
+
+Now use a separate state space \(\Omega=\mathbb N\), the shift
+\(T(k)=k+1\), and a bounded zero-one observable. Set \(g(0)=0\). For
+\(m\ge0\), put
+
+\[
+g(k)=
+\begin{cases}
+1,&10^m\le k\lt10^{m+1}\text{ and }m\text{ is even},\\
+0,&10^m\le k\lt10^{m+1}\text{ and }m\text{ is odd}.
+\end{cases}
+\]
+
+Thus the values are \(1\) on \(1,\ldots,9\), \(0\) on \(10,\ldots,99\),
+\(1\) on \(100,\ldots,999\), and so on. At the first four decimal endpoints:
+
+| horizon \(N\) | number of ones below \(N\) | \(A_N^g(0)\) |
+|---:|---:|---:|
+| \(10\) | \(9\) | \(9/10=0.9\) |
+| \(100\) | \(9\) | \(9/100=0.09\) |
+| \(1000\) | \(909\) | \(909/1000=0.909\) |
+| \(10000\) | \(909\) | \(909/10000=0.0909\) |
+
+For \(r\ge0\), the number of ones below both \(10^{2r+1}\) and
+\(10^{2r+2}\) is
+
+\[
+9\sum_{j=0}^{r}100^j=\frac{100^{r+1}-1}{11}.
+\]
+
+Dividing by the two different horizons gives
+
+\[
+A_{10^{2r+1}}^g(0)\longrightarrow\frac{10}{11},
+\qquad
+A_{10^{2r+2}}^g(0)\longrightarrow\frac{1}{11}.
+\]
+
+One sequence cannot converge to two distinct real limits. Hence
+\(0\notin E(T,g)\). The readings are bounded; the failure comes from
+successively longer blocks pulling the running mean into two different camps.
+No measure has been introduced, so this example does not contradict a
+pointwise ergodic theorem. It only proves that the event definition alone
+cannot supply membership.
+
+{{< reference-figure
+  wide="true"
+  src="decade-block-nonconvergence.svg"
+  alt="For the natural-number shift, a bounded zero-one observable alternates on growing decimal blocks. The endpoint averages are nine tenths, nine hundredths, nine hundred nine thousandths, and nine hundred nine ten-thousandths. The odd decimal endpoint subsequence tends to ten elevenths, while the even decimal endpoint subsequence tends to one eleventh, so the average sequence does not converge."
+  caption="**Finding:** the ones count below \(10^{2r+1}\) and \(10^{2r+2}\) is \((100^{r+1}-1)/11\). The two normalizations force distinct subsequential limits \(10/11\) and \(1/11\), so the start \(0\) is outside the convergence event. The block widths are drawn equally for readability and are explicitly not to scale. This is a designed deterministic teaching model, not empirical data and not the rising-observable boundary probe compiled in the project source."
+>}}
+
+## Why formalize the event before proving a pointwise theorem?
 
 There is a seductive but invalid shortcut in ergodic formalization. Define the
 set where the averages converge, prove that the set is invariant, invoke
@@ -57,16 +228,20 @@ The finite combinatorial predecessor is
 
 | Route | Begin | Destination |
 |---|---|---|
+| First encounter | [A two-state average](#base-camp-a-two-state-average-you-can-finish-by-hand) | Compute a convergent orbit and its finite measure ledger |
+| Boundary route | [A deterministic near miss](#a-deterministic-near-miss-bounded-readings-need-not-settle) | Prove bounded deterministic nonconvergence from two subsequences |
 | Finite route | [The object below every asymptotic theorem](#the-object-below-every-asymptotic-theorem) | Rebuild sums and totalized averages |
 | Event route | [Convergence becomes a subset](#convergence-becomes-a-subset) | Understand membership without existence |
 | Measure route | [Ordinary measurability gives a measurable event](#ordinary-measurability-gives-a-measurable-event) | Separate measurable from null measurable |
 | Representative route | [An integrable observable is only measurable almost everywhere](#an-integrable-observable-is-only-measurable-almost-everywhere) | Follow the measurable representative safely |
 | Shift route | [Delete one finite prefix without boundedness](#delete-one-finite-prefix-without-boundedness) | Prove the same-limit equivalence |
 | Rigidity route | [Two ergodic routes, two honest receivers](#two-ergodic-routes-two-honest-receivers) | Distinguish pre-ergodic and quasi-ergodic paths |
+| Lean translation route | [Seven Lean bridges](#in-lean-seven-bridges-from-the-ledger-to-conditional-rigidity) | Match spoken mathematics, notation, and exact project names |
+| Hands-on route | [Run the worksheet](#type-both-ledgers-yourself-with-lean-and-std) | Execute the finite swap and decimal-block checks with only `Std` |
 | Project route | [Thin wrappers should keep thin premises](#thin-wrappers-should-keep-thin-premises) | Read candidate and cocycle specializations |
 | Lean route | [The complete thirty-seven-declaration ledger](#the-complete-thirty-seven-declaration-ledger) | Audit every public name |
-| Boundary route | [Models that keep the API honest](#models-that-keep-the-api-honest) | Test zero time, zero measure, and divergence |
-| Summit route | [The theorem that is still missing](#the-theorem-that-is-still-missing) | Locate the exact analytic gap |
+| Source boundary route | [Models that keep the API honest](#models-that-keep-the-api-honest) | Test zero time, zero measure, and the compiled rising-observable divergence |
+| Summit route | [The existence theorem RMT-22 leaves open](#the-existence-theorem-that-rmt-22-leaves-open) | Locate the exact analytic gap and the later project module that closes it |
 
 ### Learning objectives
 
@@ -100,8 +275,14 @@ By the summit, a reader should be able to:
 26. state the common axiom footprint of the high-level theorems;
 27. distinguish event rigidity from convergence existence;
 28. state what a pointwise ergodic theorem would add;
-29. explain why this milestone does not complete Kingman's theorem; and
-30. identify the next analytic dependencies without overclaiming them.
+29. explain why this milestone does not complete Kingman's theorem;
+30. identify the next analytic dependencies without overclaiming them;
+31. derive the even and odd average formulas for the two-state swap;
+32. prove decimal-block nonconvergence from the limits \(10/11\) and \(1/11\);
+33. run the byte-identical standalone <code>Std</code> worksheet on a normal
+    Mac or Linux machine; and
+34. distinguish all thirty-seven public declarations from the imported helper
+    APIs and twelve anonymous source probes.
 
 ## The common setup and notation ledger
 
@@ -478,6 +659,335 @@ membership. RMT-22 includes this probe because it exposes the difference
 between a valid almost-everywhere proposition and a substantive probability
 statement.
 
+## In Lean: seven bridges from the ledger to conditional rigidity
+
+Each bridge presents one idea in spoken mathematics, paper notation, and exact
+project syntax. The first two concern one finite horizon. The next three build
+and shift the convergence event. The final two state exact invariance and its
+conditional measure-theoretic consequences.
+
+### Bridge 1: name one finite orbit average
+
+{{< lean-bridge
+  human="Average the first n readings of g along the orbit that starts at omega."
+  math="\(A_n^g(\omega)=n^{-1}\sum_{j=0}^{n-1}g(T^j\omega).\)"
+  lean="birkhoffAverage ℝ T g n ω"
+>}}
+
+- <code>birkhoffAverage</code> is Mathlib's total finite-average definition.
+- The first argument <code>ℝ</code> chooses real scalar normalization.
+- <code>T</code> is the update map, <code>g</code> is the observable,
+  <code>n</code> is the horizon, and <code>ω</code> is the start.
+- Internally, <code>birkhoffSum T g n ω</code> sums the indices in
+  <code>Finset.range n</code>, namely \(0,\ldots,n-1\).
+- At <code>n = 0</code>, inverse zero is totalized to zero, so the displayed
+  Lean term has value zero.
+{{< /lean-bridge >}}
+
+### Bridge 2: certify the finite measure ledger
+
+{{< lean-bridge
+  human="If T and g are measurable, then the horizon-n average is measurable; if T preserves the measure and g is integrable, that average is integrable."
+  math="\(\operatorname{Measurable}(T),\operatorname{Measurable}(g)\Rightarrow\operatorname{Measurable}(A_n^g)\), and \(\operatorname{MeasurePreserving}(T,\mu),g\in L^1(\mu)\Rightarrow A_n^g\in L^1(\mu).\)"
+  lean="measurable_birkhoffAverage hT hg n"
+>}}
+
+- In the measurable call, <code>hT : Measurable T</code> and
+  <code>hg : Measurable g</code>.
+- The integrable companion has exact name
+  <code>integrable_birkhoffAverage</code> and is called as
+  <code>integrable_birkhoffAverage hT hg n</code> with
+  <code>hT : MeasurePreserving T μ μ</code> and
+  <code>hg : Integrable g μ</code>.
+- The sum-level companions are <code>measurable_birkhoffSum</code> and
+  <code>integrable_birkhoffSum</code>.
+- None of these four finite declarations states that a sequence converges.
+{{< /lean-bridge >}}
+
+### Bridge 3: turn convergence into point membership
+
+{{< lean-bridge
+  human="The start omega is in the convergence event exactly when its full average sequence approaches some finite real number."
+  math="\(\omega\in E(T,g)\Longleftrightarrow\exists c\in\mathbb R,\ A_n^g(\omega)\to c.\)"
+  lean="mem_birkhoffConvergenceSet_iff"
+>}}
+
+- <code>birkhoffConvergenceSet T g</code> is the set \(E(T,g)\).
+- <code>∃ c : ℝ</code> in the theorem's expanded type asks for a finite real
+  limit witness.
+- <code>Tendsto ... atTop (nhds c)</code> means that, as natural horizons
+  grow, the average enters every neighborhood of <code>c</code>.
+- The theorem is a simp boundary for the definition. It does not manufacture
+  a value of <code>c</code> or a member of the event.
+{{< /lean-bridge >}}
+
+### Bridge 4: transport the event across representatives
+
+{{< lean-bridge
+  human="If g and h agree almost everywhere and T pulls null sets back to null sets, then their convergence events agree almost everywhere."
+  math="\(g=h\ \mu\text{-a.e.}\Longrightarrow E(T,g)=E(T,h)\ \mu\text{-a.e.}\)"
+  lean="birkhoffConvergenceSet_ae_eq_of_ae_eq hT hgh"
+>}}
+
+- <code>hT : Measure.QuasiMeasurePreserving T μ μ</code> protects a null
+  exceptional set when the orbit repeatedly takes preimages.
+- <code>hgh : g =ᵐ[μ] h</code> is equality outside a \(\mu\)-null set.
+- The proof first obtains equality of every fixed-horizon average, then uses
+  <code>ae_all_iff</code> to choose one conull set where all horizons agree.
+- The result is almost-everywhere equality of membership predicates, not
+  literal equality of sets at every point.
+{{< /lean-bridge >}}
+
+### Bridge 5: delete or restore one prefix without changing the limit
+
+{{< lean-bridge
+  human="The averages from omega converge to c exactly when the averages from the next point T omega converge to the same c."
+  math="\(A_n^g(T\omega)\to c\Longleftrightarrow A_n^g(\omega)\to c.\)"
+  lean="tendsto_birkhoffAverage_apply_base_iff"
+>}}
+
+- The forward algebraic helper is
+  <code>birkhoffAverage_succ_apply_base</code>:
+  \(A_{n+1}(T\omega)=\frac{n+2}{n+1}A_{n+2}(\omega)
+  -g(\omega)/(n+1)\).
+- The reverse helper is
+  <code>birkhoffAverage_succ_succ_apply</code>.
+- The corresponding one-way limit theorems are
+  <code>tendsto_birkhoffAverage_apply_base</code> and
+  <code>tendsto_birkhoffAverage_of_apply_base</code>.
+- No inverse for <code>T</code> is used. The reverse implication restores the
+  deleted value algebraically.
+{{< /lean-bridge >}}
+
+### Bridge 6: express pointwise equivalence as exact set invariance
+
+{{< lean-bridge
+  human="A start belongs to the event if and only if its next orbit point belongs, so taking the preimage of the event changes nothing."
+  math="\(T^{-1}(E(T,g))=E(T,g).\)"
+  lean="preimage_birkhoffConvergenceSet T g"
+>}}
+
+- <code>T ⁻¹' E</code> is the set of starts whose next point lies in
+  <code>E</code>.
+- The equality is exact, not merely almost everywhere.
+- No measurable-space, measure, preservation, injectivity, surjectivity, or
+  boundedness premise occurs.
+- This is a preimage statement. It does not assert <code>T '' E = E</code>.
+{{< /lean-bridge >}}
+
+### Bridge 7: keep rigidity and existence separate
+
+{{< lean-bridge
+  human="For an integrable observable and a quasi-ergodic base, the convergence event is almost everywhere empty or almost everywhere full."
+  math="\(E(T,g)=\varnothing\ \mu\text{-a.e.}\ \lor\ E(T,g)=\Omega\ \mu\text{-a.e.}\)"
+  lean="birkhoffConvergenceSet_ae_empty_or_univ_of_integrable hg hT"
+>}}
+
+- <code>hg : Integrable g μ</code> supplies almost-everywhere strong
+  measurability; it does not supply convergence.
+- <code>hT : QuasiErgodic T μ</code> supplies quasi-measure preservation and
+  rigidity for null-measurable almost-invariant sets.
+- With <code>[IsProbabilityMeasure μ]</code>, the separate corollary
+  <code>measure_birkhoffConvergenceSet_eq_zero_or_one_of_integrable</code>
+  concludes only \(\mu(E)=0\lor\mu(E)=1\).
+- Neither theorem chooses the full or measure-one branch. In the two-state
+  example, the explicit even-and-odd formulas choose it. In general, a
+  pointwise theorem or another membership argument must do so.
+{{< /lean-bridge >}}
+
+### Try the exact declarations in the repository
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean).
+On an approved Linux builder, a human can put the following query block in a
+temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence
+
+open MeasureTheory Set Filter
+open NonlinearDynamics.Random.RandomCocycles
+
+#check measurable_birkhoffSum
+#check measurable_birkhoffAverage
+#check integrable_birkhoffSum
+#check integrable_birkhoffAverage
+#check birkhoffConvergenceSet
+#check mem_birkhoffConvergenceSet_iff
+#check measurableSet_birkhoffConvergenceSet
+#check birkhoffConvergenceSet_ae_eq_of_ae_eq
+#check nullMeasurableSet_birkhoffConvergenceSet_of_aemeasurable
+#check nullMeasurableSet_birkhoffConvergenceSet_of_aestronglyMeasurable
+#check nullMeasurableSet_birkhoffConvergenceSet_of_integrable
+#check birkhoffAverage_succ_apply_base
+#check tendsto_birkhoffAverage_apply_base
+#check birkhoffAverage_succ_succ_apply
+#check tendsto_birkhoffAverage_of_apply_base
+#check tendsto_birkhoffAverage_apply_base_iff
+#check preimage_birkhoffConvergenceSet
+#check birkhoffConvergenceSet_ae_empty_or_univ_of_measurableSet
+#check birkhoffConvergenceSet_ae_empty_or_univ_of_nullMeasurableSet
+#check birkhoffConvergenceSet_ae_empty_or_univ_of_aemeasurable
+#check birkhoffConvergenceSet_ae_empty_or_univ_of_aestronglyMeasurable
+#check birkhoffConvergenceSet_ae_empty_or_univ_of_integrable
+#check measure_birkhoffConvergenceSet_eq_zero_or_one_of_measurableSet
+#check measure_birkhoffConvergenceSet_eq_zero_or_one_of_nullMeasurableSet
+#check measure_birkhoffConvergenceSet_eq_zero_or_one_of_aemeasurable
+#check measure_birkhoffConvergenceSet_eq_zero_or_one_of_aestronglyMeasurable
+#check measure_birkhoffConvergenceSet_eq_zero_or_one_of_integrable
+#check oneStepBirkhoffConvergenceSet
+#check IsIntegrableSubadditiveProcessCandidate.nullMeasurableSet_oneStepBirkhoffConvergenceSet
+#check IsIntegrableSubadditiveProcessCandidate.preimage_oneStepBirkhoffConvergenceSet
+#check IsIntegrableSubadditiveProcessCandidate.oneStepBirkhoffConvergenceSet_ae_empty_or_univ
+#check IsIntegrableSubadditiveProcessCandidate.measure_oneStepBirkhoffConvergenceSet_eq_zero_or_one
+#check DiscreteMatrixCocycle.generatorLogPlusBirkhoffConvergenceSet
+#check DiscreteMatrixCocycle.measurableSet_generatorLogPlusBirkhoffConvergenceSet
+#check DiscreteMatrixCocycle.preimage_generatorLogPlusBirkhoffConvergenceSet
+#check DiscreteMatrixCocycle.generatorLogPlusBirkhoffConvergenceSet_ae_empty_or_univ
+#check DiscreteMatrixCocycle.measure_generatorLogPlusBirkhoffConvergenceSet_eq_zero_or_one
+~~~
+
+The 37 checks follow the public declarations in source order. They query exact
+types; they do not create a theorem or rerun the examples by themselves.
+{{< /repo-check >}}
+
+## Type both ledgers yourself with Lean and `Std`
+
+The next worksheet imports only Lean's small <code>Std</code> library. It
+computes both starts of the two-state swap, checks the finite prefix identity,
+and computes the first four decimal-block endpoints with exact rational
+numbers. It does not import Mathlib, create a measure, or prove an infinite
+limit.
+
+Save this exact text as
+<code>/tmp/BirkhoffConvergenceTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace BirkhoffConvergenceTutorial
+
+inductive Point where
+  | a
+  | b
+  deriving Repr, DecidableEq
+
+def step : Point → Point
+  | .a => .b
+  | .b => .a
+
+def observe : Point → Nat
+  | .a => 0
+  | .b => 2
+
+def iterate : Nat → Point → Point
+  | 0, p => p
+  | n + 1, p => iterate n (step p)
+
+def orbitValues (n : Nat) (p : Point) : List Nat :=
+  (List.range n).map fun j => observe (iterate j p)
+
+def orbitSum (n : Nat) (p : Point) : Nat :=
+  (orbitValues n p).sum
+
+def orbitAverage (n : Nat) (p : Point) : Rat :=
+  if n = 0 then 0 else (orbitSum n p : Rat) / (n : Rat)
+
+def decadeValueAux : Nat → Nat → Bool → Nat
+  | 0, _, _ => 0
+  | fuel + 1, n, oneBlock =>
+      if n < 10 then
+        if oneBlock then 1 else 0
+      else
+        decadeValueAux fuel (n / 10) (!oneBlock)
+
+def decadeValue (n : Nat) : Nat :=
+  if n = 0 then 0 else decadeValueAux (n + 1) n true
+
+def decadeOnes (n : Nat) : Nat :=
+  ((List.range n).map decadeValue).sum
+
+def decadeAverage (n : Nat) : Rat :=
+  if n = 0 then 0 else (decadeOnes n : Rat) / (n : Rat)
+
+#eval orbitValues 8 .a
+#eval orbitValues 8 .b
+#eval (List.range 9).map fun n => (n, orbitSum n .a, orbitAverage n .a)
+#eval (List.range 9).map fun n => (n, orbitSum n .b, orbitAverage n .b)
+#eval (orbitSum 5 .a, observe .a + orbitSum 4 (step .a))
+#eval (orbitAverage 4 (step .a),
+  (5 : Rat) / 4 * orbitAverage 5 .a - (observe .a : Rat) / 4)
+#eval [10, 100, 1000, 10000].map fun n =>
+  (n, decadeOnes n, decadeAverage n)
+
+example : orbitValues 8 .a = [0, 2, 0, 2, 0, 2, 0, 2] := by
+  native_decide
+
+example : orbitValues 8 .b = [2, 0, 2, 0, 2, 0, 2, 0] := by
+  native_decide
+
+example :
+    (List.range 12).all (fun n =>
+      orbitSum (n + 1) .a = observe .a + orbitSum n (step .a)) = true := by
+  native_decide
+
+example :
+    [10, 100, 1000, 10000].map (fun n => decadeAverage n) =
+      [9 / 10, 9 / 100, 909 / 1000, 909 / 10000] := by
+  native_decide
+
+end BirkhoffConvergenceTutorial
+~~~
+
+From the repository root or any other directory, type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/BirkhoffConvergenceTutorial.lean
+~~~
+
+The byte-for-byte standard output is:
+
+~~~text
+[0, 2, 0, 2, 0, 2, 0, 2]
+[2, 0, 2, 0, 2, 0, 2, 0]
+[(0, 0, 0),
+ (1, 0, 0),
+ (2, 2, 1),
+ (3, 2, (2 : Rat)/3),
+ (4, 4, 1),
+ (5, 4, (4 : Rat)/5),
+ (6, 6, 1),
+ (7, 6, (6 : Rat)/7),
+ (8, 8, 1)]
+[(0, 0, 0),
+ (1, 2, 2),
+ (2, 2, 1),
+ (3, 4, (4 : Rat)/3),
+ (4, 4, 1),
+ (5, 6, (6 : Rat)/5),
+ (6, 6, 1),
+ (7, 8, (8 : Rat)/7),
+ (8, 8, 1)]
+(4, 4)
+(1, 1)
+[(10, 9, (9 : Rat)/10), (100, 9, (9 : Rat)/100), (1000, 909, (909 : Rat)/1000), (10000, 909, (909 : Rat)/10000)]
+~~~
+
+The first two lists are the orbit readings. The next two ledgers contain
+\((n,S_n,A_n)\). The pair <code>(4, 4)</code> checks
+\(S_5(a)=g(a)+S_4(Ta)\), and <code>(1, 1)</code> checks the normalized
+delete-one-prefix identity. The final line reproduces every endpoint count and
+fraction in the nonconvergence table.
+
+**Resource profile: tiny standalone tutorial, safe on a normal Mac or Linux
+machine.** It imports only <code>Std</code> and never opens this project's
+Mathlib dependency graph. This exact file and output were checked with the
+pinned Lean 4.32.0 toolchain on the Mac. The full project declarations remain
+cloud-only and use the guarded command in the preceding repository box.
+
 ## Thin wrappers should keep thin premises
 
 ### Integrable subadditive-process candidates
@@ -623,6 +1133,41 @@ Birkhoff averages of the one-step observable \(X_1\).
 The source-level count treats every declaration once. Anonymous examples and
 the six <code>#print axioms</code> commands are verification surfaces, not
 public API names.
+
+### Complete proof-helper map
+
+The module declares no private named helper theorem. Its proof bodies use
+imported Mathlib interfaces and local <code>have</code> statements. The table
+below accounts for those helper families and shows exactly which public
+declarations consume them.
+
+| Public declarations | Imported or bundled helper used in the proof | Exact job |
+|---|---|---|
+| 1-2 | <code>Measurable.iterate</code>, <code>Measurable.comp</code>, <code>Finset.measurable_sum</code>, <code>Measurable.mul</code> | Make each orbit term, finite sum, and scalar-normalized average measurable |
+| 3-4 | <code>MeasurePreserving.iterate</code>, <code>MeasurePreserving.integrable_comp_of_integrable</code>, <code>integrable_finsetSum</code>, <code>Integrable.const_mul</code> | Move one-step integrability through every iterate, add finitely, then normalize |
+| 5-6 | no imported proof helper; definition and <code>rfl</code> | Name the convergence predicate as a set and expose membership without asserting a witness |
+| 7 | <code>MeasureTheory.measurableSet_exists_tendsto</code> | Convert a measurable real-valued sequence into a measurable set of points where some finite limit exists |
+| 8 | <code>Measure.QuasiMeasurePreserving.birkhoffAverage_ae_eq_of_ae_eq</code>, <code>ae_all_iff</code>, <code>Tendsto.congr'</code> | Upgrade fixed-horizon almost-everywhere equality to one conull set carrying equality at every horizon, then preserve limits |
+| 9-11 | <code>AEMeasurable.mk</code>, <code>AEMeasurable.measurable_mk</code>, <code>AEMeasurable.ae_eq_mk</code>, <code>NullMeasurableSet.congr</code> | Choose an ordinary representative and transfer its measurable convergence event back to the raw observable |
+| 12 and 14 | <code>birkhoffSum_succ'</code>, <code>field_simp</code>, <code>ring_nf</code> | Peel the first orbit reading and solve the normalized identity in each direction |
+| 13 and 15 | <code>tendsto_add_atTop_iff_nat</code>, <code>tendsto_add_atTop_nat</code>, <code>tendsto_one_div_add_atTop_nhds_zero_nat</code>, <code>tendsto_const_div_atTop_nhds_zero_nat</code>, <code>tendsto_natCast_div_add_atTop</code>, <code>Filter.Tendsto.mul</code>, <code>Filter.Tendsto.add</code>, <code>Filter.Tendsto.sub</code> | Shift the horizon, send the coefficient to one and the prefix correction to zero, and combine limits |
+| 16-17 | declarations 13 and 15, <code>Set.ext</code>, <code>mem_birkhoffConvergenceSet_iff</code> | Package the two limit directions and turn pointwise membership equivalence into exact preimage equality |
+| 18 and 23 | <code>PreErgodic.ae_empty_or_univ</code>, <code>PreErgodic.prob_eq_zero_or_one</code> | Apply ordinary measurable strict-invariance rigidity, then add probability normalization only for numerical zero-one output |
+| 19 and 24 | <code>QuasiErgodic.ae_empty_or_univ₀</code>, <code>ae_eq_empty</code>, <code>measure_congr</code> | Apply null-measurable almost-invariant rigidity and convert its two branches to measures |
+| 20-22 and 25-27 | <code>AEStronglyMeasurable.aemeasurable</code>, <code>Integrable.aestronglyMeasurable</code> | Expose progressively stronger ergonomic premises while reusing the almost-everywhere-measurable proof core |
+| 28 | no imported proof helper; definitional abbreviation | Name the generic event for the one-step observable \(X_1\) without consuming a candidate law |
+| 29-32 | <code>IsIntegrableSubadditiveProcessCandidate.integrable 1</code> plus generic declarations 11, 17, 22, and 27 | Reuse only one-step integrability and the generic event API; the shifted-subadditive field is not used |
+| 33 | no imported proof helper; definitional abbreviation | Name the event for the cocycle's one-step log-positive norm observable |
+| 34-37 | <code>DiscreteMatrixCocycle.base_preserving.measurable</code>, <code>DiscreteMatrixCocycle.measurable_logPlusNormObservable 1</code>, plus generic declarations 7, 17, 18, and 23 | Supply ordinary measurability from the cocycle bundle and reuse the generic event API without generator integrability |
+| boundary probes 1-9 | <code>birkhoffAverage_zero</code>, <code>birkhoffAverage_of_comp_eq</code>, <code>Function.IsFixedPt.birkhoffAverage_eq</code>, zero-measure and empty-index instances | Test time zero, constants, identity dynamics, noninjectivity, representatives, zero measure, \(X_0\), and an empty matrix index |
+| boundary probes 10-12 | <code>mem_birkhoffConvergenceSet_iff</code>, <code>Finset.sum_range_id_mul_two</code>, <code>tendsto_natCast_atTop_atTop</code>, <code>not_tendsto_atTop_of_tendsto_nhds</code> | Turn abstract divergence into nonmembership and compile the explicit successor-orbit formula \(A_{n+1}(0)=n/2\) |
+
+This map distinguishes project declarations from upstream machinery. For
+example, <code>birkhoffSum_succ'</code> is an imported finite-sum recurrence;
+<code>birkhoffAverage_succ_apply_base</code> is this module's new solved
+average identity. The 37-name ledger, this helper map, the 12-probe narrative
+below, and the six axiom prints together cover every source-level proof
+surface in the 602-line file.
 
 ## Proof architecture as a dependency graph
 
@@ -1127,8 +1672,8 @@ theorem."
 {{< details "Solution" >}}
 RMT-22 builds a measurable, representative-safe, exactly preimage-invariant
 event for finite-real convergence of Birkhoff averages and proves its
-conditional ergodic rigidity, while leaving convergence existence to a future
-pointwise theorem.
+conditional ergodic rigidity, while leaving convergence existence to a
+separate pointwise theorem.
 {{< /details >}}
 
 ## Premise ledger
@@ -1184,7 +1729,7 @@ The theorem that a convergence event is null or conull is genuinely useful.
 It becomes decisive once another argument gives positive measure or
 almost-everywhere membership. It is not a substitute for that argument.
 
-## The theorem that is still missing
+## The existence theorem that RMT-22 leaves open
 
 The [classical pointwise Birkhoff ergodic theorem](#ref-birkhoff-event-deep-birkhoff)
 starts with a
@@ -1196,18 +1741,27 @@ limit is almost everywhere constant and agrees with the space average.
 RMT-22 stops before every part of that existence statement. The pinned Mathlib
 release contains finite Birkhoff algebra, quasi-measure-preserving
 representative transport, ergodic rigidity, and specialized mean-ergodic
-results in normed settings. The audited API does not contain the
-measure-theoretic pointwise Birkhoff theorem needed here.
+results in normed settings. The Mathlib API audited for RMT-22 did not itself
+contain the measure-theoretic pointwise Birkhoff theorem needed here.
 
-RMT-23 now supplies the first item in that route: a finite Hopf-style maximal
+The project later built that analytic route in separate modules. RMT-23
+supplies a finite Hopf-style maximal
 ergodic inequality and a horizon-uniform weak estimate for strict finite
 average-threshold events. The
 [finite maximal Deep Dive]({{< relref "/knowledge-base/deep-dives/finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events" >}})
-keeps the later passage to an infinite maximal event, approximation, and
-almost-everywhere convergence explicit. The project must not confuse
-Mathlib's martingale maximal inequalities with Hopf's maximal ergodic
-inequality, nor its norm-convergence mean-ergodic results with pointwise
-almost-everywhere convergence.
+begins that climb. The later
+[Pointwise Birkhoff from Maximal Control and Dense Good Functions]({{< relref "/knowledge-base/deep-dives/pointwise-birkhoff-from-maximal-control-and-dense-good-functions" >}})
+chapter reaches the project theorem
+<code>ae_mem_birkhoffConvergenceSet_of_integrable</code>. Under a finite
+measure, measure-preserving dynamics, and an integrable real observable, that
+theorem proves almost-everywhere membership in the convergence event.
+
+This later result does not change what RMT-22 proves. In the present module,
+the null-or-conull and zero-one theorems remain conditional dichotomies. A
+caller that wants the conull branch must import and apply the later pointwise
+theorem or provide another membership argument. The later theorem also stops
+at convergence-event membership: it does not identify the limit with a
+conditional expectation or, under ergodicity, with the space average.
 
 For the subadditive program, even a pointwise theorem for the one-step
 observable is not the final summit. The RMT-20 phase estimate and RMT-21
@@ -1239,6 +1793,12 @@ maps all thirty-seven names to their checked proofs and build commands.
 continues the analytic route with strict finite running maxima,
 measure-preserving cancellation, and a positive-threshold weak estimate. It
 still makes no pointwise convergence claim.
+
+[Pointwise Birkhoff from Maximal Control and Dense Good Functions]({{< relref "/knowledge-base/deep-dives/pointwise-birkhoff-from-maximal-control-and-dense-good-functions" >}})
+completes the later finite-measure maximal-closure route to
+<code>ae_mem_birkhoffConvergenceSet_of_integrable</code>. Read it after this
+chapter to see exactly which new hypotheses and approximation machinery choose
+the conull branch.
 
 ## References
 
