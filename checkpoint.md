@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:39 PDT
+Last updated: 2026-07-22 17:46 PDT
 
-Audited baseline: `main` at `6a64db2`
+Audited baseline: `main` at `69be855`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -152,15 +152,16 @@ all glossary entries before beginning the Deep Dive pass, validate and push
 small coherent batches, and do not resume RMT-35 formalization while this
 reader-catch-up phase is active.
 
-The current wave brings **55 of 62 glossary chapters** through the full
-example-first rebuild. The newest chapter computes a two-atom normalized
-average from weights `(2, 1)` and values `(1, 4)`: mass `3`, integral `6`,
-average `2`; fivefold scaling gives `(15, 30, 2)`, while probability
-normalization gives expectation `2`. Its exact Lean bridges separate the
-canonical `⨍` notation, reciprocal-mass rewrite, probability specialization,
-and later ergodic Birkhoff theorem. The accessible SVG is now the reproducible
-card, and its `Std` worksheet was executed with Lean 4.32.0 on the Mac. This
-is intentional teaching use of local Lean; project imports, Mathlib work,
+The current wave brings **57 of 62 glossary chapters** through the full
+example-first rebuild. The two newest chapters make fixed-scale Cauchy failure
+and conditional expectation fully concrete. One constructs positive-time
+averages `-1, 1, -1, 1, ...`, exhibits moving witness pairs after three sample
+cutoffs, and contrasts a constant tail. The other groups four equally likely
+states into two visible cells, replaces values `(1, 3, 2, 6)` by
+`(2, 2, 4, 4)`, and checks every visible-set integral. Each page now has exact
+human/paper/Lean bridges, a numeric accessible SVG that is also its
+reproducible card, and a `Std` worksheet executed with Lean 4.32.0 on the Mac.
+This is intentional teaching use of local Lean; project imports, Mathlib work,
 dependency builds, caches, and large proof checks remain on freshly approved
 Linux cloud compute.
 
@@ -1028,7 +1029,7 @@ declaration visibility.
   Selection*, followed by *The Guarded Real-Liminf Bridge to Log-Positive
   Kingman Convergence*, followed by *The Forward-and-Inverse Tail Sandwich for
   Finite-Time Real Log Norms*.
-- Fifty-two glossary chapters, now including integrable generator log tails,
+- Fifty-seven glossary chapters, now including integrable generator log tails,
   the finite orbit visit count,
   limit superior, limit inferior, ergodicity, normalized space
   averages, the invariant sigma algebra,
@@ -3050,6 +3051,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `69be855`: calculate a normalized average from two weighted atoms, preserve
+  it under fivefold measure scaling, and identify its probability
+  specialization; execute the local `Std` ledger and regenerate the card.
 - `6a64db2`: pull one exact observable twice around a uniform three-cycle,
   preserve its squared `L²` norm, and contrast the non-preserving collapse;
   execute the local `Std` worksheet and regenerate its numeric card.

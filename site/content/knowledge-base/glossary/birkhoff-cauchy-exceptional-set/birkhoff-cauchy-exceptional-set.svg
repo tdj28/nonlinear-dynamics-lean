@@ -1,51 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360" role="img" aria-labelledby="birkhoffCauchySetTitle birkhoffCauchySetDesc">
-  <title id="birkhoffCauchySetTitle">Birkhoff Cauchy exceptional set</title>
-  <desc id="birkhoffCauchySetDesc">Three successive tail cutoffs each retain a pair of averages separated at one fixed scale. The complement supplies a tail controlled at that scale; avoiding every reciprocal-scale event supplies the Cauchy property.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700"
+     viewBox="0 0 1000 700" role="img"
+     aria-labelledby="birkhoffCauchySetTitle birkhoffCauchySetDesc">
+  <title id="birkhoffCauchySetTitle">Exact fixed-scale Cauchy failure and its complement</title>
+  <desc id="birkhoffCauchySetDesc">The first positive-time average sequence alternates between minus one and one. At scale two, cutoffs one, four, and seven have later even and odd witness pairs at distance two, so every tail fails the strict scale-two Cauchy test. A constant average sequence equal to three has pairwise distance zero, so at scale one half it leaves the exceptional set after cutoff one. A final panel lists reciprocal scales one, one half, one third, and so on and explains that avoiding every such exceptional event yields the full Cauchy property.</desc>
   <defs>
-    <marker id="birkhoffCauchyArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
-    </marker>
+    <pattern id="cauchyDots" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#52708C"/>
+    </pattern>
+    <pattern id="cauchyHatch" width="9" height="9" patternUnits="userSpaceOnUse"
+             patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#A76542" stroke-width="2" opacity="0.28"/>
+    </pattern>
   </defs>
   <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:16px;font-weight:700}
-    .h{font-size:12px;font-weight:700}
-    .s{font-size:11px}
-    .m{font-size:10px;fill:#5A544C}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .arrow{fill:none;stroke:#A67C52;stroke-width:2;marker-end:url(#birkhoffCauchyArrow)}
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2D2924}
+    .title{font-size:25px;font-weight:750}.sub{font-size:13px;fill:#5C554D}
+    .panel{font-size:17px;font-weight:750}.h{font-size:14px;font-weight:700}
+    .b{font-size:13px}.s{font-size:11px;fill:#5C554D}.k{font-size:11px;font-weight:750;letter-spacing:.7px}
+    .card{fill:#FFFCF7;stroke:#BCAE9C;stroke-width:1.5}
+    .blue{fill:#E8F0F7;stroke:#52708C;stroke-width:1.6}
+    .green{fill:#EAF1E5;stroke:#668157;stroke-width:1.6}
+    .clay{fill:#F5E8DF;stroke:#A76542;stroke-width:1.6}
+    .axis{stroke:#756D63;stroke-width:1.3}.guide{stroke:#BCAE9C;stroke-width:1.1;stroke-dasharray:5 5}
+    .seq{fill:none;stroke:#52708C;stroke-width:3}.arrow{stroke:#A76542;stroke-width:2.2;fill:none}
   </style>
-  <rect width="720" height="360" fill="#F7F4F0"/>
-  <text x="24" y="29" class="t title">Birkhoff Cauchy exceptional set</text>
-  <text x="24" y="49" class="t m">Persistent separation survives every attempt to enter a stable tail.</text>
 
-  <rect x="24" y="82" width="460" height="190" rx="16" class="neutral"/>
-  <text x="48" y="108" class="t h">EVERY TAIL CUTOFF</text>
-  <text x="48" y="144" class="t m">first tail</text>
-  <path d="M124 140 H444" stroke="#C4B8A8" stroke-width="2"/>
-  <circle cx="248" cy="127" r="7" fill="#A67C52"/>
-  <circle cx="362" cy="153" r="7" fill="#4B6787"/>
-  <path d="M248 166 V174 H362 V166" fill="none" stroke="#A67C52" stroke-width="1.8"/>
+  <rect width="1000" height="700" fill="#F7F2EA"/>
+  <text x="30" y="36" class="t title">A fixed scale asks whether every late tail still splits apart</text>
+  <text x="30" y="58" class="t sub">Exact averages: alternating failure at epsilon = 2, then a constant-sequence complement at epsilon = 1/2.</text>
 
-  <text x="48" y="200" class="t m">later tail</text>
-  <path d="M172 196 H444" stroke="#C4B8A8" stroke-width="2"/>
-  <circle cx="299" cy="183" r="7" fill="#A67C52"/>
-  <circle cx="405" cy="209" r="7" fill="#4B6787"/>
-  <path d="M299 222 V230 H405 V222" fill="none" stroke="#A67C52" stroke-width="1.8"/>
-  <text x="352" y="250" text-anchor="middle" class="t s">a separated pair remains</text>
+  <rect x="30" y="82" width="940" height="300" rx="18" class="card"/>
+  <text x="52" y="112" class="t panel">EXCEPTIONAL: A_n = (-1)^n FOR POSITIVE n</text>
+  <text x="52" y="134" class="t sub">Every proposed cutoff still leaves one even and one odd horizon at distance exactly 2.</text>
 
-  <path d="M490 176 H520" class="arrow"/>
-  <rect x="528" y="92" width="168" height="168" rx="16" class="clay"/>
-  <text x="612" y="121" text-anchor="middle" class="t h">EXCEPTIONAL STATE</text>
-  <path d="M570 149 C548 149 548 170 565 176 C548 182 548 203 570 203" fill="none" stroke="#A67C52" stroke-width="2.4"/>
-  <circle cx="600" cy="160" r="7" fill="#A67C52"/>
-  <circle cx="645" cy="192" r="7" fill="#4B6787"/>
-  <text x="612" y="229" text-anchor="middle" class="t s">failure persists</text>
-  <text x="612" y="246" text-anchor="middle" class="t m">at one fixed scale</text>
+  <line x1="75" y1="328" x2="612" y2="328" class="axis"/>
+  <line x1="75" y1="154" x2="75" y2="328" class="axis"/>
+  <line x1="75" y1="178" x2="612" y2="178" class="guide"/>
+  <line x1="75" y1="298" x2="612" y2="298" class="guide"/>
+  <text x="53" y="183" class="t b">1</text>
+  <text x="48" y="303" class="t b">-1</text>
+  <text x="52" y="340" class="t s">value</text>
+  <polyline points="105,298 160,178 215,298 270,178 325,298 380,178 435,298 490,178 545,298"
+            class="seq"/>
+  <g fill="#FFFCF7" stroke="#52708C" stroke-width="2">
+    <circle cx="105" cy="298" r="8"/><circle cx="160" cy="178" r="8"/>
+    <circle cx="215" cy="298" r="8"/><circle cx="270" cy="178" r="8"/>
+    <circle cx="325" cy="298" r="8"/><circle cx="380" cy="178" r="8"/>
+    <circle cx="435" cy="298" r="8"/><circle cx="490" cy="178" r="8"/>
+    <circle cx="545" cy="298" r="8"/>
+  </g>
+  <g class="t s" text-anchor="middle">
+    <text x="105" y="352">1</text><text x="160" y="352">2</text>
+    <text x="215" y="352">3</text><text x="270" y="352">4</text>
+    <text x="325" y="352">5</text><text x="380" y="352">6</text>
+    <text x="435" y="352">7</text><text x="490" y="352">8</text>
+    <text x="545" y="352">9</text>
+  </g>
+  <text x="568" y="352" class="t s">horizon</text>
 
-  <rect x="94" y="298" width="532" height="42" rx="12" class="green"/>
-  <text x="360" y="324" text-anchor="middle" class="t s">One scale controls one tail; all reciprocal scales give Cauchy.</text>
+  <rect x="642" y="130" width="300" height="225" rx="14" fill="url(#cauchyHatch)" stroke="#A76542" stroke-width="1.6"/>
+  <text x="664" y="158" class="t h">WITNESSES MOVE WITH THE CUTOFF</text>
+  <text x="664" y="187" class="t b">cutoff N</text>
+  <text x="758" y="187" class="t b">later pair (m,n)</text>
+  <text x="888" y="187" class="t b">distance</text>
+  <line x1="662" y1="197" x2="922" y2="197" class="guide"/>
+  <g class="t b">
+    <text x="688" y="225">1</text><text x="790" y="225">(2,3)</text><text x="893" y="225">2</text>
+    <text x="688" y="258">4</text><text x="790" y="258">(4,5)</text><text x="893" y="258">2</text>
+    <text x="688" y="291">7</text><text x="790" y="291">(8,9)</text><text x="893" y="291">2</text>
+  </g>
+  <rect x="662" y="310" width="260" height="30" rx="8" class="clay"/>
+  <text x="792" y="330" text-anchor="middle" class="t h">2 is at least epsilon = 2</text>
+
+  <rect x="30" y="404" width="570" height="220" rx="18" class="green"/>
+  <text x="52" y="435" class="t panel">COMPLEMENT: CONSTANT POSITIVE-TIME AVERAGES</text>
+  <text x="52" y="458" class="t sub">Identity dynamics make every positive-time average equal the starting reading 3.</text>
+  <line x1="72" y1="532" x2="548" y2="532" class="guide"/>
+  <polyline points="92,500 157,500 222,500 287,500 352,500 417,500 482,500 537,500" class="seq"/>
+  <g fill="#FFFCF7" stroke="#668157" stroke-width="2">
+    <circle cx="92" cy="500" r="7"/><circle cx="157" cy="500" r="7"/>
+    <circle cx="222" cy="500" r="7"/><circle cx="287" cy="500" r="7"/>
+    <circle cx="352" cy="500" r="7"/><circle cx="417" cy="500" r="7"/>
+    <circle cx="482" cy="500" r="7"/><circle cx="537" cy="500" r="7"/>
+  </g>
+  <text x="52" y="505" class="t h">3</text>
+  <text x="52" y="555" class="t b">After cutoff N = 1, every pair has distance 0 &lt; 1/2.</text>
+  <rect x="52" y="574" width="526" height="32" rx="9" class="card"/>
+  <text x="315" y="595" text-anchor="middle" class="t h">one controlled tail proves nonmembership at this one scale</text>
+
+  <rect x="624" y="404" width="346" height="220" rx="18" class="blue"/>
+  <text x="646" y="435" class="t panel">FROM SCALES TO CAUCHY</text>
+  <text x="646" y="463" class="t b">check the countable ladder</text>
+  <g class="t h" text-anchor="middle">
+    <rect x="648" y="480" width="62" height="36" rx="9" class="card"/>
+    <rect x="724" y="480" width="62" height="36" rx="9" class="card"/>
+    <rect x="800" y="480" width="62" height="36" rx="9" class="card"/>
+    <rect x="876" y="480" width="62" height="36" rx="9" class="card"/>
+    <text x="679" y="503">1</text><text x="755" y="503">1/2</text>
+    <text x="831" y="503">1/3</text><text x="907" y="503">...</text>
+  </g>
+  <path d="M 679 526 L 907 526" class="arrow"/>
+  <text x="793" y="548" text-anchor="middle" class="t s">positive scales approach zero</text>
+  <rect x="648" y="564" width="290" height="42" rx="10" fill="url(#cauchyDots)" stroke="#52708C" stroke-width="1.5"/>
+  <text x="793" y="582" text-anchor="middle" class="t h">outside every reciprocal-scale event</text>
+  <text x="793" y="598" text-anchor="middle" class="t s">therefore the whole sequence is Cauchy</text>
+
+  <text x="30" y="662" class="t b">Quantifier lesson: fix epsilon first; for every cutoff, the exceptional event may choose a new later pair.</text>
+  <text x="30" y="682" class="t s">These are exact toy sequences. The diagram makes no measure, ergodicity, or limit-identification claim.</text>
 </svg>

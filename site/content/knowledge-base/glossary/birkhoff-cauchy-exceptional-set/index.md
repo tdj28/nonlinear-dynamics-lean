@@ -7,8 +7,41 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff"
 og_image: "birkhoff-cauchy-exceptional-set-card.png"
-og_image_alt: "Warm-paper glossary card showing arbitrarily late pairs of Birkhoff averages separated by a fixed positive tolerance, followed by reciprocal tolerances that rule out every positive tail separation."
+og_image_alt: "A positive-time average sequence alternating between minus one and one has later pairs at distance two beyond cutoffs one, four, and seven, while a constant average sequence has tail distance zero."
 ---
+
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted public working note. Human review
+of the mathematics, Lean interpretation, sources, figure, and accessibility
+remains pending. Publication lets readers inspect the construction; it does
+not certify professional review.
+{{< /panel >}}
+
+Start with a sequence of positive-time orbit averages that alternates forever:
+
+\[
+A_1=-1,\quad A_2=1,\quad A_3=-1,\quad A_4=1,\quad\ldots
+\]
+
+Fix the separation scale \(\varepsilon=2\). No proposed tail cutoff repairs
+the oscillation. After any cutoff \(N\ge1\), choose an even
+\(m\ge N\) and the next odd horizon \(n=m+1\). Then
+
+\[
+|A_m-A_n|=|1-(-1)|=2\ge\varepsilon.
+\]
+
+For example, cutoffs \(1,4,7\) admit witness pairs
+\((2,3),(4,5),(8,9)\). The witnesses move later when the cutoff moves later;
+the fixed scale stays the same. This starting point is exceptional at scale
+\(2\).
+
+Now compare identity dynamics with a constant reading \(3\). Every
+positive-time average is \(3\), so after cutoff \(1\) every pair has distance
+\(0\lt1/2\). That point is **not** exceptional at scale \(1/2\). The two
+exact sequences expose both sides of the definition before any measure or
+ergodic theorem enters. A concrete observable producing the alternating
+sequence is derived below.
 
 A **Birkhoff Cauchy exceptional set** is a fixed-scale failure event for one
 sequence of orbit averages. A starting point belongs to the set when, no
@@ -26,8 +59,8 @@ The textbook treatment is
 
 {{< reference-figure
   src="birkhoff-cauchy-exceptional-set.svg"
-  alt="For every proposed tail cutoff, two later Birkhoff averages remain at least a fixed positive tolerance apart, so the starting point stays in the fixed-scale exceptional set. A lower panel contrasts this with the complement, where one tail is controlled at that one scale."
-  caption="**Finding:** one fixed-scale exceptional set records a persistent tail separation, not merely an early fluctuation. Its complement supplies one tail on which every pair is strictly closer than the scale. Avoiding the countable scales \(1/(k+1)\) therefore gives the full Cauchy criterion. The plotted values are conceptual and do not identify an ergodic limit."
+  alt="The average sequence minus one, one, minus one, one and so on has witness pairs at distance two beyond cutoffs one, four, and seven. A constant sequence equal to three has tail distance zero, and a final ladder shows reciprocal scales one, one half, one third, and so on."
+  caption="**Exact fixed-scale comparison:** for \(A_n=(-1)^n\) at positive time and \(\varepsilon=2\), the later pairs \((2,3),(4,5),(8,9)\) defeat the sample cutoffs \(1,4,7\), and the parity construction supplies such a pair after every cutoff. For the constant sequence \(A_n=3\), cutoff \(1\) makes every pair distance \(0\lt1/2\), proving nonmembership at that scale. Avoiding all reciprocal-scale exceptional sets \(D_{1/(k+1)}\) yields the complete Cauchy criterion. The values are exact toy calculations; no measure, ergodicity, or limit identification is asserted."
 >}}
 
 ## Exact operational definition
@@ -288,7 +321,66 @@ proves integrable-norm convergence, establishes an ergodic constant, or proves
 Kingman's subadditive ergodic theorem, a Lyapunov exponent, or an Oseledets
 splitting.
 
-## Lean interface
+## In Lean: fixed-scale membership
+
+{{< lean-bridge
+  human="A starting point is exceptional at scale epsilon when every proposed tail cutoff still has two later Birkhoff averages at least epsilon apart."
+  math="\(\omega\in D_\varepsilon(T,f)\Longleftrightarrow\forall N,\ \exists m\ge N,\ \exists n\ge N,\ \varepsilon\le|A_mf(\omega)-A_nf(\omega)|.\)"
+  lean="mem_birkhoffCauchyExceptionalSet_iff"
+>}}
+
+- <code>ω ∈ birkhoffCauchyExceptionalSet T f ε</code> is membership of one
+  starting point in one fixed-scale event.
+- <code>∀ N : ℕ</code> lets an adversary choose any tail cutoff.
+- The nested witnesses <code>∃ m ≥ N, ∃ n ≥ N</code> may change with that
+  cutoff; one fixed pair is not required to work forever.
+- The final comparison is non-strict <code>ε ≤ |...|</code>. Negating it
+  produces the strict tail inequality required by the metric Cauchy test.
+- The theorem is proved by <code>rfl</code>: it exposes the definition without
+  adding measurability, a measure, or convergence.
+{{< /lean-bridge >}}
+
+## In Lean: maximal control bounds one bad scale
+
+{{< lean-bridge
+  human="If g already converges almost everywhere, the measure of f's epsilon-Cauchy failures is bounded by the L1 approximation error divided by epsilon over three."
+  math="\(\mu_{\mathbb R}(D_\varepsilon(T,f))\le\dfrac{\int|f-g|\,d\mu}{\varepsilon/3},\qquad\varepsilon>0.\)"
+  lean="measureReal_birkhoffCauchyExceptionalSet_le hT hfg hgood hε"
+>}}
+
+- <code>hT : MeasurePreserving T μ μ</code> supplies the dynamical transport.
+- <code>hfg : Integrable (f - g) μ</code> makes the approximation error an
+  \(L^1\) input.
+- <code>hgood : ∀ᵐ ω ∂μ, ω ∈ birkhoffConvergenceSet T g</code> says the
+  approximant's averages converge outside a null set.
+- <code>hε : 0 &lt; ε</code> makes all three error budgets positive and licenses
+  division by <code>ε / 3</code>.
+- The ambient <code>[IsFiniteMeasure μ]</code> instance makes
+  <code>μ.real</code> a faithful real-valued mass in this argument.
+- This is event-measure control, not a pointwise bound on every orbit.
+{{< /lean-bridge >}}
+
+## In Lean: reciprocal scales give the full Cauchy property
+
+{{< lean-bridge
+  human="If omega avoids the exceptional event at every reciprocal natural scale, its complete Birkhoff-average sequence is Cauchy."
+  math="\(\bigl[\forall k,\ \omega\notin D_{1/(k+1)}(T,f)\bigr]\Longrightarrow(A_nf(\omega))_n\text{ is Cauchy}.\)"
+  lean="cauchySeq_birkhoffAverage_of_not_mem_exceptional ω hω"
+>}}
+
+- <code>hω : ∀ k : ℕ, ω ∉ ...</code> is countable scale-by-scale
+  nonmembership.
+- Lean writes the scale as <code>1 / ((k : ℝ) + 1)</code>; the cast puts the
+  natural index into the real denominator.
+- <code>CauchySeq</code> is the metric Cauchy property for the entire natural
+  sequence, not a subsequence.
+- <code>exists_nat_one_div_lt</code> chooses a reciprocal scale strictly below
+  any requested positive tolerance.
+- Completeness of \(\mathbb R\) is a later step from <code>CauchySeq</code> to
+  existence of a finite real limit.
+{{< /lean-bridge >}}
+
+### Exact declaration ledger
 
 The RMT-26 declarations attached directly to this term are:
 
@@ -314,6 +406,108 @@ The RMT-26 declarations attached directly to this term are:
 
 The later theorem <code>ae_mem_birkhoffConvergenceSet_of_dense_good</code>
 assembles those declarations into almost-everywhere convergence.
+
+## Tiny local Lean/Std worksheet
+
+**Resource label: tiny standalone check.** This complete file constructs
+integer partial sums whose positive-time averages alternate exactly between
+\(-1\) and \(1\). It then computes the moving witnesses for cutoffs
+\(1,4,7\) and contrasts the constant-average complement. It imports only
+Lean's <code>Std</code> library; it does not define measures or the general
+Cauchy event.
+
+Save it as <code>BirkhoffCauchyScratch.lean</code>:
+
+~~~lean
+import Std
+
+namespace BirkhoffCauchyScratch
+
+def targetSum (n : Nat) : Int :=
+  if n % 2 = 0 then Int.ofNat n else -Int.ofNat n
+
+def reading (k : Nat) : Int :=
+  targetSum (k + 1) - targetSum k
+
+def orbitSum (n : Nat) : Int :=
+  (List.range n).foldl (fun total k => total + reading k) 0
+
+def average (n : Nat) : Int :=
+  if n = 0 then 0 else orbitSum n / Int.ofNat n
+
+def evenAtOrAfter (N : Nat) : Nat :=
+  if N % 2 = 0 then N else N + 1
+
+def witness (N : Nat) : Nat × Nat :=
+  let m := evenAtOrAfter (max N 1)
+  (m, m + 1)
+
+def witnessDistance (N : Nat) : Nat :=
+  let pair := witness N
+  (average pair.1 - average pair.2).natAbs
+
+#eval (List.range 9).map (fun j => average (j + 1))
+#eval [witness 1, witness 4, witness 7]
+#eval [witnessDistance 1, witnessDistance 4, witnessDistance 7]
+
+example : (List.range 6).map (fun j => average (j + 1)) =
+    [-1, 1, -1, 1, -1, 1] := by decide
+example : witness 1 = (2, 3) := by decide
+example : witness 4 = (4, 5) := by decide
+example : witness 7 = (8, 9) := by decide
+example : witnessDistance 1 = 2 := by decide
+example : witnessDistance 4 = 2 := by decide
+example : witnessDistance 7 = 2 := by decide
+example : ((3 : Int) - 3).natAbs < 1 := by decide
+
+end BirkhoffCauchyScratch
+~~~
+
+Run it on an ordinary Mac or Linux machine with the pinned compiler:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean BirkhoffCauchyScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this page. The average row was
+<code>[-1, 1, -1, 1, -1, 1, -1, 1, -1]</code>. The witness rows should be
+<code>[(2, 3), (4, 5), (8, 9)]</code> and <code>[2, 2, 2]</code>.
+The last theorem checks the constant-sequence distance \(0\lt1\), an
+integer-scaled version of the \(0\lt1/2\) complement example. The finite
+program audits the arithmetic; the parity argument above proves witnesses
+exist beyond every cutoff.
+
+## Try the exact declarations in the project
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib.** On an approved Linux builder,
+a reader can put these queries in a temporary project worksheet:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoff
+
+open MeasureTheory Filter
+open NonlinearDynamics.Random.RandomCocycles
+
+#check birkhoffCauchyExceptionalSet
+#check mem_birkhoffCauchyExceptionalSet_iff
+#check measurableSet_birkhoffCauchyExceptionalSet
+#check birkhoffCauchyExceptionalSet_ae_eq_of_ae_eq
+#check nullMeasurableSet_birkhoffCauchyExceptionalSet_of_integrable
+#check birkhoffCauchyExceptionalSet_subset_exceedance_union_compl
+#check measureReal_birkhoffCauchyExceptionalSet_le
+#check measure_birkhoffCauchyExceptionalSet_eq_zero_of_dense_good
+#check cauchySeq_birkhoffAverage_of_not_mem_exceptional
+#check ae_mem_birkhoffConvergenceSet_of_dense_good
+~~~
+
+Each <code>#check</code> asks the pinned elaborator for an exact declaration
+type. The guarded command rendered below checks the authoritative RMT-26
+module. It imports the project and Mathlib, so it belongs on approved Linux
+compute rather than this Mac workstation.
+{{< /repo-check >}}
 
 ## Related concepts
 

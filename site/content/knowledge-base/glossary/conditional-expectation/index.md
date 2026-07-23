@@ -10,68 +10,292 @@ og_image: "conditional-expectation-card.png"
 og_image_alt: "Warm-paper glossary card grouping four fine observable values into two visible cells and replacing each group by the value that preserves its cell integral."
 ---
 
-**Conditional expectation** is an information-preserving coarse view of an
-integrable observable. Let \((\Omega,\mathcal B,\mu)\) be a measure space,
-let \(\mathcal G\) be a sub-sigma algebra of the ambient sigma algebra
-\(\mathcal B\), and let \(f:\Omega\to\mathbb R\) be integrable. A version of
-the conditional expectation
+{{< panel "warning" >}}
+**Editorial status.** This is an AI-assisted public working note. Human review
+of the mathematics, Lean interpretation, examples, sources, figure, and
+accessibility remains pending. Publication lets readers follow the work; it
+does not mean that review is complete.
+{{< /panel >}}
+
+## Start with four equally likely states
+
+Let
 
 \[
-\mathbb E_\mu[f\mid\mathcal G]
+\Omega=\{a,b,c,d\}.
 \]
 
-is measurable using only the events in \(\mathcal G\), yet has the same
-integral as \(f\) on every \(\mathcal G\)-measurable event. Measurability,
-integrability, and those eventwise integral identities identify it uniquely
-up to a \(\mu\)-null set.
+Every subset is an {{< refterm "event" "event" >}}, and every event is
+measurable. Give each state probability \(1/4\). This is the uniform
+{{< refterm "probability-measure" "probability measure" >}} \(\mathbb P\):
 
-Random-matrix-theory milestone 27 (RMT-27) proves that the pointwise Birkhoff
-limit is conditional expectation onto the exact invariant sigma algebra. The
-complete checked narrative is
-[Identifying the Finite-Measure Birkhoff Limit in Lean]({{< relref "/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean" >}}).
-The textbook chapter is
-[Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}}).
+\[
+\mathbb P(\{a\})
+=\mathbb P(\{b\})
+=\mathbb P(\{c\})
+=\mathbb P(\{d\})
+=\frac14.
+\]
+
+Define the real {{< refterm "random-variable" "random variable" >}}
+\(X:\Omega\to\mathbb R\) by
+
+| State \(\omega\) | \(a\) | \(b\) | \(c\) | \(d\) |
+|---|---:|---:|---:|---:|
+| \(X(\omega)\) | \(1\) | \(3\) | \(2\) | \(6\) |
+
+Now suppose an observer learns only which of these two cells contains the
+state:
+
+\[
+A=\{a,b\},
+\qquad
+B=\{c,d\}.
+\]
+
+The observer's information is the four-event sigma algebra
+
+\[
+\mathcal G=\{\varnothing,A,B,\Omega\}.
+\]
+
+A **sigma algebra** is a collection of measurable yes-or-no questions that
+contains the empty event and is closed under complements and countable
+unions. Here \(\mathcal G\) distinguishes \(A\) from \(B\), but not \(a\)
+from \(b\), or \(c\) from \(d\). The
+{{< refterm "measurable-space" "measurable-space" >}} entry develops those
+closure rules from the beginning.
+
+## Calculate the coarse value cell by cell
+
+Call the information-visible replacement \(G\). A real function measurable
+with respect to \(\mathcal G\) must be constant on each cell. Write
+
+\[
+G(a)=G(b)=u,
+\qquad
+G(c)=G(d)=v.
+\]
+
+Conditional expectation chooses \(u\) and \(v\) so replacing \(X\) by \(G\)
+does not change the integral on any event the observer can see.
+
+On the first cell,
+
+\[
+\int_A G\,d\mathbb P
+=\frac14u+\frac14u
+=\int_A X\,d\mathbb P
+=\frac14(1)+\frac14(3)
+=1.
+\]
+
+Thus \(u/2=1\), so \(u=2\). On the second cell,
+
+\[
+\int_B G\,d\mathbb P
+=\frac14v+\frac14v
+=\int_B X\,d\mathbb P
+=\frac14(2)+\frac14(6)
+=2.
+\]
+
+Thus \(v/2=2\), so \(v=4\). One version of the conditional expectation is
+
+\[
+G=\mathbb E_{\mathbb P}[X\mid\mathcal G],
+\qquad
+(G(a),G(b),G(c),G(d))=(2,2,4,4).
+\]
+
+There are only four \(\mathcal G\)-measurable events, so the complete defining
+test fits in one table:
+
+| Visible event \(S\) | \(\int_S X\,d\mathbb P\) | \(\int_S G\,d\mathbb P\) |
+|---|---:|---:|
+| \(\varnothing\) | \(0\) | \(0\) |
+| \(A\) | \((1+3)/4=1\) | \((2+2)/4=1\) |
+| \(B\) | \((2+6)/4=2\) | \((4+4)/4=2\) |
+| \(\Omega\) | \((1+3+2+6)/4=3\) | \((2+2+4+4)/4=3\) |
+
+The two cell rows determine the two values. The empty row is automatic, and
+the whole-space row follows by adding the \(A\) and \(B\) rows. Listing all
+four rows makes the phrase "every visible event" literal and checkable.
 
 {{< reference-figure
   wide="true"
   src="conditional-expectation.svg"
-  alt="Four equally weighted atoms carry fine observable values 1, 3, 2, and 6. A coarse sigma algebra can distinguish only the first pair from the second pair, so conditional expectation replaces the pair values by 2 and 4. The cell totals remain 4 and 8 on both sides."
-  caption="**Finding:** conditional expectation forgets variation that the chosen sigma algebra cannot see while preserving every visible-set integral. For four equally weighted atoms grouped into two cells, the values \(1,3\) become \(2,2\), and \(2,6\) become \(4,4\). Each cell total is unchanged: \(1+3=2+2=4\) and \(2+6=4+4=8\). Equal weights make these arithmetic means; unequal atom masses would produce weighted means."
+  alt="Four states of probability one quarter have original values one, three, two, and six. A coarse information field groups a with b and c with d. Conditional expectation assigns two to the first pair and four to the second. The first cell integral remains one, the second remains two, and the whole-space mean remains three, while the coarse function is neither the original variable nor the constant global mean."
+  caption="**Exact finite calculation:** each state has probability \(1/4\). On \(A=\{a,b\}\), the original integral is \((1+3)/4=1\), so a cell-constant replacement must use \(2\) at both states. On \(B=\{c,d\}\), the original integral is \((2+6)/4=2\), so the replacement must use \(4\) at both states. The whole-space expectation remains \(3\). The bottom strip adds one dynamics interpretation: if time swaps \(a\leftrightarrow b\) and \(c\leftrightarrow d\), the four displayed visible events are exactly invariant. The plate is a finite equal-mass model, not a claim that conditional expectation always means an unweighted arithmetic mean or that every invariant sigma algebra comes from finite cycles."
 >}}
 
-## Characterization used in the project
+## Compare the fine variable, the coarse view, and the global mean
 
-Write \(g=\mathbb E_\mu[f\mid\mathcal G]\). On a finite measure space, the
-characterization consumed by RMT-27 has three parts:
+The original variable, conditional expectation, and ordinary
+{{< refterm "expectation" "expectation" >}} answer different questions:
 
-1. \(g\) is measurable with respect to \(\mathcal G\), up to modification on
-   a \(\mu\)-null set.
-2. \(g\) is integrable.
-3. For every \(S\in\mathcal G\),
+| Object | Values on \(a,b,c,d\) | Information retained |
+|---|---|---|
+| \(X\) | \((1,3,2,6)\) | Exact state |
+| \(\mathbb E[X\mid\mathcal G]\) | \((2,2,4,4)\) | Cell \(A\) or \(B\) |
+| Constant \(\mathbb E[X]\) | \((3,3,3,3)\) | No state information |
+
+The global expectation is
+
+\[
+\mathbb E_{\mathbb P}[X]
+=\frac{1+3+2+6}{4}
+=3.
+\]
+
+Although \(G\) has the same global expectation, it is not the constant
+function \(3\). On \(A\),
+
+\[
+\int_A X\,d\mathbb P
+=1
+=\int_A G\,d\mathbb P,
+\qquad
+\int_A 3\,d\mathbb P
+=\frac32.
+\]
+
+Matching only the whole-space integral discards too much information.
+Conditional expectation must match \(X\) on every event in the chosen sigma
+algebra.
+
+The endpoint information fields calibrate the construction:
+
+- For the full sigma algebra, \(X\) is already visible, so
+  \(\mathbb E[X\mid\mathcal F]=X\) almost everywhere.
+- For the bottom sigma algebra \(\{\varnothing,\Omega\}\), every visible real
+  function is constant. On a probability space that constant is
+  \(\mathbb E[X]=3\).
+- For the intermediate field \(\mathcal G\), the answer keeps the cell label
+  and forgets only variation inside each cell.
+
+Equal weights made the cell values arithmetic means. With unequal masses they
+are weighted means. If \(a\) and \(b\) have masses \(1/8\) and \(3/8\), the
+\(A\)-cell value becomes
+
+\[
+\frac{(1/8)1+(3/8)3}{1/8+3/8}
+=\frac52,
+\]
+
+not \(2\). The answer depends on both the sigma algebra and the measure.
+
+## The general definition
+
+Let \((\Omega,\mathcal F,\mu)\) be a measure space. The sigma algebra
+\(\mathcal F\) specifies the ambient measurable events, and the
+{{< refterm "measure" "measure" >}} \(\mu\) assigns them mass. Let
+\(\mathcal G\le\mathcal F\) be a smaller sigma algebra, meaning every
+\(\mathcal G\)-measurable event is also \(\mathcal F\)-measurable. Finally,
+let \(f:\Omega\to\mathbb R\) be {{< refterm "integrability" "integrable" >}}.
+
+A function \(g:\Omega\to\mathbb R\) is a version of
+\(\mathbb E_\mu[f\mid\mathcal G]\) when:
+
+1. \(g\) is measurable using only \(\mathcal G\), up to modification on a
+   \(\mu\)-null set;
+2. \(g\) is integrable; and
+3. every \(\mathcal G\)-measurable event \(S\) has the same restricted
+   integral under \(g\) and \(f\):
 
    \[
    \int_S g\,d\mu=\int_S f\,d\mu.
    \]
 
-The third condition says that no question expressible by the coarser
-information system can distinguish the total contribution of \(g\) from the
-total contribution of \(f\). Taking \(S=\Omega\) gives equality of global
-integrals, but global equality alone is far too weak. The identity must hold
-on every visible event.
+The first item forbids \(g\) from using invisible distinctions. The second
+controls its size. The third preserves every weighted question visible to the
+chosen information field.
 
-Mathlib defines a function-valued conditional expectation and supplies the
-notation
+The characterization determines \(g\) only
+{{< refterm "almost-everywhere" "almost everywhere" >}}, abbreviated
+**a.e.** Two functions are a.e. equal when the event on which they differ is
+a {{< refterm "null-set" "null set" >}}, an event of measure zero. Changing
+an integrable function on a null set changes none of its measurable-set
+integrals.
 
-~~~lean
-μ[f | 𝓖]
-~~~
+The notation \(\mathbb E[f\mid\mathcal G]\) conditions on an entire sigma
+algebra, not one event. An expression such as \(\mathbb E[f\mid A]\) uses a
+related event-conditioning convention and needs its own normalization and
+positive-probability assumptions.
 
-for <code>MeasureTheory.condExp 𝓖 μ f</code>. Its uniqueness theorem is the
-direction used by the project:
+## Almost-everywhere uniqueness leaves representatives
+
+In the four-state example every singleton has probability \(1/4\). Its only
+null event is \(\varnothing\), so a.e.-equal functions are actually equal at
+all four states. That is why the table produces one pointwise answer.
+
+Now append a fifth state \(z\) of probability zero and let \(\{z\}\) be its
+own visible cell. Two candidates can agree with \((2,2,4,4)\) on
+\(a,b,c,d\) while taking \(0\) and \(99\) at \(z\). They are different
+ordinary functions, but they are equal a.e. and represent the same
+conditional expectation.
+
+Mathlib returns an ordinary function because later expressions evaluate it at
+an outcome. Its <code>MeasureTheory.condExp</code> is a selected
+representative, and identification theorems normally conclude with Lean's
+a.e.-equality relation rather than literal function equality.
+
+Mathlib's definition is total. It returns the zero function when the requested
+smaller measurable space is not below the ambient one, when the trimmed
+measure is not sigma-finite, or when the input is not integrable. This makes
+the Lean term meaningful outside the usual hypotheses. It does not make the
+usual measurability and integral identities true without those hypotheses.
+
+## In Lean: name the selected representative
+
+Mathlib writes conditional expectation as
+<code>MeasureTheory.condExp 𝓖 μ f</code> and provides the notation
+<code>μ[f | 𝓖]</code>.
+
+{{< lean-bridge
+  human="The function g is a version of the conditional expectation of f given the information field 𝓖, with respect to μ."
+  math="\(g=\mathbb E_\mu[f\mid\mathcal G]\quad\mu\text{-almost everywhere}.\)"
+  lean="g =ᵐ[μ] μ[f | 𝓖]"
+>}}
+
+- <code>g =ᵐ[μ] h</code> is equality almost everywhere with respect to
+  <code>μ</code>, not literal function equality.
+- The first <code>μ</code>, inside <code>=ᵐ[μ]</code>, supplies the measure for
+  the exceptional null set.
+- The second <code>μ</code>, before the bracket, supplies the measure for the
+  conditional expectation.
+- <code>f</code> is the original integrable function.
+- The vertical bar in <code>μ[f | 𝓖]</code> is read "given 𝓖."
+- <code>𝓖</code> is a <code>MeasurableSpace Ω</code>, the Lean structure
+  storing the selected sigma algebra on the outcome type.
+{{< /lean-bridge >}}
+
+## In Lean: preserve every visible-set integral
+
+{{< lean-bridge
+  human="On every event S visible to 𝓖, replacing f by g leaves the integral unchanged."
+  math="\(S\in\mathcal G\Longrightarrow\int_S g\,d\mu=\int_S f\,d\mu.\)"
+  lean="∫ x in S, g x ∂μ = ∫ x in S, f x ∂μ"
+>}}
+
+- <code>∫ x in S, ... ∂μ</code> is a set integral, restricted to
+  <code>S</code> and taken with respect to <code>μ</code>.
+- <code>g x</code> and <code>f x</code> are ordinary function applications.
+- The separate premise <code>MeasurableSet[𝓖] S</code> says that
+  <code>S</code> is visible to the selected sigma algebra.
+- <code>setIntegral_condExp</code> proves the identity for Mathlib's selected
+  representative under the sub-sigma-algebra, sigma-finiteness, and
+  integrability hypotheses.
+- <code>ae_eq_condExp_of_forall_setIntegral_eq</code> says that an a.e.
+  \(\mathcal G\)-measurable candidate with the local integrability and every
+  visible-set identity is a.e. equal to <code>μ[f | 𝓖]</code>.
+{{< /lean-bridge >}}
+
+The exact uniqueness interface used by the project is:
 
 ~~~lean
 theorem ae_eq_condExp_of_forall_setIntegral_eq
-    (h𝓖 : 𝓖 ≤ 𝓑) [SigmaFinite (μ.trim h𝓖)]
+    (h𝓖 : 𝓖 ≤ 𝓕) [SigmaFinite (μ.trim h𝓖)]
     (hf : Integrable f μ)
     (hg_int : ∀ S, MeasurableSet[𝓖] S → μ S < ∞ →
       IntegrableOn g S μ)
@@ -81,208 +305,169 @@ theorem ae_eq_condExp_of_forall_setIntegral_eq
     g =ᵐ[μ] μ[f | 𝓖]
 ~~~
 
-Here \(\mu\operatorname{.trim}(h_{\mathcal G})\) is the measure viewed on the
-smaller measurable space. Sigma-finiteness of that trimmed measure is part of
-the general construction. RMT-27 works under <code>IsFiniteMeasure μ</code>,
-which supplies the required sigma-finiteness without assuming that
-\(\mu(\Omega)=1\).
+Here <code>μ.trim h𝓖</code> is the measure viewed on the smaller measurable
+space. The general theorem supports sigma-finite measures, so its local
+premises mention finite-measure visible sets. The project works under
+<code>IsFiniteMeasure μ</code>; global integrability then supplies those local
+obligations. Finite measure does not mean probability measure.
 
-The theorem's local integrability premise ranges over finite-measure visible
-sets because the general interface supports sigma-finite measures. In the
-project, the Birkhoff limit is globally integrable and the whole measure is
-finite, so every one of those local obligations follows immediately.
+## A tiny standalone Lean worksheet a human can type
 
-## Worked example: two visible cells
+**Resource label: tiny Lean standard-library (<code>Std</code>) check.** This
+worksheet verifies the integer numerators behind the four-state example.
+Dividing every sum by the common denominator \(4\) gives the probability
+integrals. It does not define Mathlib measures, sigma algebras, conditional
+expectation, or a.e. equality.
 
-Let
+Save it as <code>ConditionalExpectationFiniteScratch.lean</code>:
 
-\[
-\Omega=\{a,b,c,d\}
-\]
+~~~lean
+import Std
 
-with counting measure, so every atom has mass one and
-\(\mu(\Omega)=4\). This is a finite measure, not a probability measure. Let
-the coarse sigma algebra be
+inductive Atom where
+  | a | b | c | d
+deriving Repr, DecidableEq
 
-\[
-\mathcal G
-{} =
-\left\{\varnothing,\{a,b\},\{c,d\},\Omega\right\}.
-\]
+def atoms : List Atom := [.a, .b, .c, .d]
+def cellA : List Atom := [.a, .b]
+def cellB : List Atom := [.c, .d]
 
-It can answer whether a state lies in the first pair or the second pair, but
-it cannot distinguish the two states inside either pair. Define
+def value : Atom → Int
+  | .a => 1
+  | .b => 3
+  | .c => 2
+  | .d => 6
 
-\[
-f(a)=1,\qquad f(b)=3,\qquad f(c)=2,\qquad f(d)=6.
-\]
+def coarseValue : Atom → Int
+  | .a => 2
+  | .b => 2
+  | .c => 4
+  | .d => 4
 
-A \(\mathcal G\)-measurable real function must be constant on each visible
-cell. Write its values as \(u\) on \(\{a,b\}\) and \(v\) on
-\(\{c,d\}\). Integral preservation on the first cell requires
+def sumOn (event : List Atom) (h : Atom → Int) : Int :=
+  (event.map h).sum
 
-\[
-2u=u+u=1+3=4,
-\]
+#eval atoms.map value
+#eval atoms.map coarseValue
+#eval [sumOn cellA value, sumOn cellA coarseValue]
+#eval [sumOn cellB value, sumOn cellB coarseValue]
+#eval [sumOn atoms value, sumOn atoms coarseValue]
 
-so \(u=2\). On the second cell it requires
+example : sumOn cellA value = sumOn cellA coarseValue := by decide
+example : sumOn cellB value = sumOn cellB coarseValue := by decide
+example : sumOn atoms value = 12 := by decide
+example : sumOn atoms coarseValue = 12 := by decide
+example : coarseValue .a ≠ value .a := by decide
+example : coarseValue .a ≠ 3 := by decide
+~~~
 
-\[
-2v=v+v=2+6=8,
-\]
+From the directory containing the file, type:
 
-so \(v=4\). Therefore
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean ConditionalExpectationFiniteScratch.lean
+~~~
 
-\[
-\mathbb E_\mu[f\mid\mathcal G](a)
-{} =
-\mathbb E_\mu[f\mid\mathcal G](b)=2,
-\]
+This exact worksheet was executed successfully with Lean 4.32.0 while editing
+this page. The evaluations printed <code>[1, 3, 2, 6]</code>,
+<code>[2, 2, 4, 4]</code>, then <code>[4, 4]</code>, <code>[8, 8]</code>,
+and <code>[12, 12]</code>. The last pair gives global expectation
+\(12/4=3\). The last two examples prove that the coarse value at \(a\) is
+neither \(X(a)\) nor the constant global mean. This command is suitable for
+an ordinary Mac or Linux machine because it imports only <code>Std</code>.
 
-and
+## The invariant-sigma-algebra connection
 
-\[
-\mathbb E_\mu[f\mid\mathcal G](c)
-{} =
-\mathbb E_\mu[f\mid\mathcal G](d)=4.
-\]
-
-The empty-set identity is automatic, and adding the two cell identities gives
-the whole-space identity
-
-\[
-2+2+4+4=12=1+3+2+6.
-\]
-
-With unequal atom masses, the same equations produce weighted cell averages.
-For example, if \(a\) has mass one and \(b\) has mass three, then the first
-cell value becomes \((1\cdot1+3\cdot3)/(1+3)=5/2\), not the unweighted mean
-two. Conditional expectation is tied to the measure as well as the sigma
-algebra.
-
-## Full information and no information
-
-The two endpoint sigma algebras calibrate the definition.
-
-If \(\mathcal G=\mathcal B\), then an integrable \(f\) is already measurable
-with respect to all the available information. Conditional expectation returns
-\(f\) almost everywhere:
+Read the same example dynamically. Define one time step
+\(T:\Omega\to\Omega\) by
 
 \[
-\mathbb E_\mu[f\mid\mathcal B]=f
-\quad\text{almost everywhere}.
+T(a)=b,
+\quad T(b)=a,
+\quad T(c)=d,
+\quad T(d)=c.
 \]
 
-If \(\mathcal G=\{\varnothing,\Omega\}\) is the trivial sigma algebra and
-\(0\lt\mu(\Omega)\lt\infty\), every \(\mathcal G\)-measurable real function
-is almost everywhere constant. Integral preservation determines that constant:
+The uniform probability measure is preserved. An event is exactly unchanged
+by one-step preimage precisely when it is a union of the two cycles. Therefore
+the {{< refterm "invariant-sigma-algebra" "exact invariant sigma algebra" >}}
+is
 
 \[
-\mathbb E_\mu[f\mid\mathcal G]
-{} =
-\frac{1}{\mu(\Omega)}\int_\Omega f\,d\mu
-\quad\text{almost everywhere}.
+\mathcal I_T=\{\varnothing,A,B,\Omega\}=\mathcal G.
 \]
 
-Only on a probability space, where \(\mu(\Omega)=1\), does this simplify to
-the unnormalized integral \(\int f\,d\mu\). RMT-27 does not assume probability
-normalization, and it does not divide by total mass. The zero measure is
-allowed by the theorem and would make such division invalid; its
-almost-everywhere conclusion is vacuous.
-
-For identity dynamics, the {{< refterm "invariant-sigma-algebra" "invariant sigma algebra" >}}
-is the full ambient sigma algebra. Therefore the Birkhoff
-target is \(f\) itself almost everywhere, exactly as positive-time identity
-averages suggest. For ergodic dynamics on a positive finite measure space, a
-RMT-28 shows that the invariant field is trivial modulo null sets and derives
-the normalized constant as a separate specialization; see
-[Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}}).
-It does not retroactively add ergodicity to RMT-27.
-
-## Why the Birkhoff limit qualifies
-
-Let \(T:\Omega\to\Omega\) preserve a finite measure \(\mu\), and let
-\(f:\Omega\to\mathbb R\) be integrable. For a positive natural number \(n\),
-the Birkhoff average is
+Starting from \(a\) or \(b\), observed values alternate
+\(1,3,1,3,\ldots\), whose averages tend to \(2\). Starting from \(c\) or
+\(d\), they alternate \(2,6,2,6,\ldots\), whose averages tend to \(4\).
+Thus this finite model has
 
 \[
-A_nf(\omega)
-{} =
-\frac{1}{n}\sum_{j=0}^{n-1}f(T^j\omega).
+\lim_{n\to\infty}
+\frac1n\sum_{j=0}^{n-1}X(T^j\omega)
+=\mathbb E_{\mathbb P}[X\mid\mathcal I_T](\omega)
 \]
 
-RMT-26 proved that these averages converge for almost every starting state
-\(\omega\). Convergence alone does not identify the limit. RMT-27 constructs
-one total representative \(L=\operatorname{birkhoffLimit}(T,f)\), then proves
-the three conditional-expectation obligations.
+at every state.
 
-### 1. The limit sees only invariant information
+The example is nonergodic: \(A\) and \(B\) are invariant events of probability
+\(1/2\). The limit may therefore take two values. Ergodicity is an additional
+hypothesis that collapses invariant information modulo null sets and can turn
+the target into one a.e.-constant normalized space average. Conditional
+expectation onto an invariant field is not automatically constant.
 
-The one-prefix shift identity for Birkhoff averages implies
+The project theorem allows any finite measure, any measure-preserving
+self-map, and any integrable real observable. Its conclusion is a.e., not
+everywhere.
 
-\[
-L(T\omega)=L(\omega)
-\qquad\text{for every }\omega.
-\]
+{{< lean-bridge
+  human="For almost every starting state, the complete sequence of Birkhoff averages converges to conditional expectation given the exact invariant information of T."
+  math="\(A_nf(\omega)\longrightarrow\mathbb E_\mu[f\mid\mathcal I_T](\omega)\quad\text{for }\mu\text{-almost every }\omega.\)"
+  lean="∀ᵐ ω ∂μ, Tendsto (fun n ↦ birkhoffAverage ℝ T f n ω) atTop (nhds (μ[f | MeasurableSpace.invariants T] ω))"
+>}}
 
-Together with ambient measurability, this proves that \(L\) is measurable for
-Mathlib's exact invariant sigma algebra
-<code>MeasurableSpace.invariants T</code>. The equality is pointwise even on
-the fallback branch where the averages diverge; the final identification with
-conditional expectation is still only almost everywhere.
+- <code>∀ᵐ ω ∂μ</code> reads "for almost every outcome <code>ω</code> with
+  respect to <code>μ</code>."
+- <code>fun n ↦ ...</code> is the sequence indexed by horizon <code>n</code>.
+- <code>birkhoffAverage ℝ T f n ω</code> averages along the first
+  <code>n</code> iterates of <code>T</code> from <code>ω</code>.
+- <code>Tendsto ... atTop</code> says the sequence converges as
+  <code>n</code> grows without bound.
+- <code>nhds y</code> is the neighborhood filter at the proposed limit
+  <code>y</code>.
+- <code>MeasurableSpace.invariants T</code> is Mathlib's exact invariant sigma
+  algebra. The theorem does not replace it by bottom without a later ergodic
+  rigidity result.
+{{< /lean-bridge >}}
 
-### 2. The limit is integrable
+## Why the project limit qualifies
 
-Pointwise convergence does not imply integrability of a limit. RMT-27 proves
-{{< refterm "uniform-integrability" "uniform integrability" >}} of the orbit
-translates and therefore of their Cesaro averages. Mathlib's finite-measure
-Vitali theorem upgrades almost-everywhere convergence to convergence in
-\(L^1\), the integrable norm:
+Random-matrix-theory milestone 27 (RMT-27) starts from the preceding
+milestone's a.e. convergence of finite Birkhoff averages. Convergence alone
+does not identify the target. RMT-27 then verifies three separate
+conditional-expectation obligations.
 
-\[
-\left\lVert A_nf-L\right\rVert_{L^1(\mu)}\longrightarrow0.
-\]
+1. **Invariant measurability.** A prefix-shift argument makes the selected
+   total <code>birkhoffLimit T f</code> literally invariant, including on its
+   divergent fallback branch.
+2. **Integrability.** Pointwise convergence alone is insufficient. Uniform
+   integrability of the Cesaro averages and finite-measure Vitali convergence
+   supply \(L^1\) convergence and an integrable limit.
+3. **Visible-set identities.** On an exactly invariant measurable event,
+   measure preservation keeps every orbit translate's integral equal to the
+   original integral. \(L^1\) convergence passes that identity to the limit.
 
-This both establishes integrability of \(L\) and creates the continuity needed
-to pass integrals to the limit.
+Mathlib's uniqueness theorem then gives:
 
-### 3. Visible-set integrals agree
+~~~lean
+theorem birkhoffLimit_ae_eq_condExp
+    [IsFiniteMeasure μ]
+    (hT : MeasurePreserving T μ μ) (hf : Integrable f μ) :
+    birkhoffLimit T f =ᵐ[μ]
+      μ[f | MeasurableSpace.invariants T]
+~~~
 
-Take an exactly invariant measurable set \(S\), so
-\(T^{-1}(S)=S\). Measure preservation gives the same integral for every orbit
-translate:
-
-\[
-\int_S f(T^j\omega)\,d\mu(\omega)
-{} =
-\int_S f(\omega)\,d\mu(\omega).
-\]
-
-The checked proof uses <code>MeasurePreserving.restrict_preimage</code>. This
-route remains valid for a map that is neither injective nor surjective; a
-generic change-of-variables theorem requiring a measurable embedding would be
-too strong. Averaging the translate identities gives, for every \(n\ge1\),
-
-\[
-\int_S A_nf\,d\mu=\int_S f\,d\mu.
-\]
-
-Convergence in \(L^1\) passes the left side to the limit:
-
-\[
-\int_S L\,d\mu=\int_S f\,d\mu.
-\]
-
-Mathlib's uniqueness theorem now yields
-
-\[
-L
-{} =
-\mu[f\mid\operatorname{invariants}(T)]
-\quad\text{almost everywhere}.
-\]
-
-Combining this equality with pointwise convergence gives the exposed theorem
+Combining identification with convergence gives:
 
 ~~~lean
 theorem ae_tendsto_birkhoffAverage_condExp
@@ -294,147 +479,104 @@ theorem ae_tendsto_birkhoffAverage_condExp
 ~~~
 
 No probability, ergodicity, injectivity, surjectivity, or invertibility
-assumption appears in that signature.
+assumption occurs in those signatures. The zero measure is allowed; there the
+a.e. conclusion is vacuous. These are checked theorem properties, not
+conclusions inferred from the finite example.
 
-## Representatives and Mathlib's total definition
+## Try the exact declarations in the project
 
-Conditional expectation is mathematically unique only almost everywhere. If
-two candidate functions differ on a null set, their integrals on measurable
-sets agree and they represent the same \(L^1\) object. Mathlib nevertheless
-defines <code>condExp</code> as an ordinary function so that it can appear in
-pointwise formulas. The API therefore distinguishes literal equality from
-almost-everywhere equality.
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, cloud-only.** On an approved
+Linux builder, a human can create a query worksheet containing:
 
-The definition is total. Mathlib returns the zero function if the requested
-smaller measurable space is not below the ambient one, if the trimmed measure
-is not sigma-finite, or if the input is not integrable. This makes the Lean
-term meaningful for every syntactically valid input. It does **not** remove
-the premises from theorems that assert the usual conditional-expectation
-properties.
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.PointwiseBirkhoffLimit
 
-RMT-27 starts with a merely integrable ordinary representative \(f\), which is
-only guaranteed to be strongly measurable almost everywhere. Inside the proof
-it chooses a strongly measurable representative \(f'\). It proves the result
-for \(f'\), then transports:
+open MeasureTheory Set Filter Function
+open NonlinearDynamics.Random.RandomCocycles
 
-- every finite orbit average through the almost-everywhere equality
-  \(f=f'\);
-- the selected total Birkhoff limits through
-  <code>birkhoffLimit_ae_eq_of_ae_eq</code>; and
-- conditional expectations through <code>condExp_congr_ae</code>.
+universe uΩ
 
-The exposed theorem therefore applies to the original integrable function and
-does not quietly strengthen its input to ordinary everywhere measurability.
+variable {Ω : Type uΩ} [MeasurableSpace Ω]
+variable {μ : Measure Ω} {𝓖 : MeasurableSpace Ω}
+variable {T : Ω → Ω} {f g : Ω → ℝ}
 
-## Lean interface used by RMT-27
+#check (μ[f | 𝓖])
+#check MeasureTheory.stronglyMeasurable_condExp
+#check MeasureTheory.integrable_condExp
+#check MeasureTheory.setIntegral_condExp
+#check MeasureTheory.ae_eq_condExp_of_forall_setIntegral_eq
+#check MeasureTheory.condExp_congr_ae
+#check measurable_birkhoffLimit_invariants
+#check setIntegral_birkhoffLimit_eq
+#check birkhoffLimit_ae_eq_condExp
+#check ae_tendsto_birkhoffAverage_condExp
+~~~
 
-The pinned Mathlib conditional-expectation layer contributes:
-
-- <code>MeasureTheory.condExp</code> and notation <code>μ[f | 𝓖]</code>;
-- <code>stronglyMeasurable_condExp</code> and
-  <code>integrable_condExp</code>;
-- <code>setIntegral_condExp</code>, the visible-set integral identity;
-- <code>ae_eq_condExp_of_forall_setIntegral_eq</code>, the uniqueness theorem
-  used by RMT-27; and
-- <code>condExp_congr_ae</code>, transport across a change of representative.
-
-The project module contributes:
-
-- <code>integrable_birkhoffLimit</code>;
-- <code>measurable_birkhoffLimit_invariants</code>;
-- <code>setIntegral_birkhoffAverage_eq</code> for every positive horizon;
-- <code>setIntegral_birkhoffLimit_eq</code> after \(L^1\) passage;
-- <code>birkhoffLimit_ae_eq_condExp</code>, the uniqueness conclusion; and
-- <code>ae_tendsto_birkhoffAverage_condExp</code>, the final pointwise
-  identified-limit theorem.
-
-The private strongly measurable proof is deliberately hidden behind the
-public integrable interface. It is proof architecture, not an extra premise
-for downstream users.
+Each <code>#check</code> asks the pinned elaborator for an exact declaration
+type. The guarded command below checks the authoritative RMT-27 module. It is
+not the tiny <code>Std</code> worksheet and must not run on this Mac.
+{{< /repo-check >}}
 
 ## Boundaries and nonclaims
 
-- **The answer depends on the sigma algebra.** Coarser information averages
-  away more variation. Finer information retains more of \(f\).
-- **The answer depends on the measure.** Cell means are weighted by atom
-  masses. Changing \(\mu\) can change conditional expectation even when
-  \(f\) and \(\mathcal G\) stay fixed.
-- **Uniqueness is almost everywhere.** There is generally no theorem that two
-  versions agree at every point.
-- **It is not automatically constant.** Constancy needs a trivial information
-  field, such as an ergodic invariant field modulo null sets. RMT-27 does not
-  assume this.
-- **It is not merely a global mean.** Equality of whole-space integrals does
-  not characterize conditional expectation. Every visible-set integral must
-  agree.
-- **It is not conditioning on one event only.** Conditioning on a sigma
-  algebra enforces consistency across all events in that information system.
-- **The \(L^2\) projection picture has a boundary.** For square-integrable
-  functions, conditional expectation is an orthogonal projection in
-  \(L^2\). RMT-27 accepts every integrable real function and uses the
-  \(L^1\) characterization instead.
-- **A target does not prove convergence.** Naming
-  \(\mu[f\mid\mathcal I_T]\) does not by itself show that Birkhoff averages
-  approach it. RMT-26 provides pointwise convergence, and RMT-27 proves the
-  identification.
-- **The theorem is not Kingman's theorem.** It identifies additive Birkhoff
-  averages. It proves no subadditive cocycle limit, Lyapunov exponent, or
-  Oseledets splitting.
+- **Global equality is too weak.** Matching
+  \(\int_\Omega g\,d\mu=\int_\Omega f\,d\mu\) does not preserve smaller
+  visible-event integrals.
+- **Information matters.** Refining or coarsening the sigma algebra can change
+  the answer.
+- **The measure matters.** Finite cells use probability-weighted means, not
+  automatically unweighted means.
+- **Uniqueness is a.e.** Representatives may disagree on a null set.
+- **It is not automatically constant.** Constancy needs trivial invariant
+  information modulo null sets, supplied by an appropriate ergodicity result.
+- **It is not conditioning on one event.** A sigma algebra imposes compatible
+  identities over all of its measurable events.
+- **Measurability and integrability are separate.** Visibility does not by
+  itself control positive and negative sizes.
+- **The \(L^2\) projection picture is narrower.** RMT-27 works with every
+  integrable real function and uses an \(L^1\) characterization.
+- **A named target does not prove convergence.** Convergence and identification
+  are separate project milestones.
+- **This is not a subadditive theorem.** It proves no Kingman limit, Lyapunov
+  exponent, or Oseledets splitting.
 
-## Related concepts
+## Where to continue
 
-- {{< refterm "ergodicity" "Ergodicity" >}} collapses the invariant target
-  almost everywhere without claiming that the exact invariant sigma algebra
-  is literally bottom.
-- {{< refterm "normalized-space-average" "Normalized space average" >}} is
-  the finite nonzero constant identified by the RMT-28 specialization.
-- {{< refterm "invariant-sigma-algebra" "Invariant sigma algebra" >}} is the
-  exact information field used as the RMT-27 conditioning target.
-- {{< refterm "uniform-integrability" "Uniform integrability" >}} upgrades
-  the almost-everywhere limit to \(L^1\) convergence so set integrals can pass
-  to the limit.
-- {{< refterm "almost-everywhere" "Almost everywhere" >}} is the equality
-  notion under which conditional-expectation versions are unique.
-- {{< refterm "birkhoff-sum" "Birkhoff sum" >}} supplies the orbit averages
-  identified by the theorem.
-- {{< refterm "koopman-operator" "Koopman operator" >}} gives the function
-  pullbacks averaged along the dynamics.
+[Identifying the Finite-Measure Birkhoff Limit in Lean]({{< relref "/development-notebook/2026/07/identifying-the-finite-measure-birkhoff-limit-in-lean" >}})
+maps RMT-27's representative, invariant-set integrals, and endpoint to source.
+
+[Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}})
+builds the full proof architecture. The
+{{< refterm "invariant-sigma-algebra" "invariant sigma algebra" >}} entry
+explains exact preimage invariance, while
+{{< refterm "ergodicity" "ergodicity" >}} explains collapse modulo null sets.
+The {{< refterm "normalized-space-average" "normalized space average" >}}
+entry tracks the finite-mass normalization needed when total mass is not one.
 
 ## References
 
 <a id="ref-condexp-mathlib"></a>**Mathlib contributors.**
 [Conditional expectation definition and uniqueness](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/ConditionalExpectation/Basic.lean#L93-L125),
 with the
-[set-integral uniqueness theorem](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/ConditionalExpectation/Basic.lean#L250-L261),
+[set-integral identity and uniqueness theorem](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/ConditionalExpectation/Basic.lean#L231-L261),
 Mathlib 4.32.0 at pinned commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997).
-These sources are the authority for totalization, notation, measurability, and
-the exact uniqueness premises consumed by the project.
 
 <a id="ref-condexp-chacon"></a>**R. V. Chacon.**
 [Identification of the Limit of Operator Averages](https://iumj.org/article/1425/),
 *Journal of Mathematics and Mechanics* 11(6), 961-968, 1962,
-[DOI](https://doi.org/10.1512/iumj.1962.11.11054). The paper treats limit
-identification as a separate theorem and characterizes the result through an
-invariant Borel field and its integrals. The project uses Mathlib's modern
-exact-field interface rather than claiming a line-by-line formalization.
+[DOI](https://doi.org/10.1512/iumj.1962.11.11054). The paper separates limit
+identification from convergence and characterizes the result through an
+invariant Borel field and its integrals.
 
 <a id="ref-condexp-characterizations"></a>**A. N. Al-Hussaini.**
 [On Characterizations of Conditional Expectation](https://doi.org/10.4153/CMB-1973-028-9),
 *Canadian Mathematical Bulletin* 16(2), 161-163, 1973. The paper is a primary
 source on integral and operator characterizations of conditional expectation.
-Its operator setting is broader than the finite-measure Birkhoff proof here.
-
-<a id="ref-condexp-hess"></a>**Christian Hess, Raffaello Seri, and Christine Choirat.**
-[Ergodic Theorems for Extended Real-Valued Random Variables](https://doi.org/10.1016/j.spa.2010.05.008),
-*Stochastic Processes and their Applications* 120(10), 1908-1919, 2010,
-with the authors' [full text](https://rseri.me/publication/j007/J007.pdf).
-Theorem 1 states a modern nonergodic, not-necessarily-invertible
-probability-space Birkhoff target in terms of conditional expectation. RMT-27
-proves a finite-measure real-integrable theorem with no probability premise.
 
 <a id="ref-condexp-project"></a>**Nonlinear Dynamics in Lean contributors.**
-[`PointwiseBirkhoffLimit.lean`](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean),
-the checked source establishing invariant measurability, integrability,
-visible-set integral identities, conditional-expectation uniqueness, and the
-final almost-everywhere limit.
+[PointwiseBirkhoffLimit.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean)
+is the checked source for invariant measurability, integrability, visible-set
+integral identities, conditional-expectation uniqueness, and the final a.e.
+limit.
