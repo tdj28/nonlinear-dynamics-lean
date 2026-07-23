@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760"
+     viewBox="0 0 1000 760" role="img"
+     aria-labelledby="normalizationBoundaryTitle normalizationBoundaryDesc">
+  <title id="normalizationBoundaryTitle">Probability, finite-mass, rigidity, and zero-mass boundary ledger</title>
+  <desc id="normalizationBoundaryDesc">Four panels use observable values three and seven. Under probability weights one half and one half, mass and integral are one and five, so five divided by one gives target five. Under weights one and one, mass and raw integral are two and ten, so ten divided by two gives the same target five and raw ten is wrong. Under identity dynamics the six-step averages remain three and seven, so a global target five fails because pre-ergodicity is absent. Under zero mass the totalized ratio zero divided by zero is zero, but the equation zero times a constant equals zero identifies no constant, so nonzero mass is required.</desc>
+  <rect width="1000" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:22px;font-weight:700}.sub{font-size:15px;fill:#5A544C}
+    .h{font-size:17px;font-weight:700}.s{font-size:14px}.m{font-size:13px;fill:#5A544C}
+    .tag{font-size:12px;font-weight:700;letter-spacing:.7px}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .bad{fill:#8B3E33}.good{fill:#315F55}
+  </style>
+
+  <text x="36" y="42" class="t title">The same values expose four different theorem gates</text>
+  <text x="36" y="68" class="t sub">Every panel uses f(left) = 3 and f(right) = 7; only measure or dynamics changes.</text>
+
+  <rect x="36" y="96" width="448" height="268" rx="16" class="green"/>
+  <text x="62" y="128" class="t tag good">PROBABILITY FLIP</text>
+  <text x="62" y="162" class="t h">weights = (1/2, 1/2)</text>
+  <text x="62" y="194" class="t s">total mass = 1</text>
+  <text x="62" y="224" class="t s">integral = (1/2) * 3 + (1/2) * 7 = 5</text>
+  <rect x="62" y="248" width="396" height="70" rx="12" fill="#FFFDF8" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="84" y="277" class="t tag">NORMALIZED TARGET</text>
+  <text x="84" y="303" class="t h">5 / 1 = 5</text>
+  <text x="62" y="344" class="t m">Probability removes no information; its mass is already one.</text>
+
+  <rect x="516" y="96" width="448" height="268" rx="16" class="blue"/>
+  <text x="542" y="128" class="t tag" style="fill:#284E72">MASS-TWO FLIP</text>
+  <text x="542" y="162" class="t h">weights = (1, 1)</text>
+  <text x="542" y="194" class="t s">total mass = 2</text>
+  <text x="542" y="224" class="t s">raw integral = 3 + 7 = 10</text>
+  <rect x="542" y="248" width="396" height="70" rx="12" fill="#FFFDF8" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="564" y="277" class="t tag">NORMALIZED TARGET</text>
+  <text x="564" y="303" class="t h">10 / 2 = 5</text>
+  <text x="542" y="344" class="t m">The raw integral 10 is the wrong orbit-average target.</text>
+
+  <rect x="36" y="396" width="448" height="290" rx="16" class="clay"/>
+  <text x="62" y="428" class="t tag bad">IDENTITY: RIGIDITY FAILS</text>
+  <text x="62" y="464" class="t h">A₆ f(left) = 3</text>
+  <text x="62" y="494" class="t h">A₆ f(right) = 7</text>
+  <text x="62" y="532" class="t s">global normalized integral = 5</text>
+  <rect x="62" y="552" width="396" height="82" rx="12" fill="#FFFDF8" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="84" y="581" class="t s">Each singleton is invariant with mass 1/2.</text>
+  <text x="84" y="609" class="t h bad">PreErgodic is false.</text>
+  <text x="62" y="664" class="t m">Measure preservation alone does not force one constant.</text>
+
+  <rect x="516" y="396" width="448" height="290" rx="16" class="cream"/>
+  <text x="542" y="428" class="t tag bad">ZERO MASS: CANCELLATION FAILS</text>
+  <text x="542" y="464" class="t h">total mass = 0</text>
+  <text x="542" y="494" class="t h">integral = 0</text>
+  <text x="542" y="532" class="t s">Lean totalization: 0 / 0 = 0</text>
+  <rect x="542" y="552" width="396" height="82" rx="12" fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="564" y="581" class="t s">The identity 0 * c = 0 holds for every c.</text>
+  <text x="564" y="609" class="t h bad">The constant is not identified.</text>
+  <text x="542" y="664" class="t m">Semantic normalization therefore assumes measure not zero.</text>
+</svg>

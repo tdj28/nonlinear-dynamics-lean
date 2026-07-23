@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 22:18 PDT
+Last updated: 2026-07-22 22:34 PDT
 
-Audited baseline: `main` at `09bbc99`
+Audited baseline: `main` at `49b2d45`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **32 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **33 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -549,6 +549,20 @@ queries, a guarded cloud interface check, and a byte-identical executed `Std`
 worksheet lead from exact finite conditioning to the checked almost-everywhere
 limit identification without confusing exact invariance with modulo-null
 triviality.
+*Ergodic Birkhoff Limits and Normalized Space Averages* now begins with the
+uniform two-state swap and observable values `(3,7)`. Its exact averages
+through horizon six make every even positive row equal five and put the two
+odd rows at `5-2/n` and `5+2/n`; the probability integral is the same five.
+Rescaling both atom masses to one leaves the orbit averages unchanged while
+moving the raw integral from five to ten, so the normalized target remains
+`10/2=5`. Identity dynamics retains separate limits three and seven, zero
+mass exposes the vacuous totalized `0/0=0`, and alternating overlap masses
+`1/2,0,1/2,0,...` prove that this ergodic swap is not mixing and that its
+square need not be ergodic. Five accessible figures, six human/paper/Lean
+bridges, the complete six-public/fifteen-private/five-probe/six-axiom source
+map, a guarded cloud interface check, and a byte-identical executed `Std`
+worksheet separate the ordinary-laptop learning path from the Mathlib-backed
+project theorem.
 *Subadditive Upper Limsup Bounds Before Kingman Convergence* now begins with
 the uniform two-state flip and the exact process
 `Xₙ=⌈n/2⌉+φ(Tⁿω)-φ(ω)`. Both normalized paths converge to `1/2`, the block-two
@@ -3478,6 +3492,11 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `49b2d45`: rebuild *From Finite Centered Bad-Block Bounds to
+  All-Positive-Length Control* around nested finite caps, their exact union,
+  the finite-target real-measure gate, and a collapse model separating literal
+  from almost-everywhere invariance, with seven Lean bridges and an executed
+  local `Std` worksheet.
 - `09bbc99`: rebuild *Subadditive Upper Limsup Bounds Before Kingman
   Convergence* around a sharp two-state block ledger and the `-n²`
   totalized-real-limsup boundary, with the generalized lower-bound theorem,

@@ -3,7 +3,7 @@ title: "Ergodic Birkhoff Limits and Normalized Space Averages"
 slug: "ergodic-birkhoff-limits-and-normalized-space-averages"
 date: 2026-07-22
 summary: "A textbook derivation of why an ergodic Birkhoff time average converges almost everywhere to the correctly normalized space average on every finite nonzero measure space."
-lead: "The pointwise Birkhoff theorem first leaves a conditional expectation as its limit. Ergodic rigidity then removes every surviving invariant distinction, while finite nonzero mass determines the one constant that remains. This chapter follows that climb from physical time-versus-space intuition to the exact Lean split between PreErgodic rigidity, Ergodic convergence, Mathlib's canonical integral average, and five compiled boundary probes."
+lead: "Begin with a two-state swap whose observable values are 3 and 7: every even orbit average is 5, and the probability integral is 5. Rescaling the measure to total mass 2 changes the raw integral to 10 but leaves the normalized target at 5. From that ledger, this chapter climbs to the exact Lean split between PreErgodic rigidity, Ergodic convergence, and finite-nonzero normalization."
 draft: false
 pro_reviewed: false
 level: "Finite measure theory, conditional expectation, ergodicity, almost-everywhere convergence, normalized Bochner integrals, and intermediate Lean theorem reading"
@@ -12,7 +12,7 @@ prerequisites: "Finite sums, measurable sets, integrable real observables, almos
 lean_module: "NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit"
 toc: true
 og_image: "ergodic-birkhoff-limits-and-normalized-space-averages-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing an orbit time average passing through invariant conditional expectation, pre-ergodic information collapse, finite-mass normalization, and the probability specialization."
+og_image_alt: "Textbook card for ergodic Birkhoff limits: a two-state swap with values three and seven has orbit averages tending to five; probability mass one gives integral five, while mass two gives raw integral ten and normalized target five."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -30,30 +30,142 @@ visual inspection, and the configured external Pro review remain pending. The
 checked Lean module is authoritative.
 {{< /panel >}}
 
+## Start with a two-state orbit you can calculate
+
+Let
+
+\[
+\Omega=\{\mathsf{left},\mathsf{right}\},
+\qquad
+\mu(\{\mathsf{left}\})=\mu(\{\mathsf{right}\})=\frac12.
+\]
+
+The total mass is one, so \(\mu\) is a
+{{< refterm "probability-measure" "probability measure" >}}. Let the map \(T\)
+swap the two states, and choose the real observable
+
+\[
+f(\mathsf{left})=3,
+\qquad
+f(\mathsf{right})=7.
+\]
+
+For a positive horizon \(n\), the Birkhoff average is
+
+\[
+A_nf(\omega)
+{} =
+\frac1n\sum_{j=0}^{n-1}f\bigl(T^j\omega\bigr).
+\]
+
+The project totalizes the horizon-zero value as \(A_0f=0\). The first seven
+values, including that bookkeeping term, are
+
+| \(n\) | \(A_nf(\mathsf{left})\) | \(A_nf(\mathsf{right})\) |
+|---:|---:|---:|
+| 0 | \(0\) | \(0\) |
+| 1 | \(3\) | \(7\) |
+| 2 | \(5\) | \(5\) |
+| 3 | \(13/3\) | \(17/3\) |
+| 4 | \(5\) | \(5\) |
+| 5 | \(23/5\) | \(27/5\) |
+| 6 | \(5\) | \(5\) |
+
+Every positive even horizon contains the same number of threes and sevens, so
+its average is exactly five. At odd horizon \(2m+1\),
+
+\[
+\begin{aligned}
+A_{2m+1}f(\mathsf{left})
+&=5-\frac{2}{2m+1},\\
+A_{2m+1}f(\mathsf{right})
+&=5+\frac{2}{2m+1}.
+\end{aligned}
+\]
+
+Both rows therefore converge to five. The probability integral gives the same
+number:
+
+\[
+\int_\Omega f\,d\mu
+{} =
+\frac12\cdot3+\frac12\cdot7
+{} =5.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="two-cycle-average-ledger.svg"
+  alt="A uniform two-state swap with observable values three and seven has exact averages through horizon six. Both starting states reach five at every positive even horizon and converge to the probability integral five."
+  caption="**Finding:** the complete finite ledger already contains the ergodic Birkhoff conclusion. The left-start row is \(0,3,5,13/3,5,23/5,5\); the right-start row is \(0,7,5,17/3,5,27/5,5\). Their common limit equals \((1/2)3+(1/2)7=5\). The horizon-zero entry is Lean's totalized bookkeeping value, not an observation."
+>}}
+
+### Change only the measure scale
+
+Now give each state mass one instead of one half. The dynamics and orbit
+averages do not change, but the total mass and raw integral do:
+
+\[
+\nu(\Omega)=2,
+\qquad
+\int_\Omega f\,d\nu=3+7=10.
+\]
+
+The orbit limit is still five. The correct finite-mass target is therefore
+
+\[
+\frac{1}{\nu(\Omega)}\int_\Omega f\,d\nu
+{} =
+\frac12\cdot10
+{} =5,
+\]
+
+not the raw integral \(10\). Probability normalization is a convenient
+special case, not a hidden rescaling performed by integration.
+
+### Keep three nearby failures visible
+
+1. **Ergodic need not mean mixing.** For
+   \(E=\{\mathsf{left}\}\), the overlap masses
+   \(\mu(E\cap T^{-n}E)\) for \(n=0,\ldots,7\) are
+   \[
+   \frac12,0,\frac12,0,\frac12,0,\frac12,0.
+   \]
+   Mixing would require convergence to \(\mu(E)^2=1/4\).
+2. **Preservation need not mean ergodicity.** Replace the swap by identity
+   dynamics. Both singleton events are invariant with mass \(1/2\), and the
+   horizon-six averages remain \(3\) and \(7\). They do not collapse to the
+   global mean \(5\).
+3. **Ergodic need not mean positive mass.** Under the zero measure, the
+   integral and total mass are both zero. Lean's total arithmetic evaluates
+   \(0^{-1}\cdot0\) as zero, but the equation \(0\cdot c=0\) identifies no
+   constant. The semantic normalization theorem therefore keeps
+   \(\mu\ne0\) explicit.
+
+{{< reference-figure
+  wide="true"
+  src="normalization-and-rigidity-boundaries.svg"
+  alt="Four exact panels compare probability and mass-two targets, identity dynamics without pre-ergodicity, and zero mass without cancellation. The correct targets are five and five, while raw ten, separate limits three and seven, and the totalized zero-over-zero value expose distinct failures."
+  caption="**Finding:** normalization, rigidity, and nonzero mass do different jobs. Probability mass \(1\) gives integral and target \(5\). Mass \(2\) gives raw integral \(10\) but normalized target \(5\). Identity dynamics preserves the probability measure yet keeps the two limits \(3\) and \(7\), because pre-ergodicity fails. Zero mass totalizes the displayed ratio to \(0\) but does not justify cancelling total mass."
+>}}
+
+## From the finite ledger to the theorem
+
 Watch one nonlinear system for a very long time. Measure one observable at
 each step. Average those measurements. When should that **time average** equal
 the average obtained by sampling the whole state space at once?
 
 This question links dynamics to statistical physics. A microscopic trajectory
 moves through phase space, while a macroscopic prediction is often expressed
-as a space or ensemble average. The bridge is a theorem with explicit gates:
-measure preservation supplies stationary orbit sampling, RMT-27 supplies a
-pointwise limit, pre-ergodic rigidity removes nonconstant invariant
-information, integrability legitimizes the observable, and finite nonzero mass
-sets the normalization.
+as a space or ensemble average. The bridge has explicit gates: measure
+preservation supplies stationary orbit sampling, RMT-27 supplies a pointwise
+limit, pre-ergodic rigidity removes nonconstant invariant information,
+integrability legitimizes the observable, and finite nonzero mass sets the
+normalization.
 
-Fix a measurable space \(\Omega\), a measure \(\mu\), a self-map
+Fix a measurable space \(\Omega\), a finite measure \(\mu\), a self-map
 \(T:\Omega\to\Omega\), and an integrable real observable
-\(f:\Omega\to\mathbb R\). For \(n\ge 1\), define
-
-\[
-A_n f(\omega)
-{} =
-\frac{1}{n}\sum_{j=0}^{n-1} f\bigl(T^j\omega\bigr).
-\]
-
-Random-matrix-theory milestone 27 (RMT-27) proves, on a finite
-measure-preserving system, that
+\(f:\Omega\to\mathbb R\). RMT-27 proves, under measure preservation, that
 
 \[
 A_n f(\omega)
@@ -68,8 +180,8 @@ right side is
 {{< refterm "conditional-expectation" "conditional expectation" >}}.
 A nonergodic target may still vary between invariant components.
 
-Milestone RMT-28 adds the rigidity step. On a finite nonzero measure, if the
-system is ergodic, then
+RMT-28 adds the rigidity step. On a finite nonzero measure, if the system is
+ergodic, then
 
 \[
 A_n f(\omega)
@@ -80,13 +192,13 @@ A_n f(\omega)
 
 The right side is the
 {{< refterm "normalized-space-average" "normalized space average" >}}. If
-\(\mu\) is a probability measure, then \(\mu(\Omega)=1\), so the same target is
-the ordinary integral and may honestly be called the expectation of \(f\).
+\(\mu\) is a probability measure, then \(\mu(\Omega)=1\), so the target is the
+ordinary integral and may honestly be called the expectation of \(f\).
 
-The new formalization makes one assumption-minimization point central.
-Collapsing an already invariant conditional expectation to a constant needs
-only <code>PreErgodic T μ</code>. Convergence of orbit averages also needs
-measure preservation, so the final two Birkhoff theorems use the fuller
+The formalization separates two assumptions. Collapsing an already invariant
+conditional expectation to a constant needs only
+<code>PreErgodic T μ</code>. Convergence of orbit averages also needs measure
+preservation, so the final two Birkhoff theorems use the fuller
 <code>Ergodic T μ</code> structure.
 
 The immediate predecessor is
@@ -96,20 +208,22 @@ The earlier assumption-separation chapter is
 The later subadditive consumer is
 [Subadditive Upper Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}}),
 which applies this probability-integral endpoint only under the original map
-and proves an upper estimate rather than full Kingman convergence.
-The compact companion is {{< refterm "ergodicity" >}}.
+and proves an upper estimate rather than full Kingman convergence. The compact
+companion is {{< refterm "ergodicity" >}}.
 
 ## Choose a route up
 
 | Route | Begin | Destination |
 |---|---|---|
+| Worked-example route | [Start with a two-state orbit you can calculate](#start-with-a-two-state-orbit-you-can-calculate) | Compute every finite average and the exact limit |
 | Physical route | [Time and space answer different questions](#time-and-space-answer-different-questions) | Translate the theorem into dynamics and statistical physics |
-| Concrete route | [A two-cycle reaches the summit](#a-two-cycle-reaches-the-summit) | Compute an ergodic, nonmixing example |
+| Boundary route | [Keep three nearby failures visible](#keep-three-nearby-failures-visible) | Separate nonmixing, missing rigidity, and zero mass |
 | Rigidity route | [Pre-ergodic is the exact constancy gate](#pre-ergodic-is-the-exact-constancy-gate) | Separate information collapse from measure preservation |
 | Normalization route | [The canonical space average](#the-canonical-space-average) | Understand <code>⨍</code>, finite mass, and probability |
 | Proof route | [The five proof moves](#the-five-proof-moves) | Derive the constant from conditional expectation |
-| Lean route | [The exact declaration map](#the-exact-declaration-map) | Audit six public declarations and one private helper |
-| Boundary route | [Five compiled boundary probes](#five-compiled-boundary-probes) | Test every weak assumption boundary |
+| Lean route | [The exact declaration map](#the-exact-declaration-map) | Audit six public declarations, one private proof hinge, and fourteen private boundary fixtures |
+| Runnable route | [Run the finite worksheet on Mac or Linux](#run-the-finite-worksheet-on-mac-or-linux) | Execute the complete numerical model with only Lean `Std` |
+| Compiled-boundary route | [Five compiled boundary probes](#five-compiled-boundary-probes) | Test every weak assumption boundary |
 | Practice route | [Thirty solved exercises](#thirty-solved-exercises) | Rebuild the chapter independently |
 
 ### Learning objectives
@@ -130,9 +244,11 @@ By the summit, a reader should be able to:
 11. prove that the cycle is ergodic but not mixing;
 12. explain why \(T^2\) need not be ergodic when \(T\) is;
 13. locate where integrability and nonzero mass are consumed;
-14. audit all six public declarations and the private helper;
-15. explain all five compiled boundary probes; and
-16. state every major nonclaim without crossing into Kingman or Oseledets.
+14. audit all six public declarations, the private proof hinge, and fourteen
+    private boundary fixtures;
+15. explain all five compiled boundary probes;
+16. run the complete finite `Std` worksheet on a normal Mac or Linux host; and
+17. state every major nonclaim without crossing into Kingman or Oseledets.
 
 ## Time and space answer different questions
 
@@ -217,6 +333,24 @@ This selected conditional-expectation representative is measurable for
 g\circ T=g.
 \]
 
+### In Lean: prove exact invariant composition
+
+{{< lean-bridge
+  human="The conditional expectation that remembers only exactly invariant information has the same selected value before and after one application of the dynamics."
+  math="\\(\\mathbb E_\\mu[f\\mid\\mathcal I_T]\\circ T=\\mathbb E_\\mu[f\\mid\\mathcal I_T].\\)"
+  lean="condExp_invariants_comp (T := T) (f := f) (μ := μ)"
+>}}
+
+- `μ[f | MeasurableSpace.invariants T]` is Mathlib's selected real
+  conditional-expectation representative.
+- `∘ T` means compose that representative with the base map.
+- `(T := T)`, `(f := f)`, and `(μ := μ)` supply implicit arguments by name.
+- The equality sign is literal function equality, not almost-everywhere
+  equality.
+- The theorem needs no measure preservation, pre-ergodicity, finiteness, or
+  integrability premise.
+{{< /lean-bridge >}}
+
 Once those facts are available, pre-ergodicity alone makes \(g\) almost
 everywhere constant. Measure preservation returns only when the RMT-27
 orbit-convergence theorem is invoked.
@@ -265,10 +399,44 @@ On a finite measure,
 \int_\Omega f\,d\mu.
 \]
 
+### In Lean: identify the canonical average
+
+{{< lean-bridge
+  human="On a finite nonzero pre-ergodic system, the invariant conditional expectation of an integrable observable is the same constant almost everywhere: Mathlib's integral average."
+  math="\\(\\mathbb E_\\mu[f\\mid\\mathcal I_T]=\\operatorname{Avg}_\\mu(f)\\quad\\mu\\text{-almost everywhere}.\\)"
+  lean="condExp_invariants_ae_eq_average_of_preErgodic hμ hT hf"
+>}}
+
+- `hμ : μ ≠ 0` is the nonzero-mass gate.
+- `hT : PreErgodic T μ` supplies invariant-function rigidity without measure
+  preservation.
+- `hf : Integrable f μ` licenses the conditional-expectation integral
+  identity that determines the constant.
+- `⨍ x, f x ∂μ` is the Lean notation for Mathlib's canonical integral
+  average.
+- `=ᵐ[μ]` means equality outside a \(\mu\)-null set.
+{{< /lean-bridge >}}
+
 The finite nonzero hypotheses make the real denominator legitimate. The proof
 first identifies the constant with Mathlib's canonical average using
 <code>measure_smul_average</code>, then exposes the reciprocal-mass form using
 <code>average_eq</code>.
+
+### In Lean: expose the total-mass normalization
+
+{{< lean-bridge
+  human="Rewrite the canonical average as the raw integral divided by the finite positive total mass."
+  math="\\(\\mathbb E_\\mu[f\\mid\\mathcal I_T]=(\\mu(\\Omega))^{-1}\\int_\\Omega f\\,d\\mu\\quad\\mu\\text{-almost everywhere}.\\)"
+  lean="condExp_invariants_ae_eq_normalizedIntegral_of_preErgodic hμ hT hf"
+>}}
+
+- `μ.real univ` is the finite measure's total mass viewed as a real number.
+- `univ` is the whole state space \(\Omega\).
+- `⁻¹` is multiplicative inverse; `hμ` prevents this step from being a
+  zero-mass cancellation.
+- `* ∫ x, f x ∂μ` multiplies the reciprocal mass by the raw Bochner integral.
+- The theorem still assumes only `PreErgodic`, not measure preservation.
+{{< /lean-bridge >}}
 
 If <code>[IsProbabilityMeasure μ]</code>, then \(\mu(\Omega)=1\), and
 <code>average_eq_integral</code> gives
@@ -278,6 +446,23 @@ If <code>[IsProbabilityMeasure μ]</code>, then \(\mu(\Omega)=1\), and
 {} =
 \int_\Omega f\,d\mu.
 \]
+
+### In Lean: specialize mass one
+
+{{< lean-bridge
+  human="On a pre-ergodic probability space, the invariant conditional expectation equals the ordinary integral almost everywhere."
+  math="\\(\\mu(\\Omega)=1\\Longrightarrow\\mathbb E_\\mu[f\\mid\\mathcal I_T]=\\int_\\Omega f\\,d\\mu\\quad\\mu\\text{-almost everywhere}.\\)"
+  lean="condExp_invariants_ae_eq_integral_of_preErgodic hT hf"
+>}}
+
+- `[IsProbabilityMeasure μ]` supplies finite mass, nonzero mass, and the
+  identity \(\mu(\Omega)=1\) through typeclass inference.
+- `hT` remains the weaker `PreErgodic T μ` premise.
+- `hf` remains the explicit integrability proof.
+- `average_eq_integral` removes the reciprocal mass because it equals one.
+- This identifies a conditional expectation; it does not yet prove orbit
+  convergence.
+{{< /lean-bridge >}}
 
 Only this mass-one branch licenses the ordinary expectation scale. For a
 measure of mass two, the raw integral is twice the normalized average.
@@ -293,38 +478,25 @@ integral by \(a\), leaving the ratio unchanged:
 
 The mass-two Dirac probe checks this identity inside Lean.
 
-## A two-cycle reaches the summit
+## Why the worked example is ergodic but not mixing
 
-Let \(\Omega=\{0,1\}\), give each point mass \(1/2\), and let \(T\) flip the
-points:
-
-\[
-T(0)=1,\qquad T(1)=0.
-\]
-
-Write \(f(0)=a\) and \(f(1)=b\). For positive \(m\),
+Return to the two-state swap with values \(3\) and \(7\). The uniform measure
+is preserved because the map merely exchanges two equal-mass atoms. The four
+subsets are
 
 \[
-A_{2m}f(0)=A_{2m}f(1)=\frac{a+b}{2},
+\varnothing,\quad
+\{\mathsf{left}\},\quad
+\{\mathsf{right}\},\quad
+\Omega.
 \]
 
-while
+Pulling either singleton back through the swap produces the other singleton.
+Thus only \(\varnothing\) and \(\Omega\) are strictly invariant, so this finite
+system is ergodic. That is the rigidity gate behind the common limit \(5\).
 
-\[
-\begin{aligned}
-A_{2m+1}f(0)
-&=\frac{(m+1)a+mb}{2m+1},\\
-A_{2m+1}f(1)
-&=\frac{ma+(m+1)b}{2m+1}.
-\end{aligned}
-\]
-
-Both odd subsequences converge to \((a+b)/2\), which is also the probability
-integral of \(f\).
-
-The only strictly invariant subsets are \(\varnothing\) and \(\Omega\), and
-the flip preserves uniform measure, so it is ergodic. It is not mixing. For
-\(E=\{0\}\),
+Ergodicity does **not** make successive visits independent. For
+\(E=\{\mathsf{left}\}\),
 
 \[
 \mu\bigl(E\cap T^{-n}(E)\bigr)
@@ -342,9 +514,52 @@ ergodicity only of \(T\), not of a powered map.
 {{< reference-figure
   wide="true"
   src="two-cycle-parity-boundary.svg"
-  alt="A uniform two-state flip alternates observable values a and b. Even and odd Birkhoff averages approach their mean, event overlap alternates between one half and zero, and the squared map is the nonergodic identity."
-  caption="**Finding:** the two-cycle is ergodic and its full Birkhoff sequence converges to the space average, yet it is not mixing and its second iterate is not ergodic. This blocks any hidden use of mixing or powered-map ergodicity."
+  alt="The uniform two-state swap alternates observable values three and seven. Its Birkhoff averages converge to five, event overlap alternates between one half and zero rather than approaching one quarter, and the squared map is the nonergodic identity."
+  caption="**Finding:** the same numerical model separates three ideas. The swap \(T\) is ergodic and its full Birkhoff sequence converges to \(5\); its overlap ledger \(1/2,0,1/2,0,\ldots\) proves that it is not mixing; and \(T^2\) is the identity, hence not ergodic. RMT-28 assumes only ergodicity of the original map."
 >}}
+
+## The two convergence endpoints in Lean
+
+The identification theorems above start from an already invariant conditional
+expectation. To speak about the orbit sequence, RMT-28 combines them with
+RMT-27. That is the point where full `Ergodic T μ` enters.
+
+### In Lean: finite nonzero ergodic convergence
+
+{{< lean-bridge
+  human="On a finite nonzero ergodic system, the full Birkhoff-average sequence converges almost everywhere to the total-mass-normalized integral."
+  math="\\(A_nf(\\omega)\\longrightarrow(\\mu(\\Omega))^{-1}\\int_\\Omega f\\,d\\mu\\quad\\text{for }\\mu\\text{-almost every }\\omega.\\)"
+  lean="ae_tendsto_birkhoffAverage_normalizedIntegral_of_ergodic hμ hT hf"
+>}}
+
+- `[IsFiniteMeasure μ]` is the finite-mass instance.
+- `hμ : μ ≠ 0` licenses the normalized target.
+- `hT : Ergodic T μ` contains both `MeasurePreserving T μ μ` and
+  `PreErgodic T μ`.
+- `hf : Integrable f μ` is the observable hypothesis.
+- `∀ᵐ ω ∂μ` means the convergence statement holds outside one
+  \(\mu\)-null set.
+- `Tendsto ... atTop (nhds ...)` is convergence along all natural horizons,
+  not a subsequence or finite-time estimate.
+{{< /lean-bridge >}}
+
+### In Lean: probability convergence
+
+{{< lean-bridge
+  human="On an ergodic probability space, the same full sequence converges almost everywhere to the ordinary integral."
+  math="\\(\\mu(\\Omega)=1\\Longrightarrow A_nf(\\omega)\\longrightarrow\\int_\\Omega f\\,d\\mu\\quad\\text{for }\\mu\\text{-almost every }\\omega.\\)"
+  lean="ae_tendsto_birkhoffAverage_integral_of_ergodic hT hf"
+>}}
+
+- `[IsProbabilityMeasure μ]` supplies the mass-one specialization.
+- `hT` now has the full `Ergodic T μ` type because convergence consumes its
+  measure-preserving field.
+- `birkhoffAverage ℝ T f n ω` is the exact project sequence \(A_nf(\omega)\).
+- `∫ x, f x ∂μ` is the raw integral, which is correctly normalized only
+  because total mass is one.
+- No argument supplies mixing, bijectivity, a rate, or powered-map
+  ergodicity.
+{{< /lean-bridge >}}
 
 ## The five proof moves
 
@@ -365,8 +580,17 @@ nonintegrable zero fallback behind a convenient global-integral identity.
 
 ## The exact declaration map
 
-The canonized module exports six public declarations and keeps one existential
-constancy helper private.
+The checked module exports six public declarations. It keeps one existential
+constancy proof hinge and fourteen boundary-support items private.
+
+| Number | Public declaration | Exact role |
+|---:|---|---|
+| 1 | `condExp_invariants_comp` | Literal composition invariance of the selected exact-invariant conditional expectation. |
+| 2 | `condExp_invariants_ae_eq_average_of_preErgodic` | Almost-everywhere identification with Mathlib's canonical integral average. |
+| 3 | `condExp_invariants_ae_eq_normalizedIntegral_of_preErgodic` | Explicit reciprocal-total-mass presentation. |
+| 4 | `condExp_invariants_ae_eq_integral_of_preErgodic` | Probability-mass-one presentation as the ordinary integral. |
+| 5 | `ae_tendsto_birkhoffAverage_normalizedIntegral_of_ergodic` | Finite nonzero ergodic Birkhoff convergence to the normalized integral. |
+| 6 | `ae_tendsto_birkhoffAverage_integral_of_ergodic` | Probability ergodic Birkhoff convergence to the ordinary integral. |
 
 ### Declaration 1: exact composition invariance
 
@@ -447,6 +671,60 @@ theorem ae_tendsto_birkhoffAverage_integral_of_ergodic
 
 The final pair uses full ergodicity because it composes RMT-27 measure-preserving
 convergence with the pre-ergodic target identification.
+
+### Complete private support map
+
+There are fifteen private source commands in total. One is the proof hinge
+shown above. The other fourteen support the compiled boundary atlas:
+
+| Kind | Exact private item or source type | Job |
+|---|---|---|
+| Proof hinge | `condExp_invariants_ae_eq_const_of_preErgodic` | Turns literal invariance into almost-everywhere constancy. |
+| Definition | `rmt28ConstantFalse` | Constant-false map on `Bool`. |
+| Definition | `rmt28MassTwoDirac` | Twice the Dirac measure at `false`. |
+| Definition | `rmt28TwoAtomMeasure` | Sum of Dirac measures at both Boolean atoms. |
+| Definition | `rmt28TwoAtomObservable` | Observable separating the two Boolean atoms. |
+| Theorem | `rmt28ConstantFalse_not_injective` | Refutes injectivity of the constant map. |
+| Theorem | `rmt28ConstantFalse_not_surjective` | Refutes surjectivity of the constant map. |
+| Theorem | `rmt28ConstantFalse_measurePreserving_dirac` | Proves preservation of the supported-at-false Dirac measure. |
+| Theorem | `rmt28PreErgodic_dirac` | Proves pre-ergodicity for any Dirac measure and any self-map. |
+| Theorem | `rmt28ConstantFalse_ergodic_dirac` | Combines preservation and pre-ergodicity on the supported point. |
+| Theorem | `rmt28ConstantFalse_not_measurePreserving_dirac_true` | Shows that moving the supported point breaks preservation. |
+| Theorem | `rmt28MassTwoDirac_ne_zero` | Supplies the explicit nonzero-mass witness. |
+| Private instance | `IsFiniteMeasure rmt28MassTwoDirac` | Registers finite total mass two. |
+| Private instance | `IsFiniteMeasure rmt28TwoAtomMeasure` | Registers finite total mass for the two-Dirac measure. |
+| Theorem | `rmt28ConstantFalse_ergodic_massTwoDirac` | Transports ergodicity through positive measure scaling. |
+
+The two private instances are anonymous in the written source, so their exact
+types, rather than invented names, identify them. Proof-local facts such as
+`hIntegral`, `hcAverage`, `hmass`, and `htarget` are local bindings, not
+top-level declarations.
+
+### Complete probe and axiom map
+
+The five anonymous `example` commands compile these boundaries in source
+order:
+
+| Probe | Compiled boundary |
+|---:|---|
+| 1 | Probability Dirac dynamics with a noninjective and nonsurjective map. |
+| 2 | Pre-ergodic conditional-expectation rigidity without measure preservation. |
+| 3 | Mass-two ergodic convergence with explicit normalization. |
+| 4 | Zero-measure ergodicity and vacuous totalized almost-everywhere convergence. |
+| 5 | Two-positive-atom identity dynamics where pre-ergodicity and constant collapse fail. |
+
+The six source axiom audits are:
+
+1. `#print axioms condExp_invariants_comp`;
+2. `#print axioms condExp_invariants_ae_eq_average_of_preErgodic`;
+3. `#print axioms condExp_invariants_ae_eq_normalizedIntegral_of_preErgodic`;
+4. `#print axioms condExp_invariants_ae_eq_integral_of_preErgodic`;
+5. `#print axioms ae_tendsto_birkhoffAverage_normalizedIntegral_of_ergodic`;
+6. `#print axioms ae_tendsto_birkhoffAverage_integral_of_ergodic`.
+
+Thus the complete top-level inventory is six public theorems, one private
+proof hinge, fourteen additional private boundary-support items, five
+anonymous compiled probes, and six axiom-print commands.
 
 ## Assumption ledger
 
@@ -769,29 +1047,236 @@ The two-cycle shows why several of these exclusions are substantive. Its
 averages converge exactly as promised even though correlations do not decay
 and \(T^2\) is not ergodic.
 
-## Reproduce the checked layer
+## Run the finite worksheet on Mac or Linux
 
-From the repository root on a machine with Elan installed:
+The theorem module imports Mathlib and belongs on the cloud builder. The
+following teaching file is deliberately smaller: it imports only Lean's
+`Std`, defines its own two-point state space, computes exact rational
+averages, and asks Lean to verify every displayed ledger. It is appropriate
+for an ordinary Mac or Linux computer with Elan installed.
+
+Save this block byte for byte as
+<code>/tmp/ErgodicBirkhoffNormalizedTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace ErgodicBirkhoffNormalizedTutorial
+
+inductive Point where
+  | left
+  | right
+  deriving Repr, DecidableEq
+
+def points : List Point := [.left, .right]
+
+def pointName : Point → String
+  | .left => "left"
+  | .right => "right"
+
+def swap : Point → Point
+  | .left => .right
+  | .right => .left
+
+def identity (x : Point) : Point := x
+
+def iterate (T : Point → Point) : Nat → Point → Point
+  | 0, x => x
+  | n + 1, x => iterate T n (T x)
+
+def observable : Point → Rat
+  | .left => 3
+  | .right => 7
+
+def orbitSum (T : Point → Point) : Nat → Point → Rat
+  | 0, _ => 0
+  | n + 1, x => orbitSum T n x + observable (iterate T n x)
+
+def average (T : Point → Point) (n : Nat) (x : Point) : Rat :=
+  if n = 0 then 0 else orbitSum T n x / (n : Rat)
+
+structure AverageRow where
+  horizon : Nat
+  leftStart : Rat
+  rightStart : Rat
+  deriving Repr, DecidableEq
+
+def averageRow (T : Point → Point) (n : Nat) : AverageRow :=
+  { horizon := n
+    leftStart := average T n .left
+    rightStart := average T n .right }
+
+def probabilityIntegral : Rat :=
+  (observable .left + observable .right) / 2
+
+def massTwoIntegral : Rat :=
+  observable .left + observable .right
+
+def massTwoNormalizedAverage : Rat :=
+  massTwoIntegral / 2
+
+def leftEventOverlapMass (n : Nat) : Rat :=
+  let overlap := points.filter fun x =>
+    decide (x = .left ∧ iterate swap n x = .left)
+  (overlap.length : Rat) / 2
+
+structure TargetLedger where
+  probabilityMass : Rat
+  probabilityIntegral : Rat
+  probabilityNormalized : Rat
+  massTwoMass : Rat
+  massTwoIntegral : Rat
+  massTwoNormalized : Rat
+  wrongRawMassTwoTarget : Rat
+  normalizationMatters : Bool
+  zeroMassIntegral : Rat
+  zeroMassTotalizedRatio : Rat
+  deriving Repr, DecidableEq
+
+def targetLedger : TargetLedger :=
+  { probabilityMass := 1
+    probabilityIntegral := probabilityIntegral
+    probabilityNormalized := probabilityIntegral / 1
+    massTwoMass := 2
+    massTwoIntegral := massTwoIntegral
+    massTwoNormalized := massTwoNormalizedAverage
+    wrongRawMassTwoTarget := massTwoIntegral
+    normalizationMatters := decide (massTwoNormalizedAverage ≠ massTwoIntegral)
+    zeroMassIntegral := 0
+    zeroMassTotalizedRatio := (0 : Rat) / 0 }
+
+#eval points.map fun x => (pointName x, observable x)
+#eval (List.range 7).map (averageRow swap)
+#eval targetLedger
+#eval (List.range 8).map fun n => (n, leftEventOverlapMass n)
+#eval points.map fun x => (pointName x, average identity 6 x)
+
+example : (List.range 7).map (fun n => average swap n .left) =
+    [0, 3, 5, 13 / 3, 5, 23 / 5, 5] := by
+  native_decide
+example : (List.range 7).map (fun n => average swap n .right) =
+    [0, 7, 5, 17 / 3, 5, 27 / 5, 5] := by
+  native_decide
+example : probabilityIntegral = 5 := by native_decide
+example : massTwoIntegral = 10 := by native_decide
+example : massTwoNormalizedAverage = 5 := by native_decide
+example : targetLedger.normalizationMatters = true := by native_decide
+example : (List.range 8).map leftEventOverlapMass =
+    [1 / 2, 0, 1 / 2, 0, 1 / 2, 0, 1 / 2, 0] := by
+  native_decide
+example : points.map (average identity 6) = [3, 7] := by
+  native_decide
+example : targetLedger.zeroMassTotalizedRatio = 0 := by
+  native_decide
+
+end ErgodicBirkhoffNormalizedTutorial
+~~~
+
+Then type:
 
 ~~~sh
 source "$HOME/.elan/env"
-cd formalization
-lake env lean NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/ErgodicBirkhoffNormalizedTutorial.lean
 ~~~
 
-To replay the repository-wide gate, return to the root and run:
+The exact output is:
+
+~~~text
+[("left", 3), ("right", 7)]
+[{ horizon := 0, leftStart := 0, rightStart := 0 },
+ { horizon := 1, leftStart := 3, rightStart := 7 },
+ { horizon := 2, leftStart := 5, rightStart := 5 },
+ { horizon := 3, leftStart := (13 : Rat)/3, rightStart := (17 : Rat)/3 },
+ { horizon := 4, leftStart := 5, rightStart := 5 },
+ { horizon := 5, leftStart := (23 : Rat)/5, rightStart := (27 : Rat)/5 },
+ { horizon := 6, leftStart := 5, rightStart := 5 }]
+{ probabilityMass := 1,
+  probabilityIntegral := 5,
+  probabilityNormalized := 5,
+  massTwoMass := 2,
+  massTwoIntegral := 10,
+  massTwoNormalized := 5,
+  wrongRawMassTwoTarget := 10,
+  normalizationMatters := true,
+  zeroMassIntegral := 0,
+  zeroMassTotalizedRatio := 0 }
+[(0, (1 : Rat)/2), (1, 0), (2, (1 : Rat)/2), (3, 0), (4, (1 : Rat)/2), (5, 0), (6, (1 : Rat)/2), (7, 0)]
+[("left", 3), ("right", 7)]
+~~~
+
+Here is how the executable vocabulary matches the mathematics:
+
+| Lean text | Mathematical meaning |
+|---|---|
+| `inductive Point` | Define the finite state space \(\Omega=\{\mathsf{left},\mathsf{right}\}\). |
+| `Point → Rat` | A rational-valued observable \(f:\Omega\to\mathbb Q\). |
+| `iterate T n x` | The orbit point \(T^n(x)\). |
+| `orbitSum T n x` | \(\sum_{j=0}^{n-1}f(T^j x)\). |
+| `average T n x` | \(A_nf(x)\), with the explicit convention \(A_0f=0\). |
+| `List.range 7` | The horizons \(0,1,\ldots,6\). |
+| `#eval` | Ask Lean to execute a definition and print its result. |
+| `example ... := by native_decide` | Ask Lean's verified decision procedure to prove the finite equality. |
+
+Three details are worth noticing. The cast `(n : Rat)` moves the natural
+horizon into exact rational arithmetic before division. The expression
+`decide (x = .left ∧ ...)` turns a proposition into a Boolean filter test.
+Finally, the last two examples are countermodels: identity dynamics retains
+the separate values \(3\) and \(7\), while rational division totalizes
+\(0/0\) as \(0\). Neither computation proves the Mathlib ergodic theorem; it
+lets a learner inspect every finite mechanism that motivates its hypotheses.
+
+## Inspect and check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit" >}}
+
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean).
+On an approved Linux builder with the project dependencies provisioned, put
+this interface probe in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.ErgodicBirkhoffLimit
+
+open MeasureTheory
+open NonlinearDynamics.Random.RandomCocycles
+
+#check condExp_invariants_comp
+#check condExp_invariants_ae_eq_average_of_preErgodic
+#check condExp_invariants_ae_eq_normalizedIntegral_of_preErgodic
+#check condExp_invariants_ae_eq_integral_of_preErgodic
+#check ae_tendsto_birkhoffAverage_normalizedIntegral_of_ergodic
+#check ae_tendsto_birkhoffAverage_integral_of_ergodic
+~~~
+
+The six names occur in source order and are exactly the module's public
+interface. Private helpers and anonymous boundary probes are intentionally not
+addressable from an importing file.
+
+From the repository root on that approved Linux host, type:
 
 ~~~sh
-cd ..
-make check
-git diff --check
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean
 ~~~
 
-The module ends with six <code>#print axioms</code> commands, one for each
-public declaration. Warning-fatal compilation and the repository checks also
-reject unfinished proof placeholders. A successful leaf compile establishes
-that the stated Lean terms elaborate against the pinned toolchain; it does not
-replace human mathematical and editorial review of this chapter.
+This is the exact warning-fatal, Mathlib-backed leaf check. It may restore or
+compile substantial dependencies, so it belongs on a human-approved RunPod or
+other Linux cloud builder, not on the Mac workstation. Do not replace the
+guarded target with raw `lake` commands.
+{{< /repo-check >}}
+
+The broader guarded release gate on the same approved Linux builder is:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+The module ends with six <code>#print axioms</code> commands, one per public
+theorem. Passing the leaf or release gate establishes elaboration against the
+pinned toolchain and rejects warnings and unfinished placeholders; it does
+not complete the pending human and configured Pro review.
 
 ## Thirty solved exercises
 
@@ -919,11 +1404,12 @@ target is \(7^{-1}\int f\,d\mu\).
 
 ### Exercise 17: two-atom identity limits
 
-For identity dynamics with \(f(\mathsf{false})=0\) and
-\(f(\mathsf{true})=1\), find both Birkhoff limits.
+Replace the opening swap by identity dynamics while retaining
+\(f(\mathsf{left})=3\), \(f(\mathsf{right})=7\), and the uniform probability
+measure. Find both Birkhoff limits and compare them with the global mean.
 
-**Solution.** Each orbit stays where it starts, so the limits are \(0\) and
-\(1\), not the normalized global mean.
+**Solution.** Each orbit stays where it starts, so the limits are \(3\) and
+\(7\), not the normalized global mean \(5\).
 
 ### Exercise 18: locate the weak failed gate
 

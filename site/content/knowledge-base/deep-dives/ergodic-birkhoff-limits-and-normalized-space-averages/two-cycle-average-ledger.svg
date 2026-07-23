@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760"
+     viewBox="0 0 1000 760" role="img"
+     aria-labelledby="averageLedgerTitle averageLedgerDesc">
+  <title id="averageLedgerTitle">Exact Birkhoff averages on a uniform two-state cycle</title>
+  <desc id="averageLedgerDesc">Two states named left and right have probability one half each, observable values three and seven, and swap at every step. A table lists horizons zero through six. The left-start averages are zero, three, five, thirteen thirds, five, twenty-three fifths, and five. The right-start averages are zero, seven, five, seventeen thirds, five, twenty-seven fifths, and five. Both rows converge to five, which equals the probability integral one half times three plus one half times seven.</desc>
+  <rect width="1000" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:22px;font-weight:700}.sub{font-size:15px;fill:#5A544C}
+    .h{font-size:16px;font-weight:700}.s{font-size:14px}.m{font-size:13px;fill:#5A544C}
+    .tag{font-size:12px;font-weight:700;letter-spacing:.7px}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .rule{stroke:#C4B8A8;stroke-width:1.5}
+    .arrow{fill:none;stroke:#A67C52;stroke-width:3;marker-end:url(#averageArrow)}
+  </style>
+  <defs>
+    <marker id="averageArrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#A67C52"/>
+    </marker>
+  </defs>
+
+  <text x="36" y="42" class="t title">One orbit, every average, one exact target</text>
+  <text x="36" y="68" class="t sub">Uniform probability, T swaps the states, and f takes the values 3 and 7.</text>
+
+  <rect x="36" y="92" width="928" height="154" rx="16" class="cream"/>
+  <rect x="76" y="126" width="250" height="86" rx="14" class="blue"/>
+  <text x="102" y="158" class="t h">LEFT STATE</text>
+  <text x="102" y="184" class="t s">mass 1/2   |   f(left) = 3</text>
+  <rect x="674" y="126" width="250" height="86" rx="14" class="clay"/>
+  <text x="700" y="158" class="t h">RIGHT STATE</text>
+  <text x="700" y="184" class="t s">mass 1/2   |   f(right) = 7</text>
+  <path d="M 336 148 C 430 106, 570 106, 664 148" class="arrow"/>
+  <path d="M 664 190 C 570 232, 430 232, 336 190" class="arrow"/>
+  <text x="500" y="130" text-anchor="middle" class="t tag">T</text>
+  <text x="500" y="220" text-anchor="middle" class="t tag">T</text>
+
+  <rect x="36" y="270" width="928" height="328" rx="16" class="cream"/>
+  <rect x="36" y="270" width="928" height="54" rx="16" fill="#16243A"/>
+  <rect x="36" y="306" width="928" height="18" fill="#16243A"/>
+  <text x="108" y="304" class="t tag" style="fill:#FFFDF8">HORIZON n</text>
+  <text x="364" y="304" class="t tag" style="fill:#FFFDF8">AVERAGE FROM LEFT</text>
+  <text x="692" y="304" class="t tag" style="fill:#FFFDF8">AVERAGE FROM RIGHT</text>
+
+  <line x1="246" y1="324" x2="246" y2="598" class="rule"/>
+  <line x1="604" y1="324" x2="604" y2="598" class="rule"/>
+  <line x1="36" y1="363" x2="964" y2="363" class="rule"/>
+  <line x1="36" y1="402" x2="964" y2="402" class="rule"/>
+  <line x1="36" y1="441" x2="964" y2="441" class="rule"/>
+  <line x1="36" y1="480" x2="964" y2="480" class="rule"/>
+  <line x1="36" y1="519" x2="964" y2="519" class="rule"/>
+  <line x1="36" y1="558" x2="964" y2="558" class="rule"/>
+
+  <text x="140" y="350" text-anchor="middle" class="t s">0</text>
+  <text x="425" y="350" text-anchor="middle" class="t s">0</text>
+  <text x="782" y="350" text-anchor="middle" class="t s">0</text>
+  <text x="140" y="389" text-anchor="middle" class="t s">1</text>
+  <text x="425" y="389" text-anchor="middle" class="t s">3</text>
+  <text x="782" y="389" text-anchor="middle" class="t s">7</text>
+  <text x="140" y="428" text-anchor="middle" class="t s">2</text>
+  <text x="425" y="428" text-anchor="middle" class="t h">5</text>
+  <text x="782" y="428" text-anchor="middle" class="t h">5</text>
+  <text x="140" y="467" text-anchor="middle" class="t s">3</text>
+  <text x="425" y="467" text-anchor="middle" class="t s">13/3</text>
+  <text x="782" y="467" text-anchor="middle" class="t s">17/3</text>
+  <text x="140" y="506" text-anchor="middle" class="t s">4</text>
+  <text x="425" y="506" text-anchor="middle" class="t h">5</text>
+  <text x="782" y="506" text-anchor="middle" class="t h">5</text>
+  <text x="140" y="545" text-anchor="middle" class="t s">5</text>
+  <text x="425" y="545" text-anchor="middle" class="t s">23/5</text>
+  <text x="782" y="545" text-anchor="middle" class="t s">27/5</text>
+  <text x="140" y="584" text-anchor="middle" class="t s">6</text>
+  <text x="425" y="584" text-anchor="middle" class="t h">5</text>
+  <text x="782" y="584" text-anchor="middle" class="t h">5</text>
+
+  <rect x="36" y="622" width="448" height="104" rx="14" class="green"/>
+  <text x="62" y="652" class="t tag">SPACE AVERAGE</text>
+  <text x="62" y="682" class="t h">(1/2) * 3 + (1/2) * 7 = 5</text>
+  <text x="62" y="707" class="t m">The total probability mass is 1.</text>
+  <rect x="516" y="622" width="448" height="104" rx="14" class="blue"/>
+  <text x="542" y="652" class="t tag">TIME-AVERAGE LIMIT</text>
+  <text x="542" y="682" class="t h">left start → 5   |   right start → 5</text>
+  <text x="542" y="707" class="t m">Even horizons already equal the target.</text>
+</svg>
