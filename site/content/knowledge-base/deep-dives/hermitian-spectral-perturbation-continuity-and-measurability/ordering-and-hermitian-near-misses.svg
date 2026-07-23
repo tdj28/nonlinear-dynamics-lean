@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820"
+     viewBox="0 0 1200 820" role="img"
+     aria-labelledby="nearMissTitle nearMissDesc">
+  <title id="nearMissTitle">Ordering and Hermitian hypotheses prevent two exact failures</title>
+  <desc id="nearMissDesc">The correct Hermitian comparison matches levels by decreasing rank and has largest shift one half within a square root five over four budget. Reversing the second spectrum creates a false slot shift fifteen quarters. Along the real two by two non-Hermitian family whose lower-left entry epsilon is nonnegative, matrix distance from the defective endpoint is epsilon while decreasing-real eigenvalue motion is square root epsilon. Their ratio is unbounded in every relative neighborhood of the endpoint. Epsilon one sixteenth gives the executable instance one quarter versus one sixteenth.</desc>
+  <rect width="1200" height="820" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .title{font-size:31px;font-weight:700}.sub{font-size:18px;fill:#4D5B6B}
+    .h{font-size:21px;font-weight:700}.s{font-size:17px}.m{font-size:15px;fill:#4D5B6B}
+    .mono{font-family:Menlo,Consolas,monospace;font-size:17px;fill:#16243A}
+    .cool{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .warm{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .bad{fill:#F3E8E0;stroke:#934F1F;stroke-width:2}
+  </style>
+
+  <text x="42" y="55" class="t title">Two hypotheses stop two different failures</text>
+  <text x="42" y="86" class="t sub">Ordering fixes the matching; Hermiticity supplies stable real ordered levels.</text>
+
+  <rect x="42" y="122" width="1116" height="154" rx="18" class="green"/>
+  <text x="68" y="160" class="t h">CONTROL: Hermitian matrices, decreasing order on both sides</text>
+  <text x="68" y="204" class="mono">A levels [3, -1]       B levels [5/2, -3/4]</text>
+  <text x="68" y="239" class="t s">equal-rank shifts: 1/2 and 1/4; common Frobenius budget: sqrt(5)/4</text>
+
+  <rect x="42" y="310" width="534" height="392" rx="18" class="bad"/>
+  <text x="68" y="350" class="t h">NEAR-MISS A: reverse one list</text>
+  <text x="68" y="390" class="t s">The matrix B and its eigenvalue multiset did not change.</text>
+  <rect x="68" y="421" width="482" height="103" rx="12" class="neutral"/>
+  <text x="91" y="460" class="mono">wrong slot: 3 -&gt; -3/4</text>
+  <text x="91" y="496" class="mono">apparent shift = 15/4</text>
+  <text x="68" y="566" class="t s">15/4 is greater than sqrt(5)/4.</text>
+  <text x="68" y="602" class="t s">This is not a counterexample.</text>
+  <text x="68" y="634" class="t m">It violates the equal-decreasing-rank matching rule.</text>
+  <text x="68" y="666" class="t m">An unordered multiset does not name corresponding slots.</text>
+
+  <rect x="624" y="310" width="534" height="392" rx="18" class="bad"/>
+  <text x="650" y="350" class="t h">NEAR-MISS B: leave Hermitian space</text>
+  <text x="650" y="392" class="mono">J rows: [0, 1]   N rows: [0, 1]</text>
+  <text x="742" y="423" class="mono">[0, 0]           [1/16, 0]</text>
+  <text x="650" y="468" class="t s">Both matrices are non-Hermitian.</text>
+  <text x="650" y="504" class="mono">Frobenius distance = 1/16</text>
+  <text x="650" y="540" class="mono">J eigenvalues: 0, 0</text>
+  <text x="650" y="576" class="mono">N eigenvalues: 1/4, -1/4</text>
+  <text x="650" y="612" class="t s">instance: level motion 1/4 is greater than 1/16</text>
+  <text x="650" y="648" class="t m">family N_e, e &gt;= 0: motion sqrt(e), distance e</text>
+  <text x="650" y="680" class="t m">ratio unbounded in every relative neighborhood of J</text>
+
+  <rect x="42" y="744" width="1116" height="48" rx="12" fill="#16243A"/>
+  <text x="600" y="775" text-anchor="middle" class="t s" fill="#FFFDF8" style="fill:#FFFDF8">The project theorem is about decreasing real spectra on intrinsic Hermitian matrices, not arbitrary labelings or general complex matrices.</text>
+</svg>

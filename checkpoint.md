@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:10 PDT
+Last updated: 2026-07-22 20:16 PDT
 
-Audited baseline: `main` at `bc81ed6`
+Audited baseline: `main` at `b970cb2`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **12 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **13 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -321,6 +321,18 @@ bridges, primary/successor cloud probes, a complete thirteen-declaration API
 map, and an executed `Std` worksheet separate deterministic finite algebra,
 positive-dimensional norm bounds, measurable random products, and asymptotic
 growth.
+*Hermitian Spectral Perturbation, Continuity, and Measurability* now compares
+`diag(3,-1)` with `diag(5/2,-3/4)`: ordered shifts `1/2` and `1/4` fit inside
+the exact Frobenius-square budget `5/16`. Reversing one eigenvalue list breaks
+rank matching, while the non-Hermitian family
+`[[0,1],[ε,0]]` has matrix motion `ε`, eigenvalue motion `sqrt(ε)`, and an
+unbounded ratio along that real-spectrum family. Seven Lean bridges and three
+figures climb from the deterministic bound through sup-metric Lipschitzness,
+continuity, Giry measurability, and a separately typed GUE pushforward
+equality. A nine-example `Std` worksheet, five guarded project checks, and a
+fourteen-declaration API map make the boundaries reproducible. Independent
+adversarial review corrected a signed-entry card error, narrowed the Jordan
+claim, and separated measurable sample maps from outer laws before release.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3208,6 +3220,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `b970cb2`: rebuild *Ordered Finite Matrix Products and Operator-Norm Growth*
+  around a noncommuting shear/stretch history, chronological-versus-reversed
+  norms `2` and `3`, factor budget `4`, seven Lean bridges, and a local
+  factor-count worksheet that stops before Lyapunov theory.
 - `bc81ed6`: rebuild *Finite GUE Empirical Spectral Laws and Normalized
   Moments* around a fully enumerated two-matrix source, its law on measures,
   joined mean, normalized moment ledgers, six Lean bridges, and the exact

@@ -2,17 +2,17 @@
 title: "Hermitian Spectral Perturbation, Continuity, and Measurability"
 slug: "hermitian-spectral-perturbation-continuity-and-measurability"
 date: 2026-07-21
-summary: "A textbook climb from Frobenius matrix-vector control through a finite min-max witness to 1-Lipschitz ordered eigenvalues, measurable empirical spectra, and an unconditional intrinsic-versus-ambient Gaussian unitary ensemble pushforward bridge."
-lead: "Ordered Hermitian eigenvalues do not jump when the matrix moves. A direct finite-dimensional proof turns a Frobenius perturbation budget into a coordinatewise spectral bound, then turns that bound into continuity, measurability, and law-level spectral observables."
+summary: "An exact two-by-two perturbation opens a textbook climb from a Frobenius Weyl bound to continuous ordered eigenvalues, measurable finite spectral observables, and a carefully typed Gaussian ensemble pushforward equality."
+lead: "Move two entries of a diagonal Hermitian matrix by one half and one quarter. Its ordered energy levels move by exactly those amounts, both inside one square-root-five-over-four Frobenius budget. Lean proves the all-dimensional version, then separately proves continuity, measurability, and the existing random-law pushforward bridge."
 draft: false
 pro_reviewed: false
-level: "Finite-dimensional Hermitian perturbation theory through measurable spectral laws"
-reading_time: "90 to 120 minutes"
+level: "Finite-dimensional Hermitian perturbation, Borel spectrum maps, and measurable spectral observables"
+reading_time: "120 to 150 minutes"
 prerequisites: "Hermitian matrices, finite-dimensional inner-product spaces, ordered eigenvalues, Frobenius norm, elementary measure pushforwards, and the distinction between a sample observable and its probability law; every specialized step is rebuilt along the route"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity"
 toc: true
 og_image: "hermitian-spectral-perturbation-continuity-and-measurability-card.png"
-og_image_alt: "Top modes of one Hermitian matrix and bottom modes of another overlap to provide a witness; quadratic-form control yields a Weyl bound, then Lipschitz continuity unlocks measurable empirical spectra and the intrinsic-versus-ambient Gaussian unitary ensemble law bridge."
+og_image_alt: "For diagonal Hermitian matrices with ordered spectra three and negative one versus five halves and negative three quarters, the entries of B minus A are negative one half and positive one quarter. The absolute eigenvalue shifts are one half and one quarter, and the largest squared shift one quarter is bounded by the squared Frobenius distance five sixteenths."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -28,6 +28,325 @@ prose, citations, Lean declaration map, figures, and accessibility have not yet
 received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
+
+## Start with one exact two-by-two perturbation
+
+Let
+
+\[
+A=
+\begin{bmatrix}
+3&0\\
+0&-1
+\end{bmatrix},
+\qquad
+B=
+\begin{bmatrix}
+\frac52&0\\
+0&-\frac34
+\end{bmatrix}.
+\]
+
+Both matrices are
+{{< refterm "hermitian-matrix" "Hermitian" >}}: each equals its conjugate
+transpose. Because the diagonal entries are already decreasing, their ordered
+eigenvalue vectors are visible without a characteristic-polynomial
+calculation:
+
+An **eigenvalue** \(\lambda\) of a matrix \(M\) is a scalar for which
+\(Mv=\lambda v\) for some nonzero vector \(v\). For a diagonal matrix, the
+diagonal entries are its eigenvalues, including multiplicity.
+
+\[
+\Lambda(A)=(3,-1),
+\qquad
+\Lambda(B)=\left(\frac52,-\frac34\right).
+\]
+
+Match equal positions in these decreasing lists. The two level shifts are
+
+\[
+\left|3-\frac52\right|=\frac12,
+\qquad
+\left|-1-\left(-\frac34\right)\right|=\frac14.
+\]
+
+The matrix difference is
+
+\[
+A-B=
+\begin{bmatrix}
+\frac12&0\\
+0&-\frac14
+\end{bmatrix}.
+\]
+
+Its squared Frobenius norm is the sum of the squared entry magnitudes:
+
+\[
+\lVert A-B\rVert_F^2
+=\left(\frac12\right)^2+\left(-\frac14\right)^2
+=\frac14+\frac1{16}
+=\frac5{16}.
+\]
+
+Therefore
+
+\[
+\lVert A-B\rVert_F=\frac{\sqrt5}{4}\approx0.559.
+\]
+
+The larger ordered shift is \(1/2=0.5\), so both coordinates satisfy
+
+\[
+\left|\lambda_i(A)-\lambda_i(B)\right|
+\le \frac12
+\le \frac{\sqrt5}{4}
+=\lVert A-B\rVert_F.
+\]
+
+Nothing statistical happened. We selected two deterministic matrices,
+computed their deterministic spectra, and checked one deterministic
+inequality. Squaring is legitimate in the exact ledger because every compared
+quantity is nonnegative:
+
+\[
+\left(\frac12\right)^2=\frac4{16}\le\frac5{16}.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="exact-hermitian-perturbation-ledger.svg"
+  alt="For diagonal Hermitian matrices with ordered spectra three and negative one versus five halves and negative three quarters, the entries of B minus A are negative one half and positive one quarter. The absolute eigenvalue shifts are one half and one quarter. Their squared Frobenius distance is five sixteenths, so the largest squared shift one quarter fits inside the exact budget."
+  caption="**Finding:** \(B-A\) has diagonal entries \(-1/2\) and \(+1/4\), so equal decreasing ranks move in absolute value by \(1/2\) and \(1/4\). The matrix perturbation has squared Frobenius size \(5/16\), hence distance \(\sqrt5/4\), and the exact comparison \(1/4\le5/16\) verifies the larger shift after squaring. These are deterministic toy matrices, not sampled data, and the figure makes no eigenvector or probability claim."
+>}}
+
+### Two near-misses show why the hypotheses are real
+
+#### Near-miss A: reverse one eigenvalue list
+
+Keep the same matrix \(B\), but write its eigenvalues in the opposite order:
+
+\[
+\left(-\frac34,\frac52\right).
+\]
+
+Comparing the first slot of that list with the first slot of
+\(\Lambda(A)\) produces
+
+\[
+\left|3-\left(-\frac34\right)\right|
+=\frac{15}{4}
+\gt\frac{\sqrt5}{4}.
+\]
+
+This is not a counterexample. The theorem compares equal positions after both
+Hermitian spectra have been sorted in the same decreasing order. An unordered
+multiset records which eigenvalues exist, but it does not by itself say which
+one on the left corresponds to which one on the right.
+
+#### Near-miss B: leave the Hermitian world
+
+Now consider two real, but non-Hermitian, matrices:
+
+\[
+J=
+\begin{bmatrix}
+0&1\\
+0&0
+\end{bmatrix},
+\qquad
+N=
+\begin{bmatrix}
+0&1\\
+\frac1{16}&0
+\end{bmatrix}.
+\]
+
+Their Frobenius distance is only
+
+\[
+\lVert J-N\rVert_F=\frac1{16}.
+\]
+
+Both matrices are non-Hermitian, even though the eigenvalues in this exact
+pair happen to be real.
+
+The characteristic polynomial is \(\det(tI-M)\); its roots are the
+eigenvalues. The characteristic polynomial of \(J\) is \(t^2\), so both
+eigenvalues are zero. The characteristic polynomial of \(N\) is
+\(t^2-\frac1{16}\), so its eigenvalues are \(1/4\) and \(-1/4\). Thus one
+level moves by
+
+\[
+\frac14\gt\frac1{16}.
+\]
+
+The single pair proves that the Hermitian theorem's constant \(1\) cannot be
+extended to all real \(2\)-by-\(2\) matrices that happen to have real spectra
+when those real eigenvalues are matched in decreasing order. It says nothing
+about every possible non-Hermitian spectral metric or matching convention. To
+see the stronger local failure along this particular real-spectrum family, use
+
+\[
+N_\varepsilon=
+\begin{bmatrix}
+0&1\\
+\varepsilon&0
+\end{bmatrix},
+\qquad \varepsilon\gt0.
+\]
+
+Then \(J=N_0\),
+\(\lVert N_\varepsilon-J\rVert_F=\varepsilon\), and the roots of
+\(t^2-\varepsilon\) are
+\(\pm\sqrt{\varepsilon}\). The ratio of eigenvalue motion to matrix motion is
+
+\[
+\frac{\sqrt{\varepsilon}}{\varepsilon}
+=\frac1{\sqrt{\varepsilon}}
+\longrightarrow\infty
+\qquad\text{as }\varepsilon\downarrow0.
+\]
+
+Thus, along the one-sided family
+\(\{N_\varepsilon:\varepsilon\ge0\}\), no fixed finite Lipschitz constant works
+in any relative neighborhood of the defective matrix \(J\) for the
+decreasingly ordered real-eigenvalue map. This is a family-specific local
+statement, not a global theorem about every way to compare complex spectra.
+The matrix \(J\) is **defective** because it does not have enough linearly
+independent eigenvectors to form a basis. Hermiticity supplies the stable
+min-max geometry used by the project proof. The checked theorem makes no
+non-Hermitian perturbation claim.
+
+{{< reference-figure
+  wide="true"
+  src="ordering-and-hermitian-near-misses.svg"
+  alt="The correct Hermitian comparison has ordered shifts one half and one quarter inside a square-root-five-over-four budget. Reversing the second spectrum creates an invalid slot shift fifteen quarters. Along the real two-by-two non-Hermitian family with nonnegative lower-left entry epsilon, matrix distance from the defective endpoint is epsilon but decreasing-real eigenvalue motion is square root epsilon, so their ratio is unbounded in every relative neighborhood of the endpoint; epsilon one sixteenth gives the executable instance one quarter versus one sixteenth."
+  caption="**Finding:** the two main hypotheses do different jobs. A common decreasing order supplies the matching, so reversing one list invalidates the slot comparison without changing either matrix. Hermiticity supplies stable real order statistics. Along the one-sided real-spectrum family \(N_\varepsilon\) with \(\varepsilon\ge0\), the matrix distance from \(J\) is \(\varepsilon\) while decreasing-real eigenvalue motion is \(\sqrt{\varepsilon}\). The ratio \(1/\sqrt{\varepsilon}\) is therefore unbounded in every relative neighborhood of \(J\) inside that family. The executable instance \(\varepsilon=1/16\) gives \(1/4\gt1/16\). This family-specific non-Hermitian boundary failure is not a counterexample to the checked theorem or a global statement about complex-spectrum matchings."
+>}}
+
+## Type the exact finite ledger with Lean and <code>Std</code>
+
+The general eigenvalue theorem imports Mathlib and must be checked on approved
+Linux cloud compute. Its decisive rational arithmetic fits in a small
+standalone worksheet importing only Lean's <code>Std</code> library. This
+tutorial represents the two diagonal spectra directly and checks the
+non-Hermitian eigenvalues by evaluating their characteristic polynomials. It
+does not formalize matrix spectral theory.
+
+Save the following exact file as
+<code>/tmp/HermitianPerturbation2.lean</code> on a normal Mac or Linux host:
+
+~~~lean
+import Std
+
+namespace HermitianPerturbation2
+
+def sq (x : Rat) : Rat := x * x
+
+def absRat (x : Rat) : Rat :=
+  if x < 0 then -x else x
+
+def aSpectrum : List Rat := [3, -1]
+
+def bSpectrum : List Rat := [(5 : Rat) / 2, (-3 : Rat) / 4]
+
+def orderedShifts : List Rat :=
+  [absRat (3 - (5 : Rat) / 2), absRat (-1 - (-3 : Rat) / 4)]
+
+def frobeniusSq : Rat :=
+  sq (3 - (5 : Rat) / 2) + sq (-1 - (-3 : Rat) / 4)
+
+def maxOrderedShift : Rat :=
+  max (absRat (3 - (5 : Rat) / 2)) (absRat (-1 - (-3 : Rat) / 4))
+
+def reversedSlotShift : Rat :=
+  absRat (3 - (-3 : Rat) / 4)
+
+structure Matrix2 where
+  a11 : Rat
+  a12 : Rat
+  a21 : Rat
+  a22 : Rat
+deriving Repr, DecidableEq
+
+def trace (M : Matrix2) : Rat := M.a11 + M.a22
+
+def det (M : Matrix2) : Rat := M.a11 * M.a22 - M.a12 * M.a21
+
+def charAt (M : Matrix2) (lambda : Rat) : Rat :=
+  sq lambda - trace M * lambda + det M
+
+def frobeniusSqDiff (M N : Matrix2) : Rat :=
+  sq (M.a11 - N.a11) + sq (M.a12 - N.a12) +
+    sq (M.a21 - N.a21) + sq (M.a22 - N.a22)
+
+def jordan : Matrix2 :=
+  { a11 := 0, a12 := 1, a21 := 0, a22 := 0 }
+
+def perturbedJordan : Matrix2 :=
+  { a11 := 0, a12 := 1, a21 := (1 : Rat) / 16, a22 := 0 }
+
+#eval orderedShifts
+#eval frobeniusSq
+#eval (sq maxOrderedShift, decide (sq maxOrderedShift <= frobeniusSq))
+#eval (reversedSlotShift, decide (sq reversedSlotShift <= frobeniusSq))
+#eval [charAt jordan 0, charAt perturbedJordan ((1 : Rat) / 4),
+  charAt perturbedJordan ((-1 : Rat) / 4)]
+#eval (frobeniusSqDiff jordan perturbedJordan, sq ((1 : Rat) / 4),
+  decide (sq ((1 : Rat) / 4) <= frobeniusSqDiff jordan perturbedJordan))
+
+example : orderedShifts = [(1 : Rat) / 2, (1 : Rat) / 4] := by
+  native_decide
+example : frobeniusSq = (5 : Rat) / 16 := by native_decide
+example : sq maxOrderedShift <= frobeniusSq := by native_decide
+example : not (sq reversedSlotShift <= frobeniusSq) := by native_decide
+example : charAt jordan 0 = 0 := by native_decide
+example : charAt perturbedJordan ((1 : Rat) / 4) = 0 := by native_decide
+example : charAt perturbedJordan ((-1 : Rat) / 4) = 0 := by native_decide
+example : frobeniusSqDiff jordan perturbedJordan = (1 : Rat) / 256 := by
+  native_decide
+example : not (sq ((1 : Rat) / 4) <=
+    frobeniusSqDiff jordan perturbedJordan) := by native_decide
+
+end HermitianPerturbation2
+~~~
+
+Type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/HermitianPerturbation2.lean
+~~~
+
+The exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[(1 : Rat)/2, (1 : Rat)/4]
+(5 : Rat)/16
+((1 : Rat)/4, true)
+((15 : Rat)/4, false)
+[0, 0, 0]
+((1 : Rat)/256, (1 : Rat)/16, false)
+~~~
+
+The first boolean verifies the squared Hermitian budget. The second rejects
+the reversed-slot comparison. The three zeros certify that \(0\) is a root for
+\(J\) and that \(1/4,-1/4\) are roots for \(N\). The last tuple compares the
+squared non-Hermitian matrix distance \(1/256\) with the squared level motion
+\(1/16\) and correctly returns <code>false</code>.
+
+<code>Rat</code> provides exact rational arithmetic. <code>decide</code>
+computes a boolean decision for a proposition, while
+<code>native_decide</code> closes a proposition by trusted kernel-checked
+reflection after native evaluation. The worksheet checks the finite ledger,
+not the general eigenvalue theorem, continuity, measurability, or any
+probability law.
+
+## What the checked module proves
 
 The preceding spectral layer attached a decreasing real eigenvalue vector to
 every finite intrinsic Hermitian matrix. It then turned that vector into a
@@ -53,10 +372,11 @@ intrinsic {{< refterm "hermitian-frobenius-geometry" "Hermitian Frobenius norm" 
 The estimate is strong enough to make each coordinate 1-Lipschitz and the full
 ordered vector 1-Lipschitz for the finite function-space sup metric. Lipschitz
 maps are continuous; continuous maps between the Borel spaces in use are
-measurable. The conditional Giry interfaces from RMT-10A can therefore be
-discharged, including the equality between the empirical-spectral
-pushforwards of the ambient and intrinsic Gaussian unitary ensemble (GUE)
-laws.
+measurable. Here a Borel measurable structure is generated by the open sets of
+the surrounding topology. The conditional measure-valued interfaces from
+RMT-10A can therefore be discharged, including the equality between the
+empirical-spectral pushforwards of the ambient and intrinsic Gaussian unitary
+ensemble (GUE) laws.
 
 The proof is deliberately finite and structural. It does not import an
 operator-norm Weyl theorem. Instead it builds an ordered eigenbasis, forms top
@@ -64,11 +384,36 @@ and bottom spectral subspaces, forces them to intersect by dimension, and
 uses a vector in that intersection to compare two quadratic forms. That route
 makes every hypothesis and every norm visible in Lean.
 
+### Three layers that must not collapse
+
+The word "spectrum" can refer to several typed objects here. Keep this ledger
+in view. Write \(\mathcal H_n\) for the space of \(n\)-by-\(n\) Hermitian
+matrices with the intrinsic Frobenius metric. Mathlib's **Giry measurable
+structure** on <code>Measure ℝ</code> is generated by the evaluation maps
+\(\mu\mapsto\mu(S)\) for measurable sets \(S\). It lets a measure itself be the
+output of a measurable map without first choosing a topology on the space of
+measures.
+
+| Layer | Exact object | What RMT-10B proves | What it does not yet do |
+|---|---|---|---|
+| Deterministic ordered spectrum | \(\Lambda:\mathcal H_n\to(\operatorname{Fin}(n)\to\mathbb R)\) | Frobenius 1-Lipschitz, continuous, and Borel measurable | Select a random matrix or define a probability law |
+| Deterministic measure-valued observable | \(L:\mathcal H_n\to\operatorname{Measure}(\mathbb R)\) | Giry measurability of counting and empirical spectral maps | Prove weak or Wasserstein continuity, or produce a density |
+| Random output law | \(\mu\mapsto L_*\mu\) after a source law \(\mu\) is supplied | Equality of the ambient and intrinsic GUE pushforwards already present in the API | Introduce the later dedicated name, calculate its density, or prove an asymptotic law |
+
+A {{< refterm "measurable-function" "measurable function" >}} is a
+deterministic map with a preimage property. A
+{{< refterm "pushforward-measure" "pushforward" >}} uses such a map together
+with an input measure to create an output measure. A
+{{< refterm "probability-law" "probability law" >}} is therefore not another
+word for continuity or measurability. RMT-10B proves the map properties first
+and invokes the existing GUE input laws only in its final theorem.
+
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [The result in one picture](#the-result-in-one-picture) | See how a witness becomes a measurable-law bridge |
+| First encounter | [The exact two-by-two perturbation](#start-with-one-exact-two-by-two-perturbation) | Compute the ordered shifts and Frobenius budget before meeting the general theorem |
+| Hands-on route | [The standalone worksheet](#type-the-exact-finite-ledger-with-lean-and-std) | Check the rational ledger locally without Mathlib or Lake |
 | Norm route | [Frobenius control of matrix-vector multiplication](#base-camp-one-frobenius-control-of-matrix-vector-multiplication) | Prove the analytic estimate that bounds quadratic-form change |
 | Spectral route | [Reindex the eigenbasis in the same order](#base-camp-two-reindex-the-eigenbasis-in-the-same-order) | Align eigenvectors with the decreasing eigenvalue API |
 | Min-max route | [Top and bottom spectral subspaces](#camp-two-top-and-bottom-spectral-subspaces) | Build the nonzero intersection witness |
@@ -110,8 +455,8 @@ By the summit, you should be able to:
 
 {{< reference-figure
   src="intersection-to-measurable-law.svg"
-  alt="Top spectral modes of a first Hermitian matrix and bottom spectral modes of a second matrix overlap by dimension. A shared nonzero witness lets quadratic forms squeeze one ordered eigenvalue, swapping the matrices gives a two-sided bound, and the resulting Lipschitz spectrum unlocks measurable spectral pushforwards."
-  caption="**Finding:** the bridge from algebra to probability is earned by one deterministic witness. A dimension-forced intersection compares the same vector against both quadratic forms; the resulting coordinate bound yields continuity and measurability, which then discharges the earlier Giry hypotheses. This proof ladder does not control eigenvectors, prove a full-spectrum Euclidean estimate, or add a GUE density or limit theorem."
+  alt="Top spectral modes of a first Hermitian matrix and bottom spectral modes of a second matrix overlap by dimension. A shared nonzero witness lets quadratic forms squeeze one ordered eigenvalue. Swapping the matrices gives a two-sided bound, continuity makes the counting and empirical spectral sample maps measurable, and that separate map property licenses the ambient versus intrinsic Gaussian ensemble pushforward equality."
+  caption="**Finding:** the bridge from algebra to probability is earned by one deterministic witness, but it still has two distinct final steps. A dimension-forced intersection compares the same vector against both quadratic forms; the resulting coordinate bound yields continuity and then measurability of the counting and empirical spectral sample maps. Only after that map-level result does the module prove the separate ambient-versus-intrinsic Gaussian unitary ensemble pushforward equality. This proof ladder does not control eigenvectors, prove a full-spectrum Euclidean estimate, or add a Gaussian ensemble density or limit theorem."
 >}}
 
 The figure compresses three mathematical layers that must stay separate:
@@ -203,15 +548,28 @@ any complex square matrix \(M\) and Euclidean vector \(x\),
 \le\lVert M\rVert_F\lVert x\rVert_2.
 \]
 
-In Lean:
+### In Lean: one matrix-vector application
 
-~~~lean
-theorem norm_mulVec_le_frobenius
-    (A : Matrix (Fin n) (Fin n) ℂ)
-    (x : EuclideanSpace ℂ (Fin n)) :
-    ‖WithLp.toLp 2 (A *ᵥ x)‖ ≤
-      ‖matrixToFrobenius A‖ * ‖x‖
-~~~
+{{< lean-bridge
+  human="Multiplying a complex square matrix by a vector cannot produce a Euclidean norm larger than the matrix's Frobenius norm times the vector norm."
+  math="\(\lVert Ax\rVert_2\le\lVert A\rVert_F\lVert x\rVert_2.\)"
+  lean="RandomMatrix.norm_mulVec_le_frobenius A x"
+>}}
+
+- <code>RandomMatrix</code> is the project namespace for the finite matrix
+  geometry.
+- <code>A : Matrix (Fin n) (Fin n) ℂ</code> is any complex square matrix; this
+  first theorem does not assume Hermiticity.
+- <code>x : EuclideanSpace ℂ (Fin n)</code> is a complex Euclidean vector.
+- <code>*ᵥ</code>, visible in the theorem's result, is matrix-vector
+  multiplication.
+- <code>WithLp.toLp 2</code> packages the coordinate function with its
+  Euclidean \(2\)-norm.
+- <code>matrixToFrobenius A</code> views all matrix entries as one Euclidean
+  vector, so its norm is the Frobenius norm.
+- Applying the declaration returns a proof of an inequality. It does not
+  calculate an eigenvalue.
+{{< /lean-bridge >}}
 
 The proof reuses Mathlib's Frobenius submultiplicativity rather than expanding
 every coordinate and running Cauchy-Schwarz by hand. Regard \(x\) as the single
@@ -454,6 +812,48 @@ Combining both sides yields
 the public theorem
 <code>abs_orderedHermitianEigenvalues_sub_le_frobenius</code>.
 
+### In Lean: the ordered coordinate bound
+
+{{< lean-bridge
+  human="At the same decreasing rank i, the real eigenvalues of Hermitian matrices A and B differ by at most their intrinsic Frobenius distance."
+  math="\(\left|\lambda_i(A)-\lambda_i(B)\right|\le\lVert A-B\rVert_F.\)"
+  lean="RandomMatrix.abs_orderedHermitianEigenvalues_sub_le_frobenius A B i"
+>}}
+
+- <code>A B : RandomMatrix.HermitianEuclidean n</code> makes Hermiticity part
+  of the input type rather than an after-the-fact premise.
+- <code>i : Fin n</code> is one valid zero-based rank.
+- <code>orderedHermitianEigenvalues</code> uses a decreasing enumeration, so
+  equal indices encode the matching rule.
+- <code>abs</code> appears in the declaration name because the conclusion is
+  the absolute real difference.
+- <code>sub</code> refers first to the eigenvalue subtraction and then, on the
+  right, to the intrinsic matrix subtraction \(A-B\).
+- <code>le_frobenius</code> records the exact checked norm. It does not claim
+  the sharper operator-norm theorem.
+{{< /lean-bridge >}}
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean).
+On an approved Linux builder with the pinned project cache, put this exact
+source in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.norm_mulVec_le_frobenius
+#check RandomMatrix.orderedHermitianEigenvalues_le_add_frobenius
+#check RandomMatrix.abs_orderedHermitianEigenvalues_sub_le_frobenius
+~~~
+
+<code>#check</code> asks Lean to elaborate each declaration and display its
+type. The guarded command rendered below checks the complete Mathlib-backed
+module. It belongs on approved Linux cloud compute, not on this Mac.
+{{< /repo-check >}}
+
 ### A diagonal check
 
 Suppose \(A\) and \(B\) are already diagonal in the same basis, with
@@ -486,13 +886,26 @@ d_{\mathbb R}\bigl(\lambda_i(A),\lambda_i(B)\bigr)
 \le 1\cdot d_F(A,B).
 \]
 
-Mathlib packages that statement as
+### In Lean: scalar and vector metrics
 
-~~~lean
-theorem lipschitzWith_orderedHermitianEigenvalues_apply (i : Fin n) :
-    LipschitzWith 1 (fun H : HermitianEuclidean n =>
-      orderedHermitianEigenvalues H i)
-~~~
+{{< lean-bridge
+  human="For one fixed rank i, the ordered eigenvalue is a 1-Lipschitz real-valued function of the intrinsic Hermitian matrix."
+  math="\(d_{\mathbb R}(\lambda_i(A),\lambda_i(B))\le 1\cdot d_F(A,B).\)"
+  lean="RandomMatrix.lipschitzWith_orderedHermitianEigenvalues_apply i"
+>}}
+
+- <code>lipschitzWith</code> names Mathlib's predicate
+  <code>LipschitzWith</code>.
+- The numeral <code>1</code> is inferred as <code>NNReal</code>, the type of
+  nonnegative real constants accepted by that predicate.
+- <code>_apply i</code> specializes the ordered vector to the fixed coordinate
+  <code>i : Fin n</code>.
+- The source metric is the norm distance on
+  <code>RandomMatrix.HermitianEuclidean n</code>; the target is the usual real
+  distance.
+- The theorem is global: it quantifies over every pair of intrinsic Hermitian
+  matrices of the fixed size.
+{{< /lean-bridge >}}
 
 The constant has type <code>NNReal</code>, a nonnegative real number. The
 official <code>LipschitzWith</code> API defines the predicate by a distance
@@ -505,12 +918,25 @@ The full map
 \Lambda:\mathcal H_n\longrightarrow(\operatorname{Fin}(n)\to\mathbb R)
 \]
 
-is also 1-Lipschitz:
+is also 1-Lipschitz.
 
-~~~lean
-theorem lipschitzWith_orderedHermitianEigenvalues :
-    LipschitzWith 1 (@orderedHermitianEigenvalues n)
-~~~
+{{< lean-bridge
+  human="The complete decreasing eigenvalue vector is 1-Lipschitz when finite real functions carry their sup metric."
+  math="\(d_{\infty}(\Lambda(A),\Lambda(B))=\max_i|\lambda_i(A)-\lambda_i(B)|\le d_F(A,B)\) for positive dimension, with the empty function handled directly at dimension zero."
+  lean="RandomMatrix.lipschitzWith_orderedHermitianEigenvalues"
+>}}
+
+- The missing <code>_apply i</code> means the output is the whole function
+  <code>Fin n → ℝ</code>, not one coordinate.
+- <code>@orderedHermitianEigenvalues n</code>, visible in the theorem's type,
+  makes the implicit dimension argument explicit.
+- Mathlib's metric on a finite function space is the uniform, or sup, metric.
+- The proof uses <code>dist_pi_le_iff</code> to reduce the function distance to
+  all coordinate distances.
+- This does not give the Euclidean \(\ell^2\) distance between the two
+  eigenvalue vectors. That different conclusion belongs to
+  Hoffman-Wielandt-type theory.
+{{< /lean-bridge >}}
 
 The target is an ordinary finite function type with Mathlib's uniform
 function-space metric. The proof invokes <code>dist_pi_le_iff</code> and checks
@@ -524,6 +950,24 @@ language, this is the sup estimate
 
 when the index type is nonempty. The formal statement also covers the empty
 index type without inventing a maximum of an empty set.
+
+{{< repo-check >}}
+On an approved Linux builder with the pinned project cache, a human can place
+these exact lines in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.lipschitzWith_orderedHermitianEigenvalues_apply
+#check RandomMatrix.lipschitzWith_orderedHermitianEigenvalues
+~~~
+
+The first result targets \(\mathbb R\); the second targets
+<code>Fin n → ℝ</code>. The guarded command rendered below type-checks their
+authoritative Mathlib-backed module only on approved Linux cloud compute.
+{{< /repo-check >}}
 
 ### What “1-Lipschitz” does and does not say
 
@@ -542,31 +986,58 @@ metric. The two conclusions are related, but they are not the same theorem.
 ## Camp six: from continuity to Giry measurability
 
 A Lipschitz map is continuous. The module records both coordinatewise and
-whole-vector forms:
-
-~~~lean
-theorem continuous_orderedHermitianEigenvalues_apply (i : Fin n) :
-    Continuous (fun H : HermitianEuclidean n =>
-      orderedHermitianEigenvalues H i)
-
-theorem continuous_orderedHermitianEigenvalues :
-    Continuous (@orderedHermitianEigenvalues n)
-~~~
+whole-vector forms. These are still deterministic statements about functions
+between metric spaces. No matrix has yet been sampled from a probability law.
 
 The intrinsic Hermitian space and finite real function space carry their Borel
-measurable structures. Continuity therefore supplies:
+measurable structures. Continuity therefore supplies both coordinate and
+whole-vector measurability.
 
-~~~lean
-theorem measurable_orderedHermitianEigenvalues_apply (i : Fin n) :
-    Measurable (fun H : HermitianEuclidean n =>
-      orderedHermitianEigenvalues H i)
+### In Lean: a measurable ordered-vector map
 
-theorem measurable_orderedHermitianEigenvalues :
-    Measurable (@orderedHermitianEigenvalues n)
-~~~
+{{< lean-bridge
+  human="The function that sends an intrinsic Hermitian matrix to its complete decreasing real eigenvalue vector is Borel measurable."
+  math="\(\Lambda:\mathcal H_n\to(\operatorname{Fin}(n)\to\mathbb R)\text{ is measurable}.\)"
+  lean="RandomMatrix.measurable_orderedHermitianEigenvalues"
+>}}
+
+- <code>measurable</code> is Mathlib's ordinary
+  <code>Measurable</code> predicate for the source and target measurable
+  spaces.
+- <code>orderedHermitianEigenvalues</code> returns the whole function
+  <code>Fin n → ℝ</code>.
+- The theorem has no measure argument. It says the deterministic map is
+  measurable before any random input law is selected.
+- Its proof is
+  <code>continuous_orderedHermitianEigenvalues.measurable</code>: the topology
+  supplies the Borel measurable structure.
+- The neighboring declaration with suffix <code>_apply i</code> proves the
+  corresponding scalar-coordinate statement.
+{{< /lean-bridge >}}
 
 These are ordinary <code>Measurable</code> statements, not only
 almost-everywhere measurability under one selected law.
+
+{{< repo-check >}}
+On approved Linux cloud compute, put these exact lines in a temporary project
+scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.continuous_orderedHermitianEigenvalues_apply
+#check RandomMatrix.continuous_orderedHermitianEigenvalues
+#check RandomMatrix.measurable_orderedHermitianEigenvalues_apply
+#check RandomMatrix.measurable_orderedHermitianEigenvalues
+~~~
+
+The declarations expose two independent distinctions: one coordinate versus
+the whole vector, and continuity versus Borel measurability. The guarded
+command below checks the pinned project module and its Mathlib dependencies in
+the cloud.
+{{< /repo-check >}}
 
 ### From coordinates to a measure-valued map
 
@@ -590,18 +1061,30 @@ generated by evaluating a measure on measurable sets
 [Mathlib contributors](#ref-perturb-mathlib-giry)). Mathlib applies this
 measurable-space construction to all measures, not only probability measures.
 RMT-10B supplies the missing coordinate premise and exposes unconditional
-theorems:
+theorems.
 
-~~~lean
-theorem measurable_spectralCountingMeasure :
-    Measurable (@spectralCountingMeasure n)
+### In Lean: the empirical-measure observable is measurable
 
-theorem measurable_empiricalSpectralMeasure :
-    Measurable (@empiricalSpectralMeasure n)
+{{< lean-bridge
+  human="Sending an intrinsic Hermitian matrix to its zero-aware empirical spectral measure is a measurable map into the space of real measures."
+  math="\(H\mapsto L_H=\frac1n\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}\text{ is Giry-measurable for }n\gt0,\text{ with }L_H=0\text{ at }n=0.\)"
+  lean="RandomMatrix.measurable_empiricalSpectralMeasure"
+>}}
 
-theorem measurable_empiricalSpectralProbability (n : ℕ) :
-    Measurable (empiricalSpectralProbability n)
-~~~
+- <code>empiricalSpectralMeasure</code> is a sample observable
+  <code>HermitianEuclidean n → Measure ℝ</code>.
+- <code>measurable_...</code> proves a property of that observable; it is not
+  itself a probability law.
+- The target <code>Measure ℝ</code> uses Mathlib's Giry measurable structure,
+  not a weak, Wasserstein, or total-variation metric.
+- <code>spectralCountingMeasure</code> first sums one Dirac mass per ordered
+  index, including multiplicity.
+- Fixed scaling by the inverse dimension produces the empirical measure.
+  Dimension zero follows its explicit zero-measure policy.
+- The positive-dimensional sibling
+  <code>measurable_empiricalSpectralProbability n</code> targets bundled
+  <code>ProbabilityMeasure ℝ</code> values from size \(n+1\) matrices.
+{{< /lean-bridge >}}
 
 The second map returns the zero measure at dimension zero. The third has source
 <code>HermitianEuclidean (n + 1)</code> and returns a bundled
@@ -611,6 +1094,25 @@ type.
 This measurable result is not a continuity theorem for empirical measures in a
 weak, Wasserstein, or total-variation topology. The module uses the Giry
 measurable space and proves exactly the measurable statements displayed above.
+
+{{< repo-check >}}
+On an approved Linux builder, the exact measure-valued interfaces can be
+inspected with:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.measurable_spectralCountingMeasure
+#check RandomMatrix.measurable_empiricalSpectralMeasure
+#check RandomMatrix.measurable_empiricalSpectralProbability
+~~~
+
+These checks elaborate map measurability. They neither draw a random matrix
+nor name a pushforward law. The guarded command below checks the authoritative
+module on cloud compute.
+{{< /repo-check >}}
 
 ## Camp seven: the ambient observable and the GUE bridge
 
@@ -630,12 +1132,9 @@ A\longmapsto
 Composing with the empirical spectral measure gives
 <code>ambientEmpiricalSpectralMeasure n</code>. The fallback is an extension
 policy, not a spectral calculation for a non-Hermitian matrix. RMT-10B now
-proves unconditionally:
-
-~~~lean
-theorem measurable_ambientEmpiricalSpectralMeasure (n : ℕ) :
-    Measurable (ambientEmpiricalSpectralMeasure n)
-~~~
+proves <code>measurable_ambientEmpiricalSpectralMeasure n</code>
+unconditionally. This is still a measurability theorem for one deterministic
+observable on the ambient matrix space.
 
 The earlier GUE geometry established
 
@@ -647,14 +1146,49 @@ The earlier GUE geometry established
 
 On an intrinsic Hermitian input, the ambient totalizer followed by the
 empirical measure equals the intrinsic empirical measure. Measurability now
-allows the pushforwards to compose honestly, giving:
+allows the pushforwards to compose honestly.
+
+### In Lean: push forward the random input law
+
+{{< lean-bridge
+  human="Pushing the ambient finite Gaussian unitary ensemble matrix law through the Hermitian-or-zero empirical spectral observable gives the same outer law as pushing the intrinsic Hermitian law through the intrinsic empirical spectral observable."
+  math="\((L_{\mathrm{ambient}})_*(\mu_n^{\mathrm{matrix}})=L_*(\mu_n^{\mathrm{intrinsic}})\text{ as measures on }\operatorname{Measure}(\mathbb R).\)"
+  lean="RandomMatrix.map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw n"
+>}}
+
+- <code>GUE.matrixLaw n</code>, visible on the theorem's left side, is a
+  probability measure on ambient complex matrices.
+- <code>ambientEmpiricalSpectralMeasure n</code> is the measurable
+  Hermitian-or-zero sample map applied before the left pushforward.
+- <code>GUE.intrinsicLaw n</code> is a probability measure on the intrinsic
+  Hermitian carrier.
+- <code>empiricalSpectralMeasure</code> is the intrinsic sample map applied
+  before the right pushforward.
+- <code>Measure.map</code>, written <code>.map</code>, is pushforward. Each
+  side is therefore a measure whose outcomes are themselves measures on
+  \(\mathbb R\).
+- The theorem proves equality of two existing outer laws. It does not define
+  the later name <code>GUE.empiricalSpectralLaw</code>, compute a density, or
+  establish a large-dimension limit.
+{{< /lean-bridge >}}
+
+{{< repo-check >}}
+On an approved Linux builder, a reader can inspect the final measurable-map
+and law-level interfaces with:
 
 ~~~lean
-theorem map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw
-    (n : ℕ) :
-    (GUE.matrixLaw n).map (ambientEmpiricalSpectralMeasure n) =
-      (GUE.intrinsicLaw n).map empiricalSpectralMeasure
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.measurable_ambientEmpiricalSpectralMeasure
+#check RandomMatrix.map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw
 ~~~
+
+The first line after the import checks a map property. The second checks an
+equality between two pushforward measures. The guarded command below checks
+the complete pinned project module in the cloud; it does not run on this Mac.
+{{< /repo-check >}}
 
 In commuting-square form:
 
@@ -700,6 +1234,33 @@ Every ordered energy level stays inside the same deterministic energy budget.
 The statement remains valid when levels cross or a degenerate level splits,
 because the comparison is between decreasing order statistics rather than
 between labeled eigenvectors.
+
+For the running matrices, regard \(A\) as a two-level Hamiltonian and write
+
+\[
+B=A+V,
+\qquad
+V=
+\begin{bmatrix}
+-\frac12&0\\
+0&\frac14
+\end{bmatrix}.
+\]
+
+The upper energy falls by \(1/2\), the lower energy rises by \(1/4\), and the
+single perturbation budget is \(\lVert V\rVert_F=\sqrt5/4\). The spectral gap
+changes from
+
+\[
+3-(-1)=4
+\quad\text{to}\quad
+\frac52-\left(-\frac34\right)=\frac{13}{4}.
+\]
+
+That gap change is \(3/4\), but the checked theorem is not a direct spectral-gap
+theorem. A gap estimate can be derived by applying the coordinate bound twice,
+which gives a coarser \(2\lVert V\rVert_F\) budget. RMT-10B itself exports the
+individual ordered-coordinate bounds.
 
 That strength has a matching limitation. Near a degeneracy, an arbitrarily
 small perturbation can rotate a selected eigenbasis dramatically. The energy
@@ -936,33 +1497,42 @@ results are interchangeable.
 
 ## Reproduce the checked slice
 
-From the repository root, load the pinned Lean toolchain and compile the module
-with warnings treated as errors:
+There are two deliberately separate resource lanes.
+
+On a normal Mac or Linux host, rerun only the bounded <code>Std</code>
+worksheet from the opening:
 
 ~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/HermitianPerturbation2.lean
 ~~~
 
-Build the targeted module and its dependencies:
+That command checks exact rational arithmetic and characteristic-polynomial
+substitution. It does not import Mathlib or compile this project.
+
+The authoritative module check belongs on approved Linux cloud compute with
+the pinned project cache. From the repository root there, type:
 
 ~~~sh
-lake build \
-  NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
 ~~~
 
-Return to the repository root and build the complete draft teaching site:
+The guarded target verifies the committed manifest digest and checks the
+Mathlib-backed declarations. Do not replace it with a raw
+<code>lake build</code> or <code>lake env lean</code> command on the Mac.
+
+Site authoring and static validation remain workstation-safe:
 
 ~~~sh
-cd ..
+make content-hygiene
 make site-check
 ~~~
 
-The repository-wide milestone gate is <code>make check</code>. A green
-technical build does not complete editorial review of this public working note.
-The required human mathematical and publication reviews remain pending.
+The repository-wide <code>make check</code> gate is also cloud-only because it
+includes the Lean project build. A green technical build does not complete
+editorial review of this public working note. Human mathematical,
+accessibility, and publication reviews remain pending.
 
 ## Where to continue
 

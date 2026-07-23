@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="410"
      viewBox="0 0 760 410" role="img"
      aria-labelledby="intersectionLawTitle intersectionLawDesc">
-  <title id="intersectionLawTitle">A spectral intersection witness unlocks measurable pushforwards</title>
-  <desc id="intersectionLawDesc">Top modes from a first Hermitian matrix and bottom modes from a second matrix overlap because their dimensions exceed the ambient dimension. A nonzero witness enters both quadratic estimates, which produce a one-sided level bound. Swapping the matrices gives a Lipschitz ordered spectrum, then continuity and measurability unlock spectral pushforwards.</desc>
+  <title id="intersectionLawTitle">A spectral intersection witness unlocks measurable observables and a Gaussian ensemble pushforward comparison</title>
+  <desc id="intersectionLawDesc">Top modes from a first Hermitian matrix and bottom modes from a second matrix overlap because their dimensions exceed the ambient dimension. A nonzero witness enters both quadratic estimates, which produce a one-sided level bound. Swapping the matrices gives a Lipschitz ordered spectrum. Continuity first makes the counting and empirical spectral sample maps measurable. That measurability then licenses the separate equality between the ambient and intrinsic Gaussian unitary ensemble pushforward laws.</desc>
   <rect width="760" height="410" fill="#F7F4F0"/>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
@@ -23,7 +23,7 @@
     </marker>
   </defs>
 
-  <text x="24" y="28" class="t title">From a dimension witness to measurable spectral laws</text>
+  <text x="24" y="28" class="t title">From a dimension witness to measurable spectral observables</text>
   <text x="24" y="48" class="t m">Each box is a distinct logical layer; probability enters only after continuity.</text>
 
   <rect x="24" y="78" width="202" height="74" rx="11" class="cool"/>
@@ -64,9 +64,9 @@
   <path d="M266 289 H226" class="link" marker-end="url(#intersectionArrow)"/>
 
   <rect x="24" y="251" width="202" height="76" rx="11" class="muted"/>
-  <text x="125" y="279" text-anchor="middle" class="t h">Spectral pushforwards unlock</text>
-  <text x="125" y="300" text-anchor="middle" class="t m">counting and empirical measures</text>
-  <text x="125" y="317" text-anchor="middle" class="t m">Gaussian ensemble bridge</text>
+  <text x="125" y="277" text-anchor="middle" class="t h">Measurable observables unlock</text>
+  <text x="125" y="299" text-anchor="middle" class="t m">counting + empirical sample maps</text>
+  <text x="125" y="317" text-anchor="middle" class="t m">then Gaussian pushforward equality</text>
 
   <rect x="24" y="350" width="712" height="40" rx="10" class="green"/>
   <text x="380" y="375" text-anchor="middle" class="t s">The result controls eigenvalue locations, not eigenvectors, densities, random tails, or limits.</text>
