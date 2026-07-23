@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:04 PDT
+Last updated: 2026-07-22 18:09 PDT
 
-Audited baseline: `main` at `effc1ae`
+Audited baseline: `main` at `2185d11`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -169,13 +169,15 @@ and large proof checks remain on freshly approved Linux cloud compute.
 A read-only contract audit of the first 59 completed pages found no missing
 computed example, boundary case, reference figure, accessible alt/caption,
 human/paper/Lean bridge, token map, repository check, module target, or public
-review marker. It did find one SVG without explicit dimensions, one stale
-“worksheet not run” sentence, twenty early pages without page-owned card
-generators, fifteen existing card generators whose `--verify` comparison is
-stale, and seventeen early foundational pages without a tiny local `Std`
-tutorial. Treat those findings as required final glossary cleanup under the
-owner's reader-walkthrough direction; do not call the glossary release closed
-merely because all 62 content rewrites exist.
+review marker. It did find one SVG without explicit dimensions, twenty early
+pages without page-owned card generators, fifteen existing card generators
+whose `--verify` comparison is stale, and seventeen early foundational pages
+without a tiny local `Std` tutorial. Treat those findings as required final
+glossary cleanup under the owner's reader-walkthrough direction; do not call
+the glossary release closed merely because all 62 content rewrites exist. The
+separate stale “worksheet not run” finding is already cleared: the exact
+parity/Fekete `Std` file now runs under Lean 4.32.0 and prints the seven
+recorded ratios followed by `true` and `true`.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3063,6 +3065,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `2185d11`: finish the 62-page example-first glossary content pass with
+  exact spike-tail, residue-phase, and ordered-packing ledgers; execute all
+  three local `Std` worksheets, regenerate their numeric cards, and record
+  the remaining corpus-wide tutorial/card-provenance audit honestly.
 - `effc1ae`: telescope a forward Koopman coboundary on a four-cycle and
   contrast orbit-majorant with expectation centering on a three-cycle;
   execute both local `Std` worksheets, fix the rational checks to use

@@ -740,18 +740,20 @@ def horizons : List Nat := [0, 1, 2, 3, 4, 5, 6]
 Run it on a normal Mac or Linux host with the pinned small toolchain:
 
 ~~~sh
+source "$HOME/.elan/env"
 elan run leanprover/lean4:v4.32.0 lean ParityFeketeScratch.lean
 ~~~
 
-The ledger should report integrated values \(0,3,4,7,8,11,12\). The
-time-zero ratio should be <code>none</code>; the positive fractions should be
-\(3/1,2/1,7/3,2/1,11/5,2/1\). Both finite checks should print
-<code>true</code>.
+The ledger reports integrated values \(0,3,4,7,8,11,12\). The time-zero
+ratio is <code>none</code>; the positive fractions are
+\(3/1,2/1,7/3,2/1,11/5,2/1\). Both finite checks print <code>true</code>.
 
 The parity proof earlier on this page establishes subadditivity for all natural
 indices. This finite worksheet is an executable arithmetic audit, not a
-replacement for that proof or for Mathlib's analytic theorem. It was not run
-during this workstation-only documentation pass.
+replacement for that proof or for Mathlib's analytic theorem. The exact file
+was executed successfully with Lean 4.32.0 while repairing this page: it
+printed the displayed seven-row ledger followed by <code>true</code> and
+<code>true</code>.
 
 ### Try it in the repository
 
