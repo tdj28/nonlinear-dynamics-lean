@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="ae-title ae-desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="ae-title ae-desc">
   <title id="ae-title">One exceptional point under two different measures</title>
   <desc id="ae-desc">On the left, the interval from zero to one carries uniform measure. The point one half is marked as the only failure, and its measure is zero, so the property holds almost everywhere. On the right, a fair die has face six as the only failure, but that face has probability one sixth, so the property does not hold almost surely.</desc>
   <defs>

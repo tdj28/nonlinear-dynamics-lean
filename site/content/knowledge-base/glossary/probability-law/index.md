@@ -224,6 +224,86 @@ proof visible.
   \(X^{-1}(s)\).
 {{< /lean-bridge >}}
 
+### Small standalone tutorial: push the two quarter-weights forward
+
+The exact matrices \(A_0\) and \(A_1\) from the worked example can be treated
+as two symbolic values while Lean checks the finite probability ledger. The
+source weights are stored in quarters, so \(1\) means \(1/4\) and \(3\) means
+\(3/4\). Create <code>/tmp/TwoMatrixLaw.lean</code> with these contents:
+
+~~~lean
+import Std
+
+namespace TwoMatrixLaw
+
+inductive Outcome
+  | omega0
+  | omega1
+  deriving DecidableEq, Repr
+
+inductive MatrixValue
+  | a0
+  | a1
+  deriving DecidableEq, Repr
+
+def outcomes : List Outcome :=
+  [.omega0, .omega1]
+
+def sourceMassQuarters : Outcome → Nat
+  | .omega0 => 1
+  | .omega1 => 3
+
+def randomMatrix : Outcome → MatrixValue
+  | .omega0 => .a0
+  | .omega1 => .a1
+
+def traceZero : MatrixValue → Bool
+  | .a0 => true
+  | .a1 => false
+
+def lawMassQuarters (targetEvent : MatrixValue → Bool) : Nat :=
+  outcomes.foldl
+    (fun total omega =>
+      if targetEvent (randomMatrix omega) then
+        total + sourceMassQuarters omega
+      else
+        total)
+    0
+
+#eval lawMassQuarters traceZero
+#eval lawMassQuarters (fun _ => true)
+
+example : lawMassQuarters traceZero = 1 := by decide
+example : lawMassQuarters (fun _ => true) = 4 := by decide
+
+end TwoMatrixLaw
+~~~
+
+From any directory on a normal Mac or Linux host with the pinned compiler,
+type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/TwoMatrixLaw.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while
+repairing this page. It printed:
+
+~~~text
+1
+4
+~~~
+
+The first line says the trace-zero target event receives one quarter of the
+mass because only \(\omega_0\) maps to \(A_0\). The second confirms that the
+whole target space receives all four quarters. This <code>Std</code>-only
+tutorial checks the finite pushforward arithmetic. It intentionally leaves
+matrix algebra, measurability, and <code>Measure.map</code> to the exact
+project interface below.
+
+### Exact project and Mathlib interface
+
 The following is an exact excerpt from the checked project module. The
 definition exposes the pushforward, and the theorem reduces its value on a
 measurable set to the preimage calculation used in the example.

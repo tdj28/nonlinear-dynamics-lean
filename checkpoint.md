@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:13 PDT
+Last updated: 2026-07-22 18:17 PDT
 
-Audited baseline: `main` at `3136b81`
+Audited baseline: `main` at `a78e552`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -169,15 +169,19 @@ and large proof checks remain on freshly approved Linux cloud compute.
 A read-only contract audit of the first 59 completed pages found no missing
 computed example, boundary case, reference figure, accessible alt/caption,
 human/paper/Lean bridge, token map, repository check, module target, or public
-review marker. It did find one SVG without explicit dimensions, twenty early
-pages without page-owned card generators, fifteen existing card generators
-whose `--verify` comparison is stale, and seventeen early foundational pages
-without a tiny local `Std` tutorial. Treat those findings as required final
-glossary cleanup under the owner's reader-walkthrough direction; do not call
-the glossary release closed merely because all 62 content rewrites exist. The
-separate stale “worksheet not run” finding is already cleared: the exact
-parity/Fekete `Std` file now runs under Lean 4.32.0 and prints the seven
-recorded ratios followed by `true` and `true`.
+review marker. Its reproducibility audit originally found one SVG without
+explicit dimensions, twenty early pages without page-owned card generators,
+fifteen existing card generators whose `--verify` comparison was stale, and
+seventeen early foundational pages without a tiny local `Std` tutorial.
+The first cleanup wave fixes the SVG dimensions, adds and verifies six
+worked-SVG card generators, and executes five new foundational tutorials.
+The remaining ledger is therefore fourteen missing generators, fifteen stale
+generators, and twelve missing tutorials. Treat those findings as required
+final glossary cleanup under the owner's reader-walkthrough direction; do not
+call the glossary release closed merely because all 62 content rewrites exist.
+The separate stale “worksheet not run” finding is also cleared: the exact
+parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
+ratios followed by `true` and `true`.
 
 The Deep Dive textbook pass is now **1 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
@@ -3074,6 +3078,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `a78e552`: rebuild the Hermitian-coordinate Deep Dive around one exact
+  two-by-two matrix, conjugate-sign and diagonal-scaling near-misses, weighted
+  Frobenius geometry, four Lean bridges, three figures, and a locally
+  executed `Std` reconstruction lab.
 - `3136b81`: rerun the exact parity/Fekete `Std` tutorial under Lean
   4.32.0, record its seven normalized ratios and two successful finite
   checks, and clear the stale workstation-execution claim.

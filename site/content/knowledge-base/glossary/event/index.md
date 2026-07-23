@@ -225,6 +225,64 @@ and exact measure identities are nevertheless stated with measurability gates
 where needed. A raw set term does not manufacture
 <code>MeasurableSet A</code>.
 
+### Small standalone tutorial: compute the die events
+
+The set operations from the worked example can be checked without Mathlib.
+Here a Boolean predicate decides whether each face belongs to an event. Create
+<code>/tmp/DieEvents.lean</code> with these contents:
+
+~~~lean
+import Std
+
+namespace DieEvents
+
+def dieFaces : List Nat :=
+  (List.range 6).map (fun k => k + 1)
+
+def eventA (face : Nat) : Bool :=
+  face % 2 == 0
+
+def eventB (face : Nat) : Bool :=
+  decide (4 ≤ face)
+
+def select (P : Nat → Bool) : List Nat :=
+  dieFaces.filter P
+
+#eval select (fun face => !(eventA face))
+#eval select (fun face => eventA face && eventB face)
+#eval select (fun face => eventA face || eventB face)
+
+example : select (fun face => !(eventA face)) = [1, 3, 5] := by decide
+example : select (fun face => eventA face && eventB face) = [4, 6] := by decide
+example : select (fun face => eventA face || eventB face) = [2, 4, 5, 6] := by
+  decide
+
+end DieEvents
+~~~
+
+From any directory on a normal Mac or Linux host with the pinned compiler,
+type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/DieEvents.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while
+repairing this page. It printed:
+
+~~~text
+[1, 3, 5]
+[4, 6]
+[2, 4, 5, 6]
+~~~
+
+These are exactly \(A^{\mathsf c}\), \(A\cap B\), and \(A\cup B\) from the
+figure. Their lengths are \(3\), \(2\), and \(4\), so dividing by six gives
+the displayed probabilities \(1/2\), \(1/3\), and \(2/3\). This bounded
+tutorial imports only <code>Std</code>; it does not install the project's
+Mathlib dependencies.
+
 ## A real project event: convergence of orbit averages
 
 The project does not reserve “event” for elementary experiments. In

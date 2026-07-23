@@ -249,6 +249,69 @@ certificate automatically.
   nonnegative-real codomain.
 {{< /lean-bridge >}}
 
+### Small standalone tutorial: test the total-mass gate
+
+Put all three six-face examples over the common denominator \(24\). A fair
+face has mass \(4/24=1/6\), a face in the mass-two model has
+\(8/24=1/3\), and a face in the subprobability model has
+\(3/24=1/8\). Total mass one is therefore exactly total numerator \(24\).
+Create <code>/tmp/ProbabilityMassGate.lean</code> with these contents:
+
+~~~lean
+import Std
+
+namespace ProbabilityMassGate
+
+def totalTwentyFourths (perFaceTwentyFourths : Nat) : Nat :=
+  6 * perFaceTwentyFourths
+
+def hasTotalMassOne (perFaceTwentyFourths : Nat) : Bool :=
+  totalTwentyFourths perFaceTwentyFourths == 24
+
+#eval [
+  totalTwentyFourths 4,
+  totalTwentyFourths 8,
+  totalTwentyFourths 3
+]
+#eval [
+  hasTotalMassOne 4,
+  hasTotalMassOne 8,
+  hasTotalMassOne 3
+]
+
+example : totalTwentyFourths 4 = 24 := by decide
+example : totalTwentyFourths 8 = 48 := by decide
+example : totalTwentyFourths 3 = 18 := by decide
+example : hasTotalMassOne 4 = true := by decide
+example : hasTotalMassOne 8 = false := by decide
+example : hasTotalMassOne 3 = false := by decide
+
+end ProbabilityMassGate
+~~~
+
+From any directory on a normal Mac or Linux host with the pinned compiler,
+type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/ProbabilityMassGate.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while
+repairing this page. It printed:
+
+~~~text
+[24, 48, 18]
+[true, false, false]
+~~~
+
+Dividing the first row by \(24\) recovers the exact totals \(1\), \(2\), and
+\(3/4\). Only the first Boolean is true because only that total equals one.
+This bounded arithmetic model imports only <code>Std</code>. It illustrates
+the normalization gate; it does not construct Mathlib measures.
+
+### Exact project and Mathlib interface
+
 The project uses the typeclass as a semantic gate, not as a hidden
 renormalization operation. The following definition and theorem are exact
 excerpts from <code>ProbabilityErgodicBase.lean</code>:

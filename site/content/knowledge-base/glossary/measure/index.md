@@ -231,6 +231,79 @@ densities.
   notation for the extended nonnegative reals \([0,\infty]\).
 {{< /lean-bridge >}}
 
+### Small standalone tutorial: add the three atomic masses
+
+To keep the finite arithmetic exact without importing a rational-number or
+measure library, record every mass in sixths. The values \(3\), \(2\), and
+\(1\) below mean \(3/6\), \(2/6\), and \(1/6\). An event is represented by a
+duplicate-free list of its atoms. Create
+<code>/tmp/ThreeAtomMeasure.lean</code> with these contents:
+
+~~~lean
+import Std
+
+namespace ThreeAtomMeasure
+
+inductive Atom
+  | a
+  | b
+  | c
+  deriving DecidableEq, Repr
+
+def weightSixths : Atom → Nat
+  | .a => 3
+  | .b => 2
+  | .c => 1
+
+def massSixths (event : List Atom) : Nat :=
+  event.foldl (fun total atom => total + weightSixths atom) 0
+
+#eval [
+  massSixths [],
+  massSixths [.a],
+  massSixths [.b],
+  massSixths [.a, .b],
+  massSixths [.a, .c],
+  massSixths [.a, .b, .c]
+]
+#eval 2 * massSixths [.a, .b, .c]
+
+example :
+    massSixths [.a, .b] = massSixths [.a] + massSixths [.b] := by
+  decide
+
+example : massSixths [.a, .c] = 4 := by decide
+example : massSixths [.a, .b, .c] = 6 := by decide
+example : 2 * massSixths [.a, .b, .c] = 12 := by decide
+
+end ThreeAtomMeasure
+~~~
+
+From any directory on a normal Mac or Linux host with the pinned compiler,
+type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/ThreeAtomMeasure.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while
+repairing this page. It printed:
+
+~~~text
+[0, 3, 2, 5, 4, 6]
+12
+~~~
+
+The first output is the sixths ledger for the empty event, \(A\), \(B\),
+\(A\cup B\), \(\{a,c\}\), and the whole space. The second is the doubled
+measure's total mass in sixths, namely \(12/6=2\). The duplicate-free-list
+convention matters: a repeated atom would incorrectly count the same event
+member twice. This is a bounded <code>Std</code> tutorial, not Mathlib's
+general countably additive measure construction.
+
+### Exact project and Mathlib interface
+
 Here is a complete worksheet a human can type into a scratch <code>.lean</code>
 file on a provisioned Linux build host for this project:
 
