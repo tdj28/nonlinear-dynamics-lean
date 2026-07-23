@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:05 PDT
+Last updated: 2026-07-22 20:10 PDT
 
-Audited baseline: `main` at `cde7fad`
+Audited baseline: `main` at `bc81ed6`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **11 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **12 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -310,6 +310,17 @@ local `Std` worksheet, and the zero-dimensional inner-mass-`0`/outer-mass-`1`
 boundary expose every type change. The chapter explicitly records that the
 project has not yet transported unbounded spectral moments through Giry join
 and makes no asymptotic or semicircle claim.
+*Ordered Finite Matrix Products and Operator-Norm Growth* now follows the
+noncommuting shear/stretch history through the chronological product
+`A₁ A₀ = [[1,1],[0,2]]` and the reversed product
+`A₀ A₁ = [[1,2],[0,2]]`. Their induced-infinity norms `2` and `3`, the factor
+budget `4`, and orbit outputs `(2,2)` and `(3,2)` make order visible. A second
+near-miss distinguishes the correct two-update diagnostic `(log 2)/2` from
+last-index division and any Lyapunov exponent. Two figures, seven Lean
+bridges, primary/successor cloud probes, a complete thirteen-declaration API
+map, and an executed `Std` worksheet separate deterministic finite algebra,
+positive-dimensional norm bounds, measurable random products, and asymptotic
+growth.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3197,6 +3208,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `bc81ed6`: rebuild *Finite GUE Empirical Spectral Laws and Normalized
+  Moments* around a fully enumerated two-matrix source, its law on measures,
+  joined mean, normalized moment ledgers, six Lean bridges, and the exact
+  inner-zero/outer-Dirac dimension-zero boundary.
 - `cde7fad`: rebuild *Finite Hermitian Spectra and Empirical Measures* around
   two checked eigenpairs, atom-by-atom sample measures, an isospectral
   information-loss boundary, seven Lean bridges, three RMT-10 module probes,

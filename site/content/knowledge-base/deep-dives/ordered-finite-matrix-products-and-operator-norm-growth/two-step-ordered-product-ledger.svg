@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="twoStepProductTitle twoStepProductDesc">
+  <title id="twoStepProductTitle">Exact two-step noncommuting matrix-product and norm ledger</title>
+  <desc id="twoStepProductDesc">At time zero the shear matrix with rows one one and zero one acts first. At time one the diagonal matrix with entries one and two acts second. The chronological product A one times A zero has rows one one and zero two and row-sum norm two. The reversed product A zero times A one has rows one two and zero two and norm three. Each factor has norm two, so the submultiplicative budget is four. On vector one one the chronological and reversed outputs are two two and three two.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .ink{fill:#17283F;font-family:Inter,Arial,Helvetica,sans-serif}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:18px;fill:#536172}
+    .head{font-size:19px;font-weight:700;letter-spacing:.6px}
+    .body{font-size:18px}
+    .small{font-size:15px;fill:#536172}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:26px}
+    .panel{fill:#FFFDF8;stroke:#C9BBA7;stroke-width:2}
+    .blue{fill:#E7F0F7;stroke:#527394;stroke-width:2}
+    .green{fill:#E8F2E3;stroke:#6C8A5B;stroke-width:2}
+    .clay{fill:#F5E5DA;stroke:#B36B3D;stroke-width:2}
+    .line{stroke:#6D7887;stroke-width:2}
+    .arrow{fill:none;stroke:#B36B3D;stroke-width:3}
+  </style>
+  <defs>
+    <marker id="productArrow" markerWidth="10" markerHeight="10" refX="9" refY="5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#B36B3D"/>
+    </marker>
+  </defs>
+
+  <text x="54" y="54" class="ink title">Two updates, two orders, two different norm ledgers</text>
+  <text x="54" y="84" class="ink sub">Column-vector chronology places the first update on the right: P<tspan baseline-shift="sub" font-size="13">A</tspan>(2) = A<tspan baseline-shift="sub" font-size="13">1</tspan>A<tspan baseline-shift="sub" font-size="13">0</tspan>.</text>
+
+  <rect x="48" y="118" width="502" height="206" rx="18" class="blue"/>
+  <text x="76" y="154" class="ink head">TIME 0 · SHEAR ACTS FIRST</text>
+  <text x="76" y="202" class="ink math">A₀ =</text>
+  <path d="M168 176 L156 176 L156 286 L168 286" fill="none" class="line"/>
+  <path d="M307 176 L319 176 L319 286 L307 286" fill="none" class="line"/>
+  <text x="194" y="218" class="ink math">1</text>
+  <text x="264" y="218" class="ink math">1</text>
+  <text x="194" y="268" class="ink math">0</text>
+  <text x="264" y="268" class="ink math">1</text>
+  <rect x="348" y="178" width="170" height="108" rx="12" class="panel"/>
+  <text x="370" y="208" class="ink small">row sums</text>
+  <text x="370" y="240" class="ink body">2 and 1</text>
+  <text x="370" y="270" class="ink body">‖A₀‖∞ = 2</text>
+
+  <rect x="650" y="118" width="502" height="206" rx="18" class="green"/>
+  <text x="678" y="154" class="ink head">TIME 1 · STRETCH ACTS SECOND</text>
+  <text x="678" y="202" class="ink math">A₁ =</text>
+  <path d="M770 176 L758 176 L758 286 L770 286" fill="none" class="line"/>
+  <path d="M909 176 L921 176 L921 286 L909 286" fill="none" class="line"/>
+  <text x="796" y="218" class="ink math">1</text>
+  <text x="866" y="218" class="ink math">0</text>
+  <text x="796" y="268" class="ink math">0</text>
+  <text x="866" y="268" class="ink math">2</text>
+  <rect x="950" y="178" width="170" height="108" rx="12" class="panel"/>
+  <text x="972" y="208" class="ink small">row sums</text>
+  <text x="972" y="240" class="ink body">1 and 2</text>
+  <text x="972" y="270" class="ink body">‖A₁‖∞ = 2</text>
+
+  <rect x="48" y="356" width="502" height="230" rx="18" class="green"/>
+  <text x="76" y="392" class="ink head">CHRONOLOGICAL · A₁A₀</text>
+  <text x="76" y="438" class="ink math">P<tspan baseline-shift="sub" font-size="14">A</tspan>(2) =</text>
+  <path d="M216 412 L204 412 L204 522 L216 522" fill="none" class="line"/>
+  <path d="M355 412 L367 412 L367 522 L355 522" fill="none" class="line"/>
+  <text x="242" y="454" class="ink math">1</text>
+  <text x="312" y="454" class="ink math">1</text>
+  <text x="242" y="504" class="ink math">0</text>
+  <text x="312" y="504" class="ink math">2</text>
+  <text x="396" y="438" class="ink body">row sums: 2, 2</text>
+  <text x="396" y="472" class="ink body">norm: 2 ≤ 4</text>
+  <text x="76" y="558" class="ink body">(1, 1) ↦ (2, 2), orbit norm 2</text>
+
+  <rect x="650" y="356" width="502" height="230" rx="18" class="clay"/>
+  <text x="678" y="392" class="ink head">REVERSED NEAR-MISS · A₀A₁</text>
+  <text x="678" y="438" class="ink math">wrong =</text>
+  <path d="M818 412 L806 412 L806 522 L818 522" fill="none" class="line"/>
+  <path d="M957 412 L969 412 L969 522 L957 522" fill="none" class="line"/>
+  <text x="844" y="454" class="ink math">1</text>
+  <text x="914" y="454" class="ink math">2</text>
+  <text x="844" y="504" class="ink math">0</text>
+  <text x="914" y="504" class="ink math">2</text>
+  <text x="998" y="438" class="ink body">row sums: 3, 2</text>
+  <text x="998" y="472" class="ink body">norm: 3 ≤ 4</text>
+  <text x="678" y="558" class="ink body">(1, 1) ↦ (3, 2), orbit norm 3</text>
+
+  <path d="M562 470 L638 470" class="arrow" marker-end="url(#productArrow)"/>
+  <text x="574" y="447" class="ink small">order changes</text>
+  <text x="582" y="494" class="ink small">the result</text>
+
+  <rect x="48" y="620" width="1104" height="106" rx="16" class="panel"/>
+  <text x="76" y="658" class="ink head">SUBMULTIPLICATIVE BUDGET</text>
+  <text x="76" y="696" class="ink body">‖A₁A₀‖∞ = 2</text>
+  <text x="344" y="696" class="ink body">‖A₀A₁‖∞ = 3</text>
+  <text x="612" y="696" class="ink body">‖A₁‖∞ ‖A₀‖∞ = 2 · 2 = 4</text>
+  <text x="1026" y="696" class="ink small">upper bound only</text>
+</svg>

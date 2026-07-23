@@ -2,17 +2,17 @@
 title: "Ordered Finite Matrix Products and Operator-Norm Growth"
 slug: "ordered-finite-matrix-products-and-operator-norm-growth"
 date: 2026-07-21
-summary: "A textbook ascent through chronological noncommutative products, shifted time blocks, constant powers, the maximum-row-sum operator norm, and checked finite-horizon bounds for matrices and vector orbits."
-lead: "Before random cocycles can have Lyapunov exponents, their finite products need an unambiguous order, an honest zero-time identity, and a norm interface whose dimensional assumptions are visible."
+summary: "Multiply one exact noncommuting two-step history in both orders, compute its row-sum operator norms and orbit growth, then climb to the checked finite-product bounds without smuggling in randomness or a Lyapunov exponent."
+lead: "Start with a shear followed by an anisotropic stretch: the correct product has norm two, the reversed product has norm three, and both sit below the same factor budget four."
 draft: false
 pro_reviewed: false
-level: "Linear algebra trailhead to random-dynamics base camp"
-reading_time: "60 to 80 minutes"
-prerequisites: "Finite matrices, matrix-vector multiplication, induction on natural numbers, absolute values, and basic norm inequalities"
+level: "Exact two-step arithmetic through finite operator-norm growth"
+reading_time: "85 to 110 minutes"
+prerequisites: "Two-by-two matrix multiplication and absolute values; induced norms, finite products, logarithmic normalization, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.MatrixProducts.FiniteProducts"
 toc: true
 og_image: "ordered-finite-matrix-products-and-operator-norm-growth-card.png"
-og_image_alt: "A proof ladder begins with chronological recursion, climbs through multiplying one-step norm budgets and a uniform geometric envelope, and reaches vector-orbit control, while a side ledger separates empty-dimensional algebra from positive-dimensional norm normalization."
+og_image_alt: "A shear matrix at time zero followed by a diagonal stretch at time one gives chronological product one one; zero two with row-sum norm two, while reversing the factors gives one two; zero two with norm three; both lie below the factor-norm budget four."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,76 +24,471 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+prose, sources, exact example, Lean declaration map, worksheet, figures, and
+accessibility have not yet received the required human and Pro reviews. The
+page is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-Suppose a column state changes by a different linear map at each discrete
-time:
+## Begin with two updates that do not commute
+
+Let a column state evolve by \(x_{j+1}=A_jx_j\). At time zero, apply the shear
 
 \[
-x_{j+1}=A_jx_j.
+A_0=
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix}.
 \]
 
-After \(k\) updates, the state is obtained by an ordered product
+At time one, apply the anisotropic stretch
 
 \[
-x_k=A_{k-1}\cdots A_1A_0x_0.
+A_1=
+\begin{bmatrix}
+1&0\\
+0&2
+\end{bmatrix}.
 \]
 
-The order is nonnegotiable. The earliest factor touches the vector first and
-therefore appears furthest to the right. The newest factor acts last and
-appears on the left. Once that convention is fixed, induction gives a clean
-split law, constant sequences recover matrix powers, and a submultiplicative
-operator norm turns one-step bounds into finite-horizon growth envelopes.
+The first map touches the vector first, so it is written on the right of the
+two-step product:
+
+\[
+\begin{aligned}
+P_A(2)
+&=A_1A_0\\
+&=
+\begin{bmatrix}
+1&0\\
+0&2
+\end{bmatrix}
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+1&1\\
+0&2
+\end{bmatrix}.
+\end{aligned}
+\]
+
+Multiplying in the tempting visual order gives something else:
+
+\[
+\begin{aligned}
+A_0A_1
+&=
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix}
+\begin{bmatrix}
+1&0\\
+0&2
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+1&2\\
+0&2
+\end{bmatrix}.
+\end{aligned}
+\]
+
+The upper-right entries differ, \(1\ne2\). Thus
+\(A_1A_0\ne A_0A_1\): these factors **do not commute**. A commuting family
+would hide the time-order decision, so it would be a poor teaching example.
+
+### Compute the induced infinity operator norm row by row
+
+For the norm scope used by the Lean module, a two-by-two matrix
+\(B=(b_{ij})\) has maximum absolute row-sum norm
+
+\[
+\lVert B\rVert_\infty
+{} =
+\max\bigl\{|b_{00}|+|b_{01}|,\ |b_{10}|+|b_{11}|\bigr\}.
+\]
+
+The two factor ledgers are
+
+\[
+\lVert A_0\rVert_\infty=\max\{2,1\}=2,
+\qquad
+\lVert A_1\rVert_\infty=\max\{1,2\}=2.
+\]
+
+The two multiplication orders have different norm ledgers:
+
+\[
+\lVert A_1A_0\rVert_\infty=\max\{2,2\}=2,
+\]
+
+whereas
+
+\[
+\lVert A_0A_1\rVert_\infty=\max\{3,2\}=3.
+\]
+
+Both satisfy submultiplicativity,
+
+\[
+\lVert A_1A_0\rVert_\infty
+\leq
+\lVert A_1\rVert_\infty\lVert A_0\rVert_\infty
+=4,
+\]
+
+and the same inequality happens to hold for the reversed product. The theorem
+is an upper budget, not an equality. It cannot repair a product written in the
+wrong order.
+
+### Let one vector expose the action order
+
+Choose \(x=(1,1)^{\mathsf T}\), whose supremum norm is one. The chronological
+history gives
+
+\[
+A_1(A_0x)
+{} =
+A_1
+\begin{bmatrix}
+2\\
+1
+\end{bmatrix}
+{} =
+\begin{bmatrix}
+2\\
+2
+\end{bmatrix},
+\qquad
+\lVert A_1A_0x\rVert_\infty=2.
+\]
+
+Reversing the actions gives
+
+\[
+A_0(A_1x)
+{} =
+A_0
+\begin{bmatrix}
+1\\
+2
+\end{bmatrix}
+{} =
+\begin{bmatrix}
+3\\
+2
+\end{bmatrix},
+\qquad
+\lVert A_0A_1x\rVert_\infty=3.
+\]
+
+The finite orbit theorem permits the looser bound
+\(4\lVert x\rVert_\infty=4\). It does not claim that every vector attains the
+matrix budget.
+
+{{< reference-figure
+  wide="true"
+  src="two-step-ordered-product-ledger.svg"
+  alt="At time zero the shear matrix with rows one one and zero one acts first. At time one the diagonal matrix with entries one and two acts second. The chronological product is one one; zero two with row-sum norm two. Reversing the factors gives one two; zero two with norm three. Each factor has norm two, so both products remain below the submultiplicative budget four. The vector one one is sent to two two chronologically and three two in reverse."
+  caption="**Exact two-step audit:** \(A_1A_0=\left[\begin{smallmatrix}1&1\\0&2\end{smallmatrix}\right]\) is the chronological product and has induced infinity norm \(2\). The reversed product \(A_0A_1=\left[\begin{smallmatrix}1&2\\0&2\end{smallmatrix}\right]\) has norm \(3\). Both are below \(\lVert A_1\rVert_\infty\lVert A_0\rVert_\infty=4\), but only the first sends \(x=(1,1)^{\mathsf T}\) through time zero and then time one."
+>}}
+
+## Two controlled near-misses: order and normalization
+
+The first near-miss is now visible: writing \(A_0A_1\) because zero comes
+before one on the page changes the matrix, its norm, and the orbit. Matrix
+action is composed from right to left.
+
+The second near-miss appears when one summarizes **finite logarithmic
+growth**. Because the chronological product in this example has positive norm,
+we may form the finite diagnostic
+
+\[
+g_2
+{} =
+\frac1{2}\log\lVert P_A(2)\rVert_\infty
+{} =
+\frac12\log 2.
+\]
+
+The denominator is two because horizon two contains two updates. Dividing by
+the last factor index instead gives
+
+\[
+\widehat g_2
+{} =
+\frac1{2-1}\log\lVert P_A(2)\rVert_\infty
+{} =
+\log2,
+\]
+
+which doubles the answer and already breaks at horizon one by dividing by
+zero. Reversing the factors creates a different finite quantity,
+
+\[
+\widetilde g_2=\frac12\log3.
+\]
+
+These three expressions are not Lyapunov exponents. They are calculations at
+one fixed horizon. The primary module defines no logarithm, no limit, no random
+law, and no invariant splitting. Its bound
+\(\lVert P_A(2)\rVert_\infty\leq2^2\) only yields, for this positive example,
+\(g_2\leq\log2\).
+
+{{< reference-figure
+  wide="true"
+  src="finite-log-growth-near-misses.svg"
+  alt="A three-column comparison uses the same two-step matrices. The correct finite ledger uses chronological product norm two and divides log two by two updates. The reversed-order ledger uses norm three and gives one half log three. The last-index normalization mistake keeps norm two but divides by one, giving log two, and would divide by zero at horizon one. A boundary note says none of these fixed-horizon numbers is a Lyapunov exponent."
+  caption="**Two mistakes, two different failures:** reversing the factors changes the norm input from \(2\) to \(3\); dividing by the last index changes the factor-count divisor from \(2\) to \(1\). The checked finite-product module supplies the ordered matrix and norm bounds only. The displayed logarithms are hand calculations for this positive-norm example, not exported limits or Lyapunov exponents."
+>}}
+
+## Keep six mathematical levels separate
+
+| Level | Exact object | Present in the primary module? |
+|---|---|---|
+| Factor history | \(A:\mathbb N\to M_\iota(\mathbb K)\) | Yes, as a deterministic input |
+| Ordered finite product | \(P_A(k)=A_{k-1}\cdots A_0\) | Yes, <code>forwardProduct</code> |
+| Induced-norm upper bound | \(\lVert P_A(k)\rVert_\infty\leq\prod_{j\lt k}\lVert A_j\rVert_\infty\) | Yes, in positive dimension |
+| Finite normalized log | \(k^{-1}\log\lVert P_A(k)\rVert_\infty\) when meaningful | No definition or theorem here |
+| Random finite product and its law | \(\omega\mapsto P_{A(\omega)}(k)\) and its pushforward | Successor <code>MeasurableFiniteProducts.lean</code>, not this module |
+| Asymptotic Lyapunov data | a limit, exponent, or invariant splitting under extra hypotheses | Not supplied by either finite-product module |
+
+The namespace records the project's direction; it does not make a deterministic
+factor sequence random. Likewise, writing one normalized logarithm does not
+prove its limit exists.
 
 This chapter develops the complete public interface of
 <code>NonlinearDynamics.Random.MatrixProducts.FiniteProducts</code>. The
 module contains one definition and twelve theorems, for thirteen public
 declarations in total. Nine belong to a norm-free algebraic layer. Four belong
-to a positive-dimensional analytic layer. Keeping those layers separate is a
-design result: ordered products make sense even when the coordinate type is
-empty, while the selected matrix norm needs a nonempty coordinate type to
-normalize the identity to norm one.
+to a positive-dimensional analytic layer. Ordered products still make sense
+when the coordinate type is empty; the selected matrix norm needs a nonempty
+coordinate type to normalize the identity to norm one.
 
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [Read the first four products](#base-camp-read-the-first-four-products) | Learn time order by expanding small horizons |
+| First encounter | [Begin with two updates](#begin-with-two-updates-that-do-not-commute) | Multiply both orders and inspect the orbit |
+| Near-miss route | [Order and normalization](#two-controlled-near-misses-order-and-normalization) | Separate factor order, factor count, and finite log growth |
 | Algebra route | [Split one history into two blocks](#camp-two-split-one-history-into-two-blocks) | Understand the shifted concatenation law |
 | Norm route | [The vector and matrix norms](#camp-five-the-vector-and-matrix-norms) | Derive the maximum-row-sum formula and action inequality |
-| Lean route | [The complete declaration map](#the-complete-declaration-map) | Audit all thirteen public declarations and every assumption |
+| Lean route | [Seven exact bridges](#in-lean-seven-bridges-from-recursion-to-finite-growth) | Translate chronology and bounds token by token |
+| Hands-on route | [Run the worksheet](#type-the-two-step-ledger-yourself-with-lean-and-std) | Recheck every integer entry and norm locally |
+| Interface route | [The complete declaration map](#the-complete-declaration-map) | Audit all thirteen public declarations and every assumption |
 | Dynamics route | [Why this finite layer matters](#why-this-finite-layer-matters) | See how transition matrices, derivatives, and random products motivate later work |
 | Boundary route | [What has and has not been proved](#what-has-and-has-not-been-proved) | Separate finite upper bounds from stability and ergodic conclusions |
 
 ### Learning objectives
 
-By the summit, you should be able to:
+By the summit, you should be able to reproduce the opening matrix, norm, orbit,
+and finite-log ledgers; expand horizons zero through three without reversing
+time; prove the shifted split formula; distinguish algebraic from
+positive-dimensional analytic assumptions; read seven Lean bridges and their
+literal commands; and explain why a deterministic finite upper bound is not a
+random law, a logarithmic-growth limit, or a Lyapunov exponent.
 
-1. write the products at horizons zero through three without reversing time;
-2. explain why the earliest factor acts first but is written on the right;
-3. derive the shifted split formula at an arbitrary time \(m\);
-4. recover ordinary matrix powers from a constant time sequence;
-5. distinguish the algebraic assumptions from the analytic assumptions;
-6. compute the vector supremum norm and matrix maximum absolute row-sum norm;
-7. explain why that matrix norm is induced by vector action;
-8. identify exactly why positive dimension is requested at horizon zero;
-9. derive product, uniform-power, and vector-orbit bounds;
-10. explain the zero-horizon behavior of an arbitrary real bound \(C\);
-11. map every mathematical claim to one of the thirteen Lean declarations;
-    and
-12. state the asymptotic, probabilistic, spectral, and nonlinear conclusions
-    that the module deliberately does not claim.
+## In Lean: seven bridges from recursion to finite growth
 
-## The proof ladder in one picture
+The local worksheet later in the chapter checks the integer example with
+<code>Std</code>. The interfaces below are the exact Mathlib-backed project
+layer. Their repository commands are deliberately cloud-only.
 
-{{< reference-figure
-  src="ordered-products-proof-ladder.svg"
-  alt="A ladder begins with chronological recursion, rises to a product of one-step norm budgets, then to a uniform geometric envelope, and finally to a vector-orbit bound. A side branch says empty coordinate types retain the complete algebraic layer, while positive coordinate dimension supplies identity norm one for the analytic layer."
-  caption="**Finding:** one recursive convention supports two layers. The algebraic branch works for every finite coordinate type, including the empty type. The analytic branch adds positive dimension, turns successive factors into multiplied norm budgets, compresses a uniform budget into a power, and transfers the matrix estimate to every column-state orbit."
+### Bridge one: an empty history acts as the identity
+
+{{< lean-bridge
+  human="Before any update occurs, the forward product is the identity matrix."
+  math="\(P_A(0)=I.\)"
+  lean="MatrixProducts.forwardProduct_zero A : MatrixProducts.forwardProduct A 0 = 1"
 >}}
+
+- <code>MatrixProducts</code> is the namespace containing the finite-product
+  interface.
+- <code>A</code> is a natural-time family of square matrices.
+- <code>0</code> is a horizon, meaning a factor count, not a matrix index.
+- <code>1</code> is the multiplicative identity matrix at the inferred
+  coordinate and scalar types.
+- The theorem is algebraic and permits an empty finite coordinate type.
+{{< /lean-bridge >}}
+
+The identity convention makes the zero-step action \(P_A(0)x=x\) and gives the
+right base case for splitting and norm induction.
+
+### Bridge two: the newest factor is prepended on the left
+
+{{< lean-bridge
+  human="To extend a k-step history by one update, let the new time-k matrix act after the existing product."
+  math="\(P_A(k+1)=A_kP_A(k).\)"
+  lean="MatrixProducts.forwardProduct_succ A k : MatrixProducts.forwardProduct A (k + 1) = A k * MatrixProducts.forwardProduct A k"
+>}}
+
+- <code>k + 1</code> is the new factor count.
+- <code>A k</code> is the newest factor, whose time index is <code>k</code>.
+- <code>*</code> is matrix multiplication.
+- The new factor appears on the left because column-vector actions compose
+  from right to left.
+- At <code>k = 1</code>, simplification gives
+  <code>forwardProduct A 2 = A 1 * A 0</code>, the opening example's order.
+{{< /lean-bridge >}}
+
+### Bridge three: split a history without restarting its clock
+
+{{< lean-bridge
+  human="After m early updates, the next k updates form a shifted product that acts on the left of the early block."
+  math="\(P_A(m+k)=P_{j\mapsto A_{m+j}}(k)\,P_A(m).\)"
+  lean="MatrixProducts.forwardProduct_add A m k"
+>}}
+
+- <code>m + k</code> is the total number of factors.
+- <code>fun j ↦ A (m + j)</code> is the later family, reindexed so its local
+  time zero means global time <code>m</code>.
+- <code>forwardProduct ... k</code> builds exactly the later block.
+- The early block <code>forwardProduct A m</code> is on the right because it
+  acts first.
+- The theorem needs associativity, not commutativity, norms, probability, or
+  positive dimension.
+{{< /lean-bridge >}}
+
+### Bridge four: one-step norm budgets multiply
+
+{{< lean-bridge
+  human="The induced infinity norm of the ordered product is no larger than the product of the individual factor norms."
+  math="\(\lVert P_A(k)\rVert_\infty\leq\prod_{j=0}^{k-1}\lVert A_j\rVert_\infty.\)"
+  lean="MatrixProducts.linfty_opNorm_forwardProduct_le_prod A k"
+>}}
+
+- The imported scope <code>Matrix.Norms.Operator</code> makes
+  <code>‖A j‖</code> the maximum absolute row-sum norm.
+- <code>Finset.range k</code> contains exactly <code>0, ..., k - 1</code>.
+- <code>∏ j ∈ Finset.range k, ...</code> is a commutative product of real
+  norm values, even though the underlying matrices do not commute.
+- <code>≤</code> records an upper bound; the opening values \(2\leq4\) show
+  that equality need not hold.
+- This analytic theorem assumes <code>[RCLike 𝕜] [Nonempty ι]</code>.
+{{< /lean-bridge >}}
+
+### Bridge five: a uniform budget becomes a finite power
+
+{{< lean-bridge
+  human="If every factor before the chosen horizon has norm at most C, the whole k-step product has norm at most C to the kth power."
+  math="\(\bigl[\forall j\lt k,\ \lVert A_j\rVert_\infty\leq C\bigr]\Longrightarrow\lVert P_A(k)\rVert_\infty\leq C^k.\)"
+  lean="MatrixProducts.linfty_opNorm_forwardProduct_le_pow A C k hA"
+>}}
+
+- <code>hA</code> is the proof of
+  <code>∀ j &lt; k, ‖A j‖ ≤ C</code>.
+- The strict prefix <code>j &lt; k</code> matches the exact factors occurring
+  in the product.
+- <code>C ^ k</code> is a finite real power, not an exponential-growth limit.
+- The theorem does not assume stationarity or that the same matrix repeats.
+- For the running example, <code>C = 2</code> and <code>k = 2</code> give the
+  valid budget four.
+{{< /lean-bridge >}}
+
+### Bridge six: matrix control transfers to every vector
+
+{{< lean-bridge
+  human="Under the same one-step budget, every starting vector has a k-step supremum norm at most C to the kth power times its starting norm."
+  math="\(\lVert P_A(k)x\rVert_\infty\leq C^k\lVert x\rVert_\infty.\)"
+  lean="MatrixProducts.linfty_opNorm_forwardProduct_mulVec_le_pow A C k hA x"
+>}}
+
+- <code>*ᵥ</code> in the theorem conclusion is matrix-vector multiplication.
+- <code>x</code> is arbitrary; no unit-norm or random-distribution assumption
+  is present.
+- <code>Matrix.linfty_opNorm_mulVec</code> supplies the one-matrix action
+  inequality.
+- The finite product theorem supplies the factor <code>C ^ k</code>.
+- This is one-sided control. It supplies no lower expansion rate, contraction
+  classification, or invariant direction.
+{{< /lean-bridge >}}
+
+### Bridge seven: a finite normalized logarithm is only an expression here
+
+{{< lean-bridge
+  human="At a positive horizon and for a positive product norm, one may inspect the logarithmic norm per update, but this module proves no limiting rate."
+  math="\(g_k(A)=k^{-1}\log\lVert P_A(k)\rVert_\infty\quad(k\gt0,\ \lVert P_A(k)\rVert_\infty\gt0).\)"
+  lean="Real.log ‖MatrixProducts.forwardProduct A k‖ / (k : ℝ)"
+>}}
+
+- <code>Real.log</code> is Mathlib's real logarithm, not a declaration from
+  <code>FiniteProducts.lean</code>.
+- <code>(k : ℝ)</code> coerces the natural factor count into a real divisor.
+- The displayed mathematical interpretation explicitly requires positive
+  horizon and norm. Lean's arithmetic functions are total outside that domain,
+  but totalized syntax must not be narrated as a classical growth rate there.
+- No project name binds this expression in the primary module.
+- No <code>Tendsto</code>, probability measure, almost-everywhere quantifier,
+  or Lyapunov-exponent theorem follows from merely typing it.
+{{< /lean-bridge >}}
+
+### Try the exact deterministic finite-product interfaces
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+On an approved Linux builder, place this probe in a temporary project scratch
+file:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.FiniteProducts
+
+open scoped BigOperators Matrix Matrix.Norms.Operator
+open NonlinearDynamics.Random
+
+#print MatrixProducts.forwardProduct
+#check MatrixProducts.forwardProduct_zero
+#check MatrixProducts.forwardProduct_succ
+#check MatrixProducts.forwardProduct_add
+#check MatrixProducts.forwardProduct_one
+#check MatrixProducts.forwardProduct_const
+#check MatrixProducts.forwardProduct_const_one
+#check MatrixProducts.forwardProduct_mulVec_zero
+#check MatrixProducts.forwardProduct_mulVec_succ
+#check MatrixProducts.linfty_opNorm_forwardProduct_le_prod
+#check MatrixProducts.linfty_opNorm_forwardProduct_le_pow
+#check MatrixProducts.linfty_opNorm_forwardProduct_mulVec_le_prod
+#check MatrixProducts.linfty_opNorm_forwardProduct_mulVec_le_pow
+~~~
+
+This list is the complete thirteen-declaration public interface. <code>#print</code>
+shows the recursive orientation; each <code>#check</code> asks the pinned
+elaborator for a theorem's exact assumptions and conclusion. The rendered
+guarded command below checks the authoritative source file.
+{{< /repo-check >}}
+
+### Inspect the separate measurable-law successor
+
+{{< repo-check module="NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts" >}}
+**Resource label: later pinned project module plus Mathlib, cloud-only.** The
+successor deliberately lives in another file:
+
+~~~lean
+import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
+
+open NonlinearDynamics.Random
+
+#check MatrixProducts.sampleForwardProduct
+#check MatrixProducts.sampleForwardProduct_add
+#check MatrixProducts.measurable_sampleForwardProduct
+#check MatrixProducts.forwardProductLaw
+#check MatrixProducts.forwardProductLaw_zero
+#check MatrixProducts.forwardProductLaw_one
+#check MatrixProducts.forwardProductLaw_isProbabilityMeasure
+#check MatrixProducts.forwardProductProbabilityLaw
+#check MatrixProducts.coe_forwardProductProbabilityLaw
+~~~
+
+These declarations add outcome-dependent sample products, exact-prefix
+measurability, and a proof-carrying pushforward law. They add no independence,
+stationarity, logarithmic growth, Lyapunov exponent, or asymptotic theorem.
+The separation prevents the deterministic <code>forwardProduct</code> from
+silently acquiring a probability interpretation.
+{{< /repo-check >}}
 
 ## Base camp: read the first four products
 
@@ -508,77 +903,215 @@ These conclusions hold for every chosen column vector. No normalization such
 as \(\lVert x\rVert=1\) is required. If \(x=0\), both sides vanish. At horizon
 zero, the result says \(\lVert x\rVert\leq\lVert x\rVert\).
 
-## A complete two-step worked example
+## Return to the opening ledger after the general bound
 
-Over the real numbers, take
+The abstract theorem now explains every inequality in the opening example:
 
 \[
-A_0=
+\begin{aligned}
+\lVert P_A(2)\rVert_\infty
+&=\left\lVert
 \begin{bmatrix}
 1&1\\
-0&1
-\end{bmatrix},
-\qquad
-A_1=
-\begin{bmatrix}
-\tfrac12&0\\
 0&2
-\end{bmatrix}.
+\end{bmatrix}
+\right\rVert_\infty\\
+&=2\\
+&\leq
+\lVert A_1\rVert_\infty\lVert A_0\rVert_\infty\\
+&=2\cdot2=4.
+\end{aligned}
 \]
 
-Their maximum absolute row sums are both two:
+For \(x=(1,1)^{\mathsf T}\), the action estimate reads
 
 \[
-\lVert A_0\rVert_\infty=2,
-\qquad
-\lVert A_1\rVert_\infty=2.
-\]
-
-The chronological two-step product is
-
-\[
-P_A(2)=A_1A_0
-{} =
-\begin{bmatrix}
-\tfrac12&\tfrac12\\
-0&2
-\end{bmatrix}.
-\]
-
-Its row sums are one and two, so
-
-\[
-\lVert P_A(2)\rVert_\infty=2
-\leq 2\cdot2=4.
-\]
-
-The strict inequality shows the budget can be conservative. With
-
-\[
-x=
-\begin{bmatrix}
-0\\
-1
-\end{bmatrix},
-\qquad
-\lVert x\rVert_\infty=1,
-\]
-
-the orbit reaches
-
-\[
-P_A(2)x=
-\begin{bmatrix}
-\tfrac12\\
 2
-\end{bmatrix},
-\qquad
-\lVert P_A(2)x\rVert_\infty=2.
+=\lVert P_A(2)x\rVert_\infty
+\leq
+4\lVert x\rVert_\infty
+=4.
 \]
 
-The product-of-norms and uniform-power theorems both give the valid but looser
-upper bound four. Neither promises to recover the exact amplification of this
-particular product or vector.
+The exact orbit norm and exact matrix norm happen to agree here, but neither
+general theorem promises that coincidence. The reversed product's norm three
+also lies below four, which reinforces a separate lesson: satisfying a norm
+bound does not certify chronological correctness.
+
+Taking logarithms in this positive example is an optional scalar
+post-processing step:
+
+\[
+\frac12\log\lVert P_A(2)\rVert_\infty=\frac12\log2.
+\]
+
+No declaration in <code>FiniteProducts.lean</code> performs that step.
+Consequently the checked finite bound must not be cited as a theorem about
+normalized logarithmic convergence.
+
+## Type the two-step ledger yourself with Lean and Std
+
+The project module uses Mathlib's general matrices, scoped operator norm, and
+finite products. A learner can first verify the exact integer bookkeeping with
+a bounded file importing only <code>Std</code>. Its <code>Matrix2</code> record
+is a teaching model, not a replacement for the project type.
+
+Create a scratch directory outside <code>formalization/</code>. Save this exact
+block as <code>OrderedMatrixProductsTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace OrderedMatrixProductsTutorial
+
+structure Vec2 where
+  x : Int
+  y : Int
+  deriving Repr, DecidableEq
+
+def Vec2.linftyNorm (v : Vec2) : Nat :=
+  max v.x.natAbs v.y.natAbs
+
+structure Matrix2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+  deriving Repr, DecidableEq
+
+def Matrix2.one : Matrix2 :=
+  { a00 := 1, a01 := 0, a10 := 0, a11 := 1 }
+
+def Matrix2.mul (A B : Matrix2) : Matrix2 :=
+  { a00 := A.a00 * B.a00 + A.a01 * B.a10
+    a01 := A.a00 * B.a01 + A.a01 * B.a11
+    a10 := A.a10 * B.a00 + A.a11 * B.a10
+    a11 := A.a10 * B.a01 + A.a11 * B.a11 }
+
+def Matrix2.mulVec (A : Matrix2) (v : Vec2) : Vec2 :=
+  { x := A.a00 * v.x + A.a01 * v.y
+    y := A.a10 * v.x + A.a11 * v.y }
+
+def Matrix2.linftyOpNorm (A : Matrix2) : Nat :=
+  max (A.a00.natAbs + A.a01.natAbs)
+      (A.a10.natAbs + A.a11.natAbs)
+
+def forwardProduct (A : Nat → Matrix2) : Nat → Matrix2
+  | 0 => Matrix2.one
+  | k + 1 => (A k).mul (forwardProduct A k)
+
+def A0 : Matrix2 :=
+  { a00 := 1, a01 := 1, a10 := 0, a11 := 1 }
+
+def A1 : Matrix2 :=
+  { a00 := 1, a01 := 0, a10 := 0, a11 := 2 }
+
+def factors : Nat → Matrix2
+  | 0 => A0
+  | 1 => A1
+  | _ => Matrix2.one
+
+def chronological : Matrix2 := forwardProduct factors 2
+def reversed : Matrix2 := A0.mul A1
+def x : Vec2 := { x := 1, y := 1 }
+
+structure FiniteLogLedger where
+  normArgument : Nat
+  divisor : Nat
+  deriving Repr, DecidableEq
+
+def chronologicalRate : FiniteLogLedger :=
+  { normArgument := chronological.linftyOpNorm, divisor := 2 }
+
+def reversedRate : FiniteLogLedger :=
+  { normArgument := reversed.linftyOpNorm, divisor := 2 }
+
+def lastIndexMistake : FiniteLogLedger :=
+  { normArgument := chronological.linftyOpNorm, divisor := 1 }
+
+#eval [forwardProduct factors 0,
+  forwardProduct factors 1,
+  forwardProduct factors 2]
+
+#eval [chronological, reversed]
+
+#eval [A0.linftyOpNorm, A1.linftyOpNorm,
+  chronological.linftyOpNorm, reversed.linftyOpNorm,
+  A0.linftyOpNorm * A1.linftyOpNorm]
+
+#eval [chronological.mulVec x, reversed.mulVec x]
+#eval [x.linftyNorm,
+  (chronological.mulVec x).linftyNorm,
+  (reversed.mulVec x).linftyNorm]
+
+#eval [chronologicalRate, reversedRate, lastIndexMistake]
+
+#eval [decide (chronological ≠ reversed),
+  decide (chronological.linftyOpNorm ≤
+    A0.linftyOpNorm * A1.linftyOpNorm),
+  decide (reversed.linftyOpNorm ≤
+    A0.linftyOpNorm * A1.linftyOpNorm)]
+
+example : forwardProduct factors 0 = Matrix2.one := by decide
+example : forwardProduct factors 1 = A0 := by decide
+example : forwardProduct factors 2 = A1.mul A0 := by decide
+example : chronological =
+    { a00 := 1, a01 := 1, a10 := 0, a11 := 2 } := by decide
+example : reversed =
+    { a00 := 1, a01 := 2, a10 := 0, a11 := 2 } := by decide
+example : chronological ≠ reversed := by decide
+example : chronological.linftyOpNorm = 2 := by decide
+example : reversed.linftyOpNorm = 3 := by decide
+example : A0.linftyOpNorm * A1.linftyOpNorm = 4 := by decide
+example : (chronological.mulVec x).linftyNorm = 2 := by decide
+example : (reversed.mulVec x).linftyNorm = 3 := by decide
+example : chronologicalRate.divisor = 2 := by decide
+example : lastIndexMistake.divisor = 1 := by decide
+
+end OrderedMatrixProductsTutorial
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean OrderedMatrixProductsTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0. It printed:
+
+~~~text
+[{ a00 := 1, a01 := 0, a10 := 0, a11 := 1 },
+ { a00 := 1, a01 := 1, a10 := 0, a11 := 1 },
+ { a00 := 1, a01 := 1, a10 := 0, a11 := 2 }]
+[{ a00 := 1, a01 := 1, a10 := 0, a11 := 2 }, { a00 := 1, a01 := 2, a10 := 0, a11 := 2 }]
+[2, 2, 2, 3, 4]
+[{ x := 2, y := 2 }, { x := 3, y := 2 }]
+[1, 2, 3]
+[{ normArgument := 2, divisor := 2 }, { normArgument := 3, divisor := 2 }, { normArgument := 2, divisor := 1 }]
+[true, true, true]
+~~~
+
+Read those lines as follows:
+
+1. horizons zero, one, and two are the identity, \(A_0\), and \(A_1A_0\);
+2. chronological and reversed products differ in their upper-right entry;
+3. factor, product, reverse, and budget norms are \(2,2,2,3,4\);
+4. the same vector becomes \((2,2)\) or \((3,2)\);
+5. the vector norm ledger is \(1,2,3\);
+6. the symbolic pairs record
+   \((\text{norm argument},\text{factor divisor})=(2,2),(3,2),(2,1)\); and
+7. inequality and noncommutativity checks are all true.
+
+The <code>FiniteLogLedger</code> does not implement a logarithm. It verifies
+the two discrete inputs that the prose later places into
+\((1/k)\log\lVert P_A(k)\rVert\): the norm argument and the factor count. This
+keeps the local file small and prevents a symbolic ledger from masquerading as
+a theorem about real logarithms or limits.
+
+Every <code>example</code> is checked by Lean's kernel. The command loads only
+the pinned compiler and <code>Std</code>; it does not run Lake, import Mathlib,
+or compile the project.
 
 ## The complete declaration map
 
@@ -801,35 +1334,33 @@ invariant splitting.
 16. State a derivative-product bridge for iterates of a differentiable map.
     Identify which chain-rule and domain-invariance hypotheses it would need.
 
-## Reproduce the checked slice
+## Reproduce the chapter without crossing the host boundary
 
-From the repository root, load the pinned Lean toolchain and compile the source
-with warnings treated as errors:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean
-~~~
-
-Build the module and its dependencies by library name:
+The bounded <code>Std</code> worksheet above may run on an ordinary Mac or
+Linux host. From the repository root, workstation-safe checks are:
 
 ~~~sh
-lake build NonlinearDynamics.Random.MatrixProducts.FiniteProducts
-~~~
-
-Return to the repository root and check the teaching site:
-
-~~~sh
-cd ..
+site/content/knowledge-base/deep-dives/ordered-finite-matrix-products-and-operator-norm-growth/generate-card.sh --verify
 make site-check
+git diff --check
 ~~~
 
-The repository-wide technical gate is <code>make check</code>. Passing the
-technical gate does not complete human review. This page is published as an
-open working note while mathematical, source, accessibility, and editorial
-reviews remain pending.
+These commands do not compile the project. The two exact modules import
+Mathlib, so their checks belong on approved Linux compute:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean
+
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean
+~~~
+
+The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code>.
+This teaching rebuild does not claim either project module was recompiled on
+the Mac. Technical success would still not complete the pending human
+mathematical, source, accessibility, scientific-integrity, and editorial
+reviews.
 
 ## What has and has not been proved
 
@@ -919,9 +1450,10 @@ function-space norm used as the vector supremum norm.
 
 <a id="ref-ordered-horn-johnson"></a>**Roger A. Horn and Charles R. Johnson.**
 [Matrix Analysis, second edition](https://www.cambridge.org/highereducation/books/matrix-analysis/FDA3627DC2B9F5C3DF2FD8C3CC136B48),
-Cambridge University Press, 2013, ISBN 978-0-521-54823-6. Chapter 5 develops
-vector norms, induced matrix norms, and their finite-dimensional comparison.
-The Lean module fixes the maximum absolute row-sum convention explicitly.
+Cambridge University Press, 2013, International Standard Book Number (ISBN)
+978-0-521-54823-6. Chapter 5 develops vector norms, induced matrix norms, and
+their finite-dimensional comparison. The Lean module fixes the maximum
+absolute row-sum convention explicitly.
 
 <a id="ref-ordered-coppel"></a>**W. A. Coppel.**
 [Dichotomies in Stability Theory](https://doi.org/10.1007/BFb0067780),
