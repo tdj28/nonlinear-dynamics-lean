@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">A two-point probability integral compared with the same raw-mass integral</title>
+  <desc id="desc">The points a and b carry observable values zero and two. Uniform probability weights one half and one half have total mass one and integral one. Raw weights one and one have total mass two and integral two. Dividing the raw integral by total mass recovers one, but that is a separate normalization step.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f2e8; }
+      .ink { fill: #18283b; }
+      .muted { fill: #566273; }
+      .navy { fill: #244d70; }
+      .green { fill: #2f6658; }
+      .orange { fill: #b86025; }
+      .red { fill: #98483c; }
+      .panel { fill: #fffdf8; stroke: #c9bdac; stroke-width: 2; }
+      .prob { fill: #e7f0f7; stroke: #4d7292; stroke-width: 2; }
+      .raw { fill: #f7e8da; stroke: #bd713d; stroke-width: 2; }
+      .result { fill: #eaf2e7; stroke: #6f9165; stroke-width: 2; }
+      .warn { fill: #f7e7e2; stroke: #b45c4c; stroke-width: 2; }
+      .line { stroke: #7e8994; stroke-width: 2; }
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .h1 { font-size: 33px; font-weight: 700; }
+      .h2 { font-size: 22px; font-weight: 700; letter-spacing: .5px; }
+      .big { font-size: 30px; font-weight: 700; }
+      .body { font-size: 20px; }
+      .small { font-size: 17px; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7e8994"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="760"/>
+  <rect x="0" y="0" width="1200" height="18" class="navy"/>
+  <text x="60" y="68" class="ink h1">Same observable, two different measure scales</text>
+  <text x="60" y="102" class="muted body">Ω = {a,b} and p(a)=0, p(b)=2. Only the weights change.</text>
+
+  <rect x="60" y="132" width="1080" height="142" rx="22" class="panel"/>
+  <text x="86" y="169" class="ink h2">VISIBLE TWO-POINT LEDGER</text>
+  <circle cx="350" cy="217" r="31" fill="#dbe7f0" stroke="#4d7292" stroke-width="2"/>
+  <text x="341" y="225" class="navy big">a</text>
+  <text x="402" y="225" class="ink body">p(a) = 0</text>
+  <line x1="573" y1="217" x2="627" y2="217" class="line"/>
+  <circle cx="686" cy="217" r="31" fill="#f4dfce" stroke="#bd713d" stroke-width="2"/>
+  <text x="678" y="225" class="orange big">b</text>
+  <text x="738" y="225" class="ink body">p(b) = 2</text>
+
+  <rect x="60" y="304" width="520" height="294" rx="22" class="prob"/>
+  <text x="89" y="345" class="navy h2">PROBABILITY MEASURE μ</text>
+  <text x="89" y="386" class="ink body">weights: μ({a}) = 1/2, μ({b}) = 1/2</text>
+  <line x1="89" y1="411" x2="551" y2="411" stroke="#8aa4b9" stroke-width="1.5"/>
+  <text x="89" y="451" class="ink body">total mass</text>
+  <text x="551" y="451" text-anchor="end" class="navy big">1/2 + 1/2 = 1</text>
+  <text x="89" y="501" class="ink body">integral of p</text>
+  <text x="551" y="501" text-anchor="end" class="navy big">(1/2)·0 + (1/2)·2 = 1</text>
+  <rect x="89" y="532" width="462" height="43" rx="12" class="result"/>
+  <text x="320" y="560" text-anchor="middle" class="green small">“expectation” is licensed: Eμ[p] = 1</text>
+
+  <rect x="620" y="304" width="520" height="294" rx="22" class="raw"/>
+  <text x="649" y="345" class="orange h2">RAW COUNTING MEASURE ν</text>
+  <text x="649" y="386" class="ink body">weights: ν({a}) = 1, ν({b}) = 1</text>
+  <line x1="649" y1="411" x2="1111" y2="411" stroke="#d0a07f" stroke-width="1.5"/>
+  <text x="649" y="451" class="ink body">total mass</text>
+  <text x="1111" y="451" text-anchor="end" class="orange big">1 + 1 = 2</text>
+  <text x="649" y="501" class="ink body">raw integral of p</text>
+  <text x="1111" y="501" text-anchor="end" class="orange big">1·0 + 1·2 = 2</text>
+  <rect x="649" y="532" width="462" height="43" rx="12" class="warn"/>
+  <text x="880" y="560" text-anchor="middle" class="red small">not an expectation in the module: ν(Ω) ≠ 1</text>
+
+  <line x1="880" y1="606" x2="880" y2="644" stroke="#7e8994" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="228" y="644" width="884" height="82" rx="18" class="panel"/>
+  <text x="260" y="679" class="ink body">Separate operation:</text>
+  <text x="448" y="679" class="green big">raw integral / raw mass = 2/2 = 1</text>
+  <text x="260" y="708" class="muted small">The Lean expectation alias does not perform this division; its body is the original integral.</text>
+</svg>

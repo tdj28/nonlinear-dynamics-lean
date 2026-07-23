@@ -2,17 +2,17 @@
 title: "Probability Normalization and Ergodic Rigidity Before Kingman"
 slug: "probability-normalization-and-ergodic-rigidity-before-kingman"
 date: 2026-07-21
-summary: "A textbook separation of probability scale, ergodic invariant rigidity, and finite-horizon integrability for matrix cocycles, together with the exact Lean interfaces available before a subadditive ergodic theorem."
-lead: "Mass one licenses expectation language. Ergodicity destroys nontrivial invariant information. Integrability controls finite moments. The current Lean milestone wires those roles together without pretending that a samplewise limit theorem has already been formalized."
+summary: "Start with two weighted points and watch probability normalization, ergodic invariant rigidity, and finite-horizon integrability separate numerically before reading the exact Lean interfaces."
+lead: "On two points, changing weights turns an expectation of 1 into a raw integral of 2; changing a swap into the identity creates an invariant event of mass 1/2. Those tiny ledgers explain the exact assumptions in the Lean module and why its deterministic Fekete rate is still not a samplewise Kingman limit."
 draft: false
 pro_reviewed: false
-level: "Probability measures, measure-preserving dynamics, ergodicity, invariant events and observables, Bochner integrability, subadditive cocycle processes, and deterministic Fekete rates"
-reading_time: "105 to 145 minutes"
-prerequisites: "One-sided discrete matrix cocycles, finite-horizon log-positive envelopes, measure preservation, ordinary real-valued integrability, and the deterministic integrated Fekete rate; no ergodic theorem is assumed"
+level: "Begins with exact two-point arithmetic; climbs through probability measures, measure-preserving dynamics, ergodicity, invariant events and observables, integrability, subadditive processes, and deterministic Fekete rates"
+reading_time: "120 to 165 minutes, including the runnable Lean worksheet"
+prerequisites: "Comfort with finite weighted averages; the chapter introduces the needed probability and ergodic vocabulary before using the matrix-cocycle interface"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase"
 toc: true
 og_image: "probability-normalization-and-ergodic-rigidity-before-kingman-card.png"
-og_image_alt: "An assumption map separates probability normalization, ergodic invariant rigidity, and log-positive integrability. Four checked outputs use different combinations: deterministic rate facts, a finite-horizon expectation alias, an invariant-event zero-one law, and almost-everywhere constancy of invariant observables. A blocked bridge says that no samplewise limit theorem has been proved."
+og_image_alt: "A two-point ledger gives the observable values zero and two. Uniform probability weights one half and one half have total mass one and integral one, while raw counting weights one and one have total mass two and integral two. A separate division by total mass is shown explicitly."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,14 +24,148 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+prose, sources, exact ledgers, Lean declaration map, worksheet, figures, and
+accessibility have not yet received the required human and Pro reviews. The
+page is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-The sixteenth random-matrix-theory milestone (RMT-16) ended with a
-deterministic theorem. For the finite-horizon
-log-positive envelope
+## Base camp: two points expose the normalization
+
+Let
+
+\[
+\Omega=\{a,b\},\qquad p(a)=0,\qquad p(b)=2.
+\]
+
+Think of \(p\) as a tiny stand-in for a nonnegative finite-horizon observable.
+There are no hidden samples or limiting arguments. We will integrate the same
+two values against two different measures:
+
+| point | observable \(p\) | probability weight \(\mu\) | raw weight \(\nu\) |
+|---:|---:|---:|---:|
+| \(a\) | \(0\) | \(1/2\) | \(1\) |
+| \(b\) | \(2\) | \(1/2\) | \(1\) |
+| **total** | not applicable | **\(1\)** | **\(2\)** |
+
+For the probability measure,
+
+\[
+\int_\Omega p\,d\mu
+=\frac12\cdot0+\frac12\cdot2
+=1.
+\]
+
+For the raw counting measure,
+
+\[
+\int_\Omega p\,d\nu
+=1\cdot0+1\cdot2
+=2.
+\]
+
+The observable did not change. The scale of the measure did. Only the first
+integral is an expectation under the displayed measure because only
+\(\mu(\Omega)=1\).
+
+{{< reference-figure
+  wide="true"
+  src="probability-vs-raw-mass-ledger.svg"
+  alt="The two points a and b have observable values zero and two. Uniform probability weights one half and one half have total mass one and integral one. Raw weights one and one have total mass two and integral two. Dividing the raw integral by its total mass gives one, but is marked as a separate operation."
+  caption="**Finding:** the Lean expectation alias does not secretly divide by total mass. Under the probability typeclass the measure already has mass one, so its body may remain the raw integral. If a reader starts with \(\nu(\Omega)=2\), the normalized average \(2/2=1\) requires a new, explicit operation."
+>}}
+
+This immediately separates two formulas that are often blurred:
+
+\[
+\underbrace{\int p\,d\nu}_{\text{raw integral }=2}
+\qquad\text{and}\qquad
+\underbrace{\frac{\int p\,d\nu}{\nu(\Omega)}}_{\text{renormalized average }=1}.
+\]
+
+The project definition
+<code>finiteHorizonLogPlusExpectation</code> performs the first operation.
+Its <code>[IsProbabilityMeasure μ]</code> premise guarantees in advance that
+the two operations coincide because \(\mu(\Omega)=1\).
+
+## Base camp continued: invariant information
+
+Now keep the same two points and compare three dynamical systems:
+
+1. uniform probability \(\mu\) with the swap
+   \(T(a)=b,\ T(b)=a\);
+2. the same probability with the identity map; and
+3. raw mass \(\nu\) with the swap.
+
+An event \(A\subseteq\Omega\) is **strictly invariant** when
+\(T^{-1}(A)=A\). In the swap system, the singletons trade places, so only
+\(\varnothing\) and \(\Omega\) are invariant. In the identity system, every
+event is invariant.
+
+{{< reference-figure
+  wide="true"
+  src="ergodic-rigidity-near-misses.svg"
+  alt="Three columns compare two-point systems. Uniform probability with the swap has only empty and full invariant events of masses zero and one, and invariant observables are constant. Uniform probability with the identity has an invariant singleton of mass one half and the invariant nonconstant observable taking values zero and two. Raw mass with the swap remains ergodic but its full event has mass two."
+  caption="**Finding:** ergodicity removes nontrivial invariant information, while probability normalization turns the null-or-conull conclusion into the numerical values \(0\) and \(1\). The identity example misses ergodicity; the raw-swap example misses normalization. The function-rigidity theorem needs the first gate but not the second."
+>}}
+
+The complete finite ledger is:
+
+| measure and map | strict invariant events | their masses | invariant \(g(a)=0,g(b)=2\)? |
+|---|---|---|---|
+| uniform \(\mu\), swap | \(\varnothing,\Omega\) | \(0,1\) | no |
+| uniform \(\mu\), identity | all four events | \(0,\frac12,\frac12,1\) | yes, but nonconstant |
+| raw \(\nu\), swap | \(\varnothing,\Omega\) | \(0,2\) | no |
+
+On a finite space with positive weight at every point, “almost everywhere”
+means “at every point.” In general measure spaces, null sets may be nonempty,
+so the project theorem correctly concludes only almost-everywhere constancy.
+See {{< refterm "null-set" "null set" >}},
+{{< refterm "almost-everywhere" "almost everywhere" >}}, and
+{{< refterm "ergodic-probability-base" "ergodic probability base" >}} before
+climbing into that distinction.
+
+### A boundary example: settled averages, oscillating outcomes
+
+There is one more trap to remove at base camp. Define
+
+\[
+Y_n(a)=(-1)^n,\qquad Y_n(b)=-(-1)^n.
+\]
+
+Under the uniform probability measure,
+
+\[
+\int_\Omega Y_n\,d\mu=0
+\]
+
+for every \(n\), so the integrated sequence is already constant. Yet
+\(Y_n(a)\) alternates \(1,-1,1,-1,\ldots\), and \(Y_n(b)\) alternates in the
+opposite phase. Neither sample path converges.
+
+| horizon \(n\) | \(Y_n(a)\) | \(Y_n(b)\) | uniform mean |
+|---:|---:|---:|---:|
+| \(0\) | \(1\) | \(-1\) | \(0\) |
+| \(1\) | \(-1\) | \(1\) | \(0\) |
+| \(2\) | \(1\) | \(-1\) | \(0\) |
+| \(3\) | \(-1\) | \(1\) | \(0\) |
+
+This is deliberately **not** claimed to be a subadditive cocycle process. It
+is a counterexample only to the invalid inference
+
+\[
+\text{convergence of integrated scalars}
+\Longrightarrow
+\text{samplewise convergence}.
+\]
+
+Kingman's theorem supplies far more structure than convergence of those
+scalars. RMT-17 does not supply that theorem.
+
+## From the ledger to the cocycle module
+
+The sixteenth random-matrix-theory milestone (RMT-16) ended with a deterministic
+theorem. For the finite-horizon log-positive envelope
 
 \[
 P_k(\omega)
@@ -59,7 +193,7 @@ milestone, RMT-17, now prepares the probabilistic and ergodic vocabulary needed
 for later sample-dependent theorems, but it does not cross that later theorem
 boundary.
 
-The preparation has three independent axes:
+RMT-17 prepares three independent axes:
 
 1. <code>IsProbabilityMeasure μ</code> fixes total mass at one;
 2. <code>Ergodic C.base μ</code> makes invariant information trivial modulo
@@ -67,7 +201,7 @@ The preparation has three independent axes:
 3. <code>C.HasIntegrableGeneratorLogPlus</code> controls every finite-horizon
    positive-log moment.
 
-The new module exports one generic process-candidate structure, four
+The module exports one generic process-candidate structure, four
 deterministic rate facts, a probability-specialized expectation definition
 and equality, and two ergodic rigidity bridges. It exports no Kingman theorem,
 no samplewise limit, and no Lyapunov exponent.
@@ -76,13 +210,14 @@ no samplewise limit, and no Lyapunov exponent.
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [The assumption matrix](#the-assumption-matrix) | See which theorem consumes which gate |
+| First encounter | [Two points expose the normalization](#base-camp-two-points-expose-the-normalization) | Recompute mass, integral, invariant events, and a nonergodic near miss |
 | Probability route | [Camp one: probability fixes scale](#camp-one-probability-fixes-scale) | Learn exactly what mass one does and does not buy |
 | Ergodic route | [Camp two: ergodicity fixes invariant information](#camp-two-ergodicity-fixes-invariant-information) | Read the event and function forms of rigidity |
 | Analytic route | [Camp three: integrability remains separate](#camp-three-integrability-remains-separate) | Package the finite process without hidden asymptotics |
 | Rate route | [Camp four: four deterministic rate facts](#camp-four-four-deterministic-rate-facts) | Reuse Fekete without probability or ergodicity |
 | Example route | [Four models that separate the assumptions](#four-models-that-separate-the-assumptions) | Test every tempting implication on exact spaces |
 | Cocycle route | [The alternating scalar cocycle](#the-alternating-scalar-cocycle) | Compute a nonmonotone normalized expectation and a strict rate bound |
+| Hands-on Lean route | [Type the two-point ledger](#type-the-two-point-ledger-yourself-with-lean-and-std) | Run exact rational arithmetic and finite invariance checks with only `Std` |
 | Lean route | [The complete ten-declaration map](#the-complete-ten-declaration-map) | Audit every exported declaration in source order |
 | Summit route | [The honest pre-Kingman boundary](#the-honest-pre-kingman-boundary) | Identify the missing theorem and forbid automatic limit claims |
 
@@ -120,8 +255,10 @@ By the summit, a reader should be able to:
 17. compute the alternating scalar cocycle at horizons one, two, and three;
 18. explain why ergodicity does not imply mixing;
 19. separate a deterministic limit of integrated values from a samplewise
-    limit; and
-20. list the obligations still needed before a formal Kingman application.
+    limit;
+20. run the bounded two-point <code>Std</code> worksheet on a normal Mac or
+    Linux host; and
+21. list the obligations still needed before a formal Kingman application.
 
 ## The assumption matrix
 
@@ -184,6 +321,269 @@ Three propositions can now be asked without answering one another:
 Measure preservation is a fourth fact, already bundled in \(C\). It makes
 shifted integrals agree and supports the previous scalar subadditivity proof.
 It does not imply any row of this table except its own statement.
+
+## In Lean: seven bridges from the ledger to the module
+
+Each bridge pairs a human sentence, paper mathematics, exact Lean syntax, and
+the tokens a reader must recognize. The finite worksheet after the bridges
+checks the opening arithmetic. The project declarations themselves belong to
+the guarded Linux-cloud workflow.
+
+### Bridge 1: say that the measure is normalized
+
+{{< lean-bridge
+  human="The whole sample space has mass one."
+  math="\(\mu(\Omega)=1.\)"
+  lean="[IsProbabilityMeasure μ]"
+>}}
+
+- Square brackets ask Lean to find a typeclass instance automatically.
+- <code>IsProbabilityMeasure</code> is the class whose defining field is
+  <code>μ univ = 1</code>.
+- <code>μ</code> is still a general measure object; this premise fixes its
+  scale.
+- The token says nothing by itself about integrability, independence,
+  ergodicity, or mixing.
+{{< /lean-bridge >}}
+
+### Bridge 2: expose the same integral as an expectation
+
+{{< lean-bridge
+  human="At finite horizon k, the probability-specialized expectation is exactly the previously defined integrated log-positive envelope."
+  math="\(\mathbb E_\mu[P_k]=\int_\Omega P_k\,d\mu=I_k.\)"
+  lean="finiteHorizonLogPlusExpectation_eq_integratedLogPlusNorm hC k"
+>}}
+
+- <code>finiteHorizonLogPlusExpectation</code> is the probability-facing name.
+- <code>integratedLogPlusNorm</code> is the earlier raw-integral name.
+- <code>hC</code> supplies finite-horizon integrability; it does not divide the
+  integral by a mass.
+- <code>k</code> is the finite horizon.
+- The theorem is proved by <code>rfl</code>: both sides unfold to the same
+  expression.
+{{< /lean-bridge >}}
+
+### Bridge 3: read the analytic field of the candidate
+
+{{< lean-bridge
+  human="Every time slice of the candidate process is integrable."
+  math="\(X_k\in L^1(\mu)\quad\text{for every }k\in\mathbb N.\)"
+  lean="hX.integrable k"
+>}}
+
+- <code>hX</code> is evidence for
+  <code>IsIntegrableSubadditiveProcessCandidate T μ X</code>.
+- The dot selects its field named <code>integrable</code>.
+- <code>k</code> chooses one time slice \(X_k\).
+- The result is <code>Integrable (X k) μ</code>, a genuine analytic premise,
+  not a claim about totalized integral syntax.
+{{< /lean-bridge >}}
+
+### Bridge 4: keep the base shift in subadditivity
+
+{{< lean-bridge
+  human="A block of length m+k is bounded by the first m-block plus the next k-block read after m base steps."
+  math="\(X_{m+k}(\omega)\le X_k(T^m\omega)+X_m(\omega).\)"
+  lean="hX.add_le m k ω"
+>}}
+
+- <code>add_le</code> is the candidate's second and final stored field.
+- <code>m</code> is the length of the first block and <code>k</code> the next
+  block.
+- <code>ω</code> is one source outcome.
+- Lean writes the shift as <code>(T^[m]) ω</code> in the elaborated theorem.
+- Removing that shift would describe an ordinary scalar subadditive sequence,
+  not the intended dynamical process.
+{{< /lean-bridge >}}
+
+### Bridge 5: identify the deterministic positive-time rate
+
+{{< lean-bridge
+  human="The deterministic integrated growth rate is the infimum of normalized integrated values over positive horizons."
+  math="\(\gamma_\mu^+(C)=\inf_{k\ge1} I_k/k.\)"
+  lean="hC.integratedLogPlusGrowthRate_eq_sInf"
+>}}
+
+- <code>hC</code> is the one-step log-positive integrability witness.
+- <code>integratedLogPlusGrowthRate</code> was defined from Mathlib's
+  deterministic subadditive limit.
+- <code>sInf</code> is the greatest lower bound of a set of real values.
+- <code>Ici 1</code> is the set of natural horizons \(k\ge1\).
+- The theorem needs neither a probability instance nor an ergodicity proof.
+{{< /lean-bridge >}}
+
+### Bridge 6: turn invariant-event rigidity into numbers zero or one
+
+{{< lean-bridge
+  human="A measurable event that is strictly invariant under an ergodic probability base has probability zero or one."
+  math="\(T^{-1}(A)=A\Longrightarrow \mu(A)=0\ \lor\ \mu(A)=1.\)"
+  lean="C.ergodicBase_invariantEvent_prob_eq_zero_or_one hErg hs hinv"
+>}}
+
+- <code>C</code> supplies the base map <code>C.base</code>.
+- <code>hErg</code> proves that base map ergodic for \(\mu\).
+- <code>hs</code> proves the event is measurable.
+- <code>hinv</code> has the strict equality
+  <code>C.base ⁻¹' s = s</code>.
+- The ambient <code>[IsProbabilityMeasure μ]</code> converts conull mass into
+  the number \(1\); the raw-swap example would instead give mass \(2\).
+{{< /lean-bridge >}}
+
+### Bridge 7: make an invariant observable constant almost everywhere
+
+{{< lean-bridge
+  human="An almost-everywhere strongly measurable real observable that is invariant almost everywhere under an ergodic base is almost everywhere constant."
+  math="\(g\circ T=g\ \mu\text{-a.e.}\Longrightarrow \exists c,\ g=c\ \mu\text{-a.e.}\)"
+  lean="C.ergodicBase_ae_eq_const_of_ae_invariant hErg hg hinv"
+>}}
+
+- <code>hg</code> is <code>AEStronglyMeasurable g μ</code>.
+- Here <code>hinv</code> is the almost-everywhere equality
+  <code>g ∘ C.base =ᵐ[μ] g</code>, not a set equality.
+- <code>=ᵐ[μ]</code> means equality outside a \(\mu\)-null set.
+- The result produces a real constant <code>c</code> and another
+  almost-everywhere equality.
+- No probability typeclass appears: ergodic function rigidity is insensitive
+  to multiplying the measure by a positive scalar.
+{{< /lean-bridge >}}
+
+## Type the two-point ledger yourself with Lean and `Std`
+
+The next file imports only Lean's small <code>Std</code> library. It models
+finite weighted sums with exact rational numbers, enumerates all four events,
+checks invariance under the swap and identity maps, and prints the oscillating
+mean ledger. It does **not** construct a Mathlib measure, matrix cocycle, or
+Kingman theorem.
+
+Save this exact text as
+<code>/tmp/ProbabilityErgodicBaseTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace ProbabilityErgodicBaseTutorial
+
+inductive Point where
+  | a
+  | b
+  deriving Repr, DecidableEq
+
+open Point
+
+def points : List Point := [a, b]
+
+def observable : Point → Rat
+  | a => 0
+  | b => 2
+
+def probabilityWeight : Point → Rat
+  | a => 1 / 2
+  | b => 1 / 2
+
+def rawWeight : Point → Rat
+  | a => 1
+  | b => 1
+
+def finiteIntegral (weight : Point → Rat) (f : Point → Rat) : Rat :=
+  (points.map fun ω => weight ω * f ω).sum
+
+structure Event where
+  hasA : Bool
+  hasB : Bool
+  deriving Repr, DecidableEq
+
+def events : List Event :=
+  [⟨false, false⟩, ⟨true, false⟩, ⟨false, true⟩, ⟨true, true⟩]
+
+def Event.contains (s : Event) : Point → Bool
+  | a => s.hasA
+  | b => s.hasB
+
+def identity : Point → Point := fun ω => ω
+
+def swap : Point → Point
+  | a => b
+  | b => a
+
+def invariantUnder (T : Point → Point) (s : Event) : Bool :=
+  points.all fun ω => s.contains (T ω) == s.contains ω
+
+def eventMass (weight : Point → Rat) (s : Event) : Rat :=
+  (points.filter s.contains).map weight |>.sum
+
+def invariantMasses (weight : Point → Rat) (T : Point → Point) : List Rat :=
+  (events.filter (invariantUnder T)).map (eventMass weight)
+
+def invariantObservableUnder (T : Point → Point) (f : Point → Rat) : Bool :=
+  points.all fun ω => f (T ω) == f ω
+
+def oscillatingValue (n : Nat) : Point → Int
+  | a => if n % 2 = 0 then 1 else -1
+  | b => if n % 2 = 0 then -1 else 1
+
+def oscillatingMeanNumerator (n : Nat) : Int :=
+  oscillatingValue n a + oscillatingValue n b
+
+#eval finiteIntegral probabilityWeight (fun _ => 1)
+#eval finiteIntegral probabilityWeight observable
+#eval finiteIntegral rawWeight (fun _ => 1)
+#eval finiteIntegral rawWeight observable
+#eval invariantMasses probabilityWeight swap
+#eval invariantMasses probabilityWeight identity
+#eval invariantMasses rawWeight swap
+#eval invariantObservableUnder swap observable
+#eval invariantObservableUnder identity observable
+#eval (List.range 6).map oscillatingMeanNumerator
+
+example : finiteIntegral probabilityWeight (fun _ => 1) = 1 := by native_decide
+example : finiteIntegral probabilityWeight observable = 1 := by native_decide
+example : finiteIntegral rawWeight (fun _ => 1) = 2 := by native_decide
+example : finiteIntegral rawWeight observable = 2 := by native_decide
+example : invariantMasses probabilityWeight swap = [0, 1] := by native_decide
+example : invariantMasses probabilityWeight identity = [0, 1 / 2, 1 / 2, 1] := by native_decide
+example : invariantMasses rawWeight swap = [0, 2] := by native_decide
+example : invariantObservableUnder swap observable = false := by native_decide
+example : invariantObservableUnder identity observable = true := by native_decide
+example : (List.range 6).map oscillatingMeanNumerator = [0, 0, 0, 0, 0, 0] := by native_decide
+
+end ProbabilityErgodicBaseTutorial
+~~~
+
+Run it on an ordinary Mac or Linux host with the repository's pinned Lean
+version, without entering <code>formalization/</code> and without invoking
+Lake:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/ProbabilityErgodicBaseTutorial.lean
+~~~
+
+The exact file above was run successfully with Lean 4.32.0 and printed:
+
+~~~text
+1
+1
+2
+2
+[0, 1]
+[0, (1 : Rat)/2, (1 : Rat)/2, 1]
+[0, 2]
+false
+true
+[0, 0, 0, 0, 0, 0]
+~~~
+
+Read the lines in order: probability mass, probability integral, raw mass,
+raw integral, swap-invariant probability masses, identity-invariant
+probability masses, swap-invariant raw masses, whether the nonconstant
+observable survives the swap, whether it survives the identity, and the first
+six oscillating mean numerators.
+
+**Resource profile: small standalone tutorial, local-safe.** The examples
+proved with <code>native_decide</code> certify this finite representation and
+its rational arithmetic. They do not prove the Mathlib-backed project
+theorems. Those exact checks remain on approved Linux cloud compute.
 
 ## Camp one: probability fixes scale
 
@@ -908,7 +1308,7 @@ P_k(\omega)
 whereas a samplewise theorem would study
 
 \[
-\text{future route:}
+\text{later project route, completed at RMT-32:}
 \quad
 P_k(\omega)
 \longrightarrow
@@ -935,9 +1335,10 @@ this process. RMT-17 therefore exposes the native pieces that exist and stops.
 It does not add an axiom, cite a paper as if it were Lean code, or use an
 unverified theorem name.
 
-### Obligations for a future formal theorem
+### Obligations the later formal theorem had to settle
 
-Before crossing the bridge, the project must settle at least these choices:
+From the viewpoint of RMT-17, crossing the bridge required the project to
+settle at least these choices:
 
 1. **Process convention.** Decide whether the theorem consumes a one-parameter
    family \(X_k\) with a base shift or a two-parameter process \(X_{m,n}\).
@@ -960,11 +1361,15 @@ Before crossing the bridge, the project must settle at least these choices:
    integrability result that licenses it.
 9. **Cocycle interpretation.** Keep positive clipping explicit. Even a
    samplewise limit of \(P_k/k\) would still not recover negative contraction.
-10. **Library integration.** Prove the theorem in Lean against the pinned interfaces
-    before any Knowledge Base page reports it as formalized.
+10. **Library integration.** Prove the theorem in Lean against the pinned
+    interfaces before any Knowledge Base page reports it as formalized.
 
 This list is not bureaucratic overhead. Each item blocks a familiar but invalid
-shortcut.
+shortcut. Later milestones RMT-18 through RMT-32 now address this route in
+separate modules, culminating in a project-local log-positive Kingman
+endpoint. That later success does not retroactively put a samplewise theorem
+inside <code>ProbabilityErgodicBase.lean</code>, and it does not turn the
+deterministic Fekete theorem into that endpoint.
 
 ### Why ergodic constancy cannot manufacture the limit
 
@@ -997,7 +1402,7 @@ The deterministic rate is
 \lim_{k\to\infty}\frac1k\int P_k\,d\mu.
 \]
 
-Suppose a future theorem produces an almost-everywhere limit
+Suppose a separate theorem produces an almost-everywhere limit
 \(L(\omega)=\lim_k P_k(\omega)/k\). The equality
 
 \[
@@ -1145,34 +1550,106 @@ asymptotic structure.
 24. Audit the ten-declaration table against the Lean source and identify every
     assumption that appears in a signature but not a computational body.
 
-## Reproduce the checked slice
+## Check the exact project interfaces on Linux cloud compute
 
-From the repository root, load the pinned Lean toolchain and compile the leaf
-module with warnings treated as errors:
+The local <code>Std</code> file certifies the finite ledger only. The following
+two checks inspect the actual Mathlib-backed project declarations. They are
+copyable, but project policy reserves them for an approved Linux builder.
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
+### The ten declarations in this chapter
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase" >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean).
+On the approved Linux builder, put this probe in a temporary project scratch
+file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
+
+open MeasureTheory Set Filter
+open NonlinearDynamics.Random.RandomCocycles
+open NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle
+
+#print IsIntegrableSubadditiveProcessCandidate
+#check HasIntegrableGeneratorLogPlus.isIntegrableSubadditiveProcessCandidate
+#check HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_nonneg
+#check HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_eq_sInf
+#check HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_le_normalized
+#check HasIntegrableGeneratorLogPlus.integratedLogPlusGrowthRate_le_oneStep
+#check finiteHorizonLogPlusExpectation
+#check finiteHorizonLogPlusExpectation_eq_integratedLogPlusNorm
+#check ergodicBase_invariantEvent_prob_eq_zero_or_one
+#check ergodicBase_ae_eq_const_of_ae_invariant
 ~~~
 
-Build the named module and its dependency graph:
+<code>#print</code> exposes both candidate fields. Each <code>#check</code>
+asks Lean to elaborate one existing public declaration and show its complete
+type. The list contains the one structure plus the other nine source-level
+declarations, in source order.
+
+**Resource profile: exact repository module plus Mathlib, cloud-only for this
+project.** From the repository root on the approved Linux builder, run:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean
 ~~~
 
-Return to the repository root and validate the complete teaching surface:
+The guarded target pins the committed toolchain and manifest, checks this leaf
+with warnings treated as errors, and refuses to run as a project build on the
+Mac workstation.
+{{< /repo-check >}}
+
+### The deterministic predecessor that supplies the rate
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth" >}}
+The immediate predecessor is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean).
+This smaller probe shows where the scalar sequence, normalization, rate, and
+deterministic convergence theorem originate:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.IntegratedLogPlusGrowth
+
+open MeasureTheory Set Filter
+open NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle
+
+#check integratedLogPlusNorm
+#check HasIntegrableGeneratorLogPlus.integratedLogPlusNorm_add_le
+#check HasIntegrableGeneratorLogPlus.subadditive_integratedLogPlusNorm
+#check normalizedIntegratedLogPlusNorm
+#check integratedLogPlusGrowthRate
+#check HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm
+~~~
+
+Run its guarded leaf check on the same approved Linux builder:
 
 ~~~sh
-cd ..
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean
+~~~
+
+The last declaration proves convergence of the deterministic real sequence
+\(I_k/k\). It quantifies over no surviving outcome \(\omega\), so it cannot be
+relabelled as a samplewise theorem.
+{{< /repo-check >}}
+
+The workstation may still validate the teaching layer without compiling the
+project:
+
+~~~sh
 make site-check
 ~~~
 
-The repository-wide gate is <code>make check</code>. Automated success does not
-complete review of this public working note. Human mathematical, source,
-accessibility, and editorial reviews remain pending.
+The full cloud release gate is:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+Automated success does not complete review of this public working note. Human
+mathematical, source, accessibility, and editorial reviews remain pending.
 
 ## What is established and what is not
 
@@ -1194,17 +1671,19 @@ accessibility, and editorial reviews remain pending.
 | Probability implies integrability | False, refuted by the \(1/x\) envelope |
 | Independence or identical distribution | Not assumed or proved |
 | Mixing or correlation decay | Not assumed or proved |
-| Samplewise normalized limit | Not proved |
-| Almost-everywhere, probability, distributional, or \(L^1\) convergence | Not proved |
+| Samplewise normalized limit in RMT-17 | Not proved |
+| Almost-everywhere, probability, distributional, or \(L^1\) convergence in RMT-17 | Not proved |
 | Limit-expectation interchange | Not proved |
-| Kingman's subadditive ergodic theorem | Not present in the pinned library and not invoked |
+| Kingman theorem in the RMT-17 module | Not present in pinned Mathlib and not invoked; a later project-local endpoint appears at RMT-32 |
 | Furstenberg-Kesten random-product theorem | Not invoked |
 | Lyapunov exponent or Oseledets splitting | Not defined or proved |
 
 The exact achievement is an assumption-safe interface. Probability fixes the
 scale of the measure. Ergodicity controls invariant information. Integrability
 controls finite moments. The deterministic Fekete facts remain deterministic,
-and the samplewise summit remains visibly ahead.
+and the samplewise summit remains visibly ahead **at this milestone**. The
+current repository reaches that later summit only after fifteen additional
+formal layers.
 
 ## Where to continue
 
@@ -1240,14 +1719,21 @@ block, centering, phase, and packing milestones. It builds the exact invariant
 event where ordinary Birkhoff averages converge, then stops before selecting
 the conull branch.
 
-The remaining asymptotic milestones must supply pointwise and then
-subadditive convergence infrastructure. They must not rename the RMT-17
-candidate or the later convergence-event dichotomy as Kingman convergence.
+The intervening asymptotic milestones supply pointwise and then subadditive
+convergence infrastructure. None permits a reader to rename the RMT-17
+candidate itself as Kingman convergence.
 
 [Subadditive Upper Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}})
 now supplies one such later layer. It uses the probability and ergodic gates
 to prove the upper limsup half for a nonnegative process and preserves the
 missing lower-bound and convergence boundary.
+
+[The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
+is the RMT-32 endpoint. It combines the later lower-liminf and upper-limsup
+layers to prove almost-everywhere convergence of the normalized
+<em>log-positive</em> cocycle observable. Read it only after this chapter:
+the endpoint depends on all three gates separated here, and it still proves
+neither a signed Lyapunov exponent nor an Oseledets splitting.
 
 ## References
 

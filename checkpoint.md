@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:49 PDT
+Last updated: 2026-07-22 20:54 PDT
 
-Audited baseline: `main` at `529fc28`
+Audited baseline: `main` at `44dfba5`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **17 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **18 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -386,6 +386,20 @@ positive-index boundaries. The chapter repeatedly distinguishes convergence
 of one deterministic sequence of integrals from any pointwise or
 almost-everywhere sample limit, Kingman theorem, or Lyapunov exponent; its
 exact Mathlib/project check remains Linux-cloud only.
+*Probability Normalization and Ergodic Rigidity Before Kingman* now begins on
+`Ω={a,b}` with the observable values `(0,2)`. Uniform probability weights
+produce total mass `1` and integral `1`, while raw counting weights produce
+mass `2` and integral `2`; the separate normalization `2/2=1` makes clear that
+the Lean expectation alias does not perform hidden rescaling. A uniform swap,
+uniform identity, and raw-mass swap then isolate ergodicity from probability:
+the identity admits a singleton invariant event of mass `1/2` and a
+nonconstant invariant observable, while the raw swap retains invariant
+rigidity but has full-event mass `2`. Three accessible figures, seven Lean
+bridges, two guarded module probes, the exact ten-declaration map, and an
+executed `Std` worksheet make those assumptions executable. An oscillating
+two-row example explicitly blocks the false inference from convergence of
+integrated scalars to samplewise convergence, preserving the RMT-17 boundary
+even while the chapter notes the later project-local RMT-32 endpoint.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3273,6 +3287,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `44dfba5`: rebuild *Integrated Log-Positive Cocycle Growth and Its
+  Deterministic Fekete Limit* around two exact sample rows, an active zero-time
+  boundary, a failed-subadditivity near miss, six Lean bridges, and a local
+  finite-ledger worksheet.
 - `529fc28`: rebuild *Finite-Time Norm and Extended-Log-Norm Observables for
   Matrix Cocycles* around positive and exact-collapse paths, distinct real and
   extended logarithm policies, seven Lean bridges, and an independently
