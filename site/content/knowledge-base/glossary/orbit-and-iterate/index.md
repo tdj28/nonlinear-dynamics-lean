@@ -244,6 +244,87 @@ The notation expands to <code>Nat.iterate T n</code>. Mathlib's
 <code>Function.iterate_add_apply</code> theorem is the checked rule for joining
 two time blocks.
 
+### Run both finite orbits locally
+
+A small <code>Std</code>-only file can execute the same repeated-update
+recursion without loading Mathlib. It defines that recursion explicitly;
+the exact project notation <code>T^[n]</code> remains in the project-backed
+section below. Save this as <code>OrbitScratch.lean</code> in a scratch
+directory outside <code>formalization/</code>:
+
+~~~lean
+import Std
+
+def iterate {α : Type} (step : α → α) : Nat → α → α
+  | 0, x => x
+  | n + 1, x => step (iterate step n x)
+
+inductive CycleState where
+  | a | b | c | d
+  deriving DecidableEq
+
+def cycle4 : CycleState → CycleState
+  | .a => .b
+  | .b => .c
+  | .c => .d
+  | .d => .a
+
+def cycleCode : CycleState → Nat
+  | .a => 0
+  | .b => 1
+  | .c => 2
+  | .d => 3
+
+inductive TransientState where
+  | u | a | b | c
+  deriving DecidableEq
+
+def transient : TransientState → TransientState
+  | .u => .a
+  | .a => .b
+  | .b => .a
+  | .c => .c
+
+def transientCode : TransientState → Nat
+  | .u => 0
+  | .a => 1
+  | .b => 2
+  | .c => 3
+
+#eval (List.range 9).map (fun n => cycleCode (iterate cycle4 n CycleState.a))
+#eval (List.range 7).map
+  (fun n => transientCode (iterate transient n TransientState.u))
+#eval (List.range 4).map
+  (fun n => transientCode (iterate transient n TransientState.c))
+
+example : iterate cycle4 4 CycleState.a = CycleState.a := by decide
+example : iterate transient 3 TransientState.u = TransientState.a := by decide
+example : transient TransientState.u = transient TransientState.b := by decide
+~~~
+
+The codes <code>0, 1, 2, 3</code> stand for \(A,B,C,D\) in the first system
+and \(u,a,b,c\) in the second. Run the file with:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean OrbitScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+[0, 1, 2, 3, 0, 1, 2, 3, 0]
+[0, 1, 2, 1, 2, 1, 2]
+[3, 3, 3, 3]
+~~~
+
+The first two lines reproduce both orbit tables. The third confirms that
+\(c\) is fixed. The last proposition records the noninvertibility witness:
+different states \(u\) and \(b\) have the same image \(a\). This file is small
+enough for a normal Mac or Linux machine because it imports only
+<code>Std</code>. The matrix-valued, measurable project interface still
+requires the guarded Linux check below.
+
 ## Exact project usage: sampling a matrix along an orbit
 
 The one-sided cocycle module uses the iterate directly. This is its exact

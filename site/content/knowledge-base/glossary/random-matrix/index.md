@@ -199,6 +199,91 @@ The core translation is intentionally simple: the project name
   is deliberate. They enter later as separate data and hypotheses.
 {{< /lean-bridge >}}
 
+### Run the coin-selected map locally
+
+The function-versus-probability distinction can be executed before importing
+Mathlib. This worksheet uses a four-field rational matrix and the exact vector
+\(v=(1,1)\) from the opening example. Save it as
+<code>RandomMatrixScratch.lean</code> in a scratch directory outside
+<code>formalization/</code>:
+
+~~~lean
+import Std
+
+inductive Coin where
+  | heads | tails
+  deriving DecidableEq, Repr
+
+structure Vec2 where
+  x : Rat
+  y : Rat
+  deriving DecidableEq, Repr
+
+structure Mat2 where
+  a11 : Rat
+  a12 : Rat
+  a21 : Rat
+  a22 : Rat
+  deriving DecidableEq, Repr
+
+def Mat2.act (A : Mat2) (v : Vec2) : Vec2 :=
+  { x := A.a11 * v.x + A.a12 * v.y
+    y := A.a21 * v.x + A.a22 * v.y }
+
+def half : Rat :=
+  1 / 2
+
+def AH : Mat2 :=
+  { a11 := 2, a12 := 0, a21 := 0, a22 := half }
+
+def AT : Mat2 :=
+  { a11 := 1, a12 := 1, a21 := 0, a22 := 1 }
+
+def X : Coin → Mat2
+  | .heads => AH
+  | .tails => AT
+
+def v : Vec2 :=
+  { x := 1, y := 1 }
+
+def headsResult : Vec2 :=
+  { x := 2, y := half }
+
+def tailsResult : Vec2 :=
+  { x := 2, y := 1 }
+
+#eval [decide (X Coin.heads = AH),
+       decide (X Coin.tails = AT),
+       decide ((X Coin.heads).act v = headsResult),
+       decide ((X Coin.tails).act v = tailsResult)]
+
+example : (X Coin.heads).act v = headsResult := by native_decide
+example : (X Coin.tails).act v = tailsResult := by native_decide
+~~~
+
+Run it with exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean RandomMatrixScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+[true, true, true, true]
+~~~
+
+The first two booleans check the outcome-to-matrix function. The final two
+check \(A_Hv=(2,1/2)\) and \(A_Tv=(2,1)\). No probability appears in the file,
+which is the point: the sample map exists before a fair-coin measure is added.
+The two propositions use <code>native_decide</code> to normalize the exact
+rational arithmetic.
+
+This bounded tutorial imports only <code>Std</code> and can run on a normal Mac
+or Linux machine. The general matrix alias and measurability theorem below are
+Mathlib-backed project interfaces and remain cloud-only checks.
+
 Here is the exact base definition from the checked project module:
 
 ~~~lean

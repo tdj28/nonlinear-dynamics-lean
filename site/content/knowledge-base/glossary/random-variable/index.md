@@ -225,6 +225,60 @@ separate proposition.
   without its proof obligation.
 {{< /lean-bridge >}}
 
+### Run the six-outcome payoff locally
+
+The finite payoff, positive-event preimage, and two law masses can all be
+checked without importing a probability library. Save this as
+<code>RandomVariableScratch.lean</code> in a scratch directory outside
+<code>formalization/</code>:
+
+~~~lean
+import Std
+
+def faces : List Nat :=
+  [1, 2, 3, 4, 5, 6]
+
+def payoff (face : Nat) : Int :=
+  if face % 2 = 0 then 2 else -1
+
+def positiveFaces : List Nat :=
+  faces.filter (fun face => face % 2 == 0)
+
+def countPayoff (value : Int) : Nat :=
+  (faces.filter (fun face => payoff face == value)).length
+
+#eval faces.map payoff
+#eval positiveFaces
+#eval (payoff 4, countPayoff (-1), countPayoff 2)
+
+example : payoff 4 = 2 := by decide
+example : positiveFaces = [2, 4, 6] := by decide
+example : countPayoff (-1) = 3 := by decide
+example : countPayoff 2 = 3 := by decide
+~~~
+
+Run it with the pinned compiler:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean RandomVariableScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+[-1, 2, -1, 2, -1, 2]
+[2, 4, 6]
+(2, 3, 3)
+~~~
+
+The tuple says \(X(4)=2\), three faces map to \(-1\), and three map to \(2\).
+Because every face has mass \(1/6\), the last two counts give law masses
+\(3/6=1/2\). This tutorial checks only the exact finite ledger with
+<code>Std</code>, so it is bounded enough for a normal Mac or Linux machine. It
+does not define measures or prove measurability. The general Mathlib and
+project interfaces remain in the guarded Linux workflow below.
+
 Given a source measure <code>μ</code>, Lean writes the induced value-space law
 as <code>Measure.map X μ</code>. For a measurable target set <code>B</code>,
 <code>Measure.map_apply hX hB</code> proves the same preimage equation used in

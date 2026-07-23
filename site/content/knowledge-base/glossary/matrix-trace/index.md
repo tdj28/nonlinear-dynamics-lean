@@ -192,6 +192,75 @@ that pointwise trace preserves measurability.
   type."
 {{< /lean-bridge >}}
 
+### Try the diagonal ledger locally
+
+The general project theorem uses Mathlib matrices and measurable functions.
+The opening two-by-two arithmetic needs only four integer fields. Save the
+following as <code>MatrixTraceScratch.lean</code> in a scratch directory outside
+<code>formalization/</code>:
+
+~~~lean
+import Std
+
+structure Mat2 where
+  a11 : Int
+  a12 : Int
+  a21 : Int
+  a22 : Int
+  deriving DecidableEq, Repr
+
+namespace Mat2
+
+def mul (A B : Mat2) : Mat2 :=
+  { a11 := A.a11 * B.a11 + A.a12 * B.a21
+    a12 := A.a11 * B.a12 + A.a12 * B.a22
+    a21 := A.a21 * B.a11 + A.a22 * B.a21
+    a22 := A.a21 * B.a12 + A.a22 * B.a22 }
+
+def trace (A : Mat2) : Int :=
+  A.a11 + A.a22
+
+def swapSimilarity (A : Mat2) : Mat2 :=
+  { a11 := A.a22, a12 := A.a21, a21 := A.a12, a22 := A.a11 }
+
+def rows (A : Mat2) : List (Int × Int) :=
+  [(A.a11, A.a12), (A.a21, A.a22)]
+
+end Mat2
+
+def A : Mat2 :=
+  { a11 := 2, a12 := 7, a21 := -1, a22 := 5 }
+
+#eval Mat2.rows (Mat2.mul A A)
+#eval (Mat2.trace A, Mat2.trace (Mat2.mul A A),
+       Mat2.trace (Mat2.swapSimilarity A))
+
+example : Mat2.trace A = 7 := by decide
+example : Mat2.rows (Mat2.mul A A) = [(-3, 49), (-7, 18)] := by decide
+example : Mat2.trace (Mat2.mul A A) = 15 := by decide
+example : Mat2.trace (Mat2.swapSimilarity A) = 7 := by decide
+~~~
+
+Run it with the pinned compiler:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean MatrixTraceScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0. It printed
+the two rows of \(A^2\), followed by the trace ledger:
+
+~~~text
+[(-3, 49), (-7, 18)]
+(7, 15, 7)
+~~~
+
+This is a bounded <code>Std</code>-only model of the exact example, suitable on
+a normal Mac or Linux machine. Its record is not Mathlib's general matrix type,
+and it proves no measurability theorem. The project declaration and its
+guarded cloud check remain separate below.
+
 This is the exact checked source declaration and proof:
 
 ~~~lean

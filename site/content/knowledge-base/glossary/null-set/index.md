@@ -232,10 +232,107 @@ calculation. It writes the defining equality directly.
   the value lives in the extended nonnegative reals, so it cannot be negative.
 {{< /lean-bridge >}}
 
+### Run a finite null-set ledger locally
+
+The continuous singleton proof uses real analysis, but the logical distinction
+between **nonempty** and **zero mass** already appears in a four-outcome
+experiment. Give the two named ghost outcomes weight zero, give the other two
+outcomes weights two and three, and read every weight in fifths. The singleton
+event containing `ghostA` is visibly nonempty while its mass is zero.
+
+Save the following as `/tmp/NullSetTutorial.lean`:
+
+~~~lean
+import Std
+
+inductive Atom where
+  | ghostA
+  | ghostB
+  | left
+  | right
+deriving Repr, DecidableEq
+
+abbrev Event := Atom → Bool
+
+def atoms : List Atom := [.ghostA, .ghostB, .left, .right]
+
+def label : Atom → String
+  | .ghostA => "ghost-a"
+  | .ghostB => "ghost-b"
+  | .left => "left"
+  | .right => "right"
+
+def spreadWeight : Atom → Nat
+  | .ghostA | .ghostB => 0
+  | .left => 2
+  | .right => 3
+
+def diracAtGhostA : Atom → Nat
+  | .ghostA => 5
+  | _ => 0
+
+def mass (weight : Atom → Nat) (event : Event) : Nat :=
+  atoms.foldl (fun total atom =>
+    if event atom then total + weight atom else total) 0
+
+def singleton (chosen : Atom) : Event :=
+  fun atom => decide (atom = chosen)
+
+def ghostUnion : Event :=
+  fun atom => decide (atom = .ghostA ∨ atom = .ghostB)
+
+def ghostAWithLeft : Event :=
+  fun atom => decide (atom = .ghostA ∨ atom = .left)
+
+def members (event : Event) : List String :=
+  (atoms.filter event).map label
+
+#eval members (singleton .ghostA)
+#eval mass spreadWeight (singleton .ghostA)
+#eval mass diracAtGhostA (singleton .ghostA)
+#eval mass spreadWeight ghostUnion
+#eval mass spreadWeight ghostAWithLeft
+
+example : members (singleton .ghostA) = ["ghost-a"] := by native_decide
+example : mass spreadWeight ghostUnion = 0 := by native_decide
+example : mass spreadWeight ghostAWithLeft = 2 := by native_decide
+~~~
+
+Type exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/NullSetTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0. It printed:
+
+~~~text
+["ghost-a"]
+0
+5
+0
+2
+~~~
+
+The first two lines jointly certify the key boundary: the event has one member
+but zero fifth-units of `spreadWeight`. The third line changes only the
+measure; the same singleton now carries all five units. The fourth line shows
+that the union of the two zero-weight singleton events is still null. The last
+line adds `left`, so the event acquires mass (2/5).
+
+Here `Atom → Bool` is a small executable representation of event membership,
+`mass` adds the weights of the selected atoms, and each `example` asks Lean's
+kernel to check a finite equality. This `Std` worksheet does not formalize
+Lebesgue measure, the shrinking-cover argument, or Mathlib's general
+countable-union theorem. Those belong to the project-backed worksheet below.
+
+### Try the exact measure theorems in the repository
+
 Two Mathlib lemmas encode the closure rules from the previous section.
 <code>measure_mono_null</code> transfers zero mass from a set to any subset,
 and <code>measure_iUnion_null</code> combines a countable family of null sets.
-A human can type this worksheet:
+On an approved Linux project builder, a human can type this worksheet:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman

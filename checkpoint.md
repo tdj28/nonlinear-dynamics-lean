@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:29 PDT
+Last updated: 2026-07-22 18:31 PDT
 
-Audited baseline: `main` at `861cd9c`
+Audited baseline: `main` at `672703a`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -178,9 +178,14 @@ worked-SVG card generators, and executes five new foundational tutorials. The
 second cleanup wave adds six more deterministic worked-SVG generators and
 executes the exact `Std` tutorials for expectation, integrability, measurable
 functions, measurable spaces, measure-preserving transformations, and
-pushforward measures. The remaining ledger is therefore eight missing
-generators, fifteen stale generators, and six missing tutorials. Treat those
-findings as required
+pushforward measures. The third cleanup wave supplies the final eight missing
+worked-SVG generators and executes the remaining six local tutorials for
+conjugate transpose, matrix trace, orbit iteration, random matrices, random
+variables, and null sets. The orbit worksheet deliberately defines its own
+finite recursion because Mathlib's iterate notation is not part of `Std`.
+There are therefore no missing page-owned generators and no missing bounded
+tutorials; fifteen older generators remain stale against their checked cards.
+Treat those findings as required
 final glossary cleanup under the owner's reader-walkthrough direction; do not
 call the glossary release closed merely because all 62 content rewrites exist.
 The separate stale “worksheet not run” finding is also cleared: the exact
@@ -3092,6 +3097,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `672703a`: make expectation, integrability, measurable-function,
+  measurable-space, measure-preserving, and pushforward chapters executable;
+  run all six exact `Std` worksheets and add deterministic worked-figure cards.
 - `861cd9c`: rebuild *Random Matrices: From Outcomes to Spectra* around one
   red/blue coin experiment, checked eigenpairs, sample measures, the outer law
   on measures, its distinct mean, and a nilpotent information-loss boundary;

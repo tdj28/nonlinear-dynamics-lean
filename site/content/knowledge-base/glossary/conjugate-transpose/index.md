@@ -198,6 +198,83 @@ conjugate."
   written after it.
 {{< /lean-bridge >}}
 
+### Try the entry arithmetic locally
+
+The project theorem below uses Mathlib's general matrix and complex-number
+interfaces. Before loading that machinery, a reader can reproduce the opening
+calculation with integer real-and-imaginary pairs. Save this file as
+<code>ConjugateTransposeScratch.lean</code> in a scratch directory outside
+<code>formalization/</code>:
+
+~~~lean
+import Std
+
+structure GaussianInt where
+  re : Int
+  im : Int
+  deriving DecidableEq, Repr
+
+def GaussianInt.conj (z : GaussianInt) : GaussianInt :=
+  { re := z.re, im := -z.im }
+
+structure Mat2 where
+  a11 : GaussianInt
+  a12 : GaussianInt
+  a21 : GaussianInt
+  a22 : GaussianInt
+  deriving DecidableEq, Repr
+
+def Mat2.conjTranspose (M : Mat2) : Mat2 :=
+  { a11 := M.a11.conj
+    a12 := M.a21.conj
+    a21 := M.a12.conj
+    a22 := M.a22.conj }
+
+def A : Mat2 :=
+  { a11 := { re := 1, im := 0 }
+    a12 := { re := 2, im := 1 }
+    a21 := { re := 0, im := -3 }
+    a22 := { re := 4, im := 0 } }
+
+def AH : Mat2 :=
+  { a11 := { re := 1, im := 0 }
+    a12 := { re := 0, im := 3 }
+    a21 := { re := 2, im := -1 }
+    a22 := { re := 4, im := 0 } }
+
+def entries (M : Mat2) : List (Int × Int) :=
+  [(M.a11.re, M.a11.im), (M.a12.re, M.a12.im),
+   (M.a21.re, M.a21.im), (M.a22.re, M.a22.im)]
+
+#eval entries A.conjTranspose
+#eval [decide (A.conjTranspose = AH),
+       decide (Mat2.conjTranspose (Mat2.conjTranspose A) = A)]
+
+example : A.conjTranspose = AH := by decide
+example : Mat2.conjTranspose (Mat2.conjTranspose A) = A := by decide
+~~~
+
+The four pairs list entries in row order as
+<code>(real part, imaginary part)</code>. Run the file with exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean ConjugateTransposeScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+[(1, 0), (0, 3), (2, -1), (4, 0)]
+[true, true]
+~~~
+
+This bounded file imports only <code>Std</code>, so it is suitable for a normal
+Mac or Linux machine. It checks the exact four-entry ledger and involution for
+this example. It does not import Mathlib, define its general
+<code>Matrix.conjTranspose</code>, or prove measurability. Those exact project
+obligations use the guarded Linux workflow below.
+
 The project's random-matrix foundation contains this exact checked theorem:
 
 ~~~lean
@@ -215,7 +292,7 @@ entry has indices <code>j i</code>. It is the composition of the original
 coordinate function with <code>star</code>, and complex conjugation is
 continuous, hence measurable.
 
-### A worksheet a human can type
+### Check the exact project declarations on Linux
 
 The following scratch file imports the real project module, asks Lean for the
 relevant theorem types, and then proves the product and involution identities
