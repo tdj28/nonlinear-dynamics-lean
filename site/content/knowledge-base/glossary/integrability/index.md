@@ -261,10 +261,84 @@ theorem transports that assumption along a measure-preserving base iterate.
 It does not infer integrability merely from measurability or from probability
 normalization.
 
-### A worksheet a human can type
+### Try the finite and heavy-tail ledgers locally
 
-The following scratch file separates the two fields contained in an
-integrability proof.
+This bounded worksheet imports only Lean's <code>Std</code> library. For the
+three-payoff example it records probability numerators over six. For the
+heavy-tail example it checks the exact cancellation
+\(2^n/2^n=1\) at each positive index and then adds the first \(N\)
+contributions. Save it as <code>/tmp/IntegrabilityScratch.lean</code> on a
+normal Mac or Linux computer:
+
+~~~lean
+import Std
+
+namespace IntegrabilityScratch
+
+def payoffs : List Int := [-1, 2, 5]
+def weightsSixths : List Nat := [3, 2, 1]
+
+def absoluteContributionsSixths : List Nat :=
+  List.zipWith
+    (fun payoff weight => Int.natAbs payoff * weight)
+    payoffs weightsSixths
+
+def absoluteTotalSixths : Nat :=
+  absoluteContributionsSixths.foldl (fun total term => total + term) 0
+
+def heavyValue (n : Nat) : Nat := 2 ^ n
+def heavyWeightDenominator (n : Nat) : Nat := 2 ^ n
+
+def heavyContribution (n : Nat) : Nat :=
+  heavyValue n / heavyWeightDenominator n
+
+def heavyPartialTotal (N : Nat) : Nat :=
+  (List.range N).foldl
+    (fun total k => total + heavyContribution (k + 1)) 0
+
+#eval absoluteContributionsSixths
+#eval absoluteTotalSixths
+#eval (List.range 6).map (fun k => heavyContribution (k + 1))
+#eval [1, 2, 4, 8].map heavyPartialTotal
+
+example : absoluteContributionsSixths = [3, 4, 5] := by decide
+example : absoluteTotalSixths = 12 := by decide
+example : (List.range 6).map (fun k => heavyContribution (k + 1)) =
+    [1, 1, 1, 1, 1, 1] := by decide
+example : [1, 2, 4, 8].map heavyPartialTotal = [1, 2, 4, 8] := by decide
+
+end IntegrabilityScratch
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/IntegrabilityScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[3, 4, 5]
+12
+[1, 1, 1, 1, 1, 1]
+[1, 2, 4, 8]
+~~~
+
+The finite total <code>12</code> means \(12/6=2\). At cutoffs
+\(N=1,2,4,8\), the heavy-tail partial totals equal \(1,2,4,8\), because
+every newly included outcome contributes one. Their growth is linear in the
+cutoff and unbounded. This finite computation demonstrates the obstruction;
+it does not ask Lean Core to define an infinite series or prove Mathlib's
+<code>Integrable</code> predicate.
+
+### Check the exact project predicate on Linux
+
+The following Mathlib-backed scratch file separates the two fields contained
+in an integrability proof. Use it only on an approved Linux builder
+provisioned with the pinned repository cache.
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.LogPlusIntegrability

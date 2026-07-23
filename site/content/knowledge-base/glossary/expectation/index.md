@@ -298,8 +298,89 @@ both sides are literally the same integral. The theorem is not a
 normalization formula. The probability typeclass has already required total
 mass one before the expectation name can be formed.
 
-Here is a complete worksheet a human can type into a scratch <code>.lean</code>
-file on a provisioned Linux build host:
+### Try the three-payoff ledger locally
+
+This first worksheet imports only Lean's small <code>Std</code> library. It
+stores every probability as a numerator over the common denominator six, so
+the paper calculation
+
+\[
+\frac{-3+4+5}{6}=1
+\]
+
+becomes exact integer arithmetic. Save this as
+<code>/tmp/ExpectationScratch.lean</code> on a normal Mac or Linux computer:
+
+~~~lean
+import Std
+
+namespace ExpectationScratch
+
+def payoffs : List Int := [-1, 2, 5]
+def weightsSixths : List Nat := [3, 2, 1]
+
+def contributionsSixths : List Int :=
+  List.zipWith
+    (fun payoff weight => payoff * Int.ofNat weight)
+    payoffs weightsSixths
+
+def totalSixths : Int :=
+  contributionsSixths.foldl (fun total term => total + term) 0
+
+def transformedPayoffs : List Int :=
+  payoffs.map (fun payoff => 2 * payoff + 3)
+
+def transformedContributionsSixths : List Int :=
+  List.zipWith
+    (fun payoff weight => payoff * Int.ofNat weight)
+    transformedPayoffs weightsSixths
+
+def transformedTotalSixths : Int :=
+  transformedContributionsSixths.foldl (fun total term => total + term) 0
+
+#eval contributionsSixths
+#eval totalSixths
+#eval totalSixths / 6
+#eval transformedContributionsSixths
+#eval transformedTotalSixths / 6
+
+example : contributionsSixths = [-3, 4, 5] := by decide
+example : totalSixths = 6 := by decide
+example : totalSixths / 6 = 1 := by decide
+example : transformedContributionsSixths = [3, 14, 13] := by decide
+example : transformedTotalSixths / 6 = 5 := by decide
+
+end ExpectationScratch
+~~~
+
+Type these two commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/ExpectationScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[-3, 4, 5]
+6
+1
+[3, 14, 13]
+5
+~~~
+
+The three entries on the first line are the weighted contributions in sixths,
+not sampled payoffs. The proof lines make Lean check the same total and the
+linearity example \(Y=2X+3\). This bounded worksheet neither imports Mathlib
+nor constructs a measure-theoretic integral.
+
+### Check the exact project interface on Linux
+
+The next worksheet uses the repository's Mathlib-backed integral interface.
+Type it only on an approved Linux builder provisioned with the pinned project
+cache:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.ProbabilityErgodicBase

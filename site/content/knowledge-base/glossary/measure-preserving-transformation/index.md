@@ -335,8 +335,91 @@ The last line says: preservation passes to the \(j\)-th iterate, and that
 iterate preserves integrability under composition. No ergodicity hypothesis
 appears in this finite theorem.
 
-Here is a complete worksheet a human can type into a scratch <code>.lean</code>
-file on a provisioned Linux build host:
+### Enumerate the four-state test locally
+
+On the uniform four-state space, mass in quarters is just the number of states
+in an event. This bounded <code>Std</code> worksheet enumerates all sixteen
+events. It confirms that the cycle preserves every one and finds the
+singleton that defeats the collapse. Save it as
+<code>/tmp/MeasurePreservingScratch.lean</code> on a normal Mac or Linux
+computer:
+
+~~~lean
+import Std
+
+namespace MeasurePreservingScratch
+
+def states : List Nat := [0, 1, 2, 3]
+
+def cycle (state : Nat) : Nat :=
+  (state + 1) % 4
+
+def collapse (state : Nat) : Nat :=
+  if state < 2 then 0 else 2
+
+def preimage (T : Nat → Nat) (event : List Nat) : List Nat :=
+  states.filter (fun state => event.contains (T state))
+
+def massQuarters (event : List Nat) : Nat :=
+  event.length
+
+def allEvents : List (List Nat) :=
+  [[], [0], [1], [2], [3],
+   [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3],
+   [0, 1, 2], [0, 1, 3], [0, 2, 3], [1, 2, 3], states]
+
+def preservesEveryEvent (T : Nat → Nat) : Bool :=
+  allEvents.all (fun event =>
+    massQuarters (preimage T event) == massQuarters event)
+
+def halfEvent : List Nat := [0, 1]
+def singletonZero : List Nat := [0]
+
+#eval preimage cycle halfEvent
+#eval [massQuarters (preimage cycle halfEvent), massQuarters halfEvent]
+#eval preimage collapse singletonZero
+#eval [massQuarters (preimage collapse singletonZero),
+       massQuarters singletonZero]
+#eval [preservesEveryEvent cycle, preservesEveryEvent collapse]
+
+example : preimage cycle halfEvent = [0, 3] := by decide
+example : massQuarters (preimage cycle halfEvent) = 2 := by decide
+example : preimage collapse singletonZero = [0, 1] := by decide
+example : preservesEveryEvent cycle = true := by decide
+example : preservesEveryEvent collapse = false := by decide
+
+end MeasurePreservingScratch
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/MeasurePreservingScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[0, 3]
+[2, 2]
+[0, 1]
+[2, 1]
+[true, false]
+~~~
+
+The list <code>[0, 3]</code> is the same set as the page's
+\(\{3,0\}\); lists retain the ascending enumeration order. The next line
+compares equal masses \(2/4\) and \(2/4\). For the collapse, the singleton
+preimage has mass \(2/4\) instead of \(1/4\). This exhaustive finite test is
+possible because there are only sixteen events. It is not a general proof of
+<code>MeasurePreserving</code>.
+
+### Check the exact Mathlib certificate on Linux
+
+The next worksheet uses the repository's Mathlib-backed certificate. Type it
+only on an approved Linux builder provisioned with the pinned project cache:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomCocycles.BirkhoffConvergence

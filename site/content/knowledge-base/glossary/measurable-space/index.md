@@ -236,8 +236,84 @@ function representation of matrices. The final theorem
 <code>measurable_pi_iff</code> says that a function-valued map is measurable
 exactly when every coordinate is measurable.
 
-Here is a complete worksheet a reader can type on a build host provisioned for
-the pinned project:
+### Check the parity closure rules locally
+
+This small <code>Std</code> worksheet represents each die event as a sorted
+list. It checks all four complements and all sixteen pairwise unions in the
+parity family, then exposes the missing complement in the invalid family.
+Save it as <code>/tmp/MeasurableSpaceScratch.lean</code> on a normal Mac or
+Linux computer:
+
+~~~lean
+import Std
+
+namespace MeasurableSpaceScratch
+
+def faces : List Nat := [1, 2, 3, 4, 5, 6]
+def odds : List Nat := [1, 3, 5]
+def evens : List Nat := [2, 4, 6]
+
+def parityFamily : List (List Nat) :=
+  [[], odds, evens, faces]
+
+def complement (event : List Nat) : List Nat :=
+  faces.filter (fun face => !(event.contains face))
+
+def union (left right : List Nat) : List Nat :=
+  faces.filter (fun face => left.contains face || right.contains face)
+
+def inParityFamily (event : List Nat) : Bool :=
+  parityFamily.contains event
+
+def complementChecks : List Bool :=
+  parityFamily.map (fun event => inParityFamily (complement event))
+
+def everyUnionStays : Bool :=
+  parityFamily.all (fun left =>
+    parityFamily.all (fun right => inParityFamily (union left right)))
+
+def invalidFamily : List (List Nat) :=
+  [[], evens, faces]
+
+#eval complementChecks
+#eval everyUnionStays
+#eval complement evens
+#eval invalidFamily.contains (complement evens)
+
+example : complementChecks = [true, true, true, true] := by decide
+example : everyUnionStays = true := by decide
+example : complement evens = odds := by decide
+example : invalidFamily.contains (complement evens) = false := by decide
+
+end MeasurableSpaceScratch
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/MeasurableSpaceScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[true, true, true, true]
+true
+[1, 3, 5]
+false
+~~~
+
+The first two lines verify the finite closure ledger. The final two say that
+the complement of the even faces is the odd set and that the tempting
+three-event family omits it. This is a finite model of the closure rules, not
+a replacement for Mathlib's general countable-union structure.
+
+### Check the exact project theorem on Linux
+
+The next worksheet uses Mathlib and the repository's matrix interface. Type it
+only on an approved Linux builder provisioned with the pinned project cache:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Basic

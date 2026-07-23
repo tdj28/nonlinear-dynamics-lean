@@ -300,10 +300,88 @@ entry function is measurable. The target matrix measurable space is built
 entry by entry, so the theorem turns one structured pullback condition into a
 family of coordinate conditions.
 
-### A worksheet a human can type
+### Pull back all four parity events locally
 
-This small file exposes the definition through a single target event and then
-asks Lean for the project's coordinatewise theorem.
+Lean Core does not include Mathlib's measure theory, but a small
+<code>Std</code> program can compute the page's complete finite preimage table.
+Here <code>false</code> means odd and <code>true</code> means even. Save this as
+<code>/tmp/MeasurableFunctionScratch.lean</code> on a normal Mac or Linux
+computer:
+
+~~~lean
+import Std
+
+namespace MeasurableFunctionScratch
+
+def faces : List Nat := [1, 2, 3, 4, 5, 6]
+
+def parity (face : Nat) : Bool :=
+  face % 2 == 0
+
+def preimage (event : Bool → Bool) : List Nat :=
+  faces.filter (fun face => event (parity face))
+
+def targetEvents : List (Bool → Bool) :=
+  [fun _ => false,
+   fun isEven => !isEven,
+   fun isEven => isEven,
+   fun _ => true]
+
+def sourceAllowed (event : List Nat) : Bool :=
+  event == [] ||
+  event == [1, 3, 5] ||
+  event == [2, 4, 6] ||
+  event == faces
+
+def pulledBackEvents : List (List Nat) :=
+  targetEvents.map preimage
+
+def exactFaceTwo : List Nat :=
+  faces.filter (fun face => face == 2)
+
+#eval pulledBackEvents
+#eval pulledBackEvents.map sourceAllowed
+#eval exactFaceTwo
+#eval sourceAllowed exactFaceTwo
+
+example : pulledBackEvents =
+    [[], [1, 3, 5], [2, 4, 6], [1, 2, 3, 4, 5, 6]] := by decide
+example : pulledBackEvents.map sourceAllowed =
+    [true, true, true, true] := by decide
+example : exactFaceTwo = [2] := by decide
+example : sourceAllowed exactFaceTwo = false := by decide
+
+end MeasurableFunctionScratch
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/MeasurableFunctionScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+[[], [1, 3, 5], [2, 4, 6], [1, 2, 3, 4, 5, 6]]
+[true, true, true, true]
+[2]
+false
+~~~
+
+The first two lines exhaust every event in the two-value target and show that
+all four preimages belong to the parity-only source family. The last two lines
+reproduce the exact-face counterexample. This computes the finite set ledger;
+it does not replace a proof of Mathlib's general
+<code>Measurable f</code> proposition.
+
+### Check the exact project theorem on Linux
+
+This Mathlib-backed file exposes the definition through a single target event
+and then asks Lean for the project's coordinatewise theorem. Use it only on an
+approved Linux builder provisioned with the pinned repository cache.
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Basic

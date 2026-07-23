@@ -295,11 +295,78 @@ For the deterministic congruence map \(C_A(H)=AHA^*\), the module proves
 the transformed law; it does not assert that the transformed law equals the
 original one.
 
+### Move the three source masses locally
+
+This bounded <code>Std</code> worksheet stores the source masses as integer
+numbers of sixths. It computes preimages first and then adds the source mass
+inside each one, exactly following the pushforward definition. Save it as
+<code>/tmp/PushforwardScratch.lean</code> on a normal Mac or Linux computer:
+
+~~~lean
+import Std
+
+namespace PushforwardScratch
+
+def sourceAtoms : List String := ["a", "b", "c"]
+
+def massSixths (source : String) : Nat :=
+  if source == "a" then 3
+  else if source == "b" then 1
+  else 2
+
+def target (source : String) : Nat :=
+  if source == "b" then 1 else 0
+
+def preimage (targetValue : Nat) : List String :=
+  sourceAtoms.filter (fun source => target source == targetValue)
+
+def pushMassSixths (targetValue : Nat) : Nat :=
+  (preimage targetValue).foldl
+    (fun total source => total + massSixths source) 0
+
+#eval preimage 0
+#eval preimage 1
+#eval [pushMassSixths 0, pushMassSixths 1]
+#eval pushMassSixths 0 + pushMassSixths 1
+
+example : preimage 0 = ["a", "c"] := by decide
+example : preimage 1 = ["b"] := by decide
+example : pushMassSixths 0 = 5 := by decide
+example : pushMassSixths 1 = 1 := by decide
+example : pushMassSixths 0 + pushMassSixths 1 = 6 := by decide
+
+end PushforwardScratch
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/PushforwardScratch.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+["a", "c"]
+["b"]
+[5, 1]
+6
+~~~
+
+The target masses are therefore \(5/6\) and \(1/6\), and the last line checks
+that transport retains total mass one. This finite ledger does not construct
+Mathlib's <code>Measure.map</code>; it makes the preimage arithmetic visible
+before the exact project interface below.
+
+### Check the exact project interface on Linux
+
 {{< repo-check >}}
 The authoritative source is
 [<code>formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean).
 A human can type the following worksheet in a scratch buffer on a deliberately
-provisioned copy of the project:
+provisioned Linux copy of the project:
 
 ~~~lean
 import NonlinearDynamics.Random.RandomMatrices.Laws

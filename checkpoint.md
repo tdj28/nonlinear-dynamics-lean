@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:21 PDT
+Last updated: 2026-07-22 18:29 PDT
 
-Audited baseline: `main` at `3e99c23`
+Audited baseline: `main` at `861cd9c`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -174,9 +174,13 @@ explicit dimensions, twenty early pages without page-owned card generators,
 fifteen existing card generators whose `--verify` comparison was stale, and
 seventeen early foundational pages without a tiny local `Std` tutorial.
 The first cleanup wave fixes the SVG dimensions, adds and verifies six
-worked-SVG card generators, and executes five new foundational tutorials.
-The remaining ledger is therefore fourteen missing generators, fifteen stale
-generators, and twelve missing tutorials. Treat those findings as required
+worked-SVG card generators, and executes five new foundational tutorials. The
+second cleanup wave adds six more deterministic worked-SVG generators and
+executes the exact `Std` tutorials for expectation, integrability, measurable
+functions, measurable spaces, measure-preserving transformations, and
+pushforward measures. The remaining ledger is therefore eight missing
+generators, fifteen stale generators, and six missing tutorials. Treat those
+findings as required
 final glossary cleanup under the owner's reader-walkthrough direction; do not
 call the glossary release closed merely because all 62 content rewrites exist.
 The separate stale “worksheet not run” finding is also cleared: the exact
@@ -3088,6 +3092,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `861cd9c`: rebuild *Random Matrices: From Outcomes to Spectra* around one
+  red/blue coin experiment, checked eigenpairs, sample measures, the outer law
+  on measures, its distinct mean, and a nilpotent information-loss boundary;
+  execute its local `Std` lab and derive the card from the exact figure.
 - `3e99c23`: repair six foundational probability/measure teaching bundles
   with deterministic worked-SVG card generators, explicit SVG dimensions,
   and five tiny `Std` tutorials executed locally without Mathlib or Lake.
