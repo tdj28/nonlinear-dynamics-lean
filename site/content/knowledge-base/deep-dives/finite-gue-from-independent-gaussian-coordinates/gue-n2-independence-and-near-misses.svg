@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="n2ScopeTitle n2ScopeDesc">
+  <title id="n2ScopeTitle">Primitive independence, deterministic reflection, and two size-two near-misses</title>
+  <desc id="n2ScopeDesc">The size-two coordinate law has two independent diagonal real Gaussians and one complex strict-upper Gaussian whose real and imaginary parts are independent. A deterministic Hermitian map copies the upper entry below the diagonal by conjugation, so the two matrix entries are dependent. A copied-sign matrix has trace one and Frobenius square fifteen but is not Hermitian. An unscaled four-coordinate law has expected Frobenius square six instead of the selected value two. Dimension zero has no coordinates and both laws are Dirac masses.</desc>
+  <rect width="1200" height="860" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#16243A}
+    .title{font-size:30px;font-weight:700}.sub{font-size:18px;fill:#4D5B6B}
+    .h{font-size:21px;font-weight:700}.s{font-size:17px}.m{font-size:15px;fill:#4D5B6B}
+    .big{font-size:23px;font-weight:700}.mono{font-family:Menlo,Consolas,monospace;font-size:17px;fill:#16243A}
+  </style>
+  <defs>
+    <marker id="scopeArrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#A85F24"/>
+    </marker>
+  </defs>
+
+  <text x="42" y="48" class="t title">Independence lives before reflection</text>
+  <text x="42" y="76" class="t sub">The source law factors into primitive coordinates; the matrix repeats information deterministically.</text>
+
+  <rect x="42" y="108" width="350" height="322" rx="16" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="66" y="145" class="t h">Coordinate probability law</text>
+  <rect x="68" y="170" width="298" height="92" rx="10" fill="#FFFDF8" stroke="#8EA2B8" stroke-width="1.5"/>
+  <text x="88" y="204" class="t s">diagonal block: d0 and d1</text>
+  <text x="88" y="235" class="t m">mutually independent, variance 1/2 each</text>
+  <rect x="68" y="282" width="298" height="92" rx="10" fill="#FFFDF8" stroke="#8EA2B8" stroke-width="1.5"/>
+  <text x="88" y="316" class="t s">upper block: x + iy</text>
+  <text x="88" y="347" class="t m">x and y independent, variance 1/4 each</text>
+  <path d="M108 276 L108 267 M326 276 L326 267" stroke="#6F8D5E" stroke-width="3"/>
+  <text x="217" y="399" text-anchor="middle" class="t h">diagonal block is independent</text>
+  <text x="217" y="423" text-anchor="middle" class="t h">of the upper block</text>
+
+  <path d="M402 268 L446 268" fill="none" stroke="#A85F24" stroke-width="3" marker-end="url(#scopeArrow)"/>
+
+  <rect x="458" y="108" width="284" height="322" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="482" y="145" class="t h">Deterministic map</text>
+  <text x="482" y="190" class="t big">assemble coordinates</text>
+  <text x="482" y="234" class="t s">put d0 and d1 on diagonal</text>
+  <text x="482" y="268" class="t s">put x + iy above diagonal</text>
+  <text x="482" y="302" class="t s">put x - iy below diagonal</text>
+  <line x1="482" y1="329" x2="718" y2="329" stroke="#D2B394" stroke-width="1.5"/>
+  <text x="482" y="354" class="t m">The map is measurable, and every</text>
+  <text x="482" y="381" class="t m">output is Hermitian.</text>
+  <text x="482" y="410" class="t m">It is not another probability law.</text>
+
+  <path d="M752 268 L796 268" fill="none" stroke="#A85F24" stroke-width="3" marker-end="url(#scopeArrow)"/>
+
+  <rect x="808" y="108" width="350" height="322" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="832" y="145" class="t h">Matrix probability law</text>
+  <rect x="844" y="174" width="278" height="116" rx="10" fill="#FFFDF8" stroke="#9CB28E" stroke-width="1.5"/>
+  <text x="866" y="210" class="t mono">upper: x + iy</text>
+  <text x="866" y="252" class="t mono">lower: x - iy</text>
+  <text x="983" y="272" text-anchor="middle" class="t m">same primitive, conjugated</text>
+  <text x="832" y="325" class="t big">not independent entries</text>
+  <text x="832" y="360" class="t s">The lower entry is fixed by the upper one.</text>
+  <text x="832" y="393" class="t m">The pushforward is the finite ensemble law.</text>
+
+  <rect x="42" y="468" width="350" height="280" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="66" y="505" class="t h">Near-miss A: wrong reflection</text>
+  <text x="66" y="550" class="t mono">row 0: [2 | 1 + 2i]</text>
+  <text x="66" y="584" class="t mono">row 1: [1 + 2i | -1]</text>
+  <text x="66" y="629" class="t big">Hermitian? no</text>
+  <text x="66" y="668" class="t s">trace = 1 and Frobenius square = 15</text>
+  <text x="66" y="706" class="t m">Two scalar checks do not detect the sign error.</text>
+
+  <rect x="425" y="468" width="350" height="280" rx="16" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="449" y="505" class="t h">Near-miss B: no Wigner scale</text>
+  <text x="449" y="552" class="t s">all four primitive variances = 1</text>
+  <text x="449" y="592" class="t big">expected Frobenius square</text>
+  <text x="449" y="624" class="t big">= 6</text>
+  <text x="449" y="659" class="t s">selected size-two ensemble budget = 2</text>
+  <text x="449" y="696" class="t m">The assembly map is unchanged, but the law is</text>
+  <text x="449" y="721" class="t m">not the repository's normalization convention.</text>
+
+  <rect x="808" y="468" width="350" height="280" rx="16" fill="#EDE8E1" stroke="#7F786D" stroke-width="2"/>
+  <text x="832" y="505" class="t h">Boundary: size zero</text>
+  <text x="832" y="554" class="t big">0 primitive degrees</text>
+  <text x="832" y="600" class="t s">coordinate law: Dirac at empty zero</text>
+  <text x="832" y="638" class="t s">matrix law: Dirac at empty zero</text>
+  <text x="832" y="686" class="t m">No reciprocal, limiting argument, or hidden</text>
+  <text x="832" y="711" class="t m">positive-dimension assumption is used.</text>
+
+  <rect x="42" y="786" width="1116" height="48" rx="12" fill="#16243A"/>
+  <text x="600" y="817" text-anchor="middle" class="t s" fill="#FFFDF8" style="fill:#FFFDF8">Product-law independence is primitive; conjugate reflection is deterministic dependence.</text>
+</svg>

@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 19:27 PDT
+Last updated: 2026-07-22 19:36 PDT
 
-Audited baseline: `main` at `aa90da4`
+Audited baseline: `main` at `985c0a8`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **7 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **8 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -267,6 +267,18 @@ inclusion, and final law-level invariance without importing a density or
 spectral claim. Six Lean bridges, two accessible numeric figures, all 35 RMT-08
 declarations, and a nine-example local `Std` worksheet make the route
 reproducible; exact project checks remain Linux-cloud only.
+*Finite GUE from Independent Gaussian Coordinates* now builds the selected
+matrix law from the exact size-two variance ledger `(1/2, 1/2, 1/4, 1/4)`.
+The deterministic point `(2, -1, 1, 2)` gives a Hermitian matrix with trace
+`1` and Frobenius ledger `4 + 5 + 5 + 1 = 15`, while the law-level expected
+budget is `2`. Wrong reflection and unscaled-variance near-misses expose the
+assembly and normalization obligations; the zero-dimensional route ends at a
+Dirac law. Three accessible figures, six Lean bridges, three guarded project
+checks, and a locally executed `Std` worksheet distinguish primitive
+independence, reflected dependence, deterministic assembly, and pushforward
+law. An independent adversarial review corrected module-boundary language and
+replaced topological-support shorthand with the exact Hermitian-set mass-one
+claim.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3154,6 +3166,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `985c0a8`: rebuild *From Normalized Hermitian Coordinates to Gaussian
+  Unitary Ensemble Invariance* around the exact `15`-versus-`25` isometry
+  ledger, swap and phase congruences, six Lean bridges, all 35 RMT-08
+  declarations, and a nine-example local worksheet.
 - `aa90da4`: rebuild *Intrinsic Hermitian Gaussian Symmetry and Matrix-Law
   Support* around one exact swap congruence and contrasting Dirac/balanced
   two-point laws, with three accessible figures, six Lean bridges, an executed

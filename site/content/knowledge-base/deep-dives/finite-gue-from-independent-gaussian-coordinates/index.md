@@ -2,17 +2,17 @@
 title: "Finite Gaussian Unitary Ensemble (GUE) from Independent Gaussian Coordinates"
 slug: "finite-gue-from-independent-gaussian-coordinates"
 date: 2026-07-21
-summary: "A textbook ascent from the Wigner variance ledger through independent finite Gaussian blocks and measurable Hermitian assembly to a checked finite Gaussian unitary ensemble matrix law."
-lead: "A named matrix ensemble becomes trustworthy only when every scale, marginal, independence claim, transport map, and boundary case is visible."
+summary: "At size two, follow four independent real Gaussian primitives through the Wigner variance ledger, Hermitian reflection, measurable assembly, and the exact finite Gaussian unitary ensemble matrix law."
+lead: "Compute one complete matrix by hand, catch two convincing near-misses, and then climb from a deterministic coordinate map to the checked probability law."
 draft: false
 pro_reviewed: false
-level: "Finite probability foundations to a matrix ensemble law"
-reading_time: "60 to 80 minutes"
-prerequisites: "Real and complex Gaussian laws, finite product measures, Hermitian coordinates, and pushforwards; each is reviewed before use"
+level: "First size-two ledger to the exact finite ensemble law"
+reading_time: "75 to 95 minutes"
+prerequisites: "Complex conjugation and finite arithmetic; Gaussian laws, product measures, Hermitian matrices, and pushforwards are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble"
 toc: true
 og_image: "finite-gue-coordinate-law-card.png"
-og_image_alt: "A normalization ledger feeds a canonical Gaussian product law, exact marginal and independence theorems, Hermitian assembly, and a pushforward finite Gaussian unitary ensemble matrix law."
+og_image_alt: "At matrix size two, diagonal variances one half and upper real and imaginary variances one quarter give four primitive real degrees and expected Frobenius square two; the toy coordinates two, negative one, one, and two assemble to a Hermitian matrix with trace one and Frobenius square fifteen."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -29,36 +29,425 @@ received the required human and Pro reviews. The page is publicly available as
 an open working note while those reviews remain pending.
 {{< /panel >}}
 
-A finite Gaussian unitary ensemble (GUE) matrix can be described in one
-sentence: choose independent centered Gaussian free coordinates, assemble a
-Hermitian matrix, and use the Wigner scale. Formalization makes that sentence
-expand into its real mathematical obligations.
+## Start with one exact size-two ledger
 
-Which Gaussian parameter is a variance? Why does a complex upper entry use
-\(1/(2n)\) for each real component instead of \(1/n\)? Which variables are
-mutually independent, and which lower entries are deterministic conjugates?
-What is the joint law rather than merely the list of marginals? Why can the law
-be pushed through matrix assembly? What does the definition mean at
-\(n=0\)? Finally, which familiar GUE facts follow only in later theorems?
+A **Gaussian unitary ensemble (GUE)** is a
+{{< refterm "probability-law" "probability law" >}} on complex matrices whose
+realizations are {{< refterm "hermitian-matrix" "Hermitian" >}}. Hermitian
+means that reflecting an entry across the diagonal also takes its complex
+conjugate. The word *unitary* belongs to the classical symmetry of the law,
+not to a claim that each matrix entry is a unitary number.
+
+Begin at matrix size \(n=2\). There are two diagonal locations and one strict
+upper-triangular location. The repository's Wigner scale is
+
+\[
+s_2=\frac12.
+\]
+
+The diagonal variables use {{< refterm "variance" "variance" >}} \(s_2\),
+while each real Cartesian component of the complex upper variable uses half
+of that variance. Name the four primitive real variables
+
+\[
+d_0,\qquad d_1,\qquad x,\qquad y.
+\]
+
+Their exact parameter ledger is
+
+| Primitive coordinate | Exact law | Mean | Variance |
+|---|---|---:|---:|
+| first diagonal \(d_0\) | real Gaussian \(N(0,1/2)\) | \(0\) | \(1/2\) |
+| second diagonal \(d_1\) | real Gaussian \(N(0,1/2)\) | \(0\) | \(1/2\) |
+| upper real part \(x\) | real Gaussian \(N(0,1/4)\) | \(0\) | \(1/4\) |
+| upper imaginary part \(y\) | real Gaussian \(N(0,1/4)\) | \(0\) | \(1/4\) |
+
+Here \(N(0,v)\) means a real Gaussian law with mean zero and **variance**
+\(v\). Its standard deviation is \(\sqrt v\), so the two quantities must not
+be interchanged. The repository builds a nested product law: \(d_0,d_1\) are
+the real diagonal block, \(x+iy\) is the complex upper block, the two blocks
+are {{< refterm "independence" "independent" >}}, and \(x\) and \(y\) are
+independent inside the Cartesian complex law. Independence means that joint
+event probabilities factor; it does not mean realized values must differ.
+
+The count of primitive real degrees of freedom is
+
+\[
+2+2\binom22=2+2=4=2^2.
+\]
+
+The first \(2\) counts the real diagonal. The second \(2\) counts the real and
+imaginary parts of the single strict-upper coordinate. The reflected lower
+entry contributes no new freedom.
+
+### Assemble one deterministic coordinate point
+
+A law describes every possible outcome through a measure. To test the
+deterministic assembly map, choose one exact toy coordinate point:
+
+\[
+(d_0,d_1,x,y)=(2,-1,1,2).
+\]
+
+This tuple is not an estimate, sample statistic, or claim that a continuous
+Gaussian experiment hits this exact point with positive probability. It is a
+fixed input used to check the map. Set \(u=x+iy=1+2i\). Hermitian assembly
+produces
+
+\[
+H=
+\begin{bmatrix}
+2 & 1+2i \\
+1-2i & -1
+\end{bmatrix}.
+\]
+
+The conjugate transpose swaps the off-diagonal entries and conjugates them.
+Since \(\overline{1+2i}=1-2i\),
+
+\[
+H^*=H.
+\]
+
+The ordinary, unnormalized matrix trace is the diagonal sum:
+
+\[
+\operatorname{Tr}(H)=2+(-1)=1.
+\]
+
+The squared Frobenius norm is the sum of the squared magnitudes of all four
+entries:
+
+\[
+\begin{aligned}
+\lVert H\rVert_{\mathrm F}^2
+&=|2|^2+|1+2i|^2+|1-2i|^2+|-1|^2\\
+&=4+5+5+1\\
+&=15.
+\end{aligned}
+\]
+
+For a Hermitian matrix, \(H^*H=H^2\), so this same number is
+\(\operatorname{Tr}(H^2)\). Notice the two copies of \(5\): the single
+primitive complex upper coordinate appears twice in the assembled matrix.
+
+The **law-level** variance budget uses the same slots but answers a different
+question. Centering makes each expected square equal its variance, so
+
+\[
+\begin{aligned}
+\mathbb E\lVert H\rVert_{\mathrm F}^2
+&=2\left(\frac12\right)
+ +2\left(\frac14+\frac14\right)\\
+&=2.
+\end{aligned}
+\]
+
+The number \(15\) belongs to the displayed deterministic point; the number
+\(2\) belongs to the chosen distribution. RMT-06 fixes the exact coordinate
+laws but does not itself prove this expectation identity. The later checked
+module
+<code>NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments</code>
+proves the corresponding all-dimensional statement
+\(\mathbb E[\operatorname{Tr}(H^2)]=n\).
+
+{{< reference-figure
+  wide="true"
+  src="gue-n2-coordinate-ledger.svg"
+  alt="At matrix size two, two diagonal Gaussian variances are one half and the upper real and imaginary variances are one quarter. The toy coordinate values two, negative one, one, and two assemble to a Hermitian matrix with trace one and Frobenius-square contributions four, five, five, and one, totaling fifteen."
+  caption="**Finding:** the size-two Wigner law has four primitive real degrees with variances \((1/2,1/2,1/4,1/4)\). The exact toy coordinate point \((2,-1,1,2)\) assembles to rows \((2,1+2i)\) and \((1-2i,-1)\), so conjugate reflection holds, the trace is 1, and the Frobenius-square ledger is \(4+5+5+1=15\). The bottom strip separately computes the distribution-level expected Frobenius square \(2\). These are exact toy values and law parameters, not empirical or simulated observations."
+>}}
+
+### In Lean: expose the size-two Wigner scale
+
+{{< lean-bridge
+  human="At matrix size two, a diagonal coordinate has variance one half, and each real Cartesian component of the strict-upper coordinate has variance one quarter."
+  math="\(d_2=1/2\quad\text{and}\quad a_2=1/4.\)"
+  lean="(GUE.diagonalVariance_succ 1, GUE.upperCartesianVariance_succ 1)"
+>}}
+
+- <code>GUE</code> is the namespace containing the repository's selected finite
+  ensemble convention.
+- <code>diagonalVariance_succ 1</code> specializes the positive-size diagonal
+  formula to \(1+1=2\).
+- <code>upperCartesianVariance_succ 1</code> specializes the upper real-part
+  and imaginary-part formula to the reciprocal of \(2(1+1)=4\).
+- The surrounding parentheses form one Lean pair of proof terms. They do not
+  pair the two variances into an undocumented single "complex variance."
+- Both results live in \(\mathbb R_{\ge0}\), written <code>ℝ≥0</code>, so a
+  negative variance cannot be supplied.
+{{< /lean-bridge >}}
+
+## Two near-misses reveal what the ledger protects
+
+### Near-miss A: copy the upper entry without conjugating it
+
+Replace the lower-left entry by another copy of \(1+2i\):
+
+\[
+K=
+\begin{bmatrix}
+2 & 1+2i \\
+1+2i & -1
+\end{bmatrix}.
+\]
+
+This matrix still satisfies
+
+\[
+\operatorname{Tr}(K)=1,
+\qquad
+\lVert K\rVert_{\mathrm F}^2=15.
+\]
+
+Those two scalar checks do not see the sign error. But
+\(K^*\ne K\), because its lower-left entry should be \(1-2i\). A constructor
+that merely copies the upper triangle has failed before probability enters.
+
+### Near-miss B: keep the map but remove the Wigner scale
+
+Suppose all four primitive real coordinates instead have variance one. The
+same Hermitian assembly map is still valid, but its expected squared
+Frobenius budget becomes
+
+\[
+2(1)+2(1+1)=6,
+\]
+
+not \(2\). This defines a legitimate Gaussian Hermitian matrix law, but it is
+not <code>GUE.matrixLaw 2</code> under this repository's normalization. A map
+does not remember which source law was pushed through it.
+
+{{< reference-figure
+  wide="true"
+  src="gue-n2-independence-and-near-misses.svg"
+  alt="The source law makes two diagonal Gaussians independent of one complex upper Gaussian and makes its real and imaginary parts independent. Hermitian assembly then makes the lower matrix entry the conjugate of the upper entry, so those reflected entries are dependent. Copying rather than conjugating fails Hermiticity despite the same trace and Frobenius square, while unit component variances give expected Frobenius square six instead of two."
+  caption="**Finding:** independence belongs to the primitive source coordinates, while reflection creates deterministic dependence between matrix entries. The wrong-reflection matrix keeps trace 1 and Frobenius square 15 but is not Hermitian. The unscaled law keeps the assembly map but changes the expected Frobenius-square budget from 2 to 6. The zero-size branch has no primitive coordinates and ends in Dirac laws. Every displayed number is an exact toy or normalization value, not a sample statistic."
+>}}
+
+### In Lean: the deterministic map owns the reflection rule
+
+{{< lean-bridge
+  human="Place each real coordinate on the diagonal, each complex primitive above the diagonal, and the conjugate of that primitive in the reflected lower position."
+  math="\(A_n(d,u)_{ij}=u_{ij}\) for \(i\lt j\), \(A_n(d,u)_{ji}=\overline{u_{ij}}\), and \(A_n(d,u)_{ii}=d_i.\)"
+  lean="RandomMatrix.hermitianFromCoordinates d u"
+>}}
+
+- <code>d : Fin n → ℝ</code> is the real diagonal function.
+- <code>u : StrictUpperIndex n → ℂ</code> stores only positions with
+  \(i\lt j\).
+- <code>hermitianFromCoordinates</code> branches on the comparison between the
+  row and column. The lower branch uses <code>star</code>, complex conjugation.
+- The theorem
+  <code>RandomMatrix.hermitianFromCoordinates_isHermitian d u</code> checks
+  Hermiticity for every input. It needs no Gaussian law or independence.
+- This expression returns a matrix. It is not <code>GUE.matrixLaw n</code>,
+  which is a measure on matrices.
+{{< /lean-bridge >}}
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates" >}}
+On an approved Linux builder with the pinned project cache, a reader can place
+the following source in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates
+
+open Matrix
+open NonlinearDynamics.Random
+
+#print StrictUpperIndex
+#print HermitianCoordinateSpace
+#print RandomMatrix.hermitianFromCoordinates
+#check RandomMatrix.hermitianFromCoordinates_apply_diag
+#check RandomMatrix.hermitianFromCoordinates_apply_upper
+#check RandomMatrix.hermitianFromCoordinates_apply_lower
+#check RandomMatrix.hermitianFromCoordinates_isHermitian
+#check RandomMatrix.measurable_hermitianCoordinateMap
+#check RandomMatrix.hermitianCoordinateMap_zero
+~~~
+
+<code>#print</code> exposes a definition. <code>#check</code> asks Lean to
+elaborate an existing declaration and display its type. The guarded command
+rendered below checks the exact Mathlib-backed project module and belongs on
+Linux cloud compute, not on this Mac workstation.
+{{< /repo-check >}}
+
+## Type the complete finite ledger with Lean and Std
+
+The exact Gaussian measures and matrix libraries need Mathlib, so their checks
+stay on approved Linux compute. The size-two arithmetic and reflection logic
+fit in a small standalone worksheet importing only Lean's <code>Std</code>
+library. Save this exact file as <code>/tmp/GUEN2Ledger.lean</code> on a normal
+Mac or Linux host:
+
+~~~lean
+import Std
+
+namespace GUEN2Ledger
+
+structure ComplexInt where
+  re : Int
+  im : Int
+deriving Repr, DecidableEq
+
+def conj (z : ComplexInt) : ComplexInt :=
+  { re := z.re, im := -z.im }
+
+def normSq (z : ComplexInt) : Nat :=
+  z.re.natAbs ^ 2 + z.im.natAbs ^ 2
+
+structure Matrix2 where
+  h00 : ComplexInt
+  h01 : ComplexInt
+  h10 : ComplexInt
+  h11 : ComplexInt
+deriving Repr, DecidableEq
+
+def assemble (d0 d1 x y : Int) : Matrix2 :=
+  let upper : ComplexInt := { re := x, im := y }
+  { h00 := { re := d0, im := 0 }
+    h01 := upper
+    h10 := conj upper
+    h11 := { re := d1, im := 0 } }
+
+def wrongReflection (d0 d1 x y : Int) : Matrix2 :=
+  let upper : ComplexInt := { re := x, im := y }
+  { h00 := { re := d0, im := 0 }
+    h01 := upper
+    h10 := upper
+    h11 := { re := d1, im := 0 } }
+
+def isHermitian (H : Matrix2) : Bool :=
+  H.h00.im == 0 && H.h11.im == 0 && H.h10 == conj H.h01
+
+def trace (H : Matrix2) : ComplexInt :=
+  { re := H.h00.re + H.h11.re, im := H.h00.im + H.h11.im }
+
+def frobeniusLedger (H : Matrix2) : List Nat :=
+  [normSq H.h00, normSq H.h01, normSq H.h10, normSq H.h11]
+
+def frobeniusSq (H : Matrix2) : Nat :=
+  (frobeniusLedger H).sum
+
+def strictUpperCount (n : Nat) : Nat :=
+  n * (n - 1) / 2
+
+def realDegrees (n : Nat) : Nat :=
+  n + 2 * strictUpperCount n
+
+def varianceScale (n : Nat) : Rat :=
+  if n = 0 then 0 else 1 / n
+
+def diagonalVariance (n : Nat) : Rat :=
+  varianceScale n
+
+def upperCartesianVariance (n : Nat) : Rat :=
+  varianceScale n / 2
+
+def expectedFrobeniusFromLedger
+    (n : Nat) (diagVar upperPartVar : Rat) : Rat :=
+  n * diagVar + 2 * strictUpperCount n * (2 * upperPartVar)
+
+def H : Matrix2 := assemble 2 (-1) 1 2
+def K : Matrix2 := wrongReflection 2 (-1) 1 2
+
+#eval (varianceScale 0, strictUpperCount 0, realDegrees 0)
+#eval [varianceScale 2, diagonalVariance 2, upperCartesianVariance 2]
+#eval [strictUpperCount 2, realDegrees 2]
+#eval H
+#eval [isHermitian H, isHermitian K]
+#eval trace H
+#eval frobeniusLedger H
+#eval frobeniusSq H
+#eval [expectedFrobeniusFromLedger 2 (1 / 2) (1 / 4),
+  expectedFrobeniusFromLedger 2 1 1]
+
+example : diagonalVariance 2 = 1 / 2 := by native_decide
+example : upperCartesianVariance 2 = 1 / 4 := by native_decide
+example : varianceScale 0 = 0 := by native_decide
+example : realDegrees 0 = 0 := by decide
+example : realDegrees 2 = 4 := by decide
+example : isHermitian H = true := by decide
+example : isHermitian K = false := by decide
+example : trace H = { re := 1, im := 0 } := by decide
+example : frobeniusLedger H = [4, 5, 5, 1] := by decide
+example : frobeniusSq H = 15 := by decide
+example : expectedFrobeniusFromLedger 2 (1 / 2) (1 / 4) = 2 := by
+  native_decide
+example : expectedFrobeniusFromLedger 2 1 1 = 6 := by native_decide
+
+end GUEN2Ledger
+~~~
+
+Type these commands exactly:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean /tmp/GUEN2Ledger.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 on the Mac
+workstation. It printed:
+
+~~~text
+(0, 0, 0)
+[(1 : Rat)/2, (1 : Rat)/2, (1 : Rat)/4]
+[1, 4]
+{ h00 := { re := 2, im := 0 }, h01 := { re := 1, im := 2 }, h10 := { re := 1, im := -2 }, h11 := { re := -1, im := 0 } }
+[true, false]
+{ re := 1, im := 0 }
+[4, 5, 5, 1]
+15
+[2, 6]
+~~~
+
+The first line is the size-zero scale, strict-upper count, and real-degree
+count. The second line is the size-two scale, diagonal variance, and upper
+component variance. The third line is the single strict-upper location
+followed by four real degrees. The matrix record makes the conjugate sign
+visible. The Boolean pair confirms that the correct matrix is Hermitian and
+the copied-sign near-miss is not. The remaining lines give trace, the
+four-entry Frobenius ledger, its sum, and the selected-versus-unscaled expected
+budgets.
+
+<code>ComplexInt</code> is a tiny tutorial-only pair of integer coordinates;
+it is not Lean's full complex-number type and carries no Gaussian law.
+<code>Rat</code> stores exact rational numbers, so the variance output preserves
+\(1/2\) and \(1/4\) rather than rounding them to floating-point decimals.
+<code>native_decide</code> evaluates rational equalities using Lean's native
+decision procedure; <code>decide</code> suffices for the finite integer and
+Boolean checks. This worksheet proves only the finite data transformations it
+defines. It does not define a Gaussian measure, prove independence, or replace
+the guarded Mathlib-backed module checks.
+
+A finite GUE matrix can now be summarized in one sentence: choose independent
+centered Gaussian free coordinates at the Wigner scale, assemble a Hermitian
+matrix, and push the coordinate law through that measurable map. The rest of
+the chapter expands each phrase without confusing a coordinate point, a sample
+map, a deterministic assembly map, and a probability law.
 
 The sixth random-matrix-theory milestone (RMT-06) answers the finite
 law-construction questions with 26 checked declarations. It fixes one
-normalization, constructs one canonical coordinate
-probability measure, proves its exact laws and independence structure, pushes
-it through measurable Hermitian assembly, transfers exact diagonal and upper
-entry laws, and proves a Dirac boundary in dimension zero.
+normalization, constructs one canonical coordinate probability measure,
+proves its exact laws and independence structure, pushes it through measurable
+Hermitian assembly, transfers exact diagonal and upper entry laws, and proves
+a Dirac boundary in dimension zero.
 
 This chapter does not silently import the rest of random-matrix theory. A
-classical density, measure-level Hermitian support, unitary invariance,
-eigenvalue density, trace expectation, semicircle law, and universality remain
-outside RMT-06. They appear here only as labeled mathematical or physical
-context.
+classical density, eigenvalue density, semicircle law, and universality remain
+outside RMT-06. Later checked project modules now prove that the Hermitian set
+has full measure, unitary-conjugation invariance, the first two trace
+expectations, and finite spectral-measure interfaces. Those later results are
+identified as such rather than retroactively attributed to the constructor
+module.
 
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [Name the three spaces](#base-camp-name-the-three-spaces) | Distinguish coordinates, assembly, and a matrix law |
+| First encounter | [The exact size-two ledger](#start-with-one-exact-size-two-ledger) | Compute every variance, reflected entry, degree count, trace, and Frobenius term |
+| Hands-on Lean route | [The standalone <code>Std</code> worksheet](#type-the-complete-finite-ledger-with-lean-and-std) | Execute the finite arithmetic without Mathlib or Lake |
+| Type route | [Name the three spaces](#base-camp-name-the-three-spaces) | Distinguish coordinates, assembly, and a matrix law |
 | Normalization route | [The Wigner ledger](#camp-one-the-wigner-ledger) | Derive every variance and the factor of two |
 | Probability route | [Build the coordinate measure](#camp-three-build-the-coordinate-measure) | See why a product law contains dependence information |
 | Independence route | [Three scopes of independence](#camp-four-three-scopes-of-independence) | Separate block, within-block, and cross-coordinate claims |
@@ -70,29 +459,35 @@ context.
 
 By the summit, you should be able to:
 
-1. state the complete positive-dimensional GUE normalization ledger used here;
-2. derive \(\mathbb E|H_{ij}|^2=1/n\) from two component variances;
-3. derive the factor of two in
+1. reproduce the exact \(n=2\) law ledger, four-degree count, assembled matrix,
+   trace \(1\), and Frobenius square \(15\);
+2. explain why the wrong-reflection matrix fails even though its trace and
+   Frobenius square match the correct toy matrix;
+3. state the complete positive-dimensional GUE normalization ledger used here;
+4. derive \(\mathbb E|H_{ij}|^2=1/n\) from two component variances;
+5. derive the factor of two in
    \(\operatorname{Tr}(H^2)\) from Hermitian reflection;
-4. distinguish scalar marginals from a finite joint product law;
-5. identify block independence, mutual independence within each block, and
-   cross-block coordinate independence as separate theorem shapes;
-6. explain why measurable assembly is the bridge from coordinates to a matrix
+6. distinguish a coordinate point, assembly map, coordinate law, and matrix
    law;
-7. state the full Cartesian complex law of a diagonal matrix entry, including
+7. distinguish scalar marginals from a finite joint product law;
+8. identify block independence, mutual independence within each block, and
+   cross-block coordinate independence as separate theorem shapes;
+9. explain why measurable assembly is the bridge from coordinates to a matrix
+   law;
+10. state the full Cartesian complex law of a diagonal matrix entry, including
    its zero imaginary variance;
-8. explain why reflected upper and lower entries are not independent primitive
+11. explain why reflected upper and lower entries are not independent primitive
    coordinates;
-9. compute the unique zero-dimensional coordinate and matrix laws; and
-10. separate all 26 checked declarations from later density, invariance,
+12. compute the unique zero-dimensional coordinate and matrix laws; and
+13. separate all 26 checked declarations from later density, invariance,
     spectral, moment, and asymptotic work.
 
 ## The construction in one picture
 
 {{< reference-figure
   src="gue-law-construction.svg"
-  alt="The Wigner normalization feeds a product measure on real diagonal and complex strict-upper coordinates; exact laws and independence precede measurable Hermitian assembly, whose pushforward is the finite GUE matrix law, while density, invariance, spectra, moments, and asymptotics remain on a later ridge."
-  caption="**Finding:** the finite matrix law is the endpoint of a dependency chain. Scale comes before product law; product law comes before exact independence interfaces; measurable Hermitian assembly comes before the pushforward law. The solid path is checked in RMT-06, including dimension zero. The dashed later ridge is deliberately not claimed by this module."
+  alt="The Wigner normalization feeds a product measure on real diagonal and complex strict-upper coordinates; exact laws and independence precede measurable Hermitian assembly, whose pushforward is the finite GUE matrix law. Later modules prove that the Hermitian set has mass one and check unitary invariance, finite spectra, and first trace moments, while density and semicircle asymptotics remain unformalized."
+  caption="**Finding:** the finite matrix law is the endpoint of a dependency chain. Scale comes before product law; product law comes before exact independence interfaces; measurable Hermitian assembly comes before the pushforward law. The solid path is checked in RMT-06, including dimension zero. The gray boundary is not attributed to this constructor: later modules now prove that the Hermitian set has mass one and check unitary invariance, finite spectral laws, and first trace moments, while density and semicircle asymptotics remain unformalized."
 >}}
 
 ## Base camp: name the three spaces
@@ -424,6 +819,28 @@ This theorem follows by composing block independence with measurable
 coordinate evaluations. It is exposed because scalar cross-block independence
 is often the exact hypothesis a later calculation needs.
 
+### In Lean: independence is stored on the source law
+
+{{< lean-bridge
+  human="Under the coordinate probability law, the complete real diagonal vector is independent of the complete complex strict-upper vector."
+  math="\(\pi_D\perp\!\!\!\perp\pi_U\quad\text{under }\nu_n=D_n\otimes U_n.\)"
+  lean="GUE.coordinateMeasure_indepFun_diagonal_upper n"
+>}}
+
+- <code>coordinateMeasure</code> is the probability measure \(\nu_n\) on the
+  pair of coordinate blocks.
+- <code>Prod.fst</code> and <code>Prod.snd</code>, implicit in the theorem's
+  result, are the two block projections \(\pi_D\) and \(\pi_U\).
+- <code>IndepFun</code> states independence of the functions under a named
+  measure. It does not say the two output values are unequal or unrelated
+  pointwise.
+- The theorem is stronger than one selected diagonal-upper pair. Separate
+  theorems expose mutual independence within each block and any one
+  cross-block pair.
+- The theorem is about primitive coordinate blocks before assembly. It makes
+  no independence claim about \(H_{01}\) and \(H_{10}\).
+{{< /lean-bridge >}}
+
 ### What independence does not apply to
 
 After assembly, \(H_{ji}=\overline{H_{ij}}\). These two reflected entries are
@@ -505,6 +922,28 @@ noncomputable def matrixLaw (n : ℕ) :
     (coordinateMeasure n)
 ~~~
 
+### In Lean: finite GUE begins at the pushed-forward matrix law
+
+{{< lean-bridge
+  human="The finite GUE matrix probability law is the image of the independent coordinate probability law under measurable Hermitian assembly."
+  math="\(\mu_n=(A_n)_*\nu_n.\)"
+  lean="GUE.matrixLaw_eq_map n"
+>}}
+
+- <code>GUE.matrixLaw n</code> is a <code>Measure</code> on ambient
+  \(n\)-by-\(n\) complex matrices. This is where the repository names the
+  finite ensemble.
+- <code>Measure.map</code> is Mathlib's pushforward operation. It transports
+  mass through a function; it does not execute a pseudorandom sampler.
+- <code>RandomMatrix.hermitianCoordinateMap n</code> is the deterministic map
+  \(A_n\).
+- <code>GUE.coordinateMeasure n</code> is the nested Gaussian product law
+  \(\nu_n\).
+- The theorem is an equality between measures. A particular matrix such as
+  the opening \(H\) is a point in the target space, not either side of this
+  equality.
+{{< /lean-bridge >}}
+
 The theorem <code>matrixLaw_eq_map</code> exposes the definitional identity
 with <code>Measure.map</code>. The instance
 <code>instIsProbabilityMeasureMatrixLaw</code> proves the pushforward retains
@@ -514,14 +953,14 @@ Why define the law on the full ambient matrix type rather than a Hermitian
 subtype? The existing project law API, measurable matrix entries, congruence
 maps, and observables live on that ambient space. Assembly guarantees every
 realized output is Hermitian pointwise, but RMT-06 does not yet package the
-measure-level support theorem saying the complement of the Hermitian set has
-measure zero.
+full-mass theorem saying the Hermitian set has measure one and its complement
+has measure zero.
 
-That missing support declaration does not invalidate the construction. It
+That missing full-mass declaration does not invalidate the construction. It
 marks the difference between a sample map whose outputs satisfy a property and
-a named theorem about the support of its pushforward law.
+a named theorem evaluating its pushforward law on the Hermitian set.
 
-The follow-up RMT-07 module now supplies that named support theorem. It also
+The follow-up RMT-07 module now supplies that named mass-one theorem. It also
 proves symmetry of the intrinsic standard Gaussian on Hermitian Frobenius
 space, while leaving the coordinate-to-intrinsic comparison for RMT-08; see
 [Intrinsic Hermitian Gaussian Symmetry and Matrix-Law Support]({{< relref "/knowledge-base/deep-dives/intrinsic-hermitian-gaussian-symmetry-and-matrix-law-support" >}}).
@@ -546,8 +985,9 @@ variance zero, so its law is Dirac at zero. This is exactly
 <code>matrixLaw_diagonal_hasLaw</code>.
 
 For positive \(n\), \(d_n=1/n\). The theorem therefore records both
-Gaussian diagonal scaling and the real-axis support of each diagonal entry at
-the scalar law level. It does not prove a density on the full matrix space.
+Gaussian diagonal scaling and concentration of each diagonal entry on the
+real axis at the scalar law level. It does not prove a density on the full
+matrix space.
 
 ### A strict-upper entry
 
@@ -565,6 +1005,28 @@ The theorem requires a proof \(i\lt j\), exactly matching the branch where
 assembly copies the primitive upper coordinate. There is no named lower-entry
 law theorem in RMT-06. A later result may derive it by conjugation, but it must
 not present the lower slot as a new independent Gaussian input.
+
+### In Lean: transfer the exact strict-upper law
+
+{{< lean-bridge
+  human="If i is strictly less than j, then the matrix entry H i j under the finite GUE law is centered Cartesian complex Gaussian with the selected equal component variances."
+  math="\(i\lt j\Longrightarrow H_{ij}\sim\operatorname{CGauss}_{\mathrm{cart}}(0;a_n,a_n).\)"
+  lean="GUE.matrixLaw_upper_hasLaw n hij"
+>}}
+
+- <code>hij : i &lt; j</code> is evidence selecting the strict-upper branch.
+- <code>matrixLaw_upper_hasLaw</code> is an exact
+  <code>HasCartesianComplexGaussianLaw</code> statement, not only a mean or
+  variance calculation.
+- Both displayed variance arguments are
+  <code>GUE.upperCartesianVariance n</code>. Equality of those component
+  scales is visible in the result.
+- The source measure in the conclusion is <code>GUE.matrixLaw n</code>, so the
+  theorem concerns evaluation on the assembled matrix law rather than the
+  earlier coordinate product law.
+- No lower-triangular independence follows. The lower entry is the conjugate
+  of this same upper coordinate.
+{{< /lean-bridge >}}
 
 ### What the transfer does not prove
 
@@ -605,6 +1067,24 @@ The proof does not evaluate \(1/n\), appeal to a limiting argument, or leave a
 partial constructor. The pattern-matched scale and the empty product agree on
 one executable boundary policy.
 
+### In Lean: the zero-size law is a Dirac mass
+
+{{< lean-bridge
+  human="At dimension zero, the finite GUE law puts all mass on the unique empty zero matrix."
+  math="\(\mu_0=\delta_{0_{\mathcal M_0}}.\)"
+  lean="GUE.matrixLaw_zero"
+>}}
+
+- <code>matrixLaw 0</code> still has a well-formed ambient matrix type,
+  <code>Matrix (Fin 0) (Fin 0) ℂ</code>.
+- <code>Fin 0</code> has no indices, so that matrix type has one element.
+- <code>Measure.dirac 0</code> is the point mass at the unique empty matrix.
+- The companion theorem <code>GUE.coordinateMeasure_zero</code> proves the
+  same Dirac boundary before assembly.
+- This theorem is not the limit of positive-dimensional laws as \(n\) tends to
+  zero. Natural-number dimension is pattern matched exactly.
+{{< /lean-bridge >}}
+
 ## The checked declaration map
 
 The module
@@ -635,7 +1115,7 @@ public declarations.
 | <code>coordinateMeasure_diagonal_indepFun_upper</code> | Any diagonal evaluation is independent of any upper evaluation | No claim about reflected matrix entries |
 | <code>matrixLaw</code> | Law on ambient complex matrices obtained through checked assembly | Does not define a density or spectrum |
 | <code>matrixLaw_eq_map</code> | Exposes the exact measurable pushforward formula | No invariance under a second map |
-| <code>instIsProbabilityMeasureMatrixLaw</code> | Matrix law has total mass one | No support theorem |
+| <code>instIsProbabilityMeasureMatrixLaw</code> | Matrix law has total mass one | No Hermitian-set mass-one theorem |
 | <code>matrixLaw_diagonal_hasLaw</code> | Full complex diagonal entry has real variance \(d_n\) and imaginary variance zero | Not just a real-part marginal |
 | <code>matrixLaw_upper_hasLaw</code> | Strict-upper entry has equal component variances \(a_n\) | Requires the strict inequality branch |
 | <code>coordinateMeasure_zero</code> | Zero-dimensional coordinate law is Dirac at the unique zero coordinate | No reciprocal reasoning |
@@ -645,19 +1125,54 @@ All 26 declarations compile under Lean 4.32.0 and the pinned Mathlib 4.32.0
 dependency with warnings treated as errors. The module contains no
 <code>sorry</code> or <code>admit</code>.
 
-### Reproduce the check
+### Inspect the exact finite-law interfaces on Linux
 
-From the repository root:
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean).
+On an approved Linux builder with the pinned project cache, put these lines in
+a temporary project scratch file:
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped ENNReal NNReal ProbabilityTheory Matrix
+open NonlinearDynamics.Random
+
+#print GUE.varianceScale
+#print GUE.diagonalVariance
+#print GUE.upperCartesianVariance
+#check GUE.varianceScale_zero
+#check GUE.varianceScale_succ
+#check GUE.diagonalVariance_zero
+#check GUE.diagonalVariance_succ
+#check GUE.upperCartesianVariance_zero
+#check GUE.upperCartesianVariance_succ
+#print GUE.coordinateMeasure
+#check GUE.instIsProbabilityMeasureCoordinateMeasure
+#check GUE.coordinateMeasure_hasLaw_diagonalBlock
+#check GUE.coordinateMeasure_hasLaw_upperBlock
+#check GUE.coordinateMeasure_indepFun_diagonal_upper
+#check GUE.coordinateMeasure_diagonal_hasLaw
+#check GUE.coordinateMeasure_upper_hasLaw
+#check GUE.coordinateMeasure_diagonal_iIndepFun
+#check GUE.coordinateMeasure_upper_iIndepFun
+#check GUE.coordinateMeasure_diagonal_indepFun_upper
+#print GUE.matrixLaw
+#check GUE.matrixLaw_eq_map
+#check GUE.instIsProbabilityMeasureMatrixLaw
+#check GUE.matrixLaw_diagonal_hasLaw
+#check GUE.matrixLaw_upper_hasLaw
+#check GUE.coordinateMeasure_zero
+#check GUE.matrixLaw_zero
 ~~~
 
-This command type-checks the definitions and proofs. It does not sample a
-matrix, numerically inspect eigenvalues, or test any unformalized asymptotic
-claim.
+The guarded command rendered below checks the authoritative module with Lean
+4.32.0 and pinned Mathlib 4.32.0. It type-checks definitions and proofs; it
+does not sample a matrix, estimate eigenvalues, or test an asymptotic claim.
+This exact project check belongs on approved Linux compute.
+{{< /repo-check >}}
 
 ## Checked construction versus classical context
 
@@ -678,25 +1193,54 @@ H\longmapsto UHU^*
 for every deterministic unitary \(U\). Diagonalization then leads to an
 eigenvalue density with a squared Vandermonde factor.
 
-These equivalences are mathematics, not definitional shortcuts. The current
-Lean layer has the coordinate presentation only.
+These equivalences are mathematics, not definitional shortcuts. RMT-06 chooses
+the coordinate presentation as its definition. The broader repository has
+since proved some, but not all, of the later characterizations.
 
-| Layer | RMT-06 status | Needed later |
+| Layer | RMT-06 status | Current broader-project status |
 |---|---|---|
-| Variance ledger | Checked | Nothing hidden |
-| Coordinate product probability law | Checked | Optional alternate constructions |
-| Coordinate marginals and independence | Checked | Matrix-level restatements as needed |
-| Measurable Hermitian assembly pushforward | Checked | Named support theorem |
-| Matrix diagonal and upper marginals | Checked | Lower law and integrability as needed |
-| Hermitian-space density | Not checked | Real-linear geometry and reference volume |
-| Unitary invariance | Not checked | Quadratic-form preservation and map equality |
-| Eigenvalue law | Not checked | Measurable eigenvalue infrastructure |
-| Trace expectations | Not checked | Integrability and integration |
-| Semicircle behavior | Not checked | Empirical spectral measure and asymptotic proof |
+| Variance ledger | Checked | Still the governing normalization |
+| Coordinate product probability law | Checked | Reused by later geometry and moment proofs |
+| Coordinate marginals and independence | Checked | Whole normalized product transport is checked later |
+| Measurable Hermitian assembly pushforward | Checked | Measure-one Hermitian locus is checked in RMT-07 |
+| Matrix diagonal and upper marginals | Checked | Integrability is supplied by imported Gaussian interfaces and later observables |
+| Hermitian-space density | Not checked | Still unformalized; no reference-volume or Jacobian theorem |
+| Unitary invariance | Not checked here | Checked in RMT-08 for <code>GUE.matrixLaw n</code> |
+| Finite spectral law | Not checked here | Ordered eigenvalues and empirical spectral laws are checked in RMT-10A through RMT-10C |
+| First two trace expectations | Not checked here | Checked in RMT-09, with \(\mathbb E\operatorname{Tr}(H)=0\) and \(\mathbb E\operatorname{Tr}(H^2)=n\) |
+| Semicircle behavior | Not checked | Still requires an asymptotic empirical-measure theorem |
 
 The phrase "GUE matrix law" in RMT-06 refers to the explicit standard
 coordinate construction. It does not claim that every classical
 characterization has already been proved equivalent in Lean.
+
+### Inspect the later checked boundary without importing it into RMT-06
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments" >}}
+The later moments module imports the geometry and invariance continuation, so
+one cloud-only scratch file can verify the exact theorem names that mark the
+current boundary:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleMoments
+
+open Matrix MeasureTheory ProbabilityTheory
+open scoped ENNReal NNReal ProbabilityTheory Matrix
+open NonlinearDynamics.Random
+
+#check GUE.matrixLaw_hermitianSet
+#check GUE.matrixLaw_ae_isHermitian
+#check GUE.matrixLaw_isUnitaryConjugationInvariant
+#check GUE.integrable_tracePower_one
+#check GUE.integral_tracePower_one
+#check GUE.integrable_tracePower_two
+#check GUE.integral_tracePower_two
+~~~
+
+These are checked later-module theorems about the same finite matrix law. No
+density, eigenvalue density, semicircle limit, universality, or quantum-chaos
+observable follows merely from these <code>#check</code> lines.
+{{< /repo-check >}}
 
 ## Physics window: why the unitary class matters
 
@@ -714,16 +1258,19 @@ the law. This makes the ensemble a natural basis-neutral reference model for
 that class.
 
 RMT-06 proves the complex Hermitian coordinate law but not its basis
-invariance. It also does not formalize Hamiltonians, time-reversal operators,
-matrix exponentials, energy levels, level spacing, spectral form factors, or
-quantum chaos. The physical story motivates the later theorem sequence; it
-does not supply proofs by naming the ensemble.
+invariance. RMT-08 later proves that exact invariance theorem for the same
+<code>matrixLaw</code>. The project still does not formalize Hamiltonians,
+time-reversal operators, matrix exponentials, energy levels, level spacing,
+spectral form factors, or quantum chaos at this point in the dependency chain.
+The physical story motivates later theorem sequences; it does not supply
+proofs by naming the ensemble.
 
 The Wigner \(1/n\) variance scale keeps typical eigenvalues order one as
 dimension grows. Classical results then place the limiting spectral mass on
 \([-2,2]\) under the chosen convention. That statement is not a consequence
 of the finite probability instance alone. It requires a measurable empirical
-spectral measure and a large-\(n\) convergence proof, both beyond this module.
+spectral measure and a large-\(n\) convergence proof. The former now exists in
+later finite-dimensional modules; the latter remains unformalized.
 
 ## Common wrong turns
 
@@ -757,8 +1304,8 @@ number generator or record an observed realization.
 ### Calling the matrix law unitarily invariant by its name
 
 The classical GUE has this symmetry. RMT-06 has not proved the measure equality
-under unitary conjugation. The theorem must be built, not inferred from a
-namespace.
+under unitary conjugation. RMT-08 builds it. The theorem is earned by the later
+geometry and transport argument, not inferred from a namespace.
 
 ### Deriving a density without choosing reference volume
 
@@ -800,8 +1347,8 @@ requires estimates or asymptotic theorems not present here.
    \(\operatorname{Fin}(0)\to\mathbb R\) has one element.
 10. **Lean.** Find which declaration exposes the matrix law as a
     <code>Measure.map</code>.
-11. **Nonclaim.** Write the unitary-invariance measure equality that remains to
-    be proved.
+11. **Later theorem.** Write the unitary-invariance measure equality and find
+    the later project declaration that now proves it.
 12. **Roadmap.** List the new definitions needed before a semicircle theorem
     can even be stated precisely.
 
@@ -816,15 +1363,18 @@ proves the resulting matrix law is probabilistic, transfers exact diagonal and
 strict-upper entry laws, and identifies both zero-dimensional laws as Dirac.
 
 The result is the first checked finite named matrix ensemble in the project. It
-is also a deliberately bounded result. No density, matrix-level support,
-unitary invariance, eigenvalue law, expectation, trace moment, empirical
-spectral measure, semicircle limit, or universality theorem has been added.
+is also deliberately bounded. RMT-06 itself adds no density, matrix-level
+Hermitian-set mass-one theorem, unitary-invariance theorem, eigenvalue law,
+expectation, trace moment, empirical spectral law, semicircle limit, or
+universality theorem.
 
-This boundary leaves a clean next climb. Real-linear Hermitian geometry can
-connect the coordinate product density to
-\(\operatorname{Tr}(H^2)\), prove support, and establish invariance under
-unitary conjugation. Only after measurable spectral data and integrability are
-available should trace expectations and spectral asymptotics begin.
+The broader project has climbed several of those finite-dimensional steps.
+RMT-07 proves that the Hermitian set has measure one, RMT-08 proves unitary
+invariance, RMT-09 proves the first two trace expectations, and RMT-10A
+through RMT-10C build finite spectral laws and expected first two empirical
+moments. A Hermitian-space density, a joint eigenvalue density, a semicircle
+limit, universality, and quantum-chaos observables remain outside the checked
+claims of this chapter.
 
 ## Where to continue
 
@@ -854,8 +1404,9 @@ pp. 1008-1052. Section 1.1.1
 states the GUE diagonal variance \(1/n\), upper real and imaginary variances
 \(1/(2n)\), and the Gaussian-ensemble density
 \(\exp[-\beta n\operatorname{Tr}(H^2)/4]\). For \(\beta=2\), this is the
-density context used in the factor-of-two derivation. Density and invariance
-remain unformalized here.
+density context used in the factor-of-two derivation. Density remains
+unformalized in the project. Unitary invariance is absent from RMT-06 but is
+proved for the same matrix law in RMT-08.
 
 **Freeman J. Dyson.**
 [Statistical Theory of the Energy Levels of Complex Systems. I](https://doi.org/10.1063/1.1703773),
