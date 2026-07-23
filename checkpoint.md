@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 17:33 PDT
+Last updated: 2026-07-22 17:39 PDT
 
-Audited baseline: `main` at `3124cb4`
+Audited baseline: `main` at `6a64db2`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -152,15 +152,17 @@ all glossary entries before beginning the Deep Dive pass, validate and push
 small coherent batches, and do not resume RMT-35 formalization while this
 reader-catch-up phase is active.
 
-The current wave brings **54 of 62 glossary chapters** through the full
-example-first rebuild. The newest chapter pulls `(2, -1, 4)` around a uniform
-three-cycle to `(-1, 4, 2)` and `(4, 2, -1)`, preserving squared `L²` norm
-`7`; its collapse-map near-miss has preimage counts `(0, 0, 3)`, repeats the
-value `4`, and changes the squared norm to `16`. The accessible SVG is now the
-reproducible card, and its `Std` worksheet was executed with Lean 4.32.0 on
-the Mac. This is intentional teaching use of local Lean; project imports,
-Mathlib work, dependency builds, caches, and large proof checks remain on
-freshly approved Linux cloud compute.
+The current wave brings **55 of 62 glossary chapters** through the full
+example-first rebuild. The newest chapter computes a two-atom normalized
+average from weights `(2, 1)` and values `(1, 4)`: mass `3`, integral `6`,
+average `2`; fivefold scaling gives `(15, 30, 2)`, while probability
+normalization gives expectation `2`. Its exact Lean bridges separate the
+canonical `⨍` notation, reciprocal-mass rewrite, probability specialization,
+and later ergodic Birkhoff theorem. The accessible SVG is now the reproducible
+card, and its `Std` worksheet was executed with Lean 4.32.0 on the Mac. This
+is intentional teaching use of local Lean; project imports, Mathlib work,
+dependency builds, caches, and large proof checks remain on freshly approved
+Linux cloud compute.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3048,6 +3050,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `6a64db2`: pull one exact observable twice around a uniform three-cycle,
+  preserve its squared `L²` norm, and contrast the non-preserving collapse;
+  execute the local `Std` worksheet and regenerate its numeric card.
 - `3124cb4`: enumerate the full, exact invariant, and bottom sigma algebras
   of a six-state split cycle; execute the local `Std` event audit and separate
   literal invariance from modulo-null and ergodic semantics.
