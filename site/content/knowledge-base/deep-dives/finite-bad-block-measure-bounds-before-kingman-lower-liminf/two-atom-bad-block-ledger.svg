@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820"
+     viewBox="0 0 1200 820" role="img"
+     aria-labelledby="twoAtomBadTitle twoAtomBadDesc">
+  <title id="twoAtomBadTitle">One strict bad event appears at length five</title>
+  <desc id="twoAtomBadDesc">On a uniform two-atom probability space, the amber centered values at lengths one through five are zero, negative one, negative two, negative three, and negative four. Against slope negative three quarters, only length five is strictly below threshold. Blue has value zero throughout and is never bad. The union is the amber atom with probability one half. A boundary strip shows that threshold zero is empty at cap one but not at cap five.</desc>
+  <rect width="1200" height="820" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:28px;font-weight:700}
+    .sub{font-size:17px;fill:#5A544C}
+    .h{font-size:17px;font-weight:700}
+    .s{font-size:16px}
+    .m{font-size:14px;fill:#5A544C}
+    .num{font-size:17px;font-weight:700}
+    .line{stroke:#C4B8A8;stroke-width:1.5}
+  </style>
+
+  <text x="54" y="48" class="t title">One strict bad event appears at length five</text>
+  <text x="54" y="78" class="t sub">Uniform atoms: amber 1/2, blue 1/2. Cap m = 5. Slope c = -3/4.</text>
+
+  <rect x="48" y="108" width="1104" height="474" rx="18"
+        fill="#FFFDF8" stroke="#C4B8A8" stroke-width="2"/>
+  <rect x="64" y="126" width="1072" height="56" rx="10"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
+  <text x="91" y="161" class="t h">length</text>
+  <text x="225" y="151" class="t h">amber centered</text>
+  <text x="225" y="171" class="t m">value</text>
+  <text x="438" y="151" class="t h">threshold</text>
+  <text x="438" y="171" class="t m">c · length</text>
+  <text x="635" y="151" class="t h">strict test</text>
+  <text x="635" y="171" class="t m">amber value &lt; threshold</text>
+  <text x="903" y="151" class="t h">blue test</text>
+  <text x="903" y="171" class="t m">centered value is 0</text>
+
+  <line x1="64" y1="198" x2="1136" y2="198" class="line"/>
+  <line x1="64" y1="270" x2="1136" y2="270" class="line"/>
+  <line x1="64" y1="342" x2="1136" y2="342" class="line"/>
+  <line x1="64" y1="414" x2="1136" y2="414" class="line"/>
+  <line x1="64" y1="486" x2="1136" y2="486" class="line"/>
+
+  <text x="112" y="244" class="t num">1</text>
+  <text x="284" y="244" class="t num">0</text>
+  <text x="477" y="244" class="t num">-3/4</text>
+  <text x="724" y="244" class="t s">NO: 0 is above</text>
+  <text x="975" y="244" class="t s">NO</text>
+
+  <text x="112" y="316" class="t num">2</text>
+  <text x="278" y="316" class="t num">-1</text>
+  <text x="470" y="316" class="t num">-3/2</text>
+  <text x="724" y="316" class="t s">NO: -1 is above</text>
+  <text x="975" y="316" class="t s">NO</text>
+
+  <text x="112" y="388" class="t num">3</text>
+  <text x="278" y="388" class="t num">-2</text>
+  <text x="470" y="388" class="t num">-9/4</text>
+  <text x="724" y="388" class="t s">NO: -2 is above</text>
+  <text x="975" y="388" class="t s">NO</text>
+
+  <rect x="72" y="422" width="1056" height="56" rx="9"
+        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
+  <text x="112" y="460" class="t num">4</text>
+  <text x="278" y="460" class="t num">-3</text>
+  <text x="482" y="460" class="t num">-3</text>
+  <text x="684" y="460" class="t h">NO: equality is excluded</text>
+  <text x="975" y="460" class="t s">NO</text>
+
+  <rect x="72" y="494" width="1056" height="70" rx="9"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="112" y="538" class="t num">5</text>
+  <text x="278" y="538" class="t num">-4</text>
+  <text x="463" y="538" class="t num">-15/4</text>
+  <text x="685" y="538" class="t h">YES: -4 &lt; -15/4</text>
+  <text x="975" y="538" class="t s">NO</text>
+
+  <rect x="48" y="606" width="680" height="104" rx="16"
+        fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="76" y="643" class="t h">Union of the five events</text>
+  <text x="76" y="678" class="t num">bad set = {amber}     exact mass = 1/2</text>
+
+  <rect x="750" y="606" width="402" height="104" rx="16"
+        fill="#FBF9F6" stroke="#A67C52" stroke-width="2"/>
+  <text x="778" y="643" class="t h">Threshold-zero boundary</text>
+  <text x="778" y="673" class="t s">cap 1: empty</text>
+  <text x="938" y="673" class="t s">cap 5: {amber}</text>
+  <text x="778" y="697" class="t m">Zero threshold alone does not decide emptiness.</text>
+
+  <rect x="48" y="742" width="1104" height="50" rx="12"
+        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="77" y="774" class="t h">Strictness does the work: length 4 is equality; length 5 creates the event.</text>
+</svg>

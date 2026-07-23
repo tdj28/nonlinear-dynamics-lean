@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:32 PDT
+Last updated: 2026-07-22 21:34 PDT
 
-Audited baseline: `main` at `ea48291`
+Audited baseline: `main` at `5a9e9ea`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **24 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **25 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -478,6 +478,20 @@ declarations plus the helper and twelve-probe boundary map, and a
 byte-identical executed `Std` worksheet separate measurable/null-measurable
 event construction and conditional ergodic rigidity from the later theorem
 that actually proves almost-everywhere convergence.
+*Finite Bad-Block Measure Bounds Before Kingman Lower Liminf* now makes the
+entire RMT-30 bridge explicit on a uniform amber/blue identity system. For
+`m=5`, `c=-3/4`, only amber at length five is strictly bad, so the event has
+mass `1/2`. Twelve amber visits are covered by `[0,5)`, `[5,10)`, and
+`[10,15)` inside the buffered horizon 17, producing
+`-16≤-12<-45/4≤-9`. Atomwise integration gives visit integral `6` and
+buffered integral `-8`; the lower-rate witness `δ=-1/2` yields the finite
+ratio `1/2≤δ/c=2/3`. Equality at length four, cap-zero emptiness,
+threshold-zero cap dependence, and the false unreversed `1/2≥2/3` keep every
+strictness and sign gate active. Two accessible figures, seven Lean bridges,
+all ten public declarations, eleven private support declarations/instances,
+nine boundary examples and seven axiom reports, a guarded cloud probe, and a
+byte-identical executed `Std` worksheet explicitly stop before lower liminf or
+Kingman convergence.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3365,6 +3379,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `5a9e9ea`: rebuild *Birkhoff Convergence Events Before the Pointwise
+  Ergodic Theorem* around one convergent finite orbit and one bounded
+  nonconvergent decimal-block shift, seven Lean bridges, complete interface
+  coverage, and an executed local `Std` worksheet.
 - `ea48291`: rebuild *Finite Ordered Interval Packing for Nonpositive
   Subadditive Processes* around exact disjoint/overlapping ledgers, a full
   leftmost-greedy selection, gap–length–tail decoding, sign and boundary
