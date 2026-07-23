@@ -1,57 +1,146 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="400"
-     viewBox="0 0 760 400" role="img"
-     aria-labelledby="koopmanMotionTitle koopmanMotionDesc">
-  <title id="koopmanMotionTitle">Forward state motion and observable pullback</title>
-  <desc id="koopmanMotionDesc">The left panel moves a starting state through an update and then reads the original observable. The right panel first composes the observable with the state update and then reads it at the starting state. Both routes give the same value. A footer says that measure preservation keeps the real square-integrable norm unchanged.</desc>
-  <rect width="760" height="400" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .kept{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-  </style>
-  <text x="24" y="28" class="t title">Move the state forward; pull the observable back</text>
-  <text x="24" y="48" class="t m">Two routes to one reading make a nonlinear state update act linearly on observables.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720"
+     viewBox="0 0 1200 720" role="img"
+     aria-labelledby="koopmanWorkedTitle koopmanWorkedDesc">
+  <title id="koopmanWorkedTitle">A measure-preserving cycle and a non-preserving collapse</title>
+  <desc id="koopmanWorkedDesc">The upper panel follows a uniform three-state cycle with observable values two, minus one, and four. One Koopman pullback gives minus one, four, and two, and a second gives four, two, and minus one. Each row has squared L2 norm seven. The lower comparison sends all states to c. Its singleton preimage counts are zero, zero, and three, its pullback is four, four, four, and its squared norm is sixteen rather than seven.</desc>
+  <defs>
+    <pattern id="cyclePattern" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#E7F0E2"/>
+      <path d="M0 10 L10 0" stroke="#B9CDAE" stroke-width="2"/>
+    </pattern>
+    <pattern id="pullPattern" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#E8F0F7"/>
+      <circle cx="2" cy="2" r="1.2" fill="#9FB6CD"/>
+      <circle cx="6" cy="6" r="1.2" fill="#9FB6CD"/>
+    </pattern>
+    <pattern id="warnPattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#F8ECE5"/>
+      <path d="M-4 16 L16 -4 M8 20 L20 8" stroke="#E5C6B4" stroke-width="1"/>
+    </pattern>
+    <marker id="arrowGreen" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 Z" fill="#587747"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 Z" fill="#476987"/>
+    </marker>
+    <marker id="arrowWarn" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 Z" fill="#9A5D3A"/>
+    </marker>
+    <style>
+      .text { font-family: Inter, Arial, Helvetica, sans-serif; fill: #292620; }
+      .title { font-size: 25px; font-weight: 750; }
+      .subtitle { font-size: 16px; fill: #514B42; }
+      .panelTitle { font-size: 18px; font-weight: 750; letter-spacing: 0.7px; }
+      .label { font-size: 16px; font-weight: 700; }
+      .body { font-size: 15px; }
+      .small { font-size: 13px; fill: #514B42; }
+      .value { font-size: 18px; font-weight: 750; }
+      .panel { fill: #FCFAF6; stroke: #B8AC9C; stroke-width: 2; }
+      .cycleBox { fill: url(#cyclePattern); stroke: #587747; stroke-width: 2; }
+      .pullBox { fill: url(#pullPattern); stroke: #476987; stroke-width: 2; }
+      .warnBox { fill: url(#warnPattern); stroke: #9A5D3A; stroke-width: 2; }
+      .state { fill: #FFFDF9; stroke: #49443C; stroke-width: 2; }
+      .cycleArrow { fill: none; stroke: #587747; stroke-width: 3; marker-end: url(#arrowGreen); }
+      .pullArrow { fill: none; stroke: #476987; stroke-width: 3; marker-end: url(#arrowBlue); }
+      .warnArrow { fill: none; stroke: #9A5D3A; stroke-width: 3; marker-end: url(#arrowWarn); }
+      .divider { stroke: #C8BEB0; stroke-width: 1.5; }
+    </style>
+  </defs>
 
-  <rect class="neutral" x="24" y="70" width="344" height="244" rx="12"/>
-  <text x="44" y="99" class="t h">FORWARD STATE MOTION</text>
-  <text x="44" y="121" class="t m">Update first, then read the original observable.</text>
-  <circle cx="92" cy="183" r="30" fill="#FBF9F6" stroke="#7F786D" stroke-width="1.5"/>
-  <text x="66" y="180" class="t s">starting</text>
-  <text x="76" y="196" class="t s">state</text>
-  <path d="M128 183 L234 183" fill="none" stroke="#A67C52" stroke-width="2.5"/>
-  <polygon points="242,183 229,176 229,190" fill="#A67C52"/>
-  <text x="153" y="169" class="t m">state update</text>
-  <circle cx="282" cy="183" r="34" fill="#E8F0F7" stroke="#4B6787" stroke-width="1.7"/>
-  <text x="258" y="180" class="t s">updated</text>
-  <text x="267" y="196" class="t s">state</text>
-  <path d="M282 221 L282 251" fill="none" stroke="#4B6787" stroke-width="2"/>
-  <polygon points="282,258 275,246 289,246" fill="#4B6787"/>
-  <rect class="data" x="199" y="261" width="166" height="35" rx="8"/>
-  <text x="219" y="283" class="t s">read original observable</text>
+  <rect width="1200" height="720" fill="#F7F1E7"/>
+  <text x="36" y="43" class="text title">Koopman pullback: preserve the mass, preserve the L2 norm</text>
+  <text x="36" y="69" class="text subtitle">The same observable separates a measure-preserving cycle from a failed hypothesis.</text>
 
-  <rect class="neutral" x="392" y="70" width="344" height="244" rx="12"/>
-  <text x="412" y="99" class="t h">OBSERVABLE PULLBACK</text>
-  <text x="412" y="121" class="t m">Compose first, then read at the starting state.</text>
-  <rect class="data" x="414" y="153" width="118" height="58" rx="10"/>
-  <text x="439" y="178" class="t s">original</text>
-  <text x="433" y="195" class="t s">observable</text>
-  <path d="M540 182 L594 182" fill="none" stroke="#A67C52" stroke-width="2.5"/>
-  <polygon points="602,182 589,175 589,189" fill="#A67C52"/>
-  <text x="542" y="167" class="t m">compose</text>
-  <rect class="kept" x="610" y="153" width="104" height="58" rx="10"/>
-  <text x="629" y="178" class="t s">pulled-back</text>
-  <text x="631" y="195" class="t s">observable</text>
-  <path d="M662 219 L662 251" fill="none" stroke="#6F8D5E" stroke-width="2"/>
-  <polygon points="662,258 655,246 669,246" fill="#6F8D5E"/>
-  <rect class="kept" x="414" y="261" width="300" height="35" rx="8"/>
-  <text x="455" y="283" class="t s">read at starting state: the same value</text>
+  <rect x="32" y="92" width="1136" height="350" rx="18" class="panel"/>
+  <text x="56" y="125" class="text panelTitle">A. UNIFORM THREE-STATE CYCLE: ONE PREDECESSOR PER STATE</text>
 
-  <rect class="kept" x="24" y="334" width="712" height="44" rx="10"/>
-  <text x="44" y="361" class="t s">Measure preservation keeps the real square-integrable norm unchanged; it does not supply an inverse.</text>
+  <rect x="54" y="146" width="382" height="270" rx="14" class="cycleBox"/>
+  <text x="74" y="174" class="text label">State motion and original readings</text>
+  <text x="74" y="197" class="text small">Each state has probability 1/3.</text>
+
+  <path d="M158 274 C192 219 279 218 315 271" class="cycleArrow"/>
+  <path d="M338 300 C330 360 249 385 189 349" class="cycleArrow"/>
+  <path d="M146 332 C112 323 104 292 121 270" class="cycleArrow"/>
+
+  <circle cx="135" cy="290" r="38" class="state"/>
+  <circle cx="332" cy="290" r="38" class="state"/>
+  <circle cx="228" cy="356" r="38" class="state"/>
+  <text x="129" y="287" class="text label">a</text>
+  <text x="122" y="309" class="text value">2</text>
+  <text x="326" y="287" class="text label">b</text>
+  <text x="316" y="309" class="text value">-1</text>
+  <text x="222" y="353" class="text label">c</text>
+  <text x="222" y="375" class="text value">4</text>
+  <text x="74" y="397" class="text small">Values inside states are f(a), f(b), f(c).</text>
+
+  <path d="M451 278 H500" class="pullArrow"/>
+  <text x="451" y="256" class="text small">pull back</text>
+
+  <rect x="510" y="146" width="634" height="270" rx="14" class="pullBox"/>
+  <text x="530" y="174" class="text label">Observable rows in the fixed order (a, b, c)</text>
+  <line x1="530" y1="202" x2="1122" y2="202" class="divider"/>
+
+  <text x="545" y="235" class="text label">original f</text>
+  <rect x="700" y="211" width="88" height="38" rx="8" class="state"/>
+  <rect x="804" y="211" width="88" height="38" rx="8" class="state"/>
+  <rect x="908" y="211" width="88" height="38" rx="8" class="state"/>
+  <text x="740" y="236" class="text value">2</text>
+  <text x="839" y="236" class="text value">-1</text>
+  <text x="948" y="236" class="text value">4</text>
+  <text x="1008" y="236" class="text small">L2 norm squared = 7</text>
+
+  <text x="545" y="291" class="text label">pull back once</text>
+  <rect x="700" y="267" width="88" height="38" rx="8" class="state"/>
+  <rect x="804" y="267" width="88" height="38" rx="8" class="state"/>
+  <rect x="908" y="267" width="88" height="38" rx="8" class="state"/>
+  <text x="735" y="292" class="text value">-1</text>
+  <text x="844" y="292" class="text value">4</text>
+  <text x="948" y="292" class="text value">2</text>
+  <text x="1008" y="292" class="text small">L2 norm squared = 7</text>
+
+  <text x="545" y="347" class="text label">pull back twice</text>
+  <rect x="700" y="323" width="88" height="38" rx="8" class="state"/>
+  <rect x="804" y="323" width="88" height="38" rx="8" class="state"/>
+  <rect x="908" y="323" width="88" height="38" rx="8" class="state"/>
+  <text x="740" y="348" class="text value">4</text>
+  <text x="844" y="348" class="text value">2</text>
+  <text x="943" y="348" class="text value">-1</text>
+  <text x="1008" y="348" class="text small">L2 norm squared = 7</text>
+
+  <rect x="530" y="374" width="592" height="28" rx="7" fill="#FFFDF9" stroke="#587747" stroke-width="1.5"/>
+  <text x="548" y="394" class="text small">Preimage counts (1, 1, 1): the pullback only permutes equal masses.</text>
+
+  <rect x="32" y="464" width="1136" height="224" rx="18" class="warnBox"/>
+  <text x="56" y="497" class="text panelTitle">B. COLLAPSE TO c: COMPOSITION SURVIVES, ISOMETRY DOES NOT</text>
+
+  <circle cx="122" cy="576" r="31" class="state"/>
+  <circle cx="246" cy="540" r="31" class="state"/>
+  <circle cx="246" cy="622" r="31" class="state"/>
+  <circle cx="420" cy="580" r="42" class="state"/>
+  <text x="116" y="582" class="text label">a</text>
+  <text x="240" y="546" class="text label">b</text>
+  <text x="240" y="628" class="text label">c</text>
+  <text x="414" y="575" class="text label">c</text>
+  <text x="410" y="599" class="text value">4</text>
+  <path d="M154 576 H367" class="warnArrow"/>
+  <path d="M278 543 C326 544 343 555 372 568" class="warnArrow"/>
+  <path d="M278 617 C326 612 344 601 372 590" class="warnArrow"/>
+  <text x="74" y="659" class="text small">All three starting states read f(c) = 4.</text>
+
+  <line x1="500" y1="516" x2="500" y2="660" class="divider"/>
+  <text x="530" y="544" class="text label">Uniform-mass test</text>
+  <text x="530" y="572" class="text body">cycle preimages: (1, 1, 1)</text>
+  <text x="530" y="598" class="text body">collapse preimages: (0, 0, 3)</text>
+  <text x="530" y="631" class="text label">Not measure preserving</text>
+
+  <line x1="782" y1="516" x2="782" y2="660" class="divider"/>
+  <text x="812" y="544" class="text label">Same observable, new pullback</text>
+  <rect x="812" y="563" width="86" height="40" rx="8" class="state"/>
+  <rect x="912" y="563" width="86" height="40" rx="8" class="state"/>
+  <rect x="1012" y="563" width="86" height="40" rx="8" class="state"/>
+  <text x="850" y="590" class="text value">4</text>
+  <text x="950" y="590" class="text value">4</text>
+  <text x="1050" y="590" class="text value">4</text>
+  <text x="812" y="632" class="text label">L2 norm squared: 7 becomes 16</text>
+  <text x="812" y="657" class="text small">No contradiction: the preservation gate failed.</text>
 </svg>
