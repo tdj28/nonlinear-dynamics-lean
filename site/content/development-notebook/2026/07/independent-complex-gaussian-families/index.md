@@ -132,8 +132,8 @@ flowchart LR
 independence have different jobs. The bundle records both, the finite theorem
 combines them into a product joint law, and the canonical product space runs
 the construction in reverse. The empty branch is part of the same product
-measure API. Nothing in the diagram constructs a matrix ensemble or proves a
-symmetry law.</p>
+measure API. The diagram neither constructs a matrix ensemble nor contains a
+proof of a symmetry law.</p>
 
 ## Why one variable is not enough
 
@@ -294,7 +294,7 @@ lists of assumptions.
 
 {{< panel "warning" >}}
 **Independence does not distribute over informal grouping.** Proving that each
-real family is independent, or even checking every obvious pair, does not
+real family is independent, or even checking every pairwise relation, does not
 automatically prove mutual independence of the real-imaginary blocks. The Lean
 constructor asks for the block-level fact it actually uses.
 {{< /panel >}}
@@ -727,7 +727,7 @@ bridges a dependence layer, or exposes a reusable canonical construction.
 
 ### 1. Transport laws through measurable maps
 
-`HasLaw.comp` is the workhorse when a random variable is transformed. The
+`HasLaw.comp` is the principal law-transport lemma used here. The
 pair constructor maps \((X_i,Y_i)\) through the real-linear identification
 with \(\mathbb C\). Exactness is preserved because both the input law and the
 map's pushforward law are named.
@@ -736,16 +736,16 @@ map's pushforward law are named.
 
 Both scalar scaling and pair-to-complex assembly use `iIndepFun.comp`.
 Measurable functions applied separately to mutually independent coordinates
-remain mutually independent. This theorem is powerful only when the input
-independence is stated at the correct block level.
+remain mutually independent. Its application here requires input independence
+at the correct block level.
 
 ### 3. Match the bundle to the upstream finite-product theorem
 
 The fields `hasLaw` and `independent` are precisely the inputs to
-`iIndepFun.hasLaw_pi`. As a result, the global law theorem is one line. The
-brevity is earned by interface design, not by omitting hypotheses.
+`iIndepFun.hasLaw_pi`. As a result, the global law theorem is one line because
+the interface records all of its hypotheses.
 
-### 4. Prove the canonical model by evaluation
+### 4. Prove the canonical realization theorem by evaluation
 
 `Measure.pi` comes with two complementary APIs: evaluation is
 measure-preserving onto each factor, and the evaluation maps are mutually
@@ -968,7 +968,7 @@ The checked milestone now contains:
 - exact real and imaginary marginal laws at every coordinate;
 - exact coordinate means and component variances;
 - coordinate `MemLp` and integrability consequences;
-- a block-honest constructor from independent real pair laws;
+- a block-level constructor from independent real pair laws;
 - coordinatewise real scaling that preserves the bundle;
 - an exact finite product joint law;
 - qualitative joint Gaussianity;

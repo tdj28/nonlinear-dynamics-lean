@@ -188,13 +188,15 @@ Assume that \(T\) preserves \(\mu\) and that \(s\) is null measurable. Then
 
 The hypotheses have separate jobs:
 
-- **Null measurability of \(s\)** lets its indicator participate in integration.
-  It means that \(s\) differs from a measurable set only on a
+- **Null measurability of \(s\)** supplies the measurable representative
+  required for integrating its indicator. It means that \(s\) differs from a
+  measurable set only on a
   {{< refterm "null-set" "null set" >}}.
 - **Finite total measure** makes the bounded indicator integrable.
 - **Measure preservation** makes every shifted indicator
   \(\mathbf 1_s\circ T^j\) have the same integral \(\mu(s)\).
-- **Finite horizon** lets ordinary finite-sum linearity finish the proof.
+- **Finite horizon** reduces the remaining integral to ordinary finite-sum
+  linearity.
 
 Ordinary measurability of \(s\) is sufficient but stronger than required.
 Ergodicity is not used. On a probability space, the integral is an
@@ -346,7 +348,7 @@ elan run leanprover/lean4:v4.32.0 lean OrbitVisitCountScratch.lean
 The outputs should be <code>0</code>, <code>1</code>, <code>2</code>,
 <code>3</code>, <code>[2, 1, 2, 1, 2, 2, 2]</code>, and <code>12</code>.
 Dividing the last result by seven on paper gives the exact expectation
-\(12/7\). The worksheet verifies the finite combinatorics; the
+\(12/7\). The worksheet checks the finite combinatorics; the
 measure-theoretic identity remains the project theorem checked below.
 
 ## Try the exact declarations in the project
@@ -410,8 +412,8 @@ A finite orbit visit count is not automatically:
   one orbit and can be strongly dependent.
 
 The seven-cycle happens to be ergodic under its uniform measure, but the
-finite identity was proved using preservation alone. The example should not
-smuggle a stronger hypothesis into the general statement.
+finite identity was proved using preservation alone. The example does not
+justify adding ergodicity to the general statement.
 
 ## Check your understanding
 

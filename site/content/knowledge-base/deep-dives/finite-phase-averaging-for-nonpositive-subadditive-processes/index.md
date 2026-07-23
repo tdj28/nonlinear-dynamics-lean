@@ -157,7 +157,7 @@ the counted pieces would no longer describe the same object.
   wide="true"
   src="phase-boundary-sign-near-misses.svg"
   alt="Three phase rows split horizon ten into prefix, two blocks, and tail values that each total negative eighteen. Nonpositive prefixes and tails may be removed. A positive additive process instead has ten equal to zero plus six plus four, so dropping the positive tail would give the false inequality ten at most six. Omitting the extra block changes the claimed horizon from ten to seven."
-  caption="**Finding:** the exact boundary values are \((0,-10,-8)\), \((-1,-13,-4)\), and \((-3,-12,-3)\); every triple sums to \(-18\). Their nonpositive signs make deletion safe. The additive wrong-sign process \(Y_n=n\) keeps the boundary identity \(10=0+6+4\) but makes deletion false, while the missing-boundary formula \(3\cdot2+1=7\) simply counts the wrong horizon. The figure proves no asymptotic statement."
+  caption="**Finding:** the exact boundary values are \((0,-10,-8)\), \((-1,-13,-4)\), and \((-3,-12,-3)\); every triple sums to \(-18\). Their nonpositive signs make deletion safe. The additive wrong-sign process \(Y_n=n\) keeps the boundary identity \(10=0+6+4\) but makes deletion false, while the missing-boundary formula \(3\cdot2+1=7\) counts the wrong horizon. No asymptotic statement follows from this finite diagram."
 >}}
 
 ## From the ledger to the general theorem
@@ -621,9 +621,10 @@ claim \(10\le6\), and <code>[7, 10]</code> contrasts the missing-extra-block
 horizon with the checked one.
 
 **Resource profile: small standalone tutorial, local-safe.** The
-<code>native_decide</code> examples certify this concrete finite
-representation. They do not establish Mathlib's generic reindexing theorem or
-the matrix-cocycle specialization. Those exact declarations use the Full
+<code>native_decide</code> examples are kernel-checked proofs about this
+concrete finite representation. They do not establish Mathlib's generic
+reindexing theorem or the matrix-cocycle specialization. Those exact
+declarations use the Full
 project checks below.
 
 ## Revisit the exact three-phase horizon
@@ -686,9 +687,9 @@ repair of the displayed indices ([Lalley, page 2](#ref-phase-deep-lalley)).
 There is another coherent repair: keep the horizon \(nm+k\) but use one fewer
 complete block in every phase. That choice would produce only \((n-1)m\)
 sliding starts. It is not the interface formalized here. The chapter does not
-claim to recover the author's intended edit, and it does not challenge the
-asymptotic Kingman theorem. It simply refuses to present incompatible finite
-counts as an exact identity.
+determine the author's intended edit. This finite counting discrepancy does
+not by itself contradict the asymptotic Kingman theorem, but the incompatible
+counts cannot be presented as an exact identity.
 
 ## From one phase to a subadditive bound
 
@@ -931,7 +932,8 @@ sum along \(T\), but turning that sum into a limit remains separate work.
 At \(b=0\), <code>Finset.range b</code> is empty, the right Birkhoff sum has
 length \(0\cdot q=0\), and the left scalar is zero. Declaration 4 reduces to
 \(0\le0\) for every \(q,r,\omega\). There is no phase \(s\lt0\), so the
-single-phase theorems have no instance. Declaration 5 refuses division.
+single-phase theorems have no instance. Declaration 5 assumes \(b\ne0\), so it
+has no \(b=0\) instance.
 
 At \(q=0\), positive \(b\) still gives \(b\) genuine phases, but each
 powered-map Birkhoff sum is empty. The multiplication theorem becomes
@@ -940,7 +942,7 @@ powered-map Birkhoff sum is empty. The multiplication theorem becomes
 bX_{b+r}(\omega)\le0.
 \]
 
-After division, this is simply \(X_{b+r}(\omega)\le0\), already supplied by
+After division, this reduces to \(X_{b+r}(\omega)\le0\), already supplied by
 the sign premise because \(b+r\gt0\). It is a correct boundary theorem, not a
 many-block averaging result.
 

@@ -40,8 +40,8 @@ g(x_0)=3,
 g(x_1)=g(x_2)=g(x_3)=-1.
 \]
 
-An **observable** is simply a numerical reading attached to each state. The
-measure \(\mu\) is a
+An **observable** is a numerical reading attached to each state. The measure
+\(\mu\) is a
 {{< refterm "probability-measure" "probability measure" >}} because the four
 masses add to one. Every subset of this finite space is an
 {{< refterm "event" "event" >}}.
@@ -99,8 +99,8 @@ A_n g(x)\le\frac3n\le\frac12
 \]
 
 The last inequality is not strict at its numerical upper bound, so it still
-excludes the required strict crossing. We have now checked every time, not
-just the six displayed times.
+excludes the required strict crossing. We have now checked every time, rather
+than only the six displayed times.
 
 The at-least-once event is therefore
 
@@ -208,7 +208,7 @@ The proof is elementary in both directions:
 1. If \(x\in E_a(g)\), recover its finite witness time \(n\) and choose the
    finite horizon \(N=n\).
 2. If \(x\in E_{N,a}(g)\) for some \(N\), keep the same witness \(n\) and
-   forget only the upper bound \(n\le N\).
+   remove only the upper bound \(n\le N\).
 
 No measure, measurable structure, topology, integrability, or regularity of
 \(T\) is needed for this set equality.
@@ -301,7 +301,7 @@ The comparison is strict. If \(A_k g(\omega)=a\), time \(k\) is not a
 witness. Time zero is excluded because an average of zero observations should
 not create membership through a totalized library convention.
 
-## Measurability: two honest routes
+## Measurability: two proof routes
 
 A
 {{< refterm "measurable-space" "measurable space" >}} specifies which
@@ -488,7 +488,7 @@ The exact prefix union is a separate theorem.
   times \(1\le k\le N\).
 - Equality is literal set equality, not equality only up to a null set.
 - The proof chooses <code>N := k</code> from an infinite-event witness in one
-  direction and forgets <code>k ≤ N</code> in the other.
+  direction and removes <code>k ≤ N</code> in the other.
 {{< /lean-bridge >}}
 
 Ordinary measurability records its assumptions explicitly.

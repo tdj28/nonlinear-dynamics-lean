@@ -65,7 +65,7 @@ If we square only those four displayed numbers, we get
 =3.
 \]
 
-But the Frobenius norm sees every matrix position:
+But the Frobenius norm includes every matrix position:
 
 \[
 \lVert H\rVert_F^2
@@ -239,9 +239,10 @@ For a Hermitian matrix assembled from \(a,b,c\), the
 \end{aligned}
 \]
 
-The same calculation with two vectors proves preservation of the real inner
-product. Therefore assembly is an isometry from the normalized real ledger
-onto intrinsic Hermitian Euclidean space.
+Expanding the same expression for arbitrary coordinate vectors \(x\) and
+\(y\) yields preservation of the real inner product. Therefore assembly is an
+isometry from the normalized real ledger onto intrinsic Hermitian Euclidean
+space.
 
 ## In Lean: geometry becomes an exact equality
 
@@ -362,9 +363,10 @@ elan run leanprover/lean4:v4.32.0 lean HermitianCoordinateTutorial.lean
 
 The four <code>#eval</code> commands print <code>3</code>, <code>4</code>,
 <code>2</code>, and <code>36</code>. The <code>example</code> declarations ask
-Lean's decidable integer arithmetic to verify the same facts. The worksheet
-does not model square roots, complex matrices, Euclidean spaces, or the
-general isometry. Those are Mathlib-backed project obligations.
+decidable integer arithmetic to construct proof terms for the same equalities;
+Lean's kernel checks those terms. The worksheet does not model square roots,
+complex matrices, Euclidean spaces, or the general isometry. Those are
+Mathlib-backed project obligations.
 
 ## Try the exact project interfaces
 
@@ -430,7 +432,7 @@ This one finite product law records every coordinate and their
 - the imaginary part of each upper entry has variance \(s_n/2\); and
 - the joint block structure remains the one carried by the product measure.
 
-The upper variance is just the scalar calculation
+The upper variance follows from the scalar calculation
 
 \[
 \operatorname{Var}\!\left(\frac{Z}{\sqrt{2}}\right)

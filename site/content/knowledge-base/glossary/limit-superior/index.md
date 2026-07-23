@@ -177,7 +177,7 @@ eventual lower edge. In the worked sequence,
 
 so the gap between the two edges exposes the failure of convergence.
 
-## Real-valued Lean needs honest boundedness gates
+## Real-valued Lean needs explicit boundedness hypotheses
 
 Mathlib's `Filter.limsup` works in a conditionally complete order such as
 \(\mathbb R\). The real numbers do not contain actual elements
@@ -308,7 +308,7 @@ elan run leanprover/lean4:v4.32.0 lean LimsupScratch.lean
 
 The first output should be
 <code>[5, -1, 1, -1, 1, -1, 1, -1, 1, -1]</code>. The second should be
-<code>[5, 1, 1]</code>. These finite calculations reveal the stable tail
+<code>[5, 1, 1]</code>. These finite calculations display the stable tail
 ceiling, while the paper argument proves the infinite statement: after index
 zero every term is at most \(1\), and every tail contains a positive even
 index where the value is exactly \(1\).

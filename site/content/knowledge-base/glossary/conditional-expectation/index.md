@@ -172,7 +172,7 @@ The endpoint information fields calibrate the construction:
   function is constant. On a probability space that constant is
   \(\mathbb E[X]=3\).
 - For the intermediate field \(\mathcal G\), the answer keeps the cell label
-  and forgets only variation inside each cell.
+  and discards only variation inside each cell.
 
 Equal weights made the cell values arithmetic means. With unequal masses they
 are weighted means. If \(a\) and \(b\) have masses \(1/8\) and \(3/8\), the
@@ -314,7 +314,7 @@ obligations. Finite measure does not mean probability measure.
 ## A tiny standalone Lean worksheet a human can type
 
 **Standalone tutorial.** This
-worksheet verifies the integer numerators behind the four-state example.
+worksheet checks the integer numerators behind the four-state example.
 Dividing every sum by the common denominator \(4\) gives the probability
 integrals. It does not define Mathlib measures, sigma algebras, conditional
 expectation, or a.e. equality.
@@ -372,9 +372,11 @@ This exact worksheet was executed successfully with Lean 4.32.0 while editing
 this page. The evaluations printed <code>[1, 3, 2, 6]</code>,
 <code>[2, 2, 4, 4]</code>, then <code>[4, 4]</code>, <code>[8, 8]</code>,
 and <code>[12, 12]</code>. The last pair gives global expectation
-\(12/4=3\). The last two examples prove that the coarse value at \(a\) is
-neither \(X(a)\) nor the constant global mean. This command is suitable for
-an ordinary Mac or Linux machine because it imports only <code>Std</code>.
+\(12/4=3\). The final two <code>example</code> commands ask Lean's kernel to
+check proof terms stating that the coarse value at \(a\) is neither \(X(a)\)
+nor the constant global mean. This command is
+suitable for an ordinary Mac or Linux machine because it imports only
+<code>Std</code>.
 
 ## The invariant-sigma-algebra connection
 

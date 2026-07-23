@@ -151,7 +151,7 @@ special case, not a hidden rescaling performed by integration.
 
 ## From the finite ledger to the theorem
 
-Watch one nonlinear system for a very long time. Measure one observable at
+Consider one nonlinear system over a long orbit. Measure one observable at
 each step. Average those measurements. When should that **time average** equal
 the average obtained by sampling the whole state space at once?
 
@@ -193,7 +193,7 @@ A_n f(\omega)
 The right side is the
 {{< refterm "normalized-space-average" "normalized space average" >}}. If
 \(\mu\) is a probability measure, then \(\mu(\Omega)=1\), so the target is the
-ordinary integral and may honestly be called the expectation of \(f\).
+ordinary integral and may be called the expectation of \(f\).
 
 The formalization separates two assumptions. Collapsing an already invariant
 conditional expectation to a constant needs only
@@ -515,7 +515,7 @@ ergodicity only of \(T\), not of a powered map.
   wide="true"
   src="two-cycle-parity-boundary.svg"
   alt="The uniform two-state swap alternates observable values three and seven. Its Birkhoff averages converge to five, event overlap alternates between one half and zero rather than approaching one quarter, and the squared map is the nonergodic identity."
-  caption="**Finding:** the same numerical model separates three ideas. The swap \(T\) is ergodic and its full Birkhoff sequence converges to \(5\); its overlap ledger \(1/2,0,1/2,0,\ldots\) proves that it is not mixing; and \(T^2\) is the identity, hence not ergodic. RMT-28 assumes only ergodicity of the original map."
+  caption="**Finding:** the same numerical model separates three ideas. The swap \(T\) is ergodic and its full Birkhoff sequence converges to \(5\); its overlap sequence \(1/2,0,1/2,0,\ldots\) has no limit, so it is not mixing; and \(T^2\) is the identity, hence not ergodic. RMT-28 assumes only ergodicity of the original map."
 >}}
 
 ## The two convergence endpoints in Lean
@@ -753,7 +753,7 @@ Several omissions are deliberate.
 - The unconditional representative equality and private constancy helper do
   not ask for integrability.
 
-The final two omissions are easy to misread. They rely on Mathlib's totalized
+The final two omissions require care. They rely on Mathlib's totalized
 definitions and say only what their signatures say. The semantic normalized
 mean theorem does restore integrability and nonzero finite mass.
 
@@ -889,7 +889,7 @@ f(\mathsf{false})=0,
 f(\mathsf{true})=1.
 \]
 
-The finalized probe proves three negative facts in order:
+The module contains three kernel-checked propositions for this system:
 
 1. the identity is not <code>PreErgodic</code> for this measure;
 2. consequently it is not <code>Ergodic</code>; and
@@ -1052,9 +1052,9 @@ and \(T^2\) is not ergodic.
 The theorem module is a **full project check**: it imports Mathlib and may
 require substantial disk space and memory. The following teaching file is a
 **standalone tutorial**: it imports only Lean's `Std`, defines its own
-two-point state space, computes exact rational averages, and asks Lean to
-verify every displayed ledger. It is appropriate for an ordinary macOS or
-Linux computer with Elan installed.
+two-point state space, computes exact rational averages, and contains
+kernel-checked proofs of every displayed ledger. It is appropriate for an
+ordinary macOS or Linux computer with Elan installed.
 
 Save this block byte for byte as
 <code>/tmp/ErgodicBirkhoffNormalizedTutorial.lean</code>:
@@ -1216,8 +1216,8 @@ Here is how the executable vocabulary matches the mathematics:
 | `orbitSum T n x` | \(\sum_{j=0}^{n-1}f(T^j x)\). |
 | `average T n x` | \(A_nf(x)\), with the explicit convention \(A_0f=0\). |
 | `List.range 7` | The horizons \(0,1,\ldots,6\). |
-| `#eval` | Ask Lean to execute a definition and print its result. |
-| `example ... := by native_decide` | Ask Lean's verified decision procedure to prove the finite equality. |
+| `#eval` | Execute a definition and print its result. |
+| `example ... := by native_decide` | Use native evaluation to construct a kernel-checked proof of the finite equality. |
 
 Three details are worth noticing. The cast `(n : Rat)` moves the natural
 horizon into exact rational arithmetic before division. The expression
@@ -1494,7 +1494,7 @@ Which source fixes the exact spelling of <code>average_eq</code>?
 <code>Mathlib/MeasureTheory/Integral/Average.lean</code> source, not a
 historical paper or an unpinned documentation page.
 
-### Exercise 30: state the summit honestly
+### Exercise 30: state the summit precisely
 
 Give the theorem and one major boundary in two sentences.
 

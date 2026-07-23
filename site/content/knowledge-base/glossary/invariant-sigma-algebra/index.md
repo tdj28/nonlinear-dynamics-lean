@@ -242,7 +242,7 @@ MeasurableSpace.invariants_le T :
 ~~~
 
 It does **not** assert equality with the ambient space or with bottom. The map
-decides where the invariant sigma algebra lies between those extremes.
+determines where the invariant sigma algebra lies between those extremes.
 
 ## In Lean: invariant-measurable functions
 
@@ -333,8 +333,8 @@ T^{-1}(S)\mathbin{\triangle}S=\{q\},
 
 Thus \(S\) is invariant modulo null sets but is absent from Mathlib's exact
 invariant sigma algebra. Exact invariance always implies modulo-null
-invariance, but this example proves that the converse fails even for a
-measure-preserving probability system.
+invariance. This two-state system is a counterexample to the converse, even
+among measure-preserving probability systems.
 
 This distinction also separates two statements that sound similar:
 

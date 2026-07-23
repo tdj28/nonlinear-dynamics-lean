@@ -599,7 +599,7 @@ identity
     d\operatorname{matrixLaw}(n)(A)=n.
 \]
 
-Why retain the unsimplified product? It is the honest theorem for all natural
+Why retain the unsimplified product? It is the exact theorem for all natural
 dimensions. In Lean's fields, \(0^{-1}=0\), so at \(n=0\) the right side is
 zero. For positive \(n\), reciprocal cancellation is valid and the value is
 one.

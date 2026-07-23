@@ -8,7 +8,7 @@ summary: "Random-matrix-theory milestone 28 (RMT-28) proves that conditional exp
 lead: |
   RMT-27 identified the long-time average of an observable as the information visible to invariant events. RMT-28 asks when that surviving information must collapse to one number. The checked answer separates two ideas that textbook slogans often fuse: pre-ergodicity makes the invariant conditional expectation almost everywhere constant, while full ergodicity also supplies the measure preservation needed for the orbit-average theorem. Finite nonzero mass identifies the constant as the normalized space average, and probability normalization turns it into the ordinary integral.
 key_result: |
-  Let T act on a finite nonzero measure space, and let f be a real integrable observable. If every exactly invariant measurable event is null or conull, then conditional expectation of f onto the exact invariant sigma algebra is almost everywhere the Mathlib integral average. If T is also measure preserving, the complete Birkhoff-average sequence converges to that normalized value almost everywhere. For a probability measure the target is simply the integral of f. No inverse map, injectivity, surjectivity, mixing, convergence rate, or powered-map ergodicity is assumed.
+  Let T act on a finite nonzero measure space, and let f be a real integrable observable. If every exactly invariant measurable event is null or conull, then conditional expectation of f onto the exact invariant sigma algebra is almost everywhere the Mathlib integral average. If T is also measure preserving, the complete Birkhoff-average sequence converges to that normalized value almost everywhere. For a probability measure the target is the integral of f. No inverse map, injectivity, surjectivity, mixing, convergence rate, or powered-map ergodicity is assumed.
 draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
@@ -123,7 +123,7 @@ longer mathematical treatment with worked models, see
   wide="true"
   src="orbit-sectors-collapse.svg"
   alt="Several invariant orbit sectors carry different conditional-expectation values in a nonergodic system. Under pre-ergodicity, all sectors except null sets collapse to one surviving value."
-  caption="RMT-27 permits the limiting function to remember an invariant sector. RMT-28 adds the null-or-conull rigidity that removes every positive-mass distinction between sectors. The conclusion is almost-everywhere constancy, not literal equality at every point."
+  caption="RMT-27 permits the limiting function to vary between invariant sectors. RMT-28 adds the null-or-conull rigidity that removes every positive-mass distinction between sectors. The conclusion is almost-everywhere constancy, not literal equality at every point."
 >}}
 
 ## The missing step after RMT-27
@@ -282,7 +282,7 @@ RMT-27's orbit convergence.
 | 5 | `ae_tendsto_birkhoffAverage_normalizedIntegral_of_ergodic` | finite \(\mu\), `μ ≠ 0`, `Ergodic T μ`, integrable \(f\) | Full Birkhoff sequence converges almost everywhere to the normalized integral |
 | 6 | `ae_tendsto_birkhoffAverage_integral_of_ergodic` | probability \(\mu\), `Ergodic T μ`, integrable \(f\) | Full Birkhoff sequence converges almost everywhere to \(\int f\,d\mu\) |
 
-Three assumption distinctions deserve emphasis.
+Three assumption distinctions control the theorem statements.
 
 First, `hμ : μ ≠ 0` is an explicit proposition in the finite-measure public
 API. The proof installs the typeclass `NeZero μ` locally only where Mathlib's
@@ -424,10 +424,9 @@ Mathlib also proves
 for finite measures. Because `hμ` makes the real total mass nonzero, left
 cancellation identifies \(c\) with `⨍ x, f x ∂μ`.
 
-This proof route is more robust than expanding an inverse immediately. It
-uses Mathlib's average as the canonical middle object, lets the library own
-the normalization arithmetic, and reveals exactly where nonzero mass is
-consumed.
+This proof route avoids expanding an inverse immediately. It uses Mathlib's
+average as the canonical middle object, delegates the normalization arithmetic
+to the library, and makes explicit where nonzero mass is used.
 
 ## Mathlib's `⨍` and the normalization ledger
 
@@ -495,7 +494,7 @@ that compiled boundary probe, but excludes it from the meaningful
 positive-finite-mass theorem with `hμ : μ ≠ 0`.
 {{< /panel >}}
 
-## Declarations 3 and 4: two honest presentations
+## Declarations 3 and 4: two equivalent presentations
 
 Declaration 3 exposes the finite-mass formula directly:
 
@@ -894,12 +893,12 @@ almost-everywhere filter for the zero measure regards every predicate as true.
 At the same time, inverse zero and the zero-measure integral make the target
 expression reduce to zero.
 
-The probe therefore validates two design decisions at once:
+These boundary facts support two design decisions:
 
 1. zero measure belongs to Mathlib's general `Ergodic` boundary; and
 2. the meaningful finite normalized theorem must take `hμ : μ ≠ 0` explicitly.
 
-## Anonymous probe 5: the weak gate really is necessary
+## Anonymous probe 5: the weak gate is necessary
 
 The fifth `example` uses
 
@@ -933,8 +932,8 @@ and then derives
 
 by projecting `toPreErgodic` from any hypothetical ergodicity proof. This
 ordering matters. The conditional-expectation identification theorems assume
-only `PreErgodic`, so a countermodel that established merely failure of the
-stronger bundled `Ergodic` premise would not isolate the necessary gate.
+only `PreErgodic`, so a countermodel refuting only the stronger bundled
+`Ergodic` premise would not isolate the necessary gate.
 
 Because the invariant sigma algebra of the identity map is the full ambient
 sigma algebra, conditional expectation of the integrable separator is the
@@ -1308,7 +1307,7 @@ Dirac measure is unchanged. Dirac support also makes every exactly invariant
 event null or conull. These two facts give ergodicity even though the map
 collapses both Boolean points and never reaches `true`.
 
-### Exercise 13: verify the mass-two probe
+### Exercise 13: compute the mass-two model
 
 For \(\mu=2\delta_{\mathrm{false}}\), compute the normalized integral of an
 observable \(h\).
@@ -1393,21 +1392,21 @@ than an additional result. The warning-fatal declarations and boundary probes
 stand on their own; the broader lessons below would need separate formal or
 scientific tests if turned into new claims.
 
-RMT-28 demonstrates how much structure sits inside a familiar one-line
-formula. "Time average equals space average" requires a convergence theorem,
+RMT-28 makes explicit the structure behind a familiar one-line formula. "Time
+average equals space average" requires a convergence theorem,
 an invariant-information target, a rigidity theorem, an integral
 identification, a nonzero denominator, and a normalization convention. Lean
 does not permit those layers to merge through familiarity alone.
 
 The final canonization also illustrates why assumption minimization matters.
 The first draft shape could have placed full `Ergodic` on every identification
-theorem. The Dirac-at-`true` boundary model shows exactly why that would be
-misleading: conditional-expectation rigidity can survive when measure
-preservation fails. Full ergodicity becomes necessary only when a claim about
-orbit averages imports RMT-27.
+theorem. The Dirac-at-`true` boundary model instantiates
+conditional-expectation rigidity when measure preservation fails, so full
+`Ergodic` would exclude a valid case. Full ergodicity becomes necessary only
+when a claim about orbit averages imports RMT-27.
 
 For physics, the theorem identifies an asymptotic value without describing
-the journey toward it. A future quantitative theory might add mixing rates,
+the rate or path of convergence. A future quantitative theory might add mixing rates,
 spectral gaps, concentration, or fluctuation laws. None follows from this
 module. Keeping those questions separate protects later work from treating an
 existence theorem as a mechanism or time-scale theorem.

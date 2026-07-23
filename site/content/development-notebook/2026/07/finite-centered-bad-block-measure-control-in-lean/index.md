@@ -232,7 +232,7 @@ Y_n(T^j\omega)\lt cn.
 
 Classical choice selects one such length at each marked start. The proof then
 weakens strict inequality to a non-strict cost bound because the imported
-packing theorem expects `≤`.
+packing theorem is stated with `≤`.
 
 {{< reference-figure
   wide="true"
@@ -816,11 +816,11 @@ From \(\delta\le c\mu(B)\) and \(c\lt0\), derive the result.
 What does the theorem say when \(\mu=0\)?
 
 **Solution.** Every real set measure is zero, and the compiled boundary probe
-confirms the left side vanishes.
+computes the left side as zero.
 
 ### Exercise 20: reject hidden ergodicity
 
-Which compiled model shows ergodicity is absent?
+Which compiled model instantiates the theorem without ergodicity?
 
 **Solution.** The identity map on the two-point probability space is not
 pre-ergodic. In the compiled model, the finite bad set is one atom of mass
@@ -828,7 +828,7 @@ pre-ergodic. In the compiled model, the finite bad set is one atom of mass
 
 ### Exercise 21: reject hidden probability
 
-Which compiled model shows total mass one is absent?
+Which compiled model instantiates the theorem without total mass one?
 
 **Solution.** `rmt30MassTwoMeasure` has total mass two and still satisfies the
 generic theorem.

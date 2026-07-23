@@ -3,7 +3,7 @@ title: "Measurable Finite Random-Matrix Products and Proof-Carrying Pushforward 
 slug: "measurable-finite-random-matrix-products-and-pushforward-laws"
 date: 2026-07-21
 summary: "Two noncommuting two-by-two matrix histories make product order, event preimages, atom-by-atom pushforward weights, dependence, and equality in law concrete before the checked Lean interface generalizes the construction."
-lead: "A fair coin chooses one complete red or blue matrix history. Multiply the two selected factors in chronological order, compute one event preimage, and the product law appears atom by atom. Lean then proves that every measurable finite prefix has this honest pushforward interface."
+lead: "A fair coin chooses one complete red or blue matrix history. Multiply the two selected factors in chronological order, compute one event preimage, and obtain the product law atom by atom. The formal module then proves the stated pushforward interface for every measurable finite prefix."
 draft: false
 pro_reviewed: false
 level: "Finite random dynamics, measurable maps, and law-level interfaces"
@@ -239,8 +239,9 @@ Both factor maps are measurable. Yet
 \]
 
 The required factorization fails, so \(A_0\) and \(A_1\) are not
-{{< refterm "independence" "independent" >}}. The shared outcome variable
-alone would not prove dependence; the numerical event calculation does.
+{{< refterm "independence" "independent" >}}. A shared outcome variable does
+not by itself imply dependence; the displayed unequal event probabilities
+establish dependence for this finite model.
 
 ### Equality in law does not imply pointwise equality
 
@@ -412,7 +413,7 @@ This exact worksheet was executed successfully with Lean 4.32.0. It printed:
 Read the output from top to bottom. The first two matrices are \(R\) and \(B\).
 The next two are the reverse-order products. The singleton list is the
 preimage of \(G\). The weighted matrix list is the two-atom pushforward
-ledger. The next output, \(1\), proves that the red and blue zero-horizon
+ledger. The next output, \(1\), records that the red and blue zero-horizon
 identity outcomes merge into one atom of total weight one. The triple
 \((1/2,1/2,1/2)\) records the two factor-event masses and their intersection,
 so it visibly fails the independence target \(1/4\). The last pairs show equal
@@ -643,7 +644,7 @@ The empty product is the constant identity map. Lean publishes
   vector.
 {{< /lean-bridge >}}
 
-The result is definitional: after unfolding the recursion, Lean proves it with
+The result is definitional: after unfolding the recursion, the proof closes with
 <code>rfl</code>.
 
 ### One step
@@ -826,7 +827,7 @@ already has a checked measurable-space interface for finite complex matrices
 and measurable multiplication.
 
 This scope is not a theorem that complex scalars are mathematically necessary.
-It is an honest statement of the interface proved in this module. A future
+It is the exact interface proved in this module. A future
 generalization would need suitable measurable structures and measurable
 multiplication for the chosen scalar type.
 
@@ -950,9 +951,9 @@ import NonlinearDynamics.Random.MatrixProducts.MeasurableFiniteProducts
 #check NonlinearDynamics.Random.RandomMatrix.law_apply
 ~~~
 
-The first two checks reveal where ordinary measurability evidence enters. The
-third is the checked preimage-evaluation theorem matching the opening ledger.
-The full project command below checks the authoritative module.
+The first two declaration types display where ordinary measurability evidence
+enters. The third is the checked preimage-evaluation theorem matching the
+opening ledger. The full project command below checks the authoritative module.
 {{< /repo-check >}}
 
 ## Camp six: calibrate the law at zero and one step
@@ -1303,7 +1304,7 @@ a source probability hypothesis.
 <code>forwardProductProbabilityLaw</code> wraps an already mass-one raw law.
 Its coercion theorem is reflexive. No weights change.
 
-### Smuggling in independence
+### Adding an unsupported independence assumption
 
 Measurability of each factor does not imply that factors are independent,
 identically distributed, or stationary. Their joint dependence can be
@@ -1434,7 +1435,7 @@ source, accessibility, and editorial reviews are pending.
 | Stability, bifurcation, chaos, or physical-model theorem | Not claimed |
 
 The module reaches exactly one new altitude: finite ordered products are now
-measurable random matrices with honest pushforward laws. Every long-time or
+measurable random matrices with proof-carrying pushforward laws. Every long-time or
 model-specific claim remains above the current summit.
 
 ## Where to continue
@@ -1450,8 +1451,8 @@ isolates the chronology and shifted split. The
 measure-theoretic interfaces reused here.
 
 [Random Matrices from Outcomes to Spectra]({{< relref "/knowledge-base/deep-dives/random-matrices-from-outcomes-to-spectra" >}})
-places random matrices in the wider sample, law, symmetry, and observable
-landscape. [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
+separates sample maps, laws, symmetries, and observables.
+[Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
 studies finite product measures and independence. That is a different product:
 it combines coordinate probability spaces, while the present chapter
 multiplies matrices in chronological order and assumes no independence.

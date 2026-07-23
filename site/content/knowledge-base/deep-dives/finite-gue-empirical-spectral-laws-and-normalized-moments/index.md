@@ -3,7 +3,7 @@ title: "Finite GUE Empirical Spectral Laws and Normalized Moments"
 slug: "finite-gue-empirical-spectral-laws-and-normalized-moments"
 date: 2026-07-21
 summary: "A fair two-matrix law makes the sample measure, outer law, joined mean, and normalized moment numerically visible before the exact finite Gaussian unitary ensemble interfaces are built in Lean."
-lead: "Start with two diagonal matrices you can calculate by hand. Turn each spectrum into a measure, put a probability law on those whole measures, join that law into one mean measure, and then climb to the exact finite GUE theorems without confusing any of the carriers."
+lead: "Start with two diagonal matrices you can calculate by hand. Turn each spectrum into a measure, put a probability law on those whole measures, join that law into one mean measure, and then climb to the exact finite GUE theorems while keeping the carriers distinct."
 draft: false
 pro_reviewed: false
 level: "Finite random matrix probability, measure-valued observables, and exact normalized moments"
@@ -404,9 +404,10 @@ Read the last three lines carefully:
 - the empty sample measure has total mass \(0\), while its one-point outer law
   has total mass \(1\).
 
-The sixteen <code>example</code> declarations ask Lean to prove the same
-rational equalities. This worksheet represents finite atomic measures as
-lists. It does not construct the Giry measurable space, prove eigenvalue
+The sixteen <code>example</code> declarations state the same rational
+equalities as propositions that Lean's kernel checks. This worksheet
+represents finite atomic measures as lists. It does not construct the Giry
+measurable space, prove eigenvalue
 measurability, define GUE, prove Bochner integrability, or establish a general
 integration theorem for join.
 
@@ -689,7 +690,7 @@ eigenvalues are real.
   <code>RandomMatrix.empiricalSpectralMoment_two</code>.
 
 **Try it in the repository.** The second full project probe imports RMT-10C and
-checks both sample-moment identities. The local worksheet verifies their
+checks both sample-moment identities. The local worksheet checks their
 size-two diagonal arithmetic but does not elaborate the Mathlib integrals or
 matrix types.
 {{< /lean-bridge >}}
@@ -820,9 +821,9 @@ open NonlinearDynamics.Random
 #check RandomMatrix.map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw
 ~~~
 
-<code>#print</code> shows the exact definition body. <code>#check</code> asks
-the pinned elaborator for each exact type. The full project command rendered below
-checks the authoritative RMT-10B leaf with its RMT-10A imports.
+<code>#print</code> shows the exact definition body. <code>#check</code> invokes
+the pinned elaborator and displays each exact type. The full project command
+rendered below checks the authoritative RMT-10B leaf with its RMT-10A imports.
 {{< /repo-check >}}
 
 ### Check the complete RMT-10C endpoint

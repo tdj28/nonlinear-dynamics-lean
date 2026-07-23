@@ -295,8 +295,8 @@ and \(c\lt\delta\), then the time-one centered identity gives
 Probability normalization is what makes the almost-full branch have mass
 one. The strict subunit estimate then excludes it. An ergodic finite measure
 whose total mass is one half can have \(D_c=\Omega\) and
-\(\mu_{\mathbb R}(D_c)=1/2\lt1\). The compiled half-Dirac probe verifies this
-boundary.
+\(\mu_{\mathbb R}(D_c)=1/2\lt1\). A half-Dirac construction realizes this
+boundary case.
 
 {{< reference-figure
   wide="true"
@@ -649,7 +649,7 @@ countermodels and degenerate cases without enlarging the public namespace.
 | `rmt32OneShotProcess_centered_lower_bound` | Gives the pointwise centered lower bound minus one |
 | `rmt32OneShotProcess_not_mem_arbitrarilyLate_of_neg` | Uses an Archimedean cutoff to exclude every negative fixed margin |
 | `rmt32TwoPointProbability` | Half the sum of the Dirac masses at `false` and `true` |
-| anonymous `IsProbabilityMeasure` instance | Verifies total mass one for the two-point measure |
+| anonymous `IsProbabilityMeasure` instance | Establishes total mass one for the two-point measure |
 | `rmt32Id_not_preErgodic` | Uses the invariant singleton to refute pre-ergodicity of the Boolean identity |
 | `rmt32TwoPointProcess` | Equals minus `n - 1` on `false` and zero on `true` |
 | `rmt32TwoPointProcess_candidate` | Compiles finite-space integrability and shifted subadditivity |
@@ -1085,7 +1085,7 @@ Why can the cocycle theorem compile for `ι := Empty`?
 bundled cocycle and integrability laws. No step chooses a coordinate, so no
 `Nonempty ι` premise is needed.
 
-### Exercise 27: state the source relationship honestly
+### Exercise 27: state the source relationship precisely
 
 Did Steele define the event \(D_c\) used here?
 

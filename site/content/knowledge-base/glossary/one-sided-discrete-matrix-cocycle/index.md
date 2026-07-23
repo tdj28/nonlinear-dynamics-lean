@@ -266,9 +266,9 @@ the repeated evaluation of the same generator along one orbit. This relation
 is exactly what supplies the shifted state \(T^m\omega\) in the cocycle law.
 
 This contrast is about the interface, not about what can ever be encoded.
-One can enlarge a base state so that it remembers time and thereby represent
-many prescribed sequences. The present module simply does not receive its
-factors as unrelated time-indexed inputs.
+One can add time as a component of the base state and thereby represent many
+prescribed sequences. The present module receives its factors by evaluating
+one generator along an orbit, not as unrelated time-indexed inputs.
 
 The {{< refterm "finite-random-matrix-product" "finite random-matrix product" >}}
 entry develops the arbitrary-factor interface. The cocycle in this page is its
@@ -321,9 +321,9 @@ A(b)=
 \end{bmatrix}.
 \]
 
-The forward values are still defined. There is simply no matrix inverse to use
-for a negative-time extension from that state. The point \(b\) has measure
-zero under \(\delta_a\), but it is not logically absent from \(\Omega\); the
+The forward values are still defined, but there is no matrix inverse for a
+negative-time extension from that state. The point \(b\) has measure zero
+under \(\delta_a\), but it is not logically absent from \(\Omega\); the
 {{< refterm "null-set" "null set" >}} page explains that distinction.
 
 ## Measurability and measure preservation

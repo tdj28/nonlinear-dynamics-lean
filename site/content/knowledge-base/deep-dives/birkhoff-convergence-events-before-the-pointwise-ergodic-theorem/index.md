@@ -3,7 +3,7 @@ title: "Birkhoff Convergence Events Before the Pointwise Ergodic Theorem"
 slug: "birkhoff-convergence-events-before-the-pointwise-ergodic-theorem"
 date: 2026-07-21
 summary: "Start with a two-state orbit whose averages converge to one and a bounded deterministic orbit whose averages oscillate, then climb through finite measurability, prefix invariance, convergence events, and conditional ergodic zero-one laws in Lean."
-lead: "The swap a to b to a with readings zero and two has averages that converge to one from both starts. A separate zero-one observable on successively longer decimal blocks has endpoint averages tending along two subsequences to ten elevenths and one eleventh, so it does not converge. Those exact models keep the logic honest while the chapter builds measurable convergence events, deletes one finite prefix in both directions, and derives conditional null-or-conull and probability zero-one consequences without pretending that rigidity proves full measure."
+lead: "The swap a to b to a with readings zero and two has averages that converge to one from both starts. A separate zero-one observable on successively longer decimal blocks has endpoint averages tending along two subsequences to ten elevenths and one eleventh, so it does not converge. Those exact models keep the logical roles separate while the chapter builds measurable convergence events, deletes one finite prefix in both directions, and derives conditional null-or-conull and probability zero-one consequences without claiming that rigidity alone gives full measure."
 draft: false
 pro_reviewed: false
 level: "Measure theory, filters and limits, finite orbit sums, quasi-measure-preserving dynamics, pre-ergodicity, quasi-ergodicity, and integrable subadditive-process interfaces"
@@ -235,12 +235,12 @@ The finite combinatorial predecessor is
 | Measure route | [Ordinary measurability gives a measurable event](#ordinary-measurability-gives-a-measurable-event) | Separate measurable from null measurable |
 | Representative route | [An integrable observable is only measurable almost everywhere](#an-integrable-observable-is-only-measurable-almost-everywhere) | Follow the measurable representative safely |
 | Shift route | [Delete one finite prefix without boundedness](#delete-one-finite-prefix-without-boundedness) | Prove the same-limit equivalence |
-| Rigidity route | [Two ergodic routes, two honest receivers](#two-ergodic-routes-two-honest-receivers) | Distinguish pre-ergodic and quasi-ergodic paths |
+| Rigidity route | [Two ergodic routes, two precise receivers](#two-ergodic-routes-two-precise-receivers) | Distinguish pre-ergodic and quasi-ergodic paths |
 | Lean translation route | [Seven Lean bridges](#in-lean-seven-bridges-from-the-ledger-to-conditional-rigidity) | Match spoken mathematics, notation, and exact project names |
 | Hands-on route | [Run the worksheet](#type-both-ledgers-yourself-with-lean-and-std) | Execute the finite swap and decimal-block checks with only `Std` |
 | Project route | [Thin wrappers should keep thin premises](#thin-wrappers-should-keep-thin-premises) | Read candidate and cocycle specializations |
 | Lean route | [The complete thirty-seven-declaration ledger](#the-complete-thirty-seven-declaration-ledger) | Audit every public name |
-| Source boundary route | [Models that keep the API honest](#models-that-keep-the-api-honest) | Test zero time, zero measure, and the compiled rising-observable divergence |
+| Source boundary route | [Models that test the API boundary](#models-that-test-the-api-boundary) | Test zero time, zero measure, and the compiled rising-observable divergence |
 | Summit route | [The existence theorem RMT-22 leaves open](#the-existence-theorem-that-rmt-22-leaves-open) | Locate the exact analytic gap and the later project module that closes it |
 
 ### Learning objectives
@@ -603,7 +603,7 @@ formal module makes no image-invariance declaration.
   caption="**Finding:** deleting or restoring one finite orbit prefix preserves the exact finite limit, so the convergence event is strictly preimage invariant even for a noninvertible map. Ergodic rigidity then leaves two branches, null or conull. A separate convergence-existence theorem is required to rule out the null branch. The plate shows logical dependence, not a proof of the pointwise ergodic theorem."
 >}}
 
-## Two ergodic routes, two honest receivers
+## Two ergodic routes, two precise receivers
 
 Mathlib separates pre-ergodicity, quasi-ergodicity, and ergodicity.
 
@@ -684,7 +684,7 @@ conditional measure-theoretic consequences.
   Lean term has value zero.
 {{< /lean-bridge >}}
 
-### Bridge 2: certify the finite measure ledger
+### Bridge 2: state the finite measure ledger
 
 {{< lean-bridge
   human="If T and g are measurable, then the horizon-n average is measurable; if T preserves the measure and g is integrable, that average is integrable."
@@ -1002,8 +1002,8 @@ E_1(T,X)=E(T,X_1).
 
 The subadditive inequality is not used in the event definition, exact
 invariance, or one-step integrability extraction. The wrapper remains useful
-because it connects the project process to a standard event without pretending
-that the candidate package proves convergence.
+because it connects the project process to a standard event; the candidate
+package itself does not imply convergence.
 
 The null-measurability wrapper takes the candidate and a
 quasi-measure-preserving map. The rigidity and zero-one wrappers take
@@ -1224,7 +1224,7 @@ This route is independent of A and B. It needs no measurable space at all.
 The final rigidity theorems join the pointwise shift route to either event
 measurability route.
 
-## Models that keep the API honest
+## Models that test the API boundary
 
 The source compiles twelve anonymous probes. Each tests a possible source of
 accidental strengthening.
@@ -1297,7 +1297,7 @@ A_{n+1}^g(0)
 \end{aligned}
 \]
 
-The first probe verifies the exact formula with the finite sum identity. The
+In the first probe, the finite-sum identity establishes the exact formula. The
 second proves \(n/2\to+\infty\), contradicting convergence to any finite real.
 Therefore \(0\notin E(T,g)\).
 
@@ -1664,7 +1664,7 @@ language, it would prove \(E(T,g)=\Omega\) almost everywhere, selecting the
 conull branch rather than merely presenting a dichotomy.
 {{< /details >}}
 
-### Exercise 30: state the honest summit
+### Exercise 30: state the exact summit
 
 Summarize RMT-22 in one sentence without using the words "proves Birkhoff's
 theorem."
@@ -1767,7 +1767,8 @@ For the subadditive program, even a pointwise theorem for the one-step
 observable is not the final summit. The RMT-20 phase estimate and RMT-21
 interval packing still need a checked density or frequency input to control
 marked starts and connect finite bounds to \(X_n/n\). Only after that analytic
-bridge can the project honestly approach Kingman's theorem.
+bridge can the project proceed toward Kingman's theorem without adding an
+unsupported convergence claim.
 
 ## Where to continue
 

@@ -110,8 +110,9 @@ X_{m+n}(a)
 \]
 
 The finite `Std` worksheet later checks every triple
-\((m,n,\omega)\) with \(0\le m,n\le12\); the displayed calculation proves the
-formula at every horizon.
+\((m,n,\omega)\) with \(0\le m,n\le12\). The displayed symbolic calculation,
+which does not depend on that finite cutoff, establishes the formula at every
+horizon.
 
 This exact two-state ledger is the chapter's pedagogical model, not one of the
 six anonymous Mathlib-backed probes compiled in RMT-32. The source contains
@@ -294,7 +295,8 @@ estimate must rule out the full branch.
 
 Random-matrix-theory milestone 32 (RMT-32) formalizes that event-level
 architecture for the centered process used
-throughout this project. Its central lesson is easy to state and easy to miss:
+throughout this project. Its central lesson is concise but technically
+important:
 
 > Strict asymptotic deviation needs one margin that survives arbitrarily far
 > into time. Repeated inequalities at the target line are not enough.
@@ -529,7 +531,7 @@ the later
 
 ## Pull a shifted witness back one step
 
-The dynamical heart of the module begins with a point
+The dynamical part of the module begins with a point
 \(\omega\in T^{-1}A_q\). This means \(T\omega\in A_q\). For every large
 cutoff, there is a positive \(n\) with
 
@@ -1381,7 +1383,7 @@ six anonymous compiled probes, and ten axiom queries. The complete sequence is:
 | 26 | private | <code>rmt32Collapse_preserving</code> | Proves preservation of the Dirac mass at `true` |
 | 27 | private | <code>rmt32OneShotProcess_centered_lower_bound</code> | Proves \(-1\le Y_n(\omega)\) for every centered transient value |
 | 28 | private | <code>rmt32OneShotProcess_not_mem_arbitrarilyLate_of_neg</code> | Rejects every fixed negative margin |
-| 29 | probe | zero-process/nonpositive-target example | Proves \(D_c=\varnothing\) for \(c\le0\) |
+| 29 | probe | zero-process/nonpositive-target specialization | Kernel-checks \(D_c=\varnothing\) for \(c\le0\) |
 | 30 | probe | one-shot/once-bad example | Gets once-bad singleton but strict event empty at \(-2/5\) |
 | 31 | probe | same-target/no-slack example | Gets \(A_0=\{\texttt{false}\}\) but \(D_0=\varnothing\) |
 | 32 | private | <code>rmt32TwoPointProbability</code> | Defines the uniform Boolean probability measure |
@@ -1431,7 +1433,7 @@ principles already used by Mathlib, with no <code>sorry</code>,
 | Null selection | Ergodic probability measure plus the rate hypotheses | Extended event measure zero | Real-liminf equivalence, convergence |
 | Cocycle endpoint | Finite decidable matrix index, integrable log-positive generator, ergodic probability base, threshold below centered Fekete offset | Null strict event | Nonempty index, signed logarithm, Lyapunov theory |
 
-Two qualifications deserve emphasis.
+Two qualifications determine how these theorem signatures should be read.
 
 First, both public preimage-inclusion methods are stated on the bundled
 integrable candidate even though their dynamical bodies project only the

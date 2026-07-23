@@ -126,7 +126,7 @@ with the following properties:
 3. \(\mathbb P(\Omega)=1\).
 
 The first two are the ordinary measure axioms. The third is the probability
-normalization. It immediately gives
+normalization. Monotonicity then gives
 
 \[
 0\le\mathbb P(A)\le1
@@ -244,7 +244,8 @@ certificate automatically.
   \(\Omega\) in the displayed formula.
 - <code>μ univ</code> applies the measure to the whole set.
 - <code>measure_univ</code> is the theorem exported from the typeclass. Under
-  the square-bracket assumption, Lean uses it to prove <code>μ univ = 1</code>.
+  the square-bracket assumption, it supplies the proof of
+  <code>μ univ = 1</code>.
 - The numeral <code>1</code> is interpreted in the measure's extended
   nonnegative-real codomain.
 {{< /lean-bridge >}}
@@ -331,8 +332,8 @@ def finiteHorizonLogPlusExpectation [IsProbabilityMeasure μ]
 ~~~
 
 The definition does not divide by \(\mu(\Omega)\). The square-bracket premise
-already certifies that \(\mu(\Omega)=1\), so the raw integral can be exposed
-honestly as an expectation. The equality proof is <code>rfl</code>, meaning
+already certifies that \(\mu(\Omega)=1\), so the raw integral is correctly
+identified as an expectation. The equality proof is <code>rfl</code>, meaning
 both sides reduce to the same expression by definition. Probability here
 changes which terminology and theorems are licensed; it does not silently
 change the measure supplied by the caller.

@@ -38,7 +38,7 @@ so the weak-\((1,1)\) inequality reads
 \leq
 \underbrace{\frac{\lVert h\rVert_1}{2}}_{7/8}.
 \]
-This controls **how much probability can see a large average**. It does not
+This controls **the probability of obtaining a large average**. It does not
 bound every average pointwise by \(7/8\): at \(p\), the average is \(4\).
 
 {{< reference-figure
@@ -251,7 +251,7 @@ averages while the estimate remains true.
 
 Nor does the theorem say that the event measure equals the quotient. The
 right side may exceed the total mass of the space, as the two-point example
-shows. One may combine it with the trivial bound
+shows. One may combine it with the monotonicity bound
 \(\mu(M_a)\le\mu(\Omega)\), but RMT-26 does not package that minimum because
 the quotient form is exactly what the closure argument needs.
 
@@ -270,7 +270,7 @@ the quotient form is exactly what the closure argument needs.
 - **Finite measure is explicit.** Probability normalization is stronger and
   unnecessary. On an infinite-measure space, Mathlib's real projection sends
   infinite extended mass to zero, so the displayed real-valued argument cannot
-  simply be reused unchanged. Finite total mass is the checked boundary of
+  be reused unchanged. Finite total mass is the checked boundary of
   this proof route, not a claim that the broader pointwise theorem is false on
   every infinite-measure space.
 - **The zero measure is allowed.** Both sides are zero. This is a valid but

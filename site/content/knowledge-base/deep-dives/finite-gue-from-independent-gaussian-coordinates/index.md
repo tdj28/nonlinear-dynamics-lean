@@ -3,7 +3,7 @@ title: "Finite Gaussian Unitary Ensemble (GUE) from Independent Gaussian Coordin
 slug: "finite-gue-from-independent-gaussian-coordinates"
 date: 2026-07-21
 summary: "At size two, follow four independent real Gaussian primitives through the Wigner variance ledger, Hermitian reflection, measurable assembly, and the exact finite Gaussian unitary ensemble matrix law."
-lead: "Compute one complete matrix by hand, catch two convincing near-misses, and then climb from a deterministic coordinate map to the checked probability law."
+lead: "Compute one complete matrix by hand, analyze two near-misses, and then climb from a deterministic coordinate map to the checked probability law."
 draft: false
 pro_reviewed: false
 level: "First size-two ledger to the exact finite ensemble law"
@@ -178,7 +178,7 @@ proves the corresponding all-dimensional statement
   negative variance cannot be supplied.
 {{< /lean-bridge >}}
 
-## Two near-misses reveal what the ledger protects
+## Two near-misses identify the required conditions
 
 ### Near-miss A: copy the upper entry without conjugating it
 
@@ -266,8 +266,8 @@ open NonlinearDynamics.Random
 #check RandomMatrix.hermitianCoordinateMap_zero
 ~~~
 
-<code>#print</code> exposes a definition. <code>#check</code> asks Lean to
-elaborate an existing declaration and display its type. The full project
+<code>#print</code> exposes a definition. <code>#check</code>
+elaborates an existing declaration and displays its type. The full project
 command rendered below checks the exact Mathlib-backed project module.
 {{< /repo-check >}}
 
@@ -414,8 +414,8 @@ it is not Lean's full complex-number type and carries no Gaussian law.
 \(1/2\) and \(1/4\) rather than rounding them to floating-point decimals.
 <code>native_decide</code> evaluates rational equalities using Lean's native
 decision procedure; <code>decide</code> suffices for the finite integer and
-Boolean checks. This worksheet proves only the finite data transformations it
-defines. It does not define a Gaussian measure, prove independence, or replace
+Boolean checks. This worksheet checks only the finite data transformations
+it defines. It does not define a Gaussian measure, prove independence, or replace
 the full Mathlib-backed module checks.
 
 A finite GUE matrix can now be summarized in one sentence: choose independent
@@ -894,7 +894,8 @@ handled separately.
 {{< checkpoint stage="Camp five" title="Marginals do not replace the joint law" >}}
 The scalar theorems make computations convenient. The earlier block product
 laws and independence theorems carry the joint information. Keeping both
-layers avoids pretending that a list of Gaussian marginals determines a GUE.
+layers prevents the incorrect inference that a list of Gaussian marginals
+determines a GUE.
 {{< /checkpoint >}}
 
 ## Camp six: push the law through assembly
@@ -971,7 +972,7 @@ evaluations. That fact transfers exact laws from \(\nu_n\) to \(\mu_n\).
 ### The full diagonal entry, not just its real part
 
 A diagonal entry is complex-valued in the ambient matrix type even though
-assembly inserts a real coordinate. The strongest honest law statement is
+assembly inserts a real coordinate. The strongest justified law statement is
 
 \[
 H_{ii}\sim
@@ -1259,7 +1260,7 @@ invariance. RMT-08 later proves that exact invariance theorem for the same
 <code>matrixLaw</code>. The project still does not formalize Hamiltonians,
 time-reversal operators, matrix exponentials, energy levels, level spacing,
 spectral form factors, or quantum chaos at this point in the dependency chain.
-The physical story motivates later theorem sequences; it does not supply
+The physical motivation informs later theorem sequences; it does not supply
 proofs by naming the ensemble.
 
 The Wigner \(1/n\) variance scale keeps typical eigenvalues order one as
@@ -1301,8 +1302,8 @@ number generator or record an observed realization.
 ### Calling the matrix law unitarily invariant by its name
 
 The classical GUE has this symmetry. RMT-06 has not proved the measure equality
-under unitary conjugation. RMT-08 builds it. The theorem is earned by the later
-geometry and transport argument, not inferred from a namespace.
+under unitary conjugation. RMT-08 builds it. The later geometry and transport
+argument proves the theorem; the namespace alone implies no such result.
 
 ### Deriving a density without choosing reference volume
 

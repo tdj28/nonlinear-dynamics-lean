@@ -102,7 +102,7 @@ r:\Omega\longrightarrow\Omega,
 r(\omega)=\omega.
 \]
 
-The formula is just the identity. Nevertheless, the target singleton
+The formula is the identity. Nevertheless, the target singleton
 \(\{2\}\) is measurable while
 
 \[

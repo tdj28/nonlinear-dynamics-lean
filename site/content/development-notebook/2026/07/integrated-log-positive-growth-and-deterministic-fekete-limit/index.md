@@ -446,7 +446,7 @@ The infimum need not be attained at a finite index. Nor does subadditivity
 make the sequence \(Q_k\) monotone. The theorem supplies a limit, not a rate
 of convergence.
 
-Kingman's theorem asks a different question. It begins with a subadditive
+Kingman's theorem addresses a different question. It begins with a subadditive
 measurable process before integration and can derive almost-everywhere
 behavior under additional hypotheses. RMT-16 neither invokes nor simulates
 that argument. Its order of operations is:
@@ -719,7 +719,7 @@ theorem HasIntegrableGeneratorLogPlus.subadditive_integratedLogPlusNorm
     Subadditive C.integratedLogPlusNorm
 ```
 
-Mathlib's <code>Subadditive</code> predicate expects exactly the inequality
+Mathlib's <code>Subadditive</code> predicate requires exactly the inequality
 proved by declaration 7. The implementation is therefore a direct reuse of
 that theorem.
 
@@ -729,8 +729,8 @@ limit definition and convergence theorem are methods on a proof of
 the Fekete layer independent of the matrix and measure-theory details used to
 establish it.
 
-The predicate is deterministic. At this point Lean sees a function from
-natural numbers to real numbers and its two-index inequality, not a random
+The predicate is deterministic. Its exported data at this point are a function
+from natural numbers to real numbers and a two-index inequality, not a random
 process.
 
 ## Declaration 9: define the normalized scalar sequence
@@ -960,8 +960,8 @@ not changed the pinned dependency graph.
 ### A proof-order failure to avoid
 
 Suppose one tries to prove declaration 6 immediately from the pointwise
-inequality. The goal is an inequality between integrals. Mathlib asks whether
-both functions are integrable. Merely unfolding <code>integratedLogPlusNorm</code>
+inequality. The goal is an inequality between integrals, with proof obligations
+that both functions are integrable. Merely unfolding <code>integratedLogPlusNorm</code>
 cannot solve those obligations because the integral definition itself carries
 no evidence.
 
@@ -1011,7 +1011,7 @@ uses. No negative-time orbit or inverse base map is constructed.
 ### Singular products
 
 A zero matrix product has norm zero and log-positive value zero. It therefore
-causes no upper-tail integrability problem. It also demonstrates why this
+causes no upper-tail integrability problem. It also shows why this
 observable cannot describe signed logarithmic contraction or a full
 multiplicative ergodic spectrum.
 
@@ -1202,8 +1202,8 @@ selected theorem.
 That interface is now developed in
 [Probability and Ergodic-Base Interfaces for Matrix Cocycles in Lean]({{< relref "/development-notebook/2026/07/probability-and-ergodic-base-interfaces-for-matrix-cocycles" >}}).
 It supplies expectation terminology and invariant-object rigidity, but it
-also verifies that the pinned Mathlib release contains no ready-made Kingman
-theorem. The samplewise summit therefore remains later work.
+also records that the project search of the pinned Mathlib release found no
+ready-made Kingman theorem. The samplewise summit therefore remains later work.
 
 For a Kingman-style path, the project needs the subadditive measurable process
 before integration, the relevant finite-measure or probability assumptions,

@@ -18,7 +18,7 @@ still open.
 {{< /panel >}}
 
 A **Cartesian complex Gaussian law** builds a probability measure on
-\(\mathbb C\) from two independent real Gaussian coordinates. It remembers
+\(\mathbb C\) from two independent real Gaussian coordinates. It records
 the real-part variance and imaginary-part variance separately instead of
 hiding both behind the ambiguous phrase "complex variance."
 
@@ -107,7 +107,7 @@ C
 \]
 
 Many texts call \(C\) the complex covariance or complex variance. This page
-uses the explicit formula because the word "variance" alone does not reveal
+uses the explicit formula because the word "variance" alone does not determine
 whether it means a component variance or the total \(C\).
 
 ## Pseudovariance detects the imbalance

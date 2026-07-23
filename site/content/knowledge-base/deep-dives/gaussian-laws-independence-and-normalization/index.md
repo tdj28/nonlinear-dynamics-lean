@@ -266,7 +266,7 @@ The project family structure nevertheless records ordinary coordinate
 measurability separately, because later coordinate transformations and
 product interfaces often need it directly.
 
-This distinction is easy to miss on paper. Lean makes it visible because
+This distinction can be hidden by paper notation. Lean makes it visible because
 <code>Measurable X</code> and <code>AEMeasurable X P</code> are different types
 of evidence.
 
@@ -424,7 +424,8 @@ The parity relation is invisible to every pair test.
   caption="**Finding:** every two-coordinate marginal factors, but the three-way event does not. The parity model is a finite non-Gaussian boundary example whose only job is to expose the logical gap. The Gaussian family in this chapter stores mutual independence directly instead of trying to recover it from pairwise checks."
 >}}
 
-The example is deliberately not Gaussian. It proves a general logical point:
+The example is deliberately not Gaussian. It is a counterexample to the
+universal implication from pairwise independence to mutual independence:
 “every pair is independent” and “the family is mutually independent” are
 different statements. Scalar Gaussian marginals alone do not erase that
 difference. A separately defined *jointly Gaussian vector* has stronger
@@ -482,7 +483,7 @@ structure IndependentRealGaussianFamily
 
 The exact source is checked by the full project command near the end. The
 standalone local worksheet mirrors the three-coordinate parameter ledger but
-does not pretend to implement <code>Measure</code>, <code>HasLaw</code>, or
+does not implement <code>Measure</code>, <code>HasLaw</code>, or
 <code>iIndepFun</code>.
 {{< /lean-bridge >}}
 
@@ -819,7 +820,7 @@ pinned dependencies.
 
 {{< repo-check module="NonlinearDynamics.Random.GaussianPrimitives" >}}
 **Full project check: exact repository module plus Mathlib.** The following
-probe asks Lean for the types of the declarations
+probe requests the types of the declarations
 used throughout the chapter:
 
 ~~~lean
@@ -846,7 +847,7 @@ open NonlinearDynamics.Random
 ~~~
 
 <code>import</code> loads the exact project module. Each <code>#check</code>
-asks Lean to elaborate an existing name and report its type; it neither draws
+elaborates an existing name and reports its type; it neither draws
 samples nor proves a new theorem. The full project command rendered immediately
 below checks the authoritative source file with the repository's pinned
 toolchain and dependencies.
@@ -1032,7 +1033,7 @@ The running example now supports the entire dependency chain:
 \end{aligned}
 \]
 
-The key discipline is simple: never ask one layer to supply information that
+The layer contract is: never ask one layer to supply information that
 belongs to another. A realization does not supply a law. Marginals do not
 supply dependence. Pairwise checks do not supply mutual independence.
 Variance does not mean standard deviation. A density formula does not cover

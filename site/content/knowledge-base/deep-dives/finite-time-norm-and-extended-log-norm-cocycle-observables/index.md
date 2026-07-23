@@ -529,7 +529,7 @@ not retroactively add normalization or convergence to
   caption="**Finding:** the cocycle split supplies a matrix product, the maximum absolute row-sum norm supplies a multiplicative upper budget, and the extended logarithm converts that budget into a zero-safe additive one. Nonempty coordinates recover the familiar time-zero normalization; empty coordinates remain valid but every finite matrix norm is zero and every log norm is bottom. The figure asserts no integrability, limiting growth rate, or invariant splitting."
 >}}
 
-The picture separates three structures that are easy to conflate:
+The picture separates three structures that are often conflated:
 
 - the base map decides where the later cocycle block begins;
 - matrix multiplication decides how the blocks compose; and
@@ -1423,7 +1423,7 @@ the full product collapses even though neither block is zero.
 The logarithm turns a product of norm bounds into a sum, but the matrix norm is
 only submultiplicative. Slack or complete collapse can occur.
 
-### Smuggling nonempty dimension into every theorem
+### Adding an unnecessary nonempty-dimension assumption
 
 Only the familiar time-zero normalizations need an inhabited coordinate type.
 Definitions, measurability, inequalities, and explicit empty-dimension laws do
@@ -1581,7 +1581,7 @@ develops the exact base-orbit and later-block-left algebra consumed here.
 develops the deterministic product and maximum-row-sum norm layer below the
 cocycle.
 
-The next honest asymptotic layer must state an integrability policy before
+The next asymptotic layer must state an integrability policy before
 normalizing by time or invoking a subadditive or multiplicative ergodic
 theorem. It must also decide whether the base measure is probabilistic and
 whether ergodicity, invertibility, or one-sided time is required. None of those

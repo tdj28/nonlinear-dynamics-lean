@@ -139,7 +139,7 @@ their spectral mass at \(0\), so the average places mass \(1/2\) there.
 
 The law and the average answer different questions:
 
-| Object | Type | What one sample returns | What it remembers |
+| Object | Type | What one sample returns | Information retained |
 |---|---|---|---|
 | \(\mathcal Q\) | measure on measures | either \(L_+\) or \(L_-\) | which eigenvalues appeared together in one trial |
 | \(\overline L\) | measure on \(\mathbb R\) | one real location if sampled | only the averaged mass at each location |
@@ -160,7 +160,7 @@ sample-to-sample variation.
   wide="true"
   src="sample-law-mean.svg"
   alt="Two equally likely diagonal matrices have spectra two and zero, or zero and minus two. Their sample empirical measures each place mass one half on two locations. The empirical spectral law has those two whole measures as atoms, each with outer probability one half. The averaged empirical measure instead places masses one quarter, one half, and one quarter at minus two, zero, and two."
-  caption="**Finding:** the empirical spectral law remembers two possible measure-valued trials: \(L_+\) and \(L_-\), each with probability \(1/2\). The averaged measure combines their inner masses into \(1/4\) at \(-2\), \(1/2\) at \(0\), and \(1/4\) at \(2\), so it forgets which nonzero eigenvalue arrived alongside zero. At dimension zero, the sample outcome is the zero measure, while the outer law is still a probability law concentrated at that outcome. The plate is a finite toy model, not a Gaussian unitary ensemble calculation or an asymptotic claim."
+  caption="**Finding:** the empirical spectral law retains the two possible measure-valued trials \(L_+\) and \(L_-\), each with probability \(1/2\). The averaged measure combines their inner masses into \(1/4\) at \(-2\), \(1/2\) at \(0\), and \(1/4\) at \(2\), thereby discarding which nonzero eigenvalue occurred alongside zero. At dimension zero, the sample outcome is the zero measure, while the outer law is still a probability law concentrated at that outcome. The plate is a finite toy model, not a Gaussian unitary ensemble calculation or an asymptotic claim."
 >}}
 
 ## The general pushforward definition

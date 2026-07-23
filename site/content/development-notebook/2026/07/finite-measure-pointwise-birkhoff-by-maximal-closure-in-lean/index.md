@@ -218,7 +218,7 @@ contradicts membership in the non-strict failure event.
 Two small design choices matter.
 
 First, maximal events use only positive horizons. The Cauchy failure supplies
-witnesses beyond every requested lower bound, so the proof asks for witnesses
+witnesses beyond every requested lower bound, so the proof takes witnesses
 past \(\max(N,1)\). Horizon zero never enters the maximal event. Second, the
 failure event uses \(\varepsilon\le |A_mf-A_nf|\), not a strict inequality.
 Its complement therefore gives the strict estimate demanded by
@@ -717,8 +717,8 @@ for \(g_1\), completing the abstract hypothesis.
 
 ### Exercise 15: show why ergodicity is absent
 
-The closure proof asks only whether each approximant converges almost
-everywhere. It never asks whether invariant events have measure zero or full
+The closure proof requires only almost-everywhere convergence of each
+approximant. It does not require invariant events to have measure zero or full
 measure. Ergodicity is relevant when identifying or rigidifying the limit, not
 when proving that a limit exists.
 

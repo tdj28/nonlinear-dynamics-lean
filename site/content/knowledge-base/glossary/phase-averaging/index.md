@@ -319,8 +319,9 @@ strictly positive even when \(r=0\).
 - <code>T^[s] ω</code> is the shifted starting point \(T^s\omega\).
 - <code>(T^[b])^[q]</code> advances \(q\) times by the powered map \(T^b\),
   which reaches \(T^{bq}\).
-- The proof consumes <code>hX.add_le</code>; the public receiver still carries
-  the candidate's measurability and integrability fields.
+- The proof uses <code>hX.add_le</code>; the theorem remains stated for the
+  full candidate structure, including its measurability and integrability
+  fields.
 {{< /lean-bridge >}}
 
 This theorem keeps both boundary values visible. No sign assumption has been
@@ -443,7 +444,7 @@ For the division form, the extra evidence is explicit:
 ## A tiny standalone Lean worksheet a human can type
 
 **Standalone tutorial.** This
-worksheet verifies the \(4\times3\) phase ledger and the one-point boundary
+worksheet checks the \(4\times3\) phase ledger and the one-point boundary
 arithmetic. It does not import Mathlib, define a Birkhoff sum, or prove the
 general phase theorem.
 
@@ -640,7 +641,7 @@ a field actually used in a proof.
 | centered-process phase averages | centering's shifted subadditivity and positive-time sign | the original candidate wrapper; no new preservation argument |
 | centered matrix-cocycle phase average | checked finite cocycle algebra and sign | a cocycle object that already stores a measure-preserving base |
 
-Thus the generic proofs consume only the candidate's <code>add_le</code> field,
+Thus the generic proofs use only the candidate's <code>add_le</code> field,
 but their public statements still receive an
 <code>IsIntegrableSubadditiveProcessCandidate</code>. Likewise, the direct
 cocycle proof does not use base preservation, but the cocycle input already

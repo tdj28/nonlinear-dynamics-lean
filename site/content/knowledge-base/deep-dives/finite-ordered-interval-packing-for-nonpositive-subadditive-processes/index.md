@@ -179,9 +179,9 @@ By the summit, a reader should be able to:
 36. state the strict nonempty-mark theorem;
 37. reproduce the empty-set strict counterexample;
 38. reproduce the horizon-zero process counterexample;
-39. interpret the candidate wrapper honestly;
-40. interpret the centered-process wrapper honestly;
-41. interpret the empty-index cocycle wrapper honestly;
+39. interpret the candidate wrapper according to its stated fields;
+40. interpret the centered-process wrapper according to its stated fields;
+41. interpret the empty-index cocycle wrapper according to its stated fields;
 42. identify which source claims are motivational rather than formal inputs;
 43. explain why finite coverage is not an asymptotic density;
 44. list the analytic infrastructure still missing before Kingman's theorem.
@@ -240,7 +240,7 @@ I_j=[j,j+\ell(j)).
 
 The length function can vary. One start may choose length one and the next
 length five. Two such intervals can overlap even when their starts are
-distinct. The selection problem is therefore not simply to sort a list.
+distinct. The selection problem therefore requires more than sorting a list.
 
 We need two outcomes simultaneously:
 
@@ -670,7 +670,8 @@ time-zero branch before any limiting argument is designed.
 ## Exact covered cardinality and the marked-count inequality
 
 The interval decoder provides an ordered list. The covered decoder provides a
-finite union. The crucial theorem proves
+finite union. The following theorem identifies the two quantities needed by
+the later marked-count estimate:
 
 \[
 |P.\operatorname{coveredFinset}|
@@ -763,7 +764,7 @@ X_{\ell(j)}(T^j\omega)
 \le c\,\ell(j).
 \]
 
-The recursive packing-cost theorem wants the same fact at every cons node.
+The recursive packing-cost theorem requires the same fact at every cons node.
 The <code>SelectedFromFrom.everyIntervalCostLE</code> theorem transports it.
 Its strict sibling transports a strict inequality. The zero-offset public
 forms remove the initial iterate by zero.
@@ -1079,7 +1080,7 @@ open NonlinearDynamics.Random.RandomCocycles
 #check OrderedNatIntervalPacking.lt_mul_card_of_greedy_cover
 ~~~
 
-`#check` asks Lean to print the inferred type without constructing new data or
+`#check` prints the inferred type without constructing new data or
 running a proof. These queries correspond in order to the seven bridges above.
 
 After installing the repository's pinned dependencies, a human types this from
@@ -1274,7 +1275,8 @@ route needs three logically different ingredients: a process-to-packing-cost
 inequality, a local-cost-to-covered-length inequality, and a
 coverage-to-marked-cardinality comparison under a nonpositive coefficient.
 The public <code>...of_covers</code> declarations expose that composition
-without pretending the packing cost itself contains marked-set information.
+while making no claim that the packing cost itself contains marked-set
+information.
 
 There is also no extensional equivalence theorem saying that equality of
 decoded interval lists is the same as equality of indexed packing values.
@@ -1302,8 +1304,8 @@ declarations form the reusable mathematical interface; the private selector
 and twelve private named fixtures support implementation and auditing. The
 thirteen private names are not missing public mathematics.
 
-This separation also keeps future asymptotic work honest. A density theorem
-will be able to provide a new marked set and a lower bound on its cardinality
+This separation also prevents unsupported claims in future asymptotic work. A
+density theorem will be able to provide a new marked set and a lower bound on its cardinality
 without reopening selector internals. A matrix-cocycle application will be
 able to provide local favorable costs without proving coverage again. The
 finite packing layer is the junction: provenance receives local analytic
@@ -1352,9 +1354,9 @@ but directionally wrong use of the coverage inequality.
 
 ## Replay the two hardest Lean proof states
 
-The informal selector has two points where the indexed types reveal more
-bookkeeping than the paper proof. Replaying those states explains why the
-implementation uses an offset theorem and strong induction.
+The indexed types make two additional pieces of bookkeeping explicit in the
+informal selector. Replaying those states explains why the implementation uses
+an offset theorem and strong induction.
 
 ### The recursive endpoint branch
 
@@ -1418,8 +1420,8 @@ Adding the new gap and interval gives the apparent index
 
 The proof records \(o+(j-o)=j\), then uses the endpoint identity to show this
 index equals \(H+m\). A rewrite transports the existential witness across that
-equality. This is why the indexed representation is useful: Lean refuses to
-forget even one unit of horizon.
+equality. The indexed representation is useful because every unit of horizon
+must be accounted for explicitly.
 
 Coverage in this branch is a local decision. For an original mark \(r\), the
 proof splits on \(r\lt j+\ell\). In the true branch, minimality supplies
@@ -1524,7 +1526,7 @@ For the weak public theorem, a reader can follow this exact dependency path:
 The strict route substitutes the <code>LT</code> cost predicates and the
 strict covered-length theorem, then asks for
 <code>marked.Nonempty</code>. Keeping the weak and strict paths parallel makes
-their single logical difference easy to audit.
+their single logical difference explicit.
 
 ## Common wrong turns
 
@@ -2166,8 +2168,8 @@ The important syntax is deliberately ordinary:
 - `structure GreedyRound` gives names to the four columns of one algorithm
   step;
 - `#eval` prints a value; and
-- each `example ... := by native_decide` asks Lean's kernel-checked decision
-  procedure to certify the displayed finite equality or inequality.
+- each `example ... := by native_decide` is a kernel-checked proof of the
+  displayed finite equality or inequality.
 
 With the repository's pinned Lean toolchain already installed, a human types:
 

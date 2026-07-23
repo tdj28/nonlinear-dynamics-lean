@@ -162,7 +162,7 @@ Y_2(a)=Y_2(b)=Y_2(c)=-1.
 These values are pointwise nonpositive, but their expectation is \(-1\), not
 zero. The two operations solve different problems:
 
-| Operation | Quantity subtracted | Conclusion earned in this example |
+| Operation | Quantity subtracted | Conclusion for this example |
 |---|---|---|
 | orbit-majorant centering | \(S_n(\omega)\), which depends on the sample and horizon | \(Y_n(\omega)\le0\), with shifted subadditivity preserved |
 | expectation centering | the scalar \(\mathbb E[X_n]\) | the centered values have expectation zero |
@@ -243,7 +243,7 @@ def centeredProcess {Ω : Type uΩ} (T : Ω → Ω) (X : ℕ → Ω → ℝ)
   converting the natural number to an ordered scalar.
 - <code>oneStepBirkhoffMajorant</code> is the all-horizon variant. It also asks
   for <code>hX0 : X 0 = 0</code>.
-- The proof of this inequality consumes only <code>hX.add_le</code>. The
+- The proof of this inequality uses only <code>hX.add_le</code>. The
   structure contains integrability, but the pointwise induction does not use
   it.
 {{< /lean-bridge >}}

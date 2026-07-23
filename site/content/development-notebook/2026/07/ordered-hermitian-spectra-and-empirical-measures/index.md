@@ -4,7 +4,7 @@ slug: "ordered-hermitian-spectra-and-empirical-measures"
 date: 2026-07-21
 weight: -20
 author: "tdj28"
-summary: "A machine-checked finite spectral layer: decreasingly ordered Hermitian eigenvalues with multiplicity, exact trace identities, unitary-congruence invariance, counting and zero-aware empirical measures, and honest conditional interfaces for the still-missing eigenvalue measurability theorem."
+summary: "A machine-checked finite spectral layer: decreasingly ordered Hermitian eigenvalues with multiplicity, exact trace identities, unitary-congruence invariance, counting and zero-aware empirical measures, and conditional interfaces that expose the still-missing eigenvalue measurability theorem."
 lead: |
   A spectrum is more than a list of roots. To become a probability observable, it needs a stable ordering, multiplicity bookkeeping, a finite measure, a zero-dimensional convention, and measurability into a space of measures. RMT-10A formalizes every algebraic and measure-valued step that does not depend on eigenvalue perturbation theory, then leaves the missing measurability theorem visible as an explicit hypothesis.
 key_result: |
@@ -57,8 +57,8 @@ diagonalization. Turning that theorem into a reusable random-matrix interface
 requires several choices that ordinary paper notation often suppresses. The
 eigenvalues must be indexed, repeated roots must retain multiplicity, the
 ordering must survive reindexing, and the resulting finite cloud must be
-packaged as a measure. If dimension zero is admitted, normalization cannot
-pretend that a probability measure exists there.
+packaged as a measure. If dimension zero is admitted, normalization must not
+assert that a probability measure exists there.
 
 RMT-10A makes those choices explicit. It transports Mathlib's decreasingly
 sorted `Matrix.IsHermitian.eigenvalues₀` vector to `Fin n` with an
@@ -174,8 +174,7 @@ Hermitian matrix to its ordered spectrum and finite spectral measures is
 checked without an analytic hypothesis. The last arrow, from a matrix-varying
 empirical measure to a measurable random measure, is conditional on
 coordinatewise eigenvalue measurability. Dimension zero follows a separate
-zero-measure policy rather than pretending that an empty spectrum has total
-mass one.</p>
+zero-measure policy: an empty spectrum does not have total mass one.</p>
 
 The diagram separates three objects that are easy to blur in handwritten
 notation.
@@ -512,7 +511,7 @@ module chooses the empirical measure to be zero as well. The theorem
 
 There is a subtle type-level detail worth seeing. In extended nonnegative
 reals, the inverse of zero is the top element. The definition therefore does
-not simplify by pretending that an ordinary real reciprocal exists. Instead,
+not replace that inverse with an ordinary real reciprocal. Instead,
 `spectralCountingMeasure_zero` first reduces the measure to zero, and
 `smul_zero` proves that any scalar multiple of the zero measure is zero. The
 mathematical policy is clear: an empty spectrum has zero mass, not an invented
@@ -888,7 +887,7 @@ fact syntactic.
 
 Installing an instance without a proof would hide a mathematical assumption
 inside typeclass search. The module instead uses named theorems with an
-explicit argument `h`. Downstream declarations must reveal whether they have
+explicit argument `h`. Downstream declarations must state whether they have
 actually discharged the perturbation-theory dependency.
 
 ## How to run the checked source
@@ -1079,8 +1078,8 @@ Why does the all-dimension theorem use `IsZeroOrProbabilityMeasure`?
 
 **Solution.** At positive dimension the normalized measure has total mass one.
 At dimension zero the explicit policy gives total mass zero. One predicate
-must honestly cover both cases without pretending the zero measure is a
-probability measure.
+must cover both cases without classifying the zero measure as a probability
+measure.
 
 ### Exercise 8: identify the missing analytic input
 

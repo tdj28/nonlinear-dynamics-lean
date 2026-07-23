@@ -2,7 +2,7 @@
 title: "Probability Normalization and Ergodic Rigidity Before Kingman"
 slug: "probability-normalization-and-ergodic-rigidity-before-kingman"
 date: 2026-07-21
-summary: "Start with two weighted points and watch probability normalization, ergodic invariant rigidity, and finite-horizon integrability separate numerically before reading the exact Lean interfaces."
+summary: "Start with two weighted points and separate probability normalization, ergodic invariant rigidity, and finite-horizon integrability numerically before reading the exact Lean interfaces."
 lead: "On two points, changing weights turns an expectation of 1 into a raw integral of 2; changing a swap into the identity creates an invariant event of mass 1/2. Those tiny ledgers explain the exact assumptions in the Lean module and why its deterministic Fekete rate is still not a samplewise Kingman limit."
 draft: false
 pro_reviewed: false
@@ -219,7 +219,7 @@ no samplewise limit, and no Lyapunov exponent.
 | Cocycle route | [The alternating scalar cocycle](#the-alternating-scalar-cocycle) | Compute a nonmonotone normalized expectation and a strict rate bound |
 | Hands-on Lean route | [Type the two-point ledger](#type-the-two-point-ledger-yourself-with-lean-and-std) | Run exact rational arithmetic and finite invariance checks with only `Std` |
 | Lean route | [The complete ten-declaration map](#the-complete-ten-declaration-map) | Audit every exported declaration in source order |
-| Summit route | [The honest pre-Kingman boundary](#the-honest-pre-kingman-boundary) | Identify the missing theorem and forbid automatic limit claims |
+| Summit route | [The pre-Kingman boundary](#the-pre-kingman-boundary) | Identify the missing theorem and rule out automatic limit claims |
 
 ### Learning objectives
 
@@ -277,7 +277,7 @@ typeclass premise. It does not.
 Conversely, the expectation definition carries both probability and
 integrability even though its body is the same integral as before. Those
 arguments are not computational decorations. They encode the semantic and
-analytic conditions under which the word “expectation” is honest.
+analytic conditions under which the word “expectation” is appropriate.
 
 ## The common setup
 
@@ -337,7 +337,7 @@ the full project checks.
   lean="[IsProbabilityMeasure μ]"
 >}}
 
-- Square brackets ask Lean to find a typeclass instance automatically.
+- Square brackets request automatic typeclass-instance synthesis.
 - <code>IsProbabilityMeasure</code> is the class whose defining field is
   <code>μ univ = 1</code>.
 - <code>μ</code> is still a general measure object; this premise fixes its
@@ -580,9 +580,9 @@ probability masses, swap-invariant raw masses, whether the nonconstant
 observable survives the swap, whether it survives the identity, and the first
 six oscillating mean numerators.
 
-**Resource profile: small standalone tutorial, local-safe.** The examples
-proved with <code>native_decide</code> certify this finite representation and
-its rational arithmetic. They do not prove the Mathlib-backed project
+**Resource profile: small standalone tutorial, local-safe.** The propositions
+discharged by <code>native_decide</code> are kernel-checked instances of this
+finite representation and its rational arithmetic. They do not prove the Mathlib-backed project
 theorems. Those exact checks require the repository's pinned Lean and Mathlib
 dependencies.
 
@@ -726,8 +726,8 @@ same set. It also does not infer measurability from invariance.
 The wrapper intentionally chooses a strict-invariance theorem even though
 Mathlib contains more general almost-invariant machinery through
 quasi-ergodicity. A narrow exact signature is easier to teach and audit at
-this stage. Future interfaces can relax the premise without pretending the
-current theorem already did.
+this stage. Future interfaces may relax the premise; the current theorem does
+not.
 
 ### The function form of rigidity
 
@@ -874,8 +874,8 @@ Its two fields come directly from checked predecessor theorems:
 - <code>C.logPlusNormObservable_add_le</code> supplies the shifted pointwise
   inequality.
 
-The proof does not introduce probability or ergodicity. It simply packages
-facts already established for \(P_k\).
+The proof does not introduce probability or ergodicity. It packages facts
+already established for \(P_k\).
 
 ## Camp four: four deterministic rate facts
 
@@ -904,9 +904,10 @@ The Lean proof uses <code>ge_of_tendsto</code> with the eventually true fact
 that every term is nonnegative. This is a topological limit argument, not a
 probability argument.
 
-Positive clipping is crucial. A contraction-sensitive logarithmic rate can
-be negative, but \(P_k=\log^+\lVert C(k,\omega)\rVert\) cannot. The theorem is
-therefore evidence about the clipped integrated rate only.
+Positive clipping determines the sign and scope of the conclusion. A
+contraction-sensitive logarithmic rate can be negative, but
+\(P_k=\log^+\lVert C(k,\omega)\rVert\) cannot. The theorem therefore concerns
+only the clipped integrated rate.
 
 ### Declaration 4: expose the exact positive-time infimum
 
@@ -1270,10 +1271,10 @@ documentation detail. It is an absent theorem.
 
 “Not stored generically” is different from “false.” The generic candidate can
 be paired later with a map that is measurable and measure preserving. RMT-17
-simply keeps that dynamical evidence in its natural owner rather than
+keeps that dynamical evidence in its natural owner rather than
 duplicating it inside the process predicate.
 
-## The honest pre-Kingman boundary
+## The pre-Kingman boundary
 
 ### What Kingman's theorem changes
 
@@ -1553,7 +1554,7 @@ asymptotic structure.
 
 ## Full project checks
 
-The local <code>Std</code> file certifies the finite ledger only. The following
+The local <code>Std</code> file checks the finite ledger only. The following
 two checks inspect the actual Mathlib-backed project declarations. Install the
 repository's pinned dependencies first; these checks may require substantial
 disk space and memory.
@@ -1585,7 +1586,7 @@ open NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle
 ~~~
 
 <code>#print</code> exposes both candidate fields. Each <code>#check</code>
-asks Lean to elaborate one existing public declaration and show its complete
+elaborates one existing public declaration and shows its complete
 type. The list contains the one structure plus the other nine source-level
 declarations, in source order.
 

@@ -2,7 +2,7 @@
 title: "Subadditive Upper Limsup Bounds Before Kingman Convergence"
 slug: "subadditive-upper-limsup-bounds-before-kingman-convergence"
 date: 2026-07-22
-summary: "Start with an exact two-state subadditive ledger whose block-two integral bound is sharp, then climb through centering, phase averaging, ordinary-map Birkhoff convergence, the honest eventual-lower-bound gate for real limsup, and the cocycle Fekete-rate specialization."
+summary: "Start with an exact two-state subadditive ledger whose block-two integral bound is sharp, then climb through centering, phase averaging, ordinary-map Birkhoff convergence, the eventual-lower-bound hypothesis for real limsup, and the cocycle Fekete-rate specialization."
 lead: "On a uniform two-state flip, one explicit nonnegative subadditive process has normalized paths converging to one half and a block-two integral ratio equal to one half, even though the squared map is not ergodic. The same arithmetic exposes every term in the RMT-29 proof. A nearby process, Z_n = -n², then shows why Mathlib's real-valued limsup theorem needs an eventual lower bound: without it, totalization can turn an extended-real value of minus infinity into the real number zero. This chapter builds the general Lean interface from those two ledgers without claiming the missing lower-liminf half of Kingman's theorem."
 draft: false
 pro_reviewed: false
@@ -313,7 +313,7 @@ By the end, a reader should be able to:
   wide="true"
   src="generic-to-cocycle-ladder.svg"
   alt="A generic theorem ladder starts with an integrable subadditive candidate whose normalized paths are eventually bounded below almost everywhere, produces a fixed-block almost-everywhere limsup bound, enters the nonnegative wrapper for log-positive cocycle observables, intersects the block events, and takes the positive-block Fekete infimum."
-  caption="The public interface has three visible levels. The generalized theorem consumes an honest almost-everywhere eventual lower bound; its nonnegative wrapper chooses lower bound zero; the cocycle theorem then enforces every positive block simultaneously and optimizes by the existing deterministic Fekete identity."
+  caption="The public interface has three visible levels. The generalized theorem consumes a stated almost-everywhere eventual lower bound; its nonnegative wrapper chooses lower bound zero; the cocycle theorem then enforces every positive block simultaneously and optimizes by the existing deterministic Fekete identity."
 >}}
 
 ## The two obstacles
@@ -1354,7 +1354,7 @@ theorem are total for an empty finite index. The proof never chooses an index.
 
 ### Exercise 32: state the exact summit
 
-Give the strongest honest one-sentence conclusion.
+Give the strongest justified one-sentence conclusion.
 
 **Solution.** For an ergodic probability-base discrete matrix cocycle with an
 integrable one-step log-positive envelope, the samplewise normalized

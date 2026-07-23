@@ -179,7 +179,7 @@ When \(b\gt0\), the remainder is genuinely shorter: \(r\lt b\). The finite
 bound itself does not need that strict inequality. This matters in Lean
 because natural-number division is total. The expressions \(n/0\) and
 \(n\bmod0\) are defined, so the theorem may quantify over every natural
-\(b\) and discuss the degenerate case honestly instead of hiding it behind a
+\(b\) and discuss the degenerate case explicitly instead of hiding it behind a
 positive-block premise.
 
 The main term is a
@@ -202,7 +202,7 @@ typographical convention ([Mathlib function iteration](#ref-mathlib-iterate)).
 That definition and its zero, successor, and addition identities are the
 official API used by the module
 ([Mathlib Birkhoff sums](#ref-mathlib-birkhoff)). The finite sum is an
-algebraic object. Its name does not smuggle in a Birkhoff ergodic theorem.
+algebraic object. Its name does not assert a Birkhoff ergodic theorem.
 The module imports the file that defines the sums, not a theorem asserting
 convergence of their averages.
 
@@ -232,7 +232,7 @@ This milestone's contribution is narrower and formalization-specific:
 * it proves that those two generic bounds require no time-zero
   normalization;
 * it isolates the single zero-count exact-block boundary where \(X_0=0\) is
-  indispensable;
+  required;
 * it states integrability against preservation of the block map \(T^b\),
   rather than imposing more one-step structure than the proof consumes; and
 * it gives pointwise matrix-cocycle specializations with no irrelevant
@@ -355,7 +355,7 @@ checks below.
 
 ![A prose-only route from a seventeen-step horizon to a two-step remainder and three five-step blocks, followed by separate pointwise and integrability lanes.](blocks-and-remainder-proof-route.svg)
 
-<p class="figure-note"><strong>Figure:</strong> The same finite horizon can be read with the short remainder first or last. Shifted subadditivity alone controls either pointwise route. The separate analytic lane asks whether the block observable is integrable and whether the block map preserves the measure. The diagram contains no limit arrow because this module proves none.</p>
+<p class="figure-note"><strong>Figure:</strong> The same finite horizon can be read with the short remainder first or last. Shifted subadditivity alone controls either pointwise route. The separate analytic lane asks whether the block observable is integrable and whether the block map preserves the measure. No limit arrow appears because this module contains no limit theorem.</p>
 
 ### Why two orientations are useful
 
@@ -494,7 +494,7 @@ remainder \(b\) and block count \(q\) into helper A. The identity
 The theorem <code>birkhoffSum_succ</code> turns the corresponding right side
 into a sum with \(q+1\) terms.
 
-The crucial point is logical, not syntactic: there is at least one complete
+The logical point is that there is at least one complete
 block. No time-zero process value remains to be discarded, so no
 normalization appears.
 
@@ -550,9 +550,9 @@ throughout the remainder of the chapter.
 ```
 
 The signature takes a process candidate <code>hX</code> and a sample
-<code>ω</code>, then returns <code>0 ≤ X 0 ω</code>. The proof asks the
-candidate for <code>hX.add_le 0 0 ω</code>. Simplification knows that zero plus
-zero is zero and that the zero iterate is the identity. The remaining real
+<code>ω</code>, then returns <code>0 ≤ X 0 ω</code>. The proof applies the
+candidate for <code>hX.add_le 0 0 ω</code>. Simplification reduces zero plus
+zero to zero and the zero iterate to the identity. The remaining real
 inequality has the form \(x\le x+x\), which <code>linarith</code> rearranges to
 \(0\le x\).
 
@@ -799,10 +799,10 @@ no <code>hC : C.HasIntegrableGeneratorLogPlus</code>. The proof splits on
 successor, private helper B consumes only
 <code>C.logPlusNormObservable_add_le</code>.
 
-This formulation preserves the strongest honest scope. Pointwise finite
-subadditivity is already available for every cocycle in the module's matrix
-setting. Adding integrability to the theorem would obscure that fact and make
-later callers carry irrelevant evidence.
+This formulation has the widest scope supported by its proof dependencies.
+Pointwise finite subadditivity is already available for every cocycle in the
+module's matrix setting. Adding integrability to the theorem would obscure
+that fact and make later callers carry irrelevant evidence.
 
 The declaration assumes <code>Fintype ι</code> and
 <code>DecidableEq ι</code> because the underlying finite matrix norm
@@ -941,7 +941,7 @@ This control checks the orientation. If a proposed formula placed the shifted
 remainder or the first block at the wrong orbit point, the additive case would
 expose the error immediately.
 
-### 4. Scalar cocycles show the matrix theorem is not dimension magic
+### 4. Scalar cocycles show that the theorem is not specifically high-dimensional
 
 Take a one-dimensional matrix index. Each cocycle value is a scalar complex
 multiplier, and the induced infinity norm is absolute value. The log-positive
@@ -952,11 +952,10 @@ submultiplicativity, not from a special high-dimensional phenomenon.
 ### 5. Empty matrix dimension remains valid
 
 Take an empty finite index type. The project has explicit conventions for the
-empty matrix norm observable, and none of the RMT-18 signatures asks for
+empty matrix norm observable, and none of the RMT-18 signatures requires
 <code>Nonempty ι</code>. The two pointwise cocycle bounds and the integrability
-specialization still typecheck. This edge case is valuable because it proves
-the block layer has not silently imported a positivity-of-dimension premise
-from an unrelated matrix argument.
+specialization still typecheck. The block layer's signatures therefore contain
+no positivity-of-dimension premise from an unrelated matrix argument.
 
 ## Lean proofcraft: why the source looks this way
 
@@ -1007,7 +1006,7 @@ subtraction, positivity premise, or conversion to integers is needed.
 ### Keep analytic transport out of pointwise helpers
 
 The private helpers are parameterized by <code>hadd</code> rather than a full
-candidate. This makes their dependency audit obvious. The measurable space
+candidate. This makes their dependencies explicit. The measurable space
 and measure appear only after the namespace opens for public declarations,
 and actual integration occurs only in declaration 9.
 
@@ -1249,9 +1248,9 @@ limit proof.
 If <code>Ergodic T μ</code> is available, may a future proof immediately use an
 ergodic theorem for <code>T^[b]</code>?
 
-**Solution.** No. The two-cycle example shows that an ergodic map can have a
-nonergodic power. A future proof must avoid that step or supply an appropriate
-stronger hypothesis.
+**Solution.** No. The two-cycle construction is a counterexample to the
+implication from ergodicity of a map to ergodicity of each power. A future
+proof must avoid that step or supply an appropriate stronger hypothesis.
 
 ### Exercise 22: place RMT-18 inside a Kingman proof
 
@@ -1294,7 +1293,7 @@ passes required by the Development Notebook guide.
 
 ## The next ridge
 
-RMT-18 leaves the project at an honest finite boundary. We can tile every
+RMT-18 leaves the project at an exact finite boundary. We can tile every
 horizon, orient the remainder either way, and integrate every finite block
 sum under the exact preservation premise. The immediate RMT-19 successor
 subtracts the additive one-step orbit majorant, proves the residual

@@ -20,7 +20,7 @@ is still open.
 The **Gaussian unitary ensemble**, or **GUE**, is a probability law on finite
 complex {{< refterm "hermitian-matrix" "Hermitian matrices" >}}.
 
-Each word names a different part of the story:
+Each word names a different part of the definition:
 
 - **Gaussian:** the freely chosen real scalar coordinates have Gaussian laws;
 - **unitary:** changing basis by a deterministic unitary matrix does not
@@ -399,8 +399,8 @@ worked \(n=2\) calculation.
 
 **Standalone tutorial.** This worksheet imports only
 <code>Std</code> and evaluates the rational arithmetic in the size-two
-example. It is not a random-variable construction and proves no Gaussian law,
-independence, matrix support, invariance, or spectral theorem.
+example. It is not a random-variable construction and supplies no Gaussian
+law, independence, matrix-support, invariance, or spectral theorem.
 
 Save it as <code>GUE2MomentLedgerScratch.lean</code>:
 
@@ -511,7 +511,7 @@ Dirac at the zero measure. But the zero empirical measure itself has total
 mass zero, so it is not a probability measure on \(\mathbb R\).
 
 For \(n\gt0\), the empirical spectral measure has mass one and its expected
-second moment is one. Lean exposes that boundary honestly:
+second moment is one. The formal statement records that boundary explicitly:
 
 \[
 \mathbb E[m_2]=

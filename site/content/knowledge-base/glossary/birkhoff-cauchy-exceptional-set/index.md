@@ -123,9 +123,9 @@ criterion.
 
 ## Worked example: averages prescribed to alternate
 
-The definition itself needs no measure or measurability. This makes it easy to
-test on a deliberately divergent orbit. Let \(\Omega=\mathbb N\), let
-\(T(k)=k+1\), and start at \(0\). Define
+The definition itself needs no measure or measurability, so it can be tested
+directly on a divergent orbit. Let \(\Omega=\mathbb N\), let \(T(k)=k+1\),
+and start at \(0\). Define
 
 \[
 f(k)
@@ -306,8 +306,8 @@ does not claim to formalize either historical theorem word for word.
 - **Zero measure does not make the raw set empty.** It makes every set null.
   An almost-everywhere conclusion over the zero measure is valid but vacuous.
 - **Probability and ergodicity are absent.** Finite total mass need not be
-  one, and the closure theorem does not assume that invariant events are
-  trivial.
+  one, and the closure theorem does not assume that invariant events are null
+  or conull.
 - **No invertibility is hidden.** Measure preservation supplies measurable
   forward iteration. Injectivity, surjectivity, a measurable inverse, and an
   equivalence structure are not premises.
@@ -331,7 +331,7 @@ splitting.
 
 - <code>ω ∈ birkhoffCauchyExceptionalSet T f ε</code> is membership of one
   starting point in one fixed-scale event.
-- <code>∀ N : ℕ</code> lets an adversary choose any tail cutoff.
+- <code>∀ N : ℕ</code> means that the tail cutoff is arbitrary.
 - The nested witnesses <code>∃ m ≥ N, ∃ n ≥ N</code> may change with that
   cutoff; one fixed pair is not required to work forever.
 - The final comparison is non-strict <code>ε ≤ |...|</code>. Negating it

@@ -120,8 +120,8 @@ Consider
 \]
 
 It contains the empty event, the whole space, and the useful question “was the
-roll even?” It can therefore look sufficient at first glance. But it is not a
-sigma algebra. The complement of \(E\) is \(O\), and \(O\notin\mathcal G\).
+roll even?” It is nevertheless not a sigma algebra: the complement of \(E\)
+is \(O\), and \(O\notin\mathcal G\).
 
 The failure has a plain-language interpretation. If a sensor can answer
 “even,” it can also answer “not even.” An information system closed under

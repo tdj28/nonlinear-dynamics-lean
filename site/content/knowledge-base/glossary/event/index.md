@@ -21,7 +21,7 @@ A probability **event** is a measurable set of possible outcomes. An
 experiment produces one outcome \(\omega\). The event \(A\) occurs when that
 outcome belongs to the set, written \(\omega\in A\).
 
-That distinction is small but fundamental:
+The logical types are different:
 
 - an **outcome** is one possible result;
 - an **event** is a yes-or-no question represented by a set of results; and
@@ -341,10 +341,10 @@ example {Ω : Type*} [MeasurableSpace Ω]
 ~~~
 
 The four <code>#check</code> commands ask Lean to report the checked project
-interfaces. The final <code>example</code> verifies that the complement of one
-measurable event intersected with another remains measurable. The full-project
-command below checks the complete project module containing the convergence
-event and its measurability theorem.
+interfaces. In the final <code>example</code>, Lean's kernel checks a proof
+term stating that the complement of one measurable event intersected with
+another remains measurable. The full-project command below checks the complete
+project module containing the convergence event and its measurability theorem.
 {{< /repo-check >}}
 
 ## Boundaries that prevent common mistakes

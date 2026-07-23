@@ -159,7 +159,7 @@ so
 =\lVert A\rVert_\infty\lVert x_*\rVert_\infty.
 \]
 
-This proves sharpness for the example.
+This equality shows that the bound is sharp for this matrix.
 
 For a general real maximizing row, choose each input coordinate to match the
 entry's sign. For a nonzero complex entry
@@ -170,7 +170,7 @@ the selected row points in the same phase and the row sum is attained.
 {{< reference-figure
   wide="true"
   src="row-sum-norm-worked-example.svg"
-  alt="For the matrix with rows one minus two and three four, the absolute row sums are three and seven, so the infinity operator norm is seven. The absolute column sums are four and six, and six is marked as the wrong norm. The vector two minus one verifies four is at most fourteen. The vector one one gives output minus one seven and attains equality. A final strip connects submultiplicativity to finite matrix product growth."
+  alt="For the matrix with rows one minus two and three four, the absolute row sums are three and seven, so the infinity operator norm is seven. The absolute column sums are four and six, and six is marked as the wrong norm. The vector two minus one gives the inequality four is at most fourteen. The vector one one gives output minus one seven and attains equality. A final strip connects submultiplicativity to finite matrix product growth."
   caption="**Worked norm:** the largest absolute row sum is \(7\). The test vector \(x=(2,-1)\) gives \(\lVert Ax\rVert_\infty=4\leq14\). The phase-aligned vector \(x_*=(1,1)\) gives equality \(7=7\cdot1\). Column sums \(4\) and \(6\) are shown as a near-miss because they belong to the induced one-norm convention, not the infinity norm. Patterns distinguish the two rows and the warning without relying on color."
 >}}
 
@@ -223,8 +223,7 @@ c_1=|-2|+|4|=6.
 \]
 
 Their maximum is \(6\), not \(7\). If one incorrectly declared
-\(\lVert A\rVert_\infty=6\), the attaining vector would immediately refute
-the claimed bound:
+\(\lVert A\rVert_\infty=6\), the attaining vector refutes the claimed bound:
 
 \[
 \lVert Ax_*\rVert_\infty=7\not\leq6\cdot1.

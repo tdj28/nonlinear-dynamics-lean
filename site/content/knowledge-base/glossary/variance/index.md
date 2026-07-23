@@ -285,7 +285,7 @@ for the explicit nonnegative-real parameter <code>v : ℝ≥0</code>.
 
 - Variance requires a measure. A bare function has no variance until a measure
   on its domain is fixed.
-- Variance may be infinite. The extended quantity is the honest target before
+- Variance may be infinite. The extended quantity is the appropriate target before
   square integrability has been proved.
 - A finite variance does not imply a Gaussian law. Many non-Gaussian laws have
   the same mean and variance.

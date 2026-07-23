@@ -172,13 +172,13 @@ by conjugate reflection.
   have been supplied. At that stage it should not be credited with a law.
 - The word "random" does not mean that entries are independent or identically
   distributed. Those are additional properties of particular ensembles.
-- A law does not remember which source outcome produced a matrix. The function
+- A law does not record which source outcome produced a matrix. The function
   \(X\) and its law are related, but they are different typed objects.
 
 ## In Lean
 
-The core translation is intentionally simple: the project name
-<code>RandomMatrix</code> abbreviates an ordinary function type.
+The core translation is direct: the project name <code>RandomMatrix</code>
+abbreviates an ordinary function type.
 
 {{< lean-bridge
   human="A project random matrix is a rule that accepts an outcome and returns one matrix. The base type alone contains no measurability proof and no probability measure."

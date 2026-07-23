@@ -130,7 +130,7 @@ RMT-26 established an existence statement:
 A_nf(\omega)\longrightarrow c_\omega.
 \]
 
-That theorem was intentionally honest about what it did not prove. An
+That theorem explicitly excludes a stronger conclusion. An
 existential witness selected separately at each point is not yet a measurable
 function. Even if one writes \(c(\omega)\), nothing in the bare statement says
 that \(c\) is integrable, invariant, or characterized by integrals. Those
@@ -317,7 +317,8 @@ Declarations 2 and 3 connect the total representative to convergence:
 - `tendsto_birkhoffAverage_birkhoffLimit_of_mem` consumes membership in the
   RMT-26 convergence event.
 
-Declaration 4, `birkhoffLimit_apply_base`, is the crucial pointwise identity
+Declaration 4, `birkhoffLimit_apply_base`, is the pointwise identity needed
+for invariance:
 
 \[
 L_f(T\omega)=L_f(\omega).
@@ -368,7 +369,7 @@ pointwise gives \(L_f=L_g\) almost everywhere.
 This is the right interface boundary. A raw integrable function need not be
 ordinarily strongly measurable, but it has a strongly measurable version. We
 may reason exactly about that version and then transport the conclusion back
-without pretending that quotient representatives are definitionally equal.
+without treating quotient representatives as definitionally equal.
 
 ## Why pointwise convergence cannot pass integrals
 
@@ -447,7 +448,7 @@ Let \(S\in\mathcal I_T\). Because \(T^{-1}S=S\), every iterate satisfies
 \int_S f(\omega)\,d\mu(\omega).
 \]
 
-The proof does not change variables through an inverse. It asks Mathlib for
+The proof does not change variables through an inverse. It applies
 `MeasurePreserving.restrict_preimage`, rewrites the preimage restriction using
 exact invariance, and applies the pushforward integral theorem on
 \(\mu\vert_S\). This remains valid for a noninjective map.
@@ -821,7 +822,7 @@ Why does a constant map on `Bool` preserve `dirac false`?
 point, including `false`, to `false`. Its pushforward is therefore the same
 Dirac measure even though the map is neither injective nor surjective.
 
-### Exercise 20: state the next corollary honestly
+### Exercise 20: state the next corollary with exact hypotheses
 
 What additional assumptions would turn the target into the integral of \(f\)?
 

@@ -106,8 +106,8 @@ M_Ng(\omega)
 \max_{0\le k\le N}S_kg(\omega).
 \]
 
-The index set is never empty because it contains zero. More importantly, the
-value at time zero is zero, so
+The index set is never empty because it contains zero. Since the value at time
+zero is zero,
 
 \[
 M_Ng(\omega)\ge 0
@@ -502,7 +502,7 @@ tools needed to move beyond that event-only layer.
 
 The {{< refterm "ergodic-probability-base" "ergodic probability base" >}}
 entry separates preservation from probability and ergodicity. That separation
-matters here because the core theorem consumes only preservation and
+matters here because the core theorem uses only preservation and
 integrability.
 
 ## References

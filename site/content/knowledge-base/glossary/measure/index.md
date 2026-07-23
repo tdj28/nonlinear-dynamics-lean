@@ -18,14 +18,14 @@ still open.
 {{< /panel >}}
 
 A **measure** assigns a nonnegative mass to each measurable event. Here an
-**event** is simply a subset of the possible outcomes, and "measurable" means
+**event** is a subset of the possible outcomes, and "measurable" means
 that the subset belongs to the chosen
 {{< refterm "measurable-space" "measurable space" >}}. A measure can describe
 length, area, volume, counting, physical mass, or probability. Probability is
 the special case in which the whole outcome space has mass \(1\).
 
-The central rule is easy to see before it is stated abstractly: pieces that do
-not overlap can be weighed separately and then added.
+The finite example below exhibits the central rule: disjoint pieces can be
+weighed separately and their masses added.
 
 ## Start with three atoms
 
@@ -202,7 +202,7 @@ length measure gives that singleton mass zero, so no ordinary function
 density with respect to length can reproduce the point mass.
 
 On the three-point space, counting measure is a convenient reference: it gives
-each atom mass \(1\), and the density values are just
+each atom mass \(1\), and the density values are
 \(\rho(a)=1/2\), \(\rho(b)=1/3\), and \(\rho(c)=1/6\). That is a feature of
 the chosen finite reference, not a universal identification of measures with
 densities.
@@ -333,9 +333,9 @@ example (hAB : Disjoint A B) (hB : MeasurableSet B) :
 
 Read the typed expression <code>μ A</code> as the paper expression
 \(\mu(A)\). The line <code>#check μ A</code> asks Lean to infer and display its
-type. The <code>example</code> command asks Lean to verify the displayed
-disjoint-additivity statement under the two named hypotheses. The proof term
-<code>measure_union hAB hB</code> applies the library theorem to those proofs.
+type. The <code>example</code> supplies the two named hypotheses to
+<code>measure_union</code>, and Lean's kernel checks the resulting proof of the
+displayed disjoint-additivity statement.
 
 The imported project module is not arbitrary. It defines the law of a random
 matrix from an explicit source <code>μ : Measure Ω</code>. Its theorem

@@ -106,7 +106,7 @@ For a probability measure, this integral is also called the
   wide="true"
   src="normalized-space-average-scaling.svg"
   alt="The original two atoms contribute two and four to an integral of six over mass three. Fivefold scaling changes their contributions to ten and twenty, giving integral thirty over mass fifteen. Probability normalization changes their weights to two thirds and one third, and all three routes give average two."
-  caption="**The complete two-atom ledger:** \(p\) has value \(1\) and original weight \(2\), while \(q\) has value \(4\) and original weight \(1\). Thus the mass is \(2+1=3\), the integral is \(2\cdot1+1\cdot4=6\), and the normalized average is \(6/3=2\). Multiplying both weights by \(5\) gives weights \(10,5\), contributions \(10,20\), mass \(15\), integral \(30\), and the same ratio \(30/15=2\). Dividing the original weights by \(3\) instead gives probabilities \(2/3,1/3\), whose expectation is \(2/3+4/3=2\). This finite calculation shows invariance under common positive scaling; it does not prove any orbit-average convergence theorem."
+  caption="**The complete two-atom ledger:** \(p\) has value \(1\) and original weight \(2\), while \(q\) has value \(4\) and original weight \(1\). Thus the mass is \(2+1=3\), the integral is \(2\cdot1+1\cdot4=6\), and the normalized average is \(6/3=2\). Multiplying both weights by \(5\) gives weights \(10,5\), contributions \(10,20\), mass \(15\), integral \(30\), and the same ratio \(30/15=2\). Dividing the original weights by \(3\) instead gives probabilities \(2/3,1/3\), whose expectation is \(2/3+4/3=2\). These two rescalings illustrate the general cancellation of a common positive factor; they supply no orbit-average convergence result."
 >}}
 
 ## The general definition
@@ -183,7 +183,7 @@ one point \(x\), then
 \operatorname{Avg}_{\mu}(h)=h(x).
 \]
 
-The orbit can only see the value \(h(x)\), not the arbitrarily doubled raw
+The orbit samples only the value \(h(x)\), not the arbitrarily doubled raw
 integral. The project's twenty-eighth Random Matrix Theory milestone (RMT-28)
 includes this mass-two boundary probe.
 
@@ -310,7 +310,7 @@ for integrable real observables under the exact listed assumptions.
 ## A tiny standalone Lean worksheet a human can type
 
 **Standalone tutorial.** This
-worksheet verifies only the two finite integer ledgers. It does not import
+worksheet checks only the two finite integer ledgers. It does not import
 Mathlib, construct a measure, or prove an ergodic theorem.
 
 Save the following as <code>NormalizedAverageTutorial.lean</code>:
@@ -465,7 +465,7 @@ space average.
 
 ## What this page does and does not establish
 
-The two-atom example establishes exactly that common positive rescaling sends
+The two-atom calculation exhibits the particular rescaling
 
 \[
 (\text{mass},\text{integral})=(3,6)
@@ -473,8 +473,9 @@ The two-atom example establishes exactly that common positive rescaling sends
 (15,30)
 \]
 
-while preserving their ratio \(2\). More generally, the definition records a
-weighted average per unit mass.
+while preserving the ratio \(2\). The general scaling identity follows by
+cancelling a common positive factor in both the integral and the total mass.
+More generally, the definition records a weighted average per unit mass.
 
 It does **not** establish any of the following by definition alone:
 

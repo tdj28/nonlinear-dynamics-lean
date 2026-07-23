@@ -133,7 +133,7 @@ The parallel textbook treatment is
 | Ergodic route | [Climb from exact invariance to conditional rigidity](#climb-from-exact-invariance-to-conditional-rigidity) | Distinguish null-or-conull from probability zero-or-one |
 | Project route | [Specialize without importing a theorem](#specialize-without-importing-a-theorem) | Reach candidate and matrix-cocycle wrappers |
 | API route | [The complete source-order tour](#the-complete-source-order-tour) | Audit every public declaration |
-| Boundary route | [Twelve probes keep the quantifiers honest](#twelve-probes-keep-the-quantifiers-honest) | Test time zero, identity, noninvertibility, zero measure, and divergence |
+| Boundary route | [Twelve probes audit the quantifiers](#twelve-probes-audit-the-quantifiers) | Test time zero, identity, noninvertibility, zero measure, and divergence |
 | Integrity route | [What this event does not prove](#what-this-event-does-not-prove) | Block pointwise Birkhoff and Kingman overreads |
 
 ### Learning objectives
@@ -433,13 +433,13 @@ forwards through <code>hg.aemeasurable</code>. The theorem
 through <code>hg.aestronglyMeasurable</code>.
 
 The three names preserve useful interfaces. Their mathematical payload is not
-three different convergence arguments. It is one honest representative
+three different convergence arguments. It is one representative
 argument exposed at the levels users naturally possess.
 
 {{< panel "warning" >}}
 **Do not strengthen the hypothesis silently.** From
 <code>Integrable g μ</code>, the module obtains a null-measurable event under
-quasi-measure-preserving dynamics. It does not pretend that the raw
+quasi-measure-preserving dynamics. It does not claim that the raw
 representative \(g\) is ordinarily measurable everywhere.
 {{< /panel >}}
 
@@ -622,7 +622,7 @@ Mathlib declarations ([ergodic event APIs](#ref-rmt22-ergodic)). RMT-22's work
 at this rung is to construct an event with exactly the regularity and
 invariance those declarations require.
 
-The theorem does not insist that measurability arose from an ordinarily
+The theorem does not require that measurability arose from an ordinarily
 measurable \(g\). A caller may have established event measurability by another
 route. This keeps the result modular.
 
@@ -633,12 +633,12 @@ The theorem
 accepts <code>QuasiErgodic T μ</code> and null-measurability of the event. It
 uses <code>QuasiErgodic.ae_empty_or_univ₀</code>. The exact set equality is
 converted into the almost-everywhere pointwise invariance proposition that
-this interface expects.
+this interface requires.
 
 This route matters for raw integrable representatives. Their events have been
 proved null-measurable, not necessarily ordinarily measurable. Requiring an
-ordinary measurable event here would throw away the honesty gained by the
-representative construction.
+ordinary measurable event here would discard the null-set stability supplied
+by the representative construction.
 
 The declarations
 <code>birkhoffConvergenceSet_ae_empty_or_univ_of_aemeasurable</code>,
@@ -689,7 +689,7 @@ ergodic probability space. It does not tell us whether convergence occurs
 almost nowhere or almost everywhere.
 {{< /panel >}}
 
-### Why the zero measure is an honest boundary
+### Why the zero measure is a valid boundary case
 
 Under the zero measure, every set is null and every two functions are almost
 everywhere equal. The empty-or-universal disjunction is therefore true but
@@ -705,12 +705,12 @@ statement into a stronger pointwise story.
 
 The last ten declarations adapt the generic event to two project interfaces.
 They are intentionally thin. Their purpose is to make future theorem
-statements readable, not to smuggle convergence into an existing structure.
+statements readable; they add no convergence field to an existing structure.
 
 ### The one-step observable of a candidate process
 
 For a real process \(X:\mathbb N\to\Omega\to\mathbb R\), the definition
-<code>oneStepBirkhoffConvergenceSet T X</code> is simply
+<code>oneStepBirkhoffConvergenceSet T X</code> is
 
 \[
 E(T,X_1).
@@ -871,7 +871,7 @@ them are mapped in the next section.
 37. <code>DiscreteMatrixCocycle.measure_generatorLogPlusBirkhoffConvergenceSet_eq_zero_or_one</code>
     adds probability normalization, still without proving convergence.
 
-## Twelve probes keep the quantifiers honest
+## Twelve probes audit the quantifiers
 
 The source ends with twelve anonymous <code>example</code> blocks. They compile
 as theorem-sized tests while adding no public names.
@@ -947,7 +947,7 @@ definition read negatively, with no hidden compactness or extended-real limit.
 ### Probe 11: compute an unbounded arithmetic orbit
 
 Take \(\Omega=\mathbb N\), \(T(k)=k+1\), \(g(k)=k\), and start at zero. The
-probe proves
+accompanying formal proof establishes
 
 \[
 A_{n+1}g(0)=\frac{n}{2}.
@@ -955,9 +955,9 @@ A_{n+1}g(0)=\frac{n}{2}.
 
 The finite sum is \(0+1+\cdots+n=n(n+1)/2\), divided by \(n+1\).
 
-### Probe 12: the arithmetic orbit really diverges
+### Probe 12: the arithmetic orbit diverges
 
-The final example proves
+The final anonymous declaration establishes
 
 \[
 0\notin E(\operatorname{succ},k\mapsto k).
@@ -1183,7 +1183,7 @@ Why is finite-horizon integrability valid on an infinite measure space?
 measure preservation carries integrability through each iterate. Total mass
 does not enter that closure argument.
 
-### Exercise 4: read the existential honestly
+### Exercise 4: read the existential literally
 
 What does \(\omega\in E(T,g)\) provide?
 
@@ -1411,8 +1411,8 @@ mathematical, source, accessibility, and editorial review.
 ## The next ridge
 
 RMT-22 has made the convergence event measurable enough to use and exactly
-invariant enough to be ergodically rigid. It has also demonstrated, with a
-concrete arithmetic orbit, that the event can exclude points. The gap is now
+invariant enough to be ergodically rigid. It also includes a formal
+arithmetic-orbit proof that a point can lie outside the event. The gap is now
 sharper than "we need ergodic theory." We need a theorem that proves
 membership under explicit hypotheses.
 

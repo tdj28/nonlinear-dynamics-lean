@@ -2,7 +2,7 @@
 title: "Ordered Finite Matrix Products and Operator-Norm Growth"
 slug: "ordered-finite-matrix-products-and-operator-norm-growth"
 date: 2026-07-21
-summary: "Multiply one exact noncommuting two-step history in both orders, compute its row-sum operator norms and orbit growth, then climb to the checked finite-product bounds without smuggling in randomness or a Lyapunov exponent."
+summary: "Multiply one exact noncommuting two-step history in both orders, compute its row-sum operator norms and orbit growth, then climb to the checked finite-product bounds without assuming randomness or a Lyapunov exponent."
 lead: "Start with a shear followed by an anisotropic stretch: the correct product has norm two, the reversed product has norm three, and both sit below the same factor budget four."
 draft: false
 pro_reviewed: false
@@ -455,9 +455,9 @@ open NonlinearDynamics.Random
 ~~~
 
 This list is the complete thirteen-declaration public interface. <code>#print</code>
-shows the recursive orientation; each <code>#check</code> asks the pinned
-elaborator for a theorem's exact assumptions and conclusion. The rendered
-full project command below checks the authoritative source file.
+shows the recursive orientation; each <code>#check</code> invokes the pinned
+elaborator and displays a theorem's exact assumptions and conclusion. The
+rendered full project command below checks the authoritative source file.
 {{< /repo-check >}}
 
 ### Inspect the separate measurable-law successor
@@ -1274,7 +1274,7 @@ Submultiplicativity retains worst-case budgets and loses directional
 information. Product and power bounds can be strict, as the worked example
 shows.
 
-### Smuggling in positive dimension everywhere
+### Adding an unnecessary positive-dimension assumption
 
 Only the analytic section assumes a nonempty coordinate type. The algebraic
 definition and its eight algebraic theorems support the empty type.

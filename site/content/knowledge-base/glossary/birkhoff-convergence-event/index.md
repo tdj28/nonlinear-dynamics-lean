@@ -164,7 +164,7 @@ E(T,g)
 \exists c\in\mathbb R,\ A_n^g(\omega)\longrightarrow c\right\}.
 \]
 
-The Lean definition is deliberately just as literal:
+The Lean definition is deliberately literal:
 
 ~~~lean
 def birkhoffConvergenceSet (T : Ω → Ω) (g : Ω → ℝ) : Set Ω :=
@@ -210,7 +210,7 @@ implementation details.
 
 - <code>∀ᵐ</code> is Lean's “for almost every” binder; it is not the ordinary
   universal quantifier <code>∀</code>.
-- <code>∂μ</code> names the measure that decides which exceptional sets are
+- <code>∂μ</code> names the measure with respect to which exceptional sets are
   negligible.
 - The body after the comma is still pointwise membership. The binder changes
   how many exceptions are permitted.
@@ -317,7 +317,7 @@ horizon. Their convergence events are therefore equal almost everywhere.
 This proves that the original event is **null measurable**: it agrees almost
 everywhere with a measurable set.
 
-The public interface exposes three honest levels:
+The public interface exposes three assumption levels:
 
 - <code>..._of_aemeasurable</code> is the primary representative theorem;
 - <code>..._of_aestronglyMeasurable</code> is an ergonomic corollary; and

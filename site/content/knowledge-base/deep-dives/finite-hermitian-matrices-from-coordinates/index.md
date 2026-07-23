@@ -3,7 +3,7 @@ title: "Finite Hermitian Matrices from Coordinates"
 slug: "finite-hermitian-matrices-from-coordinates"
 date: 2026-07-21
 summary: "Build one exact two-by-two Hermitian matrix from four real coordinates, then climb through reconstruction, dimension counting, Frobenius geometry, measurability, Lean syntax, and the zero-dimensional boundary."
-lead: "Start with four integers, watch conjugate reflection fill a matrix, and keep the same example in view until the abstract coordinate map and its Lean proof feel inevitable."
+lead: "Start with four integers, use conjugate reflection to fill a matrix, and carry the same example into the abstract coordinate map and its Lean proof."
 draft: false
 pro_reviewed: false
 level: "Finite matrix foundations to measurable assembly"
@@ -798,7 +798,7 @@ Its law becomes meaningful only after a measure is supplied separately.
 The separation keeps the constructor reusable. The same assembly works for
 Gaussian coordinates, bounded coordinates, empirical inputs, or fully
 deterministic functions. Hermiticity and measurability do not depend on which
-later distributional story is chosen.
+later probability model is chosen.
 
 ## Camp eight: dimension zero is not an exception
 
@@ -948,7 +948,7 @@ Read the first line as: extraction reconstructs \(q\); assembled \(q\) is
 Hermitian; the copied-without-conjugating near-miss is not. Read the second as
 the raw ledger square, \(H\)'s Frobenius square, the real Frobenius inner
 product of \(H\) with \(K\), and \(K\)'s Frobenius square. Each
-<code>example</code> asks the kernel to certify the corresponding equality.
+<code>example</code> is a kernel-checked proof of the corresponding equality.
 
 This miniature uses integer real-imaginary pairs, not Mathlib's
 <code>ℂ</code> or <code>Matrix</code>. It does not prove the general
@@ -1021,7 +1021,7 @@ open NonlinearDynamics.Random
 
 <code>import</code> loads the exact project module and its pinned Mathlib
 dependencies. <code>#print</code> shows the constructor body, while each
-<code>#check</code> asks Lean to elaborate an existing declaration and report
+<code>#check</code> elaborates an existing declaration and reports
 its type. These commands neither sample a random matrix nor establish any
 probability law. The full project command below checks the authoritative
 source file.

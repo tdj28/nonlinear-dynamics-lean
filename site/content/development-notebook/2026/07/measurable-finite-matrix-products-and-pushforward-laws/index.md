@@ -8,7 +8,7 @@ summary: "A declaration-complete account of finite random-matrix products: point
 lead: |
   A random matrix sequence is not yet a random matrix product. First the factors must be multiplied in the right time order for every outcome. Then that sample product must be proved measurable. Only then can its pushforward distribution be named without hiding Mathlib's zero-measure fallback. This chapter builds those three floors and keeps every boundary visible.
 key_result: |
-  Lean now lifts the newest-factor-left finite product to matrix-valued sample maps, proves ordinary measurability from exactly the factors before the chosen horizon, and defines the product law only when that certificate is supplied. Under a probability source, the zero-step law is the Dirac mass at the identity and every finite product law has total mass one. A bundled ProbabilityMeasure interface remembers only that mass-one fact. No independence, stationarity, factorization, cocycle, logarithmic growth, or asymptotic conclusion is claimed.
+  Lean now lifts the newest-factor-left finite product to matrix-valued sample maps, proves ordinary measurability from exactly the factors before the chosen horizon, and defines the product law only when that certificate is supplied. Under a probability source, the zero-step law is the Dirac mass at the identity and every finite product law has total mass one. A bundled ProbabilityMeasure interface stores only that mass-one fact. No independence, stationarity, factorization, cocycle, logarithmic growth, or asymptotic conclusion is claimed.
 draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
@@ -163,8 +163,8 @@ The local contribution is an intentionally narrow Lean bridge from a checked
 deterministic product to a checked finite pushforward law. It preserves the
 general semiring algebra, makes the minimum used-prefix regularity visible,
 refuses to call a proof-free <code>Measure.map</code> expression a law, and
-packages the mass-one conclusion without smuggling in probabilistic structure
-that was never proved.
+packages the mass-one conclusion only under the probabilistic structure used
+to prove it.
 
 ## One construction, three floors
 
@@ -351,7 +351,7 @@ map from outcomes to matrices.
 The value \(P_A(\omega,k)\) uses exactly the factors with indices
 \(0,1,\ldots,k-1\). A condition on \(A_k\) would be unnecessary, and a global
 condition on every future factor would make a finite-time interface harder to
-reuse. The theorem therefore asks for precisely the finite prefix it consumes.
+reuse. The theorem therefore assumes precisely the finite prefix it consumes.
 
 At \(k=0\), the condition is vacuous. The sample product is the constant
 identity map, which is measurable regardless of every factor in the sequence.
@@ -412,8 +412,8 @@ multiplication and finite summation provide the coordinate proof.
 This specialization is an interface choice, not a claim that measurable
 finite products make sense only over \(\mathbb C\). A future generic theorem
 could weaken the scalar assumptions after a reusable measurable multiplication
-interface is available. RMT-12 does not pretend that generalization has already
-been checked.
+interface is available. RMT-12 does not claim that this generalization has
+already been checked.
 
 ### Ordinary measurability is stronger than source-relative measurability
 
@@ -474,7 +474,7 @@ The proof argument is not extra probability data stored inside the resulting
 measure. Lean erases propositions computationally, and the underlying value
 is still a pushforward measure. The point is API discipline: a caller cannot
 obtain the object under the name <code>forwardProductLaw</code> without first
-discharging the condition that makes the name honest.
+discharging the measurability condition required by that name.
 
 {{< panel "info" >}}
 **A precise nuance.** Failure of ordinary measurability does not automatically
@@ -626,7 +626,7 @@ total operation, the sample product is still a function, and the entrywise
 measurability proof has no coordinates to check.
 
 At horizon zero under a probability source, the law is
-\(\operatorname{dirac}(I)\). In empty dimension that is simply the Dirac mass
+\(\operatorname{dirac}(I)\). In empty dimension that is the Dirac mass
 at the unique empty matrix. The statement is neither exceptional nor
 degenerate at the measure level. It is the ordinary law of a constant map into
 a one-point target.
@@ -673,8 +673,8 @@ section requiring only <code>Semiring 𝕜</code>.
 That split pays off in three ways. First, nonmeasurable examples can still use
 the algebra. Second, future real-valued random products reuse the pointwise
 theorems even before their measurable interface is generalized. Third, any
-downstream proof reveals the moment it crosses from algebra into measure
-theory because the assumptions visibly change.
+downstream theorem exposes the transition from algebra into measure theory
+because the assumptions visibly change.
 
 ### Why the law constructor repeats the prefix hypothesis
 
@@ -855,8 +855,9 @@ rg -n "measurable_const|measurable_mul|def law|law_isProbabilityMeasure" \
 
 Run those searches from <code>formalization</code>. The pinned local
 [Mathlib 4.32.0 release](#ref-mathlib-release) checkout is the exact API
-authority. Online documentation helps navigation, but only the selected source
-and compiler determine what this project proves.
+authority. Online documentation helps navigation, but the repository
+declarations state the formal claims, and successful kernel checking certifies
+their proof terms against those stated types.
 
 ## Common failure modes
 
@@ -1081,7 +1082,7 @@ does none of this.
 
 ## The next ridge
 
-RMT-12 supplies a measurable finite product and an honest law at every finite
+RMT-12 supplies a measurable finite product and its law at every finite
 horizon. That interface can support a later module that bundles a measurable
 matrix sequence, relates a time shift on outcomes to a shift of factor
 indices, and proves a finite cocycle equation from

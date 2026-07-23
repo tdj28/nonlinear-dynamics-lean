@@ -172,8 +172,8 @@ In the transient example,
 \mathcal O_S^+(u)=\{u,a,b\}.
 \]
 
-The missing state \(c\) is not impossible. It simply is not reachable from
-\(u\) by forward iteration. A different start gives a different orbit.
+The missing state \(c\) is not impossible; it is not reachable from \(u\) by
+forward iteration. A different start gives a different orbit.
 
 It is also useful to distinguish the **orbit sequence**
 
@@ -181,8 +181,8 @@ It is also useful to distinguish the **orbit sequence**
 \bigl(S^n(u)\bigr)_{n\ge0}=u,a,b,a,b,\ldots
 \]
 
-from the **orbit set** \(\{u,a,b\}\). The sequence remembers time order and
-repetitions. The set forgets both.
+from the **orbit set** \(\{u,a,b\}\). The sequence records time order and
+repetitions; the set discards both.
 
 ## Fixed and periodic are not synonyms
 
@@ -318,7 +318,7 @@ This exact worksheet was executed successfully with Lean 4.32.0 and printed:
 [3, 3, 3, 3]
 ~~~
 
-The first two lines reproduce both orbit tables. The third confirms that
+The first two lines reproduce both orbit tables. The third checks that
 \(c\) is fixed. The last proposition records the noninvertibility witness:
 different states \(u\) and \(b\) have the same image \(a\). This file is small
 enough for a normal Mac or Linux machine because it imports only
@@ -350,10 +350,10 @@ theorem measurable_orbitMatrixSequence (T : Ω → Ω)
   hA.comp (hT.iterate j)
 ~~~
 
-The proof says that a measurable map remains measurable after a finite number
-of iterations, and composing the measurable generator with that iterate stays
-measurable. It does not say the map preserves a measure; that is a separate
-property.
+The theorem states that a measurable map remains measurable after a finite
+number of iterations, and composing the measurable generator with that
+iterate stays measurable. It does not state that the map preserves a measure;
+that is a separate property.
 
 {{< repo-check >}}
 The authoritative checked source is
@@ -408,7 +408,7 @@ definition and measurability theorem.
 | “\(T^n\) multiplies \(T\) by itself.” | It composes a self-map with itself \(n\) times. |
 | “The orbit is the state space.” | The orbit is the part reached from one start; other allowed states can be absent. |
 | “Periodic means fixed.” | Fixed means period one; a periodic point may have larger minimal period. |
-| “An orbit is just a set.” | The orbit sequence retains order and repeats; the orbit set forgets them. |
+| “An orbit is just a set.” | The orbit sequence retains order and repetitions; the orbit set discards both. |
 | “Iteration requires invertibility.” | Forward natural-number iteration works for any self-map. |
 | “A finite orbit proves measure preservation or ergodicity.” | Those are separate measure-theoretic properties of the map. |
 

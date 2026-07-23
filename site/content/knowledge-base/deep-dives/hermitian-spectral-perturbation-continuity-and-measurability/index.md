@@ -3,7 +3,7 @@ title: "Hermitian Spectral Perturbation, Continuity, and Measurability"
 slug: "hermitian-spectral-perturbation-continuity-and-measurability"
 date: 2026-07-21
 summary: "An exact two-by-two perturbation opens a textbook climb from a Frobenius Weyl bound to continuous ordered eigenvalues, measurable finite spectral observables, and a carefully typed Gaussian ensemble pushforward equality."
-lead: "Move two entries of a diagonal Hermitian matrix by one half and one quarter. Its ordered energy levels move by exactly those amounts, both inside one square-root-five-over-four Frobenius budget. Lean proves the all-dimensional version, then separately proves continuity, measurability, and the existing random-law pushforward bridge."
+lead: "Move two entries of a diagonal Hermitian matrix by one half and one quarter. Its ordered energy levels move by exactly those amounts, both inside one square-root-five-over-four Frobenius budget. The formal module proves the all-dimensional version, then separately proves continuity, measurability, and the existing random-law pushforward bridge."
 draft: false
 pro_reviewed: false
 level: "Finite-dimensional Hermitian perturbation, Borel spectrum maps, and measurable spectral observables"
@@ -118,10 +118,10 @@ quantity is nonnegative:
   wide="true"
   src="exact-hermitian-perturbation-ledger.svg"
   alt="For diagonal Hermitian matrices with ordered spectra three and negative one versus five halves and negative three quarters, the entries of B minus A are negative one half and positive one quarter. The absolute eigenvalue shifts are one half and one quarter. Their squared Frobenius distance is five sixteenths, so the largest squared shift one quarter fits inside the exact budget."
-  caption="**Finding:** \(B-A\) has diagonal entries \(-1/2\) and \(+1/4\), so equal decreasing ranks move in absolute value by \(1/2\) and \(1/4\). The matrix perturbation has squared Frobenius size \(5/16\), hence distance \(\sqrt5/4\), and the exact comparison \(1/4\le5/16\) verifies the larger shift after squaring. These are deterministic toy matrices, not sampled data, and the figure makes no eigenvector or probability claim."
+  caption="**Finding:** \(B-A\) has diagonal entries \(-1/2\) and \(+1/4\), so equal decreasing ranks move in absolute value by \(1/2\) and \(1/4\). The matrix perturbation has squared Frobenius size \(5/16\), hence distance \(\sqrt5/4\), and the exact comparison \(1/4\le5/16\) checks the larger shift after squaring. These are deterministic toy matrices, not sampled data, and the figure makes no eigenvector or probability claim."
 >}}
 
-### Two near-misses show why the hypotheses are real
+### Two near-misses show why the hypotheses matter
 
 #### Near-miss A: reverse one eigenvalue list
 
@@ -182,11 +182,12 @@ level moves by
 \frac14\gt\frac1{16}.
 \]
 
-The single pair proves that the Hermitian theorem's constant \(1\) cannot be
-extended to all real \(2\)-by-\(2\) matrices that happen to have real spectra
-when those real eigenvalues are matched in decreasing order. It says nothing
-about every possible non-Hermitian spectral metric or matching convention. To
-see the stronger local failure along this particular real-spectrum family, use
+The single pair is a counterexample to extending the Hermitian theorem's
+constant \(1\) to all real \(2\)-by-\(2\) matrices that happen to have real
+spectra when those real eigenvalues are matched in decreasing order. It says
+nothing about every possible non-Hermitian spectral metric or matching
+convention. To see the stronger local failure along this particular
+real-spectrum family, use
 
 \[
 N_\varepsilon=
@@ -333,11 +334,11 @@ The exact worksheet was executed successfully with Lean 4.32.0. It printed:
 ((1 : Rat)/256, (1 : Rat)/16, false)
 ~~~
 
-The first boolean verifies the squared Hermitian budget. The second rejects
-the reversed-slot comparison. The three zeros certify that \(0\) is a root for
-\(J\) and that \(1/4,-1/4\) are roots for \(N\). The last tuple compares the
-squared non-Hermitian matrix distance \(1/256\) with the squared level motion
-\(1/16\) and correctly returns <code>false</code>.
+The first Boolean records the squared Hermitian budget. The second rejects the
+reversed-slot comparison. The three zeros are exact evaluations showing that
+\(0\) is a root for \(J\) and that \(1/4,-1/4\) are roots for \(N\). The last
+tuple compares the squared non-Hermitian matrix distance \(1/256\) with the
+squared level motion \(1/16\) and correctly returns <code>false</code>.
 
 <code>Rat</code> provides exact rational arithmetic. <code>decide</code>
 computes a boolean decision for a proposition, while
@@ -456,7 +457,7 @@ By the summit, you should be able to:
 {{< reference-figure
   src="intersection-to-measurable-law.svg"
   alt="Top spectral modes of a first Hermitian matrix and bottom spectral modes of a second matrix overlap by dimension. A shared nonzero witness lets quadratic forms squeeze one ordered eigenvalue. Swapping the matrices gives a two-sided bound, continuity makes the counting and empirical spectral sample maps measurable, and that separate map property licenses the ambient versus intrinsic Gaussian ensemble pushforward equality."
-  caption="**Finding:** the bridge from algebra to probability is earned by one deterministic witness, but it still has two distinct final steps. A dimension-forced intersection compares the same vector against both quadratic forms; the resulting coordinate bound yields continuity and then measurability of the counting and empirical spectral sample maps. Only after that map-level result does the module prove the separate ambient-versus-intrinsic Gaussian unitary ensemble pushforward equality. This proof ladder does not control eigenvectors, prove a full-spectrum Euclidean estimate, or add a Gaussian ensemble density or limit theorem."
+  caption="**Finding:** the bridge from algebra to probability depends on one deterministic witness, but it still has two distinct final steps. A dimension-forced intersection compares the same vector against both quadratic forms; the resulting coordinate bound yields continuity and then measurability of the counting and empirical spectral sample maps. Only after that map-level result does the module prove the separate ambient-versus-intrinsic Gaussian unitary ensemble pushforward equality. This proof ladder does not control eigenvectors, prove a full-spectrum Euclidean estimate, or add a Gaussian ensemble density or limit theorem."
 >}}
 
 The figure compresses three mathematical layers that must stay separate:
@@ -757,7 +758,7 @@ inequalities apply to the same vector:
 q_B(x)\le\lambda_i(B)\lVert x\rVert^2.
 \]
 
-This is the heart of the finite min-max argument. The proof does not need to
+This is the dimension-counting step in the finite min-max argument. The proof does not need to
 choose one eigenvector shared by \(A\) and \(B\), which generally would not
 exist. It chooses a vector shared by two deliberately oversized spectral
 subspaces.
@@ -850,7 +851,7 @@ open NonlinearDynamics.Random
 #check RandomMatrix.abs_orderedHermitianEigenvalues_sub_le_frobenius
 ~~~
 
-<code>#check</code> asks Lean to elaborate each declaration and display its
+<code>#check</code> elaborates each declaration and displays its
 type. The full project command rendered below checks the complete
 Mathlib-backed module and may require substantial disk space and memory.
 {{< /repo-check >}}
@@ -868,7 +869,7 @@ decreasing diagonals \(a_0,\ldots,a_{n-1}\) and
 \]
 
 The theorem reduces to the fact that one coordinate of a Euclidean vector is
-at most its total Euclidean length. The full proof earns the same conclusion
+at most its total Euclidean length. The full proof yields the same conclusion
 when the two matrices have unrelated eigenbases.
 
 ### Dimension zero
@@ -1146,7 +1147,7 @@ The earlier GUE geometry established
 
 On an intrinsic Hermitian input, the ambient totalizer followed by the
 empirical measure equals the intrinsic empirical measure. Measurability now
-allows the pushforwards to compose honestly.
+allows the pushforwards to compose at the stated typed level.
 
 ### In Lean: push forward the random input law
 

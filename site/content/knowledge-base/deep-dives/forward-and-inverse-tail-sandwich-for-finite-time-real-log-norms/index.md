@@ -112,7 +112,7 @@ objects from being silently identified.
   wide="true"
   src="four-step-tail-sandwich-ledger.svg"
   alt="Four scalar exponent steps two, negative three, one, and two have signed prefixes zero, two, negative one, zero, and two. At every horizon the signed prefix lies above the inverse lower rail zero, zero, negative three, negative three, negative three and below both the exact positive log and the forward one-step positive rail."
-  caption="**Finding:** the four-step ledger verifies every finite inequality before any measure theory appears. Signed prefixes are \(0,2,-1,0,2\); the inverse orbit sums are \(0,0,3,3,3\); the exact product positive logs are \(0,2,0,0,2\); and the forward one-step rails are \(0,2,2,3,5\). The inverse product values \(0,0,1,0,0\) stay below the inverse orbit sum. These are exact toy powers of two, not empirical measurements."
+  caption="**Finding:** the four-step ledger records every finite inequality before any measure theory appears. Signed prefixes are \(0,2,-1,0,2\); the inverse orbit sums are \(0,0,3,3,3\); the exact product positive logs are \(0,2,0,0,2\); and the forward one-step rails are \(0,2,2,3,5\). The inverse product values \(0,0,1,0,0\) stay below the inverse orbit sum. These are exact toy powers of two, not empirical measurements."
 >}}
 
 ### One severe contraction exposes the missing tail
@@ -145,7 +145,7 @@ cannot control signed integrability by itself.
   caption="**Finding:** clipping erases a severe contraction completely: the forward positive value is \(0\) while the signed value is \(-100\). The inverse tail restores the missing magnitude \(100\), making the lower rail exact in this scalar example. This finite example motivates the separate inverse moment; it is not a probability-tail or asymptotic theorem."
 >}}
 
-### Noncommuting shears reveal chronological order
+### Noncommuting shears determine chronological order
 
 Scalar products hide one matrix issue because scalars commute. Let
 
@@ -287,12 +287,12 @@ and
 | Route | Begin | Destination |
 |---|---|---|
 | Worked-example route | [Start with four scalar steps you can audit](#start-with-four-scalar-steps-you-can-audit) | Verify the signed, positive, forward, and inverse rails numerically |
-| Order route | [Noncommuting shears reveal chronological order](#noncommuting-shears-reveal-chronological-order) | Compute the correct and incorrect inverse products |
+| Order route | [Noncommuting shears determine chronological order](#noncommuting-shears-determine-chronological-order) | Compute the correct and incorrect inverse products |
 | Panorama | [See the whole mountain](#see-the-whole-mountain) | Understand the main and shortcut routes |
 | Observables | [Separate the three logarithms](#separate-the-three-logarithms) | Know what each observable remembers and erases |
 | Algebra | [Propagate pointwise units](#propagate-pointwise-units) | Restore nonvanishing and signed subadditivity |
 | Measurability | [Build a measurable total inverse](#build-a-measurable-total-inverse) | Follow entries through determinant, adjugate, inverse, norm, and positive log |
-| Order | [Reverse inverse products honestly](#reverse-inverse-products-honestly) | Control the finite inverse value without inventing a backward cocycle |
+| Order | [Reverse inverse products in the correct order](#reverse-inverse-products-in-the-correct-order) | Control the finite inverse value without inventing a backward cocycle |
 | Analysis | [Construct the two-rail sandwich](#construct-the-two-rail-sandwich) | Prove finite-horizon signed integrability |
 | Candidate | [Package the signed process](#package-the-signed-process) | Read the exact infrastructure delivered to later work |
 | Probability | [Test the missing inverse tail](#test-the-missing-inverse-tail) | Verify the geometric probability counterexample and its limits |
@@ -484,7 +484,7 @@ For a nonnegative scalar \(r\), the three observables behave as follows.
 | \(r=1\) | \(0\) | \(0\) | \(0\) |
 | \(r\gt1\) | \(\log r\gt0\) | \(\log r\gt0\) | \(\log r\gt0\) |
 
-No column is simply better than the others.
+No column dominates the others in every role.
 
 - The extended logarithm is zero-faithful. Exact collapse remains visible as
   bottom.
@@ -740,7 +740,7 @@ for a future random-matrix utility layer, but RMT-34 first needs them as a
 focused support chain. Keeping them private avoids freezing a generic public
 application programming interface (API) before that reuse has been tested.
 
-## Reverse inverse products honestly
+## Reverse inverse products in the correct order
 
 ### Inversion changes chronological order
 
@@ -768,9 +768,9 @@ newest-factor-left forward product.
   caption="**Order first, envelope second:** taking an inverse reverses a noncommutative product. Norm and positive-log bounds then replace the reversed product by a scalar sum along forward base iterates. The module never advertises the same-order inverse factors as a cocycle value."
 >}}
 
-The compiled upper and lower shear example proves that the two inverse orders
-can differ. This prevents an attractive but false same-order inverse-cocycle
-story.
+The compiled upper and lower shear example gives a counterexample to equality
+of the two inverse orders. This rules out the same-order inverse-cocycle
+formula.
 
 ### The finite inverse orbit majorant
 
@@ -1055,7 +1055,7 @@ Its inverse positive log is the nonzero constant
 
 The zero function is integrable on every measure space. A nonzero constant is
 not integrable over the whole real line because Lebesgue measure has infinite
-total mass. The compiled example therefore proves
+total mass. The module contains formal proofs of
 
 \[
 \operatorname{Integrable}(0,\operatorname{volume})
@@ -1380,7 +1380,7 @@ If that hash changes, the declaration and line ledgers must be regenerated.
 The public surface deliberately separates total measurability from faithful
 inverse interpretation. Declarations 5, 11, 15, 19, 21, and 25 require no
 unit hypothesis. Declarations 3, 4, 9, and 24 expose the algebraic gates that
-make the signed interpretation honest.
+make the signed interpretation valid.
 
 ### Private support ledger
 
@@ -1647,7 +1647,7 @@ inherit their conclusions merely by using similar moment language.
 3. **Noncommutative order survives until norms remove it.** Reverse the
    product first, then bound it.
 4. **A finite orbit majorant need not be a cocycle.** The scalar sum \(J_n\)
-   is useful precisely because it avoids a false backward-dynamics story.
+   is useful precisely because it avoids a false backward-dynamics formula.
 5. **Two-sided domination is a finite-time bridge.** It proves integrability
    of each signed slice without proving asymptotic convergence.
 6. **One counterexample can close only one implication.** The geometric
@@ -2682,7 +2682,7 @@ centered-integral lower bound needed to reuse the RMT-30 through RMT-33
 rational-deviation machinery.
 
 For the upper endpoint, RMT-35 replaces RMT-29's nonnegativity shortcut with
-an honest eventual lower bound obtained from the negative inverse-generator
+an eventual lower bound obtained from the negative inverse-generator
 Birkhoff average. The generalized lower-bounded RMT-29 theorem and the lower
 endpoint then squeeze normalized signed growth. On a pre-ergodic probability
 base, the source checkpoint proves almost-everywhere convergence to the

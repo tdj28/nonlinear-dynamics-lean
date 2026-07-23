@@ -4,7 +4,7 @@ slug: "log-positive-kingman-convergence-from-rational-lower-deviations-in-lean"
 date: 2026-07-22
 weight: -67
 author: "tdj28"
-summary: "Random-matrix-theory milestone 33 (RMT-33) turns the null rational lower-deviation events of RMT-32 into an honest almost-everywhere lower-liminf bound, adds back the one-step Birkhoff average, and squeezes the normalized log-positive cocycle observable to its integrated Fekete growth rate."
+summary: "Random-matrix-theory milestone 33 (RMT-33) turns the null rational lower-deviation events of RMT-32 into an almost-everywhere lower-liminf bound with an explicit boundedness guard, adds back the one-step Birkhoff average, and squeezes the normalized log-positive cocycle observable to its integrated Fekete growth rate."
 lead: |
   The last obstruction is not a missing inequality but a semantic guard. Mathlib's real liminf is total even when a sequence has no eventual lower bound, so membership in a rational lower-deviation event cannot imply a real lower-liminf inequality without an explicit boundedness hypothesis. RMT-33 keeps that gate visible, covers strict liminf deviations by a null union at genuinely smaller rational targets, and reuses the same cover to construct an eventual lower bound almost everywhere. The centered estimate then joins a convergent Birkhoff average, while the earlier upper-limsup theorem closes a samplewise squeeze for the nonnegative log-positive cocycle observable.
 key_result: |
@@ -125,7 +125,7 @@ The whole milestone can be read as five interfaces:
   wide="true"
   src="rmt33-proof-ladder.svg"
   alt="A five-stage proof ladder runs from total normalization through a guarded real lower-limit bridge and a rational null cover to Birkhoff addition and a final log-positive convergence squeeze."
-  caption="**The RMT-33 proof ladder:** every arrow names a separate mathematical interface. The rational null cover is central because it supplies both an almost-everywhere inequality and the boundedness certificate needed to interpret the real lower limit honestly."
+  caption="**The RMT-33 proof ladder:** every arrow names a separate mathematical interface. The rational null cover is central because it supplies both an almost-everywhere inequality and the boundedness certificate needed for the real lower-limit calculation."
 >}}
 
 The immediate predecessor is
@@ -200,7 +200,7 @@ For a real process \(X:\mathbb N\to\Omega\to\mathbb R\), the module defines
 
 In Lean, real division is total. At \(n=0\), the denominator is zero and the
 quotient evaluates to zero. Thus `normalizedProcess X 0 ω` forgets `X 0 ω`
-completely. This is a useful total API, but the note never pretends that the
+completely. This is a useful total API, but the note does not claim that the
 zero-time quotient carries asymptotic information.
 
 Two facts make the convention safe:
@@ -459,7 +459,7 @@ Mathlib's `tendsto_of_le_liminf_of_limsup_le` then yields convergence.
   caption="**The final squeeze:** lower liminf and upper limsup inequalities determine the candidate limit only after the real-valued sequence is certified bounded below and above along the filter."
 >}}
 
-The theorem asks for `PreErgodic C.base μ`, not a separate preservation
+The theorem assumes `PreErgodic C.base μ`, not a separate preservation
 hypothesis, because the cocycle structure already bundles
 `C.base_preserving`. The proof combines them locally into `Ergodic C.base μ`.
 
@@ -671,7 +671,8 @@ theorem mem_centeredStrictLowerDeviationSet_iff_liminf_normalizedCenteredProcess
       liminf (fun n ↦ normalizedCenteredProcess T X n ω) atTop < c
 ```
 
-Packages the two directions as the honest guarded equivalence.
+Packages the two directions as an equivalence under the stated boundedness
+guard.
 
 ### 18. `IsIntegrableSubadditiveProcessCandidate.centeredLowerLiminfDeviationSet_subset_rationalExhaustion`
 
@@ -839,7 +840,7 @@ the audited proof artifact. There are eleven, in this order.
 | 1 | `IsIntegrableSubadditiveProcessCandidate.ae_isBoundedUnder_ge_normalizedCenteredProcess` | Extracts an almost-everywhere eventual lower bound off the rational exhaustion |
 | 2 | `rmt33ZeroProcess` | Supplies the zero-process boundary probe |
 | 3 | `rmt33ApproachZeroFromBelow` | Defines the sequence \(-1/n\) with total value zero at time zero |
-| 4 | `rmt33ApproachZeroFromBelow_tendsto` | Proves convergence of that probe to zero |
+| 4 | `rmt33ApproachZeroFromBelow_tendsto` | Establishes convergence of that sequence to zero |
 | 5 | `rmt33ApproachZeroFromBelow_frequently_neg` | Proves strict negative crossing remains frequent |
 | 6 | `rmt33ApproachZeroFromBelow_not_frequently_below` | Rules out every fixed rational margin below zero |
 | 7 | `rmt33QuadraticEscapeProcess` | Defines the unbounded-below process \(X_n=-n^2\) |
@@ -916,7 +917,7 @@ module.
 | 36 | Private | `rmt33QuadraticEscape_centered` |
 | 37 | Private | `rmt33QuadraticEscape_mem` |
 | 38 | Private | `rmt33QuadraticEscape_liminf` |
-| 39 | Example | Quadratic candidate demonstrating the lower-bound guard |
+| 39 | Example | Quadratic counterexample to deleting the lower-bound guard |
 | 40 | Example | Empty-index specialization of final convergence |
 | 41 | Axiom print | `normalizedProcess_update_zero` |
 | 42 | Axiom print | `liminf_normalizedProcess_succ` |
@@ -978,7 +979,7 @@ of both abstractions inside a large `calc` chain.
 
 ### `PreErgodic` is the unbundled logical half needed at the cocycle boundary
 
-The generic process theorem asks for `Ergodic T μ`, which packages
+The generic process theorem assumes `Ergodic T μ`, which packages
 measure preservation and pre-ergodicity. A `DiscreteMatrixCocycle` already
 stores preservation of its base map. The public cocycle theorem therefore
 asks only for `PreErgodic C.base μ` and builds the combined structure locally.
@@ -1336,7 +1337,7 @@ one-step integral notation.
 
 ### Exercise 26: assemble cocycle ergodicity
 
-Why does the cocycle-facing theorem ask for `PreErgodic` rather than the full
+Why does the cocycle-facing theorem assume `PreErgodic` rather than the full
 `Ergodic` structure?
 
 **Solution.** The cocycle structure already bundles that its base map
@@ -1382,7 +1383,7 @@ Which part of the final statement excludes `ι := Empty`?
 
 **Solution.** None. The index type needs `Fintype` and `DecidableEq`, both of
 which exist for `Empty`. The checked anonymous example instantiates the final
-theorem directly. The endpoint therefore does not smuggle in a nonempty
+theorem directly. The endpoint therefore does not require a nonempty
 matrix-dimension hypothesis.
 
 ### Exercise 31: reject a signed Lyapunov conclusion
@@ -1404,8 +1405,8 @@ formulation still useful?
 directly and would alter the conditional-completeness bookkeeping. It would
 also require new interfaces for integration, addition, and comparison with
 the real Birkhoff term. The present formulation stays compatible with the
-existing real-valued process library and remains honest by exporting the
-eventual boundedness certificate whenever real lower-limit algebra is used.
+existing real-valued process library and exports the eventual boundedness
+certificate whenever real lower-limit algebra is used.
 
 ## Discussion prompts
 

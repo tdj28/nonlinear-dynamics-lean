@@ -35,7 +35,7 @@ B=
 
 Both are {{< refterm "hermitian-matrix" "Hermitian" >}}. Their diagonal
 entries are real, and each lower-left entry is the complex conjugate of the
-upper-right entry. We will use these two matrices to discover the geometry
+upper-right entry. We will use these two matrices to compute the geometry
 before introducing its general notation.
 
 ## Multiply matching entries, then add
@@ -118,7 +118,7 @@ So \(A/3\) and \(B/3\) are an **orthonormal pair**.
 
 Two plausible shortcuts fail:
 
-1. If we record \(1+i\) above the diagonal but forget its reflected
+1. If we record \(1+i\) above the diagonal but omit its reflected
    \(1-i\), we obtain \(1+2+4=7\), not \(9\). A free coordinate is not the
    same thing as one occupied matrix cell.
 2. If we divide \(A\) by its squared norm \(9\), then
@@ -613,7 +613,7 @@ For \(1\) by \(1\) Hermitian matrices there is no off-diagonal factor of two,
 because there is no strict-upper entry.
 
 {{< panel "warning" >}}
-**What this page does not prove.** The explicit \(2\) by \(2\) calculation
+**Scope of the calculation.** The explicit \(2\) by \(2\) calculation
 checks only the displayed matrices. The cited project theorems establish the
 general trace pairing, unitary isometry, intrinsic Gaussian symmetry, and
 normalized coordinate isometry in every finite dimension. This page does not

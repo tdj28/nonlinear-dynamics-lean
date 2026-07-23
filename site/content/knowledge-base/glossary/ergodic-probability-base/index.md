@@ -143,7 +143,7 @@ probability preserving, but it is not ergodic.
 {{< reference-figure
   wide="true"
   src="ergodic-probability-base.svg"
-  alt="Two four-state systems use uniform mass one quarter at each state. The left system is one cycle zero to one to two to three to zero. The candidate event zero and two has preimage one and three, so it is not invariant; the only invariant events have mass zero or one. The right system swaps zero with one and two with three. The event zero and one is invariant and has mass one half, proving that system is not ergodic. A lower comparison shows that invariant real functions are constant on the single cycle but may take a different constant on each component of the split system."
+  alt="Two four-state systems use uniform mass one quarter at each state. The left system is one cycle zero to one to two to three to zero. The candidate event zero and two has preimage one and three, so it is not invariant; the only invariant events have mass zero or one. The right system swaps zero with one and two with three. The event zero and one is invariant and has mass one half, so it violates the null-or-conull criterion and the system is not ergodic. A lower comparison shows that invariant real functions are constant on the single cycle but may take a different constant on each component of the split system."
   caption="**Finding:** probability and measure preservation are identical in the two examples: four atoms each have mass \(1/4\), and each map is a permutation. Their invariant-event structures differ. For the single cycle, \(T_{\mathrm{cycle}}^{-1}\{0,2\}=\{1,3\}\), and the only invariant events are \(\varnothing\) and \(\Omega\), with probabilities \(0\) and \(1\). For the split system, \(B=\{0,1\}\) satisfies \(T_{\mathrm{split}}^{-1}B=B\) while \(\mu(B)=1/2\), so the system is not ergodic. Likewise, an invariant real function is constant on the single cycle, while the split system permits value \(0\) on its first cycle and value \(1\) on its second. The final periodic calculation shows that the ergodic four-cycle is not mixing. Nothing in the figure asserts independence or convergence of time averages."
 >}}
 
@@ -186,8 +186,9 @@ Equivalently, for every measurable event \(S\),
 \]
 
 This says the statistical weight of events is unchanged by the dynamics. It
-does not say that invariant events are trivial. The split example preserves
-the uniform measure and still has the half-mass invariant event \(B\).
+does not say that invariant events are null or conull. The split example
+preserves the uniform measure and still has the half-mass invariant event
+\(B\).
 
 ### 3. Ergodic rigidity
 
@@ -586,10 +587,10 @@ and subadditive-rate declarations visible.
 
 The
 [Birkhoff Convergence Events Before the Pointwise Ergodic Theorem]({{< relref "/knowledge-base/deep-dives/birkhoff-convergence-events-before-the-pointwise-ergodic-theorem" >}})
-uses invariant-event rigidity without pretending that rigidity chooses the
+uses invariant-event rigidity but does not assert that rigidity chooses the
 full-probability branch. The later
 [Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
-adds the actual convergence and limit-identification machinery.
+adds the convergence and limit-identification theorems.
 
 ## References
 

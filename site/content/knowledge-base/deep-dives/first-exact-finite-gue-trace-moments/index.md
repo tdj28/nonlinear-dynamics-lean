@@ -3,7 +3,7 @@ title: "First Exact Finite Gaussian Unitary Ensemble Trace Moments"
 slug: "first-exact-finite-gue-trace-moments"
 date: 2026-07-21
 summary: "An exact size-two sample and probability ledger separates evaluation from expectation before deriving Bochner integrability and the first two finite Gaussian unitary ensemble trace moments."
-lead: "One matrix has trace one and trace-square fifteen; its ensemble has expected trace zero and expected trace-square two. Follow the change of level, then climb through the exact Lean proof."
+lead: "One matrix has trace one and trace-square fifteen; its ensemble has expected trace zero and expected trace-square two. Follow that change of level, then climb through the exact Lean argument."
 draft: false
 pro_reviewed: false
 level: "Finite matrix probability through exact integrable observables"
@@ -310,8 +310,8 @@ The executed output is:
 The value <code>2</code> in every variance row means two quarter-units, or
 \(1/2\). The tuple <code>(0, 2, 1, 3)</code> records expected trace, correct
 expected matrix-square trace, expected squared scalar trace, and the
-wrong-decoder result. Nine <code>example</code> declarations prove the same
-integer and rational identities to the compiler.
+wrong-decoder result. Nine <code>example</code> declarations state the same
+integer and rational identities as propositions checked by Lean's kernel.
 
 This worksheet does **not** construct a Gaussian random variable, prove
 integrability, or evaluate a Bochner integral. It checks the finite arithmetic
@@ -518,7 +518,7 @@ the standalone integer worksheet.
 Measurability lets us form a pushforward distribution and discuss the
 integral. It does not control tail size. A real function can be measurable and
 have infinite first absolute moment. Therefore RMT-01's measurable
-<code>tracePower</code> API could not honestly be described as a moment API.
+<code>tracePower</code> API could not accurately be described as a moment API.
 
 The boundary is now explicit:
 
@@ -654,8 +654,8 @@ the Frobenius inner product and
 \(\operatorname{Tr}(X^*Y)\), specializes to \(X=Y=H\), and rewrites \(H^*=H\).
 
 This is an important reuse boundary. The moment module does not re-prove the
-geometry from raw entries, and the geometry module did not pretend to prove a
-probability statement.
+geometry from raw entries, and the geometry module makes no probability
+claim.
 
 ### Lean bridge: turn Hermitian trace-square into energy
 
@@ -678,7 +678,7 @@ probability statement.
   <code>RandomMatrix.inner_frobenius_eq_trace</code>.
 
 **Run boundary.** Because the helper is private, it is audited by checking the
-whole RMT-09 source leaf. The standalone worksheet verifies its displayed
+whole RMT-09 source leaf. The standalone worksheet checks its displayed
 \(n=2\) instance, \(15=15\).
 {{< /lean-bridge >}}
 
@@ -806,7 +806,7 @@ analytic result lands on the public ambient law.
 - <code>.ofReal</code> includes the real square sum into the complex codomain.
 - The exact theorem is <code>GUE.integrable_tracePower_two</code>.
 
-**Run boundary.** The worksheet proves finite identities only. The norm-tail
+**Run boundary.** The worksheet checks finite identities only. The norm-tail
 control and pushforward transfer are checked by the primary full project
 module.
 {{< /lean-bridge >}}
@@ -1068,7 +1068,7 @@ already provides a probability measure, RMT-08 identifies it with a scaled
 intrinsic Gaussian, and scalar Gaussian moment theorems evaluate the required
 finite sums.
 
-Avoiding a density also keeps dimension zero honest. An empty finite product
+Avoiding a density also keeps the dimension-zero case well-defined. An empty finite product
 and a Dirac law are already meaningful there, while formulas involving
 positive-dimensional Lebesgue density require a separate convention.
 
@@ -1192,7 +1192,7 @@ RMT-09 answers each question explicitly.
 ### Summit
 
 8. For positive \(n\), derive the expected normalized second trace moment from
-   the checked ordinary-trace theorem. Explain why the proof cannot simply be
+   the checked ordinary-trace theorem. Explain why the proof cannot be
    specialized to \(n=0\).
 9. Expand \(\operatorname{Tr}(H^3)\) in entries. Identify where products of
    distinct coordinates appear and why centeredness and independence become
@@ -1227,7 +1227,7 @@ open NonlinearDynamics.Random
 #check GUE.matrixLaw_eq_map_hermitianToMatrix_intrinsicLaw
 ~~~
 
-<code>#check</code> asks Lean to elaborate each exact declaration and display
+<code>#check</code> elaborates each exact declaration and displays
 its type. It does not sample a matrix or evaluate an expectation. The full
 project command rendered below checks the authoritative predecessor source
 file.

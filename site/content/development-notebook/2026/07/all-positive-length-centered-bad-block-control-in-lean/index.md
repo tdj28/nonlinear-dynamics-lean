@@ -6,7 +6,7 @@ weight: -65
 author: "tdj28"
 summary: "Random-matrix-theory milestone 31 (RMT-31) removes the finite witness cap from the centered bad-block estimate. It identifies the all-positive-length event as an increasing union, passes first through extended measure and then through a locally finite real-measure gate, and preserves the finite-cap rate ratio without assuming probability or ergodicity."
 lead: |
-  A finite-cap theorem asks whether one bad centered block appears among lengths one through m. RMT-31 lets m grow without changing the question into an asymptotic one. Membership in the resulting union still means one finite witness, not infinitely many witnesses. Extended measure is continuous along the nested caps with no finiteness premise; converting that limit to real-valued measure needs the union itself to have finite extended mass. On a finite measure space, the uniform RMT-30 ratio survives unchanged.
+  A finite-cap theorem concerns whether one bad centered block appears among lengths one through m. RMT-31 lets m grow without changing the question into an asymptotic one. Membership in the resulting union still means one finite witness, not infinitely many witnesses. Extended measure is continuous along the nested caps with no finiteness premise; converting that limit to real-valued measure needs the union itself to have finite extended mass. On a finite measure space, the uniform RMT-30 ratio survives unchanged.
 key_result: |
   Let every finite centered bad-block set have the same real-measure upper bound delta divided by c. Because the caps are nested, their extended measures converge to the measure of the all-positive-length union. If the union has finite extended mass, the real measures converge too, and le_of_tendsto' transfers the uniform bound to the limit. The cocycle specialization uses the integrated log-positive Fekete offset. The raw once-bad event is not generally invariant, even over a measure-preserving base, so this is not a lower-liminf or Kingman convergence theorem.
 draft: false
@@ -631,8 +631,8 @@ separately.
 
 ### Calling real measure a probability
 
-The mass-two probe shows that the theorem is genuinely finite-measure. The
-left side is a real-valued measure, not necessarily a number at most one.
+The mass-two model instantiates the theorem outside probability normalization.
+The left side is a real-valued measure, not necessarily a number at most one.
 
 ### Reading log-positive growth as a Lyapunov exponent
 
@@ -758,7 +758,7 @@ limit.
 Why would countable subadditivity be the wrong main tool here?
 
 **Solution.** It would sum repeated copies of the same cap bound and discard
-the crucial nesting. Continuity from below is exact.
+the nested structure. Continuity from below is exact.
 
 ### Exercise 18: test the zero process
 
@@ -767,12 +767,13 @@ For \(Y_n=0\) and \(c\lt0\), can a positive witness exist?
 **Solution.** No. For \(n\gt0\), \(cn\lt0\), so the strict inequality
 \(0\lt cn\) is false.
 
-### Exercise 19: read the nonergodic probe
+### Exercise 19: read the nonergodic model
 
-What does the Boolean identity example establish?
+Which hypothesis is absent from the Boolean identity model?
 
-**Solution.** It compiles a genuine half-mass bad set and a nontrivial ratio
-bound on a system that is not pre-ergodic. Ergodicity is unnecessary.
+**Solution.** The model has a genuine half-mass bad set and satisfies a
+nontrivial ratio bound, although the system is not pre-ergodic. Ergodicity is
+not a hypothesis of the theorem.
 
 ### Exercise 20: read the mass-two probe
 
@@ -872,8 +873,8 @@ The second clarification concerns dynamics. A union over all finite witness
 lengths sounds infinite-horizon, but its logical form is still once-bad. The
 compiled collapse model shows why that distinction matters. A single witness
 can vanish after one shift, so the raw event is not the invariant event needed
-for ergodic rigidity. The next lower-deviation construction must earn its
-asymptotic and invariance properties with new quantifiers and proofs.
+for ergodic rigidity. The next lower-deviation construction requires new
+quantifiers and proofs for its asymptotic and invariance properties.
 
 ## Navigation: previous and future milestones
 

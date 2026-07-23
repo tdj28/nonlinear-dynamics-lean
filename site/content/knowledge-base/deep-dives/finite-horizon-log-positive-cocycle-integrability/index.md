@@ -2,7 +2,7 @@
 title: "Finite-Horizon Log-Positive Cocycle Integrability"
 slug: "finite-horizon-log-positive-cocycle-integrability"
 date: 2026-07-21
-summary: "Compute an exact four-state positive-log ledger, watch a geometric expanding tail defeat integrability, and then follow the checked Lean proof from one explicit generator hypothesis to every fixed finite horizon."
+summary: "Compute an exact four-state positive-log ledger, use a geometric expanding tail to exhibit nonintegrability, and then follow the checked Lean proof from one explicit generator hypothesis to every fixed finite horizon."
 lead: "On a uniform four-state cycle, one-step positive logs have mean three quarters of log two, the two-step cocycle has mean one quarter, and its orbit-sum budget has mean three halves. Those finite numbers expose every job in the theorem before the general measure theory begins."
 draft: false
 pro_reviewed: false
@@ -306,8 +306,9 @@ Replace the generator norm by
 \]
 
 Now every norm is at most one, so \(P_1(n)=0\). The RMT-15 hypothesis holds
-trivially. But the signed logarithm has magnitude \(2^n\), and its weighted
-absolute integral again contains \(1/2\) at every atom. The inverse norm has
+because the positive-log observable is identically zero. But the signed
+logarithm has magnitude \(2^n\), and its weighted absolute integral again
+contains \(1/2\) at every atom. The inverse norm has
 the same expanding tail.
 
 This does not contradict RMT-15. Positive log deliberately erased the
@@ -747,8 +748,8 @@ the contraction's forward positive log stays zero, and the expanding positive
 tail again grows as \(N/2\).
 
 <code>native_decide</code> does not estimate these values. It evaluates exact
-integer and rational computations and asks Lean's kernel to accept the
-resulting proof. The worksheet models logarithms by exact coefficients; it
+integer and rational computations and produces a proof term checked by Lean's
+kernel. The worksheet models logarithms by exact coefficients; it
 does not reimplement Mathlib's analytic logarithm, matrix norm, measure, or
 <code>Integrable</code> predicate. Those authoritative interfaces remain the
 full project check above.
@@ -959,8 +960,8 @@ hypotheses.
 
 The conclusion theorem retains the one-step hypothesis even at \(k=0\),
 because it is stated uniformly for every natural \(k\). But \(P_0=0\) is
-integrable without that hypothesis. A sharper zero-only theorem would be easy;
-the uniform interface is more convenient.
+integrable without that hypothesis. A separate zero-only theorem could omit
+it; the current declaration instead presents one uniform interface.
 
 ### Empty matrix dimension
 

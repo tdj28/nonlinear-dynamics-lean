@@ -93,7 +93,7 @@ Birkhoff's individual ergodic theorem
 those results into a samplewise asymptotic bound for a genuinely subadditive
 family.
 
-That composition matters because the most obvious proof route is unsound.
+That composition matters because the most direct proof route is unsound.
 Fix a block \(b\), follow \(X_b\) at times \(0,b,2b,\ldots\), and one obtains
 an orbit sum for \(T^b\). But `Ergodic T μ` does not imply
 `Ergodic (T^[b]) μ`. The uniform two-point flip is the smallest example:
@@ -235,7 +235,7 @@ process. The limiting target simplifies to
 {{< reference-figure
   src="centered-integral-cancellation.svg"
   alt="The integral of the centered block is shown as the block integral minus b copies of the one-step integral. Multiplication by one over b and addition of one one-step integral cancel those copies, leaving the normalized block integral."
-  caption="Centering serves two roles: its nonpositive sign enables finite phase averaging, and its exact integral identity cancels the one-step Birkhoff limit to reveal the normalized block integral."
+  caption="Centering serves two roles: its nonpositive sign enables finite phase averaging, and its exact integral identity cancels the one-step Birkhoff limit to yield the normalized block integral."
 >}}
 
 ### Step 6: recover every large time
@@ -475,11 +475,11 @@ make the theorem claim \(0\le-b\). Thus this model refutes the
 hypothesis-deleted theorem, not merely this proof route. The log-positive
 cocycle process satisfies nonnegativity canonically.
 
-### The uniform flip forbids powered-map smuggling
+### The uniform flip avoids a powered-map assumption
 
 **Status:** compiled boundary model and example.
 
-The private Bool model proves both
+For this Boolean system, the checked declarations establish both
 
 ```lean
 Ergodic rmt29Flip rmt29TwoCycleMeasure

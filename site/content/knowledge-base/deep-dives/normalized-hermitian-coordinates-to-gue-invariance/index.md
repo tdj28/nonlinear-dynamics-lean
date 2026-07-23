@@ -563,7 +563,7 @@ The norm identity from the opening example is the case \(x=y=z_0\).
   <code>RandomMatrix.normalizedHermitianAssembly_apply_upper</code>.
 
 **Run boundary.** Replay the theorem with the full primary-module check
-near the end. The local worksheet verifies only its displayed size-two
+near the end. The local worksheet checks only its displayed size-two
 arithmetic.
 {{< /lean-bridge >}}
 
@@ -1001,7 +1001,7 @@ open NonlinearDynamics.Random
 ~~~
 
 <code>import</code> loads the pinned source and dependencies. Each
-<code>#check</code> asks Lean to elaborate an exact declaration and display its
+<code>#check</code> elaborates an exact declaration and displays its
 type. The full project command below checks the whole authoritative leaf.
 {{< /repo-check >}}
 

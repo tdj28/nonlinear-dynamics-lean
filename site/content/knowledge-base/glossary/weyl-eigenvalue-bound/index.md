@@ -71,7 +71,7 @@ both indices. The sharper operator norm is \(2\), which also works.
 Now make the tempting wrong comparison: pair the largest eigenvalue \(3\) of
 \(A\) with the smallest eigenvalue \(-1\) of \(B\). The apparent shift is
 \(4\), which exceeds \(\sqrt5\). This does not contradict Weyl's theorem; it
-demonstrates why the common ordering and equal-index pairing are part of the
+shows why the common ordering and equal-index pairing are part of the
 statement.
 
 {{< reference-figure
@@ -126,7 +126,7 @@ matrices provide a canonical rule: sort all eigenvalues decreasingly and
 compare equal indices.
 
 This rule remains meaningful at repeated eigenvalues. If a double eigenvalue
-splits under perturbation, the two new values simply occupy the corresponding
+splits under perturbation, the two new values occupy the corresponding
 adjacent slots. No continuously chosen eigenvector is needed. The project uses
 Mathlib's antitone <code>eigenvalues₀</code> enumeration, transported to
 <code>Fin n</code> by an order-preserving equivalence
@@ -323,8 +323,8 @@ This exact worksheet was executed successfully with Lean 4.32.0 and printed:
 
 The first two theorems certify the correct ordered pairings after squaring.
 The third certifies that the crossed pairing fails this budget. This finite
-worksheet checks integer arithmetic; the project theorem below proves the
-general spectral statement.
+worksheet checks integer arithmetic. The general spectral statement is the
+checked project theorem below.
 
 {{< repo-check >}}
 The authoritative source is

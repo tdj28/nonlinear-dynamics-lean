@@ -3,7 +3,7 @@ title: "Mean Is Not Pointwise: Koopman Geometry, Coboundaries, and the Missing M
 slug: "mean-is-not-pointwise-koopman-geometry-coboundaries-and-the-missing-maximal-step"
 date: 2026-07-21
 summary: "Start with a two-state probability system you can calculate by hand and in Lean, then climb to the real L² Koopman operator, fixed-space projection, mean convergence, a dense pointwise-good core, and the maximal argument that the next module uses to close the gap."
-lead: "On two equally likely states, swapping the states sends the observable (1,3) to (3,1), projects it to the fixed vector (2,2), and turns its residual into an exact telescoping coboundary. That one ledger reveals both the power and the limit of Hilbert-space averaging: every operator average converges in L² norm, but norm convergence alone does not make the full sequence converge pointwise. We build the general Lean theorem from that arithmetic, distinguish the almost-everywhere subsequence it supplies from the dense full-sequence-good core, and hand the remaining maximal-closure step to the already formalized successor chapter."
+lead: "On two equally likely states, swapping the states sends the observable (1,3) to (3,1), projects it to the fixed vector (2,2), and turns its residual into an exact telescoping coboundary. That ledger separates two conclusions: every operator average converges in L² norm, but norm convergence alone does not make the full sequence converge pointwise. We build the general Lean theorem from that arithmetic, distinguish the almost-everywhere subsequence it supplies from the dense full-sequence-good core, and hand the remaining maximal-closure step to the already formalized successor chapter."
 draft: false
 pro_reviewed: false
 level: "Measure-preserving dynamics, real L² spaces, continuous linear maps, Hilbert-space orthogonal projection, simple functions, almost-everywhere representatives, convergence in measure, and maximal inequalities"
@@ -37,7 +37,7 @@ which carries this core through \(L^1\) density to full-sequence convergence
 almost everywhere without yet identifying the limit.
 {{< /panel >}}
 
-## Base camp: calculate the whole story on two states
+## Base camp: calculate the complete two-state model
 
 Begin with the probability space
 
@@ -119,7 +119,7 @@ general proof:
       =P_Kf+(U_T-I)u.}
 \]
 
-### Watch the means approach the projection
+### Compute the means approaching the projection
 
 Let
 
@@ -152,7 +152,7 @@ Both coordinates converge pointwise here because there are only two points.
 The general theorem proved by the module is deliberately weaker: it first
 asserts convergence in the \(L^2\) norm.
 
-### Watch the residual telescope point by point
+### Compute the pointwise telescoping residual
 
 At the start \(a\), the coboundary \(c=(-1,1)\) reads
 
@@ -205,11 +205,11 @@ On \([0,1)\), a nonempty singleton such as \(\{0\}\) is null, which is why the
 later typewriter subsequence may fail there and still converge almost
 everywhere.
 
-A dynamical system moves states. Ergodic theory asks what long orbit averages
-reveal. Functional analysis changes the viewpoint: instead of following a
-state through time, it lets time act on every observable at once. The resulting
-composition operator is linear even when the state dynamics are nonlinear.
-That is the central power of the Koopman viewpoint.
+A dynamical system moves states. Ergodic theory asks which information long
+orbit averages retain. Functional analysis changes the viewpoint: instead of
+following a state through time, it lets time act on every observable at once.
+The resulting composition operator is linear even when the state dynamics are
+nonlinear.
 
 The power comes with a translation cost. A theorem about vectors in an
 \(L^2\) Hilbert space is a theorem about equivalence classes modulo null sets.
@@ -218,7 +218,7 @@ world to the other requires representative bookkeeping, and moving from norm
 convergence to full-sequence almost-everywhere convergence requires a genuine
 stability theorem. Neither step is automatic.
 
-Random-matrix-theory milestone 25 (RMT-25) formalizes the honest intermediate
+Random-matrix-theory milestone 25 (RMT-25) formalizes the precise intermediate
 layer. It proves two results that should always be stated separately:
 
 1. for every real \(L^2\) observable, the Koopman operator averages converge in
@@ -264,7 +264,8 @@ By the summit, a reader should be able to:
 6. define the fixed subspace and its orthogonal projection;
 7. define the forward coboundary operator \(U_T-I\);
 8. telescope a forward coboundary average to two endpoint values;
-9. interpret the totalized horizon-zero identity honestly;
+9. interpret the totalized horizon-zero identity without treating it as
+   ordinary division by zero;
 10. derive pointwise convergence for a bounded coboundary potential;
 11. state the Hilbert-space mean-ergodic theorem used by RMT-25;
 12. explain why RMT-25 exposes only the operator bound \(\lVert U_T\rVert\le1\);
@@ -876,7 +877,7 @@ convergence. Pages 72–74 prove interval-average convergence to the spectral
 projection. His pages 77–78 include an almost-everywhere subsequence statement,
 not a general full-sequence pointwise theorem. Birkhoff opens his paper by
 contrasting the convergence-in-mean result with the pointwise problem. Those
-primary-source distinctions are why this chapter refuses to use *mean* and
+primary-source distinctions are why this chapter does not use *mean* and
 *pointwise* as synonyms.
 
 The DOI for Birkhoff's article is the historically odd
@@ -1470,7 +1471,7 @@ claim this module avoids.
 
 ### Exercise 7: operator norm at zero measure
 
-**Problem.** Why can the unconditional theorem not simply state
+**Problem.** Why can the unconditional theorem not state
 \(\lVert U_T\rVert=1\)?
 
 **Solution.** Under the zero measure, all functions represent the same zero

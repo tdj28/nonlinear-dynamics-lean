@@ -242,6 +242,40 @@ A glossary entry is a compact teaching page, not a miniature paper. It should
 give a careful newcomer a usable mental model while remaining precise enough
 for a specialist to inspect.
 
+Use the same epistemic discipline a mathematician would expect in a paper.
+Choose verbs by logical role:
+
+- an ordinary computation checks displayed arithmetic or selected finite
+  cases; a verified exhaustive computation may establish a finite proposition
+  when its coverage and trust boundary are explicit;
+- an example illustrates a definition or exhibits behavior;
+- a counterexample refutes a stated universal claim;
+- a proof, theorem, or complete argument establishes a general claim; and
+- a figure or diagram explains a relationship but does not substitute for its
+  proof.
+
+An example can establish existence or refute a universal statement. When it
+does, name that exact role instead of writing “the example proves.” Likewise,
+Lean's elaborator constructs a candidate proof term and its kernel checks that
+term against a formal statement; this does not certify that the statement
+captures the intended informal mathematics or physical interpretation. Avoid
+canned transitions, marketing verbs, anthropomorphism, and words such as
+“obvious,” “clearly,” “simply,” “trivial,” or “of course” when they conceal a
+missing justification. Complete an adversarial register pass before
+publication: for each consequential sentence, ask whether its subject, verb,
+logical force, and scope would survive specialist scrutiny.
+
+Do not use “honest,” “dishonest,” “pretend,” or “smuggle” as substitutes for
+mathematical criticism. State the defect: a hypothesis is absent, an
+implication is false, an object is undefined, a claim is unsupported, or the
+scope does not match.
+
+The existing trail, camp, climb, and summit vocabulary is an intentional
+navigation system for a textbook that ramps from first contact to research
+level. Preserve it when it helps readers locate themselves. Remove it only
+when it substitutes for mathematics, makes an evidentiary claim, or turns a
+local result into self-congratulation.
+
 Start new pages with:
 
 ```yaml
@@ -366,9 +400,9 @@ prose.
 
 Omitting a visual is an exception, not an unexamined default. It is acceptable
 only when an exact equation, table, or code example teaches the concept more
-clearly than any honest diagram. Record that reason in the handoff and include
-it in the Pro-review request. Never satisfy this gate with decoration or a
-diagram that merely repeats a one-sentence definition.
+clearly than any mathematically faithful diagram would. Record that reason in
+the handoff and include it in the Pro-review request. Never satisfy this gate
+with decoration or a diagram that merely repeats a one-sentence definition.
 
 Connected entries need complementary visuals. Give each figure a distinct
 teaching job instead of cloning the same pipeline under several terms. For

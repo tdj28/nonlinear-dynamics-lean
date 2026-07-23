@@ -18,8 +18,8 @@ review remains pending.
 {{< /panel >}}
 
 A **pushforward measure** transports mass from one measurable space to another
-through a function. The central rule is simple: points move forward, but to
-measure a target set we look backward at all source points that land in it.
+through a function. Points move forward, but the mass of a target set is
+computed from all source points that map into it.
 
 Let \((S,\mathcal A)\) and \((T,\mathcal B)\) be measurable spaces. Here \(S\)
 and \(T\) are sets, while \(\mathcal A\) and \(\mathcal B\) are their
@@ -41,11 +41,12 @@ be measurable. This means that for every measurable target set
 for every measurable set \(B\in\mathcal B\). Other common notations are
 \(\mu\circ f^{-1}\) and \(f_\#\mu\).
 
-The inverse image is essential. Measures consume sets, while \(f\) sends points
-forward. To learn how much source mass arrives in \(B\), we collect the source
-points that land there and measure that collection with \(\mu\). Measurability
-is exactly the guarantee that this collected source set is an event to which
-the source measure applies in the ordinary measure-space sense.
+The inverse image is essential. Measures are evaluated on sets, while \(f\)
+sends points forward. To learn how much source mass arrives in \(B\), we
+collect the source points that land there and measure that collection with
+\(\mu\). Measurability is exactly the guarantee that this collected source set
+is an event to which the source measure applies in the ordinary measure-space
+sense.
 
 ## The transport picture
 
@@ -55,9 +56,9 @@ the source measure applies in the ordinary measure-space sense.
 | Map | A measurable function \(f:S\to T\) | Send each source point to one target point |
 | Target | The measure \(f_*\mu\) on \(T\) | Assign each target set the mass of its preimage |
 
-The two directions are easy to mix up: points travel forward through \(f\),
-but target-set questions travel backward through \(f^{-1}\). The next example
-makes both directions explicit.
+The two directions must be distinguished: \(f\) maps source points to target
+points, while \(f^{-1}\) maps target sets to source sets. The
+next example makes both directions explicit.
 
 ## A finite example with collisions
 
@@ -109,9 +110,9 @@ Two source points collide at the target value \(0\). Therefore
 >}}
 
 The total mass remains one. The pushforward combines mass when several source
-points have the same image. It does not remember whether \(a\) or \(c\)
+points have the same image. It does not retain whether \(a\) or \(c\)
 produced the target value \(0\) if all we retain is the target value. The
-colored and patterned cells in the teaching figure remember that provenance
+colored and patterned encoding in the teaching figure retains that provenance
 only so the arithmetic can be inspected; the pushforward measure itself stores
 the total \(5/6\), not a source label on each part.
 
@@ -246,7 +247,7 @@ statement in the three languages a reader must be able to translate between.
 
 The following definition and theorem are an exact excerpt from the checked
 project source. The measurability proof is an explicit argument of
-<code>law</code>, even though the definition's body is simply
+<code>law</code>, even though the definition's body is
 <code>Measure.map X μ</code>.
 
 ~~~lean
@@ -376,7 +377,7 @@ import NonlinearDynamics.Random.RandomMatrices.Laws
 #check NonlinearDynamics.Random.HermitianRandomMatrix.law_conjugateBy
 ~~~
 
-<code>#print</code> reveals the checked definition behind a name.
+<code>#print</code> displays the checked definition behind a name.
 <code>#check</code> asks Lean to elaborate a declaration and display its type;
 it does not assume or prove an extra theorem. The full-project command below checks
 the complete module containing the exact excerpts above.
@@ -390,7 +391,7 @@ the complete module containing the exact excerpts above.
 | "Every function gives the intended pushforward" | Measurability is needed for the preimage formula and probability interpretation | Prove measurable or almost-everywhere measurable first |
 | "The inverse-image symbol means an inverse function" | A preimage exists even when the function is many-to-one or has no inverse function | Read the preimage as all source points that land in the target set |
 | "Pushforward is a conditional distribution" | Conditioning changes mass using information; pushforward transports it through a function | Treat these as separate constructions |
-| "The pushforward remembers the source outcome" | Different source points can merge at one target point | Keep the original coupling when source-level information matters |
+| "The source outcome can be recovered from the pushforward" | Different source points can merge at one target point | Keep the original coupling when source-level information matters |
 | "Equal observable pushforwards imply equal matrix laws" | One observable can discard most matrix information | Use a separating family of observables or prove equality of the full laws |
 
 {{< panel "warning" >}}

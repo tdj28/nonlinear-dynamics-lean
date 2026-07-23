@@ -82,7 +82,7 @@ Useful compact entries include
 | First complex-probability encounter | [Base camp](#base-camp-one-complex-number-two-real-coordinates) | See a complex variable as a two-dimensional real random vector |
 | Measure-theory route | [Build the law](#camp-one-build-the-law-before-naming-the-variable) | Follow product measure, measurable map, and exact marginals |
 | Lean route | [Declaration map](#the-entire-lean-file-as-a-declaration-map) | Match every theorem to its upstream proof engine |
-| Geometry route | [What Cartesian earns](#what-cartesian-earns-and-what-it-does-not) | Separate an axis-aligned ellipse from circular or proper symmetry |
+| Geometry route | [What Cartesian structure entails](#what-cartesian-structure-entails-and-what-it-does-not) | Separate an axis-aligned ellipse from circular or proper symmetry |
 | Physics route | [Quadratures and matrix entries](#why-physicists-care-about-the-variance-split) | Connect coordinate variances to complex amplitudes and future GUE entries |
 | Edge-case route | [Degenerate laws](#camp-four-the-degenerate-cases-are-part-of-the-space) | Understand line-supported and point-supported Gaussians |
 
@@ -210,8 +210,8 @@ Every \(z\in\mathbb C\) has unique coordinates
   z=\operatorname{Re}(z)+i\operatorname{Im}(z).
 \]
 
-Lean knows this not only as an algebraic statement but as a continuous
-real-linear equivalence:
+The library represents this decomposition as a continuous real-linear
+equivalence:
 
 ```lean
 Complex.equivRealProdCLM : ℂ ≃L[ℝ] ℝ × ℝ
@@ -231,8 +231,8 @@ This equivalence and its inverse formula are part of Mathlib's checked complex
 analysis API ([Mathlib complex source](#ref-mathlib-complex)). This is more
 than a convenient conversion function. It says that complex
 Gaussianity in this file is Gaussianity on the two-dimensional real normed
-space underlying \(\mathbb C\). No complex-linear definition is being smuggled
-in.
+space underlying \(\mathbb C\). The definition does not assume complex
+linearity.
 
 {{< panel "info" >}}
 **The scalar field matters.** A real continuous linear functional on
@@ -286,7 +286,7 @@ on that fallback.
 ### `instIsProbabilityMeasureCartesianComplexGaussian`
 
 The named probability instance
-`instIsProbabilityMeasureCartesianComplexGaussian` closes a vital
+`instIsProbabilityMeasureCartesianComplexGaussian` closes the probability
 bookkeeping loop. Each real Gaussian is a probability measure. Their product
 is a probability measure. Mapping a probability measure through a measurable
 function preserves total mass one. Later expectation and `HasGaussianLaw`
@@ -455,7 +455,7 @@ IndepFun (fun omega => (Z omega).re)
 The proof uses the exact product joint law and Mathlib's law-level
 characterization of independent functions
 ([Mathlib independence API](#ref-mathlib-independence)). This is the right logical
-direction: a product joint law earns independence. Merely knowing that each
+direction: a product joint law entails independence. Merely knowing that each
 marginal is Gaussian would not.
 
 For example, if \(X\) is a real Gaussian and \(Y=X\), then both coordinates
@@ -474,7 +474,7 @@ supply the a.e. measurability needed for law transport.
 
 ### `HasCartesianComplexGaussianLaw.hasGaussianLaw`
 
-The qualitative declaration forgets the explicit parameters and proves
+The qualitative declaration drops the explicit parameters and proves
 
 ```lean
 HasGaussianLaw Z P
@@ -513,7 +513,7 @@ expectation
 \]
 
 The theorem follows from the finite-moment result, but it deserves a named
-declaration because later matrix-entry and trace arguments will ask for
+declaration because later matrix-entry and trace arguments will require
 `Integrable` directly.
 
 ### `HasCartesianComplexGaussianLaw.mean_eq`
@@ -617,12 +617,12 @@ equivalence with the displayed function `X + Y * Complex.I` almost everywhere.
 {{< panel "warning" >}}
 **Do not strengthen a theorem while explaining it.** It is tempting to call
 `X` and `Y` "measurable independent Gaussians." The checked constructor does
-not require ordinary measurability. The honest phrase is "independent real
+not require ordinary measurability. Its exact scope is "independent real
 variables with exact Gaussian laws," followed by the precise a.e.
 measurability consequence when needed.
 {{< /panel >}}
 
-## What Cartesian earns, and what it does not
+## What Cartesian structure entails, and what it does not
 
 Center the variable by writing
 
@@ -747,7 +747,8 @@ proof-to-prose gate checks this final inventory mechanically.
 ### 1. Product first
 
 The two real Gaussian probability measures are combined with `Measure.prod`.
-This earns the independent joint law before any map into \(\mathbb C\) occurs.
+This supplies the independent joint law before any map into \(\mathbb C\)
+occurs.
 
 ### 2. Map through an equivalence
 
@@ -999,7 +1000,7 @@ to prove, not a consequence of the constructor's name. The earlier
 The module reaches a precise intermediate summit. An exact probability measure
 on \(\mathbb C\) is constructed from two named real Gaussian measures and a
 continuous real-linear equivalence. Mapping back recovers the product law;
-projecting recovers exact marginals; the joint product earns independence.
+projecting recovers exact marginals; the joint product entails independence.
 
 For a sample map with this law, Lean exposes a.e. measurability, source
 normalization, real-vector-space Gaussianity, every finite `MemLp` exponent,

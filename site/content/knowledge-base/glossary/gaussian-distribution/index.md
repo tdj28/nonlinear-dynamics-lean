@@ -215,7 +215,7 @@ Scaling sets the variance, while translation sets the mean:
 {{< reference-figure
   src="gaussian-parameter-map.svg"
   alt="A standard Gaussian law is scaled by the square root of the requested variance and then shifted by the requested mean."
-  caption="**Finding:** starting from mean zero and variance one, multiplication by \(\sqrt v\) sets variance \(v\), and adding \(m\) sets the mean. At \(v=0\), the scale is zero and every value collapses to \(m\). This is a law-level construction, not a claim that one observed sample reveals either parameter."
+  caption="**Finding:** starting from mean zero and variance one, multiplication by \(\sqrt v\) sets variance \(v\), and adding \(m\) sets the mean. At \(v=0\), the scale is zero and every value collapses to \(m\). This is a law-level construction, not a claim that one observed sample determines either parameter."
 >}}
 
 ## Zero variance is a Dirac law, not a broken density
@@ -266,10 +266,10 @@ identifies that complete law. It is much stronger than saying that a finite
 histogram looks bell-shaped. A finite dataset may support a model check or
 parameter estimate, but it is not itself a proof of an exact Gaussian law.
 
-The qualitative phrase “\(X\) is Gaussian” also forgets information. It says
+The qualitative phrase “\(X\) is Gaussian” also omits information. It says
 that some Gaussian law is present; it does not itself retain chosen parameters
-\(m\) and \(v\). The project keeps the exact parameterized law first and
-forgets to qualitative Gaussianity only through a separate theorem.
+\(m\) and \(v\). The project states the exact parameterized law first and
+passes to qualitative Gaussianity only through a separate theorem.
 
 ## In Lean: state the exact parameterized law
 

@@ -87,7 +87,7 @@ marked start. These are two different certificates, named
 
 The module then attaches a process cost to each selected interval. Repeated
 subadditivity splits the whole horizon around the selected intervals. Only
-positive gaps are discarded, so the proof never asks for \(X_0\le0\). If the
+positive gaps are discarded, so the proof does not use \(X_0\le0\). If the
 coefficient \(c\le0\) and every marked interval satisfies
 
 \[
@@ -215,7 +215,7 @@ so the retained half-open intervals are disjoint.
 inclusive intervals \([j,j+k-1]\). A positive length \(k=1\) is the singleton
 \([j,j]\), but the displayed strict comparison \(j\lt j+k-1\) excludes it.
 The following selection explicitly allows \(1\le k\le m\). In half-open form,
-positive length is simply \(j\lt j+k\). The inclusive separation
+positive length is equivalent to \(j\lt j+k\). The inclusive separation
 \(j+k-1\lt j'\) translates to \(j+k\le j'\), so equality means legal
 abutment, not overlap. RMT-21 encodes these corrected half-open relations.
 {{< /panel >}}
@@ -265,7 +265,7 @@ subadditive-process and cocycle layers. Those are checked elaborations of the
 finite idea, not claims that the cited sources used the same data type or
 theorem names.
 
-## Half-open intervals make the boundary honest
+## Half-open intervals encode the boundary convention
 
 A half-open natural interval \([a,b)\) contains exactly those \(j\) with
 \(a\le j\lt b\). It has \(b-a\) positions when \(a\le b\). This convention has
@@ -608,7 +608,7 @@ If \(P\) covers \(B\), finite-set monotonicity gives
 
 Coverage of a nonempty marked set also proves that the packing has nonzero
 interval count. An empty packing covers no positions. This small lemma is the
-bridge that later unlocks strict finite summation.
+bridge later used to obtain strict finite summation.
 
 ## From per-marked-start costs to recursive interval costs
 
@@ -670,7 +670,7 @@ places carefully:
 3. If the recursive rest contains another positive-length interval, its
    horizon is positive even when its leading gap is zero.
 
-This is why the raw theorem asks only for positive-horizon nonpositivity. It
+This is why the raw theorem assumes only positive-horizon nonpositivity. It
 does not impose \(X_0=0\) or even \(X_0\le0\).
 
 For a nonempty packing, positive horizon follows from the selected
@@ -926,8 +926,8 @@ The private witness has \(X_0=1\). The empty packing cost is zero. Therefore
 X_0=1\not\le0=\operatorname{cost}(\operatorname{empty}(0)).
 \]
 
-This compiled countermodel proves that the raw theorem's horizon premise is
-necessary.
+This countermodel refutes the version of the raw theorem with its horizon
+premise deleted.
 
 ### Singleton intervals
 

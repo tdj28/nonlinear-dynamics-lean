@@ -406,8 +406,9 @@ The next two inspect the project's probability-normalized expectation
 definition and its
 equality with the raw integrated observable. The local variables make the
 line <code>#check ∫ ω, X ω ∂μ</code> meaningful. Finally, the
-<code>example</code> asks Lean to verify additivity from explicit
-integrability proofs. It is the typed counterpart of
+<code>example</code> supplies explicit integrability proofs to
+<code>integral_add</code>, and Lean's kernel checks the resulting additivity
+proof term. It is the typed counterpart of
 \(\mathbb E[X+Y]=\mathbb E[X]+\mathbb E[Y]\) when \(\mu\) is a probability
 measure, and a valid raw-integral identity for general \(\mu\).
 

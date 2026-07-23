@@ -70,7 +70,7 @@ The project uses the {{< refterm "induced-infinity-operator-norm" "maximum absol
 \lVert A\rVert_\infty=\max_i\sum_j|A_{ij}|.
 \]
 
-For a diagonal matrix, each row total is just the magnitude of its diagonal
+For a diagonal matrix, each row total equals the magnitude of its diagonal
 entry. We therefore obtain
 
 | Matrix | Absolute row totals | \(\lVert A\rVert_\infty\) | Signed extended log | Real log-positive value |
@@ -116,8 +116,8 @@ C(k,\omega)=0.
 \]
 
 The real log-positive envelope gives \(\log^+0=0\). That is also intentional:
-the envelope is not trying to remember collapse; it is isolating expansion
-above one for an integrability argument.
+the envelope does not record collapse; it isolates expansion above one for an
+integrability argument.
 
 ### Norm one half: contraction is finite and negative
 

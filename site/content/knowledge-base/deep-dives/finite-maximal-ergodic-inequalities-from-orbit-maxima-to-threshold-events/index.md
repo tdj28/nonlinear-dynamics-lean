@@ -3,7 +3,7 @@ title: "Finite Maximal Ergodic Inequalities: From Orbit Maxima to Threshold Even
 slug: "finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events"
 date: 2026-07-21
 summary: "A textbook construction of the finite Hopf maximal ergodic lemma: running maxima of orbit sums, the strict time-zero boundary, positive-maximizer peeling, measure-preserving integral cancellation, centered average-threshold events, and a horizon-uniform positive-threshold weak estimate on a finite measure space."
-lead: "A maximal ergodic argument turns a pathwise question, whether one finite orbit sum ever becomes positive, into an integral inequality. The mechanism is surprisingly small: include time zero, select strict positivity, peel the first term from a positive maximizing sum, and use measure preservation to cancel the maximum against its one-step shift. This chapter develops that mechanism from finite algebra through the finite-measure weak threshold estimate, while keeping the infinite-horizon and pointwise convergence steps visibly outside the theorem."
+lead: "A maximal ergodic argument turns a pathwise question, whether one finite orbit sum ever becomes positive, into an integral inequality. The mechanism has four steps: include time zero, select strict positivity, peel the first term from a positive maximizing sum, and use measure preservation to cancel the maximum against its one-step shift. This chapter develops that mechanism from finite algebra through the finite-measure weak threshold estimate, while keeping the infinite-horizon and pointwise convergence steps visibly outside the theorem."
 draft: false
 pro_reviewed: false
 level: "Finite orbit sums, measurable functions and sets, integrability, set integrals, measure-preserving transformations, and elementary real inequalities"
@@ -12,7 +12,7 @@ prerequisites: "Finite sums and maxima, function iteration, measurable maps, int
 lean_module: "NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal"
 toc: true
 og_image: "finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events-card.png"
-og_image_alt: "Numeric four-state orbit ledger for a cycle with observable values negative two, three, negative four, and two. It shows each starting state's partial sums and running maxima, marks the strict finite Hopf event as a, b, and d, and verifies the atomwise integral inequality."
+og_image_alt: "Numeric four-state orbit ledger for a cycle with observable values negative two, three, negative four, and two. It shows each starting state's partial sums and running maxima, marks the strict finite Hopf event as a, b, and d, and displays the atomwise integral inequality."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -752,8 +752,8 @@ The notation \(\mu_{\mathbb R}\) is Mathlib's finite real-valued measure
 projection. The displayed inequality is valid for every \(a\in\mathbb R\),
 including zero and negative thresholds.
 
-That sign fact is easy to lose in an informal proof. The argument has not
-divided by \(a\), so it has no need to know the sign of \(a\). For negative
+The sign must remain explicit: the argument has not divided by \(a\), so it
+does not require a sign assumption on \(a\). For negative
 \(a\), the left side is nonpositive because the event measure is
 nonnegative. The result remains correct even when it is not a useful upper
 bound on the event's size.
@@ -1243,7 +1243,8 @@ The key syntax is ordinary and finite:
 - `foldl max 0` accumulates a running finite maximum from the forced zero;
 - `Rat` keeps all averages and uniform atom integrals exact;
 - `decide` computes a finite comparison; and
-- every `native_decide` example asks Lean to certify the displayed ledger.
+- every `native_decide` example supplies a kernel-checked proof of the
+  displayed ledger.
 
 With the pinned compiler installed, a human types:
 
@@ -1372,8 +1373,8 @@ two pages long. Garsia's positive norm-nonincreasing operator proof uses
 positivity and contraction; exact equality of the current and shifted maximum
 integrals is the measure-preserving Koopman specialization used in RMT-23.
 
-One notation warning is crucial. Garsia's \(S_n^+\) is defined as a maximum
-over partial sums. It is not merely \(\max(S_n,0)\), the positive part of the
+The notation distinguishes two different objects. Garsia's \(S_n^+\) is a
+maximum over partial sums, not \(\max(S_n,0)\), the positive part of the
 single terminal value. RMT-23 names the object
 <code>finiteBirkhoffSumMax</code> to prevent that ambiguity.
 
@@ -1515,8 +1516,8 @@ On a Dirac measure at <code>true</code>, a constant map sends the mass to
 <code>false</code>. With an explicitly chosen two-point observable, the
 finite event contains the measured point while its event integral is
 negative. The transformation is measurable and the observable integrable,
-but preservation fails. This countermodel proves that the cancellation
-premise carries real content.
+but preservation fails. This counterexample refutes the corresponding
+cancellation claim without the preservation premise.
 
 ### Probe 10: negative threshold
 
@@ -1893,7 +1894,7 @@ and the selected event integral is negative. The failed cancellation changes
 the theorem's truth, not merely its proof convenience.
 {{< /details >}}
 
-### Exercise 32: state the honest summit
+### Exercise 32: state the exact summit
 
 Summarize RMT-23 in one sentence without saying that it proves the pointwise
 ergodic theorem.

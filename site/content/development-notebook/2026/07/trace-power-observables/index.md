@@ -55,7 +55,7 @@ power. The output \(S_k(\omega)\) is one complex number. As \(\omega\) varies,
 measurable and `measurable_tracePower` is applied, it becomes a scalar random
 observable in the standard measure-theoretic sense.
 
-This module earns two facts before doing any averaging:
+This module establishes two facts before doing any averaging:
 
 1. if \(X\) is measurable, then \(S_k\) is measurable;
 2. if every realization of \(X\) is Hermitian, then \(S_k(\omega)\) is real
@@ -63,7 +63,7 @@ This module earns two facts before doing any averaging:
 
 That order matters. A formula can look like a moment without yet being one.
 Expectation needs a measure, and a mathematically meaningful finite moment
-needs an integrability argument. Neither is smuggled into this file.
+needs an integrability argument. This file assumes neither.
 
 ## Choose a route up
 
@@ -360,7 +360,7 @@ At power zero, the random matrix disappears from the value:
 
 This is a constant matrix-valued function. The earlier `Basic` module already
 proved that constant matrices are measurable. The expression
-`(1 : Matrix ι ι ℂ)` tells Lean exactly which multiplicative identity is meant.
+The type annotation in `(1 : Matrix ι ι ℂ)` disambiguates the multiplicative identity.
 
 `simpa only [pow_zero]` performs one controlled simplification. It rewrites the
 goal using the rule \(X^0=1\) and checks that the previously proved constant
@@ -420,8 +420,8 @@ Mathematically, trace is a finite sum of diagonal coordinates:
 \]
 
 Every diagonal coordinate is measurable, and a finite sum of measurable
-complex functions is measurable. The one-line Lean proof hides no additional
-probability assumption.
+complex functions is measurable. The one-line Lean proof uses no probability
+assumption.
 
 {{< checkpoint stage="Measurability camp" title="Reconstruct the closure chain" >}}
 
@@ -642,7 +642,7 @@ theorem matrixPow_apply [Fintype ι] [DecidableEq ι]
 ```
 
 The theorem is true by reflexivity because `matrixPow` was defined pointwise.
-The `@[simp]` attribute tells Lean's simplifier to erase the packaging layer
+The `@[simp]` attribute registers the theorem for simplification of the packaging layer
 when a proof evaluates the bundled object at an outcome. Downstream proofs can
 reason about the ordinary matrix expression rather than record coercions.
 
@@ -851,7 +851,7 @@ m_k^{(n)}
 =\mathbb E_\mu\!\left[\frac{1}{n}\operatorname{tr}(X^k)\right].
 \]
 
-To formalize this honestly, a later module must provide at least:
+To formalize this claim, a later module must provide at least:
 
 1. a probability measure on the sample space;
 2. a dimension convention, usually an index type such as `Fin n`;
@@ -877,7 +877,7 @@ walk patterns encode the limiting moments that appear in Wigner-type
 semicircle arguments ([Tao, 2012](#ref-tao-rmt);
 [Wigner, 1958](#ref-wigner-1958)).
 
-For \(k=0\), the power is the identity and the trace is simply the finite
+For \(k=0\), the power is the identity and the trace equals the finite
 dimension, so the positive-length closed-walk formula is not the right
 notation for that special case.
 
@@ -919,7 +919,7 @@ into a theorem requires new constructors, measurability proofs, and a precise
 connection to stability or Lyapunov quantities. None of that is claimed by
 `Observables.lean`, but the trace-power interface points toward it.
 
-## Honest limitations of the current file
+## Scope and limitations of the current file
 
 | Missing layer | Why it matters |
 |---|---|

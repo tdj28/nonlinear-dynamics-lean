@@ -180,10 +180,10 @@ dimension zero because there is no `i : Fin 0`.
 
 The result does three jobs. It is a deterministic error estimate for finite
 Hermitian spectra. It makes each ordered coordinate continuous. Finally, it
-makes the spectrum a legitimate measurable random observable, unlocking the
-measure-valued constructions from RMT-10A.
+makes the spectrum a measurable random observable, supplying the regularity
+required by the measure-valued constructions from RMT-10A.
 
-Continuity is not obtained by saying that polynomial roots "obviously vary
+Continuity is not obtained by saying only that polynomial roots "vary
 continuously." Sorted repeated roots need an actual theorem, especially at
 collisions. The perturbation inequality provides a quantitative result that
 remains valid exactly where eigenvector labels become ambiguous.
@@ -284,8 +284,7 @@ representation, and the finite `PiLp` formula,
   \sum_j\lambda_j(H)
     \left|\operatorname{repr}_H(x)_j\right|^2.
 \]
-Every weight is nonnegative. That simple fact powers both variational
-inequalities.
+Nonnegativity of these weights is the input to both variational inequalities.
 
 ## Spectral subspaces from index intervals
 
@@ -585,7 +584,7 @@ conditional interface with
    Hermitian-or-zero totalization on ambient matrices.
 
 Finite summation, normalization, probability bundling, and ambient
-totalization are not reproved. That separation validates the RMT-10A design:
+totalization are not reproved. That separation supports the RMT-10A design:
 one explicit analytic gate now opens every measure-valued route.
 
 {{< mermaid >}}
@@ -902,7 +901,7 @@ Why can matrix submultiplicativity bound `mulVec`?
 Multiplying that column agrees with `mulVec`. Frobenius submultiplicativity
 applies, and the one-column Frobenius norm equals the vector norm.
 
-### Exercise 6: cancel honestly
+### Exercise 6: identify the cancellation hypothesis
 
 What fails if the intersection witness is zero?
 
@@ -932,7 +931,7 @@ statement has Hoffman-Wielandt shape and is not formalized here.
 
 ### Exercise 9: pass to probability
 
-Why does continuity unlock the empirical spectral pushforward?
+Why does continuity make the empirical spectral pushforward available?
 
 **Solution.** Lipschitz implies continuous, and continuous maps between these
 Borel spaces are measurable. RMT-10A already lifted measurable eigenvalue

@@ -172,7 +172,7 @@ RMT-14 proves neither result and imports neither theorem
 
 The local contribution is narrower: a convention-complete, finite-time Lean
 layer above the already checked cocycle. It freezes one norm, makes its
-coordinate formula public, proves measurability without smuggling in a
+coordinate formula public, proves measurability without assuming a
 topological compatibility claim, selects an exact zero convention for the
 logarithm, proves the resulting subadditive inequality, and retains both
 positive- and zero-dimensional matrix spaces.
@@ -539,7 +539,7 @@ The proof mirrors that mathematics in three checked steps:
 
 The theorem needs no assumption that either matrix block is nonzero. If one
 block is zero, the full product is zero, the left side is bottom, and the
-extended arithmetic still validates the inequality. This is the main reason
+inequality remains valid in the extended arithmetic. This is the main reason
 to choose <code>EReal</code> before entering any asymptotic theory.
 
 {{< panel "info" >}}
@@ -599,7 +599,8 @@ extensionality argument.
 
 ### Why not ban dimension zero?
 
-Keeping the empty type valid makes theorem assumptions honest. Results that
+Keeping the empty type valid makes theorem assumptions match their actual
+dependencies. Results that
 only need finiteness should say so. Results that normalize the identity to one
 must say they need a coordinate. This prevents a global
 <code>[Nonempty ι]</code> assumption from hiding the exact logical location of
@@ -879,7 +880,7 @@ entry measurability, and the final coercion to real numbers is measurable.
 
 ### Exercise 6: reject a continuity shortcut
 
-Why does the source not simply call a theorem saying norms are continuous?
+Why does the source not call a theorem saying norms are continuous?
 
 **Solution.** The cocycle values use the project's entrywise matrix measurable
 space, while the norm is installed by a scoped analytic instance. The module

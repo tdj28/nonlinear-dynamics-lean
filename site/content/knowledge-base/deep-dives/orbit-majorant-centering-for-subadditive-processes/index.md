@@ -788,7 +788,8 @@ checks. The remaining lines expose the wrong sign, expectation centering,
 unshifted repeated subtraction, the constant-one time-zero boundary, and the
 normalized triple \(2,-2,4\).
 
-The <code>example</code> declarations ask Lean to prove all recorded values.
+The <code>example</code> declarations state all recorded values as propositions
+that Lean's kernel checks.
 The nested Boolean check additionally verifies \(X_n\le S_n\) at all three
 states for horizons zero through eight. This worksheet models the finite
 arithmetic only. Mathlib's actual <code>birkhoffSum</code>,
@@ -854,9 +855,9 @@ values are
 (1,0,-1,-2,\ldots).
 \]
 
-Positive horizons are nonpositive, but \(Y_0=1\). This tiny model proves that
-the <code>X 0 = 0</code> premise cannot simply be deleted from the uniform
-nonpositivity theorem.
+Positive horizons are nonpositive, but \(Y_0=1\). This model is a counterexample
+to the uniform nonpositivity theorem with the <code>X 0 = 0</code> premise
+removed.
 
 ### Centered subadditivity is cancellation
 
@@ -1023,9 +1024,9 @@ model has \(Y_0=1\) and still forms a valid centered candidate.
 
 ### The zero measure is allowed
 
-The generic module assumes an arbitrary measure. Under the zero measure,
-integrability is trivial and the identity map preserves the measure. No hidden
-probability instance appears.
+The generic module assumes an arbitrary measure. Under the zero measure, every
+measurable real-valued function is integrable and the identity map preserves
+the measure. No probability instance is used.
 
 ### Empty matrix dimension is allowed
 
@@ -1132,7 +1133,7 @@ source, accessibility, scientific-integrity, and editorial review pending.
 | Lyapunov exponent, spectrum, filtration, or splitting | Not defined or proved |
 | Nonlinear derivative or random-Jacobian representation | Not connected |
 
-The strongest honest summary is finite: subtracting the exact additive
+The strongest justified summary is finite: subtracting the exact additive
 one-step orbit route exposes a nonpositive residual, preserves the
 shifted-subadditive structure, and, under measure preservation, preserves
 finite-horizon integrability. The normalized split prepares later arguments

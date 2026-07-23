@@ -347,7 +347,7 @@ Setting \(B=I\) gives
 The source keeps that corollary as the named theorem
 <code>forwardProduct_const_one</code>. Although simplification can already
 derive it from <code>forwardProduct_const</code>, the explicit name is a useful
-sanity check and a discoverable interface for identity dynamics.
+consistency check and a discoverable interface for identity dynamics.
 
 ## An assumption ledger with two floors
 
@@ -503,7 +503,7 @@ global assertion about \(A_j\) for all future times.
 
 ### Why there is no separate nonnegativity hypothesis on \(C\)
 
-The theorem does not ask for \(0\le C\). That omission is mathematically
+The theorem does not assume \(0\le C\). That omission is mathematically
 sound.
 
 - If \(k=0\), the factor hypothesis is vacuous and \(C^0=1\) for every real

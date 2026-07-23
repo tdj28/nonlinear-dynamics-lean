@@ -172,10 +172,10 @@ map, law invariance means the exact {{< refterm "pushforward-measure"
 T_*\mu=\mu.
 \]
 
-This does **not** say \(T(H)=H\) for every sample. The running example proves
-the opposite: \(T(H)=H'\ne H\). An invariant law may redistribute individual
-points while leaving the total probability of every measurable event
-unchanged.
+This does **not** say \(T(H)=H\) for every sample. The running example is a
+counterexample to that pointwise claim: \(T(H)=H'\ne H\). An invariant law may
+redistribute individual points while leaving the total probability of every
+measurable event unchanged.
 
 ### Support alone does not imply invariance
 
@@ -262,7 +262,7 @@ The remainder of this chapter preserves the exact boundary visible at RMT-07.
 | Probability route | [The intrinsic standard Gaussian](#camp-seven-the-intrinsic-standard-gaussian) | Apply <code>stdGaussian_map</code> exactly |
 | Support route | [Make the Hermitian locus measurable](#camp-one-make-the-hermitian-locus-measurable) | Prove mass one and almost-everywhere Hermiticity |
 | Lean route | [The checked declaration map](#the-checked-declaration-map) | Audit all 27 public declarations |
-| Next-milestone route | [The exact RMT-08 bridge](#camp-eight-the-exact-rmt-08-bridge) | Identify what remains before GUE invariance |
+| Next-milestone route | [The bridge absent from RMT-07](#camp-eight-the-bridge-absent-from-rmt-07) | Identify what remains before GUE invariance |
 
 ### Learning objectives
 
@@ -299,7 +299,7 @@ By the summit, you should be able to:
 {{< reference-figure
   src="hermitian-gaussian-symmetry.svg"
   alt="At the RMT-07 stopping point, the upper checked path sends the RMT-06 independent Gaussian coordinate law through measurable Hermitian assembly and proves the resulting ambient matrix law has Hermitian support. The lower checked path equips matrices with Frobenius geometry, restricts unitary congruence to a real isometry of the Hermitian subspace, and proves intrinsic standard Gaussian invariance. Dashed arrows mark the comparison bridge absent from the RMT-07 module; the subsequent RMT-08 milestone now checks that bridge."
-  caption="**Finding:** within the RMT-07 module, support of the existing matrix law and symmetry of an intrinsic Hermitian Gaussian are proved for different measures presented on different spaces. The dashed comparison (coordinate-built GUE equals a scaled intrinsic Gaussian after the relevant transport) records the precise obligation that was missing at this stopping point and is now discharged by RMT-08. No density or Jacobian argument is smuggled across the historical module boundary."
+  caption="**Finding:** within the RMT-07 module, support of the existing matrix law and symmetry of an intrinsic Hermitian Gaussian are proved for different measures presented on different spaces. The dashed comparison (coordinate-built GUE equals a scaled intrinsic Gaussian after the relevant transport) records the precise obligation that was missing at this stopping point and is now discharged by RMT-08. No density or Jacobian argument is imported across the historical module boundary without proof."
 >}}
 
 The upper path begins with the RMT-06 coordinate probability measure
@@ -1112,7 +1112,7 @@ open NonlinearDynamics.Random
 #check GUE.matrixLaw_compl_hermitianSet
 ~~~
 
-Each `#check` asks Lean to report the exact type of a checked declaration. It
+Each `#check` reports the exact type of a checked declaration. It
 does not run a simulation or infer an unlisted density, law comparison,
 coordinate-built Gaussian unitary ensemble invariance theorem, or spectral
 consequence.

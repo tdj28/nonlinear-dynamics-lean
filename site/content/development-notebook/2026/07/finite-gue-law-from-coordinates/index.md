@@ -212,9 +212,9 @@ time evolution. Gaussian coordinates then give a tractable quadratic model
 once the scale is fixed.
 
 The letter *U* in GUE points toward invariance under deterministic unitary
-changes of basis. That symmetry is profound: a physical prediction should not
-depend on an arbitrary orthonormal coordinate system. Yet the entrywise
-construction alone does not certify that symmetry in Lean. The current module
+changes of basis. That symmetry expresses the requirement that a physical
+prediction not depend on an arbitrary orthonormal coordinate system. Yet the
+entrywise construction alone does not certify that symmetry in Lean. The current module
 constructs the law from independent entries in one basis. A later module must
 prove that conjugation \(H\mapsto UHU^*\) preserves the resulting measure.
 
@@ -287,7 +287,7 @@ Multiplying all coordinate factors therefore yields an exponent
 Turning that calculation into a checked density identity requires a real
 Lebesgue measure on Hermitian coordinate space, a Jacobian or real-linear
 equivalence for assembly, and a product-density theorem at the matrix level.
-None is smuggled into `matrixLaw` here.
+None is assumed by `matrixLaw` here.
 
 ## Lineage, local contribution, and nonclaims
 
@@ -421,7 +421,7 @@ equal real and imaginary variances. The outer `.prod` does two jobs at once:
 it creates the joint sample space and encodes independence between the two
 blocks.
 
-This is a measure-first construction. The sample point is simply a coordinate
+This is a measure-first construction. The sample point is a coordinate
 pair `x`, and the canonical random variables are projections and evaluations
 of `x`. No pseudorandom generator or algorithmic sampler is part of the Lean
 definition.
@@ -578,7 +578,7 @@ The instance applies the reusable theorem
 `RandomMatrix.law_isProbabilityMeasure` to the coordinate map, its
 measurability certificate, and the coordinate probability measure.
 
-The type-class result confirms total mass one. It does not by itself establish
+The type-class result establishes total mass one. It does not by itself establish
 support, invariance, density, or moments.
 
 ### `GUE.matrixLaw_diagonal_hasLaw`
@@ -840,7 +840,7 @@ observable.
 
 What additional shape would a measure-level support theorem need?
 
-**Solution.** One honest formulation would show that the predicate
+**Solution.** One precise formulation would show that the predicate
 `Matrix.IsHermitian` holds almost everywhere under `matrixLaw n`, or that the
 measure of the set of Hermitian matrices is one after proving that set
 measurable. RMT-05 proves every assembled output Hermitian, but RMT-06 does not
@@ -856,10 +856,9 @@ is the Dirac mass at the unique empty function regardless of the scalar family
 that would have been indexed. The binary product of those two Dirac masses is
 Dirac at the unique coordinate pair. No scalar Gaussian coordinate exists.
 
-## What the construction buys us, and what comes next
+## What the construction provides, and what comes next
 
-The important advance is not just that a symbol `matrixLaw` now exists. The
-formalization has a complete causal chain:
+The symbol `matrixLaw` records the complete dependency chain:
 
 1. an audited numerical convention determines exact scalar laws;
 2. finite products determine exact joint block laws;

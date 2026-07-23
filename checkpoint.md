@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 23:58 PDT
+Last updated: 2026-07-23 00:56 PDT
 
-Audited baseline: `main` at `59ff224`
+Audited baseline: `main` at `7e5557d`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -18,6 +18,75 @@ cocycle growth. It is not yet a complete proof-to-prose release. Boundary
 models, paired teaching, source snapshot/coverage metadata, rendered QA, and
 the final cloud release replay remain deliberately unfinished and are
 listed below for the next session.
+
+## Mathematical Editorial Register Audit
+
+On 2026-07-23 the owner identified a representative epistemic overclaim in the
+Almost Everywhere glossary chapter: “The interval example proves that the
+reverse arrow is invalid.” The corrected sentence is exactly: “The interval
+example shows why the reverse arrow is invalid.”
+
+That correction triggered an adversarial review of all 150 tracked Markdown
+documents:
+
+- 137 public article bundles: 62 glossary chapters, 36 Deep Dives, and 39
+  Development Notebook entries;
+- all five public section indexes and `README.md`; and
+- the project skill, three `AGENTS.md` guides, `checkpoint.md`, and the two
+  Hugo archetypes.
+
+The review distinguishes logical roles throughout the corpus. Ordinary
+computations check arithmetic or selected finite cases; a verified exhaustive
+computation may establish a finite proposition when its coverage and trust
+boundary are explicit. Examples illustrate or exhibit behavior; explicit
+counterexamples refute stated universal claims; concrete witnesses may
+establish existence; and proofs or complete arguments establish general
+results. Figures organize or explain an argument rather than replacing it.
+Lean's elaborator constructs a candidate proof term and its kernel checks that
+term against the formal type; neither step establishes that the type matches
+the intended informal mathematics or physical interpretation.
+
+All 62 glossary chapters received a complete register pass followed by an
+independent adversarial review. All 36 Deep Dives and all 39 Notebook entries
+received corpus-wide passes, with independent adversarial reviews added before
+release. The edits remove repeated moralizing proxies, canned transitions,
+anthropomorphic compiler language, generic hype, and dismissive shortcuts while
+retaining standard terms such as “simple function” and “trivial sigma algebra.”
+The established trail, camp, ridge, climb, summit, and expedition vocabulary
+remains the site's intentional reader-navigation system; it does not carry
+evidentiary force.
+
+The article corpus now contains 746,612 body tokens by the checkpoint's
+deterministic counter: 259,246 in the Notebook, 308,460 in the Deep Dives, and
+178,906 in the glossary. No `draft` or `pro_reviewed` value changed. The
+publication remains open work in progress with every article still marked
+`pro_reviewed: false`.
+
+The project skill and all three `AGENTS.md` guides now require an expert
+mathematical register and an explicit adversarial prose pass. The teaching
+source checker scans `README.md` plus 142 public-content Markdown files,
+including reader-facing front matter and shortcode captions. Its narrow
+regression gate rejects generic proof-level force attributed to examples,
+models, worksheets, plates, visuals, probes, outputs, commands, experiments,
+or compiler activity while preserving explicitly stated existential,
+consistency, and counterexample roles.
+
+Workstation-safe validation for this wording-only milestone:
+
+- `make content-hygiene-test`: seven test methods pass, including the expanded
+  register fixtures;
+- `make content-hygiene`: 143 teaching Markdown files and 683 public source
+  files pass the source and reader-infrastructure checks;
+- `make site-check`: Hugo Extended 0.160.1 renders 415 pages warning-fatal;
+- `make checkpoint-check`: checkpoint and substantive-module inventory pass;
+  and
+- `git diff --check`: clean.
+
+No Lean, Lake, Mathlib, cache, or cloud command was run for this editorial
+milestone. The macOS build-host policy remains unchanged. The project stays
+paused for the owner's reading and site-sculpting phase; the exact RMT-35
+release sequence below remains the next formalization milestone after the
+owner resumes it.
 
 ## Durable Build-Host Policy
 
@@ -254,8 +323,9 @@ page-owned card reproduces its primary numeric figure byte for byte.
 source outcome, the three-coordinate sample map, one realization, three data
 rows, and the exact product law before introducing Gaussian abstraction. Its
 rectangle event has probability `1/4`; its scaling ledger distinguishes
-variance from standard deviation; and a four-row parity model proves that
-pairwise checks do not give mutual independence. Six Lean bridges, three
+variance from standard deviation; and a four-row parity model is a
+counterexample to the claim that pairwise checks imply mutual independence.
+Six Lean bridges, three
 numeric figures, a locally executed `Std` worksheet, and a guarded exact-module
 check make every layer reproducible. An adversarial review corrected a
 source/realization conflation, figure overflow, missing disclosure metadata,
@@ -443,7 +513,7 @@ eleven exact weights in both valid temporal orientations: blocks first gives
 piece without moving its sample point yields the explicit false proposal
 `40≤38`. A constant-five process isolates the zero-count exact-block boundary,
 and block length zero exposes Lean's totalized quotient/remainder convention
-without smuggling in a positivity assumption. Two accessible numeric figures,
+without adding a positivity assumption. Two accessible numeric figures,
 seven Lean bridges, the complete twelve-public-declaration and three-private-
 helper map, and a byte-identical executed `Std` worksheet separate pointwise
 finite algebra from the additional preservation needed for finite-sum
@@ -594,7 +664,7 @@ integral ratio is exactly `1/2`, and centering gives
 original ergodic map even though its square is the nonergodic identity. A
 separate one-point process `Zₙ=-n²` has normalized path `-n`, no eventual real
 lower bound, extended-real limsup `-∞`, but Mathlib's totalized real limsup
-zero—so omitting the generalized theorem's honest lower-bound gate would
+zero—so omitting the generalized theorem's required lower-bound gate would
 assert the false inequality `0≤-1`. Two accessible numeric figures, a revised
 generic-to-cocycle ladder, seven Lean bridges, the full 27-item public/private/
 probe/axiom map including the generalized declaration, a guarded cloud check,
@@ -694,7 +764,7 @@ the browser backend was unavailable.
   Fekete theorem applies and identifies the rate with the infimum over
   positive horizons.
 - The samplewise lower rail reuses RMT-33's centered rational-deviation
-  theorem. The upper rail uses an honest eventual lower-boundedness premise:
+  theorem. The upper rail uses an explicit eventual lower-boundedness premise:
   the negative inverse-generator Birkhoff average lies below normalized
   signed growth, and finite-measure pointwise Birkhoff convergence makes that
   comparison bounded almost everywhere. On a pre-ergodic probability base,
@@ -1335,8 +1405,9 @@ bridge, or stable-manifold theorem.
   `4041dd4fcbb1353c31fa26072071c2e6ee73626eb5c8b7f59ac4d76219e446ac`.
   The module has twenty documented public declarations, two private helpers,
   eleven compiled anonymous probes, and five source axiom prints.
-- The raw forward-coboundary telescope is totalized honestly: horizon zero is
-  a valid vacuous identity, while convergence uses bounded endpoints along
+- The raw forward-coboundary telescope states the totalized scope explicitly:
+  horizon zero is a valid vacuous identity, while convergence uses bounded
+  endpoints along
   positive horizons. This algebraic layer needs no measurable space or
   measure.
 - `MeasurePreserving T μ μ` enters only for square-integrable Koopman
@@ -1462,7 +1533,7 @@ bridge, or stable-manifold theorem.
 | `NonlinearDynamics.Random.RandomMatrices.Observables` | Measurable matrix powers and trace powers, Hermitian reality pointwise and a.e. | `trace-power-observables` |
 | `NonlinearDynamics.Random.GaussianPrimitives` | Exact real Gaussian laws, moments and integrability, zero-variance behavior, scaling and independent sums, measurable independent families, finite joint product laws, and a canonical product sample space | `gaussian-primitives-exact-laws-and-independence` |
 | `NonlinearDynamics.Random.ComplexGaussian` | Exact Cartesian complex Gaussian laws with explicit coordinate variances, product and marginal laws, coordinate independence, real-Banach Gaussianity, moments and integrability, exact mean, the double-zero Dirac boundary, and construction from independent exact real coordinates | `complex-gaussians-from-independent-real-coordinates` |
-| `NonlinearDynamics.Random.ComplexGaussianFamilies` | Ordinarily measurable mutually independent Cartesian complex coordinates, exact real and imaginary laws and variances, coordinate means and integrability, honest construction from independent pair-vectors, real scaling, finite joint product and qualitative Gaussian laws, a canonical product family, and the empty-index Dirac boundary | `independent-complex-gaussian-families` |
+| `NonlinearDynamics.Random.ComplexGaussianFamilies` | Ordinarily measurable mutually independent Cartesian complex coordinates, exact real and imaginary laws and variances, coordinate means and integrability, construction from independent pair-vectors, real scaling, finite joint product and qualitative Gaussian laws, a canonical product family, and the empty-index Dirac boundary | `independent-complex-gaussian-families` |
 | `NonlinearDynamics.Random.RandomMatrices.HermitianCoordinates` | Finite strict-upper indices, real-diagonal/complex-upper coordinate space, direct three-branch Hermitian assembly, exact entry formulas, Hermiticity, measurability, bundled construction, and the `n = 0` zero matrix | `hermitian-coordinate-assembly` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsemble` | Explicit Wigner variance ledger, canonical independent Gaussian coordinate law, block/scalar laws and independence, measurable Hermitian pushforward matrix law, exact diagonal and strict-upper marginals, and coordinate/matrix Dirac laws at `n = 0` | `finite-gue-law-from-coordinates` |
 | `NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleGeometry` | Frobenius Euclidean matrix carrier, intrinsic real Hermitian subspace, trace pairing, ambient and intrinsic unitary-congruence isometries, intrinsic standard-Gaussian invariance, and measurable mass-one Hermitian support of the ambient GUE law | `gue-frobenius-geometry-and-hermitian-support` |
@@ -1800,7 +1871,7 @@ k-invariance precedes approximation claims.
 - An independent Cartesian complex Gaussian family stores ordinary coordinate
   measurability, exact coordinate laws, and `iIndepFun` as separate evidence.
   Its exact finite joint law is the product of the coordinate laws.
-- The honest real-pair constructor requires an exact product law inside each
+- The exact real-pair constructor requires a product law inside each
   pair and mutual independence across the pair-vectors. Separate independence
   of the real and imaginary source families does not establish either global
   block statement.
@@ -1967,7 +2038,7 @@ k-invariance precedes approximation claims.
   asymptotic theorem.
 - The pointwise shifted split is not a factorization of the product law.
   Independence, a joint-law interface, and additional hypotheses would be
-  required before any such measure identity could be stated honestly.
+  required before any such measure identity could be stated.
 - RMT-13 is generator-presented: one base map `T` advances an environment and
   one generator `A` supplies the factor at each forward iterate. It does not
   package an arbitrary time-indexed random sequence as a cocycle.
@@ -2184,7 +2255,7 @@ k-invariance precedes approximation claims.
 - Ordinary measurability of the observable gives a measurable convergence
   event. Integrability gives only an almost-everywhere strongly measurable
   representative; quasi-measure preservation transports its event back to an
-  honest null-measurable event. Ergodicity then gives only the conditional
+  null-measurable event. Ergodicity then gives only the conditional
   null-or-conull fork. Nothing in RMT-22 chooses the conull branch.
 - `oneStepBirkhoffConvergenceSet` uses the candidate's time-one observable.
   The totalized identity `birkhoffAverage ... 0 = 0` says nothing about a
@@ -2258,7 +2329,7 @@ k-invariance precedes approximation claims.
   The resulting upper bound is for a nonnegative integrable subadditive
   process and specializes only to log-positive cocycle growth.
 - RMT-30's strict finite bad-block set ranges over `Finset.Icc 1 m`, so the
-  empty cap is honest and time zero never becomes an admissible block length.
+  empty cap is valid and time zero never becomes an admissible block length.
   Its greedy pointwise estimate genuinely needs `H + m ≠ 0` and `c ≤ 0`;
   the joint zero corner is false, while the time-one centered identity derives
   the sign needed by the final rate-ratio theorem.
@@ -2278,7 +2349,7 @@ k-invariance precedes approximation claims.
 - The raw once-bad union is not invariant: a compiled finite
   measure-preserving collapse model gives event `{false}` and empty preimage.
   RMT-32 therefore uses arbitrarily-late witnesses with rational threshold
-  slack. Its one-sided preimage inclusion is the honest setwise statement;
+  slack. Its one-sided preimage inclusion is the exact setwise statement;
   preservation and finite mass are what justify almost invariance.
 - RMT-32 keeps qualitative rigidity separate from numerical branch selection.
   Finite-measure ergodicity already gives the almost-empty or almost-full fork.
@@ -3725,7 +3796,7 @@ Checkpoint/skill milestone QA:
 - `2185d11`: finish the 62-page example-first glossary content pass with
   exact spike-tail, residue-phase, and ordered-packing ledgers; execute all
   three local `Std` worksheets, regenerate their numeric cards, and record
-  the remaining corpus-wide tutorial/card-provenance audit honestly.
+  the remaining corpus-wide tutorial/card-provenance audit as still open.
 - `effc1ae`: telescope a forward Koopman coboundary on a four-cycle and
   contrast orbit-majorant with expectation centering on a three-cycle;
   execute both local `Std` worksheets, fix the rational checks to use
@@ -3812,7 +3883,7 @@ Checkpoint/skill milestone QA:
 - `90576e9`: record termination of the exact project RunPod compute resource,
   preservation of its 100 GB cache-snapshot volume, conservative local disk
   cleanup, and the paused RMT-35 resume handoff.
-- `c0080d4`: generalize RMT-29's upper-limsup theorem to an honest eventual
+- `c0080d4`: generalize RMT-29's upper-limsup theorem to an explicit eventual
   lower-bound gate, formalize the compile-checked RMT-35 signed Fekete and
   pre-ergodic real-log convergence core, and record the deliberate pause and
   exact resume contract.

@@ -128,7 +128,7 @@ This value \(2\) is the integrated log-positive growth rate of the example.
   wide="true"
   src="parity-wobble-fekete-example.svg"
   alt="On a one-point probability space, a constant two-by-two matrix produces integrated log-positive values two n plus the parity of n. The normalized values at horizons one through six are three, two, seven thirds, two, eleven fifths, and two. Even horizons attain the infimum two while odd horizons approach it from above."
-  caption="**Computed example:** the matrix satisfies \(A=e^2M\), \(M^2=I\), and \(\lVert M\rVert_\infty=e\). Hence \(I_n=2n+(n\bmod2)\). The positive-time ratios wobble between \(2\) and \(2+1/n\), yet converge to their infimum \(2\). The time-zero value is displayed because Lean's real division makes it \(0\), but it is excluded from the rate-defining infimum. This one-point model illustrates the deterministic Fekete mechanism; it does not prove a random samplewise theorem."
+  caption="**Computed example:** the matrix satisfies \(A=e^2M\), \(M^2=I\), and \(\lVert M\rVert_\infty=e\). Hence \(I_n=2n+(n\bmod2)\). The positive-time ratios wobble between \(2\) and \(2+1/n\), yet converge to their infimum \(2\). The time-zero value is displayed because Lean's real division makes it \(0\), but it is excluded from the rate-defining infimum. This one-point model illustrates the deterministic Fekete mechanism and makes no random samplewise claim."
 >}}
 
 ## Check subadditivity by parity
@@ -335,8 +335,8 @@ log-positive envelope and every integrated value is nonnegative. Its sequence
 is \(u_n=I_n\).
 
 Fekete's lemma is deterministic. Once the integrals \(I_n\) have been formed,
-the theorem sees only one sequence of real numbers. It does not see the sample
-space, base transformation, matrices, or individual outcomes.
+the theorem is applied only to that real sequence. Its statement contains no
+sample space, base transformation, matrix, or individual outcome.
 
 ## Time zero is a boundary convention
 

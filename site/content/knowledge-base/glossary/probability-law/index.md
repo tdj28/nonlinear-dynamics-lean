@@ -125,10 +125,10 @@ Measurability is what ensures that the preimage \(X^{-1}(B)\) is an allowed
 event whenever \(B\) is a measurable target set. Without that condition, the
 displayed probability may not be defined.
 
-## What the law keeps, and what it forgets
+## What the law retains, and what it discards
 
-The law keeps every probability statement that depends only on the value of
-\(X\). It forgets the names and internal structure of the outcomes in
+The law retains every probability statement that depends only on the value of
+\(X\). It discards the names and internal structure of the outcomes in
 \(\Omega\).
 
 | Layer | Question it answers | Two-matrix example |

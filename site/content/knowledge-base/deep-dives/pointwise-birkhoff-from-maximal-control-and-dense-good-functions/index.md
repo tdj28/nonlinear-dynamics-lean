@@ -71,14 +71,14 @@ the cycle sum and cycle mean are
 \]
 
 In particular, \(A_8f(x)=A_{16}f(x)=49/24\) for all eight starts. This finite
-model makes pointwise goodness easy. Its purpose is to expose the
+model makes pointwise goodness directly computable. Its purpose is to expose the
 **closure arithmetic** that remains valid when goodness is known only on a
 dense class. More explicitly, write \(n=8q+r\) with \(0\le r\lt8\). The first
 \(8q\) samples contribute \(q\) complete cycle sums, while the remaining
 prefix comes from one of finitely many bounded remainders. After division by
 \(n\), that remainder tends to zero and the averages tend to \(49/24\).
 
-### Watch the thirds argument at one start
+### Compute the thirds argument at one start
 
 Fix the Cauchy scale
 
@@ -301,7 +301,8 @@ arithmetic model of their interaction: a pointwise-good approximating family,
 a strict maximal error event, a shrinking \(L^1\)-controlled bound, a
 fixed-scale Cauchy event, and the exact boundary that positivity excludes.
 
-An orbit average is easy to write and hard to control. Begin at a state
+Writing the orbit-average formula is only the first step; its convergence
+requires substantial control. Begin at a state
 \(\omega\), apply a transformation \(T\) repeatedly, evaluate an observable
 \(f\) along the orbit, and average the first \(n\) readings. The resulting
 number is
@@ -885,8 +886,8 @@ The Cauchy exceptional witnesses may initially be any natural horizons.
 Inside the closure lemma they are requested beyond \(\max\{N,1\}\), so the
 maximal event always receives a positive witness. In the final Cauchy
 argument, the sequence includes \(A_0f=0\), but a finite initial prefix cannot
-affect convergence. This is stronger and clearer than pretending that the
-zero-horizon average is an ordinary division by zero. It is a totalized
+affect convergence. The zero-horizon average is not an ordinary division by
+zero. It is a totalized
 boundary value whose information content is only that the function is defined
 for every natural index.
 
@@ -1516,10 +1517,12 @@ Important syntax:
 - <code>iterate</code>, <code>orbitSum</code>, and <code>average</code> build
   the finite orbit arithmetic without Mathlib;
 - <code>decide</code> computes a finite Boolean comparison;
-- <code>native_decide</code> asks Lean to certify each printed ledger entry;
+- <code>native_decide</code> discharges each finite ledger proposition with a
+  kernel-checked decision procedure;
   and
 - <code>firstCycleExceedanceStarts</code> is sufficient for this single
-  nonnegative periodic spike, as the first-hit calculation above proves. It
+  nonnegative periodic spike; the first-hit calculation above computes exactly
+  those starts. It
   is not a replacement for the project's infinite maximal-event definition.
 
 With the pinned compiler installed, a human types:
@@ -1923,7 +1926,7 @@ pointwise-good core and, separately, an almost everywhere convergent
 subsequence for general \(L^2\) vectors. RMT-26 succeeds because weak maximal
 control makes the pointwise-good property stable under \(L^1\) approximation.
 
-The strongest honest one-sentence conclusion is: on a finite
+The strongest justified one-sentence conclusion is: on a finite
 measure-preserving system, every real integrable observable has a full
 sequence of Birkhoff averages that converges almost everywhere to some real
 limit, with no identification of that limit in this module.
@@ -2316,7 +2319,7 @@ now completes the next mathematical layer: the almost-everywhere limit is the
 conditional expectation onto the exact invariant sigma algebra. A separate
 ergodic specialization may next derive an almost-everywhere constant normalized
 space average. The subadditive program can then reuse the complete additive
-pointwise theorem without pretending that it already proves Kingman's theorem.
+pointwise theorem, but that theorem alone does not imply Kingman's theorem.
 
 ## References
 

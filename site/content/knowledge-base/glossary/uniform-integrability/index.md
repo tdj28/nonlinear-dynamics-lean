@@ -45,7 +45,7 @@ G_n(k)=2^{n+1}\mathbf 1_{A_n}(k).
 \]
 
 Here \(\mathbf 1_{A_n}\) is one on \(A_n\) and zero elsewhere. Thus each
-function has exactly one nonzero value. Its integral is simply
+function has exactly one nonzero value. Its integral is
 
 \[
 \text{height of the spike}\times\text{probability of its supporting atom}.
@@ -230,8 +230,8 @@ capitalized predicate the probability-theory sense. The names do not impose
 probability normalization. RMT-27 uses <code>UniformIntegrable</code> on an
 arbitrary finite measure, whose total mass may differ from one.
 
-The theorem that upgrades convergence consumes the small-set component. A
-proof <code>h : UniformIntegrable F 1 μ</code> provides it through
+The theorem that upgrades convergence uses the small-set component. A proof
+<code>h : UniformIntegrable F 1 μ</code> provides it through
 <code>h.unifIntegrable</code>, while also making each family member an
 \(L^1\) function through <code>h.memLp</code>.
 
@@ -600,7 +600,8 @@ pinned Lean and Mathlib dependencies.
 - **Uniform \(L^1\)-norm boundedness is not enough.** The family \(G_n\) above
   has norm exactly one and still fails uniform integrability.
 - **Individual integrability is not uniform integrability.** Letting the
-  threshold depend on the family index loses the crucial quantifier.
+  threshold depend on the family index removes the required single threshold
+  that must work uniformly over the family.
 - **Uniform integrability does not imply pointwise convergence.** It controls
   mass escape. A separate convergence hypothesis is still required by the
   Vitali step.

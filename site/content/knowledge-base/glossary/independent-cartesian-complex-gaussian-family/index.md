@@ -118,7 +118,7 @@ records three different obligations:
   at every index.
 - <code>P : Measure Ω</code> is the one source measure under which the laws
   and independence statement are interpreted.
-- The complete structure below reveals the three proof fields Lean will demand:
+- The complete structure below displays the three proof fields Lean will demand:
   ordinary measurability, an exact law at every index, and
   <code>iIndepFun Z P</code>.
 {{< /lean-bridge >}}
@@ -144,8 +144,8 @@ The ordinary `Measurable` field is also deliberate. The exact
 {{< refterm "probability-law" "probability law" >}} predicate `HasLaw` carries
 almost-everywhere measurability, which ignores changes on null sets. Later
 coordinatewise constructions benefit from an ordinary measurable map at each
-index, so the family stores that stronger fact rather than pretending it can
-be recovered from equality in law.
+index, so the family stores that stronger fact because it cannot be recovered
+from equality in law.
 
 ## Three independence questions, not one
 
@@ -188,7 +188,7 @@ infers a missing cross-family hypothesis.
 ### Type a finite independence skeleton locally
 
 The continuous Gaussian proof belongs to Mathlib and the project. A much
-smaller <code>Std</code>-only worksheet lets a beginner verify the combinatorial
+smaller <code>Std</code>-only worksheet lets a beginner check the combinatorial
 factorization behind the \(1/16\) calculation. Save this as
 <code>FourIndependentSigns.lean</code> outside the project:
 
@@ -237,8 +237,7 @@ Lean prints \(16\), \(4\), and \(1\). Under the uniform law on the sixteen
 rows, the first complex coordinate lands in its first quadrant with probability
 \(4/16=1/4\), and both do so with probability \(1/16\). The worksheet models
 four independent signs, not Gaussian magnitudes; it isolates the finite
-factorization step instead of pretending to formalize continuous probability
-with a list.
+factorization step and does not formalize continuous probability with a list.
 
 ## Finite families have an exact product joint law
 
@@ -264,7 +263,7 @@ In Lean the right side is `Measure.pi`. This is stronger than knowing the
 coordinate means, variances, or even all pairwise laws. It fixes the
 probability of every measurable event in the finite function space.
 
-The neighboring theorem `jointHasGaussianLaw` forgets the explicit parameters
+The neighboring theorem `jointHasGaussianLaw` omits the explicit parameters
 and retains qualitative Gaussianity on the finite real vector space
 \(\iota\to\mathbb C\). The exact product theorem should remain the primary
 statement whenever normalization data matters.
@@ -292,11 +291,12 @@ different schedule changes that product law without changing the family
 interface. This is why `vRe` and `vIm` remain functions rather than one global
 scale.
 
-The table alone would not prove the product law. One could construct three
-variables with exactly these marginal parameters while reusing hidden source
-randomness across indices. The `independent` field is the additional evidence
-that turns the coordinate ledger into an exact joint measure. These values are
-a teaching example, not an empirical result or a selected matrix convention.
+The marginal table alone is insufficient for a product-law conclusion. One
+could construct three variables with exactly these marginal parameters while
+reusing hidden source randomness across indices. The `independent` field is
+the additional evidence that turns the coordinate ledger into an exact joint
+measure. These values are a teaching example, not an empirical result or a
+selected matrix convention.
 
 ### Why the exact law matters beyond moments
 
@@ -421,7 +421,7 @@ explains why the two variance functions must remain visible.
 
 The Deep Dive
 [Finite Product Probability Spaces and Independent Gaussian Fields]({{< relref "/knowledge-base/deep-dives/finite-product-probability-spaces-and-independent-gaussian-fields" >}})
-builds the product-space machinery, dependence audit, empty boundary, and
+develops the product-space construction, dependence audit, empty boundary, and
 future matrix bridge in full.
 
 The next deterministic bridge is the

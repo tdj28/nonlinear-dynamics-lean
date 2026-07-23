@@ -355,7 +355,7 @@ is finite, so the sum has finitely many terms.
 
 On the finite two-outcome space above, give every subset of \(\Omega\) the
 status of an event. Every map out of that discrete measurable space is
-measurable, so the prefix certificate is immediate.
+measurable, which supplies the prefix certificate.
 
 ## Measurability is not integrability
 
@@ -443,7 +443,7 @@ The raw <code>forwardProductLaw</code> accepts any source
 <code>Measure Ω</code>. If \(\mu\) is a
 {{< refterm "probability-measure" "probability measure" >}}, the project proves
 that the result also has total mass one. It can then be bundled as a
-<code>ProbabilityMeasure</code>. The wrapper changes what the type remembers;
+<code>ProbabilityMeasure</code>. The wrapper changes what the type records;
 it does not change any event probabilities.
 
 At horizon zero, under a probability source,
@@ -464,8 +464,7 @@ which need not be one.
 
 ## In Lean
 
-The successor equation is the key translation from chronological action to
-syntax.
+The successor equation translates chronological action into Lean syntax.
 
 {{< lean-bridge
   human="At the next horizon, put the newest matrix on the left of the product already accumulated from earlier times."

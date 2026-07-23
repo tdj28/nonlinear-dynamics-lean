@@ -23,7 +23,7 @@ Start with four states and a map \(T\) that moves around one cycle:
 \xrightarrow{T}0.
 \]
 
-A **potential** is just a number attached to each state. In this example let
+A **potential** assigns a number to each state. In this example let
 
 \[
 u(0)=3,\qquad u(1)=-2,\qquad u(2)=1,\qquad u(3)=0.
@@ -541,9 +541,8 @@ A Koopman coboundary does not by itself imply:
 - Kingman's subadditive ergodic theorem; or
 - a Lyapunov exponent or Oseledets splitting.
 
-The exact finite telescope is powerful because it is narrow: it converts one
-special class of observables into endpoint arithmetic. It is not a general
-pointwise ergodic theorem.
+The exact finite telescope converts this particular class of observables into
+endpoint arithmetic. It is not a general pointwise ergodic theorem.
 
 ## Where to continue
 
@@ -598,7 +597,7 @@ interfaces used for the simple-coboundary core.
 
 <a id="ref-koopman-coboundary-mathlib-mean"></a>**Mathlib contributors.**
 [Pinned von Neumann mean-ergodic implementation](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/InnerProductSpace/MeanErgodic.lean#L31-L94),
-Mathlib v4.32.0. Its closure-of-range and orthogonal-projection machinery is
+Mathlib v4.32.0. Its closure-of-range and orthogonal-projection theory is
 the formal geometry specialized by RMT-25.
 
 The exact upstream revision for both pinned Mathlib references is commit

@@ -122,7 +122,7 @@ settle finiteness.
   wide="true"
   src="integrable-generator-log-tails.svg"
   alt="A fair two-outcome probability example shows that the scalar generator two spends one unit of log-two expansion and no contraction budget, while the scalar generator one quarter spends no expansion and two units of contraction budget. Both outcomes satisfy the signed-log sandwich, and the weighted absolute signed log totals three halves of log two."
-  caption="**Worked tail budget:** outcome \(u\), with probability \(1/2\), uses generator \(2\): its forward tail is \(\log2\), its inverse tail is \(0\), and its signed log is \(\log2\). Outcome \(v\), also with probability \(1/2\), uses generator \(1/4\): its forward tail is \(0\), its inverse tail is \(\log4\), and its signed log is \(-\log4\). Thus the forward expectation is \((1/2)\log2\), the inverse expectation is \((1/2)\log4=\log2\), and the expected absolute signed log is \((3/2)\log2\). The singular matrix with diagonal entries \(1/2,0\) is shown as a near-miss: its total inverse tail is zero even though its signed log is negative. The plate proves no independence, zero-or-one law for invariant events, asymptotic limit, or Lyapunov spectrum."
+  caption="**Worked tail budget:** outcome \(u\), with probability \(1/2\), uses generator \(2\): its forward tail is \(\log2\), its inverse tail is \(0\), and its signed log is \(\log2\). Outcome \(v\), also with probability \(1/2\), uses generator \(1/4\): its forward tail is \(0\), its inverse tail is \(\log4\), and its signed log is \(-\log4\). Thus the forward expectation is \((1/2)\log2\), the inverse expectation is \((1/2)\log4=\log2\), and the expected absolute signed log is \((3/2)\log2\). The singular matrix with diagonal entries \(1/2,0\) is shown as a near-miss: its total inverse tail is zero even though its signed log is negative. These finite calculations do not establish independence, a zero-or-one law for invariant events, an asymptotic limit, or a Lyapunov spectrum."
 >}}
 
 ## One more step shows why the condition propagates
@@ -159,8 +159,8 @@ following distinctions prevent the notation from doing too much at once.
 - A {{< refterm "measure" "measure" >}} \(\mu\) assigns sizes to measurable
   events. It need not have total mass one. A probability measure does.
 - A {{< refterm "measurable-function" "measurable function" >}} respects the
-  selected event structures. Measurability lets integration theory see the
-  function; it does not say that the function has a finite integral.
+  selected event structures. Measurability makes the function eligible for
+  integration; it does not say that the function has a finite integral.
 - A real-valued function \(f\) is integrable when it is measurable and
   \(\int |f|\,d\mu\lt\infty\). Positive and negative values cannot hide an
   infinite tail by cancellation because the absolute value is integrated.
@@ -170,7 +170,8 @@ following distinctions prevent the notation from doing too much at once.
   {{< refterm "null-set" "null set" >}}.
 - A {{< refterm "measure-preserving-transformation" "measure-preserving transformation" >}}
   \(T:\Omega\to\Omega\) moves the base state without changing the measure.
-  This lets one-step integrability travel to \(T^j\omega\).
+  Consequently, composition with \(T^j\) preserves the relevant one-step
+  integrability.
 
 No independence assumption appears in this list. No probability density is
 required either. The package is formulated for a measure-preserving
@@ -204,7 +205,7 @@ The integrable-generator-log-tails package has three fields:
 
 | field | paper condition | job |
 |---|---|---|
-| <code>isPointwiseInvertible</code> | \(A(\omega)\) is a unit for every \(\omega\) | keeps the inverse lower bound honest |
+| <code>isPointwiseInvertible</code> | \(A(\omega)\) is a unit for every \(\omega\) | makes the inverse lower bound valid |
 | <code>hasIntegrableGeneratorLogPlus</code> | \(F\in L^1(\mu)\) | controls large one-step expansion |
 | <code>integrable_inverseGeneratorLogPlus</code> | \(I\in L^1(\mu)\) | controls deep one-step contraction |
 
@@ -239,7 +240,7 @@ I=\max(0,-\log|a|).
 
 These are exactly the positive and negative tails of \(\log|a|\). In higher
 dimension the interpretation is not perfectly symmetric: the forward norm
-sees the strongest expansion, while the inverse norm sees the strongest
+captures the strongest expansion, while the inverse norm captures the strongest
 contraction. Neither field implies the other.
 
 ## The finite-time sandwich
@@ -564,7 +565,7 @@ C(k,\omega)^{-1}
 \]
 
 The scalar log-norm estimate can add the inverse-tail terms in any order, but
-the matrix product itself cannot. RMT-34 therefore does not pretend that these
+the matrix product itself cannot. RMT-34 therefore does not claim that these
 inverse generators form a same-base one-sided inverse cocycle.
 
 ### Boundary 2: empty matrix dimension is totalized to zero

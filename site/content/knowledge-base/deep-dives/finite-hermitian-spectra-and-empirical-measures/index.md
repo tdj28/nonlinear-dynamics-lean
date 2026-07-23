@@ -141,7 +141,7 @@ we have
   wide="true"
   src="hermitian-2x2-spectrum-ledger.svg"
   alt="The two-by-two Hermitian matrix with diagonal entries two and off-diagonal entries one has eigenvectors one one and one minus one with ordered eigenvalues three and one. Its counting measure has unit atoms at three and one, and its empirical measure has one-half atoms at those same points. Trace four and trace-square ten match the first two spectral power sums."
-  caption="**The complete size-two ledger:** multiplying \(H\) by \((1,1)\) and \((1,-1)\) certifies the ordered eigenvalues \(3\) and \(1\). The counting masses are \(N_H(\{3\})=N_H(\{1\})=1\); division by two gives \(L_H(\{3\})=L_H(\{1\})=1/2\). The moment checks \(4=3+1\) and \(10=3^2+1^2\) agree exactly with the matrix traces."
+  caption="**The complete size-two ledger:** multiplying \(H\) by \((1,1)\) and \((1,-1)\) exhibits eigenvectors with eigenvalues \(3\) and \(1\); their decreasing order follows from \(3>1\). The counting masses are \(N_H(\{3\})=N_H(\{1\})=1\); division by two gives \(L_H(\{3\})=L_H(\{1\})=1/2\). The moment checks \(4=3+1\) and \(10=3^2+1^2\) agree exactly with the matrix traces."
 >}}
 
 ## A near-miss in reconstruction: the spectrum forgets the basis
@@ -481,9 +481,9 @@ open NonlinearDynamics.Random
 #check RandomMatrix.map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw_of_measurable_eigenvalues
 ~~~
 
-<code>#print</code> exposes definition bodies. <code>#check</code> asks the
-pinned elaborator for exact declaration types. Notice that the final two names
-retain the hypothesis in their names. The full project command rendered below
+<code>#print</code> exposes definition bodies. <code>#check</code> invokes the
+pinned elaborator and displays exact declaration types. Notice that the final
+two names retain the hypothesis in their names. The full project command rendered below
 checks the authoritative RMT-10A source, not the temporary probe.
 {{< /repo-check >}}
 
@@ -712,7 +712,7 @@ Hermiticity forces its value to be real.
 
 ### The proof route through characteristic roots
 
-The proof does not simply rewrite with Mathlib's arbitrarily reindexed
+The proof is not a rewrite with Mathlib's arbitrarily reindexed
 <code>trace_eq_sum_eigenvalues</code>. It follows a route that preserves the
 chosen ordered interface:
 
@@ -806,8 +806,8 @@ This proof handles repeated eigenvalues naturally. When an eigenspace has
 dimension greater than one, an eigenbasis inside it is far from unique. The
 sorted root list is still canonical.
 
-Once the vector equality is available, unitary invariance of both spectral
-measures is immediate:
+Once the vector equality is available, rewriting both definitions gives
+unitary invariance of both spectral measures:
 
 \[
 N_{UHU^*}=N_H,
@@ -1069,7 +1069,7 @@ A\longmapsto
 
 This is a policy choice for totalization, not a spectral claim about
 non-Hermitian matrices. Sending an off-locus matrix to zero does not assert
-that its spectrum is zero. It simply gives the ambient function a value where
+that its spectrum is zero. It gives the ambient function a value where
 the intended Hermitian observable is outside its domain.
 
 The theorem <code>measurable_matrixToHermitianOrZero</code> is unconditional.
@@ -1285,10 +1285,10 @@ Read the output in order:
    are true; and
 5. the empty spectrum has zero slots and zero atoms at zero.
 
-Each <code>example</code> asks Lean's kernel to certify one finite equality.
+Each <code>example</code> is a kernel-checked proof of one finite equality.
 The code deliberately stores empirical masses as integer atom counts with a
 separate denominator two, so there is no hidden floating-point calculation.
-It verifies the tutorial ledger only. It does not prove the general Hermitian
+It checks the tutorial ledger only. It does not prove the general Hermitian
 spectral theorem, compute Mathlib's <code>eigenvalues₀</code>, construct a
 <code>Measure ℝ</code>, or check any project declaration. Its command is safe
 on an ordinary Mac or Linux host because it loads only the pinned compiler and
@@ -1573,8 +1573,8 @@ They do not prove tightness, convergence, a semicircle law, or universality.
    <code>ProbabilityMeasure ℝ</code>. Which field or proof is added by the
    latter?
 9. Propose two possible conventions at dimension zero. Explain why the
-   arbitrary-Dirac convention is total and probabilistic but spectrally
-   dishonest.
+   arbitrary-Dirac convention is total and probabilistic but is not determined
+   by the empty spectrum.
 
 ### Summit
 

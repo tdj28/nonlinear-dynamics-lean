@@ -527,7 +527,7 @@ normalized real index is also empty. The project defines
 `GUE.varianceScale 0 = 0`, so the common Gaussian family is the unique empty
 family with a Dirac law.
 
-Every formula now reduces honestly:
+Every formula now reduces directly:
 
 \[
 \operatorname{Tr}(0)=0,
@@ -606,7 +606,7 @@ The source follows the mathematical dependency order:
 This order keeps matrix algebra, measure transport, Gaussian scalar moments,
 and natural-number arithmetic from appearing in one giant goal.
 
-## Mathlib interfaces doing the heavy lifting
+## Mathlib interfaces used by the proof
 
 The proof is project-specific, but its engines are standard Mathlib
 interfaces.
@@ -665,7 +665,7 @@ official finite \(\ell^2\) API
 `GUE.matrixLaw n` is a measure. The coordinate constructor is a map whose
 pushforward equals that measure. Rewriting the law does not produce a
 pointwise inverse sample. The proof should use `Measure.map`, `integral_map`,
-and map congruence rather than pretending the ambient matrix has definitional
+and map congruence rather than assuming the ambient matrix has definitional
 coordinate fields.
 
 ### Complex integrability does not follow from reality almost everywhere

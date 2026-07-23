@@ -115,7 +115,7 @@ example : (2 + 3 : Nat) = 5 := by
   decide
 ```
 
-Then ask the pinned compiler to elaborate and run it:
+Then invoke the pinned Lean toolchain to elaborate the file:
 
 ```sh
 elan run leanprover/lean4:v4.32.0 lean TinyTutorial.lean
@@ -582,8 +582,9 @@ The first active sequence is:
     normalized upper limsup of a nonnegative integrable shifted-subadditive
     process. The cocycle specialization intersects all block events and uses
     the deterministic Fekete infimum to reach the integrated log-positive
-    growth rate. A compiled two-cycle records why no ergodicity of a powered
-    map may be smuggled into the proof. This remains one-sided: it proves no
+    growth rate. A formal two-cycle counterexample shows that ergodicity of the
+    original map does not imply ergodicity of the powered map used for blocks.
+    This remains one-sided: it proves no
     lower liminf bound, samplewise convergence, signed Lyapunov exponent, or
     Oseledets splitting.
 35. [`RandomCocycles/SubadditiveBadBlockMeasure.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean)
@@ -607,8 +608,8 @@ The first active sequence is:
     finite-mass premise; the real-measure convergence theorem exposes the
     finite-target gate forced by `Measure.real`. On a finite measure space the
     uniform RMT-30 ratio passes unchanged to the union, including the
-    log-positive cocycle specialization. A compiled preserving two-state
-    countermodel shows that the raw once-bad event need not be invariant.
+    log-positive cocycle specialization. A preserving two-state counterexample
+    shows that the raw once-bad event need not be invariant.
 37. [`RandomCocycles/SubadditiveLowerDeviation.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean)
     replaces one finite witness by positive witnesses beyond every cutoff at
     one rational slope below the target. Centered shifted subadditivity gives
@@ -629,7 +630,7 @@ The first active sequence is:
     required by Mathlib's conditionally complete `liminf`. A two-level rational
     exhaustion turns every strict lower-liminf failure into a countable union
     of RMT-32 null events and simultaneously supplies the eventual lower bound
-    needed to interpret the real lower limit honestly. The exact normalized
+    needed to justify the real lower-limit calculation. The exact normalized
     centering identity and the ergodic Birkhoff limit then lift the centered
     estimate to the original process. For matrix cocycles, this lower bound
     meets RMT-29's upper-limsup bound and yields almost-everywhere convergence
@@ -647,9 +648,10 @@ The first active sequence is:
     integrability sandwiches every finite-time real log between integrable
     lower and upper rails and packages the family as an integrable
     shifted-subadditive candidate. A checked geometric-probability example
-    with an identity base and invertible one-dimensional contractions proves
-    that the forward moment alone need not control either the inverse tail or
-    signed-log integrability. Separately, a strictly positive RMT-33 rate makes
+    with an identity base and invertible one-dimensional contractions furnishes
+    a counterexample: the forward moment alone need not control either the
+    inverse tail or signed-log integrability. Separately, a strictly positive
+    RMT-33 rate makes
     the real log and log-positive observable eventually agree almost
     everywhere, without invertibility or an inverse-tail hypothesis. The
     empty-dimensional specialization of that endpoint is syntactically valid

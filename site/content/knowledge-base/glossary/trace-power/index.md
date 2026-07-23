@@ -50,7 +50,7 @@ A=
 \]
 
 This matrix is real symmetric, so as a complex matrix it is
-{{< refterm "hermitian-matrix" "Hermitian" >}}. Its first power is just \(A\),
+{{< refterm "hermitian-matrix" "Hermitian" >}}. Its first power is \(A\),
 and its ordinary {{< refterm "matrix-trace" "matrix trace" >}} is
 
 \[
@@ -91,8 +91,8 @@ Therefore
 \]
 
 The off-diagonal entries did not enter \(\operatorname{tr}(A)\) directly, but
-they did enter the diagonal of \(A^2\). Trace powers remember interactions that
-the first trace cannot see.
+they did enter the diagonal of \(A^2\). Trace powers therefore retain
+interactions absent from the first trace.
 
 ## Compute the eigenvalues
 
@@ -437,7 +437,8 @@ elan run leanprover/lean4:v4.32.0 lean TracePowerScratch.lean
 The four evaluations should display the squared matrix with entries
 \(5,4,4,5\), then \(4\), \(10\), and \(10\). This scratch model deliberately
 uses a concrete four-field structure. It teaches multiplication and trace
-without pretending to replace Mathlib's generic <code>Matrix</code> API.
+without serving as a replacement for Mathlib's generic <code>Matrix</code>
+API.
 
 ## Project declaration workflow
 

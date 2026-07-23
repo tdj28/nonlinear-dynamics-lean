@@ -154,9 +154,10 @@ Consequently,
 \ne\frac14=\mathbb P(F).
 \]
 
-This one failed measurable event proves that \(C\) is not measure preserving.
-The pushforward law has mass \(1/2\) at \(0\), mass \(1/2\) at \(2\), and no
-mass at \(1\) or \(3\). It is not the original uniform law.
+The event \(F\) witnesses failure of the equality required for every
+measurable event, so \(C\) is not measure preserving. The pushforward law has
+mass \(1/2\) at \(0\), mass \(1/2\) at \(2\), and no mass at \(1\) or \(3\).
+It is not the original uniform law.
 
 The example isolates the difference:
 
@@ -318,7 +319,7 @@ theorem base_iterate_preserving (C : DiscreteMatrixCocycle (ι := ι) μ)
   C.base_preserving.iterate k
 ~~~
 
-The Birkhoff module consumes exactly that kind of hypothesis when it proves
+The Birkhoff module uses exactly that kind of hypothesis when it proves
 finite orbit sums integrable:
 
 ~~~lean
@@ -337,10 +338,10 @@ appears in this finite theorem.
 
 ### Enumerate the four-state test locally
 
-On the uniform four-state space, mass in quarters is just the number of states
+On the uniform four-state space, mass in quarters equals the number of states
 in an event. This bounded <code>Std</code> worksheet enumerates all sixteen
-events. It confirms that the cycle preserves every one and finds the
-singleton that defeats the collapse. Save it as
+events. It checks that the cycle preserves every event and identifies the
+singleton that witnesses failure for the collapse. Save it as
 <code>/tmp/MeasurePreservingScratch.lean</code> on a normal Mac or Linux
 computer:
 
@@ -494,7 +495,7 @@ collapses invariant events to null or conull ones.
 
 The chapter
 [Birkhoff Limits, Invariant Sigma Algebras, and Conditional Expectation]({{< relref "/knowledge-base/deep-dives/birkhoff-limits-invariant-sigma-algebras-and-conditional-expectation" >}})
-shows how preservation supports the orbit-average machinery before any
+shows how preservation supports the orbit-average analysis before any
 ergodic specialization.
 
 ## References

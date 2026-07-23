@@ -88,7 +88,7 @@ By the summit, a reader should be able to:
 2. explain why `RandomMatrix.law` asks for a measurability proof explicitly;
 3. derive the law of a measurable composite in either order;
 4. explain why a probability measure remains a probability measure after pushforward;
-5. use a Dirac law as a deterministic sanity check;
+5. use a Dirac law as a deterministic test case;
 6. distinguish congruence from unitary similarity and from invariance in law;
 7. read `Matrix.unitaryGroup ι ℂ` as certified unitary matrices;
 8. state exactly what `HasUnitaryConjugationInvariantLaw` means; and
@@ -349,7 +349,7 @@ almost-everywhere measurable with respect to \(\mu\), the result is defined to
 be the zero measure ([Mathlib pushforward API](#ref-mathlib-map)). A bare map
 expression can therefore typecheck without denoting the intended law.
 
-The project asks for the stronger measure-independent proof `Measurable X`.
+The project API requires the stronger measure-independent proof `Measurable X`.
 That proof supports every later measure, the standard measurable-set formula,
 and clean composition. A future API could instead be based on
 `AEMeasurable X μ`, but this module is not.

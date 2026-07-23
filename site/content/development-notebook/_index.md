@@ -10,7 +10,7 @@ corresponding Lean file line by line. You can read chronologically to watch the
 library grow or enter through the topic that brought you here.
 
 An entry is not a changelog. It is a complete guided lesson with runnable
-commands, proof-state commentary, honest limitations, and links into the
+commands, proof-state commentary, explicit limitations, and links into the
 stable textbook material in the Knowledge Base. New entries begin as local
 Hugo drafts until their claims, references, code, and teaching path are ready
 to share. The current corpus is published openly as work in progress: an

@@ -86,7 +86,7 @@ repository's orbit-majorant
 
 is exactly \(Y_n(\omega)\) in this model.
 
-Three checks are immediate:
+Three properties follow directly from the displayed formulas:
 
 1. every \(Y_n\) is integrable because the probability space has two atoms;
 2. \(Y_n\le0\) for every positive \(n\); and
@@ -162,7 +162,7 @@ q:=\mu(B_5(-3/4))=\frac12.
 {{< reference-figure
   src="two-atom-bad-block-ledger.svg"
   alt="At threshold negative three quarters, amber misses the strict test at lengths one through four and passes it only at length five, while blue never passes; the union is the amber atom of probability one half."
-  caption="The complete finite ledger for the running example. The length-four amber value equals its threshold and is therefore not marked. Only the length-five amber block is strictly below the line, so the union of all five candidate events is the singleton amber event with mass one half. These are exact toy-model values, not sampled frequencies."
+  caption="The complete finite ledger for the running example. The length-four amber value equals its threshold and is therefore not marked. Only the length-five amber block is strictly below the line, so the union of all five candidate events is the singleton amber event with mass one half. These are exact model values, not sampled frequencies."
 >}}
 
 ### Two boundary tests before any theorem
@@ -421,7 +421,7 @@ Our exact values refute it:
 This error is not a minor notation issue. It changes a useful upper bound into
 a false lower bound.
 
-## Climb from the ledger to the general definitions
+## Climb from the finite ledger to the general definitions
 
 Now let \((\Omega,\mu)\) be any measurable space with finite total measure, let
 \(T:\Omega\to\Omega\) preserve \(\mu\), and let \(X_n:\Omega\to\mathbb R\) be an
@@ -729,8 +729,8 @@ where \(\gamma_\mu^+(C)\) is the integrated log-positive Fekete rate.
 | Prove the generic ratio | All preceding measure hypotheses, the all-positive-horizon lower bound, \(c\lt\delta\) | \(\mu_{\mathbb R}(B_m(c))\le\delta/c\) |
 | Specialize to cocycles | Finite total measure and integrable generator log-positive norm | The same finite ratio for \(B_m^C(c)\) |
 
-The opening example uses a probability measure because atomwise averaging is
-easy to see. The generic theorem needs only a finite measure. Neither the
+The opening example uses a probability measure to make atomwise averaging
+explicit. The generic theorem needs only a finite measure. Neither the
 generic theorem nor its cocycle specialization needs ergodicity.
 
 ## Exact declaration map
@@ -797,7 +797,7 @@ The file prints axiom footprints for:
 The source's recorded project validation found the expected Mathlib logical
 footprint.
 
-## A tiny executable model using only `Std`
+## A bounded executable model using only `Std`
 
 The next worksheet reproduces the complete two-atom ledger without importing
 Mathlib or this project. It is a **standalone tutorial** suitable for a normal

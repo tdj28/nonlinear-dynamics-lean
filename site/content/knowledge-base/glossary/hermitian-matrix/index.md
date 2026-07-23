@@ -73,7 +73,7 @@ That equality, \(H^{\mathrm H}=H\), is the definition of Hermitian.
   wide="true"
   src="hermitian-entry-check.svg"
   alt="The matrix H has real diagonal entries two and minus one. Its upper-right entry one plus three i is paired with the lower-left entry one minus three i by complex conjugation, so it passes the Hermitian check. A near-miss matrix K repeats one plus three i below the diagonal and fails. A final panel computes trace one, determinant minus twelve, and real eigenvalues four and minus three for H."
-  caption="**Finding:** the diagonal entries of \(H\) have zero imaginary part, and reflecting \(1+3i\) across the diagonal changes it to its conjugate \(1-3i\). Those three checks prove \(H^{\mathrm H}=H\). The near miss \(K\) copies \(1+3i\) instead of conjugating it, so \(K^{\mathrm H}\ne K\). For the passing matrix, the characteristic polynomial factors as \((\lambda-4)(\lambda+3)\), giving the real eigenvalues \(4\) and \(-3\). This one calculation illustrates the spectral theorem; it does not prove the general theorem."
+  caption="**Finding:** the diagonal entries of \(H\) have zero imaginary part, and reflecting \(1+3i\) across the diagonal changes it to its conjugate \(1-3i\). Those displayed entry equalities are exactly \(H^{\mathrm H}=H\) for this matrix. The near miss \(K\) copies \(1+3i\) instead of conjugating it, so \(K^{\mathrm H}\ne K\). For the passing matrix, the characteristic polynomial factors as \((\lambda-4)(\lambda+3)\), giving the real eigenvalues \(4\) and \(-3\). This one calculation illustrates the spectral theorem; the general theorem requires a separate argument."
 >}}
 
 ## The general two-by-two pattern
@@ -309,7 +309,7 @@ theorem IsHermitianEverywhere.diagonal_im_eq_zero
 
 Here `∀ ω` means every outcome, `X ω` is the ordinary matrix realized at
 that outcome, and `.im = 0` is the real-diagonal conclusion. The theorem uses
-the `i = j` case of conjugate reflection, just as the hand calculation did.
+the `i = j` case of conjugate reflection, as in the hand calculation.
 
 ### A tiny standalone worksheet
 
@@ -374,8 +374,8 @@ elan run leanprover/lean4:v4.32.0 lean HermitianWorksheet.lean
 ~~~
 
 Lean prints `true` and then `false` for the two `#eval` lines. The two
-`example` declarations ask the kernel to verify the positive and negative
-claims. This standalone command does not import Mathlib or build this project.
+`example` declarations ask the kernel to check the positive and negative proof
+terms. This standalone command does not import Mathlib or build this project.
 
 {{< repo-check >}}
 The authoritative project source is
@@ -416,8 +416,8 @@ full-project command below checks the authoritative project file itself.
 | An everywhere statement is only almost-sure | Everywhere is stronger; almost-sure statements may ignore a null set |
 
 {{< panel "warning" >}}
-**What this page does not prove.** The explicit eigenvalue calculation checks
-one two-by-two matrix. It does not prove the general spectral theorem. The
+**Scope of the calculation.** The explicit eigenvalue calculation treats one
+two-by-two matrix. The general spectral theorem is a separate result. The
 project module checked here formalizes Hermitian predicates, entry reflection,
 real diagonals, traces, measurability, and pointwise versus almost-everywhere
 interfaces. It does not yet formalize the full spectral theorem on this page,

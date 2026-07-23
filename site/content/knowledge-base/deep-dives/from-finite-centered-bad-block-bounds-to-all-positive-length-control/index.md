@@ -243,7 +243,7 @@ T^{-1}\bigl(B_\infty(-2/5)\bigr)=\varnothing
   wide="true"
   src="collapse-map-raw-event-ledger.svg"
   alt="A collapse map sends both amber and blue to blue and preserves a Dirac mass at blue. Amber has a one-shot centered value negative one from length two onward against slope negative two fifths. It is strictly below the line only at length two, so the raw event is amber, but its preimage is empty. Both sets have zero Dirac-blue measure although they are setwise unequal."
-  caption="**Checked non-invariance model:** one strict witness at \(n=2\) puts amber in the raw all-length event, even though no later length works. Because the collapse map sends both atoms to blue, the preimage of \(\{\text{amber}\}\) is empty. The preserved Dirac-blue measure assigns both sets mass zero, so this example proves failure of setwise invariance without claiming failure of almost-everywhere equality. It also makes the once-bad versus asymptotic distinction numerical."
+  caption="**Checked non-invariance model:** one strict witness at \(n=2\) puts amber in the raw all-length event, even though no later length works. Because the collapse map sends both atoms to blue, the preimage of \(\{\text{amber}\}\) is empty. The preserved Dirac-blue measure assigns both sets mass zero, so this example is a counterexample to setwise invariance without contradicting almost-everywhere equality. It also makes the once-bad versus asymptotic distinction numerical."
 >}}
 
 The two models serve different purposes. The identity model checks nested caps,
@@ -487,8 +487,8 @@ forces \(\delta\le0\), and \(c\lt\delta\) forces \(c\lt0\).
 The theorem uses <code>IsFiniteMeasure μ</code>, not probability. The source
 checks a measure of total mass two. Under rescaling, event mass and raw
 integrals scale, so a compatible \(\delta\) scales too. A two-atom identity
-example is nonergodic, has bad set exactly one atom of mass \(1/2\), and proves
-\(1/2\le2/3\).
+example is nonergodic, has bad set exactly one atom of mass \(1/2\), and
+satisfies the displayed estimate \(1/2\le2/3\).
 
 ## Specialize to log-positive cocycles
 
@@ -545,15 +545,15 @@ before proving non-invariance.
 
 Null measurability does not imply invariance. Measure preservation does not
 make every dynamically defined set invariant. A subunit bound cannot become a
-zero-one conclusion until the right event earns invariance or almost
-invariance and the matching ergodic hypothesis is present.
+zero-one conclusion until the right event is invariant or almost invariant
+and the matching ergodic hypothesis is present.
 
 ## RMT-32 now supplies the event layer
 
 RMT-32 does not merely add ergodicity to \(B_\infty(c)\). It replaces one
 positive witness by an asymptotic statement: an intersection over starting
 cutoffs of unions over later positive lengths. To represent strict lower
-deviation honestly, it chooses one rational margin \(q\lt c\).
+deviation with a durable strict gap, it chooses one rational margin \(q\lt c\).
 
 The checked change is from
 
@@ -864,8 +864,8 @@ Important syntax:
 - <code>List.filter</code> materializes the finite event;
 - <code>find?</code> returns <code>some 5</code> for amber and
   <code>none</code> for blue; and
-- each <code>native_decide</code> example asks Lean to certify a displayed
-  boundary or inequality.
+- each <code>native_decide</code> example supplies a kernel-checked proof of a
+  displayed boundary or inequality.
 
 With the pinned compiler installed, a human types:
 

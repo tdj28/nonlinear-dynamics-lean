@@ -259,7 +259,7 @@ The logical relationship is
 \bigl[P(\omega)\text{ for }\mu\text{-a.e. }\omega\bigr].
 \]
 
-The interval example proves that the reverse arrow is invalid. This matters in
+The interval example shows why the reverse arrow is invalid. This matters in
 formalization: an almost-everywhere hypothesis cannot be passed to a theorem
 that expects a pointwise hypothesis without an additional argument or a change
 of representative.

@@ -201,8 +201,8 @@ conjugate."
 ### Try the entry arithmetic locally
 
 The project theorem below uses Mathlib's general matrix and complex-number
-interfaces. Before loading that machinery, a reader can reproduce the opening
-calculation with integer real-and-imaginary pairs. Save this file as
+interfaces. Before importing those dependencies, a reader can reproduce the
+opening calculation with integer real-and-imaginary pairs. Save this file as
 <code>ConjugateTransposeScratch.lean</code> in a scratch directory outside
 <code>formalization/</code>:
 

@@ -28,8 +28,8 @@ chosen measure. On a space with a
 \lt\infty.
 \]
 
-The absolute value is the key. Positive and negative contributions are not
-allowed to hide infinite size by cancellation.
+Absolute integrability is the relevant condition. Positive and negative
+contributions cannot hide infinite absolute size by cancellation.
 
 ## Start with three exact outcomes
 
@@ -329,8 +329,10 @@ This exact standalone worksheet was executed successfully with Lean 4.32.0. It p
 The finite total <code>12</code> means \(12/6=2\). At cutoffs
 \(N=1,2,4,8\), the heavy-tail partial totals equal \(1,2,4,8\), because
 every newly included outcome contributes one. Their growth is linear in the
-cutoff and unbounded. This finite computation demonstrates the obstruction;
-it does not ask Lean Core to define an infinite series or prove Mathlib's
+cutoff and therefore unbounded. The four displayed evaluations check the
+finite cutoffs; the formula assigning contribution one to every newly included
+outcome establishes the statement for arbitrary cutoffs. This worksheet does
+not ask Lean Core to define an infinite series or prove Mathlib's
 <code>Integrable</code> predicate.
 
 ### Full project check

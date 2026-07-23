@@ -207,7 +207,7 @@ both collapse and contraction.
   wide="true"
   src="three-log-observables.svg"
   alt="Four norm regimes are compared across three observable columns. The extended logarithm alone sends collapse to bottom. The total real logarithm records contraction but sends collapse to zero. The positive logarithm sends collapse, contraction, and unit scale to zero while retaining expansion."
-  caption="**Information ledger:** totality, zero-faithfulness, and a real nonnegative codomain serve different proof goals. RMT-34 uses the real log only after stating the algebraic condition that makes its signed laws honest."
+  caption="**Information ledger:** totality, zero-faithfulness, and a real nonnegative codomain serve different proof goals. RMT-34 uses the real log only after stating the algebraic condition under which its signed identities hold."
 >}}
 
 The first four compiled probes make the scalar separation executable:
@@ -251,8 +251,8 @@ The distinction becomes decisive when products are inverted. Mathlib proves
 \]
 
 Thus a newest-factor-left forward product acquires the reverse factor order
-under inversion. The compiled noncommuting-shear probe proves that the two
-orders can genuinely differ.
+under inversion. The noncommuting-shear counterexample exhibits two products
+for which the orders differ.
 
 ## The nonempty bridge is semantic
 
@@ -395,7 +395,7 @@ positive log on nonnegative inputs, and `Real.posLog_mul`.
 >}}
 
 The inequality is unconditional because Mathlib's inverse and positive log are
-total. It becomes an honest lower-tail majorant only when the finite product
+total. It becomes a valid lower-tail majorant only when the finite product
 is a unit. On a singular product, \(Q_k\) may be zero and contain no record of
 collapse.
 
@@ -492,7 +492,7 @@ for a general signed process, or identify an almost-everywhere signed limit.
 
 ## Forward-tail integrability does not force inverse-tail integrability
 
-The infinite-Lebesgue probe first establishes the simplest separation. A
+The infinite-Lebesgue construction gives the simplest separation. A
 constant contraction by one half has a zero forward positive-log envelope and
 a strictly positive inverse positive-log envelope. The zero function is
 integrable on any measure, while a nonzero constant is not integrable over
@@ -639,7 +639,7 @@ multiplies the induction hypothesis on the left.
 Under `[Nonempty ι]`, the finite value unit is nonzero, its norm is positive,
 and `ENNReal.log_ofReal` selects its finite branch. The earlier extended-real
 observable then equals the coercion of the new real observable. Empty dimension
-is excluded for the semantic reason demonstrated by compiled examples 5-7.
+is excluded because examples 5–7 record different empty-dimensional behavior.
 
 ### 5. `measurable_realLogNormObservable`
 
@@ -740,9 +740,9 @@ The structure packages exactly three fields:
 
 The source stores these obligations separately and does not derive one from
 another. Its checked separation is one directional: the geometric probability
-example proves that the forward integrability field does not imply the inverse
-field, even when pointwise units already hold. No reciprocal nonimplication is
-claimed.
+construction is a counterexample to the claim that the forward integrability
+field implies the inverse field, even when pointwise units already hold. No
+reciprocal nonimplication is claimed.
 
 ### 21. `measurable_inverseOrbitLogPlusSum`
 
@@ -869,10 +869,10 @@ boundaries compile rather than live only in prose.
     nonsingular inverse returns zero.
 15. The two-rate contraction has an explicit inverse and a strict lower-rail
     gap.
-16. Noncommuting shears prove that the same-order product of inverses differs
-    from the reverse-order product.
+16. Noncommuting shears furnish a counterexample to equality between the
+    same-order and reverse-order products of inverses.
 
-Examples 11 and 12 prove different statements. Example 11 isolates why a
+Examples 11 and 12 address different statements. Example 11 illustrates why a
 finite constant can fail to be integrable on an infinite measure. Example 12
 uses a genuinely unbounded tail and closes the probability-space loophole.
 
@@ -1382,13 +1382,12 @@ reduces integrability to summability of these contributions. The series of
 the constant one-half sequence diverges, so the observable is not integrable
 even though the total measure is one.
 
-### Exercise 34. Verify what the geometric example does not prove
+### Exercise 34. Identify the scope of the geometric counterexample
 
-Does that example establish failure under independent sampling or under an
-ergodic base?
+Does that counterexample address independent sampling or an ergodic base?
 
 **Solution.** No. Its base map is the identity on the natural-number sample
-space. The example is a one-step tail counterexample: pointwise units and
+space. It is a one-step tail counterexample: pointwise units and
 forward positive-log integrability do not force inverse-tail or signed
 one-step integrability. It makes no independence or ergodicity claim.
 
@@ -1448,7 +1447,7 @@ positive-log observable and its integral are zero. The integrated rate is
 therefore zero. The theorem's strict positivity premise cannot be satisfied,
 making the specialization vacuous rather than contradictory.
 
-### Exercise 40. Design the next theorem honestly
+### Exercise 40. Give the next theorem exact hypotheses
 
 What additional result is still required before claiming a general signed
 almost-everywhere limit from the RMT-34 candidate?

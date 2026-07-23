@@ -27,7 +27,7 @@ start from the same matrix and correctly report \(10\), \(5\), or \(5/2\)
 because they asked three different normalized questions.
 
 The safest practice is to keep a **normalization ledger** beside every theorem:
-a short table whose factors travel with the notation.
+a short table whose factors accompany the notation.
 
 ## Start with one matrix and one raw quantity
 

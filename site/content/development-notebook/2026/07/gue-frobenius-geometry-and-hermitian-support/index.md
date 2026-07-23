@@ -386,7 +386,7 @@ the full matrix space is closed under complex scaling.
 
 ### `RandomMatrix.frobeniusCongruence_inner`
 
-The central calculation proves
+The central calculation establishes the inner-product identity
 
 \[
 \langle \mathcal C_U(X),\mathcal C_U(Y)\rangle_F
@@ -545,7 +545,8 @@ defined `GUE.matrixLaw n` evaluate it directly.
 ### `RandomMatrix.measurableSet_hermitianSet`
 
 The ambient entrywise measurable space has no global `MeasurableEq` instance,
-so the proof cannot simply declare the matrix equation \(H^*=H\) measurable.
+so the proof cannot declare the matrix equation \(H^*=H\) measurable without
+an additional argument.
 It expands Hermiticity into all entry equations:
 
 \[
@@ -817,7 +818,7 @@ noncompiling ellipses.
 
 | Tempting shortcut | What goes wrong | Checked repair |
 |---|---|---|
-| Treat a matrix array as already carrying the needed Hilbert instances | The standard-Gaussian API cannot see the intended Frobenius geometry | Flatten into `EuclideanSpace ℂ (Fin n × Fin n)` |
+| Treat a matrix array as already carrying the needed Hilbert instances | The matrix array lacks the Hilbert instances required by the standard-Gaussian API | Flatten into `EuclideanSpace ℂ (Fin n × Fin n)` |
 | Call the Hermitian locus a complex subspace | Multiplication by \(i\) generally leaves the locus | Define a `Submodule ℝ` |
 | Prove only \(\|UXU^*\|=\|X\|\) pointwise | Inverses, linearity, and transport APIs remain unavailable | Package linear and linear-isometric equivalences |
 | Use only \(U^*U=I\) for both inverse directions | One composite actually requires \(UU^*=I\) | Use both unitary-group identities explicitly |

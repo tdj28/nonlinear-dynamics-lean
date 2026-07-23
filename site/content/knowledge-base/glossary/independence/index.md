@@ -129,7 +129,7 @@ Under \(\mathbb P_{\mathrm d}\), learning \(X\) tells us \(Y\) exactly. The
 variables are dependent even though each variable, viewed alone, still looks
 like a fair bit.
 
-This comparison isolates a crucial fact:
+This comparison isolates the dependence on the probability measure:
 
 > Independence is a property of the functions **together with the chosen
 > probability measure**. It is not a property of their formulas alone.
@@ -610,13 +610,13 @@ dependencies among the outputs. Independence also does not imply identical
 distribution.
 
 {{< panel "warning" >}}
-**What this page does not prove.** The finite tables verify two toy measures,
-and the exclusive-or table verifies a finite pairwise-versus-mutual boundary.
-They do not establish independence for an arbitrary model. The checked project
-module provides Gaussian law, mutual-independence, scaling, product-law, and
-sum interfaces; it does not infer independent coordinates from matching
-marginals, zero covariance, or an informal construction story. This page
-constructs no matrix ensemble and proves no unitary invariance.
+**Limits of the finite calculations.** The tables compute two toy measures and
+one pairwise-versus-mutual boundary. They supply no independence conclusion
+for an arbitrary model. The checked project module provides Gaussian law,
+mutual-independence, scaling, product-law, and sum interfaces; it does not
+infer independent coordinates from matching marginals, zero covariance, or
+an informal generative description. This page constructs no matrix ensemble and
+supplies no unitary-invariance theorem.
 {{< /panel >}}
 
 ## Where to continue

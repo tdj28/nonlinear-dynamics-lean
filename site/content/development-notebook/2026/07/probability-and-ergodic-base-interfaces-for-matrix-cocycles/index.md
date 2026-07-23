@@ -4,7 +4,7 @@ slug: "probability-and-ergodic-base-interfaces-for-matrix-cocycles"
 date: 2026-07-21
 weight: -49
 author: "tdj28"
-summary: "A declaration-complete separation of finite-horizon integrability, probability normalization, and ergodic rigidity for one-sided matrix cocycles, including deterministic rate bounds, an honest expectation alias, zero-one events, invariant-observable constancy, and a precise account of the samplewise theorem still missing."
+summary: "A declaration-complete separation of finite-horizon integrability, probability normalization, and ergodic rigidity for one-sided matrix cocycles, including deterministic rate bounds, an expectation alias justified by probability normalization, zero-one events, invariant-observable constancy, and a precise account of the samplewise theorem still missing."
 lead: |
   Probability and ergodicity are not two names for the same kind of randomness. Probability fixes the scale of a measure. Ergodicity says invariant measurable information is trivial up to null sets. The one-step integrability hypothesis does a third job: it makes every finite-horizon positive-log cost a genuine finite integral. RMT-17 gives each assumption its own Lean interface, then stops before any theorem could be mistaken for Kingman's subadditive ergodic theorem or a Lyapunov exponent.
 key_result: |
@@ -77,8 +77,8 @@ RMT-17 separates the assumptions needed to interpret and extend that layer.
 Integrability packages the sample-dependent family as an integrable
 shifted-subadditive-process candidate and proves four facts about the existing
 deterministic rate. Probability normalization adds
-<code>IsProbabilityMeasure μ</code>, so the same finite-horizon integral can
-honestly be named an expectation. Ergodicity adds rigidity: strictly invariant
+<code>IsProbabilityMeasure μ</code>, so the same finite-horizon integral is an
+expectation. Ergodicity adds rigidity: strictly invariant
 measurable events obey a zero-one law on a probability space, while
 almost-everywhere invariant, almost-everywhere strongly measurable real
 observables are almost everywhere constant even without probability
@@ -158,7 +158,7 @@ By the summit, a reader should be able to:
 9. explain why every positive horizon is an upper bound for that infimum;
 10. specialize the rate bound to the one-step raw integral;
 11. distinguish an expectation alias from a normalization procedure;
-12. explain why the expectation definition asks for both mass one and
+12. explain why the expectation definition requires both mass one and
     integrability;
 13. apply the strict-invariance zero-one theorem to a measurable event;
 14. apply the almost-everywhere constancy theorem to a real observable;
@@ -265,7 +265,7 @@ normalizer, or create a new measure.
 
 The integrability proof remains a separate argument. This matters because
 Mathlib's real-valued Bochner integral is totalized: a nonintegrable function
-still has a formal integral value. The definition therefore asks for
+still has a formal integral value. The definition therefore requires
 <code>hC</code> even though its body does not use the proof computationally.
 The unused proof parameter is an intentional public gate. It prevents the API
 from using expectation language for a totalized fallback value.
@@ -653,11 +653,11 @@ one, so \(Q_1=I_1\). This yields
 
 The bound is often convenient because the hypothesis itself is stated at one
 step and because the one-step integral may be easier to estimate. It can be
-strict, as the alternating flip cocycle demonstrates.
+strict, as the alternating flip cocycle exhibits.
 
 The theorem still uses a raw-measure integral. Without probability
 normalization, \(I_1\) is not an expectation. The theorem is invariant under
-none of the semantic relabeling introduced later; it simply records the
+none of the semantic relabeling introduced later; it records the
 deterministic inequality already supported by <code>hC</code>.
 
 ## Declaration 7: expose a guarded expectation
@@ -743,7 +743,7 @@ The proof delegates directly to Mathlib. From <code>hErg</code> it projects
 invariance proofs. The probability typeclass converts the "almost full"
 alternative into numerical mass one.
 
-Three boundaries deserve attention.
+Three boundaries control the scope.
 
 First, <code>hs</code> is required. The wrapper does not make a statement about
 arbitrary nonmeasurable subsets. Second, <code>hinv</code> is literal set
@@ -752,9 +752,11 @@ this wrapper chooses the smallest strict form needed now. Third,
 <code>hErg</code> is an ordinary proof argument rather than a typeclass. A
 caller chooses and supplies the ergodicity theorem explicitly.
 
-The <code>omit</code> command proves that finite matrix indexing is irrelevant.
-The cocycle serves only as a typed route to its base map. No generator,
-product, norm, or integrability hypothesis appears in the proof.
+The <code>omit</code> command removes the finite-index instances from the
+declaration's local context. Because the checked declaration elaborates
+without them, it does not require finite matrix indexing. The cocycle serves
+only as a typed route to its base map. No generator, product, norm, or
+integrability hypothesis appears in the proof.
 
 ## Declaration 10: invariant real observables are almost everywhere constant
 
@@ -770,7 +772,7 @@ theorem ergodicBase_ae_eq_const_of_ae_invariant
 ```
 
 The theorem moves from events to real observables. Its invariance premise is
-oriented exactly as Mathlib expects:
+oriented exactly as the Mathlib declaration requires:
 
 \[
   g\circ T = g
@@ -1106,9 +1108,8 @@ RMT-17 does not prove any of the following:
 * a nonlinear derivative cocycle or tangent-dynamics interpretation; or
 * entropy, stability, bifurcation, sensitivity, or chaos.
 
-The module does prove useful bridges. Its restraint is part of their value:
-each name and signature says which conclusion is now earned and which theorem
-must still be built.
+The module proves useful bridges. Each name and signature says which
+conclusion follows and which theorem must still be built.
 
 ## Exercises with solutions
 
@@ -1312,10 +1313,10 @@ missing connection.
 For a true Lyapunov theorem, the observable layer must also change. Signed or
 extended logarithmic growth, singular values, exterior powers, negative-tail
 control, and possibly invertibility must be selected before an Oseledets-style
-claim can be stated honestly.
+claim can be stated with exact hypotheses.
 
 RMT-17 therefore completes the interface audit before the difficult theorem.
-The project now knows exactly which assumptions perform which jobs, which
+The project now records exactly which assumptions perform which jobs, which
 upstream Mathlib results can be reused, and where the proof gap actually
 begins.
 

@@ -88,9 +88,10 @@ Thus
 \boxed{P_4(0)=2\log2\leq5\log2=S_4(0)}.
 \]
 
-The gap is the whole point. The product remembers that the factors \(1/2\)
-and \(1/4\) cancel some expansion. The **envelope** deletes those negative
-logarithms, so it is easier to integrate but intentionally less precise.
+The gap is the whole point. The exact product incorporates the contractions
+\(1/2\) and \(1/4\), which offset part of the expansion. The **envelope**
+deletes those negative logarithms, so it is easier to integrate but
+intentionally less precise.
 
 {{< reference-figure
   wide="true"
@@ -139,7 +140,7 @@ zero.
   caption="**Finding:** the positive-log gate preserves expansion above unit norm but deliberately merges collapse, contraction, and unit scale at zero. Summing the shifted one-step outputs gives a nonnegative finite-horizon majorant whose integrability can be inherited from one explicit generator assumption. The diagram does not recover negative growth, the extended-real bottom value, a normalized limit, or a Lyapunov exponent."
 >}}
 
-## What the gate keeps and forgets
+## What the gate retains and discards
 
 For a nonnegative real norm \(r\), Mathlib's definition gives the piecewise
 picture
@@ -224,7 +225,7 @@ Induction with finite-time subadditivity proves the domination estimate
 0\le P_k(\omega)\le S_k(\omega).
 \]
 
-The right side is deliberately loose. It forgets cancellation between matrix
+The right side is deliberately loose. It discards cancellation between matrix
 factors and every contracting one-step contribution. Its value is that it is a
 finite sum of copies of one measurable function pulled back along the base
 orbit.
@@ -371,7 +372,7 @@ same half-open indexing convention used in the paper sum.
   It does not say that the sequence converges as <code>k → ∞</code>.
 {{< /lean-bridge >}}
 
-The proof travels through two reusable intermediate certificates:
+The proof uses two reusable intermediate certificates:
 
 ~~~lean
 hC.integrable_at_base_iterate j
@@ -548,9 +549,9 @@ S_4=5\log2,
 \int P_1\,d\mu=\frac54\log2.
 \]
 
-The worksheet checks the finite arithmetic only. It does not pretend that a
-list of integer exponents is Mathlib's matrix cocycle, measure-preserving map,
-or Bochner-integrability proof.
+The worksheet checks the finite arithmetic only. A list of integer exponents
+does not define Mathlib's matrix cocycle or measure-preserving map, and it
+supplies no Bochner-integrability proof.
 
 ## Try the exact declarations in the project
 
@@ -624,8 +625,8 @@ The RMT-15 interface does not prove:
 - a two-sided cocycle or negative-time dynamics; or
 - a derivative, tangent-space, or random-Jacobian interpretation.
 
-Most importantly, an integrable \(P_k\) can coexist with complete collapse.
-If \(C(k,\omega)=0\), then \(P_k(\omega)=0\) while the extended log norm is
+An integrable \(P_k\) can coexist with complete collapse. If
+\(C(k,\omega)=0\), then \(P_k(\omega)=0\) while the extended log norm is
 \(\bot\). Positive-tail integrability alone therefore says nothing about the
 negative endpoint needed for a full Lyapunov analysis.
 

@@ -44,8 +44,8 @@ f(x)&2&5&8&11&14&20
 \end{array}
 \]
 
-An **observable** is simply a quantity that can be read from the current
-state. Here it is the function \(f:\Omega\to\mathbb R\).
+An **observable** is a quantity read from the current state. Here it is the
+function \(f:\Omega\to\mathbb R\).
 
 We will keep the same states, probabilities, and observable while changing
 only the time-one map.
@@ -132,8 +132,9 @@ The complete invariant-event list is
 \varnothing,\qquad L,\qquad R,\qquad\Omega,
 \]
 
-with probabilities \(0,1/2,1/2,1\). The half-probability events \(L\) and
-\(R\) prove that this system is **not** ergodic.
+with probabilities \(0,1/2,1/2,1\). The invariant events \(L\) and \(R\),
+each of probability \(1/2\), violate the null-or-conull criterion. Therefore
+this system is **not** ergodic.
 
 The observable also exposes the split. Its average around the left orbit is
 
@@ -396,9 +397,9 @@ There is no paradox:
 - a periodic orbit can have no proper invariant event while retaining perfect
   timing information.
 
-The same example shows that ergodicity of \(T\) need not pass to every power.
-Since \(T_{\mathrm{one}}^6=\operatorname{id}\), every event is invariant under
-the sixth power, so \(T_{\mathrm{one}}^6\) is not ergodic.
+The same system is a counterexample to the claim that ergodicity passes to
+every power. Since \(T_{\mathrm{one}}^6=\operatorname{id}\), every event is
+invariant under the sixth power, so \(T_{\mathrm{one}}^6\) is not ergodic.
 
 ## Why time averages enter the story
 
@@ -908,14 +909,15 @@ and nonconstant.
 
 A Dirac measure places all mass at one point. Every event is then null or
 conull, so <code>PreErgodic T μ</code> can hold even when \(T\) does not
-preserve \(\mu\). The project compiles such a boundary model. It shows why
-pre-ergodic rigidity and measure preservation are distinct assumptions.
+preserve \(\mu\). The project contains a checked instance of this boundary
+model. That model is a counterexample to any implication from pre-ergodicity
+alone to measure preservation.
 
 ### The zero measure
 
-Mathlib permits the zero measure to be ergodic for a measurable map. Every
-event is both null and conull, and every almost-everywhere statement is
-vacuous. Consequently,
+Under Mathlib's definition, a measurable map is ergodic with respect to the
+zero measure. Every event is both null and conull, and every
+almost-everywhere statement is vacuous. Consequently,
 
 \[
 \text{ergodic}

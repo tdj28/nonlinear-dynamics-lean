@@ -312,8 +312,9 @@ silently read as the issue number. This chapter preserves that identifier
 oddity explicitly.
 
 RMT-25 formalizes neither Birkhoff's continuous-time argument nor the complete
-modern pointwise theorem. It demonstrates precisely why the mean theorem does
-not settle the pointwise question and proves only a dense pointwise-good core.
+modern pointwise theorem. Its declarations separate norm convergence from
+full-sequence pointwise convergence; the latter is established only on a dense
+core.
 
 ### Keane and Petersen: the future maximal closure route
 
@@ -404,7 +405,7 @@ Here \(n^{-1}\) is Lean's totalized real inverse of the natural scalar. This
 notation matters at the boundary.
 
 ![Consecutive forward differences cancel to an endpoint quotient, with a separate totalized horizon-zero lane.](totalized-telescope.svg)
-<p class="figure-note"><strong>Figure:</strong> At a positive horizon, all interior potential values cancel and only the final minus initial value remains. At horizon zero, the empty average and the totalized endpoint expression are both zero. The zero case validates a uniform identity but carries no positive-time averaging information.</p>
+<p class="figure-note"><strong>Figure:</strong> At a positive horizon, all interior potential values cancel and only the final minus initial value remains. At horizon zero, the empty average and the totalized endpoint expression are both zero. The zero case is compatible with the uniform identity but carries no positive-time averaging information.</p>
 
 ### Declaration 1: the exact endpoint identity
 
@@ -448,7 +449,7 @@ The proof reuses Mathlib's convergence theorem for the difference of the two
 shifted Birkhoff averages and identifies each term with the project's exact
 endpoint formula
 ([Mathlib's normed-space Birkhoff-average API](#ref-rmt25-birkhoff-normed)).
-No measurable structure is smuggled into this raw theorem.
+This raw theorem assumes no measurable structure.
 
 ### Why simple functions arrive later
 
@@ -623,7 +624,7 @@ the range lies in the fixed subspace. Taking orthogonals again, and using the
 double-orthogonal closure theorem, gives the desired inclusion.
 
 The closure is essential. The proof does not show the range of \(L-I\) is
-closed, and the public API does not pretend otherwise.
+closed, and the public API does not claim otherwise.
 
 ### Declaration 12: specialize the closure theorem to Koopman
 
@@ -671,7 +672,7 @@ this argument. It neither chooses a canonical approximating sequence nor
 claims pointwise convergence for the limit of that sequence.
 
 ![Fixed vectors and simple-function coboundaries combine into a dense pointwise-good core.](dense-good-core.svg)
-<p class="figure-note"><strong>Figure:</strong> Hilbert projection proves density, while telescoping and representative transport prove almost-everywhere goodness. These are separate certificates. The dashed last step is intentionally absent: density alone does not extend pointwise convergence to every nearby function.</p>
+<p class="figure-note"><strong>Figure:</strong> Density follows from Hilbert projection, while telescoping and representative transport establish almost-everywhere goodness. These are separate certificates. The dashed last step is intentionally absent: density alone does not extend pointwise convergence to every nearby function.</p>
 
 ## Von Neumann convergence in the pinned library
 
@@ -952,7 +953,7 @@ measure space, that implication fails in general. RMT-25 intentionally keeps
 finite mass absent, so it cannot silently claim the \(L^1\) bridge needed by a
 full integrable pointwise theorem.
 
-### The theorem really does not claim
+### What the theorem does not claim
 
 1. that norm convergence implies full-sequence pointwise convergence;
 2. that a convergent subsequence determines convergence of the original sequence;
@@ -1020,21 +1021,21 @@ theorem without any measurable structure.
 
 ### Probe 3: identity dynamics give the identity Koopman operator
 
-Under <code>MeasurePreserving.id μ</code>, the probe proves
-\(U_{\mathrm{id}}f=f\) for every \(L^2\) vector by representative extensionality.
-This tests the composition orientation.
+Specializing the identity theorem to <code>MeasurePreserving.id μ</code>
+establishes \(U_{\mathrm{id}}f=f\) for every \(L^2\) vector by representative
+extensionality. This tests the composition orientation.
 
 ### Probe 4: identity dynamics give the zero coboundary operator
 
-The next probe proves \(U_{\mathrm{id}}-I=0\) as an equality of continuous
-linear maps. It checks the named coboundary definition, not merely its action
-on one chosen vector.
+The next checked declaration establishes \(U_{\mathrm{id}}-I=0\) as an equality
+of continuous linear maps. It checks the named coboundary definition, not
+merely its action on one chosen vector.
 
 ### Probe 5: identity dynamics project every vector to itself
 
 When every vector is fixed, the fixed subspace is the whole space and its
-orthogonal projection is the identity. The probe proves exactly that project
-specialization.
+orthogonal projection is the identity. The projection theorem specializes to
+that identity.
 
 ### Probe 6: identity representatives are pointwise-good
 
@@ -1079,15 +1080,15 @@ ordinary simple function that is almost everywhere equal to the chosen
 \(L^2\) representative and has bounded range. The finite-range argument is the
 exact boundedness input consumed by the pointwise telescope.
 
-### What the probes collectively establish
+### What the probe suite covers
 
 The probes separate five questions that prose often conflates:
 
 1. Is the algebra totalized correctly at horizon zero? Yes.
 2. Does the orientation agree with forward composition? Yes.
 3. Is an operator-norm equality valid on every measure? No; zero measure gives zero.
-4. Do the theorems need finite mass or invertibility? No; counting translation and a noninjective Dirac-preserving map compile.
-5. Does square-integrable convergence directly give the full pointwise sequence? The checked generic bridge gives a subsequence only.
+4. Do the theorems need finite mass or invertibility? No; counting translation and a noninjective Dirac-preserving map instantiate the declarations.
+5. Does square-integrable convergence directly give the full pointwise sequence? The generic bridge supplies a subsequence only.
 
 ## Proof engineering lessons
 
@@ -1113,7 +1114,7 @@ object stable if implementation details change.
 
 ### Compile the degenerate model before freezing norm equality
 
-The zero-measure probe is what makes \(\lVert U_T\rVert\le1\) the honest public
+The zero-measure case is why \(\lVert U_T\rVert\le1\) is the correct public
 statement. Without the probe, the familiar slogan "Koopman is an isometry"
 could have led to a false unconditional operator-norm equality on the trivial
 space.
@@ -1122,7 +1123,7 @@ space.
 
 The representative bridge names each almost-everywhere equality: simple
 representative to \(L^2\) coercion, composition transport, Koopman coercion,
-subtraction coercion, and addition coercion. This is longer than pretending
+subtraction coercion, and addition coercion. This is longer than treating
 the functions are definitionally equal, but it leaves an auditable account of
 which null sets are moved and combined.
 
@@ -1543,7 +1544,7 @@ transported across that equality.
 
 ### Exercise 28: test infinite measure
 
-Which probe shows finite total mass is absent from the dense-core theorems?
+Which model instantiates the dense-core theorems without finite total mass?
 
 **Solution.** Integer translation on counting measure. Counting measure on
 the integers has infinite total mass, yet density and core convergence both
@@ -1551,7 +1552,7 @@ compile.
 
 ### Exercise 29: test noninvertibility
 
-Which probe shows an inverse is not needed?
+Which model instantiates the final theorem without an inverse?
 
 **Solution.** The constant Boolean map preserving a Dirac measure is not
 injective, hence not invertible, and still satisfies the final theorem's

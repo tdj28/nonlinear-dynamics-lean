@@ -382,7 +382,7 @@ Combined with the forced nonnegativity, this is equivalent to \(X_0=0\).
 That is the only reason the uniform exact-block theorem assumes exact
 time-zero vanishing.
 
-The distinction is easy to lose, so it is worth keeping as a table:
+The zero-block distinction is recorded explicitly in the following table:
 
 | Finite statement | Needs \(X_0=0\)? | What happens at zero blocks? |
 |---|---:|---|
@@ -431,13 +431,13 @@ The cocycle specializations preserve this narrow assumption boundary.
 <code>logPlusNormObservable_le_mod_add_blockBirkhoffSum</code> use the
 log-positive norm process's checked subadditivity. The exact-block theorem uses
 the checked time-zero identity only to include the zero block count; the
-remainder-first theorem needs no such normalization. Neither theorem consumes
+remainder-first theorem needs no such normalization. Neither theorem uses
 the one-step integrability hypothesis. Both remain valid when the finite
 matrix index type is empty.
 
 ## Finite-sum integrability needs only the block map
 
-Integrability enters when the project wants the finite Birkhoff sum itself to
+Integrability enters when the finite Birkhoff sum itself must
 be integrable. Suppose every \(X_n\) is integrable and the powered map
 \(S=T^b\) preserves \(\mu\). Each summand
 
@@ -523,7 +523,7 @@ Accordingly, the RMT-18 Birkhoff-sum layer establishes none of the following:
 - a Lyapunov exponent or Oseledets splitting; or
 - ergodicity of every powered base map.
 
-The honest role of this layer is narrower and indispensable: it freezes the
+The role of this layer is narrower and indispensable: it freezes the
 finite indexing and assumption boundaries that any later asymptotic proof must
 use correctly.
 

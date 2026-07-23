@@ -203,7 +203,7 @@ integral is also preserved:
 
 ### Audit four nearby wrong turns
 
-The correct answer is easy to damage at four nearby boundaries.
+Four nearby substitutions give incorrect answers.
 
 1. **Sigma-algebra too small.** Conditioning on the trivial sigma-algebra gives
    the global constant \(17/5\). Its integral on \(A\) is
@@ -340,7 +340,8 @@ Three kinds of equality recur throughout the proof.
 | equality in \(L^1(\mu)\) | equality of almost-everywhere equivalence classes | Natural equality in the Banach space |
 
 Collapsing these layers is one of the fastest ways to create a plausible but
-incorrect ergodic proof. Lean forces the transitions to be explicit.
+incorrect ergodic proof. The formal types require each transition to be
+explicit.
 
 The repository's Birkhoff average is totalized at horizon zero. The sum over
 an empty range is zero and the real inverse of zero is zero, so
@@ -438,7 +439,7 @@ The distinction is visible on the boundary probe with
 invariant sets are \(\varnothing\) and \(\Omega\). Yet the singleton
 \(\{\mathsf{true}\}\) is equal modulo \(\mu\)-null sets to \(\varnothing\),
 and \(\{\mathsf{false}\}\) is equal modulo null sets to \(\Omega\). A theorem
-about the completed invariant field cannot simply be fed into an interface
+about the completed invariant field cannot be passed directly to an interface
 expecting literal preimage equality.
 
 There is a second subtlety involving iterates. Every \(T\)-invariant set is
@@ -1175,10 +1176,10 @@ It then applies the final theorem to every integrable real observable. This
 single witness exercises the theorem without injectivity, surjectivity, or
 invertibility.
 
-Together, the probes establish the shape of the API. They do not prove that
-every assumption present is logically minimal, but they prove that the listed
-stronger assumptions are absent from the checked theorem and unnecessary for
-these boundary systems.
+The declaration signatures determine the shape of the API and omit the listed
+stronger assumptions. The probes instantiate the theorem on boundary systems
+without those assumptions; they do not establish that every remaining
+assumption is logically minimal.
 
 ## Run the finite worksheet on Mac or Linux
 
@@ -1479,8 +1480,8 @@ chapter's theorem boundary:
 [Ergodic Birkhoff Limits and Normalized Space Averages]({{< relref "/knowledge-base/deep-dives/ergodic-birkhoff-limits-and-normalized-space-averages" >}})
 distinguishes zero mass, positive finite mass, and probability normalization.
 The later random-cocycle roadmap must still move from additive Birkhoff
-averages to subadditive growth without pretending that either additive theorem
-already supplies that machinery.
+averages to subadditive growth; neither additive theorem supplies that
+machinery.
 
 ## Thirty solved exercises
 
@@ -1819,7 +1820,7 @@ transport through a strongly measurable representative handles every
 integrable observable, and rewriting the almost-everywhere pointwise limit
 gives the stated theorem.
 
-The exercise chain also reveals three independent audits of the same target.
+The exercise chain also supplies three independent audits of the same target.
 The finite model computes it directly by orbit arithmetic. The measure-theory
 route characterizes it by invariant-set integrals. The Lean route constructs a
 total representative and proves that it satisfies the pinned conditional-
@@ -1829,7 +1830,7 @@ constant. The set-integral route catches an unjustified passage from
 pointwise convergence to integrals. The formal route catches a silent exchange
 of exact and modulo-null invariance, or a change-of-variables theorem that
 requires an embedding. None of the three replaces the others. Together they
-show why the final formula is not simply conventional notation attached after
+show why the final formula is not conventional notation appended after
 convergence has been proved.
 
 ## Final perspective
@@ -1852,5 +1853,5 @@ Noninvertible dynamics need restricted-measure transport rather than a
 bijective substitution. Conditional expectation needs an independent
 measurability-and-integral uniqueness theorem.
 
-That is the real summit of RMT-27: not merely knowing that the averages stop
+That is the RMT-27 summit: not merely knowing that the averages stop
 moving, but proving exactly which information survives.

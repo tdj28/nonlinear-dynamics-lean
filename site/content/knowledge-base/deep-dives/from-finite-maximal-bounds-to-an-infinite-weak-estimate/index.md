@@ -101,7 +101,7 @@ merely a search through the first five steps.
   caption="**Finding:** the strict threshold event has three finite witnesses. State zero crosses at \(k=1\), state four at \(k=2\), and state three at \(k=3\). State two reaches \(S_4=4\), hence \(A_4=1\), but strictness excludes equality. State one never crosses either. The table shows exact partial sums, not sampled or empirical data. The five-step sum is zero, so the remainder argument proves that the two nonmembers never enter at later cycles."
 >}}
 
-### Watch the finite events grow
+### The finite events form an increasing family
 
 Let
 
@@ -472,7 +472,7 @@ There is no limiting argument in this equality.
 
 The theorem is exact as sets, not only modulo null sets. It requires neither a
 measurable space nor a measure. The companion theorem
-<code>finiteBirkhoffAverageExceedanceSet_subset</code> packages the easy
+<code>finiteBirkhoffAverageExceedanceSet_subset</code> packages the
 finite-to-infinite inclusion for later reuse.
 
 The finite events are increasing because increasing \(N\) only relaxes the
@@ -628,8 +628,8 @@ That boundary is supported by Mathlib's exact theorem
 <code>tendsto_measure_iUnion_atTop</code>
 ([continuity from below](#ref-infinite-weak-mathlib-continuity)), whose documentation explicitly
 allows increasing sets that are not necessarily measurable. The limit may be
-infinite. This is not a loophole: extended measure is the native codomain in
-which continuity from below remains honest at infinite mass.
+infinite. Extended measure is the native codomain for which continuity from
+below remains valid at infinite mass.
 
 ## Why the checked real-measure theorem uses a local finiteness gate
 
@@ -1442,7 +1442,7 @@ inequality becomes \(a\cdot0\le0\), hence \(0\le0\), for every real
 threshold. The compiled probe confirms that the definitions and typeclass
 resolution preserve this degenerate boundary.
 
-### Exercise 30: use an infinite measure without smuggling in finiteness
+### Exercise 30: use an infinite measure without assuming finiteness
 
 Why is counting measure on \(\mathbb N\) a useful probe for the
 null-measurable event theorem?
@@ -1504,7 +1504,7 @@ anonymous compiled probes. There is no private helper. The declarations split
 as four set-theoretic names, two regularity names, two continuity names, and
 two inequality names.
 
-### Exercise 35: state the strongest honest conclusion
+### Exercise 35: state the strongest justified conclusion
 
 Give a one-sentence statement of the final theorem without claiming
 probability, ergodicity, or convergence.
@@ -1536,10 +1536,10 @@ The infinite event can be written as
 E_a(g)=\{\omega:\exists k\ge1,\ a\lt A_kg(\omega)\}.
 \]
 
-Controlling its measure for each positive \(a\) is powerful. It bounds the
-points where finite averages ever make a positive excursion above a chosen
-level. The bound is uniform over all positive times because the increasing
-union has already absorbed the horizon.
+Controlling its measure for each positive \(a\) bounds the points where finite
+averages ever make a positive excursion above a chosen level. The bound is
+uniform over all positive times because the increasing union has already
+absorbed the horizon.
 
 It still does not compare the upper and lower limits of the average sequence.
 It does not prove that the sequence is Cauchy, that it converges on a dense
@@ -1547,9 +1547,9 @@ class, or that approximation errors vanish almost everywhere. It does not
 identify a conditional expectation or an invariant projection. It does not
 even assert that the exceedance event is invariant.
 
-A pointwise Birkhoff proof typically earns convergence first on a tractable
+A pointwise Birkhoff proof typically establishes convergence first on a tractable
 class, then uses a maximal estimate to control the exceptional set created by
-approximating a general integrable observable. That later route needs honest
+approximating a general integrable observable. That later route needs explicit
 function-space density, control of the transformation's action, almost-
 everywhere bookkeeping, and identification of the limiting invariant object.
 RMT-24 supplies the weak maximal bridge needed by such a route, but none of

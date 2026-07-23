@@ -28,8 +28,8 @@ tutorials. It is not a full project or Mathlib build host.
 - Safe workstation targets include `make checkpoint`,
   `make checkpoint-check`, `make workstation-check`, `make site-check`,
   `make blog-serve`, and `make blog-serve-tailscale`. These do not compile
-  Lean. A static gate may still fail honestly when a source-only milestone is
-  missing its teaching companion.
+  Lean. An expected static-gate failure may remain visible when a source-only
+  milestone is missing its teaching companion.
 
 ## Build Lean only on approved Linux cloud compute
 
@@ -92,11 +92,26 @@ Dive, follow the complete educational contract in
   null sets, probability distributions, events, measures, random variables,
   and measurable functions require substantive glossary entries and links,
   not unexplained specialist shorthand.
+- Use mathematically exact evidentiary verbs. Ordinary computations check
+  cases; a verified exhaustive computation may establish a finite proposition
+  when its coverage and trust boundary are explicit. Examples illustrate or
+  exhibit, explicitly identified counterexamples refute universal claims, and
+  proofs or complete arguments establish general results. A concrete example
+  can establish existence or, when identified as a counterexample, refute a
+  universal claim; state that logical role explicitly. A diagram or Lean run
+  does not “prove” an informal claim: Lean's elaborator constructs a candidate
+  proof term and its kernel checks that term against the formal statement,
+  whose fidelity to the intended mathematics must be audited separately.
+  Remove canned hype, anthropomorphic phrasing, and moralizing proxies such as
+  “honest,” “pretend,” or “smuggle”; name the missing hypothesis, invalid
+  implication, or unsupported claim instead.
+  Remove dismissive shortcuts such as “obvious,” “clearly,” “simply,” or
+  “trivial” when they stand in for an explanation.
 - Audit the whole connected corpus after changing this contract. Do not repair
   one flagship page while leaving the same teaching gap throughout neighboring
   glossary entries and Deep Dives.
 
 Keep publication and review separate. Owner-authorized public working notes
 may use `draft: false` while retaining `pro_reviewed: false`, visible review
-status, and honest limitations. Only the configured review process may change
+status, and explicit limitations. Only the configured review process may change
 `pro_reviewed` to true.

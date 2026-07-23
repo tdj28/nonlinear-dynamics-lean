@@ -34,8 +34,8 @@ negative Lyapunov exponent, convergence in \(L^1\), or an Oseledets splitting.
 ## Start with three sequences you can calculate by hand
 
 Before filters, null sets, or cocycles enter, write down three exact rational
-sequences. They isolate three logically different questions that are easy to
-blur together.
+sequences. They isolate three logically different questions that are often
+conflated.
 
 ### The guarded sequence: the rational event and liminf agree
 
@@ -66,7 +66,7 @@ Every odd time is a witness beyond any proposed cutoff, so
 \]
 
 for every \(n\). The eventual-lower-bound guard is therefore present, and
-the ordinary answer is honest:
+the ordinary answer is informative:
 
 \[
 \liminf_nu_n=-\frac32\lt-\!1=c.
@@ -141,8 +141,8 @@ candidate, event membership, absence of the guard, and totalized value.
 
 {{< reference-figure
   src="guarded-sequence-trichotomy-ledger.svg"
-  alt="Three exact sequence panels. The bounded alternating sequence has a lower bound and repeatedly crosses negative five quarters, so its honest liminf is negative three halves. Negative one over n crosses zero but stops crossing each fixed negative rational margin. The quadratic centered normalization decreases without a lower bound, crosses negative two forever, but the project-proved total real liminf is zero, making the unguarded conclusion false."
-  caption="**Read the three panels separately.** Panel A validates the guarded bridge. Panel B tests strict rational slack. Panel C proves why total real liminf cannot be interpreted as an extended-real liminf without an eventual lower-bound witness."
+  alt="Three exact sequence panels. The bounded alternating sequence has a lower bound and repeatedly crosses negative five quarters, so its ordinary real liminf is negative three halves. Negative one over n crosses zero but stops crossing each fixed negative rational margin. The quadratic centered normalization decreases without a lower bound, crosses negative two forever, but the project-proved total real liminf is zero, making the unguarded conclusion false."
+  caption="**Read the three panels separately.** Panel A illustrates the guarded bridge. Panel B tests strict rational slack. Panel C is a counterexample to interpreting total real liminf as an extended-real liminf without an eventual lower-bound witness."
 >}}
 
 ### A finite squeeze that says exactly what the final theorem says
@@ -219,7 +219,7 @@ RMT-33 solves the problem constructively. It does not merely show that the
 bad lower-liminf set is null. Off a related countable rational null set, it
 extracts one fixed rational number below all sufficiently late normalized
 centered values. That witness certifies that the real lower limit is being
-used in its honest bounded-below regime.
+used in its standard bounded-below regime.
 
 The proof then adds back a convergent one-step Birkhoff average, identifies
 the centered offset with the integrated Fekete rate, and combines the lower
@@ -462,13 +462,13 @@ total real <code>liminf</code> is zero.
 
 {{< reference-figure
   src="totalized-real-liminf-guard.svg"
-  alt="Two sequences feed the real liminf definition. A bounded-below sequence has a nonempty set of eventual lower bounds and an informative supremum. The sequence one minus n has no eventual real lower bound, so the set is empty and real supremum totalizes to zero. An explicit lower-bound guard separates the honest branch from the totalized branch."
+  alt="Two sequences feed the real liminf definition. A bounded-below sequence has a nonempty set of eventual lower bounds and an informative supremum. The sequence one minus n has no eventual real lower bound, so the set is empty and real supremum totalizes to zero. An explicit lower-bound guard separates the informative branch from the totalized branch."
   caption="**Finding:** a real-valued <code>liminf</code> is always syntactically available, but it represents the usual finite lower asymptotic value only after eventual lower boundedness is established. For \(1-n\), the formal value zero is a totalization artifact, not its extended lower limit. The diagram compares logical branches and does not plot quantitative data."
 >}}
 
-The countermodel proves that the guard is necessary, not merely convenient.
-Without it, membership in a rational strict lower-deviation event need not
-force the total real lower limit below the event target.
+The countermodel refutes the statement with the lower-boundedness guard
+removed. Without it, membership in a rational strict lower-deviation event
+need not force the total real lower limit below the event target.
 
 ### Read the guard in filter language
 
@@ -485,7 +485,7 @@ b\le a_n
 
 for every sufficiently large \(n\).
 
-The orientation can feel reversed because the relation is written
+The orientation may appear reversed because the relation is written
 \((\cdot\ge\cdot)\). The reliable reading is to expand the definition and ask
 which side of \(a_n\) receives the witness. In this case the witness lies
 below the eventual values.
@@ -639,7 +639,8 @@ Strict crossings at the target do not provide a durable strict gap below the
 target. This is why the event is generated by rational slopes below \(c\),
 not by the slope \(c\) itself.
 
-The checked module includes this example. It simultaneously proves:
+The checked module includes formal proofs of the three properties exhibited
+by this example:
 
 \[
 \liminf a_n=0,
@@ -759,7 +760,7 @@ the rational event. That direction is robust against totalization.
 {{< reference-figure
   src="null-cover-two-deliverables.svg"
   alt="The complement of one countable rational null cover splits into two outputs. Excluding the lower-liminf exceptional set gives delta below the real liminf, while excluding one rational event turns not-frequently-below q into eventually-at-least q. Both outputs reunite as the guarded almost-everywhere theorem."
-  caption="**Finding:** nullity is used twice. Set inclusion removes strict lower-liminf deviation, while direct negation of a frequent rational crossing constructs an eventual lower bound. The final theorem deliberately returns both facts so later real-liminf algebra cannot forget the guard."
+  caption="**Finding:** nullity is used twice. Set inclusion removes strict lower-liminf deviation, while direct negation of a frequent rational crossing constructs an eventual lower bound. The final theorem deliberately returns both facts so the guard remains explicit in the later real-liminf algebra."
 >}}
 
 The generic centered endpoint is therefore
@@ -772,7 +773,7 @@ u(\omega)\text{ is eventually bounded below},\\
 \end{cases}
 \]
 
-This is the semantically honest lower half of the theorem.
+This is the correctly scoped lower half of the theorem.
 
 ### Where the hypotheses enter
 
@@ -1639,7 +1640,7 @@ the exact library interfaces used or audited for the bridge.
 | Pre-ergodicity | Final cocycle hypothesis | Combines with bundled preservation to form <code>Ergodic</code> | Preservation on its own |
 | Probability normalization | Typeclass hypothesis | Expectation semantics and the RMT-32 null-branch selection | Independence |
 | One-step log-positive integrability | <code>HasIntegrableGeneratorLogPlus</code> | Integrability at every horizon via the orbit majorant | Signed log integrability |
-| Eventual lower boundedness | Constructed off the rational null cover | Honest real-liminf algebra | A signed or extended-real conclusion |
+| Eventual lower boundedness | Constructed off the rational null cover | Standard real-liminf algebra | A signed or extended-real conclusion |
 | Eventual upper boundedness | Centered nonpositivity or convergent Birkhoff majorant | Conditional-completeness liminf and final convergence lemmas | A uniform bound over all samples |
 | Rational countability | Type-level property of \(\mathbb Q\) | Nullity of the exhaustion union | A quantitative rate of convergence |
 | Rational density | Archimedean order | Two strict margins | Any probabilistic approximation |
@@ -2102,7 +2103,7 @@ the decisive closure property.
 
 #### Exercise 14: diagnose the \(\delta\lt\delta\) failure
 
-Why can the proof not simply show \(E_\delta\subseteq D_\delta\) and invoke
+Why is the inclusion \(E_\delta\subseteq D_\delta\) insufficient for invoking
 RMT-32 at target \(\delta\)?
 
 **Solution.** The RMT-32 nullity theorem separates two parameters. A
@@ -2252,7 +2253,7 @@ The identity
 \frac{X_n}{n}=\frac{Y_n}{n}+\frac{S_nX_1}{n}
 \]
 
-is obvious for positive \(n\). Why does it also hold at \(n=0\) in Lean?
+follows directly for positive \(n\). Why does it also hold at \(n=0\) in Lean?
 
 **Solution.** Each quotient has denominator zero, so every quotient is zero.
 The right side is \(0+0\), and the left side is zero. No assertion about
@@ -2698,7 +2699,7 @@ for almost every \(\omega\).
 
 The proof is valid because the rational null cover establishes not only the
 lower-liminf inequality but also the eventual lower boundedness needed to
-interpret and manipulate the real lower limit honestly.
+interpret and manipulate the real lower limit under its exact hypotheses.
 
 The limit is nonnegative and expansion-only. It need not equal the signed
 top Lyapunov exponent.

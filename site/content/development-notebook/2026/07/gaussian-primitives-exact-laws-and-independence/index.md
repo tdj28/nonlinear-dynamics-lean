@@ -153,8 +153,8 @@ entries." Formalization makes the hidden choices visible:
   imaginary off-diagonal parts?
 
 The current module answers the first six questions while deliberately leaving
-the seventh open. That order prevents a later matrix definition from smuggling
-in a normalization convention through convenient notation.
+the seventh open. That order prevents a later matrix definition from assuming
+a normalization convention merely through convenient notation.
 
 The historical physics motivation is spectral statistics. Wigner introduced
 random matrices as models for complicated spectra, and Dyson organized
@@ -174,7 +174,7 @@ Its local contribution is an interface shaped for later random matrices:
 
 - a short exact-law predicate with explicit mean and variance;
 - named consequences that keep those parameters available;
-- a zero-variance API that treats degenerate Gaussians honestly;
+- a zero-variance API that includes degenerate Gaussians explicitly;
 - scaling and independent-addition lemmas with exact parameter arithmetic;
 - a family record that stores ordinary measurability, exact coordinate laws,
   and mutual independence as three separate obligations;
@@ -291,7 +291,7 @@ def HasRealGaussianLaw (X : Ω → ℝ) (m : ℝ) (v : ℝ≥0) (P : Measure Ω)
 ### `HasRealGaussianLaw`
 
 `NonlinearDynamics.Random.HasRealGaussianLaw` is a transparent definition,
-not a new probability theory. Unfolding it reveals Mathlib's `HasLaw`. This
+not a new probability theory. Unfolding it gives Mathlib's `HasLaw`. This
 thin wrapper gives the project a stable vocabulary and fixes the parameter
 order used by every later constructor.
 
@@ -391,7 +391,7 @@ theorem hasGaussianLaw (hX : HasRealGaussianLaw X m v P) :
   ProbabilityTheory.HasLaw.hasGaussianLaw hX
 ```
 
-This is a forgetful step. Mathlib knows that `gaussianReal m v` is a Gaussian
+This is a forgetful step. Mathlib records `gaussianReal m v` as a Gaussian
 measure, so an exact `HasLaw` proof yields the broader `HasGaussianLaw`
 predicate.
 
@@ -459,7 +459,7 @@ mathematical interpretation still keeps both: `mean_eq` gives the value, and
 
 ## Camp two: the mountain includes zero variance
 
-A robust API should not force every later theorem to split into \(v\gt 0\) and
+A reusable API should not force every later theorem to split into \(v\gt 0\) and
 \(v=0\) unless a density argument truly requires it. Two declarations make
 the degenerate boundary explicit.
 
@@ -497,7 +497,7 @@ This equivalence is stronger than the preceding one because it supports
 construction: under a probability measure, an almost-surely constant map is a
 valid zero-variance Gaussian primitive.
 
-### Edge cases earned here
+### Edge cases covered here
 
 | Case | Exact result |
 |---|---|
@@ -940,7 +940,7 @@ follow four recurring moves.
 
 ### 1. Unfold an exact law
 
-`HasRealGaussianLaw` exposes `HasLaw` when a Mathlib theorem expects it.
+`HasRealGaussianLaw` exposes `HasLaw` when a Mathlib theorem requires it.
 Because the wrapper is definitionally transparent, most adaptations need only
 `simpa` or a direct theorem application.
 
@@ -1122,7 +1122,7 @@ nonnegativity?
 {{< /panel >}}
 
 {{< panel "exercise" >}}
-**Exercise 4: independence earns the product.** Construct two random variables
+**Exercise 4: independence yields the product law.** Construct two random variables
 with the same standard-Gaussian marginal law by taking \(Y=X\). Explain why
 their joint law is not the product law and why `jointHasLaw` cannot be applied.
 {{< /panel >}}
@@ -1142,7 +1142,7 @@ definitions needed before this becomes an exact complex-Gaussian law theorem.
 
 ## The next ridge: from real coordinates to matrices
 
-The next honest layer is an explicit complex Gaussian primitive. It must state
+The next layer is an explicit complex Gaussian primitive. It must state
 whether a complex variable is defined from independent real and imaginary
 parts, and how a target complex second moment is split between them.
 
@@ -1168,7 +1168,7 @@ for that statement; `GaussianPrimitives` provides scalar raw material.
 The module has reached a precise summit. One real Gaussian coordinate carries
 an exact law with named mean and variance. That law yields a.e. measurability,
 source normalization, exact first two moments, `MemLp X p P` for every
-`p ≠ ∞` (including Mathlib's `p = 0` case), integrability, honest
+`p ≠ ∞` (including Mathlib's `p = 0` case), integrability, exact
 zero-variance behavior, deterministic scaling, and independent addition.
 
 At family scale, ordinary measurability, exact marginal laws, and mutual

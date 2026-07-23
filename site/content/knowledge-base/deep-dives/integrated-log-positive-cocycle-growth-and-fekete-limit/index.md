@@ -48,7 +48,7 @@ T(\mathsf{blue})=\mathsf{amber}.
 Give each point mass \(1/2\). This particular \(\mu\) is a
 {{< refterm "probability-measure" "probability measure" >}}, and the swap
 preserves it. The checked project theorem does **not** require probability;
-we choose it here because an average of two values is easy to see.
+we choose it here because its two-value average is explicit.
 
 Use one-dimensional complex matrices:
 
@@ -563,7 +563,7 @@ For \(J_1=L/2\) and \(J_2=3L/2\), Lean would need the false inequality
 No amount of lower boundedness or numerical plotting repairs that missing
 subadditivity proof. The theorem's hypothesis is structural, not empirical.
 
-## Camp five: normalize natural time without pretending zero is positive
+## Camp five: normalize positive time and totalize horizon zero
 
 ### Declarations 9–11: normalized values, nonnegativity, and a lower bound
 
@@ -864,9 +864,9 @@ Each five-tuple is
   multiplying all values by \(2/L\).
 - The final <code>false</code> checks that the near miss does **not** satisfy
   its \(1+1\) subadditivity test.
-- The silent <code>example</code> declarations ask Lean's kernel to check the
-  zero boundary, the horizon-six value, the additive split, and the negation
-  of the near-miss inequality.
+- The silent <code>example</code> declarations give kernel-checked proofs of
+  the zero boundary, the horizon-six value, the additive split, and the
+  negation of the near-miss inequality.
 
 The worksheet is a finite model, not the project theorem. It uses natural
 counts instead of real logarithms, encodes the uniform two-point integral by a
@@ -1066,7 +1066,7 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.tendsto_normalizedIntegratedLogPlusNorm
 ~~~
 
-The <code>#check</code> commands ask Lean to report existing declaration
+The <code>#check</code> commands report existing declaration
 types. They do not create a samplewise exponent, prove an ergodic theorem, or
 replace the source module's compilation.
 
@@ -1114,7 +1114,7 @@ Technical success does not complete human or Pro review.
 | Two-sided cocycle or inverse estimates | Not present |
 | Random Jacobian interpretation | Not connected |
 
-The exact summit is narrower and cleaner:
+The exact summit is narrower:
 
 > One-step integrability plus measure preservation turns the finite
 > log-positive cocycle envelope into a lower-bounded subadditive sequence of

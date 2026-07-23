@@ -294,7 +294,8 @@ Its exact norm identity is
 
 No finite-total-mass, probability, ergodicity, injectivity, surjectivity, or
 invertibility premise is needed for this real \(L^2\) composition isometry.
-The three-state example uses a probability only to make the arithmetic easy.
+The three-state example uses a probability so that every integral reduces to
+a finite weighted sum.
 
 ## Isometry does not mean unitary equivalence
 
@@ -320,8 +321,8 @@ equivalence.
 
 The state trajectory may follow a nonlinear law, but measurements still live
 in a vector space: observables can be added and scaled. Koopman composition
-uses that linear structure without pretending that the original state update
-is linear. Iteration produces
+uses that linear structure without assuming that the original state update is
+linear. Iteration produces
 
 \[
 f,\ U_Tf,\ U_T^2f,\ldots,
@@ -329,9 +330,9 @@ f,\ U_Tf,\ U_T^2f,\ldots,
 
 which records how one measurement changes as the state advances. Spectral and
 Hilbert-space tools can then study invariant observables and time averages.
-This viewpoint is powerful, but it does not automatically turn a nonlinear
-system into a finite-dimensional linear one or make its spectrum easy to
-compute.
+This viewpoint transfers observables into linear operator language. It does
+not turn the original nonlinear system into a finite-dimensional linear one,
+nor does it supply a tractable spectral computation.
 
 ## Fixed observables and mean convergence
 
@@ -392,7 +393,7 @@ maximal control to reach the pointwise Birkhoff theorem.
 {{< /lean-bridge >}}
 
 The source definition deliberately begins with a **linear isometry** and then
-forgets only the extra packaging needed to expose a continuous linear map:
+drops only the extra packaging needed to expose a continuous linear map:
 
 ~~~lean
 def koopmanL2 (hT : MeasurePreserving T μ μ) :
@@ -540,7 +541,7 @@ equal masses gives squared \(L^2\) norm \(7\). The collapse has preimage counts
 <code>[0, 0, 3]</code>, pulled-back values <code>[4, 4, 4]</code>, and numerator
 <code>48</code>, which gives squared norm \(16\).
 
-This worksheet verifies finite function composition and integer arithmetic.
+This worksheet checks finite function composition and integer arithmetic.
 It does not instantiate Mathlib's measure, \(L^2\), or continuous-linear-map
 interfaces. This exact worksheet was executed successfully with the pinned
 Lean 4.32.0 compiler.

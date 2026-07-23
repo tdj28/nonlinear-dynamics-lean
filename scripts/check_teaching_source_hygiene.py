@@ -29,6 +29,29 @@ _FENCE_OPEN = re.compile(
 _HTML_CODE_OPEN = re.compile(r"<\s*(?P<tag>code|pre)\b", re.IGNORECASE)
 _MATH_TOKEN = re.compile(r"(?<!\\)(?P<slashes>\\+)(?P<token>[()\[\]])")
 _LONE_EQUALS = re.compile(r"^[ \t]*(?:>[ \t]*)*=[ \t]*$")
+_EVIDENTIARY_OVERREACH = re.compile(
+    r"\b(?P<subject>counterexamples?|examples?|models?|worksheets?|figures?|"
+    r"diagrams?|pictures?|charts?|visuals?|plates?|plots?|tables?|"
+    r"countermodels?|probes?|outputs?|commands?|simulations?|experiments?|"
+    r"compilers?|compilations?|elaborators?|elaborations?)\s+"
+    r"(?:alone\s+)?(?P<verb>proves?|proved|establish(?:es|ed)?|"
+    r"validates?|validated)\b",
+    re.IGNORECASE,
+)
+_EXPLICIT_EXISTENTIAL_ROLE = re.compile(
+    r"^\s+(?:(?:the|an?)\s+)?"
+    r"(?:existence|existential\s+(?:claim|statement))\b|"
+    r"^\s+(?:that\s+)?there\s+(?:exists?|is|are)\b"
+    r"(?!\s+(?:no|not|zero|none|neither|0\b)\b)|"
+    r"^\s+(?:the|an?|some)\s+[^.!?\n]{1,80}\s+exists?\b",
+    re.IGNORECASE,
+)
+_EXPLICIT_MODEL_ROLE = re.compile(
+    r"^\s+(?:(?:the|an?)\s+)?(?:consistency|satisfiability)\b|"
+    r"^\s+that\s+[^.!?\n]{1,80}\s+(?:is|are)\s+"
+    r"(?:consistent|satisfiable)\b",
+    re.IGNORECASE,
+)
 
 # These are deliberately conservative.  They are command names (or fused
 # command remnants) with little plausible use as ordinary mathematical prose.
@@ -386,6 +409,49 @@ def _check_lone_equals(text: str, rendered: str) -> list[SourceIssue]:
     return issues
 
 
+def _check_evidentiary_register(
+    text: str, style: str
+) -> list[SourceIssue]:
+    """Reject subjects that are generically credited with proof-level force."""
+
+    issues: list[SourceIssue] = []
+    for match in _EVIDENTIARY_OVERREACH.finditer(style):
+        subject = match.group("subject").lower()
+        verb = match.group("verb").lower()
+        suffix = style[match.end() :]
+        # A concrete witness can establish an existential statement, and a
+        # model can establish consistency or satisfiability. Preserve those
+        # standard logical roles while rejecting generic proof attribution and
+        # the nonspecific verb "validate."
+        admits_logical_role = subject in {
+            "example",
+            "examples",
+            "model",
+            "models",
+            "countermodel",
+            "countermodels",
+        }
+        if admits_logical_role and not verb.startswith("validat"):
+            if _EXPLICIT_EXISTENTIAL_ROLE.match(suffix):
+                continue
+        if (
+            not verb.startswith("validat")
+            and subject in {"model", "models", "countermodel", "countermodels"}
+        ):
+            if _EXPLICIT_MODEL_ROLE.match(suffix):
+                continue
+        issues.append(
+            _issue(
+                text,
+                "epistemic-overreach",
+                "imprecise evidentiary attribution; name the object's exact "
+                "logical role or credit the proof or argument",
+                match.start(),
+            )
+        )
+    return issues
+
+
 def _check_tex_delimiters(text: str, rendered: str) -> list[SourceIssue]:
     issues: list[SourceIssue] = []
     stack: list[tuple[str, int, int]] = []
@@ -542,6 +608,9 @@ def check_text(text: str) -> list[SourceIssue]:
     issues.extend(_check_em_dashes(text, masks))
     issues.extend(_check_controls_and_dropped_tex(text, masks.rendered))
     issues.extend(_check_lone_equals(text, masks.rendered))
+    # Front-matter summaries and shortcode captions also reach readers, so the
+    # register pass uses the broader style view rather than rendered body text.
+    issues.extend(_check_evidentiary_register(text, masks.style))
     issues.extend(_check_tex_delimiters(text, masks.rendered))
     issues.extend(_check_bare_dollars(text, masks.rendered))
     return sorted(issues, key=lambda issue: (issue.offset, issue.code))
@@ -551,7 +620,8 @@ def main() -> None:
     errors: list[str] = []
     checked = 0
 
-    for path in sorted(CONTENT_ROOT.rglob("*.md")):
+    sources = [ROOT / "README.md", *CONTENT_ROOT.rglob("*.md")]
+    for path in sorted(sources):
         if path.name == "AGENTS.md":
             continue
         checked += 1

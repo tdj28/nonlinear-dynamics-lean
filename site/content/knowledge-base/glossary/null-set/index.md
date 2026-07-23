@@ -99,7 +99,7 @@ is the die's only null set.
 
 The interval singleton and the die singleton each contain exactly one point.
 Their cardinalities agree, but their measures do not. Counting points is not
-how a general measure decides whether a set is null.
+how a general measure determines whether a set is null.
 
 ## The exact definition
 
@@ -360,10 +360,10 @@ example {Ω ι : Type*} [MeasurableSpace Ω] [Countable ι]
 ~~~
 
 The first two <code>#check</code> commands ask Lean to report Mathlib's theorem
-types. Each <code>example</code> then supplies all arguments explicitly and asks
-Lean to verify the corresponding proof term. <code>[Countable ι]</code> is the
-important gate on the second example; without it, the union theorem would be
-false.
+types. Each <code>example</code> then supplies all arguments explicitly, and
+Lean's kernel checks the resulting proof term. <code>[Countable ι]</code> is
+the important gate on the second example; without it, the union theorem would
+be false.
 
 The final two commands point to checked project declarations. In
 <code>SubadditiveKingman.lean</code>, the rational lower-deviation exhaustion is

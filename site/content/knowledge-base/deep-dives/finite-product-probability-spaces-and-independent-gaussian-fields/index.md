@@ -501,8 +501,8 @@ functions and proves qualitative Gaussianity of the function-valued variable.
 Mathlib reads \(\iota\to\mathbb C\) as a finite-dimensional real normed space,
 so every continuous real-linear projection has a real Gaussian law.
 
-That statement is powerful for general Gaussian analysis. It is also
-parameter-forgetting. A matrix normalization depends on the actual functions
+That statement permits general finite-dimensional Gaussian arguments, but it
+forgets the parameters. A matrix normalization depends on the actual functions
 `vRe` and `vIm`, so the exact product law remains the authoritative interface
 until the normalization ledger is complete.
 
@@ -1002,7 +1002,7 @@ open NonlinearDynamics.Random
 ~~~
 
 `#print` displays the structure and its three separate proof obligations. Each
-`#check` asks Lean to elaborate an existing declaration and report its type.
+`#check` elaborates an existing declaration and reports its type.
 These commands do not draw samples or estimate probabilities.
 
 **Full project check: exact repository module plus Mathlib.** Check the
@@ -1206,7 +1206,8 @@ mutually independent evaluation maps. Its empty-index case is the Dirac law at
 the unique empty assignment. Real coordinatewise scaling preserves the entire
 family contract and squares both variance functions.
 
-The summit is deliberately below the matrix ridge. No circular convention,
+This chapter's summit is the finite Gaussian product law; the matrix ridge
+remains above it. No circular convention,
 dimension scale, diagonal law, primitive matrix index, Hermitian assembly,
 unitary invariance, eigenvalue law, trace expectation, or asymptotic statement
 has been selected or proved.

@@ -340,7 +340,7 @@ real Gaussian measures, forms their product, and transports the result through
 the canonical identification of an ordered pair \((x,y)\) with the complex
 number \(x+iy\). The two component variances remain visible at every stage.
 That choice covers circular, elliptical, line-supported, and point-mass
-branches without pretending they are the same geometry.
+branches while keeping their distinct geometries explicit.
 
 The Lean module follows the same dependency order. It proves the exact measure
 first, then coordinate laws and independence, then qualitative Gaussianity and
@@ -756,7 +756,7 @@ layer, not declarations already checked by Lean.
 
 The {{< refterm "variance" "variance" >}} entry explains Mathlib's real
 variance totalization and the moment hypotheses that keep zero-variance
-reasoning honest.
+reasoning explicit.
 
 ## The properness ridge: a moment condition is not a symmetry definition
 
@@ -797,7 +797,7 @@ The converse fails for arbitrary distributions. A zero pseudocovariance does
 not fix higher moments or the full angular distribution. One can arrange
 non-circular discrete laws whose second moment happens to cancel.
 
-Within a centered Gaussian family, the story is stronger. A Gaussian law is
+Within a centered Gaussian family, the implication is stronger. A Gaussian law is
 determined by its first and second-order real data. Properness removes the
 directional second-order imbalance, and the resulting centered law is
 circularly symmetric. In the Cartesian scalar case, the density above makes
@@ -812,7 +812,7 @@ about the origin. The rotation moves the mean. A careful statement says either
 "circularly symmetric about zero" or "the centered law is circularly
 symmetric."
 
-### The project name refuses to overclaim
+### What the project name claims
 
 The Lean measure is called <code>cartesianComplexGaussian</code>, not
 <code>circularComplexGaussian</code> or
@@ -866,7 +866,7 @@ C_Z=4+1=5,
 P_Z=4-1=3.
 \]
 
-The nonzero pseudocovariance certifies that this Cartesian Gaussian is not
+The calculation \(P_Z=3\) shows that this Cartesian Gaussian is not
 proper and is not circularly symmetric. The checked project law supplies the
 exact product and marginal data. The density, \(C_Z\), \(P_Z\), properness,
 and circularity conclusions remain mathematical context rather than named
@@ -1162,8 +1162,8 @@ open NonlinearDynamics.Random
 #check HasCartesianComplexGaussianLaw.of_indep_re_im
 ~~~
 
-<code>#print</code> exposes a definition body. <code>#check</code> asks Lean to
-elaborate an existing declaration and display its type. Neither command draws
+<code>#print</code> exposes a definition body. <code>#check</code>
+elaborates an existing declaration and displays its type. Neither command draws
 samples, estimates a moment, proves circular symmetry, or upgrades the
 unformalized density and pseudocovariance formulas. The full project command below
 checks the authoritative module under Lean 4.32.0 and pinned Mathlib 4.32.0.
@@ -1290,7 +1290,7 @@ The word "Gaussian" fills none of these matrix slots by itself.
 | Wrong turn | Why it fails | Correct layer |
 |---|---|---|
 | "Both coordinates are Gaussian, so they are independent" | marginals do not determine a coupling | state or prove the joint product law |
-| "Complex variance is one obvious number" | component variances, total squared magnitude, and pseudocovariance differ | publish a normalization ledger |
+| "Complex variance is a single scalar with no convention attached" | component variances, total squared magnitude, and pseudocovariance differ | publish a normalization ledger |
 | "Equal variances imply circularity" | not for an arbitrary non-Gaussian joint law | require the full Gaussian product structure |
 | "Proper means circular by definition" | properness is second-order; circularity is distributional | use the Gaussian implication only with its hypotheses |
 | "A nonzero mean circular Gaussian is origin invariant" | rotations move the mean | center first or state symmetry about \(m\) |

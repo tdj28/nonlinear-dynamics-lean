@@ -137,7 +137,7 @@ the probability of every measurable set of values. For the positive half-line,
 =\mathbb P\bigl(X^{-1}((0,\infty))\bigr).
 \]
 
-The law does not remember which odd face produced \(-1\) or which even face
+The law does not retain which odd face produced \(-1\) or which even face
 produced \(2\). That information was merged by the many-to-one function \(X\).
 
 ## Four layers that should not be conflated
@@ -347,12 +347,12 @@ example {Ω : Type*} [MeasurableSpace Ω] (X : Ω → ℝ)
   Measure.map_apply hX hB
 ~~~
 
-The first example verifies the important boundary case: a deterministic
-constant function is measurable. The second is the exact preimage computation
-behind a random variable's law. The <code>#check</code> commands expose the
-project fields that keep measurability, Gaussian law, and independence
-separate. The full-project command below checks the complete project module
-containing the exact excerpts.
+In the first <code>example</code>, Lean's kernel checks a proof that a
+deterministic constant function is measurable. The second is the exact
+preimage computation behind a random variable's law. The <code>#check</code>
+commands expose the project fields that keep measurability, Gaussian law, and
+independence separate. The full-project command below checks the complete
+project module containing the exact excerpts.
 {{< /repo-check >}}
 
 ## Boundaries that prevent common mistakes

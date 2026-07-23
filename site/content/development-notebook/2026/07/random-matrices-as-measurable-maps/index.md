@@ -115,7 +115,7 @@ flowchart TD
   H --> I[Hermitian almost everywhere]
 {{< /mermaid >}}
 
-<p class="figure-note"><strong>Dependency map.</strong> The entrywise measurable structure earns the coordinate theorem. Every later measurability proof reduces to scalar coordinates. Hermitian symmetrization combines measurable addition and conjugate transpose, while its symmetry proof is algebraic. The final almost-everywhere theorem is weaker than the pointwise result and follows immediately from it.</p>
+<p class="figure-note"><strong>Dependency map.</strong> The entrywise measurable structure supplies the coordinate theorem. Every later measurability proof reduces to scalar coordinates. Hermitian symmetrization combines measurable addition and conjugate transpose, while its symmetry proof is algebraic. The final almost-everywhere theorem is weaker than the pointwise result and follows immediately from it.</p>
 
 ## Step 1: separate the sample space from the matrix space
 
@@ -512,7 +512,7 @@ and compare its definitional behavior with this one.
 3. **Losing a transpose index.** The entrywise proof makes the swap visible.
 4. **Using an infinite sum without convergence data.** `measurable_mul` exposes
    its `Fintype` boundary.
-5. **Smuggling in a GUE normalization.** Symmetrization is labeled
+5. **Assuming a GUE normalization.** Symmetrization is labeled
    unnormalized.
 6. **Confusing pointwise and almost-sure symmetry.** The module gives the two
    statements different declarations.

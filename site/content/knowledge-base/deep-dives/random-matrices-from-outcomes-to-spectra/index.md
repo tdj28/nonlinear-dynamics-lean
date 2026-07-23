@@ -29,7 +29,7 @@ accessible figures remains pending. The page stays
 <code>pro_reviewed: false</code> until that review is complete.
 {{< /panel >}}
 
-A random matrix is not a matrix with mysterious entries. It is a function:
+A random matrix is a measurable matrix-valued function:
 give it an outcome, and it returns one ordinary matrix. Probability enters
 through a measure on the outcomes. Spectral theory enters only after a matrix
 has been realized. A
@@ -37,7 +37,7 @@ has been realized. A
 only after measurability permits probability to be pushed through the
 function.
 
-Those layers are easy to blur in prose. We will keep them separate by carrying
+Those layers are often conflated in prose. We will keep them separate by carrying
 one exact finite example through the whole chapter.
 
 ## The running experiment: one fair coin, two matrices
@@ -48,7 +48,7 @@ Let the sample space be
 \Omega=\{\mathrm{red},\mathrm{blue}\}.
 \]
 
-A **sample space** is simply the set of possible underlying outcomes. Declare
+A **sample space** is the set of possible underlying outcomes. Declare
 every subset of \(\Omega\) to be an
 {{< refterm "event" "event" >}}, and assign the fair
 {{< refterm "probability-measure" "probability measure" >}}
@@ -357,7 +357,7 @@ hence measurable, for its finite
 {{< refterm "hermitian-frobenius-geometry" "Frobenius geometry" >}}, the
 Euclidean geometry obtained by summing the squared magnitudes of all entries.
 This is a second measurability gate. Measurability of matrix entries does not
-make every nonlinear statistic measurable by magic; the statistic needs its
+make every nonlinear statistic automatically measurable; the statistic needs its
 own theorem.
 
 ### 5. Pushforward laws
@@ -532,9 +532,9 @@ import NonlinearDynamics.Random.RandomMatrices.Basic
 ~~~
 
 <code>#print</code> unfolds the project abbreviation. Each
-<code>#check</code> asks the pinned elaborator for the exact type of a checked
-declaration. The generated full project command below validates the
-authoritative module, not the temporary probe.
+<code>#check</code> invokes the pinned elaborator and displays the exact type
+of a checked declaration. Running the generated full project command below checks the
+authoritative module; the temporary probe only requests declaration types.
 {{< /repo-check >}}
 
 ## In Lean: from one Hermitian matrix to a random spectral law
@@ -775,9 +775,9 @@ Read the output in order:
 5. the fifth records the averaged spectral mass in quarter-units, so each
    listed eigenvalue has mass \(1/4\).
 
-The four <code>example</code> declarations ask Lean's kernel to check the same
-finite claims. This worksheet verifies the arithmetic and type separation of
-the toy model. It does **not** verify the general spectral theorem, matrix
+The four <code>example</code> declarations are kernel-checked proofs of the
+same finite claims. This worksheet checks the arithmetic and type
+separation of the toy model. It does **not** establish the general spectral theorem, matrix
 measurability, pushforward law, or project declarations below.
 
 ### Try the exact spectral-law declarations in the repository

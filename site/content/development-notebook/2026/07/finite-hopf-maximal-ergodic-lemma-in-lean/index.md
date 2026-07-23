@@ -383,7 +383,7 @@ order algebra.
 M_Mg(\omega)\le M_Ng(\omega)\qquad\text{when }M\le N.
 \]
 
-The proof asks the smaller finite supremum for an index at which its maximum is
+The proof applies the finite-supremum attainment theorem to obtain an index at which its maximum is
 attained. That index lies below \(M\), hence below \(N\), so the universal
 prefix comparison bounds its value by the larger maximum. Finite attainment,
 not compactness or topology, does all the work.
@@ -545,7 +545,7 @@ the shifted point.
 M_Ng(\omega)\le g(\omega)+M_Ng(T\omega).
 \]
 
-The proof asks <code>Finset.exists_mem_eq_sup'</code> for an index \(k\) that
+The proof applies <code>Finset.exists_mem_eq_sup'</code> to obtain an index \(k\) that
 attains the maximum. Since the maximum is positive, the corresponding sum is
 positive. The case \(k=0\) collapses to the impossible inequality
 \(0\lt0\). Therefore \(k=j+1\) for some \(j\).
@@ -834,7 +834,7 @@ from leaking backward and conclusions from leaking forward.
 | Finite Hopf integral | <code>integral_finiteHopfEvent_nonneg</code> | <code>MeasurePreserving T μ μ</code>, <code>Integrable g μ</code>, finite horizon | Finite total mass, probability normalization, sigma-finiteness, ergodicity, invertibility, ordinary measurability of the chosen \(g\) representative |
 | Threshold and weak estimate | Average-exceedance declarations | Finite total mass, preservation, integrability; additionally \(0\lt a\) only for the final divided bound | Probability, ergodicity, infinite-horizon supremum, almost-everywhere convergence |
 
-### The main theorem really does not claim
+### What the main theorem does not claim
 
 - that \(E_N(g)\) has positive measure;
 - that \(E_N(g)\) tends to a measurable infinite-horizon event;
@@ -849,7 +849,7 @@ from leaking backward and conclusions from leaking forward.
 - that the project's log-positive cocycle observable has a samplewise growth rate;
 - that a signed Lyapunov exponent or an Oseledets splitting exists.
 
-### Why “finite Hopf-style lemma” is the honest name
+### Why “finite Hopf-style lemma” is a descriptive name
 
 “Finite” fixes the horizon. “Hopf-style” acknowledges the operator lineage and
 the pointwise maximum-minus-shift proof. “Lemma” signals that this is an
@@ -948,8 +948,8 @@ and therefore test actual elaboration, not informal intention.
 ### Probe 1: horizon zero is empty
 
 For arbitrary \(T\) and \(g\), the first probe reuses
-<code>finiteHopfEvent_zero</code>. It confirms that no hidden positivity appears
-from totalization.
+<code>finiteHopfEvent_zero</code>. The resulting identity records that
+totalization introduces no positive value at horizon zero.
 
 ### Probe 2: horizon one sees exactly \(g\gt0\)
 
@@ -977,8 +977,8 @@ event with a weak inequality.
 ### Probe 5: identity dynamics needs no ergodicity
 
 For the identity map, every integrable \(g\) satisfies the main nonnegative
-event-integral theorem under any measure. The probe confirms that the theorem
-does not consume ergodicity.
+event-integral theorem under any measure. This instantiation records that the
+theorem has no ergodicity hypothesis.
 
 ### Probe 6: the zero measure is allowed
 
@@ -990,8 +990,8 @@ nonzero-mass or probability assumption is hidden.
 
 The count measure on the natural numbers is not finite. The probe constructs
 an integrable observable supported at zero, with value one there, and applies
-the theorem to identity dynamics. This is direct evidence that the core finite
-Hopf lemma does not require finite total mass.
+the theorem to identity dynamics. This instantiation records that finite total
+mass is not among the core finite Hopf lemma's hypotheses.
 
 ### Probe 8: a noninjective preserving map is allowed
 
@@ -999,7 +999,7 @@ On the Boolean type, the constant map to <code>false</code> is not injective
 but preserves the Dirac measure at <code>false</code>. The theorem applies at
 horizon three. This blocks any accidental invertibility narrative.
 
-### Probe 9: preservation cannot simply be deleted
+### Probe 9: preservation is necessary
 
 The next Boolean example uses the Dirac measure at <code>true</code>, a map
 that sends every point to <code>false</code>, and an observable equal to minus
@@ -1021,8 +1021,8 @@ before division.
 ### Probe 11: the weak bound exposes positive division
 
 The final probe restates the weak measure estimate with an explicit
-\(0\lt a\) hypothesis. It confirms that positivity enters exactly at the final
-interface.
+\(0\lt a\) hypothesis. Its signature places positivity at the final divided
+bound, where the proof uses it.
 
 ### What the probes collectively rule out
 
@@ -1075,10 +1075,10 @@ indicator and set-integral APIs directly.
 
 ### Cancel through pushforward equality, not an inverse
 
-Writing an informal substitution such as “let \(y=T\omega\)” can smuggle in
-bijectivity. The Lean proof cannot do that. It builds the equality through
+Writing an informal substitution such as “let \(y=T\omega\)” can tacitly
+assume bijectivity. The Lean proof does not. It builds the equality through
 <code>Measure.map T μ</code> and rewrites with preservation. This is both more
-general and more honest.
+more general and more precise.
 
 ### Keep the sign gate at the operation that consumes it
 
@@ -1282,13 +1282,13 @@ Which term in the weak bound does not depend on \(N\)?
 **Solution.** The whole-space integral of the positive part,
 \(\int\max(g,0)\,d\mu\).
 
-### Exercise 17: audit the infinite-measure probe
+### Exercise 17: audit the infinite-measure model
 
-What does the counting-measure example establish?
+Which finite-mass hypothesis is absent from the core theorem?
 
-**Solution.** It exhibits a nonfinite measure, an integrable nonzero
-observable, and measure-preserving dynamics for which the core theorem
-applies. Thus finite total mass is not a hidden core premise.
+**Solution.** The counting-measure model has a nonfinite measure, an integrable
+nonzero observable, and measure-preserving dynamics for which the core theorem
+applies. The declaration's signature has no finite-total-mass premise.
 
 ### Exercise 18: audit the nonpreserving probe
 

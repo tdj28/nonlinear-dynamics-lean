@@ -6,7 +6,7 @@ weight: -52
 author: "tdj28"
 summary: "Eight public Lean declarations turn residue-phase block sums into one sliding Birkhoff sum and prove a finite upper bound for nonpositive shifted-subadditive processes at the corrected horizon bq+b+r, while keeping the zero-block case vacuous and every asymptotic theorem outside scope."
 lead: |
-  A fixed block map sees only every b-th orbit point. Average over all b possible starting phases, however, and every one-step sliding position appears exactly once. RMT-20 formalizes that finite combinatorial fact, combines it with positive-horizon nonpositivity, and obtains a sliding-block upper bound without invoking measure preservation, probability, ergodicity, or a limit theorem inside the proof.
+  A fixed block map samples only every b-th orbit point. Average over all b possible starting phases, however, and every one-step sliding position appears exactly once. RMT-20 formalizes that finite combinatorial fact, combines it with positive-horizon nonpositivity, and obtains a sliding-block upper bound without invoking measure preservation, probability, ergodicity, or a limit theorem inside the proof.
 key_result: |
   The checked multiplication form bounds b copies of the same process value at horizon bq+b+r by the ordinary bq-term Birkhoff sum of the block observable. The extra block in the horizon is required by the boundary count and repairs an index mismatch in a commonly used teaching display. The theorem is total but vacuous when b = 0; its division form requires b to be nonzero. Candidate wrappers retain their analytic fields, but the raw proof consumes only shifted subadditivity and nonpositivity at positive horizons.
 draft: false
@@ -198,12 +198,12 @@ we begin at \(\omega\), then the \(q\)-term block Birkhoff sum is
 \sum_{j=0}^{q-1}X_b\bigl(T^{bj}\omega\bigr).
 \]
 
-This sum sees starts at orbit times \(0,b,2b,\ldots\). It misses every start
+This sum includes starts at orbit times \(0,b,2b,\ldots\). It misses every start
 whose residue modulo \(b\) is nonzero. That is not an analytic failure. It is
-simply the sampling pattern created by the powered map.
+the sampling pattern created by the powered map.
 
 Now shift the starting sample by \(T^s\), where \(s\lt b\). The same
-powered-map sum sees
+powered-map sum includes
 
 \[
 s,\quad s+b,\quad s+2b,\quad\ldots,\quad s+(q-1)b.
@@ -216,7 +216,7 @@ different organization of the consecutive sliding starts.
 
 The mathematical point is elementary, but it solves a serious proof-design
 problem. One can apply an ordinary Birkhoff theorem to the base map \(T\)
-without pretending that ergodicity passes from \(T\) to \(T^b\). Lalley's
+without assuming that ergodicity passes from \(T\) to \(T^b\). Lalley's
 blocking discussion highlights precisely that powered-map obstruction
 ([Lalley](#ref-rmt20-lalley)). RMT-20 freezes only the finite reindexing and
 finite upper bound. It does not invoke the later Birkhoff limit.
@@ -302,7 +302,7 @@ phase inequalities without assuming \(X_0=0\).
 **The phase-zero trap.** A proof that applies the two-boundary formula
 uniformly and then writes “both boundaries are nonpositive” has silently used
 \(X_0\le0\). For a subadditive candidate, that would force \(X_0=0\). The
-checked proof splits \(s=0\) and never asks for that stronger normalization.
+checked proof splits \(s=0\) and does not require that stronger normalization.
 {{< /panel >}}
 
 The nonpositive subadditive reduction was established in RMT-19 and has
@@ -465,11 +465,11 @@ only one field. That distinction matters here.
 | Cocycle specialization | A <code>DiscreteMatrixCocycle</code>, which already bundles a preserved base | Cocycle centered subadditivity and nonpositivity |
 | Division forms | The corresponding multiplication theorem | The additional premise <code>b ≠ 0</code> |
 
-The candidate methods cannot honestly be described as having no measurable
-space or no integrability object in their signatures. They do. The precise
-claim is that the proof does not inspect <code>hX.integrable</code>, does not
+The candidate methods do retain a measurable space and an integrability object
+in their signatures. More precisely, the proof does not inspect
+<code>hX.integrable</code>, does not
 take an additional <code>hT</code>, and does not use probability or
-ergodicity. The private raw helpers reveal this dependency boundary.
+ergodicity. The private raw helpers make this dependency boundary explicit.
 
 Likewise, a <code>DiscreteMatrixCocycle</code> already contains its base map,
 measure, measurability data, and measure-preservation proof. The final theorem
@@ -477,10 +477,10 @@ takes only \(C\), with no separate
 <code>HasIntegrableGeneratorLogPlus</code> argument. Its proof projects the
 two pointwise centered laws and ignores the stored analytic fields.
 
-This distinction keeps two kinds of honesty in view at once. The public API
-fits the project's existing candidate and cocycle abstractions. The prose
-still reports the smaller proof kernel instead of pretending the wrapper is
-logically minimal.
+This distinguishes API scope from proof dependence. The public API fits the
+project's existing candidate and cocycle abstractions, while the prose reports
+the smaller proof kernel without claiming that the wrapper is logically
+minimal.
 
 ## The complete source-order tour
 
@@ -692,9 +692,9 @@ The final private named declaration packages \(P\) as an integrable candidate
 over the zero measure. Every real-valued function is integrable against that
 measure, and private declaration 6 supplies the algebraic field.
 
-The succeeding unnamed examples verify \(P_0=1\) and apply the phase-average
-theorem at concrete block, count, and tail values. They demonstrate that the
-public theorem genuinely permits a positive time-zero value.
+The succeeding unnamed declarations specialize \(P_0=1\) and the phase-average
+theorem at concrete block, count, and tail values. This specialization shows
+that the public theorem permits a positive time-zero value.
 
 ## Degenerate cases are part of the theorem
 
@@ -725,8 +725,8 @@ bX_{b+r}(\omega)\le0.
 \]
 
 If \(b\gt0\), then \(b+r\gt0\), so this follows from positive-horizon
-nonpositivity. If \(b=0\), the inequality is again \(0\le0\). This check
-confirms that no nonexistent block term survives an empty Birkhoff sum.
+nonpositivity. If \(b=0\), the inequality is again \(0\le0\), with no block
+term surviving the empty Birkhoff sum.
 
 ### Unit block length
 
@@ -762,7 +762,7 @@ been defined consistently.
 The theorem accepts every \(r\in\mathbb N\). Even a tail longer than a block is
 legal. Calling \(r\) a “remainder” can suggest \(r\lt b\), but that inequality
 is not part of this API. In this chapter, “tail parameter” is often the more
-literal phrase. A quotient-and-modulus specialization may later earn the
+literal phrase. A quotient-and-modulus specialization could later supply the
 strict bound.
 
 ## Assumption ledger
@@ -869,8 +869,9 @@ bound directly when \(s=0\), exactly as the private helper does.
 
 ### Adding \(X_0=0\) to avoid the branch split
 
-That would make the proof shorter and the public theorem weaker. The
-positive-at-zero smoke model demonstrates that the premise is unnecessary.
+That would make the proof shorter and the public theorem weaker. The public
+theorem does not assume \(X_0=0\), and the positive-at-zero model instantiates
+it with \(X_0=1\).
 
 ### Assuming \(r\lt b\)
 
@@ -907,7 +908,7 @@ the proofs do not consume its integrability field.
 
 ### Saying the cocycle theorem has no preserved base
 
-The cocycle object already bundles one. The honest claim is that no additional
+The cocycle object already bundles one. The precise claim is that no additional
 preservation hypothesis is passed and the proof does not inspect the field.
 
 ### Requiring `HasIntegrableGeneratorLogPlus`

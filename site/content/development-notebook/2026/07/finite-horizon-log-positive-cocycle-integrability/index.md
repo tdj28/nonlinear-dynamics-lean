@@ -195,8 +195,8 @@ growth into additive growth:
 
 for positive \(a\) and \(b\). But the ordinary logarithm has a negative tail
 near zero. A product that contracts very strongly has a very negative log
-norm, and a product that becomes exactly zero wants the value
-\(-\infty\).
+norm; an extended logarithm assigns the value \(-\infty\) to a product that
+becomes exactly zero.
 
 Suppose the immediate question is narrower:
 
@@ -277,7 +277,7 @@ be the new envelope.
 | Strict contraction | negative finite value | zero |
 | Norm one | zero | zero |
 | Expansion | positive logarithm | positive logarithm |
-| Main local role | honest finite-time logarithmic scale | positive-tail \(L^1\) control |
+| Main local role | finite-time logarithmic growth scale | positive-tail \(L^1\) control |
 | Integrability proved here | no | yes, under an explicit one-step hypothesis |
 
 The two observables do not serve the same formal role. The extended version
@@ -425,8 +425,8 @@ for every natural horizon and every base point.
 
 The left side is a norm of an entire matrix product followed by a nonlinear
 function. The right side is a finite sum of copies of one fixed observable
-along the base orbit. Measure preservation knows exactly how to transport
-that one-step observable. This converts a product-level integrability problem
+along the base orbit. Measure preservation transports that one-step observable
+through each base iterate. This converts a product-level integrability problem
 into repeated use of a one-step hypothesis.
 
 The argument is finite. It uses neither a limit nor a uniform bound in \(k\).
@@ -489,8 +489,8 @@ preserves integrability:
   G_1\circ T^j\in L^1(\mu).
 \]
 
-Conceptually, measure preservation says the pullback sees the same measured
-distribution of values. Formally, the proof invokes
+Conceptually, measure preservation leaves the measured distribution of values
+unchanged under pullback. Formally, the proof invokes
 <code>MeasurePreserving.integrable_comp_of_integrable</code> with RMT-13's
 theorem that every natural base iterate preserves \(\mu\).
 
@@ -577,7 +577,7 @@ Therefore every finite-time positive-log observable is zero:
   G_k(\omega)=\log^+0=0.
 \]
 
-At time zero the proof cannot simply use the positive-dimensional fact that
+At time zero the proof cannot use the positive-dimensional fact that
 the identity has norm one. It splits on whether \(\iota\) is empty:
 
 * in the empty branch, \(N_0=0\) and \(\log^+0=0\);
@@ -928,7 +928,7 @@ nonnegativity, monotonicity, and product estimate used by the module.
 
 ## Common proof and interpretation traps
 
-### Trap 1: treating \(\log^+\) as an honest logarithm
+### Trap 1: treating \(\log^+\) as the signed logarithm
 
 The equation \(\log(xy)=\log x+\log y\) does not become an equality for
 \(\log^+\). The available statement is an inequality. Flattening negative

@@ -85,7 +85,7 @@ and approach \(-1\). That eventual lower edge is the **limit inferior**, or
   src="liminf-tail-floor.svg"
   wide="true"
   alt="The exact sequence 4, minus 2, seven halves, minus three halves, ten thirds, minus four thirds, thirteen fourths, minus five fourths alternates between an upper rail approaching 3 and a lower rail approaching minus 1. Its paired tail floors rise from minus 2 to minus three halves, minus four thirds, and minus five fourths toward minus 1. A separate downward-escape panel shows that the real Mathlib liminf of minus n totalizes to 0 when no eventual real lower bound exists."
-  caption="**Finding:** the worked sequence has paired tail floors \(-2,-3/2,-4/3,-5/4,\ldots\), so its liminf is \(-1\), even though its upper rail approaches \(3\) and the sequence does not converge. The boundary panel contrasts this honest lower-bounded case with \(u_n=-n\): its extended-real liminf is \(-\infty\), but Mathlib's real-valued liminf totalizes to \(0\) because no real eventual lower bound exists. Every plotted value is part of this exact toy example, not empirical data."
+  caption="**Finding:** the worked sequence has paired tail floors \(-2,-3/2,-4/3,-5/4,\ldots\), so its liminf is \(-1\), even though its upper rail approaches \(3\) and the sequence does not converge. The boundary panel contrasts this lower-bounded case with \(u_n=-n\): its extended-real liminf is \(-\infty\), but Mathlib's real-valued liminf totalizes to \(0\) because no real eventual lower bound exists. Every plotted value is part of this exact toy example, not empirical data."
 >}}
 
 ## Why this sequence still does not converge
@@ -134,7 +134,7 @@ meaning the least upper bound, of all those rising floors:
 \sup_{N\ge0}\ \inf_{n\ge N}a_n.
 \]
 
-The extended real endpoints make this formula honest for every sequence. A
+The extended real endpoints make this formula valid for every sequence. A
 sequence escaping downward may have liminf \(-\infty\); a sequence escaping
 upward may have liminf \(+\infty\). No arbitrary finite number is needed.
 
@@ -222,8 +222,8 @@ Two similarly named order hypotheses play different roles in the pinned API:
 | `Filter.IsBoundedUnder (· ≥ ·) Filter.atTop u` | Some real \(b\) satisfies \(b\le u_n\) eventually. | It rules out downward escape before frequent lower crossings are converted into a real-liminf bound. |
 | `Filter.IsCoboundedUnder (· ≥ ·) Filter.atTop u` | The lower-limit problem has upper control; in this project, the pointwise bound \(u_n\le0\) supplies it. | It supports the converse step from a strict liminf inequality to frequent strict crossings. |
 
-The relation `(· ≥ ·)` makes the names easy to misread. Follow the inequality,
-not an English guess about the identifier.
+Because the relation is written `(· ≥ ·)`, the names can be misread. Follow
+the displayed inequality rather than guessing from the identifier.
 
 {{< panel "warning" >}}
 For a real sequence, a displayed `Filter.liminf` value does not prove its own

@@ -203,9 +203,9 @@ variable {Ω : Type uΩ} {ι : Type uι} [MeasurableSpace Ω]
 ```
 
 `open scoped Matrix` activates notation such as `Aᴴ`. The universes keep the
-sample type and index type general. The `[MeasurableSpace Ω]` parameter gives
-Lean the structure needed whenever a theorem says `Measurable` or mentions a
-measure on \(\Omega\).
+sample type and index type general. The `[MeasurableSpace Ω]` parameter
+supplies the structure required whenever a theorem says `Measurable` or
+mentions a measure on \(\Omega\).
 
 ### Why some theorems say `omit`
 
@@ -243,9 +243,9 @@ theorem isHermitianEverywhere_iff_entries
   simp only [IsHermitianEverywhere, Matrix.IsHermitian.ext_iff]
 ```
 
-The proof works because Mathlib already knows the matrix-level equivalence.
-After unfolding the project predicate, `simp only` applies exactly that theorem
-at every outcome. There is no entry-by-entry algebra to redo.
+Mathlib already contains the matrix-level equivalence. After unfolding the
+project predicate, `simp only` applies that theorem at every outcome. There is
+no entry-by-entry algebra to redo.
 
 {{< checkpoint stage="Camp I" title="Translate the types aloud" >}}
 In `star (X ω j i) = X ω i j`, name the role of every symbol: the sample
@@ -754,9 +754,9 @@ example [Fintype ι] (X : HermitianRandomMatrix Ω ι) (ω : Ω) :
 end Scratch
 ```
 
-Run it with `lake env lean YourScratchFile.lean`. The exercise demonstrates the
-payoff of bundling: the final proof names the theorem that matches the intended
-mathematics and does not reopen any matrix entries.
+Run it with `lake env lean YourScratchFile.lean`. The exercise illustrates the
+benefit of bundling: the final proof names the theorem that matches the
+intended mathematics and does not reopen any matrix entries.
 
 ## What this module does not claim
 
@@ -778,7 +778,7 @@ This boundary is as important as the successful proofs.
 - Matrix multiplication and trace results here are finite-dimensional.
 
 The broader Deep Dive explains why these missing layers matter before one can
-honestly speak about GUE, spectral statistics, or quantum chaos. The official
+claim GUE, spectral statistics, or quantum-chaos results. The official
 Mathlib spectrum module already contains finite Hermitian diagonalization, but
 that result is a future dependency, not a theorem proved by this file
 ([Mathlib spectrum API](#ref-mathlib-spectrum)).
@@ -802,10 +802,10 @@ then needs:
 6. equality in law under unitary conjugation; and
 7. integrability before expected trace moments are formed.
 
-The present module earns that climb by making Hermitian structure impossible to
-hand-wave. Every future ensemble must say which symmetry predicate it has, how
-measurability is obtained, and whether a statement is pointwise or only
-almost sure.
+The present module prepares that climb by recording Hermitian structure as an
+explicit predicate on every sample. Every future ensemble must say which
+symmetry predicate it has, how measurability is obtained, and whether a
+statement is pointwise or only almost sure.
 
 ## Exercises: foothills to summit
 

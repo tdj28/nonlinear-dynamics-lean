@@ -224,8 +224,8 @@ It also makes the dimension ledger transparent:
 
 That cardinality is the familiar real dimension of the Hermitian matrices.
 The bridge does not need to choose an arbitrary enumeration by
-`Fin (n^2)`. Keeping the semantic sum index lets every proof know whether it
-is looking at a diagonal, real-upper, or imaginary-upper coordinate.
+`Fin (n^2)`. The semantic sum index keeps the diagonal, real-upper, and
+imaginary-upper cases distinguishable in each proof.
 
 ### The same index enumerates every matrix position
 
@@ -337,7 +337,7 @@ u_{ij}=\frac{z_{\mathrm{re}(ij)}}{\sqrt{2}}
 The existing deterministic Hermitian assembly then fills the lower triangle
 by conjugation. Division is only by the fixed positive number \(\sqrt{2}\),
 never by \(\sqrt{n}\). Consequently this definition remains valid when
-\(n=0\); there simply are no upper indices on which the formula can be
+\(n=0\); there are no upper indices on which the formula can be
 evaluated.
 
 `RandomMatrix.realToHermitianCoordinates` is the raw decoder from a real
@@ -374,7 +374,7 @@ part. A single `ext` without this trichotomy is unlikely to expose the right
 normal form.
 
 Once bundled, the isometry automatically gives continuity and measurability.
-That matters twice: Mathlib's Gaussian isometry theorem expects a bundled real
+That matters twice: Mathlib's Gaussian isometry theorem requires a bundled real
 linear isometry, and `Measure.map_map` requires the measurable maps whose
 composition is being reassociated.
 
@@ -1159,8 +1159,8 @@ random-matrix theory.
 [The First Exact GUE Trace Moments in Lean: Centering, Energy, and Wigner
 Scale]({{< relref "/development-notebook/2026/07/gue-first-exact-trace-moments" >}})
 now proves the first two integrable trace moments from this bridge. The next
-mathematically honest ridge is a measurable finite-spectrum interface and an
-empirical spectral measure. Those layers should consume the invariant law
+ridge is a measurable finite-spectrum interface and an empirical spectral
+measure. Those layers should consume the invariant law
 proved here rather than reconstructing coordinate symmetry from scratch.
 Asymptotic statements such as the semicircle law require an additional limit
 architecture and must remain separate from this exact finite-dimensional

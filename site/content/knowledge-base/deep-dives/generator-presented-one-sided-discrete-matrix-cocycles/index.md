@@ -619,7 +619,7 @@ A noninjective map can preserve a measure. The structure stores an ordinary
 self-map, not an equivalence, so it supplies no backward orbit and no
 negative-time action.
 
-### Why one-sided time is a real boundary
+### Why one-sided time is a structural boundary
 
 Natural-number time makes every forward expression meaningful without an
 inverse. The sequence
@@ -644,9 +644,8 @@ measure-preserving base action. It would need an explicit inverse convention
 for negative matrix products. RMT-13 does not reserve such a convention by
 notation.
 
-Keeping these distinctions visible prevents the namespace
-<code>RandomCocycles</code> from smuggling in a complete metric dynamical
-system.
+The namespace <code>RandomCocycles</code> by itself carries no assumption of a
+complete metric dynamical system.
 
 ## Camp seven: the bundled generator presentation
 
@@ -954,15 +953,16 @@ Each four-number list is a matrix in row order:
 - The second is the shifted middle ledger \(I,S,LS\).
 - The third prints the direct two-step value and the one-plus-one split; the
   lists agree.
-- The standalone <code>true</code> asks Lean to decide that equality.
+- The standalone <code>true</code> is the result of deciding that equality.
 - The fifth line prints the omitted-shift value \(D^2\) and the reversed value
   \(DS\).
-- The last line certifies that both near misses differ from \(SD\).
+- The last line reports <code>true</code> for both comparisons with \(SD\).
 
-The <code>example</code> commands go beyond printing. Each asks the kernel to
-check a proposition. The first two show the base is noninjective: middle and
-sink are different inputs with the same image. The remaining examples certify
-the zero value, one-step value, numeric cocycle split, and both inequalities.
+The <code>example</code> commands contain kernel-checked propositions. The
+first two show the base is noninjective: middle and sink are different inputs
+with the same image. The remaining example declarations record the stated
+zero value, one-step value, numeric cocycle split, and two inequalities for
+this finite model; their proof terms are kernel checked.
 
 The worksheet mirrors the project's recursion but is not a substitute for the
 project theorem. It uses integer entries, a hand-written matrix
@@ -1266,8 +1266,8 @@ open NonlinearDynamics.Random.RandomCocycles
 ~~~
 
 <code>import</code> loads this project module and its pinned Mathlib
-dependencies. <code>#check</code> asks Lean to elaborate an existing
-declaration and report its type. <code>#print</code> exposes the four structure
+dependencies. <code>#check</code> elaborates an existing
+declaration and reports its type. <code>#print</code> exposes the four structure
 fields. These commands do not sample matrices, infer a probability law, or
 prove a Lyapunov theorem.
 

@@ -83,7 +83,7 @@ authoritative.
   **Discussion** section with its epistemic-downgrade rules (§3.3)
 - Figures, receipts, machine-verified numbers, accessibility, SVG rules (§4–§5)
 - Reference verification and citation hygiene (§6)
-- Scope, honesty, controls, summary-surface consistency (§8–§9)
+- Scope, claim fidelity, controls, summary-surface consistency (§8–§9)
 - The pre-handoff agent checklist (§10)
 
 ## Scope of this guide
@@ -104,9 +104,9 @@ without opacity, figures as first-class evidence, verified references, and a
 human-owned editorial gate. It is a bootstrap for agents and collaborators. It
 is not a license to ship unedited prose under a human name.
 
-We want an **aufbau** (build-up) sequence: earlier notes earn the
-vocabulary and controls; later notes may spend less ink reteaching and more ink
-on the new empirical claim. Not every post must be a full primer.
+We want an **aufbau** (build-up) sequence: earlier notes establish the
+vocabulary and controls; later notes may spend less ink reteaching and more
+ink on the new empirical claim. Not every post must be a full primer.
 
 But also do not assume a reader has read any prior posts. You may refer to prior posts as necessary (by providing a link to the reader).
 
@@ -191,7 +191,7 @@ Rules:
       `$SKILLS_REPO/scripts/review_experiment_plan.py --review-kind research-note-scientific`.
       Submit the complete note plus only the compact result summary or figure
       receipts needed to assess its claims. The reviewer attacks factual
-      accuracy, honesty, statistics, control and baseline reporting, scope,
+      accuracy, claim fidelity, statistics, control and baseline reporting, scope,
       figure-to-text agreement, missing citations, and unnecessary citations.
       It must inventory every bibliography entry, name the exact claim each
       source warrants, and recommend removal when a reference is orphaned,
@@ -407,9 +407,9 @@ It should still:
   plus a one-line gloss in the note);
 - remain readable in the lead and in figure captions.
 
-Full in-post glossaries and learning-objective lists are earned by
-foundation posts; they are optional on sequel notes that explicitly stand
-on those foundations and on the site References index.
+Full in-post glossaries and learning-objective lists are appropriate for
+foundation posts; they are optional on sequel notes that explicitly stand on
+those foundations and on the site References index.
 
 ---
 
@@ -425,7 +425,7 @@ experiment with freeze + release artifacts):
    a highlighted box between the lead and the table of contents (added
    2026-07-12; `single.html` + `.key-result` CSS). Give it the single most
    notable finding in 3 to 5 plain sentences with its headline numbers *and*
-   the control that earns them. Do not restate the whole abstract.
+   the control that supports them. Do not restate the whole abstract.
 3. AI-use disclosure panel (**canonical text in §1.2**; first body block).
 4. Abstract panel (precise; may keep specialist diction; **break into
    paragraphs** per §2.1, not one wall of text).
@@ -460,7 +460,7 @@ Use Hugo shortcodes already in the site:
 | Monte Carlo / estimator clarifications | Full worked examples |
 
 Prefer site `/blog/knowledge-base/glossary/` pages for recurring glossary terms (§2.2);
-use a `definition` panel only for a one-off aside that does not earn its own
+use a `definition` panel only for a one-off aside that does not warrant its own
 page. Prefer `warning` for overclaim / misuse risks, and `info` for "hold
 their hand here" clarifications. Keep each panel short (a few sentences +
 optional display math); do not dump whole sections into panels.
@@ -539,7 +539,7 @@ Canonical shape (see *Can a Jacobian Lens Detect SAE Steering?*):
   future work as a scientific implication or direct extension.
 - Prefer "we" / impersonal procedural voice over second-person tutoring that
   sounds like a live debug session.
-- Keep the appendix dense and honest; keep the main narrative climbable.
+- Keep the appendix dense and auditable; keep the main narrative climbable.
 
 **Split vs the reproducibility ledger:** the ledger is a map; the appendix is
 a guided tour. Do not delete the ledger because the appendix exists, and do
@@ -551,7 +551,7 @@ NeurIPS (formerly NIPS) does not mandate a single "Related Work" template, but
 its [Paper Checklist](https://neurips.cc/public/guides/PaperChecklist)
 requires that abstract and introduction **state contributions clearly**, with
 assumptions and limitations, and that claims match what the results support.
-Conference culture usually adds early contribution bullets and honest limits.
+Conference culture usually adds early contribution bullets and explicit limits.
 Adopt those **norms** on study-report notes; do **not** paste the full NeurIPS
 checklist form into a post.
 
@@ -589,8 +589,8 @@ Primer notes may use a lighter version (one paragraph of lineage + one
 Study-report notes **require** a `## Discussion` section (strong default;
 deviate only with a stated reason, e.g. a pure replication with nothing to
 add). Interpretation sections state what the experiment established;
-Discussion is where the note earns its keep for expert readers by asking what
-the result *means*: what kind of object the instrument is, why the observed
+Discussion adds value for expert readers by asking what the result *means*:
+what kind of object the instrument is, why the observed
 pattern was or was not expected under a simple conceptual model, what a
 better instrument would look like, and what is and is not feasible next.
 
@@ -599,7 +599,7 @@ after the results ("is this just a first-order Taylor term failing?", "would
 a second-order lens fix it?", "is the baseline secretly strong for a
 structural reason?") rather than reciting generic future work.
 
-Rules that keep it honest:
+Rules that keep its epistemic scope explicit:
 
 1. **Open with an explicit epistemic downgrade.** First paragraph must say,
    in substance: everything in this section is interpretation; the audited
@@ -659,8 +659,8 @@ because the adjacent title and summary already name the destination;
 Treat the card like the title, lead, and abstract:
 
 1. It inherits every hedge, scope limit, control, correction, and retraction
-   from the note. Never use a retracted chart or crop away the baseline that
-   makes a comparison honest.
+   from the note. Never use a retracted chart or crop away a baseline needed
+   to interpret a comparison.
 2. It must not introduce a number, relationship, or causal claim that the note
    does not support. The adjacent menu summary must communicate the same core
    point so understanding never depends on seeing the image.
@@ -993,7 +993,7 @@ entry, and regenerating them must not silently drop in-image retraction
 banners (re-inject and re-validate after every regeneration).
 
 3. **Rebuilding a lost-generator figure: re-derive, and reconcile a mismatch
-   honestly; never fit the convention to the old number (learned 2026-07-14).**
+   explicitly; never fit the convention to the old number (learned 2026-07-14).**
    When a published figure's plotting script was never committed and you rebuild
    it from the receipts, gate the rebuild on the *published* numbers: assert the
    recompute equals what shipped, and fail the build on any drift. If a value
@@ -1003,7 +1003,7 @@ banners (re-inject and re-validate after every regeneration).
    used the *merged single token* ("Moscow" = rank 92). The trap is to silently
    adopt whichever convention reproduces the old number; that is fitting the
    figure to the claim, and it is a form of fabrication. Instead: (a) put every
-   compared series on **one consistent probe**, (b) report the honest number that
+   compared series on **one consistent probe**, (b) report the value that
    convention gives even when it *weakens* the story, and (c) **disclose the
    alternative convention explicitly** in the figure and text (both numbers are
    often legitimate; say so). A rebuild that "passes" only because you loosened
@@ -1206,12 +1206,13 @@ Exclude:
   claim and add missing adjacent literature; do not inflate claims to match
   the bibliography.
 - **Search for prior work on your *contribution*, not only your method.**
-  "New," "first," and "novel" are claims that require a search: look for anyone
-  who already did the specific thing you are claiming as yours. If they exist,
-  cite them and narrow the claim; do not discover them after publishing. (A
-  companion-commentary search surfaced an independent open-weight replication
-  that predated our own "reproduction on open weights"; the honest fix was to
-  cite it and reframe our contribution as the narrower delta.)
+   "New," "first," and "novel" are claims that require a search: look for anyone
+   who already did the specific thing you are claiming as yours. If they exist,
+   cite them and narrow the claim; do not discover them after publishing. (A
+   companion-commentary search surfaced an independent open-weight replication
+   that predated our own "reproduction on open weights"; the required
+   correction was to cite it and reframe our contribution as the narrower
+   delta.)
 
 ---
 
@@ -1236,10 +1237,29 @@ Sequel notes may inherit these by link rather than reprint.
 
 ---
 
-## 8. Scope, Honesty, and Voice
+## 8. Scope, Evidence, and Voice
 
 - Prefer narrow operational claims: *this model, this SAE, this lens, this
   score, this access model*.
+- Use mathematically exact evidentiary verbs. An ordinary computation checks
+  arithmetic or selected finite cases; a verified exhaustive computation may
+  establish a finite proposition when its coverage and trust boundary are
+  explicit. An example illustrates or exhibits; an explicitly named
+  counterexample refutes a universal claim; and a proof, theorem, or complete
+  argument establishes a general result. A concrete example can establish
+  existence or refute a universal claim when its role as a counterexample is
+  stated explicitly. Figures explain; any proof lies in the accompanying
+  argument. Lean's elaborator constructs a candidate proof term and its kernel
+  checks that term against the formal statement, not the statement's fidelity
+  to the intended informal theorem or physical interpretation. Avoid generic
+  claims that an example, worksheet, diagram, or compiler “proves” something.
+- Remove canned transitions, promotional or anthropomorphic language, and
+  dismissive shortcuts such as “obvious,” “clearly,” “simply,” “trivial,” or
+  “of course” when they replace a reason. Make the prose accessible by
+  controlling the order of ideas, not by relaxing mathematical precision.
+- Replace moralizing proxies such as “honest,” “dishonest,” “pretend,” or
+  “smuggle” with the precise defect: an omitted assumption, invalid
+  implication, undefined construction, unsupported claim, or scope mismatch.
 - Label post-hoc analyses as post-hoc.
 - Keep failed features and chance nulls in the ledger (e.g. feature 23893).
 - Distinguish suggestive vendor labels from ontology.
@@ -1319,7 +1339,7 @@ the same signal as well or better, and the claim evaporated.
 This is a *writeup* lesson, distinct from running the controls (that is the
 [experiment-integrity playbook](./EXPERIMENT_INTEGRITY_SKILLS.md)'s job).
 Running a control and *showing* it are different acts, and only the second is
-honest to the reader.
+transparent to the reader.
 
 1. **Every headline number appears beside its controls and its cheapest prior
    baseline, on the same statistic, in the same table or figure.** A reader must
@@ -1342,10 +1362,11 @@ honest to the reader.
 5. **If the controls deflate the headline, reframe and reship; do not bury.** A
    deflated result is still a real, publishable result, and often a better one:
    "we ran the controls a prior claim skipped, and here is what survives."
-   Retitle honestly (ours became "…Once You Run the Controls"), rewrite the lead
-   and abstract to lead with the control-audit story, and demote the deflated
-   claim in the body. Quietly dropping the post (or softening one sentence while
-   keeping the exciting title) is the dishonest path.
+   Retitle to match the controlled result (ours became "…Once You Run the
+   Controls"), rewrite the lead and abstract to lead with the control-audit
+   story, and demote the deflated claim in the body. Quietly dropping the post
+   (or softening one sentence while keeping the exciting title) leaves the
+   headline inconsistent with the evidence.
 6. **A retraction that isn't inside the figure doesn't retract the figure
    (added 2026-07-14).** Figures get screenshotted, hotlinked, and reposted
    without their captions, panels, or surrounding prose: a reader can pull a
@@ -1378,8 +1399,8 @@ honest to the reader.
      version (a withdrawn claim), say so explicitly at the pairing: a
      withdrawn claim is not re-plotted; it is named as withdrawn.
 
-The house value "honesty over green" (§8) is not just about the ledger. It
-governs the prose and the figures too: the reader is entitled to see the
+The house value "evidence over green checks" (§8) is not just about the ledger.
+It governs the prose and the figures too: the reader is entitled to see the
 contrast you saw.
 
 ---
@@ -1388,9 +1409,9 @@ contrast you saw.
 
 A recurring expert-review failure mode: the review finds no factual errors in
 the results, yet still lands a cluster of presentational overclaims that all
-share one root cause: **the body was honest and the summary surfaces were
-not.** Each item below is fixable in minutes; the point of this section is to
-catch them before a reviewer does.
+share one root cause: **the body carried the required qualifications and the
+summary surfaces did not.** Each item below is fixable in minutes; the point is
+to catch them before a reviewer does.
 
 1. **Claim parity: summary surfaces inherit the body's hedges.** The five
    surfaces a reader (or quoter) actually sees (title, `lead`, `key_result`
@@ -1434,9 +1455,9 @@ catch them before a reviewer does.
    instrument (say, a full multivariate detector in one regime and a
    one-number contrast in another) share the phrase "the same score" on any
    summary surface. Say which reader each result belongs to; "the same
-   readout" with the reader specified per regime is honest, "the same score"
-   is not. This is the writeup twin of the design rule that comparators must
-   be capacity-matched: a reviewer who catches the mislabel will re-audit
+   readout" with the reader specified per regime is accurate, while "the same
+   score" is not. This is the writeup twin of the design rule that comparators
+   must be capacity-matched: a reviewer who catches the mislabel will re-audit
    everything else.
 8. **Headline only fair contrasts; demote mismatched arms.** A multi-arm
    preference ranking (A > B > C > D) is a strong claim. It is only as fair
@@ -1568,6 +1589,9 @@ original claim, never after.
 - [ ] Study-report notes: `## Discussion` section present (§3.3) with the
       epistemic-downgrade opener, self-contained framing, no new evidentiary
       numbers, hypotheses labeled and pointed at future prespecified tests
+- [ ] Mathematical-register pass complete: every example, counterexample,
+      computation, figure, Lean check, theorem, and proof is credited with its
+      exact logical role; no dismissive shortcut substitutes for a reason (§8)
 - [ ] No chat residue in the post (do not address the author/editor mid-draft)
 - [ ] `og_image` and `og_image_alt` are present; the page-bundle PNG/JPEG is
       exactly 1200×630 and resolves in both the menu and generated social tags
@@ -1670,14 +1694,15 @@ original claim, never after.
 - [ ] Adversarial read done; surviving objections fixed, not softened
 - [ ] Scientific-integrity Pro review ran with
       `--review-kind research-note-scientific` on the assembled note plus only
-      compact evidence; it audited accuracy, honesty, scope, figures, missing
+      compact evidence; it audited accuracy, claim scope, figures, missing
       references, and unnecessary references, and every material suggestion is
       adjudicated (§1.8)
 - [ ] Zero-context expert-reader Pro review then ran with
       `--review-kind research-note-reader` on the scientifically corrected
       draft; its ramp, cohesion, scope, pacing, and figure-integration grades
       are preserved and every material suggestion is adjudicated (§1.8)
-- [ ] If controls deflated the headline, the post was reframed honestly, not buried
+- [ ] If controls deflated the headline, the post was reframed to match them,
+      not buried
 - [ ] AI disclosure is the §1.2 canonical panel (verbatim study default, or
       teaching twin only when the default would be false); no warranty
       boilerplate, no paraphrased verbs, no false "has inspected" /
@@ -1727,8 +1752,9 @@ and confirmed to say what we cite it for.
   <https://www.icmje.org/recommendations/browse/publishing-and-editorial-issues/scientific-misconduct-expressions-of-concern-and-retraction.html>
 - **Evans, Petroff, and King 2026, "Advancing science by designing for
   surprise," *Science* 393, eaej4257** — proposes making audience-relative
-  expectation, observation, and update explicit while distinguishing honest
-  abduction from HARKing and post-outcome audience-shopping (§8.1). This is an
+  expectation, observation, and update explicit while distinguishing
+  evidence-supported abduction from HARKing and post-outcome audience-shopping
+  (§8.1). This is an
   Expert Voices editorial used as a suggestive reporting heuristic, not an
   empirical standard or technical authority.
   <https://doi.org/10.1126/science.aej4257>

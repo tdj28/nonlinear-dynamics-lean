@@ -332,7 +332,8 @@ The normalized identity becomes
 \frac{-2}{4}+1.
 \]
 
-Both sides equal \(1/2\). This example demonstrates four points at once:
+Both sides equal \(1/2\). This calculation exhibits four features in one
+model:
 
 1. the additive orbit sum can strictly majorize the subadditive process;
 2. the centered residual can be strictly negative;
@@ -341,8 +342,8 @@ Both sides equal \(1/2\). This example demonstrates four points at once:
 
 For the last point, equip the singleton with its Dirac probability measure.
 The integral of the constant function \(Y_4=-2\) is \(-2\). Probability
-normalization does not magically change orbit-majorant compensation into
-expectation centering.
+normalization does not turn orbit-majorant compensation into expectation
+centering.
 
 An additive comparison provides the opposite boundary. If
 
@@ -484,7 +485,7 @@ The recurrence <code>birkhoffSum_succ</code> then identifies the result with
 the length-\(n+2\) Birkhoff sum. Real addition is commutative, so the final
 proof closes with <code>add_comm</code>.
 
-Why not simply expose RMT-18's exact-block theorem at block length one? The
+Why not expose RMT-18's exact-block theorem at block length one? The
 public mathematical result is the same, but the raw helper makes a stronger
 API audit possible: the positive-horizon majorant depends only on
 shifted-subadditivity. It does not consume the candidate's integrability
@@ -577,7 +578,7 @@ Again the result is a function equality. Mathlib's
 the original point. Therefore \(X_1-X_1=0\).
 
 This exact identity is stronger than nonpositivity and needs no candidate
-hypothesis. It is a useful sanity check for the definition, the cocycle
+hypothesis. It is a useful consistency check for the definition, the cocycle
 specialization, and any future normalization formula.
 
 The two private helpers occur here in the source. Their placement matters:
@@ -970,8 +971,8 @@ integrability gate.
 
 This thinness matters. A theorem that takes \(hC\) merely because a convenient
 candidate object can be built from \(hC\) advertises an assumption the
-mathematics does not need. The source instead uses a private raw helper and
-keeps the public signatures honest.
+mathematics does not need. The source instead uses a private raw helper so the
+public signatures expose only the dependencies used by the proofs.
 
 ### Empty matrix dimension
 
@@ -1049,8 +1050,8 @@ inequality.
 
 The public methods still live in
 <code>IsIntegrableSubadditiveProcessCandidate</code>. That placement gives
-users a discoverable dot-notation API without pretending every stored field is
-mathematically necessary to the underlying proof.
+users a discoverable dot-notation API even though the underlying proof does
+not use every stored field.
 
 ### Match the recurrence to the peeled piece
 
@@ -1203,8 +1204,8 @@ identities. It proves none of the following:
 23. positive matrix dimension; or
 24. the finite phase-averaging identities needed by the next proof layer.
 
-The honest achievement is still substantial. The process has been separated
-into one additive orbit component and one shifted-subadditive residual that is
+The completed layer separates the process into one additive orbit component
+and one shifted-subadditive residual that is
 nonpositive at positive horizons, and uniformly nonpositive through time zero
 under \(X_0=0\), with every finite-horizon analytic gate exposed. Later
 asymptotic work can now state exactly which of the two normalized terms it

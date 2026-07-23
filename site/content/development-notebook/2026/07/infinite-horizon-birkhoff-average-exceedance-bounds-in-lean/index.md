@@ -92,12 +92,13 @@ real-measure continuity is proved only under the local premise
 \mu(E(a))\ne\infty.
 \]
 
-An explicit counting-measure probe proves that this premise cannot simply be
-omitted from a general conversion theorem: finite initial ranges have real
-measures growing without bound, while their infinite union has infinite
+Counting measure on finite initial ranges furnishes a counterexample to the
+general conversion theorem with this premise deleted: the finite ranges have
+real measures growing without bound, while their infinite union has infinite
 extended measure and real projection zero. A companion infinite-mass event
-probe has an eventually zero real sequence and a zero real target, confirming
-that local finiteness is sufficient rather than necessary in every instance.
+probe has an eventually zero real sequence and a zero real target. Thus local
+finiteness is sufficient for the general theorem but is not necessary in every
+instance.
 
 Under finite total mass, measure preservation, and integrability of \(g\), the
 finite RMT-23 estimate passes through the real-measure limit:
@@ -335,8 +336,8 @@ The design is smaller and mathematically exact.
 Mathlib totalizes the time-zero Birkhoff average to zero
 ([Mathlib's finite-average definition and boundary lemmas](#ref-rmt24-birkhoff-average)). If time zero were
 allowed, every negative threshold would be exceeded even before reading the
-observable. RMT-24 wants the ordinary positive-time maximal event, so it stores
-\(1\le k\) explicitly.
+observable. RMT-24 defines the ordinary positive-time maximal event, so it
+stores \(1\le k\) explicitly.
 
 That choice also makes the zero-observable probes informative. For
 \(g=0\), a nonnegative threshold produces the empty event, while a negative
@@ -501,7 +502,7 @@ measure, infinity is a legitimate limit in the extended codomain.
 This is an easy place to overstate the proof. The project has just built two
 event-regularity theorems, but the extended continuity proof uses neither one.
 They are still valuable for later set integrals, almost-everywhere reasoning,
-and public interfaces. They are simply not premises of this declaration.
+and public interfaces. They are not premises of this declaration.
 
 ### Extended measure is not an implementation nuisance
 
@@ -643,11 +644,11 @@ a\,\mu_{\mathbb R}(E(a))\le I_g
 
 for every \(a\in\mathbb R\). There is no sign hypothesis on \(a\).
 
-Finite total mass plays two honest roles in the imported proof chain. First,
+Finite total mass has two distinct roles in the imported proof chain. First,
 RMT-23 centers by the constant \(a\), and an arbitrary constant is integrable
 on a finite measure space. Second, finite total mass discharges the local
 premise \(\mu(E(a))\ne\infty\) consumed by the named real-measure corollary. RMT-24 does
-not pretend that either use is available on an arbitrary infinite measure.
+not claim that either use is available on an arbitrary infinite measure.
 
 ### How <code>le_of_tendsto'</code> closes the proof
 
@@ -743,10 +744,10 @@ imported finite centered inequality also needs constants to be integrable.
 Preservation says the measure is unchanged by one application of \(T\). It
 supports integrability of orbit averages and the finite RMT-23 estimate.
 Ergodicity would constrain invariant events or observables, but RMT-24 does
-not use such rigidity. The noninjective Dirac probe further confirms that
-preservation is not being used as a disguised inverse.
+not use such rigidity. A noninjective measure-preserving Dirac model is a
+counterexample to any claim that preservation supplies an inverse.
 
-### The theorem really does not claim
+### What the theorem does not claim
 
 | Tempting overread | What is actually checked |
 |---|---|
@@ -827,8 +828,8 @@ For arbitrary \(T\), \(g\), and \(a\),
 E_0(a)=\varnothing.
 \]
 
-The finite event requires \(1\le k\le0\), an impossible witness. This confirms
-that the unbounded union starts harmlessly with an empty stage.
+The finite event requires \(1\le k\le0\), an impossible witness. Hence the
+unbounded union starts with an empty stage.
 
 ### Probe 3: zero observable and a nonnegative threshold
 
@@ -856,8 +857,8 @@ boundary at zero.
 
 For an arbitrary measurable \(T\), arbitrary \(g\), and arbitrary threshold,
 the zero measure satisfies the infinite positive-part bound. The observable is
-integrable under the zero measure, and the map preserves it. This confirms that
-nonzero mass is not a premise.
+integrable under the zero measure, and the map preserves it. The theorem's
+signature has no nonzero-mass premise.
 
 ### Probe 6: null measurability genuinely survives infinite total mass
 
@@ -876,8 +877,8 @@ merely happens not to mention the typeclass.
 ### Probe 7: positive division is a public specialization
 
 The seventh probe restates the final weak estimate under a finite measure,
-preservation, integrability, and \(0\lt a\). It confirms that the intended
-positive-threshold interface elaborates directly.
+preservation, integrability, and \(0\lt a\). Its signature records the intended
+positive-threshold interface directly.
 
 ### Probe 8: invertibility is absent, and the event is nonvacuous
 
@@ -889,8 +890,8 @@ positive real Dirac mass. The weak estimate also compiles as the nonvacuous
 inequality \(1\le2\).
 
 This is stronger boundary evidence than using the zero observable, whose
-event would be empty at a positive threshold. It demonstrates the theorem on a
-positive-mass event under genuinely noninvertible dynamics.
+event would be empty at a positive threshold. It instantiates the theorem on a
+positive-mass event under noninvertible dynamics.
 
 ### Probe 9: infinite mass does not force real-limit failure
 
@@ -906,8 +907,9 @@ necessary condition for every particular event family.
 
 ### Probe 10: real continuity can fail at infinite mass
 
-The final probe constructs the finite ranges \(s_N\subseteq\mathbb N\), proves
-they are monotone, proves their union is the whole space, and refutes
+The final formal block defines the finite ranges \(s_N\subseteq\mathbb N\),
+establishes that they are monotone with union equal to the whole space, and
+refutes
 
 \[
 \operatorname{count}_{\mathbb R}(s_N)
@@ -917,18 +919,18 @@ they are monotone, proves their union is the whole space, and refutes
 
 It computes the left sequence as \(N\), the target as zero, and uses the
 metric definition of convergence to derive a contradiction from a sufficiently
-large index. This probe shows why declaration eight cannot simply delete its
+large index. This probe shows why declaration eight cannot delete its
 finite-target premise and remain valid for every increasing family.
 
-### What the probes collectively establish
+### What the probe suite covers
 
-| Interface risk | Compiled evidence |
+| Interface risk | Formal boundary case |
 |---|---|
 | The infinite event might contain a genuinely nonfinite witness | Every member enters some finite event |
 | Horizon zero might contribute a hidden witness | Its finite event is empty |
 | Strictness or positive-time indexing might be wrong | The zero-observable event flips exactly at threshold zero |
-| Nonzero measure might be required | The zero-measure bound compiles |
-| Null measurability might secretly need finite mass | Counting measure is proved nonfinite in the same probe |
+| Nonzero measure might be required | The theorem specializes to the zero measure |
+| Null measurability might secretly need finite mass | The same proof includes the nonfiniteness of counting measure |
 | Threshold positivity might be hidden earlier | The multiplication theorem accepts arbitrary \(a\); the division probe supplies positivity explicitly |
 | Invertibility might be hidden in preservation | A noninjective Dirac-preserving map has a strictly positive-mass exceedance event |
 | Local finiteness might be misread as necessary | An infinite-mass constant event family has an eventually zero real-measure sequence and a zero real target |
@@ -1476,7 +1478,7 @@ Formalizing that plan requires exact answers to several questions:
 - What finite-measure or probability normalization is genuinely needed?
 - What is the exact invariant or conditional-expectation limit statement?
 
-Only after those interfaces compile can the project select the honest
+Only after those interfaces compile can the project select a valid
 pointwise theorem. Ergodic rigidity may then specialize an invariant limit to
 a constant on an ergodic probability space, but it cannot be inserted before
 convergence exists.

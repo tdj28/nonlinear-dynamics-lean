@@ -207,8 +207,8 @@ d_0 & u_{01} & u_{02}\\
 
 Reading across the first row uses supplied upper coordinates. Reading down the
 first column uses their conjugates. The diagonal is inserted as real data. A
-second pass confirms \(H_{ji}=\overline{H_{ij}}\) in every cell, so no
-probability argument is needed.
+second entrywise pass establishes \(H_{ji}=\overline{H_{ij}}\) in every cell,
+so no probability argument is needed.
 
 This pattern also explains a physics use. For any complex state vector
 \(\psi\), the scalar \(\psi^*H\psi\) is real when \(H\) is Hermitian:
@@ -336,7 +336,7 @@ because their inequality proofs were constructed differently.
 `StrictUpperIndex 0` has no elements. Any supposed member contains a first
 coordinate of type `Fin 0`; `Fin.elim0` eliminates that impossible value
 ([Lean finite natural numbers](#ref-lean-fin)). This
-explicit instance lets later zero-dimensional code ask Lean for emptiness
+explicit instance supplies later zero-dimensional code with `IsEmpty`
 directly instead of replaying the contradiction.
 
 ### `HermitianCoordinateSpace`
@@ -485,7 +485,7 @@ the measurable real coordinate composes with the canonical real-to-complex
 map. The `fun_prop` tactic discharges those standard function-property
 compositions.
 
-This theorem asks for `Measurable`, not merely `AEMeasurable`. An exact
+This theorem requires `Measurable`, not merely `AEMeasurable`. An exact
 `HasLaw` statement elsewhere may provide only almost-everywhere measurability;
 it cannot silently satisfy these stronger premises. The distinction keeps the
 deterministic map reusable under any later probability measure.
@@ -736,7 +736,7 @@ piecewise definition?
 `Fin.elim0` eliminates it immediately. Since no row exists, there is no cell at
 which two zero-dimensional matrices can differ.
 
-### Exercise 6: choose the weakest honest theorem
+### Exercise 6: choose the weakest sufficient theorem
 
 A later proof only needs to know that one deterministic assembled matrix is
 Hermitian. Should it invoke the measurable theorem, the bundled constructor,
@@ -765,9 +765,9 @@ pushforward
 
 That later file must state the diagonal variances, the real and imaginary
 upper-coordinate variances, their dimension dependence, the independence
-scope, and a zero-dimensional policy. Only after those choices are checked can
-the name GUE be attached honestly. Unitary invariance is a further theorem,
-not a consequence of the word “Gaussian.”
+scope, and a zero-dimensional policy. Those choices must be fixed before the
+pushforward can be called a GUE law. Unitary invariance is then a theorem to be
+proved, not a consequence of the word “Gaussian.”
 
 The present constructor is valuable precisely because it does less. Every
 future probabilistic statement will pass through one map whose entry behavior,

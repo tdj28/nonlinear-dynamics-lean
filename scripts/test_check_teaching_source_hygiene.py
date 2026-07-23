@@ -95,6 +95,27 @@ flowchart LR
         "`\x08egin{bmatrix}` <!-- iiniota --> "
         "<code>operatorname</code>"
     ),
+    "precise evidentiary register": (
+        "The example illustrates the definition. "
+        "This counterexample refutes the reverse implication. "
+        "The calculation checks the finite case. "
+        "The proof establishes the general theorem."
+    ),
+    "example states its existential role": (
+        "This example proves the existence of a fixed point. "
+        "The second example establishes that there is at least one "
+        "nonconstant solution. "
+        "A third example proves an existential claim. "
+        "The fourth example proves there exists a periodic point. "
+        "The fifth example establishes a periodic point exists."
+    ),
+    "model states its logical role": (
+        "This finite model establishes consistency of the axioms. "
+        "The second model proves that the axioms are consistent."
+    ),
+    "proof claim inside code is literal": (
+        "Use `the example proves the claim` only as a quoted bad pattern."
+    ),
 }
 
 
@@ -162,6 +183,58 @@ FAIL_CASES = {
     "dropped operatorname": (
         r"\(operatorname{tr}(A)\)",
         {"dropped-tex-backslash"},
+    ),
+    "example credited with proof": (
+        "The interval example proves that the reverse arrow is invalid.",
+        {"epistemic-overreach"},
+    ),
+    "counterexample uses a generic proof verb": (
+        "This counterexample proves that the reverse implication is false.",
+        {"epistemic-overreach"},
+    ),
+    "worksheet credited with establishment": (
+        "This worksheet establishes the general identity.",
+        {"epistemic-overreach"},
+    ),
+    "figure credited with validation": (
+        "The figure validates the theorem.",
+        {"epistemic-overreach"},
+    ),
+    "picture credited with proof": (
+        "This picture proves the general claim.",
+        {"epistemic-overreach"},
+    ),
+    "plate credited with a nonclaim": (
+        "The plate proves no independence or asymptotic theorem.",
+        {"epistemic-overreach"},
+    ),
+    "probe credited with proof": (
+        "The compiled probe proves the assumption necessary.",
+        {"epistemic-overreach"},
+    ),
+    "model credited with proof": (
+        "This finite model establishes the theorem.",
+        {"epistemic-overreach"},
+    ),
+    "front-matter lead credited with proof": (
+        '---\nlead: "This example proves the result."\n---\nBody.\n',
+        {"epistemic-overreach"},
+    ),
+    "shortcode caption credited with proof": (
+        '{{< reference-figure caption="This diagram proves the theorem." >}}',
+        {"epistemic-overreach"},
+    ),
+    "example cannot prove nonexistence by generic phrasing": (
+        "This example proves that there is no counterexample.",
+        {"epistemic-overreach"},
+    ),
+    "example cannot prove zero witnesses by generic phrasing": (
+        "This example establishes that there are zero solutions.",
+        {"epistemic-overreach"},
+    ),
+    "example cannot vaguely validate existence": (
+        "This example validates the existence of a fixed point.",
+        {"epistemic-overreach"},
     ),
 }
 

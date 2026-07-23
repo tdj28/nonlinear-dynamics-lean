@@ -502,9 +502,9 @@ correct final state.
 The opening example substitutes \(b=4,q=2,r=3,\omega=0\), producing the exact
 right side \(12+18+10\).
 
-## Camp four: let division choose \(q\) and \(r\)
+## Camp four: let division choose q and r
 
-For any naturals \(n,b\), Lean proves the total identity
+For any naturals \(n,b\), the formal theorem states the total identity
 
 \[
 b(n/b)+(n\bmod b)=n.
@@ -564,7 +564,7 @@ formula. We must apply shifted subadditivity with the remainder as the
 
 The generic non-quotient declaration
 <code>le_remainder_add_birkhoffSum_blocks</code> takes explicit
-\(r,b,q\). The quotient declaration simply chooses those values arithmetically.
+\(r,b,q\). The quotient declaration sets those values arithmetically.
 
 ## Camp five: time zero needs its own ledger
 
@@ -933,8 +933,8 @@ Read the lines in order:
 8. at \(b=0\), quotient zero and remainder eleven produce a true reflexive
    bound.
 
-The silent <code>example</code> declarations ask Lean's kernel to certify the
-same decisive facts.
+The silent <code>example</code> declarations are kernel-checked proofs of the
+same finite facts.
 
 This worksheet is a finite model, not the project theorem. It uses natural
 weights, one twelve-state cyclic base, hand-written recursion, and decidable
@@ -983,8 +983,8 @@ The three private helpers are:
 
 The generic pointwise methods have a receiver that stores integrability, but
 their proof bodies use only <code>add_le</code>. The page states that proof
-dependency explicitly without pretending the public method has a weaker
-receiver type than it does.
+dependency explicitly while retaining the stronger receiver type of the
+public method.
 
 ## Common wrong turns
 

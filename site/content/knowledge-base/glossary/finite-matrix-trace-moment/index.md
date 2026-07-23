@@ -199,7 +199,7 @@ Off-diagonal entries do not enter this calculation. Neither independence nor
 unitary invariance is needed for the first identity once the centered diagonal
 marginals are known.
 
-## The second power sees the whole Hermitian matrix
+## The second power includes every Hermitian entry
 
 For a Hermitian matrix, conjugate symmetry turns the trace square into the
 Frobenius norm square:
@@ -422,7 +422,8 @@ context for the trace-moment program, not a premise of this exact proof
 ## Where to continue
 
 [First Exact Finite Gaussian Unitary Ensemble Trace Moments]({{< relref "/knowledge-base/deep-dives/first-exact-finite-gue-trace-moments" >}})
-derives both identities step by step and maps them to the checked Lean proofs.
+derives both identities with every algebraic step explicit and maps them to the
+checked Lean proofs.
 The {{< refterm "matrix-trace" "matrix trace" >}} entry fixes the algebraic
 operation, while
 {{< refterm "hermitian-frobenius-geometry" "Hermitian Frobenius geometry" >}}

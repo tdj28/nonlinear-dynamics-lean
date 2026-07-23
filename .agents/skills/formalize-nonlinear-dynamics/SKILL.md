@@ -81,7 +81,7 @@ dynamics:
 3. When a goal is difficult, request a proof outline, isolate intermediate
    lemmas, compile-probe the hard API boundaries, and try equivalent
    formulations without silently weakening the claim. Record partial progress
-   and honest blockers instead of abandoning an “open-looking” theorem.
+   and exact blockers instead of abandoning an “open-looking” theorem.
 4. Informalize only from a checked formal proof. Then independently audit the
    prose against the declarations and seek domain-expert review before calling
    a genuinely new mathematical result established.
@@ -106,8 +106,8 @@ output, not incidental cleanup.
 
 ## Design the Lean Slice
 
-1. State the smallest mathematically honest interface that unlocks the next
-   result.
+1. State the smallest interface whose assumptions and conclusion exactly match
+   the intended mathematical scope.
 2. Reuse project namespaces and upstream Mathlib concepts instead of creating
    parallel abstractions without need.
 3. Keep assumptions visible and weak:
@@ -151,6 +151,43 @@ output, not incidental cleanup.
    normalization.
 
 ## Maintain the Proof-to-Prose Pair
+
+Use an expert mathematical register throughout the public explanation:
+
+- name the evidentiary role of each object exactly. An ordinary computation
+  checks arithmetic or selected finite cases; a verified exhaustive
+  computation may establish a finite proposition when its coverage and trust
+  boundary are explicit. An example illustrates or exhibits behavior; a
+  counterexample refutes a stated universal claim; and a theorem, proof, or
+  complete argument establishes a general result. An example may settle an
+  existential claim or refute a universal one, but say that logical role
+  explicitly instead of writing the generic phrase “the example proves”;
+- treat figures and diagrams as explanatory unless the accompanying prose
+  supplies the argument. Do not attribute a proof to a picture, worksheet,
+  compiler, or numerical experiment;
+- say that Lean's elaborator constructs a candidate proof term and its kernel
+  checks that term against a formal statement. That check does not by itself
+  confirm that the formal statement matches the intended informal theorem or
+  physical interpretation;
+- remove canned transitions, promotional language, and anthropomorphic claims
+  about what a formula, compiler, or diagram “wants,” “knows,” or “reveals”;
+- replace moralizing proxies such as “honest,” “dishonest,” “pretend,” or
+  “smuggle” with the exact defect: an omitted hypothesis, an invalid
+  implication, an undefined object, an unsupported claim, or a mismatch of
+  scope; and
+- avoid “obvious,” “clearly,” “simply,” “trivial,” and “of course” when they
+  replace an explanation. If a step is immediate from a named definition or
+  theorem, identify that reason.
+
+Retain the site's established mountain, camp, and expedition vocabulary when
+it acts as a consistent navigation system for the reader. It must not carry
+evidentiary force, replace a mathematical explanation, or turn a local result
+into a triumphalist claim.
+
+After technical checks, make a separate adversarial prose pass: ask whether a
+mathematician would object to the scope, logical force, subject, or verb of
+every claim. Accessibility must come from sequencing and concrete examples,
+not from lowering the standard of mathematical attribution.
 
 For every Lean file containing substantive declarations:
 
@@ -222,11 +259,15 @@ the changed Lean file directly with warnings as errors. Check that:
   averaging fact.
 
 The cloud-only `make check` runs the table-driven source-hygiene regression
-tests and `scripts/check_teaching_source_hygiene.py` over every teaching
-Markdown file. The checker preserves offsets and newlines while masking YAML
-front matter, fenced and inline code, HTML comments, `code`/`pre` HTML, Hugo
+tests and `scripts/check_teaching_source_hygiene.py` over `README.md` and every
+teaching Markdown file. The checker preserves offsets and newlines while
+masking fenced and inline code, HTML comments, `code`/`pre` HTML, Hugo
 shortcode tags, and raw Mermaid bodies. It still checks Markdown bodies inside
-ordinary shortcodes.
+ordinary shortcodes. Its mathematical-register pass also inspects reader-facing
+front matter and shortcode captions, rejecting generic proof-level force
+attributed to examples, models, worksheets, visuals, probes, output, commands,
+experiments, or compiler activity while allowing an example or model's
+explicit existential role and a model's explicit consistency role.
 
 In rendered regions, require balanced, matched, non-nested `\(...\)` and
 `\[...\]`; reject double-escaped delimiter candidates outside active math,

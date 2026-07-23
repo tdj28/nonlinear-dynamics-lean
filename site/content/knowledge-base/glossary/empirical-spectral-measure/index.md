@@ -216,7 +216,7 @@ theorems.
   caption="**General pattern:** preserve multiplicity as one Dirac mass per finite index, then scale the counting measure. Ordering supplies a canonical eigenvalue coordinate system even though the final sum of atoms is unchanged by permutation."
 >}}
 
-## Ordering is useful even though measures forget order
+## Ordering is useful even though measures discard order
 
 The sum of Dirac measures is unchanged if the eigenvalue vector is permuted.
 The project nevertheless starts with a decreasing vector because canonical
@@ -324,7 +324,7 @@ different spaces and have different total masses.
 >}}
 
 - <code>empiricalSpectralMoment 2 H</code> is a complex-valued integral.
-- <code>hermitianToMatrix H</code> forgets the intrinsic Hermitian wrapper
+- <code>hermitianToMatrix H</code> discards the intrinsic Hermitian wrapper
   without changing matrix entries.
 - <code>Matrix.trace ((hermitianToMatrix H) ^ 2)</code> is the ordinary,
   unnormalized trace of the square.
