@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Three residue phases recover six sliding block starts in a nonpositive orbit ledger</title>
+  <desc id="desc">A ten-step orbit has weights negative one, negative two, negative one, negative three, negative one, negative two, negative four, negative one, negative one, negative two. Blocks have length three and each phase takes two blocks. Phase zero uses starts zero and three with block values negative four and negative six. Phase one uses starts one and four with values negative six and negative seven. Phase two uses starts two and five with values negative five and negative seven. The three phase totals sum to negative thirty-five, exactly the sliding-block total. Their average is negative thirty-five thirds, which is above the full ten-step value negative eighteen.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f2e8; }
+      .ink { fill: #18283b; }
+      .muted { fill: #566273; }
+      .navy { fill: #244d70; }
+      .green { fill: #2f6658; }
+      .orange { fill: #b86025; }
+      .panel { fill: #fffdf8; stroke: #c9bdac; stroke-width: 2; }
+      .phase0 { fill: #e7f0f7; stroke: #4d7292; stroke-width: 2; }
+      .phase1 { fill: #eaf2e7; stroke: #719267; stroke-width: 2; }
+      .phase2 { fill: #f7e8da; stroke: #bd713d; stroke-width: 2; }
+      .result { fill: #edf3e8; stroke: #688b5f; stroke-width: 2; }
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .h1 { font-size: 32px; font-weight: 700; }
+      .h2 { font-size: 21px; font-weight: 700; letter-spacing: .4px; }
+      .body { font-size: 18px; }
+      .small { font-size: 15px; }
+      .big { font-size: 27px; font-weight: 700; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 17px; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="760"/>
+  <rect x="0" y="0" width="1200" height="18" class="navy"/>
+  <text x="56" y="66" class="ink h1">Three phases recover every sliding block start</text>
+  <text x="56" y="99" class="muted body">Block length b=3, repetitions q=2, terminal remainder r=1, common horizon 10</text>
+
+  <rect x="56" y="125" width="1088" height="154" rx="20" class="panel"/>
+  <text x="80" y="158" class="ink h2">THE TEN ONE-STEP WEIGHTS</text>
+  <g>
+    <rect x="80" y="178" width="96" height="74" rx="10" class="phase0"/>
+    <rect x="184" y="178" width="96" height="74" rx="10" class="phase1"/>
+    <rect x="288" y="178" width="96" height="74" rx="10" class="phase2"/>
+    <rect x="392" y="178" width="96" height="74" rx="10" class="phase0"/>
+    <rect x="496" y="178" width="96" height="74" rx="10" class="phase1"/>
+    <rect x="600" y="178" width="96" height="74" rx="10" class="phase2"/>
+    <rect x="704" y="178" width="96" height="74" rx="10" class="phase0"/>
+    <rect x="808" y="178" width="96" height="74" rx="10" class="phase1"/>
+    <rect x="912" y="178" width="96" height="74" rx="10" class="phase2"/>
+    <rect x="1016" y="178" width="96" height="74" rx="10" class="phase0"/>
+    <text x="128" y="200" text-anchor="middle" class="muted small">time 0</text>
+    <text x="232" y="200" text-anchor="middle" class="muted small">time 1</text>
+    <text x="336" y="200" text-anchor="middle" class="muted small">time 2</text>
+    <text x="440" y="200" text-anchor="middle" class="muted small">time 3</text>
+    <text x="544" y="200" text-anchor="middle" class="muted small">time 4</text>
+    <text x="648" y="200" text-anchor="middle" class="muted small">time 5</text>
+    <text x="752" y="200" text-anchor="middle" class="muted small">time 6</text>
+    <text x="856" y="200" text-anchor="middle" class="muted small">time 7</text>
+    <text x="960" y="200" text-anchor="middle" class="muted small">time 8</text>
+    <text x="1064" y="200" text-anchor="middle" class="muted small">time 9</text>
+    <text x="128" y="235" text-anchor="middle" class="navy big">-1</text>
+    <text x="232" y="235" text-anchor="middle" class="green big">-2</text>
+    <text x="336" y="235" text-anchor="middle" class="orange big">-1</text>
+    <text x="440" y="235" text-anchor="middle" class="navy big">-3</text>
+    <text x="544" y="235" text-anchor="middle" class="green big">-1</text>
+    <text x="648" y="235" text-anchor="middle" class="orange big">-2</text>
+    <text x="752" y="235" text-anchor="middle" class="navy big">-4</text>
+    <text x="856" y="235" text-anchor="middle" class="green big">-1</text>
+    <text x="960" y="235" text-anchor="middle" class="orange big">-1</text>
+    <text x="1064" y="235" text-anchor="middle" class="navy big">-2</text>
+  </g>
+
+  <rect x="56" y="305" width="1088" height="286" rx="20" class="panel"/>
+  <text x="80" y="341" class="ink h2">TWO LENGTH-3 BLOCKS IN EACH RESIDUE PHASE</text>
+  <rect x="80" y="365" width="1040" height="59" rx="12" class="phase0"/>
+  <rect x="80" y="437" width="1040" height="59" rx="12" class="phase1"/>
+  <rect x="80" y="509" width="1040" height="59" rx="12" class="phase2"/>
+  <text x="104" y="402" class="navy h2">phase 0</text>
+  <text x="252" y="402" class="ink body">starts [0,3]</text>
+  <text x="474" y="402" class="ink body">block values [-4,-6]</text>
+  <text x="1088" y="402" text-anchor="end" class="navy big">total -10</text>
+  <text x="104" y="474" class="green h2">phase 1</text>
+  <text x="252" y="474" class="ink body">starts [1,4]</text>
+  <text x="474" y="474" class="ink body">block values [-6,-7]</text>
+  <text x="1088" y="474" text-anchor="end" class="green big">total -13</text>
+  <text x="104" y="546" class="orange h2">phase 2</text>
+  <text x="252" y="546" class="ink body">starts [2,5]</text>
+  <text x="474" y="546" class="ink body">block values [-5,-7]</text>
+  <text x="1088" y="546" text-anchor="end" class="orange big">total -12</text>
+
+  <rect x="56" y="617" width="1088" height="104" rx="20" class="result"/>
+  <text x="80" y="653" class="ink body">All phase totals = sliding-block total:</text>
+  <text x="478" y="653" class="green big">-10 -13 -12 = -35</text>
+  <text x="80" y="694" class="ink body">Average over the 3 phases:</text>
+  <text x="368" y="694" class="navy big">-35/3</text>
+  <text x="610" y="694" class="ink body">full value:</text>
+  <text x="727" y="694" class="orange big">X₁₀ = -18</text>
+  <text x="1114" y="694" text-anchor="end" class="green big">-18 ≤ -35/3</text>
+</svg>

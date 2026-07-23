@@ -2,17 +2,17 @@
 title: "Finite Phase Averaging for Nonpositive Subadditive Processes"
 slug: "finite-phase-averaging-for-nonpositive-subadditive-processes"
 date: 2026-07-21
-summary: "A textbook derivation of finite residue-phase reindexing, exact prefix and terminal boundaries, their removal under positive-time nonpositivity, and zero-safe sliding-block bounds before any ergodic limit theorem."
-lead: "One powered-map orbit sees only one residue class of block starts. Sum over every residue phase and those sparse views fit together into one ordinary finite orbit sum. The exact construction needs one extra block of horizon, treats block length zero as vacuous rather than informative, and proves no convergence theorem."
+summary: "Start with ten negative orbit weights, compute three residue-phase totals exactly, and then climb to Lean's boundary-retaining and nonpositive phase-averaging inequalities."
+lead: "Three phases turn the six length-three block values -4, -6, -5, -6, -7, -7 into the exact total -35. Prefix and tail values explain why the full value -18 lies below the phase average -35/3, while a positive-sign near miss makes the same boundary deletion false."
 draft: false
 pro_reviewed: false
-level: "Finite sums, function iterates, shifted subadditivity, block decompositions, positive-horizon nonpositivity, orbit-majorant centering, and one-sided matrix cocycles"
-reading_time: "125 to 175 minutes"
-prerequisites: "Natural-number arithmetic, finite Birkhoff sums, function iteration, real inequalities, integrable shifted-subadditive-process candidates, orbit-majorant centering, and discrete matrix cocycles; no ergodic theorem is assumed"
+level: "Begins with exact integer orbit sums; climbs through finite Birkhoff sums, shifted subadditivity, quotient and remainder bookkeeping, positive-horizon nonpositivity, centering, and matrix cocycles"
+reading_time: "140 to 190 minutes, including the runnable Lean worksheet"
+prerequisites: "Integer addition, finite sums, and quotient-with-remainder arithmetic; every dynamical and Lean-specific idea is introduced before use"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging"
 toc: true
 og_image: "finite-phase-averaging-for-nonpositive-subadditive-processes-card.png"
-og_image_alt: "Warm-paper teaching card showing four residue-phase rows feeding a box labeled sliding starts. A separate panel says finite reindexing does not prove convergence, and the footer says no ergodic limit."
+og_image_alt: "Ten negative one-step weights are grouped into three residue phases. Phase starts zero and three give block values negative four and negative six, starts one and four give negative six and negative seven, and starts two and five give negative five and negative seven. The three phase totals sum to negative thirty-five."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,15 +24,148 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematics,
-Lean declaration map, source correction, figures, and accessibility have not
-yet passed the required human and Pro reviews. The page is publicly available
-as an open working note while those reviews remain pending.
+Lean declaration map, source correction, exact worksheet, figures, and
+accessibility have not yet passed the required human and Pro reviews. The page
+is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-A block argument naturally replaces the one-step map \(T\) by its \(b\)-step
-iterate \(T^b\). That replacement is useful because a single observation of
-the block observable \(X_b\) now represents \(b\) original time steps. It is
-also dangerous: one powered orbit visits only the start times
+## Base camp: ten negative weights and three phases
+
+Let the state be a clock reading \(t\in\mathbb N\), and let one update move the
+clock forward:
+
+\[
+T(t)=t+1.
+\]
+
+Along the first ten times, assign the exact one-step weights
+
+\[
+\bigl(a(0),\ldots,a(9)\bigr)
+=(-1,-2,-1,-3,-1,-2,-4,-1,-1,-2).
+\]
+
+Set \(a(t)=-1\) for every \(t\ge10\), so this is a total nonpositive
+observable on the clock space.
+
+Define the \(n\)-step process by adding the next \(n\) weights:
+
+\[
+X_n(t)=\sum_{j=0}^{n-1}a(t+j).
+\]
+
+This process is actually **additive**:
+
+\[
+X_{m+n}(t)=X_n(T^m t)+X_m(t).
+\]
+
+Equality is stronger than the shifted-subadditive inequality used by the
+project. Every displayed one-step weight is nonpositive, so every positive
+finite sum in this window is nonpositive too.
+
+Choose block length \(b=3\), repetitions \(q=2\), and terminal parameter
+\(r=1\). The common theorem horizon is
+
+\[
+bq+b+r=3\cdot2+3+1=10.
+\]
+
+The usual Euclidean division also says \(10=3\cdot3+1\). The theorem uses
+only \(q=2\) middle blocks in every phase: the remaining full block is spread
+between the prefix and tail boundaries as the phase changes.
+
+For a length-three block, the six sliding values are:
+
+| block start | \(0\) | \(1\) | \(2\) | \(3\) | \(4\) | \(5\) |
+|---:|---:|---:|---:|---:|---:|---:|
+| \(X_3(\text{start})\) | \(-4\) | \(-6\) | \(-5\) | \(-6\) | \(-7\) | \(-7\) |
+
+Separate those starts by their residue modulo three:
+
+| phase \(s\) | starts \(s+3j\) | block values | phase total |
+|---:|---|---|---:|
+| \(0\) | \(0,3\) | \(-4,-6\) | \(-10\) |
+| \(1\) | \(1,4\) | \(-6,-7\) | \(-13\) |
+| \(2\) | \(2,5\) | \(-5,-7\) | \(-12\) |
+
+The three phase totals recover the same six starts exactly:
+
+\[
+-10-13-12=-35.
+\]
+
+Therefore their average is \(-35/3\). The full ten-step process value is
+
+\[
+X_{10}(0)=-18,
+\]
+
+and the finite phase estimate becomes the checkable inequality
+
+\[
+-18\le-\frac{35}{3}.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="three-phase-negative-orbit-ledger.svg"
+  alt="Ten nonpositive one-step weights produce six length-three block values. Residue phase zero uses starts zero and three and totals negative ten. Phase one uses starts one and four and totals negative thirteen. Phase two uses starts two and five and totals negative twelve. Their sum is the sliding-block total negative thirty-five, their phase average is negative thirty-five thirds, and the full ten-step value negative eighteen lies below it."
+  caption="**Finding:** phase summation is exact finite reindexing: the starts \([0,3]\), \([1,4]\), and \([2,5]\) are precisely \(0,\ldots,5\), so their block totals sum to \(-35\). Dividing by the three phases gives \(-35/3\), not the per-block average \(-35/6\). Nonpositive boundary values then license the displayed upper bound \(X_{10}(0)=-18\le-35/3\). These are designed toy values, not observations or a limit."
+>}}
+
+### Why the sign and extra boundary block matter
+
+For each phase, the horizon ten splits into a prefix, two complete
+length-three blocks, and a tail:
+
+| phase \(s\) | prefix length and value | middle length and value | tail length and value | sum |
+|---:|---|---|---|---:|
+| \(0\) | \(0,\ 0\) | \(6,\ -10\) | \(4,\ -8\) | \(-18\) |
+| \(1\) | \(1,\ -1\) | \(6,\ -13\) | \(3,\ -4\) | \(-18\) |
+| \(2\) | \(2,\ -3\) | \(6,\ -12\) | \(2,\ -3\) | \(-18\) |
+
+All prefix and tail values are at most zero. Removing them makes the
+right-hand side larger, which preserves an upper bound. For example,
+
+\[
+-18=0+(-10)+(-8)\le-10.
+\]
+
+Now test the wrong sign. Let \(Y_n(t)=n\), the additive process generated by
+the positive one-step weight \(+1\). Phase zero gives
+
+\[
+Y_{10}(0)=10=0+6+4.
+\]
+
+Dropping the positive tail would claim \(10\le6\), which is false.
+Subadditivity alone does not justify boundary removal; positive-time
+nonpositivity supplies the needed direction.
+
+There is a separate counting failure. Omitting the extra block would give
+
+\[
+bq+r=3\cdot2+1=7,
+\]
+
+but the prefix, two middle blocks, and tail still total ten. The horizon and
+the counted pieces would no longer describe the same object.
+
+{{< reference-figure
+  wide="true"
+  src="phase-boundary-sign-near-misses.svg"
+  alt="Three phase rows split horizon ten into prefix, two blocks, and tail values that each total negative eighteen. Nonpositive prefixes and tails may be removed. A positive additive process instead has ten equal to zero plus six plus four, so dropping the positive tail would give the false inequality ten at most six. Omitting the extra block changes the claimed horizon from ten to seven."
+  caption="**Finding:** the exact boundary values are \((0,-10,-8)\), \((-1,-13,-4)\), and \((-3,-12,-3)\); every triple sums to \(-18\). Their nonpositive signs make deletion safe. The additive wrong-sign process \(Y_n=n\) keeps the boundary identity \(10=0+6+4\) but makes deletion false, while the missing-boundary formula \(3\cdot2+1=7\) simply counts the wrong horizon. The figure proves no asymptotic statement."
+>}}
+
+## From the ledger to the general theorem
+
+A block argument replaces the one-step map \(T\) by its \(b\)-step iterate
+\(T^b\). That replacement is useful because a single observation of the block
+observable \(X_b\) represents \(b\) original time steps. It is also dangerous:
+one powered orbit visits only the start times
 
 \[
 s,\ s+b,\ s+2b,\ \ldots,
@@ -50,9 +183,9 @@ average converges. For each phase, form a finite \(q\)-term Birkhoff sum under
 through \(bq-1\) appears exactly once, so the result is one ordinary
 \(bq\)-term Birkhoff sum under \(T\).
 
-This chapter develops that identity, proves the exact finite subadditive
-bound that uses it, audits every boundary, and maps the checked Lean module in
-source order. The immediate predecessor is
+This chapter generalizes the ledger, proves the exact finite subadditive bound,
+audits every boundary, and maps the checked Lean module in source order. The
+immediate predecessor is
 [Orbit-Majorant Centering for Subadditive Processes]({{< relref "/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes" >}}).
 The compact definition is the
 {{< refterm "phase-averaging" "phase averaging" >}} glossary entry. The
@@ -63,9 +196,11 @@ proof-to-prose companion is
 
 | Route | Begin | Destination |
 |---|---|---|
-| First encounter | [The sparse views that must be combined](#the-sparse-views-that-must-be-combined) | See why residue phases arise |
-| Arithmetic route | [A four-phase worked horizon](#a-four-phase-worked-horizon) | Check every start and boundary by hand |
+| First encounter | [Ten negative weights and three phases](#base-camp-ten-negative-weights-and-three-phases) | Recompute every block, phase total, and boundary value |
+| Arithmetic route | [Why the sign and extra boundary block matter](#why-the-sign-and-extra-boundary-block-matter) | Compare the valid bound with wrong-sign and missing-boundary near misses |
 | Source route | [The extra block is an arithmetic repair](#the-extra-block-is-an-arithmetic-repair) | Understand the corrected finite horizon |
+| Lean translation route | [Seven bridges](#in-lean-seven-bridges-from-the-ledger-to-the-project) | Match human statements, paper formulas, and exact declarations |
+| Hands-on Lean route | [Run the worksheet](#type-the-three-phase-ledger-yourself-with-lean-and-std) | Execute the complete integer ledger with only `Std` |
 | Proof route | [The four private proof engines](#the-four-private-proof-engines) | Rebuild the Lean architecture from raw algebra |
 | API route | [The eight public declarations](#the-eight-public-declarations) | Read the exported interface in source order |
 | Boundary route | [Zero blocks and zero repetitions say different things](#zero-blocks-and-zero-repetitions-say-different-things) | Separate vacuity from useful division |
@@ -82,7 +217,7 @@ By the summit, a reader should be able to:
 4. show that phase \(s\) samples starts \(s+bj\) for \(0\le j\lt q\);
 5. prove that all pairs \((s,j)\) cover exactly the starts below \(bq\);
 6. explain why commutativity is used when those terms are reordered;
-7. calculate the four phase rows for \(b=4\) and \(q=3\);
+7. calculate the three phase rows for \(b=3\), \(q=2\), and \(r=1\);
 8. derive the exact prefix-block-tail identity;
 9. explain why the common horizon is \(bq+b+r\), not \(bq+r\);
 10. state the finite indexing inconsistency in Lalley's displayed phase rows;
@@ -113,8 +248,9 @@ By the summit, a reader should be able to:
 27. identify all four private proof helpers in source order;
 28. identify the three named private smoke declarations;
 29. audit the empty matrix-index boundary;
-30. reproduce the warning-fatal build commands; and
-31. state why no Birkhoff, Kingman, Lyapunov, or Oseledets conclusion follows.
+30. run the bounded <code>Std</code> worksheet on a normal Mac or Linux host;
+31. reproduce the guarded warning-fatal cloud commands; and
+32. state why no Birkhoff, Kingman, Lyapunov, or Oseledets conclusion follows.
 
 ## The common setup and notation ledger
 
@@ -195,34 +331,324 @@ commutative monoid because terms may be regrouped and reordered. It needs no
 measurable space, measure, integrability, probability, preservation, or
 ergodicity.
 
-## A four-phase worked horizon
+## In Lean: seven bridges from the ledger to the project
 
-Take \(b=4\), \(q=3\), and \(r=2\). The common process horizon used later is
+The bridges below pair a human statement, paper mathematics, exact project
+syntax, and a token map. The standalone worksheet afterward executes the
+running integer example. The Mathlib-backed declarations remain cloud-only
+checks.
+
+### Bridge 1: write one sparse phase row
+
+{{< lean-bridge
+  human="Start in residue phase s and read q values of the block observable g, advancing by b base steps each time."
+  math="\(\operatorname{BSum}(T^b,g,q,T^s\omega)=\sum_{j=0}^{q-1}g(T^{s+bj}\omega).\)"
+  lean="birkhoffSum (T^[b]) g q (T^[s] ω)"
+>}}
+
+- <code>birkhoffSum</code> is Mathlib's finite orbit-sum function.
+- <code>T^[b]</code> is the \(b\)-fold iterate of <code>T</code>, not
+  exponentiation in a numeric ring.
+- <code>g</code> is the observable; in the process theorem it becomes
+  <code>X b</code>.
+- <code>q</code> is the number of terms in this one phase row.
+- <code>T^[s] ω</code> shifts the starting outcome into residue phase
+  <code>s</code>.
+{{< /lean-bridge >}}
+
+### Bridge 2: reindex every phase into one sliding sum
+
+{{< lean-bridge
+  human="Summing all b residue-phase rows counts every sliding start below bq exactly once."
+  math="\(\sum_{s=0}^{b-1}\operatorname{BSum}(T^b,g,q,T^s\omega)=\operatorname{BSum}(T,g,bq,\omega).\)"
+  lean="sum_phase_birkhoffSum T g b q ω"
+>}}
+
+- <code>sum_phase_birkhoffSum</code> is the first public declaration.
+- <code>b</code> controls both the powered step and the number of phases.
+- <code>b * q</code> is the number of chronological starts on the right.
+- The theorem assumes only <code>AddCommMonoid</code> for the values of
+  <code>g</code>; it uses no measure or limit.
+{{< /lean-bridge >}}
+
+### Bridge 3: retain prefix and tail boundaries
+
+{{< lean-bridge
+  human="The full process value is bounded by the phase blocks plus the terminal gap plus the prefix."
+  math="\(X_{bq+b+r}(\omega)\le\operatorname{BSum}(T^b,X_b,q,T^s\omega)+X_{b+r-s}((T^b)^qT^s\omega)+X_s(\omega).\)"
+  lean="hX.le_phase_birkhoffSum_add_boundaries b q r s hs ω"
+>}}
+
+- <code>hX</code> is an
+  <code>IsIntegrableSubadditiveProcessCandidate T μ X</code>.
+- <code>le_phase_birkhoffSum_add_boundaries</code> uses only its
+  <code>add_le</code> field.
+- <code>hs</code> proves <code>s &lt; b</code>, so natural subtraction
+  <code>b + r - s</code> has the intended length.
+- The nested iterate identifies the state at which the tail begins.
+- No sign premise appears because both boundary values remain visible.
+{{< /lean-bridge >}}
+
+### Bridge 4: remove boundaries with the correct sign
+
+{{< lean-bridge
+  human="If every positive-time process value is nonpositive, each phase blocks-only sum is an upper bound for the full value."
+  math="\((\forall n\ge1,\ X_n\le0)\Longrightarrow X_{bq+b+r}(\omega)\le\operatorname{BSum}(T^b,X_b,q,T^s\omega).\)"
+  lean="hX.le_phase_birkhoffSum hnonpos b q r s hs ω"
+>}}
+
+- <code>hnonpos</code> has exact type
+  <code>∀ n, n ≠ 0 → ∀ ω, X n ω ≤ 0</code>.
+- It controls positive horizons only; no claim about <code>X 0</code> is
+  required.
+- The theorem treats phase zero separately so it never asks
+  <code>hnonpos</code> to prove a time-zero sign.
+- The wrong-sign process \(Y_n=n\) fails this premise and refutes the
+  blocks-only conclusion numerically.
+{{< /lean-bridge >}}
+
+### Bridge 5: sum all phase inequalities without dividing
+
+{{< lean-bridge
+  human="Adding the b phase bounds gives b copies of the full value below one sliding block sum."
+  math="\(bX_{bq+b+r}(\omega)\le\operatorname{BSum}(T,X_b,bq,\omega).\)"
+  lean="hX.natCast_mul_le_birkhoffSum_phase_average hnonpos b q r ω"
+>}}
+
+- <code>(b : ℝ)</code> in the theorem type casts the natural block length to a
+  real scalar.
+- <code>natCast_mul</code> in the name signals the multiplication form.
+- <code>Finset.sum_le_sum</code> adds the phasewise inequalities internally.
+- <code>sum_phase_birkhoffSum</code> changes the right side from phase order
+  to chronological order.
+- This theorem remains formally true at <code>b = 0</code>, where it says only
+  \(0\le0\).
+{{< /lean-bridge >}}
+
+### Bridge 6: divide only after proving positive block length
+
+{{< lean-bridge
+  human="For a nonzero natural block length, divide the sliding sum by the number of phases."
+  math="\(b\ne0\Longrightarrow X_{bq+b+r}(\omega)\le\operatorname{BSum}(T,X_b,bq,\omega)/b.\)"
+  lean="hX.le_birkhoffSum_phase_average_div hnonpos b q r hb ω"
+>}}
+
+- <code>hb : b ≠ 0</code> implies the real denominator is strictly positive.
+- <code>le_div_iff₀</code> is the order equivalence used by the proof.
+- The division is by the number of phases \(b\), not by the number of block
+  samples \(bq\).
+- The separate theorem prevents the vacuous zero-block multiplication
+  identity from being narrated as an average.
+{{< /lean-bridge >}}
+
+### Bridge 7: specialize to the centered cocycle observable
+
+Write \(\widetilde P_n\) for the cocycle's log-positive norm observable after
+subtracting its one-step orbit majorant.
+
+{{< lean-bridge
+  human="The centered log-positive cocycle process satisfies the total multiplication form of the finite phase bound."
+  math="\(b\widetilde P_{bq+b+r}(\omega)\le\operatorname{BSum}(T,\widetilde P_b,bq,\omega).\)"
+  lean="C.centeredLogPlusNormObservable_natCast_mul_le_birkhoffSum_phase_average b q r ω"
+>}}
+
+- <code>C</code> is the bundled one-sided discrete matrix cocycle.
+- <code>C.base</code> supplies the map \(T\), although dot notation keeps it
+  implicit in the call.
+- <code>centeredLogPlusNormObservable_add_le</code> supplies shifted
+  subadditivity.
+- <code>centeredLogPlusNormObservable_nonpos</code> supplies the sign at every
+  horizon.
+- No separate probability, ergodicity, generator-integrability, or nonempty
+  matrix-index argument appears.
+{{< /lean-bridge >}}
+
+## Type the three-phase ledger yourself with Lean and `Std`
+
+The following file imports only Lean's small <code>Std</code> library. It
+constructs the ten integer weights, enumerates phase starts, computes block and
+boundary ledgers, checks the rational phase average, and executes both near
+misses. It does not import Mathlib or define a project
+<code>birkhoffSum</code>.
+
+Save this exact text as
+<code>/tmp/SubadditivePhaseAveragingTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace SubadditivePhaseAveragingTutorial
+
+def weight : Nat → Int
+  | 0 => -1
+  | 1 => -2
+  | 2 => -1
+  | 3 => -3
+  | 4 => -1
+  | 5 => -2
+  | 6 => -4
+  | 7 => -1
+  | 8 => -1
+  | 9 => -2
+  | _ => -1
+
+def process (n start : Nat) : Int :=
+  ((List.range n).map fun j => weight (start + j)).sum
+
+def blockLength : Nat := 3
+def repetitions : Nat := 2
+def remainder : Nat := 1
+
+def horizon : Nat :=
+  blockLength * repetitions + blockLength + remainder
+
+def phaseStarts (s : Nat) : List Nat :=
+  (List.range repetitions).map fun j => s + blockLength * j
+
+def phaseBlockValues (s : Nat) : List Int :=
+  (phaseStarts s).map fun start => process blockLength start
+
+def phaseTotal (s : Nat) : Int :=
+  (phaseBlockValues s).sum
+
+def phaseTotals : List Int :=
+  (List.range blockLength).map phaseTotal
+
+def slidingBlockValues : List Int :=
+  (List.range (blockLength * repetitions)).map fun start =>
+    process blockLength start
+
+def slidingTotal : Int :=
+  slidingBlockValues.sum
+
+def prefixValue (s : Nat) : Int :=
+  process s 0
+
+def tailLength (s : Nat) : Nat :=
+  blockLength + remainder - s
+
+def tailStart (s : Nat) : Nat :=
+  s + blockLength * repetitions
+
+def tailValue (s : Nat) : Int :=
+  process (tailLength s) (tailStart s)
+
+def boundaryLedger (s : Nat) : List Int :=
+  [prefixValue s, phaseTotal s, tailValue s]
+
+def phaseAverage : Rat :=
+  (slidingTotal : Rat) / blockLength
+
+def wrongSignProcess (n _start : Nat) : Int :=
+  n
+
+def wrongSignPhaseTotal : Int :=
+  ((phaseStarts 0).map fun start =>
+    wrongSignProcess blockLength start).sum
+
+#eval (List.range horizon).map weight
+#eval [horizon / blockLength, horizon % blockLength, repetitions]
+#eval (List.range blockLength).map phaseStarts
+#eval (List.range blockLength).map phaseBlockValues
+#eval phaseTotals
+#eval slidingBlockValues
+#eval slidingTotal
+#eval (List.range blockLength).map boundaryLedger
+#eval process horizon 0
+#eval phaseAverage
+#eval (blockLength : Int) * process horizon 0 ≤ slidingTotal
+#eval (process horizon 0 : Rat) ≤ phaseAverage
+#eval [wrongSignProcess horizon 0, wrongSignPhaseTotal]
+#eval wrongSignProcess horizon 0 ≤ wrongSignPhaseTotal
+#eval [blockLength * repetitions + remainder, horizon]
+
+example : horizon = 10 := by native_decide
+example : phaseTotals = [-10, -13, -12] := by native_decide
+example : slidingBlockValues = [-4, -6, -5, -6, -7, -7] := by
+  native_decide
+example : slidingTotal = -35 := by native_decide
+example : (List.range blockLength).map boundaryLedger =
+    [[0, -10, -8], [-1, -13, -4], [-3, -12, -3]] := by
+  native_decide
+example : process horizon 0 = -18 := by native_decide
+example : phaseAverage = -(35 / 3 : Rat) := by native_decide
+example : (blockLength : Int) * process horizon 0 ≤ slidingTotal := by
+  native_decide
+example : (process horizon 0 : Rat) ≤ phaseAverage := by native_decide
+example : wrongSignProcess horizon 0 = 10 := by native_decide
+example : wrongSignPhaseTotal = 6 := by native_decide
+example : ¬ wrongSignProcess horizon 0 ≤ wrongSignPhaseTotal := by
+  native_decide
+example : blockLength * repetitions + remainder = 7 := by native_decide
+
+end SubadditivePhaseAveragingTutorial
+~~~
+
+Run it on an ordinary Mac or Linux host with the pinned compiler, without
+entering <code>formalization/</code> and without invoking Lake:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/SubadditivePhaseAveragingTutorial.lean
+~~~
+
+The exact file above was executed successfully with Lean 4.32.0 and printed:
+
+~~~text
+[-1, -2, -1, -3, -1, -2, -4, -1, -1, -2]
+[3, 1, 2]
+[[0, 3], [1, 4], [2, 5]]
+[[-4, -6], [-6, -7], [-5, -7]]
+[-10, -13, -12]
+[-4, -6, -5, -6, -7, -7]
+-35
+[[0, -10, -8], [-1, -13, -4], [-3, -12, -3]]
+-18
+(-35 : Rat)/3
+true
+true
+[10, 6]
+false
+[7, 10]
+~~~
+
+Read the second line as
+<code>[Euclidean quotient, Euclidean remainder, theorem repetitions]</code>.
+The two <code>true</code> lines certify the integer multiplication bound and
+the rational division bound. The <code>false</code> line is the wrong-sign
+claim \(10\le6\), and <code>[7, 10]</code> contrasts the missing-extra-block
+horizon with the checked one.
+
+**Resource profile: small standalone tutorial, local-safe.** The
+<code>native_decide</code> examples certify this concrete finite
+representation. They do not establish Mathlib's generic reindexing theorem or
+the matrix-cocycle specialization. Those exact declarations use the guarded
+Linux-cloud workflow below.
+
+## Revisit the exact three-phase horizon
+
+For the running values \(b=3\), \(q=2\), and \(r=1\), the ordinary Euclidean
+quotient and remainder of the horizon are
 
 \[
-4\cdot3+4+2=18.
+10=3\cdot3+1.
 \]
 
-Each phase takes three complete four-step blocks. Its prefix has length \(s\),
-and its terminal gap has length \(4+2-s\).
+The theorem reserves one of those three full blocks for boundary motion. It
+uses \(q=2\) complete middle blocks in every row:
 
-| Phase \(s\) | Prefix length | Complete-block starts | Terminal length | Total |
+| phase \(s\) | prefix length | complete-block starts | tail length | row length |
 |---:|---:|---|---:|---:|
-| 0 | 0 | 0, 4, 8 | 6 | 18 |
-| 1 | 1 | 1, 5, 9 | 5 | 18 |
-| 2 | 2 | 2, 6, 10 | 4 | 18 |
-| 3 | 3 | 3, 7, 11 | 3 | 18 |
+| \(0\) | \(0\) | \(0,3\) | \(4\) | \(10\) |
+| \(1\) | \(1\) | \(1,4\) | \(3\) | \(10\) |
+| \(2\) | \(2\) | \(2,5\) | \(2\) | \(10\) |
 
-Across the four rows, the twelve complete-block starts are exactly
-\(0,1,\ldots,11\). No start is lost and none is counted twice. Notice the
-second conservation law: prefix plus terminal is always six, which is one
-full block plus \(r=2\).
-
-{{< reference-figure
-  src="prefix-blocks-tail-exact-horizon.svg"
-  alt="Four rows tile the same eighteen-step horizon. As the residue phase grows from zero to three, the prefix grows by one step, three complete four-step blocks shift by one step, and the terminal gap shrinks from six steps to three."
-  caption="**Finding:** with block length four, three complete blocks per phase, and terminal parameter two, every phase row has total length eighteen. The prefix has length \(s\), the complete blocks contribute twelve steps, and the terminal gap has length \(6-s\). The extra four-step block in the horizon makes all four phases fit. The toy arithmetic illustrates a finite identity only; it does not display observed data or a limit."
->}}
+Across the three rows, the six complete-block starts are exactly
+\(0,1,\ldots,5\). Prefix plus tail is always four, one full block plus the
+example's Euclidean remainder \(1\). The general theorem does not require its
+parameter \(r\) to be a Euclidean remainder; that extra interpretation is
+specific to this ledger.
 
 The generic arithmetic is the same:
 
@@ -683,21 +1109,21 @@ average.
 
 #### Exercise 2: list one powered orbit
 
-Let \(b=4\), \(q=3\), and \(s=2\). Which original-time starts occur in the
+Let \(b=3\), \(q=2\), and \(s=2\). Which original-time starts occur in the
 powered-map Birkhoff sum?
 
-**Solution.** The starts are \(s+bj\) for \(j=0,1,2\), hence \(2,6,10\).
+**Solution.** The starts are \(s+bj\) for \(j=0,1\), hence \(2,5\).
 The sum is
-\(\operatorname{BSum}(T^4,g,3,T^2\omega)\), and its three summands are
-\(g(T^2\omega)\), \(g(T^6\omega)\), and \(g(T^{10}\omega)\).
+\(\operatorname{BSum}(T^3,g,2,T^2\omega)\), and its two summands are
+\(g(T^2\omega)\) and \(g(T^5\omega)\).
 
-#### Exercise 3: flatten the four-phase grid
+#### Exercise 3: flatten the three-phase grid
 
-List all starts for \(b=4\) and \(q=3\).
+List all starts for \(b=3\) and \(q=2\).
 
-**Solution.** Phase zero gives \(0,4,8\); phase one gives \(1,5,9\); phase two
-gives \(2,6,10\); and phase three gives \(3,7,11\). Reordering these twelve
-starts gives \(0,1,\ldots,11\), exactly the range below \(bq=12\).
+**Solution.** Phase zero gives \(0,3\); phase one gives \(1,4\); and phase two
+gives \(2,5\). Reordering these six starts gives \(0,1,\ldots,5\), exactly the
+range below \(bq=6\).
 
 #### Exercise 4: prove uniqueness of a start
 
@@ -750,11 +1176,11 @@ phase inequalities can have the same left side.
 
 #### Exercise 9: find both boundaries in the worked example
 
-For \(b=4,q=3,r=2,s=3\), what are the boundary lengths and total length?
+For \(b=3,q=2,r=1,s=2\), what are the boundary lengths and total length?
 
-**Solution.** The prefix length is \(3\). The terminal length is
-\(b+r-s=4+2-3=3\). The three complete blocks contribute \(12\), so the total
-is \(3+12+3=18\).
+**Solution.** The prefix length is \(2\). The terminal length is
+\(b+r-s=3+1-2=2\). The two complete blocks contribute \(6\), so the total
+is \(2+6+2=10\).
 
 #### Exercise 10: explain why commutativity appears
 
@@ -1064,32 +1490,22 @@ inequality. That combinatorics should remain independent of measure theory.
 Only afterward should a precise maximal inequality and almost-everywhere
 limit theorem be designed.
 
-## Read and reproduce the checked Lean slice
+## Check the exact project interfaces on Linux cloud compute
 
-The leaf module is
-<code>NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging</code>.
-From the repository root:
+The local worksheet checks the designed ten-step ledger only. The following
+two probes inspect the actual Mathlib-backed module and its centering
+predecessor. Run them only on an approved Linux builder.
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean
-lake build NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
-~~~
+### The eight public phase-averaging declarations
 
-Compile the cocycle and root aggregators when auditing import discipline:
-
-~~~sh
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles.lean
-lake env lean -DwarningAsError=true NonlinearDynamics.lean
-~~~
-
-The exported surface can be checked through the root import:
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging" >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean).
+On the approved Linux builder, place this probe in a temporary project scratch
+file:
 
 ~~~lean
-import NonlinearDynamics
+import NonlinearDynamics.Random.RandomCocycles.SubadditivePhaseAveraging
 
 open NonlinearDynamics.Random.RandomCocycles
 
@@ -1103,23 +1519,73 @@ open NonlinearDynamics.Random.RandomCocycles
 #check DiscreteMatrixCocycle.centeredLogPlusNormObservable_natCast_mul_le_birkhoffSum_phase_average
 ~~~
 
-Private proof helpers and private smoke declarations are intentionally absent
-from this downstream <code>#check</code> surface. They remain covered in this
-chapter because they document the theorem's minimal engine and adversarial
-boundaries.
+The eight <code>#check</code> commands follow source order. They expose the
+pure reindexing identity, two single-phase bounds, two generic all-phase
+bounds, two centered-process wrappers, and the cocycle specialization.
+Private proof helpers and smoke tests are intentionally absent from the
+downstream API.
 
-Return to the repository root for the teaching gates:
+**Resource profile: exact repository module plus Mathlib, cloud-only for this
+project.** From the repository root on the approved Linux builder:
 
 ~~~sh
-cd ..
-python3 scripts/check_teaching_source_hygiene.py
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean
+~~~
+
+The guarded target verifies the committed manifest and checks the leaf with
+warnings treated as errors. It refuses to act as a project build on the Mac.
+{{< /repo-check >}}
+
+### The centering predecessor that supplies the sign
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering" >}}
+The paired predecessor is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean).
+Its relevant interface can be inspected with:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveCentering
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check centeredProcess
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_nonpos_of_ne_zero
+#check IsIntegrableSubadditiveProcessCandidate.centeredProcess_add_le
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_nonpos
+#check DiscreteMatrixCocycle.centeredLogPlusNormObservable_add_le
+~~~
+
+The first candidate theorem supplies nonpositivity only at nonzero horizons,
+exactly the sign expected by phase averaging. The second supplies shifted
+subadditivity. The cocycle declarations provide the same two properties for
+the final specialization without adding a generator-integrability premise.
+
+Run its guarded leaf check on the same approved Linux builder:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean
+~~~
+{{< /repo-check >}}
+
+The workstation may validate the teaching layer without compiling the
+project:
+
+~~~sh
 make site-check
 ~~~
 
-The repository-wide gate is <code>make check</code>. These commands verify Lean
-acceptance and automated content rules. They do not replace the pending human
-mathematical, source, accessibility, and editorial reviews. This page is
-publicly available as an open working note while those reviews remain pending.
+The full repository gate remains a cloud command:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make check
+~~~
+
+These commands do not replace the pending human mathematical, source,
+accessibility, and editorial reviews. This page remains a public open working
+note with <code>pro_reviewed: false</code>.
 
 ## What the milestone establishes
 
@@ -1204,7 +1670,7 @@ residual used by the centered declarations here.
 proves the block-and-remainder inductions underneath the private phase helper.
 
 The {{< refterm "phase-averaging" "phase averaging" >}} glossary chapter is
-the compact definition, four-phase grid, and boundary reference. The
+the compact definition, finite residue grid, and boundary reference. The
 {{< refterm "orbit-majorant-centering" "orbit-majorant centering" >}}
 chapter explains the positive-horizon residual used in declarations 6 through
 8. The {{< refterm "birkhoff-sum" "Birkhoff sum" >}} chapter develops the
@@ -1221,15 +1687,22 @@ conventions explicitly. The compact
 {{< refterm "ordered-interval-packing" "ordered interval packing" >}}
 chapter and the
 [RMT-21 Development Notebook]({{< relref "/development-notebook/2026/07/ordered-disjoint-interval-packing-for-subadditive-cocycles" >}})
-give the shorter routes. A later Kingman layer must then choose and prove its
-exact measurable, integrable,
-maximal-inequality, stationarity, and almost-everywhere hypotheses rather than infer a
-limit from the shape of the finite formula.
+give the shorter routes. From the viewpoint of RMT-20, later Kingman layers
+still had to choose and prove their exact measurable, integrable,
+maximal-inequality, stationarity, and almost-everywhere hypotheses rather than
+infer a limit from the shape of this finite formula.
 
 [Subadditive Upper Limsup Bounds Before Kingman Convergence]({{< relref "/knowledge-base/deep-dives/subadditive-upper-limsup-bounds-before-kingman-convergence" >}})
 is the later upper-asymptotic consumer. It uses this finite phase estimate and
 ordinary-map Birkhoff convergence, and explicitly stops before a matching
 lower bound or a samplewise limit.
+
+[The Guarded Real-Liminf Bridge to Log-Positive Kingman Convergence]({{< relref "/knowledge-base/deep-dives/guarded-real-liminf-bridge-to-log-positive-kingman-convergence" >}})
+is the much later project-local endpoint. It reaches almost-everywhere
+log-positive convergence only after the intervening upper-limsup,
+lower-deviation, boundedness, and liminf layers. That endpoint depends on this
+finite estimate; it does not turn the eight RMT-20 declarations into
+convergence theorems.
 
 ## References
 

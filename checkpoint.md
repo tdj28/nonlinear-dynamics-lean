@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:13 PDT
+Last updated: 2026-07-22 21:16 PDT
 
-Audited baseline: `main` at `9836deb`
+Audited baseline: `main` at `f69b719`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **21 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **22 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -440,6 +440,19 @@ declarations plus two private helpers, and a byte-identical executed `Std`
 worksheet separate finite nonpositive slack from expectation-zero,
 probability, ergodicity, and convergence claims. Exact Mathlib/project checks
 remain guarded Linux-cloud work.
+*Finite Phase Averaging for Nonpositive Subadditive Processes* now starts from
+the ten exact weights `(-1,-2,-1,-3,-1,-2,-4,-1,-1,-2)` with block length
+three. Its three residue rows have block totals `-10`, `-13`, and `-12`, so
+the sliding-block total is `-35`; explicit prefix–middle–tail triples
+`(0,-10,-8)`, `(-1,-13,-4)`, and `(-3,-12,-3)` each reconstruct the full
+value `X₁₀=-18`. This makes the finite bound `-18≤-35/3` visible before the
+general proof. The additive positive process `Yₙ=n` shows why dropping a
+positive tail would falsely claim `10≤6`, while omitting the theorem's extra
+full block accounts for only seven of ten time steps. Two accessible numeric
+figures, seven Lean bridges, eight public declarations, four proof helpers and
+three source-level boundary witnesses, two guarded project probes, and a
+byte-identical executed `Std` worksheet keep finite phase arithmetic separate
+from measure preservation, probability, ergodicity, and convergence.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3327,6 +3340,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `f69b719`: rebuild *Orbit-Majorant Centering for Subadditive Processes*
+  around a three-state majorant/residual ledger, one wrong-shift false bound,
+  four nearby centering operations, seven Lean bridges, and an executed local
+  `Std` worksheet.
 - `9836deb`: rebuild *Finite Block Decomposition for Subadditive Processes*
   around one eleven-step ledger, two correct temporal cuts, a false
   wrong-shift bound, zero-count and zero-block-length boundaries, seven Lean

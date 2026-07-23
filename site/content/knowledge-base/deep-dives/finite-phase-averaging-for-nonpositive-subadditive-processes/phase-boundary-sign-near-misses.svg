@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Exact prefix, block, and tail boundaries, with wrong-sign and missing-boundary near misses</title>
+  <desc id="desc">The horizon ten has Euclidean quotient three and remainder one by block length three, while the theorem uses two middle blocks and keeps one full block inside its boundaries. Phase zero has values zero, negative ten, negative eight. Phase one has negative one, negative thirteen, negative four. Phase two has negative three, negative twelve, negative three. Every row totals negative eighteen. Because the prefix and tail values are nonpositive, they can be dropped to obtain an upper bound. For the positive process Y sub n equals n, the phase-zero equality is ten equals zero plus six plus four, but dropping the positive tail gives the false inequality ten at most six. Omitting the extra block also changes the horizon from ten to seven.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f2e8; }
+      .ink { fill: #18283b; }
+      .muted { fill: #566273; }
+      .navy { fill: #244d70; }
+      .green { fill: #2f6658; }
+      .orange { fill: #b86025; }
+      .red { fill: #98483c; }
+      .panel { fill: #fffdf8; stroke: #c9bdac; stroke-width: 2; }
+      .prefix { fill: #e7f0f7; stroke: #4d7292; stroke-width: 2; }
+      .blocks { fill: #eaf2e7; stroke: #719267; stroke-width: 2; }
+      .tail { fill: #f7e8da; stroke: #bd713d; stroke-width: 2; }
+      .warn { fill: #f7e7e2; stroke: #b45c4c; stroke-width: 2; }
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .h1 { font-size: 32px; font-weight: 700; }
+      .h2 { font-size: 20px; font-weight: 700; letter-spacing: .4px; }
+      .body { font-size: 18px; }
+      .small { font-size: 15px; }
+      .big { font-size: 26px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="760"/>
+  <rect x="0" y="0" width="1200" height="18" class="navy"/>
+  <text x="56" y="65" class="ink h1">The boundaries carry the extra block and the sign</text>
+  <text x="56" y="98" class="muted body">10 = 3*3 + 1 in Euclidean form; the theorem uses q=2 and writes 10 = 3*2 + 3 + 1</text>
+
+  <rect x="56" y="126" width="1088" height="338" rx="20" class="panel"/>
+  <text x="80" y="161" class="ink h2">EVERY PHASE ROW IS PREFIX + TWO BLOCKS + TAIL = -18</text>
+  <text x="215" y="199" text-anchor="middle" class="navy h2">prefix</text>
+  <text x="575" y="199" text-anchor="middle" class="green h2">two length-3 blocks</text>
+  <text x="907" y="199" text-anchor="middle" class="orange h2">tail</text>
+  <text x="1081" y="199" text-anchor="middle" class="ink h2">row total</text>
+
+  <text x="82" y="253" class="ink h2">s=0</text>
+  <rect x="135" y="219" width="160" height="51" rx="10" class="prefix"/>
+  <rect x="315" y="219" width="520" height="51" rx="10" class="blocks"/>
+  <rect x="855" y="219" width="160" height="51" rx="10" class="tail"/>
+  <text x="215" y="252" text-anchor="middle" class="navy body">length 0, value 0</text>
+  <text x="575" y="252" text-anchor="middle" class="green body">length 6, value -10</text>
+  <text x="935" y="252" text-anchor="middle" class="orange body">length 4, value -8</text>
+  <text x="1081" y="253" text-anchor="middle" class="ink big">-18</text>
+
+  <text x="82" y="327" class="ink h2">s=1</text>
+  <rect x="135" y="293" width="160" height="51" rx="10" class="prefix"/>
+  <rect x="315" y="293" width="520" height="51" rx="10" class="blocks"/>
+  <rect x="855" y="293" width="160" height="51" rx="10" class="tail"/>
+  <text x="215" y="326" text-anchor="middle" class="navy body">length 1, value -1</text>
+  <text x="575" y="326" text-anchor="middle" class="green body">length 6, value -13</text>
+  <text x="935" y="326" text-anchor="middle" class="orange body">length 3, value -4</text>
+  <text x="1081" y="327" text-anchor="middle" class="ink big">-18</text>
+
+  <text x="82" y="401" class="ink h2">s=2</text>
+  <rect x="135" y="367" width="160" height="51" rx="10" class="prefix"/>
+  <rect x="315" y="367" width="520" height="51" rx="10" class="blocks"/>
+  <rect x="855" y="367" width="160" height="51" rx="10" class="tail"/>
+  <text x="215" y="400" text-anchor="middle" class="navy body">length 2, value -3</text>
+  <text x="575" y="400" text-anchor="middle" class="green body">length 6, value -12</text>
+  <text x="935" y="400" text-anchor="middle" class="orange body">length 2, value -3</text>
+  <text x="1081" y="401" text-anchor="middle" class="ink big">-18</text>
+
+  <text x="600" y="446" text-anchor="middle" class="green body">Nonpositive prefix and tail values may be discarded: -18 is at most each middle phase total.</text>
+
+  <rect x="56" y="492" width="526" height="218" rx="20" class="warn"/>
+  <text x="80" y="529" class="red h2">WRONG-SIGN NEAR MISS</text>
+  <text x="80" y="566" class="ink body">For the additive positive process Y(n)=n:</text>
+  <text x="80" y="608" class="ink big">10 = 0 + 6 + 4</text>
+  <text x="80" y="643" class="muted small">prefix + phase blocks + tail</text>
+  <text x="80" y="684" class="red big">dropping +4 would claim 10 ≤ 6: false</text>
+
+  <rect x="618" y="492" width="526" height="218" rx="20" class="tail"/>
+  <text x="642" y="529" class="orange h2">MISSING-BOUNDARY NEAR MISS</text>
+  <text x="642" y="566" class="ink body">If the extra block is omitted:</text>
+  <text x="642" y="608" class="orange big">3*2 + 1 = 7, not 10</text>
+  <text x="642" y="647" class="ink body">The three phase rows still contain</text>
+  <text x="642" y="681" class="ink body">2 blocks plus prefix and tail, totaling 10.</text>
+
+  <text x="600" y="742" text-anchor="middle" class="muted small">Toy arithmetic only. It checks the finite boundary logic, not an ergodic limit.</text>
+</svg>
