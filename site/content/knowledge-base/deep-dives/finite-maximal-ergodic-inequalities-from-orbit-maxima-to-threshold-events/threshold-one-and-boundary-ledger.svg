@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720"
+     viewBox="0 0 1200 720" role="img"
+     aria-labelledby="thresholdLedgerTitle thresholdLedgerDesc">
+  <title id="thresholdLedgerTitle">Strict threshold-one averages and the zero-threshold and zero-horizon boundaries</title>
+  <desc id="thresholdLedgerDesc">The four-cycle average rows through horizon four are listed exactly. At strict threshold one, only starts b and d exceed the threshold, giving event measure one half and a bound by the positive-part integral five quarters. At threshold zero the event has measure three quarters, but division by zero totalizes the proposed right side to zero, so the weak divided estimate fails. At horizon zero the strict event is empty, while the nonstrict event is the whole four-state space.</desc>
+  <rect width="1200" height="720" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .serif{font-family:Georgia,Times,serif;fill:#17243A}
+    .title{font-size:32px;font-weight:700}
+    .eyebrow{font-size:16px;font-weight:700;letter-spacing:1.6px;fill:#A95320}
+    .h{font-size:17px;font-weight:700}
+    .s{font-size:15px}
+    .m{font-size:13px;fill:#4D5B6B}
+    .mono{font-family:Menlo,Consolas,monospace;font-size:14px;fill:#17243A}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+
+  <text x="58" y="42" class="t eyebrow">THRESHOLD AND BOUNDARY AUDIT</text>
+  <text x="58" y="79" class="serif title">Strict exceedance works at one; division breaks exactly at zero</text>
+  <text x="58" y="106" class="t m">The entries are positive-time averages S_k / k for k = 1, 2, 3, 4 on the same uniform four-cycle.</text>
+
+  <text x="58" y="146" class="t h">start</text>
+  <text x="143" y="146" class="t h">four positive-time averages</text>
+  <text x="655" y="146" class="t h">strictly above 1?</text>
+  <text x="898" y="146" class="t h">decisive witness</text>
+
+  <g aria-label="exact average rows">
+    <rect class="neutral" x="58" y="160" width="1082" height="62" rx="10"/>
+    <text x="85" y="199" class="t h">a</text>
+    <text x="143" y="199" class="mono">[-2, 1/2, -1, -1/4]</text>
+    <text x="655" y="199" class="t h">NO</text>
+    <text x="898" y="199" class="t m">largest average is 1/2</text>
+
+    <rect class="keep" x="58" y="232" width="1082" height="62" rx="10"/>
+    <text x="85" y="271" class="t h">b</text>
+    <text x="143" y="271" class="mono">[3, -1/2, 1/3, -1/4]</text>
+    <text x="655" y="271" class="t h">YES</text>
+    <text x="898" y="271" class="t m">k = 1 gives 3 &gt; 1</text>
+
+    <rect class="neutral" x="58" y="304" width="1082" height="62" rx="10"/>
+    <text x="85" y="343" class="t h">c</text>
+    <text x="143" y="343" class="mono">[-4, -1, -4/3, -1/4]</text>
+    <text x="655" y="343" class="t h">NO</text>
+    <text x="898" y="343" class="t m">every average is nonpositive</text>
+
+    <rect class="keep" x="58" y="376" width="1082" height="62" rx="10"/>
+    <text x="85" y="415" class="t h">d</text>
+    <text x="143" y="415" class="mono">[2, 0, 1, -1/4]</text>
+    <text x="655" y="415" class="t h">YES</text>
+    <text x="898" y="415" class="t m">k = 1 gives 2 &gt; 1; k = 3 only equals 1</text>
+  </g>
+
+  <rect class="data" x="58" y="462" width="1082" height="78" rx="12"/>
+  <text x="82" y="491" class="t h">Strict threshold a = 1</text>
+  <text x="82" y="520" class="mono">event = [b,d], measure = 1/2, 1 * 1/2 ≤ event integral 5/4 ≤ positive-part integral 5/4</text>
+
+  <g aria-label="three theorem boundaries">
+    <rect class="warn" x="58" y="562" width="340" height="116" rx="12"/>
+    <text x="82" y="593" class="t h">Threshold zero: do not divide</text>
+    <text x="82" y="620" class="t s">event = [a,b,d], measure = 3/4</text>
+    <text x="82" y="646" class="mono">(5/4) / 0 = 0</text>
+    <text x="82" y="668" class="t m">3/4 ≤ 0 is false; require a &gt; 0.</text>
+
+    <rect class="keep" x="430" y="562" width="340" height="116" rx="12"/>
+    <text x="454" y="593" class="t h">Horizon zero: strict event</text>
+    <text x="454" y="622" class="mono">sums = [0], maximum = 0</text>
+    <text x="454" y="650" class="t s">0 &lt; maximum is false for every state.</text>
+    <text x="454" y="672" class="t m">The strict event is empty.</text>
+
+    <rect class="warn" x="802" y="562" width="338" height="116" rx="12"/>
+    <text x="826" y="593" class="t h">Horizon zero: nonstrict near miss</text>
+    <text x="826" y="622" class="mono">0 ≤ maximum is true</text>
+    <text x="826" y="650" class="t s">Every state qualifies at time zero.</text>
+    <text x="826" y="672" class="t m">The event becomes the whole space.</text>
+  </g>
+
+  <text x="58" y="707" class="t m">All statements are exact finite arithmetic; no infinite supremum, limit, or pointwise theorem appears.</text>
+</svg>

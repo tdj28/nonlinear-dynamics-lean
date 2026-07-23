@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="fourCycleTitle fourCycleDesc">
+  <title id="fourCycleTitle">Four-cycle partial sums, running maxima, and the finite Hopf event</title>
+  <desc id="fourCycleDesc">Four equally weighted states a, b, c, and d cycle in order with observable values negative two, three, negative four, and two. Through horizon four, their partial sums, running maxima, and strict event membership are listed. States a, b, and d enter the event, while c does not. The atomwise maximum differences sum to zero and are bounded by indicator contributions summing to three, so the event integral is three quarters.</desc>
+  <rect width="1200" height="760" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .serif{font-family:Georgia,Times,serif;fill:#17243A}
+    .title{font-size:32px;font-weight:700}
+    .eyebrow{font-size:16px;font-weight:700;letter-spacing:1.6px;fill:#A95320}
+    .h{font-size:17px;font-weight:700}
+    .s{font-size:15px}
+    .m{font-size:13px;fill:#4D5B6B}
+    .light{fill:#FFFDF8}
+    .mono{font-family:Menlo,Consolas,monospace;font-size:14px;fill:#17243A}
+    .neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
+    .data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
+    .keep{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
+    .warn{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
+  </style>
+
+  <text x="58" y="42" class="t eyebrow">ONE EXACT FINITE ORBIT</text>
+  <text x="58" y="79" class="serif title">Running maxima remember what terminal sums forget</text>
+  <text x="58" y="106" class="t m">Uniform four-cycle, horizon N = 4, observable values g(a), g(b), g(c), g(d) = -2, 3, -4, 2.</text>
+
+  <g aria-label="four state cycle">
+    <rect class="data" x="58" y="126" width="225" height="48" rx="10"/>
+    <rect class="data" x="340" y="126" width="225" height="48" rx="10"/>
+    <rect class="data" x="622" y="126" width="225" height="48" rx="10"/>
+    <rect class="data" x="904" y="126" width="225" height="48" rx="10"/>
+    <text x="80" y="156" class="t h">a: g = -2</text>
+    <text x="362" y="156" class="t h">b: g = 3</text>
+    <text x="644" y="156" class="t h">c: g = -4</text>
+    <text x="926" y="156" class="t h">d: g = 2</text>
+    <text x="303" y="156" class="t h" fill="#A95320">to</text>
+    <text x="585" y="156" class="t h" fill="#A95320">to</text>
+    <text x="867" y="156" class="t h" fill="#A95320">to</text>
+    <path d="M1129 150 C1170 150 1170 116 1152 116 L39 116 C20 116 20 150 58 150"
+          fill="none" stroke="#A67C52" stroke-width="2.5"/>
+  </g>
+
+  <text x="58" y="207" class="t h">Start</text>
+  <text x="142" y="207" class="t h">four orbit values</text>
+  <text x="386" y="207" class="t h">partial sums S0 through S4</text>
+  <text x="690" y="207" class="t h">running maxima</text>
+  <text x="1014" y="207" class="t h">strict event</text>
+
+  <g aria-label="four exact orbit rows">
+    <rect class="keep" x="58" y="220" width="1082" height="78" rx="10"/>
+    <text x="82" y="267" class="t h">a</text>
+    <text x="142" y="252" class="mono">[-2, 3, -4, 2]</text>
+    <text x="142" y="276" class="t m">terminal sum = -1</text>
+    <text x="386" y="261" class="mono">[0, -2, 1, -3, -1]</text>
+    <text x="690" y="261" class="mono">[0, 0, 1, 1, 1]</text>
+    <text x="1014" y="252" class="t h">IN: M4 = 1</text>
+    <text x="1014" y="276" class="t m">witness k = 2</text>
+
+    <rect class="keep" x="58" y="310" width="1082" height="78" rx="10"/>
+    <text x="82" y="357" class="t h">b</text>
+    <text x="142" y="342" class="mono">[3, -4, 2, -2]</text>
+    <text x="142" y="366" class="t m">terminal sum = -1</text>
+    <text x="386" y="351" class="mono">[0, 3, -1, 1, -1]</text>
+    <text x="690" y="351" class="mono">[0, 3, 3, 3, 3]</text>
+    <text x="1014" y="342" class="t h">IN: M4 = 3</text>
+    <text x="1014" y="366" class="t m">witness k = 1</text>
+
+    <rect class="warn" x="58" y="400" width="1082" height="78" rx="10"/>
+    <text x="82" y="447" class="t h">c</text>
+    <text x="142" y="432" class="mono">[-4, 2, -2, 3]</text>
+    <text x="142" y="456" class="t m">terminal sum = -1</text>
+    <text x="386" y="441" class="mono">[0, -4, -2, -4, -1]</text>
+    <text x="690" y="441" class="mono">[0, 0, 0, 0, 0]</text>
+    <text x="1014" y="432" class="t h">OUT: M4 = 0</text>
+    <text x="1014" y="456" class="t m">no positive prefix</text>
+
+    <rect class="keep" x="58" y="490" width="1082" height="78" rx="10"/>
+    <text x="82" y="537" class="t h">d</text>
+    <text x="142" y="522" class="mono">[2, -2, 3, -4]</text>
+    <text x="142" y="546" class="t m">terminal sum = -1</text>
+    <text x="386" y="531" class="mono">[0, 2, 0, 3, -1]</text>
+    <text x="690" y="531" class="mono">[0, 2, 2, 3, 3]</text>
+    <text x="1014" y="522" class="t h">IN: M4 = 3</text>
+    <text x="1014" y="546" class="t m">witness k = 1</text>
+  </g>
+
+  <rect class="neutral" x="58" y="594" width="1082" height="112" rx="12"/>
+  <text x="82" y="625" class="t h">Atomwise pointwise inequality: M4(x) - M4(Tx) ≤ indicator(E4,x) * g(x)</text>
+  <text x="82" y="656" class="mono">a: -2 ≤ -2</text>
+  <text x="306" y="656" class="mono">b: 3 ≤ 3</text>
+  <text x="510" y="656" class="mono">c: -3 ≤ 0</text>
+  <text x="734" y="656" class="mono">d: 2 ≤ 2</text>
+  <text x="930" y="656" class="t h">all true</text>
+  <rect x="82" y="672" width="1034" height="22" rx="11" fill="#17243A"/>
+  <text x="103" y="688" class="t s light">Uniform weights cancel the maximum differences: 0/4 ≤ (-2 + 3 + 0 + 2)/4 = 3/4.</text>
+
+  <text x="58" y="738" class="t m">Every terminal sum is -1, so terminal positive parts would erase all three genuine finite witnesses.</text>
+</svg>

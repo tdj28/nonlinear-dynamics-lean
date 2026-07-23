@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:34 PDT
+Last updated: 2026-07-22 21:47 PDT
 
-Audited baseline: `main` at `5a9e9ea`
+Audited baseline: `main` at `456e0cf`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **25 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **26 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -478,6 +478,19 @@ declarations plus the helper and twelve-probe boundary map, and a
 byte-identical executed `Std` worksheet separate measurable/null-measurable
 event construction and conditional ergodic rigidity from the later theorem
 that actually proves almost-everywhere convergence.
+*Finite Maximal Ergodic Inequalities: From Orbit Maxima to Threshold Events*
+now follows one uniform four-cycle with observable values `(-2,3,-4,2)`.
+Although every terminal four-step sum equals `-1`, its running maxima are
+`1,3,0,3`, so the strict finite Hopf event is exactly `{a,b,d}`. The atomwise
+maximum-minus-shift inequalities `(-2≤-2, 3≤3, -3≤0, 2≤2)` integrate to
+`0≤3/4`. At threshold one, only `{b,d}` has a strict positive-time average
+crossing, giving `1/2≤5/4`; equality at one is not a witness, threshold zero
+cannot be divided through, and the horizon-zero strict/nonstrict events are
+empty/full. Two accessible numeric figures, seven Lean bridges, all 25 public
+declarations plus the private helper and eleven compiled probes, a guarded
+cloud project check, and a byte-identical executed 243-line `Std` worksheet
+make the finite maximal argument runnable on an ordinary Mac or Linux machine
+without compiling Mathlib or this project.
 *Finite Bad-Block Measure Bounds Before Kingman Lower Liminf* now makes the
 entire RMT-30 bridge explicit on a uniform amber/blue identity system. For
 `m=5`, `c=-3/4`, only amber at length five is strictly bad, so the event has
@@ -3379,6 +3392,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `456e0cf`: rebuild *Finite Bad-Block Measure Bounds Before Kingman Lower
+  Liminf* around a strict two-atom ledger, exact greedy covering and integral
+  arithmetic, sign and cap boundaries, seven Lean bridges, and an executed
+  local `Std` worksheet.
 - `5a9e9ea`: rebuild *Birkhoff Convergence Events Before the Pointwise
   Ergodic Theorem* around one convergent finite orbit and one bounded
   nonconvergent decimal-block shift, seven Lean bridges, complete interface

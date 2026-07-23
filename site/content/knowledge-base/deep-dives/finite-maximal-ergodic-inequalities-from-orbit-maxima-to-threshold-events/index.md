@@ -7,12 +7,12 @@ lead: "A maximal ergodic argument turns a pathwise question, whether one finite 
 draft: false
 pro_reviewed: false
 level: "Finite orbit sums, measurable functions and sets, integrability, set integrals, measure-preserving transformations, and elementary real inequalities"
-reading_time: "150 to 220 minutes"
+reading_time: "200 to 280 minutes"
 prerequisites: "Finite sums and maxima, function iteration, measurable maps, integrable real functions, indicator functions, set integrals, and measure preservation; no ergodicity or pointwise ergodic theorem is assumed"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal"
 toc: true
 og_image: "finite-maximal-ergodic-inequalities-from-orbit-maxima-to-threshold-events-card.png"
-og_image_alt: "Warm-paper Deep Dive card showing a finite partial-sum path with its positive maximizer marked, strict-event peeling, measure-preserving cancellation, the finite-total-mass gate for centering, and the resulting positive-threshold weak estimate, with the infinite-horizon step marked as future work."
+og_image_alt: "Numeric four-state orbit ledger for a cycle with observable values negative two, three, negative four, and two. It shows each starting state's partial sums and running maxima, marks the strict finite Hopf event as a, b, and d, and verifies the atomwise integral inequality."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -28,6 +28,177 @@ working note. Its Lean correspondence and sources have been checked against
 the frozen RMT-23 module, while human publication review and the configured
 external Pro review remain pending.
 {{< /panel >}}
+
+## Begin with four equally weighted states
+
+Take the finite state space
+
+\[
+\Omega=\{a,b,c,d\}
+\]
+
+with the uniform probability measure, so every state has mass \(1/4\). Let the
+transformation cycle through the states:
+
+\[
+a\longmapsto b\longmapsto c\longmapsto d\longmapsto a.
+\]
+
+This map preserves the uniform measure because it only permutes four equal
+atoms. Define the real observable
+
+\[
+g(a)=-2,\qquad g(b)=3,\qquad g(c)=-4,\qquad g(d)=2.
+\]
+
+Fix horizon \(N=4\). For each starting state \(x\), the finite Birkhoff sum
+\(S_k g(x)\) adds the first \(k\) values seen from \(x\). The empty sum
+\(S_0g(x)\) is zero. The complete ledger is:
+
+| start \(x\) | orbit values through four steps | \(S_0,S_1,S_2,S_3,S_4\) | running maxima | final \(M_4g(x)\) | \(0\lt M_4g(x)\)? |
+|---|---|---|---|---:|:---:|
+| \(a\) | \(-2,3,-4,2\) | \(0,-2,1,-3,-1\) | \(0,0,1,1,1\) | \(1\) | yes |
+| \(b\) | \(3,-4,2,-2\) | \(0,3,-1,1,-1\) | \(0,3,3,3,3\) | \(3\) | yes |
+| \(c\) | \(-4,2,-2,3\) | \(0,-4,-2,-4,-1\) | \(0,0,0,0,0\) | \(0\) | no |
+| \(d\) | \(2,-2,3,-4\) | \(0,2,0,3,-1\) | \(0,2,2,3,3\) | \(3\) | yes |
+
+All four terminal sums are \(-1\). Looking only at time four would therefore
+miss every positive prefix. The running maximum remembers them, and the strict
+finite Hopf event is
+
+\[
+E_4(g)=\{a,b,d\}.
+\]
+
+State \(a\) is the instructive atom. Its first observable value is negative,
+yet its two-step sum is
+
+\[
+-2+3=1\gt0.
+\]
+
+The theorem does not say \(g(x)\) is pointwise nonnegative on the event.
+
+{{< reference-figure
+  wide="true"
+  src="four-cycle-partial-sums-and-hopf-event.svg"
+  alt="Four equally weighted cyclic starts have all partial sums and running maxima listed through horizon four. Starts a, b, and d enter the strict finite Hopf event, while c does not. The four atomwise maximum-difference inequalities are true and sum to zero on the left and three on the indicator side, giving event integral three quarters."
+  caption="**Exact finite orbit:** \(g(a),g(b),g(c),g(d)=(-2,3,-4,2)\). The four running maxima are \(1,3,0,3\), so \(E_4(g)=\{a,b,d\}\), even though every terminal sum is \(-1\). Atom by atom, \(M_4g(x)-M_4g(Tx)\) is \(-2,3,-3,2\), while \(\mathbf 1_{E_4(g)}(x)g(x)\) is \(-2,3,0,2\). Uniform averaging cancels the first list to zero and integrates the second to \(3/4\). These are exact toy values checked by the standalone worksheet below, not sampled data or an asymptotic trajectory."
+>}}
+
+### See the pointwise inequality atom by atom
+
+The proof's finite pointwise statement is
+
+\[
+M_4g(x)-M_4g(Tx)
+\le
+\mathbf 1_{E_4(g)}(x)g(x).
+\]
+
+For this cycle, no abstraction is needed:
+
+| atom \(x\) | \(M_4g(x)\) | \(M_4g(Tx)\) | difference | \(\mathbf 1_{E_4(g)}(x)g(x)\) | check |
+|---|---:|---:|---:|---:|:---:|
+| \(a\) | \(1\) | \(3\) | \(-2\) | \(-2\) | equality |
+| \(b\) | \(3\) | \(0\) | \(3\) | \(3\) | equality |
+| \(c\) | \(0\) | \(3\) | \(-3\) | \(0\) | \(-3\le0\) |
+| \(d\) | \(3\) | \(1\) | \(2\) | \(2\) | equality |
+
+The uniform integral is just the average of four atom values. The maximum
+differences cancel around the cycle:
+
+\[
+\frac{-2+3-3+2}{4}=0.
+\]
+
+The indicator side is
+
+\[
+\frac{-2+3+0+2}{4}
+=\int_{E_4(g)}g\,d\mu
+=\frac34.
+\]
+
+Thus the finite Hopf conclusion is visible before any general integration
+machinery:
+
+\[
+0\le\int_{E_4(g)}g\,d\mu.
+\]
+
+### Turn the same orbit into an average-threshold event
+
+For positive \(k\), divide each partial sum by \(k\). The four average rows are:
+
+| start | \(A_1,A_2,A_3,A_4\) | some average strictly above \(1\)? |
+|---|---|:---:|
+| \(a\) | \(-2,\frac12,-1,-\frac14\) | no |
+| \(b\) | \(3,-\frac12,\frac13,-\frac14\) | yes |
+| \(c\) | \(-4,-1,-\frac43,-\frac14\) | no |
+| \(d\) | \(2,0,1,-\frac14\) | yes |
+
+At strict threshold \(a=1\),
+
+\[
+E_{4,1}(g)=\{b,d\},
+\qquad
+\mu(E_{4,1}(g))=\frac12.
+\]
+
+The third average from \(d\) equals one and therefore does not qualify, but its
+first average is two, so \(d\) still has a strict witness. The exact integral
+chain is
+
+\[
+1\cdot\frac12
+\le
+\int_{\{b,d\}}g\,d\mu
+=\frac{3+2}{4}
+=\frac54
+\le
+\int_\Omega\max(g,0)\,d\mu
+=\frac54.
+\]
+
+Dividing by the positive threshold one gives the finite weak estimate
+\(\frac12\le\frac54\).
+
+{{< reference-figure
+  wide="true"
+  src="threshold-one-and-boundary-ledger.svg"
+  alt="The exact positive-time averages for all four cyclic starts are listed. At strict threshold one, starts b and d form an event of mass one half, bounded by event and positive-part integrals of five quarters. At threshold zero, the event has mass three quarters but dividing five quarters by zero gives zero, so the weak divided inequality fails. At horizon zero the strict event is empty and the nonstrict event is the entire four-state space."
+  caption="**Threshold and boundary audit:** strict threshold \(1\) selects \(\{b,d\}\), producing \(1/2\le5/4\). The multiplication inequality is meaningful at threshold zero, but the divided form is not: Lean's total real division gives \((5/4)/0=0\), while the zero-threshold event has mass \(3/4\). Separately, at horizon zero every maximum equals zero, so strict positivity selects nothing and nonstrict nonnegativity selects everything. The figure stops at one fixed finite horizon; it contains no infinite supremum or convergence statement."
+>}}
+
+### Two boundaries fix the theorem statements
+
+First set the threshold to zero. The strict positive-average event is
+\(\{a,b,d\}\), with mass \(3/4\). The undivided theorem still gives a valid
+statement whose left side is zero. But a putative weak theorem without
+\(0\lt a\) would read
+
+\[
+\frac34
+\le
+\frac{\int g^+\,d\mu}{0}
+=0,
+\]
+
+which is false under Lean's total division. Threshold positivity is needed
+exactly when division occurs, not in the preceding multiplication estimate.
+
+Now set the horizon to zero. Every partial-sum list is just \([0]\), and every
+maximum is zero. Therefore
+
+\[
+E_0(g)=\varnothing.
+\]
+
+If the event were defined nonstrictly by \(0\le M_0g\), all four states would
+qualify at time zero. In fact, because every finite maximum includes the zero
+sum, the nonstrict event is the whole space at every horizon. This is why the
+formal definition uses strict positivity.
 
 Suppose a real observable is read along an orbit. At each finite time one can
 add everything seen so far, then ask whether any of those running totals is
@@ -654,6 +825,515 @@ The proof signature makes the timing exact:
 At \(a=0\), the division theorem would be meaningless. At \(a\lt0\), dividing
 would reverse order. The earlier integral inequalities remain valid because
 they do neither operation.
+
+## Seven bridges from the orbit ledger to Lean
+
+The first four bridges build the finite Hopf inequality. The last three turn
+it into a threshold-event estimate. Each Lean expression names an exact
+project declaration; the copyable module probe and guarded Linux command
+follow the bridges.
+
+### Bridge 1: maximize every partial sum, including time zero
+
+{{< lean-bridge
+  human="Take the largest Birkhoff sum among times zero through N. Including the zero sum makes the maximum nonnegative."
+  math="\(M_Ng(\omega)=\max_{0\le k\le N}S_kg(\omega),\qquad 0\le M_Ng(\omega).\)"
+  lean="finiteBirkhoffSumMax T g N ω"
+>}}
+
+- <code>finiteBirkhoffSumMax</code> is a function of the start
+  <code>ω</code>.
+- <code>Finset.range (N + 1)</code> supplies exactly the indices
+  \(0,\ldots,N\).
+- <code>sup'</code> takes a maximum over a proved nonempty finite set.
+- The candidate at <code>k = 0</code> is <code>birkhoffSum ... 0 = 0</code>.
+{{< /lean-bridge >}}
+
+### Bridge 2: strict event membership produces a positive-time witness
+
+{{< lean-bridge
+  human="A start lies in the strict finite Hopf event exactly when some positive-time sum through N is positive."
+  math="\(\omega\in E_N(g)\Longleftrightarrow\exists k,\ 1\le k\le N\ \land\ 0\lt S_kg(\omega).\)"
+  lean="mem_finiteHopfEvent_iff"
+>}}
+
+- <code>finiteHopfEvent T g N</code> is the set \(E_N(g)\).
+- The witness has <code>1 ≤ k</code>, so it cannot be the forced zero-time
+  candidate.
+- <code>k ≤ N</code> includes the terminal horizon.
+- The rightmost comparison remains strict, matching the worked event
+  \(\{a,b,d\}\).
+{{< /lean-bridge >}}
+
+### Bridge 3: combine the selected and unselected atoms
+
+{{< lean-bridge
+  human="The maximum minus its one-step shift is bounded by g on the strict event and by zero off the event."
+  math="\(M_Ng(\omega)-M_Ng(T\omega)\le\mathbf 1_{E_N(g)}(\omega)g(\omega).\)"
+  lean="finiteBirkhoffSumMax_sub_comp_le_indicator (T := T) (g := g) N ω"
+>}}
+
+- <code>(T := T)</code> and <code>(g := g)</code> fill implicit arguments
+  explicitly for a readable call.
+- <code>Set.indicator</code> returns <code>g ω</code> on the event and zero
+  outside it.
+- The proof peels a positive maximizing successor index only on the event.
+- Off the event, nonnegativity and failure of strict positivity force the
+  current maximum to equal zero.
+{{< /lean-bridge >}}
+
+### Bridge 4: preservation cancels the shifted maximum
+
+{{< lean-bridge
+  human="If T preserves the measure and g is integrable, then g has nonnegative integral over the strict finite Hopf event."
+  math="\(T_*\mu=\mu,\ g\in L^1(\mu)\Longrightarrow 0\le\int_{E_N(g)}g\,d\mu.\)"
+  lean="integral_finiteHopfEvent_nonneg hT hg N"
+>}}
+
+- <code>hT : MeasurePreserving T μ μ</code> supplies measurability and the
+  pushforward equality, not ergodicity.
+- <code>hg : Integrable g μ</code> makes every finite sum and finite maximum
+  integrable.
+- Preservation proves \(\int M_Ng\circ T\,d\mu=\int M_Ng\,d\mu\).
+- No finite-total-mass, probability, injectivity, or invertibility premise is
+  present.
+{{< /lean-bridge >}}
+
+### Bridge 5: threshold centering is exactly average exceedance
+
+{{< lean-bridge
+  human="A centered sum for g minus a becomes positive exactly when one positive-time average of g strictly exceeds a."
+  math="\(\omega\in E_{N,a}(g)\Longleftrightarrow\exists k,\ 1\le k\le N\ \land\ a\lt S_kg(\omega)/k.\)"
+  lean="mem_finiteBirkhoffAverageExceedanceSet_iff"
+>}}
+
+- <code>finiteBirkhoffAverageExceedanceSet T g N a</code> is defined as the
+  finite Hopf event of <code>fun ω ↦ g ω - a</code>.
+- <code>birkhoffAverage ℝ T g k ω</code> is the real average at time
+  <code>k</code>.
+- Positivity of <code>k</code> licenses the strict order-preserving division.
+- The threshold is pointwise centering, not expectation centering.
+{{< /lean-bridge >}}
+
+### Bridge 6: remove the event from the right side
+
+{{< lean-bridge
+  human="On a finite measure space, threshold times event mass is bounded by the full integral of the positive part, uniformly in the finite horizon."
+  math="\(a\,\mu_{\mathbb R}(E_{N,a}(g))\le\int_\Omega\max(g,0)\,d\mu.\)"
+  lean="finiteBirkhoffAverageExceedanceSet_posPart_bound hT hg N a"
+>}}
+
+- <code>[IsFiniteMeasure μ]</code> makes the constant threshold integrable.
+- <code>μ.real</code> is Mathlib's real-valued view of a finite measure.
+- <code>max (g ω) 0</code> is the pointwise positive part \(g^+\).
+- <code>a</code> may be negative, zero, or positive because this theorem does
+  not divide by it.
+{{< /lean-bridge >}}
+
+### Bridge 7: divide only with a positive threshold
+
+{{< lean-bridge
+  human="If the threshold is positive, divide the uniform multiplication estimate to bound the finite event's measure."
+  math="\(0\lt a\Longrightarrow\mu_{\mathbb R}(E_{N,a}(g))\le\bigl(\int_\Omega g^+\,d\mu\bigr)/a.\)"
+  lean="measureReal_finiteBirkhoffAverageExceedanceSet_le hT hg N ha"
+>}}
+
+- <code>ha : 0 < a</code> is the proof consumed by
+  <code>le_div_iff₀</code>.
+- The event and positive-part integral are the same objects as in bridge 6.
+- The right side does not depend on <code>N</code>, but the event is still
+  finite-horizon.
+- The zero-threshold worksheet shows why dropping <code>ha</code> would make
+  the divided conclusion false.
+{{< /lean-bridge >}}
+
+### Type-check the exact project interface
+
+{{< repo-check module="NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal" >}}
+
+On an approved Linux builder, a reader can place this probe in a project
+scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.FiniteHopfMaximal
+
+open NonlinearDynamics.Random.RandomCocycles
+
+#check finiteBirkhoffSumMax
+#check finiteBirkhoffSumMax_nonneg
+#check mem_finiteHopfEvent_iff
+#check finiteBirkhoffSumMax_sub_comp_le_indicator
+#check integral_finiteHopfEvent_nonneg
+#check mem_finiteBirkhoffAverageExceedanceSet_iff
+#check finiteBirkhoffAverageExceedanceSet_posPart_bound
+#check measureReal_finiteBirkhoffAverageExceedanceSet_le
+~~~
+
+From the repository root on that approved Linux host, type:
+
+~~~sh
+source "$HOME/.elan/env"
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/FiniteHopfMaximal.lean
+~~~
+
+This is a **project/Mathlib check**. It may restore or compile substantial
+dependencies and must not run on the Mac workstation. The guarded target
+verifies the pinned manifest and checks the authoritative 509-line module with
+warnings treated as errors.
+{{< /repo-check >}}
+
+## Run the entire four-cycle ledger with `Std`
+
+The following file imports only Lean's `Std` library. It defines its own
+four-cycle, finite sums, running maxima, rational averages, indicators, and
+uniform atom integrals. It does not import Mathlib or the project. Save the
+block byte for byte as
+<code>/tmp/FiniteHopfMaximalDeepDiveTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace FiniteHopfMaximalDeepDiveTutorial
+
+inductive OrbitState where
+  | a
+  | b
+  | c
+  | d
+  deriving Repr, DecidableEq
+
+def states : List OrbitState :=
+  [.a, .b, .c, .d]
+
+def stateName : OrbitState → String
+  | .a => "a"
+  | .b => "b"
+  | .c => "c"
+  | .d => "d"
+
+def step : OrbitState → OrbitState
+  | .a => .b
+  | .b => .c
+  | .c => .d
+  | .d => .a
+
+def observable : OrbitState → Int
+  | .a => -2
+  | .b => 3
+  | .c => -4
+  | .d => 2
+
+def iterate : Nat → OrbitState → OrbitState
+  | 0, x => x
+  | n + 1, x => iterate n (step x)
+
+def orbitSum : Nat → OrbitState → Int
+  | 0, _ => 0
+  | n + 1, x => orbitSum n x + observable (iterate n x)
+
+def orbitValues (horizon : Nat) (x : OrbitState) : List Int :=
+  (List.range horizon).map fun j => observable (iterate j x)
+
+def partialSums (horizon : Nat) (x : OrbitState) : List Int :=
+  (List.range (horizon + 1)).map fun k => orbitSum k x
+
+def runningMaximaFrom : Int → List Int → List Int
+  | _, [] => []
+  | current, value :: rest =>
+      let next := max current value
+      next :: runningMaximaFrom next rest
+
+def runningMaxima (horizon : Nat) (x : OrbitState) : List Int :=
+  runningMaximaFrom 0 (partialSums horizon x)
+
+def finiteMax (horizon : Nat) (x : OrbitState) : Int :=
+  (partialSums horizon x).foldl max 0
+
+def inStrictEvent (horizon : Nat) (x : OrbitState) : Bool :=
+  decide (0 < finiteMax horizon x)
+
+def inNonstrictEvent (horizon : Nat) (x : OrbitState) : Bool :=
+  decide (0 ≤ finiteMax horizon x)
+
+def average (k : Nat) (x : OrbitState) : Rat :=
+  (orbitSum k x : Rat) / (k : Rat)
+
+def positiveTimeAverages (horizon : Nat) (x : OrbitState) : List Rat :=
+  (List.range horizon).map fun j => average (j + 1) x
+
+def exceedsAverage
+    (horizon : Nat) (threshold : Rat) (x : OrbitState) : Bool :=
+  (List.range horizon).any fun j =>
+    decide (threshold < average (j + 1) x)
+
+def selectedStates (horizon : Nat) : List OrbitState :=
+  states.filter fun x => inStrictEvent horizon x
+
+def thresholdStates
+    (horizon : Nat) (threshold : Rat) : List OrbitState :=
+  states.filter fun x => exceedsAverage horizon threshold x
+
+def indicatorContribution (horizon : Nat) (x : OrbitState) : Int :=
+  if inStrictEvent horizon x then observable x else 0
+
+def sumObservable (selected : List OrbitState) : Int :=
+  selected.foldl (fun total x => total + observable x) 0
+
+def quarterIntegral (numerator : Int) : Rat :=
+  (numerator : Rat) / 4
+
+def positivePartSum : Int :=
+  states.foldl (fun total x => total + max (observable x) 0) 0
+
+structure OrbitRow where
+  start : String
+  values : List Int
+  sums : List Int
+  maxima : List Int
+  strictPositive : Bool
+  averages : List Rat
+  averageAboveOne : Bool
+  deriving Repr, DecidableEq
+
+def orbitRow (x : OrbitState) : OrbitRow :=
+  { start := stateName x
+    values := orbitValues 4 x
+    sums := partialSums 4 x
+    maxima := runningMaxima 4 x
+    strictPositive := inStrictEvent 4 x
+    averages := positiveTimeAverages 4 x
+    averageAboveOne := exceedsAverage 4 1 x }
+
+structure PointwiseRow where
+  start : String
+  maximumHere : Int
+  maximumAfterStep : Int
+  difference : Int
+  indicatorTimesObservable : Int
+  inequalityHolds : Bool
+  deriving Repr, DecidableEq
+
+def pointwiseRow (x : OrbitState) : PointwiseRow :=
+  let here := finiteMax 4 x
+  let shifted := finiteMax 4 (step x)
+  let contribution := indicatorContribution 4 x
+  { start := stateName x
+    maximumHere := here
+    maximumAfterStep := shifted
+    difference := here - shifted
+    indicatorTimesObservable := contribution
+    inequalityHolds := decide (here - shifted ≤ contribution) }
+
+structure IntegralLedger where
+  strictEvent : List String
+  maxDifferenceNumerator : Int
+  indicatorNumerator : Int
+  eventIntegral : Rat
+  thresholdOneEvent : List String
+  thresholdOneMeasure : Rat
+  thresholdOneLeftSide : Rat
+  thresholdOneEventIntegral : Rat
+  positivePartIntegral : Rat
+  weakBoundAtOneHolds : Bool
+  zeroThresholdEvent : List String
+  zeroThresholdMeasure : Rat
+  dividedRightAtZero : Rat
+  weakBoundAtZeroWouldHold : Bool
+  zeroHorizonStrictEvent : List String
+  zeroHorizonNonstrictEvent : List String
+  deriving Repr, DecidableEq
+
+def integralLedger : IntegralLedger :=
+  let strict := selectedStates 4
+  let pointwise := states.map pointwiseRow
+  let differenceTotal :=
+    pointwise.foldl (fun total row => total + row.difference) 0
+  let indicatorTotal :=
+    pointwise.foldl
+      (fun total row => total + row.indicatorTimesObservable) 0
+  let thresholdOne := thresholdStates 4 1
+  let thresholdZero := thresholdStates 4 0
+  let positiveIntegral := quarterIntegral positivePartSum
+  { strictEvent := strict.map stateName
+    maxDifferenceNumerator := differenceTotal
+    indicatorNumerator := indicatorTotal
+    eventIntegral := quarterIntegral indicatorTotal
+    thresholdOneEvent := thresholdOne.map stateName
+    thresholdOneMeasure := (thresholdOne.length : Rat) / 4
+    thresholdOneLeftSide := 1 * ((thresholdOne.length : Rat) / 4)
+    thresholdOneEventIntegral :=
+      quarterIntegral (sumObservable thresholdOne)
+    positivePartIntegral := positiveIntegral
+    weakBoundAtOneHolds :=
+      decide ((thresholdOne.length : Rat) / 4 ≤ positiveIntegral / 1)
+    zeroThresholdEvent := thresholdZero.map stateName
+    zeroThresholdMeasure := (thresholdZero.length : Rat) / 4
+    dividedRightAtZero := positiveIntegral / 0
+    weakBoundAtZeroWouldHold :=
+      decide ((thresholdZero.length : Rat) / 4 ≤ positiveIntegral / 0)
+    zeroHorizonStrictEvent :=
+      (states.filter fun x => inStrictEvent 0 x).map stateName
+    zeroHorizonNonstrictEvent :=
+      (states.filter fun x => inNonstrictEvent 0 x).map stateName }
+
+#eval states.map orbitRow
+#eval states.map pointwiseRow
+#eval integralLedger
+
+example : partialSums 4 .a = [0, -2, 1, -3, -1] := by
+  native_decide
+example : partialSums 4 .b = [0, 3, -1, 1, -1] := by
+  native_decide
+example : partialSums 4 .c = [0, -4, -2, -4, -1] := by
+  native_decide
+example : partialSums 4 .d = [0, 2, 0, 3, -1] := by
+  native_decide
+
+example : runningMaxima 4 .a = [0, 0, 1, 1, 1] := by
+  native_decide
+example : runningMaxima 4 .b = [0, 3, 3, 3, 3] := by
+  native_decide
+example : runningMaxima 4 .c = [0, 0, 0, 0, 0] := by
+  native_decide
+example : runningMaxima 4 .d = [0, 2, 2, 3, 3] := by
+  native_decide
+
+example : selectedStates 4 = [.a, .b, .d] := by
+  native_decide
+example : thresholdStates 4 1 = [.b, .d] := by
+  native_decide
+example : thresholdStates 4 0 = [.a, .b, .d] := by
+  native_decide
+
+example : (states.map pointwiseRow).map PointwiseRow.difference =
+    [-2, 3, -3, 2] := by native_decide
+example : (states.map pointwiseRow).map
+    PointwiseRow.indicatorTimesObservable = [-2, 3, 0, 2] := by
+  native_decide
+example : (states.map pointwiseRow).all PointwiseRow.inequalityHolds = true := by
+  native_decide
+
+example : integralLedger.eventIntegral = (3 : Rat) / 4 := by
+  native_decide
+example : integralLedger.thresholdOneMeasure = (1 : Rat) / 2 := by
+  native_decide
+example : integralLedger.thresholdOneEventIntegral = (5 : Rat) / 4 := by
+  native_decide
+example : integralLedger.positivePartIntegral = (5 : Rat) / 4 := by
+  native_decide
+example : integralLedger.weakBoundAtOneHolds = true := by
+  native_decide
+example : integralLedger.dividedRightAtZero = 0 := by
+  native_decide
+example : integralLedger.weakBoundAtZeroWouldHold = false := by
+  native_decide
+example : integralLedger.zeroHorizonStrictEvent = [] := by
+  native_decide
+example : integralLedger.zeroHorizonNonstrictEvent =
+    ["a", "b", "c", "d"] := by
+  native_decide
+
+end FiniteHopfMaximalDeepDiveTutorial
+~~~
+
+The key syntax is ordinary and finite:
+
+- `inductive OrbitState` creates exactly four named states;
+- `iterate` advances the cycle without importing Mathlib's iterate API;
+- `List.range (horizon + 1)` includes the zero-time sum;
+- `foldl max 0` accumulates a running finite maximum from the forced zero;
+- `Rat` keeps all averages and uniform atom integrals exact;
+- `decide` computes a finite comparison; and
+- every `native_decide` example asks Lean to certify the displayed ledger.
+
+With the pinned compiler installed, a human types:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/FiniteHopfMaximalDeepDiveTutorial.lean
+~~~
+
+This is a **small standalone tutorial** suitable for a normal Mac or Linux
+host. It imports only `Std`, enumerates four states, and does not compile
+Mathlib or this project. Successful execution prints exactly:
+
+~~~text
+[{ start := "a",
+   values := [-2, 3, -4, 2],
+   sums := [0, -2, 1, -3, -1],
+   maxima := [0, 0, 1, 1, 1],
+   strictPositive := true,
+   averages := [-2, (1 : Rat)/2, -1, (-1 : Rat)/4],
+   averageAboveOne := false },
+ { start := "b",
+   values := [3, -4, 2, -2],
+   sums := [0, 3, -1, 1, -1],
+   maxima := [0, 3, 3, 3, 3],
+   strictPositive := true,
+   averages := [3, (-1 : Rat)/2, (1 : Rat)/3, (-1 : Rat)/4],
+   averageAboveOne := true },
+ { start := "c",
+   values := [-4, 2, -2, 3],
+   sums := [0, -4, -2, -4, -1],
+   maxima := [0, 0, 0, 0, 0],
+   strictPositive := false,
+   averages := [-4, -1, (-4 : Rat)/3, (-1 : Rat)/4],
+   averageAboveOne := false },
+ { start := "d",
+   values := [2, -2, 3, -4],
+   sums := [0, 2, 0, 3, -1],
+   maxima := [0, 2, 2, 3, 3],
+   strictPositive := true,
+   averages := [2, 0, 1, (-1 : Rat)/4],
+   averageAboveOne := true }]
+[{ start := "a",
+   maximumHere := 1,
+   maximumAfterStep := 3,
+   difference := -2,
+   indicatorTimesObservable := -2,
+   inequalityHolds := true },
+ { start := "b",
+   maximumHere := 3,
+   maximumAfterStep := 0,
+   difference := 3,
+   indicatorTimesObservable := 3,
+   inequalityHolds := true },
+ { start := "c",
+   maximumHere := 0,
+   maximumAfterStep := 3,
+   difference := -3,
+   indicatorTimesObservable := 0,
+   inequalityHolds := true },
+ { start := "d",
+   maximumHere := 3,
+   maximumAfterStep := 1,
+   difference := 2,
+   indicatorTimesObservable := 2,
+   inequalityHolds := true }]
+{ strictEvent := ["a", "b", "d"],
+  maxDifferenceNumerator := 0,
+  indicatorNumerator := 3,
+  eventIntegral := (3 : Rat)/4,
+  thresholdOneEvent := ["b", "d"],
+  thresholdOneMeasure := (1 : Rat)/2,
+  thresholdOneLeftSide := (1 : Rat)/2,
+  thresholdOneEventIntegral := (5 : Rat)/4,
+  positivePartIntegral := (5 : Rat)/4,
+  weakBoundAtOneHolds := true,
+  zeroThresholdEvent := ["a", "b", "d"],
+  zeroThresholdMeasure := (3 : Rat)/4,
+  dividedRightAtZero := 0,
+  weakBoundAtZeroWouldHold := false,
+  zeroHorizonStrictEvent := [],
+  zeroHorizonNonstrictEvent := ["a", "b", "c", "d"] }
+~~~
+
+The first value is the full orbit table, the second is the atomwise indicator
+inequality, and the third is the integral, threshold, and boundary ledger.
+Because the transcript is exact, a changed rational, event member, or theorem
+boundary is visible immediately.
 
 ## Four sources, four different scopes
 
