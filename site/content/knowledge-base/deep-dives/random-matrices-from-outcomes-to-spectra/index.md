@@ -13,6 +13,13 @@ lean_module: "NonlinearDynamics.Random.RandomMatrices.Basic"
 toc: true
 og_image: "random-matrices-card.png"
 og_image_alt: "A fair red-or-blue outcome selects one of two exact two-by-two matrices, whose checked eigenvalue slots become one of two empirical spectral measures."
+ai_disclosure: |
+  **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
+  and review this note. The author selected the questions, shaped the
+  exposition, has inspected the sources and artifacts cited here, and is
+  responsible for the final text and claims. This is an independent,
+  non-peer-reviewed Deep Dive. Verify claims against the cited primary
+  sources and any released artifacts before relying on them.
 ---
 
 {{< panel "warning" >}}

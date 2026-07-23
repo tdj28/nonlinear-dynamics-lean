@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900"
+     viewBox="0 0 1200 900" role="img"
+     aria-labelledby="scaling-ledger-title scaling-ledger-desc">
+  <title id="scaling-ledger-title">Scaling squares variance, scales standard deviation by absolute value, and leaves a later complex normalization choice open</title>
+  <desc id="scaling-ledger-desc">The three coordinate laws have parameter triples zero one one, two one one, and five zero zero for mean, variance, and standard deviation. Multipliers two, minus three, and four produce zero four two, minus six nine three, and twenty zero zero. Centering the first two nondegenerate coordinates gives two unit-variance variables; using them raw gives total complex squared spread two, while dividing by square root two gives total spread one.</desc>
+  <defs>
+    <marker id="scaling-ledger-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="900" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
+    .title{font-size:28px;font-weight:700}.sub{font-size:17px;fill:#5A544C}
+    .h{font-size:19px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}
+    .th{font-size:14px;font-weight:700}
+    .num{font-size:19px;font-weight:700}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .line{stroke:#7F786D;stroke-width:1.6}
+  </style>
+
+  <text x="48" y="48" class="t title">A scaling ledger prevents the variance and standard-deviation mix-up</text>
+  <text x="48" y="78" class="t sub">Each row records mean, variance, and standard deviation before and after one deterministic multiplier.</text>
+
+  <rect x="48" y="112" width="1104" height="356" rx="16" class="blue"/>
+  <text x="72" y="150" class="t h">Exact coordinate transformation</text>
+  <rect x="78" y="180" width="1044" height="236" rx="12" class="cream"/>
+  <line x1="78" y1="242" x2="1122" y2="242" class="line"/>
+  <line x1="226" y1="180" x2="226" y2="416" class="line"/>
+  <line x1="501" y1="180" x2="501" y2="416" class="line"/>
+  <line x1="654" y1="180" x2="654" y2="416" class="line"/>
+  <text x="113" y="216" class="t th">coordinate</text>
+  <text x="336" y="204" class="t th">before</text>
+  <text x="267" y="226" class="t th">mean, variance, standard deviation</text>
+  <text x="548" y="216" class="t th">multiply</text>
+  <text x="862" y="204" class="t th">after</text>
+  <text x="744" y="226" class="t th">mean, variance, standard deviation</text>
+  <text x="136" y="282" class="t num">X</text>
+  <text x="334" y="282" class="t num">(0, 1, 1)</text>
+  <text x="564" y="282" class="t num">2</text>
+  <line x1="607" y1="277" x2="691" y2="277" stroke="#A67C52" stroke-width="3" marker-end="url(#scaling-ledger-arrow)"/>
+  <text x="833" y="282" class="t num">(0, 4, 2)</text>
+  <text x="136" y="340" class="t num">Y</text>
+  <text x="334" y="340" class="t num">(2, 1, 1)</text>
+  <text x="558" y="340" class="t num">-3</text>
+  <line x1="607" y1="335" x2="691" y2="335" stroke="#A67C52" stroke-width="3" marker-end="url(#scaling-ledger-arrow)"/>
+  <text x="816" y="340" class="t num">(-6, 9, 3)</text>
+  <text x="112" y="398" class="t num">anchor</text>
+  <text x="334" y="398" class="t num">(5, 0, 0)</text>
+  <text x="564" y="398" class="t num">4</text>
+  <line x1="607" y1="393" x2="691" y2="393" stroke="#A67C52" stroke-width="3" marker-end="url(#scaling-ledger-arrow)"/>
+  <text x="816" y="398" class="t num">(20, 0, 0)</text>
+  <rect x="78" y="430" width="502" height="25" rx="8" class="green"/>
+  <text x="111" y="449" class="t m">variance multiplier: c squared</text>
+  <rect x="600" y="430" width="522" height="25" rx="8" class="clay"/>
+  <text x="641" y="449" class="t m">standard-deviation multiplier: absolute value of c</text>
+
+  <text x="48" y="516" class="t title">The same coordinates expose a later normalization fork</text>
+  <text x="48" y="546" class="t sub">Center Y by subtracting 2. Then U = X and V = Y minus 2 are independent with mean 0 and variance 1.</text>
+
+  <rect x="48" y="580" width="316" height="224" rx="16" class="cream"/>
+  <text x="72" y="617" class="t h">Shared starting ledger</text>
+  <rect x="82" y="645" width="248" height="56" rx="10" class="blue"/>
+  <text x="111" y="670" class="t s">U: mean 0, variance 1</text>
+  <text x="111" y="691" class="t s">V: mean 0, variance 1</text>
+  <text x="72" y="735" class="t m">They are mutually independent as a</text>
+  <text x="72" y="757" class="t m">two-coordinate subfamily.</text>
+  <text x="72" y="786" class="t m">The anchor is irrelevant to this fork.</text>
+
+  <line x1="375" y1="692" x2="422" y2="653" stroke="#A67C52" stroke-width="4" marker-end="url(#scaling-ledger-arrow)"/>
+  <line x1="375" y1="692" x2="422" y2="750" stroke="#A67C52" stroke-width="4" marker-end="url(#scaling-ledger-arrow)"/>
+
+  <rect x="436" y="580" width="332" height="224" rx="16" class="clay"/>
+  <text x="460" y="617" class="t h">Convention A: use U and V raw</text>
+  <text x="460" y="651" class="t s">real component variance: 1</text>
+  <text x="460" y="680" class="t s">imaginary component variance: 1</text>
+  <rect x="472" y="711" width="260" height="58" rx="11" class="cream"/>
+  <text x="500" y="737" class="t s">total squared spread</text>
+  <text x="573" y="761" class="t num">2</text>
+
+  <rect x="800" y="580" width="352" height="224" rx="16" class="green"/>
+  <text x="824" y="617" class="t h">Convention B: divide by sqrt(2)</text>
+  <text x="824" y="651" class="t s">real component variance: 1/2</text>
+  <text x="824" y="680" class="t s">imaginary component variance: 1/2</text>
+  <rect x="846" y="711" width="260" height="58" rx="11" class="cream"/>
+  <text x="874" y="737" class="t s">total squared spread</text>
+  <text x="948" y="761" class="t num">1</text>
+
+  <rect x="48" y="838" width="1104" height="42" rx="12" class="green"/>
+  <text x="173" y="865" class="t s">Both conventions are valid. The phrase standard complex Gaussian does not choose between them.</text>
+</svg>

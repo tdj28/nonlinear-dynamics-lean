@@ -1,64 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430"
-     viewBox="0 0 760 430" role="img"
-     aria-labelledby="gaussianStackTitle gaussianStackDesc">
-  <title id="gaussianStackTitle">Dependency stack from one Gaussian law to a normalization ledger</title>
-  <desc id="gaussianStackDesc">Four ascending stages show an exact scalar Gaussian law, a measurable mutually independent family, its finite product joint law, and an unresolved normalization ledger. The last stage marks a deliberate stop before complex Gaussian variables and GUE matrices.</desc>
-  <rect width="760" height="430" fill="#F7F4F0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900"
+     viewBox="0 0 1200 900" role="img"
+     aria-labelledby="gaussian-stack-title gaussian-stack-desc">
+  <title id="gaussian-stack-title">One three-coordinate Gaussian experiment keeps maps, realizations, data, and laws separate</title>
+  <desc id="gaussian-stack-desc">A mutually independent family has coordinate laws with means zero, two, and five and variances one, one, and zero. The sample map returns triples, one realization is one one five, three recorded rows have empirical means one two five, and the joint law is the product of two nondegenerate Gaussian laws and a point mass at five. A rectangle event factors to one quarter.</desc>
+  <defs>
+    <marker id="gaussian-stack-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#A67C52"/>
+    </marker>
+    <pattern id="gaussian-stack-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#6F8D5E" stroke-width="3" opacity="0.48"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="900" fill="#F7F4F0"/>
   <style>
     .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .step{font-size:12px;font-weight:700;fill:#FFFDF8}
-    .scalar{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .family{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .product{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .ledger{fill:#FFF3D6;stroke:#C16F2C;stroke-width:2}
-    .badge{fill:#284E72}
-    .arrow{stroke:#4D5B6B;stroke-width:2;fill:none}
-    .boundary{fill:#16243A}
+    .title{font-size:28px;font-weight:700}.sub{font-size:17px;fill:#5A544C}
+    .h{font-size:19px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}
+    .tiny{font-size:13px;fill:#5A544C}.num{font-size:18px;font-weight:700}
+    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}
+    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}
+    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}
+    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}
+    .ink{stroke:#4D5B6B;stroke-width:2;fill:none}
+    .dash{stroke:#A89B8C;stroke-width:2;stroke-dasharray:7 6}
   </style>
 
-  <text x="24" y="28" class="t title">Every level adds information the level below cannot supply</text>
-  <text x="24" y="48" class="t m">Each coordinate has a named mean and a nonnegative variance.</text>
+  <text x="48" y="48" class="t title">One experiment, four different objects</text>
+  <text x="48" y="78" class="t sub">The law is the pushforward of F; one output and three recorded rows do not replace it.</text>
 
-  <rect x="70" y="66" width="558" height="62" rx="10" class="scalar"/>
-  <circle cx="48" cy="97" r="17" class="badge"/>
-  <text x="48" y="101" text-anchor="middle" class="t step">1</text>
-  <text x="92" y="91" class="t h">One exact real Gaussian law</text>
-  <text x="92" y="112" class="t s">The exact law records both the mean and the variance.</text>
+  <rect x="48" y="110" width="280" height="220" rx="16" class="blue"/>
+  <text x="70" y="145" class="t h">1. Probability experiment</text>
+  <text x="70" y="174" class="t s">Source outcome: omega in Omega</text>
+  <rect x="70" y="193" width="236" height="42" rx="9" class="cream"/>
+  <text x="174" y="220" class="t s">omega</text>
+  <text x="70" y="261" class="t s">Coordinate laws</text>
+  <text x="84" y="287" class="t m">X: mean 0, variance 1</text>
+  <text x="84" y="309" class="t m">Y: mean 2, variance 1</text>
+  <text x="84" y="325" class="t m">anchor: point mass at 5</text>
 
-  <path d="M349 128 V148" class="arrow"/>
-  <path d="M342 140 L349 149 L356 140" class="arrow"/>
+  <line x1="338" y1="220" x2="381" y2="220" stroke="#A67C52" stroke-width="4" marker-end="url(#gaussian-stack-arrow)"/>
 
-  <rect x="104" y="151" width="558" height="62" rx="10" class="family"/>
-  <circle cx="82" cy="182" r="17" class="badge"/>
-  <text x="82" y="186" text-anchor="middle" class="t step">2</text>
-  <text x="126" y="176" class="t h">A measurable, mutually independent family</text>
-  <text x="126" y="197" class="t s">Every coordinate has its stated law, and independence is a separate field.</text>
+  <rect x="392" y="110" width="310" height="220" rx="16" class="cream"/>
+  <text x="414" y="145" class="t h">2. Sample map</text>
+  <text x="414" y="174" class="t s">F reads all three coordinates</text>
+  <rect x="414" y="193" width="266" height="58" rx="10" class="green"/>
+  <text x="424" y="216" class="t s">F(omega) =</text>
+  <text x="424" y="239" class="t m">(X(omega), Y(omega), A(omega))</text>
+  <text x="414" y="282" class="t m">Projection 0 reads X</text>
+  <text x="414" y="304" class="t m">Projection 1 reads Y</text>
+  <text x="414" y="326" class="t m">Projection 2 reads the anchor</text>
 
-  <path d="M383 213 V233" class="arrow"/>
-  <path d="M376 225 L383 234 L390 225" class="arrow"/>
+  <line x1="712" y1="220" x2="755" y2="220" stroke="#A67C52" stroke-width="4" marker-end="url(#gaussian-stack-arrow)"/>
 
-  <rect x="138" y="236" width="558" height="62" rx="10" class="product"/>
-  <circle cx="116" cy="267" r="17" class="badge"/>
-  <text x="116" y="271" text-anchor="middle" class="t step">3</text>
-  <text x="160" y="261" class="t h">The finite joint law is the product of the marginals</text>
-  <text x="160" y="282" class="t s">Mutual independence turns the coordinate laws into one finite product law.</text>
+  <rect x="766" y="110" width="386" height="220" rx="16" class="green"/>
+  <text x="788" y="145" class="t h">3. One realization</text>
+  <text x="788" y="174" class="t s">Suppose this trial returns</text>
+  <rect x="840" y="193" width="238" height="70" rx="12" class="cream"/>
+  <text x="899" y="236" class="t num">(1, 1, 5)</text>
+  <text x="788" y="294" class="t m">This triple is one value of F.</text>
+  <text x="788" y="317" class="t m">It is not the function F and not its law.</text>
 
-  <path d="M417 298 V318" class="arrow"/>
-  <path d="M410 310 L417 319 L424 310" class="arrow"/>
+  <line x1="48" y1="362" x2="1152" y2="362" class="dash"/>
 
-  <rect x="172" y="321" width="558" height="62" rx="10" class="ledger"/>
-  <circle cx="150" cy="352" r="17" fill="#C16F2C"/>
-  <text x="150" y="356" text-anchor="middle" class="t step">4</text>
-  <text x="194" y="346" class="t h">Normalization ledger: unresolved choices stay visible</text>
-  <text x="194" y="367" class="t s">Real and imaginary variances, entry scaling, and matrix size policy.</text>
+  <rect x="48" y="393" width="510" height="270" rx="16" class="clay"/>
+  <text x="70" y="430" class="t h">4. Three recorded realizations: empirical data</text>
+  <text x="70" y="458" class="t m">A finite table can be summarized, but it does not define the source law.</text>
+  <rect x="88" y="486" width="432" height="120" rx="10" class="cream"/>
+  <line x1="88" y1="524" x2="520" y2="524" class="ink"/>
+  <line x1="208" y1="486" x2="208" y2="606" class="ink"/>
+  <line x1="320" y1="486" x2="320" y2="606" class="ink"/>
+  <line x1="424" y1="486" x2="424" y2="606" class="ink"/>
+  <text x="112" y="512" class="t h">row</text>
+  <text x="253" y="512" class="t h">X</text>
+  <text x="364" y="512" class="t h">Y</text>
+  <text x="447" y="512" class="t h">anchor</text>
+  <text x="126" y="552" class="t s">1</text><text x="254" y="552" class="t s">1</text><text x="365" y="552" class="t s">1</text><text x="471" y="552" class="t s">5</text>
+  <text x="126" y="578" class="t s">2</text><text x="254" y="578" class="t s">1</text><text x="365" y="578" class="t s">3</text><text x="471" y="578" class="t s">5</text>
+  <text x="126" y="600" class="t s">3</text><text x="254" y="600" class="t s">1</text><text x="365" y="600" class="t s">2</text><text x="471" y="600" class="t s">5</text>
+  <rect x="88" y="620" width="432" height="29" rx="8" class="green"/>
+  <text x="118" y="641" class="t s">empirical column means: (1, 2, 5)</text>
 
-  <rect x="24" y="397" width="712" height="24" rx="9" class="boundary"/>
-  <text x="380" y="414" text-anchor="middle" fill="#FFFDF8"
-        font-family="Inter,Arial,Helvetica,sans-serif" font-size="11">
-    Deliberate boundary: no complex Gaussian law or GUE ensemble is defined here.
-  </text>
+  <rect x="582" y="393" width="570" height="270" rx="16" class="blue"/>
+  <text x="604" y="430" class="t h">5. The law: a measure on all possible triples</text>
+  <text x="604" y="458" class="t m">Mutual independence turns the three marginal laws into one product law.</text>
+  <rect x="616" y="482" width="502" height="74" rx="12" class="cream"/>
+  <text x="658" y="511" class="t m">Gaussian(mean 0, variance 1) times Gaussian(mean 2, variance 1)</text>
+  <text x="757" y="540" class="t s">times point mass at anchor 5</text>
+  <rect x="616" y="575" width="502" height="60" rx="11" class="green"/>
+  <rect x="616" y="575" width="502" height="60" rx="11" fill="url(#gaussian-stack-hatch)" opacity="0.34"/>
+  <text x="650" y="600" class="t s">Every law-level outcome lies on the plane anchor = 5.</text>
+  <text x="650" y="623" class="t m">The first two coordinates remain continuously distributed.</text>
+
+  <rect x="48" y="696" width="1104" height="132" rx="16" class="cream"/>
+  <text x="70" y="731" class="t h">Rectangle-event audit under the product law</text>
+  <rect x="70" y="751" width="232" height="48" rx="9" class="blue"/>
+  <text x="89" y="781" class="t s">X at most 0: probability 1/2</text>
+  <rect x="321" y="751" width="232" height="48" rx="9" class="blue"/>
+  <text x="339" y="781" class="t s">Y at most 2: probability 1/2</text>
+  <rect x="572" y="751" width="232" height="48" rx="9" class="green"/>
+  <text x="587" y="781" class="t s">anchor equals 5: probability 1</text>
+  <line x1="818" y1="775" x2="864" y2="775" stroke="#A67C52" stroke-width="4" marker-end="url(#gaussian-stack-arrow)"/>
+  <rect x="876" y="746" width="246" height="58" rx="10" class="clay"/>
+  <text x="898" y="770" class="t s">joint probability</text>
+  <text x="916" y="795" class="t num">1/2 x 1/2 x 1 = 1/4</text>
+
+  <rect x="48" y="850" width="1104" height="31" rx="10" class="green"/>
+  <text x="154" y="872" class="t s">Takeaway: maps generate realizations; repeated realizations form data; measurable maps and probability measures determine laws.</text>
 </svg>

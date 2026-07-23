@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 18:48 PDT
+Last updated: 2026-07-22 18:59 PDT
 
-Audited baseline: `main` at `d7d343b`
+Audited baseline: `main` at `cf5a1a7`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **3 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **4 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -227,6 +227,17 @@ Dirac branches; and the prose separates Cartesian, proper, and circular claims.
 Its three accessible figures, seven Lean bridges, and two guarded project
 checks are paired with a local `Std` ledger executed under Lean 4.32.0. The
 page-owned card reproduces its primary numeric figure byte for byte.
+*Gaussian Laws, Independence, and Normalization* now separates an abstract
+source outcome, the three-coordinate sample map, one realization, three data
+rows, and the exact product law before introducing Gaussian abstraction. Its
+rectangle event has probability `1/4`; its scaling ledger distinguishes
+variance from standard deviation; and a four-row parity model proves that
+pairwise checks do not give mutual independence. Six Lean bridges, three
+numeric figures, a locally executed `Std` worksheet, and a guarded exact-module
+check make every layer reproducible. An adversarial review corrected a
+source/realization conflation, figure overflow, missing disclosure metadata,
+and an unreadably small first card design. The same metadata audit restored
+the canonical AI disclosure on the completed random-matrices chapter.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3114,6 +3125,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `cf5a1a7`: rebuild *Complex Gaussian Coordinates and Geometry* around the
+  exact `1 - 2i`, `(4, 1)` law ledger, copied-coordinate dependence boundary,
+  support atlas, seven Lean bridges, and a locally executed `Std` lab.
 - `d7d343b`: execute the final five hypothetical-output glossary worksheets,
   record their output verbatim, correct Lean's rational display to
   `(5 : Rat)/2`, and close the complete 62-page glossary audit.

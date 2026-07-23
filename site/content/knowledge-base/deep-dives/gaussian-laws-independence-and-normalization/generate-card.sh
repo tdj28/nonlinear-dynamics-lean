@@ -1,40 +1,43 @@
 #!/bin/sh
 set -eu
 
-script_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+script_dir="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)"
+source_svg="$script_dir/gaussian-product-law-stack.svg"
 checked="$script_dir/gaussian-laws-card.png"
+full=""
+top=""
+bottom=""
+temporary=""
+
+cleanup() {
+  test -z "$full" || rm -f "$full"
+  test -z "$top" || rm -f "$top"
+  test -z "$bottom" || rm -f "$bottom"
+  test -z "$temporary" || rm -f "$temporary"
+}
+trap cleanup EXIT HUP INT TERM
 
 generate() {
   output="$1"
-  magick -size 1200x630 xc:'#F3EFE6' \
-    -fill '#16243A' -draw 'rectangle 0,0 1200,22 rectangle 0,535 1200,630' \
-    -fill '#C16F2C' -font Helvetica -pointsize 22 \
-    -annotate +72+104 'DEEP DIVE / RANDOM DYNAMICS' \
-    -fill '#16243A' -font Palatino-Roman -pointsize 61 \
-    -annotate +72+192 'Gaussian laws,' \
-    -annotate +72+258 'independence,' \
-    -annotate +72+324 'and normalization' \
-    -fill '#4D5B6B' -font Helvetica -pointsize 22 \
-    -annotate +76+384 'From one exact law to a finite product measure' \
-    -fill '#E8F0F7' -stroke '#4B6787' -strokewidth 3 \
-    -draw 'roundrectangle 742,92 1080,182 16,16' \
-    -fill '#EAF1E5' -stroke '#6F8D5E' -strokewidth 3 \
-    -draw 'roundrectangle 768,211 1106,301 16,16' \
-    -fill '#F3E8E0' -stroke '#A67C52' -strokewidth 3 \
-    -draw 'roundrectangle 794,330 1132,420 16,16' \
-    -fill '#FFF3D6' -stroke '#C16F2C' -strokewidth 4 \
-    -draw 'roundrectangle 820,449 1158,515 16,16' \
-    -stroke '#4D5B6B' -strokewidth 3 -fill none \
-    -draw 'line 911,184 925,209 line 937,303 951,328 line 963,422 977,447' \
-    -fill '#16243A' -stroke none -font Helvetica -pointsize 21 \
-    -annotate +778+138 '1  scalar law: mean, variance' \
-    -annotate +804+257 '2  measurable independent family' \
-    -annotate +830+376 '3  joint product law' \
-    -annotate +856+490 '4  normalization ledger' \
-    -fill '#FFFDF8' -font Helvetica -pointsize 18 \
-    -annotate +72+578 'NONLINEAR DYNAMICS, FORMALLY' \
-    -strip \
-    "PNG:$output"
+  full="$(mktemp /tmp/gaussian-laws-card-full.XXXXXX)"
+  top="$(mktemp /tmp/gaussian-laws-card-top.XXXXXX)"
+  bottom="$(mktemp /tmp/gaussian-laws-card-bottom.XXXXXX)"
+
+  rsvg-convert -w 1200 -h 900 -b '#f7f4f0' -o "$full" "$source_svg"
+  magick "$full" -crop 1140x365+30+0 +repage \
+    -filter Lanczos -resize '1200x384!' "PNG:$top"
+  magick "$full" -crop 1140x215+30+685 +repage \
+    -filter Lanczos -resize '1200x226!' "PNG:$bottom"
+  magick -size 1200x630 xc:'#f7f4f0' \
+    "$top" -geometry +0+0 -composite \
+    "$bottom" -geometry +0+404 -composite \
+    -alpha off -strip \
+    -define png:exclude-chunk=date,time "PNG:$output"
+  rm -f "$full" "$top" "$bottom"
+  full=""
+  top=""
+  bottom=""
+
   dimensions="$(magick identify -format '%wx%h' "$output")"
   test "$dimensions" = "1200x630" || {
     echo "unexpected card dimensions: $dimensions" >&2
@@ -42,9 +45,13 @@ generate() {
   }
 }
 
-if test "$#" -gt 0 && test "$1" = "--verify"; then
-  temporary="$(mktemp "/tmp/gaussian-laws-card.XXXXXX")"
-  trap 'rm -f "$temporary"' EXIT HUP INT TERM
+if test "$#" -gt 1; then
+  echo "usage: $0 [OUTPUT.png|--verify]" >&2
+  exit 2
+fi
+
+if test "$#" -eq 1 && test "$1" = "--verify"; then
+  temporary="$(mktemp /tmp/gaussian-laws-card.XXXXXX)"
   generate "$temporary"
   cmp -s "$temporary" "$checked" || {
     echo "gaussian-laws-card.png is stale; regenerate it" >&2
@@ -54,7 +61,7 @@ if test "$#" -gt 0 && test "$1" = "--verify"; then
   exit 0
 fi
 
-if test "$#" -gt 0; then
+if test "$#" -eq 1; then
   generate "$1"
 else
   generate "$checked"
