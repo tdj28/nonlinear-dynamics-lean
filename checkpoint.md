@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:16 PDT
+Last updated: 2026-07-22 20:26 PDT
 
-Audited baseline: `main` at `b970cb2`
+Audited baseline: `main` at `22bece2`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **13 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **14 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -333,6 +333,18 @@ equality. A nine-example `Std` worksheet, five guarded project checks, and a
 fourteen-declaration API map make the boundaries reproducible. Independent
 adversarial review corrected a signed-entry card error, narrowed the Jordan
 claim, and separated measurable sample maps from outer laws before release.
+*Generator-Presented One-Sided Discrete Matrix Cocycles* now follows the
+noninvertible base `start → middle → sink → sink` and one generator assigning
+the exact matrices `D`, `S`, and `L`. Horizon ledgers at both `start` and the
+shifted state `middle` make the later-block-left identity
+`Φ(m+k,ω)=Φ(k,T^mω)Φ(m,ω)` concrete; the omitted-shift value `D²` and reversed
+product `DS` expose the two independent failure modes. Two accessible numeric
+figures, six human/paper/Lean bridges, a complete sixteen-declaration map, and
+an executed `Std` worksheet separate finite semiring algebra, complex
+measurability, measure preservation, and every still-absent probability,
+two-sided, norm-growth, and Lyapunov layer. Exact Mathlib/project checks remain
+guarded Linux-cloud commands, while the small arithmetic worksheet is the
+intended local Mac/Linux learning path.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3220,6 +3232,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `22bece2`: rebuild *Hermitian Spectral Perturbation, Continuity, and
+  Measurability* around an exact diagonal Frobenius budget and a sharply scoped
+  non-Hermitian square-root near miss, with seven Lean bridges and a local
+  perturbation worksheet.
 - `b970cb2`: rebuild *Ordered Finite Matrix Products and Operator-Norm Growth*
   around a noncommuting shear/stretch history, chronological-versus-reversed
   norms `2` and `3`, factor budget `4`, seven Lean bridges, and a local

@@ -2,17 +2,17 @@
 title: "Generator-Presented One-Sided Discrete Matrix Cocycles"
 slug: "generator-presented-one-sided-discrete-matrix-cocycles"
 date: 2026-07-21
-summary: "A textbook construction of finite matrix cocycles from one measurable generator along a measure-preserving base, including Function.iterate, the later-block-left cocycle law, exact assumption layers, and every finite-time boundary."
-lead: "A time-indexed random product becomes a cocycle when its factors come from one generator observed along a moving base environment. The shift in that environment is what turns an ordinary product split into the cocycle law."
+summary: "Follow a noninvertible three-state base and three exact two-by-two matrices through horizons zero, one, and two, then climb to the checked one-sided cocycle, measurability, and measure-preserving Lean interfaces."
+lead: "Compute every entry first. Then see why the later block must restart at the shifted environment, why it belongs on the left, and exactly which stronger random-dynamical claims are still absent."
 draft: false
 pro_reviewed: false
 level: "Discrete random dynamics, semigroup cocycles, measurable iteration, and measure-preserving bases"
-reading_time: "80 to 105 minutes"
-prerequisites: "Forward matrix products, measurable finite random-matrix products, function iteration, measurable maps, and pushforward measures; each new boundary is introduced before use"
+reading_time: "100 to 125 minutes"
+prerequisites: "Two-by-two matrix multiplication and functions; iteration, measurable maps, measures, and Lean notation are introduced before they are used"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.Discrete"
 toc: true
 og_image: "generator-presented-one-sided-discrete-matrix-cocycles-card.png"
-og_image_alt: "A measure-preserving base advances an environment, one generator supplies matrices along that orbit, and the finite cocycle splits into an earlier block followed by a shifted later block written on the left."
+og_image_alt: "The noninvertible base start to middle to sink samples the matrices D, S, and L. Exact horizon ledgers show Phi zero, one, and two at start and at the shifted point middle, including S D equal to rows two one and zero one."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -23,67 +23,140 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+**Editorial status.** This is an AI-assisted public working note. Its
+mathematical prose, Lean declaration map, figures, and accessibility have not
+yet received the required human and Pro reviews. The checked Lean source is
+authoritative where prose and code disagree.
 {{< /panel >}}
 
-A sequence of arbitrary random matrices gives one factor map at every time. A
-cocycle imposes more structure: one base map advances an environment, and one
-matrix generator is observed repeatedly along that base orbit.
+## Start with three states and multiply everything
 
-Let \(\Omega\) be the base space, let \(T:\Omega\to\Omega\) advance the
-environment, and let
-\(A:\Omega\to M_\iota(\mathbb K)\) choose a square matrix from the current
-environment. Starting from \(\omega\), the generator produces the sequence
+Let the base state be one of
 
 \[
-A(\omega),\quad A(T\omega),\quad A(T^2\omega),\quad\ldots.
+\Omega=\{\mathsf{start},\mathsf{middle},\mathsf{sink}\}.
 \]
 
-The finite cocycle value is
+One application of the base map \(T\) advances the environment:
 
 \[
-\Phi(k,\omega)
-{} =
-A(T^{k-1}\omega)\cdots A(T\omega)A(\omega),
+T(\mathsf{start})=\mathsf{middle},
 \qquad
-\Phi(0,\omega)=I.
+T(\mathsf{middle})=\mathsf{sink},
+\qquad
+T(\mathsf{sink})=\mathsf{sink}.
 \]
 
-The newest matrix appears on the left, matching chronological action on column
-vectors. The defining structural theorem is the one-sided cocycle identity
+This map is **not invertible**. The distinct states
+\(\mathsf{middle}\) and \(\mathsf{sink}\) have the same image. Forward
+iteration still makes perfect sense: from \(\mathsf{start}\) the orbit is
 
 \[
-\Phi(m+k,\omega)
-{} =
-\Phi(k,T^m\omega)\Phi(m,\omega).
+\mathsf{start},\ \mathsf{middle},\ \mathsf{sink},\
+\mathsf{sink},\ldots.
 \]
 
-The early block begins at \(\omega\) and acts first. The later block begins at
-the shifted environment \(T^m\omega\) and acts second, so it is written on the
-left.
+Attach one integer \(2\)-by-\(2\) matrix to each state:
 
-The module <code>NonlinearDynamics.Random.RandomCocycles.Discrete</code>
-checks this construction in sixteen public declarations. The first six build
-the orbit-generated algebra. Two prove measurability. One defines the bundled
-generator presentation. The remaining seven expose finite values,
-measurability, the cocycle law, and preservation by every base iterate.
+\[
+\begin{aligned}
+A(\mathsf{start})=D&=
+\begin{bmatrix}2&0\\0&1\end{bmatrix},\\
+A(\mathsf{middle})=S&=
+\begin{bmatrix}1&1\\0&1\end{bmatrix},\\
+A(\mathsf{sink})=L&=
+\begin{bmatrix}1&0\\1&1\end{bmatrix}.
+\end{aligned}
+\]
 
-This milestone is finite-time and one-sided. It deliberately stops before
-probability normalization, ergodicity, norm observables, logarithmic
-integrability, Lyapunov exponents, or any multiplicative ergodic theorem.
+The letter \(A\) names one **generator**: a function from the current
+environment to a matrix. It is not a new unrelated function at each time.
+Time dependence comes from evaluating the same \(A\) after repeated
+applications of \(T\).
+
+At horizon zero, no matrix has acted, so the value is the identity. At horizon
+one, use the matrix at the starting state. At horizon two, first \(D\) acts,
+the base moves to \(\mathsf{middle}\), and then \(S\) acts. With column
+vectors, the second action is written on the left:
+
+\[
+\begin{aligned}
+\Phi(0,\mathsf{start})
+&=I=\begin{bmatrix}1&0\\0&1\end{bmatrix},\\
+\Phi(1,\mathsf{start})
+&=D=\begin{bmatrix}2&0\\0&1\end{bmatrix},\\
+\Phi(2,\mathsf{start})
+&=SD
+{} =
+\begin{bmatrix}1&1\\0&1\end{bmatrix}
+\begin{bmatrix}2&0\\0&1\end{bmatrix}
+{} =
+\begin{bmatrix}2&1\\0&1\end{bmatrix}.
+\end{aligned}
+\]
+
+Now restart the same calculation at the shifted point
+\(\mathsf{middle}=T(\mathsf{start})\). The next state is
+\(\mathsf{sink}\), so
+
+\[
+\begin{aligned}
+\Phi(0,\mathsf{middle})&=I,\\
+\Phi(1,\mathsf{middle})&=S
+=\begin{bmatrix}1&1\\0&1\end{bmatrix},\\
+\Phi(2,\mathsf{middle})&=LS
+{} =
+\begin{bmatrix}1&0\\1&1\end{bmatrix}
+\begin{bmatrix}1&1\\0&1\end{bmatrix}
+{} =
+\begin{bmatrix}1&1\\1&2\end{bmatrix}.
+\end{aligned}
+\]
+
+Every entry is now visible. The abstract definition later in the chapter is
+just this ledger with arbitrary states, horizons, and matrices.
+
+{{< reference-figure
+  wide="true"
+  src="one-sided-cocycle-two-block-split.svg"
+  alt="The noninvertible base sends start to middle, middle to sink, and sink to itself. The generator assigns D with rows two zero and zero one, S with rows one one and zero one, and L with rows one zero and one one. Horizon ledgers show I, D, and S D equal to rows two one and zero one from start, and I, S, and L S equal to rows one one and one two from middle."
+  caption="**Finding:** a generator-presented cocycle is a synchronized ledger. The base decides which factor comes next, while chronological matrix action puts the newest factor on the left. The shifted ledger is not optional: from middle the two-step product is \(LS\), not the product seen from start. The example is exact finite algebra; no probability law, norm, or asymptotic limit has been introduced."
+>}}
+
+### Name the five objects before climbing
+
+| Object | Running example | General notation |
+|---|---|---|
+| Base state | \(\mathsf{start}\) | \(\omega\in\Omega\) |
+| Base map | start \(\mapsto\) middle \(\mapsto\) sink | \(T:\Omega\to\Omega\) |
+| Generator | \(D,S,L\) selected by state | \(A:\Omega\to M_\iota(\mathbb K)\) |
+| Orbit factor at time \(j\) | \(D,S,L,L,\ldots\) | \(A(T^j\omega)\) |
+| Finite cocycle value | \(SD\) at horizon two from start | \(\Phi(j,\omega)\) |
+
+The word **random** in the project namespace does not alter this calculation.
+A matrix-valued random variable is first of all a measurable function of an
+outcome. A {{< refterm "probability-measure" "probability measure" >}} or
+probability distribution is extra data. The unbundled algebra below does not
+use a measure at all.
+
+If we equip this finite set with its full discrete measurable structure and
+later want the base inside the bundled measure-preserving interface, one
+possible measure is the Dirac mass \(\delta_{\mathsf{sink}}\). Because
+\(T(\mathsf{sink})=\mathsf{sink}\), that measure is preserved. This observation
+does not make the three displayed matrices independent or identically
+distributed, and the present Lean module does not define their pushforward
+laws.
 
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [A split orbit in one picture](#a-split-orbit-in-one-picture) | See why the later block starts from a shifted environment |
+| First encounter | [Start with three states](#start-with-three-states-and-multiply-everything) | Compute horizons zero, one, and two at two base points |
 | Iteration route | [Natural-number iteration builds the orbit](#base-camp-natural-number-iteration-builds-the-orbit) | Read Mathlib's function-iterate notation and laws |
 | Algebra route | [One generator becomes a finite product](#camp-two-one-generator-becomes-a-finite-product) | Derive zero, one, successor, and addition identities |
 | Proof route | [Why the cocycle proof needs an iterate calculation](#camp-three-why-the-cocycle-proof-needs-an-iterate-calculation) | Audit the induction and later-block-left order |
 | Measure route | [What measure preserving means](#camp-six-what-measure-preserving-means) | Separate invariance of a measure from probability and ergodicity |
+| Hands-on Lean route | [Type the example with Lean and Std](#type-the-running-example-yourself-with-lean-and-std) | Run a bounded worksheet on an ordinary Mac or Linux machine |
 | Lean route | [The complete declaration map](#the-complete-declaration-map) | Audit all sixteen names and their exact assumptions |
 | Boundary route | [Empty matrix dimension remains valid](#camp-eight-empty-matrix-dimension-remains-valid) | See which declarations do not need finite nonempty coordinates |
 | Summit route | [What has and has not been proved](#summit-what-has-and-has-not-been-proved) | Preserve every explicit nonclaim |
@@ -96,7 +169,8 @@ By the summit, you should be able to:
    value;
 2. read <code>T^[j]</code> as the \(j\)-fold natural-number iterate of \(T\);
 3. explain why the orbit sequence itself needs no matrix algebra;
-4. expand the cocycle values at horizons zero through three;
+4. reproduce the exact horizon-zero, one, and two ledgers from start and
+   middle;
 5. explain why the newest factor is written on the left;
 6. derive the shifted later-block-left cocycle identity;
 7. identify where <code>Function.iterate_add_apply</code> enters its proof;
@@ -109,25 +183,11 @@ By the summit, you should be able to:
     mixing, or invertible;
 13. explain why every natural-number base iterate preserves the measure;
 14. audit the exact four fields of <code>DiscreteMatrixCocycle</code>;
-15. map every mathematical claim to one of the sixteen declarations;
-16. explain why empty matrix dimension is supported; and
-17. list the law, norm, integrability, asymptotic, and nonlinear-dynamics
+15. run the pinned <code>Std</code> worksheet without loading Mathlib;
+16. map every mathematical claim to one of the sixteen declarations;
+17. explain why empty matrix dimension is supported; and
+18. list the law, norm, integrability, asymptotic, and nonlinear-dynamics
     bridges still absent.
-
-## A split orbit in one picture
-
-{{< reference-figure
-  src="one-sided-cocycle-two-block-split.svg"
-  alt="An early block begins at the initial environment and follows the base forward to a split state. A later block begins at that shifted environment and continues forward. The composition strip writes the later block on the left and the early block on the right because the early block acts first. A side note says every natural base iterate preserves the same measure."
-  caption="**Finding:** elapsed base time changes the starting environment of the later product block. The early block carries the system to the split state; the shifted later block continues from there and is written on the left because it acts second. Measure preservation survives every natural base iterate, but the figure does not assert probability normalization, ergodicity, invertibility, or asymptotic growth."
->}}
-
-The diagram separates two kinds of composition:
-
-- the base state advances through repeated application of \(T\); and
-- matrices multiply in the order in which they act on a column state.
-
-The cocycle identity synchronizes those two compositions.
 
 ## Base camp: natural-number iteration builds the orbit
 
@@ -167,6 +227,26 @@ def orbitMatrixSequence
     ℕ → RandomMatrix Ω ι ι 𝕜 :=
   fun j ω => A (T^[j] ω)
 ~~~
+
+### In Lean: observe one generator after \(j\) base steps
+
+{{< lean-bridge
+  human="Begin at outcome omega, apply the base update j times, and ask the one generator for the matrix at the reached state."
+  math="\(A_j(\omega)=A(T^j\omega)\)."
+  lean="fun j ω => A (T^[j] ω)"
+>}}
+
+- <code>fun j ω =&gt; ...</code> creates a function with two inputs: a natural
+  time <code>j</code> and a base point <code>ω</code>.
+- <code>T^[j]</code> is Lean notation for the \(j\)-fold iterate of the
+  function <code>T</code>. It is not a matrix power.
+- <code>T^[j] ω</code> evaluates that iterated function at <code>ω</code>.
+- <code>A (...)</code> asks the same generator for the matrix at the reached
+  state.
+- The exact project declaration is <code>orbitMatrixSequence</code>. No
+  multiplication, probability law, or independence statement occurs in this
+  expression.
+{{< /lean-bridge >}}
 
 At time \(j\) and initial state \(\omega\), it returns
 \(A(T^j\omega)\). This definition performs only evaluation and composition.
@@ -246,6 +326,26 @@ At a successor horizon,
 \Phi(k+1,\omega)=A(T^k\omega)\Phi(k,\omega).
 \]
 
+### In Lean: append the newest factor on the left
+
+{{< lean-bridge
+  human="To extend a k-step product by one step, sample the generator after k base updates and multiply that new matrix on the left of the old product."
+  math="\(\Phi(k+1,\omega)=A(T^k\omega)\Phi(k,\omega)\), with \(\Phi(0,\omega)=I\)."
+  lean="cocycleProduct T A (k + 1) = fun ω => A (T^[k] ω) * cocycleProduct T A k ω"
+>}}
+
+- <code>k + 1</code> is the successor horizon.
+- <code>fun ω =&gt;</code> states equality of the two matrix-valued functions by
+  displaying their value at each base point.
+- <code>A (T^[k] ω)</code> is the newest orbit factor.
+- <code>*</code> is matrix multiplication here. Its left operand acts second
+  on a column vector.
+- <code>cocycleProduct T A k ω</code> is the already accumulated \(k\)-step
+  value.
+- The exact theorem is <code>cocycleProduct_succ</code>; its proof is
+  definitional because the underlying forward product uses this recursion.
+{{< /lean-bridge >}}
+
 The newest factor is on the left. This convention is inherited from
 {{< refterm "forward-matrix-product" "forward matrix products" >}}, not chosen
 again in the cocycle layer.
@@ -259,6 +359,24 @@ The theorem <code>cocycleProduct_add</code> states, pointwise,
 {} =
 \Phi(k,T^m\omega)\Phi(m,\omega).
 \]
+
+### In Lean: split elapsed time and shift the later block
+
+{{< lean-bridge
+  human="Run m steps from omega. Restart the remaining k-step product at the state reached after those m steps. Because that later block acts second, put it on the left."
+  math="\(\Phi(m+k,\omega)=\Phi(k,T^m\omega)\Phi(m,\omega)\)."
+  lean="cocycleProduct T A (m + k) ω = cocycleProduct T A k (T^[m] ω) * cocycleProduct T A m ω"
+>}}
+
+- <code>m + k</code> is the total forward horizon; both lengths are natural
+  numbers.
+- <code>T^[m] ω</code> is the split state reached by the early block.
+- <code>cocycleProduct T A k (T^[m] ω)</code> recomputes the later block from
+  that shifted point instead of from the original point.
+- The shifted \(k\)-block appears before <code>*</code>, hence on the left.
+- The exact theorem is <code>cocycleProduct_add T A m k ω</code>. It uses only
+  semiring matrix algebra, not measurability or a measure.
+{{< /lean-bridge >}}
 
 Its proof inducts on the length \(k\) of the later block.
 
@@ -309,91 +427,93 @@ The proof therefore uses exactly three structural ingredients:
 2. addition of iterates of one base map; and
 3. associativity of matrix multiplication.
 
-## Camp four: a noncommuting two-state example
+## Camp four: audit the identity and two near misses
 
-Let the base space be \(\Omega=\{r,b\}\). Let \(T\) swap the two states:
-
-\[
-Tr=b,\qquad Tb=r.
-\]
-
-The uniform probability measure is preserved by this swap. Define two real
-matrices, viewed also as complex matrices,
+Return to the three-state example and split the two-step value after one step,
+so \(m=1\), \(k=1\), and \(\omega=\mathsf{start}\). The shift is
 
 \[
-A(r)=
-\begin{bmatrix}
-1 & 1\\
-0 & 1
-\end{bmatrix},
-\qquad
-A(b)=
-\begin{bmatrix}
-2 & 0\\
-0 & 1
-\end{bmatrix}.
+T^1(\mathsf{start})=\mathsf{middle}.
 \]
 
-Write \(S=A(r)\) and \(D=A(b)\). Starting at \(r\),
+The right-hand side of the cocycle law is therefore
 
 \[
 \begin{aligned}
-\Phi(1,r)&=S,\\
-\Phi(2,r)&=DS
-{} =
-\begin{bmatrix}
-2 & 2\\
-0 & 1
-\end{bmatrix},\\
-\Phi(3,r)&=SDS
-{} =
-\begin{bmatrix}
-2 & 3\\
-0 & 1
-\end{bmatrix}.
+\Phi(1,T(\mathsf{start}))\Phi(1,\mathsf{start})
+&=\Phi(1,\mathsf{middle})\Phi(1,\mathsf{start})\\
+&=SD\\
+&=
+\begin{bmatrix}1&1\\0&1\end{bmatrix}
+\begin{bmatrix}2&0\\0&1\end{bmatrix}\\
+&=
+\begin{bmatrix}2&1\\0&1\end{bmatrix}\\
+&=\Phi(2,\mathsf{start}).
 \end{aligned}
 \]
 
-Split three steps with \(m=1\) and \(k=2\). The shifted state is \(Tr=b\).
-The two-step later block is
+This is a numerical verification of the project convention, not its general
+proof. The Lean theorem proves the identity for every permitted semiring,
+finite matrix index type, base map, generator, two natural block lengths, and
+base point.
+
+### Near miss one: omit the shifted base point
+
+If the later step starts at \(\mathsf{start}\) again, then it samples \(D\)
+twice:
 
 \[
-\Phi(2,b)=SD
+DD=D^2
 {} =
-\begin{bmatrix}
-2 & 1\\
-0 & 1
-\end{bmatrix}.
+\begin{bmatrix}2&0\\0&1\end{bmatrix}
+\begin{bmatrix}2&0\\0&1\end{bmatrix}
+{} =
+\begin{bmatrix}4&0\\0&1\end{bmatrix}.
 \]
 
-The cocycle law gives
+That is not the true two-step value
+\(\left[\begin{smallmatrix}2&1\\0&1\end{smallmatrix}\right]\). The base shift
+is mathematical data, not bookkeeping decoration.
+
+### Near miss two: reverse the chronological blocks
+
+If the early matrix is put on the left, the product becomes
 
 \[
-\Phi(3,r)
+DS
 {} =
-\Phi(2,b)\Phi(1,r)
+\begin{bmatrix}2&0\\0&1\end{bmatrix}
+\begin{bmatrix}1&1\\0&1\end{bmatrix}
 {} =
-(SD)S
-{} =
-SDS.
+\begin{bmatrix}2&2\\0&1\end{bmatrix}.
 \]
 
-Reversing the blocks gives
+This also differs from the correct value. The example was chosen so \(D\) and
+\(S\) do not commute:
 
 \[
-S(SD)
-{} =
-\begin{bmatrix}
-2 & 2\\
-0 & 1
-\end{bmatrix},
+SD=
+\begin{bmatrix}2&1\\0&1\end{bmatrix}
+\ne
+\begin{bmatrix}2&2\\0&1\end{bmatrix}
+=DS.
 \]
 
-which is not \(\Phi(3,r)\). The later-block-left order is therefore
-mathematically visible, not cosmetic.
+A commuting example could accidentally hide an order error even though the
+general formula was wrong.
 
-This example uses a probability measure for familiarity. The Lean bundle does
-not require total mass one.
+{{< reference-figure
+  wide="true"
+  src="cocycle-identity-and-near-misses.svg"
+  alt="For one early and one later step from start, Phi two start equals Phi one middle times Phi one start, namely S D with rows two one and zero one. Omitting the shift gives D squared with rows four zero and zero one. Reversing the blocks gives D S with rows two two and zero one. Both near misses differ from the correct matrix."
+  caption="**Finding:** the two ingredients of the cocycle law are independently testable. The shift changes the later factor from \(D\) to \(S\), and chronological composition places \(S\) on the left of \(D\). Omitting the shift and reversing the blocks produce two different wrong matrices."
+>}}
+
+{{< checkpoint stage="Camp four" title="Say the split aloud" >}}
+First run the early \(m\)-step block from \(\omega\). The environment is now
+\(T^m\omega\). Run the later \(k\)-step block from there. Since the later
+block acts second on column vectors, write it on the left.
+{{< /checkpoint >}}
 
 ## Camp five: complex measurability
 
@@ -427,6 +547,26 @@ This second theorem does require finite matrix indices and decidable equality
 because it multiplies matrices. Its complex scope matches the project's
 checked measurable multiplication interface. The theorem does not form a
 pushforward law or prove integrability.
+
+### In Lean: measurable orbit factors are compositions
+
+{{< lean-bridge
+  human="A measurable base can be iterated any finite number of times. Composing the measurable generator with that iterate gives a measurable matrix factor."
+  math="\(T\text{ measurable},\ A\text{ measurable}\Longrightarrow A\circ T^j\text{ measurable}\)."
+  lean="hA.comp (hT.iterate j)"
+>}}
+
+- <code>hT</code> is a proof of <code>Measurable T</code>, not the map
+  <code>T</code> itself.
+- <code>hT.iterate j</code> proves that <code>T^[j]</code> is measurable.
+- <code>hA</code> proves that the generator <code>A</code> is measurable.
+- <code>.comp</code> composes the two proofs in the same order as
+  \(A\circ T^j\).
+- This expression is the proof body of
+  <code>measurable_orbitMatrixSequence</code>. It supplies ordinary
+  measurability only: no measure, density, expectation, or integrability
+  appears.
+{{< /lean-bridge >}}
 
 ## Camp six: what measure preserving means
 
@@ -545,6 +685,26 @@ C.\operatorname{generator},k).
 
 The unbundled algebra then proves every value theorem.
 
+### In Lean: build a bundle from data and evidence
+
+{{< lean-bridge
+  human="Package the forward base and one matrix generator together with proofs that the base preserves the chosen measure and the generator is measurable."
+  math="\(C=(T,A,h_T,h_A)\), where \(T_*\mu=\mu\) and \(A\) is measurable."
+  lean="{ base := T, generator := A, base_preserving := hT, measurable_generator := hA }"
+>}}
+
+- Curly braces construct a structure value by naming its fields.
+- <code>base := T</code> and <code>generator := A</code> store the two
+  functions.
+- <code>base_preserving := hT</code> stores a proof of
+  <code>MeasurePreserving T μ μ</code>. That proof includes measurability of
+  <code>T</code> and equality of the pushforward with <code>μ</code>.
+- <code>measurable_generator := hA</code> stores a proof of
+  <code>Measurable A</code>.
+- There is no field for a probability normalization, inverse, ergodicity,
+  independence, norm, limit, or Lyapunov exponent.
+{{< /lean-bridge >}}
+
 ## Camp eight: empty matrix dimension remains valid
 
 The coordinate type \(\iota\) may be empty. It is still finite and has
@@ -632,9 +792,184 @@ theorem base_iterate_preserving
   C.base_preserving.iterate k
 ~~~
 
+### In Lean: every natural base iterate preserves the same measure
+
+{{< lean-bridge
+  human="If one base step preserves mu, then any finite number of base steps preserves that same measure."
+  math="\(T_*\mu=\mu\Longrightarrow (T^k)_*\mu=\mu\) for every \(k\in\mathbb N\)."
+  lean="C.base_preserving.iterate k"
+>}}
+
+- <code>C.base_preserving</code> selects the stored one-step
+  <code>MeasurePreserving</code> proof.
+- <code>.iterate k</code> applies Mathlib's finite-iteration theorem to that
+  proof.
+- The result concerns <code>C.base^[k]</code>, the \(k\)-fold function
+  iterate of the base.
+- The proof does not inspect <code>C.generator</code> and therefore needs no
+  matrix-index assumptions.
+- Preservation of every finite iterate still does not make the base
+  invertible, ergodic, or mixing.
+{{< /lean-bridge >}}
+
 This theorem says that each finite base shift retains the same measure. It
 does not say that an iterate is ergodic or mixing, and it does not prove
 invariance of a skew-product transformation that also updates vectors.
+
+## Type the running example yourself with Lean and Std
+
+The project module uses Mathlib matrices, measurable spaces, measures, and
+measure-preserving maps. You do not need that full dependency graph to check
+the opening arithmetic. The worksheet below imports only Lean's
+<code>Std</code> library and models a \(2\)-by-\(2\) integer matrix as four
+named entries.
+
+This is a deliberately small tutorial. It is suitable for an ordinary Mac or
+Linux machine and does not invoke Lake or build Mathlib.
+
+Save the exact block below as
+<code>/tmp/GeneratorCocycleTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace GeneratorCocycleTutorial
+
+inductive State where
+  | start
+  | middle
+  | sink
+  deriving Repr, DecidableEq
+
+def base : State → State
+  | .start => .middle
+  | .middle => .sink
+  | .sink => .sink
+
+def baseIterate : Nat → State → State
+  | 0, ω => ω
+  | n + 1, ω => base (baseIterate n ω)
+
+structure Matrix2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+  deriving Repr, DecidableEq
+
+def Matrix2.one : Matrix2 :=
+  { a00 := 1, a01 := 0, a10 := 0, a11 := 1 }
+
+def Matrix2.mul (A B : Matrix2) : Matrix2 :=
+  { a00 := A.a00 * B.a00 + A.a01 * B.a10
+    a01 := A.a00 * B.a01 + A.a01 * B.a11
+    a10 := A.a10 * B.a00 + A.a11 * B.a10
+    a11 := A.a10 * B.a01 + A.a11 * B.a11 }
+
+instance : Mul Matrix2 where
+  mul := Matrix2.mul
+
+def Matrix2.entries (A : Matrix2) : List Int :=
+  [A.a00, A.a01, A.a10, A.a11]
+
+def generator : State → Matrix2
+  | .start =>
+      { a00 := 2, a01 := 0, a10 := 0, a11 := 1 }
+  | .middle =>
+      { a00 := 1, a01 := 1, a10 := 0, a11 := 1 }
+  | .sink =>
+      { a00 := 1, a01 := 0, a10 := 1, a11 := 1 }
+
+def cocycle : Nat → State → Matrix2
+  | 0, _ => Matrix2.one
+  | n + 1, ω =>
+      generator (baseIterate n ω) * cocycle n ω
+
+def splitAtOne (ω : State) : Matrix2 :=
+  cocycle 1 (baseIterate 1 ω) * cocycle 1 ω
+
+def omitShiftAtTwo (ω : State) : Matrix2 :=
+  generator ω * generator ω
+
+def reverseOrderAtTwo (ω : State) : Matrix2 :=
+  generator ω * generator (base ω)
+
+#eval [(cocycle 0 .start).entries,
+  (cocycle 1 .start).entries,
+  (cocycle 2 .start).entries]
+
+#eval [(cocycle 0 .middle).entries,
+  (cocycle 1 .middle).entries,
+  (cocycle 2 .middle).entries]
+
+#eval [(cocycle 2 .start).entries,
+  (splitAtOne .start).entries]
+
+#eval decide (cocycle 2 .start = splitAtOne .start)
+
+#eval [(omitShiftAtTwo .start).entries,
+  (reverseOrderAtTwo .start).entries]
+
+#eval [decide (cocycle 2 .start ≠ omitShiftAtTwo .start),
+  decide (cocycle 2 .start ≠ reverseOrderAtTwo .start)]
+
+example : base .middle = base .sink := by decide
+example : State.middle ≠ State.sink := by decide
+example : cocycle 0 .start = Matrix2.one := by decide
+example : cocycle 1 .start = generator .start := by decide
+example : cocycle 2 .start =
+    cocycle 1 (baseIterate 1 .start) * cocycle 1 .start := by decide
+example : cocycle 2 .start ≠ omitShiftAtTwo .start := by decide
+example : cocycle 2 .start ≠ reverseOrderAtTwo .start := by decide
+
+end GeneratorCocycleTutorial
+~~~
+
+Open a terminal and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/GeneratorCocycleTutorial.lean
+~~~
+
+The pinned version in the command matters: it makes the tutorial replay the
+same Lean release as <code>formalization/lean-toolchain</code>. This exact
+worksheet was executed successfully with Lean 4.32.0 while editing the
+chapter. Its output was:
+
+~~~text
+[[1, 0, 0, 1], [2, 0, 0, 1], [2, 1, 0, 1]]
+[[1, 0, 0, 1], [1, 1, 0, 1], [1, 1, 1, 2]]
+[[2, 1, 0, 1], [2, 1, 0, 1]]
+true
+[[4, 0, 0, 1], [2, 2, 0, 1]]
+[true, true]
+~~~
+
+Each four-number list is a matrix in row order:
+<code>[a00, a01, a10, a11]</code>.
+
+- The first line is the start ledger \(I,D,SD\).
+- The second is the shifted middle ledger \(I,S,LS\).
+- The third prints the direct two-step value and the one-plus-one split; the
+  lists agree.
+- The standalone <code>true</code> asks Lean to decide that equality.
+- The fifth line prints the omitted-shift value \(D^2\) and the reversed value
+  \(DS\).
+- The last line certifies that both near misses differ from \(SD\).
+
+The <code>example</code> commands go beyond printing. Each asks the kernel to
+check a proposition. The first two show the base is noninjective: middle and
+sink are different inputs with the same image. The remaining examples certify
+the zero value, one-step value, numeric cocycle split, and both inequalities.
+
+The worksheet mirrors the project's recursion but is not a substitute for the
+project theorem. It uses integer entries, a hand-written matrix
+multiplication, one three-state example, and concrete decidable propositions.
+It does not formalize arbitrary semirings, Mathlib matrices, measurability,
+measure preservation, empty matrix dimension, or the general cocycle
+identity.
 
 ## The complete declaration map
 
@@ -773,6 +1108,22 @@ RMT-13 supplies only the finite measurable cocycle and preservation of the
 base measure. It does not establish any condition in that later analytic
 ledger except finite-value measurability.
 
+### Keep four interfaces on separate shelves
+
+| Interface | Data or conclusion | Status here |
+|---|---|---|
+| Deterministic generator presentation | A point \(\omega\), a forward map \(T\), one generator \(A\), and each finite product \(\Phi(k,\omega)\) | The algebraic core is defined and checked |
+| Random law | A measure on \(\Omega\), pushforward distributions of \(A\) or \(\Phi(k,\cdot)\), and possibly dependence assumptions | A measure is stored only in the bundle's preservation field; no matrix law or independence theorem is defined |
+| Invertible two-sided cocycle | Integer time, a backward base action, invertible factors, and a consistent negative-time product | Not defined; time is \(\mathbb N\) and the base need not be injective |
+| Norm-growth limit or Lyapunov theory | A matrix norm, logarithmic observable, integrability, a limit theorem, and perhaps an invariant splitting | Not defined or proved in this module |
+
+A **finite value** such as
+\(\Phi(2,\mathsf{start})=\left[\begin{smallmatrix}2&1\\0&1\end{smallmatrix}\right]\)
+is not a norm-growth limit. Even proving convergence of one scalar quantity
+\(k^{-1}\log\lVert\Phi(k,\omega)\rVert\) would not by itself construct the
+full collection of Lyapunov exponents or an Oseledets splitting. Those are
+different theorem layers with different hypotheses.
+
 ## Common wrong turns
 
 ### Treating the generator as an arbitrary time sequence
@@ -847,7 +1198,7 @@ identifying the generator with a Jacobian matrix.
 2. Expand \(\Phi(k,\omega)\) for \(k=0,1,2,3,4\).
 3. Explain why \(A(T^0\omega)=A(\omega)\).
 4. Show that <code>orbitMatrixSequence</code> needs no semiring.
-5. Verify the two-state matrix products in the worked example.
+5. Verify the three-state horizon-zero, one, and two ledgers by hand.
 
 ### Mid-mountain
 
@@ -882,34 +1233,64 @@ identifying the generator with a Jacobian matrix.
 19. Formulate a derivative-product theorem for iterates of a differentiable
     map and list the chain-rule hypotheses absent here.
 
-## Reproduce the checked slice
+## Inspect and check the exact project interfaces
 
-From the repository root, load the pinned Lean toolchain and compile the module
-with warnings treated as errors:
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean).
+On an approved Linux builder with the pinned project dependencies already
+provisioned, a learner can put the following lines in a temporary project
+scratch file:
 
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/Discrete.lean
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.Discrete
+
+open Matrix MeasureTheory
+open NonlinearDynamics.Random.RandomCocycles
+
+#check orbitMatrixSequence
+#check cocycleProduct
+#check cocycleProduct_zero
+#check cocycleProduct_succ
+#check cocycleProduct_one
+#check cocycleProduct_add
+#check measurable_orbitMatrixSequence
+#check measurable_cocycleProduct
+#print DiscreteMatrixCocycle
+#check DiscreteMatrixCocycle.value
+#check DiscreteMatrixCocycle.value_zero
+#check DiscreteMatrixCocycle.value_one
+#check DiscreteMatrixCocycle.value_succ
+#check DiscreteMatrixCocycle.value_add
+#check DiscreteMatrixCocycle.measurable_value
+#check DiscreteMatrixCocycle.base_iterate_preserving
 ~~~
 
-Build the module and its dependencies by library name:
+<code>import</code> loads this project module and its pinned Mathlib
+dependencies. <code>#check</code> asks Lean to elaborate an existing
+declaration and report its type. <code>#print</code> exposes the four structure
+fields. These commands do not sample matrices, infer a probability law, or
+prove a Lyapunov theorem.
+
+Immediately below this prose, the repository-check panel renders the exact
+per-file command
+<code>CLOUD_LEAN_BUILD=1 make lean-file
+LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/Discrete.lean</code>. That
+guarded target checks the authoritative source with warnings treated as
+errors. It is intentionally a cloud/Linux command. This Mac is for the small
+<code>Std</code> worksheet, authoring, and static site checks; do not use it
+to rebuild the project or Mathlib cache.
+{{< /repo-check >}}
+
+The broader cloud release gate is:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.Discrete
+CLOUD_LEAN_BUILD=1 make check
 ~~~
 
-Return to the repository root and check the teaching site:
-
-~~~sh
-cd ..
-make site-check
-~~~
-
-The repository-wide technical gate is <code>make check</code>. Passing it does
-not complete human review. This page is published as an open working note while
-mathematical, source, accessibility, and editorial reviews remain pending.
+That full gate belongs on an explicitly approved Linux builder such as the
+project's Runpod workflow. Passing a technical gate still does not complete
+human or Pro review.
 
 ## Summit: what has and has not been proved
 

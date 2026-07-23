@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780"
+     viewBox="0 0 1200 780" role="img"
+     aria-labelledby="cocycleChecksTitle cocycleChecksDesc">
+  <title id="cocycleChecksTitle">The shifted later block gives the correct cocycle identity while two plausible products fail</title>
+  <desc id="cocycleChecksDesc">At start and with one step in each block, Phi two start equals Phi one middle times Phi one start, which is S D and equals rows two one and zero one. Omitting the shift gives D squared, rows four zero and zero one. Reversing the block order gives D S, rows two two and zero one. Both differ from the true two-step value.</desc>
+  <rect width="1200" height="780" fill="#F7F1E7"/>
+  <rect width="1200" height="18" fill="#17324D"/>
+  <style>
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#18283A}
+    .mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;fill:#18283A}
+    .title{font-size:29px;font-weight:750}
+    .subtitle{font-size:17px;fill:#56606B}
+    .label{font-size:15px;font-weight:750;letter-spacing:.5px}
+    .formula{font-size:21px;font-weight:650}
+    .matrix{font-size:24px;font-weight:700}
+    .small{font-size:15px;fill:#56606B}
+    .verdict{font-size:19px;font-weight:800}
+  </style>
+
+  <text x="54" y="62" class="sans title">At a time split, the later block must shift and act on the left</text>
+  <text x="54" y="91" class="sans subtitle">Running data: T(start) = middle, D = [2 0; 0 1], S = [1 1; 0 1].</text>
+
+  <rect x="54" y="126" width="1092" height="234" rx="20"
+        fill="#E8F1E4" stroke="#64845B" stroke-width="3"/>
+  <text x="82" y="160" class="sans label">CHECKED SPLIT: m = 1, k = 1</text>
+  <text x="82" y="205" class="mono formula">Phi(2,start)</text>
+  <text x="312" y="205" class="sans formula">=</text>
+  <text x="350" y="205" class="mono formula">Phi(1,T(start)) * Phi(1,start)</text>
+  <text x="82" y="254" class="mono formula">[2 1; 0 1]</text>
+  <text x="312" y="254" class="sans formula">=</text>
+  <text x="350" y="254" class="mono formula">Phi(1,middle) * Phi(1,start)</text>
+  <text x="82" y="304" class="mono matrix">[2 1; 0 1]</text>
+  <text x="312" y="304" class="sans formula">=</text>
+  <text x="350" y="304" class="mono matrix">S D = [2 1; 0 1]</text>
+  <rect x="920" y="178" width="176" height="112" rx="16"
+        fill="#315F55"/>
+  <text x="1008" y="224" text-anchor="middle" class="sans verdict"
+        style="fill:#FFFDF8">MATCH</text>
+  <text x="1008" y="256" text-anchor="middle" class="sans small"
+        style="fill:#FFFDF8">shift + order</text>
+
+  <rect x="54" y="392" width="526" height="306" rx="20"
+        fill="#F7E2DF" stroke="#A94C46" stroke-width="3"/>
+  <text x="82" y="428" class="sans label">NEAR MISS 1: OMIT THE SHIFT</text>
+  <text x="82" y="477" class="mono formula">Phi(1,start) * Phi(1,start)</text>
+  <text x="82" y="524" class="mono matrix">D D = D^2</text>
+  <text x="82" y="572" class="mono matrix">[4 0; 0 1]</text>
+  <line x1="82" y1="599" x2="548" y2="599" stroke="#D8A5A0" stroke-width="2"/>
+  <text x="82" y="635" class="sans verdict" style="fill:#8C3632">NOT [2 1; 0 1]</text>
+  <text x="82" y="669" class="sans small">The second factor was sampled at start again,</text>
+  <text x="82" y="691" class="sans small">not at the reached state middle.</text>
+
+  <rect x="620" y="392" width="526" height="306" rx="20"
+        fill="#F7E2DF" stroke="#A94C46" stroke-width="3"/>
+  <text x="648" y="428" class="sans label">NEAR MISS 2: REVERSE THE BLOCKS</text>
+  <text x="648" y="477" class="mono formula">Phi(1,start) * Phi(1,middle)</text>
+  <text x="648" y="524" class="mono matrix">D S</text>
+  <text x="648" y="572" class="mono matrix">[2 2; 0 1]</text>
+  <line x1="648" y1="599" x2="1114" y2="599" stroke="#D8A5A0" stroke-width="2"/>
+  <text x="648" y="635" class="sans verdict" style="fill:#8C3632">NOT [2 1; 0 1]</text>
+  <text x="648" y="669" class="sans small">The early map acts first on a column vector,</text>
+  <text x="648" y="691" class="sans small">so its matrix belongs on the right.</text>
+
+  <text x="54" y="749" class="sans small">These discrepancies rely on noncommuting D and S; a commuting toy example would hide the order error.</text>
+</svg>

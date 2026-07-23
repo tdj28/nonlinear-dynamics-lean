@@ -1,84 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"
-     viewBox="0 0 800 600" role="img"
-     aria-labelledby="twoBlockCocycleTitle twoBlockCocycleDesc">
-  <title id="twoBlockCocycleTitle">The one-sided cocycle law splits an orbit into an early block and a shifted later block</title>
-  <desc id="twoBlockCocycleDesc">A forward base timeline begins at an initial environment, crosses an early segment, reaches a marked split environment, then crosses a later segment. The early matrix block begins at the initial environment. The later matrix block begins at the shifted split environment. A composition row places the later block on the left and the early block on the right. A side card states that every natural base iterate preserves the same measure, while probability normalization and ergodicity are not supplied.</desc>
-  <rect width="800" height="600" fill="#F7F4F0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
+     viewBox="0 0 1200 630" role="img"
+     aria-labelledby="cocycleLedgerTitle cocycleLedgerDesc">
+  <title id="cocycleLedgerTitle">A noninvertible three-state base generates exact two-by-two matrix cocycle values</title>
+  <desc id="cocycleLedgerDesc">The base sends start to middle, middle to sink, and sink to itself, so it is not invertible. The generator matrices are D equals rows two zero and zero one at start, S equals rows one one and zero one at middle, and L equals rows one zero and one one at sink. At start the horizon zero, one, and two cocycle values are I, D, and S D equals rows two one and zero one. At the shifted point middle they are I, S, and L S equals rows one one and one two.</desc>
+  <rect width="1200" height="630" fill="#F7F1E7"/>
+  <rect width="1200" height="18" fill="#17324D"/>
   <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:16px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
+    .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#18283A}
+    .mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;fill:#18283A}
+    .title{font-size:29px;font-weight:750}
+    .subtitle{font-size:17px;fill:#56606B}
+    .label{font-size:15px;font-weight:700;letter-spacing:.5px}
+    .state{font-size:20px;font-weight:750}
+    .matrix{font-size:20px;font-weight:650}
+    .small{font-size:14px;fill:#56606B}
+    .horizon{font-size:17px;font-weight:700}
   </style>
   <defs>
-    <marker id="twoBlockCocycleArrow" markerWidth="8" markerHeight="8"
-            refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+    <marker id="cocycleLedgerArrow" markerWidth="9" markerHeight="9"
+            refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 Z" fill="#B86432"/>
     </marker>
   </defs>
 
-  <text x="24" y="32" class="t title">Split elapsed base time, then restart the later matrix block at the shifted state</text>
-  <text x="24" y="53" class="t m">Base iteration and matrix multiplication agree only when the later block uses the environment reached at the split.</text>
+  <text x="54" y="62" class="sans title">One generator, sampled along one forward base orbit</text>
+  <text x="54" y="91" class="sans subtitle">Exact finite-state example; every product uses the newest factor on the left.</text>
 
-  <rect x="24" y="88" width="152" height="72" rx="12"
-        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="100" y="117" text-anchor="middle" class="t h">INITIAL</text>
-  <text x="100" y="140" text-anchor="middle" class="t h">ENVIRONMENT</text>
+  <rect x="54" y="121" width="1092" height="191" rx="18"
+        fill="#FFFDF8" stroke="#C8BBA7" stroke-width="2"/>
+  <text x="80" y="151" class="sans label">FORWARD BASE MAP</text>
 
-  <path d="M178 124 L294 124" fill="none" stroke="#A67C52"
-        stroke-width="3" marker-end="url(#twoBlockCocycleArrow)"/>
-  <text x="236" y="108" text-anchor="middle" class="t m">early base steps</text>
+  <rect x="82" y="174" width="260" height="105" rx="14"
+        fill="#E7F0F7" stroke="#52718D" stroke-width="2"/>
+  <text x="212" y="205" text-anchor="middle" class="sans state">start</text>
+  <text x="212" y="236" text-anchor="middle" class="mono matrix">D = [2 0; 0 1]</text>
+  <text x="212" y="260" text-anchor="middle" class="sans small">initial environment</text>
 
-  <rect x="300" y="88" width="180" height="72" rx="12"
-        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
-  <text x="390" y="117" text-anchor="middle" class="t h">SHIFT</text>
-  <text x="390" y="140" text-anchor="middle" class="t h">ENVIRONMENT</text>
+  <path d="M350 226 L460 226" fill="none" stroke="#B86432"
+        stroke-width="4" marker-end="url(#cocycleLedgerArrow)"/>
+  <text x="405" y="208" text-anchor="middle" class="sans label">T</text>
 
-  <path d="M482 124 L598 124" fill="none" stroke="#A67C52"
-        stroke-width="3" marker-end="url(#twoBlockCocycleArrow)"/>
-  <text x="540" y="108" text-anchor="middle" class="t m">later base steps</text>
+  <rect x="468" y="174" width="260" height="105" rx="14"
+        fill="#F6E6D9" stroke="#B86432" stroke-width="2"/>
+  <text x="598" y="205" text-anchor="middle" class="sans state">middle</text>
+  <text x="598" y="236" text-anchor="middle" class="mono matrix">S = [1 1; 0 1]</text>
+  <text x="598" y="260" text-anchor="middle" class="sans small">shifted environment</text>
 
-  <rect x="604" y="88" width="172" height="72" rx="12"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="690" y="117" text-anchor="middle" class="t h">FINAL FORWARD</text>
-  <text x="690" y="140" text-anchor="middle" class="t h">ENVIRONMENT</text>
+  <path d="M736 226 L846 226" fill="none" stroke="#B86432"
+        stroke-width="4" marker-end="url(#cocycleLedgerArrow)"/>
+  <text x="791" y="208" text-anchor="middle" class="sans label">T</text>
 
-  <path d="M100 162 L100 218" fill="none" stroke="#4B6787"
-        stroke-width="2.5" marker-end="url(#twoBlockCocycleArrow)"/>
-  <path d="M390 162 L390 218" fill="none" stroke="#A67C52"
-        stroke-width="2.5" marker-end="url(#twoBlockCocycleArrow)"/>
+  <rect x="854" y="174" width="260" height="105" rx="14"
+        fill="#E8F1E4" stroke="#64845B" stroke-width="2"/>
+  <text x="984" y="205" text-anchor="middle" class="sans state">sink</text>
+  <text x="984" y="236" text-anchor="middle" class="mono matrix">L = [1 0; 1 1]</text>
+  <text x="984" y="260" text-anchor="middle" class="sans small">T(sink) = sink</text>
 
-  <rect x="24" y="224" width="352" height="104" rx="14"
-        fill="#E8F0F7" stroke="#4B6787" stroke-width="1.5"/>
-  <text x="200" y="258" text-anchor="middle" class="t h">EARLY MATRIX BLOCK</text>
-  <text x="200" y="284" text-anchor="middle" class="t s">sample the generator from the initial environment</text>
-  <text x="200" y="307" text-anchor="middle" class="t m">acts first on a column state</text>
+  <path d="M1091 178 C1160 133 1163 285 1092 269" fill="none"
+        stroke="#64845B" stroke-width="3" marker-end="url(#cocycleLedgerArrow)"/>
 
-  <rect x="424" y="224" width="352" height="104" rx="14"
-        fill="#F3E8E0" stroke="#A67C52" stroke-width="1.5"/>
-  <text x="600" y="258" text-anchor="middle" class="t h">SHIFTED LATER MATRIX BLOCK</text>
-  <text x="600" y="284" text-anchor="middle" class="t s">restart sampling at the split environment</text>
-  <text x="600" y="307" text-anchor="middle" class="t m">acts second on the intermediate state</text>
+  <rect x="54" y="335" width="530" height="244" rx="18"
+        fill="#E7F0F7" stroke="#52718D" stroke-width="2"/>
+  <text x="80" y="369" class="sans label">START AT start</text>
+  <line x1="80" y1="386" x2="558" y2="386" stroke="#B5C7D6" stroke-width="2"/>
+  <text x="86" y="422" class="sans horizon">n = 0</text>
+  <text x="190" y="422" class="mono matrix">Phi(0,start) = I = [1 0; 0 1]</text>
+  <text x="86" y="474" class="sans horizon">n = 1</text>
+  <text x="190" y="474" class="mono matrix">Phi(1,start) = D = [2 0; 0 1]</text>
+  <text x="86" y="526" class="sans horizon">n = 2</text>
+  <text x="190" y="526" class="mono matrix">Phi(2,start) = S D</text>
+  <text x="190" y="557" class="mono matrix">               = [2 1; 0 1]</text>
 
-  <path d="M200 330 L200 372 L362 372" fill="none"
-        stroke="#4B6787" stroke-width="2.5"/>
-  <path d="M600 330 L600 372 L438 372" fill="none"
-        stroke="#A67C52" stroke-width="2.5"/>
-  <path d="M400 372 L400 402" fill="none" stroke="#A67C52"
-        stroke-width="2.5" marker-end="url(#twoBlockCocycleArrow)"/>
+  <rect x="616" y="335" width="530" height="244" rx="18"
+        fill="#F6E6D9" stroke="#B86432" stroke-width="2"/>
+  <text x="642" y="369" class="sans label">RESTART AT middle = T(start)</text>
+  <line x1="642" y1="386" x2="1120" y2="386" stroke="#D9BDAA" stroke-width="2"/>
+  <text x="648" y="422" class="sans horizon">n = 0</text>
+  <text x="752" y="422" class="mono matrix">Phi(0,middle) = I</text>
+  <text x="648" y="474" class="sans horizon">n = 1</text>
+  <text x="752" y="474" class="mono matrix">Phi(1,middle) = S = [1 1; 0 1]</text>
+  <text x="648" y="526" class="sans horizon">n = 2</text>
+  <text x="752" y="526" class="mono matrix">Phi(2,middle) = L S</text>
+  <text x="752" y="557" class="mono matrix">                = [1 1; 1 2]</text>
 
-  <rect x="106" y="408" width="588" height="76" rx="14"
-        fill="#16243A"/>
-  <text x="400" y="438" text-anchor="middle" class="t h"
-        style="fill:#FFFDF8">THE COCYCLE COMPOSITION ORDER</text>
-  <text x="400" y="463" text-anchor="middle" class="t s"
-        style="fill:#FFFDF8">LATER BLOCK ON THE LEFT  /  EARLY BLOCK ON THE RIGHT</text>
-
-  <rect x="106" y="510" width="588" height="58" rx="12"
-        fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="400" y="535" text-anchor="middle" class="t h">EVERY NATURAL BASE ITERATE PRESERVES THE SAME MEASURE</text>
-  <text x="400" y="556" text-anchor="middle" class="t m">this does not add probability normalization, ergodicity, mixing, or invertibility</text>
-
-  <text x="24" y="590" class="t m">The construction is forward only; no negative-time environment or inverse matrix is present.</text>
+  <text x="54" y="610" class="sans small">Noninvertible boundary: middle and sink are distinct, but T(middle) = T(sink) = sink.</text>
 </svg>
