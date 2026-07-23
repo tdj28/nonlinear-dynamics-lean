@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1120"
+     viewBox="0 0 1440 1120" role="img"
+     aria-labelledby="two-state-ledger-title two-state-ledger-desc">
+  <title id="two-state-ledger-title">Two-state Koopman, projection, mean, and coboundary ledger</title>
+  <desc id="two-state-ledger-desc">On two equally likely states a and b, the update swaps the states. The Koopman matrix swaps the observable f equals one comma three to three comma one. The fixed subspace is the diagonal, the orthogonal projection is two comma two, and the residual minus one comma one equals the coboundary of the potential zero comma minus one. Tables show mean averages through horizon six and show that the pointwise coboundary average at a exactly matches its endpoint quotient.</desc>
+  <defs>
+    <marker id="arrow-navy" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#27465f"/>
+    </marker>
+    <marker id="arrow-rust" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a5532d"/>
+    </marker>
+    <style>
+      .title { font: 700 38px Georgia, serif; fill: #16283a; }
+      .subtitle { font: 20px Arial, sans-serif; fill: #516172; }
+      .panelTitle { font: 700 24px Arial, sans-serif; fill: #203c54; }
+      .label { font: 18px Arial, sans-serif; fill: #263746; }
+      .small { font: 16px Arial, sans-serif; fill: #526170; }
+      .math { font: 21px Georgia, serif; fill: #172d40; }
+      .mathStrong { font: 700 23px Georgia, serif; fill: #172d40; }
+      .tableHead { font: 700 17px Arial, sans-serif; fill: #fdfaf4; }
+      .tableCell { font: 17px Arial, sans-serif; fill: #243746; }
+      .mono { font: 17px "Courier New", monospace; fill: #243746; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="1120" fill="#f6f0e4"/>
+  <rect x="0" y="0" width="1440" height="18" fill="#1f3f58"/>
+  <text x="70" y="68" class="title">One finite system carries the whole proof idea</text>
+  <text x="70" y="101" class="subtitle">Uniform probability on Ω = {a,b}; T swaps a and b; f = (1,3); u = (0,−1)</text>
+
+  <rect x="55" y="135" width="625" height="326" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="82" y="174" class="panelTitle">1 · State motion becomes a linear Koopman action</text>
+
+  <circle cx="182" cy="262" r="52" fill="#dceaf0" stroke="#315a70" stroke-width="3"/>
+  <circle cx="482" cy="262" r="52" fill="#f1dfcf" stroke="#a5532d" stroke-width="3"/>
+  <text x="171" y="271" class="mathStrong">a</text>
+  <text x="471" y="271" class="mathStrong">b</text>
+  <path d="M 236 241 C 304 191, 390 191, 428 238" fill="none" stroke="#27465f"
+        stroke-width="4" marker-end="url(#arrow-navy)"/>
+  <path d="M 428 286 C 366 337, 283 337, 236 286" fill="none" stroke="#a5532d"
+        stroke-width="4" marker-end="url(#arrow-rust)"/>
+  <text x="313" y="204" class="label">T(a)=b</text>
+  <text x="313" y="345" class="label">T(b)=a</text>
+  <text x="109" y="337" class="small">μ({a}) = 1/2</text>
+  <text x="419" y="337" class="small">μ({b}) = 1/2</text>
+
+  <rect x="82" y="368" width="570" height="67" rx="12" fill="#e9f0f3"/>
+  <text x="107" y="398" class="math">U(x,y) = (y,x)</text>
+  <text x="318" y="398" class="math">U = [ 0  1 ; 1  0 ]</text>
+  <text x="107" y="424" class="mathStrong">U(1,3) = (3,1)</text>
+
+  <rect x="710" y="135" width="675" height="326" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="738" y="174" class="panelTitle">2 · Project onto the fixed diagonal</text>
+
+  <line x1="790" y1="390" x2="1090" y2="390" stroke="#82909a" stroke-width="2" marker-end="url(#arrow-navy)"/>
+  <line x1="815" y1="420" x2="815" y2="200" stroke="#82909a" stroke-width="2" marker-end="url(#arrow-navy)"/>
+  <line x1="815" y1="390" x2="1045" y2="206" stroke="#517353" stroke-width="5"/>
+  <text x="1010" y="202" class="label">K = {(c,c)}</text>
+  <text x="1096" y="396" class="small">value at a</text>
+  <text x="730" y="216" class="small">value at b</text>
+
+  <circle cx="930" cy="252" r="8" fill="#a5532d"/>
+  <text x="944" y="249" class="mathStrong">f = (1,3)</text>
+  <circle cx="986" cy="298" r="8" fill="#315a70"/>
+  <text x="1000" y="292" class="mathStrong">P f = (2,2)</text>
+  <line x1="930" y1="252" x2="986" y2="298" stroke="#a5532d" stroke-width="3"
+        stroke-dasharray="8 7" marker-end="url(#arrow-rust)"/>
+  <text x="1107" y="327" class="label">residual f − P f</text>
+  <text x="1107" y="352" class="mathStrong">= (−1,1)</text>
+
+  <rect x="748" y="368" width="599" height="67" rx="12" fill="#edf1e7"/>
+  <text x="775" y="398" class="math">P(x,y) = ((x+y)/2, (x+y)/2)</text>
+  <text x="775" y="425" class="mathStrong">P(1,3) = (2,2)</text>
+
+  <rect x="55" y="488" width="1330" height="108" rx="18" fill="#1f3f58"/>
+  <text x="86" y="527" class="tableHead">EXACT DECOMPOSITION</text>
+  <text x="86" y="566" style="font: 700 28px Georgia, serif; fill: #fffaf0;">
+    f = (1,3) = (2,2) + (−1,1) = P f + (U − I)u,  with  u = (0,−1)
+  </text>
+  <text x="1055" y="529" style="font: 17px Arial, sans-serif; fill: #dce8ec;">Uu = (−1,0)</text>
+  <text x="1055" y="559" style="font: 17px Arial, sans-serif; fill: #dce8ec;">Uu − u = (−1,1)</text>
+
+  <rect x="55" y="623" width="760" height="442" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="82" y="663" class="panelTitle">3 · Operator means M_n f approach P f = (2,2)</text>
+
+  <rect x="82" y="686" width="706" height="42" rx="8" fill="#315a70"/>
+  <text x="101" y="713" class="tableHead">n</text>
+  <text x="174" y="713" class="tableHead">sum j&lt;n of U^j f</text>
+  <text x="395" y="713" class="tableHead">M_n f</text>
+  <text x="607" y="713" class="tableHead">||M_n f − P f||_2</text>
+
+  <g class="tableCell">
+    <rect x="82" y="729" width="706" height="42" fill="#f2eadb"/>
+    <text x="104" y="756">0</text><text x="174" y="756">(0,0)</text><text x="395" y="756">(0,0)</text><text x="666" y="756">2</text>
+    <rect x="82" y="771" width="706" height="42" fill="#fffaf0"/>
+    <text x="104" y="798">1</text><text x="174" y="798">(1,3)</text><text x="395" y="798">(1,3)</text><text x="666" y="798">1</text>
+    <rect x="82" y="813" width="706" height="42" fill="#e7efe4"/>
+    <text x="104" y="840">2</text><text x="174" y="840">(4,4)</text><text x="395" y="840">(2,2)</text><text x="666" y="840">0</text>
+    <rect x="82" y="855" width="706" height="42" fill="#fffaf0"/>
+    <text x="104" y="882">3</text><text x="174" y="882">(5,7)</text><text x="395" y="882">(5/3, 7/3)</text><text x="666" y="882">1/3</text>
+    <rect x="82" y="897" width="706" height="42" fill="#e7efe4"/>
+    <text x="104" y="924">4</text><text x="174" y="924">(8,8)</text><text x="395" y="924">(2,2)</text><text x="666" y="924">0</text>
+    <rect x="82" y="939" width="706" height="42" fill="#fffaf0"/>
+    <text x="104" y="966">5</text><text x="174" y="966">(9,11)</text><text x="395" y="966">(9/5, 11/5)</text><text x="666" y="966">1/5</text>
+    <rect x="82" y="981" width="706" height="42" fill="#e7efe4"/>
+    <text x="104" y="1008">6</text><text x="174" y="1008">(12,12)</text><text x="395" y="1008">(2,2)</text><text x="666" y="1008">0</text>
+  </g>
+  <text x="84" y="1047" class="small">Even n: exact projection. Odd n: M_n f = (2−1/n, 2+1/n), so the error is 1/n.</text>
+
+  <rect x="845" y="623" width="540" height="442" rx="20" fill="#fffaf0" stroke="#c8b89e" stroke-width="2"/>
+  <text x="873" y="663" class="panelTitle">4 · The residual telescopes at a</text>
+  <text x="873" y="695" class="small">c = (−1,1), so the readings are −1,+1,−1,+1,…</text>
+
+  <rect x="873" y="716" width="484" height="42" rx="8" fill="#a5532d"/>
+  <text x="890" y="743" class="tableHead">n</text>
+  <text x="950" y="743" class="tableHead">A_n c(a)</text>
+  <text x="1097" y="743" class="tableHead">(u(T^n a)−u(a))/n</text>
+  <g class="tableCell">
+    <rect x="873" y="759" width="484" height="39" fill="#f2eadb"/>
+    <text x="892" y="784">0</text><text x="968" y="784">0</text><text x="1190" y="784">0</text>
+    <rect x="873" y="798" width="484" height="39" fill="#fffaf0"/>
+    <text x="892" y="823">1</text><text x="968" y="823">−1</text><text x="1175" y="823">−1</text>
+    <rect x="873" y="837" width="484" height="39" fill="#e7efe4"/>
+    <text x="892" y="862">2</text><text x="968" y="862">0</text><text x="1190" y="862">0</text>
+    <rect x="873" y="876" width="484" height="39" fill="#fffaf0"/>
+    <text x="892" y="901">3</text><text x="968" y="901">−1/3</text><text x="1160" y="901">−1/3</text>
+    <rect x="873" y="915" width="484" height="39" fill="#e7efe4"/>
+    <text x="892" y="940">4</text><text x="968" y="940">0</text><text x="1190" y="940">0</text>
+    <rect x="873" y="954" width="484" height="39" fill="#fffaf0"/>
+    <text x="892" y="979">5</text><text x="968" y="979">−1/5</text><text x="1160" y="979">−1/5</text>
+    <rect x="873" y="993" width="484" height="39" fill="#e7efe4"/>
+    <text x="892" y="1018">6</text><text x="968" y="1018">0</text><text x="1190" y="1018">0</text>
+  </g>
+  <text x="873" y="1051" class="small">Every row agrees exactly; the odd numerator stays −1 while n grows.</text>
+</svg>

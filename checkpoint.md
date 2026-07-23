@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 21:50 PDT
+Last updated: 2026-07-22 21:52 PDT
 
-Audited baseline: `main` at `94ce44a`
+Audited baseline: `main` at `15bbb61`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **27 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **28 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -504,6 +504,22 @@ numeric figures, six Lean bridges, all ten public declarations and ten probes,
 a guarded cloud interface check, and a byte-identical executed `Std` worksheet
 separate the laptop learning path from the Mathlib-backed theorem module and
 stop explicitly before pointwise convergence.
+*Mean Is Not Pointwise: Koopman Geometry, Coboundaries, and the Missing
+Maximal Step* now begins with the uniform two-state swap and `f=(1,3)`.
+Koopman swaps the coordinates, projection onto the fixed diagonal gives
+`P f=(2,2)`, and the residual `(-1,1)` is exactly `(U-I)u` for `u=(0,-1)`.
+The first seven operator means are computed explicitly: even positive horizons
+equal the projection, odd horizons are `(2-1/n,2+1/n)`, and their `L²` error
+is `1/n`. A separate dyadic typewriter sequence has squared norms
+`1,1/2,1/4,…` but hits `x=5/8` at indices `1,3,6,13,26,…` with zeros between;
+the selected leftmost subsequence converges away from the null singleton
+`{0}`. The page explicitly identifies this as a logical diagnostic rather
+than a Birkhoff-average counterexample. Two accessible numeric figures, seven
+Lean bridges, all twenty public declarations plus two private helpers and the
+probe inventory, a guarded cloud project check, and a byte-identical executed
+`Std` worksheet show exactly why Hilbert-space mean convergence supplies an
+almost-everywhere subsequence but full-sequence convergence still needs
+maximal closure.
 *Finite Bad-Block Measure Bounds Before Kingman Lower Liminf* now makes the
 entire RMT-30 bridge explicit on a uniform amber/blue identity system. For
 `m=5`, `c=-3/4`, only amber at length five is strictly bad, so the event has
@@ -3405,6 +3421,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `15bbb61`: rebuild *From Finite Maximal Bounds to an Infinite Weak
+  Estimate* around a strict five-cycle event, its exact increasing finite
+  horizons, the finite-mass `Measure.real` gate, six Lean bridges, and an
+  executed local `Std` worksheet.
 - `94ce44a`: rebuild *Finite Maximal Ergodic Inequalities: From Orbit Maxima
   to Threshold Events* around one four-cycle whose terminal sums hide three
   strict running-maximum witnesses, with threshold and zero-horizon
