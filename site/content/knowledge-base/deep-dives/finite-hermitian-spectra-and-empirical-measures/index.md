@@ -2,17 +2,17 @@
 title: "Finite Hermitian Spectra and Empirical Measures"
 slug: "finite-hermitian-spectra-and-empirical-measures"
 date: 2026-07-21
-summary: "A textbook ascent from the ordered real spectrum of one finite Hermitian matrix to counting and empirical measures, with the exact zero-dimensional policy and conditional measurable-law boundary made explicit."
-lead: "A spectrum becomes probabilistic in stages. First order the real eigenvalues of one Hermitian matrix. Then count them with multiplicity, normalize the count, and only after proving measurability push a random-matrix law onto the resulting space of measures."
+summary: "Diagonalize one exact two-by-two Hermitian matrix, place half an atom at each ordered eigenvalue, then climb carefully from a sample spectrum to a random measure, its law, and its mean."
+lead: "Start with the matrix [[2,1],[1,2]], certify eigenvalues three and one by hand, and keep those two atoms visible while Lean separates deterministic spectral algebra from measure-valued probability."
 draft: false
 pro_reviewed: false
-level: "Finite Hermitian spectral algebra through conditional measure-valued probability"
-reading_time: "85 to 110 minutes"
-prerequisites: "Finite-dimensional linear algebra, Hermitian matrices, Dirac and pushforward measures, and the distinction between a random variable and its law; all specialized ingredients are reviewed before use"
+level: "Exact size-two spectrum through finite measure-valued probability"
+reading_time: "90 to 120 minutes"
+prerequisites: "Two-by-two matrix multiplication and basic fractions; Hermitian matrices, Dirac measures, pushforwards, Giry measurability, and Lean syntax are introduced as they appear"
 lean_module: "NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum"
 toc: true
 og_image: "finite-hermitian-spectra-and-empirical-measures-card.png"
-og_image_alt: "A Hermitian matrix sample yields a decreasing real eigenvalue vector, then a finite empirical spectral measure; a further pushforward to a law over measures is available only after a separate coordinatewise eigenvalue-measurability gate."
+og_image_alt: "The Hermitian matrix with rows two one and one two has checked ordered eigenvalues three and one, giving counting masses one and one and empirical masses one half and one half."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -24,149 +24,525 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, citations, Lean declaration map, figure, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+prose, sources, exact example, Lean declaration map, worksheet, figures, and
+accessibility have not yet received the required human and Pro reviews. The
+page is publicly available as an open working note while those reviews remain
+pending.
 {{< /panel >}}
 
-A finite Hermitian matrix carries two complementary descriptions. Its entries
-say how a chosen basis is coupled. Its eigenvalues say how the corresponding
-operator acts along its preferred orthogonal directions. Changing the basis by
-a unitary matrix scrambles the entries but leaves the spectrum untouched.
+## Begin with one matrix you can finish by hand
 
-The tenth random-matrix-theory milestone begins formalizing that spectral
-description. RMT-10A constructs the decreasing real eigenvalue vector of every
-intrinsic finite Hermitian matrix, proves its first two power sums equal the
-trace and trace square, and packages the vector as two finite measures:
+Take the real symmetric, hence complex Hermitian, matrix
 
 \[
-N_H=\sum_i\delta_{\lambda_i(H)},
-\qquad
-L_H=\frac1nN_H
+H=
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}.
 \]
 
-when the matrix dimension is \(n\). The first is the spectral counting measure.
-The second is the {{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}.
-The module explicitly defines \(L_H=0\) at \(n=0\), so the all-dimensions
-object is zero or probabilistic rather than always probabilistic.
+Hermitian means \(H^*=H\), where \(^*\) is conjugate transpose. Here every
+entry is real and the two off-diagonal entries agree, so that check is visible
+without a theorem prover.
 
-This is a strong algebraic layer, but within RMT-10A it is not yet a random
-spectral law. Pinned Mathlib supplies a canonical ordered Hermitian eigenvalue
-enumeration and the finite spectral theorem. It does not directly supply the
-continuity or measurability theorem for those ordered coordinates that this
-project needs. Every RMT-10A theorem that maps a matrix law into a law on
-spectral measures therefore takes coordinatewise eigenvalue measurability as
-an explicit hypothesis.
+An **eigenpair** is a scalar \(\lambda\) and a nonzero vector \(v\) satisfying
+\(Hv=\lambda v\). Two direct multiplications give
 
-That boundary is the chapter's central lesson. Pointwise spectral algebra,
-measure-valued measurability, and a pushforward probability law are different
-summits. RMT-10A reaches the first, builds conditional bridges toward the
-second and third, and does not pretend that the missing bridge has already been
-crossed.
+\[
+H\begin{bmatrix}1\\1\end{bmatrix}
+{} =
+\begin{bmatrix}3\\3\end{bmatrix}
+{} =
+3\begin{bmatrix}1\\1\end{bmatrix},
+\qquad
+H\begin{bmatrix}1\\-1\end{bmatrix}
+{} =
+\begin{bmatrix}1\\-1\end{bmatrix}
+{} =
+1\begin{bmatrix}1\\-1\end{bmatrix}.
+\]
+
+The characteristic polynomial confirms that there are no other eigenvalue
+slots:
+
+\[
+\det(tI-H)
+{} =
+(t-2)^2-1
+{} =
+(t-3)(t-1).
+\]
+
+The project's ordered convention is decreasing, so the exact ordered spectrum
+is
+
+\[
+\Lambda(H)=(\lambda_0(H),\lambda_1(H))=(3,1).
+\]
+
+This vector keeps two **slots**, not merely a set of distinct values. If an
+eigenvalue repeats, it repeats in the vector. That is how algebraic
+multiplicity survives the next construction.
+
+### Place one atom at each slot
+
+The {{< refterm "measure" "Dirac measure" >}} \(\delta_x\) is the particular
+measure that puts unit
+mass at the single point \(x\). The **spectral counting measure** of our matrix
+is therefore
+
+\[
+N_H=\delta_3+\delta_1.
+\]
+
+It has total mass two. Divide by the number of eigenvalue slots to obtain the
+{{< refterm "empirical-spectral-measure" "empirical spectral measure" >}}
+
+\[
+L_H=\frac12N_H
+{} =
+\frac12\delta_3+\frac12\delta_1.
+\]
+
+Here is the measure atom by atom. A singleton \(\{x\}\) asks how much mass is
+located exactly at \(x\).
+
+| Test set | \(N_H\) | \(L_H\) | Why |
+|---|---:|---:|---|
+| \(\{3\}\) | \(1\) | \(1/2\) | the first ordered slot equals three |
+| \(\{1\}\) | \(1\) | \(1/2\) | the second ordered slot equals one |
+| \(\{2\}\) | \(0\) | \(0\) | two is a matrix entry, not an eigenvalue |
+| \(\mathbb R\) | \(2\) | \(1\) | both slots lie on the real line |
+
+Two power-sum checks tie the atoms back to the entries:
+
+\[
+\operatorname{Tr}(H)=2+2=4=3+1,
+\]
+
+and, since
+
+\[
+H^2=
+\begin{bmatrix}
+5&4\\
+4&5
+\end{bmatrix},
+\]
+
+we have
+
+\[
+\operatorname{Tr}(H^2)=10=3^2+1^2.
+\]
+
+{{< reference-figure
+  wide="true"
+  src="hermitian-2x2-spectrum-ledger.svg"
+  alt="The two-by-two Hermitian matrix with diagonal entries two and off-diagonal entries one has eigenvectors one one and one minus one with ordered eigenvalues three and one. Its counting measure has unit atoms at three and one, and its empirical measure has one-half atoms at those same points. Trace four and trace-square ten match the first two spectral power sums."
+  caption="**The complete size-two ledger:** multiplying \(H\) by \((1,1)\) and \((1,-1)\) certifies the ordered eigenvalues \(3\) and \(1\). The counting masses are \(N_H(\{3\})=N_H(\{1\})=1\); division by two gives \(L_H(\{3\})=L_H(\{1\})=1/2\). The moment checks \(4=3+1\) and \(10=3^2+1^2\) agree exactly with the matrix traces."
+>}}
+
+## A near-miss in reconstruction: the spectrum forgets the basis
+
+Now compare \(H\) with the diagonal matrix
+
+\[
+D=
+\begin{bmatrix}
+3&0\\
+0&1
+\end{bmatrix}.
+\]
+
+Both matrices are Hermitian. Both have the same decreasing ordered spectrum
+\((3,1)\), hence the same counting measure and empirical measure:
+
+\[
+\Lambda(D)=\Lambda(H),
+\qquad
+N_D=N_H,
+\qquad
+L_D=L_H.
+\]
+
+Yet the matrices are not equal. For example, \(H_{01}=1\) while \(D_{01}=0\).
+Their displayed eigenvectors are different too: the standard basis
+diagonalizes \(D\), whereas the diagonal directions \((1,1)\) and \((1,-1)\)
+diagonalize \(H\). In fact,
+
+\[
+H=UDU^*,
+\qquad
+U=\frac1{\sqrt2}
+\begin{bmatrix}
+1&1\\
+1&-1
+\end{bmatrix}.
+\]
+
+This is not a failure of spectral theory. The spectrum is deliberately
+basis-independent. It records energy levels and multiplicities while
+forgetting the coordinate basis and eigenvectors. Therefore no theorem should
+try to reconstruct arbitrary matrix entries from \(L_H\) alone.
+
+{{< reference-figure
+  wide="true"
+  src="isospectral-data-loss.svg"
+  alt="The coupled Hermitian matrix two one; one two and the diagonal matrix three zero; zero one are different matrices but have the same ordered eigenvalues three and one and the same empirical measure with half mass at each eigenvalue. The first uses diagonal eigenvectors while the second uses the standard basis, demonstrating that spectral measures forget basis coordinates and eigenvectors."
+  caption="**A controlled information-loss boundary:** \(H_{01}=1\) and \(D_{01}=0\), so \(H\ne D\). Nevertheless, the unitary basis change \(H=UDU^*\) gives both matrices ordered spectrum \((3,1)\) and empirical measure \((1/2)\delta_3+(1/2)\delta_1\). Equal spectral measures do not imply equal matrices or equal eigenvectors."
+>}}
+
+## Five objects that the phrase “spectral distribution” can hide
+
+The running matrix has now produced a vector and a measure without any
+probability experiment. Randomness adds more layers, each with a different
+type.
+
+| Object | Paper type | Lean type | What it describes |
+|---|---|---|---|
+| Ordered spectrum of one \(H\) | \(\Lambda(H)\in\mathbb R^n\) | <code>Fin n → ℝ</code> | decreasing eigenvalue slots with multiplicity |
+| Empirical measure of one \(H\) | \(L_H\in\operatorname{Measure}(\mathbb R)\) | <code>Measure ℝ</code> | one equal-weight atom ledger |
+| Random spectral measure | \(H\mapsto L_H\) | <code>HermitianEuclidean n → Measure ℝ</code> | a measure-valued observable before a source law is pushed through it |
+| Law of that random measure | \(\mathcal Q_n=(L_{\bullet})_*\mu_n\) | <code>Measure (Measure ℝ)</code> | probability across whole sample measures |
+| Mean empirical measure | \(\overline L_n=\int L\,\mathcal Q_n(\mathrm dL)\) | <code>Measure ℝ</code> | the Giry barycenter, which averages inner measures |
+
+The second and fifth rows share the Lean type <code>Measure ℝ</code>, but
+they are not the same construction. The second belongs to one realized
+matrix. The fifth averages over an outer law and forgets sample-to-sample
+variation. Likewise, the third row is a function; it is not itself the fourth
+row's probability measure.
+
+For finite Gaussian unitary ensemble (GUE) matrices, the repository now has
+all five layers, but not in one source file:
+
+- RMT-10A, <code>HermitianSpectrum.lean</code>, defines the first three objects
+  and proves law transport only under an explicit coordinatewise
+  eigenvalue-measurability hypothesis.
+- RMT-10B, <code>HermitianSpectrumContinuity.lean</code>, proves the ordered
+  coordinates are 1-Lipschitz, continuous, and measurable, then removes that
+  hypothesis from the measure-valued interfaces.
+- RMT-10C, <code>GaussianUnitaryEnsembleSpectrum.lean</code>, defines
+  <code>GUE.empiricalSpectralLaw</code> and
+  <code>GUE.meanEmpiricalSpectralMeasure</code> and proves their finite
+  zero/positive-dimensional facts.
+
+{{< reference-figure
+  wide="true"
+  src="sample-measure-law.svg"
+  alt="A typed ladder begins with the fixed matrix H and its ordered vector three one, then its empirical measure with one-half atoms at three and one. A random matrix input makes the same construction a measure-valued function. After measurability, pushing a matrix law forward yields a measure on measures; joining that law yields one mean measure on the real line."
+  caption="**Do not collapse the types:** \(\Lambda(H)\) is a vector, \(L_H\) is one measure, \(H\mapsto L_H\) is a measure-valued function, \(\mathcal Q_n\) is a measure on a space of measures, and \(\overline L_n\) is the joined mean measure. RMT-10A builds the deterministic objects and conditional map; RMT-10B proves the needed measurability; RMT-10C names the finite GUE law and mean."
+>}}
+
+### The empty-size boundary
+
+At \(n=0\), there are no eigenvalue slots. RMT-10A defines both the counting
+measure and empirical measure to be zero:
+
+\[
+N_H=0,
+\qquad
+L_H=0.
+\]
+
+The inner zero measure is not a probability measure because its total mass is
+zero. Nevertheless, RMT-10C's **outer** law at size zero is the probability
+measure \(\delta_0\) on the space <code>Measure ℝ</code>: it puts all outer
+mass on the single sample measure \(0\). Its mean measure is again zero. This
+is a useful type test: a probability law may be concentrated on an object
+that is not itself a probability measure.
 
 {{< panel "info" >}}
-**Successor layer.** RMT-10B now proves a Frobenius
-{{< refterm "weyl-eigenvalue-bound" "Weyl eigenvalue bound" >}}, packages the
-ordered spectrum as 1-Lipschitz, and discharges these coordinatewise
-measurability hypotheses.
-[Hermitian Spectral Perturbation, Continuity, and Measurability]({{< relref "/knowledge-base/deep-dives/hermitian-spectral-perturbation-continuity-and-measurability" >}})
-develops that proof and the resulting unconditional GUE pushforward bridge.
-This chapter continues to document the exact RMT-10A boundary.
+**Current theorem boundary.** RMT-10A's declarations ending in
+<code>of_measurable_eigenvalues</code> are genuinely conditional. RMT-10B later
+proves their hypotheses and exports unconditional versions. RMT-10C then
+defines the finite GUE spectral law and mean. This chapter attributes each
+claim to its actual module; it does not present a once-open RMT-10A premise as
+an open project problem today.
 {{< /panel >}}
 
 ## Choose a route up
 
 | Route | Begin with | Destination |
 |---|---|---|
-| First encounter | [Three objects, three levels](#three-objects-three-levels) | Separate a spectrum, its empirical measure, and a law over measures |
-| Linear algebra route | [The finite Hermitian spectral theorem](#base-camp-one-the-finite-hermitian-spectral-theorem) | Understand why the eigenvalues are real and why multiplicity matters |
-| Lean indexing route | [Why the sorted enumeration matters](#camp-one-why-the-sorted-enumeration-matters) | See why <code>eigenvalues₀</code> is transported by an order-preserving cast |
-| Moment route | [Trace as a spectral power sum](#camp-two-trace-as-a-spectral-power-sum) | Recover trace and trace square from the ordered vector |
-| Symmetry route | [Unitary congruence changes coordinates, not spectrum](#camp-three-unitary-congruence-changes-coordinates-not-spectrum) | Follow the characteristic-polynomial proof of invariance |
-| Measure route | [From repeated coordinates to finite atoms](#camp-four-from-repeated-coordinates-to-finite-atoms) | Build counting and empirical spectral measures |
-| Boundary route | [Dimension zero is not a probability space of eigenvalues](#camp-five-dimension-zero-is-not-a-probability-space-of-eigenvalues) | Audit the explicit empty-spectrum policy |
-| Probability route | [The Giry measurability gate](#camp-six-the-giry-measurability-gate) | Identify the exact missing hypothesis |
-| Ambient-law route | [A total observable on all complex matrices](#camp-seven-a-total-observable-on-all-complex-matrices) | Understand the Hermitian-or-zero extension and conditional GUE bridge |
-| Lean audit route | [The complete public API](#the-complete-public-api) | Map every declaration to its mathematical layer |
+| First encounter | [Begin with one matrix](#begin-with-one-matrix-you-can-finish-by-hand) | Compute every eigenvalue slot and atom |
+| Information route | [The spectrum forgets the basis](#a-near-miss-in-reconstruction-the-spectrum-forgets-the-basis) | See why equal spectra do not reconstruct entries |
+| Type route | [Five spectral objects](#five-objects-that-the-phrase-spectral-distribution-can-hide) | Separate a sample measure, random measure, law, and mean |
+| Linear algebra route | [The finite Hermitian spectral theorem](#base-camp-one-the-finite-hermitian-spectral-theorem) | Generalize the size-two computation |
+| Lean route | [Seven exact bridges](#in-lean-seven-bridges-from-one-spectrum-to-a-law) | Translate paper objects into checked interfaces |
+| Hands-on route | [Run the worksheet](#type-the-size-two-ledger-yourself-with-lean-and-std) | Recheck the integer arithmetic locally |
+| API route | [The complete public API](#the-complete-public-api) | Audit the exact RMT-10A declaration boundary |
 
 ### Learning objectives
 
-By the summit, you should be able to:
+By the summit, you should be able to compute the running example without a
+black box, explain multiplicity and unitary invariance, distinguish all five
+typed objects above, defend the \(n=0\) policy, read seven Lean interfaces token
+by token, and state exactly which claims belong to RMT-10A, RMT-10B, and
+RMT-10C. You should also be able to name what is absent: no joint eigenvalue
+density, semicircle law, large-dimension convergence, rigidity, local spacing
+limit, spectral form factor, or out-of-time-order correlator is proved here.
 
-1. state the finite Hermitian spectral theorem and explain why its eigenvalues
-   are real;
-2. distinguish an ordered eigenvalue vector from the set of distinct spectral
-   locations;
-3. explain how repeated indices encode algebraic multiplicity;
-4. distinguish Mathlib's sorted <code>eigenvalues₀</code> from its generally
-   reindexed <code>eigenvalues</code>;
-5. explain why an order-preserving cast is used to obtain a vector on
-   <code>Fin n</code>;
-6. derive the trace and trace-square power-sum identities;
-7. explain why unitary congruence preserves the whole ordered vector;
-8. build a finite spectral counting measure from Dirac atoms;
-9. derive its total mass and first two complex moments;
-10. normalize the count into an empirical spectral measure in positive
-    dimension;
-11. defend the explicit zero-measure policy at dimension zero;
-12. distinguish <code>Measure ℝ</code>, <code>ProbabilityMeasure ℝ</code>,
-    and a probability law on either of those spaces;
-13. describe the Giry measurable structure on a space of measures;
-14. identify coordinatewise eigenvalue measurability as an unproved input,
-    rather than an implicit fact;
-15. explain why the Hermitian-or-zero extension is total and measurable;
-16. state the conditional intrinsic-versus-ambient GUE pushforward equality;
-17. separate deterministic unitary invariance from random-law invariance; and
-18. list the density, asymptotic, and local-statistics conclusions that do not
-    follow from this module.
+## In Lean: seven bridges from one spectrum to a law
 
-## Three objects, three levels
+The numeric worksheet later in the chapter checks the size-two arithmetic
+using only <code>Std</code>. The interfaces in this section are different: they
+are the exact Mathlib-backed project declarations, so their literal repository
+checks belong on an approved Linux builder.
 
-{{< reference-figure
-  src="sample-measure-law.svg"
-  alt="One Hermitian matrix sample yields a decreasing real eigenvalue list and then one equally weighted finite spectral measure. A separate measurability gate must be passed before a random matrix law can be pushed forward to a law whose samples are measures."
-  caption="**Finding:** one deterministic empirical spectral measure and a probability law over empirical spectral measures are different objects. The first follows from finite spectral algebra. The second requires the matrix-to-measure map to be measurable. RMT-10A proves the law-level comparison only under that explicit eigenvalue-measurability hypothesis; the figure does not claim the hypothesis has been discharged."
+### Bridge one: the ordered spectrum is a function on finite slots
+
+{{< lean-bridge
+  human="For one intrinsic size-n Hermitian matrix H, ask for the real eigenvalue in each decreasingly ordered slot."
+  math="\(\Lambda(H):\operatorname{Fin}(n)\to\mathbb R,\quad i\mapsto\lambda_i(H),\quad i\le j\Rightarrow\lambda_i(H)\ge\lambda_j(H).\)"
+  lean="RandomMatrix.orderedHermitianEigenvalues H : Fin n → ℝ"
 >}}
 
-Start with an intrinsic Hermitian matrix \(H\). It has a deterministic ordered
-eigenvalue vector
+- <code>H</code> has type <code>HermitianEuclidean n</code>, the intrinsic
+  Hermitian carrier.
+- <code>Fin n</code> contains exactly the index slots zero through
+  \(n-1\).
+- <code>→ ℝ</code> means that each slot returns one real number.
+- <code>orderedHermitianEigenvalues_antitone H</code> is the separate theorem
+  that records decreasing order; the type alone does not encode it.
+- The definition is <code>noncomputable</code>. It is a mathematical interface,
+  not a floating-point eigenvalue routine.
+{{< /lean-bridge >}}
 
-\[
-\Lambda(H)=\bigl(\lambda_0(H),\ldots,\lambda_{n-1}(H)\bigr).
-\]
+For the running matrix, a human writes \(\Lambda(H)=(3,1)\). The project
+definition generalizes the slot structure, while our direct eigenvector
+certificates establish the two concrete values.
 
-That vector determines one deterministic measure \(L_H\) on the real line. If
-we then sample \(H\) from a probability law \(\mu\), the expression
+### Bridge two: trace is the first ordered power sum
 
-\[
-\mu\mathbin{\mathrm{map}}\bigl(H\mapsto L_H\bigr)
-\]
+{{< lean-bridge
+  human="Adding every ordered eigenvalue of a Hermitian matrix gives its ordinary complex trace."
+  math="\(\operatorname{Tr}(H)=\sum_{i=0}^{n-1}\lambda_i(H).\)"
+  lean="RandomMatrix.trace_eq_sum_orderedHermitianEigenvalues H"
+>}}
 
-would be a probability law on a space whose points are measures. It answers
-questions such as, "Across random matrix samples, how is the entire empirical
-spectrum distributed?"
+- <code>Matrix.trace</code> adds the diagonal entries of the ambient matrix.
+- <code>hermitianToMatrix H</code> forgets the intrinsic proof wrapper and
+  exposes that ambient matrix.
+- <code>∑ i</code> is a finite sum over every value of <code>Fin n</code>.
+- <code>(... : ℂ)</code> coerces each real eigenvalue into the trace's complex
+  codomain.
+- The sibling theorem
+  <code>trace_sq_eq_sum_sq_orderedHermitianEigenvalues</code> replaces each
+  summand by its square and the left side by <code>trace (H ^ 2)</code>.
+{{< /lean-bridge >}}
 
-These levels should never be compressed into the phrase *the spectral
-distribution*:
+At size two these statements read \(4=3+1\) and
+\(10=3^2+1^2\). They are pointwise algebraic identities, not expectations.
 
-1. \(\Lambda(H)\) is a finite vector attached to one matrix.
-2. \(L_H\) is a finite measure attached to one matrix.
-3. \(\mu\mathbin{\mathrm{map}}(H\mapsto L_H)\) is a law over measure-valued
-   samples, and it requires measurability of the map being pushed forward.
-4. The mean measure \(\mathbb E[L_H]\), if later defined, would be another
-   object again. It averages the random measure and forgets sample-to-sample
-   variability.
+### Bridge three: counting measure means one Dirac mass per slot
 
-In a deterministic theorem, the first two levels need no probability space.
-The third level is where the Giry measurable structure and RMT-10A's displayed
-eigenvalue-measurability obligation enter. RMT-10B later discharges it.
+{{< lean-bridge
+  human="Place one unit point mass at each ordered eigenvalue slot, including repeated slots."
+  math="\(N_H=\sum_{i=0}^{n-1}\delta_{\lambda_i(H)}.\)"
+  lean="RandomMatrix.spectralCountingMeasure H : Measure ℝ"
+>}}
 
-{{< checkpoint stage="Orientation" title="The theorem boundary in one sentence" >}}
-RMT-10A defines finite spectra and empirical measures unconditionally for each
-intrinsic Hermitian matrix, but it pushes random-matrix laws through those
-objects only under a displayed coordinatewise eigenvalue-measurability
-hypothesis.
-{{< /checkpoint >}}
+- <code>Measure ℝ</code> is the type of measures on the real line.
+- <code>Measure.dirac x</code> is the unit point mass \(\delta_x\).
+- The source definition uses <code>∑ i</code>, so multiplicity is represented
+  by repeated index contributions rather than by a set of distinct values.
+- <code>spectralCountingMeasure_univ H</code> proves that the total mass is
+  exactly <code>n</code>.
+- No probability law on matrices occurs in this definition.
+{{< /lean-bridge >}}
+
+For the running spectrum, the definition unfolds to
+\(\delta_3+\delta_1\). If the spectrum were \((3,3)\), the result would be
+\(2\delta_3\), not \(\delta_3\).
+
+### Bridge four: empirical means normalize the slot count
+
+{{< lean-bridge
+  human="Scale the counting measure by the reciprocal dimension; at size zero, use the zero measure."
+  math="\(L_H=n^{-1}N_H\text{ for }n\gt0,\qquad L_H=0\text{ for }n=0.\)"
+  lean="RandomMatrix.empiricalSpectralMeasure H : Measure ℝ"
+>}}
+
+- The source writes <code>(n : ℝ≥0∞)⁻¹</code>, the inverse of the
+  dimension in the extended nonnegative reals used to scale measures.
+- <code>•</code> is scalar multiplication of a measure.
+- <code>empiricalSpectralMeasure_zero H</code> proves the empty-size value is
+  exactly zero.
+- <code>empiricalSpectralMeasure_succ_isProbability n H</code> proves mass one
+  for a matrix of size <code>n + 1</code>.
+- <code>empiricalSpectralProbability n H</code> adds the mass-one proof and
+  returns a bundled <code>ProbabilityMeasure ℝ</code> only in positive
+  dimension.
+{{< /lean-bridge >}}
+
+For our matrix, the dimension is two, so each unit counting atom becomes an
+empirical atom of mass one half.
+
+### Bridge five: measurability belongs to the whole observable
+
+{{< lean-bridge
+  human="In the current successor module, the map sending a Hermitian matrix to its empirical spectral measure is measurable."
+  math="\(H\mapsto L_H:\mathcal H_n\to\operatorname{Measure}(\mathbb R)\text{ is measurable}.\)"
+  lean="RandomMatrix.measurable_empiricalSpectralMeasure : Measurable (@RandomMatrix.empiricalSpectralMeasure n)"
+>}}
+
+- <code>@</code> exposes the implicit dimension argument so the function being
+  measured is unambiguous.
+- <code>Measurable</code> licenses preimages and pushforward measures. It does
+  not choose a source probability law.
+- The codomain <code>Measure ℝ</code> carries Mathlib's Giry measurable
+  structure, generated by measurable evaluation maps.
+- RMT-10A exports only
+  <code>measurable_empiricalSpectralMeasure_of_measurable_eigenvalues</code>,
+  whose argument is the coordinatewise hypothesis.
+- RMT-10B proves
+  <code>measurable_orderedHermitianEigenvalues_apply</code> from a 1-Lipschitz
+  perturbation bound, then supplies it to the RMT-10A theorem.
+{{< /lean-bridge >}}
+
+This is a current project theorem, but it belongs to
+<code>HermitianSpectrumContinuity.lean</code>, not to the base RMT-10A module.
+
+### Bridge six: a random spectral law is an outer measure
+
+{{< lean-bridge
+  human="Push the intrinsic finite GUE matrix law through the measurable sample-measure map; the result is a law whose points are whole measures."
+  math="\(\mathcal Q_n=(H\mapsto L_H)_*\mu_n\in\operatorname{Measure}(\operatorname{Measure}(\mathbb R)).\)"
+  lean="GUE.empiricalSpectralLaw n : Measure (Measure ℝ)"
+>}}
+
+- <code>GUE.intrinsicLaw n</code> is the source probability measure on
+  intrinsic Hermitian matrices.
+- <code>.map empiricalSpectralMeasure</code> is the pushforward through the
+  sample-measure function.
+- The outer <code>Measure (...)</code> describes randomness across matrix
+  samples; the inner <code>Measure ℝ</code> is one sample's spectral measure.
+- <code>instIsProbabilityMeasureEmpiricalSpectralLaw n</code> proves the outer
+  law has mass one in every dimension.
+- At \(n=0\), <code>empiricalSpectralLaw_zero</code> identifies this outer law
+  with <code>Measure.dirac (0 : Measure ℝ)</code>.
+{{< /lean-bridge >}}
+
+This named unconditional law first appears in RMT-10C. RMT-10A's strongest
+law statement is only the conditional equality between ambient and intrinsic
+pushforward routes.
+
+### Bridge seven: joining the outer law gives one mean measure
+
+{{< lean-bridge
+  human="Average the inner sample measures under their outer law; the result is one measure on the real line, not another law on measures."
+  math="\(\overline L_n(B)=\int L(B)\,\mathcal Q_n(\mathrm dL),\qquad \overline L_n\in\operatorname{Measure}(\mathbb R).\)"
+  lean="GUE.meanEmpiricalSpectralMeasure n = (GUE.empiricalSpectralLaw n).join"
+>}}
+
+- <code>.join</code> is the Giry barycenter operation on a measure of measures.
+- The result has type <code>Measure ℝ</code>, one level lower than
+  <code>Measure (Measure ℝ)</code>.
+- This is an average of sample measures, not the expected value of a matrix and
+  not a sample empirical measure for a distinguished matrix.
+- <code>meanEmpiricalSpectralMeasure_zero</code> proves that the mean is zero at
+  size zero.
+- <code>meanEmpiricalSpectralMeasure_succ_isProbability</code> proves the mean
+  has mass one in every positive dimension.
+{{< /lean-bridge >}}
+
+The displayed equality is the body of the RMT-10C definition. It does not by
+itself prove a density, an interchange of arbitrary integrals, or an
+asymptotic limit.
+
+### Try the exact RMT-10A declarations in the repository
+
+{{< repo-check >}}
+**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+On an approved Linux builder, place this probe in a temporary project scratch
+file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum
+
+open Matrix MeasureTheory
+open scoped ENNReal Matrix
+open NonlinearDynamics.Random
+
+#print RandomMatrix.orderedHermitianEigenvalues
+#check RandomMatrix.orderedHermitianEigenvalues_antitone
+#check RandomMatrix.trace_eq_sum_orderedHermitianEigenvalues
+#check RandomMatrix.trace_sq_eq_sum_sq_orderedHermitianEigenvalues
+#check RandomMatrix.orderedHermitianEigenvalues_hermitianCongruence
+#print RandomMatrix.spectralCountingMeasure
+#check RandomMatrix.spectralCountingMeasure_univ
+#print RandomMatrix.empiricalSpectralMeasure
+#check RandomMatrix.empiricalSpectralMeasure_zero
+#check RandomMatrix.empiricalSpectralMeasure_succ_isProbability
+#check RandomMatrix.empiricalSpectralProbability
+#check RandomMatrix.measurable_empiricalSpectralMeasure_of_measurable_eigenvalues
+#check RandomMatrix.map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw_of_measurable_eigenvalues
+~~~
+
+<code>#print</code> exposes definition bodies. <code>#check</code> asks the
+pinned elaborator for exact declaration types. Notice that the final two names
+retain the hypothesis in their names. The guarded command rendered below
+checks the authoritative RMT-10A source, not the temporary probe.
+{{< /repo-check >}}
+
+### Try the exact RMT-10B measurability bridge
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity" >}}
+**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+Type this separate probe on the approved Linux builder:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.abs_orderedHermitianEigenvalues_sub_le_frobenius
+#check RandomMatrix.lipschitzWith_orderedHermitianEigenvalues_apply
+#check RandomMatrix.continuous_orderedHermitianEigenvalues_apply
+#check RandomMatrix.measurable_orderedHermitianEigenvalues_apply
+#check RandomMatrix.measurable_spectralCountingMeasure
+#check RandomMatrix.measurable_empiricalSpectralMeasure
+#check RandomMatrix.measurable_empiricalSpectralProbability
+#check RandomMatrix.measurable_ambientEmpiricalSpectralMeasure
+#check RandomMatrix.map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw
+~~~
+
+These are unconditional successor declarations. Their module first proves the
+perturbation bound, then continuity, then measurability. The generated command
+checks that exact leaf with warnings fatal through the repository guard.
+{{< /repo-check >}}
+
+### Try the exact RMT-10C law and mean interfaces
+
+{{< repo-check module="NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum" >}}
+**Resource label: pinned project plus Mathlib, cloud-only for this project.**
+The final probe distinguishes the sample measure, its law, and its mean:
+
+~~~lean
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
+
+open NonlinearDynamics.Random
+
+#check RandomMatrix.empiricalSpectralMeasure
+#check GUE.empiricalSpectralLaw
+#check GUE.empiricalSpectralLawProbability
+#check GUE.empiricalSpectralProbabilityLaw
+#check GUE.empiricalSpectralLaw_zero
+#print GUE.meanEmpiricalSpectralMeasure
+#check GUE.meanEmpiricalSpectralMeasure_zero
+#check GUE.meanEmpiricalSpectralMeasure_succ_isProbability
+#check GUE.integral_empiricalSpectralMoment_one
+#check GUE.integral_empiricalSpectralMoment_two
+#check GUE.integral_empiricalSpectralMoment_two_succ
+~~~
+
+The two nested law types are intentionally different. The raw all-dimensions
+law has samples in <code>Measure ℝ</code>; the positive-dimensional bundled
+law has samples in <code>ProbabilityMeasure ℝ</code>. The final three
+theorems are finite expected-moment statements, not asymptotics.
+{{< /repo-check >}}
 
 ## Base camp zero: intrinsic Hermitian matrices
 
@@ -184,10 +560,11 @@ where \(A^*\) is the conjugate transpose.
 Bundling the property matters. A theorem about an intrinsic value may use
 Hermiticity without carrying a new premise at every line. The earlier
 Frobenius-geometry module also gives this carrier the topology and measurable
-space inherited from its finite real Euclidean structure. The later
-measurability problem is not that the matrix space lacks measurable structure.
-It is that the specific ordered-eigenvalue functions still need a theorem
-connecting them to that structure.
+space inherited from its finite real Euclidean structure. At the RMT-10A
+boundary, the remaining problem was not a missing measurable structure on the
+matrix space. It was the lack, inside that module, of a theorem connecting the
+specific ordered-eigenvalue functions to that structure. RMT-10B now supplies
+that theorem.
 
 The module uses <code>hermitianToMatrix</code> when it needs the ambient matrix
 and <code>hermitianCongruence U H</code> for the intrinsic action
@@ -634,9 +1011,10 @@ theorem measurable_empiricalSpectralMeasure_of_measurable_eigenvalues
 For positive dimension, subtype construction then yields
 <code>measurable_empiricalSpectralProbability_of_measurable_eigenvalues</code>.
 
-### What is proved, and what is only assumed
+### What RMT-10A assumes, and RMT-10B proves
 
-The implication is checked. Its premise is not.
+Inside RMT-10A, the implication is checked while its premise remains an
+argument to the theorem.
 
 Pinned Mathlib's matrix-spectrum module provides
 <code>eigenvalues₀</code>, antitonicity in the **index**, and algebraic
@@ -645,22 +1023,31 @@ matrices to each ordered eigenvalue coordinate, nor the weaker measurability
 theorem needed here. Antitonicity in \(i\) says nothing about dependence on
 \(H\).
 
-A future perturbation layer may discharge the premise using a Weyl inequality,
-a min-max characterization, or another continuity theorem. Until that proof
-exists, writing
+The repository's next module, RMT-10B, discharges the premise. It proves the
+Frobenius perturbation inequality
+
+\[
+|\lambda_i(A)-\lambda_i(B)|\leq \|A-B\|_F,
+\]
+
+then derives 1-Lipschitz continuity, continuity, and coordinatewise
+measurability. Therefore the current project may write the unconditional
+<code>measurable_empiricalSpectralMeasure</code>. When discussing RMT-10A
+alone, however, writing
 
 \[
 \bigl(\operatorname{GUE\ matrix\ law}\bigr)
 \mathbin{\mathrm{map}}L
 \]
 
-without displaying the hypothesis would overstate the formalization.
+without displaying its hypothesis would overstate that module's interface.
 
 {{< panel "warning" >}}
 **Do not read an <code>of_measurable_eigenvalues</code> theorem backwards.**
 It proves that coordinatewise measurability is sufficient for the
 measure-valued observable. It does not synthesize or certify that hypothesis.
-The hypothesis is the exact open seam for RMT-10B.
+That was the exact design seam consumed by RMT-10B; the successor's
+unconditional theorem is the current interface once that module is imported.
 {{< /panel >}}
 
 ## Camp seven: a total observable on all complex matrices
@@ -709,9 +1096,10 @@ noncomputable def ambientEmpiricalSpectralMeasure (n : ℕ)
   empiricalSpectralMeasure (matrixToHermitianOrZero n A)
 ~~~
 
-Its measurability theorem remains conditional because the totalization is
-measurable but the intrinsic empirical-measure map still depends on ordered
-eigenvalue measurability.
+Its RMT-10A measurability theorem remains conditional because the totalization
+is measurable but that module still requests ordered-eigenvalue measurability.
+RMT-10B supplies the request and exports
+<code>measurable_ambientEmpiricalSpectralMeasure</code> unconditionally.
 
 ### Why zero totalization is harmless for the checked GUE comparison
 
@@ -758,6 +1146,154 @@ Hermitian carrier and applies the intrinsic spectral observable.
 
 The equality proves representational independence between those routes, not
 an asymptotic or universality statement.
+
+## Type the size-two ledger yourself with Lean and Std
+
+The exact project spectrum uses Mathlib's complex matrices, Hermitian spectral
+theorem, finite measures, and Giry measurable space. A first-time reader can
+check the running arithmetic before loading that machinery. The worksheet
+below imports only Lean's <code>Std</code> library and models real two-by-two
+matrices with four integer fields.
+
+Create a scratch directory outside <code>formalization/</code>. Save this exact
+block as <code>HermitianSpectraTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace HermitianSpectraTutorial
+
+structure Vec2 where
+  x : Int
+  y : Int
+  deriving Repr, DecidableEq
+
+def Vec2.scale (a : Int) (v : Vec2) : Vec2 :=
+  { x := a * v.x, y := a * v.y }
+
+structure Matrix2 where
+  a00 : Int
+  a01 : Int
+  a10 : Int
+  a11 : Int
+  deriving Repr, DecidableEq
+
+def Matrix2.mulVec (A : Matrix2) (v : Vec2) : Vec2 :=
+  { x := A.a00 * v.x + A.a01 * v.y
+    y := A.a10 * v.x + A.a11 * v.y }
+
+def Matrix2.IsHermitian (A : Matrix2) : Prop :=
+  A.a01 = A.a10
+
+instance (A : Matrix2) : Decidable A.IsHermitian := by
+  unfold Matrix2.IsHermitian
+  infer_instance
+
+def isEigenpair (A : Matrix2) (lambda : Int) (v : Vec2) : Bool :=
+  v != { x := 0, y := 0 } &&
+    A.mulVec v == v.scale lambda
+
+def trace (A : Matrix2) : Int :=
+  A.a00 + A.a11
+
+def traceSquare (A : Matrix2) : Int :=
+  A.a00 * A.a00 + 2 * A.a01 * A.a10 + A.a11 * A.a11
+
+def spectralSum (spectrum : List Int) : Int :=
+  spectrum.foldl (fun total x => total + x) 0
+
+def spectralSquareSum (spectrum : List Int) : Int :=
+  spectrum.foldl (fun total x => total + x * x) 0
+
+def atomCount (spectrum : List Int) (x : Int) : Nat :=
+  spectrum.count x
+
+def H : Matrix2 :=
+  { a00 := 2, a01 := 1, a10 := 1, a11 := 2 }
+
+def D : Matrix2 :=
+  { a00 := 3, a01 := 0, a10 := 0, a11 := 1 }
+
+def plus : Vec2 := { x := 1, y := 1 }
+def minus : Vec2 := { x := 1, y := -1 }
+def e0 : Vec2 := { x := 1, y := 0 }
+def e1 : Vec2 := { x := 0, y := 1 }
+
+def orderedSpectrumH : List Int := [3, 1]
+def orderedSpectrumD : List Int := [3, 1]
+def emptySpectrum : List Int := []
+
+#eval [isEigenpair H 3 plus, isEigenpair H 1 minus,
+  isEigenpair D 3 e0, isEigenpair D 1 e1]
+
+#eval (orderedSpectrumH,
+  [atomCount orderedSpectrumH 3,
+   atomCount orderedSpectrumH 1,
+   atomCount orderedSpectrumH 2],
+  orderedSpectrumH.length)
+
+#eval [trace H, traceSquare H,
+  spectralSum orderedSpectrumH,
+  spectralSquareSum orderedSpectrumH]
+
+#eval [decide (H = D), decide (orderedSpectrumH = orderedSpectrumD),
+  decide H.IsHermitian, decide D.IsHermitian]
+
+#eval (emptySpectrum.length, atomCount emptySpectrum 0)
+
+example : isEigenpair H 3 plus = true := by decide
+example : isEigenpair H 1 minus = true := by decide
+example : orderedSpectrumH = [3, 1] := by decide
+example : atomCount orderedSpectrumH 3 = 1 := by decide
+example : atomCount orderedSpectrumH 1 = 1 := by decide
+example : atomCount orderedSpectrumH 2 = 0 := by decide
+example : trace H = spectralSum orderedSpectrumH := by decide
+example : traceSquare H = spectralSquareSum orderedSpectrumH := by decide
+example : H ≠ D := by decide
+example : orderedSpectrumH = orderedSpectrumD := by decide
+example : emptySpectrum.length = 0 := by decide
+
+end HermitianSpectraTutorial
+~~~
+
+Open a terminal in that scratch directory and type:
+
+~~~sh
+source "$HOME/.elan/env"
+elan run leanprover/lean4:v4.32.0 lean HermitianSpectraTutorial.lean
+~~~
+
+This exact worksheet was executed successfully with Lean 4.32.0 while the
+chapter was rebuilt. Lean printed:
+
+~~~text
+[true, true, true, true]
+([3, 1], [1, 1, 0], 2)
+[4, 10, 4, 10]
+[false, true, true, true]
+(0, 0)
+~~~
+
+Read the output in order:
+
+1. the four candidate eigenpairs for \(H\) and \(D\) all satisfy
+   \(Av=\lambda v\);
+2. the ordered spectrum is \([3,1]\), its masses at \(3,1,2\) are
+   \([1,1,0]\) in counting units, and it has two slots;
+3. matrix trace, matrix trace square, spectral sum, and spectral square sum
+   are \([4,10,4,10]\);
+4. \(H=D\) is false, their spectrum lists are equal, and both symmetry checks
+   are true; and
+5. the empty spectrum has zero slots and zero atoms at zero.
+
+Each <code>example</code> asks Lean's kernel to certify one finite equality.
+The code deliberately stores empirical masses as integer atom counts with a
+separate denominator two, so there is no hidden floating-point calculation.
+It verifies the tutorial ledger only. It does not prove the general Hermitian
+spectral theorem, compute Mathlib's <code>eigenvalues₀</code>, construct a
+<code>Measure ℝ</code>, or check any project declaration. Its command is safe
+on an ordinary Mac or Linux host because it loads only the pinned compiler and
+<code>Std</code>.
 
 ## A worked three-by-three audit
 
@@ -900,7 +1436,8 @@ All five are unconditional finite-dimensional algebra.
 | <code>integral_sq_complex_ofReal_spectralCountingMeasure</code> | Second complex counting-measure moment equals trace square |
 | <code>measurable_spectralCountingMeasure_of_measurable_eigenvalues</code> | Giry measurability, conditional on every ordered eigenvalue coordinate being measurable |
 
-Only the last row has the open coordinatewise premise.
+Only the last row is conditional inside RMT-10A. RMT-10B later discharges its
+premise and exports <code>measurable_spectralCountingMeasure</code>.
 
 ### Empirical spectral measure
 
@@ -915,7 +1452,8 @@ Only the last row has the open coordinatewise premise.
 | <code>measurable_empiricalSpectralMeasure_of_measurable_eigenvalues</code> | Conditional Giry measurability of the measure-valued map |
 | <code>measurable_empiricalSpectralProbability_of_measurable_eigenvalues</code> | Conditional measurability of the positive-dimensional wrapper |
 
-The first six are unconditional. The last two display the unresolved premise.
+The first six are unconditional in RMT-10A. The last two display the premise
+that RMT-10B discharges before exporting unconditional counterparts.
 
 ### Ambient totalization and GUE bridge
 
@@ -961,10 +1499,14 @@ measurability.
 one fixed matrix. It does not compare nearby matrices and does not imply that
 \(H\mapsto\lambda_i(H)\) is measurable.
 
-### Forgetting the hypothesis in the GUE bridge
+### Forgetting which GUE bridge is being quoted
 
-The ambient-versus-intrinsic pushforward equality assumes coordinatewise
-eigenvalue measurability. The theorem does not make that premise disappear.
+The RMT-10A name ending in
+<code>of_measurable_eigenvalues</code> assumes coordinatewise eigenvalue
+measurability. The theorem does not make that premise disappear. RMT-10B's
+shorter theorem
+<code>map_matrixLaw_ambientEmpiricalSpectralMeasure_eq_map_intrinsicLaw</code>
+has no such argument because that successor imports the proof.
 
 ### Reading zero totalization as non-Hermitian spectral theory
 
@@ -1056,34 +1598,39 @@ They do not prove tightness, convergence, a semicircle law, or universality.
     project's Wigner-scaled GUE. Compare your route with RMT-10C and mark which
     steps belong to deterministic algebra, integrability, and law transport.
 
-## Reproduce the checked slice
+## Reproduce the chapter without crossing the host boundary
 
-From the repository root, load the pinned Lean toolchain and compile the module
-with warnings treated as errors:
-
-~~~sh
-source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean
-~~~
-
-Build the targeted module and its dependencies:
+On an ordinary Mac or Linux machine, a reader may run the bounded
+<code>Std</code> worksheet exactly as shown above. From the repository root,
+the workstation may also verify the page-owned card and the static site:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomMatrices.HermitianSpectrum
-~~~
-
-Return to the repository root and build the complete draft teaching site:
-
-~~~sh
-cd ..
+site/content/knowledge-base/deep-dives/finite-hermitian-spectra-and-empirical-measures/generate-card.sh --verify
 make site-check
+git diff --check
 ~~~
 
-The repository-wide milestone gate is <code>make check</code>. A green
-technical build does not complete editorial review of this public working note.
-The required human mathematical and publication reviews remain pending.
+These commands do not compile the project. The exact RMT-10A, RMT-10B, and
+RMT-10C modules import Mathlib and therefore belong on approved Linux compute.
+The three <strong>Try it in the repository</strong> panels above render the
+guarded commands separately:
+
+~~~sh
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean
+
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean
+
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean
+~~~
+
+The full cloud release gate is <code>CLOUD_LEAN_BUILD=1 make check</code> on an
+approved Linux builder. This rebuild does not claim that any project module
+was recompiled on the Mac. A green technical build would still not complete
+the pending human mathematical, editorial, scientific-integrity, and
+accessibility reviews.
 
 ## Where to continue
 

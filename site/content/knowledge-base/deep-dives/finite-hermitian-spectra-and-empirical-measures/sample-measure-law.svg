@@ -1,79 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420"
-     viewBox="0 0 760 420" role="img"
-     aria-labelledby="esmDeepTitle esmDeepDesc">
-  <title id="esmDeepTitle">A sample spectrum, its measure, and a law over measures</title>
-  <desc id="esmDeepDesc">One intrinsic Hermitian matrix produces a decreasing real spectrum and one empirical spectral measure. A separate coordinatewise eigenvalue-measurability gate is required before a matrix probability law can be pushed forward to a probability law whose samples are measures.</desc>
-  <rect width="760" height="420" fill="#F7F4F0"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"
+     viewBox="0 0 1200 800" role="img"
+     aria-labelledby="typedSpectraTitle typedSpectraDesc">
+  <title id="typedSpectraTitle">Five distinct types from an ordered spectrum to its mean measure</title>
+  <desc id="typedSpectraDesc">For the fixed matrix H, the ordered eigenvalue function returns three and one, and the sample empirical measure puts one-half mass at each. If H varies randomly, the same construction is a function from Hermitian matrices to measures. After measurability is proved, pushing the matrix law through that function produces a measure on measures. Joining the outer law produces one mean measure on the real line. The vector, sample measure, function, outer law, and mean measure are different typed objects.</desc>
+  <rect width="1200" height="800" fill="#F7F1E7"/>
   <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .cream{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .green{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}
-    .gray{fill:#EDE8E1;stroke:#7F786D;stroke-width:1.5}
-    .arrow{fill:none;stroke:#A67C52;stroke-width:2}
-    .dash{fill:none;stroke:#A89B8C;stroke-width:1.5;stroke-dasharray:5 4}
+    .ink{fill:#17283F;font-family:Inter,Arial,Helvetica,sans-serif}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:18px;fill:#536172}
+    .head{font-size:18px;font-weight:700;letter-spacing:.5px}
+    .body{font-size:18px}
+    .small{font-size:15px;fill:#536172}
+    .code{font-family:"SFMono-Regular",Consolas,monospace;font-size:16px}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:24px}
+    .panel{fill:#FFFDF8;stroke:#C9BBA7;stroke-width:2}
+    .blue{fill:#E7F0F7;stroke:#527394;stroke-width:2}
+    .green{fill:#E8F2E3;stroke:#6C8A5B;stroke-width:2}
+    .clay{fill:#F5E5DA;stroke:#B36B3D;stroke-width:2}
+    .gray{fill:#ECE8E1;stroke:#7A756D;stroke-width:2}
+    .arrow{fill:none;stroke:#B36B3D;stroke-width:3}
+    .dash{fill:none;stroke:#8A96A5;stroke-width:2;stroke-dasharray:7 6}
   </style>
   <defs>
-    <marker id="esmDeepArrow" markerWidth="8" markerHeight="8" refX="7" refY="4"
+    <marker id="typedArrow" markerWidth="10" markerHeight="10" refX="9" refY="5"
             orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/>
+      <path d="M0,0 L10,5 L0,10 Z" fill="#B36B3D"/>
     </marker>
   </defs>
 
-  <text x="24" y="28" class="t title">One sample measure is not yet a law over measures</text>
-  <text x="24" y="48" class="t m">Finite spectral algebra reaches the upper path; random-law transport needs the lower gate.</text>
+  <text x="56" y="54" class="ink title">“Spectral distribution” can hide five different objects</text>
+  <text x="56" y="84" class="ink sub">Follow the types, not the nickname: vector → sample measure → random measure → outer law → mean.</text>
 
-  <rect x="24" y="78" width="194" height="116" rx="12" class="blue"/>
-  <text x="44" y="106" class="t h">HERMITIAN SAMPLE</text>
-  <text x="44" y="134" class="t s">One finite operator</text>
-  <text x="44" y="156" class="t s">in intrinsic geometry</text>
-  <text x="44" y="178" class="t m">Entries depend on basis</text>
+  <rect x="48" y="118" width="1104" height="238" rx="18" class="panel"/>
+  <text x="76" y="154" class="ink head">DETERMINISTIC PATH FOR THE FIXED MATRIX H = [[2,1],[1,2]]</text>
 
-  <path d="M226 136 L268 136" class="arrow" marker-end="url(#esmDeepArrow)"/>
+  <rect x="76" y="178" width="226" height="142" rx="14" class="blue"/>
+  <text x="98" y="210" class="ink head">ORDERED SPECTRUM</text>
+  <text x="98" y="250" class="ink math">Λ(H) = (3, 1)</text>
+  <text x="98" y="282" class="ink code">Fin 2 → ℝ</text>
+  <text x="98" y="306" class="ink small">vector; slot order matters</text>
 
-  <rect x="276" y="78" width="208" height="116" rx="12" class="cream"/>
-  <text x="296" y="106" class="t h">ORDERED REAL SPECTRUM</text>
-  <text x="296" y="134" class="t s">Decreasing index slots</text>
-  <text x="296" y="156" class="t s">keep repeated levels</text>
-  <text x="296" y="178" class="t m">Invariant under basis change</text>
+  <path d="M314 249 L362 249" class="arrow" marker-end="url(#typedArrow)"/>
 
-  <path d="M492 136 L534 136" class="arrow" marker-end="url(#esmDeepArrow)"/>
+  <rect x="374" y="178" width="300" height="142" rx="14" class="green"/>
+  <text x="396" y="210" class="ink head">ONE SAMPLE MEASURE</text>
+  <text x="396" y="250" class="ink math">L<tspan baseline-shift="sub" font-size="14">H</tspan> = ½δ₃ + ½δ₁</text>
+  <text x="396" y="282" class="ink code">Measure ℝ</text>
+  <text x="396" y="306" class="ink small">mass at 3 = ½; mass at 1 = ½</text>
 
-  <rect x="542" y="78" width="194" height="116" rx="12" class="green"/>
-  <text x="562" y="106" class="t h">EMPIRICAL MEASURE</text>
-  <text x="562" y="134" class="t s">One equal share per slot</text>
-  <text x="562" y="156" class="t s">in positive dimension</text>
-  <text x="562" y="178" class="t m">One deterministic output</text>
+  <path d="M686 249 L734 249" class="arrow" marker-end="url(#typedArrow)"/>
 
-  <path d="M639 202 L639 236" class="dash"/>
+  <rect x="746" y="178" width="378" height="142" rx="14" class="clay"/>
+  <text x="768" y="210" class="ink head">THE OBSERVABLE WHEN H VARIES</text>
+  <text x="768" y="250" class="ink math">H ↦ L<tspan baseline-shift="sub" font-size="14">H</tspan></text>
+  <text x="768" y="282" class="ink code">HermitianEuclidean n → Measure ℝ</text>
+  <text x="768" y="306" class="ink small">a function; not yet a probability law</text>
 
-  <rect x="476" y="244" width="260" height="76" rx="12" class="clay"/>
-  <text x="496" y="270" class="t h">MEASURABILITY GATE</text>
-  <text x="496" y="294" class="t s">Every ordered eigenvalue coordinate</text>
-  <text x="496" y="312" class="t s">must vary measurably with the matrix.</text>
+  <path d="M935 332 L935 390" class="dash"/>
+  <rect x="756" y="380" width="368" height="72" rx="14" class="clay"/>
+  <text x="780" y="410" class="ink head">MEASURABILITY GATE · RMT-10B</text>
+  <text x="780" y="438" class="ink small">licenses the pushforward; chooses no source law</text>
 
-  <rect x="164" y="244" width="252" height="76" rx="12" class="gray"/>
-  <text x="184" y="270" class="t h">RANDOM MATRIX LAW</text>
-  <text x="184" y="294" class="t s">Probability on intrinsic or ambient</text>
-  <text x="184" y="312" class="t s">finite matrix samples</text>
+  <rect x="48" y="488" width="1104" height="238" rx="18" class="panel"/>
+  <text x="76" y="524" class="ink head">PROBABILISTIC PATH AFTER A MATRIX LAW μ<tspan baseline-shift="sub" font-size="13">n</tspan> AND MEASURABILITY ARE AVAILABLE</text>
 
-  <path d="M290 328 L290 346" class="arrow" marker-end="url(#esmDeepArrow)"/>
-  <path d="M606 328 L606 346" class="arrow" marker-end="url(#esmDeepArrow)"/>
+  <rect x="76" y="548" width="240" height="142" rx="14" class="gray"/>
+  <text x="98" y="580" class="ink head">MATRIX LAW</text>
+  <text x="98" y="620" class="ink math">μ<tspan baseline-shift="sub" font-size="15">n</tspan></text>
+  <text x="98" y="650" class="ink code">Measure (Hermitian…)</text>
+  <text x="98" y="674" class="ink small">probability across matrices</text>
 
-  <rect x="164" y="350" width="572" height="44" rx="10" class="green"/>
-  <text x="184" y="377" class="t h">LAW OVER MEASURES</text>
-  <text x="348" y="377" class="t s">Available only after the displayed gate is proved.</text>
+  <path d="M328 619 L376 619" class="arrow" marker-end="url(#typedArrow)"/>
+  <text x="333" y="602" class="ink small">map</text>
 
-  <rect x="24" y="244" width="116" height="150" rx="12" class="cream"/>
-  <text x="44" y="270" class="t h">BOUNDARY</text>
-  <text x="44" y="298" class="t s">The algebraic</text>
-  <text x="44" y="318" class="t s">sample measure</text>
-  <text x="44" y="338" class="t s">is checked.</text>
-  <path d="M44 354 L120 354" class="dash"/>
-  <text x="44" y="376" class="t m">Gate unproved</text>
+  <rect x="388" y="548" width="330" height="142" rx="14" class="blue"/>
+  <text x="410" y="580" class="ink head">LAW ON SAMPLE MEASURES</text>
+  <text x="410" y="618" class="ink math">Q<tspan baseline-shift="sub" font-size="15">n</tspan> = map(μ<tspan baseline-shift="sub" font-size="15">n</tspan>, H ↦ L<tspan baseline-shift="sub" font-size="15">H</tspan>)</text>
+  <text x="410" y="650" class="ink code">Measure (Measure ℝ)</text>
+  <text x="410" y="674" class="ink small">one outer sample is a whole measure</text>
+
+  <path d="M730 619 L778 619" class="arrow" marker-end="url(#typedArrow)"/>
+  <text x="733" y="602" class="ink small">join</text>
+
+  <rect x="790" y="548" width="334" height="142" rx="14" class="green"/>
+  <text x="812" y="580" class="ink head">MEAN EMPIRICAL MEASURE</text>
+  <text x="812" y="618" class="ink math">mean L<tspan baseline-shift="sub" font-size="15">n</tspan> = join(Q<tspan baseline-shift="sub" font-size="15">n</tspan>)</text>
+  <text x="812" y="650" class="ink code">Measure ℝ</text>
+  <text x="812" y="674" class="ink small">one average; sample pairing is forgotten</text>
+
+  <rect x="48" y="748" width="1104" height="32" rx="10" class="clay"/>
+  <text x="71" y="770" class="ink small">Zero-size audit: sample measure = 0; outer law = Dirac at 0; joined mean = 0.  Inner zero mass and outer unit mass are compatible.</text>
 </svg>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="h2LedgerTitle h2LedgerDesc">
+  <title id="h2LedgerTitle">Exact spectrum and atom ledger for a two-by-two Hermitian matrix</title>
+  <desc id="h2LedgerDesc">The matrix with rows two one and one two sends the vector one one to three times itself and one minus one to itself. Its decreasing spectrum is three then one. The counting measure has unit atoms at three and one; its empirical measure has one-half atoms there. Trace four and trace-square ten equal the first two spectral power sums.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .ink{fill:#17283F;font-family:Inter,Arial,Helvetica,sans-serif}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:18px;fill:#536172}
+    .head{font-size:19px;font-weight:700;letter-spacing:.7px}
+    .body{font-size:19px}
+    .small{font-size:16px;fill:#536172}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:27px}
+    .panel{fill:#FFFDF8;stroke:#C9BBA7;stroke-width:2}
+    .blue{fill:#E7F0F7;stroke:#527394;stroke-width:2}
+    .green{fill:#E8F2E3;stroke:#6C8A5B;stroke-width:2}
+    .clay{fill:#F5E5DA;stroke:#B36B3D;stroke-width:2}
+    .line{stroke:#6D7887;stroke-width:2}
+    .guide{stroke:#A8B1BC;stroke-width:1.5;stroke-dasharray:5 5}
+    .arrow{fill:none;stroke:#B36B3D;stroke-width:3}
+  </style>
+  <defs>
+    <marker id="h2Arrow" markerWidth="10" markerHeight="10" refX="9" refY="5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#B36B3D"/>
+    </marker>
+  </defs>
+
+  <text x="56" y="54" class="ink title">One matrix → two checked eigenpairs → two spectral atoms</text>
+  <text x="56" y="84" class="ink sub">Every number below belongs to H = [[2,1],[1,2]]; no numerical eigensolver is hidden.</text>
+
+  <rect x="48" y="118" width="294" height="248" rx="18" class="blue"/>
+  <text x="76" y="154" class="ink head">1 · HERMITIAN INPUT</text>
+  <text x="76" y="202" class="ink math">H =</text>
+  <path d="M151 176 L139 176 L139 286 L151 286" fill="none" class="line"/>
+  <path d="M290 176 L302 176 L302 286 L290 286" fill="none" class="line"/>
+  <text x="177" y="218" class="ink math">2</text>
+  <text x="247" y="218" class="ink math">1</text>
+  <text x="177" y="268" class="ink math">1</text>
+  <text x="247" y="268" class="ink math">2</text>
+  <text x="76" y="320" class="ink body">H* = H</text>
+  <text x="76" y="345" class="ink small">real + symmetric ⇒ Hermitian</text>
+
+  <path d="M352 242 L392 242" class="arrow" marker-end="url(#h2Arrow)"/>
+
+  <rect x="402" y="118" width="390" height="248" rx="18" class="panel"/>
+  <text x="430" y="154" class="ink head">2 · EIGENPAIR CERTIFICATES</text>
+  <rect x="430" y="176" width="334" height="72" rx="12" class="green"/>
+  <text x="450" y="206" class="ink body">H · (1, 1) = (3, 3)</text>
+  <text x="450" y="232" class="ink body">= 3 · (1, 1)</text>
+  <rect x="430" y="266" width="334" height="72" rx="12" class="green"/>
+  <text x="450" y="296" class="ink body">H · (1, −1) = (1, −1)</text>
+  <text x="450" y="322" class="ink body">= 1 · (1, −1)</text>
+
+  <path d="M802 242 L842 242" class="arrow" marker-end="url(#h2Arrow)"/>
+
+  <rect x="852" y="118" width="300" height="248" rx="18" class="clay"/>
+  <text x="880" y="154" class="ink head">3 · ORDERED SLOTS</text>
+  <text x="880" y="204" class="ink math">Λ(H) = (3, 1)</text>
+  <rect x="880" y="230" width="112" height="86" rx="12" class="panel"/>
+  <rect x="1012" y="230" width="112" height="86" rx="12" class="panel"/>
+  <text x="900" y="257" class="ink small">slot 0</text>
+  <text x="925" y="295" class="ink math">3</text>
+  <text x="1032" y="257" class="ink small">slot 1</text>
+  <text x="1057" y="295" class="ink math">1</text>
+  <text x="880" y="344" class="ink small">decreasing: 3 ≥ 1</text>
+
+  <rect x="48" y="398" width="1104" height="248" rx="18" class="panel"/>
+  <text x="76" y="436" class="ink head">4 · THE SAME TWO SLOTS AS ATOMS ON THE REAL LINE</text>
+
+  <text x="76" y="488" class="ink body">counting N<tspan baseline-shift="sub" font-size="13">H</tspan></text>
+  <text x="76" y="532" class="ink body">empirical L<tspan baseline-shift="sub" font-size="13">H</tspan></text>
+  <line x1="286" y1="558" x2="1080" y2="558" class="line"/>
+  <line x1="418" y1="548" x2="418" y2="568" class="line"/>
+  <line x1="682" y1="548" x2="682" y2="568" class="line"/>
+  <line x1="946" y1="548" x2="946" y2="568" class="line"/>
+  <text x="410" y="592" class="ink body">1</text>
+  <text x="674" y="592" class="ink body">2</text>
+  <text x="938" y="592" class="ink body">3</text>
+
+  <line x1="418" y1="480" x2="418" y2="548" class="guide"/>
+  <line x1="946" y1="480" x2="946" y2="548" class="guide"/>
+  <circle cx="418" cy="480" r="23" fill="#527394"/>
+  <circle cx="946" cy="480" r="23" fill="#527394"/>
+  <text x="411" y="487" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700">1</text>
+  <text x="939" y="487" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700">1</text>
+
+  <line x1="418" y1="524" x2="418" y2="548" class="guide"/>
+  <line x1="946" y1="524" x2="946" y2="548" class="guide"/>
+  <circle cx="418" cy="524" r="23" fill="#315F55"/>
+  <circle cx="946" cy="524" r="23" fill="#315F55"/>
+  <text x="403" y="531" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700">½</text>
+  <text x="931" y="531" fill="#FFFDF8" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700">½</text>
+  <text x="646" y="487" class="ink small">no atom at entry value 2</text>
+
+  <rect x="48" y="672" width="1104" height="56" rx="14" class="blue"/>
+  <text x="76" y="707" class="ink body">Trace ledger:  4 = 3 + 1</text>
+  <text x="470" y="707" class="ink body">Trace-square ledger:  10 = 3² + 1²</text>
+  <text x="970" y="707" class="ink body">L<tspan baseline-shift="sub" font-size="13">H</tspan>(ℝ) = 1</text>
+</svg>

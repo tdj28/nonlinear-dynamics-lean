@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 19:47 PDT
+Last updated: 2026-07-22 19:51 PDT
 
-Audited baseline: `main` at `09e1253`
+Audited baseline: `main` at `67fddfa`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **9 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **10 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -289,6 +289,16 @@ ledger, and dimension-zero branch without invoking eigenvalues, density, or
 asymptotics. Three figures, six Lean bridges, two guarded project probes, a
 complete four-declaration RMT-09 map, and a nine-example local `Std` worksheet
 make every finite arithmetic layer reproducible.
+*Finite Hermitian Spectra and Empirical Measures* now diagonalizes the exact
+matrix with rows `(2, 1)` and `(1, 2)`, certifies eigenpairs at `3` and `1`,
+and places counting masses `(1, 1)` and empirical masses `(1/2, 1/2)` atom by
+atom. The isospectral diagonal matrix `diag(3, 1)` shows precisely which basis
+and entry information the spectrum forgets. A five-level type ladder then
+separates ordered spectra, sample measures, measure-valued observables, laws on
+measures, and their Giry mean. Three accessible figures, seven Lean bridges,
+three guarded RMT-10A/B/C probes, and an executed `Std` eigenpair/atom ledger
+make the current conditional-versus-unconditional measurability boundary
+explicit, including the zero-dimensional inner-zero/outer-Dirac distinction.
 
 ## Pause Handoff: RMT-35 Source Milestone
 
@@ -3176,6 +3186,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `67fddfa`: rebuild *First Exact Finite Gaussian Unitary Ensemble Trace
+  Moments* around sample values `(1, 15)`, ensemble expectations `(0, 2)`,
+  three controlled near-misses, six Lean bridges, the exact RMT-09 declaration
+  map, and a nine-example local worksheet.
 - `09e1253`: rebuild *Finite GUE from Independent Gaussian Coordinates* around
   the exact size-two Wigner ledger, reflection and scale near-misses, the
   zero-dimensional Dirac branch, six Lean bridges, three figures, and an

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760"
+     viewBox="0 0 1200 760" role="img"
+     aria-labelledby="isoLossTitle isoLossDesc">
+  <title id="isoLossTitle">Different Hermitian matrices can have the same spectral measure</title>
+  <desc id="isoLossDesc">The coupled matrix with rows two one and one two differs from the diagonal matrix with entries three and one. Their upper-right entries and eigenvector bases differ, but both have ordered eigenvalues three and one, trace four, trace-square ten, and empirical measure with half mass at each eigenvalue. A unitary basis change relates them, so the spectrum forgets basis coordinates and eigenvectors.</desc>
+  <rect width="1200" height="760" fill="#F7F1E7"/>
+  <style>
+    .ink{fill:#17283F;font-family:Inter,Arial,Helvetica,sans-serif}
+    .title{font-size:30px;font-weight:700}
+    .sub{font-size:18px;fill:#536172}
+    .head{font-size:19px;font-weight:700;letter-spacing:.7px}
+    .body{font-size:19px}
+    .small{font-size:16px;fill:#536172}
+    .math{font-family:"STIX Two Text","Times New Roman",serif;font-size:27px}
+    .panel{fill:#FFFDF8;stroke:#C9BBA7;stroke-width:2}
+    .blue{fill:#E7F0F7;stroke:#527394;stroke-width:2}
+    .green{fill:#E8F2E3;stroke:#6C8A5B;stroke-width:2}
+    .clay{fill:#F5E5DA;stroke:#B36B3D;stroke-width:2}
+    .line{stroke:#6D7887;stroke-width:2}
+    .dash{fill:none;stroke:#8A96A5;stroke-width:2;stroke-dasharray:7 6}
+    .arrow{fill:none;stroke:#B36B3D;stroke-width:3}
+  </style>
+  <defs>
+    <marker id="isoArrow" markerWidth="10" markerHeight="10" refX="9" refY="5"
+            orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#B36B3D"/>
+    </marker>
+  </defs>
+
+  <text x="56" y="54" class="ink title">Same spectrum, different coordinates: what the atom ledger forgets</text>
+  <text x="56" y="84" class="ink sub">Both inputs are Hermitian. Equality of their spectral data does not imply equality of matrices.</text>
+
+  <rect x="48" y="118" width="434" height="314" rx="18" class="blue"/>
+  <text x="76" y="154" class="ink head">COUPLED BASIS REPRESENTATION H</text>
+  <text x="76" y="202" class="ink math">H =</text>
+  <path d="M151 176 L139 176 L139 286 L151 286" fill="none" class="line"/>
+  <path d="M290 176 L302 176 L302 286 L290 286" fill="none" class="line"/>
+  <text x="177" y="218" class="ink math">2</text>
+  <text x="247" y="218" class="ink math">1</text>
+  <text x="177" y="268" class="ink math">1</text>
+  <text x="247" y="268" class="ink math">2</text>
+  <rect x="326" y="178" width="128" height="104" rx="12" class="clay"/>
+  <text x="343" y="208" class="ink small">entry test</text>
+  <text x="343" y="248" class="ink math">H₀₁ = 1</text>
+  <text x="76" y="326" class="ink body">eigendirections: (1, 1), (1, −1)</text>
+  <text x="76" y="358" class="ink body">H · (1, 1) = 3 · (1, 1)</text>
+  <text x="76" y="390" class="ink body">H · (1, −1) = 1 · (1, −1)</text>
+  <text x="76" y="418" class="ink small">off-diagonal coupling is visible in this basis</text>
+
+  <rect x="718" y="118" width="434" height="314" rx="18" class="green"/>
+  <text x="746" y="154" class="ink head">DIAGONAL BASIS REPRESENTATION D</text>
+  <text x="746" y="202" class="ink math">D =</text>
+  <path d="M821 176 L809 176 L809 286 L821 286" fill="none" class="line"/>
+  <path d="M960 176 L972 176 L972 286 L960 286" fill="none" class="line"/>
+  <text x="847" y="218" class="ink math">3</text>
+  <text x="917" y="218" class="ink math">0</text>
+  <text x="847" y="268" class="ink math">0</text>
+  <text x="917" y="268" class="ink math">1</text>
+  <rect x="996" y="178" width="128" height="104" rx="12" class="clay"/>
+  <text x="1013" y="208" class="ink small">entry test</text>
+  <text x="1013" y="248" class="ink math">D₀₁ = 0</text>
+  <text x="746" y="326" class="ink body">eigendirections: (1, 0), (0, 1)</text>
+  <text x="746" y="358" class="ink body">D · (1, 0) = 3 · (1, 0)</text>
+  <text x="746" y="390" class="ink body">D · (0, 1) = 1 · (0, 1)</text>
+  <text x="746" y="418" class="ink small">the standard basis is already an eigenbasis</text>
+
+  <path d="M494 270 C560 220 640 220 706 270" class="arrow" marker-end="url(#isoArrow)"/>
+  <text x="515" y="205" class="ink body">H = U D U*</text>
+  <text x="511" y="232" class="ink small">unitary basis change</text>
+  <text x="552" y="304" class="ink math">H ≠ D</text>
+
+  <path d="M265 442 L265 478" class="dash"/>
+  <path d="M935 442 L935 478" class="dash"/>
+
+  <rect x="134" y="486" width="932" height="168" rx="18" class="panel"/>
+  <text x="162" y="522" class="ink head">THE SPECTRAL MAP MERGES BOTH INPUTS</text>
+  <rect x="162" y="544" width="244" height="82" rx="12" class="blue"/>
+  <text x="184" y="578" class="ink body">ordered spectrum</text>
+  <text x="217" y="612" class="ink math">(3, 1)</text>
+  <path d="M418 585 L472 585" class="arrow" marker-end="url(#isoArrow)"/>
+  <rect x="484" y="544" width="318" height="82" rx="12" class="green"/>
+  <text x="506" y="577" class="ink body">empirical measure</text>
+  <text x="516" y="611" class="ink math">½ δ₃ + ½ δ₁</text>
+  <path d="M814 585 L868 585" class="arrow" marker-end="url(#isoArrow)"/>
+  <rect x="880" y="544" width="158" height="82" rx="12" class="clay"/>
+  <text x="903" y="577" class="ink body">moments</text>
+  <text x="904" y="608" class="ink body">4 and 10</text>
+
+  <rect x="48" y="680" width="1104" height="52" rx="13" class="clay"/>
+  <text x="76" y="713" class="ink body">Forgotten: matrix entries, basis vectors, eigenvector orientation.  Preserved: ordered levels, multiplicity, spectral moments.</text>
+</svg>
