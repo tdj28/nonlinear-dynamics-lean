@@ -2,17 +2,17 @@
 title: "Finite Block Decomposition for Subadditive Processes"
 slug: "finite-block-decomposition-for-subadditive-processes"
 date: 2026-07-21
-summary: "A textbook derivation of two finite block-and-remainder bounds, their Birkhoff-sum form, the exact time-zero boundary, and the minimal assumptions needed for integrability before any Kingman theorem."
-lead: "Cut a long finite horizon into equal blocks and one short remainder. Shifted subadditivity turns that arithmetic cut into a Birkhoff-sum upper bound. The result is powerful finite infrastructure, but it is not yet a convergence theorem."
+summary: "Cut an exact eleven-step process into two four-step blocks and a three-step remainder in both temporal orientations, then climb to the checked finite Birkhoff-sum bounds and their precise boundary assumptions."
+lead: "Finite blocking is arithmetic plus shifted subadditivity. This chapter makes every sample point, quotient, remainder, empty sum, and integrability gate visible before any probability, ergodicity, or convergence theorem enters."
 draft: false
 pro_reviewed: false
-level: "Natural-number quotient and remainder, function iterates, finite Birkhoff sums, measure preservation, integrability, subadditive processes, and discrete matrix cocycles"
-reading_time: "105 to 145 minutes"
-prerequisites: "Finite sums, natural-number division, measure-preserving maps, real-valued integrability, one-sided discrete matrix cocycles, and the log-positive norm observable; no ergodic theorem is assumed"
+level: "Natural-number quotient and remainder, powered function iterates, finite Birkhoff sums, integrability, shifted subadditivity, and discrete matrix cocycles"
+reading_time: "110 to 145 minutes"
+prerequisites: "Finite sums and natural-number division; iterates, measures, integrability, and Lean notation are introduced when they first appear"
 lean_module: "NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks"
 toc: true
 og_image: "finite-block-decomposition-for-subadditive-processes-card.png"
-og_image_alt: "Two rows split a finite horizon into full blocks and one short remainder. The upper row places the remainder last, while the lower row places it first and shifts the full blocks. A boundary label says that both are finite upper bounds and neither is a limit theorem."
+og_image_alt: "Eleven exact weights totaling 40 are cut as four plus four plus three with sums 12, 18, and 10, and as three plus four plus four with sums 8, 15, and 17. Both orientations total 40."
 ai_disclosure: |
   **AI-use disclosure.** Generative-AI tools helped draft, revise, illustrate,
   and review this note. The author selected the questions, shaped the
@@ -23,204 +23,422 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is an AI-assisted working draft. The mathematical
-prose, sources, Lean declaration map, figures, and accessibility have not yet
-received the required human and Pro reviews. The page is publicly available as
-an open working note while those reviews remain pending.
+**Editorial status.** This is an AI-assisted public working note. Its
+mathematical prose, Lean declaration map, figures, and accessibility have not
+yet received the required human and Pro reviews. The checked Lean source is
+authoritative where prose and code disagree.
 {{< /panel >}}
 
-Suppose a process assigns a real number \(X_n(\omega)\) to every finite time
-\(n\in\mathbb N\) and every outcome \(\omega\) in a base space \(\Omega\).
-Think of \(X_n\) as a cost, a passage time, a logarithmic growth budget, or a
-finite-time matrix-product observable. The defining structural inequality is
-shifted subadditivity:
+## Begin with eleven weights and make both cuts
+
+Take the finite state space
 
 \[
-X_{m+k}(\omega)
-\le
-X_k(T^m\omega)+X_m(\omega).
+\Omega=\{0,1,\ldots,11\}
 \]
 
-Here \(T:\Omega\to\Omega\) advances the environment by one step. The shift is
-essential. The later \(k\)-step contribution begins after the first \(m\)
-steps, so it is evaluated at \(T^m\omega\), not at the original outcome.
+and advance one state cyclically:
 
-The eighteenth random-matrix-theory milestone (RMT-18) asks a finite question.
-If a horizon \(n\) is much longer than a chosen block length \(b\), can we
-upper-bound \(X_n\) by repeatedly using the same block observable \(X_b\), plus
-one shorter remainder? The answer is yes, in two useful orientations. The
-proof needs arithmetic, iterates, and subadditivity. Integrability enters only
-when we ask whether the resulting finite sum has a legitimate integral.
+\[
+T(s)=s+1\pmod {12}.
+\]
 
-This distinction sets the chapter's altitude. Finite block decomposition is a
-piece of machinery used inside proofs of subadditive ergodic theorems. It does
-not itself establish a limit, an almost-everywhere statement, or a Lyapunov
-exponent. Kingman's theorem remains ahead, not hidden in the notation.
+Attach these nonnegative one-step weights:
 
-## Choose a route up
+| state \(s\) | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| \(w(s)\) | 2 | 5 | 1 | 4 | 3 | 6 | 2 | 7 | 1 | 5 | 4 | 6 |
 
-| Route | Begin with | Destination |
-|---|---|---|
-| First encounter | [One horizon, two legal cuts](#one-horizon-two-legal-cuts) | See the geometry before the symbols |
-| Arithmetic route | [Quotient and remainder choose the block count](#quotient-and-remainder-choose-the-block-count) | Understand the cases \(b\gt0\), \(b=0\), and \(q=0\) |
-| Algebra route | [Terminal remainder: repeat one block](#terminal-remainder-repeat-one-block) | Derive the main induction |
-| Boundary route | [Time zero is not automatically zero](#time-zero-is-not-automatically-zero) | Locate the one theorem family that needs normalization |
-| Analysis route | [Finite integrability has one minimal dynamical gate](#finite-integrability-has-one-minimal-dynamical-gate) | Separate pointwise algebra from integration |
-| Cocycle route | [The matrix-cocycle specialization](#the-matrix-cocycle-specialization) | Apply the generic bounds without adding hypotheses |
-| Physics route | [Blocking as a coarse-graining analogy](#blocking-as-a-coarse-graining-analogy) | Interpret blocks without claiming a renormalization theorem |
-| Lean route | [The complete twelve-declaration map](#the-complete-twelve-declaration-map) | Audit the frozen Lean interface in source order |
-| Summit route | [The exact boundary before Kingman](#the-exact-boundary-before-kingman) | State what is still missing |
+Interpret these integers as real weights.
 
-### Learning objectives
+Starting at state \(s\), define the finite process
 
-By the summit, a reader should be able to:
+\[
+X_n(s)=\sum_{t=0}^{n-1}w(T^t s).
+\]
 
-1. state shifted subadditivity with the correct base shift;
-2. define a finite Birkhoff sum and expand it term by term;
-3. explain why the block map is \(T^b\) and the block observable is \(X_b\);
-4. derive the terminal-remainder inequality by induction on the block count;
-5. turn \(n=bq+r\) into the quotient-and-remainder theorem;
-6. derive the complementary remainder-first inequality;
-7. explain why neither remainder orientation needs \(X_0=0\);
-8. prove that subadditivity forces \(X_0\ge0\);
-9. identify why a zero-count exact-block estimate needs \(X_0=0\);
-10. use a constant-one process to refute an assumption-free uniform exact-block bound;
-11. explain why a positive exact block count needs no time-zero normalization;
-12. read Lean's total conventions \(n/0=0\) and \(n\bmod0=n\);
-13. distinguish a theorem that is meaningful for positive \(b\) from one that is merely valid at \(b=0\);
-14. prove finite Birkhoff-sum integrability term by term;
-15. identify preservation of \(T^b\), rather than preservation of \(T\), as the generic theorem's exact dynamical premise;
-16. explain why probability and ergodicity play no role in the finite bound;
-17. give an ergodic map whose square is not ergodic;
-18. identify the two cocycle inequalities that use the cocycle directly;
-19. identify the one cocycle theorem that consumes one-step log-positive integrability;
-20. preserve the empty matrix-index boundary;
-21. interpret block length as a coarse observational scale without overclaiming physics;
-22. distinguish log-positive expansion control from a signed growth exponent;
-23. audit all twelve public declarations in source order; and
-24. list the precise asymptotic statements that RMT-18 does not prove.
+The zero-step sum is empty, so \(X_0(s)=0\). This process is **additive**:
 
-## The common setup
+\[
+X_{m+k}(s)=X_m(s)+X_k(T^m s).
+\]
 
-Fix a measurable space \(\Omega\), a measure \(\mu\), a map
-\(T:\Omega\to\Omega\), and a family
+Every additive process is subadditive because equality implies the required
+upper bound. We use additivity only to make the example's arithmetic exact.
+The project theorem assumes the weaker inequality.
+
+If this finite space is given its uniform probability measure, every displayed
+finite-horizon function is integrable and the cyclic base preserves the
+measure. Probability is convenient for this model, not an assumption of the
+pointwise block theorems.
+
+Choose:
+
+\[
+n=11,
+\qquad
+b=4.
+\]
+
+Natural-number division gives:
+
+\[
+q=n/b=11/4=2,
+\qquad
+r=n\bmod b=11\bmod4=3.
+\]
+
+The arithmetic identity is
+
+\[
+bq+r=4\cdot2+3=11.
+\]
+
+The eleven observed weights from state zero are
+
+\[
+2,\ 5,\ 1,\ 4,\ 3,\ 6,\ 2,\ 7,\ 1,\ 5,\ 4,
+\]
+
+and their total is
+
+\[
+X_{11}(0)=40.
+\]
+
+### Orientation one: complete blocks first
+
+Cut the horizon as
+
+\[
+11=4+4+3.
+\]
+
+The first block starts at state \(0\), the second at \(T^4(0)=4\), and the
+terminal remainder at \(T^8(0)=8\):
+
+\[
+\begin{aligned}
+X_4(0)&=2+5+1+4=12,\\
+X_4(T^4 0)&=3+6+2+7=18,\\
+X_3(T^8 0)&=1+5+4=10.
+\end{aligned}
+\]
+
+Thus
+
+\[
+X_{11}(0)=12+18+10=40.
+\]
+
+For a merely subadditive process, the checked theorem replaces this equality
+with \(\le\).
+
+### Orientation two: remainder first
+
+The same natural number is also
+
+\[
+11=3+4+4.
+\]
+
+Now the three-step remainder stays at the original state, and the complete
+blocks begin at \(T^3(0)=3\):
+
+\[
+\begin{aligned}
+X_3(0)&=2+5+1=8,\\
+X_4(T^3 0)&=4+3+6+2=15,\\
+X_4(T^7 0)&=7+1+5+4=17.
+\end{aligned}
+\]
+
+Again,
+
+\[
+X_{11}(0)=8+15+17=40.
+\]
+
+The same eleven times were partitioned differently. The real summands may be
+written in any arithmetic order, but their **starting states** cannot be
+moved freely.
+
+{{< reference-figure
+  wide="true"
+  src="two-finite-block-orientations.svg"
+  alt="The eleven weights 2, 5, 1, 4, 3, 6, 2, 7, 1, 5, 4 total 40. Blocks first groups them into four-step sums 12 and 18 plus terminal three-step sum 10. Remainder first groups them into initial three-step sum 8 plus shifted four-step sums 15 and 17. Both exact totals are 40."
+  caption="**Finding:** quotient \(q=2\) and remainder \(r=3\) determine two valid temporal cuts. Blocks first samples the remainder after eight steps; remainder first begins the block orbit after three steps. Equality holds because this teaching process is additive. The checked general declarations prove upper bounds and contain no infinite-time conclusion."
+>}}
+
+## The wrong shift fails numerically
+
+Suppose we keep the two correct block sums \(12\) and \(18\) but evaluate the
+three-step terminal remainder back at the original state. That wrong term is
+\(X_3(0)=8\), not \(X_3(T^8 0)=10\). The proposed bound becomes
+
+\[
+40\le12+18+8=38,
+\]
+
+which is false.
+
+The analogous wrong remainder-first calculation also fails. If the initial
+remainder is \(8\) but the two blocks incorrectly restart at states \(0\) and
+\(4\), the right side is
+
+\[
+8+12+18=38.
+\]
+
+Moving a remainder from one end of the horizon to the other changes the
+starting state of every later term. Shifted subadditivity records exactly that
+temporal information.
+
+### Time-zero boundary: subadditive does not mean normalized
+
+Consider the constant process
+
+\[
+Y_n(s)=5
+\]
+
+for every horizon and state. It is subadditive:
+
+\[
+5\le5+5.
+\]
+
+On the same finite space with its uniform probability measure, every
+\(Y_n\) is integrable, so this process also fits the public candidate package.
+
+But \(Y_0(s)=5\), not zero. With zero complete blocks, an exact-block estimate
+without a normalization premise would say
+
+\[
+Y_{b\cdot0}(s)\le
+\operatorname{birkhoffSum}(T^b,Y_b,0,s),
+\]
+
+or
+
+\[
+5\le0.
+\]
+
+That is false. This is why the uniform exact-block theorem takes
+\(X_0=0\). The two remainder theorems do not need that premise: when the block
+count is zero, the remainder is the whole horizon and the inequality becomes
+reflexive.
+
+### Zero block length: valid but degenerate
+
+Lean's natural-number operations are total:
+
+\[
+11/0=0,
+\qquad
+11\bmod0=11.
+\]
+
+At \(b=0\), the terminal quotient-and-remainder theorem reduces to
+
+\[
+X_{11}(s)\le0+X_{11}(s).
+\]
+
+The statement remains true, but zero is not a useful coarse-graining scale.
+To claim that \(r=n\bmod b\) is strictly shorter than \(b\), one must add the
+separate premise \(b\gt0\).
+
+{{< reference-figure
+  wide="true"
+  src="finite-block-boundaries-and-near-miss.svg"
+  alt="The correct two orientations both give the true upper bound 40 less than or equal to 40. Reusing the original remainder gives only 38 and the false statement 40 less than or equal to 38. A quotient panel shows 11 divided by 4 equals 2 with remainder 3, while division by zero gives quotient 0 and remainder 11. A constant process equal to 5 shows why zero exact blocks require X zero equal to zero."
+  caption="**Finding:** three independent checks protect the theorem. Sample points must follow temporal order; positive block length is needed only for a genuinely short remainder; and a zero-count exact-block estimate needs \(X_0=0\). The finite integrability result later adds preservation of \(T^b\), but none of these checks introduces probability, ergodicity, or convergence."
+>}}
+
+## Name the objects before climbing
+
+Fix a measurable space \(\Omega\), a measure \(\mu\), a base map
+\(T:\Omega\to\Omega\), and a real process
 
 \[
 X:\mathbb N\to\Omega\to\mathbb R.
 \]
 
-The RMT-17 structure
-<code>IsIntegrableSubadditiveProcessCandidate T μ X</code> stores exactly two
-facts:
+| Object | Mathematics | Lean |
+|---|---|---|
+| Horizon-\(n\) sample value | \(X_n(\omega)\) | <code>X n ω</code> |
+| \(m\)-step base shift | \(T^m\omega\) | <code>T^[m] ω</code> |
+| Block map | \(T^b\) | <code>T^[b]</code> |
+| Block observable | \(X_b\) | <code>X b</code> |
+| \(q\)-block finite sum | \(\sum_{j=0}^{q-1}X_b(T^{bj}\omega)\) | <code>birkhoffSum (T^[b]) (X b) q ω</code> |
+| Quotient | \(\lfloor n/b\rfloor\) | <code>n / b</code> |
+| Remainder | \(n\bmod b\) | <code>n % b</code> |
 
-1. every finite-horizon function \(X_k\) is integrable with respect to
-   \(\mu\); and
-2. for every \(m,k,\omega\),
+The inherited structure
 
-\[
-X_{m+k}(\omega)
-\le
-X_k(T^m\omega)+X_m(\omega).
-\]
+~~~lean
+IsIntegrableSubadditiveProcessCandidate T μ X
+~~~
 
-The structure does not store probability normalization, measure preservation,
-ergodicity, stationarity as a separate law, independence, or any limiting
-conclusion. The adjective “candidate” records that this is finite-time input
-for later theorems, not a completed ergodic theorem.
+stores exactly:
 
-RMT-18 deliberately uses the structure in two different ways. Its pointwise
-inequalities read only the <code>add_le</code> field. Its generic integrability
-theorem reads the <code>integrable</code> field and separately asks for the
-specific powered map in the sum to preserve \(\mu\). This field-level ledger
-matters. A convenient bundled receiver can be stronger than the mathematical
-core of one method, and the prose should say so.
+1. <code>Integrable (X k) μ</code> for every finite \(k\); and
+2. the shifted subadditive inequality for every \(m,k,\omega\).
 
-## One horizon, two legal cuts
+It does not store:
 
-Choose a block length \(b\in\mathbb N\), a block count
-\(q\in\mathbb N\), and a remainder length \(r\in\mathbb N\). The same total
-number of steps can be written in either order:
+- that \(\mu\) is a {{< refterm "probability-measure" "probability measure" >}};
+- that \(T\) preserves \(\mu\);
+- that \(T\) is {{< refterm "ergodicity" "ergodic" >}};
+- independence or mixing;
+- uniform control as \(n\) varies; or
+- any pointwise, almost-everywhere, or integrated limit.
 
-\[
-bq+r=r+bq.
-\]
+The word “integrable” concerns each fixed finite function. It does not turn a
+finite family into an asymptotic theorem.
 
-Subadditivity is directional in time, so these arithmetically equal
-expressions generate differently shifted upper bounds.
+## Choose a route up
 
-{{< reference-figure
-  src="two-finite-block-orientations.svg"
-  alt="The same finite horizon has two upper-bound decompositions. One repeats full blocks from the original sample and leaves the short remainder at the end. The other takes the short remainder first and starts the full blocks from the shifted sample. Both rows stop at finite time."
-  caption="**Finding:** blocks-first and remainder-first are two valid finite upper-bound routes through the same horizon. In the upper route, the short term is evaluated after all complete blocks. In the lower route, the short term stays at the original sample and every complete block begins after that initial shift. The plate shows temporal placement only. It does not assert equality, convergence, or a preferred asymptotic orientation."
+| Route | Begin with | Destination |
+|---|---|---|
+| Concrete route | [The eleven weights](#begin-with-eleven-weights-and-make-both-cuts) | Reproduce both exact block ledgers |
+| Error route | [The wrong shift](#the-wrong-shift-fails-numerically) | See a false upper bound caused by one misplaced sample |
+| Algebra route | [Camp one](#camp-one-read-shifted-subadditivity-in-the-correct-order) | Follow the directional split used by every helper |
+| Sum route | [Camp two](#camp-two-a-birkhoff-sum-is-a-finite-container) | Expand the powered-map finite sum |
+| Arithmetic route | [Camp four](#camp-four-let-division-choose-q-and-r) | Read both quotient-and-remainder declarations |
+| Boundary route | [Camp five](#camp-five-time-zero-needs-its-own-ledger) | Separate \(X_0\ge0\) from \(X_0=0\) |
+| Analysis route | [Camp six](#camp-six-finite-integrability-needs-the-powered-map) | Identify the exact measure-preservation premise |
+| Hands-on route | [Run the worksheet](#type-the-eleven-step-ledger-with-lean-and-std) | Execute all arithmetic with Lean core and <code>Std</code> |
+| Audit route | [The declaration map](#the-complete-twelve-declaration-map) | Match every public name to its assumptions |
+
+### Learning objectives
+
+By the summit, you should be able to:
+
+1. compute \(11/4=2\) and \(11\bmod4=3\);
+2. reproduce both exact \(40\)-unit ledgers;
+3. explain why their block starting states differ;
+4. reject the false \(40\le38\) unshifted bound;
+5. state shifted subadditivity with the later term at \(T^m\omega\);
+6. expand a finite Birkhoff sum along the powered map \(T^b\);
+7. derive the terminal-remainder inequality by induction on \(q\);
+8. derive the remainder-first inequality by one outer split;
+9. read both quotient-and-remainder identities;
+10. distinguish the valid \(b=0\) statement from a short-remainder claim;
+11. prove that subadditivity forces \(X_0\ge0\);
+12. explain why it does not force \(X_0=0\);
+13. identify which exact-block theorem avoids normalization by requiring
+    \(q\ne0\);
+14. identify which exact-block theorem accepts all \(q\) by assuming
+    \(X_0=0\);
+15. separate pointwise bounds from finite integrability;
+16. explain why the generic integrability theorem asks only that \(T^b\)
+    preserve \(\mu\);
+17. distinguish measure preservation from probability and ergodicity;
+18. run the exact local worksheet;
+19. identify the three cocycle specializations and their assumptions; and
+20. list every asymptotic conclusion still absent.
+
+## Camp one: read shifted subadditivity in the correct order
+
+The process package stores:
+
+~~~lean
+add_le : ∀ m k ω, X (m + k) ω ≤ X k (T^[m] ω) + X m ω
+~~~
+
+The early \(m\)-step value is \(X_m(\omega)\). The later \(k\)-step value
+restarts at \(T^m\omega\).
+
+### In Lean: split an early block from a later block
+
+{{< lean-bridge
+  human="Run m steps from omega, then measure the later k-step contribution from the environment reached after those m steps. The combined value is at most their sum."
+  math="\(X_{m+k}(\omega)\le X_k(T^m\omega)+X_m(\omega)\)."
+  lean="hX.add_le m k ω"
 >}}
 
-The blocks-first orientation gives
+- <code>hX</code> is evidence that \(X\) is an
+  <code>IsIntegrableSubadditiveProcessCandidate</code>.
+- <code>.add_le</code> selects its shifted pointwise inequality field.
+- <code>m + k</code> is the combined natural horizon.
+- <code>T^[m]</code> is the \(m\)-fold function iterate of the base map.
+- <code>X k (T^[m] ω)</code> is the later value at the shifted sample.
+- <code>X m ω</code> is the early value at the original sample.
+- This field is pointwise algebra. Its type contains no probability,
+  preservation, ergodicity, or limiting quantifier.
+{{< /lean-bridge >}}
 
-\[
-X_{bq+r}(\omega)
-\le
-\sum_{j=0}^{q-1}X_b(T^{bj}\omega)
-+X_r(T^{bq}\omega).
-\]
+The source's three private helpers read only this field. The public generic
+theorems are methods on the stronger package for convenience, but their
+pointwise proofs do not consume its <code>integrable</code> field.
 
-The remainder-first orientation gives
+## Camp two: a Birkhoff sum is a finite container
 
-\[
-X_{r+bq}(\omega)
-\le
-X_r(\omega)
-+\sum_{j=0}^{q-1}X_b(T^{r+bj}\omega).
-\]
-
-Because real addition is commutative, the visible order of summands is not the
-issue. Their sample points are. The terminal remainder sees \(T^{bq}\omega\),
-while the initial remainder sees \(\omega\) and shifts the later block orbit by
-\(r\) steps.
-
-## A Birkhoff sum is the exact finite container
-
-For a map \(F:\Omega\to\Omega\), an observable
-\(g:\Omega\to\mathbb R\), a count \(q\), and an outcome \(\omega\), Mathlib's
-finite Birkhoff sum is
+Mathlib defines
 
 \[
 \operatorname{birkhoffSum}(F,g,q,\omega)
-{} =
-\sum_{j=0}^{q-1}g(F^j\omega).
+=\sum_{j=0}^{q-1}g(F^j\omega).
 \]
 
-This definition, its zero and successor equations, and its finite-addition
-law are provided by Mathlib's official
-[Birkhoff-sum documentation](#ref-finite-blocks-birkhoff). In this chapter the
-map is \(F=T^b\) and the observable is \(g=X_b\). Therefore
+In this chapter,
 
 \[
-\operatorname{birkhoffSum}(T^b,X_b,q,\omega)
-{} =
-\sum_{j=0}^{q-1}X_b((T^b)^j\omega)
-{} =
-\sum_{j=0}^{q-1}X_b(T^{bj}\omega).
+F=T^b,
+\qquad
+g=X_b.
 \]
 
-The second equality uses the algebra of function iterates documented in
-Mathlib's official [iterate documentation](#ref-finite-blocks-iterate). The key idea is
-that iterating the \(b\)-step map \(j\) times advances the original map by
-\(bj\) steps.
+Therefore
 
-This is why “block Birkhoff sum” should not be treated as a mysterious new
-universal object. It is an ordinary finite Birkhoff sum with a deliberate
-choice of map and observable:
+\[
+\begin{aligned}
+\operatorname{birkhoffSum}(T^b,X_b,q,\omega)
+&=\sum_{j=0}^{q-1}X_b((T^b)^j\omega)\\
+&=\sum_{j=0}^{q-1}X_b(T^{bj}\omega).
+\end{aligned}
+\]
 
-- the map advances one whole block, \(T^b\);
-- the observable measures one whole block, \(X_b\); and
-- the count says how many complete blocks are sampled.
+The sum is finite. At \(q=0\), its index set is empty and its value is zero.
 
-The compact {{< refterm "birkhoff-sum" "Birkhoff sum" >}} entry isolates this
-definition and its orientation conventions.
+### In Lean: sample one block observable along the powered base
 
-## Terminal remainder: repeat one block
+{{< lean-bridge
+  human="Start at omega, advance the base by one whole block between samples, evaluate the b-step process each time, and add exactly q terms."
+  math="\(B_{b,q}(\omega)=\sum_{j=0}^{q-1}X_b(T^{bj}\omega)\)."
+  lean="birkhoffSum (T^[b]) (X b) q ω"
+>}}
 
-The main induction proves
+- <code>birkhoffSum</code> is Mathlib's finite-orbit sum.
+- <code>T^[b]</code> is the block map, not the original one-step map.
+- <code>X b</code> is the block observable, a function
+  \(\Omega\to\mathbb R\).
+- <code>q</code> is the number of terms.
+- <code>ω</code> is the starting sample.
+- Iterating <code>T^[b]</code> \(j\) times reaches \(T^{bj}\omega\).
+- Nothing in this expression takes a limit or divides by \(q\).
+{{< /lean-bridge >}}
+
+Mathlib exposes two useful successor recurrences:
+
+\[
+\begin{aligned}
+\operatorname{birkhoffSum}(F,g,q+1,\omega)
+&=\operatorname{birkhoffSum}(F,g,q,\omega)+g(F^q\omega),\\
+\operatorname{birkhoffSum}(F,g,q+1,\omega)
+&=g(\omega)+\operatorname{birkhoffSum}(F,g,q,F\omega).
+\end{aligned}
+\]
+
+The private blocks-first induction uses the second orientation because it
+peels the first block and recurses from \(T^b\omega\).
+
+## Camp three: prove blocks first and leave the remainder last
+
+The central private helper proves:
 
 \[
 X_{bq+r}(\omega)
@@ -229,31 +447,26 @@ X_{bq+r}(\omega)
 +X_r((T^b)^q\omega).
 \]
 
-No hypothesis about \(X_0\) is present. The reason becomes visible in the base
-case.
+### Base case: \(q=0\)
 
-### Base case: no complete blocks
-
-When \(q=0\), the left side is \(X_r(\omega)\). The Birkhoff sum has no terms,
-and the zeroth iterate is the identity. The right side is therefore
+The horizon is \(r\). The Birkhoff sum is empty and
+\((T^b)^0\omega=\omega\), so the goal reduces to
 
 \[
-0+X_r(\omega).
+X_r(\omega)\le0+X_r(\omega).
 \]
 
-The theorem reduces to reflexivity. It does not ask \(X_0\le0\), because the
-remainder is still \(r\), not zero.
+No claim about \(X_0\) is needed.
 
-### Successor step: peel one full block
+### Successor step
 
-Assume the bound is known for \(q\) complete blocks at every starting sample.
-Rewrite the next horizon as
+For \(q+1\) blocks, arithmetic rewrites
 
 \[
 b(q+1)+r=b+(bq+r).
 \]
 
-Shifted subadditivity gives
+Shifted subadditivity peels the first full block:
 
 \[
 X_{b+(bq+r)}(\omega)
@@ -261,203 +474,106 @@ X_{b+(bq+r)}(\omega)
 X_{bq+r}(T^b\omega)+X_b(\omega).
 \]
 
-Apply the induction hypothesis at the shifted sample \(T^b\omega\):
+Apply the induction hypothesis at \(T^b\omega\). Mathlib's
+<code>birkhoffSum_succ'</code> then packages the first block with the recursive
+sum, and the iterate successor identity moves the terminal remainder to the
+correct final state.
+
+### In Lean: invoke the terminal-remainder theorem
+
+{{< lean-bridge
+  human="Bound q complete b-step blocks from omega, then evaluate the r-step remainder after all q blocks have advanced the environment."
+  math="\(X_{bq+r}(\omega)\le\sum_{j=0}^{q-1}X_b(T^{bj}\omega)+X_r(T^{bq}\omega)\)."
+  lean="hX.le_birkhoffSum_blocks_add_remainder b q r ω"
+>}}
+
+- <code>b q r</code> are arbitrary natural numbers.
+- <code>b * q + r</code> is the blocks-first horizon.
+- The Birkhoff term uses <code>(T^[b])</code>, <code>(X b)</code>, and
+  count <code>q</code>.
+- The terminal sample is written
+  <code>((T^[b])^[q] ω)</code> in the theorem statement.
+- This is \(T^{bq}\omega\), not the original <code>ω</code>.
+- No condition on <code>X 0</code> occurs.
+- The proof uses shifted subadditivity only, despite the stronger receiver
+  type of <code>hX</code>.
+{{< /lean-bridge >}}
+
+The opening example substitutes \(b=4,q=2,r=3,\omega=0\), producing the exact
+right side \(12+18+10\).
+
+## Camp four: let division choose \(q\) and \(r\)
+
+For any naturals \(n,b\), Lean proves the total identity
 
 \[
-\begin{aligned}
-X_{bq+r}(T^b\omega)
-&\le
-\operatorname{birkhoffSum}(T^b,X_b,q,T^b\omega) \\
-&\quad+X_r((T^b)^q(T^b\omega)).
-\end{aligned}
+b(n/b)+(n\bmod b)=n.
 \]
 
-Mathlib's <code>birkhoffSum_succ'</code> recurrence places the new zeroth
-block \(X_b(\omega)\) in front of the Birkhoff sum evaluated at \(T^b\omega\).
-The iterate successor equation advances the remainder sample from \(q\) to
-\(q+1\) block steps. After rearranging real addition, the right side is exactly
+Substituting \(q=n/b\) and \(r=n\bmod b\) into the terminal theorem gives:
+
+### In Lean: quotient form with the remainder last
+
+{{< lean-bridge
+  human="Let natural-number division choose the number of complete blocks and the leftover length, then use the blocks-first bound."
+  math="\(X_n(\omega)\le\sum_{j=0}^{n/b-1}X_b(T^{bj}\omega)+X_{n\bmod b}(T^{b(n/b)}\omega)\)."
+  lean="hX.le_birkhoffSum_div_add_mod b n ω"
+>}}
+
+- <code>n / b</code> is the natural quotient.
+- <code>n % b</code> is the natural remainder.
+- <code>Nat.div_add_mod</code> supplies
+  \(b(n/b)+(n\bmod b)=n\).
+- The short term is terminal and therefore evaluated after all complete
+  blocks.
+- At <code>b = 0</code>, quotient zero and remainder <code>n</code> make this
+  a reflexive inequality.
+- The strict fact <code>n % b &lt; b</code> needs a positive block-length
+  premise; this theorem does not need it for validity.
+{{< /lean-bridge >}}
+
+### Remainder first
+
+Commutativity of natural addition also gives
 
 \[
-\operatorname{birkhoffSum}(T^b,X_b,q+1,\omega)
-+X_r((T^b)^{q+1}\omega).
+n=(n\bmod b)+b(n/b).
 \]
 
-The Lean helper generalizes over \(\omega\) before induction. That choice is
-not cosmetic. The successor step needs the induction hypothesis at
-\(T^b\omega\), so an induction hypothesis fixed only at the original outcome
-would be too weak.
+But we cannot merely commute two real terms after proving the terminal
+formula. We must apply shifted subadditivity with the remainder as the
+**early** part. Complete blocks then start from \(T^{n\bmod b}\omega\).
 
-### Declaration 3: the packaged terminal theorem
+### In Lean: quotient form with the remainder first
 
-The public theorem is
-<code>IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_add_remainder</code>.
-Its receiver supplies <code>add_le</code>; the proof delegates to the private
-minimal-hypothesis induction just described. Although the receiver also stores
-integrability, the pointwise proof does not use it.
+{{< lean-bridge
+  human="Take the leftover steps first at omega, then begin every complete block from the environment reached after that initial remainder."
+  math="\(X_n(\omega)\le X_{n\bmod b}(\omega)+\sum_{j=0}^{n/b-1}X_b(T^{n\bmod b+bj}\omega)\)."
+  lean="hX.le_mod_add_birkhoffSum_div b n ω"
+>}}
 
-This theorem is finite and universal over \(b,q,r,\omega\). It assumes neither
-that \(r\lt b\) nor that \(b\gt0\). Those arithmetic properties arrive only
-when quotient and remainder choose \(q\) and \(r\).
+- <code>X (n % b) ω</code> keeps the remainder at the original sample.
+- <code>T^[n % b] ω</code> is the starting sample for the later block orbit.
+- The Birkhoff map remains <code>T^[b]</code>.
+- The block count remains <code>n / b</code>.
+- <code>Nat.mod_add_div</code> supplies
+  \((n\bmod b)+b(n/b)=n\).
+- No <code>X 0 = 0</code> premise occurs, even when the quotient is zero.
+- For \(n=11,b=4\), the right side is \(8+15+17\).
+{{< /lean-bridge >}}
 
-## Quotient and remainder choose the block count
+The generic non-quotient declaration
+<code>le_remainder_add_birkhoffSum_blocks</code> takes explicit
+\(r,b,q\). The quotient declaration simply chooses those values arithmetically.
 
-For a chosen \(b\) and horizon \(n\), Lean's natural-number division gives
+## Camp five: time zero needs its own ledger
 
-\[
-n=b(n/b)+(n\bmod b).
-\]
+### Declaration 1: subadditivity forces nonnegativity
 
-Mathlib exposes the identity in the orientation used by the terminal theorem
-as <code>Nat.div_add_mod</code>. Its official
-[natural-number division documentation](#ref-finite-blocks-nat-div) also
-records the total zero-divisor conventions discussed below.
-
-Substituting
-
-\[
-q=n/b,
-\qquad
-r=n\bmod b
-\]
-
-into the terminal theorem gives
+Set \(m=k=0\) in shifted subadditivity:
 
 \[
-\begin{aligned}
-X_n(\omega)
-&\le
-\operatorname{birkhoffSum}
-  (T^b,X_b,n/b,\omega) \\
-&\quad+
-X_{n\bmod b}((T^b)^{n/b}\omega).
-\end{aligned}
-\]
-
-This is declaration 4,
-<code>le_birkhoffSum_div_add_mod</code>. Its proof is a specialization plus a
-single arithmetic rewrite. The theorem does not require a proof that \(b\) is
-positive.
-
-When \(b\gt0\), the additional fact
-
-\[
-n\bmod b\lt b
-\]
-
-justifies calling the last term “short.” That strict inequality is useful for
-later estimates, but RMT-18 does not need it to establish the decomposition.
-Furthermore, short in time does not automatically mean small in value. A
-separate bound on the finite family \(X_0,\ldots,X_{b-1}\) would be needed to
-turn \(r\lt b\) into a numerical remainder estimate.
-
-### Worked horizon: seventeen steps in blocks of five
-
-Let \(n=17\) and \(b=5\). Then \(q=3\) and \(r=2\). The terminal form is
-
-\[
-\begin{aligned}
-X_{17}(\omega)
-&\le X_5(\omega)+X_5(T^5\omega)+X_5(T^{10}\omega) \\
-&\quad+X_2(T^{15}\omega).
-\end{aligned}
-\]
-
-Every evaluation time can be checked directly. Three complete blocks cover
-the intervals beginning at times zero, five, and ten. The two-step remainder
-begins at time fifteen.
-
-This exact arithmetic example is pedagogical, not empirical. The values of
-the observables remain symbolic, and no measured statistic is encoded in it.
-
-## Remainder first: shift the block orbit instead
-
-There is a second useful split:
-
-\[
-r+bq.
-\]
-
-Applying shifted subadditivity once at \(r\) gives
-
-\[
-X_{r+bq}(\omega)
-\le
-X_{bq}(T^r\omega)+X_r(\omega).
-\]
-
-If \(q\gt0\), the exact block part can be bounded at the shifted sample:
-
-\[
-X_{bq}(T^r\omega)
-\le
-\operatorname{birkhoffSum}(T^b,X_b,q,T^r\omega).
-\]
-
-If \(q=0\), there is no need to bound \(X_0\) separately. The original target
-already simplifies to \(X_r(\omega)\le X_r(\omega)\). The Lean proof therefore
-splits on \(q\): reflexivity at zero, and the positive-count exact-block helper
-at a successor.
-
-The result is declaration 7,
-<code>le_remainder_add_birkhoffSum_blocks</code>:
-
-\[
-X_{r+bq}(\omega)
-\le
-X_r(\omega)
-+\operatorname{birkhoffSum}(T^b,X_b,q,T^r\omega).
-\]
-
-This theorem has no \(X_0=0\) premise. That absence is intentional and
-mathematically justified by the separate zero-count proof branch.
-
-Expanding the Birkhoff sum shows the shifted sampling times:
-
-\[
-X_{r+bq}(\omega)
-\le
-X_r(\omega)
-+\sum_{j=0}^{q-1}X_b(T^{r+bj}\omega).
-\]
-
-For the seventeen-step example, the remainder-first form is
-
-\[
-\begin{aligned}
-X_{17}(\omega)
-&\le X_2(\omega)+X_5(T^2\omega)+X_5(T^7\omega) \\
-&\quad+X_5(T^{12}\omega).
-\end{aligned}
-\]
-
-The full blocks now begin at times two, seven, and twelve. The terminal and
-initial decompositions need not have equal right sides. Subadditivity provides
-upper bounds, not a path-independence theorem for those bounds.
-
-Using <code>Nat.mod_add_div</code> yields declaration 8,
-<code>le_mod_add_birkhoffSum_div</code>:
-
-\[
-\begin{aligned}
-X_n(\omega)
-&\le X_{n\bmod b}(\omega) \\
-&\quad+
-\operatorname{birkhoffSum}
-  (T^b,X_b,n/b,T^{n\bmod b}\omega).
-\end{aligned}
-\]
-
-Again, no time-zero normalization is needed.
-
-## Time zero is not automatically zero
-
-Set \(m=k=0\) in shifted subadditivity. Since the zeroth iterate is the
-identity,
-
-\[
-X_0(\omega)
-\le
-X_0(\omega)+X_0(\omega).
+X_0(\omega)\le X_0(\omega)+X_0(\omega).
 \]
 
 Subtracting \(X_0(\omega)\) gives
@@ -466,12 +582,11 @@ Subtracting \(X_0(\omega)\) gives
 0\le X_0(\omega).
 \]
 
-Declaration 1, <code>zero_nonneg</code>, formalizes exactly this consequence.
-Subadditivity points in the opposite direction from the tempting normalization
-\(X_0\le0\). It does not force \(X_0=0\).
+The theorem <code>zero_nonneg</code> records this pointwise fact.
 
-Declaration 2, <code>zero_eq_zero_iff_nonpos</code>, combines the derived lower
-bound with a supplied upper bound:
+### Declaration 2: nonpositive is equivalent to zero
+
+Because subadditivity already gives \(X_0\ge0\),
 
 \[
 X_0=0
@@ -479,943 +594,668 @@ X_0=0
 \forall\omega,\ X_0(\omega)\le0.
 \]
 
-The equality is an equality of functions. The right side is pointwise
-nonpositivity. One direction rewrites by the zero function; the other uses
-function extensionality and antisymmetry at every outcome.
+This is <code>zero_eq_zero_iff_nonpos</code>. The right-to-left direction
+combines the stored nonnegativity with the supplied nonpositivity.
 
-### Why exact blocks expose the boundary
+### Exact blocks with positive count
 
-An exact-block estimate would read
+If \(q\ne0\), write \(q=q'+1\). The source proves
 
 \[
 X_{bq}(\omega)
 \le
-\operatorname{birkhoffSum}(T^b,X_b,q,\omega).
-\]
-
-At \(q=0\), this becomes
-
-\[
-X_0(\omega)\le0.
-\]
-
-That is precisely the missing half of \(X_0=0\). RMT-18 therefore offers two
-honest variants.
-
-Declaration 5,
-<code>le_birkhoffSum_blocks_of_ne_zero</code>, assumes \(q\ne0\). Natural-number
-arithmetic then writes \(q=q'+1\). Instead of setting the terminal remainder to
-zero, the proof uses the last complete block itself as the remainder:
-
-\[
-b(q'+1)=bq'+b.
-\]
-
-The terminal theorem with remainder \(b\) produces exactly the successor
-Birkhoff sum. No statement about \(X_0\) is required.
-
-Declaration 6, <code>le_birkhoffSum_blocks_of_zero</code>, assumes the function
-equality \(X_0=0\) and covers every \(q\). The positive successor case reuses
-the same helper as declaration 5. The zero case simplifies using the supplied
-normalization.
-
-### A probability-space counterexample that blocks assumption erasure
-
-Take a one-point probability space, let \(T\) be the identity, and define
-
-\[
-X_n(\omega)=1
-\]
-
-for every \(n\). Every \(X_n\) is integrable. Shifted subadditivity holds
-because
-
-\[
-1\le1+1.
-\]
-
-The base is measure preserving and ergodic. Nevertheless, the uniform exact
-block estimate at \(q=0\) would say
-
-\[
-1\le0,
-\]
-
-which is false. Probability, preservation, ergodicity, and all-horizon
-integrability cannot repair the missing normalization. The failure is purely
-the time-zero algebra exposed by declaration 1.
-
-This counterexample also explains why the corrected remainder-first theorem is
-stronger than a proof that first normalizes \(X_0\). At \(q=0\), it reduces to
-reflexivity and remains true for the constant-one process.
-
-## The zero block length is total but degenerate
-
-Lean defines natural-number division and remainder at zero:
-
-\[
-n/0=0,
-\qquad
-n\bmod0=n.
-\]
-
-Consequently, declaration 4 at \(b=0\) says
-
-\[
-X_n(\omega)
-\le
-0+X_n(\omega),
-\]
-
-and declaration 8 says
-
-\[
-X_n(\omega)
-\le
-X_n(\omega)+0.
-\]
-
-Both are correct reflexive bounds. Neither represents useful blocking. The
-strict remainder fact \(n\bmod b\lt b\) is available only when \(b\gt0\).
-
-This is a recurring formalization lesson. A total theorem can include a
-boundary case that is mathematically harmless but interpretively empty. The
-theorem should preserve that totality, while the exposition names the positive
-premise required for the intended reading.
-
-## Finite integrability has one minimal dynamical gate
-
-The pointwise block inequalities do not integrate anything. They need only the
-shifted algebra. Declaration 9 asks a different question: for fixed \(b\) and
-\(q\), is the function
-
-\[
-\omega\longmapsto
 \operatorname{birkhoffSum}(T^b,X_b,q,\omega)
 \]
 
-integrable with respect to \(\mu\)?
+without assuming \(X_0=0\). A positive block count lets the helper represent
+an exact multiple using actual full blocks instead of an empty sum.
 
-Expanding the definition gives a finite sum:
+### Exact blocks uniformly in \(q\)
 
-\[
-\sum_{j=0}^{q-1}X_b((T^b)^j\omega).
-\]
+To include \(q=0\), the source requires exact time-zero normalization.
 
-The candidate already says that \(X_b\) is integrable. That does not by itself
-say that \(X_b\circ(T^b)^j\) is integrable. Composition can move mass into a
-heavy tail. The required bridge is measure preservation of the map being
-iterated:
+### In Lean: make the exact-block bound uniform
 
-\[
-\operatorname{MeasurePreserving}(T^b,\mu,\mu).
-\]
+{{< lean-bridge
+  human="If the zero-horizon process is exactly the zero function, then the complete-block bound is valid for every block count, including the empty count."
+  math="\(X_0=0\Longrightarrow X_{bq}(\omega)\le\sum_{j=0}^{q-1}X_b(T^{bj}\omega)\)."
+  lean="hX.le_birkhoffSum_blocks_of_zero hX0 b q ω"
+>}}
 
-Mathlib's official
-[measure-preserving documentation](#ref-finite-blocks-preserving) packages
-measurability together with equality of the pushed-forward measure, and proves
-that every natural iterate of a preserving map is preserving. Its official
-[integrability documentation](#ref-finite-blocks-integrable) supplies the two
-operations used here: integrability survives composition with a
-measure-preserving map, and a finite sum of integrable functions is
-integrable.
+- <code>hX0 : X 0 = 0</code> is equality of functions, not one sampled
+  equality.
+- At <code>q = 0</code>, it rewrites the left side to zero.
+- The right side is the zero-term Birkhoff sum.
+- At <code>q + 1</code>, the proof uses the private positive-count helper and
+  does not need <code>hX0</code>.
+- The theorem does not require <code>b ≠ 0</code>.
+- The constant-five process shows why <code>hX0</code> cannot be erased from
+  the uniform statement.
+{{< /lean-bridge >}}
 
-For each \(j\) in the finite range, the proof proceeds as follows:
+This is a good example of boundary-sensitive theorem design: expose a strong
+positive-count theorem and a convenient all-count theorem with the exact extra
+premise, rather than burdening every useful positive case.
 
-1. \(X_b\) is integrable by <code>hX.integrable b</code>.
-2. \(T^b\) preserves \(\mu\) by the explicit premise <code>hTb</code>.
-3. Therefore \((T^b)^j\) preserves \(\mu\) by
-   <code>hTb.iterate j</code>.
-4. Hence \(X_b\circ(T^b)^j\) is integrable by
-   <code>integrable_comp_of_integrable</code>.
-5. The finite sum is integrable by <code>integrable_finsetSum</code>.
+## Camp six: finite integrability needs the powered map
 
-That is declaration 9,
-<code>IsIntegrableSubadditiveProcessCandidate.integrable_birkhoffSum_blocks</code>.
-Its exact premise is preservation of \(T^b\), not preservation of \(T\).
-
-### Why the theorem asks only about the powered map
-
-If \(T\) preserves \(\mu\), then \(T^b\) preserves \(\mu\), so the common
-application is immediate. But the generic finite sum never samples \(T\) one
-step at a time. It samples the powered map. Asking directly for preservation
-of \(T^b\) is therefore the weaker and more accurate signature.
-
-This choice also clarifies the \(b=0\) boundary. The powered map \(T^0\) is the
-identity, which preserves every measure. The Birkhoff sum then repeats \(X_0\)
-finitely many times. Its integrability follows from integrability of \(X_0\),
-even though block length zero has no useful coarse-graining interpretation.
-
-Neither probability normalization nor ergodicity appears in declaration 9.
-A raw measure is enough. A finite sum is enough. No limit theorem is hiding in
-the proof.
-
-### Why some dynamical control is necessary
-
-Consider \(\Omega=\mathbb N\) with the probability weights
+The pointwise inequalities above do not integrate anything. The generic
+integrability theorem starts from:
 
 \[
-\mu(\{n\})=2^{-(n+1)}.
+\operatorname{Integrable}(X_b,\mu).
 \]
 
-Let
+The \(j\)-th Birkhoff summand is
 
 \[
-g(n)=2^{n/2}
-\qquad\text{and}\qquad
-T(n)=2n.
+X_b\circ(T^b)^j.
 \]
 
-Then
+If \(T^b\) preserves \(\mu\), every iterate \((T^b)^j\) also preserves
+\(\mu\), so composition transports integrability. A finite sum of integrable
+functions is integrable.
 
-\[
-\int g\,d\mu
-{} =
-\frac12\sum_{n=0}^{\infty}2^{-n/2}
-\lt\infty.
-\]
+### In Lean: prove one finite block sum is integrable
 
-But \(g(T(n))=2^n\), so
+{{< lean-bridge
+  human="If the b-step base map preserves mu, then composing the integrable b-step observable with each finite block iterate preserves integrability, and their q-term sum is integrable."
+  math="\((T^b)_*\mu=\mu\Longrightarrow\operatorname{Integrable}(\sum_{j=0}^{q-1}X_b\circ(T^b)^j,\mu)\)."
+  lean="hX.integrable_birkhoffSum_blocks b q hTb"
+>}}
 
-\[
-\int g\circ T\,d\mu
-{} =
-\frac12\sum_{n=0}^{\infty}1
-{} =
-\infty.
-\]
+- <code>hX.integrable b</code> supplies integrability of the block observable.
+- <code>hTb</code> has type
+  <code>MeasurePreserving (T^[b]) μ μ</code>.
+- <code>hTb.iterate j</code> proves that the \(j\)-fold block map preserves
+  the same measure.
+- <code>.integrable_comp_of_integrable</code> transports the block
+  observable's integrability through that iterate.
+- <code>integrable_finsetSum</code> closes the finite sum.
+- The theorem does not ask that \(T\) itself preserve \(\mu\), only the map
+  that actually appears in the sum.
+- It also does not ask for probability, ergodicity, or independence.
+{{< /lean-bridge >}}
 
-The map \(T\) is not measure preserving. The example shows why integrability
-of an observable cannot be transported through an arbitrary measurable map.
-It is a prose counterexample to a false implication, not a declaration claimed
-to be formalized by RMT-18.
+### Preservation, probability, and ergodicity are different
 
-## Measure preservation does not make every power ergodic
+A {{< refterm "measure-preserving-transformation" "measure-preserving map" >}}
+satisfies \(F_*\mu=\mu\). It allows integrability to be pulled along its
+iterates.
 
-Finite integrability needs preservation of \(T^b\). A later asymptotic block
-argument might be tempted to ask for ergodicity of the same power. Those are
-different properties, and ergodicity of \(T\) does not generally imply
-ergodicity of \(T^b\). Lalley's lecture notes on Kingman's theorem call out
-this exact power-map obstruction in the fixed-block method
-([Lalley, accessed 2026](#ref-finite-blocks-lalley)).
+A probability measure additionally has total mass one. This normalization is
+irrelevant to a finite sum's integrability.
 
-The smallest counterexample has two points. Let
+Ergodicity says invariant measurable events are trivial up to null sets. It is
+an asymptotic rigidity property and is also irrelevant to the finite
+integrability proof.
 
-\[
-\Omega=\{0,1\}
-\]
+Even if \(T\) is ergodic, \(T^b\) need not be ergodic. The source avoids that
+false inference entirely: it asks only for preservation of \(T^b\), and the
+cocycle specialization obtains it from preservation of \(T\).
 
-with uniform probability, and let \(T\) swap the two points. The only strictly
-\(T\)-invariant subsets are the empty set and the full set, so \(T\) is
-ergodic. Yet
+### Finite integrability is not uniform integrability
 
-\[
-T^2=\operatorname{id}.
-\]
-
-Every subset is invariant under the identity. In particular, the singleton
-\(\{0\}\) is \(T^2\)-invariant and has probability \(1/2\), so \(T^2\) is not
-ergodic.
-
-The finite RMT-18 theorem is unaffected. The identity still preserves the
-uniform measure, so every finite block Birkhoff sum is integrable when its
-observable is. What fails is an automatic ergodic conclusion for averages
-under the powered map. That distinction is one reason this chapter stops
-before any pointwise convergence claim.
-
-## An additive process shows when every bound is equality
-
-Let \(f:\Omega\to\mathbb R\), and define
-
-\[
-X_n(\omega)
-{} =
-\sum_{j=0}^{n-1}f(T^j\omega).
-\]
-
-This is the ordinary Birkhoff-sum process generated by \(f\). Splitting a
-finite sum at time \(m\) gives the exact cocycle identity
-
-\[
-X_{m+k}(\omega)
-{} =
-X_k(T^m\omega)+X_m(\omega).
-\]
-
-Thus shifted subadditivity holds with equality. Both block decompositions are
-then exact regroupings of the same finite sum. The terminal orientation groups
-the summands into \(q\) complete blocks followed by \(r\) terms. The
-remainder-first orientation groups the first \(r\) terms and then the same
-number of complete blocks from a shifted origin.
-
-This example gives a useful mental model for the general proof. A subadditive
-process behaves like an additive process with possible savings whenever two
-pieces are combined. Repeated splitting gives an upper bound because each
-combination can lose information in the favorable direction.
+For every fixed \(q\), the \(q\)-term block sum is integrable. This does not
+give a bound uniform in \(q\), a
+{{< refterm "uniform-integrability" "uniformly integrable family" >}}, or
+permission to pass a limit through an integral.
 
 ## The matrix-cocycle specialization
 
-Now let \(C\) be a one-sided discrete matrix cocycle over \(\mu\), with finite
-matrix index type \(\iota\). Its base map is \(C.\mathrm{base}\), and its
-finite-time log-positive norm observable is
+Let \(C\) be the project's one-sided discrete complex matrix cocycle and set
 
 \[
-P_n(\omega)
-{} =
+X_n(\omega)=
 \log^+\lVert C(n,\omega)\rVert_\infty.
 \]
 
-The earlier cocycle modules prove two facts needed for the pointwise RMT-18
-specializations:
-
-\[
-P_0=0
-\]
-
-in every finite dimension, including the empty index type, and
+RMT-15 already proved:
 
-\[
-P_{m+k}(\omega)
-\le
-P_k(C.\mathrm{base}^m\omega)+P_m(\omega).
-\]
+- the shifted subadditive inequality;
+- \(X_0=0\), including empty matrix dimension; and
+- finite-horizon integrability under the explicit one-step hypothesis
+  <code>HasIntegrableGeneratorLogPlus</code>.
 
-No integrability hypothesis is needed to state either fact. Consequently, the
-two public cocycle inequalities in RMT-18 take \(C\) directly.
+RMT-18 exports three cocycle declarations.
 
-### Declaration 10: exact multiples for the cocycle
+### Exact block multiples
 
-<code>DiscreteMatrixCocycle.logPlusNormObservable_nat_mul_le_birkhoffSum</code>
-states
+~~~lean
+C.logPlusNormObservable (b * q) ω ≤
+  birkhoffSum (C.base^[b])
+    (C.logPlusNormObservable b) q ω
+~~~
 
-\[
-P_{bq}(\omega)
-\le
-\operatorname{birkhoffSum}
-  (C.\mathrm{base}^b,P_b,q,\omega).
-\]
+This pointwise inequality is uniform in \(q\), including zero, because the
+cocycle's log-positive observable has the checked time-zero identity. It takes
+the cocycle directly and needs no integrability hypothesis.
 
-Unlike the generic uniform exact-block declaration, this theorem does not ask
-the caller for a separate \(P_0=0\) proof. The cocycle's checked time-zero
-identity already supplies it. The proof splits on \(q\): simplification at
-zero and the positive-block helper at a successor.
+### Remainder-first quotient bound
+
+~~~lean
+C.logPlusNormObservable n ω ≤
+  C.logPlusNormObservable (n % b) ω +
+    birkhoffSum (C.base^[b])
+      (C.logPlusNormObservable b) (n / b)
+      (C.base^[n % b] ω)
+~~~
+
+This is also pointwise and hypothesis-free beyond the cocycle bundle. It uses
+the correct post-remainder starting sample.
+
+### Integrability of the finite block sum
+
+~~~lean
+hC.integrable_blockBirkhoffSum b q
+~~~
 
-The theorem takes no
-<code>HasIntegrableGeneratorLogPlus</code> witness. Adding that premise would
-hide the fact that this is pointwise matrix algebra followed by a real
-log-positive inequality.
+Only this third declaration takes <code>hC</code>. It converts the finite
+log-positive family into the generic integrable subadditive candidate and uses
 
-### Declaration 11: quotient and initial remainder for the cocycle
+~~~lean
+C.base_preserving.iterate b
+~~~
 
-<code>DiscreteMatrixCocycle.logPlusNormObservable_le_mod_add_blockBirkhoffSum</code>
-states
+to show that the powered block map preserves \(\mu\).
 
-\[
-\begin{aligned}
-P_n(\omega)
-&\le P_{n\bmod b}(\omega) \\
-&\quad+
-\operatorname{birkhoffSum}
-  (C.\mathrm{base}^b,P_b,n/b,
-    C.\mathrm{base}^{n\bmod b}\omega).
-\end{aligned}
-\]
-
-This theorem also takes \(C\) directly. It invokes the private
-minimal-hypothesis remainder-first helper with the cocycle's subadditivity
-theorem, then rewrites by quotient and remainder. It neither constructs nor
-uses the RMT-17 integrable candidate.
-
-### Declaration 12: finite block-sum integrability
-
-The final theorem,
-<code>HasIntegrableGeneratorLogPlus.integrable_blockBirkhoffSum</code>, does
-need
-<code>hC : C.HasIntegrableGeneratorLogPlus</code>. That hypothesis proves all
-finite observables \(P_b\) integrable and packages them as the RMT-17
-candidate. The cocycle already stores preservation of its one-step base map,
-so
-
-\[
-C.\mathrm{base}^b
-\]
-
-is measure preserving by iteration. Declaration 9 then gives integrability of
-the finite block Birkhoff sum.
-
-This dependency split is the main interface lesson:
-
-| Cocycle conclusion | Receiver or premise | Why |
-|---|---|---|
-| Exact-multiple pointwise upper bound | \(C\) only | Time-zero identity and subadditivity are already checked |
-| Remainder-first quotient pointwise upper bound | \(C\) only | Shifted subadditivity and arithmetic suffice |
-| Finite block-sum integrability | \(hC\) | The block observable needs an integrability witness |
-
-Probability and ergodicity occur in none of these rows.
-
-### The empty matrix dimension stays valid
-
-When \(\iota\) is empty, the earlier module proves
-
-\[
-P_n(\omega)=0
-\]
-
-for every \(n\) and \(\omega\). Each RMT-18 cocycle inequality becomes
-\(0\le0\), and the finite Birkhoff sum is the zero function. Integrability is
-automatic once the existing one-step hypothesis is supplied to the wrapper.
-
-There is no mathematical reason to add <code>Nonempty ι</code> to these
-theorems. Positive dimension matters for some norm identities elsewhere, but
-the log-positive interface has already discharged time zero and the empty
-boundary uniformly.
-
-## Two one-dimensional cocycles calibrate the observable
-
-Take a one-dimensional constant cocycle, so the generator is the scalar
-matrix \(A=[a]\) at every outcome. Then
-
-\[
-C(n)=A^n
-\]
-
-and the selected operator norm is ordinary absolute value.
-
-### Uniform expansion
-
-For \(a=2\),
-
-\[
-P_n=\log^+|2^n|=n\log2.
-\]
-
-At \(n=17\) and \(b=5\), the terminal decomposition reads
-
-\[
-17\log2
-{} =
-5\log2+5\log2+5\log2+2\log2.
-\]
-
-Both block inequalities are equalities because constant scalar multiplication
-produces an additive logarithmic process.
-
-### Uniform contraction
-
-For \(a=1/2\),
-
-\[
-P_n=\log^+|2^{-n}|=0
-\]
-
-for every \(n\). Again every RMT-18 inequality is an equality, but it is now
-the equality \(0=0\). The underlying matrices contract exponentially, yet the
-log-positive observable records no negative growth.
-
-This is not a defect in the finite-block proof. It is the designed meaning of
-the envelope. The observable budgets expansion and guarantees a nonnegative
-integrable majorant. It is not a signed logarithmic exponent.
-
-## Blocking as a coarse-graining analogy
-
-In statistical physics and dynamical systems, one often changes observational
-scale. Instead of resolving every microscopic step, one groups \(b\) steps
-into a single coarse step. RMT-18 has exactly that geometry:
-
-- \(T\) is the microscopic one-step evolution;
-- \(T^b\) is the coarse block evolution;
-- \(X_b\) is the cost or growth assigned to one coarse block;
-- \(q\) is the number of complete coarse steps; and
-- \(r\) is a boundary layer that does not fill a complete block.
-
-For transfer-matrix products, \(X_b\) can be read as a finite expansion budget
-for a block of \(b\) local transfer matrices. Subadditivity says that measuring
-the combined product cannot exceed the sum of the separately measured blocks
-after the correct environment shift. The remainder records the unmatched
-microscopic segment at one boundary.
-
-This analogy is useful, but its limits are part of the lesson. RMT-18 does not
-define a renormalization transformation on models, locate a fixed point,
-derive scaling dimensions, take a thermodynamic limit, or prove universality.
-Changing from \(T\) to \(T^b\) is a finite regrouping of time. Calling it
-“coarse-graining” describes the bookkeeping scale, not a renormalization-group
-theorem.
-
-There are also two boundary conventions. Terminal remainder is natural when
-one scans from the initial sample in equal blocks and leaves the unmatched
-tail. Remainder first is useful when later estimates prefer the short term at
-the original sample, leaving a uniform block orbit after a fixed initial
-shift. Neither convention is physically privileged by RMT-18.
-
-## The complete twelve-declaration map
-
-The following table follows the Lean source exactly. Private helpers are proof
-architecture, not additional public declarations.
-
-| Number | Public declaration | Exact contribution | Assumptions actually used by the conclusion |
-|---:|---|---|---|
-| 1 | <code>IsIntegrableSubadditiveProcessCandidate.zero_nonneg</code> | Proves \(0\le X_0(\omega)\) | Shifted subadditivity |
-| 2 | <code>IsIntegrableSubadditiveProcessCandidate.zero_eq_zero_iff_nonpos</code> | Characterizes \(X_0=0\) by pointwise nonpositivity | Declaration 1 plus function extensionality and order antisymmetry |
-| 3 | <code>IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_add_remainder</code> | Blocks first, terminal remainder | Shifted subadditivity; no integrability or normalization |
-| 4 | <code>IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_div_add_mod</code> | Terminal form with \(q=n/b\) and \(r=n\bmod b\) | Declaration 3 plus natural-number arithmetic |
-| 5 | <code>IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_of_ne_zero</code> | Exact blocks when \(q\ne0\) | Shifted subadditivity and positive block count |
-| 6 | <code>IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_of_zero</code> | Exact blocks for every \(q\) | Shifted subadditivity plus \(X_0=0\) |
-| 7 | <code>IsIntegrableSubadditiveProcessCandidate.le_remainder_add_birkhoffSum_blocks</code> | Remainder first, then shifted blocks | Shifted subadditivity; no \(X_0=0\) premise |
-| 8 | <code>IsIntegrableSubadditiveProcessCandidate.le_mod_add_birkhoffSum_div</code> | Remainder-first quotient form | Declaration 7 plus natural-number arithmetic |
-| 9 | <code>IsIntegrableSubadditiveProcessCandidate.integrable_birkhoffSum_blocks</code> | Integrability of a fixed finite block sum | Integrability of \(X_b\) and preservation of \(T^b\) |
-| 10 | <code>DiscreteMatrixCocycle.logPlusNormObservable_nat_mul_le_birkhoffSum</code> | Cocycle exact-multiple pointwise bound | \(C\) directly: cocycle log-positive subadditivity and time-zero identity |
-| 11 | <code>DiscreteMatrixCocycle.logPlusNormObservable_le_mod_add_blockBirkhoffSum</code> | Cocycle remainder-first quotient pointwise bound | \(C\) directly: cocycle log-positive subadditivity |
-| 12 | <code>HasIntegrableGeneratorLogPlus.integrable_blockBirkhoffSum</code> | Integrability of the cocycle block sum | \(hC\), the candidate constructor, and the cocycle's stored base preservation |
-
-### The three private helpers
-
-The module keeps three reusable proof engines private:
-
-1. a terminal block-plus-remainder induction from a raw shifted-subadditivity
-   hypothesis;
-2. a positive-count exact-block consequence obtained by using one full block
-   as the terminal remainder; and
-3. a remainder-first consequence that treats the zero block count separately.
-
-This organization makes the public methods convenient while keeping the
-logical core weaker than the candidate bundle. It also lets the two cocycle
-pointwise wrappers call the raw algebra directly, without manufacturing an
-integrability witness they do not need.
-
-## Assumption ledger by theorem family
-
-| Ingredient | Zero boundary | Pointwise block bounds | Finite-sum integrability | Cocycle pointwise bounds | Cocycle integrability |
-|---|---:|---:|---:|---:|---:|
-| Shifted subadditivity | Yes | Yes | No | Supplied by \(C\) | Indirectly through candidate |
-| All-horizon integrability | No | No | Only \(X_b\) is used | No | Derived from \(hC\) |
-| \(X_0=0\) | Only for uniform exact blocks | No for remainder forms | No | Already proved for \(C\) | No additional premise |
-| Preservation of \(T^b\) | No | No | Yes | No | Derived from base preservation |
-| Probability | No | No | No | No | No |
-| Ergodicity | No | No | No | No | No |
-| Positive block length | No | No | No | No | No |
-| Nonempty matrix index | Not applicable | Not applicable | Not applicable | No | No |
-
-The table exposes two useful opportunities for future interface refinement without
-claiming they are required now. First, the generic pointwise methods live on a
-structure that stores more than their proofs consume. Second, generic finite
-sum integrability uses only \(X_b\), even though the candidate supplies every
-horizon. A later abstraction may separate these ingredients if another module
-needs the weaker interfaces repeatedly. RMT-18 does not create a parallel
-hierarchy solely to optimize one file.
-
-## Common wrong turns
-
-### Removing the shift from subadditivity
-
-The later block starts at \(T^m\omega\). Replacing it pointwise by the original
-sample changes the theorem. Measure preservation can identify integrals of a
-function and its shift under suitable hypotheses, but it does not make the
-pointwise values equal.
-
-### Using \(T\) inside the block Birkhoff sum
-
-One summand represents \(b\) original steps, so consecutive summands begin
-\(b\) steps apart. The correct map is \(T^b\), not \(T\). Using \(T\) would
-sample overlapping or misaligned block observables.
-
-### Reversing the powered iterate
-
-The \(j\)-th block term is \(X_b((T^b)^j\omega)\), corresponding to original
-time \(bj\). The iterate algebra should be checked against Mathlib rather than
-reconstructed from memory.
-
-### Choosing the wrong Birkhoff successor recurrence
-
-The induction peels the first full block and applies its hypothesis at the
-shifted sample. The recurrence <code>birkhoffSum_succ'</code> matches that
-orientation. A recurrence that appends the final term can also be useful, but
-it does not line up as directly with this proof state.
-
-### Demanding \(X_0=0\) for a remainder theorem
-
-Both remainder orientations are reflexive at \(q=0\). The only exposed
-zero-time obstruction is the exact-block target with no remainder. Adding a
-normalization premise to declarations 3, 4, 7, or 8 would weaken the interface
-without mathematical need.
-
-### Erasing \(X_0=0\) from uniform exact blocks
-
-The one-point constant-one process refutes that change. A positive exact block
-count is enough; a zero count is not.
-
-### Assuming \(r\lt b\) without \(b\gt0\)
-
-Lean's quotient and remainder are total at zero. The decomposition remains
-true, but the strict remainder theorem needs positive divisor evidence.
-
-### Treating a short remainder as a bounded error
-
-The inequality \(r\lt b\) bounds time, not the value \(X_r(\omega)\). Uniform
-control of the finite remainder family is a separate analytic task.
-
-### Transporting integrability through an arbitrary map
-
-Composition can destroy integrability. Declaration 9 names preservation of
-the exact block map that performs the transport.
-
-### Assuming ergodicity passes to every power
-
-The two-point flip is ergodic and has a nonergodic square. Preservation passes
-to natural iterates; ergodicity need not.
-
-### Reading finite integrability as uniform integrability
-
-Declaration 9 concerns one fixed finite sum for each \(b,q\). It gives no
-family-wide tail control, often called uniform integrability, no uniform
-estimate over \(q\), no tightness, and no license to exchange a limit with an
-integral.
-
-### Calling log-positive growth a Lyapunov exponent
-
-The observable clips negative logarithms to zero. The contracting scalar
-example shows that it cannot encode a negative exponent.
-
-### Reading an upper decomposition as equality
-
-Equality holds for additive examples, not for a general subadditive process.
-The proof may lose slack at every split.
-
-## The exact boundary before Kingman
-
-Kingman's 1968 theorem concerns asymptotic behavior of subadditive stochastic
-processes under additional measure-theoretic hypotheses
-([Kingman, 1968](#ref-finite-blocks-kingman)). Fixed finite blocks are one
-ingredient in proofs, not the theorem's conclusion. Lalley's notes display the
-block method and the power-map subtlety; Steele's short proof uses finite
-interval decompositions in a broader proof of the theorem
-([Steele, 1989](#ref-finite-blocks-steele)).
-
-RMT-18 proves the following finite infrastructure:
-
-- exact pointwise upper bounds for every finite block count;
-- two quotient-and-remainder orientations;
-- the precise time-zero normalization boundary;
-- integrability of each fixed finite block Birkhoff sum under preservation of
-  the powered block map; and
-- pointwise and integrable specializations for the log-positive cocycle
-  process.
-
-It does not provide a measure-theoretic pointwise Birkhoff theorem for the
-powered maps. The pinned Mathlib checkout contains finite Birkhoff-sum algebra
-and some elementary or topological average results, but no measure-theoretic
-pointwise theorem matching the use needed here. It also contains no ready-made
-Kingman theorem.
-
-### What a later asymptotic layer must still justify
-
-A future formal theorem must state and discharge its own exact hypotheses. At
-minimum, its design must account for the measurable and integrable process,
-the correct stationarity relation, meaning that the relevant process laws are
-unchanged by time shifts, or the corresponding measure-preserving formulation,
-the shifted subadditive law, the measure's finiteness or probability
-normalization as required by the selected statement, and the handling of
-negative parts or lower bounds required by that formulation. If an ergodic
-conclusion is desired, ergodicity must enter at the appropriate stage rather
-than being inferred for every powered map.
-
-After proving existence of a samplewise normalized limit, further work would
-still be needed to show that the limit is invariant, to make it constant under
-ergodicity, or to identify its integral with the deterministic Fekete rate.
-Limit-integral interchange is not a free consequence of pointwise convergence.
-
-For matrix products, the historical asymptotic destination includes the work
-of Furstenberg and Kesten
-([Furstenberg and Kesten, 1960](#ref-finite-blocks-furstenberg-kesten)). That
-reference motivates the product-growth program. It is not evidence that the
-finite RMT-18 declarations already prove their theorem.
-
-### Exact nonclaims
-
-RMT-18 proves none of the following:
-
-1. almost-everywhere or everywhere convergence of \(X_n/n\);
-2. convergence in probability, distribution, or mean absolute error
-   (\(L^1\));
-3. uniform integrability of normalized processes;
-4. a measure-theoretic pointwise Birkhoff theorem;
-5. a maximal ergodic inequality;
-6. Kingman's subadditive ergodic theorem;
-7. existence, measurability, or invariance of a limit observable;
-8. almost-everywhere constancy of such a limit;
-9. equality between a samplewise limit and the integrated Fekete rate;
-10. exchange of a limit with an integral;
-11. a lower block bound;
-12. a uniform numerical remainder estimate from \(r\lt b\) alone;
-13. probability normalization, independence, identical distribution, mixing,
-    or invertibility;
-14. ergodicity of \(T^b\) from ergodicity of \(T\);
-15. a Lyapunov exponent or the Furstenberg-Kesten theorem;
-16. an Oseledets invariant splitting;
-17. signed-log or negative-tail control;
-18. a positive matrix-dimension requirement;
-19. meaningful coarse-graining at \(b=0\); or
-20. a renormalization-group or thermodynamic-limit theorem.
-
-## Exercises from first cut to theorem design
-
-### Base camp: arithmetic and definitions
-
-1. Expand
-   \(\operatorname{birkhoffSum}(T^b,X_b,3,\omega)\) into three terms and list
-   their original \(T\)-times.
-2. Set \(m=k=0\) in shifted subadditivity and derive \(X_0\ge0\).
-3. Prove that pointwise \(X_0\le0\) implies the function equality \(X_0=0\).
-4. Simplify the terminal-remainder theorem at \(q=0\).
-5. Simplify the remainder-first theorem at \(q=0\).
-6. Explain why those two simplifications do not need \(X_0=0\).
-7. For \(n=17\) and \(b=5\), compute \(n/b\) and \(n\bmod b\).
-8. Write every evaluation time in the terminal orientation for that example.
-9. Write every evaluation time in the remainder-first orientation.
-10. Evaluate both quotient forms at \(b=0\) using Lean's total conventions.
-
-### Mid-mountain: proof architecture
-
-11. In the terminal induction, explain why the induction hypothesis must be
-    generalized over \(\omega\).
-12. Derive the successor step on paper and identify where
-    <code>birkhoffSum_succ'</code> enters.
-13. Prove the positive-count exact-block inequality by writing \(q=q'+1\) and
-    using a final full block as the remainder.
-14. Use the constant-one process to disprove the same statement at \(q=0\).
-15. Decide which of declarations 3 through 8 use the candidate's integrability
-    field.
-16. Show that an additive Birkhoff-sum process makes both finite bounds
-    equalities.
-17. Give an example where subadditivity is strict at one split and explain how
-    the slack propagates into a block upper bound.
-18. Prove that if \(T^b\) preserves \(\mu\), then every \((T^b)^j\) preserves
-    \(\mu\).
-19. Trace the integrability proof for \(q=3\), naming the theorem used on each
-    summand and on the final sum.
-20. Verify the discrete heavy-tail example showing that arbitrary composition
-    can destroy integrability.
-
-### High camp: dynamics and cocycles
-
-21. Enumerate the invariant subsets of the two-point flip and prove it is
-    ergodic.
-22. Show that its square is the identity and identify a nontrivial invariant
-    event for the square.
-23. Explain why this counterexample does not threaten declaration 9.
-24. For the one-dimensional generator \(A=[2]\), compute \(P_n\) and verify the
-    \(17=3\cdot5+2\) decomposition as equality.
-25. Repeat for \(A=[1/2]\), then explain which dynamical information the
-    log-positive observable erased.
-26. Prove that every cocycle theorem in this module remains valid for an empty
-    matrix index.
-27. Identify exactly why declaration 10 can cover \(q=0\) without an explicit
-    normalization argument from the caller.
-28. Identify exactly why declaration 11 does not need
-    <code>HasIntegrableGeneratorLogPlus</code>.
-29. Identify the two places where declaration 12 gets its hypotheses: one from
-    \(hC\), one from the cocycle bundle.
-
-### Summit: design the next layer
-
-30. Audit the twelve-declaration table against the Lean source and mark every
-    candidate field that each proof actually reads.
-31. Propose a weaker standalone signature for declaration 3 using only a raw
-    shifted-subadditivity hypothesis. Compare its usability with the method
-    interface without creating a second hierarchy.
-32. State an additional assumption that would turn \(r\lt b\) into a uniform
-    numerical bound on the remainder term for fixed \(b\).
-33. Explain why finite integrability for every \(q\) is not uniform
-    integrability as \(q\to\infty\).
-34. List the exact ingredients still missing before a measure-theoretic
-    Kingman theorem can be applied.
-35. Explain why a pointwise Birkhoff theorem for \(T^b\) cannot simply inherit
-    ergodicity from \(T\).
-36. Design a theorem route that first obtains a possibly nonconstant invariant
-    limit and only later invokes ergodicity.
-37. State one condition that could justify exchanging a limit and an integral,
-    without claiming RMT-18 proves it.
-38. Explain why a log-positive limit, even if proved, would not automatically
-    be a signed top Lyapunov exponent.
-39. Separate the finite blocking analogy from an actual renormalization-group
-    construction.
-40. Write a one-paragraph referee report rejecting any claim that declaration
-    9 is already Kingman's theorem.
-
-## Reproduce the checked slice
-
-From the repository root, load the pinned Lean toolchain and compile the leaf
-module with warnings treated as errors:
+### Empty matrix dimension
+
+When the finite matrix index type is empty, every log-positive norm observable
+is zero. Both pointwise inequalities reduce to \(0\le0\), and the finite block
+sum is the zero function. No positive-dimension premise appears.
+
+This is a genuine boundary theorem, not evidence about growth in a nonempty
+space.
+
+## Type the eleven-step ledger with Lean and Std
+
+The exact project module uses Mathlib's measurable spaces, integrability,
+function iterates, Birkhoff sums, and cocycles. The opening finite arithmetic
+can be checked without that dependency graph.
+
+The worksheet below imports only Lean's <code>Std</code> library. It implements
+the twelve-state base, the additive process, a finite block sum, both correct
+orientations, the wrong shift, the constant-five time-zero boundary, and
+Lean's division-by-zero convention.
+
+This is a bounded local tutorial. It is suitable for a normal Mac or Linux
+host and does not invoke Lake, Mathlib, or a project build.
+
+Save the exact block below as
+<code>/tmp/SubadditiveFiniteBlocksTutorial.lean</code>:
+
+~~~lean
+import Std
+
+namespace SubadditiveFiniteBlocksTutorial
+
+def period : Nat := 12
+
+def base (state : Nat) : Nat :=
+  (state + 1) % period
+
+def iterateBase : Nat → Nat → Nat
+  | 0, state => state
+  | steps + 1, state => iterateBase steps (base state)
+
+def weight (state : Nat) : Nat :=
+  match state % period with
+  | 0 => 2
+  | 1 => 5
+  | 2 => 1
+  | 3 => 4
+  | 4 => 3
+  | 5 => 6
+  | 6 => 2
+  | 7 => 7
+  | 8 => 1
+  | 9 => 5
+  | 10 => 4
+  | _ => 6
+
+/-- An additive process, hence a concrete subadditive process. -/
+def process : Nat → Nat → Nat
+  | 0, _ => 0
+  | steps + 1, state => weight state + process steps (base state)
+
+/-- The finite Birkhoff sum of one block observable along the powered base. -/
+def blockSum (X : Nat → Nat → Nat) (blockLength : Nat) :
+    Nat → Nat → Nat
+  | 0, _ => 0
+  | blocks + 1, state =>
+      X blockLength state +
+        blockSum X blockLength blocks (iterateBase blockLength state)
+
+def horizon : Nat := 11
+def blockLength : Nat := 4
+def blockCount : Nat := horizon / blockLength
+def remainderLength : Nat := horizon % blockLength
+def start : Nat := 0
+
+def terminalRemainderTotal : Nat :=
+  blockSum process blockLength blockCount start +
+    process remainderLength
+      (iterateBase (blockLength * blockCount) start)
+
+def initialRemainderTotal : Nat :=
+  process remainderLength start +
+    blockSum process blockLength blockCount
+      (iterateBase remainderLength start)
+
+def wrongUnshiftedRemainderTotal : Nat :=
+  blockSum process blockLength blockCount start +
+    process remainderLength start
+
+def constantProcess (_steps _state : Nat) : Nat := 5
+
+#eval (blockCount, remainderLength,
+  blockLength * blockCount + remainderLength)
+
+#eval (List.range horizon).map fun t =>
+  weight (iterateBase t start)
+
+#eval [process horizon start,
+  process blockLength start,
+  process blockLength (iterateBase blockLength start),
+  process remainderLength
+    (iterateBase (blockLength * blockCount) start)]
+
+#eval [process remainderLength start,
+  process blockLength (iterateBase remainderLength start),
+  process blockLength
+    (iterateBase (remainderLength + blockLength) start)]
+
+#eval [terminalRemainderTotal,
+  initialRemainderTotal,
+  wrongUnshiftedRemainderTotal]
+
+#eval [decide (process horizon start ≤ terminalRemainderTotal),
+  decide (process horizon start ≤ initialRemainderTotal),
+  decide (process horizon start ≤ wrongUnshiftedRemainderTotal)]
+
+#eval (process 0 start,
+  constantProcess 0 start,
+  decide (constantProcess (blockLength * 0) start ≤
+    blockSum constantProcess blockLength 0 start))
+
+#eval (horizon / 0, horizon % 0,
+  decide (process horizon start ≤
+    blockSum process 0 (horizon / 0) start +
+      process (horizon % 0)
+        (iterateBase (0 * (horizon / 0)) start)))
+
+example : blockCount = 2 := by decide
+example : remainderLength = 3 := by decide
+example : process horizon start = 40 := by decide
+example : terminalRemainderTotal = 40 := by decide
+example : initialRemainderTotal = 40 := by decide
+example : ¬ process horizon start ≤ wrongUnshiftedRemainderTotal := by decide
+example : process 0 start = 0 := by decide
+example : ¬ constantProcess (blockLength * 0) start ≤
+    blockSum constantProcess blockLength 0 start := by decide
+
+end SubadditiveFiniteBlocksTutorial
+~~~
+
+Type this command:
 
 ~~~sh
 source "$HOME/.elan/env"
-cd formalization
-lake env lean -DwarningAsError=true \
-  NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean
+elan run leanprover/lean4:v4.32.0 lean \
+  /tmp/SubadditiveFiniteBlocksTutorial.lean
 ~~~
 
-Build the named module and its dependency graph:
+The exact worksheet above was executed successfully with Lean 4.32.0 while
+editing this chapter. Its output was:
+
+~~~text
+(2, 3, 11)
+[2, 5, 1, 4, 3, 6, 2, 7, 1, 5, 4]
+[40, 12, 18, 10]
+[8, 15, 17]
+[40, 40, 38]
+[true, true, false]
+(0, 5, false)
+(0, 11, true)
+~~~
+
+Read the lines in order:
+
+1. quotient \(2\), remainder \(3\), and reconstructed horizon \(11\);
+2. the eleven one-step weights;
+3. total \(40\), two blocks \(12,18\), and terminal remainder \(10\);
+4. initial remainder \(8\) and shifted blocks \(15,17\);
+5. both correct totals \(40\) and the wrong-shift total \(38\);
+6. the two true upper bounds and the false \(40\le38\) proposal;
+7. the normalized additive process has \(X_0=0\), while the constant process
+   has \(Y_0=5\) and fails the zero-count exact-block test; and
+8. at \(b=0\), quotient zero and remainder eleven produce a true reflexive
+   bound.
+
+The silent <code>example</code> declarations ask Lean's kernel to certify the
+same decisive facts.
+
+This worksheet is a finite model, not the project theorem. It uses natural
+weights, one twelve-state cyclic base, hand-written recursion, and decidable
+concrete inequalities. It proves no result about arbitrary real processes,
+Mathlib Birkhoff sums, measurable spaces, integrability, preservation, matrix
+cocycles, or limits.
+
+## The complete twelve-declaration map
+
+The module exposes twelve public declarations. Three private helpers support
+them but are not part of the public API.
+
+| # | Declaration | Main input | Exact role |
+|---:|---|---|---|
+| 1 | <code>zero_nonneg</code> | <code>hX.add_le</code> | Proves \(0\le X_0(\omega)\) |
+| 2 | <code>zero_eq_zero_iff_nonpos</code> | Declaration 1 | Characterizes \(X_0=0\) by pointwise nonpositivity |
+| 3 | <code>le_birkhoffSum_blocks_add_remainder</code> | Shifted subadditivity | Blocks first with terminal remainder |
+| 4 | <code>le_birkhoffSum_div_add_mod</code> | Declaration 3 and <code>Nat.div_add_mod</code> | Terminal quotient-and-remainder form |
+| 5 | <code>le_birkhoffSum_blocks_of_ne_zero</code> | Shifted subadditivity and \(q\ne0\) | Exact blocks without time-zero normalization |
+| 6 | <code>le_birkhoffSum_blocks_of_zero</code> | Shifted subadditivity and \(X_0=0\) | Exact blocks uniformly including \(q=0\) |
+| 7 | <code>le_remainder_add_birkhoffSum_blocks</code> | Shifted subadditivity | Remainder first with shifted blocks |
+| 8 | <code>le_mod_add_birkhoffSum_div</code> | Declaration 7 and <code>Nat.mod_add_div</code> | Remainder-first quotient form |
+| 9 | <code>integrable_birkhoffSum_blocks</code> | Integrability of \(X_b\) and preservation of \(T^b\) | Integrability of one fixed finite block sum |
+| 10 | <code>logPlusNormObservable_nat_mul_le_birkhoffSum</code> | Cocycle subadditivity and zero identity | Cocycle exact-multiple pointwise bound |
+| 11 | <code>logPlusNormObservable_le_mod_add_blockBirkhoffSum</code> | Cocycle subadditivity | Cocycle remainder-first quotient pointwise bound |
+| 12 | <code>HasIntegrableGeneratorLogPlus.integrable_blockBirkhoffSum</code> | <code>hC</code> and stored base preservation | Cocycle finite block-sum integrability |
+
+The three private helpers are:
+
+| Helper | Proof job |
+|---|---|
+| <code>le_birkhoffSum_blocks_add_remainder_of_add_le</code> | Inducts on \(q\) for the terminal remainder |
+| <code>le_birkhoffSum_blocks_succ_of_add_le</code> | Converts the terminal helper with \(r=b\) into a positive exact-block count |
+| <code>le_remainder_add_birkhoffSum_blocks_of_add_le</code> | Splits the initial remainder and applies the positive exact-block helper afterward |
+
+### Assumption ledger
+
+| Theorem family | Shifted subadditivity | \(X_0=0\) | Finite integrability | \(T^b\) preserves \(\mu\) | Probability | Ergodicity |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Remainder bounds, declarations 3, 4, 7, 8 | Yes | No | Not used by proof | No | No | No |
+| Positive-count exact blocks, declaration 5 | Yes | No | Not used by proof | No | No | No |
+| All-count exact blocks, declaration 6 | Yes | Yes | Not used by proof | No | No | No |
+| Generic finite-sum integrability, declaration 9 | Stored in receiver but unused | No | Yes | Yes | No | No |
+| Cocycle pointwise bounds, declarations 10–11 | From cocycle | Cocycle zero used only by declaration 10 | No | No | No | No |
+| Cocycle finite-sum integrability, declaration 12 | Packaged by <code>hC</code> | No | From <code>hC</code> | From stored base preservation | No | No |
+
+The generic pointwise methods have a receiver that stores integrability, but
+their proof bodies use only <code>add_le</code>. The page states that proof
+dependency explicitly without pretending the public method has a weaker
+receiver type than it does.
+
+## Common wrong turns
+
+### Removing the base shift
+
+The later \(k\)-step value starts at \(T^m\omega\). The opening \(40\le38\)
+failure shows that replacing it by the original sample can destroy the bound.
+
+### Using \(T\) instead of \(T^b\) in the block sum
+
+Successive block observations are \(b\) one-step updates apart. The correct
+finite sum advances by the powered map.
+
+### Reversing function-iterate roles
+
+<code>(T^[b])^[q]</code> means apply the \(b\)-step map \(q\) times. It reaches
+the same point as \(T^{bq}\), not \(T^{b+q}\).
+
+### Treating two orientations as one commutative rewrite
+
+Real addition commutes, but sample points do not move with it. Remainder first
+requires shifting the block orbit by \(r\).
+
+### Requiring \(X_0=0\) for every remainder theorem
+
+At \(q=0\), the remainder is the entire horizon. Both remainder bounds become
+reflexive without normalization.
+
+### Deleting \(X_0=0\) from the all-count exact-block theorem
+
+The constant-five process is a counterexample at \(q=0\).
+
+### Saying \(n\bmod b\lt b\) at \(b=0\)
+
+The strict remainder theorem needs \(b\gt0\). The project inequalities are
+total and valid at zero without claiming strict shortness.
+
+### Calling the remainder a uniformly bounded error
+
+It has a shorter **time length** when \(b\gt0\). The module proves no numerical
+bound uniform over samples or block scales.
+
+### Pulling integrability through an arbitrary map
+
+The composition step uses measure preservation of the powered map. Without a
+suitable nonsingularity or preservation hypothesis, an integrable observable
+can become nonintegrable after composition.
+
+### Assuming ergodicity passes to powers
+
+Preservation passes from \(T\) to every \(T^b\). Ergodicity need not. The
+finite theorem asks only for the property it actually uses.
+
+### Reading finite integrability as convergence
+
+An integrable sum for every fixed finite \(q\) is not a theorem about
+\(q\to\infty\), samplewise convergence, or exchange of limit and integral.
+
+### Calling log-positive blocking a Lyapunov theorem
+
+The cocycle observable uses \(\log^+\), which erases contraction and singular
+collapse. Its finite block upper bound is not a signed growth exponent.
+
+## Exercises from first cut to theorem design
+
+### Trailhead
+
+1. Recompute the eleven weights from the cyclic base.
+2. Verify the blocks-first sums \(12,18,10\).
+3. Verify the remainder-first sums \(8,15,17\).
+4. Explain why the starting states are \(0,4,8\) in one orientation and
+   \(0,3,7\) in the other.
+5. Reproduce both false \(38\)-unit calculations.
+6. Compute \(23/5\) and \(23\bmod5\), then sketch both temporal cuts.
+
+### Mid-mountain
+
+7. Expand
+   <code>birkhoffSum (T^[4]) (X 4) 2 0</code> term by term.
+8. Prove \((T^b)^q=T^{bq}\) on paper using function iteration.
+9. Derive the blocks-first helper by induction on \(q\).
+10. Derive the remainder-first helper by splitting \(r+bq\) once.
+11. Show that \(X_0\ge0\) follows from subadditivity.
+12. Give another subadditive process with \(X_0\gt0\).
+13. Explain why positive \(q\) avoids the empty-sum obstruction.
+14. Evaluate both quotient theorems at \(b=0\).
+
+### Summit
+
+15. Rewrite declaration 9 as an explicit finite sum and identify the
+    integrability proof for each summand.
+16. Give a finite example where \(T^b\) preserves a measure even if no premise
+    about \(T\) was supplied to the theorem.
+17. Explain why probability mass one is irrelevant to finite-sum
+    integrability.
+18. Find an ergodic measure-preserving map whose square is not ergodic.
+19. State a uniform-integrability claim that declaration 9 does not prove.
+20. Design a later theorem that averages the block inequality over phases.
+    List every new horizon-counting obligation.
+21. State a candidate almost-everywhere limit theorem and list the probability,
+    preservation, ergodicity, and integrability assumptions separately.
+22. Explain why a signed Lyapunov exponent needs information discarded by
+    \(\log^+\).
+
+## Inspect and check the exact project interfaces
+
+{{< repo-check >}}
+The authoritative source is
+[<code>formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean</code>](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean).
+On an approved Linux builder with the pinned dependencies already provisioned,
+a learner can put the following in a temporary project scratch file:
+
+~~~lean
+import NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
+
+open MeasureTheory
+open NonlinearDynamics.Random.RandomCocycles
+
+#check IsIntegrableSubadditiveProcessCandidate.zero_nonneg
+#check IsIntegrableSubadditiveProcessCandidate.zero_eq_zero_iff_nonpos
+#check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_add_remainder
+#check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_div_add_mod
+#check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_of_ne_zero
+#check IsIntegrableSubadditiveProcessCandidate.le_birkhoffSum_blocks_of_zero
+#check IsIntegrableSubadditiveProcessCandidate.le_remainder_add_birkhoffSum_blocks
+#check IsIntegrableSubadditiveProcessCandidate.le_mod_add_birkhoffSum_div
+#check IsIntegrableSubadditiveProcessCandidate.integrable_birkhoffSum_blocks
+#check DiscreteMatrixCocycle.logPlusNormObservable_nat_mul_le_birkhoffSum
+#check DiscreteMatrixCocycle.logPlusNormObservable_le_mod_add_blockBirkhoffSum
+#check DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.integrable_blockBirkhoffSum
+~~~
+
+These commands inspect existing declaration types. They do not prove a
+Birkhoff theorem, Kingman's theorem, samplewise convergence, or a Lyapunov
+exponent.
+
+Immediately below this prose, the repository-check panel renders:
 
 ~~~sh
-lake build NonlinearDynamics.Random.RandomCocycles.SubadditiveFiniteBlocks
+CLOUD_LEAN_BUILD=1 make lean-file \
+  LEAN_FILE=NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean
 ~~~
 
-Return to the repository root and validate the teaching surface:
+That exact Mathlib-backed check belongs on a human-approved, provisioned Linux
+cloud builder. This Mac is for the small <code>Std</code> worksheet, source
+authoring, Hugo, and static QA. It must not compile this project module.
+{{< /repo-check >}}
+
+The broader guarded Linux release gate is:
 
 ~~~sh
-cd ..
-make site-check
+CLOUD_LEAN_BUILD=1 make check
 ~~~
 
-The repository-wide gate is <code>make check</code>. Automated success does not
-complete review of this public working note. Human mathematical, source,
-accessibility, and editorial reviews remain pending.
+Passing either technical gate would not complete the pending human or Pro
+review.
 
-## What is established and what is not
+## What is established and what remains outside
 
-| Topic | RMT-18 status |
+| Topic | Status in this module |
 |---|---|
 | \(X_0\ge0\) from shifted subadditivity | Proved pointwise |
-| \(X_0=0\) characterized by pointwise nonpositivity | Proved |
+| \(X_0=0\) characterized by nonpositivity | Proved |
 | Blocks first plus terminal remainder | Proved for all natural parameters |
-| Terminal quotient-and-remainder form | Proved, including the reflexive \(b=0\) boundary |
+| Terminal quotient-and-remainder form | Proved, including reflexive \(b=0\) |
 | Exact blocks with positive count | Proved without \(X_0=0\) |
 | Exact blocks with arbitrary count | Proved under \(X_0=0\) |
-| Remainder first plus shifted complete blocks | Proved without \(X_0=0\) |
+| Remainder first plus shifted blocks | Proved without \(X_0=0\) |
 | Remainder-first quotient form | Proved without \(X_0=0\) |
-| Integrability of each fixed block Birkhoff sum | Proved when \(T^b\) preserves \(\mu\) |
-| Cocycle exact-multiple pointwise bound | Proved from \(C\) directly |
-| Cocycle remainder-first quotient bound | Proved from \(C\) directly |
-| Cocycle finite block-sum integrability | Proved under \(hC\) |
-| Probability or ergodicity premise | Not required anywhere in the module |
-| Positive block length premise | Not required for validity; required for a strict short-remainder interpretation |
+| Integrability of a fixed finite block sum | Proved when \(T^b\) preserves \(\mu\) |
+| Cocycle exact-multiple pointwise bound | Proved without <code>hC</code> |
+| Cocycle remainder-first quotient bound | Proved without <code>hC</code> |
+| Cocycle finite block-sum integrability | Proved under <code>hC</code> |
+| Probability normalization | Not required |
+| Ergodicity or mixing | Not required or proved |
+| Independence | Not required or proved |
+| Positive block length | Not required for validity; required for strict remainder shortness |
 | Positive matrix dimension | Not required |
-| Uniform remainder bound | Not proved |
-| Pointwise or almost-everywhere normalized limit | Not proved |
-| Measure-theoretic Birkhoff or Kingman theorem | Not invoked or proved |
-| Limit-integral identification | Not proved |
-| Lyapunov exponent or invariant splitting | Not defined or proved |
+| Uniform remainder magnitude | Not bounded |
+| Uniform integrability over all counts | Not proved |
+| Pointwise or almost-everywhere limit | Not proved |
+| Birkhoff or Kingman ergodic theorem | Not invoked |
+| Limit-integral interchange | Not attempted |
+| Furstenberg-Kesten conclusion | Not invoked |
+| Signed Lyapunov exponent or spectrum | Not defined or proved |
+| Oseledets filtration or splitting | Not invoked |
 
-The milestone's achievement is exact finite control with a transparent
-assumption ledger. It converts a long process value into repeated observations
-of one block scale, while preserving every boundary case Lean can express.
-That is the right foundation for later asymptotic work precisely because it
-does not pretend to contain that later work.
+The exact achievement is finite:
+
+> A long shifted-subadditive process value can be upper-bounded by repeated
+> observations at one block scale plus one correctly shifted remainder. With
+> preservation of the powered map, each fixed finite block sum is integrable.
+
+No limit appears in that statement.
 
 ## Where to continue
 
 The {{< refterm "birkhoff-sum" "Birkhoff sum" >}} glossary entry is the compact
-definition, powered-orbit picture, and boundary-case reference for the central
-finite sum used here.
+definition and powered-orbit reference for the finite sum used here.
 
 [Probability Normalization and Ergodic Rigidity Before Kingman]({{< relref "/knowledge-base/deep-dives/probability-normalization-and-ergodic-rigidity-before-kingman" >}})
-is the immediate predecessor. It separates probability, ergodicity, and
-finite-horizon integrability before any samplewise theorem.
+is the immediate predecessor. It keeps probability and ergodicity separate
+from the finite process candidate.
 
 [Integrated Log-Positive Cocycle Growth and Its Deterministic Fekete Limit]({{< relref "/knowledge-base/deep-dives/integrated-log-positive-cocycle-growth-and-fekete-limit" >}})
-explains the distinct deterministic limit obtained only after integrating out
-the sample variable.
-
-[Finite-Horizon Log-Positive Cocycle Integrability]({{< relref "/knowledge-base/deep-dives/finite-horizon-log-positive-cocycle-integrability" >}})
-constructs the one-step hypothesis used only by declaration 12's integrability
-wrapper.
-
-[Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}})
-establishes the base-map and cocycle orientation consumed by the block proof.
+explains a distinct deterministic limit taken only after integrating out the
+sample variable.
 
 [Finite Blocks Before Limits: Birkhoff Bounds for Subadditive Cocycles in Lean]({{< relref "/development-notebook/2026/07/finite-block-birkhoff-bounds-for-subadditive-cocycles" >}})
-is the proof-to-prose Research Note paired directly with the RMT-18 Lean
-module.
-
-Related compact entries include the
-{{< refterm "ergodic-probability-base" "ergodic probability base" >}}, the
-{{< refterm "log-positive-integrability-envelope" "log-positive integrability envelope" >}}, the
-{{< refterm "one-sided-discrete-matrix-cocycle" "one-sided discrete matrix cocycle" >}}, the
-{{< refterm "integrated-log-positive-growth-rate" "integrated log-positive growth rate" >}}, and the
-{{< refterm "forward-matrix-product" "forward matrix product" >}}.
+is the paired Development Notebook entry.
 
 [Orbit-Majorant Centering for Subadditive Processes]({{< relref "/knowledge-base/deep-dives/orbit-majorant-centering-for-subadditive-processes" >}})
-is the immediate successor. It specializes the finite block majorant to one
-step, subtracts that additive orbit sum, and keeps the resulting subadditive
-slack explicit.
+is the immediate finite successor.
 
 [Finite Phase Averaging for Nonpositive Subadditive Processes]({{< relref "/knowledge-base/deep-dives/finite-phase-averaging-for-nonpositive-subadditive-processes" >}})
-is the next finite successor. It combines all residue phases into one sliding
-base-orbit sum and records the exact horizon \(bq+b+r\). Its companion
-[Development Notebook]({{< relref "/development-notebook/2026/07/phase-averaged-sliding-block-bounds-for-subadditive-cocycles" >}})
-also gives a neutral finite count audit of the motivating phase display in
-[Lalley's notes](#ref-finite-blocks-lalley): retaining \(q\) complete blocks
-in every phase requires the extra block in the common horizon.
-
-RMT-18 itself proves no phase-averaged estimate. Beyond the two finite
-successors, an asymptotic milestone must formalize a precise measure-theoretic
-theorem before introducing a samplewise exponent. Finite block notation is a
-route to that work, not authorization to skip it.
+later combines residue phases into a sliding finite base-orbit sum. That
+chapter must audit its own horizon and summand counts; the present module does
+not contain a phase average.
 
 ## References
 
-All web links below were checked on 2026-07-21. The pinned local checkout is
-the authority for the exact Lean interface used by the project.
+<a id="ref-finite-blocks-project"></a>**Nonlinear Dynamics in Lean.**
+[SubadditiveFiniteBlocks.lean](https://github.com/tdj28/nonlinear-dynamics-lean/blob/main/formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean).
+This is the authoritative twelve-declaration source described here.
 
 <a id="ref-finite-blocks-birkhoff"></a>**Mathlib contributors.**
 [Birkhoff sums](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/BirkhoffSum/Basic.html),
-Mathlib 4 documentation. This official page defines the finite sum and records
-its zero, successor, and addition identities. The exact pinned implementation
-is [lines 31 through 57 at commit 81a5d257](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/BirkhoffSum/Basic.lean#L31-L57).
+Mathlib 4 documentation. The pinned source defines the finite sum and its
+zero, successor, and addition identities.
 
 <a id="ref-finite-blocks-iterate"></a>**Mathlib contributors.**
 [Function iteration](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Logic/Function/Iterate.html),
-Mathlib 4 documentation. This official page records zeroth, successor, added,
-and multiplied iterate identities used to move between the powered block map
-and original time. The exact pinned definitions and identities appear in
-[lines 54 through 87](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Logic/Function/Iterate.lean#L54-L87).
+Mathlib 4 documentation. This official source provides zeroth, successor,
+added, and multiplied iterate identities.
 
 <a id="ref-finite-blocks-nat-div"></a>**Lean and Mathlib contributors.**
 [Natural-number division](https://leanprover-community.github.io/mathlib4_docs/Init/Data/Nat/Div/Basic.html),
-Lean and Mathlib documentation. This official page documents
+Lean and Mathlib documentation. This is the upstream interface for
 <code>Nat.div_add_mod</code>, <code>Nat.mod_add_div</code>, and the total
-zero-divisor conventions used by declarations 4 and 8.
+zero-divisor conventions.
 
 <a id="ref-finite-blocks-preserving"></a>**Mathlib contributors.**
 [Measure-preserving maps](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Dynamics/Ergodic/MeasurePreserving.html),
-Mathlib 4 documentation. This official page defines the preservation package
-and proves preservation under natural iteration. See the pinned
-[definition](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/Ergodic/MeasurePreserving.lean#L43-L48)
-and [iterate theorem](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Dynamics/Ergodic/MeasurePreserving.lean#L193-L196).
+Mathlib 4 documentation. This source defines preservation and proves it is
+stable under natural iteration.
 
 <a id="ref-finite-blocks-integrable"></a>**Mathlib contributors.**
 [Integrable functions](https://leanprover-community.github.io/mathlib4_docs/Mathlib/MeasureTheory/Function/L1Space/Integrable.html),
-Mathlib 4 documentation. This official page provides preservation of
-integrability under composition with a measure-preserving map and closure
-under finite sums. See the pinned
-[composition result](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/L1Space/Integrable.lean#L381-L390)
-and [finite-sum result](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Function/L1Space/Integrable.lean#L439-L449).
+Mathlib 4 documentation. This source provides composition with a
+measure-preserving map and closure under finite sums.
 
 <a id="ref-finite-blocks-kingman"></a>**J. F. C. Kingman.**
 [The ergodic theory of subadditive stochastic processes](https://doi.org/10.1111/j.2517-6161.1968.tb00749.x),
-*Journal of the Royal Statistical Society: Series B* 30(3), 499-510, 1968.
-This primary source is the asymptotic theorem context. RMT-18 proves only the
-finite block infrastructure that may precede such an argument.
-
-<a id="ref-finite-blocks-lalley"></a>**Steven P. Lalley.**
-[Kingman's Subadditive Ergodic Theorem](https://galton.uchicago.edu/~lalley/Courses/Graz/Kingman.pdf),
-University of Chicago lecture notes, undated, accessed 2026-07-21. These notes
-present the fixed-block inequality and explicitly warn that a power of an
-ergodic transformation need not be ergodic. They are a teaching reference,
-not the primary source for Kingman's theorem.
+*Journal of the Royal Statistical Society: Series B* 30(3), 499–510, 1968.
+This primary source supplies the asymptotic context. The current module proves
+only finite block infrastructure.
 
 <a id="ref-finite-blocks-steele"></a>**J. Michael Steele.**
 [Kingman's subadditive ergodic theorem](https://www.numdam.org/item/AIHPB_1989__25_1_93_0/),
 *Annales de l'Institut Henri Poincaré, Probabilités et Statistiques* 25(1),
-93-98, 1989. This reference gives a full proof organized through finite
-interval decompositions. It supplies proof-lineage context, not an upstream
-Lean theorem used in RMT-18.
+93–98, 1989. This proof-lineage reference organizes a full argument through
+finite interval decompositions; it is not an upstream Lean theorem used here.
 
 <a id="ref-finite-blocks-furstenberg-kesten"></a>**Harry Furstenberg and Harry Kesten.**
 [Products of Random Matrices](https://doi.org/10.1214/aoms/1177705909),
-*The Annals of Mathematical Statistics* 31(2), 457-469, 1960. This primary
-source motivates the random-matrix-product destination. No Furstenberg-Kesten
-samplewise conclusion is claimed in this chapter.
+*The Annals of Mathematical Statistics* 31(2), 457–469, 1960. This primary
+source motivates the random-matrix destination. No samplewise conclusion from
+that work is claimed here.
 
 The exact upstream Lean revision audited for this chapter is Mathlib commit
 [81a5d257](https://github.com/leanprover-community/mathlib4/tree/81a5d257c8e410db227a6665ed08f64fea08e997),
-the revision pinned by <code>formalization/lake-manifest.json</code>.
+the revision pinned by <code>formalization/lake-manifest.json</code>. The
+project source file audited during this rebuild had SHA-256
+<code>07a4e6d99893d26e888d5799d15660cfd2b0c931bfdbabd6879f1d773ada2775</code>.

@@ -1,56 +1,125 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420"
-     viewBox="0 0 760 420" role="img"
-     aria-labelledby="finiteBlocksTitle finiteBlocksDesc">
-  <title id="finiteBlocksTitle">Two finite block-and-remainder orientations</title>
-  <desc id="finiteBlocksDesc">The first row places three equal full blocks before a short terminal remainder. The second row places the same short remainder first and then starts the three equal blocks from a shifted sample. A footer states that both are finite upper bounds and neither is a limit theorem.</desc>
-  <rect width="760" height="420" fill="#F7F4F0"/>
-  <style>
-    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}
-    .title{font-size:15px;font-weight:700}
-    .h{font-size:13px;font-weight:700}
-    .s{font-size:12px}
-    .m{font-size:11px;fill:#5A544C}
-    .row{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}
-    .block{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}
-    .remainder{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}
-    .guide{stroke:#A89B8C;stroke-width:1.2;stroke-dasharray:5 4}
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820"
+     viewBox="0 0 1200 820" role="img"
+     aria-labelledby="finiteBlocksLedgerTitle finiteBlocksLedgerDesc">
+  <title id="finiteBlocksLedgerTitle">Exact eleven-step ledger in two finite block orientations</title>
+  <desc id="finiteBlocksLedgerDesc">An additive process follows eleven weights: 2, 5, 1, 4, 3, 6, 2, 7, 1, 5, 4, totaling 40. With block length 4, the quotient is 2 and the remainder is 3. Blocks first gives block sums 12 and 18 plus a terminal remainder sum 10. Remainder first gives an initial remainder sum 8 followed by block sums 15 and 17. Both orientations total 40. The source theorem gives upper bounds; equality here comes from the additive example.</desc>
+  <defs>
+    <style>
+      .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#252A2F}
+      .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+      .title{font-size:30px;font-weight:700}
+      .subtitle{font-size:17px;fill:#52606D}
+      .head{font-size:17px;font-weight:700}
+      .body{font-size:15px}
+      .small{font-size:13px;fill:#59636D}
+      .cellHead{font-size:12px;font-weight:700}
+      .cellValue{font-size:20px;font-weight:700}
+      .math{font-family:Georgia,'Times New Roman',serif;font-size:20px}
+      .light{fill:#FFFDF8}
+    </style>
+  </defs>
 
-  <text x="24" y="28" class="t title">Two legal cuts through the same finite horizon</text>
-  <text x="24" y="48" class="t m">Subadditivity follows temporal order, so moving the short piece changes every later sample.</text>
+  <rect width="1200" height="820" fill="#F5F0E6"/>
+  <rect x="0" y="0" width="1200" height="16" fill="#16243A"/>
+  <text x="56" y="62" class="serif title">One horizon, two exact temporal cuts</text>
+  <text x="56" y="91" class="sans subtitle">n = 11, block length b = 4, quotient q = 2, remainder r = 3; start state is 0.</text>
 
-  <rect x="24" y="70" width="712" height="126" rx="12" class="row"/>
-  <text x="44" y="98" class="t h">BLOCKS FIRST</text>
-  <text x="44" y="118" class="t m">Short piece stays at the far boundary</text>
-  <line x1="200" y1="103" x2="588" y2="103" class="guide"/>
-  <rect x="200" y="123" width="100" height="42" rx="8" class="block"/>
-  <rect x="306" y="123" width="100" height="42" rx="8" class="block"/>
-  <rect x="412" y="123" width="100" height="42" rx="8" class="block"/>
-  <rect x="518" y="123" width="70" height="42" rx="8" class="remainder"/>
-  <text x="219" y="149" class="t s">Full block</text>
-  <text x="325" y="149" class="t s">Full block</text>
-  <text x="431" y="149" class="t s">Full block</text>
-  <text x="529" y="142" class="t m">Short</text>
-  <text x="527" y="156" class="t m">piece</text>
-  <text x="200" y="184" class="t m">Each full block advances the sample by one block.</text>
-  <text x="591" y="149" class="t h">END</text>
+  <text x="56" y="132" class="sans head">The eleven one-step weights</text>
+  <g>
+    <g transform="translate(56 150)">
+      <rect width="94" height="76" rx="10" fill="#F4E4CD" stroke="#B66A2C" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 0</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">2</text>
+    </g>
+    <g transform="translate(154 150)">
+      <rect width="94" height="76" rx="10" fill="#F4E4CD" stroke="#B66A2C" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 1</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">5</text>
+    </g>
+    <g transform="translate(252 150)">
+      <rect width="94" height="76" rx="10" fill="#F4E4CD" stroke="#B66A2C" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 2</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">1</text>
+    </g>
+    <g transform="translate(350 150)">
+      <rect width="94" height="76" rx="10" fill="#F4E4CD" stroke="#B66A2C" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 3</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">4</text>
+    </g>
+    <g transform="translate(448 150)">
+      <rect width="94" height="76" rx="10" fill="#DFEAF2" stroke="#416887" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 4</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">3</text>
+    </g>
+    <g transform="translate(546 150)">
+      <rect width="94" height="76" rx="10" fill="#DFEAF2" stroke="#416887" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 5</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">6</text>
+    </g>
+    <g transform="translate(644 150)">
+      <rect width="94" height="76" rx="10" fill="#DFEAF2" stroke="#416887" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 6</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">2</text>
+    </g>
+    <g transform="translate(742 150)">
+      <rect width="94" height="76" rx="10" fill="#DFEAF2" stroke="#416887" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 7</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">7</text>
+    </g>
+    <g transform="translate(840 150)">
+      <rect width="94" height="76" rx="10" fill="#E8F0E3" stroke="#668253" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 8</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">1</text>
+    </g>
+    <g transform="translate(938 150)">
+      <rect width="94" height="76" rx="10" fill="#E8F0E3" stroke="#668253" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 9</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">5</text>
+    </g>
+    <g transform="translate(1036 150)">
+      <rect width="94" height="76" rx="10" fill="#E8F0E3" stroke="#668253" stroke-width="1.5"/>
+      <text x="47" y="25" text-anchor="middle" class="sans cellHead">t = 10</text>
+      <text x="47" y="57" text-anchor="middle" class="sans cellValue">4</text>
+    </g>
+  </g>
 
-  <rect x="24" y="212" width="712" height="126" rx="12" class="row"/>
-  <text x="44" y="240" class="t h">REMAINDER FIRST</text>
-  <text x="44" y="260" class="t m">Full blocks begin from a shifted sample</text>
-  <line x1="200" y1="245" x2="588" y2="245" class="guide"/>
-  <rect x="200" y="265" width="70" height="42" rx="8" class="remainder"/>
-  <rect x="276" y="265" width="100" height="42" rx="8" class="block"/>
-  <rect x="382" y="265" width="100" height="42" rx="8" class="block"/>
-  <rect x="488" y="265" width="100" height="42" rx="8" class="block"/>
-  <text x="211" y="284" class="t m">Short</text>
-  <text x="209" y="298" class="t m">piece</text>
-  <text x="295" y="291" class="t s">Full block</text>
-  <text x="401" y="291" class="t s">Full block</text>
-  <text x="507" y="291" class="t s">Full block</text>
-  <text x="200" y="326" class="t m">The first short piece shifts the starting sample for every full block.</text>
-  <text x="591" y="291" class="t h">END</text>
+  <rect x="56" y="266" width="1088" height="206" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <text x="82" y="302" class="sans head">BLOCKS FIRST: 4 + 4 + 3</text>
+  <text x="82" y="327" class="sans body">The short remainder starts after all q = 2 complete blocks.</text>
+  <rect x="82" y="350" width="360" height="72" rx="13"
+        fill="#F4E4CD" stroke="#B66A2C" stroke-width="2"/>
+  <text x="262" y="378" text-anchor="middle" class="sans head">times 0..3</text>
+  <text x="262" y="405" text-anchor="middle" class="serif math">2 + 5 + 1 + 4 = 12</text>
+  <rect x="452" y="350" width="360" height="72" rx="13"
+        fill="#DFEAF2" stroke="#416887" stroke-width="2"/>
+  <text x="632" y="378" text-anchor="middle" class="sans head">times 4..7</text>
+  <text x="632" y="405" text-anchor="middle" class="serif math">3 + 6 + 2 + 7 = 18</text>
+  <rect x="822" y="350" width="296" height="72" rx="13"
+        fill="#E8F0E3" stroke="#668253" stroke-width="2"/>
+  <text x="970" y="378" text-anchor="middle" class="sans head">times 8..10</text>
+  <text x="970" y="405" text-anchor="middle" class="serif math">1 + 5 + 4 = 10</text>
+  <text x="600" y="453" text-anchor="middle" class="serif math">X<tspan baseline-shift="sub" font-size="13">11</tspan><tspan baseline-shift="baseline" font-size="20">(0) = 12 + 18 + 10 = 40</tspan></text>
 
-  <rect x="24" y="356" width="712" height="44" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
-  <text x="52" y="383" class="t s">Both routes are finite upper bounds. Neither route states what happens at infinite time.</text>
+  <rect x="56" y="496" width="1088" height="206" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <text x="82" y="532" class="sans head">REMAINDER FIRST: 3 + 4 + 4</text>
+  <text x="82" y="557" class="sans body">The same r = 3 steps come first; complete blocks now start from T^3(0).</text>
+  <rect x="82" y="580" width="276" height="72" rx="13"
+        fill="#E8F0E3" stroke="#668253" stroke-width="2"/>
+  <text x="220" y="608" text-anchor="middle" class="sans head">times 0..2</text>
+  <text x="220" y="635" text-anchor="middle" class="serif math">2 + 5 + 1 = 8</text>
+  <rect x="368" y="580" width="360" height="72" rx="13"
+        fill="#F4E4CD" stroke="#B66A2C" stroke-width="2"/>
+  <text x="548" y="608" text-anchor="middle" class="sans head">times 3..6</text>
+  <text x="548" y="635" text-anchor="middle" class="serif math">4 + 3 + 6 + 2 = 15</text>
+  <rect x="738" y="580" width="380" height="72" rx="13"
+        fill="#DFEAF2" stroke="#416887" stroke-width="2"/>
+  <text x="928" y="608" text-anchor="middle" class="sans head">times 7..10</text>
+  <text x="928" y="635" text-anchor="middle" class="serif math">7 + 1 + 5 + 4 = 17</text>
+  <text x="600" y="683" text-anchor="middle" class="serif math">X<tspan baseline-shift="sub" font-size="13">11</tspan><tspan baseline-shift="baseline" font-size="20">(0) = 8 + 15 + 17 = 40</tspan></text>
+
+  <rect x="56" y="730" width="1088" height="62" rx="14" fill="#16243A"/>
+  <text x="600" y="756" text-anchor="middle" class="sans head light">This toy process is additive, so both upper bounds are equalities.</text>
+  <text x="600" y="780" text-anchor="middle" class="sans body light">The checked general theorem proves less than or equal; it makes no infinite-time claim.</text>
 </svg>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780"
+     viewBox="0 0 1200 780" role="img"
+     aria-labelledby="finiteBlockBoundaryTitle finiteBlockBoundaryDesc">
+  <title id="finiteBlockBoundaryTitle">Shift error, time-zero boundary, and zero block-length ledger</title>
+  <desc id="finiteBlockBoundaryDesc">For the eleven-step process totaling 40, the correct blocks-first and remainder-first totals are both 40. Reusing the original three-step remainder after two blocks gives 12 plus 18 plus 8, only 38, so the claimed upper bound 40 less than or equal to 38 is false. A second panel shows quotient 11 divided by 4 equals 2 and remainder 3. At block length zero, Lean gives quotient zero and remainder 11, making the inequality reflexive. A constant process equal to 5 is subadditive but has X zero equal to 5, so a zero-count exact-block bound would falsely require 5 less than or equal to the empty sum 0.</desc>
+  <defs>
+    <style>
+      .sans{font-family:Inter,Arial,Helvetica,sans-serif;fill:#252A2F}
+      .serif{font-family:Georgia,'Times New Roman',serif;fill:#16243A}
+      .title{font-size:30px;font-weight:700}
+      .subtitle{font-size:17px;fill:#52606D}
+      .head{font-size:17px;font-weight:700}
+      .body{font-size:15px}
+      .small{font-size:13px;fill:#59636D}
+      .math{font-family:Georgia,'Times New Roman',serif;font-size:20px}
+      .light{fill:#FFFDF8}
+      .red{fill:#963F35}
+    </style>
+  </defs>
+
+  <rect width="1200" height="780" fill="#F5F0E6"/>
+  <rect x="0" y="0" width="1200" height="16" fill="#16243A"/>
+  <text x="56" y="62" class="serif title">A shift is arithmetic data, not decoration</text>
+  <text x="56" y="91" class="sans subtitle">The same n = 11 ledger exposes one false bound and two totalized boundaries.</text>
+
+  <rect x="56" y="126" width="1088" height="230" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <text x="82" y="163" class="sans head">CORRECT TEMPORAL STARTS</text>
+  <rect x="82" y="184" width="468" height="64" rx="13"
+        fill="#E8F0E3" stroke="#668253" stroke-width="2"/>
+  <text x="316" y="211" text-anchor="middle" class="sans body">blocks first: 12 + 18 + terminal remainder 10</text>
+  <text x="316" y="236" text-anchor="middle" class="serif math">40 ≤ 40</text>
+  <rect x="570" y="184" width="548" height="64" rx="13"
+        fill="#E8F0E3" stroke="#668253" stroke-width="2"/>
+  <text x="844" y="211" text-anchor="middle" class="sans body">remainder first: 8 + shifted blocks 15 + 17</text>
+  <text x="844" y="236" text-anchor="middle" class="serif math">40 ≤ 40</text>
+
+  <text x="82" y="286" class="sans head red">WRONG: MOVE THE SHORT PIECE BUT KEEP ITS OLD SAMPLE</text>
+  <rect x="82" y="302" width="1036" height="38" rx="10"
+        fill="#F4E9E4" stroke="#A34D40" stroke-width="2"/>
+  <text x="600" y="327" text-anchor="middle" class="sans body red">
+    12 + 18 + original remainder 8 = 38, so the proposed upper bound says 40 ≤ 38: FALSE
+  </text>
+
+  <rect x="56" y="386" width="522" height="250" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <text x="82" y="424" class="sans head">QUOTIENT AND REMAINDER</text>
+  <text x="82" y="462" class="serif math">11 / 4 = 2,     11 % 4 = 3</text>
+  <text x="82" y="495" class="serif math">4 * 2 + 3 = 11</text>
+  <rect x="82" y="522" width="470" height="88" rx="13"
+        fill="#DFEAF2" stroke="#416887" stroke-width="2"/>
+  <text x="106" y="552" class="sans head">block length b = 0</text>
+  <text x="106" y="578" class="sans body">Lean: 11 / 0 = 0 and 11 % 0 = 11.</text>
+  <text x="106" y="599" class="sans small">The remainder theorem reduces to X<tspan baseline-shift="sub" font-size="9">11</tspan><tspan baseline-shift="baseline" font-size="13"> ≤ 0 + X</tspan><tspan baseline-shift="sub" font-size="9">11</tspan><tspan baseline-shift="baseline" font-size="13">.</tspan></text>
+
+  <rect x="598" y="386" width="546" height="250" rx="18"
+        fill="#FFFDF8" stroke="#C9BBA6" stroke-width="2"/>
+  <text x="624" y="424" class="sans head">TIME ZERO IS NOT FORCED TO VANISH</text>
+  <text x="624" y="458" class="sans body">Constant process: X<tspan baseline-shift="sub" font-size="10">n</tspan><tspan baseline-shift="baseline" font-size="15">(state) = 5 for every n and state.</tspan></text>
+  <text x="624" y="488" class="sans body">It is subadditive because 5 ≤ 5 + 5.</text>
+  <rect x="624" y="512" width="494" height="98" rx="13"
+        fill="#F4E9E4" stroke="#A34D40" stroke-width="2"/>
+  <text x="650" y="545" class="sans head red">zero exact blocks: q = 0</text>
+  <text x="650" y="575" class="serif math">X(b * 0) = X<tspan baseline-shift="sub" font-size="13">0</tspan><tspan baseline-shift="baseline" font-size="20"> = 5,</tspan></text>
+  <text x="650" y="599" class="sans body red">but the empty block sum is 0; 5 ≤ 0 is false.</text>
+
+  <rect x="56" y="670" width="1088" height="76" rx="16" fill="#16243A"/>
+  <text x="600" y="699" text-anchor="middle" class="sans head light">Finite theorem ledger</text>
+  <text x="600" y="724" text-anchor="middle" class="sans body light">
+    Pointwise bounds use shifted subadditivity. Finite-sum integrability additionally uses preservation of T^b.
+  </text>
+  <text x="600" y="741" text-anchor="middle" class="sans small light">
+    Probability, ergodicity, independence, uniform-in-time control, and convergence are not conclusions.
+  </text>
+</svg>

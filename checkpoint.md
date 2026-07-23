@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-22 20:59 PDT
+Last updated: 2026-07-22 21:10 PDT
 
-Audited baseline: `main` at `5f7eb59`
+Audited baseline: `main` at `078b3ab`
 
 Active direction: **Lean formalization expansion remains paused while the owner
 learns and sculpts the public educational site. The owner explicitly authorized
@@ -200,7 +200,7 @@ The separate stale “worksheet not run” finding is also cleared: the exact
 parity/Fekete `Std` file runs under Lean 4.32.0 and prints the seven recorded
 ratios followed by `true` and `true`.
 
-The Deep Dive textbook pass is now **19 of 36 chapters complete**. *Finite
+The Deep Dive textbook pass is now **20 of 36 chapters complete**. *Finite
 Hermitian Matrices from Coordinates* carries the exact ledger
 `(2, -1, 1, 2)` through conjugate reconstruction, the copied-sign
 near-miss, the `n²` degree count, Frobenius squares `15` and `20`, and
@@ -413,6 +413,19 @@ measurability. Two accessible numeric figures, seven Lean bridges, the exact
 sixteen-declaration map, and an executed `Std` worksheet make the finite-tail
 hypothesis and its one-sided sign boundary concrete. The worksheet is the
 intended lightweight local exercise; all Mathlib-backed module checks remain
+guarded Linux-cloud work.
+*Finite Block Decomposition for Subadditive Processes* now cuts the same
+eleven exact weights in both valid temporal orientations: blocks first gives
+`12+18+10=40`, while remainder first gives `8+15+17=40`. Moving the short
+piece without moving its sample point yields the explicit false proposal
+`40≤38`. A constant-five process isolates the zero-count exact-block boundary,
+and block length zero exposes Lean's totalized quotient/remainder convention
+without smuggling in a positivity assumption. Two accessible numeric figures,
+seven Lean bridges, the complete twelve-public-declaration and three-private-
+helper map, and a byte-identical executed `Std` worksheet separate pointwise
+finite algebra from the additional preservation needed for finite-sum
+integrability. Probability, ergodicity, independence, uniform-time control,
+and convergence remain explicit nonclaims; all Mathlib/project checks remain
 guarded Linux-cloud work.
 
 ## Pause Handoff: RMT-35 Source Milestone
@@ -3301,6 +3314,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `078b3ab`: rebuild *Finite-Horizon Log-Positive Cocycle Integrability*
+  around a four-state positive-log ledger, exact finite domination, raw-measure
+  scope, a genuinely nonintegrable expanding probability tail, seven Lean
+  bridges, and an executed local `Std` worksheet.
 - `5f7eb59`: rebuild *Probability Normalization and Ergodic Rigidity Before
   Kingman* around probability-versus-raw mass, swap and identity dynamics,
   invariant-event and invariant-function rigidity, seven Lean bridges, and an
