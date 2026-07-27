@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-27 14:35 PDT
+Last updated: 2026-07-27 14:39 PDT
 
-Audited baseline: `main` at `8339992`
+Audited baseline: `main` at `a9cc929`
 
 Active direction: **RMT-35 is a complete green vertical slice.** It defines
 the finite signed Fekete rate, proves pre-ergodic probability
@@ -848,9 +848,10 @@ is intentionally retained at its provider storage rate.
 - The live `.elan` and `.lake` trees remained on fast local pod storage.
   Sequential archives were written to the retained network volume, checked
   with `zstd -t`, and recorded in a SHA-256 manifest: a 730-MB Lean toolchain
-  archive and a 2.5-GB pinned Lake-cache archive. The exact compute pod must be
-  terminated after the milestone commit and push; the network volume must be
-  retained.
+  archive and a 2.5-GB pinned Lake-cache archive. After milestone commit
+  `a9cc929` reached `origin/main`, the exact 128-GB compute pod was terminated;
+  a post-action inventory confirms it is absent. The 100-GB network volume is
+  still present and intentionally retained.
 
 RMT-35 proves no `L¹` convergence, uniform integrability of normalized signed
 growth, limit-integral interchange, sample-rate equality on arbitrary finite
