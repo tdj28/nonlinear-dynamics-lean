@@ -96,7 +96,11 @@ Human editorial acceptance and separate scientific-integrity and
 zero-context expert-reader reviews remain pending. RMT-34 proves finite-time
 signed integrability and one strictly positive-rate corollary. It does not
 prove a general signed Kingman theorem, an inverse-cocycle exponent identity,
-a Lyapunov spectrum, invariant subspaces, or an Oseledets splitting.
+a Lyapunov spectrum, invariant subspaces, or an Oseledets splitting. The
+successor
+[RMT-35 chapter]({{< relref "/development-notebook/2026/07/signed-real-log-kingman-convergence-in-lean" >}})
+now uses this finite-time package to prove the signed pre-ergodic probability
+endpoint; that later theorem does not change RMT-34's own checked surface.
 {{< /panel >}}
 
 For reusable terminology, see
@@ -136,7 +140,7 @@ There are two routes through the module.
   wide="true"
   src="real-log-integrability-proof-ladder.svg"
   alt="A main proof ladder moves from a total real logarithm through pointwise units, a measurable total inverse envelope, integrable lower and upper rails, and a finite-time signed subadditive candidate. A separate side route starts from a strictly positive log-positive rate and reaches eventual agreement with the real logarithm."
-  caption="**Two routes, two outputs:** the main route constructs finite-time signed infrastructure from pointwise units and two integrable generator tails. The side route reuses RMT-33 only in the strictly positive regime. Neither route is a general signed Kingman theorem."
+  caption="**Two routes, two outputs:** the main route constructs finite-time signed infrastructure from pointwise units and two integrable generator tails. The side route reuses RMT-33 only in the strictly positive regime. Neither route inside RMT-34 is a general signed Kingman theorem; RMT-35 later consumes the main route."
 >}}
 
 The immediate predecessor is
@@ -1454,10 +1458,11 @@ almost-everywhere limit from the RMT-34 candidate?
 
 **Solution.** One needs a theorem that accepts an integrable real-valued
 shifted-subadditive process and proves its normalized almost-everywhere
-convergence under the appropriate finite-measure and ergodic hypotheses. The
+convergence under the appropriate probability and pre-ergodic hypotheses. The
 current module only builds the candidate and proves a separate positive-rate
-transfer from RMT-33. Calling either result a general signed Kingman theorem
-would exceed the checked source.
+transfer from RMT-33. The successor RMT-35 module now supplies that signed
+endpoint. Calling either result *inside RMT-34* a general signed Kingman
+theorem would exceed this page's pinned source.
 
 ## Discussion: what RMT-34 changes
 

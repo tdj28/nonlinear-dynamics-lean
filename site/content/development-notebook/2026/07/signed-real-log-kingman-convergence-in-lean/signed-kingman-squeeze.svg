@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">Signed Kingman liminf and limsup squeeze</title>
+  <desc id="desc">The signed Fekete rate lies below the lower limit, which lies below the upper limit, which lies below the same rate. The quantities therefore coincide almost everywhere.</desc>
+  <rect width="1200" height="470" rx="26" fill="#f7f1e5"/>
+  <text x="600" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#23343b">Almost-everywhere squeeze</text>
+  <g font-family="Arial,sans-serif" font-size="26" text-anchor="middle">
+    <rect x="55" y="155" width="225" height="120" rx="18" fill="#315f63"/>
+    <text x="168" y="205" fill="white">signed Fekete</text><text x="168" y="241" fill="white">rate λ</text>
+    <path d="M290 215 H382" stroke="#23343b" stroke-width="5" marker-end="url(#arrow)"/>
+    <rect x="397" y="155" width="225" height="120" rx="18" fill="#e3d7bd" stroke="#8a6d38" stroke-width="3"/>
+    <text x="510" y="205" fill="#23343b">liminf</text><text x="510" y="241" fill="#23343b">Xₙ / n</text>
+    <path d="M632 215 H724" stroke="#23343b" stroke-width="5" marker-end="url(#arrow)"/>
+    <rect x="739" y="155" width="225" height="120" rx="18" fill="#e7d9e2" stroke="#7a4d69" stroke-width="3"/>
+    <text x="852" y="205" fill="#23343b">limsup</text><text x="852" y="241" fill="#23343b">Xₙ / n</text>
+    <path d="M974 215 H1055" stroke="#23343b" stroke-width="5" marker-end="url(#arrow)"/>
+    <circle cx="1110" cy="215" r="54" fill="#315f63"/>
+    <text x="1110" y="224" fill="white">λ</text>
+  </g>
+  <text x="600" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" fill="#23343b">λ ≤ liminf ≤ limsup ≤ λ  ⇒  convergence to λ</text>
+  <text x="600" y="397" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#5a6467">lower deviations supply the first rail · inverse-tail boundedness and phase averaging supply the last</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#23343b"/></marker></defs>
+</svg>

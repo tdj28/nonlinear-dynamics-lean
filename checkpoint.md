@@ -3,21 +3,18 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-23 01:20 PDT
+Last updated: 2026-07-27 14:35 PDT
 
-Audited baseline: `main` at `296291a`
+Audited baseline: `main` at `8339992`
 
-Active direction: **Lean formalization expansion remains paused while the owner
-learns and sculpts the public educational site. The owner explicitly authorized
-a corpus-wide glossary and Deep Dive teaching rebuild on 2026-07-22.** RMT-34
-remains a complete released
-vertical slice. RMT-35 is now source-complete enough to compile as an
-integrated Lean milestone: it defines the finite signed Fekete rate and proves
-pre-ergodic probability almost-everywhere convergence of normalized real-log
-cocycle growth. It is not yet a complete proof-to-prose release. Boundary
-models, paired teaching, source snapshot/coverage metadata, rendered QA, and
-the final cloud release replay remain deliberately unfinished and are
-listed below for the next session.
+Active direction: **RMT-35 is a complete green vertical slice.** It defines
+the finite signed Fekete rate, proves pre-ergodic probability
+almost-everywhere convergence of normalized real-log cocycle growth, checks
+the exact contraction/neutral/expansion scalar atlas, and ships paired
+Notebook, Deep Dive, and glossary teaching. The next open random-cocycle item
+is to select one precise meaning of stochastic stability before writing any
+new formalization. Professional review remains deferred; every public article
+continues to declare `pro_reviewed: false`.
 
 ## Mathematical Editorial Register Audit
 
@@ -799,7 +796,74 @@ release debt explicit. This latest wave has static Hugo and native-pixel asset
 QA; a fresh live desktop/mobile browser pass remains future release QA because
 the browser backend was unavailable.
 
-## Pause Handoff: RMT-35 Source Milestone
+## RMT-35 Green Vertical-Slice Release
+
+On 2026-07-27 the owner resumed the random-cocycle work with an explicit
+RunPod compute budget of $30 and asked that project network storage be
+retained. The release used one 32-vCPU/128-GB CPU builder at $1.28/hour after
+the initial oversized 256-GB selection was promptly replaced and terminated.
+The approved builder ran for under one hour, leaving the combined compute
+spend far below budget. The separately created 100-GB project network volume
+is intentionally retained at its provider storage rate.
+
+- `RealLogNormKingman.lean` is now 700 lines with thirty-three public named
+  declarations and seven axiom prints. Its frozen source SHA-256 is
+  `428cf84a18fcec75a8a2deb9aaa49e612b87706d3f39da4aa81e61b78d8e601a`.
+- A private generic `Fin 1` Dirac cocycle with generator entry `exp(rate)`
+  checks the exact matrix power, selected norm, real-log observable,
+  two-tail package, normalized integral, and signed Fekete rate for every real
+  `rate`. Anonymous examples instantiate exact rates `-1`, `0`, and `1`.
+  The optional nonergodic and mass-two countermodels were judged
+  disproportionate for this slice because they would duplicate already
+  explicit endpoint assumptions without protecting a new public interface.
+- The complete teaching bundle is
+  `signed-real-log-kingman-convergence-in-lean`,
+  `integrated-real-log-growth-and-signed-kingman-convergence`, and
+  `integrated-real-log-growth-rate`. It adds three deterministic 1200x630
+  cards, five page-owned conceptual SVGs, the full public-declaration map,
+  literal standalone and project checks, exact nonclaims, and the verified
+  Kingman 1968 publisher record and DOI.
+- RMT-29's Notebook now documents the generalized eventual-lower-bound
+  theorem, its nonnegative compatibility wrapper, all five public
+  declarations, and all five axiom prints. RMT-34's Notebook, Deep Dive, and
+  tail glossary now link forward to RMT-35 while preserving RMT-34's own
+  finite-time nonclaims.
+- The standalone `Std` scalar tutorial compiled locally under Lean 4.32.0.
+  Workstation validation passed 40/40 proof-to-prose coverage, twenty-three
+  coverage regressions, seven hygiene regressions, the 146-Markdown teaching
+  scan, the 697-file public-language scan, deterministic card verification,
+  XML parsing, and Hugo Extended with Deploy 0.160.1 rendering of 420 pages.
+- Literal browser QA at 1440x1000 and 390x844 found one heading per page, no
+  page-level overflow, broken or alt-less images, KaTeX errors, raw display
+  delimiters, or console warnings/errors. Visual inspection caught and
+  repaired one social-card subscript-font fallback before deterministic
+  re-verification.
+- The checksum-identical source-only tree was synchronized to the approved
+  Linux builder without `.env`, Git metadata, local caches, generated Hugo
+  output, credentials, or private review files. Warning-fatal RMT-29 and
+  RMT-35 leaf checks passed. `CLOUD_LEAN_BUILD=1 make -j1 check` then completed
+  all 3,218 Lean jobs and every static gate using the exact Hugo 0.160.1
+  extended-with-deploy release. Every reported axiom footprint is
+  `[propext, Classical.choice, Quot.sound]`.
+- The live `.elan` and `.lake` trees remained on fast local pod storage.
+  Sequential archives were written to the retained network volume, checked
+  with `zstd -t`, and recorded in a SHA-256 manifest: a 730-MB Lean toolchain
+  archive and a 2.5-GB pinned Lake-cache archive. The exact compute pod must be
+  terminated after the milestone commit and push; the network volume must be
+  retained.
+
+RMT-35 proves no `L¹` convergence, uniform integrability of normalized signed
+growth, limit-integral interchange, sample-rate equality on arbitrary finite
+mass, convergence rate, concentration inequality, singular-value or conorm
+asymptotic, inverse-cocycle exponent identity, Lyapunov spectrum, invariant
+filtration or splitting, Oseledets theorem, derivative-cocycle bridge, or
+stable-manifold theorem.
+
+## Historical Pause Handoff: RMT-35 Source Milestone
+
+> Superseded by the green release record above. This historical section is
+> retained only to explain the source-only state and recovery plan that the
+> 2026-07-27 release completed.
 
 ### What is checked now
 
@@ -1620,16 +1684,17 @@ bridge, or stable-manifold theorem.
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation` | Arbitrarily-late fixed-slope events, rationally generated strict deviation, relaxed and same-target preimage inclusions, finite-measure almost invariance and ergodic rigidity, probability null selection, exact boundary countermodels, and the log-positive cocycle null theorem | `countably-generated-centered-lower-deviation-events-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman` | Total positive-time normalization, guarded real-liminf/event equivalence, double-rational null exhaustion, almost-everywhere lower-liminf control with explicit boundedness, Birkhoff addback, and full normalized log-positive cocycle convergence from the RMT-29/RMT-32 squeeze | `log-positive-kingman-convergence-from-rational-lower-deviations-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability` | Total finite-time real-log norms, pointwise unit propagation, measurable total inverse envelopes, reverse-order inverse orbit majorants, integrable forward-and-inverse tail rails, a signed subadditive candidate, a checked probability-space missing-tail counterexample, and strictly positive-rate real-log convergence without invertibility | `real-log-norm-integrability-from-forward-and-inverse-tails-in-lean` |
+| `NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman` | Signed finite-horizon integrals, inverse-tail linear controls, a finite integrated real-log Fekete rate, lower-liminf and generalized upper-limsup sample rails, pre-ergodic probability almost-everywhere convergence, empty dimension, positive-rate identification, and exact scalar contraction/neutral/expansion boundaries | `signed-real-log-kingman-convergence-in-lean` |
 
-The root aggregator imports all thirty-nine modules. The proof-to-prose manifest and
+The root aggregator imports all forty modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Thirty-nine comprehensive Development Notebook chapters in an explicit
+- Forty comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Thirty-six textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Thirty-seven textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -1665,7 +1730,8 @@ declaration visibility.
   Selection*, followed by *The Guarded Real-Liminf Bridge to Log-Positive
   Kingman Convergence*, followed by *The Forward-and-Inverse Tail Sandwich for
   Finite-Time Real Log Norms*.
-- Sixty-two glossary chapters, now including integrable generator log tails,
+- Sixty-three glossary chapters, now including the integrated real-log growth
+  rate, integrable generator log tails,
   the finite orbit visit count,
   limit superior, limit inferior, ergodicity, normalized space
   averages, the invariant sigma algebra,
@@ -1686,8 +1752,8 @@ declaration visibility.
   moments, and normalized Hermitian coordinates
   alongside GUE, Hermitian Frobenius geometry, scalar Gaussian, independence,
   normalization, and matrix and measure-theory foundations.
-- One hundred thirty-seven deterministic 1200x630 social cards and 316 accessible
-  conceptual SVG figures, plus one static SVG favicon.
+- One hundred forty deterministic 1200x630 social cards and 324 accessible
+  page-bundle SVG figures, plus one static SVG favicon.
 - Guided Hugo learning path with article orientation, progress, table of
   contents, code copy, teaching panels, glossary search, and responsive/print
   layouts. Rendered desktop and 390-pixel mobile QA found and fixed article
@@ -1695,25 +1761,19 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### Finish and release RMT-35 after the user resumes
+### Select the stochastic-stability statement before formalizing it
 
-The RMT-35 core surface described in the pause handoff is implemented and
-compile-checked. The next milestone is not another theorem family; it is to
-finish this same vertical slice without scope drift:
+RMT-35 completes the current signed top-growth slice. The only remaining
+random-cocycle roadmap checkbox is “stochastic stability,” but that phrase is
+ambiguous. Before editing Lean, choose one mathematically precise target,
+identify its topology and perturbation class, audit Mathlib prerequisites, and
+write a small proof-obligation ledger. Candidate meanings include continuity
+of the signed integrated top-growth rate under a specified cocycle
+perturbation, persistence of invariant measures under noise, or random
+attractor stability. Do not conflate these.
 
-1. add the exact scalar contraction, neutral, expansion, and empty-dimension
-   boundaries, then decide whether the two recommended normalization and
-   ergodicity countermodels remain proportionate;
-2. perform the complete proof-to-prose work for RMT-35 and repair the now-
-   stale RMT-29 and forward-looking RMT-34 teaching pages;
-3. freeze and verify the hosted Lean snapshot and coverage manifest;
-4. complete source, semantic, prose, card, SVG, Hugo, and literal browser
-   audits; and
-5. replay the exact workstation non-Lean gates and the approved Linux cloud
-   `make check` release gate before marking the slice complete.
-
-Do not begin singular values, conorms, Lyapunov spectra, Oseledets splittings,
-derivative cocycles, or stable manifolds until this release contract is green.
+Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
+cocycles, and stable manifolds remain separate later milestones.
 
 ## Dependency-Ordered Roadmap
 
@@ -1833,7 +1893,7 @@ unresolved convention or depend on an unproved earlier interface.
   finite-horizon integrability, an integrable signed subadditive candidate,
   the geometric one-tail counterexample, and the positive-growth real-log
   endpoint.
-- [ ] Integrated signed growth, deterministic finite signed Fekete rate,
+- [x] Integrated signed growth, deterministic finite signed Fekete rate,
   two-sided normalized bounds, and general almost-everywhere real-log Kingman
   convergence under the RMT-34 two-tail package.
 - [ ] One explicitly selected meaning of stochastic stability.

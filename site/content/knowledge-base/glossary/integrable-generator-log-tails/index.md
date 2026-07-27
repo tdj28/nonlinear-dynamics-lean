@@ -480,7 +480,7 @@ pieces of infrastructure:
 2. <code>isIntegrableSubadditiveProcessCandidate</code> combines that
    integrability with shifted subadditivity.
 
-The repository's current RMT-35 source then adds a probability base and the
+The released RMT-35 vertical slice then adds a probability base and the
 project's pre-ergodic invariant-set condition. Its signed Kingman endpoint is
 named
 <code>HasIntegrableGeneratorLogTails.ae_tendsto_normalizedRealLogNormObservable</code>.
@@ -489,9 +489,9 @@ deterministic integrated signed growth rate.
 
 That downstream theorem explains why the present hypothesis is valuable, but
 it must not be read backward into this page. This page's pinned source and
-hash cover RMT-34 only. The RMT-35 source still needs its own teaching layer
-and full project validation, and the tail package by itself proves no asymptotic
-convergence.
+hash cover RMT-34 only. RMT-35 has its own
+[teaching layer]({{< relref "/knowledge-base/deep-dives/integrated-real-log-growth-and-signed-kingman-convergence" >}});
+the tail package by itself proves no asymptotic convergence.
 
 ## Near-misses and boundary cases
 

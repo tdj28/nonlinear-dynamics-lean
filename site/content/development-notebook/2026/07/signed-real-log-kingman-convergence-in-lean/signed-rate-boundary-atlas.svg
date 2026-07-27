@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Signed scalar-rate boundary atlas</title>
+  <desc id="desc">Three panels compare constant scalar contraction, neutral growth, and expansion. Their normalized signed rates are negative one, zero, and one.</desc>
+  <rect width="1200" height="520" rx="26" fill="#f7f1e5"/>
+  <text x="60" y="66" font-family="Georgia,serif" font-size="32" fill="#23343b">One formula covers every sign: log ‖[exp(r)]ⁿ‖ / n = r</text>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(60 110)">
+      <rect width="330" height="330" rx="22" fill="#e8f0ee" stroke="#315f63" stroke-width="3"/>
+      <text x="26" y="48" font-size="25" font-weight="700" fill="#234b50">Contraction</text>
+      <path d="M42 230 L275 90" fill="none" stroke="#b24b40" stroke-width="8"/>
+      <circle cx="42" cy="230" r="8" fill="#b24b40"/><circle cx="275" cy="90" r="8" fill="#b24b40"/>
+      <text x="26" y="278" font-size="22" fill="#23343b">r = −1</text>
+      <text x="26" y="312" font-size="22" fill="#23343b">log norm = −n</text>
+    </g>
+    <g transform="translate(435 110)">
+      <rect width="330" height="330" rx="22" fill="#f0eadc" stroke="#8a6d38" stroke-width="3"/>
+      <text x="26" y="48" font-size="25" font-weight="700" fill="#6a5129">Neutral</text>
+      <path d="M42 165 L275 165" fill="none" stroke="#8a6d38" stroke-width="8"/>
+      <circle cx="42" cy="165" r="8" fill="#8a6d38"/><circle cx="275" cy="165" r="8" fill="#8a6d38"/>
+      <text x="26" y="278" font-size="22" fill="#23343b">r = 0</text>
+      <text x="26" y="312" font-size="22" fill="#23343b">log norm = 0</text>
+    </g>
+    <g transform="translate(810 110)">
+      <rect width="330" height="330" rx="22" fill="#efe9e4" stroke="#7a4d69" stroke-width="3"/>
+      <text x="26" y="48" font-size="25" font-weight="700" fill="#613a52">Expansion</text>
+      <path d="M42 235 L275 82" fill="none" stroke="#7a4d69" stroke-width="8" transform="scale(1,-1) translate(0,-330)"/>
+      <circle cx="42" cy="95" r="8" fill="#7a4d69"/><circle cx="275" cy="248" r="8" fill="#7a4d69"/>
+      <text x="26" y="278" font-size="22" fill="#23343b">r = 1</text>
+      <text x="26" y="312" font-size="22" fill="#23343b">log norm = n</text>
+    </g>
+  </g>
+</svg>

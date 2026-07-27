@@ -4,11 +4,11 @@ slug: "subadditive-upper-limsup-from-phase-averaging-in-lean"
 date: 2026-07-22
 weight: -63
 author: "tdj28"
-summary: "Random-matrix-theory milestone 29 (RMT-29) combines a corrected finite phase-average bound with ergodic Birkhoff convergence under the original map to prove a samplewise upper limsup estimate for nonnegative subadditive processes, then optimizes all block lengths to reach the integrated log-positive Fekete rate for matrix cocycles."
+summary: "Random-matrix-theory milestone 29 (RMT-29) combines a corrected finite phase-average bound with ergodic Birkhoff convergence under the original map to prove a samplewise upper limsup estimate for subadditive processes whose normalized paths are eventually bounded below; a nonnegative wrapper and a log-positive cocycle endpoint recover the original applications."
 lead: |
-  A fixed-block proof of the subadditive ergodic theorem faces a subtle trap: an ergodic map can have a nonergodic power. RMT-29 avoids that trap by centering the process, averaging every block phase at finite time, and applying Birkhoff convergence only under the original transformation. The result is the upper half of a Kingman-style argument, formalized with its true probability, integrability, nonnegativity, and positive-block boundaries visible.
+  A fixed-block proof of the subadditive ergodic theorem faces a subtle trap: an ergodic map can have a nonergodic power. RMT-29 avoids that trap by centering the process, averaging every block phase at finite time, and applying Birkhoff convergence only under the original transformation. The reusable theorem asks for its actual order-theoretic gate: almost-everywhere eventual lower boundedness of normalized paths. Pointwise nonnegativity is retained as a compatibility wrapper, not imposed on signed applications.
 key_result: |
-  On an ergodic probability system, every pointwise nonnegative integrable subadditive-process candidate satisfies, almost everywhere, limsup X_n(omega)/n at most the normalized integral of any fixed positive block X_b. For a discrete matrix cocycle with an integrable one-step log-positive envelope, the same samplewise limsup is at most the deterministic integrated log-positive Fekete rate. The module does not prove convergence, a matching lower bound, equality with the rate, a signed Lyapunov exponent, or an Oseledets splitting.
+  On an ergodic probability system, every integrable subadditive-process candidate whose normalized sample paths are eventually bounded below almost everywhere satisfies limsup X_n(omega)/n at most the normalized integral of any fixed positive block X_b. Pointwise nonnegativity supplies that gate automatically. For a discrete matrix cocycle with an integrable one-step log-positive envelope, the same limsup is at most the deterministic integrated log-positive Fekete rate. The module alone does not prove convergence or a matching lower bound.
 draft: false
 pro_reviewed: false
 status: "Pending human editorial, scientific-integrity, and expert-reader review"
@@ -53,7 +53,8 @@ Lean source is authoritative for every theorem statement and assumption.
 
 {{< panel "info" >}}
 **Abstract.** Let \(T\) act ergodically on a probability space and let
-\(X_n(\omega)\) be a pointwise nonnegative, integrable subadditive process.
+\(X_n(\omega)\) be an integrable subadditive process whose normalized sample
+paths are eventually bounded below almost everywhere.
 For every positive block length \(b\), RMT-29 proves
 
 \[
@@ -68,8 +69,10 @@ finite phase-averaged inequality, decomposes the complete sequence into
 residue classes modulo \(b\), and invokes RMT-28 only for Birkhoff averages
 under the original map \(T\). It never assumes that \(T^b\) is ergodic.
 
-For the nonnegative log-positive norm process of a discrete matrix cocycle,
-the theorem holds simultaneously for every positive \(b\). Taking the
+Pointwise nonnegativity is one sufficient way to establish the lower-bound
+gate and is exposed by a compatibility theorem. For the nonnegative
+log-positive norm process of a discrete matrix cocycle, the theorem holds
+simultaneously for every positive \(b\). Taking the
 infimum and using the checked deterministic Fekete identity from RMT-16 gives
 an almost-everywhere upper bound by the integrated log-positive growth rate.
 This is an upper-limsup milestone before full Kingman convergence.
@@ -108,8 +111,8 @@ ergodicity present in the theorem statement.
 {{< reference-figure
   wide="true"
   src="rmt29-upper-proof-ladder.svg"
-  alt="A proof ladder begins with an integrable nonnegative shifted-subadditive process, centers it by the one-step Birkhoff majorant, applies finite phase averaging, takes two Birkhoff limits under the original map, obtains a fixed-block upper limsup bound, and then specializes to the cocycle Fekete rate. A separate unfinished branch marks the absent lower liminf proof."
-  caption="**Finding:** RMT-29 composes finite phase averaging and ordinary-map Birkhoff convergence into an upper-limsup estimate. The ladder has no step producing a lower bound or samplewise convergence, so it must not be read as the full subadditive ergodic theorem."
+  alt="A proof ladder begins with an integrable shifted-subadditive process and an eventual lower bound for normalized paths, centers the process by the one-step Birkhoff majorant, applies finite phase averaging, takes two Birkhoff limits under the original map, obtains a fixed-block upper limsup bound, and then shows nonnegativity and the log-positive cocycle as specializations."
+  caption="**Finding:** RMT-29 composes an explicit eventual lower-bound gate, finite phase averaging, and ordinary-map Birkhoff convergence into an upper-limsup estimate. Nonnegativity is a sufficient specialization. The ladder has no step producing a lower liminf bound or convergence."
 >}}
 
 ## The mathematical proof ladder
@@ -180,8 +183,8 @@ by the real `limsup_le_iff` interface
 
 {{< reference-figure
   src="limsup-boundedness-gates.svg"
-  alt="Two gates feed the real limsup API. Pointwise nonnegativity gives a lower bound of zero for normalized process values, while the one-step Birkhoff majorant and convergence of the one-step average give an eventual upper bound. Beyond the gates lies only a limsup inequality, not a convergence conclusion."
-  caption="The real-valued `limsup_le_iff` route needs both order bounds. Nonnegativity is genuine theorem scope, while the upper bound comes from the one-step majorant and Birkhoff convergence. Passing both gates proves an upper comparison only."
+  alt="Two gates feed the real limsup API. An explicit almost-everywhere eventual lower bound controls normalized process values, while the one-step Birkhoff majorant and convergence of the one-step average give an eventual upper bound. Pointwise nonnegativity is shown as one way to supply the lower gate."
+  caption="The real-valued `limsup_le_iff` route needs both order bounds. The reusable theorem accepts eventual lower boundedness directly; the compatibility wrapper derives it from nonnegativity. The upper bound comes from the one-step majorant and Birkhoff convergence."
 >}}
 
 For upper boundedness, the candidate's one-step majorant gives, eventually at
@@ -270,9 +273,9 @@ identity identifies their infimum with
 
 ## Public declaration surface
 
-The module's four public declarations appear in this order. The receiver
+The module's five public declarations appear in this order. The receiver
 namespace variables already in scope in the Lean source are suppressed in
-snippets 2 through 4; the theorem names, explicit premises, and conclusions
+snippets 2 through 5; the theorem names, explicit premises, and conclusions
 are source-faithful.
 
 ### 1. `integral_birkhoffSum_eq_nat_mul`
@@ -302,7 +305,27 @@ theorem IsIntegrableSubadditiveProcessCandidate.integral_centeredProcess
 This receiver-style theorem exposes the exact centering cancellation needed
 later. Its horizon is unrestricted, so the time-zero specialization compiles.
 
-### 3. `IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral`
+### 3. `IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge`
+
+```lean
+theorem ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge
+    [IsProbabilityMeasure μ]
+    (hX : IsIntegrableSubadditiveProcessCandidate T μ X)
+    (hT : Ergodic T μ)
+    (hXlower : ∀ᵐ ω ∂μ,
+      IsBoundedUnder (· ≥ ·) atTop (fun n ↦ X n ω / (n : ℝ)))
+    (b : ℕ) (hb : b ≠ 0) :
+    ∀ᵐ ω ∂μ,
+      limsup (fun n ↦ X n ω / (n : ℝ)) atTop ≤
+        (∫ x, X b x ∂μ) / (b : ℝ)
+```
+
+This is the reusable theorem. `hXlower` states the exact lower-boundedness
+gate used by the real limsup argument. It permits signed processes when
+another estimate, such as RMT-35's inverse-tail Birkhoff rail, supplies that
+gate.
+
+### 4. `IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral`
 
 ```lean
 theorem IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral
@@ -315,12 +338,14 @@ theorem IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockInt
         (∫ x, X b x ∂μ) / (b : ℝ)
 ```
 
-Every premise has a distinct job: candidate integrability supports the two
+This compatibility wrapper derives the generic theorem's lower-bound premise
+from pointwise nonnegativity. Every remaining premise has a distinct job:
+candidate integrability supports the two
 Birkhoff calls, ergodicity supplies preservation and integral-valued limits,
 probability removes total-mass normalization, pointwise nonnegativity supplies
 the real lower bound, and `hb` legitimizes the fixed-block phase argument.
 
-### 4. `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate`
+### 5. `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate`
 
 ```lean
 theorem DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.
@@ -356,7 +381,7 @@ restricting eventually to \(a\ge1\).
 
 ## Boundary-support and probe ledger
 
-After the four public declarations, the source contains a private compiled
+After the five public declarations, the source contains a private compiled
 boundary section. It defines `rmt29ZeroProcess`, proves
 `rmt29ZeroProcess_candidate`, defines `rmt29Flip` and
 `rmt29TwoCycleMeasure`, and installs a private probability instance for that
@@ -387,35 +412,40 @@ future APIs, not additional exported theorems.
 | 4 | Private theorem | `tendsto_arithmetic` |
 | 5 | Private theorem | `tendsto_blockCoefficient` |
 | 6 | Public receiver theorem | `IsIntegrableSubadditiveProcessCandidate.integral_centeredProcess` |
-| 7 | Public receiver theorem | `IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral` |
-| 8 | Public receiver theorem | `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate` |
-| 9 | Private boundary definition | `rmt29ZeroProcess` |
-| 10 | Private boundary theorem | `rmt29ZeroProcess_candidate` |
-| 11 | Private boundary definition | `rmt29Flip` |
-| 12 | Private boundary definition | `rmt29TwoCycleMeasure` |
-| 13 | Private boundary instance | `IsProbabilityMeasure rmt29TwoCycleMeasure` |
-| 14 | Private boundary theorem | `rmt29Flip_measurePreserving_twoCycle` |
-| 15 | Private boundary theorem | `rmt29Flip_preErgodic_twoCycle` |
-| 16 | Private boundary theorem | `rmt29Flip_ergodic_twoCycle` |
-| 17 | Private boundary theorem | `rmt29Flip_square_eq_id` |
-| 18 | Private boundary theorem | `rmt29Flip_square_not_ergodic` |
-| 19 | Anonymous `example` | `integral_birkhoffSum_eq_nat_mul` specialized at horizon zero |
-| 20 | Anonymous `example` | `ae_limsup_normalized_le_blockIntegral` for the zero process at block one |
-| 21 | Anonymous `example` | Ergodic flip, nonergodic square, and zero-process block-two bound |
-| 22 | Axiom audit | `#print axioms integral_birkhoffSum_eq_nat_mul` |
-| 23 | Axiom audit | `#print axioms IsIntegrableSubadditiveProcessCandidate.integral_centeredProcess` |
-| 24 | Axiom audit | `#print axioms IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral` |
-| 25 | Axiom audit | `#print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate` |
+| 7 | Public receiver theorem | `IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge` |
+| 8 | Public receiver theorem | `IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral` |
+| 9 | Public receiver theorem | `DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate` |
+| 10 | Private boundary definition | `rmt29ZeroProcess` |
+| 11 | Private boundary theorem | `rmt29ZeroProcess_candidate` |
+| 12 | Private boundary definition | `rmt29Flip` |
+| 13 | Private boundary definition | `rmt29TwoCycleMeasure` |
+| 14 | Private boundary instance | `IsProbabilityMeasure rmt29TwoCycleMeasure` |
+| 15 | Private boundary theorem | `rmt29Flip_measurePreserving_twoCycle` |
+| 16 | Private boundary theorem | `rmt29Flip_preErgodic_twoCycle` |
+| 17 | Private boundary theorem | `rmt29Flip_ergodic_twoCycle` |
+| 18 | Private boundary theorem | `rmt29Flip_square_eq_id` |
+| 19 | Private boundary theorem | `rmt29Flip_square_not_ergodic` |
+| 20 | Anonymous `example` | `integral_birkhoffSum_eq_nat_mul` specialized at horizon zero |
+| 21 | Anonymous `example` | `ae_limsup_normalized_le_blockIntegral` for the zero process at block one |
+| 22 | Anonymous `example` | Ergodic flip, nonergodic square, and zero-process block-two bound |
+| 23 | Axiom audit | `#print axioms integral_birkhoffSum_eq_nat_mul` |
+| 24 | Axiom audit | `#print axioms IsIntegrableSubadditiveProcessCandidate.integral_centeredProcess` |
+| 25 | Axiom audit | `#print axioms IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge` |
+| 26 | Axiom audit | `#print axioms IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral` |
+| 27 | Axiom audit | `#print axioms DiscreteMatrixCocycle.HasIntegrableGeneratorLogPlus.ae_limsup_normalized_le_integratedLogPlusGrowthRate` |
 
 ## Axiom audit
 
-The four final axiom reports are:
+The five final axiom reports are:
 
 ```text
 'NonlinearDynamics.Random.RandomCocycles.integral_birkhoffSum_eq_nat_mul'
 depends on axioms: [propext, Classical.choice, Quot.sound]
 
 'NonlinearDynamics.Random.RandomCocycles.IsIntegrableSubadditiveProcessCandidate.integral_centeredProcess'
+depends on axioms: [propext, Classical.choice, Quot.sound]
+
+'NonlinearDynamics.Random.RandomCocycles.IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral_of_ae_isBoundedUnder_ge'
 depends on axioms: [propext, Classical.choice, Quot.sound]
 
 'NonlinearDynamics.Random.RandomCocycles.IsIntegrableSubadditiveProcessCandidate.ae_limsup_normalized_le_blockIntegral'
@@ -580,9 +610,10 @@ rate.
 ## Contribution and nonclaims
 
 The new contribution is the first checked almost-everywhere samplewise
-subadditive upper asymptotic bound in this development. It is reusable at two
-levels: a generic nonnegative integrable-process theorem for any positive
-block and a matrix-cocycle theorem optimized over all blocks.
+subadditive upper asymptotic bound in this development. It is reusable at
+three levels: a generic integrable-process theorem with an explicit eventual
+lower-bound gate, a nonnegative compatibility wrapper for any positive block,
+and a matrix-cocycle theorem optimized over all blocks.
 
 It does not establish:
 
@@ -752,12 +783,13 @@ Why can positive clipping hide contraction?
 **Solution.** If the signed logarithmic rate is negative, its positive part
 can still be identically zero.
 
-### Exercise 23: list the four public roles
+### Exercise 23: list the five public roles
 
 Name them without Lean syntax.
 
 **Solution.** Finite Birkhoff-sum integration, centered-block integration,
-generic fixed-block upper limsup, and cocycle all-block integrated-rate bound.
+generic lower-bounded fixed-block upper limsup, its nonnegative wrapper, and
+the cocycle all-block integrated-rate bound.
 
 ### Exercise 24: state the next missing theorem
 
@@ -809,8 +841,9 @@ phase theorem and the cancellation needed by the limiting constant.
 
 The correct downgrade is equally important. This milestone does not make the
 full subadditive ergodic theorem checked in the repository. It establishes one
-direction of the asymptotic comparison for a nonnegative process, and its
-cocycle application concerns a positive-log envelope. Any prose claiming a
+direction of the asymptotic comparison for a lower-bounded normalized process,
+and its original cocycle application concerns a positive-log envelope. Any
+prose claiming a
 samplewise limit, equality, signed exponent, or invariant splitting would
 outrun the formal artifact.
 

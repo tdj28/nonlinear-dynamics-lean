@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Deterministic Fekete and samplewise Kingman rails</title>
+  <desc id="desc">The top lane derives a finite rate from integrated subadditivity and an inverse-tail lower bound. The bottom lane derives almost-everywhere convergence from lower-liminf and upper-limsup rails.</desc>
+  <rect width="1200" height="560" rx="26" fill="#f7f1e5"/>
+  <g font-family="Arial,sans-serif">
+    <text x="60" y="64" font-size="25" font-weight="700" fill="#315f63">DETERMINISTIC INTEGRALS</text>
+    <rect x="60" y="92" width="275" height="110" rx="18" fill="#e8f0ee" stroke="#315f63" stroke-width="3"/>
+    <text x="198" y="137" text-anchor="middle" font-size="22" fill="#23343b">aₘ₊ₙ ≤ aₘ + aₙ</text><text x="198" y="174" text-anchor="middle" font-size="20" fill="#536165">and aₙ/n ≥ −J</text>
+    <path d="M350 147 H475" stroke="#23343b" stroke-width="4" marker-end="url(#a)"/>
+    <rect x="490" y="92" width="300" height="110" rx="18" fill="#f0eadc" stroke="#8a6d38" stroke-width="3"/>
+    <text x="640" y="137" text-anchor="middle" font-size="22" fill="#23343b">Fekete convergence</text><text x="640" y="174" text-anchor="middle" font-size="20" fill="#536165">aₙ/n → inf aₖ/k = λ</text>
+    <path d="M805 147 H930" stroke="#23343b" stroke-width="4" marker-end="url(#a)"/>
+    <circle cx="1015" cy="147" r="62" fill="#315f63"/><text x="1015" y="157" text-anchor="middle" font-size="32" fill="white">λ ∈ ℝ</text>
+    <text x="60" y="290" font-size="25" font-weight="700" fill="#7a4d69">SAMPLE PATHS · ALMOST EVERYWHERE</text>
+    <rect x="60" y="322" width="300" height="135" rx="18" fill="#e7d9e2" stroke="#7a4d69" stroke-width="3"/>
+    <text x="210" y="367" text-anchor="middle" font-size="21" fill="#23343b">inverse Birkhoff rail</text><text x="210" y="402" text-anchor="middle" font-size="20" fill="#536165">eventual lower bound</text><text x="210" y="434" text-anchor="middle" font-size="20" fill="#536165">for Xₙ/n</text>
+    <path d="M375 390 H482" stroke="#23343b" stroke-width="4" marker-end="url(#a)"/>
+    <rect x="497" y="322" width="300" height="135" rx="18" fill="#f0eadc" stroke="#8a6d38" stroke-width="3"/>
+    <text x="647" y="367" text-anchor="middle" font-size="21" fill="#23343b">λ ≤ liminf Xₙ/n</text><text x="647" y="412" text-anchor="middle" font-size="21" fill="#23343b">limsup Xₙ/n ≤ λ</text>
+    <path d="M812 390 H930" stroke="#23343b" stroke-width="4" marker-end="url(#a)"/>
+    <circle cx="1015" cy="390" r="68" fill="#7a4d69"/><text x="1015" y="380" text-anchor="middle" font-size="25" fill="white">Xₙ/n → λ</text><text x="1015" y="414" text-anchor="middle" font-size="19" fill="white">almost everywhere</text>
+  </g>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#23343b"/></marker></defs>
+</svg>

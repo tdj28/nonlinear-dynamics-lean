@@ -29,8 +29,10 @@ ai_disclosure: |
 working note while human publication review and the configured external Pro
 review remain pending. The checked Lean source is authoritative. The main
 theorem in this chapter is finite-time integrability infrastructure. It is not
-yet a general signed Kingman theorem, a Lyapunov-spectrum theorem, or an
-Oseledets splitting.
+a general signed Kingman theorem, a Lyapunov-spectrum theorem, or an Oseledets
+splitting. The released successor
+[RMT-35 Deep Dive]({{< relref "/knowledge-base/deep-dives/integrated-real-log-growth-and-signed-kingman-convergence" >}})
+uses this infrastructure for a signed almost-everywhere convergence theorem.
 {{< /panel >}}
 
 ## Start with four scalar steps you can audit
@@ -263,12 +265,12 @@ Here \(R_n\) is the finite-time real log norm, \(P_n\) is its positive-log
 upper envelope, and \(J_n\) is a finite sum of inverse-generator positive
 logs. The rails are integrable, so the signed middle function is integrable.
 Together with signed subadditivity, this produces a reusable candidate for a
-downstream signed convergence layer. The repository's source-only RMT-35
-checkpoint now consumes that candidate to prove a pre-ergodic probability
-almost-everywhere limit for signed top growth. RMT-35 remains outside
-RMT-34's frozen checked surface. Its Lean core exists, but its scalar boundary
-atlas, recommended countermodels, and dedicated proof-to-prose bundle remain
-unfinished.
+downstream signed convergence layer. The released RMT-35 vertical slice now
+consumes that candidate to prove a pre-ergodic probability almost-everywhere
+limit for signed top growth. RMT-35 remains outside RMT-34's frozen checked
+surface; readers can follow its scalar boundary atlas and proof-to-prose
+bundle in
+[Integrated Real-Log Growth and Signed Kingman Convergence]({{< relref "/knowledge-base/deep-dives/integrated-real-log-growth-and-signed-kingman-convergence" >}}).
 
 A second route reaches a narrower summit. If the already-constructed
 log-positive asymptotic rate is strictly positive, clipping eventually does
@@ -2627,8 +2629,8 @@ Typical multiplicative-ergodic outputs include:
 
 RMT-34 supplies none of these. Its main output is an integrable
 shifted-subadditive process candidate for the single top-norm real log. The
-downstream source-only RMT-35 checkpoint now consumes that candidate and
-proves convergence of \(R_n/n\) to one integrated signed top-growth rate.
+downstream RMT-35 vertical slice now consumes that candidate and proves
+convergence of \(R_n/n\) to one integrated signed top-growth rate.
 That endpoint still identifies only top growth, not the full Oseledets
 structure.
 
@@ -2670,8 +2672,8 @@ separate gates.
 
 #### Exercise 40: audit the downstream signed layer
 
-Which ingredients does the current source-only RMT-35 checkpoint add beyond
-RMT-34, and which mathematical and teaching materials are still missing?
+Which ingredients does the released RMT-35 vertical slice add beyond RMT-34,
+and which stronger mathematical conclusions remain missing?
 
 **Solution.**
 
@@ -2685,17 +2687,16 @@ For the upper endpoint, RMT-35 replaces RMT-29's nonnegativity shortcut with
 an eventual lower bound obtained from the negative inverse-generator
 Birkhoff average. The generalized lower-bounded RMT-29 theorem and the lower
 endpoint then squeeze normalized signed growth. On a pre-ergodic probability
-base, the source checkpoint proves almost-everywhere convergence to the
+base, the released source proves almost-everywhere convergence to the
 integrated signed top-growth rate. It still proves no Lyapunov spectrum,
 multiplicities, invariant filtration or splitting, or Oseledets theorem.
 
-That source checkpoint is not yet a released vertical slice. Its scalar
-boundary atlas and recommended countermodels remain unfinished; it has no
-paired Development Notebook, Deep Dive, glossary chapter, social card,
-hosted source snapshot, or coverage entry. The RMT-29 teaching layer must also
-document its generalized lower-bounded theorem. None of that missing
-mathematical or teaching work changes the frozen 942-line RMT-34 surface
-audited in this chapter.
+The released vertical slice includes a generic constant-scalar boundary atlas
+covering negative, zero, and positive rates, plus a paired Development
+Notebook, Deep Dive, glossary chapter, social cards, source snapshot metadata,
+and coverage entry. The RMT-29 teaching layer now documents its generalized
+lower-bounded theorem. None of that later work changes the frozen 942-line
+RMT-34 surface audited in this chapter.
 
 ## Final theorem cards
 

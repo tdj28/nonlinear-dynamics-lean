@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">Integrated real-log growth rate</title>
+  <desc id="desc">Normalized signed integrals remain above a finite inverse-tail floor and approach their positive-horizon infimum lambda.</desc>
+  <rect width="1200" height="460" rx="26" fill="#f7f1e5"/>
+  <text x="600" y="58" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#23343b">λ = lim aₙ/n = inf  aₙ/n</text>
+  <text x="770" y="86" font-family="Arial,sans-serif" font-size="17" fill="#536165">n ≥ 1</text>
+  <line x1="90" y1="350" x2="1110" y2="350" stroke="#536165" stroke-width="3"/>
+  <line x1="90" y1="290" x2="1110" y2="290" stroke="#b24b40" stroke-width="4" stroke-dasharray="13 10"/>
+  <text x="105" y="280" font-family="Arial,sans-serif" font-size="22" fill="#b24b40">finite floor −J</text>
+  <path d="M120 150 C250 180 340 215 440 225 S650 243 760 250 S960 255 1080 256" fill="none" stroke="#315f63" stroke-width="8"/>
+  <line x1="90" y1="256" x2="1110" y2="256" stroke="#8a6d38" stroke-width="3" stroke-dasharray="8 8"/>
+  <g fill="#315f63"><circle cx="120" cy="150" r="9"/><circle cx="300" cy="202" r="9"/><circle cx="500" cy="232" r="9"/><circle cx="740" cy="249" r="9"/><circle cx="1080" cy="256" r="9"/></g>
+  <text x="925" y="238" font-family="Arial,sans-serif" font-size="22" fill="#8a6d38">λ</text>
+  <text x="120" y="128" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#23343b">a₁/1</text>
+  <text x="300" y="180" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#23343b">a₂/2</text>
+  <text x="500" y="210" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#23343b">aₙ/n</text>
+  <text x="600" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" fill="#536165">subadditivity organizes the sequence · inverse integrability supplies the floor</text>
+</svg>

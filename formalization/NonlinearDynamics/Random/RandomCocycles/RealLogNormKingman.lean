@@ -565,6 +565,130 @@ theorem HasIntegrableGeneratorLogTails.integratedRealLogGrowthRate_eq_integrated
   obtain ⟨ω, hsigned, hpositive⟩ := hboth.exists
   exact tendsto_nhds_unique hsigned hpositive
 
+/-! ## Scalar boundary atlas -/
+
+private def scalarExpMatrix (rate : ℝ) : Matrix (Fin 1) (Fin 1) ℂ :=
+  !![((Real.exp rate : ℝ) : ℂ)]
+
+private def scalarExpCocycle (rate : ℝ) :
+    DiscreteMatrixCocycle (ι := Fin 1) (Measure.dirac ()) where
+  base := id
+  generator := fun _ ↦ scalarExpMatrix rate
+  base_preserving := MeasurePreserving.id (Measure.dirac ())
+  measurable_generator := RandomMatrix.measurable_const _
+
+private theorem scalarExpCocycle_value (rate : ℝ) (k : ℕ) :
+    (scalarExpCocycle rate).value k () = scalarExpMatrix rate ^ k := by
+  change MatrixProducts.forwardProduct (fun _ : ℕ ↦ scalarExpMatrix rate) k =
+    scalarExpMatrix rate ^ k
+  exact MatrixProducts.forwardProduct_const _ _
+
+private theorem scalarExpMatrix_pow (rate : ℝ) (k : ℕ) :
+    scalarExpMatrix rate ^ k =
+      !![((Real.exp ((k : ℝ) * rate) : ℝ) : ℂ)] := by
+  induction k with
+  | zero =>
+      ext i j
+      fin_cases i
+      fin_cases j
+      simp [scalarExpMatrix]
+  | succ k ih =>
+      rw [pow_succ, ih]
+      ext i j
+      fin_cases i
+      fin_cases j
+      simp [scalarExpMatrix, Matrix.mul_apply]
+      rw [show ((k : ℂ) + 1) * (rate : ℂ) =
+        (k : ℂ) * (rate : ℂ) + (rate : ℂ) by ring]
+      exact
+        (Complex.exp_add ((k : ℂ) * (rate : ℂ)) (rate : ℂ)).symm
+
+private theorem scalarExpMatrix_pow_norm (rate : ℝ) (k : ℕ) :
+    ‖scalarExpMatrix rate ^ k‖ = Real.exp ((k : ℝ) * rate) := by
+  rw [scalarExpMatrix_pow, Matrix.linfty_opNorm_def]
+  simpa using Complex.norm_exp_ofReal ((k : ℝ) * rate)
+
+private theorem scalarExpCocycle_realLogNormObservable
+    (rate : ℝ) (k : ℕ) :
+    (scalarExpCocycle rate).realLogNormObservable k =
+      fun _ ↦ (k : ℝ) * rate := by
+  funext ω
+  cases ω
+  unfold realLogNormObservable
+  rw [scalarExpCocycle_value, scalarExpMatrix_pow_norm, Real.log_exp]
+
+private theorem scalarExpCocycle_hasIntegrableGeneratorLogTails
+    (rate : ℝ) :
+    (scalarExpCocycle rate).HasIntegrableGeneratorLogTails where
+  isPointwiseInvertible := by
+    intro ω
+    rw [Matrix.isUnit_iff_isUnit_det]
+    simp [scalarExpCocycle, scalarExpMatrix]
+  hasIntegrableGeneratorLogPlus := by
+    unfold HasIntegrableGeneratorLogPlus
+    rw [show (scalarExpCocycle rate).logPlusNormObservable 1 =
+        fun _ : Unit ↦ log⁺ ‖scalarExpMatrix rate‖ by
+      funext ω
+      cases ω
+      unfold logPlusNormObservable normObservable
+      rw [show (scalarExpCocycle rate).value 1 () =
+        scalarExpMatrix rate by simp [scalarExpCocycle]]]
+    exact integrable_const _
+  integrable_inverseGeneratorLogPlus := by
+    rw [show
+        (scalarExpCocycle rate).inverseGeneratorLogPlusNormObservable =
+          fun _ : Unit ↦ log⁺ ‖(scalarExpMatrix rate)⁻¹‖ by
+      funext ω
+      cases ω
+      rfl]
+    exact integrable_const _
+
+private theorem scalarExpCocycle_integratedRealLogNorm
+    (rate : ℝ) (k : ℕ) :
+    (scalarExpCocycle rate).integratedRealLogNorm k = (k : ℝ) * rate := by
+  unfold integratedRealLogNorm
+  rw [scalarExpCocycle_realLogNormObservable]
+  simp
+
+private theorem scalarExpCocycle_normalizedIntegratedRealLogNorm
+    (rate : ℝ) {k : ℕ} (hk : k ≠ 0) :
+    (scalarExpCocycle rate).normalizedIntegratedRealLogNorm k = rate := by
+  rw [normalizedIntegratedRealLogNorm,
+    scalarExpCocycle_integratedRealLogNorm]
+  field_simp
+
+private theorem scalarExpCocycle_integratedRealLogGrowthRate
+    (rate : ℝ) :
+    (scalarExpCocycle rate).integratedRealLogGrowthRate
+      (scalarExpCocycle_hasIntegrableGeneratorLogTails rate) = rate := by
+  apply tendsto_nhds_unique
+    (scalarExpCocycle_hasIntegrableGeneratorLogTails rate).tendsto_normalizedIntegratedRealLogNorm
+  apply (tendsto_congr' ?_).2 tendsto_const_nhds
+  filter_upwards [eventually_ge_atTop 1] with k hk
+  exact scalarExpCocycle_normalizedIntegratedRealLogNorm rate
+    (Nat.ne_of_gt hk)
+
+/-- The constant scalar contraction with generator entry `exp (-1)` has exact
+signed rate `-1`. -/
+example :
+    (scalarExpCocycle (-1)).integratedRealLogGrowthRate
+      (scalarExpCocycle_hasIntegrableGeneratorLogTails (-1)) = -1 :=
+  scalarExpCocycle_integratedRealLogGrowthRate (-1)
+
+/-- The constant scalar neutral cocycle with generator entry `1` has exact
+signed rate zero. -/
+example :
+    (scalarExpCocycle 0).integratedRealLogGrowthRate
+      (scalarExpCocycle_hasIntegrableGeneratorLogTails 0) = 0 :=
+  scalarExpCocycle_integratedRealLogGrowthRate 0
+
+/-- The constant scalar expansion with generator entry `exp 1` has exact
+signed rate `1`. -/
+example :
+    (scalarExpCocycle 1).integratedRealLogGrowthRate
+      (scalarExpCocycle_hasIntegrableGeneratorLogTails 1) = 1 :=
+  scalarExpCocycle_integratedRealLogGrowthRate 1
+
 end NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle
 
 #print axioms NonlinearDynamics.Random.RandomCocycles.DiscreteMatrixCocycle.HasIntegrableGeneratorLogTails.integratedRealLogNorm_add_le

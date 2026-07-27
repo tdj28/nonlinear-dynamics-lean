@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Integrated Real-Log Growth and Signed Kingman Convergence</title>
+  <desc id="desc">A textbook social card connects exact scalar signed rates to a finite integrated Fekete rate and an almost-everywhere sample squeeze.</desc>
+  <rect width="1200" height="630" fill="#efe7d8"/>
+  <rect x="38" y="38" width="1124" height="554" rx="28" fill="#fbf8f0" stroke="#7a4d69" stroke-width="4"/>
+  <text x="74" y="100" font-family="Arial,sans-serif" font-size="21" letter-spacing="3" fill="#315f63">DEEP DIVE · RMT–35</text>
+  <text x="74" y="158" font-family="Georgia,serif" font-size="43" fill="#23343b">Integrated Real-Log Growth</text>
+  <text x="74" y="207" font-family="Georgia,serif" font-size="43" fill="#23343b">and Signed Kingman Convergence</text>
+  <g transform="translate(74 260)" font-family="Arial,sans-serif">
+    <rect width="300" height="176" rx="22" fill="#e8f0ee"/><text x="150" y="48" text-anchor="middle" font-size="22" fill="#315f63">exact scalar family</text><text x="150" y="105" text-anchor="middle" font-size="31" font-weight="700" fill="#23343b">−1 · 0 · 1</text><text x="150" y="145" text-anchor="middle" font-size="19" fill="#536165">contraction to expansion</text>
+    <path d="M322 88 H390" stroke="#23343b" stroke-width="4" marker-end="url(#a)"/>
+    <rect x="410" width="300" height="176" rx="22" fill="#f0eadc"/><text x="560" y="48" text-anchor="middle" font-size="22" fill="#8a6d38">integrated Fekete rate</text><text x="560" y="108" text-anchor="middle" font-size="38" font-weight="700" fill="#23343b">a(n) / n → λ</text><text x="560" y="145" text-anchor="middle" font-size="19" fill="#536165">finite inverse-tail floor</text>
+    <path d="M732 88 H800" stroke="#23343b" stroke-width="4" marker-end="url(#a)"/>
+    <rect x="820" width="260" height="176" rx="22" fill="#e7d9e2"/><text x="950" y="48" text-anchor="middle" font-size="22" fill="#7a4d69">sample squeeze</text><text x="950" y="104" text-anchor="middle" font-size="25" font-weight="700" fill="#23343b">liminf = limsup</text><text x="950" y="145" text-anchor="middle" font-size="19" fill="#536165">almost everywhere</text>
+  </g>
+  <text x="74" y="510" font-family="Georgia,serif" font-size="27" fill="#23343b">Two-sided generator tails keep signed growth finite below.</text>
+  <text x="74" y="554" font-family="Arial,sans-serif" font-size="19" fill="#7a4d69">public working note · professional review pending</text>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#23343b"/></marker></defs>
+</svg>
