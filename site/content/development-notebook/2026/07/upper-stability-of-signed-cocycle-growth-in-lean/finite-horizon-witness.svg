@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Scalar convergence and the finite-horizon witness</title>
+  <desc id="desc">The left panel shows scalar generator rates converging exactly. The right panel shows a selected finite horizon below a threshold, which transfers an upper bound to perturbed long-run rates.</desc>
+  <rect width="1200" height="680" fill="#f4eddf"/>
+  <rect x="36" y="36" width="1128" height="608" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="76" y="92" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">FROM AN EXACT FAMILY TO THE GENERAL WITNESS</text>
+  <line x1="600" y1="125" x2="600" y2="590" stroke="#d4c7ae" stroke-width="2"/>
+  <text x="82" y="155" font-family="Georgia,serif" font-size="31" fill="#23343b">One-point scalar family</text>
+  <text x="82" y="210" font-family="Georgia,serif" font-size="27" fill="#315f63">G_j = [exp(r_j)]  →  G_0 = [exp(r)]</text>
+  <path d="M105 380 C210 305 320 330 465 245" fill="none" stroke="#b24b40" stroke-width="6"/>
+  <g fill="#b24b40"><circle cx="120" cy="370" r="8"/><circle cx="225" cy="320" r="8"/><circle cx="330" cy="315" r="8"/><circle cx="450" cy="252" r="8"/></g>
+  <line x1="90" y1="450" x2="530" y2="450" stroke="#315f63" stroke-width="3"/>
+  <text x="90" y="485" font-family="Arial,sans-serif" font-size="22" fill="#23343b">λ(G_j) = r_j → r = λ(G_0)</text>
+  <text x="90" y="535" font-family="Arial,sans-serif" font-size="19" fill="#6a675f">Every positive horizon gives the exact rate.</text>
+  <text x="640" y="155" font-family="Georgia,serif" font-size="31" fill="#23343b">General Fekete rate</text>
+  <line x1="655" y1="270" x2="1110" y2="270" stroke="#b24b40" stroke-width="4" stroke-dasharray="12 9"/>
+  <text x="915" y="252" font-family="Arial,sans-serif" font-size="20" fill="#b24b40">y &gt; λ(G_0)</text>
+  <path d="M675 210 L770 350 L865 300 L960 405 L1075 370" fill="none" stroke="#315f63" stroke-width="6"/>
+  <g fill="#315f63"><circle cx="675" cy="210" r="8"/><circle cx="770" cy="350" r="8"/><circle cx="865" cy="300" r="8"/><circle cx="960" cy="405" r="10"/><circle cx="1075" cy="370" r="8"/></g>
+  <line x1="960" y1="405" x2="960" y2="500" stroke="#8a6d38" stroke-width="4"/>
+  <text x="940" y="530" font-family="Arial,sans-serif" font-size="22" fill="#8a6d38">k</text>
+  <text x="650" y="575" font-family="Arial,sans-serif" font-size="19" fill="#23343b">q_k(G_0) &lt; y  ⇒  q_k(G_j) &lt; y  ⇒  λ(G_j) &lt; y</text>
+</svg>

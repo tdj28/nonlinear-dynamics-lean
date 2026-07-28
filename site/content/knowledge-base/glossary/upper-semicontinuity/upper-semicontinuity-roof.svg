@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">The epsilon roof for upper semicontinuity</title>
+  <desc id="desc">Nearby values remain under the height f of x plus epsilon, while one value falls far below f of x to show that downward jumps remain possible.</desc>
+  <rect width="1200" height="560" fill="#f4eddf"/>
+  <rect x="38" y="38" width="1124" height="484" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="78" y="98" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">UPPER SEMICONTINUITY AT x</text>
+  <line x1="100" y1="190" x2="1100" y2="190" stroke="#b24b40" stroke-width="5"/>
+  <text x="830" y="170" font-family="Arial,sans-serif" font-size="22" fill="#b24b40">f(x) + ε</text>
+  <line x1="100" y1="295" x2="1100" y2="295" stroke="#315f63" stroke-width="3" stroke-dasharray="9 8"/>
+  <text x="930" y="280" font-family="Arial,sans-serif" font-size="22" fill="#315f63">f(x)</text>
+  <line x1="600" y1="130" x2="600" y2="470" stroke="#d4c7ae" stroke-width="2"/>
+  <g fill="#315f63"><circle cx="360" cy="255" r="11"/><circle cx="455" cy="275" r="11"/><circle cx="540" cy="245" r="11"/><circle cx="600" cy="295" r="14"/><circle cx="670" cy="410" r="11"/><circle cx="755" cy="265" r="11"/><circle cx="850" cy="285" r="11"/></g>
+  <text x="585" y="505" font-family="Arial,sans-serif" font-size="22" fill="#23343b">x</text>
+  <path d="M675 397 L735 370" stroke="#8a6d38" stroke-width="3"/>
+  <text x="745" y="375" font-family="Arial,sans-serif" font-size="19" fill="#8a6d38">downward jump allowed</text>
+</svg>

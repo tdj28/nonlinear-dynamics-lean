@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Upper stability is not full continuity</title>
+  <desc id="desc">An epsilon roof bounds sufficiently late perturbed rates from above while allowing values far below the limiting rate.</desc>
+  <rect width="1200" height="560" fill="#f4eddf"/>
+  <rect x="38" y="38" width="1124" height="484" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="78" y="96" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">ONE-SIDED CONTROL</text>
+  <line x1="100" y1="205" x2="1100" y2="205" stroke="#b24b40" stroke-width="5"/>
+  <text x="790" y="185" font-family="Arial,sans-serif" font-size="22" fill="#b24b40">roof: λ(G_0) + ε</text>
+  <line x1="100" y1="315" x2="1100" y2="315" stroke="#315f63" stroke-width="3" stroke-dasharray="8 8"/>
+  <text x="885" y="300" font-family="Arial,sans-serif" font-size="22" fill="#315f63">λ(G_0)</text>
+  <g fill="#315f63">
+    <circle cx="170" cy="250" r="12"/><circle cx="300" cy="278" r="12"/><circle cx="430" cy="335" r="12"/>
+    <circle cx="560" cy="395" r="12"/><circle cx="690" cy="290" r="12"/><circle cx="820" cy="430" r="12"/>
+    <circle cx="950" cy="325" r="12"/><circle cx="1060" cy="305" r="12"/>
+  </g>
+  <path d="M170 250 L300 278 L430 335 L560 395 L690 290 L820 430 L950 325 L1060 305" fill="none" stroke="#8a6d38" stroke-width="4"/>
+  <text x="92" y="480" font-family="Arial,sans-serif" font-size="21" fill="#23343b">Late rates cannot remain above the roof. Downward displacement is not controlled.</text>
+</svg>

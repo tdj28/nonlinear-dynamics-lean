@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Upper stability of signed cocycle growth in Lean</title>
+  <desc id="desc">Uniformly convergent generators pass through fixed-horizon dominated convergence to an infimum witness and an upper bound on perturbed rates.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="38" y="38" width="1124" height="554" rx="28" fill="#fbf8f0" stroke="#315f63" stroke-width="4"/>
+  <text x="76" y="104" font-family="Arial,sans-serif" font-size="21" letter-spacing="3" fill="#7a4d69">RMT-36 · FORMALIZED STOCHASTIC STABILITY</text>
+  <text x="76" y="170" font-family="Georgia,serif" font-size="47" fill="#23343b">Upper stability of signed cocycle growth</text>
+  <g font-family="Arial,sans-serif" font-size="20" text-anchor="middle">
+    <rect x="76" y="245" width="225" height="110" rx="18" fill="#e4efe9" stroke="#315f63" stroke-width="3"/>
+    <text x="188" y="290" fill="#23343b">uniform generator</text><text x="188" y="322" fill="#23343b">convergence</text>
+    <rect x="360" y="245" width="225" height="110" rx="18" fill="#eee5d2" stroke="#8a6d38" stroke-width="3"/>
+    <text x="472" y="290" fill="#23343b">fixed-horizon</text><text x="472" y="322" fill="#23343b">dominated convergence</text>
+    <rect x="644" y="245" width="225" height="110" rx="18" fill="#eadfe7" stroke="#7a4d69" stroke-width="3"/>
+    <text x="756" y="290" fill="#23343b">one Fekete</text><text x="756" y="322" fill="#23343b">infimum witness</text>
+    <rect x="928" y="245" width="196" height="110" rx="18" fill="#f1ddd7" stroke="#b24b40" stroke-width="3"/>
+    <text x="1026" y="290" fill="#23343b">eventual upper</text><text x="1026" y="322" fill="#23343b">rate bound</text>
+  </g>
+  <g stroke="#315f63" stroke-width="4" fill="none">
+    <path d="M301 300 H350"/><path d="M585 300 H634"/><path d="M869 300 H918"/>
+  </g>
+  <text x="76" y="438" font-family="Georgia,serif" font-size="34" fill="#315f63">λ(G_j) ≤ λ(G_0) + ε, eventually</text>
+  <text x="76" y="500" font-family="Arial,sans-serif" font-size="20" fill="#b24b40">upper semicontinuity only · no matching lower bound</text>
+  <text x="76" y="552" font-family="Arial,sans-serif" font-size="18" fill="#7a4d69">public working note · professional review pending</text>
+</svg>

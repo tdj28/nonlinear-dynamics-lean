@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="580" viewBox="0 0 1200 580" role="img" aria-labelledby="title desc">
+  <title id="title">Four stages of the upper-stability proof</title>
+  <desc id="desc">Uniform generator convergence yields fixed product convergence. Common bounds yield dominated convergence of integrals. A Fekete infimum witness yields the eventual upper rate estimate.</desc>
+  <rect width="1200" height="580" fill="#f4eddf"/>
+  <rect x="38" y="38" width="1124" height="504" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="78" y="100" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">FIX HORIZON FIRST, SELECT IT ONCE</text>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="72" y="180" width="230" height="150" rx="20" fill="#e4efe9" stroke="#315f63" stroke-width="3"/>
+    <text x="187" y="225" font-size="22" fill="#23343b">1 · generators</text><text x="187" y="267" font-size="19" fill="#23343b">G_j → G_0 uniformly</text>
+    <rect x="348" y="180" width="230" height="150" rx="20" fill="#eee5d2" stroke="#8a6d38" stroke-width="3"/>
+    <text x="463" y="225" font-size="22" fill="#23343b">2 · products</text><text x="463" y="267" font-size="19" fill="#23343b">C_j^k(ω) → C_0^k(ω)</text>
+    <rect x="624" y="180" width="230" height="150" rx="20" fill="#eadfe7" stroke="#7a4d69" stroke-width="3"/>
+    <text x="739" y="225" font-size="22" fill="#23343b">3 · integrals</text><text x="739" y="267" font-size="19" fill="#23343b">q_k(G_j) → q_k(G_0)</text>
+    <rect x="900" y="180" width="230" height="150" rx="20" fill="#f1ddd7" stroke="#b24b40" stroke-width="3"/>
+    <text x="1015" y="225" font-size="22" fill="#23343b">4 · infimum</text><text x="1015" y="267" font-size="19" fill="#23343b">λ(G_j) &lt; y</text>
+  </g>
+  <g stroke="#315f63" stroke-width="4" fill="none">
+    <path d="M302 255 H338"/><path d="M578 255 H614"/><path d="M854 255 H890"/>
+  </g>
+  <text x="350" y="390" font-family="Arial,sans-serif" font-size="20" fill="#8a6d38">continuity of finite multiplication</text>
+  <text x="635" y="430" font-family="Arial,sans-serif" font-size="20" fill="#7a4d69">common two-sided dominator</text>
+  <text x="900" y="390" font-family="Arial,sans-serif" font-size="20" fill="#b24b40">choose k with q_k(G_0) &lt; y</text>
+  <text x="76" y="500" font-family="Georgia,serif" font-size="27" fill="#23343b">The perturbation limit is taken at fixed k; the Fekete formula chooses k.</text>
+</svg>

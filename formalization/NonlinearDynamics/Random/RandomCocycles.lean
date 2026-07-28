@@ -21,6 +21,7 @@ import NonlinearDynamics.Random.RandomCocycles.SubadditiveLowerDeviation
 import NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman
 import NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability
 import NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman
+import NonlinearDynamics.Random.RandomCocycles.GrowthRateStability
 
 /-!
 # Random cocycles

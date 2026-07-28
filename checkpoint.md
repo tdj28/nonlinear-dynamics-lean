@@ -3,18 +3,21 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-27 14:39 PDT
+Last updated: 2026-07-27 17:04 PDT
 
-Audited baseline: `main` at `a9cc929`
+Audited baseline: `main` at `3f11d99`
 
-Active direction: **RMT-35 is a complete green vertical slice.** It defines
-the finite signed Fekete rate, proves pre-ergodic probability
-almost-everywhere convergence of normalized real-log cocycle growth, checks
-the exact contraction/neutral/expansion scalar atlas, and ships paired
-Notebook, Deep Dive, and glossary teaching. The next open random-cocycle item
-is to select one precise meaning of stochastic stability before writing any
-new formalization. Professional review remains deferred; every public article
-continues to declare `pro_reviewed: false`.
+Active direction: **RMT-36 is a green vertical slice.** The random-cocycle
+track now includes the explicitly selected meaning of stochastic stability:
+sequential upper stability of the signed integrated top-growth rate under
+uniform perturbations inside one uniformly forward-bounded and uniformly
+inverse-bounded invertible generator class over a fixed
+probability-preserving base. The warning-fatal source, complete project build,
+declaration-complete Research Note, Deep Dive, glossary chapter, accessible
+figures, social cards, source snapshot, and workstation and cloud release
+gates all pass. The next source milestone has not begun. Professional review
+remains deferred; every public article continues to declare
+`pro_reviewed: false`.
 
 ## Mathematical Editorial Register Audit
 
@@ -859,6 +862,189 @@ mass, convergence rate, concentration inequality, singular-value or conorm
 asymptotic, inverse-cocycle exponent identity, Lyapunov spectrum, invariant
 filtration or splitting, Oseledets theorem, derivative-cocycle bridge, or
 stable-manifold theorem.
+
+## RMT-36 Selected Stochastic-Stability Statement
+
+The owner selected cocycle growth-rate stability on 2026-07-27 after comparing
+three distinct uses of “stochastic stability.” RMT-36 does not use the term for
+zero-noise selection of stationary or physical measures, and it does not use
+it for upper semicontinuity of random attractors. Those meanings require
+different objects and remain separate possible future programs.
+
+### Exact mathematical target
+
+Fix a probability space \((\Omega,\mu)\), a measure-preserving map
+\(T:\Omega\to\Omega\), a finite matrix index, and constants \(M,K\). Let
+\(A_j,A:\Omega\to GL(d,\mathbb C)\) be ordinarily measurable generators with
+
+\[
+\lVert A_j(\omega)\rVert\le M,\qquad
+\lVert A_j(\omega)^{-1}\rVert\le K
+\]
+
+for every \(j,\omega\), with the same bounds for \(A\). The selected
+perturbation notion is uniform convergence \(A_j\to A\) on \(\Omega\), expressed
+in Lean by Mathlib's `TendstoUniformly`.
+
+For the fixed-base cocycle products
+
+\[
+A_j^{(n)}(\omega)
+  =A_j(T^{n-1}\omega)\cdots A_j(\omega),
+\]
+
+define
+
+\[
+\lambda(A_j)
+  =\inf_{n\ge1}\frac1n
+    \int_\Omega\log\lVert A_j^{(n)}(\omega)\rVert\,d\mu(\omega).
+\]
+
+The endpoint is the strict-neighborhood form
+
+\[
+\lambda(A)<y
+\quad\Longrightarrow\quad
+\lambda(A_j)<y\ \text{eventually},
+\]
+
+equivalently the epsilon upper bound
+
+\[
+\lambda(A_j)\le\lambda(A)+\varepsilon
+\quad\text{eventually for every }\varepsilon>0.
+\]
+
+This is upper semicontinuity only. It does not assert a matching lower bound or
+full continuity.
+
+### Proof-obligation ledger
+
+1. Bundle ordinary measurability, pointwise invertibility, and the common
+   forward/inverse norm bounds without varying the base map or measure.
+2. Derive the existing two-tail integrability package from the uniform bounds
+   on a finite measure space. Pointwise invertibility remains explicit because
+   Mathlib's total nonsingular inverse is zero on singular matrices.
+3. Prove that uniform generator convergence implies pointwise convergence of
+   every fixed finite product by induction on the horizon.
+4. Compose product convergence with the matrix norm and `Real.log`.
+   Invertibility of the target product supplies the nonzero point required by
+   continuity of the logarithm.
+5. Bound the absolute finite-horizon log norm by
+   \(n(\log^+ M+\log^+ K)\), using the existing forward and inverse orbit-sum
+   rails.
+6. Apply dominated convergence at each fixed horizon.
+7. Select one positive horizon whose normalized target integral lies below a
+   prescribed strict upper threshold, then use the finite-horizon convergence
+   and the Fekete upper bound for every perturbed rate.
+
+The checked source is
+`NonlinearDynamics.Random.RandomCocycles.GrowthRateStability`. All seven
+proof-obligation items above are implemented and pass the warning-fatal cloud
+leaf check and complete repository gate.
+
+### Literature and API anchors
+
+- J. F. C. Kingman, “The Ergodic Theory of Subadditive Stochastic Processes,”
+  *Journal of the Royal Statistical Society: Series B* 30(3), 499–510 (1968),
+  DOI `10.1111/j.2517-6161.1968.tb00749.x`, supplies the historical
+  subadditive-rate setting. RMT-36 uses the already formalized deterministic
+  Fekete infimum, not a new invocation of Kingman's almost-everywhere theorem.
+- J. Bochi, “Genericity of Zero Lyapunov Exponents,” *Ergodic Theory and
+  Dynamical Systems* 22(6), 1667–1696 (2002), DOI
+  `10.1017/S0143385702001165`, records the broad \(C^0\) discontinuity
+  landscape that blocks an unsupported general continuity claim.
+- L. Backes, A. Brown, and C. Butler, “Continuity of Lyapunov Exponents for
+  Cocycles with Invariant Holonomies,” *Journal of Modern Dynamics* 12,
+  223–260 (2018), DOI `10.3934/jmd.2018009`, proves continuity under additional
+  invariant-holonomy structure. RMT-36 assumes no holonomies and claims only
+  the infimum-driven upper direction.
+- M. Viana and J. Yang, “Continuity of Lyapunov Exponents in the \(C^0\)
+  Topology,” *Israel Journal of Mathematics* 229, 461–485 (2019), DOI
+  `10.1007/s11856-018-1809-7`, further demonstrates that continuity behavior
+  depends on the base and structural hypotheses.
+- J. F. Alves, V. Araújo, and C. H. Vásquez, “Stochastic Stability of
+  Diffeomorphisms with Dominated Splitting,” arXiv:`math/0404160`, studies the
+  separate zero-noise stationary-measure meaning that RMT-36 does not encode.
+- J. C. Robinson, “Stability of Random Attractors under
+  Perturbation and Approximation,” *Journal of Differential Equations* 186(2),
+  652–669 (2002), DOI `10.1016/S0022-0396(02)00038-4`, studies the separate
+  random-set/Hausdorff-semidistance meaning that RMT-36 does not encode.
+- Pinned Mathlib 4.32.0 provides `TendstoUniformly`,
+  `Real.continuousAt_log`,
+  `tendsto_integral_of_dominated_convergence`, and the real
+  upper-semicontinuity interfaces. Exact source-level API authority remains
+  the checked v4.32.0 dependency tree plus the warning-fatal cloud compile.
+
+### Provenance and status
+
+The human owner chose the nonlinear-dynamics program, requested completion of
+the stochastic-stability item, approved the cocycle-rate interpretation, and
+set the project compute budget. Codex compared the competing definitions,
+proposed the upper-only statement, gathered sources, designed the interface,
+and drafted the proof. Checked Lean, not this ledger or the draft, determines
+whether the theorem is established.
+
+### Green release validation
+
+The source tree is based on audited `main` commit `3f11d99`. The exact SHA-256
+of
+`formalization/NonlinearDynamics/Random/RandomCocycles/GrowthRateStability.lean`
+is
+`ce7cd60eff690b86ef03d1a992be9596afdea1e8cbb1788d25212b5a61030d7f`.
+The public snapshot is byte-identical. The random-cocycle aggregator imports
+the module.
+
+The checked declaration ledger is:
+
+- `UniformlyBoundedInvertibleGenerator`;
+- `UniformlyBoundedInvertibleGenerator.toCocycle`;
+- `UniformlyBoundedInvertibleGenerator.hasIntegrableGeneratorLogTails`;
+- `UniformlyBoundedInvertibleGenerator.integratedRealLogGrowthRate`;
+- `UniformlyBoundedInvertibleGenerator.tendsto_value_of_tendstoUniformly`;
+- `UniformlyBoundedInvertibleGenerator.tendsto_realLogNormObservable_of_tendstoUniformly`;
+- `UniformlyBoundedInvertibleGenerator.abs_realLogNormObservable_le`;
+- `UniformlyBoundedInvertibleGenerator.tendsto_integratedRealLogNorm_of_tendstoUniformly`;
+- `UniformlyBoundedInvertibleGenerator.eventually_integratedRealLogGrowthRate_lt`;
+  and
+- `UniformlyBoundedInvertibleGenerator.eventually_integratedRealLogGrowthRate_le_add`.
+
+The five printed proof footprints are exactly `[propext, Classical.choice,
+Quot.sound]`; no footprint contains `sorryAx`.
+
+Workstation-safe validation on macOS:
+
+- `make workstation-check` passes;
+- Lean/notebook coverage reports 41 substantive modules and 41 comprehensive
+  Research Notes;
+- teaching hygiene reports 149 Markdown files, and the public reader-language
+  gate reports 713 files without contributor infrastructure instructions;
+- Hugo Extended 0.160.1 renders 431 pages warning-fatal; and
+- the three new card generators reproduce 1200x630 PNGs from their committed
+  SVG sources.
+
+Approved Linux validation used a Secure Cloud CPU builder with 16 vCPU, 64 GB
+RAM, and 100 GB ephemeral root storage at $0.64 per hour, within the owner's
+$30 project budget. The preserved 100 GB project network volume was attached
+only for sequential, integrity-checked toolchain and Lake-cache archive
+restore. The live build tree remained on fast ephemeral storage. Source-only
+synchronization excluded `.git`, `.env`, credentials, local build trees,
+generated Hugo output, and private review files.
+
+- The leaf warning-fatal gate passes for
+  `NonlinearDynamics/Random/RandomCocycles/GrowthRateStability.lean`.
+- `CLOUD_LEAN_BUILD=1 make check` completes all 3,219 Lean build jobs and the
+  full content and Hugo gate.
+- The warning-fatal aggregator gate passes for
+  `NonlinearDynamics/Random/RandomCocycles.lean`.
+- The committed `lean-toolchain` and `lake-manifest.json` select Lean 4.32.0;
+  every guarded target verifies the pinned manifest.
+- The cloud content gate uses the same Hugo Extended 0.160.1 release as the
+  workstation gate and renders the same 431 pages.
+
+The exact task compute resource is to be terminated after the green milestone
+reaches `origin/main`. The preserved project network volume must remain.
 
 ## Historical Pause Handoff: RMT-35 Source Milestone
 
@@ -1762,19 +1948,19 @@ declaration visibility.
 
 ## Exact Next Milestone
 
-### Select the stochastic-stability statement before formalizing it
+### Scope the deterministic discrete stability interface
 
-RMT-35 completes the current signed top-growth slice. The only remaining
-random-cocycle roadmap checkbox is “stochastic stability,” but that phrase is
-ambiguous. Before editing Lean, choose one mathematically precise target,
-identify its topology and perturbation class, audit Mathlib prerequisites, and
-write a small proof-obligation ledger. Candidate meanings include continuity
-of the signed integrated top-growth rate under a specified cocycle
-perturbation, persistence of invariant measures under noise, or random
-attractor stability. Do not conflate these.
+The random-cocycle sequence through the explicitly selected RMT-36
+stochastic-stability result is complete. The next dependency-ordered item is
+the placeholder `NonlinearDynamics/Discrete/Stability.lean`. Before changing
+it, audit the existing deterministic discrete API and freeze whether the first
+theorem concerns point stability, invariant-set stability, or both, and
+whether it is expressed metrically or with neighborhoods. Do not silently
+choose forward versus two-sided time.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
-cocycles, and stable manifolds remain separate later milestones.
+cocycles, random attractors, and stable manifolds remain separate later
+milestones.
 
 ## Dependency-Ordered Roadmap
 
@@ -1897,7 +2083,10 @@ unresolved convention or depend on an unproved earlier interface.
 - [x] Integrated signed growth, deterministic finite signed Fekete rate,
   two-sided normalized bounds, and general almost-everywhere real-log Kingman
   convergence under the RMT-34 two-tail package.
-- [ ] One explicitly selected meaning of stochastic stability.
+- [x] One explicitly selected meaning of stochastic stability: sequential
+  upper semicontinuity of the signed integrated real-log growth rate under
+  uniform convergence in a shared two-sided bounded invertible generator
+  class over a fixed probability-preserving base.
 
 ### Deterministic discrete dynamics
 
@@ -2538,8 +2727,11 @@ k-invariance precedes approximation claims.
   topological interface from differentiable normal forms.
 - Spectrum work must choose an eigenvalue enumeration or multiset/empirical
   measure interface before defining unfolding.
-- `StochasticStability` is currently ambiguous among random-Jacobian bounds,
-  persistence of invariant measures under noise, and random attractors.
+- RMT-36 selects upper stability of the signed integrated top-growth rate under
+  uniform convergence inside a common forward/inverse-bounded invertible
+  generator class over a fixed probability-preserving base. It does not encode
+  zero-noise stationary-measure selection or random-attractor stability, and
+  it does not claim lower semicontinuity or full continuity.
 - Quantum diagnostics must fix raw versus normalized traces, state and unit
   conventions, connected versus unconnected spectral form factors, OTOC order
   and sign, and the norm used for approximate k-invariance.

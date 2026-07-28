@@ -71,6 +71,10 @@
     "module": "NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability",
     "notebook": "site/content/development-notebook/2026/07/real-log-norm-integrability-from-forward-and-inverse-tails-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Random/RandomCocycles/GrowthRateStability.lean": {
+    "module": "NonlinearDynamics.Random.RandomCocycles.GrowthRateStability",
+    "notebook": "site/content/development-notebook/2026/07/upper-stability-of-signed-cocycle-growth-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormKingman.lean": {
     "module": "NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman",
     "notebook": "site/content/development-notebook/2026/07/signed-real-log-kingman-convergence-in-lean/index.md"

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Upper stability of signed integrated cocycle growth</title>
+  <desc id="desc">A textbook card showing the finite-horizon dominated-convergence mechanism and the Fekete infimum witness.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="38" y="38" width="1124" height="554" rx="28" fill="#fbf8f0" stroke="#315f63" stroke-width="4"/>
+  <text x="76" y="104" font-family="Arial,sans-serif" font-size="21" letter-spacing="3" fill="#7a4d69">DEEP DIVE · MATRIX COCYCLE STABILITY</text>
+  <text x="76" y="172" font-family="Georgia,serif" font-size="44" fill="#23343b">Upper stability of signed integrated growth</text>
+  <path d="M110 330 C220 250 330 275 440 230" fill="none" stroke="#315f63" stroke-width="7"/>
+  <g fill="#315f63"><circle cx="115" cy="326" r="9"/><circle cx="225" cy="270" r="9"/><circle cx="335" cy="270" r="9"/><circle cx="435" cy="234" r="9"/></g>
+  <text x="90" y="390" font-family="Arial,sans-serif" font-size="22" fill="#23343b">fixed k: q_k(G_j) → q_k(G_0)</text>
+  <path d="M545 295 H650" stroke="#8a6d38" stroke-width="5"/>
+  <path d="M635 280 L660 295 L635 310" fill="none" stroke="#8a6d38" stroke-width="5"/>
+  <line x1="720" y1="235" x2="1080" y2="235" stroke="#b24b40" stroke-width="4" stroke-dasharray="10 8"/>
+  <path d="M740 350 L825 280 L910 375 L995 320 L1065 345" fill="none" stroke="#7a4d69" stroke-width="6"/>
+  <text x="750" y="420" font-family="Arial,sans-serif" font-size="22" fill="#23343b">λ(G_j) ≤ q_k(G_j) &lt; y</text>
+  <text x="76" y="490" font-family="Georgia,serif" font-size="31" fill="#315f63">one finite horizon transfers the upper bound</text>
+  <text x="76" y="548" font-family="Arial,sans-serif" font-size="19" fill="#7a4d69">public working note · professional review pending</text>
+</svg>
