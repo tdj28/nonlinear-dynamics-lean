@@ -3,9 +3,9 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-27 17:04 PDT
+Last updated: 2026-07-27 17:18 PDT
 
-Audited baseline: `main` at `3f11d99`
+Audited baseline: `main` at `0765b12`
 
 Active direction: **RMT-36 is a green vertical slice.** The random-cocycle
 track now includes the explicitly selected meaning of stochastic stability:
@@ -988,7 +988,8 @@ whether the theorem is established.
 
 ### Green release validation
 
-The source tree is based on audited `main` commit `3f11d99`. The exact SHA-256
+The source tree is based on audited `main` commit `3f11d99` and was released
+in milestone commit `0765b12`. The exact SHA-256
 of
 `formalization/NonlinearDynamics/Random/RandomCocycles/GrowthRateStability.lean`
 is
@@ -1043,8 +1044,10 @@ generated Hugo output, and private review files.
 - The cloud content gate uses the same Hugo Extended 0.160.1 release as the
   workstation gate and renders the same 431 pages.
 
-The exact task compute resource is to be terminated after the green milestone
-reaches `origin/main`. The preserved project network volume must remain.
+Milestone commit `0765b12` reached `origin/main`, after which the exact task
+compute resource was terminated. A post-action inventory confirms that the
+compute pod is absent and the preserved project network volume is still
+present. No network storage was deleted.
 
 ## Historical Pause Handoff: RMT-35 Source Milestone
 
