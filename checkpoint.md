@@ -5,21 +5,20 @@
 
 Last updated: 2026-08-06
 
-Audited baseline: `main` at `2e64545`
+Audited baseline: `main` at `0fd9daa`
 
-Active direction: **release the validated deterministic discrete attraction
-vertical slice.** Forward stability remains green at release commit `07a4674`.
-The attraction candidate separates orbit convergence, point basins, local and
-global attracting fixed points, asymptotic stability, and nonempty
-distance-to-set attraction in
-`NonlinearDynamics.Deterministic.Discrete.Attraction`. Its paired Research
-Note, Deep Dive, basin glossary chapter, standalone `Std` tutorial, six
-accessible figures, and three deterministic cards are complete. Warning-fatal
-Linux leaf and aggregator compilation and the complete guarded repository gate
-pass on the exact frozen source. The remaining release operations are the
-post-repair workstation/browser replay, push, cache preservation, and builder
-shutdown. Professional review remains deferred; every new public article
-declares `pro_reviewed: false`.
+Active direction: **deterministic discrete Lyapunov functions are the next
+vertical slice.** Forward stability remains green at release commit `07a4674`,
+and deterministic attraction is green at release commit `0fd9daa`. The
+attraction release separates orbit convergence, point basins, local and global
+attracting fixed points, asymptotic stability, and nonempty distance-to-set
+attraction in `NonlinearDynamics.Deterministic.Discrete.Attraction`. Its paired
+Research Note, Deep Dive, basin glossary chapter, standalone `Std` tutorial,
+six accessible figures, and three deterministic cards are released. All
+workstation, browser, warning-fatal Linux, and complete guarded repository
+gates pass; the cache is preserved, the task pod is terminated, and the
+network volume is retained. Professional review remains deferred; every new
+public article declares `pro_reviewed: false`.
 
 ## Mathematical Editorial Register Audit
 
@@ -2175,20 +2174,29 @@ The temporary Hugo server was stopped after QA, the browser viewport override
 was reset, and the QA tab was closed. No cloud resource was created during
 these workstation checks.
 
+Release closure on 2026-08-06: milestone commit `0fd9daa` reached
+`origin/main`. The successful ephemeral `.lake` tree was archived sequentially
+as `lake-manifest-pinned-attraction-20260806.tar.zst` on the retained volume
+without replacing either prior validated archive. The new archive passes
+`zstd -t`, and both it and the retained Lean 4.32.0 toolchain archive pass the
+new `SHA256SUMS-attraction-20260806` manifest. The builder ran for 1,122 seconds
+at $0.44 per hour, approximately $0.14 of compute spend. The exact task pod was
+then terminated. A post-action inventory reports zero task pods and one
+retained project network volume. No cloud resource identifier or credential is
+recorded here.
+
 ## Exact Next Milestone
 
-### Close and release deterministic attraction
+### Specify deterministic discrete Lyapunov functions
 
-Rerun the affected workstation and browser checks after the Linux-guided
-`MetricSpace` repair, replay the complete gate against the final synchronized
-release tree, push the green vertical slice, preserve the useful cache update
-sequentially, terminate only the exact task pod, and retain the project network
-volume.
-
-After that release, the next dependency-ordered placeholder is
-`NonlinearDynamics/Deterministic/Discrete/Lyapunov.lean`. Its scope must keep
-Lyapunov functions and decrease conditions separate from the stability and
-attraction predicates they are intended to imply.
+Turn `NonlinearDynamics/Deterministic/Discrete/Lyapunov.lean` from a placeholder
+into the next vertical slice. The interface must distinguish positive
+definiteness from nonnegativity, strict from weak decrease, and local from
+global conclusions. Lyapunov functions and their decrease conditions remain
+separate from the stability and attraction predicates they are intended to
+imply. Research the pinned Mathlib order, continuity, neighborhood, and iterate
+APIs before freezing theorem statements, and pair the checked source with a
+complete educational bundle.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
