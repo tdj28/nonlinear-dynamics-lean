@@ -5,7 +5,7 @@
 
 Last updated: 2026-08-06
 
-Audited baseline: `main` at `e474767`
+Audited baseline: `main` at `07a4674`
 
 Active direction: **deterministic discrete forward stability is a green
 vertical slice.** The selected interface treats stability of a point's
@@ -16,9 +16,10 @@ deterministic aggregator pass on approved Linux compute. Its exact source
 snapshot, declaration-complete Research Note, Deep Dive, glossary chapter,
 standalone `Std` tutorial, accessible figures, deterministic cards,
 workstation gates, desktop/mobile browser QA, and the complete guarded Linux
-repository gate pass. The milestone push and compute shutdown remain in
-progress. Professional review remains deferred; every new public article
-declares `pro_reviewed: false`.
+repository gate pass. Release commit `07a4674` is on `origin/main`, the exact
+task pod is terminated, and the project network volume remains retained with
+an integrity-checked refreshed Lake cache. Professional review remains
+deferred; every new public article declares `pro_reviewed: false`.
 
 ## Mathematical Editorial Register Audit
 
@@ -2073,15 +2074,23 @@ trees remain on ephemeral disk. Source-only synchronization excludes `.git`,
 review files. The volume must remain retained after the exact task compute
 resource is terminated.
 
+Release closure on 2026-08-06: milestone commit `07a4674` reached
+`origin/main`. The successful ephemeral `.lake` tree was archived sequentially
+as `lake-manifest-pinned-20260806.tar.zst` on the retained volume; both that
+archive and the retained Lean 4.32.0 toolchain archive pass `zstd -t` and the
+new `SHA256SUMS-20260806` manifest. The builder ran for 2,165 seconds at
+$0.44 per hour, approximately $0.26 of compute spend. The exact task pod was
+then terminated. A post-action inventory reports zero task pods and one
+retained project network volume. No cloud resource identifier or credential
+is recorded here.
+
 ## Exact Next Milestone
 
-### Complete the stability release gate, then scope attraction
+### Scope the deterministic attraction interface
 
-Run the complete guarded Linux gate on the checksum-identical release
-candidate, push the green milestone to `main`, preserve any useful cache
-updates sequentially, terminate the exact task compute resource, and confirm
-that the project network volume remains. After that release is recorded, the
-next dependency-ordered source item is the placeholder
+The stability release gate, push, cache preservation, compute termination, and
+retained-volume confirmation are complete. The next dependency-ordered source
+item is the placeholder
 `NonlinearDynamics/Deterministic/Discrete/Attraction.lean`. Before changing
 it, freeze whether the primary target is a point, invariant set, or both; how
 distance-to-set and neighborhood formulations meet; and whether attraction
@@ -2219,9 +2228,12 @@ unresolved convention or depend on an unproved earlier interface.
 
 ### Deterministic discrete dynamics
 
-The following files exist only as one-line documentation placeholders:
+The stability module is complete; the following later files remain one-line
+documentation placeholders:
 
-- [ ] `Discrete/Stability.lean`
+- [x] `Discrete/Stability.lean`: forward-orbit equicontinuity, the separate
+  fixed-point specialization, metric characterizations, nonexpansive-map
+  criteria, and boundary examples.
 - [ ] `Discrete/Attraction.lean`
 - [ ] `Discrete/Lyapunov.lean`
 - [ ] `Discrete/Conjugacy.lean`
