@@ -3,21 +3,22 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-07-27 17:18 PDT
+Last updated: 2026-08-06
 
-Audited baseline: `main` at `0765b12`
+Audited baseline: `main` at `e474767`
 
-Active direction: **RMT-36 is a green vertical slice.** The random-cocycle
-track now includes the explicitly selected meaning of stochastic stability:
-sequential upper stability of the signed integrated top-growth rate under
-uniform perturbations inside one uniformly forward-bounded and uniformly
-inverse-bounded invertible generator class over a fixed
-probability-preserving base. The warning-fatal source, complete project build,
-declaration-complete Research Note, Deep Dive, glossary chapter, accessible
-figures, social cards, source snapshot, and workstation and cloud release
-gates all pass. The next source milestone has not begun. Professional review
-remains deferred; every public article continues to declare
-`pro_reviewed: false`.
+Active direction: **deterministic discrete forward stability is a green
+vertical slice.** The selected interface treats stability of a point's
+moving reference orbit as equicontinuity of all natural-number iterates,
+records fixedness separately for Lyapunov-stable fixed points, and defers
+attraction and invariant-set stability. The warning-fatal source leaf and
+deterministic aggregator pass on approved Linux compute. Its exact source
+snapshot, declaration-complete Research Note, Deep Dive, glossary chapter,
+standalone `Std` tutorial, accessible figures, deterministic cards,
+workstation gates, desktop/mobile browser QA, and the complete guarded Linux
+repository gate pass. The milestone push and compute shutdown remain in
+progress. Professional review remains deferred; every new public article
+declares `pro_reviewed: false`.
 
 ## Mathematical Editorial Register Audit
 
@@ -1949,17 +1950,142 @@ declaration visibility.
   layouts. Rendered desktop and 390-pixel mobile QA found and fixed article
   overflow while retaining local scrolling for wide tables and diagrams.
 
+## Deterministic Discrete Stability Interface Decision
+
+Status on 2026-08-06: the source interface and teaching layer are a green
+vertical slice. No Mathlib-backed Lean, Lake, or project build ran on macOS.
+The warning-fatal source leaf, deterministic aggregator, and complete guarded
+repository gate pass on the approved Linux builder.
+
+### Selected scope
+
+The first deterministic stability slice makes four explicit choices:
+
+1. **Reference object:** point and reference-orbit stability is primary. The
+   predicate compares the orbit from a nearby initial condition with the
+   reference orbit at every time. Fixed-point Lyapunov stability is a
+   specialization with fixedness recorded separately. Invariant-set stability
+   is deferred to the attraction layer rather than being folded into this
+   first predicate.
+2. **Time direction:** forward time only, indexed by `ℕ`. The time-zero map is
+   included. No inverse map or two-sided `ℤ` action is assumed.
+3. **Topological level:** the primary definition is uniform-space
+   equicontinuity of the family of iterates. A pseudo-metric theorem exposes
+   the standard epsilon-delta form. This keeps the definition general without
+   hiding the metric statement readers expect.
+4. **Fixed-point boundary:** orbit stability does not imply that the reference
+   point is fixed. `IsLyapunovStableFixedPoint f p` therefore means both
+   `Function.IsFixedPt f p` and forward stability at `p`.
+
+The drafted public interface in
+`NonlinearDynamics.Deterministic.Discrete.Stability` is:
+
+- `IsForwardStableAt f p := EquicontinuousAt (fun n : ℕ ↦ f^[n]) p`;
+- `IsLyapunovStableFixedPoint f p := IsFixedPt f p ∧ IsForwardStableAt f p`;
+- an entourage-and-neighborhood unfolding;
+- a metric epsilon-delta equivalence for reference orbits;
+- the fixed-point metric specialization;
+- continuity of the one-step map at every forward-stable point;
+- forward stability of every nonexpansive self-map;
+- Lyapunov stability of a fixed point of a nonexpansive map; and
+- identity-map and constant-map examples;
+- forward stability of real translations; and
+- a checked nonzero-translation witness that is forward stable but not fixed.
+
+This slice does not define or claim invariant-set stability, attraction,
+asymptotic stability, exponential stability, structural stability, robustness
+under perturbation of the map, two-sided-time stability, stable manifolds, or
+a Lyapunov-function criterion. Those require different hypotheses and belong
+to later roadmap modules.
+
+### Why this definition
+
+For a metric-space self-map, an equicontinuity point is exactly a point where
+every sufficiently close initial condition remains uniformly close to the
+reference orbit under all forward iterates. Ethan Akin states this orbitwise
+epsilon-delta definition explicitly in the abstract of “On Chain Continuity,”
+*Discrete and Continuous Dynamical Systems* 2(1), 111-120 (1996), DOI
+[`10.3934/dcds.1996.2.111`](https://doi.org/10.3934/dcds.1996.2.111).
+
+J. P. LaSalle develops difference equations as discrete semidynamical systems
+in Chapter 1 of *The Stability of Dynamical Systems*, pages 1-25, SIAM CBMS 25
+(1976), print ISBN 978-0-89871-022-9, online ISBN 978-1-61197-043-2, chapter
+DOI
+[`10.1137/1.9781611970432.ch1`](https://doi.org/10.1137/1.9781611970432.ch1).
+That source anchors the forward-time fixed-point stability interpretation and
+keeps it distinct from attraction.
+
+Saber Elaydi and H. R. Farran define pointwise equicontinuity by uniform
+closeness through the action time in “On Variation of Equicontinuity in
+Dynamical Systems,” *Bulletin of the Australian Mathematical Society* 42(3),
+391-397 (1990), DOI
+[`10.1017/S0004972700028550`](https://doi.org/10.1017/S0004972700028550).
+Their group-action setting also makes the sidedness decision visible: the
+present module deliberately uses the natural-number semigroup instead.
+
+Pinned Mathlib 4.32.0 at revision `81a5d257` supplies `EquicontinuousAt`,
+`Metric.equicontinuousAt_iff`, `EquicontinuousAt.continuousAt`,
+`LipschitzWith.iterate`, `LipschitzWith.dist_le_mul`,
+`Function.IsFixedPt`, and `Function.iterate_fixed`. The local dependency
+source is the exact API authority. The Linux leaf check has confirmed the
+interface against that pinned toolchain.
+
+### Release-candidate validation and teaching contract
+
+`Stability.lean` is 153 lines with twelve public named declarations and six
+axiom reports. Its frozen source SHA-256 is
+`ccc2ae73a4696bdf488f64281ef53cd1db066d78b5f1e2a9a4471c3f90062186`.
+Every reported footprint is `[propext, Classical.choice, Quot.sound]`; none
+contains `sorryAx`. The warning-fatal leaf and deterministic aggregator pass.
+
+The complete teaching bundle is
+`forward-orbit-stability-for-discrete-systems-in-lean`,
+`forward-orbit-and-fixed-point-stability-in-discrete-time`, and
+`forward-stability`. It adds three deterministic 1200x630 cards, six
+page-owned conceptual SVGs, the declaration-complete source map, literal
+standalone and project commands, exact nonclaims, and the Akin 1996,
+Elaydi--Farran 1990, and LaSalle 1976 references that support the interface
+decision. The bundled `Std` translation-gap theorem compiles under Lean
+4.32.0.
+
+Workstation-safe validation passes 42/42 proof-to-prose coverage, twenty-three
+coverage regressions, seven hygiene regressions, the 152-Markdown teaching
+scan, the 729-file public-language scan, XML and card generation, and Hugo
+Extended with Deploy 0.160.1 rendering 446 pages warning-fatal. Literal QA at
+1440x1000 and 390x844 finds one heading per new page, no page overflow, broken
+or alt-less images, KaTeX errors, raw display delimiters, or console
+warnings/errors.
+
+The checksum-identical Linux source tree passes
+`CLOUD_LEAN_BUILD=1 make -j1 check`: all 3,219 Lean jobs complete, including
+the new stability leaf and deterministic aggregator; every static gate then
+passes using the same Hugo Extended with Deploy 0.160.1 release and renders
+the same 446 pages. The source tree includes the tracked nonsecret
+`.env.example` but excludes the real `.env` and every credential.
+
+The owner approved one Secure Cloud CPU builder with 8 vCPU, 64 GB enforced
+RAM, and 80 GB ephemeral disk at $0.44 per hour, with a hard $50 compute
+ceiling while useful progress continues. The retained 100 GB project network
+volume is attached only for sequential, integrity-checked cache archives. Its
+Lean 4.32.0 and pinned Lake archives passed SHA-256 and `zstd -t`; live build
+trees remain on ephemeral disk. Source-only synchronization excludes `.git`,
+`.env`, credentials, local build trees, generated Hugo output, and private
+review files. The volume must remain retained after the exact task compute
+resource is terminated.
+
 ## Exact Next Milestone
 
-### Scope the deterministic discrete stability interface
+### Complete the stability release gate, then scope attraction
 
-The random-cocycle sequence through the explicitly selected RMT-36
-stochastic-stability result is complete. The next dependency-ordered item is
-the placeholder `NonlinearDynamics/Discrete/Stability.lean`. Before changing
-it, audit the existing deterministic discrete API and freeze whether the first
-theorem concerns point stability, invariant-set stability, or both, and
-whether it is expressed metrically or with neighborhoods. Do not silently
-choose forward versus two-sided time.
+Run the complete guarded Linux gate on the checksum-identical release
+candidate, push the green milestone to `main`, preserve any useful cache
+updates sequentially, terminate the exact task compute resource, and confirm
+that the project network volume remains. After that release is recorded, the
+next dependency-ordered source item is the placeholder
+`NonlinearDynamics/Deterministic/Discrete/Attraction.lean`. Before changing
+it, freeze whether the primary target is a point, invariant set, or both; how
+distance-to-set and neighborhood formulations meet; and whether attraction
+includes stability or remains a separate predicate.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Boundary of the deterministic discrete stability interface</title>
+  <desc id="desc">Forward orbit stability and fixedness feed a Lyapunov-stable fixed point; related stronger notions remain outside.</desc>
+  <rect width="1200" height="700" fill="#f4eddf"/>
+  <rect x="34" y="34" width="1132" height="632" rx="26" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="72" y="92" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">WHAT THE FIRST STABILITY SLICE CONNECTS</text>
+  <rect x="80" y="155" width="340" height="145" rx="22" fill="#e4efe9" stroke="#315f63" stroke-width="4"/>
+  <text x="250" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#23343b">Forward-orbit stability</text>
+  <text x="250" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#23343b">nearby starts · all n ∈ ℕ</text>
+  <rect x="80" y="360" width="340" height="120" rx="22" fill="#eee5d2" stroke="#8a6d38" stroke-width="4"/>
+  <text x="250" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#23343b">Fixedness</text>
+  <text x="250" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#23343b">f(p)=p</text>
+  <path d="M420 225 H515 M420 420 H515 M515 225 V420 M515 322 H570" stroke="#315f63" stroke-width="5"/>
+  <rect x="570" y="240" width="335" height="165" rx="24" fill="#eadfe7" stroke="#7a4d69" stroke-width="4"/>
+  <text x="738" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#23343b">Lyapunov-stable</text>
+  <text x="738" y="334" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#23343b">fixed point</text>
+  <text x="738" y="374" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#7a4d69">conjunction, not inference</text>
+  <rect x="945" y="130" width="170" height="395" rx="22" fill="#eeeae2" stroke="#8b8780" stroke-width="3" stroke-dasharray="9 7"/>
+  <text x="1030" y="178" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#5f5b55">NOT CLAIMED</text>
+  <g font-family="Arial,sans-serif" font-size="18" fill="#5f5b55" text-anchor="middle"><text x="1030" y="230">attraction</text><text x="1030" y="276">error decay</text><text x="1030" y="322">set stability</text><text x="1030" y="368">two-sided time</text><text x="1030" y="414">map perturbations</text><text x="1030" y="460">stable manifolds</text></g>
+  <text x="72" y="604" font-family="Arial,sans-serif" font-size="20" fill="#23343b">Uniform-space definition → metric ε-δ theorem → nonexpansive examples</text>
+</svg>

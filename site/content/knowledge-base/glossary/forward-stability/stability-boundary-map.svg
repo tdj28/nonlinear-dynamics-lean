@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Forward stability and neighboring notions</title>
+  <desc id="desc">Forward stability combines with fixedness to define a stable fixed point, while attraction and perturbation stability require separate arrows.</desc>
+  <rect width="1200" height="680" fill="#f4eddf"/>
+  <rect x="36" y="36" width="1128" height="608" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="74" y="94" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">DO NOT COLLAPSE THE NEIGHBORING PREDICATES</text>
+  <rect x="80" y="160" width="305" height="125" rx="22" fill="#e4efe9" stroke="#315f63" stroke-width="4"/>
+  <text x="232" y="215" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#23343b">Forward stability</text>
+  <text x="232" y="252" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#23343b">separation stays bounded</text>
+  <rect x="80" y="360" width="305" height="105" rx="22" fill="#eee5d2" stroke="#8a6d38" stroke-width="4"/>
+  <text x="232" y="423" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#23343b">Fixedness f(p)=p</text>
+  <path d="M385 220 H475 M385 412 H475 M475 220 V412 M475 316 H530" stroke="#315f63" stroke-width="5"/>
+  <rect x="530" y="245" width="310" height="145" rx="22" fill="#eadfe7" stroke="#7a4d69" stroke-width="4"/>
+  <text x="685" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#23343b">Lyapunov-stable</text>
+  <text x="685" y="338" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#23343b">fixed point</text>
+  <rect x="900" y="145" width="210" height="135" rx="22" fill="#eeeae2" stroke="#8b8780" stroke-width="3"/>
+  <text x="1005" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#5f5b55">Attraction</text>
+  <text x="1005" y="238" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#5f5b55">adds approach or decay</text>
+  <rect x="900" y="350" width="210" height="135" rx="22" fill="#eeeae2" stroke="#8b8780" stroke-width="3"/>
+  <text x="1005" y="403" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#5f5b55">Perturbation</text>
+  <text x="1005" y="440" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#5f5b55">compares different maps</text>
+  <text x="74" y="590" font-family="Arial,sans-serif" font-size="20" fill="#b24b40">No gray box follows from forward stability alone.</text>
+</svg>

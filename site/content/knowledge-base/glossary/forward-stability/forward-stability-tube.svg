@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Forward stability tube</title>
+  <desc id="desc">One delta interval at time zero maps to epsilon intervals around a moving reference orbit.</desc>
+  <rect width="1200" height="680" fill="#f4eddf"/>
+  <rect x="36" y="36" width="1128" height="608" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="74" y="94" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">ONE δ AT THE START · ONE ε AT EVERY TIME</text>
+  <text x="74" y="145" font-family="Georgia,serif" font-size="31" fill="#23343b">The center follows fⁿ(p)</text>
+  <path d="M125 430 C330 245 515 430 700 280 S960 375 1080 220" fill="none" stroke="#315f63" stroke-width="7"/>
+  <path d="M125 460 C330 275 515 460 700 310 S960 405 1080 250" fill="none" stroke="#b24b40" stroke-width="5"/>
+  <g fill="#e4efe9" stroke="#315f63" stroke-width="3"><ellipse cx="125" cy="430" rx="58" ry="82"/><ellipse cx="360" cy="305" rx="58" ry="82"/><ellipse cx="590" cy="369" rx="58" ry="82"/><ellipse cx="820" cy="283" rx="58" ry="82"/><ellipse cx="1050" cy="260" rx="58" ry="82"/></g>
+  <g fill="#315f63"><circle cx="125" cy="430" r="9"/><circle cx="360" cy="305" r="9"/><circle cx="590" cy="369" r="9"/><circle cx="820" cy="283" r="9"/><circle cx="1050" cy="260" r="9"/></g>
+  <text x="125" y="565" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#8a6d38">δ-neighborhood</text>
+  <text x="710" y="570" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#6a675f">ε-neighborhoods around the reference orbit</text>
+</svg>

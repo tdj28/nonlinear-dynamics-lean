@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Moving stable orbit versus stable fixed point</title>
+  <desc id="desc">Translation keeps two moving orbits parallel, while a fixed reference point remains stationary inside one epsilon ball.</desc>
+  <rect width="1200" height="680" fill="#f4eddf"/>
+  <rect x="36" y="36" width="1128" height="608" rx="28" fill="#fffaf0" stroke="#315f63" stroke-width="3"/>
+  <text x="74" y="94" font-family="Arial,sans-serif" font-size="20" letter-spacing="2" fill="#7a4d69">THE FIXEDNESS GATE CHANGES THE REFERENCE</text>
+  <line x1="600" y1="125" x2="600" y2="590" stroke="#d4c7ae" stroke-width="2"/>
+  <text x="85" y="160" font-family="Georgia,serif" font-size="30" fill="#23343b">Stable moving reference</text>
+  <path d="M110 430 L250 360 L390 290 L530 220" fill="none" stroke="#315f63" stroke-width="7"/>
+  <path d="M110 465 L250 395 L390 325 L530 255" fill="none" stroke="#b24b40" stroke-width="6"/>
+  <g fill="#315f63"><circle cx="110" cy="430" r="9"/><circle cx="250" cy="360" r="9"/><circle cx="390" cy="290" r="9"/><circle cx="530" cy="220" r="9"/></g>
+  <text x="310" y="525" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#23343b">f(x)=x+c, c≠0</text>
+  <text x="310" y="560" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#b24b40">constant gap · no fixed point</text>
+  <text x="655" y="160" font-family="Georgia,serif" font-size="30" fill="#23343b">Stable fixed reference</text>
+  <circle cx="875" cy="345" r="150" fill="#e4efe9" stroke="#315f63" stroke-width="4"/>
+  <circle cx="875" cy="345" r="12" fill="#315f63"/>
+  <path d="M1040 235 C990 265 960 305 920 330" fill="none" stroke="#b24b40" stroke-width="6"/>
+  <circle cx="1040" cy="235" r="9" fill="#b24b40"/><circle cx="990" cy="265" r="9" fill="#b24b40"/><circle cx="950" cy="305" r="9" fill="#b24b40"/><circle cx="920" cy="330" r="9" fill="#b24b40"/>
+  <text x="875" y="525" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#23343b">f(p)=p</text>
+  <text x="875" y="560" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#7a4d69">the theorem bounds distance; decay is extra</text>
+</svg>

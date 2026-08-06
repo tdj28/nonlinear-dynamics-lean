@@ -136,6 +136,12 @@ The starting point \(u\) is transient because it is visited once and never
 revisited. The states \(a\) and \(b\) are periodic with minimal period two.
 The state \(c\) is fixed because \(S(c)=c\).
 
+The next distinction is between following one orbit and controlling nearby
+orbits. [Forward Stability]({{< relref
+"/knowledge-base/glossary/forward-stability" >}}) asks whether every
+sufficiently close start remains close to this reference orbit for all
+natural-number times.
+
 ## Iterate is not exponentiation
 
 The notation \(T^n\) looks like a numerical power, but here it means function
