@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Attraction, basins, and asymptotic stability in discrete time</title>
+  <desc id="desc">A blue basin encloses a green target neighborhood, with orbit arrows converging to a fixed point and a separate stability plus attraction formula.</desc>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.k{font-size:24px;font-weight:700;letter-spacing:2px;fill:#6F8D5E}.title{font-size:47px;font-weight:700}.sub{font-size:24px;fill:#5A544C}.h{font-size:22px;font-weight:700}.s{font-size:19px}.path{stroke:#4B6787;stroke-width:6;fill:none}</style>
+  <text x="72" y="90" class="t k">KNOWLEDGE BASE DEEP DIVE</text>
+  <text x="72" y="158" class="t title">Attraction, basins, and</text><text x="72" y="218" class="t title">asymptotic stability</text>
+  <text x="72" y="260" class="t sub">Convergence and staying close are separate obligations.</text>
+  <path d="M91 344 C244 283 430 313 522 376 C637 299 855 309 940 406 C910 510 719 530 563 487 C390 548 179 514 91 437 C62 401 67 366 91 344 Z" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <ellipse cx="743" cy="415" rx="142" ry="76" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="3" stroke-dasharray="9 7"/>
+  <circle cx="743" cy="415" r="15" fill="#A67C52"/><path d="M179 414 C329 354 461 479 624 422" class="path"/><path d="M281 474 C405 447 493 406 624 415" class="path"/>
+  <text x="137" y="369" class="t h">basin</text><text x="696" y="374" class="t h">target p</text>
+  <rect x="923" y="338" width="214" height="146" rx="18" fill="#FBF9F6" stroke="#A67C52" stroke-width="3"/><text x="1030" y="381" text-anchor="middle" class="t h">asymptotic</text><text x="1030" y="414" text-anchor="middle" class="t s">Lyapunov stable</text><text x="1030" y="444" text-anchor="middle" class="t s">+ locally attracting</text>
+  <text x="72" y="578" class="t s">Point targets · nonempty invariant sets · contraction theorem</text>
+</svg>

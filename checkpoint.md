@@ -5,21 +5,21 @@
 
 Last updated: 2026-08-06
 
-Audited baseline: `main` at `07a4674`
+Audited baseline: `main` at `2e64545`
 
-Active direction: **deterministic discrete forward stability is a green
-vertical slice.** The selected interface treats stability of a point's
-moving reference orbit as equicontinuity of all natural-number iterates,
-records fixedness separately for Lyapunov-stable fixed points, and defers
-attraction and invariant-set stability. The warning-fatal source leaf and
-deterministic aggregator pass on approved Linux compute. Its exact source
-snapshot, declaration-complete Research Note, Deep Dive, glossary chapter,
-standalone `Std` tutorial, accessible figures, deterministic cards,
-workstation gates, desktop/mobile browser QA, and the complete guarded Linux
-repository gate pass. Release commit `07a4674` is on `origin/main`, the exact
-task pod is terminated, and the project network volume remains retained with
-an integrity-checked refreshed Lake cache. Professional review remains
-deferred; every new public article declares `pro_reviewed: false`.
+Active direction: **release the validated deterministic discrete attraction
+vertical slice.** Forward stability remains green at release commit `07a4674`.
+The attraction candidate separates orbit convergence, point basins, local and
+global attracting fixed points, asymptotic stability, and nonempty
+distance-to-set attraction in
+`NonlinearDynamics.Deterministic.Discrete.Attraction`. Its paired Research
+Note, Deep Dive, basin glossary chapter, standalone `Std` tutorial, six
+accessible figures, and three deterministic cards are complete. Warning-fatal
+Linux leaf and aggregator compilation and the complete guarded repository gate
+pass on the exact frozen source. The remaining release operations are the
+post-repair workstation/browser replay, push, cache preservation, and builder
+shutdown. Professional review remains deferred; every new public article
+declares `pro_reviewed: false`.
 
 ## Mathematical Editorial Register Audit
 
@@ -2084,17 +2084,111 @@ then terminated. A post-action inventory reports zero task pods and one
 retained project network volume. No cloud resource identifier or credential
 is recorded here.
 
+## Deterministic Discrete Attraction Interface Decision
+
+Status on 2026-08-06: the source and teaching bundle pass warning-fatal
+Mathlib-backed compilation and the complete release gate on the approved Linux
+builder. No project Lean, Lake, Mathlib, or cache command ran on macOS.
+
+The candidate makes five scope choices explicit:
+
+1. `IsAttractedTo f x p` is the topological statement that the
+   natural-number orbit from `x` tends to `p`. It does not silently require
+   `p` to be fixed.
+2. `basinOfAttraction f p` collects exactly those initial states. A locally
+   attracting fixed point adds fixedness and requires this basin to be a
+   neighborhood of `p`; a global one quantifies over every start.
+3. `IsAsymptoticallyStableFixedPoint f p` conjoins the already checked
+   `IsLyapunovStableFixedPoint` predicate with local attraction. Attraction
+   does not absorb or replace the all-time stability obligation.
+4. `IsAttractedToSet f x A` uses convergence of
+   `Metric.infDist (f^[n] x) A` to zero and includes `A.Nonempty` explicitly.
+   Mathlib totalizes `Metric.infDist x ∅` as zero, so omitting nonemptiness
+   would make every orbit vacuously attracted to the empty set.
+5. A locally attracting set is nonempty, forward invariant by inclusion, and
+   has a basin that is a neighborhood of each of its points. This is a
+   pointwise initial-condition interface. It claims neither equality
+   invariance, compactness, uniform attraction of bounded sets, nor Hausdorff
+   convergence. Three singleton theorems connect point and set attraction.
+
+LaSalle's Chapter 1 on difference equations and discrete semidynamical systems
+anchors the fixed-point stability and global-asymptotic context: J. P.
+LaSalle, *The Stability of Dynamical Systems*, SIAM CBMS 25 (1976), pages
+1-25, DOI
+[`10.1137/1.9781611970432.ch1`](https://doi.org/10.1137/1.9781611970432.ch1).
+Hale's Chapter 2 treats discrete dynamical systems and global attractors:
+Jack K. Hale, *Asymptotic Behavior of Dissipative Systems*, AMS Surveys and
+Monographs 25 (1988), DOI
+[`10.1090/surv/025`](https://doi.org/10.1090/surv/025). Pinned Mathlib 4.32.0
+at revision `81a5d257` supplies the exact contraction, fixed-point-limit,
+distance-limit, and infimum-distance APIs. These sources support the selected
+interfaces but do not erase the documented convention choices.
+
+The pinned contraction API also fixed a genuine typeclass boundary during the
+Linux leaf check. The two Banach fixed-point endpoints now require
+`MetricSpace`, because Mathlib's `ContractingWith.fixedPoint` selects a unique
+fixed point and therefore needs separated points. The generic orbit-distance,
+set-distance, and singleton-bridge interfaces retain `PseudoMetricSpace`, where
+their statements remain valid. This is a deliberate strengthening of only the
+two contraction-derived theorems, not a weakening of their conclusions.
+
+The source exposes twenty-one public declarations and six axiom queries. Its
+warning-fatal Linux-checked SHA-256 is
+`b457f16d9ebf151337b65f8e429e6957a222a0f86b562e1bc52ace6e6fb939ad`.
+The paired bundles are
+`attraction-and-basins-for-discrete-systems-in-lean`,
+`attraction-basins-and-asymptotic-stability-in-discrete-time`, and
+`basin-of-attraction`. The standalone three-state tutorial imports only `Std`
+and passes under Lean 4.32.0. Six conceptual SVGs pass XML validation and
+render inspection; all three 1200x630 cards generate and reproduce
+byte-for-byte.
+
+Approved Linux validation used RunPod Secure Cloud with 8 vCPU, 64 GB billed
+RAM, an 80 GB ephemeral disk, and the retained project network volume at
+$0.44 per hour. The retained Lean 4.32.0 and pinned-manifest Lake archives
+passed their SHA-256 manifests and `zstd -t`; they were restored onto fast
+ephemeral disk rather than used as a live network-volume `.lake` tree. The
+warning-fatal attraction leaf passed in 4.42 seconds and the warning-fatal
+deterministic aggregator passed in 4.18 seconds. All six axiom queries report
+only `propext`, `Classical.choice`, and `Quot.sound`; none reports `sorryAx`.
+The final `CLOUD_LEAN_BUILD=1 make -j1 check` replay passes all 3,221 Lean jobs,
+the checkpoint and coverage gates, 23 coverage regression tests, seven
+teaching-hygiene regression tests, the 155-file teaching corpus audit, the
+745-surface reader-language audit, and a warning-fatal 455-page render under
+Hugo Extended with Deploy 0.160.1. The cached final replay took 13.98 seconds.
+
+Workstation and browser validation on 2026-08-06:
+
+- `make workstation-check` passes: the checkpoint is synchronized, all 43
+  substantive Lean modules have mapped Notebook coverage, all 23 coverage
+  regression tests and seven teaching-hygiene regression tests pass, 155
+  teaching Markdown files and 745 public reader surfaces pass their language
+  gates, and Hugo Extended 0.160.1 renders 455 pages warning-fatal;
+- the Notebook, Deep Dive, and basin glossary pages each render with exactly
+  one `h1` at 1440x1000 and 390x844, with no page overflow, broken or alt-less
+  images, KaTeX errors, raw delimiters, or console warnings or errors; and
+- responsive visual inspection confirms that prose, figures, equation panels,
+  navigation, and horizontally scrollable code samples remain contained and
+  legible at both breakpoints.
+
+The temporary Hugo server was stopped after QA, the browser viewport override
+was reset, and the QA tab was closed. No cloud resource was created during
+these workstation checks.
+
 ## Exact Next Milestone
 
-### Scope the deterministic attraction interface
+### Close and release deterministic attraction
 
-The stability release gate, push, cache preservation, compute termination, and
-retained-volume confirmation are complete. The next dependency-ordered source
-item is the placeholder
-`NonlinearDynamics/Deterministic/Discrete/Attraction.lean`. Before changing
-it, freeze whether the primary target is a point, invariant set, or both; how
-distance-to-set and neighborhood formulations meet; and whether attraction
-includes stability or remains a separate predicate.
+Rerun the affected workstation and browser checks after the Linux-guided
+`MetricSpace` repair, replay the complete gate against the final synchronized
+release tree, push the green vertical slice, preserve the useful cache update
+sequentially, terminate only the exact task pod, and retain the project network
+volume.
+
+After that release, the next dependency-ordered placeholder is
+`NonlinearDynamics/Deterministic/Discrete/Lyapunov.lean`. Its scope must keep
+Lyapunov functions and decrease conditions separate from the stability and
+attraction predicates they are intended to imply.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
@@ -2234,7 +2328,9 @@ documentation placeholders:
 - [x] `Discrete/Stability.lean`: forward-orbit equicontinuity, the separate
   fixed-point specialization, metric characterizations, nonexpansive-map
   criteria, and boundary examples.
-- [ ] `Discrete/Attraction.lean`
+- [x] `Discrete/Attraction.lean`: orbit convergence, point and nonempty-set
+  basins, local and global attracting fixed points, asymptotic stability,
+  contraction-derived endpoints, and singleton point/set bridges.
 - [ ] `Discrete/Lyapunov.lean`
 - [ ] `Discrete/Conjugacy.lean`
 - [ ] `Discrete/Bifurcation.lean`

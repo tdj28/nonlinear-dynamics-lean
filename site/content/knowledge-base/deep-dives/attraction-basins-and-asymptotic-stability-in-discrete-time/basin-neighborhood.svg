@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="310" viewBox="0 0 760 310" role="img" aria-labelledby="title desc">
+  <title id="title">A basin contains a neighborhood of a locally attracting fixed point</title>
+  <desc id="desc">A large basin region contains a smaller neighborhood around a fixed point. Three starts in that neighborhood follow curved paths toward the point.</desc>
+  <rect width="760" height="310" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.path{stroke:#4B6787;stroke-width:2.5;fill:none}.arrow{fill:#4B6787}</style>
+  <text x="24" y="28" class="t title">Local attraction is a neighborhood statement about the basin</text>
+  <text x="24" y="49" class="t m">Every start in some neighborhood converges to the fixed target.</text>
+  <path d="M78 86 C170 60 323 75 398 112 C493 72 657 82 701 156 C721 229 602 270 489 246 C386 279 226 273 114 230 C56 194 41 128 78 86 Z" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <ellipse cx="394" cy="172" rx="132" ry="74" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2" stroke-dasharray="7 5"/>
+  <circle cx="394" cy="172" r="12" fill="#A67C52"/><text x="413" y="177" class="t h">fixed point p</text>
+  <circle cx="300" cy="133" r="7" fill="#4B6787"/><circle cx="301" cy="213" r="7" fill="#4B6787"/><circle cx="471" cy="124" r="7" fill="#4B6787"/>
+  <path d="M308 136 C342 145 362 155 380 166" class="path"/><path d="M309 210 C342 197 361 185 380 176" class="path"/><path d="M464 128 C437 142 421 153 406 165" class="path"/>
+  <text x="105" y="111" class="t h">basin B(p)</text><text x="289" y="244" class="t s">one neighborhood of p</text>
+  <rect x="24" y="272" width="712" height="24" rx="8" fill="#F3E8E0" stroke="#A67C52"/><text x="380" y="289" text-anchor="middle" class="t s">The basin may be larger; local attraction requires only the inner neighborhood.</text>
+</svg>

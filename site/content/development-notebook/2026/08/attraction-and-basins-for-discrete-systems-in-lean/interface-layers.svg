@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" role="img" aria-labelledby="title desc">
+  <title id="title">Attraction interface layers</title>
+  <desc id="desc">Orbit convergence defines a basin. Fixedness plus a basin neighborhood gives local attraction. Lyapunov stability plus local attraction gives asymptotic stability. Set attraction uses distance to a nonempty invariant set.</desc>
+  <rect width="760" height="300" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.b{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.g{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.c{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.arrow{stroke:#A67C52;stroke-width:2;fill:none}</style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <text x="24" y="28" class="t title">Attraction is not another spelling of stability</text>
+  <text x="24" y="49" class="t m">Each layer records a separate mathematical obligation.</text>
+  <rect x="28" y="76" width="190" height="64" rx="11" class="b"/><text x="123" y="102" text-anchor="middle" class="t h">orbit converges to p</text><text x="123" y="123" text-anchor="middle" class="t s">defines basin B(p)</text>
+  <rect x="285" y="76" width="190" height="64" rx="11" class="c"/><text x="380" y="102" text-anchor="middle" class="t h">p is fixed</text><text x="380" y="123" text-anchor="middle" class="t s">and B(p) is a neighborhood</text>
+  <rect x="542" y="76" width="190" height="64" rx="11" class="g"/><text x="637" y="102" text-anchor="middle" class="t h">local attraction</text><text x="637" y="123" text-anchor="middle" class="t s">plus Lyapunov stability</text>
+  <path d="M218 108 H279 M475 108 H536" class="arrow" marker-end="url(#a)"/>
+  <rect x="98" y="178" width="250" height="66" rx="11" class="b"/><text x="223" y="204" text-anchor="middle" class="t h">point target</text><text x="223" y="225" text-anchor="middle" class="t s">iterates tend to one point p</text>
+  <rect x="412" y="178" width="250" height="66" rx="11" class="c"/><text x="537" y="204" text-anchor="middle" class="t h">set target</text><text x="537" y="225" text-anchor="middle" class="t s">distance to nonempty A tends to zero</text>
+  <rect x="24" y="260" width="712" height="26" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/><text x="380" y="278" text-anchor="middle" class="t s">The singleton bridge connects the two targets without erasing their hypotheses.</text>
+</svg>

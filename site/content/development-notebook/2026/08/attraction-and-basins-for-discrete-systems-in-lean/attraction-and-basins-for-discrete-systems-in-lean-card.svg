@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Attraction and basins for discrete systems in Lean</title>
+  <desc id="desc">Three orbit paths enter a green target neighborhood. Separate labels identify basin membership, fixedness, and asymptotic stability.</desc>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.k{font-size:24px;font-weight:700;letter-spacing:2px;fill:#6F8D5E}.title{font-size:52px;font-weight:700}.sub{font-size:25px;fill:#5A544C}.h{font-size:24px;font-weight:700}.s{font-size:20px}.path{stroke:#4B6787;stroke-width:8;fill:none}.goal{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:4}</style>
+  <text x="72" y="92" class="t k">DETERMINISTIC DISCRETE DYNAMICS</text>
+  <text x="72" y="168" class="t title">Attraction and basins</text>
+  <text x="72" y="210" class="t sub">Orbit limits, set distance, and asymptotic stability stay distinct.</text>
+  <rect x="72" y="270" width="1056" height="246" rx="24" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="3"/>
+  <path d="M126 338 C300 338 348 416 516 416 S746 365 875 365" class="path"/>
+  <path d="M126 402 C278 402 360 448 516 448 S720 397 875 397" class="path"/>
+  <path d="M126 466 C270 466 360 478 516 478 S720 429 875 429" class="path"/>
+  <circle cx="126" cy="338" r="13" fill="#A67C52"/><circle cx="126" cy="402" r="13" fill="#A67C52"/><circle cx="126" cy="466" r="13" fill="#A67C52"/>
+  <rect x="854" y="316" width="222" height="166" rx="20" class="goal"/><text x="965" y="370" text-anchor="middle" class="t h">target p</text><text x="965" y="405" text-anchor="middle" class="t s">fixed point</text><text x="965" y="438" text-anchor="middle" class="t s">basin neighborhood</text>
+  <text x="72" y="574" class="t s">Lean 4 + pinned Mathlib · point and nonempty-set interfaces</text>
+</svg>

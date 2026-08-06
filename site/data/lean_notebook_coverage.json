@@ -1,4 +1,8 @@
 {
+  "formalization/NonlinearDynamics/Deterministic/Discrete/Attraction.lean": {
+    "module": "NonlinearDynamics.Deterministic.Discrete.Attraction",
+    "notebook": "site/content/development-notebook/2026/08/attraction-and-basins-for-discrete-systems-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Discrete/Stability.lean": {
     "module": "NonlinearDynamics.Deterministic.Discrete.Stability",
     "notebook": "site/content/development-notebook/2026/08/forward-orbit-stability-for-discrete-systems-in-lean/index.md"

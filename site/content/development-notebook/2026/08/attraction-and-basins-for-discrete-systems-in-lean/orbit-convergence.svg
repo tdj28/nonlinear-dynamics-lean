@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="title desc">
+  <title id="title">Three initial states converge to one fixed point</title>
+  <desc id="desc">Rows starting at low, middle, and high move through a finite state system. Every row reaches low by time two and then remains there.</desc>
+  <rect width="760" height="330" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.node{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.goal{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.6}.arrow{stroke:#A67C52;stroke-width:2;fill:none}</style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <text x="24" y="28" class="t title">Every start enters the basin of the low state</text>
+  <text x="24" y="49" class="t m">The first two times differ; the limiting tail is the same.</text>
+  <text x="48" y="85" class="t h">start</text><text x="235" y="85" class="t h">time 1</text><text x="422" y="85" class="t h">time 2</text><text x="608" y="85" class="t h">later</text>
+  <g>
+    <rect x="28" y="104" width="120" height="42" rx="10" class="goal"/><text x="88" y="130" text-anchor="middle" class="t s">low</text>
+    <rect x="214" y="104" width="120" height="42" rx="10" class="goal"/><text x="274" y="130" text-anchor="middle" class="t s">low</text>
+    <rect x="400" y="104" width="120" height="42" rx="10" class="goal"/><text x="460" y="130" text-anchor="middle" class="t s">low</text>
+    <rect x="586" y="104" width="120" height="42" rx="10" class="goal"/><text x="646" y="130" text-anchor="middle" class="t s">low</text>
+    <path d="M148 125 H208 M334 125 H394 M520 125 H580" class="arrow" marker-end="url(#a)"/>
+  </g>
+  <g>
+    <rect x="28" y="164" width="120" height="42" rx="10" class="node"/><text x="88" y="190" text-anchor="middle" class="t s">middle</text>
+    <rect x="214" y="164" width="120" height="42" rx="10" class="goal"/><text x="274" y="190" text-anchor="middle" class="t s">low</text>
+    <rect x="400" y="164" width="120" height="42" rx="10" class="goal"/><text x="460" y="190" text-anchor="middle" class="t s">low</text>
+    <rect x="586" y="164" width="120" height="42" rx="10" class="goal"/><text x="646" y="190" text-anchor="middle" class="t s">low</text>
+    <path d="M148 185 H208 M334 185 H394 M520 185 H580" class="arrow" marker-end="url(#a)"/>
+  </g>
+  <g>
+    <rect x="28" y="224" width="120" height="42" rx="10" class="node"/><text x="88" y="250" text-anchor="middle" class="t s">high</text>
+    <rect x="214" y="224" width="120" height="42" rx="10" class="node"/><text x="274" y="250" text-anchor="middle" class="t s">middle</text>
+    <rect x="400" y="224" width="120" height="42" rx="10" class="goal"/><text x="460" y="250" text-anchor="middle" class="t s">low</text>
+    <rect x="586" y="224" width="120" height="42" rx="10" class="goal"/><text x="646" y="250" text-anchor="middle" class="t s">low</text>
+    <path d="M148 245 H208 M334 245 H394 M520 245 H580" class="arrow" marker-end="url(#a)"/>
+  </g>
+  <rect x="24" y="286" width="712" height="28" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/><text x="380" y="305" text-anchor="middle" class="t s">All three states belong to the basin; convergence concerns the eventual tail.</text>
+</svg>

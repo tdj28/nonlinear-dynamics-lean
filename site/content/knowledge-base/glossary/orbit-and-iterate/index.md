@@ -431,6 +431,8 @@ The {{< refterm "event" "event" >}} entry explains how a set can ask whether
 an orbit state has entered a region. The
 {{< refterm "birkhoff-sum" "Birkhoff sum" >}} entry samples an observable at the finite orbit points
 \(\omega,T\omega,T^2\omega,\ldots\) and adds those readings.
+The {{< refterm "basin-of-attraction" "basin of attraction" >}} instead
+collects starting states according to the limit of their full forward orbits.
 
 For the matrix-valued use of forward orbits, continue to
 [Generator-Presented One-Sided Discrete Matrix Cocycles]({{< relref "/knowledge-base/deep-dives/generator-presented-one-sided-discrete-matrix-cocycles" >}}).

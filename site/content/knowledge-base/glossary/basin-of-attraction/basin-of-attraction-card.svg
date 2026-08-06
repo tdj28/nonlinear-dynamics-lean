@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Basin of attraction</title>
+  <desc id="desc">Several initial states inside a blue basin follow paths toward a green fixed target p, while one state outside follows a path elsewhere.</desc>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.k{font-size:24px;font-weight:700;letter-spacing:2px;fill:#6F8D5E}.title{font-size:58px;font-weight:700}.sub{font-size:25px;fill:#5A544C}.h{font-size:23px;font-weight:700}.s{font-size:20px}.in{stroke:#4B6787;stroke-width:7;fill:none}.out{stroke:#A67C52;stroke-width:7;fill:none;stroke-dasharray:14 10}</style>
+  <text x="72" y="94" class="t k">KNOWLEDGE BASE GLOSSARY</text><text x="72" y="178" class="t title">Basin of attraction</text><text x="72" y="222" class="t sub">The set of starts whose forward orbits share one target.</text>
+  <path d="M82 314 C247 256 526 281 693 380 C747 472 594 544 373 534 C177 530 66 457 82 314 Z" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <circle cx="568" cy="413" r="17" fill="#6F8D5E"/><text x="596" y="420" class="t h">target p</text>
+  <circle cx="153" cy="357" r="12" fill="#4B6787"/><circle cx="188" cy="469" r="12" fill="#4B6787"/><path d="M166 357 C310 339 420 392 548 410" class="in"/><path d="M201 465 C327 471 430 436 548 416" class="in"/>
+  <circle cx="885" cy="331" r="12" fill="#A67C52"/><path d="M873 339 C807 390 829 471 958 493" class="out"/><text x="826" y="303" class="t h">outside basin</text>
+  <text x="72" y="584" class="t s">Orbit convergence · local neighborhood · point and set targets</text>
+</svg>

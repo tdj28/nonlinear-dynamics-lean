@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" role="img" aria-labelledby="title desc">
+  <title id="title">Orbit distance to a nonempty target set tends to zero</title>
+  <desc id="desc">A curved nonempty target set lies on the right. Successive orbit points approach different nearby parts of it while labeled distance segments shrink.</desc>
+  <rect width="760" height="300" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:16px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.orbit{stroke:#4B6787;stroke-width:2.5;fill:none}.d{stroke:#A67C52;stroke-width:2;stroke-dasharray:5 4}</style>
+  <text x="24" y="28" class="t title">Set attraction follows the nearest-set distance</text>
+  <text x="24" y="49" class="t m">The orbit need not converge to one selected point of the set.</text>
+  <path d="M548 78 C635 95 679 151 645 224 C610 263 538 259 508 214 C480 165 489 104 548 78 Z" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2.5"/>
+  <text x="583" y="170" text-anchor="middle" class="t h">target set A</text>
+  <path d="M84 224 C161 109 239 247 321 143 C384 81 431 169 490 151" class="orbit"/>
+  <circle cx="84" cy="224" r="8" fill="#4B6787"/><circle cx="200" cy="181" r="8" fill="#4B6787"/><circle cx="321" cy="143" r="8" fill="#4B6787"/><circle cx="414" cy="133" r="8" fill="#4B6787"/><circle cx="490" cy="151" r="8" fill="#4B6787"/>
+  <path d="M84 224 L501 220 M200 181 L493 192 M321 143 L498 153 M414 133 L507 135 M490 151 L506 151" class="d"/>
+  <text x="93" y="249" class="t s">large</text><text x="445" y="122" class="t s">small</text>
+  <rect x="24" y="264" width="712" height="24" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/><text x="380" y="281" text-anchor="middle" class="t s">Nonemptiness blocks Mathlib's totalized empty-set distance from vacuous attraction.</text>
+</svg>

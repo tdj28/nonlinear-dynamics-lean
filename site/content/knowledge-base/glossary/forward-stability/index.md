@@ -209,7 +209,8 @@ whose iterates remain equicontinuous at selected points.
 
 Forward stability says “remain close.” Attraction says “approach.” The
 translation example keeps a constant gap, so it is stable without attracting
-the nearby orbit.
+the nearby orbit. The {{< refterm "basin-of-attraction" "basin of attraction"
+>}} collects starts whose orbits do approach a specified target.
 
 Forward stability also fixes one map \(f\). Structural stability and many
 uses of stochastic stability compare different maps, invariant measures, or
@@ -222,6 +223,8 @@ Lyapunov-function criterion.
 Continue with the worked [Forward-Orbit and Fixed-Point Stability Deep
 Dive]({{< relref
 "/knowledge-base/deep-dives/forward-orbit-and-fixed-point-stability-in-discrete-time"
+>}}), continue to [Attraction, Basins, and Asymptotic Stability]({{< relref
+"/knowledge-base/deep-dives/attraction-basins-and-asymptotic-stability-in-discrete-time"
 >}}), or inspect the declaration-complete [Research Note]({{< relref
 "/development-notebook/2026/08/forward-orbit-stability-for-discrete-systems-in-lean"
 >}}).
