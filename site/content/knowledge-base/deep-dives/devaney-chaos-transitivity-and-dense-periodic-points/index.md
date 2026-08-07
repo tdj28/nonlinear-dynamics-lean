@@ -35,10 +35,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This AI-assisted draft accompanies a
-warning-fatal Lean source candidate. The leaf and deterministic aggregator
-pass, but professional review and the complete project gate remain pending.
-Accordingly, <code>pro_reviewed</code> remains false.
+**Editorial and validation status.** This AI-assisted draft accompanies
+warning-fatal checked Lean source. The leaf, deterministic aggregator, and
+complete project gate pass. Professional review remains pending, so
+<code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 ## Learning objectives

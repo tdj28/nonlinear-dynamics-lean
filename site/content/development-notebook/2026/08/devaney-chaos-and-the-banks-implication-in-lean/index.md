@@ -11,7 +11,7 @@ key_result: |
   On an infinite metric space, a continuous self-map that is topologically transitive and has dense positive-period points is sensitive. The source keeps that theorem separate from the historical three-clause definition and records the finite-space obstruction.
 draft: true
 pro_reviewed: false
-status: "Source and teaching candidate; warning-fatal leaf and deterministic aggregator passed, complete repository validation pending"
+status: "Warning-fatal leaf, deterministic aggregator, and complete repository gate passed; professional review and publication decision pending"
 level: "Intermediate topology, metric dynamics, periodic points, and Lean 4"
 reading_time: "35 to 50 minutes"
 prerequisites:
@@ -42,10 +42,10 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This draft accompanies a warning-fatal source candidate.
-Professional review has not been performed, so `pro_reviewed` remains false.
-The Devaney leaf and deterministic aggregator pass; the complete repository
-gate and final publication decision remain pending.
+**Editorial status.** This draft accompanies warning-fatal checked source.
+The Devaney leaf, deterministic aggregator, and complete repository gate pass.
+Professional review has not been performed, so `pro_reviewed` remains false,
+and the final publication decision remains pending.
 {{< /panel >}}
 
 ## Begin with a three-state cycle

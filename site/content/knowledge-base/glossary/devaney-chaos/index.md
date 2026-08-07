@@ -28,8 +28,8 @@ any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This draft accompanies a warning-fatal
-source candidate. Professional review and the complete project gate remain
+**Editorial and validation status.** This draft accompanies warning-fatal
+checked source. The complete project gate passes. Professional review remains
 pending, so <code>pro_reviewed</code> remains false.
 {{< /panel >}}
 

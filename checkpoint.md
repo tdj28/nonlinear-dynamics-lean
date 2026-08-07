@@ -7,12 +7,13 @@ Last updated: 2026-08-07
 
 Audited baseline: `main` at `003b08b`
 
-Active direction: **close the Devaney-chaos vertical slice, then specify
-symbolic coding.** The source-and-teaching candidate for
-`NonlinearDynamics.Deterministic.Chaos.Devaney` is complete. Its warning-fatal
-leaf and deterministic-aggregator checks pass on the approved Linux builder;
-the exact committed full repository gate, cache preservation, final push, and
-builder termination remain the release-closing steps. The interface preserves
+Active direction: **specify symbolic coding after closing the Devaney builder.**
+The source-and-teaching milestone for
+`NonlinearDynamics.Deterministic.Chaos.Devaney` passes its warning-fatal leaf,
+deterministic aggregator, and complete repository gate at candidate commit
+`4705233` on the approved Linux builder. Its verified Lake cache is preserved
+on retained storage. The final documentation push and exact builder
+termination remain the release-closing steps. The interface preserves
 Devaney's historical three-clause definition while exposing the continuous
 topological core and proving the Banks implication under an infinite genuine
 metric-space hypothesis. Five new teaching pages remain private drafts with
@@ -1810,18 +1811,16 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,217 Lean jobs on the integrated RMT-34
-  tree. Its changed leaf, cocycle aggregator, Random root, and project root
-  compile warning-fatally; 39/39 coverage, seventeen snapshot-contract tests,
-  four hygiene regression tests, and the 132-file teaching scan pass; Hugo
-  renders 405 pages and 65 static files with warnings fatal. The complete
-  checkpoint-inclusive gate historically took 7.38 seconds on the Mac and
-  4.58 seconds on the checksum-identical retained RunPod tree before the new
-  cloud-only build policy.
-- Lean inventory: 735 public named declarations counted by the proof-to-prose
-  checker across the thirty-nine substantive modules. The tree also
-  has 18 one-line deterministic placeholders, one `.gitkeep`-only Random
-  branch, and five `.gitkeep`-only Quantum Chaos branches.
+- Last fully green repository build: 3,222 Lean jobs at Devaney candidate
+  commit `4705233` on the approved Linux builder. The Devaney leaf,
+  deterministic aggregator, project root, 48/48 proof-to-prose coverage, 23
+  coverage regression tests, seven hygiene regression tests, the 172-file
+  teaching scan, the 828-surface reader-language scan, and the warning-fatal
+  512-page Hugo render pass.
+- Lean inventory: forty-eight substantive modules are paired with comprehensive
+  Notebook pages. The remaining deterministic-discrete placeholder is
+  `Chaos/SymbolicCoding.lean`; the later ODE and model placeholders and the
+  `.gitkeep`-only Quantum Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
   259,256 tokens across thirty-nine Notebook companions, 308,426 tokens across
@@ -2451,8 +2450,28 @@ no-isolated-points consequence. The exact source SHA-256 is
 The warning-fatal Devaney leaf and deterministic aggregator pass on the
 approved Linux builder. Axiom reports for the principal implication,
 equivalence, and finite obstruction contain only `propext`,
-`Classical.choice`, and `Quot.sound`; none contains `sorryAx`. The complete
-repository gate is pending the exact candidate commit.
+`Classical.choice`, and `Quot.sound`; none contains `sorryAx`.
+
+Candidate commit `4705233` reached `origin/main` before the full release gate.
+Its exact Git archive passed SHA-256 identity after source-only transfer; the
+remote tree contains no workstation `.git`, `.env`, `.lake` transfer,
+generated Hugo output, credentials, or private artifacts. The retained
+Sensitivity archive and ledger passed SHA-256 and `zstd -t` before sequential
+restoration to ephemeral disk. The official Hugo Extended 0.160.1 Linux
+archive passed its published checksum and matches the workstation release.
+The complete `CLOUD_LEAN_BUILD=1 make -j1 check` gate passes: all 3,222 Lean
+jobs, 48/48 Notebook coverage, 23 coverage regression tests, seven
+teaching-hygiene tests, the 172-file teaching scan, the 828-surface
+reader-language scan, and a warning-fatal 512-page Hugo render.
+
+The successful ephemeral `.lake` tree is archived as
+`lake-manifest-pinned-devaney-20260807.tar.zst`. The 2,582,425,378-byte
+compressed archive expands to an 8,083,947,520-byte tar stream. Its ephemeral
+copy and sequential retained-volume copy both pass SHA-256 and `zstd -t`; the
+retained `SHA256SUMS-devaney-20260807` ledger passes independently. Earlier
+validated archives remain intact, and the retained volume was never used as a
+live `.lake` tree. The approved builder remains below its $5 ceiling while the
+final documentation closure is replayed.
 
 The teaching bundle contains the Notebook entry “Devaney Chaos and the Banks
 Implication in Lean”, the Deep Dive “Devaney Chaos, Transitivity, and Dense
@@ -4658,6 +4677,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `4705233`: formalize the historical and reduced Devaney interfaces, prove
+  the Banks sensitivity implication with exact hypotheses, and add the five-
+  page teaching bundle, conceptual figures, deterministic cards, coverage map,
+  cited decision record, and candidate validation checkpoint.
 - `b369347`: publish the warning-fatal bifurcation validation status, complete
   cloud gate receipt, cache-preservation record, and sensitivity-interface
   handoff.
