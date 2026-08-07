@@ -5,9 +5,9 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `597ba49`
+Audited baseline: `main` at `dc96c86`
 
-Active direction: **complete ODE responsive QA, then construct the flow interface.**
+Active direction: **construct the ODE flow interface.**
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
 exact-commit repository gates on the approved Linux builder. The verified
@@ -29,10 +29,9 @@ global curves, arbitrarily long local curves at one point, and one uniform
 positive local-time radius through every point. Candidate commit `9f8b251` and
 validation-record commit `597ba49` pass their exact-commit full repository
 gates. The verified successful cache is preserved, the exact task pod is
-terminated, and the project network volume remains. The only open release
-check is literal 390-pixel visual QA: the in-app browser ignored its advertised
-viewport override and no connected external browser was available. Desktop
-rendered QA and every static, formal, and cloud gate pass.
+terminated, and the project network volume remains. Desktop and literal
+390-by-844 rendered QA now pass alongside every static, formal, and cloud
+gate, so the GlobalExistence milestone is complete.
 
 ## Mathematical Editorial Register Audit
 
@@ -2428,16 +2427,9 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Complete responsive QA, then construct the ODE flow interface
+### Construct the ODE flow interface
 
-The only remaining GlobalExistence release check is a literal 390-pixel render
-of the Notebook, Deep Dive, and two glossary pages in a browser surface whose
-viewport override actually applies. Check equal client and scroll widths,
-locally scrollable wide content, complete lazy-loaded assets, one H1, zero raw
-TeX or KaTeX errors, and zero console warnings or errors. Do not infer this
-result from the already passing 1280-pixel render.
-
-After that check, the next source milestone is
+The next source milestone is
 `NonlinearDynamics/Deterministic/ODE/ToFlow.lean`. It should construct the
 time-parametrized map from the unique global integral-curve interface, prove
 the time-zero and time-composition laws using checked uniqueness, and expose
@@ -2504,10 +2496,16 @@ reproduce their 1200-by-630 PNGs byte for byte, all eight SVG files pass XML
 validation, and `git diff --check` is clean. Rendered QA at the browser's
 1280-by-720 viewport reports one H1, equal client and scroll widths, no broken
 or alt-less images, no raw TeX or KaTeX errors, and no console warnings or
-errors on the Notebook, Deep Dive, and both glossary pages. The browser's
-advertised responsive override did not change its actual 1280-pixel viewport,
-so mobile visual QA remains pending rather than being inferred from a desktop
-render.
+errors on the Notebook, Deep Dive, and both glossary pages. A later Chrome
+session supplied a literal 390-by-844 viewport for the same four routes. Each
+document reports 390-pixel client and scroll widths, one H1, two complete
+images with nonempty alt text, zero raw TeX delimiters, zero KaTeX errors, and
+zero console warnings or errors. Every code block and table wider than its
+container uses local horizontal scrolling rather than expanding the page.
+Direct top-and-bottom visual inspection confirms contained, legible layouts,
+and the mobile menu opens to expose all four primary links and closes again.
+The temporary viewport override was reset and the browser tab and Hugo server
+were closed after QA.
 
 The successful ephemeral `.lake` tree is archived as
 `lake-manifest-pinned-ode-global-existence-20260807.tar.zst`. The archive is
@@ -3055,12 +3053,12 @@ documentation placeholders:
 
 ### ODEs and concrete models
 
-The first file now has a checked source-and-teaching candidate; the remaining
+The first file is now a validated source-and-teaching milestone; the remaining
 files are placeholders:
 
-- [ ] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
-  both exact-commit full gates, and verified cache preservation pass; literal
-  390-pixel browser QA remains pending.
+- [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
+  both exact-commit full gates, verified cache preservation, desktop QA, and
+  literal 390-by-844 browser QA pass.
 - [ ] `ODE/ToFlow.lean`
 - [ ] `ODE/Stability.lean`
 - [ ] `ODE/Lyapunov.lean`
