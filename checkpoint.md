@@ -2185,18 +2185,117 @@ then terminated. A post-action inventory reports zero task pods and one
 retained project network volume. No cloud resource identifier or credential is
 recorded here.
 
+### Deterministic discrete Lyapunov milestone
+
+This vertical slice replaces
+`NonlinearDynamics.Deterministic.Discrete.Lyapunov` and its
+`Deterministic/Discrete/Lyapunov.lean` placeholder with an explicit direct-
+method interface. The leaf, deterministic aggregator, and full project now
+pass their approved Linux checks, so the roadmap item is complete.
+
+The selected interface makes the following decisions explicit:
+
+- `IsNonnegativeOn` records only a weak sign condition. The separate
+  `IsPositiveDefiniteOn` requires the reference point to belong to the selected
+  region, makes its value zero, and requires strict positivity at every other
+  point of that region.
+- `IsLocallyPositiveDefiniteAt` is a neighborhood statement. Region-level
+  positivity implies it only when the region is itself a neighborhood. This
+  keeps local information distinct from a global certificate.
+- `IsWeakLyapunovDecreaseOn` and `IsStrictLyapunovDecreaseOn` are separate
+  region-scoped predicates. Neither hides forward invariance. Strict decrease
+  away from a fixed point implies weak decrease, but strict descent is not used
+  as an attraction theorem.
+- Weak decrease plus `Set.MapsTo f S S` preserves open and closed sublevels,
+  bounds every iterate value by the initial value, and makes the scalar orbit
+  antitone. These conclusions concern the certificate values, not convergence
+  of the state.
+- `HasSublevelControlAt` is an explicit global comparison hypothesis: every
+  requested metric ball around the reference point contains a positive open
+  sublevel of the certificate. Pointwise positive definiteness alone does not
+  supply that uniform separation on an arbitrary noncompact or
+  infinite-dimensional pseudo-metric space.
+- The stability endpoint assumes fixedness, zero reference value, continuity
+  at the reference point, global sublevel control, and global weak decrease.
+  Its conclusion is the existing local `IsLyapunovStableFixedPoint` predicate.
+- The point-attraction endpoint separately assumes that the certificate along
+  the selected orbit tends to zero. Universal zero-certificate convergence
+  yields the existing global-attraction predicate. The asymptotic-stability
+  wrapper combines the local stability argument with that stronger universal
+  limit without treating the obligations as equivalent.
+
+Compact trapping theorems, the discrete LaSalle invariance principle,
+coercive or radially unbounded global criteria, comparison-function rates,
+converse Lyapunov theorems, invariant-set and periodic-orbit criteria, ODE
+Lyapunov theory, stochastic robustness, stable manifolds, and Lyapunov
+exponents remain outside this first slice. In particular, a strictly
+decreasing real sequence can converge to a positive limit, so strict one-step
+descent alone is not promoted to attraction on a noncompact space.
+
+The mathematical anchors are J. P. LaSalle, “Difference Equations. Discrete
+Semidynamical Systems,” especially sections 6, 7, and 10 of Chapter 1, pages
+1–25, DOI
+[`10.1137/1.9781611970432.ch1`](https://doi.org/10.1137/1.9781611970432.ch1),
+and Saber Elaydi, “Stability Theory,” Chapter 4 of *An Introduction to
+Difference Equations*, third edition, especially Theorems 4.20 and 4.24, DOI
+[`10.1007/0-387-27602-5_4`](https://doi.org/10.1007/0-387-27602-5_4).
+S. P. Gordon’s converse result, DOI
+[`10.1137/0310007`](https://doi.org/10.1137/0310007), corroborates the semantic
+separation between positive-definite certificates with negative-semidefinite
+difference and stronger asymptotic conclusions. Pinned Mathlib 4.32.0 at
+revision `81a5d257` supplies the exact `IsMinOn`, `IsLocalMin`, neighborhood,
+`Set.MapsTo.iterate`, function-iterate, antitone-sequence, and metric-limit
+APIs used by the checked source.
+
+The paired public bundle is
+`lyapunov-functions-for-discrete-systems-in-lean`,
+`lyapunov-functions-and-the-direct-method-in-discrete-time`, and
+`lyapunov-function`. It includes a `Std`-only countdown tutorial, five
+conceptual figures, and three deterministic 1200x630 cards. The standalone
+tutorial passes Lean 4.32.0, the Notebook coverage gate maps all 44 substantive
+modules, the 158-file teaching-source audit passes, the 760-surface public
+reader-language audit passes, all SVGs pass XML validation, and all three card
+generators reproduce byte-for-byte. The 241-line source exposes 22 public
+declarations and six axiom reports. Its warning-fatal Linux-checked SHA-256 is
+`98e29093c7941935404f4bc3809fba4efd58b6ce993f31829118573165d70f5f`.
+Every axiom report contains only `propext`, `Classical.choice`, and
+`Quot.sound`; none contains `sorryAx`.
+
+Approved Linux validation used RunPod Secure Cloud with 8 vCPU, an effective
+32-GB cgroup RAM limit, an 80-GB ephemeral disk, and the retained project
+network volume at $0.32 per hour. The retained Elan and pinned-manifest Lake
+archives passed their SHA-256 manifests and `zstd -t` before being restored
+sequentially onto ephemeral disk; the network volume was not used as a live
+`.lake` tree. `CLOUD_LEAN_BUILD=1 make lean-file
+LEAN_FILE=NonlinearDynamics/Deterministic/Discrete/Lyapunov.lean` passes
+warning-fatal, as does the deterministic aggregator. The final
+`CLOUD_LEAN_BUILD=1 make -j1 check` completes all 3,221 Lean jobs, the
+checkpoint and 44-module coverage gates, 23 coverage regression tests, seven
+teaching-hygiene regression tests, the 158-file teaching audit, the 760-surface
+reader-language audit, and a warning-fatal 462-page Hugo Extended 0.160.1
+render.
+
+Workstation browser inspection passes for the Notebook, Deep Dive, and
+glossary page at 1440x1000 and at a literal 390x844 viewport. Each has one
+`h1`, no horizontal page overflow, no missing image alt text, no broken images
+after lazy figures enter the viewport, no KaTeX or raw-delimiter errors, and no
+console warnings or page errors. The mobile documents have equal 390-pixel
+client and scroll widths, and direct visual inspection confirms contained,
+legible responsive layouts. All five SVGs also open and render directly. The
+temporary Hugo server and headless browser were stopped after QA.
+
 ## Exact Next Milestone
 
-### Specify deterministic discrete Lyapunov functions
+### Specify deterministic discrete conjugacies
 
-Turn `NonlinearDynamics/Deterministic/Discrete/Lyapunov.lean` from a placeholder
-into the next vertical slice. The interface must distinguish positive
-definiteness from nonnegativity, strict from weak decrease, and local from
-global conclusions. Lyapunov functions and their decrease conditions remain
-separate from the stability and attraction predicates they are intended to
-imply. Research the pinned Mathlib order, continuity, neighborhood, and iterate
-APIs before freezing theorem statements, and pair the checked source with a
-complete educational bundle.
+Turn `NonlinearDynamics/Deterministic/Discrete/Conjugacy.lean` from a
+placeholder into the next vertical slice. Distinguish conjugacy from
+semiconjugacy, record the exact hypotheses needed to transport iterates and
+orbit properties, and avoid claiming preservation of metric stability or
+attraction without the necessary continuity and inverse-continuity data.
+Research the pinned Mathlib function-iteration and topology interfaces before
+freezing theorem statements, and pair the checked source with a complete
+educational bundle.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
@@ -2339,7 +2438,10 @@ documentation placeholders:
 - [x] `Discrete/Attraction.lean`: orbit convergence, point and nonempty-set
   basins, local and global attracting fixed points, asymptotic stability,
   contraction-derived endpoints, and singleton point/set bridges.
-- [ ] `Discrete/Lyapunov.lean`
+- [x] `Discrete/Lyapunov.lean`: positive-definite and nonnegative
+  certificates, weak and strict regional descent, invariant sublevels,
+  antitone orbit values, an explicit sublevel-distance comparison, and
+  separate stability and zero-certificate attraction endpoints.
 - [ ] `Discrete/Conjugacy.lean`
 - [ ] `Discrete/Bifurcation.lean`
 - [ ] `Chaos/Sensitivity.lean`

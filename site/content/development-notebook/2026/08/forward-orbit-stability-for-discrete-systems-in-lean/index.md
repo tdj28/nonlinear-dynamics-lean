@@ -252,6 +252,11 @@ or comparable neighborhood condition. Two-sided time needs invertibility or a
 \(\mathbb Z\)-action. Perturbation stability compares different maps, whereas
 `IsForwardStableAt` fixes one map and varies only the initial condition.
 
+The later [Lyapunov Functions Research Note]({{< relref
+"/development-notebook/2026/08/lyapunov-functions-for-discrete-systems-in-lean"
+>}}) supplies a scalar-certificate criterion while preserving this module's
+separation between stability and attraction.
+
 ## References
 
 1. Ethan Akin, “On Chain Continuity,” *Discrete and Continuous Dynamical

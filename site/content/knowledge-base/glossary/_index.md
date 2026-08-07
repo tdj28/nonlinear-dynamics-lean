@@ -81,6 +81,10 @@ The main routes then branch:
 - **Dynamics along an orbit:** orbit and iterate → measure-preserving
   transformation → {{< refterm "ergodicity" "ergodicity" >}} →
   {{< refterm "birkhoff-sum" "Birkhoff sum" >}} → convergence events.
+- **Deterministic stability:** orbit and iterate →
+  {{< refterm "forward-stability" "forward stability" >}} →
+  {{< refterm "basin-of-attraction" "basin of attraction" >}} →
+  {{< refterm "lyapunov-function" "Lyapunov function" >}}.
 - **Random products:** finite matrix products → cocycles → log-norm
   integrability → subadditive growth rates.
 

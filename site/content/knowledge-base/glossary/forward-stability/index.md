@@ -218,13 +218,17 @@ random systems. Those questions use different inputs and conclusions.
 
 This glossary entry does not define invariant-set stability, asymptotic or
 exponential stability, two-sided-time stability, stable manifolds, or a
-Lyapunov-function criterion.
+Lyapunov-function criterion. The separate {{< refterm "lyapunov-function"
+"Lyapunov function" >}} chapter introduces that criterion without changing
+the meaning of forward stability.
 
 Continue with the worked [Forward-Orbit and Fixed-Point Stability Deep
 Dive]({{< relref
 "/knowledge-base/deep-dives/forward-orbit-and-fixed-point-stability-in-discrete-time"
 >}}), continue to [Attraction, Basins, and Asymptotic Stability]({{< relref
 "/knowledge-base/deep-dives/attraction-basins-and-asymptotic-stability-in-discrete-time"
+>}}), continue to [Lyapunov Functions and the Direct Method]({{< relref
+"/knowledge-base/deep-dives/lyapunov-functions-and-the-direct-method-in-discrete-time"
 >}}), or inspect the declaration-complete [Research Note]({{< relref
 "/development-notebook/2026/08/forward-orbit-stability-for-discrete-systems-in-lean"
 >}}).

@@ -251,6 +251,12 @@ global attractors, equality invariance, Hausdorff convergence, invariant-set
 Lyapunov stability, periodic attractors, attraction rates, robustness under
 map perturbations, or stable manifolds.
 
+Continue to [Lyapunov Functions and the Direct Method in Discrete Time]({{<
+relref
+"/knowledge-base/deep-dives/lyapunov-functions-and-the-direct-method-in-discrete-time"
+>}}) for a scalar-certificate route that keeps stability and attraction as
+separate conclusions.
+
 ## References
 
 - J. P. LaSalle, “Difference Equations. Discrete Semidynamical Systems,” in

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="assumption-gates-title assumption-gates-desc">
+  <title id="assumption-gates-title">Three independent choices in a Lyapunov-function criterion</title>
+  <desc id="assumption-gates-desc">Three columns compare nonnegative with positive definite energy, weak with strict one-step decrease, and local with global scope. A final bar states that the conclusion must match the selected hypotheses.</desc>
+  <defs>
+    <style>
+      .paper{fill:#FBF7F0}.ink{fill:#26343A}.muted{fill:#655F57}.head{font:700 27px Georgia,serif}.title{font:700 18px Arial,sans-serif}.body{font:16px Arial,sans-serif}.small{font:14px Arial,sans-serif}.weak{fill:#F2E8DC;stroke:#A36B3F;stroke-width:1.8}.strong{fill:#EAF1E5;stroke:#668357;stroke-width:2}.scope{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.8}.divider{stroke:#C8BCAA;stroke-width:1.5;stroke-dasharray:5 6}
+    </style>
+  </defs>
+  <rect class="paper" width="1200" height="690" rx="18"/>
+  <text class="head ink" x="60" y="58">Audit three gates before reading the conclusion</text>
+  <text class="body muted" x="60" y="88">Each column records a different mathematical choice. None can be inferred from the others.</text>
+
+  <line class="divider" x1="400" y1="118" x2="400" y2="548"/>
+  <line class="divider" x1="800" y1="118" x2="800" y2="548"/>
+
+  <text class="title ink" x="200" y="146" text-anchor="middle">1. Separation at the target</text>
+  <rect class="weak" x="70" y="176" width="260" height="118" rx="13"/>
+  <text class="title ink" x="200" y="214" text-anchor="middle">Nonnegative</text>
+  <text class="body muted" x="200" y="246" text-anchor="middle">Energy never falls below zero.</text>
+  <text class="small muted" x="200" y="271" text-anchor="middle">Zero may occur away from the target.</text>
+  <rect class="strong" x="70" y="328" width="260" height="142" rx="13"/>
+  <text class="title ink" x="200" y="366" text-anchor="middle">Positive definite</text>
+  <text class="body muted" x="200" y="398" text-anchor="middle">Energy is zero at the target.</text>
+  <text class="body muted" x="200" y="425" text-anchor="middle">Away from it, energy is positive.</text>
+  <text class="small muted" x="200" y="451" text-anchor="middle">This is strictly stronger.</text>
+
+  <text class="title ink" x="600" y="146" text-anchor="middle">2. One-step comparison</text>
+  <rect class="weak" x="470" y="176" width="260" height="118" rx="13"/>
+  <text class="title ink" x="600" y="214" text-anchor="middle">Weak decrease</text>
+  <text class="body muted" x="600" y="246" text-anchor="middle">The next energy is no larger.</text>
+  <text class="small muted" x="600" y="271" text-anchor="middle">Equality is allowed.</text>
+  <rect class="strong" x="470" y="328" width="260" height="142" rx="13"/>
+  <text class="title ink" x="600" y="366" text-anchor="middle">Strict decrease</text>
+  <text class="body muted" x="600" y="398" text-anchor="middle">Away from the target,</text>
+  <text class="body muted" x="600" y="425" text-anchor="middle">the next energy is smaller.</text>
+  <text class="small muted" x="600" y="451" text-anchor="middle">Other side conditions may remain.</text>
+
+  <text class="title ink" x="1000" y="146" text-anchor="middle">3. Where hypotheses hold</text>
+  <rect class="scope" x="870" y="176" width="260" height="118" rx="13"/>
+  <text class="title ink" x="1000" y="214" text-anchor="middle">Local scope</text>
+  <text class="body muted" x="1000" y="246" text-anchor="middle">Checks hold near the target.</text>
+  <text class="small muted" x="1000" y="271" text-anchor="middle">States outside are unconstrained.</text>
+  <rect class="scope" x="870" y="328" width="260" height="142" rx="13"/>
+  <text class="title ink" x="1000" y="366" text-anchor="middle">Global scope</text>
+  <text class="body muted" x="1000" y="398" text-anchor="middle">Checks hold for every state</text>
+  <text class="body muted" x="1000" y="425" text-anchor="middle">in the stated space.</text>
+  <text class="small muted" x="1000" y="451" text-anchor="middle">This supports a global input, not a rate.</text>
+
+  <rect x="70" y="548" width="1060" height="92" rx="13" fill="#26343A"/>
+  <text class="title" fill="#FBF7F0" x="600" y="585" text-anchor="middle">Conclusion gate</text>
+  <text class="body" fill="#FBF7F0" x="600" y="615" text-anchor="middle">Use only the stability or attraction conclusion supplied by the theorem with these exact choices.</text>
+</svg>

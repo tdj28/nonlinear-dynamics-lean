@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Three boundaries for a Lyapunov certificate</title>
+  <desc id="desc">The first row shows a zero certificate that is nonnegative but does not distinguish states. The second shows identity dynamics with equality and no attraction. The third shows descending values inside nested sublevels converging toward reference point p.</desc>
+  <rect width="1200" height="700" fill="#fbf7ef"/>
+  <style>
+    .head{font:700 30px system-ui,sans-serif;fill:#16324f}.label{font:700 24px system-ui,sans-serif;fill:#16324f}.body{font:20px system-ui,sans-serif;fill:#263746}.math{font:22px ui-monospace,monospace;fill:#7a3e12}.line{stroke:#557a78;stroke-width:5;fill:none}.soft{fill:#e7efe9;stroke:#557a78;stroke-width:3}.warn{fill:#f7dfcb;stroke:#b8612d;stroke-width:3}
+  </style>
+  <text class="head" x="60" y="58">A scalar certificate has three separate jobs</text>
+  <rect class="warn" x="55" y="95" width="1090" height="150" rx="20"/>
+  <text class="label" x="85" y="137">1. Sign</text>
+  <text class="math" x="85" y="180">V ≡ 0 is nonnegative</text>
+  <text class="body" x="530" y="180">but every state has the same value</text>
+  <circle cx="1010" cy="170" r="26" fill="#b8612d"/><circle cx="1080" cy="170" r="26" fill="#b8612d"/>
+  <text class="body" x="992" y="220">x</text><text class="body" x="1064" y="220">p</text>
+  <rect class="warn" x="55" y="275" width="1090" height="150" rx="20"/>
+  <text class="label" x="85" y="317">2. Descent</text>
+  <text class="math" x="85" y="360">f = id gives V(f(x)) = V(x)</text>
+  <path class="line" d="M790 350 H1050" marker-end="url(#arrow)"/>
+  <circle cx="790" cy="350" r="22" fill="#b8612d"/><circle cx="1050" cy="350" r="22" fill="#b8612d"/>
+  <text class="body" x="812" y="400">the orbit does not approach p</text>
+  <rect class="soft" x="55" y="455" width="1090" height="190" rx="20"/>
+  <text class="label" x="85" y="497">3. Sublevel control</text>
+  <ellipse cx="930" cy="555" rx="170" ry="72" fill="#d8e7dc" stroke="#557a78" stroke-width="3"/>
+  <ellipse cx="930" cy="555" rx="100" ry="44" fill="#bcd5c5" stroke="#557a78" stroke-width="3"/>
+  <circle cx="930" cy="555" r="12" fill="#16324f"/>
+  <text class="label" x="950" y="563">p</text>
+  <circle cx="790" cy="520" r="13" fill="#b8612d"/><circle cx="842" cy="540" r="13" fill="#b8612d"/><circle cx="886" cy="551" r="13" fill="#b8612d"/>
+  <path class="line" d="M803 525 L828 535 M855 543 L871 547"/>
+  <text class="math" x="85" y="545">small V(x) ⇒ small d(x,p)</text>
+  <text class="body" x="85" y="590">turns scalar smallness into state closeness</text>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#557a78"/></marker></defs>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="730" viewBox="0 0 1200 730" role="img" aria-labelledby="boundary-comparison-title boundary-comparison-desc">
+  <title id="boundary-comparison-title">Three examples separating strict descent, weak descent, and target separation</title>
+  <desc id="boundary-comparison-desc">The halving map sends four to two to one while squared energy falls from sixteen to four to one. The identity map keeps state four and energy sixteen unchanged, so weak decrease does not give attraction. The doubling map sends one to two to four while a constant zero certificate remains zero, showing that nonnegativity and weak decrease without target separation do not give stability. A footer distinguishes local from global hypotheses.</desc>
+  <defs>
+    <marker id="compare-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#A36B3F"/></marker>
+    <style>
+      .paper{fill:#FBF7F0}.ink{fill:#26343A}.muted{fill:#655F57}.good{fill:#EAF1E5;stroke:#668357;stroke-width:2}.neutral{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.warn{fill:#F2E8DC;stroke:#A36B3F;stroke-width:2}.node{fill:#FBF7F0;stroke:#655F57;stroke-width:1.5}.arrow{stroke:#A36B3F;stroke-width:2.5;fill:none;marker-end:url(#compare-arrow)}.head{font:700 29px Georgia,serif}.title{font:700 19px Arial,sans-serif}.value{font:700 21px Georgia,serif}.body{font:15px Arial,sans-serif}.small{font:14px Arial,sans-serif}
+    </style>
+  </defs>
+  <rect class="paper" width="1200" height="730" rx="18"/>
+  <text class="head ink" x="60" y="58">Nearby statements separate at the boundary</text>
+  <text class="body muted" x="60" y="88">Each column changes one ingredient while keeping the arithmetic visible.</text>
+
+  <rect class="good" x="48" y="126" width="344" height="440" rx="15"/>
+  <text class="title ink" x="220" y="166" text-anchor="middle">Halving with squared energy</text>
+  <text class="small muted" x="220" y="193" text-anchor="middle">strict descent in this example</text>
+  <circle class="node" cx="118" cy="250" r="34"/><circle class="node" cx="220" cy="250" r="34"/><circle class="node" cx="322" cy="250" r="34"/>
+  <text class="value ink" x="118" y="257" text-anchor="middle">4</text><text class="value ink" x="220" y="257" text-anchor="middle">2</text><text class="value ink" x="322" y="257" text-anchor="middle">1</text>
+  <path class="arrow" d="M154 250 H174"/><path class="arrow" d="M256 250 H276"/>
+  <text class="body ink" x="220" y="320" text-anchor="middle">energy: 16  ->  4  ->  1</text>
+  <text class="body muted" x="220" y="363" text-anchor="middle">The energy strictly falls</text>
+  <text class="body muted" x="220" y="387" text-anchor="middle">away from zero.</text>
+  <line x1="86" y1="418" x2="354" y2="418" stroke="#AAB9A0"/>
+  <text class="body ink" x="220" y="454" text-anchor="middle">Convergence is checked here</text>
+  <text class="body ink" x="220" y="478" text-anchor="middle">from the explicit orbit formula.</text>
+  <text class="small muted" x="220" y="522" text-anchor="middle">One example is not a general criterion.</text>
+
+  <rect class="neutral" x="428" y="126" width="344" height="440" rx="15"/>
+  <text class="title ink" x="600" y="166" text-anchor="middle">Identity with squared energy</text>
+  <text class="small muted" x="600" y="193" text-anchor="middle">weak decrease by equality</text>
+  <circle class="node" cx="498" cy="250" r="34"/><circle class="node" cx="600" cy="250" r="34"/><circle class="node" cx="702" cy="250" r="34"/>
+  <text class="value ink" x="498" y="257" text-anchor="middle">4</text><text class="value ink" x="600" y="257" text-anchor="middle">4</text><text class="value ink" x="702" y="257" text-anchor="middle">4</text>
+  <path class="arrow" d="M534 250 H554"/><path class="arrow" d="M636 250 H656"/>
+  <text class="body ink" x="600" y="320" text-anchor="middle">energy: 16  ->  16  ->  16</text>
+  <text class="body muted" x="600" y="363" text-anchor="middle">The energy never increases,</text>
+  <text class="body muted" x="600" y="387" text-anchor="middle">but the state never approaches zero.</text>
+  <line x1="466" y1="418" x2="734" y2="418" stroke="#9FB2C2"/>
+  <text class="body ink" x="600" y="454" text-anchor="middle">Counterexample:</text>
+  <text class="body ink" x="600" y="478" text-anchor="middle">weak descent does not imply attraction.</text>
+  <text class="small muted" x="600" y="522" text-anchor="middle">Equality is the decisive boundary.</text>
+
+  <rect class="warn" x="808" y="126" width="344" height="440" rx="15"/>
+  <text class="title ink" x="980" y="166" text-anchor="middle">Doubling with zero energy</text>
+  <text class="small muted" x="980" y="193" text-anchor="middle">nonnegative but not positive definite</text>
+  <circle class="node" cx="878" cy="250" r="34"/><circle class="node" cx="980" cy="250" r="34"/><circle class="node" cx="1082" cy="250" r="34"/>
+  <text class="value ink" x="878" y="257" text-anchor="middle">1</text><text class="value ink" x="980" y="257" text-anchor="middle">2</text><text class="value ink" x="1082" y="257" text-anchor="middle">4</text>
+  <path class="arrow" d="M914 250 H934"/><path class="arrow" d="M1016 250 H1036"/>
+  <text class="body ink" x="980" y="320" text-anchor="middle">energy: 0  ->  0  ->  0</text>
+  <text class="body muted" x="980" y="363" text-anchor="middle">The certificate passes a weak</text>
+  <text class="body muted" x="980" y="387" text-anchor="middle">numerical check but separates nothing.</text>
+  <line x1="846" y1="418" x2="1114" y2="418" stroke="#C9A884"/>
+  <text class="body ink" x="980" y="454" text-anchor="middle">Counterexample:</text>
+  <text class="body ink" x="980" y="478" text-anchor="middle">nonnegative weak descent is insufficient.</text>
+  <text class="small muted" x="980" y="522" text-anchor="middle">The doubling orbit moves away from zero.</text>
+
+  <rect x="96" y="608" width="1008" height="76" rx="12" fill="#26343A"/>
+  <text class="title" fill="#FBF7F0" x="600" y="640" text-anchor="middle">Local and global are separate scope choices</text>
+  <text class="body" fill="#FBF7F0" x="600" y="668" text-anchor="middle">A decrease checked only near the target leaves states outside that neighborhood unconstrained.</text>
+</svg>

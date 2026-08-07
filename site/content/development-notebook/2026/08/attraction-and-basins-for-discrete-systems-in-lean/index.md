@@ -281,6 +281,11 @@ no Hausdorff convergence, no invariant-set Lyapunov stability, no periodic
 orbit interface, no robustness under perturbation, and no stable-manifold
 theorem.
 
+The next [Lyapunov Functions Research Note]({{< relref
+"/development-notebook/2026/08/lyapunov-functions-for-discrete-systems-in-lean"
+>}}) explains how scalar sublevels can supply the separate stability and
+attraction obligations without identifying weak descent with convergence.
+
 ## References
 
 - J. P. LaSalle, “Difference Equations. Discrete Semidynamical Systems,”

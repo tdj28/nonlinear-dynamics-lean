@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-labelledby="direct-method-title direct-method-desc">
+  <title id="direct-method-title">The audit path for a discrete Lyapunov direct method</title>
+  <desc id="direct-method-desc">A five-step flow checks that the target is fixed, that energy separates it, that one update decreases energy, that topological and scope hypotheses hold, and only then applies the checked criterion. A footer warns that a scalar decrease calculation alone does not choose a stability or attraction conclusion.</desc>
+  <defs>
+    <marker id="flow-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#A36B3F"/></marker>
+    <style>
+      .paper{fill:#FBF7F0}.ink{fill:#26343A}.muted{fill:#655F57}.box{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.energy{fill:#EAF1E5;stroke:#668357;stroke-width:2}.audit{fill:#F2E8DC;stroke:#A36B3F;stroke-width:2}.arrow{stroke:#A36B3F;stroke-width:3;fill:none;marker-end:url(#flow-arrow)}.head{font:700 29px Georgia,serif}.num{font:700 15px Arial,sans-serif;fill:#A36B3F}.title{font:700 18px Arial,sans-serif}.body{font:15px Arial,sans-serif}.note{font:16px Arial,sans-serif}
+    </style>
+  </defs>
+  <rect class="paper" width="1200" height="660" rx="18"/>
+  <text class="head ink" x="60" y="58">A direct method is an assumption audit, not one inequality</text>
+  <text class="body muted" x="60" y="88">Move left to right. Each stage answers a different question.</text>
+
+  <rect class="box" x="54" y="158" width="190" height="178" rx="14"/>
+  <text class="num" x="76" y="188">STEP 1</text>
+  <text class="title ink" x="149" y="226" text-anchor="middle">Fix the target</text>
+  <text class="body muted" x="149" y="260" text-anchor="middle">Name the equilibrium</text>
+  <text class="body muted" x="149" y="285" text-anchor="middle">and check that one</text>
+  <text class="body muted" x="149" y="310" text-anchor="middle">update leaves it fixed.</text>
+
+  <rect class="energy" x="280" y="158" width="190" height="178" rx="14"/>
+  <text class="num" x="302" y="188">STEP 2</text>
+  <text class="title ink" x="375" y="226" text-anchor="middle">Separate by energy</text>
+  <text class="body muted" x="375" y="260" text-anchor="middle">Zero at the target;</text>
+  <text class="body muted" x="375" y="285" text-anchor="middle">positive away from it</text>
+  <text class="body muted" x="375" y="310" text-anchor="middle">on the stated domain.</text>
+
+  <rect class="energy" x="506" y="158" width="190" height="178" rx="14"/>
+  <text class="num" x="528" y="188">STEP 3</text>
+  <text class="title ink" x="601" y="226" text-anchor="middle">Compare one update</text>
+  <text class="body muted" x="601" y="260" text-anchor="middle">Record weak or strict</text>
+  <text class="body muted" x="601" y="285" text-anchor="middle">decrease. Do not replace</text>
+  <text class="body muted" x="601" y="310" text-anchor="middle">one by the other.</text>
+
+  <rect class="audit" x="732" y="158" width="190" height="178" rx="14"/>
+  <text class="num" x="754" y="188">STEP 4</text>
+  <text class="title ink" x="827" y="226" text-anchor="middle">Audit side conditions</text>
+  <text class="body muted" x="827" y="260" text-anchor="middle">Check continuity,</text>
+  <text class="body muted" x="827" y="285" text-anchor="middle">neighborhood, invariance,</text>
+  <text class="body muted" x="827" y="310" text-anchor="middle">and local or global scope.</text>
+
+  <rect class="box" x="958" y="158" width="190" height="178" rx="14"/>
+  <text class="num" x="980" y="188">STEP 5</text>
+  <text class="title ink" x="1053" y="226" text-anchor="middle">Apply the criterion</text>
+  <text class="body muted" x="1053" y="260" text-anchor="middle">Read the exact checked</text>
+  <text class="body muted" x="1053" y="285" text-anchor="middle">stability or attraction</text>
+  <text class="body muted" x="1053" y="310" text-anchor="middle">conclusion.</text>
+
+  <path class="arrow" d="M248 247 H270"/>
+  <path class="arrow" d="M474 247 H496"/>
+  <path class="arrow" d="M700 247 H722"/>
+  <path class="arrow" d="M926 247 H948"/>
+
+  <rect x="154" y="402" width="892" height="122" rx="14" fill="#26343A"/>
+  <text class="title" fill="#FBF7F0" x="600" y="446" text-anchor="middle">Keep the objects separate</text>
+  <text class="note" fill="#FBF7F0" x="600" y="480" text-anchor="middle">The Lyapunov function and its decrease condition are inputs.</text>
+  <text class="note" fill="#FBF7F0" x="600" y="509" text-anchor="middle">Forward stability, attraction, and asymptotic stability are distinct conclusions.</text>
+
+  <text class="note muted" x="600" y="589" text-anchor="middle">A decreasing number along one orbit illustrates descent.</text>
+  <text class="note muted" x="600" y="617" text-anchor="middle">It does not by itself establish a general dynamical theorem.</text>
+</svg>

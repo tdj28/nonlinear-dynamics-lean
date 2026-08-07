@@ -219,7 +219,10 @@ For a compact review, continue to [Forward Stability]({{< relref
 axiom audit, read [Forward-Orbit Stability for Discrete Systems in Lean]({{<
 relref
 "/development-notebook/2026/08/forward-orbit-stability-for-discrete-systems-in-lean"
->}}).
+>}}). Then see [Lyapunov Functions and the Direct Method in Discrete
+Time]({{< relref
+"/knowledge-base/deep-dives/lyapunov-functions-and-the-direct-method-in-discrete-time"
+>}}) for the checked scalar-certificate layer.
 
 ## References
 
