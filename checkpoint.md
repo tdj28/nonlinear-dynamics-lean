@@ -5,9 +5,9 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `9f8b251`
+Audited baseline: `main` at `597ba49`
 
-Active direction: **validate the ODE global-existence candidate.**
+Active direction: **complete ODE responsive QA, then construct the flow interface.**
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
 exact-commit repository gates on the approved Linux builder. The verified
@@ -22,14 +22,17 @@ drafts with `pro_reviewed: false`. The covered module names include
 `NonlinearDynamics.Deterministic.Chaos.Devaney`, and
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding`.
 
-The source-and-teaching candidate for
-`NonlinearDynamics.Deterministic.ODE.GlobalExistence` is now present but has
-not yet been compiled. It packages the exact continuation interface supplied
-by pinned Mathlib: global curves, unique global curves, arbitrarily long local
-curves at one point, and one uniform positive local-time radius through every
-point. Candidate commit `9f8b251` passes the complete workstation-safe gate,
-exact Linux warning-fatal leaf, deterministic aggregator, and full repository
-gate. The validation record and verified cache preservation remain pending.
+The source-and-teaching milestone for
+`NonlinearDynamics.Deterministic.ODE.GlobalExistence` packages the exact
+continuation interface supplied by pinned Mathlib: global curves, unique
+global curves, arbitrarily long local curves at one point, and one uniform
+positive local-time radius through every point. Candidate commit `9f8b251` and
+validation-record commit `597ba49` pass their exact-commit full repository
+gates. The verified successful cache is preserved, the exact task pod is
+terminated, and the project network volume remains. The only open release
+check is literal 390-pixel visual QA: the in-app browser ignored its advertised
+viewport override and no connected external browser was available. Desktop
+rendered QA and every static, formal, and cloud gate pass.
 
 ## Mathematical Editorial Register Audit
 
@@ -2425,7 +2428,24 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Specify ODE global existence
+### Complete responsive QA, then construct the ODE flow interface
+
+The only remaining GlobalExistence release check is a literal 390-pixel render
+of the Notebook, Deep Dive, and two glossary pages in a browser surface whose
+viewport override actually applies. Check equal client and scroll widths,
+locally scrollable wide content, complete lazy-loaded assets, one H1, zero raw
+TeX or KaTeX errors, and zero console warnings or errors. Do not infer this
+result from the already passing 1280-pixel render.
+
+After that check, the next source milestone is
+`NonlinearDynamics/Deterministic/ODE/ToFlow.lean`. It should construct the
+time-parametrized map from the unique global integral-curve interface, prove
+the time-zero and time-composition laws using checked uniqueness, and expose
+the exact continuity or smoothness hypotheses required by Mathlib. It must not
+infer continuous dependence, a homeomorphism, or a differentiable flow merely
+from an unstructured family of existential curve witnesses.
+
+### ODE global-existence convention and validated release
 
 The current source candidate is
 `NonlinearDynamics/Deterministic/ODE/GlobalExistence.lean`. It chooses
@@ -2467,6 +2487,15 @@ teaching-hygiene tests, the 180-file teaching scan, the 862-surface public-
 reader scan, and a warning-fatal 540-page render. The full gate completed in
 11.92 seconds.
 
+Validation-record commit `597ba49` reached `origin/main`. Its exact Git archive
+has SHA-256
+`b446b80b884e7d437d1d7e52cc45e513c1ed8819840e2ccf3defbff8c08345a6`
+on both the workstation and builder, and its ODE source retains the documented
+SHA-256. The exact validation record passes the same complete guarded gate:
+3,268 Lean jobs, 50/50 coverage, 23 coverage tests, seven hygiene tests, the
+180-file teaching scan, the 862-surface reader scan, and the warning-fatal
+540-page Hugo render. That replay completed in 8.20 seconds.
+
 Workstation-safe validation passes: 50/50 substantive-module Notebook
 coverage, 23 coverage regression tests, seven teaching-hygiene tests, the
 180-file teaching scan, the 862-surface public-reader scan, and a warning-fatal
@@ -2480,10 +2509,23 @@ advertised responsive override did not change its actual 1280-pixel viewport,
 so mobile visual QA remains pending rather than being inferred from a desktop
 render.
 
-The next operations are the exact validation-record replay, verified
-sequential cache preservation, milestone pushes, task-pod termination, and retention of
-the project network volume. The later
-`ODE/ToFlow.lean` consumer remains outside this milestone; no global flow,
+The successful ephemeral `.lake` tree is archived as
+`lake-manifest-pinned-ode-global-existence-20260807.tar.zst`. The archive is
+2,582,373,338 bytes compressed and expands to an 8,087,715,840-byte tar stream.
+Its ephemeral and sequential retained-volume copies both have SHA-256
+`a06793bf03da5ea1480a9bd78bf07ae32d84ebbd8718877c384955aafececa86`
+and pass full `zstd -t` verification. The retained ledger
+`SHA256SUMS-ode-global-existence-20260807` verifies after final naming. Earlier
+archives remain intact, and the retained volume was never used as a live
+`.lake` tree.
+
+The approved builder ran for 923 seconds at $0.32 per hour, approximately
+$0.08 of compute spend under the $5 ceiling. The exact task pod was terminated.
+A post-action inventory reports zero task pods and one retained project network
+volume. No cloud resource identifier, connection address, or credential is
+recorded here.
+
+The later `ODE/ToFlow.lean` consumer remains outside this milestone; no global flow,
 invertibility, smooth parameter dependence, maximal-interval theorem,
 compactness criterion, or growth criterion is claimed.
 
@@ -3013,9 +3055,12 @@ documentation placeholders:
 
 ### ODEs and concrete models
 
-These files are also placeholders:
+The first file now has a checked source-and-teaching candidate; the remaining
+files are placeholders:
 
-- [ ] `ODE/GlobalExistence.lean`
+- [ ] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
+  both exact-commit full gates, and verified cache preservation pass; literal
+  390-pixel browser QA remains pending.
 - [ ] `ODE/ToFlow.lean`
 - [ ] `ODE/Stability.lean`
 - [ ] `ODE/Lyapunov.lean`
