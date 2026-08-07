@@ -22,7 +22,7 @@ prerequisites:
 lean_module: "NonlinearDynamics.Deterministic.Discrete.Bifurcation"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Discrete/Bifurcation.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Discrete/Bifurcation.lean"
-lean_source_sha256: "106aef94731305996881dcffea7acf11f95bfcf840b1ad1bc84eaf62f32f98c4"
+lean_source_sha256: "1c9ed02764e75b136567e879da85922ac9d6013836e582e4f539a23d3c11a1d0"
 tags:
   - "Lean 4"
   - "Discrete dynamics"

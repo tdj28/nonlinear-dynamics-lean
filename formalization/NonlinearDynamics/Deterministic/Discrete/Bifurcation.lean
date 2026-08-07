@@ -172,7 +172,7 @@ theorem IsFixedPointExistenceChangeAt.isGlobalTopologicalBifurcationAt
   IsClassificationChangeAt.isGlobalTopologicalBifurcationAt
     (family := family)
     (classify := fun ν ↦ HasFixedPoint (family ν))
-    hchange fun ν hν ↦ propext hν.hasFixedPoint_iff
+    hchange fun _ hν ↦ propext hν.hasFixedPoint_iff
 
 /-- A specified-period-existence change obstructs local constancy of the
 whole-state-space topological conjugacy class. -/
@@ -184,7 +184,7 @@ theorem IsSpecifiedPeriodExistenceChangeAt.isGlobalTopologicalBifurcationAt
   IsClassificationChangeAt.isGlobalTopologicalBifurcationAt
     (family := family)
     (classify := fun ν ↦ HasSpecifiedPeriodPoint (family ν) n)
-    hchange fun ν hν ↦ propext (hν.hasSpecifiedPeriodPoint_iff n)
+    hchange fun _ hν ↦ propext (hν.hasSpecifiedPeriodPoint_iff n)
 
 /-- A classifier cannot change at an isolated parameter. -/
 theorem not_isClassificationChangeAt_of_isOpen_singleton
@@ -194,7 +194,7 @@ theorem not_isClassificationChangeAt_of_isOpen_singleton
   intro hchange
   apply hchange
   filter_upwards [hμ.mem_nhds rfl] with ν hν
-  simpa using hν
+  exact congrArg classify hν
 
 section QuadraticFixedPointFamily
 
@@ -205,7 +205,7 @@ def quadraticFixedPointFamily : ParameterizedFamily ℝ ℝ :=
 /-- The fixed-point equation of the quadratic family. -/
 @[simp] theorem quadraticFixedPointFamily_isFixedPt_iff (μ x : ℝ) :
     IsFixedPt (quadraticFixedPointFamily μ) x ↔ μ = x ^ 2 := by
-  simp [quadraticFixedPointFamily, IsFixedPt]
+  simp [quadraticFixedPointFamily, IsFixedPt, sub_eq_zero]
 
 /-- The quadratic family has a real fixed point exactly for nonnegative
 parameters. -/
