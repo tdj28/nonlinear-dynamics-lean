@@ -2410,22 +2410,21 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Specify sensitivity to initial conditions
+### Specify Devaney chaos and the Banks implication
 
-Turn `NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean` from a
-placeholder into the next vertical slice. Research the standard metric and
-topological definitions before freezing a convention. Keep the quantifier
-order explicit: a sensitivity scale is selected first, then every state and
-every neighborhood admit a nearby state and an iteration time whose images
-separate at that scale. Distinguish sensitivity from expansivity, mixing,
-positive entropy, numerical roundoff growth, and finite-time divergence.
-Audit isolated points and discrete spaces as boundary cases, and decide
-whether the first reusable interface is metric-only or includes a uniform
-space/topological companion. Pair the checked source with a complete
-educational bundle and a finite standalone worksheet that displays both a
-sensitive model and a quantifier-order near miss.
+Turn `NonlinearDynamics/Deterministic/Chaos/Devaney.lean` from a placeholder
+into the next vertical slice. Define the chosen topological-transitivity and
+dense-periodic-point interfaces with their nonemptiness and vacuity boundaries
+explicit. Keep sensitivity as the separate metric predicate already supplied
+by `Chaos/Sensitivity.lean`: decide whether the primary Devaney predicate
+bundles it or whether a named theorem derives it from transitivity and dense
+periodic points under the exact no-isolated-points/nontriviality hypotheses of
+the Banks argument. Audit finite, discrete, singleton, and empty spaces before
+freezing the interface. Pair the checked source with a complete educational
+bundle that distinguishes definition, redundant consequence, and theorem
+hypotheses.
 
-### Sensitivity convention and source candidate
+### Sensitivity convention and validated release
 
 The source-and-teaching candidate now covers
 `NonlinearDynamics.Deterministic.Chaos.Sensitivity` in
@@ -2500,11 +2499,10 @@ Equations* 37 (2025), 2281–2321,
 <https://doi.org/10.1007/s10884-024-10362-x>, Definitions 1.1–1.3, provides a
 reference boundary between ordinary sensitivity and first-time control.
 
-Current source SHA-256:
+Validated source SHA-256:
 `747205ab52e00260c89da63b10b4869144d066ea49266c55639467da2e56f83d`.
-This is a source candidate, not a validated release checksum. The pages remain
-`draft: true` and `pro_reviewed: false`; owner inspection and publication
-authorization for this new bundle are pending.
+The pages remain `draft: true` and `pro_reviewed: false`; owner inspection and
+publication authorization for this new bundle are pending.
 
 Workstation-safe candidate validation passes. The standalone Lean 4.32.0
 worksheet checks with no output. All three social cards reproduce byte for
@@ -2522,11 +2520,38 @@ and repaired a 680-pixel wide-figure crop and malformed HTML caused by literal
 comparison characters inside two Lean-bridge parameters. The repaired
 conceptual figures render at 352 pixels inside the 390-pixel viewport.
 
-The remaining release sequence is a coherent source-candidate commit and
-push, fresh explicit approval for paid Linux compute, warning-fatal leaf and
-deterministic-aggregator checks, the complete guarded gate, verified sequential
-cache preservation on the retained volume, checkpoint closure, final push, and
-termination of the exact builder while retaining the volume.
+The source-and-teaching candidate reached `origin/main` at `df0dd04`. The first
+warning-fatal cloud leaf check exposed one missing `Topology` namespace opening
+for the neighborhood notation. Commit `c2272e6` adds that import-scope repair
+and synchronizes all three reader-facing source hashes. The repaired
+`CLOUD_LEAN_BUILD=1 make lean-file
+LEAN_FILE=NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean` check passes,
+as does the warning-fatal `NonlinearDynamics/Deterministic.lean` aggregator.
+The five Sensitivity axiom reports contain only `propext`, `Classical.choice`,
+and `Quot.sound`; none contains `sorryAx`.
+
+Approved Linux validation on 2026-08-07 used RunPod Secure Cloud with 8 vCPU,
+32 GB billed RAM, an 80 GB ephemeral disk, and the retained project network
+volume at $0.32 per hour under a $5 ceiling. The exact committed source was
+transferred without workstation `.git`, `.env`, `.lake`, generated Hugo
+output, credentials, or private artifacts. The retained Elan and Bifurcation
+Lake archives passed their recorded SHA-256 and `zstd -t` checks before
+sequential restoration onto ephemeral disk. The network volume was not used as
+a live `.lake` tree. Guarded setup checked the committed manifest before and
+after dependency update, and validation used pinned Lean 4.32.0 and the same
+Hugo Extended 0.160.1 release as the workstation.
+
+The complete `CLOUD_LEAN_BUILD=1 make -j1 check` gate passes at `c2272e6`: all
+3,221 Lean jobs, 47/47 Notebook coverage, 23 coverage regression tests, seven
+teaching-hygiene tests, the 167-file teaching audit, the 806-surface
+reader-language audit, and a warning-fatal 495-page Hugo render. The successful
+ephemeral `.lake` tree was archived as
+`lake-manifest-pinned-sensitivity-20260807.tar.zst`. The new
+2,643,712,542-byte archive and `SHA256SUMS-sensitivity-20260807` ledger pass
+checksum and compressed-stream verification after their sequential copy to the
+retained volume; earlier validated archives remain intact. Final pod
+termination, retained-volume inventory, and compute spend are recorded in the
+closure update after the documentation commit reaches `origin/main`.
 
 ### Bifurcation release closure
 
@@ -2718,7 +2743,10 @@ documentation placeholders:
   specified-period branches, conjugacy-invariant classifier changes,
   whole-state-space conjugacy obstruction, isolated-parameter boundary, and
   the exact quadratic fixed-point family at parameter zero.
-- [ ] `Chaos/Sensitivity.lean`
+- [x] `Chaos/Sensitivity.lean`: metric-first fixed-scale sensitivity with
+  explicit nonemptiness, scale monotonicity, neighborhood equivalence,
+  isolated/discrete/finite obstructions, forward-stability incompatibility,
+  nonexpansive nonexamples, and an exact real doubling-map witness.
 - [ ] `Chaos/Devaney.lean`
 - [ ] `Chaos/SymbolicCoding.lean`
 
