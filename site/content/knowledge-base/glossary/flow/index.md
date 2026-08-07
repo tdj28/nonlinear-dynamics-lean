@@ -14,8 +14,8 @@ og_image_alt: "A glossary card showing time zero as identity and two consecutive
 
 {{< panel "warning" >}}
 **Editorial status.** This AI-assisted glossary entry is a public working
-draft. Its linked Lean leaf passes warning-fatal checking;
-`pro_reviewed` remains false.
+draft. Its linked Lean leaf and exact-candidate full repository gate pass with
+warnings fatal; `pro_reviewed` remains false.
 {{< /panel >}}
 
 On the real line, fix (c\in\mathbb R) and define

@@ -26,8 +26,8 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted public working draft. The Lean
-leaf and deterministic aggregator pass with warnings treated as errors. The
-exact-commit full repository gate and professional review remain pending.
+leaf, deterministic aggregator, and exact-candidate full repository gate pass
+with warnings treated as errors. Professional review remains pending.
 {{< /panel >}}
 
 ## Start with a flow you can calculate

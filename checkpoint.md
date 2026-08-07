@@ -2427,18 +2427,22 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Construct the ODE flow interface
+### Define stability for ODE flows
 
-The next source milestone is
-`NonlinearDynamics/Deterministic/ODE/ToFlow.lean`. It should construct the
-time-parametrized map from the unique global integral-curve interface, prove
-the time-zero and time-composition laws using checked uniqueness, and expose
-the exact continuity or smoothness hypotheses required by Mathlib. It must not
-infer continuous dependence, a homeomorphism, or a differentiable flow merely
-from an unstructured family of existential curve witnesses.
+The next dependency-ordered source milestone is
+`NonlinearDynamics.Deterministic.ODE.Stability`. It should define stability
+for the structured real-time flow interface now exposed by ToFlow, separate
+stability of a point or equilibrium from attraction, and state its time domain
+and metric or uniform-space hypotheses exactly. It should consume the flow
+laws and joint continuity deliberately rather than reverting to an
+unstructured existential family of solution curves. It must not label
+convergence, attraction, Lyapunov stability, asymptotic stability, structural
+stability, or stochastic stability as interchangeable notions.
 
-The current source candidate is the now-substantive module
-`NonlinearDynamics.Deterministic.ODE.ToFlow`. It selects the unique global
+### ODE ToFlow design decision and validated release
+
+The substantive module
+`NonlinearDynamics.Deterministic.ODE.ToFlow` selects the unique global
 integral curve through each point, proves the restart identity by applying
 Mathlib's time-translation lemma and the checked uniqueness interface, and
 packages the resulting identity and additive-action laws. The construction of
@@ -2459,10 +2463,31 @@ language audit, and warning-fatal 548-page Hugo Extended 0.160.1 render.
 Browser inspection passes for all four pages at 1440 by 1000 and at a literal
 390 by 844 viewport: each has one `h1`, equal client and scroll widths, loaded
 lazy images with alt text, no raw TeX delimiters, and no console warnings or
-errors. The exact-commit full gate, cache preservation, release commits, and
-resource shutdown remain pending at this checkpoint. The warning-fatal source
-SHA-256 is
+errors. The warning-fatal source SHA-256 is
 `01994837eefd5c21d00ff9fcd8f118db9a48d186c2a5333ef65fe9a20072ac16`.
+
+Candidate commit `f65311e` reached `origin/main`. A deterministic SHA-256
+ledger over all tracked file contents is
+`f7b6886e403908042885ab3f86cb8012ab40bd496e03e10aa2e3a2ca5fc6d305`
+on both the workstation and approved Linux builder. The exact candidate
+passes the complete guarded gate under Lean and Mathlib 4.32.0 with Hugo
+Extended 0.160.1: all 3,269 Lean jobs, 51/51 Notebook coverage, 23 coverage
+regression tests, seven teaching-hygiene regression tests, the 184-file
+teaching-source scan, the 880-surface public-reader language audit, and a
+warning-fatal 548-page Hugo render. The ToFlow leaf passes in 3.103 seconds
+and the warning-fatal deterministic aggregator passes in 2.757 seconds. The
+four ToFlow axiom reports contain only `propext`, `Classical.choice`, and
+`Quot.sound`; none contains `sorryAx`.
+
+The successful ephemeral `.lake` tree was archived sequentially as
+`lake-manifest-pinned-ode-to-flow-20260807.tar.zst` without replacing prior
+retained archives. The 2,500,886,828-byte compressed file expands to an
+8,089,333,760-byte tar stream and passes `zstd -t` both before and after its
+copy to retained storage. Its SHA-256 is
+`7941f2fc6e35f856fc03524464464a344f8a07889bd7be729ce76aaa14e50ae5`.
+The retained Lean 4.32.0 toolchain archive remains unchanged at SHA-256
+`c3597a30210c18bc87b7b3472e83204629445f15f324c65167d095caaa1a2332`;
+both entries are recorded in `SHA256SUMS-ode-to-flow-20260807`.
 
 ### ODE global-existence convention and validated release
 
@@ -3086,7 +3111,10 @@ files are placeholders:
 - [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
   both exact-commit full gates, verified cache preservation, desktop QA, and
   literal 390-by-844 browser QA pass.
-- [ ] `ODE/ToFlow.lean`
+- [x] `ODE/ToFlow.lean`: selected unique global curves, restart and action
+  laws, explicit joint-continuity gate, Mathlib `Flow ℝ M` construction,
+  compatible-flow converse, full source-and-teaching gates, browser QA, and
+  verified retained cache preservation.
 - [ ] `ODE/Stability.lean`
 - [ ] `ODE/Lyapunov.lean`
 - [ ] `Models/LogisticMap.lean`

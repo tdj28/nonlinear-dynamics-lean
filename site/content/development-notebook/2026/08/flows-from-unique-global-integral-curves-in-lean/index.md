@@ -11,7 +11,7 @@ key_result: |
   The uniquely selected global integral curves satisfy the restart identity: evolving for time s and then for time t agrees with evolving for t+s. If their uncurried time-and-state map is jointly continuous, they assemble into Mathlib's Flow ℝ M. Individual time continuity alone is not presented as continuous dependence on the initial state.
 draft: true
 pro_reviewed: false
-status: "Warning-fatal leaf and deterministic aggregator pass; full repository gate pending"
+status: "Warning-fatal leaf, deterministic aggregator, and full repository gate pass; professional review pending"
 level: "Intermediate differential equations, topology, and Lean 4"
 reading_time: "30 to 45 minutes"
 prerequisites:
@@ -37,10 +37,10 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** The source passes its warning-fatal Lean leaf and the
-deterministic aggregator with the pinned toolchain. The exact-commit full
-repository gate and professional review are pending, so `draft` remains true
-and `pro_reviewed` remains false.
+**Editorial status.** The source passes its warning-fatal Lean leaf, the
+deterministic aggregator, and the exact-candidate full repository gate with
+the pinned toolchain. Professional review remains pending, so `draft` remains
+true and `pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Begin with translation on the real line
