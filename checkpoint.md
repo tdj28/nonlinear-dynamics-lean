@@ -2549,9 +2549,12 @@ ephemeral `.lake` tree was archived as
 `lake-manifest-pinned-sensitivity-20260807.tar.zst`. The new
 2,643,712,542-byte archive and `SHA256SUMS-sensitivity-20260807` ledger pass
 checksum and compressed-stream verification after their sequential copy to the
-retained volume; earlier validated archives remain intact. Final pod
-termination, retained-volume inventory, and compute spend are recorded in the
-closure update after the documentation commit reaches `origin/main`.
+retained volume; earlier validated archives remain intact. Documentation commit
+`abc494e` reached `origin/main` before shutdown. The builder ran for 657 seconds
+at $0.32 per hour, approximately $0.06 of compute spend. The exact task pod was
+then terminated. A post-action inventory reports zero task pods and one
+retained project network volume. No cloud resource identifier or credential is
+recorded here.
 
 ### Bifurcation release closure
 
