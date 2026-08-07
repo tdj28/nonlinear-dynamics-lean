@@ -5,7 +5,7 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `99ebb98`
+Audited baseline: `main` at `b369347`
 
 Active direction: **sensitivity to initial conditions is the next deterministic
 discrete vertical slice.** The bifurcation milestone is green at validation
@@ -2454,9 +2454,13 @@ tests, the 164-file teaching audit, the 791-surface reader-language audit, and
 a warning-fatal 484-page Hugo render. The successful ephemeral `.lake` tree
 was archived sequentially as
 `lake-manifest-pinned-bifurcation-20260807.tar.zst`; the new 2.5-GB archive and
-its checksum ledger pass verification on the retained volume. Resource
-termination and the final cost receipt are recorded in the release-closure
-entry below after the exact task pod is removed.
+its checksum ledger pass verification on the retained volume. The builder ran
+for 669 seconds at $0.32 per hour, approximately $0.06 of compute spend. The
+exact task pod was terminated after the validated release commit reached
+`origin/main`. A post-action inventory reports zero task pods and one retained
+project network volume. The network volume and its new verified bifurcation
+archive remain available for the next approved builder. No cloud resource
+identifier or credential is recorded here.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
@@ -4454,6 +4458,15 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `b369347`: publish the warning-fatal bifurcation validation status, complete
+  cloud gate receipt, cache-preservation record, and sensitivity-interface
+  handoff.
+- `99ebb98`: repair the warning-fatal bifurcation leaf by removing two unused
+  binder names, making the isolated-parameter classifier transport explicit,
+  and closing the quadratic fixed-point algebra identity.
+- `622f9bb`: formalize deterministic discrete bifurcation interfaces and add
+  the complete public Notebook, Deep Dive, glossary, standalone worksheet,
+  conceptual figures, cards, coverage map, and connected-corpus links.
 - `c360723`: replace ambiguous probability-zero language with explicit sample
   spaces, fibers, masses, neighborhoods, countable additivity, and law-versus-
   range distinctions; propagate the rule through the teaching corpus and
