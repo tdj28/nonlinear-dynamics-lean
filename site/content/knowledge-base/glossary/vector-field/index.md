@@ -12,10 +12,10 @@ og_image_alt: "Arrows attached to points on a plane show the values of a rotatio
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** The paired exact source passes its
-warning-fatal Lean leaf and deterministic aggregator checks; the complete
-repository gate remains pending. Professional review is pending, so
-`pro_reviewed` remains false.
+**Editorial and validation status.** Candidate commit <code>9f8b251</code>
+passes its warning-fatal Lean leaf, deterministic aggregator, and complete
+repository gate. Professional review is pending, so
+<code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 A **vector field** assigns to each point \(x\) of a space a tangent vector

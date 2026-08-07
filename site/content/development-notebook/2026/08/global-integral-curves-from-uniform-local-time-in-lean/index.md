@@ -11,7 +11,7 @@ key_result: |
   For a continuously differentiable vector field on a boundaryless manifold, global integral curves through every point are equivalent to one uniform positive local-time radius. At one initial point, global existence is equivalent to integral curves on every symmetric finite interval. Smoothness supplies uniqueness as a separate conclusion.
 draft: true
 pro_reviewed: false
-status: "Warning-fatal source leaf and deterministic aggregator pass; full gate pending"
+status: "Exact candidate passes warning-fatal leaf, aggregator, and full gate"
 level: "Intermediate differential equations, manifolds, and Lean 4"
 reading_time: "30 to 45 minutes"
 prerequisites:
@@ -37,9 +37,9 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** The exact source passes its warning-fatal Lean leaf and
-deterministic aggregator checks. The complete repository gate remains pending.
-Professional review has not been performed, so `pro_reviewed` remains false.
+**Editorial status.** Candidate commit `9f8b251` passes its warning-fatal Lean
+leaf, deterministic aggregator, and complete repository gate. Professional
+review has not been performed, so `pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Begin with two scalar equations

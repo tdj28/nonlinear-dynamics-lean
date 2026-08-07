@@ -25,10 +25,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** The exact source passes its warning-fatal
-Lean leaf and deterministic aggregator checks. The complete repository gate
-remains pending. Professional review remains pending, so `pro_reviewed`
-remains false.
+**Editorial and validation status.** Candidate commit <code>9f8b251</code>
+passes its warning-fatal Lean leaf, deterministic aggregator, and complete
+repository gate. Professional review remains pending, so
+<code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 ## Learning objectives

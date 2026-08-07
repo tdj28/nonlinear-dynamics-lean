@@ -5,7 +5,7 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `0499c21`
+Audited baseline: `main` at `9f8b251`
 
 Active direction: **validate the ODE global-existence candidate.**
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
@@ -27,8 +27,9 @@ The source-and-teaching candidate for
 not yet been compiled. It packages the exact continuation interface supplied
 by pinned Mathlib: global curves, unique global curves, arbitrarily long local
 curves at one point, and one uniform positive local-time radius through every
-point. The complete workstation-safe gate, exact Linux warning-fatal leaf, and
-deterministic aggregator pass; the full repository gate remains pending.
+point. Candidate commit `9f8b251` passes the complete workstation-safe gate,
+exact Linux warning-fatal leaf, deterministic aggregator, and full repository
+gate. The validation record and verified cache preservation remain pending.
 
 ## Mathematical Editorial Register Audit
 
@@ -2456,6 +2457,16 @@ contains `sorryAx`, and the module contains no `sorry` or `admit`. The
 warning-fatal `NonlinearDynamics/Deterministic.lean` aggregator passes in 1.38
 seconds.
 
+Candidate commit `9f8b251` reached `origin/main`. Its exact Git archive has
+SHA-256 `7a0f2e00eb05ac94710967797f69fd49ff7c77c71caa9c9e3c580e53336f41f0`
+on both the workstation and approved Linux builder, and its extracted ODE
+source matches the documented SHA-256. The exact candidate passes the complete
+guarded gate under Lean and Mathlib 4.32.0 with Hugo Extended 0.160.1: 3,268
+Lean jobs, 50/50 Notebook coverage, 23 coverage regression tests, seven
+teaching-hygiene tests, the 180-file teaching scan, the 862-surface public-
+reader scan, and a warning-fatal 540-page render. The full gate completed in
+11.92 seconds.
+
 Workstation-safe validation passes: 50/50 substantive-module Notebook
 coverage, 23 coverage regression tests, seven teaching-hygiene tests, the
 180-file teaching scan, the 862-surface public-reader scan, and a warning-fatal
@@ -2469,8 +2480,8 @@ advertised responsive override did not change its actual 1280-pixel viewport,
 so mobile visual QA remains pending rather than being inferred from a desktop
 render.
 
-The next operations are the exact-candidate full gate, verified sequential
-cache preservation, milestone pushes, task-pod termination, and retention of
+The next operations are the exact validation-record replay, verified
+sequential cache preservation, milestone pushes, task-pod termination, and retention of
 the project network volume. The later
 `ODE/ToFlow.lean` consumer remains outside this milestone; no global flow,
 invertibility, smooth parameter dependence, maximal-interval theorem,
