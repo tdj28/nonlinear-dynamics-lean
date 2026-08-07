@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-labelledby="ladder-title ladder-desc">
+  <title id="ladder-title">One semiconjugacy equation transports every iterate</title>
+  <desc id="ladder-desc">The source orbit runs north, east, south, west, north at times zero through four. The target orbit runs vertical, horizontal, vertical, horizontal, vertical. A projection arrow at every time joins each direction to its axis, showing synchronized time and the repeated commuting relation.</desc>
+  <defs><marker id="ladder-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#A36B3F"/></marker><style>.paper{fill:#FBF7F0}.ink{fill:#26343A}.muted{fill:#655F57}.source{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.8}.target{fill:#EAF1E5;stroke:#668357;stroke-width:1.8}.time{stroke:#A36B3F;stroke-width:2.5;fill:none;marker-end:url(#ladder-arrow)}.project{stroke:#4B6787;stroke-width:2;stroke-dasharray:6 5;fill:none;marker-end:url(#ladder-arrow)}.head{font:700 29px Georgia,serif}.title{font:700 17px Arial,sans-serif}.body{font:15px Arial,sans-serif}.small{font:13px Arial,sans-serif}</style></defs>
+  <rect class="paper" width="1200" height="660" rx="18"/>
+  <text class="head ink" x="60" y="58">The commuting square repeats at every natural-number time</text>
+  <text class="body muted" x="60" y="88">Horizontal arrows advance time. Dashed vertical arrows apply the same projection.</text>
+  <text class="title ink" x="68" y="208">source</text><text class="title ink" x="68" y="438">target</text>
+  <g>
+    <rect class="source" x="150" y="160" width="150" height="74" rx="12"/><rect class="source" x="350" y="160" width="150" height="74" rx="12"/><rect class="source" x="550" y="160" width="150" height="74" rx="12"/><rect class="source" x="750" y="160" width="150" height="74" rx="12"/><rect class="source" x="950" y="160" width="150" height="74" rx="12"/>
+    <text class="title ink" x="225" y="205" text-anchor="middle">north</text><text class="title ink" x="425" y="205" text-anchor="middle">east</text><text class="title ink" x="625" y="205" text-anchor="middle">south</text><text class="title ink" x="825" y="205" text-anchor="middle">west</text><text class="title ink" x="1025" y="205" text-anchor="middle">north</text>
+    <path class="time" d="M305 197 H340"/><path class="time" d="M505 197 H540"/><path class="time" d="M705 197 H740"/><path class="time" d="M905 197 H940"/>
+    <rect class="target" x="150" y="390" width="150" height="74" rx="12"/><rect class="target" x="350" y="390" width="150" height="74" rx="12"/><rect class="target" x="550" y="390" width="150" height="74" rx="12"/><rect class="target" x="750" y="390" width="150" height="74" rx="12"/><rect class="target" x="950" y="390" width="150" height="74" rx="12"/>
+    <text class="title ink" x="225" y="435" text-anchor="middle">vertical</text><text class="title ink" x="425" y="435" text-anchor="middle">horizontal</text><text class="title ink" x="625" y="435" text-anchor="middle">vertical</text><text class="title ink" x="825" y="435" text-anchor="middle">horizontal</text><text class="title ink" x="1025" y="435" text-anchor="middle">vertical</text>
+    <path class="time" d="M305 427 H340"/><path class="time" d="M505 427 H540"/><path class="time" d="M705 427 H740"/><path class="time" d="M905 427 H940"/>
+    <path class="project" d="M225 244 V380"/><path class="project" d="M425 244 V380"/><path class="project" d="M625 244 V380"/><path class="project" d="M825 244 V380"/><path class="project" d="M1025 244 V380"/>
+    <text class="small muted" x="225" y="135" text-anchor="middle">time 0</text><text class="small muted" x="425" y="135" text-anchor="middle">time 1</text><text class="small muted" x="625" y="135" text-anchor="middle">time 2</text><text class="small muted" x="825" y="135" text-anchor="middle">time 3</text><text class="small muted" x="1025" y="135" text-anchor="middle">time 4</text>
+  </g>
+  <rect x="154" y="535" width="892" height="76" rx="12" fill="#26343A"/>
+  <text class="body" fill="#FBF7F0" x="600" y="570" text-anchor="middle">Induction repeats the one-step equality without changing the time index.</text>
+  <text class="small" fill="#FBF7F0" x="600" y="596" text-anchor="middle">No continuity, injectivity, or surjectivity is needed for this orbit identity.</text>
+</svg>

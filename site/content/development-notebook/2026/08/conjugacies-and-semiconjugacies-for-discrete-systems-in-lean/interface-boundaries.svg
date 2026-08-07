@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="conj-bound-title conj-bound-desc">
+  <title id="conj-bound-title">The data gates separating semiconjugacy, factor maps, and conjugacy</title>
+  <desc id="conj-bound-desc">The one-step intertwining equation is the algebraic base. Adding continuity gives topological semiconjugacy. Adding surjectivity to that gives a factor map. Supplying a homeomorphism instead gives a topological conjugacy with a continuous inverse. A lower note says uniform stability and numerical rates are outside these gates.</desc>
+  <defs><marker id="gate-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#A36B3F"/></marker><style>.paper{fill:#FBF7F0}.ink{fill:#26343A}.muted{fill:#655F57}.base{fill:#F2E8DC;stroke:#A36B3F;stroke-width:2}.topo{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.factor{fill:#EAF1E5;stroke:#668357;stroke-width:2}.arrow{stroke:#A36B3F;stroke-width:3;fill:none;marker-end:url(#gate-arrow)}.head{font:700 29px Georgia,serif}.title{font:700 18px Arial,sans-serif}.body{font:15px Arial,sans-serif}.small{font:14px Arial,sans-serif}</style></defs>
+  <rect class="paper" width="1200" height="690" rx="18"/>
+  <text class="head ink" x="60" y="58">The intertwining equation is only the first gate</text>
+  <text class="body muted" x="60" y="88">Each named interface records additional data rather than hiding it.</text>
+  <rect class="base" x="380" y="130" width="440" height="100" rx="14"/>
+  <text class="title ink" x="600" y="169" text-anchor="middle">Algebraic semiconjugacy</text><text class="body muted" x="600" y="202" text-anchor="middle">project after update = update after project</text>
+  <path class="arrow" d="M485 240 C390 290 315 310 270 350"/><path class="arrow" d="M715 240 C810 290 885 310 930 350"/>
+  <text class="small muted" x="344" y="286" text-anchor="middle">add continuity</text><text class="small muted" x="856" y="286" text-anchor="middle">use a homeomorphism</text>
+  <rect class="topo" x="90" y="360" width="360" height="108" rx="14"/>
+  <text class="title ink" x="270" y="401" text-anchor="middle">Topological semiconjugacy</text><text class="body muted" x="270" y="435" text-anchor="middle">continuous, not necessarily onto</text>
+  <rect class="topo" x="750" y="360" width="360" height="108" rx="14"/>
+  <text class="title ink" x="930" y="401" text-anchor="middle">Topological conjugacy</text><text class="body muted" x="930" y="435" text-anchor="middle">continuous inverse is available</text>
+  <path class="arrow" d="M270 478 V528"/><text class="small muted" x="290" y="507">add surjectivity</text>
+  <rect class="factor" x="90" y="538" width="360" height="88" rx="14"/>
+  <text class="title ink" x="270" y="575" text-anchor="middle">Topological factor map</text><text class="body muted" x="270" y="603" text-anchor="middle">every target state has a source representative</text>
+  <rect x="680" y="528" width="430" height="98" rx="13" fill="#26343A"/>
+  <text class="title" fill="#FBF7F0" x="895" y="565" text-anchor="middle">Not supplied by these gates</text>
+  <text class="body" fill="#FBF7F0" x="895" y="594" text-anchor="middle">distance preservation, rates, or uniform stability</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="gloss-card-title gloss-card-desc">
+  <title id="gloss-card-title">Semiconjugacy and conjugacy</title>
+  <desc id="gloss-card-desc">Glossary card comparing a many-to-one projection that may forget source states with an invertible relabeling that permits travel in both directions.</desc>
+  <rect width="1200" height="630" fill="#F8F1E5"/><rect x="42" y="42" width="1116" height="546" rx="28" fill="#FFFAF1" stroke="#16324F" stroke-width="4"/>
+  <text x="82" y="103" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#B8612D">GLOSSARY · DYNAMICS</text>
+  <text x="82" y="179" font-family="system-ui,sans-serif" font-size="52" font-weight="750" fill="#16324F">Semiconjugacy and conjugacy</text>
+  <rect x="85" y="265" width="445" height="225" rx="18" fill="#DCE8F2" stroke="#4B6787" stroke-width="3"/><rect x="670" y="265" width="445" height="225" rx="18" fill="#D8E7DC" stroke="#557A78" stroke-width="3"/>
+  <text x="307" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324F">semiconjugacy</text><text x="892" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324F">conjugacy</text>
+  <circle cx="160" cy="375" r="24" fill="#FFFAF1" stroke="#16324F" stroke-width="2"/><circle cx="160" cy="445" r="24" fill="#FFFAF1" stroke="#16324F" stroke-width="2"/><rect x="360" y="382" width="110" height="56" rx="10" fill="#FFFAF1" stroke="#16324F" stroke-width="2"/>
+  <path d="M190 375 L345 399 M190 445 L345 421" stroke="#B8612D" stroke-width="6"/><text x="307" y="470" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#405565">may forget information</text>
+  <rect x="720" y="365" width="115" height="64" rx="11" fill="#FFFAF1" stroke="#16324F" stroke-width="2"/><rect x="950" y="365" width="115" height="64" rx="11" fill="#FFFAF1" stroke="#16324F" stroke-width="2"/>
+  <path d="M845 383 H940 M940 414 H845" stroke="#B8612D" stroke-width="6"/><text x="892" y="470" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#405565">invertible coordinate change</text>
+  <text x="82" y="548" font-family="system-ui,sans-serif" font-size="21" fill="#405565">Open working note · professional review pending</text>
+</svg>

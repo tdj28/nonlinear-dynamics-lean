@@ -285,6 +285,10 @@ The next [Lyapunov Functions Research Note]({{< relref
 "/development-notebook/2026/08/lyapunov-functions-for-discrete-systems-in-lean"
 >}}) explains how scalar sublevels can supply the separate stability and
 attraction obligations without identifying weak descent with convergence.
+The later [Conjugacies and Semiconjugacies Research Note]({{< relref
+"/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean"
+>}}) records the continuity and inverse-continuity gates needed to transport
+point basins and attracting fixed points between state spaces.
 
 ## References
 

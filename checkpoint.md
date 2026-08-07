@@ -2296,18 +2296,116 @@ terminated. A post-action inventory reports zero task pods and one retained
 project network volume. No cloud resource identifier or credential is
 recorded here.
 
+### Deterministic discrete conjugacy validated
+
+The completed vertical slice replaces the one-line
+`NonlinearDynamics.Deterministic.Discrete.Conjugacy` placeholder with an
+explicit hierarchy built on Mathlib's `Function.Semiconj`.
+
+The selected interface makes four levels distinct:
+
+- raw `Function.Semiconj φ f g` is the algebraic commuting-square equation
+  `φ (f x) = g (φ x)`. It transports each natural-number iterate, fixed points,
+  and specified periods forward without a topology, but does not recover a
+  source orbit from its image;
+- `IsTopologicalSemiconjugacy` adds continuity but deliberately not
+  surjectivity. Continuity at an orbit's limiting point is the exact local
+  hypothesis used by the weaker attraction-transport theorem;
+- `IsTopologicalFactorMap` adds surjectivity. That gate lets a globally
+  attracting source fixed point cover every target initial state, while still
+  allowing distinct source phases to collapse; and
+- `IsTopologicalConjugacy` uses a specified homeomorphism, while
+  `AreTopologicallyConjugate` existentially records the equivalence relation.
+  The continuous inverse supplies reverse semiconjugacy, so corresponding
+  fixed points, specified periods, attracted orbits, point basins, and local or
+  global attracting fixed points agree in both directions.
+
+The draft does not claim preservation of the project's moving-reference
+`IsForwardStableAt` predicate. That predicate is an equicontinuity statement
+on a uniform space; an arbitrary homeomorphism on a noncompact space need not
+be uniformly continuous along the entire reference orbit. A later transport
+theorem would need a `UniformEquiv`, explicit bi-uniform continuity, or an
+appropriate compactness hypothesis. The slice also makes no claim about
+distances, Lipschitz or contraction constants, convergence rates, set
+`infDist`, entropy, transitivity, mixing, structural stability, measure
+conjugacy, ODE flows, or algorithms for finding a conjugacy.
+
+The primary definition anchor is Volodymyr Nekrashevych, *Groups and
+Topological Dynamics*, AMS Graduate Studies in Mathematics 223 (2022), Chapter
+1, section 1.1, Definition 1.1.4, page 7, DOI
+[`10.1090/gsm/223`](https://doi.org/10.1090/gsm/223). It defines a
+semiconjugacy as a continuous equivariant map and the homeomorphic case as a
+topological conjugacy. Richard A. Holmgren, *A First Course in Discrete
+Dynamical Systems*, Chapter “The Logistic Function, Part II: Topological
+Conjugacy,” pages 95-103, DOI
+[`10.1007/978-1-4684-0222-3`](https://doi.org/10.1007/978-1-4684-0222-3),
+supplies a concrete discrete-map treatment. Pinned Mathlib 4.32.0 at revision
+`81a5d257` supplies `Function.Semiconj`, `Semiconj.iterate_right`, inverse
+semiconjugacy, fixed- and periodic-point transport, `Homeomorph`, and
+neighborhood-image APIs.
+
+The planned finite teaching model is the four-state clockwise direction cycle
+projected onto the two-state vertical/horizontal toggle. The projection is
+continuous and surjective in the discrete topology and satisfies the
+commuting-square equation, but it identifies north with south and east with
+west. Thus source points of least period four map to points of least period
+two: a semiconjugacy preserves a specified period equation but may reduce the
+least period. An invertible two-state relabeling supplies the contrasting
+conjugacy example.
+
+The paired public bundle is
+`conjugacies-and-semiconjugacies-for-discrete-systems-in-lean`,
+`conjugacy-semiconjugacy-and-orbit-transport-in-discrete-time`, and
+`semiconjugacy-and-conjugacy`. It includes a `Std`-only four-state factor
+tutorial, five conceptual figures, and three deterministic 1200x630 cards.
+The standalone tutorial passes Lean 4.32.0, the Notebook coverage gate maps
+all 45 substantive modules, the 161-file teaching-source audit passes, the
+775-surface public reader-language audit passes, all eight SVGs pass XML
+validation, and all three card generators reproduce byte-for-byte. The
+252-line source exposes 20 public declarations and six axiom reports. Its
+warning-fatal Linux-checked SHA-256 is
+`d0ed8eadee33f2716210e12a57a15a51fc08e37a6bdab1f8d5039062d9fa9d34`.
+Every axiom report contains only `propext`, `Classical.choice`, and
+`Quot.sound` as applicable; none contains `sorryAx`.
+
+Approved Linux validation used RunPod Secure Cloud with 8 vCPU, an effective
+32-GB cgroup RAM limit, an 80-GB ephemeral disk, and the retained project
+network volume at $0.32 per hour. The retained Elan and Lyapunov-milestone
+pinned-manifest Lake archives passed their recorded SHA-256 checks, and the
+Lake archive passed `zstd -t`, before both were restored sequentially onto
+ephemeral disk; the network volume was not used as a live `.lake` tree. The
+source-only tree is based on commit `ccff08a` with the checked Conjugacy source
+checksum above. `CLOUD_LEAN_BUILD=1 make lean-file
+LEAN_FILE=NonlinearDynamics/Deterministic/Discrete/Conjugacy.lean` passes
+warning-fatal, as does the deterministic aggregator. The final
+`CLOUD_LEAN_BUILD=1 make -j1 check` completes all 3,221 Lean jobs, the
+checkpoint and 45-module coverage gates, 23 coverage regression tests, seven
+teaching-hygiene regression tests, the 161-file teaching audit, the
+775-surface reader-language audit, and a warning-fatal 473-page Hugo Extended
+0.160.1 render.
+
+Workstation browser inspection passes for the Notebook, Deep Dive, and
+glossary page at 1440x1000 and at a literal 390x844 viewport. Each has one
+`h1`, no horizontal page overflow, no missing image alt text, no broken images
+after lazy figures enter the viewport, no raw TeX delimiters, and no console
+warnings or page errors. The mobile documents have equal 390-pixel client and
+scroll widths, and direct visual inspection confirms contained, legible
+responsive layouts. All five conceptual SVGs also render directly. The
+temporary Hugo server and browser session were stopped after QA.
+
 ## Exact Next Milestone
 
-### Specify deterministic discrete conjugacies
+### Specify deterministic discrete bifurcation interfaces
 
-Turn `NonlinearDynamics/Deterministic/Discrete/Conjugacy.lean` from a
-placeholder into the next vertical slice. Distinguish conjugacy from
-semiconjugacy, record the exact hypotheses needed to transport iterates and
-orbit properties, and avoid claiming preservation of metric stability or
-attraction without the necessary continuity and inverse-continuity data.
-Research the pinned Mathlib function-iteration and topology interfaces before
-freezing theorem statements, and pair the checked source with a complete
-educational bundle.
+Turn `NonlinearDynamics/Deterministic/Discrete/Bifurcation.lean` from a
+placeholder into the next vertical slice. Research standard parameterized-map
+and bifurcation definitions together with the pinned Mathlib topology and
+fixed-point interfaces before freezing a convention. Separate a family of
+self-maps, branches of fixed or periodic points, and qualitative change from
+any differentiability, hyperbolicity, normal-form, or numerical-detection
+claim. Pair the checked source with a complete educational bundle and a small
+finite or elementary real example that makes the selected definition and its
+nonclaims explicit.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
@@ -2454,7 +2552,10 @@ documentation placeholders:
   certificates, weak and strict regional descent, invariant sublevels,
   antitone orbit values, an explicit sublevel-distance comparison, and
   separate stability and zero-certificate attraction endpoints.
-- [ ] `Discrete/Conjugacy.lean`
+- [x] `Discrete/Conjugacy.lean`: algebraic semiconjugacy, continuous
+  semiconjugacy, surjective factor maps, specified and existential topological
+  conjugacy, iterate and attraction transport, basin identities, local and
+  global attracting-fixed-point equivalences, and relation laws.
 - [ ] `Discrete/Bifurcation.lean`
 - [ ] `Chaos/Sensitivity.lean`
 - [ ] `Chaos/Devaney.lean`

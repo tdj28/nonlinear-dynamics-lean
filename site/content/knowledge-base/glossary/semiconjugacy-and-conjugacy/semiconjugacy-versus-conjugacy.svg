@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="compare-conj-title compare-conj-desc">
+  <title id="compare-conj-title">Semiconjugacy may forget information while conjugacy is invertible</title>
+  <desc id="compare-conj-desc">The left panel maps four source states onto two target states, with two source states sharing each target image. The right panel maps vertical and horizontal axis labels bijectively to false and true and includes a return arrow. A lower strip says topological conjugacy also requires continuity in both directions.</desc>
+  <defs><marker id="compare-conj-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#A36B3F"/></marker><style>.paper{fill:#FBF7F0}.ink{fill:#26343A}.muted{fill:#655F57}.left{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.right{fill:#EAF1E5;stroke:#668357;stroke-width:2}.node{fill:#FFFDF8;stroke:#655F57;stroke-width:1.5}.arrow{stroke:#A36B3F;stroke-width:2.5;fill:none;marker-end:url(#compare-conj-arrow)}.head{font:700 29px Georgia,serif}.title{font:700 19px Arial,sans-serif}.body{font:15px Arial,sans-serif}.value{font:700 15px Arial,sans-serif}</style></defs>
+  <rect class="paper" width="1200" height="680" rx="18"/>
+  <text class="head ink" x="60" y="58">The inverse is the decisive boundary</text>
+  <text class="body muted" x="60" y="88">Both panels intertwine updates. Only the right panel can recover every source state.</text>
+  <rect class="left" x="55" y="125" width="510" height="430" rx="16"/><rect class="right" x="635" y="125" width="510" height="430" rx="16"/>
+  <text class="title ink" x="310" y="168" text-anchor="middle">Semiconjugacy</text><text class="title ink" x="890" y="168" text-anchor="middle">Conjugacy</text>
+  <circle class="node" cx="145" cy="235" r="34"/><circle class="node" cx="145" cy="325" r="34"/><circle class="node" cx="145" cy="415" r="34"/><circle class="node" cx="145" cy="505" r="34"/>
+  <text class="value ink" x="145" y="240" text-anchor="middle">N</text><text class="value ink" x="145" y="330" text-anchor="middle">E</text><text class="value ink" x="145" y="420" text-anchor="middle">S</text><text class="value ink" x="145" y="510" text-anchor="middle">W</text>
+  <rect class="node" x="375" y="245" width="130" height="60" rx="11"/><rect class="node" x="375" y="385" width="130" height="60" rx="11"/>
+  <text class="value ink" x="440" y="281" text-anchor="middle">vertical</text><text class="value ink" x="440" y="421" text-anchor="middle">horizontal</text>
+  <path class="arrow" d="M182 235 C270 235 300 255 365 270"/><path class="arrow" d="M182 415 C270 415 300 330 365 288"/><path class="arrow" d="M182 325 C270 325 300 390 365 407"/><path class="arrow" d="M182 505 C270 505 300 445 365 425"/>
+  <text class="body muted" x="310" y="535" text-anchor="middle">many-to-one: orientation is lost</text>
+  <rect class="node" x="690" y="250" width="145" height="68" rx="11"/><rect class="node" x="690" y="385" width="145" height="68" rx="11"/>
+  <rect class="node" x="945" y="250" width="145" height="68" rx="11"/><rect class="node" x="945" y="385" width="145" height="68" rx="11"/>
+  <text class="value ink" x="762" y="290" text-anchor="middle">vertical</text><text class="value ink" x="762" y="425" text-anchor="middle">horizontal</text><text class="value ink" x="1017" y="290" text-anchor="middle">false</text><text class="value ink" x="1017" y="425" text-anchor="middle">true</text>
+  <path class="arrow" d="M845 284 H935"/><path class="arrow" d="M845 419 H935"/><path class="arrow" d="M935 305 H845"/><path class="arrow" d="M935 440 H845"/>
+  <text class="body muted" x="890" y="505" text-anchor="middle">one-to-one and onto: labels are recoverable</text>
+  <rect x="170" y="590" width="860" height="58" rx="11" fill="#26343A"/>
+  <text class="body" fill="#FBF7F0" x="600" y="626" text-anchor="middle">Topological conjugacy also requires continuity of the map and its inverse.</text>
+</svg>

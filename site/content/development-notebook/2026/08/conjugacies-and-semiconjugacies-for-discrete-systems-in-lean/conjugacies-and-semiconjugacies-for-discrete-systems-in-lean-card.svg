@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="note-card-title note-card-desc">
+  <title id="note-card-title">Conjugacies and Semiconjugacies for Discrete Systems in Lean</title>
+  <desc id="note-card-desc">Research note card showing a commuting square from north and east to vertical and horizontal axes, with the statement one step controls every iterate.</desc>
+  <rect width="1200" height="630" fill="#F8F1E5"/><rect x="42" y="42" width="1116" height="546" rx="28" fill="#FFFAF1" stroke="#16324F" stroke-width="4"/>
+  <text x="82" y="103" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#B8612D">RESEARCH NOTE · LEAN 4</text>
+  <text x="82" y="172" font-family="system-ui,sans-serif" font-size="45" font-weight="750" fill="#16324F">Conjugacies and Semiconjugacies</text>
+  <text x="82" y="226" font-family="system-ui,sans-serif" font-size="45" font-weight="750" fill="#16324F">for Discrete Systems in Lean</text>
+  <rect x="100" y="292" width="210" height="70" rx="13" fill="#DCE8F2" stroke="#4B6787" stroke-width="3"/><rect x="100" y="432" width="210" height="70" rx="13" fill="#D8E7DC" stroke="#557A78" stroke-width="3"/>
+  <rect x="520" y="292" width="210" height="70" rx="13" fill="#DCE8F2" stroke="#4B6787" stroke-width="3"/><rect x="520" y="432" width="210" height="70" rx="13" fill="#D8E7DC" stroke="#557A78" stroke-width="3"/>
+  <text x="205" y="337" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" font-weight="700" fill="#16324F">north</text><text x="625" y="337" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" font-weight="700" fill="#16324F">east</text>
+  <text x="205" y="477" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#16324F">vertical</text><text x="625" y="477" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#16324F">horizontal</text>
+  <path d="M320 327 H500" stroke="#B8612D" stroke-width="8"/><path d="M320 467 H500" stroke="#B8612D" stroke-width="8"/><path d="M205 372 V422" stroke="#4B6787" stroke-width="7" stroke-dasharray="10 8"/><path d="M625 372 V422" stroke="#4B6787" stroke-width="7" stroke-dasharray="10 8"/>
+  <text x="790" y="354" font-family="system-ui,sans-serif" font-size="31" font-weight="750" fill="#16324F">one step</text><text x="790" y="400" font-family="system-ui,sans-serif" font-size="31" font-weight="750" fill="#16324F">controls every iterate</text>
+  <text x="82" y="548" font-family="system-ui,sans-serif" font-size="21" fill="#405565">Open working note · professional review pending</text>
+</svg>

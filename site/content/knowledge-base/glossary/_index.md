@@ -84,7 +84,8 @@ The main routes then branch:
 - **Deterministic stability:** orbit and iterate →
   {{< refterm "forward-stability" "forward stability" >}} →
   {{< refterm "basin-of-attraction" "basin of attraction" >}} →
-  {{< refterm "lyapunov-function" "Lyapunov function" >}}.
+  {{< refterm "lyapunov-function" "Lyapunov function" >}} →
+  {{< refterm "semiconjugacy-and-conjugacy" "semiconjugacy and conjugacy" >}}.
 - **Random products:** finite matrix products → cocycles → log-norm
   integrability → subadditive growth rates.
 

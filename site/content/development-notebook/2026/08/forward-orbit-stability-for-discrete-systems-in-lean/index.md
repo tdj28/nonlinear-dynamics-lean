@@ -256,6 +256,10 @@ The later [Lyapunov Functions Research Note]({{< relref
 "/development-notebook/2026/08/lyapunov-functions-for-discrete-systems-in-lean"
 >}}) supplies a scalar-certificate criterion while preserving this module's
 separation between stability and attraction.
+The [Conjugacies and Semiconjugacies Research Note]({{< relref
+"/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean"
+>}}) explains why topology alone does not automatically transport this
+uniform-space forward-stability predicate.
 
 ## References
 

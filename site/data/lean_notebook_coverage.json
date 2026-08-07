@@ -3,6 +3,10 @@
     "module": "NonlinearDynamics.Deterministic.Discrete.Attraction",
     "notebook": "site/content/development-notebook/2026/08/attraction-and-basins-for-discrete-systems-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Discrete/Conjugacy.lean": {
+    "module": "NonlinearDynamics.Deterministic.Discrete.Conjugacy",
+    "notebook": "site/content/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Discrete/Lyapunov.lean": {
     "module": "NonlinearDynamics.Deterministic.Discrete.Lyapunov",
     "notebook": "site/content/development-notebook/2026/08/lyapunov-functions-for-discrete-systems-in-lean/index.md"

@@ -296,6 +296,12 @@ A local certificate gives no global basin conclusion. Weak descent does not
 imply attraction. Strict descent alone is not promoted to attraction without
 an explicit zero-limit, compactness, coercivity, or comparison argument.
 
+The next [Conjugacies and Semiconjugacies Research Note]({{< relref
+"/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean"
+>}}) studies when a coordinate map transports iterates and attraction. It does
+not assume that a Lyapunov certificate or numerical decay rate survives an
+arbitrary change of coordinates.
+
 ## References
 
 - J. P. LaSalle, “Difference Equations. Discrete Semidynamical Systems,”
