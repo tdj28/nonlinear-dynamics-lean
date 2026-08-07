@@ -2284,6 +2284,18 @@ client and scroll widths, and direct visual inspection confirms contained,
 legible responsive layouts. All five SVGs also open and render directly. The
 temporary Hugo server and headless browser were stopped after QA.
 
+Release closure on 2026-08-06: milestone commit `29f7598` reached
+`origin/main`. The successful ephemeral `.lake` tree was archived sequentially
+as `lake-manifest-pinned-lyapunov-20260806.tar.zst` on the retained volume
+without replacing prior validated archives. The new 2.4-GB compressed archive
+expands to 8,072,038,400 bytes and passes `zstd -t`; it and the retained Lean
+4.32.0 toolchain archive both pass
+`SHA256SUMS-lyapunov-20260806`. The builder ran for 897 seconds at $0.32 per
+hour, approximately $0.08 of compute spend. The exact task pod was then
+terminated. A post-action inventory reports zero task pods and one retained
+project network volume. No cloud resource identifier or credential is
+recorded here.
+
 ## Exact Next Milestone
 
 ### Specify deterministic discrete conjugacies
