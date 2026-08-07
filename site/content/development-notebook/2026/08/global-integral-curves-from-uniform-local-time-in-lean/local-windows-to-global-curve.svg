@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Local time windows continue to a global integral curve</title>
+  <desc id="desc">Five overlapping local intervals cover successive parts of a time axis. Above them a continuous curve spans the full width. A separate box states that continuously differentiable uniqueness identifies curves with the same initial point.</desc>
+  <rect width="1200" height="700" fill="#f7f1e5"/>
+  <style>.h{font:700 36px system-ui;fill:#183c3a}.t{font:500 23px system-ui;fill:#263c3b}.s{font:600 19px system-ui;fill:#315d4b}.w{fill:#dce9df;stroke:#315d4b;stroke-width:3}.a{stroke:#874d3b;stroke-width:5;fill:none;stroke-linecap:round}</style>
+  <text class="h" x="70" y="75">ONE COMMON LOCAL RADIUS SUPPORTS CONTINUATION</text>
+  <line x1="90" y1="500" x2="940" y2="500" stroke="#263c3b" stroke-width="4"/>
+  <path class="a" d="M90 285 C245 170 370 390 520 265 S790 170 940 300"/>
+  <text class="t" x="90" y="235">integral curve defined for every real time</text>
+  <g class="w"><rect x="95" y="425" width="230" height="82" rx="22"/><rect x="250" y="455" width="230" height="82" rx="22"/><rect x="405" y="425" width="230" height="82" rx="22"/><rect x="560" y="455" width="230" height="82" rx="22"/><rect x="715" y="425" width="230" height="82" rx="22"/></g>
+  <text class="s" x="117" y="476">radius ε</text><text class="s" x="272" y="506">radius ε</text><text class="s" x="427" y="476">radius ε</text><text class="s" x="582" y="506">radius ε</text><text class="s" x="737" y="476">radius ε</text>
+  <path d="M955 330 L1020 330" stroke="#315d4b" stroke-width="4" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#315d4b"/></marker></defs>
+  <rect x="1000" y="235" width="155" height="210" rx="20" fill="#efe1d5" stroke="#874d3b" stroke-width="3"/>
+  <text class="s" x="1021" y="285">SEPARATE</text><text class="s" x="1021" y="318">GATE</text><text class="t" x="1021" y="370">C¹ + same</text><text class="t" x="1021" y="402">initial point</text><text class="s" x="1021" y="430">⇒ unique</text>
+  <text class="t" x="90" y="610">Local existence at each point with unrelated radii is not the hypothesis shown here.</text>
+</svg>

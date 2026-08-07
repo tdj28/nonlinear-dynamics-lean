@@ -31,6 +31,10 @@
     "module": "NonlinearDynamics.Deterministic.Discrete.Stability",
     "notebook": "site/content/development-notebook/2026/08/forward-orbit-stability-for-discrete-systems-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/ODE/GlobalExistence.lean": {
+    "module": "NonlinearDynamics.Deterministic.ODE.GlobalExistence",
+    "notebook": "site/content/development-notebook/2026/08/global-integral-curves-from-uniform-local-time-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean": {
     "module": "NonlinearDynamics.Random.ComplexGaussianFamilies",
     "notebook": "site/content/development-notebook/2026/07/independent-complex-gaussian-families/index.md"

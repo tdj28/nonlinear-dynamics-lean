@@ -5,9 +5,9 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `b16413e`
+Audited baseline: `main` at `0499c21`
 
-Active direction: **specify ODE global existence.**
+Active direction: **validate the ODE global-existence candidate.**
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
 exact-commit repository gates on the approved Linux builder. The verified
@@ -21,6 +21,14 @@ drafts with `pro_reviewed: false`. The covered module names include
 `NonlinearDynamics.Deterministic.Discrete.Bifurcation`, and
 `NonlinearDynamics.Deterministic.Chaos.Devaney`, and
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding`.
+
+The source-and-teaching candidate for
+`NonlinearDynamics.Deterministic.ODE.GlobalExistence` is now present but has
+not yet been compiled. It packages the exact continuation interface supplied
+by pinned Mathlib: global curves, unique global curves, arbitrarily long local
+curves at one point, and one uniform positive local-time radius through every
+point. The complete workstation-safe gate, exact Linux warning-fatal leaf, and
+deterministic aggregator pass; the full repository gate remains pending.
 
 ## Mathematical Editorial Register Audit
 
@@ -2418,15 +2426,55 @@ recorded here.
 
 ### Specify ODE global existence
 
-The next source milestone is
-`NonlinearDynamics/Deterministic/ODE/GlobalExistence.lean`. It must separate
-local solution existence from continuation to a global time domain, choose the
-state-space and regularity assumptions explicitly, and expose the no-blow-up
-or growth hypothesis that makes continuation valid. It must not present local
-Lipschitz regularity alone as a blanket global-existence theorem. The interface
-should be designed for the later `ODE/ToFlow.lean` consumer without prematurely
-claiming a global flow, invertibility, smooth parameter dependence, or
-completeness of trajectories.
+The current source candidate is
+`NonlinearDynamics/Deterministic/ODE/GlobalExistence.lean`. It chooses
+Mathlib's manifold integral-curve interface and separates local solution
+existence from continuation to a global time domain. The continuation gate is
+one uniform positive local-time radius through every point, not an unsupported
+project-local linear-growth theorem. Under continuous differentiability on a
+boundaryless manifold, pinned Mathlib upgrades that gate to global curves and
+supplies uniqueness separately. At one initial point it identifies global
+existence with curves on every symmetric finite interval. The source does not
+present local regularity alone as a blanket global-existence theorem.
+
+The paired private-draft teaching bundle contains “Global Integral Curves from
+Uniform Local Time in Lean”, the Deep Dive “Local Existence, Uniform Time, and
+Global Integral Curves”, and substantive vector-field and integral-curve
+glossary chapters. Four deterministic social cards and four conceptual SVGs
+teach the smooth finite-time blow-up boundary, quantifier order, constant
+zero-field curve, and separation of existence from uniqueness. Every new page
+is `draft: true` and `pro_reviewed: false`.
+
+The warning-fatal Linux-checked source SHA-256 is
+`ce3e3f6bc4aecf83dffa4b10481487cbba1ba8c8e27d0a9c47a4c6339764c862`.
+The first leaf run exposed three unused-section-variable lints. The repaired
+source places explicit `omit` scopes around four restriction and constant-curve
+theorems whose statements do not consume the ambient manifold or separation
+instances. The second warning-fatal leaf passes in 1.89 seconds. Its four axiom
+reports contain only `propext`, `Classical.choice`, and `Quot.sound`; none
+contains `sorryAx`, and the module contains no `sorry` or `admit`. The
+warning-fatal `NonlinearDynamics/Deterministic.lean` aggregator passes in 1.38
+seconds.
+
+Workstation-safe validation passes: 50/50 substantive-module Notebook
+coverage, 23 coverage regression tests, seven teaching-hygiene tests, the
+180-file teaching scan, the 862-surface public-reader scan, and a warning-fatal
+Hugo Extended 0.160.1 draft render of 540 pages. The four card generators
+reproduce their 1200-by-630 PNGs byte for byte, all eight SVG files pass XML
+validation, and `git diff --check` is clean. Rendered QA at the browser's
+1280-by-720 viewport reports one H1, equal client and scroll widths, no broken
+or alt-less images, no raw TeX or KaTeX errors, and no console warnings or
+errors on the Notebook, Deep Dive, and both glossary pages. The browser's
+advertised responsive override did not change its actual 1280-pixel viewport,
+so mobile visual QA remains pending rather than being inferred from a desktop
+render.
+
+The next operations are the exact-candidate full gate, verified sequential
+cache preservation, milestone pushes, task-pod termination, and retention of
+the project network volume. The later
+`ODE/ToFlow.lean` consumer remains outside this milestone; no global flow,
+invertibility, smooth parameter dependence, maximal-interval theorem,
+compactness criterion, or growth criterion is claimed.
 
 ### Symbolic Coding convention and validated release
 
