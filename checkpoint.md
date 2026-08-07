@@ -5,23 +5,25 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `e9fc6f5`
+Audited baseline: `main` at `465e068`
 
-Active direction: **specify symbolic coding.**
+Active direction: **compile and validate one-sided symbolic coding.**
 The source-and-teaching milestone for
 `NonlinearDynamics.Deterministic.Chaos.Devaney` passes its warning-fatal leaf,
 deterministic aggregator, and complete repository gate at candidate commit
-`4705233` and validation-record commit `e9fc6f5` on the approved Linux builder.
-Its verified Lake cache is preserved on retained storage, the exact task pod is
-terminated, and the project network volume remains. The interface preserves
-Devaney's historical three-clause definition while exposing the continuous
-topological core and proving the Banks implication under an infinite genuine
-metric-space hypothesis. Five new teaching pages remain private drafts with
-`pro_reviewed: false` pending owner publication choice and professional review.
-The covered module names include
+`4705233` and validation-record commit `e9fc6f5` on the approved Linux builder;
+closure commit `465e068` records verified cache preservation and termination of
+the exact task pod while retaining the project network volume. The next
+candidate specifies the one-sided full shift, prefix cylinders, positive-time
+transitivity, dense positive-period points, a Devaney consequence, and exact
+itinerary semiconjugacy/factor gates. Its Lean leaf is intentionally recorded
+as warning-fatal green on the approved Linux builder; the deterministic
+aggregator and exact-commit full gate remain pending. The four paired teaching pages are private drafts with
+`pro_reviewed: false`. The covered module names include
 `NonlinearDynamics.Deterministic.Discrete.Attraction`,
 `NonlinearDynamics.Deterministic.Discrete.Bifurcation`, and
-`NonlinearDynamics.Deterministic.Chaos.Devaney`.
+`NonlinearDynamics.Deterministic.Chaos.Devaney`, with candidate coverage for
+`NonlinearDynamics.Deterministic.Chaos.SymbolicCoding`.
 
 ## Mathematical Editorial Register Audit
 
@@ -1817,9 +1819,10 @@ bridge, or stable-manifold theorem.
   coverage regression tests, seven hygiene regression tests, the 172-file
   teaching scan, the 828-surface reader-language scan, and the warning-fatal
   512-page Hugo render pass.
-- Lean inventory: forty-eight substantive modules are paired with comprehensive
-  Notebook pages. The remaining deterministic-discrete placeholder is
-  `Chaos/SymbolicCoding.lean`; the later ODE and model placeholders and the
+- Lean inventory: forty-eight substantive modules are cloud-validated and
+  paired with comprehensive Notebook pages. A forty-ninth source-and-teaching
+  candidate now occupies `Chaos/SymbolicCoding.lean`; its warning-fatal leaf
+  and full gate remain pending. The later ODE and model placeholders and the
   `.gitkeep`-only Quantum Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
@@ -2408,16 +2411,86 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Close Devaney chaos, then specify symbolic coding
+### Compile and close one-sided symbolic coding
 
-The Devaney source-and-teaching candidate is assembled. After its exact
-committed tree passes the complete guarded cloud gate and its verified Lake
-cache is preserved, the next source milestone is
-`NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean`. That milestone
-must choose an explicit finite alphabet and one-sided or two-sided sequence
-space, define the shift and cylinder topology without hiding nonemptiness
-boundaries, and separate an exact coding/semiconjugacy result from any later
-entropy, mixing, or Devaney-chaos consequence.
+`NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean` is now a
+source-and-teaching candidate rather than a placeholder. It chooses one-sided
+sequences `ℕ → A` and defines the time-one shift by reusing Mathlib's
+`SymbolicDynamics.FullShift.shift 1`. Finite prefix cylinders are explicitly
+identified with Mathlib full-shift cylinders on `Finset.range n`, so their
+openness and neighborhood-basis role come from the pinned library interface
+instead of a duplicate topology.
+
+The transitivity witness splices a requested target prefix after the source
+prefix. Shifting by the source-prefix length recovers the target tail, which
+gives a positive hitting time after choosing a nonzero prefix length. Repeating
+a finite nonempty prefix gives a point with a positive period inside every
+prefix cylinder. These constructions supply positive-time topological
+transitivity and dense positive-period points for the full shift. Under a
+nontrivial discrete alphabet, the compatible `PiNat` metric and the already
+validated Banks theorem package those results as Devaney chaos. Alphabet
+finiteness is deliberately not required for that theorem; it belongs to the
+customary compact finite-alphabet setting, not to the splicing argument.
+
+For a dynamical system `f : X → X` and observation `observe : X → A`, the
+candidate defines the itinerary `n ↦ observe (f^[n] x)` and proves the exact
+algebraic semiconjugacy to the shift. Continuity of the itinerary is a separate
+theorem requiring continuity of both `f` and `observe`; surjectivity is a
+further independent hypothesis that upgrades the map to a topological factor.
+No arbitrary inverse, injectivity, conjugacy, finite-type presentation, mixing,
+entropy, or Markov-partition consequence is claimed. The head observation on
+the full shift is the boundary check: its itinerary is the identity and is
+therefore both injective and surjective.
+
+The paired private-draft teaching bundle consists of the Notebook entry
+“One-Sided Symbolic Coding and the Full Shift in Lean”, the Deep Dive
+“One-Sided Full Shifts, Cylinders, and Itineraries”, and glossary chapters for
+symbolic dynamics and cylinder sets. Four deterministic 1200-by-630 cards and
+six conceptual SVGs accompany the prose. The pages distinguish a sequence in
+the full shift from an itinerary actually attained by a particular system and
+distinguish algebraic semiconjugacy, continuous semiconjugacy, and surjective
+factor-map gates. All remain `draft: true` and `pro_reviewed: false`.
+
+The current source SHA-256 is
+`5cde6756c1fc0dc56a7a66ed5cc559e24a145db1f2a09e8c0e04a9414cf30014`.
+It contains no `sorry` or `admit`, and its warning-fatal leaf passes on the
+approved Linux builder. The leaf repair qualifies the basis type through
+`TopologicalSpace`, avoids the reserved parser token `prefix`, supplies the
+expected function-space type for `PiNat.metricSpace`, and removes one redundant
+simp argument. Axiom reports for transitivity, dense periodic points, Devaney
+chaos, and the factor map contain only `propext`, `Classical.choice`, and
+`Quot.sound`; none contains `sorryAx`. The next proof action is the deterministic
+aggregator and exact committed full gate. The successful ephemeral cache must
+then be integrity-checked, copied sequentially to the retained volume, and the
+exact builder terminated while preserving the volume.
+
+Workstation-safe candidate validation passes: 49/49 substantive-module
+Notebook coverage, 23 coverage regression tests, seven teaching-hygiene tests,
+the 176-file teaching scan, the 846-surface public-reader scan, and a
+warning-fatal Hugo Extended 0.160.1 draft render of 524 pages. The four cards
+reproduce byte-for-byte at 1200 by 630 pixels, all ten page-owned SVGs are
+well-formed, and `git diff --check` is clean. Literal browser inspection at
+1440 by 1000 and 390 by 844 covers all four pages with exactly one heading per
+page, no horizontal overflow, broken or alt-less images, KaTeX errors, raw math
+delimiters, or console warnings or errors. These non-Lean results complement
+the passing warning-fatal leaf; they do not replace the pending aggregator and
+full gate.
+
+Primary and contextual references recorded with the decision:
+
+- Douglas Lind and Brian Marcus, *An Introduction to Symbolic Dynamics and
+  Coding*, second edition, Cambridge University Press, 2021,
+  <https://doi.org/10.1017/9781108899727>.
+- Marston Morse and Gustav A. Hedlund, “Symbolic Dynamics,” *American Journal
+  of Mathematics* 60(4) (1938), 815–866,
+  <https://doi.org/10.2307/2371264>.
+- Gustav A. Hedlund, “Endomorphisms and Automorphisms of the Shift Dynamical
+  System,” *Mathematical Systems Theory* 3 (1969), 320–375,
+  <https://doi.org/10.1007/BF01691062>.
+- Pinned Mathlib 4.32.0 sources
+  `Mathlib.Dynamics.SymbolicDynamics.Basic` and
+  `Mathlib.Topology.MetricSpace.PiNat`, which provide the reused full-shift,
+  cylinder, basis, and compatible-metric infrastructure.
 
 ### Devaney convention and candidate validation
 

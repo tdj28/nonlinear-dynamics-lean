@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" role="img" aria-labelledby="title desc">
+  <title id="title">Prefix splicing and exact shift recovery</title>
+  <desc id="desc">Three fixed prefix boxes precede four tail boxes. A curved arrow labeled shift three times points to the tail alone.</desc>
+  <rect width="760" height="330" rx="24" fill="#f7f3e8"/>
+  <text x="42" y="45" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#17324d">source-cylinder witness</text>
+  <g font-family="system-ui,sans-serif" font-size="22" font-weight="700" text-anchor="middle">
+    <rect x="42" y="82" width="72" height="62" rx="10" fill="#17324d"/><text x="78" y="121" fill="#fff">0</text>
+    <rect x="122" y="82" width="72" height="62" rx="10" fill="#17324d"/><text x="158" y="121" fill="#fff">1</text>
+    <rect x="202" y="82" width="72" height="62" rx="10" fill="#17324d"/><text x="238" y="121" fill="#fff">1</text>
+    <rect x="302" y="82" width="72" height="62" rx="10" fill="#d96c3f"/><text x="338" y="121" fill="#fff">y₀</text>
+    <rect x="382" y="82" width="72" height="62" rx="10" fill="#d96c3f"/><text x="418" y="121" fill="#fff">y₁</text>
+    <rect x="462" y="82" width="72" height="62" rx="10" fill="#d96c3f"/><text x="498" y="121" fill="#fff">y₂</text>
+    <text x="572" y="121" fill="#17324d">…</text>
+  </g>
+  <path d="M220 166 C260 235, 390 235, 430 174" fill="none" stroke="#2d7f73" stroke-width="5" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2d7f73"/></marker></defs>
+  <text x="324" y="231" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#2d7f73">shift three times</text>
+  <g font-family="system-ui,sans-serif" font-size="22" font-weight="700" text-anchor="middle">
+    <rect x="302" y="250" width="72" height="52" rx="10" fill="#d96c3f"/><text x="338" y="283" fill="#fff">y₀</text>
+    <rect x="382" y="250" width="72" height="52" rx="10" fill="#d96c3f"/><text x="418" y="283" fill="#fff">y₁</text>
+    <rect x="462" y="250" width="72" height="52" rx="10" fill="#d96c3f"/><text x="498" y="283" fill="#fff">y₂</text>
+    <text x="572" y="283" fill="#17324d">…</text>
+  </g>
+</svg>

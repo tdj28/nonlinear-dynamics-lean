@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-labelledby="title desc">
+  <title id="title">Periodic completion and itinerary semiconjugacy</title>
+  <desc id="desc">A finite word repeats along the upper row. The lower row shows source states mapped to labels, with one source update matching one left shift.</desc>
+  <rect width="760" height="360" rx="24" fill="#f7f3e8"/>
+  <text x="38" y="42" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#17324d">repeat a finite prefix</text>
+  <text x="38" y="91" font-family="ui-monospace,monospace" font-size="24" fill="#17324d">0  1  1  |  0  1  1  |  0  1  1  …</text>
+  <line x1="38" y1="120" x2="722" y2="120" stroke="#c9bda6" stroke-width="2"/>
+  <text x="38" y="158" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#17324d">record one label per orbit time</text>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <circle cx="86" cy="218" r="29" fill="#17324d"/><text x="86" y="225" font-size="17" fill="#fff">x</text>
+    <circle cx="226" cy="218" r="29" fill="#17324d"/><text x="226" y="225" font-size="17" fill="#fff">f(x)</text>
+    <circle cx="382" cy="218" r="29" fill="#17324d"/><text x="382" y="225" font-size="16" fill="#fff">f²(x)</text>
+    <path d="M118 218H191M258 218H347" stroke="#2d7f73" stroke-width="4" marker-end="url(#a)"/>
+    <text x="154" y="205" font-size="14" fill="#2d7f73">update</text><text x="304" y="205" font-size="14" fill="#2d7f73">update</text>
+    <rect x="60" y="286" width="52" height="42" rx="9" fill="#d96c3f"/><text x="86" y="313" font-size="17" fill="#fff">ℓ₀</text>
+    <rect x="200" y="286" width="52" height="42" rx="9" fill="#d96c3f"/><text x="226" y="313" font-size="17" fill="#fff">ℓ₁</text>
+    <rect x="356" y="286" width="52" height="42" rx="9" fill="#d96c3f"/><text x="382" y="313" font-size="17" fill="#fff">ℓ₂</text>
+    <path d="M86 250V280M226 250V280M382 250V280" stroke="#d96c3f" stroke-width="3" marker-end="url(#b)"/>
+    <text x="560" y="224" font-size="17" fill="#17324d">update then code</text>
+    <text x="560" y="253" font-size="17" fill="#17324d">equals</text>
+    <text x="560" y="282" font-size="17" fill="#17324d">code then shift</text>
+  </g>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#2d7f73"/></marker><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#d96c3f"/></marker></defs>
+</svg>

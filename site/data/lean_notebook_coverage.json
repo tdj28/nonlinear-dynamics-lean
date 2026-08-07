@@ -3,6 +3,10 @@
     "module": "NonlinearDynamics.Deterministic.Chaos.Devaney",
     "notebook": "site/content/development-notebook/2026/08/devaney-chaos-and-the-banks-implication-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean": {
+    "module": "NonlinearDynamics.Deterministic.Chaos.SymbolicCoding",
+    "notebook": "site/content/development-notebook/2026/08/one-sided-symbolic-coding-and-the-full-shift-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Discrete/Attraction.lean": {
     "module": "NonlinearDynamics.Deterministic.Discrete.Attraction",
     "notebook": "site/content/development-notebook/2026/08/attraction-and-basins-for-discrete-systems-in-lean/index.md"
