@@ -5,23 +5,21 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `6bf8517`
+Audited baseline: `main` at `b16413e`
 
-Active direction: **record and close one-sided symbolic coding.**
-Candidate commit `6bf8517` for
-`NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` passes its warning-fatal
-leaf, deterministic aggregator, and complete exact-candidate repository gate
-on the approved Linux builder. The milestone specifies the one-sided full
-shift, prefix cylinders, positive-time transitivity, dense positive-period
-points, a Devaney consequence, and exact itinerary semiconjugacy/factor gates.
-The next release actions are the validation-record commit, its exact-commit
-full-gate replay, verified cache preservation, and termination of the exact
-task pod while retaining the project network volume. The four paired teaching
-pages remain private drafts with `pro_reviewed: false`. The covered module
-names include
+Active direction: **specify ODE global existence.**
+Candidate commit `6bf8517` and validation-record commit `b16413e` for
+`NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
+exact-commit repository gates on the approved Linux builder. The verified
+successful cache is preserved on retained storage, the exact task pod is
+terminated, and the project network volume remains. The milestone specifies
+the one-sided full shift, prefix cylinders, positive-time transitivity, dense
+positive-period points, a Devaney consequence, and exact itinerary
+semiconjugacy/factor gates. Its four paired teaching pages remain private
+drafts with `pro_reviewed: false`. The covered module names include
 `NonlinearDynamics.Deterministic.Discrete.Attraction`,
 `NonlinearDynamics.Deterministic.Discrete.Bifurcation`, and
-`NonlinearDynamics.Deterministic.Chaos.Devaney`, with candidate coverage for
+`NonlinearDynamics.Deterministic.Chaos.Devaney`, and
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding`.
 
 ## Mathematical Editorial Register Audit
@@ -2418,7 +2416,19 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Record and close one-sided symbolic coding
+### Specify ODE global existence
+
+The next source milestone is
+`NonlinearDynamics/Deterministic/ODE/GlobalExistence.lean`. It must separate
+local solution existence from continuation to a global time domain, choose the
+state-space and regularity assumptions explicitly, and expose the no-blow-up
+or growth hypothesis that makes continuation valid. It must not present local
+Lipschitz regularity alone as a blanket global-existence theorem. The interface
+should be designed for the later `ODE/ToFlow.lean` consumer without prematurely
+claiming a global flow, invertibility, smooth parameter dependence, or
+completeness of trajectories.
+
+### Symbolic Coding convention and validated release
 
 `NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean` is now a validated
 source-and-teaching candidate rather than a placeholder. It chooses one-sided
@@ -2471,9 +2481,23 @@ Git archive pass the deterministic aggregator and complete guarded gate: 3,223
 Lean jobs, 49/49 Notebook coverage, 23 coverage regression tests, seven
 teaching-hygiene tests, the 176-file teaching scan, the 846-surface
 reader-language scan, and the warning-fatal 524-page Hugo Extended 0.160.1
-render. The next actions are the validation-record exact-commit replay and
-integrity-checked preservation of the successful ephemeral cache, followed by
-termination of the exact builder while preserving the volume.
+render. That candidate gate was followed by the validation-record exact-commit
+replay and integrity-checked preservation described below.
+
+Validation-record commit `b16413e` reached `origin/main`; its exact Git archive
+passed SHA-256 identity after source-only transfer and then passed the same
+complete guarded gate. The successful ephemeral `.lake` tree is archived as
+`lake-manifest-pinned-symbolic-coding-20260807.tar.zst`. The
+2,644,002,101-byte compressed archive expands to an 8,085,217,280-byte tar
+stream. Its ephemeral copy and sequential retained-volume copy both pass
+SHA-256 and `zstd -t`, and retained ledger
+`SHA256SUMS-symbolic-coding-20260807` passes independently. Earlier validated
+archives remain intact, and the retained volume was never used as a live
+`.lake` tree. The builder ran for 1,059 seconds at $0.32 per hour,
+approximately $0.09 of compute spend under the $5 ceiling. The exact task pod
+was then terminated. A post-action inventory reports zero task pods and one
+retained project network volume. No cloud resource identifier or credential is
+recorded here.
 
 Workstation-safe candidate validation passes: 49/49 substantive-module
 Notebook coverage, 23 coverage regression tests, seven teaching-hygiene tests,
@@ -4767,6 +4791,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `b16413e`: record the passing Symbolic Coding exact-candidate full gate,
+  complete the validated draft statuses, and synchronize the forty-nine-module
+  inventory and next-milestone handoff.
 - `6bf8517`: formalize one-sided symbolic coding, prove full-shift
   transitivity, dense periodic points, and the Devaney endpoint, expose exact
   itinerary factor gates, and add the four-page cited teaching bundle.
