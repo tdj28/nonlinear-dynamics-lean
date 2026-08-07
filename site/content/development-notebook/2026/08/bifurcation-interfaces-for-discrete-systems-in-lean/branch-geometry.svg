@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Two fixed-point branches meet at the reference parameter</title>
+  <desc id="desc">A horizontal parameter axis separates a left region with no fixed point from a center point with one and a right region with two. Two blue branch curves open to the right and meet at the center. A note says that parameter variation is not iteration time.</desc>
+  <rect width="1200" height="680" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:28px;font-weight:700}.h{font-size:20px;font-weight:700}.s{font-size:17px}.m{font-size:15px;fill:#5A544C}.axis{stroke:#7F786D;stroke-width:3}.branch{fill:none;stroke:#4B6787;stroke-width:7;stroke-linecap:round}.dash{stroke:#A89B8C;stroke-width:2;stroke-dasharray:8 7}</style>
+  <text x="50" y="56" class="t title">Fixed-point branches live over parameter space</text>
+  <text x="50" y="88" class="t m">For the quadratic family, solving the fixed-point equation gives the whole picture.</text>
+  <line x1="105" y1="380" x2="1095" y2="380" class="axis"/>
+  <polygon points="1095,380 1072,367 1072,393" fill="#7F786D"/>
+  <line x1="600" y1="142" x2="600" y2="515" class="dash"/>
+  <path d="M600 380 C600 300 690 245 955 180" class="branch"/>
+  <path d="M600 380 C600 460 690 515 955 580" class="branch"/>
+  <circle cx="600" cy="380" r="12" fill="#A67C52"/>
+  <text x="280" y="330" text-anchor="middle" class="t h">no fixed point</text>
+  <text x="600" y="555" text-anchor="middle" class="t h">one fixed point</text>
+  <text x="900" y="330" text-anchor="middle" class="t h">two fixed points</text>
+  <text x="285" y="407" text-anchor="middle" class="t m">negative parameter</text>
+  <text x="600" y="407" text-anchor="middle" class="t m">reference parameter</text>
+  <text x="900" y="407" text-anchor="middle" class="t m">positive parameter</text>
+  <rect x="50" y="610" width="1100" height="45" rx="12" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="600" y="639" text-anchor="middle" class="t s">The branch curve records fixed states as the parameter varies; it is not one orbit evolving in time.</text>
+</svg>

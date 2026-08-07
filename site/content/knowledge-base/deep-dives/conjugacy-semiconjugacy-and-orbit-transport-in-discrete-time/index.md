@@ -294,7 +294,10 @@ Continue with the shorter {{< refterm "semiconjugacy-and-conjugacy"
 "Semiconjugacy and conjugacy" >}} glossary chapter or inspect the
 declaration-complete [Research Note]({{< relref
 "/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean"
->}}).
+>}}). The next Deep Dive, [Parameter Families, Branches, and Bifurcation in
+Discrete Time]({{< relref
+"/knowledge-base/deep-dives/parameter-families-branches-and-bifurcation-in-discrete-time"
+>}}), uses fixed- and specified-period preservation as conjugacy obstructions.
 
 ## References
 

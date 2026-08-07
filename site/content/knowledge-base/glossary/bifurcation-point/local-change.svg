@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="570" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+  <title id="title">Local constancy compared with bifurcation at a parameter</title>
+  <desc id="desc">The upper row shows a neighborhood in which all nearby parameter values have the same qualitative label. The lower row uses the quadratic fixed-point-existence classifier: negative parameters have label B, nonnegative parameters have label A, and B values approach the reference at zero through every crossing neighborhood.</desc>
+  <rect width="1200" height="570" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:28px;font-weight:700}.h{font-size:20px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}.same{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.diff{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}</style>
+  <text x="50" y="56" class="t title">Ask what happens in every parameter neighborhood</text>
+  <text x="50" y="88" class="t m">The qualitative label must be named before local constancy can be tested.</text>
+  <text x="70" y="170" class="t h">locally constant</text>
+  <line x1="315" y1="165" x2="1120" y2="165" stroke="#7F786D" stroke-width="3"/>
+  <rect x="520" y="125" width="390" height="80" rx="40" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <circle cx="585" cy="165" r="22" class="same"/><circle cx="715" cy="165" r="22" class="same"/><circle cx="845" cy="165" r="22" class="same"/>
+  <text x="585" y="171" text-anchor="middle" class="t s">A</text><text x="715" y="171" text-anchor="middle" class="t s">A</text><text x="845" y="171" text-anchor="middle" class="t s">A</text>
+  <text x="70" y="345" class="t h">change at the center</text>
+  <line x1="315" y1="340" x2="1120" y2="340" stroke="#7F786D" stroke-width="3"/>
+  <rect x="470" y="285" width="490" height="110" rx="55" fill="none" stroke="#A89B8C" stroke-width="2" stroke-dasharray="8 7"/>
+  <rect x="550" y="302" width="330" height="76" rx="38" fill="none" stroke="#A89B8C" stroke-width="2" stroke-dasharray="5 5"/>
+  <line x1="715" y1="278" x2="715" y2="410" stroke="#A67C52" stroke-width="2" stroke-dasharray="6 5"/>
+  <circle cx="500" cy="340" r="20" class="diff"/><circle cx="600" cy="340" r="20" class="diff"/><circle cx="670" cy="340" r="20" class="diff"/><circle cx="715" cy="340" r="22" class="same"/><circle cx="780" cy="340" r="20" class="same"/><circle cx="870" cy="340" r="20" class="same"/>
+  <text x="500" y="346" text-anchor="middle" class="t s">B</text><text x="600" y="346" text-anchor="middle" class="t s">B</text><text x="670" y="346" text-anchor="middle" class="t s">B</text><text x="715" y="346" text-anchor="middle" class="t s">A</text><text x="780" y="346" text-anchor="middle" class="t s">A</text><text x="870" y="346" text-anchor="middle" class="t s">A</text>
+  <text x="590" y="430" text-anchor="middle" class="t m">μ &lt; 0: no fixed point (B)</text><text x="830" y="430" text-anchor="middle" class="t m">μ ≥ 0: a fixed point exists (A)</text>
+  <rect x="50" y="475" width="1100" height="48" rx="12" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="600" y="506" text-anchor="middle" class="t s">Every neighborhood of zero crosses into B; invariance then obstructs local constancy of the reference conjugacy class.</text>
+</svg>

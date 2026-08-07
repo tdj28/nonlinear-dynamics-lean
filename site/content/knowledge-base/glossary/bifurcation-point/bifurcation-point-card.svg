@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Bifurcation point</title>
+  <desc id="desc">Nested parameter neighborhoods cross zero. Several clay B labels for negative parameters approach a blue A reference label at zero, showing failure of local constancy.</desc>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <text x="78" y="105" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="700" fill="#A67C52">KNOWLEDGE BASE GLOSSARY</text>
+  <text x="78" y="190" font-family="Inter,Arial,sans-serif" font-size="60" font-weight="750" fill="#16324F">Bifurcation point</text>
+  <text x="78" y="245" font-family="Inter,Arial,sans-serif" font-size="28" fill="#5A544C">The reference conjugacy class is not locally constant.</text>
+  <line x1="110" y1="405" x2="1090" y2="405" stroke="#7F786D" stroke-width="3"/>
+  <rect x="345" y="325" width="510" height="160" rx="80" fill="none" stroke="#A89B8C" stroke-width="3" stroke-dasharray="10 8"/>
+  <rect x="450" y="350" width="300" height="110" rx="55" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <circle cx="490" cy="405" r="23" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/><text x="490" y="413" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700" fill="#2C2924">B</text>
+  <circle cx="550" cy="405" r="23" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/><text x="550" y="413" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700" fill="#2C2924">B</text>
+  <circle cx="590" cy="405" r="23" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/><text x="590" y="413" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700" fill="#2C2924">B</text>
+  <circle cx="625" cy="405" r="25" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/><text x="625" y="413" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="700" fill="#2C2924">A</text>
+  <circle cx="700" cy="405" r="23" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/><text x="700" y="413" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700" fill="#2C2924">A</text>
+  <rect x="78" y="540" width="1044" height="48" rx="12" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="600" y="571" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="21" fill="#2C2924">Name the equivalence relation or classifier before calling a change qualitative.</text>
+</svg>

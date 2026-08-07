@@ -194,7 +194,8 @@ Time]({{< relref
 "/knowledge-base/deep-dives/conjugacy-semiconjugacy-and-orbit-transport-in-discrete-time"
 >}}) or inspect the declaration-complete [Research Note]({{< relref
 "/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean"
->}}).
+>}}). Then see {{< refterm "bifurcation-point" "bifurcation point" >}} for
+the parameter-space use of conjugacy invariance.
 
 ## References
 

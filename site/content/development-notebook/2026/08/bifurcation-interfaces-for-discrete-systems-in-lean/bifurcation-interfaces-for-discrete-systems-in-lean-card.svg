@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Bifurcation Interfaces for Discrete Systems in Lean</title>
+  <desc id="desc">A warm paper card shows two blue fixed-point branches meeting at a clay threshold, with the words family, branch, classifier, and conjugacy obstruction.</desc>
+  <rect width="1200" height="630" fill="#F7F4F0"/>
+  <text x="78" y="105" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="700" fill="#A67C52">DEVELOPMENT NOTEBOOK</text>
+  <text x="78" y="175" font-family="Inter,Arial,sans-serif" font-size="48" font-weight="750" fill="#16324F">Bifurcation Interfaces</text>
+  <text x="78" y="230" font-family="Inter,Arial,sans-serif" font-size="37" font-weight="650" fill="#2C2924">for Discrete Systems in Lean</text>
+  <line x1="105" y1="430" x2="1090" y2="430" stroke="#7F786D" stroke-width="3"/>
+  <path d="M610 430 C610 360 760 320 1030 285" fill="none" stroke="#4B6787" stroke-width="10" stroke-linecap="round"/>
+  <path d="M610 430 C610 500 760 535 1030 555" fill="none" stroke="#4B6787" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="610" cy="430" r="17" fill="#A67C52"/>
+  <rect x="78" y="300" width="430" height="72" rx="14" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="293" y="345" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" fill="#2C2924">family  |  branch  |  qualitative change</text>
+  <text x="78" y="565" font-family="Inter,Arial,sans-serif" font-size="21" fill="#5A544C">A conjugacy-invariant witness, with stronger smooth theory kept separate.</text>
+</svg>

@@ -85,7 +85,8 @@ The main routes then branch:
   {{< refterm "forward-stability" "forward stability" >}} →
   {{< refterm "basin-of-attraction" "basin of attraction" >}} →
   {{< refterm "lyapunov-function" "Lyapunov function" >}} →
-  {{< refterm "semiconjugacy-and-conjugacy" "semiconjugacy and conjugacy" >}}.
+  {{< refterm "semiconjugacy-and-conjugacy" "semiconjugacy and conjugacy" >}},
+  then {{< refterm "bifurcation-point" "bifurcation point" >}}.
 - **Random products:** finite matrix products → cocycles → log-norm
   integrability → subadditive growth rates.
 

@@ -2419,6 +2419,15 @@ claim. Pair the checked source with a complete educational bundle and a small
 finite or elementary real example that makes the selected definition and its
 nonclaims explicit.
 
+Active source candidate on 2026-08-06: the module now separates parameterized
+self-map families, fixed and specified-period branches, conjugacy-invariant
+classifier changes, and failure of nearby global topological conjugacy. The
+paired public teaching bundle and a standalone finite `Std` worksheet are
+assembled. Warning-fatal Linux leaf, aggregator, and full-project validation
+remain pending, so this milestone is not yet recorded as complete.
+The covered module name is
+`NonlinearDynamics.Deterministic.Discrete.Bifurcation`.
+
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
 milestones.

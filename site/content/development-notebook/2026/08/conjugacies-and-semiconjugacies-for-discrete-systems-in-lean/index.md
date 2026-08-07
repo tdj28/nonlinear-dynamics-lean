@@ -267,7 +267,11 @@ The paired [Deep Dive]({{< relref
 "/knowledge-base/deep-dives/conjugacy-semiconjugacy-and-orbit-transport-in-discrete-time"
 >}}) develops the finite model and syntax gradually. The
 {{< refterm "semiconjugacy-and-conjugacy" "Semiconjugacy and conjugacy" >}}
-glossary chapter gives a shorter first pass.
+glossary chapter gives a shorter first pass. The later [Bifurcation Interfaces
+Research Note]({{< relref
+"/development-notebook/2026/08/bifurcation-interfaces-for-discrete-systems-in-lean"
+>}}) uses conjugacy invariance to turn selected fixed- and periodic-point
+existence changes into sufficient bifurcation witnesses.
 
 ## Exact nonclaims
 

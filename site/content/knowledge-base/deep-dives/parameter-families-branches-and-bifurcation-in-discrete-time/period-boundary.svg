@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Fixed points also satisfy specified-period equations</title>
+  <desc id="desc">The left panel shows one state returning after one step and therefore after two. The right panel shows two distinct states exchanged by one step and returning after two. A footer says that return after two steps does not establish least period two.</desc>
+  <rect width="1200" height="620" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:28px;font-weight:700}.h{font-size:21px;font-weight:700}.s{font-size:17px}.m{font-size:15px;fill:#5A544C}.node{fill:#E8F0F7;stroke:#4B6787;stroke-width:3}.arrow{stroke:#A67C52;stroke-width:4;fill:none;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#A67C52"/></marker></defs>
+  <text x="50" y="56" class="t title">Specified period is not necessarily least period</text>
+  <text x="50" y="88" class="t m">Both panels return after two updates, but only one alternates between distinct states.</text>
+  <rect x="60" y="140" width="500" height="340" rx="16" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="310" y="185" text-anchor="middle" class="t h">fixed point</text>
+  <circle cx="310" cy="315" r="45" class="node"/><text x="310" y="322" text-anchor="middle" class="t h">p</text>
+  <path d="M345 280 C430 200 450 390 350 354" class="arrow"/>
+  <text x="310" y="425" text-anchor="middle" class="t s">returns after one and after two</text>
+  <rect x="640" y="140" width="500" height="340" rx="16" fill="#FBF9F6" stroke="#C4B8A8" stroke-width="2"/>
+  <text x="890" y="185" text-anchor="middle" class="t h">two-state cycle</text>
+  <circle cx="790" cy="315" r="45" class="node"/><text x="790" y="322" text-anchor="middle" class="t h">p</text>
+  <circle cx="990" cy="315" r="45" class="node"/><text x="990" y="322" text-anchor="middle" class="t h">q</text>
+  <path d="M835 296 C880 265 925 265 968 296" class="arrow"/><path d="M945 343 C900 375 855 375 812 343" class="arrow"/>
+  <text x="890" y="425" text-anchor="middle" class="t s">returns after two, not after one</text>
+  <rect x="60" y="535" width="1080" height="48" rx="12" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="600" y="566" text-anchor="middle" class="t s">The equation for two updates includes every fixed point; least period two needs a separate exclusion.</text>
+</svg>

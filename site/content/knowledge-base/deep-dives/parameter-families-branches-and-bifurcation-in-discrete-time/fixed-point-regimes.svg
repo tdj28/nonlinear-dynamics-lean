@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Fixed-point regimes of the quadratic family</title>
+  <desc id="desc">Three panels show no real fixed point below the reference parameter, one merged branch at the reference parameter, and two square-root branches above it. The footer says the algebra, rather than the drawing, establishes the counts.</desc>
+  <rect width="1200" height="620" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:28px;font-weight:700}.h{font-size:21px;font-weight:700}.s{font-size:17px}.m{font-size:15px;fill:#5A544C}.panel{stroke-width:2}.state{fill:#E8F0F7;stroke:#4B6787;stroke-width:3}</style>
+  <text x="50" y="56" class="t title">Solve the fixed-point equation before reading the picture</text>
+  <text x="50" y="88" class="t m">The parameter selects a map; the state coordinate solves that map's fixed-point equation.</text>
+  <rect x="50" y="135" width="340" height="350" rx="16" fill="#FBF9F6" stroke="#C4B8A8" class="panel"/>
+  <text x="220" y="180" text-anchor="middle" class="t h">below the threshold</text><text x="220" y="215" text-anchor="middle" class="t m">negative parameter</text>
+  <line x1="105" y1="330" x2="335" y2="330" stroke="#7F786D" stroke-width="3"/>
+  <text x="220" y="395" text-anchor="middle" class="t h">no fixed state</text>
+  <rect x="430" y="135" width="340" height="350" rx="16" fill="#FBF9F6" stroke="#C4B8A8" class="panel"/>
+  <text x="600" y="180" text-anchor="middle" class="t h">at the threshold</text><text x="600" y="215" text-anchor="middle" class="t m">reference parameter</text>
+  <line x1="485" y1="330" x2="715" y2="330" stroke="#7F786D" stroke-width="3"/><circle cx="600" cy="330" r="15" class="state"/>
+  <text x="600" y="395" text-anchor="middle" class="t h">one fixed state</text>
+  <rect x="810" y="135" width="340" height="350" rx="16" fill="#FBF9F6" stroke="#C4B8A8" class="panel"/>
+  <text x="980" y="180" text-anchor="middle" class="t h">above the threshold</text><text x="980" y="215" text-anchor="middle" class="t m">positive parameter</text>
+  <line x1="865" y1="330" x2="1095" y2="330" stroke="#7F786D" stroke-width="3"/><circle cx="925" cy="330" r="15" class="state"/><circle cx="1035" cy="330" r="15" class="state"/>
+  <text x="980" y="395" text-anchor="middle" class="t h">two fixed states</text>
+  <rect x="50" y="535" width="1100" height="48" rx="12" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="600" y="566" text-anchor="middle" class="t s">The exact equation establishes the zero, one, and two counts; the diagram only explains that result.</text>
+</svg>

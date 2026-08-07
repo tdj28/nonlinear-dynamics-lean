@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">From a fixed-point classifier change to a conjugacy obstruction</title>
+  <desc id="desc">Three connected cards show fixed-point existence changing arbitrarily near the reference parameter, fixed-point existence being preserved by whole-state-space topological conjugacy, and the reference conjugacy class therefore not being locally constant. A lower band separates smooth fold classification and numerical detection as additional tasks.</desc>
+  <rect width="1200" height="560" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.title{font-size:28px;font-weight:700}.h{font-size:19px;font-weight:700}.s{font-size:16px}.m{font-size:14px;fill:#5A544C}.card{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.gate{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:2}.out{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}.arrow{stroke:#7F786D;stroke-width:4;fill:none}</style>
+  <text x="50" y="56" class="t title">A classifier is useful only after its invariance is proved</text>
+  <text x="50" y="88" class="t m">The arrows record a sufficient argument, not the definition of every bifurcation.</text>
+  <rect x="50" y="145" width="300" height="180" rx="18" class="card"/>
+  <text x="200" y="192" text-anchor="middle" class="t h">classifier change</text>
+  <text x="200" y="232" text-anchor="middle" class="t s">fixed-point existence differs</text>
+  <text x="200" y="258" text-anchor="middle" class="t s">arbitrarily near μ = 0</text>
+  <text x="200" y="295" text-anchor="middle" class="t m">true at 0; false for nearby μ &lt; 0</text>
+  <path d="M350 235 H430" class="arrow"/><polygon points="430,235 410,224 410,246" fill="#7F786D"/>
+  <rect x="430" y="145" width="300" height="180" rx="18" class="gate"/>
+  <text x="580" y="192" text-anchor="middle" class="t h">invariance gate</text>
+  <text x="580" y="232" text-anchor="middle" class="t s">whole-state-space conjugacy</text>
+  <text x="580" y="258" text-anchor="middle" class="t s">preserves fixed-point existence</text>
+  <text x="580" y="295" text-anchor="middle" class="t m">a proved theorem, not an assumption</text>
+  <path d="M730 235 H810" class="arrow"/><polygon points="810,235 790,224 790,246" fill="#7F786D"/>
+  <rect x="810" y="145" width="340" height="180" rx="18" class="out"/>
+  <text x="980" y="192" text-anchor="middle" class="t h">conjugacy obstruction</text>
+  <text x="980" y="232" text-anchor="middle" class="t s">the reference conjugacy class</text>
+  <text x="980" y="258" text-anchor="middle" class="t s">is not locally constant</text>
+  <text x="980" y="295" text-anchor="middle" class="t m">the module's selected predicate</text>
+  <rect x="50" y="390" width="1100" height="105" rx="16" fill="#EEEAE4" stroke="#A89B8C" stroke-width="2"/>
+  <text x="600" y="428" text-anchor="middle" class="t h">Additional layers are separate</text>
+  <text x="600" y="462" text-anchor="middle" class="t s">local normal-form classification • stability and multipliers • numerical continuation and error control</text>
+</svg>
