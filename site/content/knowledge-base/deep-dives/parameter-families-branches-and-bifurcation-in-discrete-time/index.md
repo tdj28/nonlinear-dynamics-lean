@@ -36,10 +36,11 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial and validation status.** This is an AI-assisted public working
-note paired with a source candidate. Warning-fatal formal validation and human
-review of the mathematics, Lean bridges, figures, accessibility, and
-references remain pending. Professional review has not been performed, so
-<code>pro_reviewed</code> remains false.
+note paired with warning-fatal Lean source. The changed module, deterministic
+aggregator, and complete repository gate passed under the pinned Lean 4.32.0
+environment, and the owner inspected the cited sources and artifacts.
+Professional review has not been performed, so <code>pro_reviewed</code>
+remains false.
 {{< /panel >}}
 
 ## Learning objectives

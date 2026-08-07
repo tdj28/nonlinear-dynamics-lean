@@ -3,22 +3,25 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-06
+Last updated: 2026-08-07
 
-Audited baseline: `main` at `0fd9daa`
+Audited baseline: `main` at `99ebb98`
 
-Active direction: **deterministic discrete Lyapunov functions are the next
-vertical slice.** Forward stability remains green at release commit `07a4674`,
-and deterministic attraction is green at release commit `0fd9daa`. The
-attraction release separates orbit convergence, point basins, local and global
-attracting fixed points, asymptotic stability, and nonempty distance-to-set
-attraction in `NonlinearDynamics.Deterministic.Discrete.Attraction`. Its paired
-Research Note, Deep Dive, basin glossary chapter, standalone `Std` tutorial,
-six accessible figures, and three deterministic cards are released. All
-workstation, browser, warning-fatal Linux, and complete guarded repository
-gates pass; the cache is preserved, the task pod is terminated, and the
-network volume is retained. Professional review remains deferred; every new
-public article declares `pro_reviewed: false`.
+Active direction: **sensitivity to initial conditions is the next deterministic
+discrete vertical slice.** The bifurcation milestone is green at validation
+commit `99ebb98`. It separates parameterized self-map families, fixed and
+specified-period branches, conjugacy-invariant classifier changes, and failure
+of local constancy of the whole-state-space conjugacy class. The elementary
+quadratic family supplies exact zero/one/two fixed-point regimes and a checked
+fixed-point-existence obstruction at parameter zero. Its Research Note, Deep
+Dive, glossary chapter, standalone `Std` tutorial, accessible figures, and
+deterministic cards are public working notes. Workstation, browser,
+warning-fatal Linux leaf and aggregator checks, and the complete guarded
+repository gate pass. Professional review remains deferred; the new public
+articles declare `pro_reviewed: false`.
+The covered module names include
+`NonlinearDynamics.Deterministic.Discrete.Attraction` and
+`NonlinearDynamics.Deterministic.Discrete.Bifurcation`.
 
 ## Mathematical Editorial Register Audit
 
@@ -2407,26 +2410,53 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Specify deterministic discrete bifurcation interfaces
+### Specify sensitivity to initial conditions
 
-Turn `NonlinearDynamics/Deterministic/Discrete/Bifurcation.lean` from a
-placeholder into the next vertical slice. Research standard parameterized-map
-and bifurcation definitions together with the pinned Mathlib topology and
-fixed-point interfaces before freezing a convention. Separate a family of
-self-maps, branches of fixed or periodic points, and qualitative change from
-any differentiability, hyperbolicity, normal-form, or numerical-detection
-claim. Pair the checked source with a complete educational bundle and a small
-finite or elementary real example that makes the selected definition and its
-nonclaims explicit.
+Turn `NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean` from a
+placeholder into the next vertical slice. Research the standard metric and
+topological definitions before freezing a convention. Keep the quantifier
+order explicit: a sensitivity scale is selected first, then every state and
+every neighborhood admit a nearby state and an iteration time whose images
+separate at that scale. Distinguish sensitivity from expansivity, mixing,
+positive entropy, numerical roundoff growth, and finite-time divergence.
+Audit isolated points and discrete spaces as boundary cases, and decide
+whether the first reusable interface is metric-only or includes a uniform
+space/topological companion. Pair the checked source with a complete
+educational bundle and a finite standalone worksheet that displays both a
+sensitive model and a quantifier-order near miss.
 
-Active source candidate on 2026-08-06: the module now separates parameterized
-self-map families, fixed and specified-period branches, conjugacy-invariant
-classifier changes, and failure of nearby global topological conjugacy. The
-paired public teaching bundle and a standalone finite `Std` worksheet are
-assembled. Warning-fatal Linux leaf, aggregator, and full-project validation
-remain pending, so this milestone is not yet recorded as complete.
-The covered module name is
-`NonlinearDynamics.Deterministic.Discrete.Bifurcation`.
+### Bifurcation release closure
+
+The bifurcation source was assembled and publicly paired at candidate commit
+`622f9bb`, then repaired at validation commit `99ebb98` after the warning-fatal
+leaf exposed two unused binder names, an isolated-parameter equality bridge,
+and one unsimplified quadratic identity. The checked source SHA-256 is
+`1c9ed02764e75b136567e879da85922ac9d6013836e582e4f539a23d3c11a1d0`.
+The six axiom reports contain only `propext`, `Classical.choice`, and
+`Quot.sound` as applicable; none contains `sorryAx`.
+
+Approved Linux validation on 2026-08-07 used RunPod Secure Cloud with 8 vCPU,
+32 GB billed RAM, an 80 GB ephemeral disk, and the retained project network
+volume at $0.32 per hour. A clean source-only tree was synchronized without
+`.git`, `.env`, `.lake`, generated Hugo output, credentials, or private
+tooling. The retained Conjugacy-era Elan and Lake archives passed their
+recorded SHA-256 checks before sequential restoration to ephemeral disk. The
+network volume was not used as a live `.lake` tree. The guarded setup verified
+the committed manifest before and after `lake update`, and the cloud gate used
+the same Hugo Extended 0.160.1 build as the workstation.
+
+`CLOUD_LEAN_BUILD=1 make lean-file
+LEAN_FILE=NonlinearDynamics/Deterministic/Discrete/Bifurcation.lean` passes
+warning-fatal, as does the `NonlinearDynamics/Deterministic.lean` aggregator.
+The complete `CLOUD_LEAN_BUILD=1 make check` gate finishes all 3,221 Lean jobs,
+46/46 Notebook coverage, 23 coverage regression tests, seven teaching-hygiene
+tests, the 164-file teaching audit, the 791-surface reader-language audit, and
+a warning-fatal 484-page Hugo render. The successful ephemeral `.lake` tree
+was archived sequentially as
+`lake-manifest-pinned-bifurcation-20260807.tar.zst`; the new 2.5-GB archive and
+its checksum ledger pass verification on the retained volume. Resource
+termination and the final cost receipt are recorded in the release-closure
+entry below after the exact task pod is removed.
 
 Singular values, conorms, Lyapunov spectra, Oseledets splittings, derivative
 cocycles, random attractors, and stable manifolds remain separate later
@@ -2577,7 +2607,10 @@ documentation placeholders:
   semiconjugacy, surjective factor maps, specified and existential topological
   conjugacy, iterate and attraction transport, basin identities, local and
   global attracting-fixed-point equivalences, and relation laws.
-- [ ] `Discrete/Bifurcation.lean`
+- [x] `Discrete/Bifurcation.lean`: parameterized self-map families, fixed and
+  specified-period branches, conjugacy-invariant classifier changes,
+  whole-state-space conjugacy obstruction, isolated-parameter boundary, and
+  the exact quadratic fixed-point family at parameter zero.
 - [ ] `Chaos/Sensitivity.lean`
 - [ ] `Chaos/Devaney.lean`
 - [ ] `Chaos/SymbolicCoding.lean`

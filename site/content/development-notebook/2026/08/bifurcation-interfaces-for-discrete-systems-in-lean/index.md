@@ -11,7 +11,7 @@ key_result: |
   A change in any conjugacy-invariant classifier is sufficient for the module's whole-state-space conjugacy bifurcation predicate. Fixed-point existence and specified-period existence supply two checked classifiers, while the quadratic family exhibits the fixed-point-existence route at parameter zero. The quadratic fold-type event remains local in the literature's local/global bifurcation taxonomy.
 draft: false
 pro_reviewed: false
-status: "Source candidate assembled; warning-fatal formal validation, human editorial review, and expert review remain pending"
+status: "Warning-fatal formal validation passed; public working note with professional review pending"
 level: "Intermediate topology, filters, fixed and periodic points, and Lean 4"
 reading_time: "45 to 65 minutes"
 prerequisites:
@@ -44,11 +44,11 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a public working note paired with
-a source candidate. Warning-fatal formal validation has not yet been recorded
-for this milestone. Human editorial and expert review also remain pending.
-The configured professional review has not been performed, and
-`pro_reviewed` remains false.
+**Editorial status.** This is a public working note paired with warning-fatal
+Lean source. The changed module, deterministic aggregator, and complete
+repository gate passed under the pinned Lean 4.32.0 environment. The owner
+completed the required source-and-artifact inspection. The configured
+professional review has not been performed, and `pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Begin with an equation that can be solved completely
@@ -268,8 +268,8 @@ module's real-parameter bifurcation predicate.
 Six `#print axioms` commands audit the generic filter equivalence, the
 classifier bridge, fixed-point invariance, the fixed-point witness bridge, the
 complete square-root classification, and the final example theorem. The
-formal release gate must show no `sorryAx` before this note's validation status
-is upgraded.
+formal release gate shows only standard `propext`, `Classical.choice`, and
+`Quot.sound` dependencies as applicable, with no `sorryAx`.
 
 ## Reproduce the checks
 
