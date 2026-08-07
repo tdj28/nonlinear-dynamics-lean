@@ -2501,7 +2501,7 @@ Equations* 37 (2025), 2281–2321,
 reference boundary between ordinary sensitivity and first-time control.
 
 Current source SHA-256:
-`bb6e1cf5ae0e22a491bc499ca95a6fbafc6e31a7a2a455d7603be0bf39a7ad27`.
+`747205ab52e00260c89da63b10b4869144d066ea49266c55639467da2e56f83d`.
 This is a source candidate, not a validated release checksum. The pages remain
 `draft: true` and `pro_reviewed: false`; owner inspection and publication
 authorization for this new bundle are pending.

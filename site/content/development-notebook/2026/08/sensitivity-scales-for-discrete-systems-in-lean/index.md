@@ -21,7 +21,7 @@ prerequisites:
 lean_module: "NonlinearDynamics.Deterministic.Chaos.Sensitivity"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean"
-lean_source_sha256: "bb6e1cf5ae0e22a491bc499ca95a6fbafc6e31a7a2a455d7603be0bf39a7ad27"
+lean_source_sha256: "747205ab52e00260c89da63b10b4869144d066ea49266c55639467da2e56f83d"
 tags:
   - "Lean 4"
   - "Discrete dynamics"

@@ -25,7 +25,7 @@ entropy, derivative growth, numerical roundoff growth, finite-horizon
 separation, or two-sided time.
 -/
 
-open Filter Function Set
+open Filter Function Set Topology
 
 namespace NonlinearDynamics.Deterministic.Chaos
 
