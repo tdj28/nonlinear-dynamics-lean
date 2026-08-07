@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" role="img" aria-labelledby="banksTitle banksDesc">
+  <title id="banksTitle">Architecture of the Banks sensitivity implication</title>
+  <desc id="banksDesc">Two separated periodic orbit cards fix a global delta. Density chooses periodic p near x, transitivity chooses y near x whose image approaches the far orbit, and the triangle inequality forces p or y to separate from x.</desc>
+  <rect width="760" height="390" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.blue{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.clay{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.line{fill:none;stroke:#7F786D;stroke-width:2}</style>
+  <defs><marker id="arrowBanks" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#7F786D"/></marker></defs>
+  <text x="24" y="28" class="t title">From two periodic orbits to one global sensitivity scale</text>
+  <text x="24" y="48" class="t m">The scale is fixed before the reference state and its neighborhood are received.</text>
+  <rect x="36" y="76" width="210" height="94" rx="12" class="blue"/><rect x="514" y="76" width="210" height="94" rx="12" class="clay"/>
+  <text x="56" y="100" class="t h">Periodic orbit P</text><text x="534" y="100" class="t h">Periodic orbit Q</text>
+  <circle cx="82" cy="132" r="8" fill="#4B6787"/><circle cx="120" cy="132" r="8" fill="#4B6787"/><circle cx="158" cy="132" r="8" fill="#4B6787"/>
+  <circle cx="560" cy="132" r="8" fill="#A67C52"/><circle cx="598" cy="132" r="8" fill="#A67C52"/><circle cx="636" cy="132" r="8" fill="#A67C52"/>
+  <path d="M250 123H506" class="line"/><text x="318" y="111" class="t s">positive separation r</text><text x="343" y="143" class="t h">delta = r / 8</text>
+  <rect x="36" y="202" width="210" height="92" rx="12" class="neutral"/><rect x="275" y="202" width="210" height="92" rx="12" class="neutral"/><rect x="514" y="202" width="210" height="92" rx="12" class="neutral"/>
+  <text x="56" y="226" class="t h">Density</text><text x="56" y="248" class="t s">choose periodic p</text><text x="56" y="267" class="t s">inside the input ball</text>
+  <text x="295" y="226" class="t h">Transitivity + continuity</text><text x="295" y="248" class="t s">choose y in the same ball</text><text x="295" y="267" class="t s">whose iterate nears the far orbit</text>
+  <text x="534" y="226" class="t h">Period alignment</text><text x="534" y="248" class="t s">return p while y remains</text><text x="534" y="267" class="t s">controlled near that orbit</text>
+  <path d="M246 248H267" class="line" marker-end="url(#arrowBanks)"/><path d="M485 248H506" class="line" marker-end="url(#arrowBanks)"/>
+  <rect x="120" y="320" width="520" height="44" rx="10" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="1.5"/>
+  <text x="143" y="340" class="t h">Triangle inequality</text><text x="276" y="340" class="t s">p and y are more than 2 delta apart, so one is more than delta from x.</text>
+  <path d="M380 295V313" class="line" marker-end="url(#arrowBanks)"/>
+</svg>

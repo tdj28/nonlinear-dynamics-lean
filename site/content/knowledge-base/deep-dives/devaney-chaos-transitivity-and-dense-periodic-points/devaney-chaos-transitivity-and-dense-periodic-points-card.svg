@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="deepCardTitle deepCardDesc">
+  <title id="deepCardTitle">Devaney chaos, transitivity, and dense periodic points</title>
+  <desc id="deepCardDesc">Three numbered clause cards lead to an infinite metric space boundary and a global sensitivity scale.</desc>
+  <rect width="1200" height="630" fill="#173f46"/>
+  <text x="70" y="96" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#77bdba">KNOWLEDGE BASE · DEEP DIVE</text>
+  <text x="70" y="185" font-family="system-ui,sans-serif" font-size="54" font-weight="800" fill="#f7f2e8">Devaney chaos</text><text x="70" y="248" font-family="system-ui,sans-serif" font-size="54" font-weight="800" fill="#f7f2e8">from three clauses</text>
+  <rect x="70" y="294" width="585" height="4" fill="#f4c86a"/><text x="70" y="350" font-family="system-ui,sans-serif" font-size="27" fill="#d8e8e4">Why the topological core forces sensitivity</text><text x="70" y="393" font-family="system-ui,sans-serif" font-size="27" fill="#d8e8e4">only across the right theorem boundary.</text>
+  <rect x="750" y="100" width="350" height="90" rx="18" fill="#E8F0F7" stroke="#77bdba" stroke-width="4"/><rect x="750" y="220" width="350" height="90" rx="18" fill="#EAF1E5" stroke="#8caf78" stroke-width="4"/><rect x="750" y="340" width="350" height="90" rx="18" fill="#F3E8E0" stroke="#f4c86a" stroke-width="4"/>
+  <text x="782" y="155" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#173f46">1  Transitivity</text><text x="782" y="275" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#173f46">2  Dense periodic points</text><text x="782" y="395" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#173f46">3  Sensitivity</text>
+  <text x="70" y="525" font-family="ui-monospace,monospace" font-size="24" fill="#f4c86a">infinite MetricSpace → delta &gt; 0</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="290" viewBox="0 0 760 290" role="img" aria-labelledby="transTitle transDesc">
+  <title id="transTitle">Positive-time transport between open sets</title>
+  <desc id="transDesc">A blue open region U contains x. A curved arrow labeled n greater than zero reaches a clay open region V. A short gray time-zero loop inside U is crossed out.</desc>
+  <rect width="760" height="290" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.u{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.v{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}.arrow{fill:none;stroke:#A67C52;stroke-width:3}</style>
+  <defs><marker id="arrowTrans" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#A67C52"/></marker></defs>
+  <text x="24" y="28" class="t title">An ordered pair of open regions creates one transport obligation</text><text x="24" y="48" class="t m">The time and starting point may depend on U and V, but the time is positive.</text>
+  <path d="M55 110C105 72 205 78 246 122C280 158 235 218 145 214C70 211 28 157 55 110Z" class="u"/><path d="M514 105C568 70 678 88 714 137C740 173 693 218 605 211C531 205 482 151 514 105Z" class="v"/>
+  <text x="74" y="103" class="t h">open U</text><text x="636" y="112" class="t h">open V</text><circle cx="155" cy="155" r="10" fill="#4B6787"/><text x="169" y="160" class="t s">x</text><circle cx="610" cy="160" r="10" fill="#A67C52"/><text x="624" y="165" class="t s">f^[n] x</text>
+  <path d="M168 147C280 80 430 82 595 150" class="arrow" marker-end="url(#arrowTrans)"/><text x="350" y="92" class="t h">n &gt; 0</text>
+  <path d="M122 178C89 203 126 224 169 199" fill="none" stroke="#7F786D" stroke-width="2"/><text x="72" y="244" class="t m">time 0 stays at x</text><path d="M68 225L187 248" stroke="#A67C52" stroke-width="3"/>
+  <rect x="24" y="258" width="712" height="22" rx="7" fill="#EAF1E5" stroke="#6F8D5E"/><text x="74" y="274" class="t s">At least one point from U reaches V; the definition does not require every point or every late time.</text>
+</svg>

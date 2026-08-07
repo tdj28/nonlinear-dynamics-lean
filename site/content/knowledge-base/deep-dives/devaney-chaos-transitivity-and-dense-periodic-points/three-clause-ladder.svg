@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" role="img" aria-labelledby="ladderTitle ladderDesc">
+  <title id="ladderTitle">The finite three-cycle passes two Devaney clauses and fails sensitivity</title>
+  <desc id="ladderDesc">A three-state directed cycle feeds green checks for transitivity and dense periodic points. A final sensitivity card is blocked by a singleton ball.</desc>
+  <rect width="760" height="330" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.pass{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.stop{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.node{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.line{fill:none;stroke:#7F786D;stroke-width:2}</style>
+  <defs><marker id="arrowLadder" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#7F786D"/></marker></defs>
+  <text x="24" y="28" class="t title">The finite cycle is the boundary test</text><text x="24" y="48" class="t m">It passes the two topological clauses but cannot supply a nearby distinct state.</text>
+  <circle cx="93" cy="135" r="25" class="node"/><circle cx="170" cy="92" r="25" class="node"/><circle cx="170" cy="178" r="25" class="node"/>
+  <text x="89" y="140" class="t h">0</text><text x="166" y="97" class="t h">1</text><text x="166" y="183" class="t h">2</text>
+  <path d="M117 124L145 103" class="line" marker-end="url(#arrowLadder)"/><path d="M170 118V146" class="line" marker-end="url(#arrowLadder)"/><path d="M147 171L116 151" class="line" marker-end="url(#arrowLadder)"/>
+  <rect x="250" y="76" width="210" height="70" rx="10" class="pass"/><text x="270" y="102" class="t h">1. Transitive</text><text x="270" y="125" class="t s">positive iterates connect all states</text>
+  <rect x="250" y="164" width="210" height="70" rx="10" class="pass"/><text x="270" y="190" class="t h">2. Dense periodic points</text><text x="270" y="213" class="t s">every point has period three</text>
+  <rect x="500" y="110" width="228" height="98" rx="10" class="stop"/><text x="520" y="136" class="t h">3. Sensitivity stops</text><text x="520" y="159" class="t s">the radius 1/2 ball is {0}</text><text x="520" y="181" class="t s">no distinct nearby partner exists</text>
+  <path d="M461 111H489" class="line" marker-end="url(#arrowLadder)"/><path d="M461 199H489" class="line" marker-end="url(#arrowLadder)"/>
+  <rect x="24" y="275" width="712" height="32" rx="8" fill="#EAF1E5" stroke="#6F8D5E"/><text x="46" y="296" class="t s">Adding an infinite genuine metric space is what turns the topological core into a sensitivity theorem.</text>
+</svg>

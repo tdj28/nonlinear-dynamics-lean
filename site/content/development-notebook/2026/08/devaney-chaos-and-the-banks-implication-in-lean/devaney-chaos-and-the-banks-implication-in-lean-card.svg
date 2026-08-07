@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="cardTitle cardDesc">
+  <title id="cardTitle">Devaney chaos and the Banks implication in Lean</title>
+  <desc id="cardDesc">Two separated periodic cycles on the right determine a global sensitivity scale, beside the title of the Lean milestone.</desc>
+  <rect width="1200" height="630" fill="#173f46"/>
+  <text x="70" y="96" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#77bdba">DEVELOPMENT NOTEBOOK · LEAN 4</text>
+  <text x="70" y="190" font-family="system-ui,sans-serif" font-size="58" font-weight="800" fill="#f7f2e8">Devaney chaos</text>
+  <text x="70" y="257" font-family="system-ui,sans-serif" font-size="58" font-weight="800" fill="#f7f2e8">and the Banks implication</text>
+  <rect x="70" y="310" width="670" height="4" fill="#f4c86a"/>
+  <text x="70" y="370" font-family="system-ui,sans-serif" font-size="28" fill="#d8e8e4">Transitivity + dense periodic points</text>
+  <text x="70" y="414" font-family="system-ui,sans-serif" font-size="28" fill="#d8e8e4">force sensitivity under the exact boundary.</text>
+  <circle cx="930" cy="220" r="125" fill="none" stroke="#77bdba" stroke-width="5"/><circle cx="930" cy="220" r="10" fill="#77bdba"/><circle cx="1020" cy="310" r="125" fill="none" stroke="#f4c86a" stroke-width="5"/><circle cx="1020" cy="310" r="10" fill="#f4c86a"/>
+  <path d="M885 365H1065" stroke="#f7f2e8" stroke-width="4"/><text x="925" y="405" font-family="ui-monospace,monospace" font-size="25" fill="#f4c86a">delta = r / 8</text>
+  <text x="70" y="535" font-family="ui-monospace,monospace" font-size="25" fill="#f4c86a">HasDevaneyCore f → IsSensitive f</text>
+</svg>

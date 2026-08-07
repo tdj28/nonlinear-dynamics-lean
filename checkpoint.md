@@ -5,23 +5,22 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `b369347`
+Audited baseline: `main` at `003b08b`
 
-Active direction: **sensitivity to initial conditions is the next deterministic
-discrete vertical slice.** The bifurcation milestone is green at validation
-commit `99ebb98`. It separates parameterized self-map families, fixed and
-specified-period branches, conjugacy-invariant classifier changes, and failure
-of local constancy of the whole-state-space conjugacy class. The elementary
-quadratic family supplies exact zero/one/two fixed-point regimes and a checked
-fixed-point-existence obstruction at parameter zero. Its Research Note, Deep
-Dive, glossary chapter, standalone `Std` tutorial, accessible figures, and
-deterministic cards are public working notes. Workstation, browser,
-warning-fatal Linux leaf and aggregator checks, and the complete guarded
-repository gate pass. Professional review remains deferred; the new public
-articles declare `pro_reviewed: false`.
+Active direction: **close the Devaney-chaos vertical slice, then specify
+symbolic coding.** The source-and-teaching candidate for
+`NonlinearDynamics.Deterministic.Chaos.Devaney` is complete. Its warning-fatal
+leaf and deterministic-aggregator checks pass on the approved Linux builder;
+the exact committed full repository gate, cache preservation, final push, and
+builder termination remain the release-closing steps. The interface preserves
+Devaney's historical three-clause definition while exposing the continuous
+topological core and proving the Banks implication under an infinite genuine
+metric-space hypothesis. Five new teaching pages remain private drafts with
+`pro_reviewed: false` pending owner publication choice and professional review.
 The covered module names include
-`NonlinearDynamics.Deterministic.Discrete.Attraction` and
-`NonlinearDynamics.Deterministic.Discrete.Bifurcation`.
+`NonlinearDynamics.Deterministic.Discrete.Attraction`,
+`NonlinearDynamics.Deterministic.Discrete.Bifurcation`, and
+`NonlinearDynamics.Deterministic.Chaos.Devaney`.
 
 ## Mathematical Editorial Register Audit
 
@@ -2410,19 +2409,83 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Specify Devaney chaos and the Banks implication
+### Close Devaney chaos, then specify symbolic coding
 
-Turn `NonlinearDynamics/Deterministic/Chaos/Devaney.lean` from a placeholder
-into the next vertical slice. Define the chosen topological-transitivity and
-dense-periodic-point interfaces with their nonemptiness and vacuity boundaries
-explicit. Keep sensitivity as the separate metric predicate already supplied
-by `Chaos/Sensitivity.lean`: decide whether the primary Devaney predicate
-bundles it or whether a named theorem derives it from transitivity and dense
-periodic points under the exact no-isolated-points/nontriviality hypotheses of
-the Banks argument. Audit finite, discrete, singleton, and empty spaces before
-freezing the interface. Pair the checked source with a complete educational
-bundle that distinguishes definition, redundant consequence, and theorem
-hypotheses.
+The Devaney source-and-teaching candidate is assembled. After its exact
+committed tree passes the complete guarded cloud gate and its verified Lake
+cache is preserved, the next source milestone is
+`NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean`. That milestone
+must choose an explicit finite alphabet and one-sided or two-sided sequence
+space, define the shift and cylinder topology without hiding nonemptiness
+boundaries, and separate an exact coding/semiconjugacy result from any later
+entropy, mixing, or Devaney-chaos consequence.
+
+### Devaney convention and candidate validation
+
+`formalization/NonlinearDynamics/Deterministic/Chaos/Devaney.lean` now defines
+positive-time `IsTopologicallyTransitive`, positive-period
+`HasDensePeriodicPoints`, the continuous `HasDevaneyCore`, and the historical
+three-clause `IsDevaneyChaotic`. Both open-set properties carry explicit
+`Nonempty X` evidence, so empty-space vacuity is not silently accepted. The
+historical predicate remains the core together with metric sensitivity; the
+project does not redefine Devaney chaos by dropping its third clause.
+
+The design follows Devaney's second-edition three-clause presentation and
+records the 1992 theorem of Banks, Brooks, Cairns, Davis, and Stacey as a named
+implication rather than a definitional shortcut. `HasDevaneyCore.isSensitive`
+uses `[MetricSpace X] [Infinite X]`; it obtains two disjoint finite periodic
+orbits, fixes one positive separation scale, and then uses density,
+transitivity, continuity, period alignment, and the triangle inequality. The
+scale is chosen before the reference point and neighborhood. The finite-cycle
+counterexample documents why infinitude cannot be omitted. Jacelon's 2023 use
+of the reduced convention and Vejnar's 2026 survey are cited to explain why the
+source provides both the historical package and an equivalence theorem under
+the Banks hypotheses without conflating the two conventions.
+
+The public API also supplies nonempty-open transitivity witnesses, open-set
+periodic witnesses, equality after a common positive period, assembly of the
+historical package, the equivalence between the historical and reduced forms
+under the Banks hypotheses, the finite-metric obstruction, and the
+no-isolated-points consequence. The exact source SHA-256 is
+`52fe20359c5c07407e0d3e319a26e9c2dd593c97f88f1dc6b3acf9adc1abf39f`.
+The warning-fatal Devaney leaf and deterministic aggregator pass on the
+approved Linux builder. Axiom reports for the principal implication,
+equivalence, and finite obstruction contain only `propext`,
+`Classical.choice`, and `Quot.sound`; none contains `sorryAx`. The complete
+repository gate is pending the exact candidate commit.
+
+The teaching bundle contains the Notebook entry “Devaney Chaos and the Banks
+Implication in Lean”, the Deep Dive “Devaney Chaos, Transitivity, and Dense
+Periodic Points”, glossary chapters for Devaney chaos, topological
+transitivity, and dense periodic points, six accessible conceptual SVGs, and
+five deterministic social cards. It begins with an exact three-cycle boundary
+example, distinguishes definition from derived consequence, explains the
+metric-versus-pseudometric boundary, and gives literal pinned-project Lean
+commands. The five pages remain `draft: true` and `pro_reviewed: false`; no
+professional review or publication claim is made.
+
+Workstation-safe candidate validation passes: 48/48 substantive-module
+Notebook coverage, 23 coverage regression tests, seven teaching-hygiene tests,
+172 teaching Markdown files, 828 public-reader surfaces, and a warning-fatal
+Hugo Extended 0.160.1 draft render of 512 pages. All five cards reproduce
+byte-for-byte, all new SVGs are well-formed, and `git diff --check` is clean.
+Browser inspection at 1440x1000 and a literal 390x844 viewport covers all five
+pages with no page overflow, broken eager images, KaTeX errors, or raw display
+delimiters. A responsive-caption conflict with inline KaTeX was repaired by
+using equivalent plain-language captions; the page mathematics remains in the
+surrounding prose.
+
+Primary and contextual references recorded in the teaching bundle:
+
+- Robert L. Devaney, *An Introduction to Chaotic Dynamical Systems*, second
+  edition, Westview Press, 2003.
+- John Banks, Jeff Brooks, Grant Cairns, Gary Davis, and Peter Stacey, “On
+  Devaney's Definition of Chaos,” *American Mathematical Monthly* 99(4)
+  (1992), 332–334, <https://doi.org/10.1080/00029890.1992.11995856>.
+- Bhishan Jacelon, “Chaotic tracial dynamics,” *Forum of Mathematics, Sigma*
+  11 (2023), e53, <https://doi.org/10.1017/fms.2023.38>.
+- Benjamin Vejnar, “Topological dynamics and chaos,” *Bulletin of Symbolic
+  Logic* (2026), <https://doi.org/10.1017/bsl.2026.10158>.
 
 ### Sensitivity convention and validated release
 
@@ -2750,7 +2813,10 @@ documentation placeholders:
   explicit nonemptiness, scale monotonicity, neighborhood equivalence,
   isolated/discrete/finite obstructions, forward-stability incompatibility,
   nonexpansive nonexamples, and an exact real doubling-map witness.
-- [ ] `Chaos/Devaney.lean`
+- [x] `Chaos/Devaney.lean`: positive-time transitivity, dense positive-period
+  points, historical and reduced Devaney interfaces, the Banks sensitivity
+  implication with exact infinitude/metric hypotheses, and finite and
+  isolated-point boundaries.
 - [ ] `Chaos/SymbolicCoding.lean`
 
 ### ODEs and concrete models
