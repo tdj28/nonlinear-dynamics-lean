@@ -5,15 +5,15 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `003b08b`
+Audited baseline: `main` at `e9fc6f5`
 
-Active direction: **specify symbolic coding after closing the Devaney builder.**
+Active direction: **specify symbolic coding.**
 The source-and-teaching milestone for
 `NonlinearDynamics.Deterministic.Chaos.Devaney` passes its warning-fatal leaf,
 deterministic aggregator, and complete repository gate at candidate commit
-`4705233` on the approved Linux builder. Its verified Lake cache is preserved
-on retained storage. The final documentation push and exact builder
-termination remain the release-closing steps. The interface preserves
+`4705233` and validation-record commit `e9fc6f5` on the approved Linux builder.
+Its verified Lake cache is preserved on retained storage, the exact task pod is
+terminated, and the project network volume remains. The interface preserves
 Devaney's historical three-clause definition while exposing the continuous
 topological core and proving the Banks implication under an infinite genuine
 metric-space hypothesis. Five new teaching pages remain private drafts with
@@ -2470,8 +2470,12 @@ compressed archive expands to an 8,083,947,520-byte tar stream. Its ephemeral
 copy and sequential retained-volume copy both pass SHA-256 and `zstd -t`; the
 retained `SHA256SUMS-devaney-20260807` ledger passes independently. Earlier
 validated archives remain intact, and the retained volume was never used as a
-live `.lake` tree. The approved builder remains below its $5 ceiling while the
-final documentation closure is replayed.
+live `.lake` tree. Validation-record commit `e9fc6f5` reached `origin/main` and
+then passed the same complete exact-commit cloud gate. The builder ran for
+2,461 seconds at $0.32 per hour, approximately $0.22 of compute spend under the
+$5 ceiling. The exact task pod was then terminated. A post-action inventory
+reports zero task pods and one retained project network volume. No cloud
+resource identifier or credential is recorded here.
 
 The teaching bundle contains the Notebook entry “Devaney Chaos and the Banks
 Implication in Lean”, the Deep Dive “Devaney Chaos, Transitivity, and Dense
@@ -4677,6 +4681,8 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `e9fc6f5`: record the passing exact-commit Devaney full gate, independently
+  verified retained cache, final draft status, and Symbolic Coding handoff.
 - `4705233`: formalize the historical and reduced Devaney interfaces, prove
   the Banks sensitivity implication with exact hypotheses, and add the five-
   page teaching bundle, conceptual figures, deterministic cards, coverage map,
