@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Sensitive dependence on initial conditions</title>
+  <desc id="desc">A social card with nested neighborhoods around x and separated iterated images beyond a fixed delta.</desc>
+  <rect width="1200" height="630" fill="#173f46"/>
+  <text x="70" y="95" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#77bdba">KNOWLEDGE BASE · GLOSSARY</text>
+  <text x="70" y="190" font-family="system-ui,sans-serif" font-size="57" font-weight="800" fill="#f7f2e8">Sensitive dependence</text>
+  <text x="70" y="257" font-family="system-ui,sans-serif" font-size="57" font-weight="800" fill="#f7f2e8">on initial conditions</text>
+  <g fill="none" stroke="#77bdba" stroke-width="4"><ellipse cx="300" cy="430" rx="190" ry="115" opacity=".35"/><ellipse cx="300" cy="430" rx="120" ry="75" opacity=".65"/><ellipse cx="300" cy="430" rx="62" ry="40"/></g>
+  <circle cx="285" cy="430" r="12" fill="#f7f2e8"/><circle cx="330" cy="445" r="12" fill="#f4c86a"/>
+  <path d="M420 420C520 370 590 320 685 300" stroke="#a8d8cf" stroke-width="7" fill="none" marker-end="url(#c)"/>
+  <circle cx="760" cy="275" r="15" fill="#f7f2e8"/><circle cx="1010" cy="490" r="15" fill="#f4c86a"/>
+  <path d="M780 293L990 472" stroke="#b84a5a" stroke-width="5" stroke-dasharray="10 8"/>
+  <rect x="770" y="350" width="230" height="62" rx="16" fill="#f8dfe2"/><text x="885" y="390" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#7c2633">distance &gt; δ</text>
+  <text x="70" y="585" font-family="system-ui,sans-serif" font-size="25" fill="#d8e8e4">One global scale · every state · every neighborhood</text>
+  <defs><marker id="c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a8d8cf"/></marker></defs>
+</svg>

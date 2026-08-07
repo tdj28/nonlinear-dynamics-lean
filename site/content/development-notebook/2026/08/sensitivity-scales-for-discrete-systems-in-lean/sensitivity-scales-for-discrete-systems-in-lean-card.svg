@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Sensitivity scales for discrete systems in Lean</title>
+  <desc id="desc">A social card showing a global delta scale above nested neighborhoods and two later separated orbit points.</desc>
+  <rect width="1200" height="630" fill="#173f46"/>
+  <circle cx="915" cy="320" r="205" fill="none" stroke="#5aa3a8" stroke-width="4" opacity=".45"/><circle cx="915" cy="320" r="135" fill="none" stroke="#77bdba" stroke-width="4" opacity=".7"/><circle cx="915" cy="320" r="70" fill="none" stroke="#a8d8cf" stroke-width="4"/>
+  <circle cx="895" cy="320" r="13" fill="#f7f2e8"/><circle cx="950" cy="348" r="13" fill="#f4c86a"/>
+  <path d="M970 340C1030 270 1050 205 1095 160" fill="none" stroke="#f4c86a" stroke-width="8" marker-end="url(#a)"/>
+  <text x="70" y="100" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#77bdba">DEVELOPMENT NOTEBOOK · LEAN 4</text>
+  <text x="70" y="190" font-family="system-ui,sans-serif" font-size="58" font-weight="800" fill="#f7f2e8">Sensitivity scales</text>
+  <text x="70" y="257" font-family="system-ui,sans-serif" font-size="58" font-weight="800" fill="#f7f2e8">for discrete systems</text>
+  <rect x="70" y="310" width="610" height="4" fill="#f4c86a"/>
+  <text x="70" y="370" font-family="system-ui,sans-serif" font-size="28" fill="#d8e8e4">Fix δ first. Then receive x and its neighborhood.</text>
+  <text x="70" y="414" font-family="system-ui,sans-serif" font-size="28" fill="#d8e8e4">Only then choose the nearby state and time.</text>
+  <text x="70" y="535" font-family="ui-monospace,monospace" font-size="25" fill="#f4c86a">δ &lt; dist (f^[n] x) (f^[n] y)</text>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#f4c86a"/></marker></defs>
+</svg>

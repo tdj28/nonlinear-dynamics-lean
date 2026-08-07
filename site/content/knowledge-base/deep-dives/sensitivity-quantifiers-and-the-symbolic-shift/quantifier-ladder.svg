@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" role="img" aria-labelledby="title desc">
+  <title id="title">Correct and incorrect sensitivity quantifier orders</title>
+  <desc id="desc">The correct path fixes delta, receives x and a neighborhood, then chooses y and n. An incorrect path chooses n before the neighborhood and ends at a contradiction for a prefix of length n plus one.</desc>
+  <rect width="1100" height="500" rx="28" fill="#f7f2e8"/>
+  <text x="550" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" font-weight="700" fill="#173f46">Quantifier order controls the claim</text>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <text x="300" y="96" font-size="20" font-weight="700" fill="#0a7280">Sensitivity</text>
+    <rect x="170" y="115" width="260" height="55" rx="15" fill="#0a7280"/><text x="300" y="150" font-size="19" font-weight="700" fill="white">∃ δ &gt; 0</text>
+    <path d="M300 170V200" stroke="#486b70" stroke-width="4" marker-end="url(#arrow4)"/>
+    <rect x="135" y="203" width="330" height="65" rx="15" fill="#d8e8e4" stroke="#0a7280" stroke-width="2"/><text x="300" y="243" font-size="18" font-weight="700" fill="#173f46">∀ x, ∀ neighborhood U</text>
+    <path d="M300 268V298" stroke="#486b70" stroke-width="4" marker-end="url(#arrow4)"/>
+    <rect x="135" y="301" width="330" height="65" rx="15" fill="#f4c86a" stroke="#9b6715" stroke-width="2"/><text x="300" y="341" font-size="18" font-weight="700" fill="#4d350d">∃ y ∈ U, ∃ n</text>
+    <text x="300" y="406" font-size="17" fill="#355c61">δ &lt; d(fⁿ(x), fⁿ(y))</text>
+    <text x="800" y="96" font-size="20" font-weight="700" fill="#b84a5a">Too strong</text>
+    <rect x="670" y="115" width="260" height="55" rx="15" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/><text x="800" y="150" font-size="18" font-weight="700" fill="#7c2633">∃ one time n</text>
+    <path d="M800 170V200" stroke="#b84a5a" stroke-width="4" marker-end="url(#arrow5)"/>
+    <rect x="635" y="203" width="330" height="65" rx="15" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/><text x="800" y="243" font-size="18" font-weight="700" fill="#7c2633">then ∀ prefix depths k</text>
+    <path d="M800 268V298" stroke="#b84a5a" stroke-width="4" marker-end="url(#arrow5)"/>
+    <rect x="635" y="301" width="330" height="82" rx="15" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/><text x="800" y="333" font-size="17" font-weight="700" fill="#7c2633">choose k = n + 1</text><text x="800" y="360" font-size="15" fill="#7c2633">the exposed bit is forced equal</text>
+    <path d="M674 308L926 376M926 308L674 376" stroke="#b84a5a" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+    <text x="550" y="466" font-size="17" fill="#486b70">A changed dependency is a changed mathematical property.</text>
+  </g>
+  <defs><marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#486b70"/></marker><marker id="arrow5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b84a5a"/></marker></defs>
+</svg>

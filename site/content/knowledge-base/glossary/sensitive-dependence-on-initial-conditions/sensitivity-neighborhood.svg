@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+  <title id="title">Sensitive dependence in nested neighborhoods</title>
+  <desc id="desc">Three nested neighborhoods surround a reference state x. A nearby y lies in the smallest neighborhood. After a witness time, the images of x and y are separated by more than the fixed scale delta.</desc>
+  <rect width="1000" height="520" rx="28" fill="#f7f2e8"/>
+  <text x="500" y="55" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" font-weight="700" fill="#173f46">One fixed scale, every neighborhood</text>
+  <g fill="none" stroke="#0a7280" stroke-width="3">
+    <ellipse cx="265" cy="260" rx="190" ry="150" opacity=".35"/>
+    <ellipse cx="265" cy="260" rx="130" ry="100" opacity=".6"/>
+    <ellipse cx="265" cy="260" rx="72" ry="55"/>
+  </g>
+  <circle cx="250" cy="260" r="11" fill="#173f46"/><text x="233" y="247" text-anchor="end" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#173f46">x</text>
+  <circle cx="292" cy="278" r="11" fill="#f4a340"/><text x="309" y="307" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#7a4a09">y</text>
+  <text x="265" y="440" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#486b70">however small the requested neighborhood</text>
+  <path d="M455 250C520 205 535 185 590 165" fill="none" stroke="#486b70" stroke-width="5" marker-end="url(#arrow6)"/>
+  <path d="M455 282C520 327 535 347 590 367" fill="none" stroke="#486b70" stroke-width="5" marker-end="url(#arrow6)"/>
+  <text x="515" y="260" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#486b70">fⁿ</text>
+  <circle cx="650" cy="145" r="13" fill="#173f46"/><text x="676" y="151" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#173f46">fⁿ(x)</text>
+  <circle cx="830" cy="385" r="13" fill="#f4a340"/><text x="856" y="391" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#7a4a09">fⁿ(y)</text>
+  <path d="M665 163L815 367" stroke="#b84a5a" stroke-width="4" stroke-dasharray="9 7"/>
+  <rect x="615" y="235" width="250" height="60" rx="15" fill="#f8dfe2" stroke="#b84a5a" stroke-width="2"/>
+  <text x="740" y="273" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#7c2633">distance &gt; fixed δ</text>
+  <defs><marker id="arrow6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#486b70"/></marker></defs>
+</svg>

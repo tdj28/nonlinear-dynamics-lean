@@ -7,6 +7,10 @@
     "module": "NonlinearDynamics.Deterministic.Discrete.Bifurcation",
     "notebook": "site/content/development-notebook/2026/08/bifurcation-interfaces-for-discrete-systems-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean": {
+    "module": "NonlinearDynamics.Deterministic.Chaos.Sensitivity",
+    "notebook": "site/content/development-notebook/2026/08/sensitivity-scales-for-discrete-systems-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Discrete/Conjugacy.lean": {
     "module": "NonlinearDynamics.Deterministic.Discrete.Conjugacy",
     "notebook": "site/content/development-notebook/2026/08/conjugacies-and-semiconjugacies-for-discrete-systems-in-lean/index.md"

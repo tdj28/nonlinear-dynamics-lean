@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 500" role="img" aria-labelledby="title desc">
+  <title id="title">Isolated point obstruction to sensitivity</title>
+  <desc id="desc">A singleton open neighborhood contains only x, forcing the witness y to equal x. Their two orbit rows remain identical, so their distance never exceeds a positive scale.</desc>
+  <rect width="1080" height="500" rx="28" fill="#f7f2e8"/>
+  <text x="540" y="55" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" font-weight="700" fill="#173f46">A singleton neighborhood stops sensitivity</text>
+  <g font-family="system-ui,sans-serif">
+    <circle cx="180" cy="220" r="105" fill="#e7d9ba" stroke="#9b6715" stroke-width="4" stroke-dasharray="10 8"/>
+    <circle cx="180" cy="220" r="11" fill="#0a7280"/>
+    <text x="180" y="203" text-anchor="middle" font-size="20" font-weight="700" fill="#173f46">{x} is open</text>
+    <text x="180" y="254" text-anchor="middle" font-size="18" fill="#4d350d">only y = x fits</text>
+    <path d="M295 220H410" stroke="#486b70" stroke-width="5" marker-end="url(#arrow2)"/>
+    <text x="350" y="200" text-anchor="middle" font-size="16" fill="#486b70">iterate</text>
+    <g fill="#0a7280">
+      <circle cx="470" cy="165" r="10"/><circle cx="600" cy="165" r="10"/><circle cx="730" cy="165" r="10"/><circle cx="860" cy="165" r="10"/>
+      <circle cx="470" cy="275" r="10"/><circle cx="600" cy="275" r="10"/><circle cx="730" cy="275" r="10"/><circle cx="860" cy="275" r="10"/>
+    </g>
+    <path d="M470 165H860M470 275H860" stroke="#0a7280" stroke-width="4"/>
+    <path d="M470 165V275M600 165V275M730 165V275M860 165V275" stroke="#b84a5a" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="430" y="171" text-anchor="end" font-size="18" font-weight="700" fill="#173f46">fⁿ(x)</text>
+    <text x="430" y="281" text-anchor="end" font-size="18" font-weight="700" fill="#173f46">fⁿ(y)</text>
+    <text x="665" y="226" text-anchor="middle" font-size="21" font-weight="700" fill="#7c2633">distance = 0 at every n</text>
+    <rect x="315" y="370" width="650" height="72" rx="18" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/>
+    <text x="640" y="414" text-anchor="middle" font-size="21" font-weight="700" fill="#7c2633">No positive δ can satisfy δ &lt; d(fⁿ(x), fⁿ(y)).</text>
+  </g>
+  <defs><marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#486b70"/></marker></defs>
+</svg>

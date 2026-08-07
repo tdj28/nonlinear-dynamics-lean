@@ -2425,6 +2425,109 @@ space/topological companion. Pair the checked source with a complete
 educational bundle and a finite standalone worksheet that displays both a
 sensitive model and a quantifier-order near miss.
 
+### Sensitivity convention and source candidate
+
+The source-and-teaching candidate now covers
+`NonlinearDynamics.Deterministic.Chaos.Sensitivity` in
+`formalization/NonlinearDynamics/Deterministic/Chaos/Sensitivity.lean`. It
+uses the standard metric quantifier order
+
+\[
+\exists\delta>0\;\forall x\;\forall\varepsilon>0\;\exists y\;\exists n\in
+\mathbb N,\qquad
+d(y,x)<\varepsilon\quad\text{and}\quad
+\delta<d(f^n(x),f^n(y)).
+\]
+
+The convention is deliberately metric-first. A topology supplies
+neighborhoods but no canonical global separation scale. On noncompact spaces,
+sensitivity can depend on the compatible metric. Good and Macías, “What is
+topological about topological dynamics?”, *Discrete and Continuous Dynamical
+Systems* 38(3) (2018), 1007–1031,
+<https://doi.org/10.3934/dcds.2018043>, Theorem 3.2, supplies the compact
+metric/uniform/Hausdorff equivalence that explains why those forms should not
+be identified without hypotheses. A uniform-space companion is therefore
+deferred until a consumer needs a sensitivity entourage and the accompanying
+equivalence theorem.
+
+The strict `δ < dist ...` inequality follows the common Devaney-style
+presentation used by Banks, Brooks, Cairns, Davis, and Stacey, “On Devaney's
+Definition of Chaos”, *American Mathematical Monthly* 99(4) (1992), 332–334,
+<https://doi.org/10.1080/00029890.1992.11995856>. A weak `δ ≤ dist ...`
+version gives the same existential property only after shrinking a positive
+constant; it does not preserve the same named scale. Natural-number time
+includes zero, matching a standard convention, while the source proves that a
+witness whose initial distance is already below the scale must have positive
+time. Akin and Kolyada, “Li–Yorke sensitivity”, *Nonlinearity* 16 (2003),
+1421–1433, <https://doi.org/10.1088/0951-7715/16/4/313>, §3, anchors the
+distinction between pointwise instability and a global sensitivity constant.
+Auslander and Yorke, “Interval maps, factors of maps, and chaos”, *Tohoku
+Mathematical Journal* 32 (1980), 177–188,
+<https://doi.org/10.2748/tmj/1178229634>, pp. 181–182, is the historical
+pointwise stability/instability reference.
+
+`IsSensitiveWith` explicitly contains `Nonempty X`. Without this guard the
+universal state quantifier would make the empty phase space sensitive
+vacuously. The theorem suite includes scale monotonicity, distinct and
+positive-time witnesses, ball/neighborhood equivalence under the fixed
+pseudo-metric, the isolated-singleton obstruction, failure on discrete spaces
+and finite genuine metric spaces, the resulting absence of isolated points,
+pointwise incompatibility with the existing forward-stability interface,
+nonexpansive and identity nonexamples, and the exact sensitive real doubling
+map with scale one. Continuity, compactness, and surjectivity are theorem
+hypotheses rather than hidden parts of the raw predicate.
+
+The paired draft teaching bundle consists of the Development Notebook entry
+“Sensitivity Scales for Discrete Systems in Lean”, the Deep Dive “Sensitivity
+Quantifiers and the Symbolic Shift”, the glossary chapter “Sensitive
+Dependence on Initial Conditions”, five accessible conceptual SVGs, three
+deterministic social cards, and a standalone `Std` worksheet. A positive
+finite metric-state example would be mathematically impossible because finite
+metric spaces are discrete. The worksheet therefore uses infinite binary
+streams with finite-prefix witnesses: it copies an arbitrary requested prefix,
+flips the next bit, and shifts that bit to the head. Its second theorem refutes
+selecting one separation time before the prefix depth. The exact standalone
+Lean 4.32.0 check passes on the workstation. The worksheet does not formalize
+the Cantor metric or by itself establish metric sensitivity of the shift.
+
+The candidate keeps sensitivity separate from positive expansivity, mixing,
+entropy, numerical roundoff, and finite-time divergence. It asserts no rate,
+persistent separation, Lyapunov exponent, derivative growth, bounded witness
+time as neighborhoods shrink, Devaney-chaos theorem, or arbitrary
+topological-conjugacy invariance on noncompact spaces. Antunes and Carvalho,
+“First-time Sensitive Homeomorphisms”, *Journal of Dynamics and Differential
+Equations* 37 (2025), 2281–2321,
+<https://doi.org/10.1007/s10884-024-10362-x>, Definitions 1.1–1.3, provides a
+reference boundary between ordinary sensitivity and first-time control.
+
+Current source SHA-256:
+`bb6e1cf5ae0e22a491bc499ca95a6fbafc6e31a7a2a455d7603be0bf39a7ad27`.
+This is a source candidate, not a validated release checksum. The pages remain
+`draft: true` and `pro_reviewed: false`; owner inspection and publication
+authorization for this new bundle are pending.
+
+Workstation-safe candidate validation passes. The standalone Lean 4.32.0
+worksheet checks with no output. All three social cards reproduce byte for
+byte and all SVGs are well-formed. `make workstation-check` reports 47/47
+substantive-module Notebook coverage, 23 coverage regression tests, seven
+teaching-hygiene tests, 167 teaching Markdown files, 806 public-reader
+surfaces, and a warning-fatal Hugo Extended 0.160.1 draft render of 495 pages.
+`git diff --check` is clean.
+
+Browser inspection covers the Notebook, Deep Dive, and glossary page at
+1440x1000 and at a literal 390x844 viewport. Each page has one `h1`, equal
+client and scroll widths, no broken or alt-less images, no KaTeX errors or raw
+delimiters, and no console warnings or errors. Direct mobile inspection caught
+and repaired a 680-pixel wide-figure crop and malformed HTML caused by literal
+comparison characters inside two Lean-bridge parameters. The repaired
+conceptual figures render at 352 pixels inside the 390-pixel viewport.
+
+The remaining release sequence is a coherent source-candidate commit and
+push, fresh explicit approval for paid Linux compute, warning-fatal leaf and
+deterministic-aggregator checks, the complete guarded gate, verified sequential
+cache preservation on the retained volume, checkpoint closure, final push, and
+termination of the exact builder while retaining the volume.
+
 ### Bifurcation release closure
 
 The bifurcation source was assembled and publicly paired at candidate commit

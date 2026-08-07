@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Sensitivity quantifiers and the symbolic shift</title>
+  <desc id="desc">A social card with two matching binary prefixes, a flipped next bit, and an arrow moving the difference to the head.</desc>
+  <rect width="1200" height="630" fill="#f7f2e8"/>
+  <text x="70" y="92" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#0a7280">DEEP DIVE · DISCRETE DYNAMICS</text>
+  <text x="70" y="180" font-family="system-ui,sans-serif" font-size="57" font-weight="800" fill="#173f46">Sensitivity quantifiers</text>
+  <text x="70" y="247" font-family="system-ui,sans-serif" font-size="57" font-weight="800" fill="#173f46">and the symbolic shift</text>
+  <g font-family="ui-monospace,monospace" font-size="35" font-weight="700" text-anchor="middle">
+    <text x="115" y="385" fill="#173f46">x</text><text x="115" y="465" fill="#173f46">y</text>
+    <text x="240" y="385" fill="#0a7280">0 1 0 1 0 1</text><text x="240" y="465" fill="#0a7280">0 1 0 1 0 1</text>
+    <rect x="405" y="340" width="65" height="62" rx="10" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/><text x="438" y="383" fill="#7c2633">0</text>
+    <rect x="405" y="420" width="65" height="62" rx="10" fill="#dff1f2" stroke="#0a7280" stroke-width="3"/><text x="438" y="463" fill="#0a7280">1</text>
+    <text x="540" y="385" fill="#486b70">1 0 …</text><text x="540" y="465" fill="#486b70">1 0 …</text>
+  </g>
+  <path d="M650 410H825" stroke="#9b6715" stroke-width="8" marker-end="url(#b)"/>
+  <text x="737" y="382" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#4d350d">shift k times</text>
+  <rect x="875" y="325" width="245" height="175" rx="24" fill="#173f46"/>
+  <text x="997" y="380" text-anchor="middle" font-family="ui-monospace,monospace" font-size="34" font-weight="700" fill="#f8dfe2">0…</text>
+  <text x="997" y="445" text-anchor="middle" font-family="ui-monospace,monospace" font-size="34" font-weight="700" fill="#dff1f2">1…</text>
+  <text x="70" y="570" font-family="system-ui,sans-serif" font-size="25" fill="#486b70">The witness time responds to the requested prefix depth.</text>
+  <defs><marker id="b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#9b6715"/></marker></defs>
+</svg>

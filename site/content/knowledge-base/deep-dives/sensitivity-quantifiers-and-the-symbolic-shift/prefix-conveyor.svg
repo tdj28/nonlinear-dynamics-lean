@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" role="img" aria-labelledby="title desc">
+  <title id="title">A flipped bit moves to the head under the one-sided shift</title>
+  <desc id="desc">Two streams agree in positions zero through five and differ at position six. Six left shifts discard the common prefix and bring the differing bits to position zero.</desc>
+  <rect width="1100" height="520" rx="28" fill="#f7f2e8"/>
+  <text x="550" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" font-weight="700" fill="#173f46">Same six-bit prefix, different next bit</text>
+  <g font-family="ui-monospace,monospace" font-size="27" font-weight="700" text-anchor="middle">
+    <text x="80" y="137" fill="#173f46">x</text><text x="80" y="227" fill="#173f46">y</text>
+    <g fill="#d8e8e4" stroke="#0a7280" stroke-width="2">
+      <rect x="120" y="95" width="68" height="60" rx="10"/><rect x="194" y="95" width="68" height="60" rx="10"/><rect x="268" y="95" width="68" height="60" rx="10"/><rect x="342" y="95" width="68" height="60" rx="10"/><rect x="416" y="95" width="68" height="60" rx="10"/><rect x="490" y="95" width="68" height="60" rx="10"/>
+      <rect x="120" y="185" width="68" height="60" rx="10"/><rect x="194" y="185" width="68" height="60" rx="10"/><rect x="268" y="185" width="68" height="60" rx="10"/><rect x="342" y="185" width="68" height="60" rx="10"/><rect x="416" y="185" width="68" height="60" rx="10"/><rect x="490" y="185" width="68" height="60" rx="10"/>
+    </g>
+    <g fill="#173f46"><text x="154" y="135">0</text><text x="228" y="135">1</text><text x="302" y="135">0</text><text x="376" y="135">1</text><text x="450" y="135">0</text><text x="524" y="135">1</text><text x="154" y="225">0</text><text x="228" y="225">1</text><text x="302" y="225">0</text><text x="376" y="225">1</text><text x="450" y="225">0</text><text x="524" y="225">1</text></g>
+    <rect x="574" y="95" width="68" height="60" rx="10" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/><text x="608" y="135" fill="#7c2633">0</text>
+    <rect x="574" y="185" width="68" height="60" rx="10" fill="#dff1f2" stroke="#0a7280" stroke-width="3"/><text x="608" y="225" fill="#0a7280">1</text>
+    <text x="690" y="135" fill="#486b70">1 0 1 …</text><text x="690" y="225" fill="#486b70">1 0 1 …</text>
+  </g>
+  <path d="M550 285V350" stroke="#9b6715" stroke-width="6" marker-end="url(#arrow3)"/>
+  <text x="590" y="326" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#4d350d">shift 6 times</text>
+  <g font-family="ui-monospace,monospace" font-size="28" font-weight="700" text-anchor="middle">
+    <text x="260" y="432" fill="#173f46">σ⁶(x)</text><rect x="330" y="385" width="75" height="64" rx="11" fill="#f8dfe2" stroke="#b84a5a" stroke-width="3"/><text x="367" y="427" fill="#7c2633">0</text>
+    <text x="670" y="432" fill="#173f46">σ⁶(y)</text><rect x="740" y="385" width="75" height="64" rx="11" fill="#dff1f2" stroke="#0a7280" stroke-width="3"/><text x="777" y="427" fill="#0a7280">1</text>
+    <text x="550" y="485" font-family="system-ui,sans-serif" font-size="19" fill="#486b70">The chosen neighborhood fixes the prefix; the witness time responds to its length.</text>
+  </g>
+  <defs><marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#9b6715"/></marker></defs>
+</svg>
