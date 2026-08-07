@@ -2437,6 +2437,33 @@ the exact continuity or smoothness hypotheses required by Mathlib. It must not
 infer continuous dependence, a homeomorphism, or a differentiable flow merely
 from an unstructured family of existential curve witnesses.
 
+The current source candidate is the now-substantive module
+`NonlinearDynamics.Deterministic.ODE.ToFlow`. It selects the unique global
+integral curve through each point, proves the restart identity by applying
+Mathlib's time-translation lemma and the checked uniqueness interface, and
+packages the resulting identity and additive-action laws. The construction of
+`Flow ℝ M` takes joint continuity of the uncurried time-and-state map as an
+explicit hypothesis. This is the canonical stochastic-stability-adjacent
+design decision for the deterministic ODE layer: uniqueness owns the
+algebraic flow laws, while continuous dependence owns the topology. The
+module does not infer joint continuity from continuity of each individual
+time curve and does not claim smooth parameter dependence.
+
+On the approved Linux builder, the warning-fatal ToFlow leaf and the
+warning-fatal deterministic aggregator pass. The paired private-draft
+teaching bundle includes a Development Notebook, the Deep Dive "From Global
+Integral Curves to Topological Flows", and substantive glossary entries for
+flow and continuous dependence on initial conditions. Workstation validation
+passes the 51-module coverage gate, teaching-source audit, public-reader
+language audit, and warning-fatal 548-page Hugo Extended 0.160.1 render.
+Browser inspection passes for all four pages at 1440 by 1000 and at a literal
+390 by 844 viewport: each has one `h1`, equal client and scroll widths, loaded
+lazy images with alt text, no raw TeX delimiters, and no console warnings or
+errors. The exact-commit full gate, cache preservation, release commits, and
+resource shutdown remain pending at this checkpoint. The warning-fatal source
+SHA-256 is
+`01994837eefd5c21d00ff9fcd8f118db9a48d186c2a5333ef65fe9a20072ac16`.
+
 ### ODE global-existence convention and validated release
 
 The current source candidate is

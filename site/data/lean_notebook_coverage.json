@@ -35,6 +35,10 @@
     "module": "NonlinearDynamics.Deterministic.ODE.GlobalExistence",
     "notebook": "site/content/development-notebook/2026/08/global-integral-curves-from-uniform-local-time-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/ODE/ToFlow.lean": {
+    "module": "NonlinearDynamics.Deterministic.ODE.ToFlow",
+    "notebook": "site/content/development-notebook/2026/08/flows-from-unique-global-integral-curves-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean": {
     "module": "NonlinearDynamics.Random.ComplexGaussianFamilies",
     "notebook": "site/content/development-notebook/2026/07/independent-complex-gaussian-families/index.md"

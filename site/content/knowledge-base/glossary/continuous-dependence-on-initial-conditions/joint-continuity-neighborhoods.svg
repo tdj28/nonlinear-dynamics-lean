@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-labelledby="title desc">
+  <title id="title">Joint continuity controls a time-state neighborhood</title>
+  <desc id="desc">A rectangle around a time-state input maps into a small output interval. A comparison panel shows separate time lines that leave diagonal approaches uncontrolled.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#315f63"/></marker></defs>
+  <rect width="960" height="480" rx="24" fill="#fbf8f0"/>
+  <text x="54" y="58" font-family="Georgia,serif" font-size="30" fill="#23343b">Control the pair, not only each line</text>
+  <rect x="70" y="120" width="250" height="250" rx="18" fill="#f1e9da" stroke="#315f63" stroke-width="3"/>
+  <rect x="135" y="190" width="120" height="105" rx="12" fill="#d5e6df" stroke="#b24b40" stroke-width="4"/>
+  <circle cx="195" cy="242" r="9" fill="#23343b"/>
+  <text x="95" y="404" font-family="Arial,sans-serif" font-size="18" fill="#23343b">nearby time-state pairs</text>
+  <line x1="335" y1="245" x2="535" y2="245" stroke="#315f63" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="555" y="188" width="170" height="114" rx="55" fill="#e5efea" stroke="#315f63" stroke-width="3"/>
+  <circle cx="640" cy="245" r="10" fill="#b24b40"/>
+  <text x="566" y="335" font-family="Arial,sans-serif" font-size="18" fill="#23343b">one output neighborhood</text>
+  <g stroke="#7a4d69" stroke-width="3"><line x1="790" y1="145" x2="790" y2="355"/><line x1="830" y1="145" x2="830" y2="355"/><line x1="870" y1="145" x2="870" y2="355"/></g>
+  <path d="M770 350 L895 160" stroke="#b24b40" stroke-width="4" stroke-dasharray="8 7"/>
+  <text x="755" y="404" font-family="Arial,sans-serif" font-size="17" fill="#7a4d69">fixed lines miss diagonals</text>
+</svg>

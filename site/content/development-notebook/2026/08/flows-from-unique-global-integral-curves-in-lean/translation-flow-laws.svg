@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="500" viewBox="0 0 960 500" role="img" aria-labelledby="title desc">
+  <title id="title">Translation flow laws</title>
+  <desc id="desc">Three parallel trajectories move from time zero through time s to time s plus t. A combined arrow reaches the same endpoint as the two consecutive arrows.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#315f63"/></marker></defs>
+  <rect width="960" height="500" rx="24" fill="#fbf8f0"/>
+  <text x="54" y="58" font-family="Georgia,serif" font-size="30" fill="#23343b">Translation flow: one law on every trajectory</text>
+  <g font-family="Arial,sans-serif" font-size="18" fill="#7a4d69"><text x="126" y="104">time 0</text><text x="448" y="104">time s</text><text x="754" y="104">time s + t</text></g>
+  <g stroke="#d6c9b5" stroke-width="2" stroke-dasharray="7 7"><line x1="166" y1="122" x2="166" y2="406"/><line x1="480" y1="122" x2="480" y2="406"/><line x1="794" y1="122" x2="794" y2="406"/></g>
+  <g stroke="#315f63" stroke-width="5" fill="none" marker-end="url(#arrow)"><line x1="177" y1="180" x2="468" y2="180"/><line x1="491" y1="180" x2="782" y2="180"/><line x1="177" y1="280" x2="468" y2="280"/><line x1="491" y1="280" x2="782" y2="280"/><line x1="177" y1="380" x2="468" y2="380"/><line x1="491" y1="380" x2="782" y2="380"/></g>
+  <g fill="#b24b40"><circle cx="166" cy="180" r="10"/><circle cx="480" cy="180" r="10"/><circle cx="794" cy="180" r="10"/><circle cx="166" cy="280" r="10"/><circle cx="480" cy="280" r="10"/><circle cx="794" cy="280" r="10"/><circle cx="166" cy="380" r="10"/><circle cx="480" cy="380" r="10"/><circle cx="794" cy="380" r="10"/></g>
+  <path d="M166 425 C350 485 610 485 794 425" fill="none" stroke="#7a4d69" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="388" y="474" font-family="Arial,sans-serif" font-size="18" fill="#7a4d69">one step of time s + t</text>
+</svg>
