@@ -2393,6 +2393,18 @@ scroll widths, and direct visual inspection confirms contained, legible
 responsive layouts. All five conceptual SVGs also render directly. The
 temporary Hugo server and browser session were stopped after QA.
 
+Release closure on 2026-08-06: milestone commit `c67524d` reached
+`origin/main`. The successful ephemeral `.lake` tree was archived sequentially
+as `lake-manifest-pinned-conjugacy-20260806.tar.zst` on the retained volume
+without replacing prior validated archives. The new 2,469,347,763-byte
+compressed archive expands to an 8,073,041,920-byte tar stream and passes
+`zstd -t`; it and the retained Lean 4.32.0 toolchain archive both pass
+`SHA256SUMS-conjugacy-20260806`. The builder ran for 715 seconds at $0.32 per
+hour, approximately $0.06 of compute spend. The exact task pod was then
+terminated. A post-action inventory reports zero task pods and one retained
+project network volume. No cloud resource identifier or credential is
+recorded here.
+
 ## Exact Next Milestone
 
 ### Specify deterministic discrete bifurcation interfaces
