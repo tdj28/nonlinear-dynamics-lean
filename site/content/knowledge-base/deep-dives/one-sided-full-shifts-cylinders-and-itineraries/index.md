@@ -34,9 +34,10 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** The warning-fatal source-module check
-passes. The deterministic aggregator, complete project gate, and professional
-review remain pending, so <code>pro_reviewed</code> remains false.
+**Editorial and validation status.** Candidate commit <code>6bf8517</code>
+passes the warning-fatal source-module check, deterministic aggregator, and
+complete project gate. Professional review remains pending, so
+<code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 ## Learning objectives

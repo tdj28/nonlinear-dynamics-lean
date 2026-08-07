@@ -5,21 +5,20 @@
 
 Last updated: 2026-08-07
 
-Audited baseline: `main` at `465e068`
+Audited baseline: `main` at `6bf8517`
 
-Active direction: **compile and validate one-sided symbolic coding.**
-The source-and-teaching milestone for
-`NonlinearDynamics.Deterministic.Chaos.Devaney` passes its warning-fatal leaf,
-deterministic aggregator, and complete repository gate at candidate commit
-`4705233` and validation-record commit `e9fc6f5` on the approved Linux builder;
-closure commit `465e068` records verified cache preservation and termination of
-the exact task pod while retaining the project network volume. The next
-candidate specifies the one-sided full shift, prefix cylinders, positive-time
-transitivity, dense positive-period points, a Devaney consequence, and exact
-itinerary semiconjugacy/factor gates. Its Lean leaf is intentionally recorded
-as warning-fatal green on the approved Linux builder; the deterministic
-aggregator and exact-commit full gate remain pending. The four paired teaching pages are private drafts with
-`pro_reviewed: false`. The covered module names include
+Active direction: **record and close one-sided symbolic coding.**
+Candidate commit `6bf8517` for
+`NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` passes its warning-fatal
+leaf, deterministic aggregator, and complete exact-candidate repository gate
+on the approved Linux builder. The milestone specifies the one-sided full
+shift, prefix cylinders, positive-time transitivity, dense positive-period
+points, a Devaney consequence, and exact itinerary semiconjugacy/factor gates.
+The next release actions are the validation-record commit, its exact-commit
+full-gate replay, verified cache preservation, and termination of the exact
+task pod while retaining the project network volume. The four paired teaching
+pages remain private drafts with `pro_reviewed: false`. The covered module
+names include
 `NonlinearDynamics.Deterministic.Discrete.Attraction`,
 `NonlinearDynamics.Deterministic.Discrete.Bifurcation`, and
 `NonlinearDynamics.Deterministic.Chaos.Devaney`, with candidate coverage for
@@ -1813,17 +1812,16 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,222 Lean jobs at Devaney candidate
-  commit `4705233` on the approved Linux builder. The Devaney leaf,
-  deterministic aggregator, project root, 48/48 proof-to-prose coverage, 23
-  coverage regression tests, seven hygiene regression tests, the 172-file
-  teaching scan, the 828-surface reader-language scan, and the warning-fatal
-  512-page Hugo render pass.
-- Lean inventory: forty-eight substantive modules are cloud-validated and
-  paired with comprehensive Notebook pages. A forty-ninth source-and-teaching
-  candidate now occupies `Chaos/SymbolicCoding.lean`; its warning-fatal leaf
-  and full gate remain pending. The later ODE and model placeholders and the
-  `.gitkeep`-only Quantum Chaos branches remain roadmap work.
+- Last fully green repository build: 3,223 Lean jobs at Symbolic Coding
+  candidate commit `6bf8517` on the approved Linux builder. The warning-fatal
+  leaf, deterministic aggregator, project root, 49/49 proof-to-prose coverage,
+  23 coverage regression tests, seven hygiene regression tests, the 176-file
+  teaching scan, the 846-surface reader-language scan, and the warning-fatal
+  524-page Hugo render pass.
+- Lean inventory: forty-nine substantive modules are cloud-validated and
+  paired with comprehensive Notebook pages. The later ODE and model
+  placeholders and the `.gitkeep`-only Quantum Chaos branches remain roadmap
+  work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
   259,256 tokens across thirty-nine Notebook companions, 308,426 tokens across
@@ -1880,16 +1878,24 @@ bridge, or stable-manifold theorem.
 | `NonlinearDynamics.Random.RandomCocycles.SubadditiveKingman` | Total positive-time normalization, guarded real-liminf/event equivalence, double-rational null exhaustion, almost-everywhere lower-liminf control with explicit boundedness, Birkhoff addback, and full normalized log-positive cocycle convergence from the RMT-29/RMT-32 squeeze | `log-positive-kingman-convergence-from-rational-lower-deviations-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.RealLogNormIntegrability` | Total finite-time real-log norms, pointwise unit propagation, measurable total inverse envelopes, reverse-order inverse orbit majorants, integrable forward-and-inverse tail rails, a signed subadditive candidate, a checked probability-space missing-tail counterexample, and strictly positive-rate real-log convergence without invertibility | `real-log-norm-integrability-from-forward-and-inverse-tails-in-lean` |
 | `NonlinearDynamics.Random.RandomCocycles.RealLogNormKingman` | Signed finite-horizon integrals, inverse-tail linear controls, a finite integrated real-log Fekete rate, lower-liminf and generalized upper-limsup sample rails, pre-ergodic probability almost-everywhere convergence, empty dimension, positive-rate identification, and exact scalar contraction/neutral/expansion boundaries | `signed-real-log-kingman-convergence-in-lean` |
+| `NonlinearDynamics.Deterministic.Discrete.Stability` | Forward-orbit stability, fixed-point specialization, metric characterizations, nonexpansive criteria, and exact boundary examples | `forward-orbit-stability-for-discrete-systems-in-lean` |
+| `NonlinearDynamics.Deterministic.Discrete.Attraction` | Point and nonempty-set attraction, basins, local and global attracting fixed points, asymptotic stability, and singleton bridges | `attraction-and-basins-for-discrete-systems-in-lean` |
+| `NonlinearDynamics.Deterministic.Discrete.Lyapunov` | Positive-definite certificates, weak and strict descent, invariant sublevels, stability, and attraction endpoints | `lyapunov-functions-for-discrete-systems-in-lean` |
+| `NonlinearDynamics.Deterministic.Discrete.Conjugacy` | Algebraic and topological semiconjugacy, factor maps, conjugacy, and transport of periodicity, attraction, and basins | `conjugacies-and-semiconjugacies-for-discrete-systems-in-lean` |
+| `NonlinearDynamics.Deterministic.Discrete.Bifurcation` | Parameterized families, classifier changes, conjugacy obstructions, isolated-parameter boundaries, and an exact quadratic example | `bifurcation-interfaces-for-discrete-systems-in-lean` |
+| `NonlinearDynamics.Deterministic.Chaos.Sensitivity` | Metric sensitivity, scale and neighborhood interfaces, finite/discrete obstructions, stability incompatibility, and doubling-map witnesses | `sensitivity-scales-for-discrete-systems-in-lean` |
+| `NonlinearDynamics.Deterministic.Chaos.Devaney` | Positive-time transitivity, dense positive-period points, historical/reduced interfaces, and the Banks sensitivity implication | `devaney-chaos-and-the-banks-implication-in-lean` |
+| `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` | One-sided full shift, prefix cylinders, splicing, periodic completion, Devaney chaos, and itinerary factor-map gates | `one-sided-symbolic-coding-and-the-full-shift-in-lean` |
 
-The root aggregator imports all forty modules. The proof-to-prose manifest and
+The root aggregator imports all forty-nine substantive modules. The proof-to-prose manifest and
 `scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
 declaration visibility.
 
 ## Completed Teaching Layer
 
-- Forty comprehensive Development Notebook chapters in an explicit
+- Forty-nine comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
-- Thirty-seven textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
+- Forty-six textbook-scale Deep Dives: *Random Matrices: From Outcomes to Spectra*,
   *Gaussian Laws, Independence, and Normalization*, *Complex Gaussian
   Coordinates and Geometry*, *Finite Product Probability Spaces and
   Independent Gaussian Fields*, *Finite Hermitian Matrices from Coordinates*,
@@ -1925,7 +1931,8 @@ declaration visibility.
   Selection*, followed by *The Guarded Real-Liminf Bridge to Log-Positive
   Kingman Convergence*, followed by *The Forward-and-Inverse Tail Sandwich for
   Finite-Time Real Log Norms*.
-- Sixty-three glossary chapters, now including the integrated real-log growth
+- Seventy-five glossary chapters, now including symbolic dynamics and cylinder
+  sets alongside the integrated real-log growth
   rate, integrable generator log tails,
   the finite orbit visit count,
   limit superior, limit inferior, ergodicity, normalized space
@@ -2411,9 +2418,9 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Compile and close one-sided symbolic coding
+### Record and close one-sided symbolic coding
 
-`NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean` is now a
+`NonlinearDynamics/Deterministic/Chaos/SymbolicCoding.lean` is now a validated
 source-and-teaching candidate rather than a placeholder. It chooses one-sided
 sequences `ℕ → A` and defines the time-one shift by reusing Mathlib's
 `SymbolicDynamics.FullShift.shift 1`. Finite prefix cylinders are explicitly
@@ -2459,10 +2466,14 @@ approved Linux builder. The leaf repair qualifies the basis type through
 expected function-space type for `PiNat.metricSpace`, and removes one redundant
 simp argument. Axiom reports for transitivity, dense periodic points, Devaney
 chaos, and the factor map contain only `propext`, `Classical.choice`, and
-`Quot.sound`; none contains `sorryAx`. The next proof action is the deterministic
-aggregator and exact committed full gate. The successful ephemeral cache must
-then be integrity-checked, copied sequentially to the retained volume, and the
-exact builder terminated while preserving the volume.
+`Quot.sound`; none contains `sorryAx`. Candidate commit `6bf8517` and its exact
+Git archive pass the deterministic aggregator and complete guarded gate: 3,223
+Lean jobs, 49/49 Notebook coverage, 23 coverage regression tests, seven
+teaching-hygiene tests, the 176-file teaching scan, the 846-surface
+reader-language scan, and the warning-fatal 524-page Hugo Extended 0.160.1
+render. The next actions are the validation-record exact-commit replay and
+integrity-checked preservation of the successful ephemeral cache, followed by
+termination of the exact builder while preserving the volume.
 
 Workstation-safe candidate validation passes: 49/49 substantive-module
 Notebook coverage, 23 coverage regression tests, seven teaching-hygiene tests,
@@ -2473,8 +2484,7 @@ well-formed, and `git diff --check` is clean. Literal browser inspection at
 1440 by 1000 and 390 by 844 covers all four pages with exactly one heading per
 page, no horizontal overflow, broken or alt-less images, KaTeX errors, raw math
 delimiters, or console warnings or errors. These non-Lean results complement
-the passing warning-fatal leaf; they do not replace the pending aggregator and
-full gate.
+the passing warning-fatal leaf, aggregator, and full gate.
 
 Primary and contextual references recorded with the decision:
 
@@ -2913,7 +2923,10 @@ documentation placeholders:
   points, historical and reduced Devaney interfaces, the Banks sensitivity
   implication with exact infinitude/metric hypotheses, and finite and
   isolated-point boundaries.
-- [ ] `Chaos/SymbolicCoding.lean`
+- [x] `Chaos/SymbolicCoding.lean`: Mathlib-backed one-sided full shift, prefix
+  cylinder basis, exact splicing and periodic completion, positive-time
+  transitivity, dense positive-period points, Devaney-chaos endpoint, and
+  itinerary semiconjugacy and topological-factor gates.
 
 ### ODEs and concrete models
 
@@ -4754,6 +4767,9 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `6bf8517`: formalize one-sided symbolic coding, prove full-shift
+  transitivity, dense periodic points, and the Devaney endpoint, expose exact
+  itinerary factor gates, and add the four-page cited teaching bundle.
 - `e9fc6f5`: record the passing exact-commit Devaney full gate, independently
   verified retained cache, final draft status, and Symbolic Coding handoff.
 - `4705233`: formalize the historical and reduced Devaney interfaces, prove

@@ -12,9 +12,9 @@ og_image_alt: "Orbit states receive successive labels that form a one-sided sequ
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** The warning-fatal source-module check
-passes. Professional review and the complete project gate remain pending, so
-<code>pro_reviewed</code> remains false.
+**Editorial and validation status.** Candidate commit <code>6bf8517</code>
+passes the warning-fatal source-module check and complete project gate.
+Professional review remains pending, so <code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 **Symbolic dynamics** studies sequences of symbols together with shift maps.

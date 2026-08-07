@@ -11,7 +11,7 @@ key_result: |
   The one-sided full shift over a nontrivial discrete alphabet is Devaney chaotic in the compatible prefix metric. For a finite alphabet this is the customary compact full-shift model. Orbit itineraries are semiconjugacies, with continuity and surjectivity exposed as separate hypotheses.
 draft: true
 pro_reviewed: false
-status: "Warning-fatal source leaf passes; aggregator and full gate pending"
+status: "Exact candidate passes warning-fatal leaf, aggregator, and full gate"
 level: "Intermediate topology, discrete dynamics, symbolic sequences, and Lean 4"
 reading_time: "35 to 50 minutes"
 prerequisites:
@@ -44,10 +44,10 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** The warning-fatal source-module check passes on the
-pinned project environment. The deterministic aggregator and complete
-repository gate remain pending. Professional review has not been performed,
-so `pro_reviewed` remains false.
+**Editorial status.** Candidate commit `6bf8517` passes the warning-fatal
+source-module check, deterministic aggregator, and complete repository gate in
+the pinned project environment. Professional review has not been performed, so
+`pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Begin with a prefix and a tail

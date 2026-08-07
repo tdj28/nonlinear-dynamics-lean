@@ -12,9 +12,9 @@ og_image_alt: "Several sequence rows share the same blue two-symbol prefix and h
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** The warning-fatal source-module check
-passes. Professional review and the complete project gate remain pending, so
-<code>pro_reviewed</code> remains false.
+**Editorial and validation status.** Candidate commit <code>6bf8517</code>
+passes the warning-fatal source-module check and complete project gate.
+Professional review remains pending, so <code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 A **cylinder set** fixes symbols on finitely many coordinates and leaves all
