@@ -7,7 +7,7 @@ Last updated: 2026-08-08
 
 Audited baseline: `main` at `dc96c86`
 
-Active direction: **construct the ODE flow interface.**
+Active direction: **develop Lyapunov methods for continuous-time flows.**
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
 exact-commit repository gates on the approved Linux builder. The verified
@@ -32,6 +32,13 @@ gates. The verified successful cache is preserved, the exact task pod is
 terminated, and the project network volume remains. Desktop and literal
 390-by-844 rendered QA now pass alongside every static, formal, and cloud
 gate, so the GlobalExistence milestone is complete.
+
+`NonlinearDynamics.Deterministic.ODE.Stability` is also complete. Closure
+commit `33d6b6f` and validation-record commit `82a474b` pass their exact-commit
+full repository gates on the approved Linux builder. The verified Stability
+cache is preserved on retained storage, the exact task pod is terminated, and
+the project network volume remains. The next dependency-ordered source slice
+is `NonlinearDynamics.Deterministic.ODE.Lyapunov`.
 
 ## Mathematical Editorial Register Audit
 
@@ -2427,26 +2434,28 @@ recorded here.
 
 ## Exact Next Milestone
 
-### Define stability for ODE flows
+### Build Lyapunov certificates for ODE flows
 
 The next dependency-ordered source milestone is
-`NonlinearDynamics.Deterministic.ODE.Stability`. It should define stability
-for the structured real-time flow interface now exposed by ToFlow, separate
-stability of a point or equilibrium from attraction, and state its time domain
-and metric or uniform-space hypotheses exactly. It should consume the flow
-laws and joint continuity deliberately rather than reverting to an
-unstructured existential family of solution curves. It must not label
-convergence, attraction, Lyapunov stability, asymptotic stability, structural
-stability, or stochastic stability as interchangeable notions.
+`NonlinearDynamics.Deterministic.ODE.Lyapunov`. It should consume the checked
+continuous-time Stability interface and introduce scalar certificates at an
+equilibrium without rebuilding flows or attraction. The first interface should
+separate positive definiteness from monotonicity along every nonnegative-real
+orbit, weak descent from strict descent, and a stability theorem from any
+stronger attraction conclusion. Research must identify the pinned Mathlib
+topological and differentiable APIs before deciding whether Lie-derivative or
+vector-field corollaries belong in the same slice. No derivative sign condition
+should be presented as sufficient until its regularity, invariant-region, and
+sublevel-control hypotheses are explicit and compile checked.
 
-### ODE stability interface decision and validated closure candidate
+### ODE stability interface decision and validated release
 
-Status on 2026-08-08: repaired closure commit `33d6b6f` passes its exact
-warning-fatal Lean leaf, deterministic aggregator, complete guarded repository
-gate, workstation gate, deterministic asset checks, and desktop/mobile browser
-inspection. Its successful cache is preserved and verified on retained
-storage. The validation-record exact-commit replay and builder termination
-remain before this roadmap item is marked complete.
+Status on 2026-08-08: repaired closure commit `33d6b6f` and validation-record
+commit `82a474b` pass their exact complete guarded repository gates. The
+warning-fatal leaf, deterministic aggregator, workstation gate, deterministic
+asset checks, and desktop/mobile browser inspection are green. The successful
+cache is preserved and verified on retained storage, the exact task pod is
+terminated, and the roadmap item is complete.
 
 The candidate consumes Mathlib's structured `Flow ℝ X` interface and makes
 four choices explicit:
@@ -2565,6 +2574,15 @@ SHA-256 is
 The retained ledger `SHA256SUMS-ode-stability-20260808` verifies that archive
 and the unchanged Lean 4.32.0 toolchain archive together. Earlier retained
 archives were not replaced.
+
+Validation-record commit `82a474b` reached `origin/main` and passes the same
+exact complete guarded gate in nine seconds. The healthy CPU5 builder ran for
+1,587 seconds at $0.368 per hour, approximately $0.16 of compute spend. The
+two failed CPU3 allocations both reported zero runtime uptime; this checkpoint
+does not infer the provider's final invoice for them. After the final gate the
+exact CPU5 task pod was terminated. A post-action inventory reports zero task
+pods and one retained project network volume. No cloud resource identifier,
+address, or credential is recorded here.
 
 ### ODE ToFlow design decision and validated release
 
@@ -3242,7 +3260,11 @@ files are placeholders:
   laws, explicit joint-continuity gate, Mathlib `Flow ℝ M` construction,
   compatible-flow converse, full source-and-teaching gates, browser QA, and
   verified retained cache preservation.
-- [ ] `ODE/Stability.lean`
+- [x] `ODE/Stability.lean`: nonnegative-real-time equicontinuity, separate
+  equilibrium and attraction predicates, metric characterizations,
+  nonexpansive criteria, translation and identity boundaries, Hausdorff orbit-
+  limit fixedness, both exact-commit full gates, browser QA, and verified cache
+  preservation.
 - [ ] `ODE/Lyapunov.lean`
 - [ ] `Models/LogisticMap.lean`
 - [ ] `Models/TentMap.lean`
