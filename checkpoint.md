@@ -2439,13 +2439,14 @@ unstructured existential family of solution curves. It must not label
 convergence, attraction, Lyapunov stability, asymptotic stability, structural
 stability, or stochastic stability as interchangeable notions.
 
-### ODE stability candidate interface decision
+### ODE stability interface decision and validated closure candidate
 
-Status on 2026-08-08: the repaired source-and-teaching working tree passes its
+Status on 2026-08-08: repaired closure commit `33d6b6f` passes its exact
 warning-fatal Lean leaf, deterministic aggregator, complete guarded repository
 gate, workstation gate, deterministic asset checks, and desktop/mobile browser
-inspection. An exact closure-commit replay, cache preservation, and builder
-termination remain before this roadmap item is marked complete.
+inspection. Its successful cache is preserved and verified on retained
+storage. The validation-record exact-commit replay and builder termination
+remain before this roadmap item is marked complete.
 
 The candidate consumes Mathlib's structured `Flow ℝ X` interface and makes
 four choices explicit:
@@ -2545,6 +2546,25 @@ The complete working-tree `CLOUD_LEAN_BUILD=1 make -j1 check` gate passes in
 3,269 Lean jobs, 52/52 Notebook coverage, 23 coverage regression tests, seven
 teaching-hygiene regression tests, the 187-file teaching-source audit, the
 894-surface public-reader audit, and the warning-fatal 553-page render pass.
+
+Repaired closure commit `33d6b6f` reached `origin/main`. Its deterministic Git
+archive has SHA-256
+`13ae935d9fae0da40271bac9faead0c27168eac9b14ce7ae646136e4927129cb`.
+A fresh source-only extraction of that exact commit received the verified
+ephemeral cache; its manifest and Stability source hashes match the values
+recorded above. The exact closure commit passes the same complete guarded gate
+in nine seconds with all 3,269 Lean jobs and every source-and-teaching check
+green.
+
+The successful exact-closure `.lake` tree is archived sequentially as
+`lake-manifest-pinned-ode-stability-20260808.tar.zst`. The 2,476,741,377-byte
+compressed archive expands to an 8,090,163,200-byte tar stream and passes
+`zstd -t` both on ephemeral disk and after its copy to retained storage. Its
+SHA-256 is
+`a980090c4457be1886c42a09442e15b2f7d9b8d610faac754735cbb4ef3551b7`.
+The retained ledger `SHA256SUMS-ode-stability-20260808` verifies that archive
+and the unchanged Lean 4.32.0 toolchain archive together. Earlier retained
+archives were not replaced.
 
 ### ODE ToFlow design decision and validated release
 
