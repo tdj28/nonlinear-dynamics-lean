@@ -2462,7 +2462,8 @@ sublevel-control hypotheses are explicit and compile checked.
 Source-only candidate status on 2026-08-08: the placeholder now contains a
 trajectory-level direct-method interface, and its paired Development Notebook,
 Deep Dive, and orbital-derivative glossary bundles are private drafts with
-`pro_reviewed: false`. The source checksum is
+`pro_reviewed: false`. Candidate commit `7032894` is on `origin/main`; the
+source checksum is
 `1a236598b8d8aba803ab4b9e29195f08390e823870b29605b84f29ff1fb79a13`.
 The 53-module coverage gate, content regression tests, 190-file teaching
 hygiene scan, 908-file public reader-language scan, 493-page production Hugo
@@ -2472,6 +2473,14 @@ new SVGs parse, all three card generators pass ShellCheck and reproduce their
 one label collision in the proof-obligation figure. No Lean or Lake command
 has run on macOS. Warning-fatal leaf and full repository validation remain
 pending on approved Linux compute.
+
+Rendered browser QA passes for all three draft teaching pages at 1440x1000
+and a literal 390x844 viewport. Each page has exactly one `h1`, no horizontal
+page overflow, no broken image, no KaTeX error or raw TeX residue, and no
+browser-console warning or error. Code blocks remain contained at the mobile
+breakpoint, and direct visual inspection confirms legible responsive titles,
+metadata, source panels, and conceptual figures. This browser pass used only
+the workstation-safe Hugo draft server; it did not invoke Lean or Lake.
 
 The candidate records five interface decisions:
 
