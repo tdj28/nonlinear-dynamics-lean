@@ -7,7 +7,8 @@ Last updated: 2026-08-08
 
 Audited baseline: `main` at `dc96c86`
 
-Active direction: **develop Lyapunov methods for continuous-time flows.**
+Active direction: **formalize the discrete logistic map as the first concrete
+model.**
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
 exact-commit repository gates on the approved Linux builder. The verified
@@ -37,8 +38,14 @@ gate, so the GlobalExistence milestone is complete.
 commit `33d6b6f` and validation-record commit `82a474b` pass their exact-commit
 full repository gates on the approved Linux builder. The verified Stability
 cache is preserved on retained storage, the exact task pod is terminated, and
-the project network volume remains. The next dependency-ordered source slice
-is `NonlinearDynamics.Deterministic.ODE.Lyapunov`.
+the project network volume remains.
+
+`NonlinearDynamics.Deterministic.ODE.Lyapunov` is complete at closure commit
+`30172c7`. Its warning-fatal leaf, deterministic aggregator, exact-commit full
+gate, paired teaching bundle, browser QA, and verified cache preservation all
+pass. The exact task pod is terminated and the retained project volume
+remains. The next dependency-ordered source slice is
+`NonlinearDynamics.Deterministic.Models.LogisticMap`.
 
 On 2026-08-08 the Pages production render exposed two public Stability-page
 references to the still-private `flow` glossary bundle. Draft-inclusive Hugo
@@ -2443,9 +2450,9 @@ terminated. A post-action inventory reports zero task pods and one retained
 project network volume. No cloud resource identifier or credential is
 recorded here.
 
-## Exact Next Milestone
+## Validated ODE Lyapunov Milestone
 
-### Build Lyapunov certificates for ODE flows
+### ODE Lyapunov interface decision and validated release
 
 The next dependency-ordered source milestone is
 `NonlinearDynamics.Deterministic.ODE.Lyapunov`. It should consume the checked
@@ -2459,11 +2466,12 @@ vector-field corollaries belong in the same slice. No derivative sign condition
 should be presented as sufficient until its regularity, invariant-region, and
 sublevel-control hypotheses are explicit and compile checked.
 
-Source-only candidate status on 2026-08-08: the placeholder now contains a
+Validated release status on 2026-08-08: the placeholder now contains a
 trajectory-level direct-method interface, and its paired Development Notebook,
 Deep Dive, and orbital-derivative glossary bundles are private drafts with
 `pro_reviewed: false`. Initial candidate commit `7032894` is on `origin/main`;
-the warning-fatal proof repair has source checksum
+closure commit `30172c7` is on `origin/main`, and its warning-fatal source has
+checksum
 `50154741063f7b233ed9a3092c06747a88239a2d9cb465df0e02d447a9c12b99`.
 The 53-module coverage gate, content regression tests, 190-file teaching
 hygiene scan, 908-file public reader-language scan, 493-page production Hugo
@@ -2473,7 +2481,7 @@ new SVGs parse, all three card generators pass ShellCheck and reproduce their
 one label collision in the proof-obligation figure. No Lean or Lake command
 has run on macOS.
 
-Approved Linux validation is in progress on a RunPod Secure Cloud CPU builder
+Approved Linux validation used a RunPod Secure Cloud CPU builder
 with 8 vCPU, an effective 32-GB cgroup RAM limit, an 80-GB ephemeral disk, and
 the retained project network volume at $0.32 per hour. The retained Lean 4.32.0
 toolchain and ODE Stability Lake archives pass their recorded SHA-256 checks
@@ -2484,8 +2492,23 @@ all reported axioms are limited to `propext`, `Classical.choice`, and
 `Quot.sound`, and the deterministic aggregator passes in 4.0 seconds. The
 repair changes only equality orientation, real-time normalization, and the
 explicit `nhds` spelling; it does not change the five public interface
-decisions below. The full repository gate, cache preservation, release push,
-and verified pod termination remain pending.
+decisions below. The authoritative `CLOUD_LEAN_BUILD=1 make -j1 check` gate on
+exact commit `30172c7` completes all 3,269 Lean jobs, the checkpoint and
+53-module coverage gates, 23 coverage regression tests, seven teaching-hygiene
+regression tests, the 190-file teaching audit, the 908-file reader-language
+audit, and warning-fatal 493-page production plus 560-page draft-inclusive Hugo
+Extended 0.160.1 renders.
+
+Release closure: the successful ephemeral `.lake` tree is preserved
+sequentially as
+`lake-manifest-pinned-ode-lyapunov-20260808.tar.zst` on the retained volume.
+The 2,475,841,621-byte compressed archive expands to an 8,092,252,160-byte tar
+stream, passes `zstd -t`, and shares a passing SHA-256 ledger with the pinned
+Lean 4.32.0 toolchain archive. The builder ran for 1,159 seconds at $0.32 per
+hour, approximately $0.10 of compute spend under the $5 ceiling. The exact
+task pod was then terminated; its direct lookup is absent, and a post-action
+inventory reports zero task pods and one retained project network volume. No
+cloud resource identifier or credential is recorded here.
 
 Rendered browser QA passes for all three draft teaching pages at 1440x1000
 and a literal 390x844 viewport. Each page has exactly one `h1`, no horizontal
@@ -2535,6 +2558,25 @@ formal API authorities are pinned Mathlib 4.32.0
 [`Analysis.Calculus.Deriv.MeanValue`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Analysis/Calculus/Deriv/MeanValue.lean)
 and
 [`Dynamics.Flow`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Dynamics/Flow.lean).
+
+## Exact Next Milestone
+
+### Formalize the discrete logistic map
+
+The next dependency-ordered source milestone is
+`NonlinearDynamics.Deterministic.Models.LogisticMap`. Begin from the exact real
+polynomial map `x ↦ r * x * (1 - x)` and audit pinned Mathlib's interval,
+polynomial, derivative, and fixed-point APIs before freezing the interface.
+The first slice should prove its named fixed points with all parameter
+side-conditions visible, establish a precisely scoped invariant-interval
+regime, and connect only those stability, attraction, bifurcation, or symbolic
+claims that the existing checked interfaces genuinely discharge. Parameter
+boundaries such as `r = 0`, coincident fixed points, and escape outside the
+invariant regime must remain explicit. A complete Notebook, concrete diagram,
+Deep Dive or glossary integration, warning-fatal Linux checks, and a boundary
+countermodel are required before marking the model complete.
+
+## Earlier Milestone Records
 
 ### ODE stability interface decision and validated release
 
@@ -3353,7 +3395,10 @@ files are placeholders:
   nonexpansive criteria, translation and identity boundaries, Hausdorff orbit-
   limit fixedness, both exact-commit full gates, browser QA, and verified cache
   preservation.
-- [ ] `ODE/Lyapunov.lean`
+- [x] `ODE/Lyapunov.lean`: continuous-time weak and strict scalar descent,
+  invariant sublevels, antitone orbit values, derivative-sign bridges,
+  separate stability and attraction endpoints, strict-descent boundary,
+  exact-commit full gate, browser QA, and verified cache preservation.
 - [ ] `Models/LogisticMap.lean`
 - [ ] `Models/TentMap.lean`
 - [ ] `Models/LogisticODE.lean`
