@@ -2507,8 +2507,16 @@ workstation gate passes with 52/52 Notebook coverage, 23 coverage regression
 tests, seven teaching-hygiene regression tests, a 187-file teaching-source
 scan, an 894-surface public reader-language scan, and a warning-fatal 553-page
 Hugo Extended 0.160.1 render. All new SVGs pass XML validation and all three
-card generators reproduce byte-for-byte. Browser QA and Lean validation
-remain pending. The current unvalidated source SHA-256 is
+card generators reproduce byte-for-byte. Literal browser QA at 1440x1000 and
+390x844 passes on all three routes: every page has one `h1`, equal client and
+scroll widths, complete images with nonempty alt text, no raw TeX delimiters,
+no KaTeX errors, and no console warnings or errors. Wide declaration tables
+and Lean commands remain inside local horizontal-scroll regions on mobile
+rather than expanding the page. Direct top-and-bottom visual inspection finds
+the card, conceptual figures, prose, references, and mobile navigation
+contained and legible. The temporary viewport override was reset and the QA
+tab and Hugo server were closed afterward. Warning-fatal Lean validation
+remains pending. The current unvalidated source SHA-256 is
 `a03577e90f8d89534ebb78e47220be18f843363b0fff1e21840da0a8d9d83261`.
 
 ### ODE ToFlow design decision and validated release
