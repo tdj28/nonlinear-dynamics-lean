@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Lyapunov certificates and orbital descent in continuous time</title>
+  <desc id="desc">An exponential energy curve descends toward zero beside separate boxes for weak descent, stability, and attraction.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/><rect x="38" y="38" width="1124" height="554" rx="28" fill="#fbf8f0" stroke="#315f63" stroke-width="4"/>
+  <text x="76" y="102" font-family="Arial,sans-serif" font-size="21" letter-spacing="3" fill="#7a4d69">DEEP DIVE · LYAPUNOV DIRECT METHOD</text>
+  <text x="76" y="174" font-family="Georgia,serif" font-size="49" fill="#23343b">Descent orders the orbit;</text><text x="76" y="231" font-family="Georgia,serif" font-size="49" fill="#23343b">a limit identifies its target</text>
+  <line x1="86" y1="456" x2="546" y2="456" stroke="#7f786d" stroke-width="3"/>
+  <path d="M94 310 C210 326 338 402 530 440" fill="none" stroke="#315f63" stroke-width="8"/>
+  <text x="108" y="294" font-family="Arial,sans-serif" font-size="18" fill="#7a4d69">4e⁻²ᵗ</text><text x="428" y="486" font-family="Arial,sans-serif" font-size="18" fill="#6f8d5e">limit 0</text>
+  <rect x="600" y="286" width="224" height="70" rx="14" fill="#e8f0f7" stroke="#4b6787" stroke-width="3"/><text x="712" y="329" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#23343b">WEAK DESCENT</text>
+  <rect x="600" y="388" width="224" height="70" rx="14" fill="#f3e8e0" stroke="#a67c52" stroke-width="3"/><text x="712" y="431" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#23343b">ZERO LIMIT</text>
+  <path d="M844 321 H904 M844 423 H904" stroke="#315f63" stroke-width="5"/><polygon points="904,321 888,311 888,331" fill="#315f63"/><polygon points="904,423 888,413 888,433" fill="#315f63"/>
+  <text x="934" y="328" font-family="Georgia,serif" font-size="22" fill="#23343b">stability path</text><text x="934" y="430" font-family="Georgia,serif" font-size="22" fill="#23343b">attraction path</text>
+  <text x="76" y="540" font-family="Arial,sans-serif" font-size="19" fill="#7a4d69">positive definiteness · derivative sign · translation boundary</text>
+</svg>

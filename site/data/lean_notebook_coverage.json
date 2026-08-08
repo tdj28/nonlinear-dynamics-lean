@@ -43,6 +43,10 @@
     "module": "NonlinearDynamics.Deterministic.ODE.Stability",
     "notebook": "site/content/development-notebook/2026/08/stability-and-attraction-for-ode-flows-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/ODE/Lyapunov.lean": {
+    "module": "NonlinearDynamics.Deterministic.ODE.Lyapunov",
+    "notebook": "site/content/development-notebook/2026/08/lyapunov-certificates-for-continuous-time-flows-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean": {
     "module": "NonlinearDynamics.Random.ComplexGaussianFamilies",
     "notebook": "site/content/development-notebook/2026/07/independent-complex-gaussian-families/index.md"

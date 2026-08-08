@@ -2459,6 +2459,61 @@ vector-field corollaries belong in the same slice. No derivative sign condition
 should be presented as sufficient until its regularity, invariant-region, and
 sublevel-control hypotheses are explicit and compile checked.
 
+Source-only candidate status on 2026-08-08: the placeholder now contains a
+trajectory-level direct-method interface, and its paired Development Notebook,
+Deep Dive, and orbital-derivative glossary bundles are private drafts with
+`pro_reviewed: false`. The source checksum is
+`1a236598b8d8aba803ab4b9e29195f08390e823870b29605b84f29ff1fb79a13`.
+The 53-module coverage gate, content regression tests, 190-file teaching
+hygiene scan, 908-file public reader-language scan, 493-page production Hugo
+graph, and 560-page draft-inclusive graph pass on the workstation. All eight
+new SVGs parse, all three card generators pass ShellCheck and reproduce their
+1200-by-630 PNGs byte-for-byte, and direct raster inspection found and repaired
+one label collision in the proof-obligation figure. No Lean or Lake command
+has run on macOS. Warning-fatal leaf and full repository validation remain
+pending on approved Linux compute.
+
+The candidate records five interface decisions:
+
+1. **Shared spatial certificates:** nonnegativity, positive definiteness,
+   local positive definiteness, and quantitative sublevel control are aliases
+   of the checked discrete predicates because none depends on the time
+   parameter. Continuous-time descent is defined separately.
+2. **Exact forward-time quantifier:** weak descent quantifies over every real
+   `t ≥ 0`; strict descent excludes time zero and uses every `t > 0`. A
+   forward-invariant region remains a distinct input. Weak descent preserves
+   its open and closed sublevels and makes the orbital scalar trace antitone on
+   the complete nonnegative half-line.
+3. **Separate endpoints:** continuity at an equilibrium, zero scalar value,
+   sublevel control, and global weak descent prove the existing
+   `IsLyapunovStableEquilibrium` predicate. Attraction is not inferred from
+   descent; it comes from the separate limit
+   `V (ϕ t x) → 0`, either for one orbit, a neighborhood, or every state.
+   The asymptotic-stability theorem consumes both paths explicitly.
+4. **Derivative boundary:** `lyapunovDerivativeAlong` is the ordinary real
+   derivative of `t ↦ V (ϕ t x)`. The weak sign bridge carries
+   differentiability explicitly and uses pinned Mathlib's
+   `antitone_of_deriv_nonpos`; the strict bridge uses
+   `strictAnti_of_deriv_neg`. A manifold Lie derivative and the chain rule
+   from `IsIntegralCurveFlow` to `DV[F]` are deferred until their scalar and
+   manifold regularity hypotheses receive a separate checked interface.
+5. **Strict-descent nonimplication:** the translation flow with `V x = -x`
+   strictly decreases at every positive time but has no equilibrium. This
+   checked candidate boundary targets only the invalid implication from strict
+   scalar descent alone; it does not weaken a theorem that assumes equilibrium,
+   positivity, regularity, and sublevel control.
+
+The mathematical authorities are Bhatia and Szegő, *Dynamical Systems:
+Stability Theory and Applications*, Lecture Notes in Mathematics 35, Springer
+(1967), especially the second-method treatment on pages 246–367, DOI
+[`10.1007/BFb0080630`](https://doi.org/10.1007/BFb0080630), and J. P. LaSalle,
+*The Stability of Dynamical Systems*, SIAM CBMS 25 (1976), DOI
+[`10.1137/1.9781611970432`](https://doi.org/10.1137/1.9781611970432). The
+formal API authorities are pinned Mathlib 4.32.0
+[`Analysis.Calculus.Deriv.MeanValue`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Analysis/Calculus/Deriv/MeanValue.lean)
+and
+[`Dynamics.Flow`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Dynamics/Flow.lean).
+
 ### ODE stability interface decision and validated release
 
 Status on 2026-08-08: repaired closure commit `33d6b6f` and validation-record
