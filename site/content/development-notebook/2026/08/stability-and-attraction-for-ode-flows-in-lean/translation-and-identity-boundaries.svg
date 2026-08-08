@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="380" viewBox="0 0 760 380" role="img" aria-labelledby="title desc">
+  <title id="title">Translation and identity separate stability, equilibrium, and attraction</title>
+  <desc id="desc">Two panels compare parallel translation trajectories with stationary identity trajectories. Translation preserves a gap without an equilibrium. Identity points are stable equilibria but distinct starts do not converge to one another.</desc>
+  <rect width="760" height="380" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.axis{stroke:#7F786D;stroke-width:1.4}.orbit{stroke:#4B6787;stroke-width:3;fill:none}.near{stroke:#A67C52;stroke-width:3;fill:none}.dash{stroke:#A89B8C;stroke-width:1.5;stroke-dasharray:5 4}.dot1{fill:#4B6787}.dot2{fill:#A67C52}
+  </style>
+  <text x="24" y="28" class="t title">Two boundary cases prevent three predicates from collapsing</text>
+  <text x="24" y="48" class="t m">The same word, stable, does not supply fixedness or long-time approach.</text>
+  <rect x="24" y="68" width="344" height="242" rx="12" fill="#E8F0F7" stroke="#4B6787"/>
+  <text x="44" y="96" class="t h">Nonzero translation</text>
+  <text x="44" y="116" class="t m">Forward stable, no equilibrium</text>
+  <line x1="54" y1="264" x2="338" y2="264" class="axis"/>
+  <path d="M70 232 L320 142" class="orbit"/>
+  <path d="M70 260 L320 170" class="near"/>
+  <line x1="194" y1="202" x2="194" y2="230" class="dash"/>
+  <circle cx="70" cy="232" r="5" class="dot1"/><circle cx="70" cy="260" r="5" class="dot2"/>
+  <text x="78" y="226" class="t s">p orbit</text><text x="78" y="282" class="t s">nearby orbit</text>
+  <text x="210" y="219" class="t m">constant gap</text>
+  <rect x="392" y="68" width="344" height="242" rx="12" fill="#F3E8E0" stroke="#A67C52"/>
+  <text x="412" y="96" class="t h">Identity flow</text>
+  <text x="412" y="116" class="t m">Stable equilibria, no approach from x != p</text>
+  <line x1="422" y1="264" x2="706" y2="264" class="axis"/>
+  <line x1="440" y1="172" x2="688" y2="172" class="orbit"/>
+  <line x1="440" y1="224" x2="688" y2="224" class="near"/>
+  <circle cx="440" cy="172" r="5" class="dot1"/><circle cx="440" cy="224" r="5" class="dot2"/>
+  <text x="450" y="166" class="t s">p stays p</text><text x="450" y="246" class="t s">x stays x</text>
+  <line x1="642" y1="180" x2="642" y2="216" class="dash"/>
+  <text x="590" y="204" class="t m">gap persists</text>
+  <rect x="24" y="326" width="712" height="34" rx="9" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="380" y="348" text-anchor="middle" class="t s">Orbit stability, equilibrium, and attraction remain separate proof obligations.</text>
+</svg>

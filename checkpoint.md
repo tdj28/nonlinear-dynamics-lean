@@ -2439,6 +2439,78 @@ unstructured existential family of solution curves. It must not label
 convergence, attraction, Lyapunov stability, asymptotic stability, structural
 stability, or stochastic stability as interchangeable notions.
 
+### ODE stability candidate interface decision
+
+Status on 2026-08-07: the source-and-teaching candidate is assembled and the
+complete workstation gate passes. Warning-fatal Lean validation on approved
+Linux compute remains pending, so this section records a candidate decision,
+not a validated release.
+
+The candidate consumes Mathlib's structured `Flow ℝ X` interface and makes
+four choices explicit:
+
+1. **Reference object:** `IsForwardStableAt ϕ p` is stability of a reference
+   orbit, defined as equicontinuity at `p` of the family of time maps. It does
+   not require `p` to be stationary. `IsEquilibrium ϕ p` is a separate
+   predicate, and `IsLyapunovStableEquilibrium ϕ p` is their conjunction.
+2. **Time domain:** the stability family is indexed by
+   `AddSubmonoid.nonneg ℝ`, so one neighborhood controls every real time
+   `t ≥ 0`, including zero. Negative-time maps exist in the ambient real flow
+   but are not included in the forward-stability quantifier. Attraction uses
+   the real order filter `atTop`, not a natural-number sampling of the orbit.
+3. **Topological level:** the primary stability definition uses uniform-space
+   equicontinuity. A pseudo-metric equivalence exposes the standard
+   epsilon-delta statement. The attraction definition needs only the topology;
+   the theorem that an orbit limit is an equilibrium adds Hausdorff separation
+   and deliberately consumes continuity and the additive flow law.
+4. **Conjunction boundary:** local attraction means that the point basin is a
+   neighborhood of an equilibrium. Asymptotic stability means Lyapunov
+   stability plus that local basin condition. Neither stability nor attraction
+   is silently substituted for the other.
+
+The source candidate adds exact translation and identity boundaries. A
+constant-velocity nonzero translation flow is forward stable at every
+reference point but has no equilibrium. Every point of the identity flow is a
+Lyapunov-stable equilibrium, while a distinct constant orbit is not attracted
+to it. A common `LipschitzWith 1` bound on all nonnegative-time maps is recorded
+as a sufficient criterion for forward stability. For a Hausdorff flow, a
+finite forward orbit limit is proved to be an equilibrium by transporting the
+limit through a fixed-time map, rewriting with `Flow.map_add`, and comparing
+with the time-translated original limit.
+
+This interface does not define invariant-set, exponential, input-to-state, or
+stable-manifold theory. It fixes one deterministic flow and therefore does not
+express structural stability under changes of a vector field. It also does
+not alter the separately selected RMT-36 meaning of stochastic stability,
+which is sequential upper semicontinuity of an integrated random-cocycle
+growth rate within a specified bounded invertible generator class. The two
+interfaces have different inputs, perturbation topologies, and conclusions.
+
+The mathematical references for the decision are N. P. Bhatia and G. P.
+Szegő, *Dynamical Systems: Stability Theory and Applications*, Lecture Notes
+in Mathematics 35, Springer (1967), DOI
+[`10.1007/BFb0080630`](https://doi.org/10.1007/BFb0080630), and J. P. LaSalle,
+*The Stability of Dynamical Systems*, SIAM CBMS 25 (1976), DOI
+[`10.1137/1.9781611970432`](https://doi.org/10.1137/1.9781611970432). The exact
+formal API authorities are pinned Mathlib 4.32.0
+[`Mathlib.Dynamics.Flow`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Dynamics/Flow.lean),
+[`Topology.UniformSpace.Equicontinuity`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Topology/UniformSpace/Equicontinuity.lean),
+and
+[`Topology.MetricSpace.Equicontinuity`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Topology/MetricSpace/Equicontinuity.lean).
+
+The paired public working-note candidate is
+`stability-and-attraction-for-ode-flows-in-lean`,
+`continuous-time-stability-attraction-and-equilibria`, and
+`continuous-time-stability`. It contains five page-owned accessible
+conceptual SVGs and three deterministic 1200x630 cards. The complete
+workstation gate passes with 52/52 Notebook coverage, 23 coverage regression
+tests, seven teaching-hygiene regression tests, a 187-file teaching-source
+scan, an 894-surface public reader-language scan, and a warning-fatal 553-page
+Hugo Extended 0.160.1 render. All new SVGs pass XML validation and all three
+card generators reproduce byte-for-byte. Browser QA and Lean validation
+remain pending. The current unvalidated source SHA-256 is
+`a03577e90f8d89534ebb78e47220be18f843363b0fff1e21840da0a8d9d83261`.
+
 ### ODE ToFlow design decision and validated release
 
 The substantive module
