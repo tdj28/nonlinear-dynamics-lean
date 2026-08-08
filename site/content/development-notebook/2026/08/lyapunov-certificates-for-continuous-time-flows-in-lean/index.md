@@ -15,7 +15,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.ODE.Lyapunov"
 lean_source: "formalization/NonlinearDynamics/Deterministic/ODE/Lyapunov.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/ODE/Lyapunov.lean"
-lean_source_sha256: "1a236598b8d8aba803ab4b9e29195f08390e823870b29605b84f29ff1fb79a13"
+lean_source_sha256: "50154741063f7b233ed9a3092c06747a88239a2d9cb465df0e02d447a9c12b99"
 toc: true
 og_image: "lyapunov-certificates-for-continuous-time-flows-in-lean-card.png"
 og_image_alt: "A descending scalar trace feeds a stability gate, while a separate zero-limit gate feeds attraction before the two conclusions combine."

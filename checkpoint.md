@@ -2462,17 +2462,30 @@ sublevel-control hypotheses are explicit and compile checked.
 Source-only candidate status on 2026-08-08: the placeholder now contains a
 trajectory-level direct-method interface, and its paired Development Notebook,
 Deep Dive, and orbital-derivative glossary bundles are private drafts with
-`pro_reviewed: false`. Candidate commit `7032894` is on `origin/main`; the
-source checksum is
-`1a236598b8d8aba803ab4b9e29195f08390e823870b29605b84f29ff1fb79a13`.
+`pro_reviewed: false`. Initial candidate commit `7032894` is on `origin/main`;
+the warning-fatal proof repair has source checksum
+`50154741063f7b233ed9a3092c06747a88239a2d9cb465df0e02d447a9c12b99`.
 The 53-module coverage gate, content regression tests, 190-file teaching
 hygiene scan, 908-file public reader-language scan, 493-page production Hugo
 graph, and 560-page draft-inclusive graph pass on the workstation. All eight
 new SVGs parse, all three card generators pass ShellCheck and reproduce their
 1200-by-630 PNGs byte-for-byte, and direct raster inspection found and repaired
 one label collision in the proof-obligation figure. No Lean or Lake command
-has run on macOS. Warning-fatal leaf and full repository validation remain
-pending on approved Linux compute.
+has run on macOS.
+
+Approved Linux validation is in progress on a RunPod Secure Cloud CPU builder
+with 8 vCPU, an effective 32-GB cgroup RAM limit, an 80-GB ephemeral disk, and
+the retained project network volume at $0.32 per hour. The retained Lean 4.32.0
+toolchain and ODE Stability Lake archives pass their recorded SHA-256 checks
+and independent `zstd -t` validation before sequential restoration onto
+ephemeral disk; the network volume is not a live `.lake` tree. Against the
+checksum above, the guarded warning-fatal Lyapunov leaf passes in 3.8 seconds,
+all reported axioms are limited to `propext`, `Classical.choice`, and
+`Quot.sound`, and the deterministic aggregator passes in 4.0 seconds. The
+repair changes only equality orientation, real-time normalization, and the
+explicit `nhds` spelling; it does not change the five public interface
+decisions below. The full repository gate, cache preservation, release push,
+and verified pod termination remain pending.
 
 Rendered browser QA passes for all three draft teaching pages at 1440x1000
 and a literal 390x844 viewport. Each page has exactly one `h1`, no horizontal

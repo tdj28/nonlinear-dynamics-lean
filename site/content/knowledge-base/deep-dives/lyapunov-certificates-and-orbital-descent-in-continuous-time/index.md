@@ -11,7 +11,7 @@ reading_time: "30 to 45 minutes"
 prerequisites: "Flows, derivatives, metric balls, and limits are introduced through examples"
 lean_module: "NonlinearDynamics.Deterministic.ODE.Lyapunov"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/ODE/Lyapunov.lean"
-lean_source_sha256: "1a236598b8d8aba803ab4b9e29195f08390e823870b29605b84f29ff1fb79a13"
+lean_source_sha256: "50154741063f7b233ed9a3092c06747a88239a2d9cb465df0e02d447a9c12b99"
 toc: true
 og_image: "lyapunov-certificates-and-orbital-descent-in-continuous-time-card.png"
 og_image_alt: "A descending exponential scalar trace splits into a stability path and a zero-limit attraction path."

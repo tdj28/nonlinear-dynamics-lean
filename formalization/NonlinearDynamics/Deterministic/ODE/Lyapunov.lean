@@ -100,7 +100,7 @@ theorem IsStrictLyapunovDecreaseOn.isWeakLyapunovDecreaseOn
   · by_cases ht0 : t = 0
     · subst t
       rw [ϕ.map_zero_apply]
-    · exact (hV x hx hxp t (lt_of_le_of_ne ht ht0.symm)).le
+    · exact (hV x hx hxp t (lt_of_le_of_ne ht (Ne.symm ht0))).le
 
 /-- Weak descent preserves closed sublevels inside a forward-invariant
 region. -/
@@ -133,7 +133,7 @@ theorem IsWeakLyapunovDecreaseOn.antitoneOn_orbit
   have hxs : ϕ s x ∈ S := hS hs hx
   calc
     V (ϕ t x) = V (ϕ (t - s) (ϕ s x)) := by
-      rw [← ϕ.map_add, sub_add_cancel hst]
+      rw [← ϕ.map_add, sub_add_cancel]
     _ ≤ V (ϕ s x) := hV _ hxs _ (sub_nonneg.mpr hst)
 
 /-- A differentiable scalar value with nonpositive derivative along every
@@ -175,8 +175,8 @@ theorem isLyapunovStableEquilibrium_of_continuousAt_of_sublevelControl
   rw [isLyapunovStableEquilibrium_iff_dist]
   refine ⟨hp, fun ε hε ↦ ?_⟩
   rcases hcontrol ε hε with ⟨c, hc, hsublevel⟩
-  have hsublevel_nhds : {x | V x < c} ∈ 𝓝 p := by
-    change V ⁻¹' Set.Iio c ∈ 𝓝 p
+  have hsublevel_nhds : {x | V x < c} ∈ nhds p := by
+    change V ⁻¹' Set.Iio c ∈ nhds p
     exact hVc (by simpa only [hV0] using Iio_mem_nhds hc)
   rcases Metric.mem_nhds_iff.1 hsublevel_nhds with ⟨δ, hδ, hball⟩
   refine ⟨δ, hδ, fun x hx t ↦ hsublevel _ ?_⟩
@@ -200,7 +200,7 @@ point. -/
 theorem isAttractedTo_of_tendsto_lyapunov
     [PseudoMetricSpace X] {ϕ : Flow ℝ X} {x p : X} {V : X → ℝ}
     (hcontrol : HasSublevelControlAt V p)
-    (hlim : Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (𝓝 0)) :
+    (hlim : Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (nhds 0)) :
     IsAttractedTo ϕ x p := by
   rw [IsAttractedTo]
   refine Metric.tendsto_atTop.2 fun ε hε ↦ ?_
@@ -215,8 +215,8 @@ equilibrium. -/
 theorem isLocallyAttractingEquilibrium_of_tendsto_lyapunov
     [PseudoMetricSpace X] {ϕ : Flow ℝ X} {p : X} {V : X → ℝ} {S : Set X}
     (hp : IsEquilibrium ϕ p) (hcontrol : HasSublevelControlAt V p)
-    (hS : S ∈ 𝓝 p)
-    (hlim : ∀ x ∈ S, Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (𝓝 0)) :
+    (hS : S ∈ nhds p)
+    (hlim : ∀ x ∈ S, Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (nhds 0)) :
     IsLocallyAttractingEquilibrium ϕ p := by
   refine ⟨hp, ?_⟩
   filter_upwards [hS] with x hx
@@ -227,7 +227,7 @@ equilibrium. -/
 theorem isGloballyAttractingEquilibrium_of_tendsto_lyapunov
     [PseudoMetricSpace X] {ϕ : Flow ℝ X} {p : X} {V : X → ℝ}
     (hp : IsEquilibrium ϕ p) (hcontrol : HasSublevelControlAt V p)
-    (hlim : ∀ x, Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (𝓝 0)) :
+    (hlim : ∀ x, Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (nhds 0)) :
     IsGloballyAttractingEquilibrium ϕ p :=
   ⟨hp, fun x ↦ isAttractedTo_of_tendsto_lyapunov hcontrol (hlim x)⟩
 
@@ -238,8 +238,8 @@ theorem isAsymptoticallyStableEquilibrium_of_lyapunov
     (hp : IsEquilibrium ϕ p) (hV0 : V p = 0) (hVc : ContinuousAt V p)
     (hcontrol : HasSublevelControlAt V p)
     (hdec : IsWeakLyapunovDecreaseOn ϕ V Set.univ)
-    (hS : S ∈ 𝓝 p)
-    (hlim : ∀ x ∈ S, Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (𝓝 0)) :
+    (hS : S ∈ nhds p)
+    (hlim : ∀ x ∈ S, Tendsto (fun t : ℝ ↦ V (ϕ t x)) atTop (nhds 0)) :
     IsAsymptoticallyStableEquilibrium ϕ p := by
   refine ⟨isLyapunovStableEquilibrium_of_continuousAt_of_sublevelControl
       hp hV0 hVc hcontrol hdec, ?_⟩
