@@ -40,6 +40,17 @@ cache is preserved on retained storage, the exact task pod is terminated, and
 the project network volume remains. The next dependency-ordered source slice
 is `NonlinearDynamics.Deterministic.ODE.Lyapunov`.
 
+On 2026-08-08 the Pages production render exposed two public Stability-page
+references to the still-private `flow` glossary bundle. Draft-inclusive Hugo
+validation had resolved that target and therefore did not expose the broken
+publication graph. The repair keeps the ToFlow teaching bundle private,
+removes the two public-to-draft references, and makes the production-only
+render a prerequisite of `make site-check` before the draft-inclusive render.
+`make workstation-check` now passes both graphs (493 production pages and 553
+pages with drafts), and the exact minified Pages build passes with Hugo
+Extended 0.160.1. No Lean, Lake, Mathlib, cache, or cloud command was run for
+this publication repair.
+
 ## Mathematical Editorial Register Audit
 
 On 2026-07-23 the owner identified a representative epistemic overclaim in the

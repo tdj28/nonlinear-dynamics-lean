@@ -31,7 +31,7 @@ trajectory at every nonnegative real time.
 
 ## Start with translation
 
-For the real {{< refterm "flow" "flow" >}}
+For the real flow
 
 \[
 \Phi(t,x)=x+2t,

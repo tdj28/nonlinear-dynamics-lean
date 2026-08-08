@@ -34,7 +34,7 @@ remains false.
 
 ## Start with a moving stable orbit
 
-Fix \(c=3\) and define a {{< refterm "flow" "flow" >}} on the real line by
+Fix \(c=3\) and define a flow on the real line by
 
 \[
 \Phi(t,x)=x+3t.
@@ -219,7 +219,6 @@ stronger separation assumptions are present.
 ## Related trail markers
 
 - [Continuous-time stability]({{< relref "/knowledge-base/glossary/continuous-time-stability" >}})
-- [Flow]({{< relref "/knowledge-base/glossary/flow" >}})
 - [Forward stability in discrete time]({{< relref "/knowledge-base/glossary/forward-stability" >}})
 - [Basin of attraction]({{< relref "/knowledge-base/glossary/basin-of-attraction" >}})
 - [Stability and Attraction for ODE Flows in Lean]({{< relref "/development-notebook/2026/08/stability-and-attraction-for-ode-flows-in-lean" >}})

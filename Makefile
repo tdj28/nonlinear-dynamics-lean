@@ -11,7 +11,7 @@ BLOG_PORT ?= 1333
 
 .DEFAULT_GOAL := help
 
-.PHONY: help setup lean lean-file lean-clean checkpoint checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site site-drafts site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale workstation-check check clean
+.PHONY: help setup lean lean-file lean-clean checkpoint checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site site-drafts site-production-check site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale workstation-check check clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z0-9_-]+:.*## / {printf "  %-24s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -53,7 +53,10 @@ site: ## Build the publication-ready Hugo site into public/
 site-drafts: ## Build Hugo output including draft notebook and knowledge pages
 	$(HUGO) --source site --config hugo.yaml --buildDrafts --cleanDestinationDir
 
-site-check: ## Validate all Hugo content, including drafts, without writing public/
+site-production-check: ## Validate the publication-only Hugo graph without writing public/
+	$(HUGO) --source site --config hugo.yaml --panicOnWarning --noBuildLock --renderToMemory
+
+site-check: site-production-check ## Validate production and draft-inclusive Hugo content without writing public/
 	$(HUGO) --source site --config hugo.yaml --buildDrafts --panicOnWarning --noBuildLock --renderToMemory
 
 blog-serve: ## Serve drafts locally at http://127.0.0.1:1333/
