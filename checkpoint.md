@@ -3,7 +3,7 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-07
+Last updated: 2026-08-08
 
 Audited baseline: `main` at `dc96c86`
 
@@ -2441,10 +2441,11 @@ stability, or stochastic stability as interchangeable notions.
 
 ### ODE stability candidate interface decision
 
-Status on 2026-08-07: the source-and-teaching candidate is assembled and the
-complete workstation gate passes. Warning-fatal Lean validation on approved
-Linux compute remains pending, so this section records a candidate decision,
-not a validated release.
+Status on 2026-08-08: the repaired source-and-teaching working tree passes its
+warning-fatal Lean leaf, deterministic aggregator, complete guarded repository
+gate, workstation gate, deterministic asset checks, and desktop/mobile browser
+inspection. An exact closure-commit replay, cache preservation, and builder
+termination remain before this roadmap item is marked complete.
 
 The candidate consumes Mathlib's structured `Flow ℝ X` interface and makes
 four choices explicit:
@@ -2515,9 +2516,35 @@ and Lean commands remain inside local horizontal-scroll regions on mobile
 rather than expanding the page. Direct top-and-bottom visual inspection finds
 the card, conceptual figures, prose, references, and mobile navigation
 contained and legible. The temporary viewport override was reset and the QA
-tab and Hugo server were closed afterward. Warning-fatal Lean validation
-remains pending. The current unvalidated source SHA-256 is
-`a03577e90f8d89534ebb78e47220be18f843363b0fff1e21840da0a8d9d83261`.
+tab and Hugo server were closed afterward. The warning-fatal Linux-checked
+source SHA-256 is
+`270cf7a6d17f11af10c421a4351ce4c96b1cd6df59f806713317e25237c5a6c6`.
+
+Approved Linux validation on 2026-08-08 used RunPod Secure Cloud. Two approved
+CPU3 General Purpose allocations at 8 vCPU, 32 GB RAM, 80 GB ephemeral disk,
+and $0.320 per hour never obtained a container network: provider logs repeated
+`network must exist`, runtime uptime remained zero, restart and stop/start did
+not recover the allocation, and each exact task pod was terminated without
+touching the retained project volume. The approved CPU5 replacement uses the
+same vCPU, RAM, disk, and retained volume at $0.368 per hour and started
+normally. The retained ToFlow toolchain and Lake archives passed their SHA-256
+ledgers and full `zstd -t` checks before extraction onto ephemeral disk.
+
+The first warning-fatal Stability leaf exposed three local API/proof defects:
+the translation flow lacked the import that supplies the real topological-ring
+instances, its nonexpansive proof left the reflexive absolute-value inequality
+open, and the orbit-limit argument tried to compose a `ContinuousAt` theorem
+with a general `Tendsto`. The repair imports
+`Mathlib.Topology.Algebra.Ring.Real`, closes the metric inequality with
+`le_rfl`, and composes `(continuous_toFun s).tendsto p` with the orbit limit.
+The repaired warning-fatal leaf passes in one second, its nine axiom reports
+contain only `propext`, `Classical.choice`, and `Quot.sound`, and none contains
+`sorryAx`. The warning-fatal deterministic aggregator passes in two seconds.
+The complete working-tree `CLOUD_LEAN_BUILD=1 make -j1 check` gate passes in
+13 seconds under Lean 4.32.0 and checksum-verified Hugo Extended 0.160.1: all
+3,269 Lean jobs, 52/52 Notebook coverage, 23 coverage regression tests, seven
+teaching-hygiene regression tests, the 187-file teaching-source audit, the
+894-surface public-reader audit, and the warning-fatal 553-page render pass.
 
 ### ODE ToFlow design decision and validated release
 

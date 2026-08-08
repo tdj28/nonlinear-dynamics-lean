@@ -11,7 +11,7 @@ key_result: |
   Forward stability is equicontinuity of the nonnegative-time maps of a Flow ℝ X. Lyapunov stability adds equilibrium as a separate condition; attraction is a t → +∞ limit; asymptotic stability requires both Lyapunov stability and a neighborhood in the attraction basin. Translation and identity flows check the two principal boundary cases.
 draft: false
 pro_reviewed: false
-status: "Source candidate and teaching bundle assembled; warning-fatal validation pending"
+status: "Warning-fatal Lean and complete repository validation pass; professional review remains pending"
 level: "Intermediate topology, differential equations, and Lean 4"
 reading_time: "30 to 45 minutes"
 prerequisites:
@@ -21,7 +21,7 @@ prerequisites:
 lean_module: "NonlinearDynamics.Deterministic.ODE.Stability"
 lean_source: "formalization/NonlinearDynamics/Deterministic/ODE/Stability.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/ODE/Stability.lean"
-lean_source_sha256: "a03577e90f8d89534ebb78e47220be18f843363b0fff1e21840da0a8d9d83261"
+lean_source_sha256: "270cf7a6d17f11af10c421a4351ce4c96b1cd6df59f806713317e25237c5a6c6"
 tags: ["Lean 4", "ODE", "Flows", "Lyapunov stability", "Attraction"]
 og_image: "stability-and-attraction-for-ode-flows-in-lean-card.png"
 og_image_alt: "A nonnegative real-time axis controls a tube around a moving orbit, while separate equilibrium and attraction gates combine into asymptotic stability."
@@ -38,9 +38,10 @@ sources and any released artifacts before relying on them.
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted public working note. The current
-source and teaching candidate still requires its warning-fatal Lean leaf,
-deterministic aggregator, full repository gate, and final browser inspection.
-Professional review has not been performed, so `pro_reviewed` remains false.
+source passes its warning-fatal Lean 4.32.0 leaf, deterministic aggregator,
+and complete repository gate; the paired pages also pass desktop and mobile
+browser inspection. Professional review has not been performed, so
+`pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Begin with two flows

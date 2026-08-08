@@ -7,7 +7,7 @@ pro_reviewed: false
 toc: true
 lean_module: "NonlinearDynamics.Deterministic.ODE.Stability"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/ODE/Stability.lean"
-lean_source_sha256: "a03577e90f8d89534ebb78e47220be18f843363b0fff1e21840da0a8d9d83261"
+lean_source_sha256: "270cf7a6d17f11af10c421a4351ce4c96b1cd6df59f806713317e25237c5a6c6"
 tags:
   - "Continuous-time dynamics"
   - "Stability"
@@ -19,8 +19,10 @@ og_image_alt: "One initial delta interval controls an epsilon tube around a movi
 
 {{< panel "warning" >}}
 **Editorial status.** This is an AI-assisted public working note. Its source
-candidate awaits warning-fatal Lean and full repository validation.
-Professional review has not been performed, so `pro_reviewed` remains false.
+passes its warning-fatal Lean 4.32.0 leaf, deterministic aggregator, and
+complete repository gate; the paired pages also pass desktop and mobile
+browser inspection. Professional review has not been performed, so
+`pro_reviewed` remains false.
 {{< /panel >}}
 
 **Continuous-time forward stability** means that one sufficiently small

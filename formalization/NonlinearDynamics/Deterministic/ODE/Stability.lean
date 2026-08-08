@@ -1,4 +1,5 @@
 import Mathlib.Dynamics.Flow
+import Mathlib.Topology.Algebra.Ring.Real
 import Mathlib.Topology.MetricSpace.Equicontinuity
 import Mathlib.Topology.MetricSpace.Lipschitz
 
@@ -190,6 +191,7 @@ theorem isForwardStableAt_translationFlow (c p : ℝ) :
   intro t
   exact LipschitzWith.mk_one fun x y ↦ by
     simp only [translationFlow_apply, Real.dist_eq, add_sub_add_right_eq_sub]
+    exact le_rfl
 
 /-- A nonzero translation flow exhibits a forward-stable reference orbit that
 is not an equilibrium. -/
@@ -234,7 +236,7 @@ theorem IsAttractedTo.isEquilibrium [TopologicalSpace X] [T2Space X]
     hxp.comp (tendsto_atTop_add_const_left atTop s tendsto_id)
   have htransport :
       Tendsto (fun t : ℝ ↦ ϕ s (ϕ t x)) atTop (nhds (ϕ s p)) :=
-    (ϕ.continuous_toFun s).continuousAt.comp hxp
+    ((ϕ.continuous_toFun s).tendsto p).comp hxp
   have hsame : Tendsto (fun t : ℝ ↦ ϕ (s + t) x) atTop (nhds (ϕ s p)) := by
     simpa only [ϕ.map_add] using htransport
   exact tendsto_nhds_unique hsame hshift
