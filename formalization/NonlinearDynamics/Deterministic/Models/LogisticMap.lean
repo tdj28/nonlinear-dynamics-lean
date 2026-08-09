@@ -1,3 +1,4 @@
+import Mathlib.Analysis.Calculus.Deriv.Add
 import Mathlib.Analysis.Calculus.Deriv.Mul
 import NonlinearDynamics.Deterministic.Discrete.Bifurcation
 
@@ -62,7 +63,11 @@ valid at `r = 0` as well as at nonzero parameters. -/
     · exact Or.inl hx
     · right
       have hfactor : x * (r * (1 - x) - 1) = 0 := by
-        nlinarith [h]
+        calc
+          x * (r * (1 - x) - 1) = logisticMap r x - x := by
+            simp only [logisticMap]
+            ring
+          _ = 0 := sub_eq_zero.mpr h
       have hlinear : r * (1 - x) - 1 = 0 :=
         (mul_eq_zero.mp hfactor).resolve_left hx
       nlinarith [hlinear]
@@ -72,12 +77,13 @@ valid at `r = 0` as well as at nonzero parameters. -/
         nlinarith [h]
       calc
         logisticMap r x = x * (r * (1 - x)) := by
+          simp only [logisticMap]
           ring
         _ = x := by rw [hlinear, mul_one]
 
 /-- The nonzero fixed-point branch, written as a total real-valued function.
 It satisfies the fixed-point equation only when the parameter is nonzero. -/
-def logisticNonzeroFixedPoint (r : ℝ) : ℝ :=
+noncomputable def logisticNonzeroFixedPoint (r : ℝ) : ℝ :=
   1 - 1 / r
 
 /-- The nonzero branch consists of fixed points away from `r = 0`. -/
@@ -85,7 +91,8 @@ theorem logisticNonzeroFixedPoint_isFixedPt {r : ℝ} (hr : r ≠ 0) :
     IsFixedPt (logisticMap r) (logisticNonzeroFixedPoint r) := by
   rw [logisticMap_isFixedPt_iff]
   right
-  field_simp [logisticNonzeroFixedPoint, hr]
+  change r * (1 - 1 / r) = r - 1
+  field_simp [hr]
 
 /-- The zero branch is a fixed-point branch on the whole parameter line. -/
 theorem logisticFamily_zero_isFixedPointBranchOn :
@@ -106,8 +113,11 @@ branch exactly at `r = 1`. -/
     logisticNonzeroFixedPoint r = 0 ↔ r = 1 := by
   constructor
   · intro h
-    field_simp [logisticNonzeroFixedPoint, hr] at h
-    nlinarith [h]
+    have hzero : 1 - 1 / r = 0 := by
+      simpa only [logisticNonzeroFixedPoint] using h
+    have hcancel : r * (1 / r) = 1 := by
+      field_simp [hr]
+    nlinarith [hzero, hcancel]
   · rintro rfl
     norm_num [logisticNonzeroFixedPoint]
 
@@ -124,6 +134,7 @@ theorem logisticCore_le_oneQuarter (x : ℝ) :
 /-- The midpoint of the unit interval maps to `r / 4`. -/
 @[simp] theorem logisticMap_oneHalf (r : ℝ) :
     logisticMap r ((1 : ℝ) / 2) = r / 4 := by
+  simp only [logisticMap]
   ring
 
 /-- Parameters in `[0, 4]` make the closed unit interval forward invariant. -/
@@ -143,7 +154,7 @@ theorem logisticMap_parameter_mem_unitInterval_of_mapsTo {r : ℝ}
     (hmap : MapsTo (logisticMap r) (Icc 0 1) (Icc 0 1)) :
     r ∈ Icc 0 4 := by
   have hhalf : logisticMap r ((1 : ℝ) / 2) ∈ Icc 0 1 :=
-    hmap ((1 : ℝ) / 2) (by constructor <;> norm_num)
+    hmap (by constructor <;> norm_num)
   rw [logisticMap_oneHalf] at hhalf
   constructor <;> nlinarith [hhalf.1, hhalf.2]
 
@@ -167,9 +178,14 @@ interval. -/
 /-- The derivative of the logistic map at an arbitrary real point. -/
 theorem hasDerivAt_logisticMap (r x : ℝ) :
     HasDerivAt (logisticMap r) (r * (1 - 2 * x)) x := by
-  convert (((hasDerivAt_id' x).mul
-    ((hasDerivAt_const x (1 : ℝ)).sub (hasDerivAt_id' x))).const_mul r) using 1 <;>
-    ring
+  have hCore : HasDerivAt (fun y : ℝ => y * (1 - y)) (1 - 2 * x) x := by
+    have hRaw := (hasDerivAt_id' x).mul
+      ((hasDerivAt_const x (1 : ℝ)).sub (hasDerivAt_id' x))
+    have hNormalized := hRaw.congr_deriv (show
+      (1 : ℝ) * (1 - x) + x * (0 - 1) = 1 - 2 * x by ring)
+    convert hNormalized using 1 <;> rfl
+  change HasDerivAt (fun y : ℝ => r * (y * (1 - y))) (r * (1 - 2 * x)) x
+  exact hCore.const_mul r
 
 /-- The derivative operator returns the logistic-map multiplier formula. -/
 @[simp] theorem deriv_logisticMap (r x : ℝ) :
@@ -186,8 +202,9 @@ theorem hasDerivAt_logisticMap (r x : ℝ) :
 theorem deriv_logisticMap_nonzeroFixedPoint {r : ℝ} (hr : r ≠ 0) :
     deriv (logisticMap r) (logisticNonzeroFixedPoint r) = 2 - r := by
   rw [deriv_logisticMap]
-  field_simp [logisticNonzeroFixedPoint, hr]
-  <;> ring
+  change r * (1 - 2 * (1 - 1 / r)) = 2 - r
+  field_simp [hr]
+  ring
 
 end NonlinearDynamics.Deterministic.Models
 

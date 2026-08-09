@@ -11,7 +11,7 @@ reading_time: "30 to 45 minutes"
 prerequisites: "Intervals, fixed points, elementary derivatives, and one-step iteration are introduced through the worked example"
 lean_module: "NonlinearDynamics.Deterministic.Models.LogisticMap"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/LogisticMap.lean"
-lean_source_sha256: "e4357a0d0546f1779ffb76c120e4b3fa66a460e23ed821f9ceb42694a5ceb731"
+lean_source_sha256: "36961ccbda91cf9408d0f57b0f8635e1cec09bc4119bc3c08064a34c26921e6d"
 toc: true
 og_image: "logistic-map-fixed-points-invariant-interval-and-multipliers-card.png"
 og_image_alt: "A midpoint test and a completed-square bound meet at the exact logistic-map parameter window from zero to four."

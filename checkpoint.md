@@ -9,7 +9,7 @@ Audited baseline: `main` at `dc96c86`
 
 Active direction: **formalize the discrete logistic map as the first concrete
 model.**
-The source-only candidate for
+Candidate commit `47be7a9` for
 `NonlinearDynamics.Deterministic.Models.LogisticMap` is now prepared on the
 workstation. It defines `f_r(x) = r x (1 - x)`, proves the division-free
 fixed-point equation, records the zero and nonzero fixed-point branches and
@@ -22,7 +22,7 @@ those formulas alone. Its paired private-draft Research Note, Deep Dive,
 glossary chapter, five conceptual figures, three deterministic social cards,
 and bounded `Std` worksheet are also present with `pro_reviewed: false`.
 The exact candidate source SHA-256 is
-`e4357a0d0546f1779ffb76c120e4b3fa66a460e23ed821f9ceb42694a5ceb731`.
+`36961ccbda91cf9408d0f57b0f8635e1cec09bc4119bc3c08064a34c26921e6d`.
 Workstation validation passes: 54 substantive modules have 54 comprehensive
 Notebook pages, all 23 coverage and seven teaching-hygiene regression tests
 pass, 193 Markdown files and 923 public reader surfaces pass their hygiene
@@ -35,10 +35,13 @@ three new pages finds one H1 per page, no document overflow, no raw TeX,
 no KaTeX errors, complete social metadata, no missing image alternatives, and
 no console warnings or errors. Wide conceptual figures use the site's
 intentional horizontally scrollable mobile rail without widening the page.
-No project Lean, Lake, Mathlib build, cache restoration, or paid cloud command
-has been run on the Mac for this candidate. Warning-fatal proof repair,
-aggregator validation, the exact full gate, cache preservation, rendered
-release promotion, and final publication status remain open.
+No project Lean, Lake, Mathlib build, or cache restoration has been run on the
+Mac for this candidate. On the approved Linux builder, the repaired
+LogisticMap leaf passes warning-fatal in two seconds, its five axiom reports
+contain only `propext`, `Classical.choice`, and `Quot.sound`, and the
+deterministic aggregator passes warning-fatal in one second. The exact full
+gate, cache preservation, rendered release promotion, and final publication
+status remain open.
 
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
@@ -3428,8 +3431,9 @@ files are placeholders:
   separate stability and attraction endpoints, strict-descent boundary,
   exact-commit full gate, browser QA, and verified cache preservation.
 - [ ] `Models/LogisticMap.lean`: source and complete private-draft teaching
-  candidate prepared and workstation/browser QA passed; warning-fatal Linux
-  checks, full gate, and cache-preserved closure remain open.
+  candidate prepared; workstation/browser QA plus warning-fatal Linux leaf and
+  deterministic-aggregator checks pass. The exact full gate and
+  cache-preserved closure remain open.
 - [ ] `Models/TentMap.lean`
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`

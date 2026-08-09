@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.Models.LogisticMap"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Models/LogisticMap.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/LogisticMap.lean"
-lean_source_sha256: "e4357a0d0546f1779ffb76c120e4b3fa66a460e23ed821f9ceb42694a5ceb731"
+lean_source_sha256: "36961ccbda91cf9408d0f57b0f8635e1cec09bc4119bc3c08064a34c26921e6d"
 toc: true
 og_image: "logistic-map-fixed-points-invariant-interval-and-multipliers-in-lean-card.png"
 og_image_alt: "A logistic parabola maps the unit interval into itself precisely across the highlighted parameter window from zero to four."
