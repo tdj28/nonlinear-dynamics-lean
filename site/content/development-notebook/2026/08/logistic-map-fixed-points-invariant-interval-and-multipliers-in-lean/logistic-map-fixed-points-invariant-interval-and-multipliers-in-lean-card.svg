@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic-map fixed points, invariant interval, and multipliers in Lean</title>
+  <desc id="desc">A logistic parabola beside the highlighted exact parameter window from zero to four, with branch and derivative formulas listed below.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/><rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="26" font-weight="750" fill="#2d7f73">NONLINEAR DYNAMICS · LEAN 4</text>
+  <text x="78" y="172" font-family="system-ui,sans-serif" font-size="47" font-weight="780" fill="#16324f">THE LOGISTIC MAP</text>
+  <text x="78" y="225" font-family="system-ui,sans-serif" font-size="35" font-weight="650" fill="#874d3b">fixed points · invariant interval · multipliers</text>
+  <line x1="95" y1="450" x2="600" y2="450" stroke="#263c3b" stroke-width="4"/><line x1="180" y1="510" x2="180" y2="285" stroke="#263c3b" stroke-width="4"/>
+  <path d="M180 450 Q345 245 510 450" fill="none" stroke="#315f63" stroke-width="9"/>
+  <circle cx="345" cy="348" r="10" fill="#d18b3c"/><text x="365" y="342" font-family="Georgia,serif" font-size="25" fill="#263c3b">fᵣ(1/2) = r/4</text>
+  <rect x="670" y="290" width="415" height="92" rx="18" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="878" y="328" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">SHARP INVARIANT-INTERVAL GATE</text>
+  <text x="878" y="365" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#16324f">fᵣ([0,1]) ⊆ [0,1] ⇔ r ∈ [0,4]</text>
+  <text x="690" y="440" font-family="Georgia,serif" font-size="27" fill="#263c3b">fixed:  x = 0  or  rx = r − 1</text>
+  <text x="690" y="486" font-family="Georgia,serif" font-size="27" fill="#263c3b">derivative:  fᵣ′(x) = r(1 − 2x)</text>
+  <text x="690" y="540" font-family="system-ui,sans-serif" font-size="19" font-weight="650" fill="#874d3b">MULTIPLIERS DO NOT YET PROVE STABILITY</text>
+</svg>

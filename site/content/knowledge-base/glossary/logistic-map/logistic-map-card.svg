@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic map glossary card</title>
+  <desc id="desc">A downward-opening logistic parabola marks its zeros at zero and one and its midpoint value r over four.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/><rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="80" y="110" font-family="system-ui,sans-serif" font-size="26" font-weight="750" fill="#2d7f73">KNOWLEDGE BASE · GLOSSARY</text>
+  <text x="80" y="185" font-family="system-ui,sans-serif" font-size="57" font-weight="780" fill="#16324f">LOGISTIC MAP</text>
+  <text x="80" y="243" font-family="Georgia,serif" font-size="35" fill="#874d3b">fᵣ(x) = r x(1 − x)</text>
+  <line x1="95" y1="505" x2="720" y2="505" stroke="#263c3b" stroke-width="4"/><line x1="180" y1="545" x2="180" y2="295" stroke="#263c3b" stroke-width="4"/>
+  <path d="M180 505 Q405 220 630 505" fill="none" stroke="#315f63" stroke-width="10"/>
+  <circle cx="180" cy="505" r="10" fill="#a14f3f"/><circle cx="405" cy="363" r="11" fill="#d18b3c"/><circle cx="630" cy="505" r="10" fill="#a14f3f"/>
+  <text x="385" y="340" font-family="Georgia,serif" font-size="27" fill="#263c3b">r / 4</text>
+  <rect x="765" y="315" width="335" height="170" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="932" y="360" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">UNIT INTERVAL GATE</text>
+  <text x="932" y="412" text-anchor="middle" font-family="Georgia,serif" font-size="31" fill="#16324f">0 ≤ r ≤ 4</text>
+  <text x="932" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">exactly</text>
+</svg>

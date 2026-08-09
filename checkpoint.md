@@ -3,12 +3,43 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-08
+Last updated: 2026-08-09
 
 Audited baseline: `main` at `dc96c86`
 
 Active direction: **formalize the discrete logistic map as the first concrete
 model.**
+The source-only candidate for
+`NonlinearDynamics.Deterministic.Models.LogisticMap` is now prepared on the
+workstation. It defines `f_r(x) = r x (1 - x)`, proves the division-free
+fixed-point equation, records the zero and nonzero fixed-point branches and
+their collision at `r = 1`, proves the sharp equivalence
+`MapsTo (logisticMap r) (Icc 0 1) (Icc 0 1) ↔ r ∈ Icc 0 4`, checks two
+midpoint examples, and derives the general derivative plus both branch
+multiplier formulas. The candidate intentionally makes no stability,
+attraction, period-doubling, chaos, or topological-bifurcation conclusion from
+those formulas alone. Its paired private-draft Research Note, Deep Dive,
+glossary chapter, five conceptual figures, three deterministic social cards,
+and bounded `Std` worksheet are also present with `pro_reviewed: false`.
+The exact candidate source SHA-256 is
+`e4357a0d0546f1779ffb76c120e4b3fa66a460e23ed821f9ceb42694a5ceb731`.
+Workstation validation passes: 54 substantive modules have 54 comprehensive
+Notebook pages, all 23 coverage and seven teaching-hygiene regression tests
+pass, 193 Markdown files and 923 public reader surfaces pass their hygiene
+gates, and Hugo Extended 0.160.1 renders 493 production pages plus 571 pages
+with drafts warning-fatal. The three deterministic card generators reproduce
+their 1200-by-630 PNGs byte-for-byte, all SVG sources are valid XML, the
+bounded `Std` worksheet checks its complete five-entry table, and
+`git diff --check` passes. Rendered desktop and literal 390-by-844 QA for all
+three new pages finds one H1 per page, no document overflow, no raw TeX,
+no KaTeX errors, complete social metadata, no missing image alternatives, and
+no console warnings or errors. Wide conceptual figures use the site's
+intentional horizontally scrollable mobile rail without widening the page.
+No project Lean, Lake, Mathlib build, cache restoration, or paid cloud command
+has been run on the Mac for this candidate. Warning-fatal proof repair,
+aggregator validation, the exact full gate, cache preservation, rendered
+release promotion, and final publication status remain open.
+
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
 exact-commit repository gates on the approved Linux builder. The verified
@@ -2561,20 +2592,17 @@ and
 
 ## Exact Next Milestone
 
-### Formalize the discrete logistic map
+### Validate and close the discrete logistic map candidate
 
-The next dependency-ordered source milestone is
-`NonlinearDynamics.Deterministic.Models.LogisticMap`. Begin from the exact real
-polynomial map `x ↦ r * x * (1 - x)` and audit pinned Mathlib's interval,
-polynomial, derivative, and fixed-point APIs before freezing the interface.
-The first slice should prove its named fixed points with all parameter
-side-conditions visible, establish a precisely scoped invariant-interval
-regime, and connect only those stability, attraction, bifurcation, or symbolic
-claims that the existing checked interfaces genuinely discharge. Parameter
-boundaries such as `r = 0`, coincident fixed points, and escape outside the
-invariant regime must remain explicit. A complete Notebook, concrete diagram,
-Deep Dive or glossary integration, warning-fatal Linux checks, and a boundary
-countermodel are required before marking the model complete.
+The source and teaching candidate for
+`NonlinearDynamics.Deterministic.Models.LogisticMap` is prepared and its
+workstation-safe static and rendered QA passes. The exact next step is an
+approved Linux builder for warning-fatal leaf repair, the deterministic
+aggregator, and the guarded exact-commit full gate. The cloud closure must restore the
+verified cache onto ephemeral storage, preserve a new integrity-checked cache
+archive on retained storage after success, record exact validation evidence,
+terminate the compute resource, and retain the project network volume. The
+roadmap item remains incomplete until those formal and release gates pass.
 
 ## Earlier Milestone Records
 
@@ -3399,7 +3427,9 @@ files are placeholders:
   invariant sublevels, antitone orbit values, derivative-sign bridges,
   separate stability and attraction endpoints, strict-descent boundary,
   exact-commit full gate, browser QA, and verified cache preservation.
-- [ ] `Models/LogisticMap.lean`
+- [ ] `Models/LogisticMap.lean`: source and complete private-draft teaching
+  candidate prepared and workstation/browser QA passed; warning-fatal Linux
+  checks, full gate, and cache-preserved closure remain open.
 - [ ] `Models/TentMap.lean`
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`

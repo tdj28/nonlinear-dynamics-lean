@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">The basic geometry and roles in the logistic map</title>
+  <desc id="desc">A downward-opening parabola has zeros at state zero and one and height r over four at state one half. A side ledger distinguishes changing the parameter r from advancing iteration n.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="70" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">ONE PARABOLA, TWO DISTINCT DIRECTIONS</text>
+  <g transform="translate(60 115)">
+    <rect width="700" height="460" rx="24" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <line x1="90" y1="375" x2="635" y2="375" stroke="#263c3b" stroke-width="4" marker-end="url(#arrow)"/>
+    <line x1="135" y1="420" x2="135" y2="55" stroke="#263c3b" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M135 375 Q350 85 565 375" fill="none" stroke="#315f63" stroke-width="9"/>
+    <circle cx="135" cy="375" r="10" fill="#a14f3f"/><circle cx="350" cy="230" r="11" fill="#d18b3c"/><circle cx="565" cy="375" r="10" fill="#a14f3f"/>
+    <g font-family="Georgia,serif" font-size="25" fill="#263c3b"><text x="118" y="413">0</text><text x="330" y="413">1/2</text><text x="555" y="413">1</text><text x="375" y="220">height r/4</text><text x="575" y="350">fᵣ(x)=r x(1−x)</text></g>
+  </g>
+  <g transform="translate(805 140)" font-family="system-ui,sans-serif">
+    <rect width="335" height="170" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+    <text x="28" y="45" font-size="21" font-weight="700" fill="#285448">CHANGE r</text>
+    <text x="28" y="88" font-size="26" fill="#263c3b">select another map</text>
+    <text x="28" y="125" font-size="21" fill="#263c3b">the parabola changes height</text>
+    <text x="28" y="151" font-size="21" fill="#263c3b">and curvature</text>
+    <rect y="215" width="335" height="170" rx="22" fill="#f1e6dc" stroke="#9d6b45" stroke-width="3"/>
+    <text x="28" y="260" font-size="21" font-weight="700" fill="#874d3b">CHANGE n</text>
+    <text x="28" y="303" font-size="26" fill="#263c3b">advance one orbit</text>
+    <text x="28" y="340" font-size="21" fill="#263c3b">apply the same selected map</text>
+    <text x="28" y="366" font-size="21" fill="#263c3b">again</text>
+  </g>
+  <text x="600" y="625" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#263c3b">Endpoints map to zero; the midpoint detects the exact interval-preserving parameter range.</text>
+</svg>

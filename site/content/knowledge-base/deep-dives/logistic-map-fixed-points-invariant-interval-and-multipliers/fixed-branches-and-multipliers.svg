@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Fixed-point branches, exact multipliers, and the missing stability bridge</title>
+  <desc id="desc">Two rows list the zero and one minus one over r fixed-point branches with multipliers r and two minus r. They feed a dashed box labeled local stability criterion not yet applied.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="680" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="70" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">FROM FIXED-POINT EQUATIONS TO EXACT DERIVATIVE DATA</text>
+  <g font-family="system-ui,sans-serif">
+    <rect x="70" y="125" width="640" height="150" rx="22" fill="#fffaf1" stroke="#a14f3f" stroke-width="4"/>
+    <text x="105" y="170" font-size="22" font-weight="700" fill="#8b3d32">ZERO BRANCH · ALL REAL r</text>
+    <text x="105" y="220" font-family="Georgia,serif" font-size="31" fill="#263c3b">x = 0</text>
+    <text x="390" y="220" font-family="Georgia,serif" font-size="31" fill="#263c3b">fᵣ′(0) = r</text>
+    <rect x="70" y="315" width="640" height="150" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="4"/>
+    <text x="105" y="360" font-size="22" font-weight="700" fill="#285448">NONZERO BRANCH · r ≠ 0</text>
+    <text x="105" y="410" font-family="Georgia,serif" font-size="31" fill="#263c3b">x = 1 − 1/r</text>
+    <text x="390" y="410" font-family="Georgia,serif" font-size="31" fill="#263c3b">fᵣ′ = 2 − r</text>
+    <rect x="790" y="215" width="350" height="180" rx="22" fill="#f1e6dc" stroke="#9d6b45" stroke-width="4" stroke-dasharray="11 8"/>
+    <text x="965" y="260" text-anchor="middle" font-size="21" font-weight="700" fill="#874d3b">NOT YET APPLIED</text>
+    <text x="965" y="310" text-anchor="middle" font-size="27" fill="#263c3b">local stability criterion</text>
+    <text x="965" y="348" text-anchor="middle" font-size="21" fill="#263c3b">neighborhood + regularity</text>
+    <text x="965" y="378" text-anchor="middle" font-size="21" fill="#263c3b">+ orbit conclusion</text>
+    <path d="M715 200 C760 200 755 260 785 275" fill="none" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M715 390 C760 390 755 350 785 335" fill="none" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+    <rect x="290" y="515" width="620" height="90" rx="20" fill="#fffaf1" stroke="#d18b3c" stroke-width="3"/>
+    <text x="600" y="552" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#263c3b">branches meet at r = 1</text>
+    <text x="600" y="585" text-anchor="middle" font-size="20" fill="#874d3b">collision checked · bifurcation classification deferred</text>
+  </g>
+</svg>

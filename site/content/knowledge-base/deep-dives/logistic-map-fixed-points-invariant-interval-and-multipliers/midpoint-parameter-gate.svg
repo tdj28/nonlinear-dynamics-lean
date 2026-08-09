@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">The midpoint test for the logistic parameter range</title>
+  <desc id="desc">A parameter number line highlights zero through four. The midpoint image r over four is below the unit interval for negative r, in the unit interval on the highlighted range, and above the interval for r greater than four.</desc>
+  <rect width="1200" height="600" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="75" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">NECESSITY FROM ONE CHECKABLE STATE</text>
+  <line x1="100" y1="250" x2="1100" y2="250" stroke="#263c3b" stroke-width="5"/>
+  <rect x="350" y="215" width="500" height="70" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="4"/>
+  <g font-family="system-ui,sans-serif" fill="#263c3b"><text x="335" y="310" font-size="25">0</text><text x="840" y="310" font-size="25">4</text><text x="575" y="335" font-size="24" font-weight="700" fill="#285448">exact parameter window</text></g>
+  <circle cx="210" cy="250" r="13" fill="#a14f3f"/><circle cx="600" cy="250" r="13" fill="#315f63"/><circle cx="990" cy="250" r="13" fill="#a14f3f"/>
+  <g font-family="Georgia,serif" font-size="29" text-anchor="middle"><text x="210" y="155" fill="#8b3d32">r / 4 &lt; 0</text><text x="600" y="155" fill="#285448">r / 4 ∈ [0,1]</text><text x="990" y="155" fill="#8b3d32">r / 4 &gt; 1</text></g>
+  <g font-family="system-ui,sans-serif" font-size="22" text-anchor="middle" fill="#263c3b"><text x="210" y="375">midpoint exits below</text><text x="600" y="375">midpoint stays inside</text><text x="990" y="375">midpoint exits above</text></g>
+  <rect x="235" y="445" width="730" height="92" rx="20" fill="#fffaf1" stroke="#9d6b45" stroke-width="3"/>
+  <text x="600" y="485" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#263c3b">0 ≤ fᵣ(1/2) ≤ 1  ⇔  0 ≤ r/4 ≤ 1  ⇔  0 ≤ r ≤ 4</text>
+  <text x="600" y="520" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#874d3b">This proves necessity. The completed-square bound proves sufficiency for every x.</text>
+</svg>

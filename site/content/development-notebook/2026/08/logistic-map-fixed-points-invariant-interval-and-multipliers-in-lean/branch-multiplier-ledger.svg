@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic fixed-point branches and their multipliers</title>
+  <desc id="desc">The zero branch and the one minus one over r branch meet at r equals one. Their exact multipliers r and two minus r point toward a separate unproved local stability gate.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="690" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="66" font-family="system-ui,sans-serif" font-size="29" font-weight="750" fill="#183c3a">BRANCH EQUATIONS AND MULTIPLIERS ARE CHECKED SEPARATELY</text>
+  <g transform="translate(65 105)" font-family="system-ui,sans-serif">
+    <rect width="650" height="500" rx="24" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <line x1="75" y1="380" x2="590" y2="380" stroke="#263c3b" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="210" y1="445" x2="210" y2="55" stroke="#263c3b" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="600" y="410" font-size="22" fill="#263c3b">r</text><text x="176" y="60" font-size="22" fill="#263c3b">x</text>
+    <line x1="75" y1="380" x2="590" y2="380" stroke="#a14f3f" stroke-width="7"/>
+    <path d="M95 85 C155 190 190 300 210 380 C255 455 360 420 565 315" fill="none" stroke="#315f63" stroke-width="7"/>
+    <circle cx="210" cy="380" r="12" fill="#d18b3c" stroke="#fff" stroke-width="3"/>
+    <text x="225" y="355" font-size="23" font-weight="700" fill="#8a5a25">r = 1, x = 0</text>
+    <text x="390" y="355" font-size="23" font-weight="700" fill="#8b3d32">zero branch</text>
+    <text x="345" y="250" font-size="23" font-weight="700" fill="#285448">x = 1 − 1/r</text>
+  </g>
+  <g transform="translate(760 125)" font-family="system-ui,sans-serif">
+    <rect width="380" height="140" rx="20" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+    <text x="30" y="48" font-size="22" font-weight="700" fill="#285448">EXACT MULTIPLIERS</text>
+    <text x="30" y="88" font-size="26" fill="#263c3b">at x = 0:  f′ = r</text>
+    <text x="30" y="123" font-size="26" fill="#263c3b">at x = 1 − 1/r:  f′ = 2 − r</text>
+    <path d="M190 155 L190 225" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+    <rect y="240" width="380" height="150" rx="20" fill="#f1e6dc" stroke="#9d6b45" stroke-width="3" stroke-dasharray="10 8"/>
+    <text x="190" y="285" text-anchor="middle" font-size="22" font-weight="700" fill="#874d3b">SEPARATE FUTURE GATE</text>
+    <text x="190" y="325" text-anchor="middle" font-size="24" fill="#263c3b">local derivative criterion</text>
+    <text x="190" y="360" text-anchor="middle" font-size="21" fill="#263c3b">stability and attraction not inferred here</text>
+  </g>
+  <text x="600" y="655" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#263c3b">A branch collision is geometry; a bifurcation or stability conclusion needs additional hypotheses.</text>
+</svg>

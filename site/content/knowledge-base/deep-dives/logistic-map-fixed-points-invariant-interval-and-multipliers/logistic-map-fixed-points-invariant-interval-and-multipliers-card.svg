@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic-map fixed points, invariant interval, and multipliers</title>
+  <desc id="desc">A midpoint gate and completed-square bound join to produce the exact parameter interval zero through four.</desc>
+  <rect width="1200" height="630" fill="#f7f1e5"/><rect x="42" y="42" width="1116" height="546" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="102" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">KNOWLEDGE BASE · DISCRETE DYNAMICS</text>
+  <text x="78" y="165" font-family="system-ui,sans-serif" font-size="44" font-weight="780" fill="#16324f">THE LOGISTIC MAP</text>
+  <text x="78" y="217" font-family="system-ui,sans-serif" font-size="31" font-weight="650" fill="#874d3b">one witness · one square · one sharp interval</text>
+  <rect x="80" y="285" width="300" height="150" rx="22" fill="#f1e6dc" stroke="#9d6b45" stroke-width="3"/>
+  <text x="230" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#874d3b">MIDPOINT TEST</text>
+  <text x="230" y="382" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#263c3b">fᵣ(1/2) = r/4</text>
+  <text x="230" y="416" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">necessity</text>
+  <text x="420" y="375" font-family="system-ui,sans-serif" font-size="42" font-weight="700" fill="#315f63">+</text>
+  <rect x="475" y="285" width="300" height="150" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="625" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">SQUARE BOUND</text>
+  <text x="625" y="382" text-anchor="middle" font-family="Georgia,serif" font-size="31" fill="#263c3b">x(1−x) ≤ 1/4</text>
+  <text x="625" y="416" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">sufficiency</text>
+  <text x="815" y="375" font-family="system-ui,sans-serif" font-size="42" font-weight="700" fill="#315f63">⇒</text>
+  <rect x="875" y="285" width="245" height="150" rx="22" fill="#e7edf5" stroke="#16324f" stroke-width="4"/>
+  <text x="997" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#16324f">EXACT GATE</text>
+  <text x="997" y="382" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#16324f">0 ≤ r ≤ 4</text>
+  <text x="600" y="520" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" fill="#263c3b">fixed-point branches and multiplier formulas are checked · stability remains separate</text>
+</svg>
