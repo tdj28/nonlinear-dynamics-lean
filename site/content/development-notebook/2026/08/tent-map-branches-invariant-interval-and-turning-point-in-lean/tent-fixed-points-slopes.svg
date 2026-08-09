@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Tent-map fixed points, branch slopes, and the midpoint corner</title>
+  <desc id="desc">The left branch has slope s and fixed point zero. Above slope one, the right branch has slope minus s and fixed point s divided by s plus one. A corner separates the branches.</desc>
+  <rect width="920" height="520" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.h{font-size:20px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}.card{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:2}.left{fill:#E8F0F7;stroke:#4B6787;stroke-width:2}.right{fill:#F3E8E0;stroke:#A67C52;stroke-width:2}</style>
+  <text x="28" y="36" class="t h">Two affine branches meet at one corner</text>
+  <text x="28" y="60" class="t m">The labels are exact source theorems, not a stability or chaos classification.</text>
+  <rect x="28" y="88" width="410" height="300" rx="16" class="left"/>
+  <rect x="482" y="88" width="410" height="300" rx="16" class="right"/>
+  <text x="233" y="126" text-anchor="middle" class="t h">left branch</text>
+  <text x="687" y="126" text-anchor="middle" class="t h">right branch, slope above one</text>
+  <line x1="88" y1="324" x2="370" y2="160" stroke="#4B6787" stroke-width="7"/>
+  <circle cx="88" cy="324" r="9" fill="#315f63"/>
+  <text x="108" y="348" class="t s">fixed point zero</text>
+  <text x="180" y="214" class="t h">slope s</text>
+  <line x1="542" y1="160" x2="824" y2="324" stroke="#A67C52" stroke-width="7"/>
+  <circle cx="682" cy="241" r="9" fill="#874d3b"/>
+  <text x="585" y="278" class="t s">fixed point s / (s + 1)</text>
+  <text x="700" y="214" class="t h">slope -s</text>
+  <path d="M438 160 L460 138 L482 160" fill="#EDE8E1" stroke="#7F786D" stroke-width="3"/>
+  <text x="460" y="410" text-anchor="middle" class="t h">midpoint corner: not differentiable when s is nonzero</text>
+  <rect x="28" y="442" width="864" height="52" rx="12" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="460" y="474" text-anchor="middle" class="t s">Multiplier values are checked inputs; a separate theorem must establish orbit stability.</text>
+</svg>

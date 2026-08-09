@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="500" viewBox="0 0 920 500" role="img" aria-labelledby="title desc">
+  <title id="title">Five exact quarter-grid values on the standard tent map</title>
+  <desc id="desc">The inputs zero, one quarter, one half, three quarters, and one map to zero, one half, one, one half, and zero under the slope-two tent.</desc>
+  <rect width="920" height="500" fill="#F7F4F0"/>
+  <style>.t{font-family:Inter,Arial,sans-serif;fill:#2C2924}.h{font-size:20px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}.axis{stroke:#7F786D;stroke-width:2}.tent{stroke:#4B6787;stroke-width:7;fill:none}</style>
+  <text x="28" y="36" class="t h">The slope-two tent on a five-state grid</text>
+  <text x="28" y="60" class="t m">Every plotted point is one entry of the standalone finite worksheet.</text>
+  <line x1="90" y1="390" x2="840" y2="390" class="axis"/>
+  <line x1="120" y1="418" x2="120" y2="100" class="axis"/>
+  <path d="M120 390 L460 112 L800 390" class="tent"/>
+  <g fill="#D18B3C" stroke="#874D3B" stroke-width="2">
+    <circle cx="120" cy="390" r="9"/><circle cx="290" cy="251" r="9"/><circle cx="460" cy="112" r="9"/><circle cx="630" cy="251" r="9"/><circle cx="800" cy="390" r="9"/>
+  </g>
+  <text x="120" y="435" text-anchor="middle" class="t s">0 maps to 0</text>
+  <text x="290" y="282" text-anchor="middle" class="t s">1 / 4 maps to 1 / 2</text>
+  <text x="460" y="94" text-anchor="middle" class="t s">1 / 2 maps to 1</text>
+  <text x="630" y="282" text-anchor="middle" class="t s">3 / 4 maps to 1 / 2</text>
+  <text x="800" y="435" text-anchor="middle" class="t s">1 maps to 0</text>
+  <rect x="28" y="454" width="864" height="32" rx="10" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="460" y="475" text-anchor="middle" class="t s">The finite table illustrates both branches; the interval theorem needs a universal proof.</text>
+</svg>

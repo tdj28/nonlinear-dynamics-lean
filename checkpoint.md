@@ -5,10 +5,46 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `dc96c86`
+Audited baseline: `main` at `4cadb00`
 
-Active direction: **advance to the tent map after closing the first concrete
-model.**
+Active direction: **validate and close the tent-map source-and-teaching
+candidate.**
+`NonlinearDynamics.Deterministic.Models.TentMap` is now prepared as the second
+concrete discrete model. It defines
+`T_s(x) = s * min x (1 - x)`, proves the two affine branch formulas, the
+centered absolute-value formula, continuity, midpoint symmetry, and the sharp
+equivalence
+`MapsTo (tentMap s) (Icc 0 1) (Icc 0 1) ↔ s ∈ Icc 0 2`. For `s > 1`, it
+classifies the unit-interval fixed points as `0` and `s / (s + 1)`; at the
+boundary `s = 1`, it preserves the exact fixed half-interval `Icc 0 (1 / 2)`.
+It records the standard parameter-two midpoint orbit and fixed points, the
+two open-branch derivatives `s` and `-s`, the nonzero midpoint
+nondifferentiability theorem, and the two fixed-point multipliers. It makes no
+transitivity, dense-periodic-point, sensitivity, entropy, mixing, invariant-
+measure, symbolic-coding, conjugacy, attraction, or stability claim. Its
+paired private-draft Research Note, Deep Dive, glossary chapter, five
+conceptual figures, three deterministic social cards, and bounded `Std`
+worksheet are present with `pro_reviewed: false`. The current candidate source
+SHA-256 is
+`fda621b848d2093942d6c68fa9df7b596eb230751a7a6050d7d5276e984d6c01`.
+The standalone worksheet checks the complete scaled quarter-grid output
+`[0, 2, 4, 2, 0]`, the card generators reproduce their 1200-by-630 PNGs,
+all new SVG sources parse as XML, and 55 substantive modules have 55
+comprehensive Notebook mappings. The complete workstation-safe gate passes:
+all 23 coverage and seven teaching-hygiene regression tests pass, 196 Markdown
+files and 938 public reader surfaces pass their hygiene gates, and Hugo
+Extended 0.160.1 renders 493 production pages plus 578 pages with drafts
+warning-fatal. Rendered 1280-by-720 and exact 390-by-844 QA for all three new
+pages finds one article H1 per page, no document overflow, no raw TeX, no
+KaTeX errors, complete social metadata, and no missing or broken images. The
+wide conceptual figures remain inside the site's intentional horizontally
+scrollable mobile rail without widening the document. The remaining candidate
+gates are warning-fatal Linux leaf repair, the deterministic aggregator, the
+exact-commit full repository gate, verified cache preservation, checkpoint
+closure, compute termination, and retention of the project network volume. No
+project Lean, Lake, Mathlib build, or cache restoration has run on the Mac for
+this candidate.
+
 `NonlinearDynamics.Deterministic.Models.LogisticMap` is complete at proof
 closure commit `0527d6e`, following source-and-teaching candidate commit
 `47be7a9`. It defines `f_r(x) = r x (1 - x)`, proves the division-free
@@ -2625,17 +2661,19 @@ and
 
 ## Exact Next Milestone
 
-### Validate and close the discrete logistic map candidate
+### Validate and close the discrete tent-map candidate
 
 The source and teaching candidate for
-`NonlinearDynamics.Deterministic.Models.LogisticMap` is prepared and its
-workstation-safe static and rendered QA passes. The exact next step is an
-approved Linux builder for warning-fatal leaf repair, the deterministic
-aggregator, and the guarded exact-commit full gate. The cloud closure must restore the
-verified cache onto ephemeral storage, preserve a new integrity-checked cache
-archive on retained storage after success, record exact validation evidence,
-terminate the compute resource, and retain the project network volume. The
-roadmap item remains incomplete until those formal and release gates pass.
+`NonlinearDynamics.Deterministic.Models.TentMap` is prepared and passes the
+workstation-safe hygiene, Hugo, card, SVG, and desktop/mobile browser checks.
+Commit and push that exact source-and-teaching candidate. The next paid step is
+an explicitly approved Linux builder for warning-fatal leaf repair, the
+deterministic aggregator, and the guarded exact-commit full gate. The cloud
+closure must restore the verified LogisticMap cache onto ephemeral storage,
+preserve a new integrity-checked cache archive on retained storage after
+success, record exact validation evidence, terminate the compute resource,
+and retain the project network volume. The roadmap item remains incomplete
+until those formal and release gates pass.
 
 ## Earlier Milestone Records
 
@@ -3464,7 +3502,9 @@ files are placeholders:
   workstation/browser QA, warning-fatal Linux leaf and aggregator, complete
   exact-commit gate, verified cache preservation, and task-pod termination all
   pass. The paired teaching pages remain private with `pro_reviewed: false`.
-- [ ] `Models/TentMap.lean`
+- [ ] `Models/TentMap.lean`: source-and-teaching candidate prepared;
+  workstation and browser gates pass, while warning-fatal Linux, full-gate,
+  and cache-preservation closure remain pending.
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`
 - [ ] `Models/LotkaVolterra.lean`

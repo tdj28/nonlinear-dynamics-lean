@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tent-map branches, fixed points, and turning point</title>
+  <desc id="desc">A slope-one fixed interval contrasts with two fixed points at slope two, beside a symmetric tent and its midpoint corner.</desc>
+  <rect width="1200" height="630" fill="#F1E9DA"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFAF1" stroke="#315F63" stroke-width="4"/>
+  <text x="78" y="105" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700" fill="#2D7F73">DEEP DIVE · INTERVAL DYNAMICS</text>
+  <text x="78" y="170" font-family="Inter,Arial,sans-serif" font-size="44" font-weight="750" fill="#16324F">TENT-MAP BOUNDARIES</text>
+  <text x="78" y="220" font-family="Inter,Arial,sans-serif" font-size="31" fill="#874D3B">parameter gate · fixed set · midpoint corner</text>
+  <line x1="110" y1="492" x2="610" y2="492" stroke="#263C3B" stroke-width="4"/>
+  <line x1="175" y1="525" x2="175" y2="292" stroke="#263C3B" stroke-width="4"/>
+  <path d="M175 492 L380 275 L585 492" fill="none" stroke="#315F63" stroke-width="11"/>
+  <line x1="175" y1="492" x2="585" y2="280" stroke="#A89B8C" stroke-width="3" stroke-dasharray="9 7"/>
+  <circle cx="175" cy="492" r="11" fill="#D18B3C"/><circle cx="448" cy="351" r="11" fill="#D18B3C"/>
+  <text x="658" y="302" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="700" fill="#285448">EXACT STATE-SPACE GATE</text>
+  <text x="658" y="344" font-family="Inter,Arial,sans-serif" font-size="27" fill="#16324F">slope zero through two</text>
+  <text x="658" y="414" font-family="Inter,Arial,sans-serif" font-size="24" fill="#263C3B">slope one: a fixed half-interval</text>
+  <text x="658" y="458" font-family="Inter,Arial,sans-serif" font-size="24" fill="#263C3B">slope two: fixed at zero and two thirds</text>
+  <text x="658" y="520" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="650" fill="#874D3B">CONTINUOUS DOES NOT MEAN DIFFERENTIABLE</text>
+</svg>

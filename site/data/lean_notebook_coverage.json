@@ -51,6 +51,10 @@
     "module": "NonlinearDynamics.Deterministic.Models.LogisticMap",
     "notebook": "site/content/development-notebook/2026/08/logistic-map-fixed-points-invariant-interval-and-multipliers-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Models/TentMap.lean": {
+    "module": "NonlinearDynamics.Deterministic.Models.TentMap",
+    "notebook": "site/content/development-notebook/2026/08/tent-map-branches-invariant-interval-and-turning-point-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean": {
     "module": "NonlinearDynamics.Random.ComplexGaussianFamilies",
     "notebook": "site/content/development-notebook/2026/07/independent-complex-gaussian-families/index.md"

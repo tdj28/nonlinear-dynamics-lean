@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tent-map branches, invariant interval, and turning point in Lean</title>
+  <desc id="desc">A symmetric tent graph appears beside the exact slope window from zero through two, fixed-point formulas, and the midpoint corner boundary.</desc>
+  <rect width="1200" height="630" fill="#F1E9DA"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFAF1" stroke="#315F63" stroke-width="4"/>
+  <text x="78" y="105" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700" fill="#2D7F73">NONLINEAR DYNAMICS · LEAN 4</text>
+  <text x="78" y="172" font-family="Inter,Arial,sans-serif" font-size="48" font-weight="750" fill="#16324F">THE TENT MAP</text>
+  <text x="78" y="225" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="650" fill="#874D3B">branches · fixed points · turning point</text>
+  <line x1="110" y1="486" x2="570" y2="486" stroke="#263C3B" stroke-width="4"/>
+  <line x1="170" y1="520" x2="170" y2="292" stroke="#263C3B" stroke-width="4"/>
+  <path d="M170 486 L350 282 L530 486" fill="none" stroke="#315F63" stroke-width="10"/>
+  <circle cx="350" cy="282" r="12" fill="#D18B3C"/>
+  <text x="375" y="300" font-family="Inter,Arial,sans-serif" font-size="24" fill="#263C3B">peak s / 2</text>
+  <rect x="650" y="286" width="450" height="92" rx="18" fill="#DFECE3" stroke="#315F63" stroke-width="3"/>
+  <text x="875" y="324" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="700" fill="#285448">SHARP UNIT-INTERVAL GATE</text>
+  <text x="875" y="360" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="28" fill="#16324F">slope from zero through two</text>
+  <text x="670" y="438" font-family="Inter,Arial,sans-serif" font-size="25" fill="#263C3B">above one: fixed at 0 and s / (s + 1)</text>
+  <text x="670" y="482" font-family="Inter,Arial,sans-serif" font-size="25" fill="#263C3B">branch slopes: s and -s</text>
+  <text x="670" y="535" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="650" fill="#874D3B">NONZERO TENTS HAVE A MIDPOINT CORNER</text>
+</svg>

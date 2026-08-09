@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tent map glossary card</title>
+  <desc id="desc">A symmetric two-branch tent rises from zero to a midpoint peak and returns to zero, with the exact unit-interval slope window named.</desc>
+  <rect width="1200" height="630" fill="#F1E9DA"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFAF1" stroke="#315F63" stroke-width="4"/>
+  <text x="78" y="105" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700" fill="#2D7F73">KNOWLEDGE BASE · DISCRETE DYNAMICS</text>
+  <text x="78" y="180" font-family="Inter,Arial,sans-serif" font-size="54" font-weight="750" fill="#16324F">TENT MAP</text>
+  <text x="78" y="230" font-family="Inter,Arial,sans-serif" font-size="30" fill="#874D3B">two affine branches · one midpoint corner</text>
+  <line x1="105" y1="492" x2="665" y2="492" stroke="#263C3B" stroke-width="4"/>
+  <line x1="170" y1="526" x2="170" y2="292" stroke="#263C3B" stroke-width="4"/>
+  <path d="M170 492 L390 270 L610 492" fill="none" stroke="#315F63" stroke-width="11"/>
+  <circle cx="390" cy="270" r="12" fill="#D18B3C"/>
+  <text x="415" y="289" font-family="Inter,Arial,sans-serif" font-size="24" fill="#263C3B">peak s / 2</text>
+  <rect x="700" y="292" width="400" height="104" rx="18" fill="#DFECE3" stroke="#6F8D5E" stroke-width="3"/>
+  <text x="900" y="334" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="21" font-weight="700" fill="#285448">UNIT INTERVAL PRESERVED</text>
+  <text x="900" y="375" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="27" fill="#16324F">exactly from slope 0 to 2</text>
+  <text x="735" y="462" font-family="Inter,Arial,sans-serif" font-size="24" fill="#263C3B">left slope s</text>
+  <text x="735" y="505" font-family="Inter,Arial,sans-serif" font-size="24" fill="#263C3B">right slope -s</text>
+</svg>
