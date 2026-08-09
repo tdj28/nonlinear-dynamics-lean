@@ -7,11 +7,11 @@ Last updated: 2026-08-09
 
 Audited baseline: `main` at `dc96c86`
 
-Active direction: **formalize the discrete logistic map as the first concrete
+Active direction: **advance to the tent map after closing the first concrete
 model.**
-Candidate commit `47be7a9` for
-`NonlinearDynamics.Deterministic.Models.LogisticMap` is now prepared on the
-workstation. It defines `f_r(x) = r x (1 - x)`, proves the division-free
+`NonlinearDynamics.Deterministic.Models.LogisticMap` is complete at proof
+closure commit `0527d6e`, following source-and-teaching candidate commit
+`47be7a9`. It defines `f_r(x) = r x (1 - x)`, proves the division-free
 fixed-point equation, records the zero and nonzero fixed-point branches and
 their collision at `r = 1`, proves the sharp equivalence
 `MapsTo (logisticMap r) (Icc 0 1) (Icc 0 1) ↔ r ∈ Icc 0 4`, checks two
@@ -35,13 +35,43 @@ three new pages finds one H1 per page, no document overflow, no raw TeX,
 no KaTeX errors, complete social metadata, no missing image alternatives, and
 no console warnings or errors. Wide conceptual figures use the site's
 intentional horizontally scrollable mobile rail without widening the page.
-No project Lean, Lake, Mathlib build, or cache restoration has been run on the
-Mac for this candidate. On the approved Linux builder, the repaired
-LogisticMap leaf passes warning-fatal in two seconds, its five axiom reports
-contain only `propext`, `Classical.choice`, and `Quot.sound`, and the
-deterministic aggregator passes warning-fatal in one second. The exact full
-gate, cache preservation, rendered release promotion, and final publication
-status remain open.
+No project Lean, Lake, Mathlib build, or cache restoration ran on the Mac for
+this milestone. Approved Linux validation used RunPod Secure Cloud with 8
+vCPU, a 32,000,000,000-byte cgroup memory limit, an 80-GB ephemeral disk, and
+the retained project network volume at $0.32 per hour. The retained Lean
+4.32.0 toolchain and ODE Lyapunov Lake archives passed their SHA-256 ledger and
+independent `zstd -t` checks before sequential restoration to ephemeral disk;
+the network volume was not used as a live `.lake` tree. The exact source-only
+Git archive for `0527d6e` has SHA-256
+`2843e8ad01d742a72c2f7bc11dd6861cbc7708eaee5a09faf8c709b3a6122e05`,
+and the remote LogisticMap source hash matches the value above.
+
+On that exact commit, the repaired LogisticMap leaf passes warning-fatal in
+two seconds, its five axiom reports contain only `propext`,
+`Classical.choice`, and `Quot.sound`, and the deterministic aggregator passes
+warning-fatal in one second. The complete `CLOUD_LEAN_BUILD=1 make -j1 check`
+gate passes in 15 seconds: all 3,269 Lean jobs, 54/54 Notebook coverage, 23
+coverage regression tests, seven teaching-hygiene regression tests, the
+193-file teaching-source audit, the 923-surface public-reader audit, and
+warning-fatal Hugo Extended 0.160.1 renders of 493 production pages and 571
+pages with drafts all pass. The official Linux Hugo archive passed its
+published checksum before the gate.
+
+The successful ephemeral `.lake` tree is preserved sequentially as
+`lake-manifest-pinned-logistic-map-20260809.tar.zst` on retained storage. Its
+2,644,427,852-byte compressed archive expands to an 8,093,491,200-byte tar
+stream, has SHA-256
+`f10dd32a635a57e252db0def30fdef91830f50ed1cc6ec694f1e4f26e5c5baec`,
+and passes `zstd -t` plus retained ledger
+`SHA256SUMS-logistic-map-20260809` alongside the pinned toolchain. Earlier
+archives remain intact. The builder ran for 866 seconds at $0.32 per hour,
+approximately $0.08 of compute spend under the $5 ceiling. The exact task pod
+was terminated; direct lookup is absent, the final inventory reports zero
+compute pods, and all three account volumes remain, including exactly one
+retained project volume. No cloud resource identifier or credential is
+recorded here. The three teaching pages remain private drafts with
+`pro_reviewed: false`; publication and professional review remain separate
+future decisions.
 
 Candidate commit `6bf8517` and validation-record commit `b16413e` for
 `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` pass their complete
@@ -3430,10 +3460,10 @@ files are placeholders:
   invariant sublevels, antitone orbit values, derivative-sign bridges,
   separate stability and attraction endpoints, strict-descent boundary,
   exact-commit full gate, browser QA, and verified cache preservation.
-- [ ] `Models/LogisticMap.lean`: source and complete private-draft teaching
-  candidate prepared; workstation/browser QA plus warning-fatal Linux leaf and
-  deterministic-aggregator checks pass. The exact full gate and
-  cache-preserved closure remain open.
+- [x] `Models/LogisticMap.lean`: exact source-and-teaching closure commit,
+  workstation/browser QA, warning-fatal Linux leaf and aggregator, complete
+  exact-commit gate, verified cache preservation, and task-pod termination all
+  pass. The paired teaching pages remain private with `pro_reviewed: false`.
 - [ ] `Models/TentMap.lean`
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`
