@@ -5,12 +5,13 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `4cadb00`
+Audited baseline: `main` at `e9d186d`
 
 Active direction: **validate and close the tent-map source-and-teaching
 candidate.**
 `NonlinearDynamics.Deterministic.Models.TentMap` is now prepared as the second
-concrete discrete model. It defines
+concrete discrete model in source-and-teaching candidate commit `e9d186d`,
+which is pushed to `main`. It defines
 `T_s(x) = s * min x (1 - x)`, proves the two affine branch formulas, the
 centered absolute-value formula, continuity, midpoint symmetry, and the sharp
 equivalence
@@ -2666,8 +2667,8 @@ and
 The source and teaching candidate for
 `NonlinearDynamics.Deterministic.Models.TentMap` is prepared and passes the
 workstation-safe hygiene, Hugo, card, SVG, and desktop/mobile browser checks.
-Commit and push that exact source-and-teaching candidate. The next paid step is
-an explicitly approved Linux builder for warning-fatal leaf repair, the
+Exact candidate commit `e9d186d` is pushed to `main`. The next paid step is an
+explicitly approved Linux builder for warning-fatal leaf repair, the
 deterministic aggregator, and the guarded exact-commit full gate. The cloud
 closure must restore the verified LogisticMap cache onto ephemeral storage,
 preserve a new integrity-checked cache archive on retained storage after
