@@ -5,14 +5,14 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `cc74fdc`
+Audited baseline: `main` at `d7a26f5`
 
-Active direction: **validate and close the tent-map source-and-teaching
-candidate.**
-`NonlinearDynamics.Deterministic.Models.TentMap` is now prepared as the second
-concrete discrete model in source-and-teaching candidate commit `e9d186d`,
-with warning-fatal proof repair commit `cc74fdc`; both are pushed to `main`. It
-defines
+Active direction: **research and prepare the logistic ordinary-differential-
+equation model as the next concrete deterministic system.**
+`NonlinearDynamics.Deterministic.Models.TentMap` is complete as the second
+concrete discrete model. Source-and-teaching candidate commit `e9d186d`,
+warning-fatal proof repair commit `cc74fdc`, and exact validation checkpoint
+`d7a26f5` are pushed to `main`. The module defines
 `T_s(x) = s * min x (1 - x)`, proves the two affine branch formulas, the
 centered absolute-value formula, continuity, midpoint symmetry, and the sharp
 equivalence
@@ -26,7 +26,7 @@ transitivity, dense-periodic-point, sensitivity, entropy, mixing, invariant-
 measure, symbolic-coding, conjugacy, attraction, or stability claim. Its
 paired private-draft Research Note, Deep Dive, glossary chapter, five
 conceptual figures, three deterministic social cards, and bounded `Std`
-worksheet are present with `pro_reviewed: false`. The current candidate source
+worksheet are present with `pro_reviewed: false`. The warning-fatal source
 SHA-256 is
 `901090d0c34d055932d92a689ace5a4f02cb73507bf70d627e6a69757e2c7bf9`.
 The standalone worksheet checks the complete scaled quarter-grid output
@@ -48,11 +48,35 @@ warning-fatal, and its five axiom reports contain only `propext`,
 `Classical.choice`, and `Quot.sound`. The source repair replaces an unavailable
 minimum helper, makes the fixed numeric specialization explicit, and aligns
 the affine derivative and translated absolute-value proofs with the pinned
-API; no statement was weakened. The remaining candidate gates are the
-deterministic aggregator, exact-commit full repository gate, verified cache
-preservation, checkpoint closure, compute termination, and retention of the
-project network volume. No project Lean, Lake, Mathlib build, or cache
-restoration has run on the Mac for this candidate.
+API; no statement was weakened. The deterministic aggregator also passes
+warning-fatal. On exact commit `d7a26f5`, the complete
+`CLOUD_LEAN_BUILD=1 make -j1 check` gate passes all 3,270 Lean jobs, 55/55
+Notebook coverage, 23 coverage regression tests, seven teaching-hygiene
+regression tests, the 196-file teaching-source audit, the 938-surface public-
+reader audit, and warning-fatal Hugo Extended 0.160.1 renders of 493 production
+pages and 578 pages with drafts. The official Linux Hugo archive passes its
+published checksum before the gate. The exact 33,249,280-byte source-only Git
+archive for `d7a26f5` has SHA-256
+`b6343149d6d7ea6c02d33d0150fea9bfd9c7bf4ff9b4026a2fba7b36b54b0ab4`.
+
+The successful ephemeral `.lake` tree is preserved sequentially as
+`lake-manifest-pinned-tent-map-20260809.tar.zst` on retained storage. Its
+2,645,043,035-byte compressed archive expands to an 8,094,904,320-byte tar
+stream, has SHA-256
+`6b2af9aac0affe0374fc50f3ab490186f5aa5eef16f860cd097b7a73e8e044a0`,
+and passes `zstd -t` plus the retained and locally retrieved ledger
+`SHA256SUMS-tent-map-20260809`. Approved validation used RunPod Secure Cloud
+with 8 vCPU, a 32,000,000,000-byte memory limit, an 80-GB ephemeral disk, and
+the retained project network volume at $0.32 per hour. The builder ran for
+1,209 seconds, approximately $0.11 of compute spend under the $5 ceiling. The
+exact task pod was terminated; direct lookup is absent, and the final inventory
+returns to the pre-run one unrelated running pod and three volumes, including
+exactly one retained project volume. No unrelated resource was mutated. The
+network volume remains intentionally retained at its provider storage rate.
+No cloud resource identifier or credential is recorded here. No project Lean,
+Lake, Mathlib build, or cache restoration ran on the Mac for this milestone.
+The three teaching pages remain private drafts with `pro_reviewed: false`;
+publication and professional review remain separate future decisions.
 
 `NonlinearDynamics.Deterministic.Models.LogisticMap` is complete at proof
 closure commit `0527d6e`, following source-and-teaching candidate commit
@@ -2670,20 +2694,17 @@ and
 
 ## Exact Next Milestone
 
-### Validate and close the discrete tent-map candidate
+### Specify the logistic ordinary differential equation
 
-The source and teaching candidate for
-`NonlinearDynamics.Deterministic.Models.TentMap` is prepared and passes the
-workstation-safe hygiene, Hugo, card, SVG, and desktop/mobile browser checks.
-Exact candidate commit `e9d186d` is pushed to `main`. The next paid step is an
-approved Linux builder, which now has the integrity-checked LogisticMap cache
-restored to ephemeral storage and a warning-fatal repaired TentMap leaf. Exact
-repair commit `cc74fdc` is pushed to `main`. Run the deterministic aggregator
-and guarded exact-commit full gate. The cloud closure must preserve a new
-integrity-checked cache archive on retained storage after success, record exact
-validation evidence, terminate the compute resource, and retain the project
-network volume. The roadmap item remains incomplete until those formal and
-release gates pass.
+Begin `NonlinearDynamics.Deterministic.Models.LogisticODE` from its currently
+empty placeholder. Research and freeze the real scalar vector field and
+parameter convention before proving formulas. The first source candidate
+should separate equilibria, explicit solution identities, forward invariance,
+and asymptotic or stability conclusions so that no phase-line picture silently
+supplies a theorem. Reuse the checked ODE flow, equilibrium, stability,
+attraction, and Lyapunov interfaces where their hypotheses match, and give the
+new module a declaration-complete private-draft Notebook and Knowledge Base
+teaching bundle before requesting another Linux builder.
 
 ## Earlier Milestone Records
 
@@ -3512,9 +3533,10 @@ files are placeholders:
   workstation/browser QA, warning-fatal Linux leaf and aggregator, complete
   exact-commit gate, verified cache preservation, and task-pod termination all
   pass. The paired teaching pages remain private with `pro_reviewed: false`.
-- [ ] `Models/TentMap.lean`: source-and-teaching candidate prepared;
-  workstation, browser, warning-fatal Linux leaf, and repaired exact-commit
-  push pass, while the full gate and cache-preservation closure remain pending.
+- [x] `Models/TentMap.lean`: exact source-and-teaching closure, warning-fatal
+  leaf and deterministic aggregator, complete exact-commit gate, verified
+  retained-cache preservation, task-pod termination, and final inventory all
+  pass. The paired teaching pages remain private with `pro_reviewed: false`.
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`
 - [ ] `Models/LotkaVolterra.lean`
