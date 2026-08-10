@@ -5,13 +5,14 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `53e4592`
+Audited baseline: `main` at `cc74fdc`
 
 Active direction: **validate and close the tent-map source-and-teaching
 candidate.**
 `NonlinearDynamics.Deterministic.Models.TentMap` is now prepared as the second
 concrete discrete model in source-and-teaching candidate commit `e9d186d`,
-which is pushed to `main`. It defines
+with warning-fatal proof repair commit `cc74fdc`; both are pushed to `main`. It
+defines
 `T_s(x) = s * min x (1 - x)`, proves the two affine branch formulas, the
 centered absolute-value formula, continuity, midpoint symmetry, and the sharp
 equivalence
@@ -47,11 +48,11 @@ warning-fatal, and its five axiom reports contain only `propext`,
 `Classical.choice`, and `Quot.sound`. The source repair replaces an unavailable
 minimum helper, makes the fixed numeric specialization explicit, and aligns
 the affine derivative and translated absolute-value proofs with the pinned
-API; no statement was weakened. The remaining candidate gates are the repaired
-source commit, deterministic aggregator, exact-commit full repository gate,
-verified cache preservation, checkpoint closure, compute termination, and
-retention of the project network volume. No project Lean, Lake, Mathlib build,
-or cache restoration has run on the Mac for this candidate.
+API; no statement was weakened. The remaining candidate gates are the
+deterministic aggregator, exact-commit full repository gate, verified cache
+preservation, checkpoint closure, compute termination, and retention of the
+project network volume. No project Lean, Lake, Mathlib build, or cache
+restoration has run on the Mac for this candidate.
 
 `NonlinearDynamics.Deterministic.Models.LogisticMap` is complete at proof
 closure commit `0527d6e`, following source-and-teaching candidate commit
@@ -2676,9 +2677,9 @@ The source and teaching candidate for
 workstation-safe hygiene, Hugo, card, SVG, and desktop/mobile browser checks.
 Exact candidate commit `e9d186d` is pushed to `main`. The next paid step is an
 approved Linux builder, which now has the integrity-checked LogisticMap cache
-restored to ephemeral storage and a warning-fatal repaired TentMap leaf. Commit
-and push that exact repair, then run the deterministic aggregator and guarded
-exact-commit full gate. The cloud closure must preserve a new
+restored to ephemeral storage and a warning-fatal repaired TentMap leaf. Exact
+repair commit `cc74fdc` is pushed to `main`. Run the deterministic aggregator
+and guarded exact-commit full gate. The cloud closure must preserve a new
 integrity-checked cache archive on retained storage after success, record exact
 validation evidence, terminate the compute resource, and retain the project
 network volume. The roadmap item remains incomplete until those formal and
@@ -3512,9 +3513,8 @@ files are placeholders:
   exact-commit gate, verified cache preservation, and task-pod termination all
   pass. The paired teaching pages remain private with `pro_reviewed: false`.
 - [ ] `Models/TentMap.lean`: source-and-teaching candidate prepared;
-  workstation, browser, and warning-fatal Linux leaf gates pass, while the
-  repaired exact commit, full gate, and cache-preservation closure remain
-  pending.
+  workstation, browser, warning-fatal Linux leaf, and repaired exact-commit
+  push pass, while the full gate and cache-preservation closure remain pending.
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`
 - [ ] `Models/LotkaVolterra.lean`
