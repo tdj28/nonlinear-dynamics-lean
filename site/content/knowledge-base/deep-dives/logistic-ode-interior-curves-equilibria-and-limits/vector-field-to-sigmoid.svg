@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">From a finite vector-field table to an explicit sigmoid curve</title>
+  <desc id="desc">Five quarter-grid columns display scaled logistic vector-field values zero, three, four, three, zero, followed by an arrow to a sigmoid curve with its derivative identity.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="70" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">FINITE ANCHOR, GENERAL REAL THEOREM</text>
+  <g transform="translate(55 125)">
+    <rect width="535" height="420" rx="22" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <text x="267" y="50" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#285448">r=2 QUARTER GRID</text>
+    <line x1="65" y1="340" x2="475" y2="340" stroke="#263c3b" stroke-width="4"/>
+    <g fill="#2d7f73"><rect x="75" y="340" width="48" height="0"/><rect x="165" y="205" width="48" height="135" rx="6"/><rect x="255" y="160" width="48" height="180" rx="6"/><rect x="345" y="205" width="48" height="135" rx="6"/></g>
+    <g font-family="Georgia,serif" font-size="21" fill="#263c3b" text-anchor="middle"><text x="99" y="380">0</text><text x="189" y="380">1/4</text><text x="279" y="380">1/2</text><text x="369" y="380">3/4</text><text x="459" y="380">1</text><text x="99" y="325">0</text><text x="189" y="193">3</text><text x="279" y="148">4</text><text x="369" y="193">3</text><text x="459" y="325">0</text></g>
+    <text x="267" y="100" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">scaled values 8F₂(k/4)=k(4−k)</text>
+  </g>
+  <line x1="605" y1="335" x2="665" y2="335" stroke="#315f63" stroke-width="6" marker-end="url(#arrow)"/>
+  <g transform="translate(680 125)">
+    <rect width="465" height="420" rx="22" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <text x="232" y="50" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#285448">GLOBAL INTERIOR CURVE</text>
+    <line x1="55" y1="345" x2="410" y2="345" stroke="#a14f3f" stroke-width="2" stroke-dasharray="9 7"/><line x1="55" y1="115" x2="410" y2="115" stroke="#a14f3f" stroke-width="2" stroke-dasharray="9 7"/>
+    <path d="M55 337 C135 330 165 300 195 235 C225 170 270 125 410 117" fill="none" stroke="#315f63" stroke-width="8"/>
+    <line x1="202" y1="248" x2="245" y2="175" stroke="#d18b3c" stroke-width="6" marker-end="url(#arrow)"/>
+    <text x="232" y="382" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#263c3b">x(t)=sigmoid(rt+c)</text>
+    <text x="232" y="408" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#285448">x′(t)=r x(t)(1−x(t))</text>
+  </g>
+  <text x="600" y="615" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">The table checks five cases; real algebra and the sigmoid derivative establish the general statements.</text>
+</svg>

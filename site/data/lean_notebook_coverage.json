@@ -47,6 +47,10 @@
     "module": "NonlinearDynamics.Deterministic.ODE.Lyapunov",
     "notebook": "site/content/development-notebook/2026/08/lyapunov-certificates-for-continuous-time-flows-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Models/LogisticODE.lean": {
+    "module": "NonlinearDynamics.Deterministic.Models.LogisticODE",
+    "notebook": "site/content/development-notebook/2026/08/logistic-ode-interior-curves-and-equilibria-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Models/LogisticMap.lean": {
     "module": "NonlinearDynamics.Deterministic.Models.LogisticMap",
     "notebook": "site/content/development-notebook/2026/08/logistic-map-fixed-points-invariant-interval-and-multipliers-in-lean/index.md"

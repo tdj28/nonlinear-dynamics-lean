@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic ordinary differential equation</title>
+  <desc id="desc">The formula x prime equals r x times one minus x appears over a phase line with equilibria zero and one.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/><rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">KNOWLEDGE BASE · CONTINUOUS DYNAMICS</text>
+  <text x="78" y="175" font-family="system-ui,sans-serif" font-size="44" font-weight="780" fill="#16324f">LOGISTIC ORDINARY</text>
+  <text x="78" y="228" font-family="system-ui,sans-serif" font-size="44" font-weight="780" fill="#16324f">DIFFERENTIAL EQUATION</text>
+  <rect x="115" y="285" width="970" height="95" rx="20" fill="#dfece3" stroke="#315f63" stroke-width="3"/><text x="600" y="347" text-anchor="middle" font-family="Georgia,serif" font-size="42" fill="#263c3b">x′(t) = r x(t)(1 − x(t))</text>
+  <line x1="180" y1="475" x2="1020" y2="475" stroke="#263c3b" stroke-width="5"/><circle cx="420" cy="475" r="14" fill="#a14f3f"/><circle cx="760" cy="475" r="14" fill="#a14f3f"/>
+  <text x="412" y="520" font-family="Georgia,serif" font-size="28" fill="#263c3b">0</text><text x="752" y="520" font-family="Georgia,serif" font-size="28" fill="#263c3b">1</text>
+  <text x="600" y="565" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="650" fill="#874d3b">VECTOR-FIELD VALUES ARE INSTANTANEOUS DERIVATIVES</text>
+</svg>

@@ -5,10 +5,55 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `d7a26f5`
+Audited baseline: `main` at `3a6c54c`
 
-Active direction: **research and prepare the logistic ordinary-differential-
-equation model as the next concrete deterministic system.**
+Active direction: **validate and repair the prepared logistic ordinary-
+differential-equation source-and-teaching candidate on approved Linux
+compute.**
+`NonlinearDynamics.Deterministic.Models.LogisticODE` is no longer an empty
+placeholder. The unvalidated source candidate normalizes the equation to
+`x' = r x (1 - x)` with unit carrying capacity and an explicit real parameter
+`r`. It defines the scalar vector field, classifies its zeros both at the
+degenerate boundary `r = 0` and for `r ≠ 0`, records the positive-rate sign
+regions, and uses pinned Mathlib's `Real.sigmoid` to define the globally
+denominator-safe interior curves `x_{r,c}(t) = sigmoid (r t + c)`. Candidate
+theorems state strict containment in `Ioo 0 1`, the derivative identity, the
+`IsIntegralCurve` bridge, existence of a phase through every interior initial
+state, the two endpoint equilibrium curves, the positive-rate limits at both
+time infinities, and the exact phase-restart identity. The module deliberately
+does not package these curves as a global flow on all of `ℝ`: the logistic
+polynomial vector field is not globally complete through every real initial
+state. It also makes no unchecked invariance, stability, attraction, or
+Lyapunov conclusion.
+
+The candidate Lean source SHA-256 is
+`a3b2ff8b54aadd0a0a0c89ef561e8a5e1eecd47f277ac201b2af16cc9413dfcb`.
+Its declaration-complete private-draft Research Note, Deep Dive, and glossary
+chapter are present with `pro_reviewed: false`, five conceptual figures, three
+deterministic 1200-by-630 social cards, and a bounded standalone `Std`
+worksheet whose complete scaled grid is `[0, 3, 4, 3, 0]`. All three card
+generators reproduce their PNGs byte-for-byte and all eight SVG sources parse
+as XML. The workstation-safe gate passes: 56 substantive modules have 56
+comprehensive Notebook mappings, all 23 coverage and seven teaching-hygiene
+regression tests pass, 199 Markdown files and 953 public reader surfaces pass
+their hygiene gates, and Hugo Extended 0.160.1 renders 493 production pages
+plus 587 pages with drafts warning-fatal. Rendered 1280-by-720 and exact
+390-by-844 QA for all three new pages finds one article H1 per page, no
+document overflow, no raw TeX, no KaTeX errors, complete social metadata, and
+no missing or broken images. The wide conceptual figures remain in the site's
+intentional horizontally scrollable mobile rail. No project Lean, Lake,
+Mathlib build, proof probe, or cache restoration ran on macOS; therefore none
+of the candidate Lean proofs is yet claimed warning-fatal or kernel-checked in
+this checkpoint.
+
+The mathematical convention is grounded in P.-F. Verhulst's 1845 logistic-
+growth paper, DOI [`10.3406/marb.1845.3438`](https://doi.org/10.3406/marb.1845.3438).
+The formal API authorities are the repository-pinned Mathlib 4.32.0 sources
+[`Analysis.SpecialFunctions.Sigmoid`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Analysis/SpecialFunctions/Sigmoid.lean),
+[`Analysis.ODE.Basic`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Analysis/ODE/Basic.lean),
+and
+[`Order.Filter.AtTopBot.Field`](https://github.com/leanprover-community/mathlib4/blob/v4.32.0/Mathlib/Order/Filter/AtTopBot/Field.lean).
+
 `NonlinearDynamics.Deterministic.Models.TentMap` is complete as the second
 concrete discrete model. Source-and-teaching candidate commit `e9d186d`,
 warning-fatal proof repair commit `cc74fdc`, and exact validation checkpoint
@@ -1979,16 +2024,18 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,223 Lean jobs at Symbolic Coding
-  candidate commit `6bf8517` on the approved Linux builder. The warning-fatal
-  leaf, deterministic aggregator, project root, 49/49 proof-to-prose coverage,
-  23 coverage regression tests, seven hygiene regression tests, the 176-file
-  teaching scan, the 846-surface reader-language scan, and the warning-fatal
-  524-page Hugo render pass.
-- Lean inventory: forty-nine substantive modules are cloud-validated and
-  paired with comprehensive Notebook pages. The later ODE and model
-  placeholders and the `.gitkeep`-only Quantum Chaos branches remain roadmap
-  work.
+- Last fully green repository build: 3,270 Lean jobs at TentMap validation
+  commit `d7a26f5` on the approved Linux builder. The warning-fatal leaf,
+  deterministic aggregator, project root, 55/55 proof-to-prose coverage, 23
+  coverage regression tests, seven hygiene regression tests, the 196-file
+  teaching scan, the 938-surface reader-language scan, and warning-fatal Hugo
+  Extended 0.160.1 renders of 493 production pages and 578 pages with drafts
+  pass.
+- Lean inventory: fifty-five substantive modules are cloud-validated and
+  paired with comprehensive Notebook pages. LogisticODE is the fifty-sixth
+  source-and-teaching candidate but is not yet Linux-validated. The later
+  model placeholders and the `.gitkeep`-only Quantum Chaos branches remain
+  roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
   259,256 tokens across thirty-nine Notebook companions, 308,426 tokens across
@@ -2694,17 +2741,20 @@ and
 
 ## Exact Next Milestone
 
-### Specify the logistic ordinary differential equation
+### Validate the logistic ordinary differential equation candidate
 
-Begin `NonlinearDynamics.Deterministic.Models.LogisticODE` from its currently
-empty placeholder. Research and freeze the real scalar vector field and
-parameter convention before proving formulas. The first source candidate
-should separate equilibria, explicit solution identities, forward invariance,
-and asymptotic or stability conclusions so that no phase-line picture silently
-supplies a theorem. Reuse the checked ODE flow, equilibrium, stability,
-attraction, and Lyapunov interfaces where their hypotheses match, and give the
-new module a declaration-complete private-draft Notebook and Knowledge Base
-teaching bundle before requesting another Linux builder.
+After a new costed resource proposal and explicit approval, provision an
+appropriately sized Linux builder, restore the verified cache sequentially to
+fast ephemeral storage, and run the warning-fatal LogisticODE leaf. Repair the
+candidate against pinned Mathlib without weakening its statements, print and
+audit the axioms of its principal results, then run the deterministic
+aggregator and the complete `CLOUD_LEAN_BUILD=1 make -j1 check` gate on the
+exact candidate commit. Use Hugo Extended 0.160.1. If green, preserve and
+integrity-check the successful cache on the retained project volume, record
+the exact commit, source hash, gate receipt, archive ledger, spend, and final
+resource inventory here, push the closure to `main`, terminate the task pod,
+and retain the project volume. Only then mark `Models/LogisticODE.lean`
+complete and move to `Models/Pendulum.lean`.
 
 ## Earlier Milestone Records
 
@@ -3537,7 +3587,10 @@ files are placeholders:
   leaf and deterministic aggregator, complete exact-commit gate, verified
   retained-cache preservation, task-pod termination, and final inventory all
   pass. The paired teaching pages remain private with `pro_reviewed: false`.
-- [ ] `Models/LogisticODE.lean`
+- [ ] `Models/LogisticODE.lean`: source-and-teaching candidate prepared with
+  workstation and browser QA green; warning-fatal Linux proof validation,
+  aggregator, exact-commit full gate, cache preservation, and closure record
+  remain.
 - [ ] `Models/Pendulum.lean`
 - [ ] `Models/LotkaVolterra.lean`
 - [ ] `Models/Lorenz.lean`

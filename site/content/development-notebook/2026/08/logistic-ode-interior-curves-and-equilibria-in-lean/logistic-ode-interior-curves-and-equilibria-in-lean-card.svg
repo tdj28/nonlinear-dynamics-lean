@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Logistic ODE interior curves and equilibria in Lean</title>
+  <desc id="desc">A positive-rate phase line and a sigmoid curve summarize the normalized logistic ODE candidate.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/><rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="26" font-weight="750" fill="#2d7f73">NONLINEAR DYNAMICS · LEAN 4</text>
+  <text x="78" y="170" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#16324f">THE LOGISTIC ODE</text>
+  <text x="78" y="222" font-family="system-ui,sans-serif" font-size="32" font-weight="650" fill="#874d3b">equilibria · interior curves · limits</text>
+  <line x1="95" y1="405" x2="550" y2="405" stroke="#263c3b" stroke-width="5"/><circle cx="240" cy="405" r="12" fill="#a14f3f"/><circle cx="425" cy="405" r="12" fill="#a14f3f"/>
+  <text x="233" y="445" font-family="Georgia,serif" font-size="25" fill="#263c3b">0</text><text x="418" y="445" font-family="Georgia,serif" font-size="25" fill="#263c3b">1</text>
+  <path d="M145 360 L95 360" stroke="#315f63" stroke-width="7"/><path d="M280 360 L385 360" stroke="#315f63" stroke-width="7"/><path d="M520 360 L465 360" stroke="#315f63" stroke-width="7"/>
+  <text x="95" y="505" font-family="Georgia,serif" font-size="25" fill="#263c3b">Fᵣ(x)=r x(1−x)</text>
+  <line x1="670" y1="505" x2="1090" y2="505" stroke="#a14f3f" stroke-width="3" stroke-dasharray="10 7"/><line x1="670" y1="290" x2="1090" y2="290" stroke="#a14f3f" stroke-width="3" stroke-dasharray="10 7"/>
+  <path d="M670 495 C760 490 810 460 855 395 C900 325 960 294 1090 291" fill="none" stroke="#315f63" stroke-width="9"/>
+  <text x="880" y="555" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#263c3b">x(t)=sigmoid(rt+c),  x′(t)=Fᵣ(x(t))</text>
+</svg>

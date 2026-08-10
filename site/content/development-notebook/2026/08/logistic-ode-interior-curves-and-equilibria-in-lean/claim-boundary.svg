@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Claim ladder from vector field to flow</title>
+  <desc id="desc">Four boxes distinguish the checked vector field, explicit integral curve, and curve limits from a deferred state-space flow construction.</desc>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="620" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="70" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">EACH CLAIM NEEDS ITS OWN OBJECT</text>
+  <g font-family="system-ui,sans-serif">
+    <rect x="55" y="130" width="245" height="300" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+    <text x="177" y="180" text-anchor="middle" font-size="22" font-weight="750" fill="#285448">1 · VECTOR FIELD</text>
+    <text x="177" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#263c3b">Fᵣ(x)=r x(1−x)</text>
+    <text x="82" y="292" font-size="19" fill="#263c3b">• zeros at 0 and 1</text><text x="82" y="330" font-size="19" fill="#263c3b">• signs on three regions</text>
+    <rect x="90" y="365" width="175" height="40" rx="12" fill="#285448"/><text x="177" y="392" text-anchor="middle" font-size="18" font-weight="700" fill="#fffaf1">CHECKED CANDIDATE</text>
+    <rect x="330" y="130" width="245" height="300" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+    <text x="452" y="180" text-anchor="middle" font-size="22" font-weight="750" fill="#285448">2 · CURVE</text>
+    <text x="452" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#263c3b">x(t)=sigmoid(rt+c)</text>
+    <text x="357" y="292" font-size="19" fill="#263c3b">• stays in (0,1)</text><text x="357" y="330" font-size="19" fill="#263c3b">• x′(t)=Fᵣ(x(t))</text>
+    <rect x="365" y="365" width="175" height="40" rx="12" fill="#285448"/><text x="452" y="392" text-anchor="middle" font-size="18" font-weight="700" fill="#fffaf1">CHECKED CANDIDATE</text>
+    <rect x="605" y="130" width="245" height="300" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+    <text x="727" y="180" text-anchor="middle" font-size="22" font-weight="750" fill="#285448">3 · CURVE LIMITS</text>
+    <text x="727" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#263c3b">0 ← t → 1</text>
+    <text x="632" y="292" font-size="19" fill="#263c3b">• assumes r &gt; 0</text><text x="632" y="330" font-size="19" fill="#263c3b">• one curve at a time</text>
+    <rect x="640" y="365" width="175" height="40" rx="12" fill="#285448"/><text x="727" y="392" text-anchor="middle" font-size="18" font-weight="700" fill="#fffaf1">CHECKED CANDIDATE</text>
+    <rect x="880" y="130" width="265" height="300" rx="22" fill="#f1e6dc" stroke="#9d6b45" stroke-width="3" stroke-dasharray="10 7"/>
+    <text x="1012" y="180" text-anchor="middle" font-size="22" font-weight="750" fill="#874d3b">4 · STATE FLOW</text>
+    <text x="1012" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#263c3b">φ : ℝ → X → X</text>
+    <text x="907" y="285" font-size="18" fill="#263c3b">needs:</text><text x="925" y="318" font-size="18" fill="#263c3b">• chosen state space</text><text x="925" y="350" font-size="18" fill="#263c3b">• flow laws</text>
+    <rect x="925" y="375" width="175" height="40" rx="12" fill="#874d3b"/><text x="1012" y="402" text-anchor="middle" font-size="18" font-weight="700" fill="#fffaf1">LATER MILESTONE</text>
+  </g>
+  <line x1="300" y1="280" x2="325" y2="280" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/><line x1="575" y1="280" x2="600" y2="280" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/><line x1="850" y1="280" x2="875" y2="280" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/>
+  <rect x="150" y="490" width="900" height="72" rx="16" fill="#fffaf1" stroke="#315f63" stroke-width="2"/>
+  <text x="600" y="520" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">NO SILENT PROMOTION</text>
+  <text x="600" y="548" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#263c3b">A derivative identity and a limit theorem do not supply the missing state-space flow laws.</text>
+</svg>

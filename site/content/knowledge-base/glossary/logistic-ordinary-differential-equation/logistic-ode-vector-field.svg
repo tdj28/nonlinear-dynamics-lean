@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">The normalized logistic ODE vector field</title>
+  <desc id="desc">A phase line shows vector-field signs for positive growth rate and a worked example computes the derivative at one quarter when the growth rate is two.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="70" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">DERIVATIVE SIGNS, NOT DISCRETE JUMPS</text>
+  <g transform="translate(60 125)">
+    <rect width="700" height="430" rx="24" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <text x="350" y="60" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#263c3b">Fᵣ(x)=r x(1−x), with r &gt; 0</text>
+    <line x1="75" y1="225" x2="625" y2="225" stroke="#263c3b" stroke-width="5"/>
+    <circle cx="240" cy="225" r="14" fill="#a14f3f"/><circle cx="470" cy="225" r="14" fill="#a14f3f"/>
+    <text x="232" y="272" font-family="Georgia,serif" font-size="29" fill="#263c3b">0</text><text x="462" y="272" font-family="Georgia,serif" font-size="29" fill="#263c3b">1</text>
+    <line x1="190" y1="165" x2="95" y2="165" stroke="#315f63" stroke-width="7" marker-end="url(#arrow)"/><line x1="285" y1="165" x2="425" y2="165" stroke="#315f63" stroke-width="7" marker-end="url(#arrow)"/><line x1="610" y1="165" x2="515" y2="165" stroke="#315f63" stroke-width="7" marker-end="url(#arrow)"/>
+    <text x="140" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#874d3b">NEGATIVE</text><text x="355" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#285448">POSITIVE</text><text x="565" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#874d3b">NEGATIVE</text>
+    <rect x="95" y="320" width="510" height="70" rx="15" fill="#dfece3"/>
+    <text x="350" y="350" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#285448">EQUILIBRIA ARE ZEROS OF THE VECTOR FIELD</text>
+    <text x="350" y="378" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#263c3b">r ≠ 0 implies Fᵣ(x)=0 exactly at x=0 or x=1</text>
+  </g>
+  <g transform="translate(805 160)">
+    <rect width="335" height="325" rx="22" fill="#f1e6dc" stroke="#9d6b45" stroke-width="3"/>
+    <text x="167" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#874d3b">WORKED STATE</text>
+    <text x="167" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#263c3b">r=2, x=1/4</text>
+    <text x="167" y="170" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#263c3b">F₂(1/4)=3/8</text>
+    <line x1="55" y1="205" x2="280" y2="205" stroke="#9d6b45" stroke-width="2"/>
+    <text x="167" y="247" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#263c3b">instantaneous slope</text>
+    <text x="167" y="280" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#263c3b">of a solution at that state</text>
+  </g>
+  <text x="600" y="615" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">The arrows constrain x′(t); they do not assign the next state in one step.</text>
+</svg>

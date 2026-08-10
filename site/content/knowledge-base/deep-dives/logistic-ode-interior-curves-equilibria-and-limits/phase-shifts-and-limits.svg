@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Phase-shifted logistic curves and their limits</title>
+  <desc id="desc">Three phase-shifted sigmoid curves remain strictly between dashed equilibrium levels zero and one and share limits zero at negative infinity and one at positive infinity for positive growth rate.</desc>
+  <defs><marker id="left" markerWidth="10" markerHeight="10" refX="2" refY="3" orient="auto"><path d="M9,0 L9,6 L0,3 z" fill="#315f63"/></marker><marker id="right" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="70" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">PHASE CHANGES POSITION, NOT THE LIMIT LEVELS</text>
+  <rect x="80" y="115" width="1040" height="430" rx="24" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+  <line x1="145" y1="470" x2="1055" y2="470" stroke="#a14f3f" stroke-width="3" stroke-dasharray="11 8"/>
+  <line x1="145" y1="175" x2="1055" y2="175" stroke="#a14f3f" stroke-width="3" stroke-dasharray="11 8"/>
+  <text x="110" y="182" font-family="Georgia,serif" font-size="25" fill="#874d3b">1</text><text x="110" y="478" font-family="Georgia,serif" font-size="25" fill="#874d3b">0</text>
+  <path d="M145 460 C360 455 430 420 490 320 C550 220 630 180 1055 176" fill="none" stroke="#315f63" stroke-width="8"/>
+  <path d="M145 448 C300 425 400 350 520 255 C630 185 760 178 1055 176" fill="none" stroke="#2d7f73" stroke-width="8"/>
+  <path d="M145 390 C260 270 380 190 600 178 C780 176 920 176 1055 176" fill="none" stroke="#d18b3c" stroke-width="8"/>
+  <g font-family="system-ui,sans-serif" font-size="18" font-weight="700"><text x="470" y="345" fill="#315f63">c = −2</text><text x="515" y="240" fill="#2d7f73">c = 0</text><text x="330" y="205" fill="#a56622">c = 2</text></g>
+  <line x1="405" y1="510" x2="170" y2="510" stroke="#315f63" stroke-width="4" marker-end="url(#left)"/><line x1="790" y1="510" x2="1030" y2="510" stroke="#315f63" stroke-width="4" marker-end="url(#right)"/>
+  <text x="285" y="535" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#263c3b">t → −∞ gives x(t) → 0</text><text x="910" y="535" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#263c3b">t → +∞ gives x(t) → 1</text>
+  <text x="600" y="610" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">For positive r, all finite-time values are strict interior points; endpoint curves are separate.</text>
+</svg>
