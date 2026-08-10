@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Pendulum energy cancellation and claim boundary</title>
+  <desc id="desc">Two terms in the energy derivative cancel under the component ODE hypotheses; a boundary separates this identity from later solution, orbit, flow, and stability claims.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="68" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">ENERGY IDENTITY AND CLAIM BOUNDARY</text>
+  <g transform="translate(55 112)">
+    <rect width="650" height="430" rx="22" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <text x="325" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#285448">ASSUME THE ODE DERIVATIVES AT ONE TIME</text>
+    <rect x="48" y="83" width="554" height="70" rx="14" fill="#e4eef4"/>
+    <text x="325" y="127" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#16324f">angle′ = velocity  ·  velocity′ = −κ sin(angle)</text>
+    <line x1="325" y1="162" x2="325" y2="205" stroke="#315f63" stroke-width="5" marker-end="url(#arrow)"/>
+    <rect x="48" y="220" width="255" height="94" rx="14" fill="#f3dfca"/>
+    <text x="175" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#874d3b">KINETIC DERIVATIVE</text>
+    <text x="175" y="291" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#263c3b">−κ velocity sin(angle)</text>
+    <rect x="347" y="220" width="255" height="94" rx="14" fill="#dfece3"/>
+    <text x="474" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#285448">POTENTIAL DERIVATIVE</text>
+    <text x="474" y="291" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#263c3b">+κ sin(angle) velocity</text>
+    <line x1="175" y1="325" x2="285" y2="365" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+    <line x1="474" y1="325" x2="365" y2="365" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+    <text x="325" y="405" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#285448">energy derivative = 0</text>
+  </g>
+  <g transform="translate(745 112)">
+    <rect width="400" height="430" rx="22" fill="#fffaf1" stroke="#a14f3f" stroke-width="3"/>
+    <text x="200" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#874d3b">NOT YET ESTABLISHED</text>
+    <g font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">
+      <rect x="42" y="82" width="316" height="56" rx="12" fill="#f3dfca"/><text x="200" y="117" text-anchor="middle">solution through every state</text>
+      <rect x="42" y="157" width="316" height="56" rx="12" fill="#f3dfca"/><text x="200" y="192" text-anchor="middle">nonconstant periodic orbit</text>
+      <rect x="42" y="232" width="316" height="56" rx="12" fill="#f3dfca"/><text x="200" y="267" text-anchor="middle">global state-space flow</text>
+      <rect x="42" y="307" width="316" height="56" rx="12" fill="#f3dfca"/><text x="200" y="342" text-anchor="middle">stability classification</text>
+    </g>
+    <line x1="65" y1="388" x2="335" y2="388" stroke="#a14f3f" stroke-width="5"/>
+    <text x="200" y="418" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#874d3b">each needs an additional argument</text>
+  </g>
+  <text x="600" y="607" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">A chain-rule cancellation establishes exactly the local derivative statement.</text>
+</svg>

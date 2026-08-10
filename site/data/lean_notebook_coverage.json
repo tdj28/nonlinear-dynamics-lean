@@ -55,6 +55,10 @@
     "module": "NonlinearDynamics.Deterministic.Models.LogisticMap",
     "notebook": "site/content/development-notebook/2026/08/logistic-map-fixed-points-invariant-interval-and-multipliers-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Models/Pendulum.lean": {
+    "module": "NonlinearDynamics.Deterministic.Models.Pendulum",
+    "notebook": "site/content/development-notebook/2026/08/pendulum-vector-field-and-energy-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Models/TentMap.lean": {
     "module": "NonlinearDynamics.Deterministic.Models.TentMap",
     "notebook": "site/content/development-notebook/2026/08/tent-map-branches-invariant-interval-and-turning-point-in-lean/index.md"

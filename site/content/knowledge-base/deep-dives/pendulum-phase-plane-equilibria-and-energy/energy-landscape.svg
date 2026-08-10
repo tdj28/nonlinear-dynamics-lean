@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Periodic pendulum potential and kinetic lift</title>
+  <desc id="desc">A repeating potential valley has downward minima and upright maxima; nonzero angular velocity adds a nonnegative kinetic amount above the potential.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a14f3f"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="68" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">ENERGY = PERIODIC POTENTIAL + NONNEGATIVE KINETIC TERM</text>
+  <rect x="55" y="112" width="1090" height="430" rx="22" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+  <line x1="115" y1="455" x2="1085" y2="455" stroke="#263c3b" stroke-width="3"/>
+  <path d="M115 455 C210 455 245 190 357 190 C470 190 505 455 600 455 C695 455 730 190 843 190 C955 190 990 455 1085 455" fill="none" stroke="#315f63" stroke-width="8"/>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <circle cx="115" cy="455" r="10" fill="#2d7f73"/><circle cx="600" cy="455" r="10" fill="#2d7f73"/><circle cx="1085" cy="455" r="10" fill="#2d7f73"/>
+    <circle cx="357" cy="190" r="10" fill="#a14f3f"/><circle cx="843" cy="190" r="10" fill="#a14f3f"/>
+    <text x="600" y="504" font-size="21" font-weight="700" fill="#285448">downward representatives · potential minima</text>
+    <text x="600" y="155" font-size="21" font-weight="700" fill="#874d3b">upright representatives · potential maxima</text>
+  </g>
+  <circle cx="750" cy="300" r="13" fill="#d18b3c" stroke="#874d3b" stroke-width="3"/>
+  <line x1="750" y1="402" x2="750" y2="321" stroke="#a14f3f" stroke-width="5" marker-end="url(#arrow)"/>
+  <text x="778" y="360" font-family="system-ui,sans-serif" font-size="20" fill="#874d3b">kinetic lift from velocity</text>
+  <text x="600" y="590" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">A level-set picture organizes state values; it does not construct a parametrized orbit.</text>
+</svg>

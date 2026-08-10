@@ -5,10 +5,49 @@
 
 Last updated: 2026-08-10
 
-Audited baseline: `main` at `54ee561`
+Audited baseline: `main` at `9fe4ce7`
 
-Active direction: **research and prepare the nonlinear pendulum as the next
-dependency-ordered deterministic model.**
+Active direction: **validate and repair the prepared nonlinear-pendulum
+source-and-teaching candidate on the next explicitly approved Linux builder.**
+
+`NonlinearDynamics.Deterministic.Models.Pendulum` is now a source-only
+candidate on the unwrapped phase plane `ℝ × ℝ`. It freezes the normalized
+first-order system `θ' = ω`, `ω' = -κ sin θ`, defines its autonomous Mathlib
+ODE field and normalized energy `ω² / 2 + κ (1 - cos θ)`, proves continuity,
+classifies the nonzero-parameter equilibria as zero-velocity integer multiples
+of π, records field and energy periodicity under integer full turns, evaluates
+the exact `(π/2, 0)` benchmark at `κ = 1`, proves nonnegative energy for
+`κ ≥ 0`, checks the pointwise energy-derivative cancellation under explicit
+component ODE hypotheses, and exhibits the downward and upright constant
+integral curves. It deliberately does not construct arbitrary solutions, a
+global flow, nonconstant periodic orbits, a libration/rotation classification,
+or any stability conclusion.
+
+The current unvalidated source SHA-256 is
+`15926d7f6014d43cd523aae5b90b476af4695b2a0e9eab80faf502265f1d2416`.
+Its declaration-complete private-draft Research Note, Deep Dive, and glossary
+chapter are present with `pro_reviewed: false`, five conceptual figures, three
+deterministic 1200-by-630 social cards, and a bounded standalone `Std`
+worksheet. The worksheet checks the complete stored acceleration ledger
+`[0, -1, 0, 1, 0]` and twice-energy ledger `[0, 2, 4, 2, 0]`; it explicitly
+treats the five sine and cosine samples as input data rather than proving real
+trigonometric identities. All three card generators reproduce their PNGs
+byte-for-byte and all eight new SVG sources parse as XML.
+
+The workstation-safe candidate gate passes: 57 substantive modules have 57
+comprehensive Notebook mappings, all 23 coverage and seven teaching-hygiene
+regression tests pass, 202 Markdown files and 968 public reader surfaces pass
+their hygiene gates, and Hugo Extended 0.160.1 renders 493 production pages
+plus 596 pages with drafts warning-fatal. Rendered desktop and exact
+390-by-844 QA for all three new pages finds the intended H1 and page metadata,
+no document overflow, and complete social and conceptual images. Wide figures
+remain in the site's intentional horizontally scrollable mobile frame. No
+project Lean, Lake, Mathlib build, proof probe, or cache restoration ran on
+macOS. No paid compute is active. The project network volume remains retained;
+the Pendulum source still requires warning-fatal leaf, deterministic
+aggregator, exact-commit full-gate, axiom-report, and cache-preservation
+validation on approved Linux compute.
+
 `NonlinearDynamics.Deterministic.Models.LogisticODE` is complete at proof-
 repair commit `54ee561`, following source-and-teaching candidate commit
 `7103eb7`. The checked module normalizes the equation to
@@ -2072,18 +2111,22 @@ bridge, or stable-manifold theorem.
   teaching scan, the 953-surface reader-language scan, and warning-fatal Hugo
   Extended 0.160.1 renders of 493 production pages and 587 pages with drafts
   pass.
-- Lean inventory: fifty-six substantive modules are cloud-validated and
-  paired with comprehensive Notebook pages. The later model placeholders and
-  the `.gitkeep`-only Quantum Chaos branches remain roadmap work.
+- Lean inventory: fifty-six substantive modules are cloud-validated. Fifty-
+  seven substantive modules are paired with comprehensive Notebook pages;
+  Pendulum is the one source-only candidate still awaiting cloud validation.
+  The later model placeholders and the `.gitkeep`-only Quantum Chaos branches
+  remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
-  259,256 tokens across thirty-nine Notebook companions, 308,426 tokens across
-  thirty-six Deep Dives, and 178,822 tokens across sixty-two glossary chapters,
-  for 746,504 tokens across all 137 teaching bundles. Their deterministic
-  visual layer contains 137 social cards and 316 conceptual SVGs.
-- Publication status: all 137 teaching pages are owner-authorized public
-  working notes with `draft: false` and `pro_reviewed: false` pending human
-  review.
+- Teaching snapshot before the Pendulum candidate, by the deterministic body-
+  only regex `\b[\w'-]+\b`: 259,256 tokens across thirty-nine Notebook
+  companions, 308,426 tokens across thirty-six Deep Dives, and 178,822 tokens
+  across sixty-two glossary chapters. Pendulum adds one page in each section,
+  so the corpus now has 140 teaching bundles, 140 social cards, and 321
+  conceptual SVGs; refresh the aggregate token ledger at validation closure.
+- Publication status: 137 teaching pages are owner-authorized public working
+  notes with `draft: false` and `pro_reviewed: false`. The three new Pendulum
+  pages remain private with `draft: true` and `pro_reviewed: false` pending
+  pinned-toolchain validation and a separate publication decision.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
   port 1333.
 
@@ -2780,19 +2823,22 @@ and
 
 ## Exact Next Milestone
 
-### Specify the nonlinear pendulum
+### Validate the nonlinear-pendulum candidate
 
-Begin `NonlinearDynamics.Deterministic.Models.Pendulum` from its one-line
-placeholder. Research and freeze the normalization and state-space convention
-before proving formulas: distinguish an unwrapped real angle from the circle,
-record the role and sign of the gravity-over-length parameter, and decide
-whether the first checked slice uses the second-order equation or the
-equivalent first-order system. Separate equilibria, conserved energy, local
-integral-curve statements, and any periodicity or stability conclusion so
-that the phase portrait supplies no hidden theorem. Prepare a declaration-
-complete private-draft Notebook and Knowledge Base teaching bundle, pass the
-workstation and rendered browser gates, and push the source candidate before
-requesting another costed Linux builder.
+The source-and-teaching candidate for
+`NonlinearDynamics.Deterministic.Models.Pendulum` is prepared on the
+unwrapped state space `ℝ × ℝ`, paired with its complete private-draft teaching
+bundle, and green under every workstation-safe and rendered browser gate. Push
+the candidate to `main`, then make a fresh costed proposal before creating
+paid compute. On an explicitly approved Linux builder, restore the verified
+cache sequentially to ephemeral storage, run the warning-fatal Pendulum leaf
+and `NonlinearDynamics.Deterministic` aggregator, repair any pinned-API or
+elaboration failures without weakening statements, inspect the printed axiom
+reports for `sorryAx`, and run the exact repaired-commit full
+`CLOUD_LEAN_BUILD=1 make -j1 check` gate with Hugo Extended 0.160.1. Preserve
+and independently verify the successful cache on the retained project volume,
+record exact commits, hashes, gate receipts, runtime, and spend, push the
+closure to `main`, terminate the exact task pod, and retain the network volume.
 
 ## Earlier Milestone Records
 
@@ -3630,7 +3676,10 @@ files are placeholders:
   verified retained-cache preservation, task-pod termination, and final
   inventory all pass. The paired teaching pages remain private with
   `pro_reviewed: false`.
-- [ ] `Models/Pendulum.lean`
+- [ ] `Models/Pendulum.lean`: source-and-teaching candidate prepared; bounded
+  worksheet, deterministic assets, complete workstation gate, and
+  desktop/mobile browser QA pass. Warning-fatal Linux leaf, aggregator,
+  exact-commit full gate, verified cache preservation, and teardown remain.
 - [ ] `Models/LotkaVolterra.lean`
 - [ ] `Models/Lorenz.lean`
 
@@ -3656,6 +3705,14 @@ k-invariance precedes approximation claims.
 
 ## Decision Ledger
 
+- The first Pendulum slice uses the unwrapped state space `ℝ × ℝ` and proves
+  integer-full-turn periodicity explicitly. It does not silently identify the
+  real angle coordinate with a circle or quotient type.
+- Pendulum keeps the real parameter `κ` algebraically general, adds `κ ≠ 0`
+  only for the equilibrium classification and `κ ≥ 0` only for energy
+  nonnegativity, and states conservation as a pointwise derivative theorem
+  under explicit component ODE hypotheses. It does not infer solution
+  existence, orbit periodicity, a global flow, or stability from that identity.
 - `RandomMatrix` is a carrier map until measurability is proved or bundled.
 - The project matrix measurable space is entrywise and currently project-owned.
 - Hermitian symmetrization is `X + Xᴴ`, explicitly unnormalized.
@@ -4357,7 +4414,11 @@ k-invariance precedes approximation claims.
   integral, prove `L¹` convergence or uniform integrability, or produce a
   Lyapunov spectrum or Oseledets splitting.
 - Quantum-chaos universality claims are not general theorems in this project.
-- The deterministic placeholder tree has no substantive definitions yet.
+- The Pendulum source-and-teaching candidate is not yet checked by the pinned
+  Mathlib toolchain. Its proof scripts, printed axiom reports, deterministic
+  aggregator, and full repository gate remain provisional until the next
+  approved Linux validation. Lotka–Volterra, Lorenz, and the Quantum Chaos
+  placeholder branches remain later roadmap work.
 
 ## Validation Snapshot
 
@@ -4383,6 +4444,18 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
+- Pendulum source-candidate QA on 2026-08-10: the bounded Lean 4.32.0 `Std`
+  worksheet evaluates the expected five-entry acceleration and twice-energy
+  ledgers. All three card generators reproduce their 1200-by-630 PNGs, all
+  eight new SVG sources pass `xmllint`, `git diff --check` passes, and
+  `make workstation-check` passes 57/57 coverage, 23 coverage regression
+  tests, seven teaching-hygiene tests, the 202-file teaching audit, the
+  968-surface reader-language audit, and warning-fatal Hugo Extended 0.160.1
+  renders of 493 production pages and 596 pages with drafts. Desktop and
+  390-by-844 rendered inspection covers the Research Note, Deep Dive, glossary
+  chapter, all five concept figures, and all three cards with no document-level
+  overflow or broken loaded assets. No project Lean or Lake command ran on the
+  workstation.
 - GitHub Pages open-corpus QA on 2026-07-22: after the owner authorized public
   working notes, both the production-only Hugo build and the draft-inclusive
   local review build rendered 405 pages with warnings fatal under Hugo Extended

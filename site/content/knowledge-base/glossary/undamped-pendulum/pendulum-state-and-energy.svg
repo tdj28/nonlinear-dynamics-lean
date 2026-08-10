@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">A pendulum state, its restoring vector, and energy</title>
+  <desc id="desc">A rightward quarter-turn pendulum maps to an angle-velocity state, a downward angular acceleration, and a scalar energy value.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+  <rect width="1200" height="650" rx="24" fill="#f7f1e5"/>
+  <text x="60" y="68" font-family="system-ui,sans-serif" font-size="30" font-weight="750" fill="#183c3a">READ ONE PENDULUM STATE AT ONE INSTANT</text>
+  <g transform="translate(58 115)">
+    <rect width="330" height="420" rx="22" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <text x="165" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#285448">POSE</text>
+    <circle cx="110" cy="165" r="12" fill="#263c3b"/><line x1="110" y1="165" x2="255" y2="165" stroke="#315f63" stroke-width="10"/><circle cx="275" cy="165" r="29" fill="#d18b3c" stroke="#874d3b" stroke-width="4"/>
+    <path d="M275 215 L275 290" stroke="#a14f3f" stroke-width="6" marker-end="url(#arrow)"/>
+    <text x="165" y="348" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#263c3b">quarter turn</text>
+    <text x="165" y="382" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#874d3b">restoring acceleration points down</text>
+  </g>
+  <line x1="415" y1="325" x2="485" y2="325" stroke="#315f63" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(505 115)">
+    <rect width="637" height="420" rx="22" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+    <text x="318" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#285448">THREE LABELS FOR THE SAME INSTANT</text>
+    <rect x="45" y="82" width="547" height="78" rx="15" fill="#e4eef4"/><text x="318" y="131" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#16324f">state: angle π/2, velocity 0</text>
+    <rect x="45" y="185" width="547" height="78" rx="15" fill="#dfece3"/><text x="318" y="234" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#263c3b">state derivative: (0, −1)</text>
+    <rect x="45" y="288" width="547" height="78" rx="15" fill="#f3dfca"/><text x="318" y="337" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#263c3b">normalized energy: 1</text>
+    <text x="318" y="402" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#465b59">derivative is not a finite-time update</text>
+  </g>
+  <text x="600" y="602" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">The field and energy describe a state; a solution curve requires a separate construction.</text>
+</svg>
