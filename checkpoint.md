@@ -3,20 +3,20 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-09
+Last updated: 2026-08-10
 
-Audited baseline: `main` at `7103eb7`
+Audited baseline: `main` at `54ee561`
 
-Active direction: **validate and repair the prepared logistic ordinary-
-differential-equation source-and-teaching candidate on approved Linux
-compute.**
-`NonlinearDynamics.Deterministic.Models.LogisticODE` is no longer an empty
-placeholder. The repaired source candidate normalizes the equation to
+Active direction: **research and prepare the nonlinear pendulum as the next
+dependency-ordered deterministic model.**
+`NonlinearDynamics.Deterministic.Models.LogisticODE` is complete at proof-
+repair commit `54ee561`, following source-and-teaching candidate commit
+`7103eb7`. The checked module normalizes the equation to
 `x' = r x (1 - x)` with unit carrying capacity and an explicit real parameter
 `r`. It defines the scalar vector field, classifies its zeros both at the
 degenerate boundary `r = 0` and for `r ≠ 0`, records the positive-rate sign
 regions, and uses pinned Mathlib's `Real.sigmoid` to define the globally
-denominator-safe interior curves `x_{r,c}(t) = sigmoid (r t + c)`. Candidate
+denominator-safe interior curves `x_{r,c}(t) = sigmoid (r t + c)`. Its
 theorems state strict containment in `Ioo 0 1`, the derivative identity, the
 `IsIntegralCurve` bridge, existence of a phase through every interior initial
 state, the two endpoint equilibrium curves, the positive-rate limits at both
@@ -26,7 +26,7 @@ polynomial vector field is not globally complete through every real initial
 state. It also makes no unchecked invariance, stability, attraction, or
 Lyapunov conclusion.
 
-The repaired candidate Lean source SHA-256 is
+The warning-fatal Lean source SHA-256 is
 `ab2eaa5b0af808e19e2d21131c00124dede5ef7262fca8bb7fa7b7440180d326`.
 Its declaration-complete private-draft Research Note, Deep Dive, and glossary
 chapter are present with `pro_reviewed: false`, five conceptual figures, three
@@ -50,12 +50,42 @@ sequential restoration onto ephemeral storage. The initial warning-fatal leaf
 check exposed three proof-elaboration defects: normalization of
 `1 - x = 0`, simplification of the affine derivative from `r * 1` to `r`,
 and the final scalar rearrangement in the sigmoid chain rule. The repaired
-source keeps every statement unchanged. Its warning-fatal leaf passes in two
+source keeps every statement unchanged. On exact pushed commit `54ee561`, the
+warning-fatal leaf and deterministic aggregator pass together in three
 seconds; all six printed axiom reports contain only `propext`,
-`Classical.choice`, and `Quot.sound`. The deterministic aggregator passes
-warning-fatal in one second. The repaired candidate still requires a pushed
-exact commit and the complete guarded repository gate before this roadmap item
-can be marked complete.
+`Classical.choice`, and `Quot.sound`. The exact 33,495,040-byte source-only Git
+archive has SHA-256
+`5648dcceb2b463b30aca2f645277eca9b88f6a840e37e66ef3b5d2cc8df00763`.
+The complete `CLOUD_LEAN_BUILD=1 make -j1 check` gate passes in 14 seconds:
+all 3,272 Lean jobs, 56/56 Notebook coverage, 23 coverage regression tests,
+seven teaching-hygiene regression tests, the 199-file teaching-source audit,
+the 953-surface public-reader audit, and warning-fatal Hugo Extended 0.160.1
+renders of 493 production pages and 587 pages with drafts all pass. The
+official Linux Hugo archive passed its published checksum before the gate.
+
+The successful ephemeral `.lake` tree is preserved sequentially as
+`lake-manifest-pinned-logistic-ode-20260810.tar.zst` on retained storage. Its
+2,644,765,707-byte compressed archive expands to an 8,096,901,120-byte tar
+stream, has SHA-256
+`8ae1338ec53ae7d828cf2942e0b376604dd8fbe6ebb10a29919e9c7ffcf8bd4b`,
+and passes `zstd -t` plus the retained and locally retrieved ledger
+`SHA256SUMS-logistic-ode-20260810`. The retrieved 48,242-byte exact-commit gate
+log has SHA-256
+`ce83b496dbc0d9adee89d126f2a379e2703fd8efffcdfe078d1e43158d05536c`.
+Approved validation used RunPod Secure Cloud with exactly eight CPU-affinity
+slots, a 32,000,000,000-byte memory limit, an 80-GB ephemeral disk, and the
+retained project network volume at $0.32 per hour. The last runtime receipt
+before immediate teardown was 888 seconds; total compute time was about 16
+minutes and compute spend about $0.09 under the $5 ceiling. The exact task pod
+was terminated and its direct lookup is absent. The final account inventory
+matches the pre-run inventory: one unrelated exited pod, three volumes,
+exactly one retained project volume, and zero active compute cost. No unrelated
+resource was mutated. The project volume remains intentionally retained at
+100 GB, approximately $7.00 per month at the current first-terabyte storage
+rate. No cloud resource identifier or credential is recorded here. The three
+teaching pages remain private drafts with
+`pro_reviewed: false`; publication and professional review remain separate
+future decisions.
 
 The mathematical convention is grounded in P.-F. Verhulst's 1845 logistic-
 growth paper, DOI [`10.3406/marb.1845.3438`](https://doi.org/10.3406/marb.1845.3438).
@@ -2035,18 +2065,16 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,270 Lean jobs at TentMap validation
-  commit `d7a26f5` on the approved Linux builder. The warning-fatal leaf,
-  deterministic aggregator, project root, 55/55 proof-to-prose coverage, 23
-  coverage regression tests, seven hygiene regression tests, the 196-file
-  teaching scan, the 938-surface reader-language scan, and warning-fatal Hugo
-  Extended 0.160.1 renders of 493 production pages and 578 pages with drafts
+- Last fully green repository build: 3,272 Lean jobs at LogisticODE repair
+  commit `54ee561` on the approved Linux builder. The warning-fatal leaf,
+  deterministic aggregator, project root, 56/56 proof-to-prose coverage, 23
+  coverage regression tests, seven hygiene regression tests, the 199-file
+  teaching scan, the 953-surface reader-language scan, and warning-fatal Hugo
+  Extended 0.160.1 renders of 493 production pages and 587 pages with drafts
   pass.
-- Lean inventory: fifty-five substantive modules are cloud-validated and
-  paired with comprehensive Notebook pages. LogisticODE is the fifty-sixth
-  source-and-teaching candidate but is not yet Linux-validated. The later
-  model placeholders and the `.gitkeep`-only Quantum Chaos branches remain
-  roadmap work.
+- Lean inventory: fifty-six substantive modules are cloud-validated and
+  paired with comprehensive Notebook pages. The later model placeholders and
+  the `.gitkeep`-only Quantum Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot by the deterministic body-only regex `\b[\w'-]+\b`:
   259,256 tokens across thirty-nine Notebook companions, 308,426 tokens across
@@ -2752,20 +2780,19 @@ and
 
 ## Exact Next Milestone
 
-### Validate the logistic ordinary differential equation candidate
+### Specify the nonlinear pendulum
 
-After a new costed resource proposal and explicit approval, provision an
-appropriately sized Linux builder, restore the verified cache sequentially to
-fast ephemeral storage, and run the warning-fatal LogisticODE leaf. Repair the
-candidate against pinned Mathlib without weakening its statements, print and
-audit the axioms of its principal results, then run the deterministic
-aggregator and the complete `CLOUD_LEAN_BUILD=1 make -j1 check` gate on the
-exact candidate commit. Use Hugo Extended 0.160.1. If green, preserve and
-integrity-check the successful cache on the retained project volume, record
-the exact commit, source hash, gate receipt, archive ledger, spend, and final
-resource inventory here, push the closure to `main`, terminate the task pod,
-and retain the project volume. Only then mark `Models/LogisticODE.lean`
-complete and move to `Models/Pendulum.lean`.
+Begin `NonlinearDynamics.Deterministic.Models.Pendulum` from its one-line
+placeholder. Research and freeze the normalization and state-space convention
+before proving formulas: distinguish an unwrapped real angle from the circle,
+record the role and sign of the gravity-over-length parameter, and decide
+whether the first checked slice uses the second-order equation or the
+equivalent first-order system. Separate equilibria, conserved energy, local
+integral-curve statements, and any periodicity or stability conclusion so
+that the phase portrait supplies no hidden theorem. Prepare a declaration-
+complete private-draft Notebook and Knowledge Base teaching bundle, pass the
+workstation and rendered browser gates, and push the source candidate before
+requesting another costed Linux builder.
 
 ## Earlier Milestone Records
 
@@ -3598,10 +3625,11 @@ files are placeholders:
   leaf and deterministic aggregator, complete exact-commit gate, verified
   retained-cache preservation, task-pod termination, and final inventory all
   pass. The paired teaching pages remain private with `pro_reviewed: false`.
-- [ ] `Models/LogisticODE.lean`: source-and-teaching candidate prepared with
-  workstation and browser QA green; warning-fatal Linux proof validation,
-  aggregator, exact-commit full gate, cache preservation, and closure record
-  remain.
+- [x] `Models/LogisticODE.lean`: exact source-and-teaching closure,
+  warning-fatal leaf and deterministic aggregator, complete exact-commit gate,
+  verified retained-cache preservation, task-pod termination, and final
+  inventory all pass. The paired teaching pages remain private with
+  `pro_reviewed: false`.
 - [ ] `Models/Pendulum.lean`
 - [ ] `Models/LotkaVolterra.lean`
 - [ ] `Models/Lorenz.lean`
@@ -5430,6 +5458,12 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `54ee561`: repair the LogisticODE zero-classification and sigmoid chain-rule
+  proofs without weakening statements, update source hashes, and record the
+  warning-fatal leaf and deterministic-aggregator receipts.
+- `7103eb7`: prepare the normalized LogisticODE source candidate, exact
+  sigmoid interior curves, equilibria and limits, three-page cited teaching
+  bundle, five conceptual figures, deterministic cards, and bounded worksheet.
 - `b16413e`: record the passing Symbolic Coding exact-candidate full gate,
   complete the validated draft statuses, and synchronize the forty-nine-module
   inventory and next-milestone handoff.
