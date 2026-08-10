@@ -5,13 +5,14 @@
 
 Last updated: 2026-08-10
 
-Audited baseline: `main` at `9fe4ce7`
+Audited baseline: `main` at `54d075e`
 
 Active direction: **validate and repair the prepared nonlinear-pendulum
 source-and-teaching candidate on the next explicitly approved Linux builder.**
 
 `NonlinearDynamics.Deterministic.Models.Pendulum` is now a source-only
-candidate on the unwrapped phase plane `ℝ × ℝ`. It freezes the normalized
+candidate at pushed commit `54d075e` on the unwrapped phase plane `ℝ × ℝ`.
+It freezes the normalized
 first-order system `θ' = ω`, `ω' = -κ sin θ`, defines its autonomous Mathlib
 ODE field and normalized energy `ω² / 2 + κ (1 - cos θ)`, proves continuity,
 classifies the nonzero-parameter equilibria as zero-velocity integer multiples
@@ -2825,12 +2826,12 @@ and
 
 ### Validate the nonlinear-pendulum candidate
 
-The source-and-teaching candidate for
+The pushed source-and-teaching candidate at `54d075e` for
 `NonlinearDynamics.Deterministic.Models.Pendulum` is prepared on the
 unwrapped state space `ℝ × ℝ`, paired with its complete private-draft teaching
-bundle, and green under every workstation-safe and rendered browser gate. Push
-the candidate to `main`, then make a fresh costed proposal before creating
-paid compute. On an explicitly approved Linux builder, restore the verified
+bundle, and green under every workstation-safe and rendered browser gate. Make
+a fresh costed proposal before creating paid compute. On an explicitly
+approved Linux builder, restore the verified
 cache sequentially to ephemeral storage, run the warning-fatal Pendulum leaf
 and `NonlinearDynamics.Deterministic` aggregator, repair any pinned-API or
 elaboration failures without weakening statements, inspect the printed axiom
@@ -5531,6 +5532,11 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `54d075e`: prepare the normalized undamped-Pendulum source candidate on the
+  unwrapped phase plane, record equilibria, full-turn periodicity, normalized
+  energy and its pointwise derivative cancellation, add the complete cited
+  three-page teaching bundle and deterministic assets, and record the green
+  workstation/browser handoff.
 - `54ee561`: repair the LogisticODE zero-classification and sigmoid chain-rule
   proofs without weakening statements, update source hashes, and record the
   warning-fatal leaf and deterministic-aggregator receipts.
