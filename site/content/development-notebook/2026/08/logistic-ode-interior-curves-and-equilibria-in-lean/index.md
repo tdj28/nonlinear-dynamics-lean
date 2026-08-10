@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.Models.LogisticODE"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Models/LogisticODE.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/LogisticODE.lean"
-lean_source_sha256: "a3b2ff8b54aadd0a0a0c89ef561e8a5e1eecd47f277ac201b2af16cc9413dfcb"
+lean_source_sha256: "ab2eaa5b0af808e19e2d21131c00124dede5ef7262fca8bb7fa7b7440180d326"
 toc: true
 og_image: "logistic-ode-interior-curves-and-equilibria-in-lean-card.png"
 og_image_alt: "A logistic vector-field sign line sits beside three increasing sigmoid solution curves between equilibrium levels zero and one."
@@ -338,7 +338,7 @@ validated formal milestone.
 - Repository source,
   [`LogisticODE.lean`](/lean/NonlinearDynamics/Deterministic/Models/LogisticODE.lean),
   candidate SHA-256
-  `a3b2ff8b54aadd0a0a0c89ef561e8a5e1eecd47f277ac201b2af16cc9413dfcb`.
+  `ab2eaa5b0af808e19e2d21131c00124dede5ef7262fca8bb7fa7b7440180d326`.
 
 Continue with the [Logistic ODE Deep Dive]({{< relref
 "/knowledge-base/deep-dives/logistic-ode-interior-curves-equilibria-and-limits"

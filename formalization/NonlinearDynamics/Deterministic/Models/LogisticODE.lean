@@ -69,7 +69,18 @@ theorem continuous_logisticODEVectorField (r : ℝ) :
 /-- The complete zero set, including the degenerate parameter `r = 0`. -/
 @[simp] theorem logisticODEVectorField_eq_zero_iff (r x : ℝ) :
     logisticODEVectorField r x = 0 ↔ r = 0 ∨ x = 0 ∨ x = 1 := by
-  simp [logisticODEVectorField, mul_eq_zero]
+  constructor
+  · intro h
+    change r * (x * (1 - x)) = 0 at h
+    rcases mul_eq_zero.mp h with hr | hProduct
+    · exact Or.inl hr
+    rcases mul_eq_zero.mp hProduct with hx | hx
+    · exact Or.inr (Or.inl hx)
+    · exact Or.inr (Or.inr (sub_eq_zero.mp hx).symm)
+  · rintro (hr | hx | hx)
+    · simp [logisticODEVectorField, hr]
+    · simp [logisticODEVectorField, hx]
+    · simp [logisticODEVectorField, hx]
 
 /-- At a nonzero growth rate, zero and one are the only equilibria. -/
 theorem logisticODEVectorField_eq_zero_iff_of_ne {r : ℝ} (hr : r ≠ 0)
@@ -126,11 +137,12 @@ evaluated at that curve. -/
 theorem hasDerivAt_logisticInteriorCurve (r c t : ℝ) :
     HasDerivAt (logisticInteriorCurve r c)
       (logisticODEVectorField r (logisticInteriorCurve r c t)) t := by
-  have hAffine : HasDerivAt (fun s : ℝ ↦ r * s + c) r t :=
-    ((hasDerivAt_id' t).const_mul r).add_const c
+  have hAffine : HasDerivAt (fun s : ℝ ↦ r * s + c) r t := by
+    simpa using ((hasDerivAt_id' t).const_mul r).add_const c
   have hSigmoid := (Real.hasDerivAt_sigmoid (r * t + c)).comp t hAffine
-  convert hSigmoid using 1 <;>
-    simp only [logisticInteriorCurve, logisticODEVectorField] <;> ring
+  convert hSigmoid using 1 <;> try rfl
+  unfold logisticODEVectorField logisticInteriorCurve
+  ring
 
 /-- Each phase-parameterized curve is a global integral curve of the
 time-independent logistic field. -/

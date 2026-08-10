@@ -5,13 +5,13 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `3a6c54c`
+Audited baseline: `main` at `7103eb7`
 
 Active direction: **validate and repair the prepared logistic ordinary-
 differential-equation source-and-teaching candidate on approved Linux
 compute.**
 `NonlinearDynamics.Deterministic.Models.LogisticODE` is no longer an empty
-placeholder. The unvalidated source candidate normalizes the equation to
+placeholder. The repaired source candidate normalizes the equation to
 `x' = r x (1 - x)` with unit carrying capacity and an explicit real parameter
 `r`. It defines the scalar vector field, classifies its zeros both at the
 degenerate boundary `r = 0` and for `r ≠ 0`, records the positive-rate sign
@@ -26,8 +26,8 @@ polynomial vector field is not globally complete through every real initial
 state. It also makes no unchecked invariance, stability, attraction, or
 Lyapunov conclusion.
 
-The candidate Lean source SHA-256 is
-`a3b2ff8b54aadd0a0a0c89ef561e8a5e1eecd47f277ac201b2af16cc9413dfcb`.
+The repaired candidate Lean source SHA-256 is
+`ab2eaa5b0af808e19e2d21131c00124dede5ef7262fca8bb7fa7b7440180d326`.
 Its declaration-complete private-draft Research Note, Deep Dive, and glossary
 chapter are present with `pro_reviewed: false`, five conceptual figures, three
 deterministic 1200-by-630 social cards, and a bounded standalone `Std`
@@ -42,9 +42,20 @@ plus 587 pages with drafts warning-fatal. Rendered 1280-by-720 and exact
 document overflow, no raw TeX, no KaTeX errors, complete social metadata, and
 no missing or broken images. The wide conceptual figures remain in the site's
 intentional horizontally scrollable mobile rail. No project Lean, Lake,
-Mathlib build, proof probe, or cache restoration ran on macOS; therefore none
-of the candidate Lean proofs is yet claimed warning-fatal or kernel-checked in
-this checkpoint.
+Mathlib build, proof probe, or cache restoration ran on macOS.
+
+On the approved Linux builder, the retained Lean 4.32.0 toolchain and TentMap
+Lake archives passed their SHA-256 ledger and an independent `zstd -t` before
+sequential restoration onto ephemeral storage. The initial warning-fatal leaf
+check exposed three proof-elaboration defects: normalization of
+`1 - x = 0`, simplification of the affine derivative from `r * 1` to `r`,
+and the final scalar rearrangement in the sigmoid chain rule. The repaired
+source keeps every statement unchanged. Its warning-fatal leaf passes in two
+seconds; all six printed axiom reports contain only `propext`,
+`Classical.choice`, and `Quot.sound`. The deterministic aggregator passes
+warning-fatal in one second. The repaired candidate still requires a pushed
+exact commit and the complete guarded repository gate before this roadmap item
+can be marked complete.
 
 The mathematical convention is grounded in P.-F. Verhulst's 1845 logistic-
 growth paper, DOI [`10.3406/marb.1845.3438`](https://doi.org/10.3406/marb.1845.3438).
