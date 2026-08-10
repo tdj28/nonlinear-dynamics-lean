@@ -11,7 +11,7 @@ reading_time: "30 to 45 minutes"
 prerequisites: "Closed intervals, fixed points, elementary derivatives, and one-step iteration are introduced through the running example"
 lean_module: "NonlinearDynamics.Deterministic.Models.TentMap"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/TentMap.lean"
-lean_source_sha256: "fda621b848d2093942d6c68fa9df7b596eb230751a7a6050d7d5276e984d6c01"
+lean_source_sha256: "901090d0c34d055932d92a689ace5a4f02cb73507bf70d627e6a69757e2c7bf9"
 toc: true
 og_image: "tent-map-branches-fixed-points-and-the-turning-point-card.png"
 og_image_alt: "A symmetric tent map displays its exact zero-to-two parameter gate, two fixed points above slope one, and a corner at the midpoint."

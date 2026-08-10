@@ -89,15 +89,15 @@ theorem continuous_tentMap (s : ℝ) :
 /-- Reflection about the midpoint leaves every tent-map value unchanged. -/
 @[simp] theorem tentMap_one_sub (s x : ℝ) :
     tentMap s (1 - x) = tentMap s x := by
-  simp only [tentMap]
-  congr 1
+  unfold tentMap
+  have hcancel : 1 - (1 - x) = x := by ring
+  rw [hcancel]
   rw [min_comm]
-  ring
 
 /-- The tent core is nonnegative on the closed unit interval. -/
 theorem tentCore_nonneg {x : ℝ} (hx : x ∈ Icc 0 1) :
     0 ≤ min x (1 - x) :=
-  min_nonneg hx.1 (sub_nonneg.mpr hx.2)
+  le_min hx.1 (sub_nonneg.mpr hx.2)
 
 /-- The tent core is globally bounded above by `1 / 2`. -/
 theorem tentCore_le_oneHalf (x : ℝ) :
@@ -167,7 +167,7 @@ theorem tentNonzeroFixedPoint_isFixedPt {s : ℝ} (hs : 1 < s) :
     (oneHalf_lt_tentNonzeroFixedPoint hs).le]
   change s * (1 - s / (s + 1)) = s / (s + 1)
   have hden : s + 1 ≠ 0 := ne_of_gt (by linarith)
-  field_simp [hden] <;> ring
+  field_simp [hden]; ring
 
 /-- The nonzero formula is a fixed-point branch on slopes above one. -/
 theorem tentFamily_nonzero_isFixedPointBranchOn :
@@ -224,8 +224,10 @@ theorem tentMap_one_isFixedPt_iff {x : ℝ} (hx : x ∈ Icc 0 1) :
 /-- The standard tent's unit-interval fixed points are zero and two thirds. -/
 theorem tentMap_two_isFixedPt_iff {x : ℝ} (hx : x ∈ Icc 0 1) :
     IsFixedPt (tentMap 2) x ↔ x = 0 ∨ x = (2 : ℝ) / 3 := by
-  simpa [tentNonzeroFixedPoint] using
+  convert
     (tentMap_isFixedPt_iff_of_one_lt (s := (2 : ℝ)) (x := x) (by norm_num) hx)
+    using 1
+  · norm_num [tentNonzeroFixedPoint]
 
 /-- The derivative on the open left branch is `s`. -/
 theorem hasDerivAt_tentMap_of_lt_oneHalf {s x : ℝ}
@@ -240,8 +242,10 @@ theorem hasDerivAt_tentMap_of_oneHalf_lt {s x : ℝ}
     (hx : (1 : ℝ) / 2 < x) :
     HasDerivAt (tentMap s) (-s) x := by
   have hlinear : HasDerivAt (fun y : ℝ ↦ s * (1 - y)) (-s) x := by
-    have hraw := (hasDerivAt_const x (1 : ℝ)).sub (hasDerivAt_id' x)
-    convert hraw.const_mul s using 1 <;> ring
+    have hraw : HasDerivAt (fun y : ℝ ↦ 1 - y) (-1) x := by
+      simpa [sub_eq_add_neg, add_comm] using
+        (hasDerivAt_neg' x).add_const (1 : ℝ)
+    simpa using hraw.const_mul s
   refine hlinear.congr_of_eventuallyEq ?_
   filter_upwards [Ioi_mem_nhds hx] with y hy
   exact tentMap_eq_right_of_oneHalf_le hy.le
@@ -258,13 +262,20 @@ theorem not_differentiableAt_tentMap_oneHalf {s : ℝ} (hs : s ≠ 0) :
   have habsShift : DifferentiableAt ℝ
       (fun y : ℝ ↦ |y - (1 : ℝ) / 2|) ((1 : ℝ) / 2) := by
     refine haux.congr_of_eventuallyEq (Filter.Eventually.of_forall fun y ↦ ?_)
+    change |y - (1 : ℝ) / 2| =
+      (1 : ℝ) / 2 - (1 / s) * tentMap s y
     rw [tentMap_eq_oneHalf_sub_abs]
-    field_simp [hs] <;> ring
+    field_simp [hs]; ring
   have htranslate : DifferentiableAt ℝ
       (fun z : ℝ ↦ z + (1 : ℝ) / 2) 0 := by
     fun_prop
-  have habsZero := habsShift.comp 0 htranslate
-  exact not_differentiableAt_abs_zero (by simpa using habsZero)
+  have habsShift' : DifferentiableAt ℝ
+      (fun y : ℝ ↦ |y - (1 : ℝ) / 2|)
+      ((fun z : ℝ ↦ z + (1 : ℝ) / 2) 0) := by
+    simpa using habsShift
+  have habsZero := habsShift'.comp 0 htranslate
+  exact not_differentiableAt_abs_zero (by
+    simpa [Function.comp_def] using habsZero)
 
 /-- The derivative operator returns the left branch slope. -/
 theorem deriv_tentMap_of_lt_oneHalf {s x : ℝ} (hx : x < (1 : ℝ) / 2) :

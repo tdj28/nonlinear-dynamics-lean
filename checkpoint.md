@@ -5,7 +5,7 @@
 
 Last updated: 2026-08-09
 
-Audited baseline: `main` at `e9d186d`
+Audited baseline: `main` at `53e4592`
 
 Active direction: **validate and close the tent-map source-and-teaching
 candidate.**
@@ -27,7 +27,7 @@ paired private-draft Research Note, Deep Dive, glossary chapter, five
 conceptual figures, three deterministic social cards, and bounded `Std`
 worksheet are present with `pro_reviewed: false`. The current candidate source
 SHA-256 is
-`fda621b848d2093942d6c68fa9df7b596eb230751a7a6050d7d5276e984d6c01`.
+`901090d0c34d055932d92a689ace5a4f02cb73507bf70d627e6a69757e2c7bf9`.
 The standalone worksheet checks the complete scaled quarter-grid output
 `[0, 2, 4, 2, 0]`, the card generators reproduce their 1200-by-630 PNGs,
 all new SVG sources parse as XML, and 55 substantive modules have 55
@@ -39,12 +39,19 @@ warning-fatal. Rendered 1280-by-720 and exact 390-by-844 QA for all three new
 pages finds one article H1 per page, no document overflow, no raw TeX, no
 KaTeX errors, complete social metadata, and no missing or broken images. The
 wide conceptual figures remain inside the site's intentional horizontally
-scrollable mobile rail without widening the document. The remaining candidate
-gates are warning-fatal Linux leaf repair, the deterministic aggregator, the
-exact-commit full repository gate, verified cache preservation, checkpoint
-closure, compute termination, and retention of the project network volume. No
-project Lean, Lake, Mathlib build, or cache restoration has run on the Mac for
-this candidate.
+scrollable mobile rail without widening the document. On the approved Linux
+builder, the retained Lean 4.32.0 toolchain and LogisticMap Lake archives pass
+their SHA-256 ledgers and independent `zstd -t` checks before sequential
+restoration onto ephemeral storage. The repaired TentMap leaf passes
+warning-fatal, and its five axiom reports contain only `propext`,
+`Classical.choice`, and `Quot.sound`. The source repair replaces an unavailable
+minimum helper, makes the fixed numeric specialization explicit, and aligns
+the affine derivative and translated absolute-value proofs with the pinned
+API; no statement was weakened. The remaining candidate gates are the repaired
+source commit, deterministic aggregator, exact-commit full repository gate,
+verified cache preservation, checkpoint closure, compute termination, and
+retention of the project network volume. No project Lean, Lake, Mathlib build,
+or cache restoration has run on the Mac for this candidate.
 
 `NonlinearDynamics.Deterministic.Models.LogisticMap` is complete at proof
 closure commit `0527d6e`, following source-and-teaching candidate commit
@@ -2668,13 +2675,14 @@ The source and teaching candidate for
 `NonlinearDynamics.Deterministic.Models.TentMap` is prepared and passes the
 workstation-safe hygiene, Hugo, card, SVG, and desktop/mobile browser checks.
 Exact candidate commit `e9d186d` is pushed to `main`. The next paid step is an
-explicitly approved Linux builder for warning-fatal leaf repair, the
-deterministic aggregator, and the guarded exact-commit full gate. The cloud
-closure must restore the verified LogisticMap cache onto ephemeral storage,
-preserve a new integrity-checked cache archive on retained storage after
-success, record exact validation evidence, terminate the compute resource,
-and retain the project network volume. The roadmap item remains incomplete
-until those formal and release gates pass.
+approved Linux builder, which now has the integrity-checked LogisticMap cache
+restored to ephemeral storage and a warning-fatal repaired TentMap leaf. Commit
+and push that exact repair, then run the deterministic aggregator and guarded
+exact-commit full gate. The cloud closure must preserve a new
+integrity-checked cache archive on retained storage after success, record exact
+validation evidence, terminate the compute resource, and retain the project
+network volume. The roadmap item remains incomplete until those formal and
+release gates pass.
 
 ## Earlier Milestone Records
 
@@ -3504,8 +3512,9 @@ files are placeholders:
   exact-commit gate, verified cache preservation, and task-pod termination all
   pass. The paired teaching pages remain private with `pro_reviewed: false`.
 - [ ] `Models/TentMap.lean`: source-and-teaching candidate prepared;
-  workstation and browser gates pass, while warning-fatal Linux, full-gate,
-  and cache-preservation closure remain pending.
+  workstation, browser, and warning-fatal Linux leaf gates pass, while the
+  repaired exact commit, full gate, and cache-preservation closure remain
+  pending.
 - [ ] `Models/LogisticODE.lean`
 - [ ] `Models/Pendulum.lean`
 - [ ] `Models/LotkaVolterra.lean`

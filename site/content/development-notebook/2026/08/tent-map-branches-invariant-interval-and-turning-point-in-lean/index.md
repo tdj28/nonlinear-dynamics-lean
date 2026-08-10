@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.Models.TentMap"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Models/TentMap.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/TentMap.lean"
-lean_source_sha256: "fda621b848d2093942d6c68fa9df7b596eb230751a7a6050d7d5276e984d6c01"
+lean_source_sha256: "901090d0c34d055932d92a689ace5a4f02cb73507bf70d627e6a69757e2c7bf9"
 toc: true
 og_image: "tent-map-branches-invariant-interval-and-turning-point-in-lean-card.png"
 og_image_alt: "A two-branch tent peaks at the midpoint, beside the exact slope window from zero to two and a warning that the corner is not differentiable."
