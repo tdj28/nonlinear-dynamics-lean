@@ -5,14 +5,15 @@
 
 Last updated: 2026-08-11
 
-Audited baseline: `main` at `3d4a936`
+Audited baseline: `main` at `404ae20`
 
-Active direction: **freeze the repaired nonlinear-pendulum candidate, run its
-exact-commit full gate, preserve the verified cache, and close the approved
-Linux builder.**
+Active direction: **research the first Lotka-Volterra interface and prepare its
+source-and-teaching candidate without silently choosing unresolved parameter,
+positivity, or first-integral conventions.**
 
-`NonlinearDynamics.Deterministic.Models.Pendulum` is now a source-only
-candidate at pushed commit `54d075e` on the unwrapped phase plane `ℝ × ℝ`.
+`NonlinearDynamics.Deterministic.Models.Pendulum` is complete at repaired and
+validated commit `404ae20`, following source-and-teaching candidate commit
+`54d075e`, on the unwrapped phase plane `ℝ × ℝ`.
 It freezes the normalized
 first-order system `θ' = ω`, `ω' = -κ sin θ`, defines its autonomous Mathlib
 ODE field and normalized energy `ω² / 2 + κ (1 - cos θ)`, proves continuity,
@@ -56,16 +57,39 @@ plus 596 pages with drafts warning-fatal. Rendered desktop and exact
 no document overflow, and complete social and conceptual images. Wide figures
 remain in the site's intentional horizontally scrollable mobile frame. No
 project Lean, Lake, Mathlib build, proof probe, or cache restoration ran on
-macOS. The explicitly approved RunPod Secure Cloud builder is active with
-8 vCPU, a 32,000,000,000-byte effective RAM limit, an 80-GB ephemeral disk,
-and the retained project volume at $0.32 per hour under a $5 ceiling. The exact
-source archive for `3d4a936`, the Pendulum source, and the committed manifest
-all passed SHA-256 identity checks. The retained LogisticODE toolchain and Lake
-archives passed their recorded SHA-256 ledger and full `zstd -t` validation
-before sequential extraction to ephemeral storage. Official Hugo Extended
-with Deploy 0.160.1 passed its published checksum. The repair now requires a
-commit and push, an exact-repair-commit full gate, verified cache preservation,
-final checkpoint push, and task-pod termination while retaining the volume.
+macOS.
+
+Approved Linux validation used RunPod Secure Cloud with 8 vCPU, a
+32,000,000,000-byte effective RAM limit, an 80-GB ephemeral disk, and the
+retained project volume at $0.32 per hour under a $5 ceiling. The initial exact
+source archive for `3d4a936`, the repaired exact-commit archive for `404ae20`,
+the Pendulum source, and the committed manifest passed SHA-256 identity checks;
+the repaired archive SHA-256 is
+`f015ab44b7b8673ea81fe3a65cc060aef62a1199a2be1407eb1501ab128bea73`.
+The retained LogisticODE toolchain and Lake archives passed their recorded
+SHA-256 ledger and full `zstd -t` validation before sequential extraction to
+ephemeral storage. Official Hugo Extended with Deploy 0.160.1 passed its
+published checksum. The authoritative exact-`404ae20`
+`CLOUD_LEAN_BUILD=1 make -j1 check` completes all 3,272 Lean jobs, 57/57
+Notebook coverage, 23 coverage regression tests, seven teaching-hygiene tests,
+the 202-file teaching audit, the 968-surface reader-language audit, and
+warning-fatal 493-page production plus 596-page draft-inclusive Hugo renders
+in 13.10 seconds.
+
+The successful ephemeral `.lake` tree is preserved sequentially as
+`lake-manifest-pinned-pendulum-20260811.tar.zst` on the retained volume. The
+2,644,749,535-byte compressed archive expands to an 8,098,560,000-byte tar
+stream and passes `zstd -t` before and after transfer. Its SHA-256 is
+`c32c66aa80372d669c036b7da590c4dddb3e235db070f302619f630c465b8b24`;
+the retained `SHA256SUMS-pendulum-20260811` verifies it together with the
+unchanged Lean 4.32.0 toolchain archive. The compact retrieved receipt has
+SHA-256
+`dc0fc6f918e083164ea0b07de3002a3c1095a136bbed24a04ffd591852294e48`.
+The builder ran for 1,379 seconds at $0.32 per hour, approximately $0.12 of
+compute spend. The exact task pod was terminated, its direct lookup is absent,
+and the retained 100-GB project volume remains. The post-action account
+inventory contains no task-name match and shows two unrelated running pods,
+neither of which was touched.
 
 `NonlinearDynamics.Deterministic.Models.LogisticODE` is complete at proof-
 repair commit `54ee561`, following source-and-teaching candidate commit
@@ -2842,22 +2866,24 @@ and
 
 ## Exact Next Milestone
 
-### Validate the nonlinear-pendulum candidate
+### Design the first Lotka-Volterra slice
 
-The pushed source-and-teaching candidate at `54d075e` for
-`NonlinearDynamics.Deterministic.Models.Pendulum` is prepared on the
-unwrapped state space `ℝ × ℝ`, paired with its complete private-draft teaching
-bundle, and green under every workstation-safe and rendered browser gate. Make
-a fresh costed proposal before creating paid compute. On an explicitly
-approved Linux builder, restore the verified
-cache sequentially to ephemeral storage, run the warning-fatal Pendulum leaf
-and `NonlinearDynamics.Deterministic` aggregator, repair any pinned-API or
-elaboration failures without weakening statements, inspect the printed axiom
-reports for `sorryAx`, and run the exact repaired-commit full
-`CLOUD_LEAN_BUILD=1 make -j1 check` gate with Hugo Extended 0.160.1. Preserve
-and independently verify the successful cache on the retained project volume,
-record exact commits, hashes, gate receipts, runtime, and spend, push the
-closure to `main`, terminate the exact task pod, and retain the network volume.
+Replace the one-line
+`NonlinearDynamics.Deterministic.Models.LotkaVolterra` placeholder only after
+auditing primary mathematical sources and the pinned Mathlib 4.32.0 ODE,
+positivity, logarithm, and differentiation interfaces. Freeze the parameter
+and sign convention for the two-species predator-prey vector field, state
+whether the carrier is the full plane or the positive quadrant, and keep
+algebraic equilibrium classification separate from forward invariance and
+solution existence. If the first slice includes the customary logarithmic
+first integral, expose its strict-positivity domain and prove only a pointwise
+derivative cancellation under explicit component ODE hypotheses; do not infer
+closed orbits, global periodicity, stability, or a global flow from that
+identity. Build the complete cited private-draft Research Note, Deep Dive, and
+glossary bundle with a bounded standalone example, conceptual figures,
+deterministic cards, source-hash links, and explicit nonclaims. Run every
+workstation-safe gate first. Any project Lean validation or cache restoration
+then requires a fresh costed Linux-compute proposal and explicit approval.
 
 ## Earlier Milestone Records
 
@@ -3663,8 +3689,8 @@ documentation placeholders:
 
 ### ODEs and concrete models
 
-The first file is now a validated source-and-teaching milestone; the remaining
-files are placeholders:
+The ODE infrastructure and first four concrete-model slices are validated;
+Lotka-Volterra and Lorenz remain placeholders:
 
 - [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
   both exact-commit full gates, verified cache preservation, desktop QA, and
@@ -3695,10 +3721,11 @@ files are placeholders:
   verified retained-cache preservation, task-pod termination, and final
   inventory all pass. The paired teaching pages remain private with
   `pro_reviewed: false`.
-- [ ] `Models/Pendulum.lean`: source-and-teaching candidate prepared; bounded
-  worksheet, deterministic assets, complete workstation gate, and
-  desktop/mobile browser QA pass. Warning-fatal Linux leaf, aggregator,
-  exact-commit full gate, verified cache preservation, and teardown remain.
+- [x] `Models/Pendulum.lean`: repaired warning-fatal leaf and deterministic
+  aggregator, exact-repair-commit full gate, complete workstation/browser QA,
+  verified retained-cache preservation, task-pod termination, and final
+  inventory all pass. The paired teaching pages remain private with
+  `pro_reviewed: false`.
 - [ ] `Models/LotkaVolterra.lean`
 - [ ] `Models/Lorenz.lean`
 
@@ -4433,11 +4460,10 @@ k-invariance precedes approximation claims.
   integral, prove `L¹` convergence or uniform integrability, or produce a
   Lyapunov spectrum or Oseledets splitting.
 - Quantum-chaos universality claims are not general theorems in this project.
-- The Pendulum source-and-teaching candidate is not yet checked by the pinned
-  Mathlib toolchain. Its proof scripts, printed axiom reports, deterministic
-  aggregator, and full repository gate remain provisional until the next
-  approved Linux validation. Lotka–Volterra, Lorenz, and the Quantum Chaos
-  placeholder branches remain later roadmap work.
+- Lotka-Volterra, Lorenz, and the Quantum Chaos placeholder branches remain
+  later roadmap work. The first Lotka-Volterra slice still needs a sourced
+  decision on its parameter/sign convention, phase-space domain, positivity
+  boundary, and the exact scope of any logarithmic first-integral theorem.
 
 ## Validation Snapshot
 
@@ -4474,7 +4500,11 @@ Checkpoint/skill milestone QA:
   390-by-844 rendered inspection covers the Research Note, Deep Dive, glossary
   chapter, all five concept figures, and all three cards with no document-level
   overflow or broken loaded assets. No project Lean or Lake command ran on the
-  workstation.
+  workstation. On 2026-08-11 the repaired warning-fatal Pendulum leaf and
+  deterministic aggregator passed on approved Linux compute; exact commit
+  `404ae20` then passed all 3,272 Lean jobs and every paired teaching gate. The
+  verified Pendulum cache and compact receipt were preserved, the exact task
+  pod was terminated, and the retained project volume remains.
 - GitHub Pages open-corpus QA on 2026-07-22: after the owner authorized public
   working notes, both the production-only Hugo build and the draft-inclusive
   local review build rendered 405 pages with warnings fatal under Hugo Extended
@@ -5550,6 +5580,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `404ae20`: repair the Pendulum candidate for pinned Mathlib by importing the
+  basic trigonometric interface, making noncomputability explicit, aligning
+  the real calculus instances locally, and closing the energy and constant-
+  curve derivative proofs without changing their statements.
 - `54d075e`: prepare the normalized undamped-Pendulum source candidate on the
   unwrapped phase plane, record equilibria, full-turn periodicity, normalized
   energy and its pointwise derivative cancellation, add the complete cited
