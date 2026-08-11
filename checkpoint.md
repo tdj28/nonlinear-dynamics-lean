@@ -3,12 +3,13 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-10
+Last updated: 2026-08-11
 
-Audited baseline: `main` at `54d075e`
+Audited baseline: `main` at `3d4a936`
 
-Active direction: **validate and repair the prepared nonlinear-pendulum
-source-and-teaching candidate on the next explicitly approved Linux builder.**
+Active direction: **freeze the repaired nonlinear-pendulum candidate, run its
+exact-commit full gate, preserve the verified cache, and close the approved
+Linux builder.**
 
 `NonlinearDynamics.Deterministic.Models.Pendulum` is now a source-only
 candidate at pushed commit `54d075e` on the unwrapped phase plane `ℝ × ℝ`.
@@ -24,8 +25,19 @@ integral curves. It deliberately does not construct arbitrary solutions, a
 global flow, nonconstant periodic orbits, a libration/rotation classification,
 or any stability conclusion.
 
-The current unvalidated source SHA-256 is
-`15926d7f6014d43cd523aae5b90b476af4695b2a0e9eab80faf502265f1d2416`.
+The first warning-fatal Linux leaf exposed a missing trigonometric interface
+import, implicit noncomputability, a real-module instance-selection seam in the
+energy derivative, and two constant-curve derivative normalizations. The
+statement-preserving repair adds the pinned basic trigonometric interface,
+makes the noncomputable section explicit, locally prefers the normed real
+additive and module instances for calculus, proves the derivative cancellation
+through derivative and eventual-function congruence, and rewrites each
+equilibrium field value to the product-space zero before applying the constant
+derivative theorem. Its current warning-fatal source SHA-256 is
+`52ec379c7f53c27b6977d5b1220dda2810f12e7c13a4e23ed746c400e8acf6d3`.
+The repaired leaf passes in 1.50 seconds, the warning-fatal deterministic
+aggregator passes in 1.64 seconds, and the four printed axiom reports contain
+only `propext`, `Classical.choice`, and `Quot.sound`; none contains `sorryAx`.
 Its declaration-complete private-draft Research Note, Deep Dive, and glossary
 chapter are present with `pro_reviewed: false`, five conceptual figures, three
 deterministic 1200-by-630 social cards, and a bounded standalone `Std`
@@ -44,10 +56,16 @@ plus 596 pages with drafts warning-fatal. Rendered desktop and exact
 no document overflow, and complete social and conceptual images. Wide figures
 remain in the site's intentional horizontally scrollable mobile frame. No
 project Lean, Lake, Mathlib build, proof probe, or cache restoration ran on
-macOS. No paid compute is active. The project network volume remains retained;
-the Pendulum source still requires warning-fatal leaf, deterministic
-aggregator, exact-commit full-gate, axiom-report, and cache-preservation
-validation on approved Linux compute.
+macOS. The explicitly approved RunPod Secure Cloud builder is active with
+8 vCPU, a 32,000,000,000-byte effective RAM limit, an 80-GB ephemeral disk,
+and the retained project volume at $0.32 per hour under a $5 ceiling. The exact
+source archive for `3d4a936`, the Pendulum source, and the committed manifest
+all passed SHA-256 identity checks. The retained LogisticODE toolchain and Lake
+archives passed their recorded SHA-256 ledger and full `zstd -t` validation
+before sequential extraction to ephemeral storage. Official Hugo Extended
+with Deploy 0.160.1 passed its published checksum. The repair now requires a
+commit and push, an exact-repair-commit full gate, verified cache preservation,
+final checkpoint push, and task-pod termination while retaining the volume.
 
 `NonlinearDynamics.Deterministic.Models.LogisticODE` is complete at proof-
 repair commit `54ee561`, following source-and-teaching candidate commit

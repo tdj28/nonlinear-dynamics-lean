@@ -1,4 +1,5 @@
 import Mathlib.Analysis.ODE.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 
 /-!
@@ -30,6 +31,8 @@ pointwise identities formalized here.
 -/
 
 namespace NonlinearDynamics.Deterministic.Models
+
+noncomputable section
 
 /-- The normalized undamped-pendulum vector field on the unwrapped phase
 plane.  A state is `(angle, angularVelocity)`. -/
@@ -118,6 +121,11 @@ theorem pendulumEnergy_add_int_mul_two_pi (κ θ ω : ℝ) (n : ℤ) :
       pendulumEnergy κ (θ, ω) := by
   simp [pendulumEnergy, Real.cos_add_int_mul_two_pi]
 
+section EnergyDerivative
+
+attribute [local instance 1200] NormedAddCommGroup.toAddCommGroup
+  NormedSpace.toModule
+
 /-- If the component derivatives obey the pendulum equations at time `t`,
 then the derivative of the mechanical energy is zero at `t`.  This is a
 pointwise conservation identity, not an existence theorem for solutions. -/
@@ -126,22 +134,34 @@ theorem hasDerivAt_pendulumEnergy_along (κ : ℝ) {θ ω : ℝ → ℝ} {t : �
     (hω : HasDerivAt ω (-κ * Real.sin (θ t)) t) :
     HasDerivAt (fun s ↦ pendulumEnergy κ (θ s, ω s)) 0 t := by
   unfold pendulumEnergy
-  convert ((hω.pow 2).div_const 2).add
-    (((hasDerivAt_const t (1 : ℝ)).sub hθ.cos).const_mul κ) using 1 <;> ring
+  have hkinetic := (hω.pow 2).div_const 2
+  have hpotential :=
+    ((hasDerivAt_const t (1 : ℝ)).sub hθ.cos).const_mul κ
+  have hcancel :
+      (2 : ℝ) * ω t ^ (2 - 1) * (-κ * Real.sin (θ t)) / 2 +
+          κ * (0 - -Real.sin (θ t) * ω t) = 0 := by
+    norm_num
+    ring
+  exact ((hkinetic.add hpotential).congr_deriv hcancel).congr_of_eventuallyEq
+    (Filter.Eventually.of_forall fun _ ↦ rfl)
+
+end EnergyDerivative
 
 /-- The constant downward-equilibrium curve is a global integral curve. -/
 theorem pendulum_down_isIntegralCurve (κ : ℝ) :
     IsIntegralCurve (fun _ : ℝ ↦ (0, 0)) (pendulumODEField κ) := by
   intro t
-  simpa [pendulumODEField, pendulumVectorField] using
-    (hasDerivAt_const t ((0, 0) : ℝ × ℝ))
+  rw [show pendulumODEField κ t (0, 0) = (0 : ℝ × ℝ) by simp]
+  exact hasDerivAt_const t ((0, 0) : ℝ × ℝ)
 
 /-- The constant upright-equilibrium curve is a global integral curve. -/
 theorem pendulum_up_isIntegralCurve (κ : ℝ) :
     IsIntegralCurve (fun _ : ℝ ↦ (Real.pi, 0)) (pendulumODEField κ) := by
   intro t
-  simpa [pendulumODEField, pendulumVectorField] using
-    (hasDerivAt_const t ((Real.pi, 0) : ℝ × ℝ))
+  rw [show pendulumODEField κ t (Real.pi, 0) = (0 : ℝ × ℝ) by simp]
+  exact hasDerivAt_const t ((Real.pi, 0) : ℝ × ℝ)
+
+end
 
 end NonlinearDynamics.Deterministic.Models
 

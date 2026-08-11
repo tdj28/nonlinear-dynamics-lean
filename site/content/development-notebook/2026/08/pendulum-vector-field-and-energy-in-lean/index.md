@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.Models.Pendulum"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Models/Pendulum.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/Pendulum.lean"
-lean_source_sha256: "15926d7f6014d43cd523aae5b90b476af4695b2a0e9eab80faf502265f1d2416"
+lean_source_sha256: "52ec379c7f53c27b6977d5b1220dda2810f12e7c13a4e23ed746c400e8acf6d3"
 toc: true
 og_image: "pendulum-vector-field-and-energy-in-lean-card.png"
 og_image_alt: "A pendulum at a quarter turn connects to a phase-plane arrow and a closed normalized-energy contour."
