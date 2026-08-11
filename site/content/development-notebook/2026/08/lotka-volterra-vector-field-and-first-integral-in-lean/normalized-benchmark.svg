@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="350" viewBox="0 0 760 350" role="img" aria-labelledby="title desc">
+  <title id="title">Normalized Lotka-Volterra benchmark at prey two and predator three</title>
+  <desc id="desc">The prey coordinate two multiplies the factor one minus three to give derivative minus four. The predator coordinate three multiplies the factor two minus one to give derivative three.</desc>
+  <rect width="760" height="350" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.data{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.prey{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.pred{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.neutral{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.4}.arrow{stroke:#A67C52;stroke-width:2.2;fill:none;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <text x="24" y="28" class="t title">One state, two coordinate calculations</text>
+  <text x="24" y="48" class="t m">All four parameters equal one; the pair is an instantaneous derivative.</text>
+  <rect x="24" y="75" width="152" height="112" rx="12" class="data"/>
+  <text x="100" y="105" text-anchor="middle" class="t h">STATE</text>
+  <text x="100" y="139" text-anchor="middle" class="t title">prey 2</text>
+  <text x="100" y="163" text-anchor="middle" class="t title">predator 3</text>
+  <path d="M176 131 H218" class="arrow"/>
+  <rect x="226" y="70" width="224" height="122" rx="12" class="prey"/>
+  <text x="338" y="99" text-anchor="middle" class="t h">PREY COORDINATE</text>
+  <text x="338" y="130" text-anchor="middle" class="t s">current prey 2</text>
+  <text x="338" y="153" text-anchor="middle" class="t s">factor: 1 minus predator 3</text>
+  <text x="338" y="178" text-anchor="middle" class="t h">derivative: 2 times -2 = -4</text>
+  <rect x="476" y="70" width="260" height="122" rx="12" class="pred"/>
+  <text x="606" y="99" text-anchor="middle" class="t h">PREDATOR COORDINATE</text>
+  <text x="606" y="130" text-anchor="middle" class="t s">current predators 3</text>
+  <text x="606" y="153" text-anchor="middle" class="t s">factor: prey 2 minus 1</text>
+  <text x="606" y="178" text-anchor="middle" class="t h">derivative: 3 times 1 = 3</text>
+  <rect x="150" y="218" width="460" height="67" rx="12" class="neutral"/>
+  <text x="380" y="246" text-anchor="middle" class="t h">RETURNED TANGENT VECTOR</text>
+  <text x="380" y="272" text-anchor="middle" class="t title">prey derivative -4, predator derivative 3</text>
+  <rect x="24" y="307" width="712" height="28" rx="8" class="prey"/>
+  <text x="380" y="326" text-anchor="middle" class="t s">This checks one field value. It does not advance the state through time.</text>
+</svg>

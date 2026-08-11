@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Lotka-Volterra predator-prey model</title>
+  <desc id="desc">A glossary card shows normalized prey two and predators three producing the tangent vector prey minus four and predators three.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">GLOSSARY · CONTINUOUS DYNAMICS</text>
+  <text x="78" y="179" font-family="system-ui,sans-serif" font-size="48" font-weight="780" fill="#16324f">LOTKA-VOLTERRA</text>
+  <text x="78" y="237" font-family="system-ui,sans-serif" font-size="48" font-weight="780" fill="#16324f">PREDATOR-PREY MODEL</text>
+  <rect x="90" y="286" width="300" height="150" rx="22" fill="#e4eef4" stroke="#4b6787" stroke-width="3"/>
+  <text x="240" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">CURRENT STATE</text>
+  <text x="240" y="376" text-anchor="middle" font-family="Georgia,serif" font-size="32" fill="#263c3b">prey 2</text>
+  <text x="240" y="414" text-anchor="middle" font-family="Georgia,serif" font-size="32" fill="#263c3b">predators 3</text>
+  <path d="M420 361 H500" stroke="#a67c52" stroke-width="8" stroke-linecap="round"/>
+  <path d="M500 342 L535 361 L500 380 Z" fill="#a67c52"/>
+  <rect x="565" y="286" width="545" height="150" rx="22" fill="#dfece3" stroke="#6f8d5e" stroke-width="3"/>
+  <text x="837" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#285448">INSTANTANEOUS VECTOR</text>
+  <text x="837" y="382" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="#263c3b">prey -4 · predators 3</text>
+  <text x="837" y="416" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#5a544c">not the state one time unit later</text>
+  <text x="600" y="520" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">FOUR EXPLICIT PARAMETERS · TWO POSITIVE-PARAMETER EQUILIBRIA</text>
+  <text x="600" y="558" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="650" fill="#285448">FIELD VALUES FIRST, ORBIT CLAIMS LATER</text>
+</svg>

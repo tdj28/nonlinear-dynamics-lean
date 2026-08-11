@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Lotka-Volterra vector field and first integral in Lean</title>
+  <desc id="desc">A research-note card links the normalized prey-predator state two comma three to vector minus four comma three and a positive-domain first-integral boundary.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">RESEARCH NOTE · CONTINUOUS DYNAMICS</text>
+  <text x="78" y="174" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#16324f">LOTKA-VOLTERRA VECTOR FIELD</text>
+  <text x="78" y="228" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#16324f">AND FIRST INTEGRAL IN LEAN</text>
+  <rect x="90" y="274" width="1020" height="98" rx="20" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="600" y="315" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#285448">NORMALIZED BENCHMARK</text>
+  <text x="600" y="350" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#263c3b">state (2, 3) gives tangent vector (-4, 3)</text>
+  <rect x="90" y="405" width="470" height="105" rx="18" fill="#e4eef4"/>
+  <text x="325" y="446" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">FULL-PLANE FIELD</text>
+  <text x="325" y="482" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">axes and equilibria stay algebraic</text>
+  <rect x="640" y="405" width="470" height="105" rx="18" fill="#f3dfca"/>
+  <text x="875" y="446" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#874d3b">POSITIVE-DOMAIN IDENTITY</text>
+  <text x="875" y="482" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#263c3b">local cancellation, not a periodic orbit</text>
+  <text x="600" y="558" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="650" fill="#285448">EXPLICIT PARAMETERS · TWO EQUILIBRIA · VISIBLE NONCLAIMS</text>
+</svg>

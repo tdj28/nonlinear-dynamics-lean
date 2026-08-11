@@ -5,11 +5,67 @@
 
 Last updated: 2026-08-11
 
-Audited baseline: `main` at `404ae20`
+Audited baseline: `main` at `4eddb9a`; the last exact formalization gate is
+the Pendulum repair at `404ae20`.
 
-Active direction: **research the first Lotka-Volterra interface and prepare its
-source-and-teaching candidate without silently choosing unresolved parameter,
-positivity, or first-integral conventions.**
+Active direction: **validate and, if necessary, repair the first
+Lotka-Volterra source-and-teaching candidate on fresh approved Linux compute,
+without extending its pointwise first-integral identity into an unchecked
+orbit theorem.**
+
+`NonlinearDynamics.Deterministic.Models.LotkaVolterra` now has a complete
+source-and-teaching candidate in the working tree. It freezes the prey-first
+four-parameter system
+`x' = x * (alpha - beta * y)`,
+`y' = y * (delta * x - gamma)`, mapping Lotka's historical
+`(A₁, B₁, B₂, A₂)` order to `(alpha, beta, gamma, delta)`. The polynomial
+field uses the full plane `ℝ × ℝ`; the strict positive quadrant is a separately
+named set. This avoids conflating algebraic field values with the biological
+state domain or with a future forward-invariance theorem.
+
+The candidate defines the Mathlib autonomous ODE field, proves continuity,
+records the origin and both axis formulas, defines the coexistence state
+`(gamma / delta, alpha / beta)`, places it in the positive quadrant under four
+positive parameters, and classifies the origin and coexistence state as the
+only full-plane field zeros under those hypotheses. It checks the normalized
+benchmark `(2, 3) ↦ (-4, 3)` and exhibits the origin and coexistence constant
+curves as global integral curves.
+
+The scalar
+`delta * x - gamma * Real.log x + beta * y - alpha * Real.log y`
+is defined on the total real carrier, but its derivative interface makes the
+intended logarithmic domain explicit. The theorem assumes both component
+values are strictly positive and assumes the two component derivative
+identities at one time; it concludes only that the scalar derivative is zero
+at that time. The slice does not prove positive invariance, arbitrary solution
+existence or uniqueness, completeness, a global flow, compact or closed
+nonconstant level sets, periodicity, a period formula, or stability.
+
+The source candidate currently has 19 declarations and five printed axiom
+audits. Its source SHA-256 is
+`cc080be90c157df512b659b6d75ae55eac3e0f8ecce6da03e83a842e1d9f71cc`.
+Project Lean validation remains pending and no project Lean, Lake, Mathlib
+build, proof probe, or cache restoration ran on macOS.
+
+The declaration-complete private-draft Research Note, Deep Dive, and glossary
+chapter remain `pro_reviewed: false`. They include five conceptual figures,
+three deterministic 1200-by-630 cards with byte-reproducible generators, and
+a bounded `Std` worksheet. The worksheet prints the exact normalized field
+ledger `[(0, 0), (0, 0), (0, 1), (-1, 0), (-4, 3)]` and the five-entry
+cancellation ledger `[0, 0, 0, 0, 0]`.
+
+The complete workstation-safe candidate gate passes. There are 58 substantive
+Lean modules and 58 comprehensive Notebook mappings; all 23 coverage and seven
+teaching-hygiene regression tests pass; 205 Markdown files and 983 public
+reader surfaces pass their source and language audits. Hugo Extended 0.160.1
+renders 493 production pages and 605 pages with drafts with warnings fatal.
+All eight new SVG sources parse as XML, all three card PNGs are 1200 by 630,
+and their generators reproduce them byte-for-byte. Rendered 1280-by-720 and
+exact 390-by-844 inspection of all three new pages finds one article H1 per
+page, no document overflow, no raw TeX, no KaTeX or console errors, complete
+image alternatives, and every social and conceptual image loaded at its
+intended intrinsic dimensions. Wide figures remain inside the site's
+intentional horizontally scrollable mobile frame.
 
 `NonlinearDynamics.Deterministic.Models.Pendulum` is complete at repaired and
 validated commit `404ae20`, following source-and-teaching candidate commit
@@ -2866,24 +2922,32 @@ and
 
 ## Exact Next Milestone
 
-### Design the first Lotka-Volterra slice
+### Validate and repair the Lotka-Volterra candidate
 
-Replace the one-line
-`NonlinearDynamics.Deterministic.Models.LotkaVolterra` placeholder only after
-auditing primary mathematical sources and the pinned Mathlib 4.32.0 ODE,
-positivity, logarithm, and differentiation interfaces. Freeze the parameter
-and sign convention for the two-species predator-prey vector field, state
-whether the carrier is the full plane or the positive quadrant, and keep
-algebraic equilibrium classification separate from forward invariance and
-solution existence. If the first slice includes the customary logarithmic
-first integral, expose its strict-positivity domain and prove only a pointwise
-derivative cancellation under explicit component ODE hypotheses; do not infer
-closed orbits, global periodicity, stability, or a global flow from that
-identity. Build the complete cited private-draft Research Note, Deep Dive, and
-glossary bundle with a bounded standalone example, conceptual figures,
-deterministic cards, source-hash links, and explicit nonclaims. Run every
-workstation-safe gate first. Any project Lean validation or cache restoration
-then requires a fresh costed Linux-compute proposal and explicit approval.
+Commit and push the workstation-green source-and-teaching candidate without
+calling it Lean-validated. Then make a fresh costed Linux-compute proposal and
+obtain explicit approval before creating a builder. On that exact approved
+resource, restore the verified Pendulum toolchain and Lake archives
+sequentially from the retained project volume to fast ephemeral storage, after
+checking their recorded SHA-256 ledger and `zstd -t`. Use an exact source-only
+archive or clone of the pushed candidate and verify the source and manifest
+digests before any build.
+
+Run the guarded warning-fatal leaf for
+`NonlinearDynamics/Deterministic/Models/LotkaVolterra.lean` first. Repair proof
+elaboration only if the pinned Mathlib interface requires it; do not weaken
+statements, relax positivity, or add orbit-level claims. Recompute the source
+hash and update both teaching companions after any source repair. Then run the
+warning-fatal deterministic aggregator and inspect all five axiom reports for
+`sorryAx` or nonstandard additions.
+
+After pushing any repair, obtain an exact clone or archive of that pushed
+commit and run `CLOUD_LEAN_BUILD=1 make -j1 check`. Record the exact commit,
+source/archive hashes, leaf and aggregator results, job and teaching-gate
+counts, Hugo version, resource receipt, and nonclaims here. Preserve the
+successful ephemeral `.lake` tree as a sequential integrity-checked archive
+on the retained volume, terminate the exact task pod, retain the project
+volume, and do not mutate the owner's unrelated experiments.
 
 ## Earlier Milestone Records
 
@@ -3726,7 +3790,13 @@ Lotka-Volterra and Lorenz remain placeholders:
   verified retained-cache preservation, task-pod termination, and final
   inventory all pass. The paired teaching pages remain private with
   `pro_reviewed: false`.
-- [ ] `Models/LotkaVolterra.lean`
+- [ ] `Models/LotkaVolterra.lean`: a sourced 19-declaration source candidate,
+  full-plane/positive-quadrant convention, positive-parameter equilibrium
+  classification, pointwise positive-domain first-integral derivative, two
+  constant integral curves, complete private-draft teaching bundle, bounded
+  worksheet, deterministic assets, and workstation/browser QA are present.
+  Warning-fatal Linux leaf, deterministic aggregator, exact-commit full gate,
+  cache preservation, and task-pod termination remain pending.
 - [ ] `Models/Lorenz.lean`
 
 ### Quantum chaos
@@ -3751,6 +3821,23 @@ k-invariance precedes approximation claims.
 
 ## Decision Ledger
 
+- The first Lotka-Volterra slice uses prey first and the parameter order
+  `(alpha, beta, gamma, delta)`, corresponding to Lotka's historical
+  `(A₁, B₁, B₂, A₂)` factorization. Parameter names and coordinate order are
+  not treated as universal across the literature.
+- The Lotka-Volterra polynomial vector field uses the full carrier `ℝ × ℝ`.
+  The strict positive quadrant is a named set, not the underlying type, and
+  naming it is not a forward-invariance theorem.
+- Lotka-Volterra positivity is theorem-local: four positive parameters support
+  the complete two-zero classification and positive coexistence state;
+  nonzero `beta` and `delta` suffice for the algebraic coexistence zero and its
+  constant curve; positive component values are explicit hypotheses of the
+  logarithmic differentiation theorem.
+- The Lotka-Volterra first-integral interface is pointwise and conditional.
+  It checks zero derivative at one time under component ODE hypotheses. It
+  does not construct a trajectory or infer constancy on an interval, a global
+  flow, positive invariance, a nonconstant closed or periodic orbit, or
+  stability.
 - The first Pendulum slice uses the unwrapped state space `ℝ × ℝ` and proves
   integer-full-turn periodicity explicitly. It does not silently identify the
   real angle coordinate with a circle or quotient type.
@@ -4460,10 +4547,13 @@ k-invariance precedes approximation claims.
   integral, prove `L¹` convergence or uniform integrability, or produce a
   Lyapunov spectrum or Oseledets splitting.
 - Quantum-chaos universality claims are not general theorems in this project.
-- Lotka-Volterra, Lorenz, and the Quantum Chaos placeholder branches remain
-  later roadmap work. The first Lotka-Volterra slice still needs a sourced
-  decision on its parameter/sign convention, phase-space domain, positivity
-  boundary, and the exact scope of any logarithmic first-integral theorem.
+- The Lotka-Volterra source candidate has frozen its parameter/sign convention,
+  carrier, positivity boundary, equilibrium classification, and pointwise
+  logarithmic derivative scope, but it has not yet passed the pinned Linux
+  leaf, aggregator, or full gate. No orbit-level conclusion may be promoted
+  before those formal checks and the additional solution, invariance, and
+  level-set arguments are supplied. Lorenz and the Quantum Chaos branches
+  remain later roadmap work.
 
 ## Validation Snapshot
 
@@ -4489,6 +4579,22 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
+- Lotka-Volterra source-candidate QA on 2026-08-11: the bounded Lean 4.32.0
+  `Std` worksheet prints the expected five normalized field vectors and five
+  zero cancellation values. All three card generators reproduce their
+  1200-by-630 PNGs byte-for-byte, all eight new SVG sources pass `xmllint`,
+  and `make workstation-check` passes 58/58 Notebook coverage, 23 coverage
+  regression tests, seven teaching-hygiene tests, the 205-file teaching
+  audit, the 983-surface reader-language audit, and warning-fatal Hugo
+  Extended 0.160.1 renders of 493 production pages and 605 pages with drafts.
+  Rendered 1280-by-720 and exact 390-by-844 inspection covers the Research
+  Note, Deep Dive, glossary chapter, all five conceptual figures, and all
+  three cards with no document overflow, raw TeX, KaTeX errors, broken loaded
+  assets, missing image alternatives, or console warnings/errors. Wide
+  figures remain in the site's intentional horizontally scrollable mobile
+  frame. No project Lean or Lake command ran on the workstation. The
+  warning-fatal Linux leaf, deterministic aggregator, and exact-commit full
+  gate remain pending.
 - Pendulum source-candidate QA on 2026-08-10: the bounded Lean 4.32.0 `Std`
   worksheet evaluates the expected five-entry acceleration and twice-energy
   ledgers. All three card generators reproduce their 1200-by-630 PNGs, all

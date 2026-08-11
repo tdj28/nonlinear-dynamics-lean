@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="350" viewBox="0 0 760 350" role="img" aria-labelledby="title desc">
+  <title id="title">Normalized prey-predator state and tangent vector</title>
+  <desc id="desc">At prey two and predators three, prey has per-capita factor minus two and derivative minus four. Predators have per-capita factor one and derivative three. The returned pair is an instantaneous vector.</desc>
+  <rect width="760" height="350" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:15px;font-weight:700}.h{font-size:13px;font-weight:700}.s{font-size:12px}.m{font-size:11px;fill:#5A544C}.state{fill:#E8F0F7;stroke:#4B6787;stroke-width:1.5}.prey{fill:#EAF1E5;stroke:#6F8D5E;stroke-width:1.5}.pred{fill:#F3E8E0;stroke:#A67C52;stroke-width:1.5}.out{fill:#FBF9F6;stroke:#C4B8A8;stroke-width:1.5}.arrow{stroke:#A67C52;stroke-width:2.2;fill:none;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#A67C52"/></marker></defs>
+  <text x="24" y="28" class="t title">A vector field reads one prey-predator state</text>
+  <text x="24" y="48" class="t m">Normalized parameters: every rate coefficient equals one.</text>
+  <rect x="24" y="82" width="150" height="104" rx="12" class="state"/>
+  <text x="99" y="111" text-anchor="middle" class="t h">CURRENT STATE</text>
+  <text x="99" y="143" text-anchor="middle" class="t s">prey 2</text>
+  <text x="99" y="166" text-anchor="middle" class="t s">predators 3</text>
+  <path d="M174 134 H215" class="arrow"/>
+  <rect x="223" y="76" width="238" height="116" rx="12" class="prey"/>
+  <text x="342" y="105" text-anchor="middle" class="t h">PREY DERIVATIVE</text>
+  <text x="342" y="135" text-anchor="middle" class="t s">factor = 1 minus 3 = -2</text>
+  <text x="342" y="166" text-anchor="middle" class="t title">2 times -2 = -4</text>
+  <rect x="485" y="76" width="251" height="116" rx="12" class="pred"/>
+  <text x="611" y="105" text-anchor="middle" class="t h">PREDATOR DERIVATIVE</text>
+  <text x="611" y="135" text-anchor="middle" class="t s">factor = 2 minus 1 = 1</text>
+  <text x="611" y="166" text-anchor="middle" class="t title">3 times 1 = 3</text>
+  <rect x="157" y="224" width="446" height="66" rx="12" class="out"/>
+  <text x="380" y="252" text-anchor="middle" class="t h">INSTANTANEOUS VECTOR</text>
+  <text x="380" y="277" text-anchor="middle" class="t title">prey -4, predators 3</text>
+  <rect x="24" y="310" width="712" height="26" rx="8" class="prey"/>
+  <text x="380" y="328" text-anchor="middle" class="t s">This is a tangent direction, not the state one time unit later.</text>
+</svg>
