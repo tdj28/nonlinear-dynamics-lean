@@ -3,18 +3,18 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-11
+Last updated: 2026-08-12
 
-Audited baseline: `main` at `4eddb9a`; the last exact formalization gate is
-the Pendulum repair at `404ae20`.
+Audited baseline: `main` at `274910c`; its guarded leaf, deterministic
+aggregator, and complete repository gate pass on approved Linux compute.
 
-Active direction: **validate and, if necessary, repair the first
-Lotka-Volterra source-and-teaching candidate on fresh approved Linux compute,
-without extending its pointwise first-integral identity into an unchecked
-orbit theorem.**
+Active direction: **design the first Lorenz-system source-and-teaching
+candidate, keeping its algebraic vector-field facts separate from solution,
+flow, attractor, and chaos claims.**
 
-`NonlinearDynamics.Deterministic.Models.LotkaVolterra` now has a complete
-source-and-teaching candidate in the working tree. It freezes the prey-first
+`NonlinearDynamics.Deterministic.Models.LotkaVolterra` is complete at repaired
+and validated commit `274910c`, following source-and-teaching candidate commit
+`538a8c6`. It freezes the prey-first
 four-parameter system
 `x' = x * (alpha - beta * y)`,
 `y' = y * (delta * x - gamma)`, mapping Lotka's historical
@@ -41,13 +41,16 @@ at that time. The slice does not prove positive invariance, arbitrary solution
 existence or uniqueness, completeness, a global flow, compact or closed
 nonconstant level sets, periodicity, a period formula, or stability.
 
-The source candidate currently has 19 declarations and five printed axiom
-audits. Its proof-repaired source SHA-256 is
+The checked module has 19 declarations and five printed axiom audits. Its
+proof-repaired source SHA-256 is
 `21205e54129b8ca0f026a3042c674e48a7b00f6c816644f0181fd827116904c6`.
-The warning-fatal leaf now passes on approved Linux compute with only
-`propext`, `Classical.choice`, and `Quot.sound` in its printed axiom audits.
-The deterministic aggregator and full project gate remain pending. No project
-Lean, Lake, Mathlib build, proof probe, or cache restoration ran on macOS.
+The first warning-fatal Linux leaf exposed only statement-preserving proof
+seams: coexistence-coordinate division normalization, elimination of an
+unnecessary `simpa`, pair-equality rewriting, and alignment of the expanded
+first-integral expression with Mathlib's derivative combinators. The repaired
+leaf and deterministic aggregator each pass in 3 seconds. All five printed
+reports contain only `propext`, `Classical.choice`, and `Quot.sound`; none
+contains `sorryAx`.
 
 The declaration-complete private-draft Research Note, Deep Dive, and glossary
 chapter remain `pro_reviewed: false`. They include five conceptual figures,
@@ -56,7 +59,7 @@ a bounded `Std` worksheet. The worksheet prints the exact normalized field
 ledger `[(0, 0), (0, 0), (0, 1), (-1, 0), (-4, 3)]` and the five-entry
 cancellation ledger `[0, 0, 0, 0, 0]`.
 
-The complete workstation-safe candidate gate passes. There are 58 substantive
+The complete workstation-safe release gate passes. There are 58 substantive
 Lean modules and 58 comprehensive Notebook mappings; all 23 coverage and seven
 teaching-hygiene regression tests pass; 205 Markdown files and 983 public
 reader surfaces pass their source and language audits. Hugo Extended 0.160.1
@@ -68,6 +71,44 @@ page, no document overflow, no raw TeX, no KaTeX or console errors, complete
 image alternatives, and every social and conceptual image loaded at its
 intended intrinsic dimensions. Wide figures remain inside the site's
 intentional horizontally scrollable mobile frame.
+
+Approved Linux validation used RunPod Secure Cloud with 8 vCPU, a
+32,000,000,000-byte effective RAM limit, an 80-GB ephemeral disk, and the
+retained project volume at $0.32 per hour under a $5 ceiling. The exact
+`274910c` source-only archive has SHA-256
+`fa20cc23de912e9ebb69cfe9da86c9cd3e4a9707e50e0df430e5dde4faecee44`
+and is 34,160,640 bytes. Its source and pinned-manifest digests passed before
+the build. Official Hugo Extended with Deploy 0.160.1 passed its published
+checksum. The authoritative exact-commit
+`CLOUD_LEAN_BUILD=1 make -j1 check` completed all 3,272 Lean jobs, 58/58
+Notebook coverage, 23 coverage regression tests, seven teaching-hygiene
+tests, the 205-file teaching audit, the 983-surface reader-language audit, and
+warning-fatal 493-page production plus 605-page draft-inclusive Hugo renders
+in 22 seconds.
+
+The successful ephemeral `.lake` tree is preserved sequentially as
+`lake-manifest-pinned-lotka-volterra-20260812.tar.zst` on the retained volume.
+The 2,644,846,620-byte archive expands to an 8,099,215,360-byte tar stream and
+passed `zstd -t` both before and after transfer. Its SHA-256 is
+`7ce4b9635b2b561944c1066c64905d7be9a9a7ebb3f71181b8d08675f3b1be29`;
+`SHA256SUMS-lotka-volterra-20260812` verifies it together with the unchanged
+Lean 4.32.0 toolchain archive. The retrieved 9,081-byte receipt bundle has
+SHA-256
+`80ab365a8c227da939ff2f8cf9450bb89ff021fee1187dbc1d586be01303a6ba`,
+and its internal checksum ledger passes locally.
+
+Receipt assembly briefly invoked `elan` outside the repository and therefore
+downloaded the default Lean 4.33.0 toolchain to ephemeral storage after all
+validation and cache preservation had completed. It did not change source,
+the `.lake` archive, the retained volume, or any gate. The receipt was corrected
+and reverified using the explicit pinned `leanprover/lean4:v4.32.0` toolchain;
+the task pod was then terminated, so the incidental ephemeral download was
+discarded. The builder's last recorded uptime was 1,052 seconds, approximately
+$0.09 of compute. Direct lookup confirms the exact task pod is absent. The
+post-action inventory has zero task-name matches, leaves the owner's separate
+experiment as the sole running pod at $0.25 per hour, and retains the 100-GB
+project volume. No project Lean, Lake, Mathlib build, proof probe, or cache
+restoration ran on macOS.
 
 `NonlinearDynamics.Deterministic.Models.Pendulum` is complete at repaired and
 validated commit `404ae20`, following source-and-teaching candidate commit
@@ -2205,18 +2246,16 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,272 Lean jobs at LogisticODE repair
-  commit `54ee561` on the approved Linux builder. The warning-fatal leaf,
-  deterministic aggregator, project root, 56/56 proof-to-prose coverage, 23
-  coverage regression tests, seven hygiene regression tests, the 199-file
-  teaching scan, the 953-surface reader-language scan, and warning-fatal Hugo
-  Extended 0.160.1 renders of 493 production pages and 587 pages with drafts
+- Last fully green repository build: 3,272 Lean jobs at Lotka-Volterra repair
+  commit `274910c` on the approved Linux builder. The warning-fatal leaf,
+  deterministic aggregator, project root, 58/58 proof-to-prose coverage, 23
+  coverage regression tests, seven hygiene regression tests, the 205-file
+  teaching scan, the 983-surface reader-language scan, and warning-fatal Hugo
+  Extended 0.160.1 renders of 493 production pages and 605 pages with drafts
   pass.
-- Lean inventory: fifty-six substantive modules are cloud-validated. Fifty-
-  seven substantive modules are paired with comprehensive Notebook pages;
-  Pendulum is the one source-only candidate still awaiting cloud validation.
-  The later model placeholders and the `.gitkeep`-only Quantum Chaos branches
-  remain roadmap work.
+- Lean inventory: fifty-eight substantive modules are cloud-validated and all
+  fifty-eight are paired with comprehensive Notebook pages. Lorenz and the
+  `.gitkeep`-only Quantum Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot before the Pendulum candidate, by the deterministic body-
   only regex `\b[\w'-]+\b`: 259,256 tokens across thirty-nine Notebook
@@ -2924,32 +2963,34 @@ and
 
 ## Exact Next Milestone
 
-### Validate and repair the Lotka-Volterra candidate
+### Design the Lorenz vector-field slice
 
-Commit and push the workstation-green source-and-teaching candidate without
-calling it Lean-validated. Then make a fresh costed Linux-compute proposal and
-obtain explicit approval before creating a builder. On that exact approved
-resource, restore the verified Pendulum toolchain and Lake archives
-sequentially from the retained project volume to fast ephemeral storage, after
-checking their recorded SHA-256 ledger and `zstd -t`. Use an exact source-only
-archive or clone of the pushed candidate and verify the source and manifest
-digests before any build.
+Research and freeze the classical three-parameter Lorenz convention before
+writing Lean: coordinate order `(x, y, z)`, parameter order and signs, the
+ambient `ℝ × ℝ × ℝ` association convention, and exactly which parameter
+hypotheses support nonzero equilibria. Begin the teaching layer with one
+bounded numerical field ledger and make every normalization and source mapping
+explicit.
 
-Run the guarded warning-fatal leaf for
-`NonlinearDynamics/Deterministic/Models/LotkaVolterra.lean` first. Repair proof
-elaboration only if the pinned Mathlib interface requires it; do not weaken
-statements, relax positivity, or add orbit-level claims. Recompute the source
-hash and update both teaching companions after any source repair. Then run the
-warning-fatal deterministic aggregator and inspect all five axiom reports for
-`sorryAx` or nonstandard additions.
+The first formal slice should define the autonomous polynomial vector field,
+prove continuity, record the origin, axis or coordinate-plane boundary facts
+that are genuinely useful, and classify equilibria only under hypotheses that
+make the algebra exact. A local divergence identity may be included if it is
+stated as a derivative calculation with the required differentiability
+interface. Do not call negative divergence an attractor proof, do not infer
+boundedness or global existence without the needed ODE arguments, and do not
+claim the Lorenz attractor, chaos, transitivity, sensitivity, or symbolic
+coding.
 
-After pushing any repair, obtain an exact clone or archive of that pushed
-commit and run `CLOUD_LEAN_BUILD=1 make -j1 check`. Record the exact commit,
-source/archive hashes, leaf and aggregator results, job and teaching-gate
-counts, Hugo version, resource receipt, and nonclaims here. Preserve the
-successful ephemeral `.lake` tree as a sequential integrity-checked archive
-on the retained volume, terminate the exact task pod, retain the project
-volume, and do not mutate the owner's unrelated experiments.
+Complete the private-draft Research Note, Deep Dive, substantive glossary
+entry, conceptual figures, deterministic cards, bounded standalone worksheet,
+citations, source hashes, and workstation/browser QA before requesting a new
+costed Linux builder. The next cloud proposal must be fresh and task-scoped;
+restore the verified Lotka-Volterra cache sequentially to ephemeral storage,
+run the guarded Lorenz leaf and deterministic aggregator, push any
+statement-preserving repairs, validate an exact pushed commit with
+`CLOUD_LEAN_BUILD=1 make -j1 check`, preserve a verified successor cache, and
+terminate only that task pod while retaining the project volume.
 
 ## Earlier Milestone Records
 
@@ -3755,8 +3796,8 @@ documentation placeholders:
 
 ### ODEs and concrete models
 
-The ODE infrastructure and first four concrete-model slices are validated;
-Lotka-Volterra and Lorenz remain placeholders:
+The ODE infrastructure and first five concrete-model slices are validated;
+Lorenz remains a placeholder:
 
 - [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
   both exact-commit full gates, verified cache preservation, desktop QA, and
@@ -3792,13 +3833,13 @@ Lotka-Volterra and Lorenz remain placeholders:
   verified retained-cache preservation, task-pod termination, and final
   inventory all pass. The paired teaching pages remain private with
   `pro_reviewed: false`.
-- [ ] `Models/LotkaVolterra.lean`: a sourced 19-declaration source candidate,
-  full-plane/positive-quadrant convention, positive-parameter equilibrium
-  classification, pointwise positive-domain first-integral derivative, two
-  constant integral curves, complete private-draft teaching bundle, bounded
-  worksheet, deterministic assets, and workstation/browser QA are present.
-  Warning-fatal Linux leaf, deterministic aggregator, exact-commit full gate,
-  cache preservation, and task-pod termination remain pending.
+- [x] `Models/LotkaVolterra.lean`: the repaired 19-declaration module freezes
+  the full-plane/positive-quadrant convention, positive-parameter equilibrium
+  classification, pointwise positive-domain first-integral derivative, and
+  two constant integral curves. Its private-draft teaching bundle, bounded
+  worksheet, deterministic assets, workstation/browser QA, warning-fatal
+  Linux leaf and aggregator, exact-commit full gate, verified retained cache,
+  receipt, task-pod termination, and final inventory all pass.
 - [ ] `Models/Lorenz.lean`
 
 ### Quantum chaos
@@ -4549,13 +4590,14 @@ k-invariance precedes approximation claims.
   integral, prove `L¹` convergence or uniform integrability, or produce a
   Lyapunov spectrum or Oseledets splitting.
 - Quantum-chaos universality claims are not general theorems in this project.
-- The Lotka-Volterra source candidate has frozen its parameter/sign convention,
+- Lotka-Volterra's checked slice freezes its parameter/sign convention,
   carrier, positivity boundary, equilibrium classification, and pointwise
-  logarithmic derivative scope, but it has not yet passed the pinned Linux
-  leaf, aggregator, or full gate. No orbit-level conclusion may be promoted
-  before those formal checks and the additional solution, invariance, and
-  level-set arguments are supplied. Lorenz and the Quantum Chaos branches
-  remain later roadmap work.
+  logarithmic derivative scope. Its exact gate is green, but no orbit-level
+  conclusion may be promoted before additional solution, invariance, and
+  level-set arguments are supplied. Lorenz remains unimplemented; its first
+  slice must not substitute a negative-divergence calculation or numerical
+  trajectory for global boundedness, an attractor construction, or chaos.
+  The Quantum Chaos branches remain later roadmap work.
 
 ## Validation Snapshot
 
@@ -4581,7 +4623,7 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
-- Lotka-Volterra source-candidate QA on 2026-08-11: the bounded Lean 4.32.0
+- Lotka-Volterra release QA on 2026-08-11 and 2026-08-12: the bounded Lean 4.32.0
   `Std` worksheet prints the expected five normalized field vectors and five
   zero cancellation values. All three card generators reproduce their
   1200-by-630 PNGs byte-for-byte, all eight new SVG sources pass `xmllint`,
@@ -4594,9 +4636,14 @@ Checkpoint/skill milestone QA:
   three cards with no document overflow, raw TeX, KaTeX errors, broken loaded
   assets, missing image alternatives, or console warnings/errors. Wide
   figures remain in the site's intentional horizontally scrollable mobile
-  frame. No project Lean or Lake command ran on the workstation. The
-  warning-fatal Linux leaf, deterministic aggregator, and exact-commit full
-  gate remain pending.
+  frame. No project Lean or Lake command ran on the workstation. On approved
+  Linux compute, the warning-fatal repaired leaf and deterministic aggregator
+  each pass in 3 seconds; all five leaf axiom reports exclude `sorryAx`.
+  Exact pushed commit `274910c` passes all 3,272 Lean jobs and every paired
+  teaching gate in 22 seconds. The verified successor cache and locally
+  rechecked receipt were preserved, the exact task pod was terminated, the
+  separate experiment was left running, and the retained project volume
+  remains.
 - Pendulum source-candidate QA on 2026-08-10: the bounded Lean 4.32.0 `Std`
   worksheet evaluates the expected five-entry acceleration and twice-energy
   ledgers. All three card generators reproduce their 1200-by-630 PNGs, all
@@ -5688,6 +5735,15 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `274910c`: repair the Lotka-Volterra candidate for pinned Mathlib by making
+  coexistence-coordinate normalization explicit, rewriting pair equalities
+  safely, and aligning the first-integral derivative expression without
+  changing any theorem statement; update both teaching source hashes and
+  record the passing warning-fatal leaf.
+- `538a8c6`: prepare the prey-first four-parameter Lotka-Volterra source
+  candidate, positive-quadrant and equilibrium interfaces, pointwise
+  first-integral cancellation, constant integral curves, cited three-page
+  teaching bundle, deterministic assets, and workstation/browser handoff.
 - `404ae20`: repair the Pendulum candidate for pinned Mathlib by importing the
   basic trigonometric interface, making noncomputability explicit, aligning
   the real calculus instances locally, and closing the energy and constant-
