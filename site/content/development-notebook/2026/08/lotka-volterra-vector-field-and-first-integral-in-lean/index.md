@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.Models.LotkaVolterra"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Models/LotkaVolterra.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/LotkaVolterra.lean"
-lean_source_sha256: "cc080be90c157df512b659b6d75ae55eac3e0f8ecce6da03e83a842e1d9f71cc"
+lean_source_sha256: "21205e54129b8ca0f026a3042c674e48a7b00f6c816644f0181fd827116904c6"
 toc: true
 og_image: "lotka-volterra-vector-field-and-first-integral-in-lean-card.png"
 og_image_alt: "A prey-predator state at two comma three maps to vector minus four comma three, beside a positive-quadrant first-integral boundary."

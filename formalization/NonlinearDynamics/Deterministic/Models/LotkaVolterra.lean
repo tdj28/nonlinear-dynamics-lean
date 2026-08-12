@@ -120,8 +120,17 @@ zero of the vector field. -/
     {alpha beta gamma delta : ℝ} (hBeta : beta ≠ 0) (hDelta : delta ≠ 0) :
     lotkaVolterraVectorField alpha beta gamma delta
       (lotkaVolterraCoexistence alpha beta gamma delta) = 0 := by
-  ext <;>
-    simp [lotkaVolterraVectorField, lotkaVolterraCoexistence, hBeta, hDelta]
+  have hPreyFactor : alpha - beta * (alpha / beta) = 0 := by
+    field_simp [hBeta]
+    ring
+  have hPredatorFactor : delta * (gamma / delta) - gamma = 0 := by
+    field_simp [hDelta]
+    ring
+  change
+    ((gamma / delta) * (alpha - beta * (alpha / beta)),
+      (alpha / beta) * (delta * (gamma / delta) - gamma)) = (0, 0)
+  rw [hPreyFactor, hPredatorFactor]
+  simp
 
 /-- With four strictly positive parameters, the origin and the coexistence
 state are exactly the zeros of the full-plane vector field. -/
@@ -148,7 +157,7 @@ theorem lotkaVolterraVectorField_eq_zero_iff_of_pos
     · rcases mul_eq_zero.mp hPredator with hy | hPredatorFactor
       · exfalso
         subst y
-        simpa [hAlpha.ne'] using hPreyFactor
+        simp [hAlpha.ne'] at hPreyFactor
       · have hxCoexistence : x = gamma / delta := by
           apply (eq_div_iff hDelta.ne').2
           nlinarith [hPredatorFactor]
@@ -157,9 +166,11 @@ theorem lotkaVolterraVectorField_eq_zero_iff_of_pos
           nlinarith [hPreyFactor]
         exact Or.inr (by
           simp [lotkaVolterraCoexistence, hxCoexistence, hyCoexistence])
-  · rintro (rfl | rfl)
-    · exact lotkaVolterraVectorField_origin alpha beta gamma delta
-    · exact lotkaVolterraVectorField_coexistence hBeta.ne' hDelta.ne'
+  · rintro (hOrigin | hCoexistence)
+    · rw [hOrigin]
+      exact lotkaVolterraVectorField_origin alpha beta gamma delta
+    · rw [hCoexistence]
+      exact lotkaVolterraVectorField_coexistence hBeta.ne' hDelta.ne'
 
 /-- At the normalized state `(2, 3)`, prey decreases at rate four while
 predator increases at rate three. -/
@@ -197,6 +208,9 @@ theorem hasDerivAt_lotkaVolterraFirstIntegral_along
     HasDerivAt
       (fun s ↦ lotkaVolterraFirstIntegral alpha beta gamma delta (x s, y s))
       0 t := by
+  change HasDerivAt
+    (((fun s ↦ delta * x s) - fun s ↦ gamma * Real.log (x s)) +
+      ((fun s ↦ beta * y s) - fun s ↦ alpha * Real.log (y s))) 0 t
   have hDerivative :=
     ((hx.const_mul delta).sub ((hx.log hxPositive.ne').const_mul gamma)).add
       ((hy.const_mul beta).sub ((hy.log hyPositive.ne').const_mul alpha))
@@ -207,8 +221,7 @@ theorem hasDerivAt_lotkaVolterraFirstIntegral_along
           alpha * (y t * (delta * x t - gamma) / y t)) = 0 := by
     field_simp [hxPositive.ne', hyPositive.ne']
     ring
-  simpa [lotkaVolterraFirstIntegral] using
-    hDerivative.congr_deriv hCancel
+  exact hDerivative.congr_deriv hCancel
 
 end FirstIntegralDerivative
 

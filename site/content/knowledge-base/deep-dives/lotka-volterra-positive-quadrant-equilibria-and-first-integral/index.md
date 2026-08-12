@@ -11,7 +11,7 @@ reading_time: "30 to 45 minutes"
 prerequisites: "Ordered pairs, derivatives, logarithms, and vector fields are introduced through the worked example"
 lean_module: "NonlinearDynamics.Deterministic.Models.LotkaVolterra"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/LotkaVolterra.lean"
-lean_source_sha256: "cc080be90c157df512b659b6d75ae55eac3e0f8ecce6da03e83a842e1d9f71cc"
+lean_source_sha256: "21205e54129b8ca0f026a3042c674e48a7b00f6c816644f0181fd827116904c6"
 toc: true
 og_image: "lotka-volterra-positive-quadrant-equilibria-and-first-integral-card.png"
 og_image_alt: "Five normalized prey-predator states show two equilibria, two axis vectors, and the benchmark vector minus four comma three."

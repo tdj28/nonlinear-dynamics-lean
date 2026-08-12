@@ -42,10 +42,12 @@ existence or uniqueness, completeness, a global flow, compact or closed
 nonconstant level sets, periodicity, a period formula, or stability.
 
 The source candidate currently has 19 declarations and five printed axiom
-audits. Its source SHA-256 is
-`cc080be90c157df512b659b6d75ae55eac3e0f8ecce6da03e83a842e1d9f71cc`.
-Project Lean validation remains pending and no project Lean, Lake, Mathlib
-build, proof probe, or cache restoration ran on macOS.
+audits. Its proof-repaired source SHA-256 is
+`21205e54129b8ca0f026a3042c674e48a7b00f6c816644f0181fd827116904c6`.
+The warning-fatal leaf now passes on approved Linux compute with only
+`propext`, `Classical.choice`, and `Quot.sound` in its printed axiom audits.
+The deterministic aggregator and full project gate remain pending. No project
+Lean, Lake, Mathlib build, proof probe, or cache restoration ran on macOS.
 
 The declaration-complete private-draft Research Note, Deep Dive, and glossary
 chapter remain `pro_reviewed: false`. They include five conceptual figures,
