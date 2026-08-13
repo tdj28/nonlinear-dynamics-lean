@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Lorenz three-coordinate field, symmetry, and equilibria</title>
+  <desc id="desc">A Deep Dive card shows three stored equilibrium rows and a pair of symmetry-related field vectors for the integer-normalized Lorenz system.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">KNOWLEDGE BASE · DEEP DIVE</text>
+  <text x="78" y="174" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#16324f">LORENZ: THREE-COORDINATE FIELD,</text>
+  <text x="78" y="228" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#16324f">SYMMETRY, AND EQUILIBRIA</text>
+  <rect x="88" y="270" width="1024" height="110" rx="20" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="600" y="311" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">INTEGER-FRIENDLY LEDGER: sigma = 1, rho = 3, beta = 2</text>
+  <text x="600" y="351" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#263c3b">three zero rows plus one symmetry-related pair</text>
+  <rect x="90" y="414" width="310" height="94" rx="18" fill="#e4eef4"/>
+  <rect x="445" y="414" width="310" height="94" rx="18" fill="#f3dfca"/>
+  <rect x="800" y="414" width="310" height="94" rx="18" fill="#e4eef4"/>
+  <text x="245" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#16324f">PRODUCT COORDINATES</text>
+  <text x="245" y="482" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#263c3b">x, then the pair y and z</text>
+  <text x="600" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#874d3b">COMPLETE ZERO SPLIT</text>
+  <text x="600" y="482" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#263c3b">origin or two square roots</text>
+  <text x="955" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#16324f">CLAIM BOUNDARY</text>
+  <text x="955" y="482" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#263c3b">no attractor or chaos proof</text>
+  <text x="600" y="558" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="650" fill="#285448">FINITE WORKSHEET · GENERAL LEAN THEOREM · EXPLICIT LIMITS</text>
+</svg>

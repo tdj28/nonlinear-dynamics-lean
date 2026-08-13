@@ -59,6 +59,10 @@
     "module": "NonlinearDynamics.Deterministic.Models.LotkaVolterra",
     "notebook": "site/content/development-notebook/2026/08/lotka-volterra-vector-field-and-first-integral-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/Deterministic/Models/Lorenz.lean": {
+    "module": "NonlinearDynamics.Deterministic.Models.Lorenz",
+    "notebook": "site/content/development-notebook/2026/08/lorenz-vector-field-symmetry-and-equilibria-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Deterministic/Models/Pendulum.lean": {
     "module": "NonlinearDynamics.Deterministic.Models.Pendulum",
     "notebook": "site/content/development-notebook/2026/08/pendulum-vector-field-and-energy-in-lean/index.md"

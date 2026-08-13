@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="650" viewBox="0 0 1120 650" role="img" aria-labelledby="title desc">
+  <title id="title">Proof tree for the Lorenz equilibrium classification</title>
+  <desc id="desc">The first zero equation yields y equals x. The second then splits into x equals zero, which gives the origin, or z equals rho minus one, which gives two square-root equilibria.</desc>
+  <rect width="1120" height="650" rx="24" fill="#f1e9da"/>
+  <text x="560" y="48" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">EVERY FIELD ZERO ENTERS ONE OF TWO BRANCHES</text>
+  <rect x="280" y="82" width="560" height="82" rx="18" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+  <text x="560" y="117" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#263c3b">sigma (y - x) = 0 and sigma != 0</text>
+  <text x="560" y="148" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">therefore y = x</text>
+  <path d="M560 164 V216" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+  <rect x="330" y="224" width="460" height="80" rx="18" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="560" y="258" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#263c3b">x (rho - z - 1) = 0</text>
+  <text x="560" y="288" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#285448">split the product</text>
+  <path d="M455 304 C410 345 315 350 270 388" fill="none" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M665 304 C710 345 805 350 850 388" fill="none" stroke="#874d3b" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <rect x="80" y="398" width="390" height="140" rx="20" fill="#e4eef4" stroke="#315f63" stroke-width="3"/>
+  <text x="275" y="434" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#16324f">BRANCH 1: x = 0</text>
+  <text x="275" y="470" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">y = 0, then beta z = 0</text>
+  <text x="275" y="508" text-anchor="middle" font-family="Georgia,serif" font-size="27" font-weight="700" fill="#285448">state = (0, 0, 0)</text>
+  <rect x="650" y="398" width="390" height="140" rx="20" fill="#f3dfca" stroke="#874d3b" stroke-width="3"/>
+  <text x="845" y="434" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#874d3b">BRANCH 2: z = rho - 1</text>
+  <text x="845" y="470" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">x squared = beta (rho - 1)</text>
+  <text x="845" y="508" text-anchor="middle" font-family="Georgia,serif" font-size="25" font-weight="700" fill="#874d3b">x = y = plus or minus q</text>
+  <rect x="182" y="574" width="756" height="50" rx="15" fill="#fffaf1" stroke="#b6aa98" stroke-width="2"/>
+  <text x="560" y="606" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#263c3b">This tree classifies field zeros, not nearby trajectories or their stability.</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker><marker id="arrowWarm" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#874d3b"/></marker></defs>
+</svg>

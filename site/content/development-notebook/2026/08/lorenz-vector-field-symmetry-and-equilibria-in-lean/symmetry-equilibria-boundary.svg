@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Lorenz sign-flip symmetry, paired equilibria, and claim boundary</title>
+  <desc id="desc">The map that negates x and y but keeps z exchanges the two nonzero equilibria. A lower boundary separates checked field algebra from unproved flow, attractor, sensitivity, and chaos claims.</desc>
+  <rect width="1120" height="620" rx="24" fill="#f1e9da"/>
+  <text x="560" y="52" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" font-weight="750" fill="#16324f">SIGN FLIP EXPLAINS THE PAIRED FIELD ZEROS</text>
+  <rect x="72" y="100" width="390" height="130" rx="22" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="267" y="143" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">POSITIVE-SIGN STATE</text>
+  <text x="267" y="188" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#16324f">p+ = (q, q, rho - 1)</text>
+  <rect x="658" y="100" width="390" height="130" rx="22" fill="#f3dfca" stroke="#874d3b" stroke-width="3"/>
+  <text x="853" y="143" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#874d3b">NEGATIVE-SIGN STATE</text>
+  <text x="853" y="188" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#16324f">p- = (-q, -q, rho - 1)</text>
+  <path d="M475 144 C540 100 580 100 645 144" fill="none" stroke="#315f63" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M645 190 C580 234 540 234 475 190" fill="none" stroke="#874d3b" stroke-width="4" marker-end="url(#arrowWarm)"/>
+  <rect x="458" y="130" width="204" height="32" rx="12" fill="#f1e9da"/>
+  <text x="560" y="151" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#285448">S(x,y,z)=(-x,-y,z)</text>
+  <rect x="120" y="268" width="880" height="112" rx="20" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+  <text x="560" y="309" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#16324f">CHECKED ALGEBRA</text>
+  <text x="560" y="349" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#263c3b">S(S(p)) = p   and   F(S(p)) = S(F(p))</text>
+  <path d="M70 423 H1050" stroke="#874d3b" stroke-width="5" stroke-dasharray="14 10"/>
+  <text x="560" y="455" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="750" fill="#874d3b">NOT SUPPLIED BY THE FIELD IDENTITIES</text>
+  <rect x="88" y="486" width="214" height="76" rx="16" fill="#fffaf1" stroke="#874d3b" stroke-width="2"/>
+  <rect x="331" y="486" width="214" height="76" rx="16" fill="#fffaf1" stroke="#874d3b" stroke-width="2"/>
+  <rect x="574" y="486" width="214" height="76" rx="16" fill="#fffaf1" stroke="#874d3b" stroke-width="2"/>
+  <rect x="817" y="486" width="214" height="76" rx="16" fill="#fffaf1" stroke="#874d3b" stroke-width="2"/>
+  <text x="195" y="532" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#263c3b">global flow</text>
+  <text x="438" y="532" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#263c3b">attractor</text>
+  <text x="681" y="532" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#263c3b">sensitivity</text>
+  <text x="924" y="532" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#263c3b">chaos</text>
+  <text x="560" y="596" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#285448">q = sqrt(beta (rho - 1)); field zeros do not classify nonconstant trajectories</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker><marker id="arrowWarm" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#874d3b"/></marker></defs>
+</svg>

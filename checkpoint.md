@@ -8,9 +8,49 @@ Last updated: 2026-08-12
 Audited baseline: `main` at `274910c`; its guarded leaf, deterministic
 aggregator, and complete repository gate pass on approved Linux compute.
 
-Active direction: **design the first Lorenz-system source-and-teaching
-candidate, keeping its algebraic vector-field facts separate from solution,
-flow, attractor, and chaos claims.**
+Active direction: **validate and repair the first Lorenz-system
+source-and-teaching candidate without broadening its algebraic claims into
+solution, flow, attractor, or chaos claims.**
+
+`NonlinearDynamics.Deterministic.Models.Lorenz` now has an unvalidated
+source-and-teaching candidate. It freezes Lorenz's coordinate order
+`(x, y, z)`, parameter order `(sigma, rho, beta)`, equations
+`x' = sigma * (y - x)`, `y' = x * (rho - z) - y`, and
+`z' = x * y - beta * z`, and Lean's right-associated carrier
+`ℝ × (ℝ × ℝ)`. The 21-declaration source defines the autonomous Mathlib ODE
+field, proves its continuity and simultaneous `(x, y)` sign-flip symmetry,
+records the origin and two axis formulas, checks
+`F_(10,28,8/3)(1,2,3) = (10,23,-6)`, defines the two square-root equilibrium
+candidates, and classifies all field zeros under `sigma ≠ 0`, `0 < beta`, and
+`1 < rho`. It constructs only the three constant equilibrium curves. The five
+printed axiom audits and every proof remain pending pinned-toolchain Linux
+validation; no project Lean command or proof probe has run on macOS. The
+source SHA-256 is
+`602368c3e382c1686e1a8a5c6c4ebbf48f76dffe824588e7ba7a2b6433c68665`.
+
+The declaration-complete Research Note, Deep Dive, and glossary chapter are
+private drafts with `pro_reviewed: false`. They cite Lorenz's 1963 equations
+and equilibrium discussion, use Tucker's 2002 theorem only to mark the later
+attractor boundary, and cite the pinned Mathlib ODE and square-root sources.
+Five conceptual figures, three deterministic 1200-by-630 cards, and a bounded
+`Std` worksheet accompany them. The worksheet checks the complete stored
+integer field ledger
+`[(0, 0, 0), (0, 0, 0), (0, 0, 0), (1, -2, -4), (-1, 2, -4)]`
+for parameters `(1, 3, 2)` and checks the stored sign-flip relation. It does
+not quantify over real states or construct a nonconstant solution.
+
+The workstation-safe candidate gate passes: 59 substantive modules have 59
+comprehensive Notebook mappings, all 23 coverage and seven teaching-hygiene
+regression tests pass, and 208 Markdown files plus 998 public reader surfaces
+pass their source and language audits. Hugo Extended 0.160.1 renders 493
+production pages and 610 pages with drafts with warnings fatal. All eight new
+SVG sources parse as XML, the three card generators reproduce their 1200-by-
+630 PNGs byte-for-byte, and the bounded Lean 4.32.0 `Std` worksheet prints the
+expected five-entry vector ledger. Rendered 1280-by-720 and exact 390-by-844
+inspection of all three pages finds one H1 per page, no document overflow, no
+raw TeX, no broken or alternative-free images, and no console warning or
+error. All conceptual SVGs load at 1120 pixels wide intrinsically; the mobile
+layout contains each wide figure in an intentional horizontal scroll frame.
 
 `NonlinearDynamics.Deterministic.Models.LotkaVolterra` is complete at repaired
 and validated commit `274910c`, following source-and-teaching candidate commit
@@ -2253,9 +2293,10 @@ bridge, or stable-manifold theorem.
   teaching scan, the 983-surface reader-language scan, and warning-fatal Hugo
   Extended 0.160.1 renders of 493 production pages and 605 pages with drafts
   pass.
-- Lean inventory: fifty-eight substantive modules are cloud-validated and all
-  fifty-eight are paired with comprehensive Notebook pages. Lorenz and the
-  `.gitkeep`-only Quantum Chaos branches remain roadmap work.
+- Lean inventory: fifty-eight substantive modules are cloud-validated. A
+  fifty-ninth substantive module, Lorenz, has a comprehensive Notebook page
+  and remains a source-only candidate pending its first warning-fatal Linux
+  leaf. The `.gitkeep`-only Quantum Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot before the Pendulum candidate, by the deterministic body-
   only regex `\b[\w'-]+\b`: 259,256 tokens across thirty-nine Notebook
@@ -2963,34 +3004,26 @@ and
 
 ## Exact Next Milestone
 
-### Design the Lorenz vector-field slice
+### Validate and repair the Lorenz vector-field slice
 
-Research and freeze the classical three-parameter Lorenz convention before
-writing Lean: coordinate order `(x, y, z)`, parameter order and signs, the
-ambient `ℝ × ℝ × ℝ` association convention, and exactly which parameter
-hypotheses support nonzero equilibria. Begin the teaching layer with one
-bounded numerical field ledger and make every normalization and source mapping
-explicit.
+Commit and push the workstation-green source-and-teaching candidate without
+claiming that its Lean proofs have compiled. Obtain fresh, task-scoped owner
+approval before creating paid Linux compute. On the approved builder, restore
+the verified Lotka-Volterra cache sequentially from retained storage onto fast
+ephemeral storage, verify source and pinned-manifest identity, and run the
+warning-fatal Lorenz leaf. Repair statement-preserving proof seams only; if a
+statement or convention must change, return to the teaching source and source
+hash together.
 
-The first formal slice should define the autonomous polynomial vector field,
-prove continuity, record the origin, axis or coordinate-plane boundary facts
-that are genuinely useful, and classify equilibria only under hypotheses that
-make the algebra exact. A local divergence identity may be included if it is
-stated as a derivative calculation with the required differentiability
-interface. Do not call negative divergence an attractor proof, do not infer
-boundedness or global existence without the needed ODE arguments, and do not
-claim the Lorenz attractor, chaos, transitivity, sensitivity, or symbolic
-coding.
-
-Complete the private-draft Research Note, Deep Dive, substantive glossary
-entry, conceptual figures, deterministic cards, bounded standalone worksheet,
-citations, source hashes, and workstation/browser QA before requesting a new
-costed Linux builder. The next cloud proposal must be fresh and task-scoped;
-restore the verified Lotka-Volterra cache sequentially to ephemeral storage,
-run the guarded Lorenz leaf and deterministic aggregator, push any
-statement-preserving repairs, validate an exact pushed commit with
-`CLOUD_LEAN_BUILD=1 make -j1 check`, preserve a verified successor cache, and
-terminate only that task pod while retaining the project volume.
+After the leaf passes, run the warning-fatal deterministic aggregator and
+push any repair commit. Validate that exact pushed commit with
+`CLOUD_LEAN_BUILD=1 make -j1 check` and official Hugo Extended 0.160.1.
+Preserve and independently verify the successful successor cache, record the
+receipt and exact validation evidence here, push the closure to `main`,
+terminate only the Lorenz task pod, and retain the project network volume.
+Leave the owner's separate experiment untouched. Do not promote any global
+existence, boundedness, flow, attractor, sensitivity, transitivity, periodic-
+orbit, symbolic-coding, or chaos claim.
 
 ## Earlier Milestone Records
 
@@ -3797,7 +3830,7 @@ documentation placeholders:
 ### ODEs and concrete models
 
 The ODE infrastructure and first five concrete-model slices are validated;
-Lorenz remains a placeholder:
+Lorenz now has an unvalidated source-and-teaching candidate:
 
 - [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
   both exact-commit full gates, verified cache preservation, desktop QA, and
@@ -3840,7 +3873,10 @@ Lorenz remains a placeholder:
   worksheet, deterministic assets, workstation/browser QA, warning-fatal
   Linux leaf and aggregator, exact-commit full gate, verified retained cache,
   receipt, task-pod termination, and final inventory all pass.
-- [ ] `Models/Lorenz.lean`
+- [ ] `Models/Lorenz.lean`: 21-declaration source candidate, complete
+  private-draft teaching bundle, bounded worksheet, deterministic assets, and
+  workstation QA are prepared; warning-fatal Linux leaf, aggregator, exact-
+  commit full gate, verified successor cache, and task-pod termination remain.
 
 ### Quantum chaos
 
@@ -4594,10 +4630,12 @@ k-invariance precedes approximation claims.
   carrier, positivity boundary, equilibrium classification, and pointwise
   logarithmic derivative scope. Its exact gate is green, but no orbit-level
   conclusion may be promoted before additional solution, invariance, and
-  level-set arguments are supplied. Lorenz remains unimplemented; its first
-  slice must not substitute a negative-divergence calculation or numerical
-  trajectory for global boundedness, an attractor construction, or chaos.
-  The Quantum Chaos branches remain later roadmap work.
+  level-set arguments are supplied. Lorenz now has a source-only algebraic
+  candidate, not a validated theorem slice: its first Linux leaf is pending,
+  and its exact field values, symmetry, equilibrium list, and constant curves
+  must not be substituted for arbitrary solution existence, global
+  boundedness, an attractor construction, or chaos. The Quantum Chaos branches
+  remain later roadmap work.
 
 ## Validation Snapshot
 
@@ -4623,6 +4661,22 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
+- Lorenz source-candidate QA on 2026-08-12: the bounded Lean 4.32.0 `Std`
+  worksheet prints the exact five-vector ledger
+  `[(0, 0, 0), (0, 0, 0), (0, 0, 0), (1, -2, -4), (-1, 2, -4)]`.
+  The three card generators reproduce their 1200-by-630 PNGs byte-for-byte,
+  and all eight SVG sources pass `xmllint`. `make workstation-check` passes
+  59/59 Notebook coverage, 23 coverage regression tests, seven teaching-
+  hygiene tests, the 208-file teaching audit, the 998-surface reader-language
+  audit, and warning-fatal Hugo Extended 0.160.1 renders of 493 production
+  pages and 610 pages with drafts. Browser inspection at 1280 by 720 and exact
+  390 by 844 covers the three draft pages, all five conceptual figures, and
+  all three cards. Every page has one H1, no document overflow or raw TeX,
+  complete image alternatives, loaded intrinsic image dimensions, and no
+  console warnings or errors. Mobile figures remain inside 364-pixel
+  overflow-auto frames rather than widening the 390-pixel document. No
+  project Lean or Lake command ran on macOS; the 21 declarations and five
+  printed axiom audits remain pending the first warning-fatal Linux leaf.
 - Lotka-Volterra release QA on 2026-08-11 and 2026-08-12: the bounded Lean 4.32.0
   `Std` worksheet prints the expected five normalized field vectors and five
   zero cancellation values. All three card generators reproduce their
