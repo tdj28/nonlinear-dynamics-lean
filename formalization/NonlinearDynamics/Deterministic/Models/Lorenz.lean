@@ -1,5 +1,5 @@
 import Mathlib.Analysis.ODE.Basic
-import Mathlib.Data.Real.Sqrt
+import Mathlib.Analysis.Real.Sqrt
 
 /-!
 # The classical three-parameter Lorenz vector field
@@ -73,8 +73,12 @@ theorem lorenzVectorField_symmetry (sigma rho beta : ℝ)
     lorenzVectorField sigma rho beta (lorenzSymmetry state) =
       lorenzSymmetry (lorenzVectorField sigma rho beta state) := by
   rcases state with ⟨x, y, z⟩
-  simp [lorenzVectorField, lorenzSymmetry]
-  ring
+  change
+    (sigma * (-y - -x), (-x) * (rho - z) - (-y), (-x) * (-y) - beta * z) =
+      (-(sigma * (y - x)), -(x * (rho - z) - y), x * y - beta * z)
+  apply Prod.ext
+  · ring
+  · apply Prod.ext <;> ring
 
 /-- The origin is a field zero for every parameter choice. -/
 @[simp] theorem lorenzVectorField_origin (sigma rho beta : ℝ) :
@@ -132,9 +136,12 @@ zero. -/
   have hSquare : lorenzEquilibriumRadius rho beta ^ 2 =
       beta * (rho - 1) := by
     exact Real.sq_sqrt hRadicand
-  simp only [lorenzVectorField, lorenzPositiveEquilibrium,
-    lorenzEquilibriumRadius]
-  ext <;> simp <;> nlinarith
+  simp only [lorenzVectorField, lorenzPositiveEquilibrium]
+  apply Prod.ext
+  · simp
+  · apply Prod.ext
+    · simp
+    · simpa [pow_two] using sub_eq_zero.mpr hSquare
 
 /-- When the radicand is nonnegative, the negative-sign candidate is a field
 zero. -/
@@ -178,8 +185,11 @@ theorem lorenzVectorField_eq_zero_iff_of_pos
       exact Or.inl (by simp [hx, hzZero])
     · have hzEquilibrium : z = rho - 1 := by
         linarith
+      have hRadiusSquare : lorenzEquilibriumRadius rho beta ^ 2 =
+          beta * (rho - 1) := by
+        exact Real.sq_sqrt hRadicand
       have hxSquare : x ^ 2 = lorenzEquilibriumRadius rho beta ^ 2 := by
-        rw [Real.sq_sqrt hRadicand]
+        rw [hRadiusSquare]
         nlinarith [hThird, hzEquilibrium]
       rcases eq_or_eq_neg_of_sq_eq_sq x (lorenzEquilibriumRadius rho beta)
           hxSquare with hxPositive | hxNegative

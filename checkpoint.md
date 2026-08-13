@@ -12,8 +12,8 @@ Active direction: **validate and repair the first Lorenz-system
 source-and-teaching candidate without broadening its algebraic claims into
 solution, flow, attractor, or chaos claims.**
 
-`NonlinearDynamics.Deterministic.Models.Lorenz` now has an unvalidated
-source-and-teaching candidate. It freezes Lorenz's coordinate order
+`NonlinearDynamics.Deterministic.Models.Lorenz` now has a warning-fatal
+leaf-repaired source-and-teaching candidate. It freezes Lorenz's coordinate order
 `(x, y, z)`, parameter order `(sigma, rho, beta)`, equations
 `x' = sigma * (y - x)`, `y' = x * (rho - z) - y`, and
 `z' = x * y - beta * z`, and Lean's right-associated carrier
@@ -22,11 +22,18 @@ field, proves its continuity and simultaneous `(x, y)` sign-flip symmetry,
 records the origin and two axis formulas, checks
 `F_(10,28,8/3)(1,2,3) = (10,23,-6)`, defines the two square-root equilibrium
 candidates, and classifies all field zeros under `sigma ≠ 0`, `0 < beta`, and
-`1 < rho`. It constructs only the three constant equilibrium curves. The five
-printed axiom audits and every proof remain pending pinned-toolchain Linux
-validation; no project Lean command or proof probe has run on macOS. The
-source SHA-256 is
-`602368c3e382c1686e1a8a5c6c4ebbf48f76dffe824588e7ba7a2b6433c68665`.
+`1 < rho`. It constructs only the three constant equilibrium curves.
+
+The first pinned-toolchain Linux leaf exposed only statement-preserving proof
+seams: the deprecated square-root import path, normalization of the nested
+product symmetry equality, alignment of the named equilibrium radius with
+`Real.sq_sqrt`, and reduction of a product-space zero projection. The repaired
+warning-fatal leaf passes in 2.346 seconds and the warning-fatal deterministic
+aggregator passes in 1.745 seconds. All five printed axiom reports contain only
+`propext`, `Classical.choice`, and `Quot.sound`; none contains `sorryAx`. The
+complete exact-commit repository gate remains pending. No project Lean command
+or proof probe has run on macOS. The repaired source SHA-256 is
+`d24e390c28dc9f2ab91e9d23cdd2b54897e64d67e0f2da72bba8541ca489a835`.
 
 The declaration-complete Research Note, Deep Dive, and glossary chapter are
 private drafts with `pro_reviewed: false`. They cite Lorenz's 1963 equations
@@ -2294,9 +2301,10 @@ bridge, or stable-manifold theorem.
   Extended 0.160.1 renders of 493 production pages and 605 pages with drafts
   pass.
 - Lean inventory: fifty-eight substantive modules are cloud-validated. A
-  fifty-ninth substantive module, Lorenz, has a comprehensive Notebook page
-  and remains a source-only candidate pending its first warning-fatal Linux
-  leaf. The `.gitkeep`-only Quantum Chaos branches remain roadmap work.
+  fifty-ninth substantive module, Lorenz, has a comprehensive Notebook page;
+  its warning-fatal leaf and deterministic aggregator pass, while its exact-
+  commit complete repository gate remains pending. The `.gitkeep`-only Quantum
+  Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot before the Pendulum candidate, by the deterministic body-
   only regex `\b[\w'-]+\b`: 259,256 tokens across thirty-nine Notebook
@@ -3006,17 +3014,10 @@ and
 
 ### Validate and repair the Lorenz vector-field slice
 
-Commit and push the workstation-green source-and-teaching candidate without
-claiming that its Lean proofs have compiled. Obtain fresh, task-scoped owner
-approval before creating paid Linux compute. On the approved builder, restore
-the verified Lotka-Volterra cache sequentially from retained storage onto fast
-ephemeral storage, verify source and pinned-manifest identity, and run the
-warning-fatal Lorenz leaf. Repair statement-preserving proof seams only; if a
-statement or convention must change, return to the teaching source and source
-hash together.
-
-After the leaf passes, run the warning-fatal deterministic aggregator and
-push any repair commit. Validate that exact pushed commit with
+Commit and push the statement-preserving repair now that both the warning-
+fatal Lorenz leaf and deterministic aggregator pass. Package the exact pushed
+commit as a source-only archive, verify its source and pinned-manifest identity
+on the approved builder, and validate it with
 `CLOUD_LEAN_BUILD=1 make -j1 check` and official Hugo Extended 0.160.1.
 Preserve and independently verify the successful successor cache, record the
 receipt and exact validation evidence here, push the closure to `main`,
@@ -3830,7 +3831,7 @@ documentation placeholders:
 ### ODEs and concrete models
 
 The ODE infrastructure and first five concrete-model slices are validated;
-Lorenz now has an unvalidated source-and-teaching candidate:
+Lorenz now has a warning-fatal leaf-repaired source-and-teaching candidate:
 
 - [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
   both exact-commit full gates, verified cache preservation, desktop QA, and
@@ -3875,8 +3876,9 @@ Lorenz now has an unvalidated source-and-teaching candidate:
   receipt, task-pod termination, and final inventory all pass.
 - [ ] `Models/Lorenz.lean`: 21-declaration source candidate, complete
   private-draft teaching bundle, bounded worksheet, deterministic assets, and
-  workstation QA are prepared; warning-fatal Linux leaf, aggregator, exact-
-  commit full gate, verified successor cache, and task-pod termination remain.
+  workstation QA are prepared; its warning-fatal Linux leaf and deterministic
+  aggregator pass. The exact-commit full gate, verified successor cache, and
+  task-pod termination remain.
 
 ### Quantum chaos
 
@@ -4631,11 +4633,12 @@ k-invariance precedes approximation claims.
   logarithmic derivative scope. Its exact gate is green, but no orbit-level
   conclusion may be promoted before additional solution, invariance, and
   level-set arguments are supplied. Lorenz now has a source-only algebraic
-  candidate, not a validated theorem slice: its first Linux leaf is pending,
-  and its exact field values, symmetry, equilibrium list, and constant curves
-  must not be substituted for arbitrary solution existence, global
-  boundedness, an attractor construction, or chaos. The Quantum Chaos branches
-  remain later roadmap work.
+  candidate, not yet a complete-gate-validated theorem slice: its leaf and
+  aggregator pass but its exact pushed commit still awaits the complete gate.
+  Its exact field values, symmetry, equilibrium list, and constant curves must
+  not be substituted for arbitrary solution existence, global boundedness, an
+  attractor construction, or chaos. The Quantum Chaos branches remain later
+  roadmap work.
 
 ## Validation Snapshot
 
@@ -4675,8 +4678,10 @@ Checkpoint/skill milestone QA:
   complete image alternatives, loaded intrinsic image dimensions, and no
   console warnings or errors. Mobile figures remain inside 364-pixel
   overflow-auto frames rather than widening the 390-pixel document. No
-  project Lean or Lake command ran on macOS; the 21 declarations and five
-  printed axiom audits remain pending the first warning-fatal Linux leaf.
+  project Lean or Lake command ran on macOS. On the approved Linux builder,
+  the repaired warning-fatal leaf passes in 2.346 seconds and the deterministic
+  aggregator passes in 1.745 seconds. All five printed axiom reports exclude
+  `sorryAx`; the complete exact-commit gate remains pending.
 - Lotka-Volterra release QA on 2026-08-11 and 2026-08-12: the bounded Lean 4.32.0
   `Std` worksheet prints the expected five normalized field vectors and five
   zero cancellation values. All three card generators reproduce their

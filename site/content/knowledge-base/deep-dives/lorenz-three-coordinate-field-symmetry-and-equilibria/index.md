@@ -11,7 +11,7 @@ reading_time: "30 to 45 minutes"
 prerequisites: "Ordered triples, square roots, vector fields, and equilibria are introduced through the worked example"
 lean_module: "NonlinearDynamics.Deterministic.Models.Lorenz"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/Lorenz.lean"
-lean_source_sha256: "602368c3e382c1686e1a8a5c6c4ebbf48f76dffe824588e7ba7a2b6433c68665"
+lean_source_sha256: "d24e390c28dc9f2ab91e9d23cdd2b54897e64d67e0f2da72bba8541ca489a835"
 toc: true
 og_image: "lorenz-three-coordinate-field-symmetry-and-equilibria-card.png"
 og_image_alt: "Five exact Lorenz states include the origin, two symmetric equilibria, and two symmetry-related nonzero field vectors."
@@ -305,7 +305,7 @@ lake env lean -DwarningAsError=true \
 - Mathlib contributors,
   [`Analysis.ODE.Basic`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/ODE/Basic.lean)
   and
-  [`Data.Real.Sqrt`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Data/Real/Sqrt.lean),
+  [`Analysis.Real.Sqrt`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Real/Sqrt.lean),
   pinned revision `81a5d257` used by Mathlib 4.32.0.
 
 See the [Research Note]({{< relref

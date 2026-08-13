@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.Deterministic.Models.Lorenz"
 lean_source: "formalization/NonlinearDynamics/Deterministic/Models/Lorenz.lean"
 lean_snapshot: "/lean/NonlinearDynamics/Deterministic/Models/Lorenz.lean"
-lean_source_sha256: "602368c3e382c1686e1a8a5c6c4ebbf48f76dffe824588e7ba7a2b6433c68665"
+lean_source_sha256: "d24e390c28dc9f2ab91e9d23cdd2b54897e64d67e0f2da72bba8541ca489a835"
 toc: true
 og_image: "lorenz-vector-field-symmetry-and-equilibria-in-lean-card.png"
 og_image_alt: "The Lorenz state one comma two comma three maps to the exact tangent vector ten comma twenty-three comma minus six, beside two symmetry-related equilibria."
@@ -371,7 +371,7 @@ obligations not represented by these algebraic declarations.
 - Mathlib contributors,
   [`Analysis.ODE.Basic`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/ODE/Basic.lean)
   and
-  [`Data.Real.Sqrt`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Data/Real/Sqrt.lean),
+  [`Analysis.Real.Sqrt`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Real/Sqrt.lean),
   pinned revision `81a5d257` used by Mathlib 4.32.0.
 
 Continue with the [Deep Dive]({{< relref

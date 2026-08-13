@@ -195,5 +195,5 @@ for the five-state standalone worksheet and complete equilibrium proof.
 - Mathlib contributors,
   [`Analysis.ODE.Basic`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/ODE/Basic.lean)
   and
-  [`Data.Real.Sqrt`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Data/Real/Sqrt.lean),
+  [`Analysis.Real.Sqrt`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Real/Sqrt.lean),
   pinned revision `81a5d257` used by Mathlib 4.32.0.
