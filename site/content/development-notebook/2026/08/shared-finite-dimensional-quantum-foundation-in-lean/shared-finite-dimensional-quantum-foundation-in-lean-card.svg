@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">A shared finite-dimensional quantum foundation in Lean</title>
+  <desc id="desc">A Research Note card maps one existing Hermitian matrix carrier to a minus-i-time generator, unitary evolution, normalized trace, and reused spectral data.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">DEVELOPMENT NOTEBOOK · RESEARCH NOTE</text>
+  <text x="78" y="170" font-family="system-ui,sans-serif" font-size="42" font-weight="780" fill="#16324f">A SHARED FINITE-DIMENSIONAL</text>
+  <text x="78" y="222" font-family="system-ui,sans-serif" font-size="42" font-weight="780" fill="#16324f">QUANTUM FOUNDATION IN LEAN</text>
+  <rect x="88" y="266" width="1024" height="112" rx="20" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="600" y="307" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#285448">REUSE HERMITIAN GEOMETRY AND FINITE SPECTRA</text>
+  <text x="600" y="348" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#263c3b">H  →  −itH  →  exp(−itH) ∈ U(n)</text>
+  <rect x="90" y="412" width="310" height="96" rx="18" fill="#e4eef4"/>
+  <rect x="445" y="412" width="310" height="96" rx="18" fill="#f3dfca"/>
+  <rect x="800" y="412" width="310" height="96" rx="18" fill="#f5dddd"/>
+  <text x="245" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#16324f">18 DECLARATIONS</text>
+  <text x="245" y="483" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#263c3b">carrier, evolution, trace</text>
+  <text x="600" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#70442d">ZERO-AWARE BRIDGE</text>
+  <text x="600" y="483" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#263c3b">trace equals spectral moment</text>
+  <text x="955" y="451" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#8a3333">DEFERRED</text>
+  <text x="955" y="483" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#263c3b">all chaos diagnostics</text>
+  <text x="600" y="558" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="650" fill="#285448">SOURCE CANDIDATE · PINNED VALIDATION PENDING</text>
+</svg>

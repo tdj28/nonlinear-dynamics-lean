@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Finite quantum Hamiltonian</title>
+  <desc id="desc">A glossary card shows a two-level Hermitian matrix with energies one and minus one acquiring opposite phases under minus-i-time evolution.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">KNOWLEDGE BASE · GLOSSARY</text>
+  <text x="78" y="184" font-family="system-ui,sans-serif" font-size="54" font-weight="780" fill="#16324f">FINITE QUANTUM HAMILTONIAN</text>
+  <rect x="88" y="239" width="1024" height="144" rx="20" fill="#dfece3" stroke="#315f63" stroke-width="3"/>
+  <text x="600" y="290" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#263c3b">H = H*   ·   U_H(t) = exp(−itH)</text>
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="650" fill="#285448">HERMITIAN ENERGY OPERATOR · UNITARY FINITE EVOLUTION</text>
+  <rect x="98" y="426" width="300" height="90" rx="18" fill="#e4eef4"/>
+  <rect x="450" y="426" width="300" height="90" rx="18" fill="#f3dfca"/>
+  <rect x="802" y="426" width="300" height="90" rx="18" fill="#e4eef4"/>
+  <text x="248" y="464" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#16324f">REAL ENERGY LEVELS</text>
+  <text x="248" y="493" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#263c3b">ordered with multiplicity</text>
+  <text x="600" y="464" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#70442d">NORMALIZED TRACE</text>
+  <text x="600" y="493" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#263c3b">average of finite levels</text>
+  <text x="952" y="464" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#16324f">EXPLICIT CONVENTIONS</text>
+  <text x="952" y="493" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#263c3b">sign, units, dimension zero</text>
+  <text x="600" y="558" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="650" fill="#285448">ONE MATRIX · SPECTRUM · EVOLUTION · NO CHAOS INFERENCE</text>
+</svg>

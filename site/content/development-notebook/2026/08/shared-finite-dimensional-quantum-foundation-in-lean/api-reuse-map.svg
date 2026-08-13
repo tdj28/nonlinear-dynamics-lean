@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Reuse map for the finite-dimensional quantum foundation</title>
+  <desc id="desc">The random-matrix layer already owns the Hermitian Euclidean carrier, ordered eigenvalues, empirical spectral measure, and measurable spectral data. The new quantum finite-systems module transparently aliases the carrier and adds the minus-i-time generator, unitary matrix exponential, and normalized trace bridge.</desc>
+  <rect width="1120" height="620" rx="24" fill="#f7f2e8"/>
+  <text x="52" y="58" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">Reuse the checked carrier and spectra</text>
+  <rect x="48" y="92" width="476" height="468" rx="22" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="286" y="134" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="750" fill="#70442d">EXISTING RANDOM-MATRIX LAYER</text>
+  <rect x="84" y="168" width="404" height="74" rx="14" fill="#fffaf1"/>
+  <text x="286" y="199" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#70442d">HermitianEuclidean n</text>
+  <text x="286" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">matrix + Hermitian proof + Frobenius geometry</text>
+  <rect x="84" y="263" width="404" height="74" rx="14" fill="#fffaf1"/>
+  <text x="286" y="294" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#70442d">orderedHermitianEigenvalues</text>
+  <text x="286" y="320" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">decreasing real vector with multiplicity</text>
+  <rect x="84" y="358" width="404" height="74" rx="14" fill="#fffaf1"/>
+  <text x="286" y="389" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#70442d">empiricalSpectralMeasure</text>
+  <text x="286" y="415" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">zero at n = 0; probability at n &gt; 0</text>
+  <rect x="84" y="453" width="404" height="74" rx="14" fill="#fffaf1"/>
+  <text x="286" y="484" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#70442d">continuity and measurability</text>
+  <text x="286" y="510" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">already checked for finite spectral data</text>
+  <path d="M526 326 H586" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/>
+  <text x="556" y="307" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#315f63">IMPORT</text>
+  <rect x="598" y="92" width="474" height="468" rx="22" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="835" y="134" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="750" fill="#285448">NEW QUANTUM FOUNDATION</text>
+  <rect x="634" y="168" width="402" height="74" rx="14" fill="#fffaf1"/>
+  <text x="835" y="199" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#285448">FiniteHamiltonian n</text>
+  <text x="835" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">transparent alias; no duplicate carrier</text>
+  <rect x="634" y="263" width="402" height="74" rx="14" fill="#fffaf1"/>
+  <text x="835" y="294" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#285448">schrodingerGenerator</text>
+  <text x="835" y="320" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">−t • (i • H), with ℏ = 1</text>
+  <rect x="634" y="358" width="402" height="74" rx="14" fill="#fffaf1"/>
+  <text x="835" y="389" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#285448">timeEvolution</text>
+  <text x="835" y="415" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">exp(−itH), bundled unitary</text>
+  <rect x="634" y="453" width="402" height="74" rx="14" fill="#fffaf1"/>
+  <text x="835" y="484" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#285448">normalizedTrace bridge</text>
+  <text x="835" y="510" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">same first empirical spectral moment</text>
+  <text x="560" y="596" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="650" fill="#16324f">ONE CARRIER · ONE SPECTRUM POLICY · ONE ZERO-DIMENSION POLICY</text>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+</svg>

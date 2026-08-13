@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="560" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Three views of a finite two-level Hamiltonian</title>
+  <desc id="desc">A two-by-two diagonal Hermitian matrix has ordered real energy levels one and minus one. Under exponential evolution with a minus i t sign, the levels acquire opposite phases. Normalized trace averages the two levels to zero without changing the matrix.</desc>
+  <rect width="1120" height="560" rx="24" fill="#f7f2e8"/>
+  <text x="52" y="58" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">One finite Hamiltonian, three compatible views</text>
+  <rect x="54" y="105" width="288" height="270" rx="20" fill="#e7f0f3" stroke="#315f63" stroke-width="3"/>
+  <text x="198" y="148" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">OPERATOR</text>
+  <text x="198" y="215" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#263c3b">H = diag(1, −1)</text>
+  <text x="198" y="268" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#315f63">H* = H</text>
+  <text x="198" y="323" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#315f63">the matrix is retained</text>
+  <path d="M354 240 H401" stroke="#8a5b3d" stroke-width="4" marker-end="url(#a)"/>
+  <rect x="413" y="105" width="294" height="270" rx="20" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="560" y="148" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#70442d">SPECTRUM</text>
+  <text x="560" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#263c3b">levels: 1, −1</text>
+  <text x="560" y="261" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#70442d">τ₂(H) = 0</text>
+  <text x="560" y="323" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#70442d">average level, not zero matrix</text>
+  <path d="M719 240 H766" stroke="#2d7f73" stroke-width="4" marker-end="url(#b)"/>
+  <rect x="778" y="105" width="288" height="270" rx="20" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="922" y="148" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#285448">EVOLUTION</text>
+  <text x="922" y="205" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#263c3b">U_H(t) = exp(−itH)</text>
+  <text x="922" y="254" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#285448">e^(−it), e^(it)</text>
+  <text x="922" y="323" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#285448">opposite unit phases</text>
+  <rect x="122" y="420" width="876" height="82" rx="16" fill="#fffaf1" stroke="#315f63" stroke-width="2"/>
+  <text x="560" y="456" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#16324f">FIXED CONVENTIONS</text>
+  <text x="560" y="485" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#315f63">Hermitian carrier · real time · ℏ = 1 · minus sign · zero-aware normalized trace</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a5b3d"/></marker>
+    <marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2d7f73"/></marker>
+  </defs>
+</svg>

@@ -1,4 +1,5 @@
 import NonlinearDynamics.Deterministic
+import NonlinearDynamics.QuantumChaos
 import NonlinearDynamics.Random
 
 /-!

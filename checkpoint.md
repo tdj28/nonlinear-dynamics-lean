@@ -3,14 +3,67 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-12
+Last updated: 2026-08-13
 
 Audited baseline: `main` at `4c43d6d`; its guarded leaf, deterministic
 aggregator, and complete repository gate pass on approved Linux compute.
 
-Active direction: **research and freeze the shared finite-dimensional
-quantum-chaos foundation before opening any spectral-statistics, spectral-form-
-factor, out-of-time-order-correlator, or k-invariance theorem branch.**
+Active direction: **validate and proof-repair the source-and-teaching candidate
+for the shared finite-dimensional quantum-chaos foundation before opening any
+spectral-statistics, spectral-form-factor, out-of-time-order-correlator, or
+k-invariance theorem branch.**
+
+`NonlinearDynamics.QuantumChaos.FiniteSystems` is now a source-only candidate.
+Its eighteen documented declarations reuse
+`NonlinearDynamics.Random.RandomMatrix.HermitianEuclidean` as the transparent
+`FiniteHamiltonian` carrier, expose the stored ambient Hermitian matrix, and
+freeze state evolution in units `ℏ = 1` as
+`U_H(t) = exp (-I t H)`. The Schrödinger generator is represented as the real
+scalar multiple `-t • (I • H)`. The candidate proves that this generator is
+skew-adjoint, bundles its exponential in
+`Matrix.unitaryGroup (Fin n) ℂ`, and states the zero-time, additive-time, and
+inverse-time laws.
+
+The same candidate defines reciprocal-dimension normalized trace as
+`(((n : ℕ) : ℝ)⁻¹ : ℂ) * Matrix.trace A`. It deliberately returns zero at
+dimension zero, proves unitary-conjugation invariance, and identifies the
+normalized trace of a finite Hamiltonian with the first moment of the existing
+zero-aware empirical spectral measure. Ordered eigenvalues, their continuity
+and measurability, and empirical spectral measures remain the checked
+random-matrix definitions; the quantum layer introduces no duplicate spectrum
+or measure carrier. The source SHA-256 is
+`022207ae5643acc87fc125f98974b20a8e56a24db14247f027f5547edaa1ff79`.
+Five endpoint axiom prints are present but have not yet been evaluated against
+the pinned project toolchain.
+
+The paired private-draft Research Note, Deep Dive, and finite-quantum-
+Hamiltonian glossary chapter remain `pro_reviewed: false`. They begin with the
+two-level Hamiltonian `diag(1, -1)`, distinguish the generator at integer time
+from the analytic quarter-turn exponential, and record the exact boundary
+before level statistics, spectral form factors, out-of-time-order correlators,
+ensemble averages, asymptotics, universality, or any quantum-chaos predicate.
+Five accessible conceptual SVGs and three deterministic 1200-by-630 cards
+accompany the pages. The bundled Lean 4.32.0 `Std` worksheet checks stored
+Gaussian-integer generator addition, conjugate-transpose multiplication for
+`diag(-I, I)`, and the zero trace ledger; it does not implement analytic
+matrix exponentiation.
+
+The complete workstation-safe candidate gate passes. The bounded worksheet,
+XML validation of all five conceptual SVGs and all three card sources,
+ShellCheck, byte-reproducible cards, and direct raster inspection pass. All
+sixty substantive Lean modules map to sixty comprehensive Notebook pages; all
+23 coverage and seven teaching-hygiene regression tests pass; 211 Markdown
+files and 1,015 reader-facing surfaces pass their source and language audits.
+Hugo Extended 0.160.1 renders 493 production pages and 623 draft-inclusive
+pages with warnings fatal.
+
+Literal browser inspection at 1280 by 720 and 390 by 844 passes for all three
+new pages. Each route has one H1, exact viewport and document widths, no raw
+TeX, no KaTeX error, no broken or alternative-free image, and no browser
+console warning or error. Scrolling through every page loads all eight page
+images; the figures remain contained at the mobile breakpoint. No project
+Lean, Lake, Mathlib build, or cache restoration has run on macOS for this
+candidate.
 
 `NonlinearDynamics.Deterministic.Models.Lorenz` is complete at repaired and
 validated commit `4c43d6d`, following source-and-teaching candidate commit
@@ -3047,28 +3100,28 @@ and
 
 ## Exact Next Milestone
 
-### Design the shared finite-dimensional quantum-chaos foundation
+### Validate the shared finite-dimensional quantum-chaos foundation
 
-Research the pinned Mathlib interfaces and freeze the objects that every later
-quantum-chaos branch will consume before writing a theorem slice. Audit the
-existing Hermitian-matrix, intrinsic Gaussian-unitary-ensemble geometry,
-ordered Hermitian spectrum, matrix exponential, and finite empirical-measure
-interfaces. Choose a shared finite-dimensional Hamiltonian carrier, the exact
-Hermitian hypothesis, the time-evolution convention and sign, the normalized-
-trace convention, and an explicit treatment of dimension zero. Record which
-objects already exist in the random-matrix layer and reuse them rather than
-introducing quantum-chaos-specific duplicates.
+Complete workstation-safe QA for the source-and-teaching candidate, commit and
+push it as an exact source checkpoint, then propose a fresh approved Linux
+builder. On that builder, restore the verified Lorenz Lake archive onto fast
+ephemeral storage, run the warning-fatal
+`NonlinearDynamics/QuantumChaos/FiniteSystems.lean` leaf, and repair only
+statement-preserving pinned-API seams. Check the `QuantumChaos` aggregator and
+the root aggregator, inspect all five axiom reports for `sorryAx`, run the
+complete exact-commit gate, preserve a verified successor cache sequentially
+on the retained volume, document the receipts and validation result, push the
+closure, terminate the exact task pod, and retain the project network volume.
 
-The first source-and-teaching candidate should stay below universality and
-asymptotics. It may package a Hermitian Hamiltonian, finite unitary evolution,
-and normalized finite trace or spectral data only after the relevant pinned
-APIs and boundary cases are confirmed. In particular, do not call level
-repulsion, random-matrix agreement, a spectral form factor, an out-of-time-
-order correlator, or an exact moment condition evidence of general quantum
-chaos without a separately formalized definition and theorem. Complete the
-private-draft Research Note, Deep Dive, glossary integration, bounded
-standalone example, conceptual figures, deterministic cards, source hashes,
-and workstation/browser QA before proposing another paid Linux builder.
+The validated interface must retain all candidate decisions unless a compiled
+counterexample or pinned API forces a documented revision: reuse
+`HermitianEuclidean`, keep the stored Hermitian hypothesis, use real time and
+`exp (-I t H)` with `ℏ = 1`, bundle evolution in `Matrix.unitaryGroup`, use
+reciprocal-dimension normalized trace with a zero-dimensional value of zero,
+and reuse the ordered spectrum and measurable empirical spectral measure.
+Do not add a level-spacing statistic, unfolding, spectral form factor,
+out-of-time-order correlator, ensemble average, asymptotic statement, or
+quantum-chaos criterion to this validation repair.
 
 ## Earlier Milestone Records
 
@@ -3927,8 +3980,13 @@ The ODE infrastructure and all six concrete-model slices are validated:
 
 ### Quantum chaos
 
-Only placeholder directories currently exist:
+The shared foundation is a source-and-teaching candidate; diagnostic branches
+remain placeholders:
 
+- [ ] `QuantumChaos/FiniteSystems.lean`: the eighteen-declaration candidate
+  reuses the Hermitian carrier and spectral data, fixes `exp (-I t H)`, bundles
+  unitary evolution, and aligns zero-aware normalized trace with the first
+  empirical spectral moment. Pinned-toolchain validation remains pending.
 - [ ] `QuantumChaos/SpectralStatistics`
 - [ ] `QuantumChaos/GUE`
 - [ ] `QuantumChaos/SpectralFormFactor`
@@ -3947,6 +4005,22 @@ k-invariance precedes approximation claims.
 
 ## Decision Ledger
 
+- The shared finite-dimensional quantum carrier is the existing intrinsic
+  `RandomMatrix.HermitianEuclidean n`, exposed through the transparent semantic
+  alias `FiniteHamiltonian n`. Ordered eigenvalues, empirical spectral
+  measures, continuity, and measurability stay in the random-matrix layer.
+- Finite state evolution uses real time, units `ℏ = 1`, and the fixed sign
+  convention `U_H(t) = exp (-I t H)`. The exponent is built as
+  `-t • (I • H)`, proved skew-adjoint from the stored Hermitian certificate,
+  and bundled directly in `Matrix.unitaryGroup`.
+- Quantum normalized trace means reciprocal dimension times the ordinary
+  complex matrix trace. It is a scalar observable, not matrix rescaling. The
+  total dimension-zero value is zero, matching the existing zero-aware
+  empirical spectral measure and its first moment.
+- The same-Hamiltonian exponential addition law is not a noncommuting product
+  formula. Spectral data and unitary finite evolution do not by themselves
+  define or establish level repulsion, spectral-form-factor behavior,
+  out-of-time-order growth, random-matrix universality, or quantum chaos.
 - The first Lotka-Volterra slice uses prey first and the parameter order
   `(alpha, beta, gamma, delta)`, corresponding to Lotka's historical
   `(A₁, B₁, B₂, A₂)` factorization. Parameter names and coordinate order are

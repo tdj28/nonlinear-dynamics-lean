@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Two-level Hamiltonian evolution and trace ledger</title>
+  <desc id="desc">A diagonal Hermitian Hamiltonian with energies one and minus one evolves at time pi over two to phases minus i and i. Its conjugate transpose product is the identity. Its normalized trace and the first moment of its two-atom empirical spectrum are both zero.</desc>
+  <rect width="1120" height="620" rx="24" fill="#f7f2e8"/>
+  <text x="50" y="58" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">One two-level system, four exact checks</text>
+  <rect x="48" y="90" width="232" height="210" rx="18" fill="#e7f0f3" stroke="#315f63" stroke-width="3"/>
+  <text x="164" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">HAMILTONIAN</text>
+  <text x="164" y="188" text-anchor="middle" font-family="Georgia,serif" font-size="32" fill="#263c3b">H = diag(1, −1)</text>
+  <text x="164" y="238" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#315f63">H* = H</text>
+  <text x="164" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#315f63">real levels: 1, −1</text>
+  <path d="M292 194 H352" stroke="#8a5b3d" stroke-width="4" marker-end="url(#arrow)"/>
+  <rect x="364" y="90" width="320" height="210" rx="18" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="524" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#70442d">EVOLUTION AT t = π/2</text>
+  <text x="524" y="181" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#263c3b">exp(−itH)</text>
+  <text x="524" y="224" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#263c3b">= diag(−i, i)</text>
+  <text x="524" y="267" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#70442d">opposite unit-circle phases</text>
+  <path d="M696 194 H756" stroke="#2d7f73" stroke-width="4" marker-end="url(#arrowGreen)"/>
+  <rect x="768" y="90" width="304" height="210" rx="18" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="920" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#285448">UNITARY CHECK</text>
+  <text x="920" y="190" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#263c3b">U*U = I₂</text>
+  <text x="920" y="236" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#285448">diag(i, −i)</text>
+  <text x="920" y="267" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#285448">times diag(−i, i)</text>
+  <rect x="48" y="342" width="496" height="216" rx="18" fill="#fffaf1" stroke="#315f63" stroke-width="3"/>
+  <text x="296" y="384" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">NORMALIZED TRACE ROUTE</text>
+  <text x="296" y="438" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#263c3b">τ₂(H) = ½ Tr(H)</text>
+  <text x="296" y="482" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#263c3b">= ½(1 − 1) = 0</text>
+  <text x="296" y="526" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#315f63">one scalar; H itself is not zero</text>
+  <rect x="576" y="342" width="496" height="216" rx="18" fill="#fffaf1" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="824" y="384" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#70442d">EMPIRICAL SPECTRUM ROUTE</text>
+  <text x="824" y="433" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#263c3b">L_H = ½(δ₁ + δ₋₁)</text>
+  <text x="824" y="479" text-anchor="middle" font-family="Georgia,serif" font-size="29" fill="#263c3b">∫ x dL_H = ½(1 − 1) = 0</text>
+  <text x="824" y="526" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#70442d">same finite first moment</text>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a5b3d"/></marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2d7f73"/></marker>
+  </defs>
+</svg>

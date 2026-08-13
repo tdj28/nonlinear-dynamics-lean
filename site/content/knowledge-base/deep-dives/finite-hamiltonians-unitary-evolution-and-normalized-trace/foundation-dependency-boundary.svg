@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img" aria-labelledby="title desc">
+  <title id="title">Finite quantum foundation and deferred diagnostics</title>
+  <desc id="desc">One existing Hermitian Hamiltonian carrier feeds unitary time evolution, normalized trace, ordered energy levels, and a zero-aware empirical spectral measure. A strong boundary separates those objects from level statistics, spectral form factors, out-of-time-order correlators, ensemble averages, asymptotics, and quantum-chaos criteria.</desc>
+  <rect width="1120" height="640" rx="24" fill="#f7f2e8"/>
+  <text x="52" y="58" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">What this foundation owns—and where it stops</text>
+  <rect x="390" y="88" width="340" height="96" rx="18" fill="#e4eef4" stroke="#315f63" stroke-width="3"/>
+  <text x="560" y="126" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">FINITE HAMILTONIAN H</text>
+  <text x="560" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#263c3b">existing HermitianEuclidean n</text>
+  <path d="M470 186 L212 245" stroke="#315f63" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M530 186 L454 245" stroke="#315f63" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M590 186 L666 245" stroke="#315f63" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M650 186 L908 245" stroke="#315f63" stroke-width="3" marker-end="url(#a)"/>
+  <rect x="44" y="258" width="232" height="122" rx="16" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="160" y="296" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#285448">UNITARY EVOLUTION</text>
+  <text x="160" y="334" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">U_H(t) = exp(−itH)</text>
+  <text x="160" y="362" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">new shared API</text>
+  <rect x="312" y="258" width="232" height="122" rx="16" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="428" y="296" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#285448">NORMALIZED TRACE</text>
+  <text x="428" y="334" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">τ_n(A) = n⁻¹ Tr(A)</text>
+  <text x="428" y="362" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">new shared API</text>
+  <rect x="580" y="258" width="232" height="122" rx="16" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="696" y="296" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#70442d">ORDERED LEVELS</text>
+  <text x="696" y="334" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#263c3b">λ₁ ≥ ··· ≥ λ_n</text>
+  <text x="696" y="362" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">reused spectral API</text>
+  <rect x="848" y="258" width="232" height="122" rx="16" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="964" y="296" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#70442d">EMPIRICAL MEASURE</text>
+  <text x="964" y="334" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#263c3b">n⁻¹ Σ δ_λ</text>
+  <text x="964" y="362" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">reused; zero-aware</text>
+  <line x1="52" y1="432" x2="1068" y2="432" stroke="#a14343" stroke-width="7"/>
+  <text x="560" y="420" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="750" fill="#8a3333">SEPARATE DEFINITIONS AND THEOREMS REQUIRED BELOW</text>
+  <rect x="54" y="474" width="1012" height="116" rx="18" fill="#f5dddd" stroke="#a14343" stroke-width="3"/>
+  <text x="560" y="514" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#7b2c2c">level spacings · unfolding · spectral form factor · out-of-time-order correlator</text>
+  <text x="560" y="550" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#7b2c2c">random ensembles · connected subtraction · asymptotics · universality</text>
+  <text x="560" y="580" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#7b2c2c">none is inferred from finite Hermitian spectral data alone</text>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+</svg>

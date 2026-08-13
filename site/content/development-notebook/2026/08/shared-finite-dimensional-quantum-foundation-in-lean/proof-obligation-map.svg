@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Proof obligations for evolution and normalized trace</title>
+  <desc id="desc">The evolution path starts with a Hermitian Hamiltonian, derives a skew-adjoint minus-i-time generator, applies the exponential unitary theorem, and uses commutation for time addition. The observable path uses trace cyclicity and the imported empirical spectral moment identity. Both stop before a quantum-chaos conclusion.</desc>
+  <rect width="1120" height="620" rx="24" fill="#f7f2e8"/>
+  <text x="52" y="58" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">Two finite proof paths, no chaos shortcut</text>
+  <rect x="52" y="92" width="1016" height="74" rx="18" fill="#e4eef4" stroke="#315f63" stroke-width="3"/>
+  <text x="560" y="122" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#16324f">SHARED INPUT: H* = H</text>
+  <text x="560" y="149" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#315f63">the intrinsic carrier stores the Hermitian proof</text>
+  <path d="M390 168 L274 218" stroke="#2d7f73" stroke-width="4" marker-end="url(#g)"/>
+  <path d="M730 168 L846 218" stroke="#8a5b3d" stroke-width="4" marker-end="url(#b)"/>
+  <rect x="52" y="230" width="500" height="260" rx="20" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="302" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#285448">EVOLUTION PATH</text>
+  <text x="302" y="316" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#263c3b">−itH is skew-adjoint</text>
+  <path d="M302 332 V354" stroke="#2d7f73" stroke-width="3" marker-end="url(#g)"/>
+  <text x="302" y="389" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">exp(−itH) is unitary</text>
+  <path d="M302 403 V425" stroke="#2d7f73" stroke-width="3" marker-end="url(#g)"/>
+  <text x="302" y="459" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#285448">same-H generators commute</text>
+  <text x="302" y="481" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#263c3b">U(s+t)=U(s)U(t)</text>
+  <rect x="568" y="230" width="500" height="260" rx="20" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="818" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#70442d">OBSERVABLE PATH</text>
+  <text x="818" y="316" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">Tr(UAU*) = Tr(U*UA)</text>
+  <path d="M818 332 V354" stroke="#8a5b3d" stroke-width="3" marker-end="url(#b)"/>
+  <text x="818" y="389" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#263c3b">U*U = I</text>
+  <path d="M818 403 V425" stroke="#8a5b3d" stroke-width="3" marker-end="url(#b)"/>
+  <text x="818" y="459" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#70442d">reuse empirical moment theorem</text>
+  <text x="818" y="481" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#263c3b">τ(H) = ∫ x dL_H</text>
+  <line x1="52" y1="535" x2="1068" y2="535" stroke="#a14343" stroke-width="6"/>
+  <text x="560" y="574" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="750" fill="#8a3333">NO LEVEL-STATISTICS, ENSEMBLE, ASYMPTOTIC, OR QUANTUM-CHAOS THEOREM FOLLOWS</text>
+  <defs>
+    <marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2d7f73"/></marker>
+    <marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a5b3d"/></marker>
+  </defs>
+</svg>
