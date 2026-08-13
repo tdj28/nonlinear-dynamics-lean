@@ -5,15 +5,16 @@
 
 Last updated: 2026-08-12
 
-Audited baseline: `main` at `274910c`; its guarded leaf, deterministic
+Audited baseline: `main` at `4c43d6d`; its guarded leaf, deterministic
 aggregator, and complete repository gate pass on approved Linux compute.
 
-Active direction: **validate and repair the first Lorenz-system
-source-and-teaching candidate without broadening its algebraic claims into
-solution, flow, attractor, or chaos claims.**
+Active direction: **research and freeze the shared finite-dimensional
+quantum-chaos foundation before opening any spectral-statistics, spectral-form-
+factor, out-of-time-order-correlator, or k-invariance theorem branch.**
 
-`NonlinearDynamics.Deterministic.Models.Lorenz` now has a warning-fatal
-leaf-repaired source-and-teaching candidate. It freezes Lorenz's coordinate order
+`NonlinearDynamics.Deterministic.Models.Lorenz` is complete at repaired and
+validated commit `4c43d6d`, following source-and-teaching candidate commit
+`fcd01d5`. It freezes Lorenz's coordinate order
 `(x, y, z)`, parameter order `(sigma, rho, beta)`, equations
 `x' = sigma * (y - x)`, `y' = x * (rho - z) - y`, and
 `z' = x * y - beta * z`, and Lean's right-associated carrier
@@ -31,8 +32,8 @@ product symmetry equality, alignment of the named equilibrium radius with
 warning-fatal leaf passes in 2.346 seconds and the warning-fatal deterministic
 aggregator passes in 1.745 seconds. All five printed axiom reports contain only
 `propext`, `Classical.choice`, and `Quot.sound`; none contains `sorryAx`. The
-complete exact-commit repository gate remains pending. No project Lean command
-or proof probe has run on macOS. The repaired source SHA-256 is
+exact pushed `4c43d6d` complete repository gate passes. No project Lean command
+or proof probe ran on macOS. The repaired source SHA-256 is
 `d24e390c28dc9f2ab91e9d23cdd2b54897e64d67e0f2da72bba8541ca489a835`.
 
 The declaration-complete Research Note, Deep Dive, and glossary chapter are
@@ -46,7 +47,7 @@ integer field ledger
 for parameters `(1, 3, 2)` and checks the stored sign-flip relation. It does
 not quantify over real states or construct a nonconstant solution.
 
-The workstation-safe candidate gate passes: 59 substantive modules have 59
+The workstation-safe release gate passes: 59 substantive modules have 59
 comprehensive Notebook mappings, all 23 coverage and seven teaching-hygiene
 regression tests pass, and 208 Markdown files plus 998 public reader surfaces
 pass their source and language audits. Hugo Extended 0.160.1 renders 493
@@ -58,6 +59,39 @@ inspection of all three pages finds one H1 per page, no document overflow, no
 raw TeX, no broken or alternative-free images, and no console warning or
 error. All conceptual SVGs load at 1120 pixels wide intrinsically; the mobile
 layout contains each wide figure in an intentional horizontal scroll frame.
+
+Approved Linux validation used RunPod Secure Cloud with 8 vCPU, a
+32,000,000,000-byte effective RAM limit, an 80-GiB ephemeral disk, and the
+retained project volume at $0.32 per hour under a $5 ceiling. The exact
+`4c43d6d` source-only archive has SHA-256
+`625ccfcf71f6c39b5e84df7b4deffa3897b29192abb3a293758ff1b7576ae4ac`
+and is 34,519,040 bytes. Its source and pinned-manifest digests passed before
+the build. Official Hugo Extended with Deploy 0.160.1 passed its published
+checksum. The authoritative exact-commit
+`CLOUD_LEAN_BUILD=1 make -j1 check` completed all 3,272 Lean jobs, 59/59
+Notebook coverage, 23 coverage regression tests, seven teaching-hygiene
+tests, the 208-file teaching audit, the 998-surface reader-language audit, and
+warning-fatal 493-page production plus 610-page draft-inclusive Hugo renders
+in 15.614 seconds.
+
+The successful ephemeral `.lake` tree is preserved sequentially as
+`lake-manifest-pinned-lorenz-20260812.tar.zst` on the retained volume. The
+2,645,312,343-byte archive expands to an 8,101,386,240-byte tar stream and
+passed `zstd -t` before and after transfer. Its SHA-256 is
+`3705ce698e338f4e9b32d34952c3a67a78556f6d7d5d10b8da604ea496d09a68`;
+`SHA256SUMS-lorenz-20260812` verifies it together with the unchanged Lean
+4.32.0 toolchain archive. The retrieved 7,989-byte sanitized receipt bundle
+has SHA-256
+`36f343644535a7459984ed494535b89b2cbd6c9e90cf5f9a6377ad3aef623508`,
+and its internal checksum ledger, zero full-gate status, and no-`sorryAx` leaf
+audit pass locally.
+
+The task builder's last recorded uptime was 960 seconds, approximately $0.09
+of compute. The exact task pod was terminated; its direct lookup is absent,
+the post-action inventory contains zero pods and zero task-name matches, and
+the retained 100-GB project volume remains at an estimated $7 per month. The
+pre-launch inventory also contained no running pod, so no unrelated experiment
+was touched.
 
 `NonlinearDynamics.Deterministic.Models.LotkaVolterra` is complete at repaired
 and validated commit `274910c`, following source-and-teaching candidate commit
@@ -2293,17 +2327,15 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,272 Lean jobs at Lotka-Volterra repair
-  commit `274910c` on the approved Linux builder. The warning-fatal leaf,
-  deterministic aggregator, project root, 58/58 proof-to-prose coverage, 23
-  coverage regression tests, seven hygiene regression tests, the 205-file
-  teaching scan, the 983-surface reader-language scan, and warning-fatal Hugo
-  Extended 0.160.1 renders of 493 production pages and 605 pages with drafts
-  pass.
-- Lean inventory: fifty-eight substantive modules are cloud-validated. A
-  fifty-ninth substantive module, Lorenz, has a comprehensive Notebook page;
-  its warning-fatal leaf and deterministic aggregator pass, while its exact-
-  commit complete repository gate remains pending. The `.gitkeep`-only Quantum
+- Last fully green repository build: 3,272 Lean jobs at Lorenz repair commit
+  `4c43d6d` on the approved Linux builder. The warning-fatal leaf,
+  deterministic aggregator, project root, 59/59 proof-to-prose coverage, 23
+  coverage regression tests, seven hygiene regression tests, the 208-file
+  teaching scan, the 998-surface reader-language scan, and warning-fatal Hugo
+  Extended with Deploy 0.160.1 renders of 493 production pages and 610 pages
+  with drafts pass.
+- Lean inventory: fifty-nine substantive modules are cloud-validated and all
+  fifty-nine have comprehensive Notebook pages. The `.gitkeep`-only Quantum
   Chaos branches remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
 - Teaching snapshot before the Pendulum candidate, by the deterministic body-
@@ -2311,11 +2343,14 @@ bridge, or stable-manifold theorem.
   companions, 308,426 tokens across thirty-six Deep Dives, and 178,822 tokens
   across sixty-two glossary chapters. Pendulum adds one page in each section,
   so the corpus now has 140 teaching bundles, 140 social cards, and 321
-  conceptual SVGs; refresh the aggregate token ledger at validation closure.
+  conceptual SVGs. Lotka-Volterra and Lorenz add one page to each teaching
+  section, three cards, and five conceptual figures apiece, so the corpus now
+  has 146 teaching bundles, 146 social cards, and 331 conceptual SVGs; refresh
+  the aggregate token ledger before the next publication decision.
 - Publication status: 137 teaching pages are owner-authorized public working
-  notes with `draft: false` and `pro_reviewed: false`. The three new Pendulum
-  pages remain private with `draft: true` and `pro_reviewed: false` pending
-  pinned-toolchain validation and a separate publication decision.
+  notes with `draft: false` and `pro_reviewed: false`. The nine Pendulum,
+  Lotka-Volterra, and Lorenz pages remain private with `draft: true` and
+  `pro_reviewed: false` pending a separate publication decision.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
   port 1333.
 
@@ -3012,19 +3047,28 @@ and
 
 ## Exact Next Milestone
 
-### Validate and repair the Lorenz vector-field slice
+### Design the shared finite-dimensional quantum-chaos foundation
 
-Commit and push the statement-preserving repair now that both the warning-
-fatal Lorenz leaf and deterministic aggregator pass. Package the exact pushed
-commit as a source-only archive, verify its source and pinned-manifest identity
-on the approved builder, and validate it with
-`CLOUD_LEAN_BUILD=1 make -j1 check` and official Hugo Extended 0.160.1.
-Preserve and independently verify the successful successor cache, record the
-receipt and exact validation evidence here, push the closure to `main`,
-terminate only the Lorenz task pod, and retain the project network volume.
-Leave the owner's separate experiment untouched. Do not promote any global
-existence, boundedness, flow, attractor, sensitivity, transitivity, periodic-
-orbit, symbolic-coding, or chaos claim.
+Research the pinned Mathlib interfaces and freeze the objects that every later
+quantum-chaos branch will consume before writing a theorem slice. Audit the
+existing Hermitian-matrix, intrinsic Gaussian-unitary-ensemble geometry,
+ordered Hermitian spectrum, matrix exponential, and finite empirical-measure
+interfaces. Choose a shared finite-dimensional Hamiltonian carrier, the exact
+Hermitian hypothesis, the time-evolution convention and sign, the normalized-
+trace convention, and an explicit treatment of dimension zero. Record which
+objects already exist in the random-matrix layer and reuse them rather than
+introducing quantum-chaos-specific duplicates.
+
+The first source-and-teaching candidate should stay below universality and
+asymptotics. It may package a Hermitian Hamiltonian, finite unitary evolution,
+and normalized finite trace or spectral data only after the relevant pinned
+APIs and boundary cases are confirmed. In particular, do not call level
+repulsion, random-matrix agreement, a spectral form factor, an out-of-time-
+order correlator, or an exact moment condition evidence of general quantum
+chaos without a separately formalized definition and theorem. Complete the
+private-draft Research Note, Deep Dive, glossary integration, bounded
+standalone example, conceptual figures, deterministic cards, source hashes,
+and workstation/browser QA before proposing another paid Linux builder.
 
 ## Earlier Milestone Records
 
@@ -3830,8 +3874,7 @@ documentation placeholders:
 
 ### ODEs and concrete models
 
-The ODE infrastructure and first five concrete-model slices are validated;
-Lorenz now has a warning-fatal leaf-repaired source-and-teaching candidate:
+The ODE infrastructure and all six concrete-model slices are validated:
 
 - [x] `ODE/GlobalExistence.lean`: warning-fatal leaf, deterministic aggregator,
   both exact-commit full gates, verified cache preservation, desktop QA, and
@@ -3874,11 +3917,13 @@ Lorenz now has a warning-fatal leaf-repaired source-and-teaching candidate:
   worksheet, deterministic assets, workstation/browser QA, warning-fatal
   Linux leaf and aggregator, exact-commit full gate, verified retained cache,
   receipt, task-pod termination, and final inventory all pass.
-- [ ] `Models/Lorenz.lean`: 21-declaration source candidate, complete
-  private-draft teaching bundle, bounded worksheet, deterministic assets, and
-  workstation QA are prepared; its warning-fatal Linux leaf and deterministic
-  aggregator pass. The exact-commit full gate, verified successor cache, and
-  task-pod termination remain.
+- [x] `Models/Lorenz.lean`: the repaired 21-declaration module freezes the
+  three-parameter/right-associated-coordinate convention, exact field values,
+  sign-flip equivariance, positive-parameter equilibrium classification, and
+  three constant integral curves. Its private-draft teaching bundle, bounded
+  worksheet, deterministic assets, workstation/browser QA, warning-fatal leaf
+  and aggregator, exact-commit full gate, verified retained cache and receipt,
+  task-pod termination, and final account inventory all pass.
 
 ### Quantum chaos
 
@@ -4632,13 +4677,12 @@ k-invariance precedes approximation claims.
   carrier, positivity boundary, equilibrium classification, and pointwise
   logarithmic derivative scope. Its exact gate is green, but no orbit-level
   conclusion may be promoted before additional solution, invariance, and
-  level-set arguments are supplied. Lorenz now has a source-only algebraic
-  candidate, not yet a complete-gate-validated theorem slice: its leaf and
-  aggregator pass but its exact pushed commit still awaits the complete gate.
-  Its exact field values, symmetry, equilibrium list, and constant curves must
+  level-set arguments are supplied. Lorenz's exact gate is also green, but its
+  checked field values, symmetry, equilibrium list, and constant curves must
   not be substituted for arbitrary solution existence, global boundedness, an
   attractor construction, or chaos. The Quantum Chaos branches remain later
-  roadmap work.
+  roadmap work; they must reuse the checked random-matrix infrastructure and
+  must not treat finite-size spectral numerics as a universality theorem.
 
 ## Validation Snapshot
 
@@ -4664,7 +4708,7 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
-- Lorenz source-candidate QA on 2026-08-12: the bounded Lean 4.32.0 `Std`
+- Lorenz release QA on 2026-08-12: the bounded Lean 4.32.0 `Std`
   worksheet prints the exact five-vector ledger
   `[(0, 0, 0), (0, 0, 0), (0, 0, 0), (1, -2, -4), (-1, 2, -4)]`.
   The three card generators reproduce their 1200-by-630 PNGs byte-for-byte,
@@ -4681,7 +4725,15 @@ Checkpoint/skill milestone QA:
   project Lean or Lake command ran on macOS. On the approved Linux builder,
   the repaired warning-fatal leaf passes in 2.346 seconds and the deterministic
   aggregator passes in 1.745 seconds. All five printed axiom reports exclude
-  `sorryAx`; the complete exact-commit gate remains pending.
+  `sorryAx`. Their fresh exact-`4c43d6d` archive replays pass in 2.348 and
+  1.934 seconds. The exact-commit complete gate passes all 3,272 Lean jobs and
+  every 59-module teaching gate in 15.614 seconds with official checksum-
+  verified Hugo Extended with Deploy 0.160.1. The 2,645,312,343-byte successor
+  cache and its 8,101,386,240-byte tar stream pass pre/post-transfer `zstd`
+  and SHA-256 verification on retained storage. The sanitized receipt bundle
+  passes its local internal ledger. The exact task pod is terminated and
+  directly absent; the account has zero running pods, and the retained 100-GB
+  project volume remains.
 - Lotka-Volterra release QA on 2026-08-11 and 2026-08-12: the bounded Lean 4.32.0
   `Std` worksheet prints the expected five normalized field vectors and five
   zero cancellation values. All three card generators reproduce their
@@ -5794,6 +5846,15 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `4c43d6d`: repair the Lorenz candidate for pinned Mathlib by updating the
+  square-root import, making nested product equalities explicit, and aligning
+  named-radius and product-zero normalizations without changing theorem
+  statements; update teaching source hashes and record the warning-fatal leaf
+  and deterministic aggregator.
+- `fcd01d5`: prepare the classical three-parameter Lorenz field, sign-flip
+  symmetry, complete positive-parameter equilibrium classification, three
+  constant integral curves, cited three-page teaching bundle, deterministic
+  assets, bounded worksheet, and workstation/browser handoff.
 - `274910c`: repair the Lotka-Volterra candidate for pinned Mathlib by making
   coexistence-coordinate normalization explicit, rewriting pair equalities
   safely, and aligning the first-integral derivative expression without
