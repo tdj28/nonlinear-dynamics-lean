@@ -5,26 +5,27 @@
 
 Last updated: 2026-08-15
 
-Audited baseline: `main` at `4c43d6d`; its guarded leaf, deterministic
-aggregator, and complete repository gate pass on approved Linux compute.
+Audited baseline: `main` at `3e9cb91`; its guarded leaf, deterministic
+`QuantumChaos` aggregator, guarded project build, and complete repository gate
+pass on approved Linux compute.
 
-Active direction: **commit the warning-fatal proof repair for the shared
-finite-dimensional quantum-chaos foundation, then run its deterministic
-aggregators and exact-commit full gate before opening any diagnostic branch.**
+Active direction: **freeze the finite spectral-statistics interface before any
+GUE specialization, spectral-form-factor, out-of-time-order-correlator, or
+quantum-chaos criterion branch.**
 
-`NonlinearDynamics.QuantumChaos.FiniteSystems` is now a warning-fatal
-leaf-validated candidate.
+`NonlinearDynamics.QuantumChaos.FiniteSystems` is now a validated shared
+foundation.
 Its eighteen documented declarations reuse
 `NonlinearDynamics.Random.RandomMatrix.HermitianEuclidean` as the transparent
 `FiniteHamiltonian` carrier, expose the stored ambient Hermitian matrix, and
 freeze state evolution in units `ℏ = 1` as
 `U_H(t) = exp (-I t H)`. The Schrödinger generator is represented as the real
-scalar multiple `-t • (I • H)`. The candidate proves that this generator is
+scalar multiple `-t • (I • H)`. The module proves that this generator is
 skew-adjoint, bundles its exponential in
 `Matrix.unitaryGroup (Fin n) ℂ`, and states the zero-time, additive-time, and
 inverse-time laws.
 
-The same candidate defines reciprocal-dimension normalized trace as
+The same module defines reciprocal-dimension normalized trace as
 `(((n : ℕ) : ℝ)⁻¹ : ℂ) * Matrix.trace A`. It deliberately returns zero at
 dimension zero, proves unitary-conjugation invariance, and identifies the
 normalized trace of a finite Hamiltonian with the first moment of the existing
@@ -45,9 +46,25 @@ conjugate-transpose rewrites, and the absence of a synthesized
 checked repair proves exponential unitarity directly with
 `Matrix.exp_conjTranspose`, `skewAdjoint.mem_iff`, and the two commuting sums
 `-A + A = 0` and `A + -A = 0`. No public statement, sign, trace convention, or
-dimension-zero policy changed. The repaired warning-fatal leaf passes in four
-seconds on approved Linux compute. Deterministic aggregators and the complete
-exact-commit gate remain pending.
+dimension-zero policy changed. At exact pushed commit `3e9cb91`, the repaired
+warning-fatal leaf passes in four seconds; the guarded build, including the
+project root, completes all 3,275 jobs in eight seconds; the warning-fatal
+`QuantumChaos` aggregator passes in two seconds; and the complete guarded gate
+passes in ten seconds. The repository's `lean-file` guard deliberately accepts
+only paths beneath `formalization/NonlinearDynamics`, so the project-root
+aggregator is validated by the guarded build rather than by bypassing that
+path policy.
+
+The verified `.lake` successor archive
+`lake-manifest-pinned-quantum-foundation-20260815.tar.zst` contains 127,417
+entries and 2,645,325,610 bytes from an 8,104,796,160-byte tar stream. Its
+SHA-256 is
+`752730bbaa4aa3d286bf988e9a368902bd5130c58e73bd4b9aac57bd8b5f0155`.
+`zstd -t`, a complete tar listing, and the atomic checksum ledger
+`SHA256SUMS-quantum-foundation-20260815` all pass on retained storage. At
+receipt capture, paid compute spend was below $0.16 of the approved $5 ceiling;
+the exact task resource remains active only for the validation-record push and
+termination.
 
 The paired private-draft Research Note, Deep Dive, and finite-quantum-
 Hamiltonian glossary chapter remain `pro_reviewed: false`. They begin with the
@@ -3113,27 +3130,38 @@ and
 
 ## Exact Next Milestone
 
-### Validate the shared finite-dimensional quantum-chaos foundation
+### Specify finite spectral statistics before GUE specialization
 
-Commit and push the warning-fatal repair as an exact source checkpoint. On the
-active approved Linux builder, synchronize that exact commit, check the
-`QuantumChaos` aggregator and root aggregator, rerun all five axiom reports,
-and run the complete exact-commit gate with Hugo Extended 0.160.1. Preserve a
-verified successor cache sequentially on the retained volume, document the
-receipts and validation result, push the closure, terminate the exact task
-pod, and retain the project network volume.
+Research and freeze the first `QuantumChaos/SpectralStatistics.lean` candidate
+on top of `FiniteSystems`. Start from the reused decreasing ordered Hermitian
+spectrum and make the raw nearest-neighbor-spacing orientation explicit. Decide
+the dimension-zero and dimension-one totalization, whether an empirical spacing
+measure is normalized by the number of available gaps, and which statements
+require a positive-dimension or positive-gap-count hypothesis. Keep raw finite
+spacings separate from unfolding, ensemble averaging, and asymptotic spacing
+laws.
 
-The validated interface must retain all candidate decisions unless a compiled
-counterexample or pinned API forces a documented revision: reuse
-`HermitianEuclidean`, keep the stored Hermitian hypothesis, use real time and
-`exp (-I t H)` with `ℏ = 1`, bundle evolution in `Matrix.unitaryGroup`, use
-reciprocal-dimension normalized trace with a zero-dimensional value of zero,
-and reuse the ordered spectrum and measurable empirical spectral measure.
-Do not add a level-spacing statistic, unfolding, spectral form factor,
-out-of-time-order correlator, ensemble average, asymptotic statement, or
-quantum-chaos criterion to this validation repair.
+The source-and-teaching candidate must begin with a fully computed two- or
+three-level spectrum, state the exact ordering/sign convention, expose every
+normalization boundary, and add no GUE, universality, level-repulsion, spectral-
+form-factor, OTOC, or chaos conclusion. Complete workstation-safe QA first;
+request separately scoped Linux compute only when a pinned-toolchain proof
+check is ready.
 
 ## Earlier Milestone Records
+
+### Shared finite-dimensional quantum foundation
+
+Status on 2026-08-15: exact pushed commit `3e9cb91` passes the warning-fatal
+four-second leaf, the two-second `QuantumChaos` aggregator, the eight-second
+guarded 3,275-job project build, and the ten-second complete repository gate
+with checksum-verified Hugo Extended with Deploy 0.160.1. All five printed
+axiom footprints contain only `propext`, `Classical.choice`, and `Quot.sound`.
+The 2,645,325,610-byte successor Lake cache and its 8,104,796,160-byte tar
+stream pass `zstd`, complete-listing, SHA-256, and checksum-ledger verification
+on retained storage. The paired Research Note, Deep Dive, and glossary chapter
+remain private drafts with `pro_reviewed: false`; the exact task resource is
+active only through validation-record publication and termination.
 
 ### ODE stability interface decision and validated release
 
@@ -3990,14 +4018,14 @@ The ODE infrastructure and all six concrete-model slices are validated:
 
 ### Quantum chaos
 
-The shared foundation is a warning-fatal leaf-validated candidate; diagnostic
-branches remain placeholders:
+The shared foundation is validated; diagnostic branches remain placeholders:
 
-- [ ] `QuantumChaos/FiniteSystems.lean`: the eighteen-declaration candidate
+- [x] `QuantumChaos/FiniteSystems.lean`: the eighteen-declaration foundation
   reuses the Hermitian carrier and spectral data, fixes `exp (-I t H)`, bundles
   unitary evolution, and aligns zero-aware normalized trace with the first
-  empirical spectral moment. The repaired leaf and axiom audit pass;
-  deterministic aggregators and the exact-commit full gate remain pending.
+  empirical spectral moment. The repaired warning-fatal leaf, axiom audit,
+  deterministic aggregator, guarded project build, exact-commit full gate,
+  paired teaching bundle, and verified retained cache all pass.
 - [ ] `QuantumChaos/SpectralStatistics`
 - [ ] `QuantumChaos/GUE`
 - [ ] `QuantumChaos/SpectralFormFactor`
@@ -4793,6 +4821,24 @@ non-Lean gates were run and leave existing formalization evidence unchanged.
 
 Checkpoint/skill milestone QA:
 
+- Shared finite-dimensional quantum foundation release QA on 2026-08-15:
+  exact pushed commit `3e9cb91` passes the warning-fatal leaf in four seconds
+  with all five printed footprints limited to `propext`, `Classical.choice`,
+  and `Quot.sound`. The guarded project build completes all 3,275 jobs,
+  including the root aggregator, in eight seconds; the warning-fatal
+  `QuantumChaos` aggregator passes in two seconds; and
+  `CLOUD_LEAN_BUILD=1 make -j1 check` passes in ten seconds. That full gate
+  covers 60/60 Notebook pages, 23 coverage tests, seven hygiene tests, 211
+  Markdown files, 1,015 reader-facing surfaces, and warning-fatal Hugo
+  Extended with Deploy 0.160.1 renders of 493 production and 623 draft-
+  inclusive pages. The successor cache has 127,417 entries,
+  2,645,325,610 compressed bytes, an 8,104,796,160-byte tar stream, and
+  SHA-256
+  `752730bbaa4aa3d286bf988e9a368902bd5130c58e73bd4b9aac57bd8b5f0155`;
+  its `zstd`, complete-listing, and atomic-ledger checks pass on retained
+  storage. Sanitized leaf, build, aggregator, and full-gate logs were retrieved
+  and independently checksummed. No project Lean, Lake, Mathlib build, proof
+  probe, or cache restoration ran on macOS.
 - Lorenz release QA on 2026-08-12: the bounded Lean 4.32.0 `Std`
   worksheet prints the exact five-vector ledger
   `[(0, 0, 0), (0, 0, 0), (0, 0, 0), (1, -2, -4), (-1, 2, -4)]`.
@@ -5931,6 +5977,12 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `3e9cb91`: repair the shared finite-quantum foundation for pinned Mathlib by
+  replacing an invalid namespace abbreviation, importing the defining
+  spectral-moment module, orienting inverse and conjugate-transpose rewrites,
+  and proving matrix-exponential unitarity directly without changing any
+  public statement; update teaching hashes and record the passing warning-
+  fatal leaf.
 - `4c43d6d`: repair the Lorenz candidate for pinned Mathlib by updating the
   square-root import, making nested product equalities explicit, and aligning
   named-radius and product-zero normalizations without changing theorem

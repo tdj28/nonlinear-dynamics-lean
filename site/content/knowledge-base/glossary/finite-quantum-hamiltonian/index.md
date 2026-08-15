@@ -27,9 +27,9 @@ sources and any released artifacts before relying on them.
 
 {{< panel "warning" >}}
 **Editorial and validation status.** This is a private AI-assisted working
-chapter. The warning-fatal pinned-toolchain leaf passes; the exact-commit full
-repository gate and professional review remain pending, so
-<code>pro_reviewed</code> remains false.
+chapter. The warning-fatal pinned-toolchain leaf, deterministic aggregator,
+and exact-commit full repository gate pass. Professional review remains
+pending, so <code>pro_reviewed</code> remains false.
 {{< /panel >}}
 
 A **finite quantum Hamiltonian** in this project is an \(n\times n\) complex

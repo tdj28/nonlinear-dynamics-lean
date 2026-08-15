@@ -33,9 +33,9 @@ sources and any released artifacts before relying on them.
 
 {{< panel "warning" >}}
 **Editorial status.** This is a private AI-assisted working draft.
-The warning-fatal pinned-toolchain leaf passes, while the exact-commit full
-repository gate and professional review remain pending. `pro_reviewed` remains
-false.
+The warning-fatal pinned-toolchain leaf, deterministic aggregator, and
+exact-commit full repository gate pass. Professional review remains pending,
+so `pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Abstract
@@ -211,8 +211,12 @@ uses Mathlib's matrix-specific `exp_conjTranspose` and
 `exp_add_of_commute` lemmas to establish the two defining unitary equalities
 directly.
 
-The repaired warning-fatal leaf passes in four seconds. The deterministic
-aggregator and exact-commit full repository gate remain the release boundary.
+At exact commit `3e9cb91`, the repaired warning-fatal leaf passes in four
+seconds, the deterministic `QuantumChaos` aggregator passes in two seconds,
+and the complete repository gate passes all 3,275 Lean jobs and every paired
+teaching check in ten seconds with Hugo Extended 0.160.1. These checks validate
+the formal statements and repository contracts; they do not supply
+professional review of the mathematical or physical exposition.
 
 ## In Lean
 
@@ -270,7 +274,7 @@ lake env lean -DwarningAsError=true \
 
 ## Scope ledger
 
-Established by the warning-fatal compiled leaf:
+Established by the validated exact-commit formalization:
 
 - reuse of the checked finite Hermitian carrier;
 - the \(e^{-itH}\), \(\hbar=1\) convention;
