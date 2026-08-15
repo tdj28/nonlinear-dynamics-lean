@@ -1,5 +1,6 @@
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import NonlinearDynamics.Random.RandomMatrices.HermitianSpectrumContinuity
+import Mathlib.Topology.Instances.Matrix
+import NonlinearDynamics.Random.RandomMatrices.GaussianUnitaryEnsembleSpectrum
 
 /-!
 # Shared finite-dimensional quantum systems
@@ -30,7 +31,7 @@ open scoped Matrix Norms.Operator
 
 namespace NonlinearDynamics.QuantumChaos
 
-namespace RandomMatrix := NonlinearDynamics.Random.RandomMatrix
+open NonlinearDynamics.Random
 
 noncomputable section
 
@@ -60,7 +61,7 @@ theorem schrodingerGenerator_mem_skewAdjoint {n : ℕ}
     (H : FiniteHamiltonian n) (t : ℝ) :
     schrodingerGenerator H t ∈
       skewAdjoint (Matrix (Fin n) (Fin n) ℂ) := by
-  exact (skewAdjoint (Matrix (Fin n) (Fin n) ℂ)).smul_mem (-t)
+  exact skewAdjoint.smul_mem (-t)
     (hamiltonianMatrix_isHermitian H).isSelfAdjoint.I_smul_mem_skewAdjoint
 
 /-- The time-zero generator is the zero matrix. -/
@@ -84,6 +85,28 @@ theorem schrodingerGenerator_commute {n : ℕ} (H : FiniteHamiltonian n)
     Commute (schrodingerGenerator H s) (schrodingerGenerator H t) := by
   exact ((Commute.refl (Complex.I • hamiltonianMatrix H)).smul_left (-s)).smul_right (-t)
 
+private theorem matrix_exp_mem_unitary_of_mem_skewAdjoint {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℂ)
+    (hA : A ∈ skewAdjoint (Matrix (Fin n) (Fin n) ℂ)) :
+    exp A ∈ unitary (Matrix (Fin n) (Fin n) ℂ) := by
+  constructor
+  · calc
+      star (exp A) * exp A = exp (star A) * exp A := by
+        rw [Matrix.star_eq_conjTranspose, ← Matrix.exp_conjTranspose,
+          ← Matrix.star_eq_conjTranspose]
+      _ = exp (-A) * exp A := by rw [skewAdjoint.mem_iff.mp hA]
+      _ = exp (-A + A) :=
+        (Matrix.exp_add_of_commute _ _ (Commute.refl A).neg_left).symm
+      _ = 1 := by simp
+  · calc
+      exp A * star (exp A) = exp A * exp (star A) := by
+        rw [Matrix.star_eq_conjTranspose, ← Matrix.exp_conjTranspose,
+          ← Matrix.star_eq_conjTranspose]
+      _ = exp A * exp (-A) := by rw [skewAdjoint.mem_iff.mp hA]
+      _ = exp (A + -A) :=
+        (Matrix.exp_add_of_commute _ _ (Commute.refl A).neg_right).symm
+      _ = 1 := by simp
+
 /-- The ambient matrix exponential `exp (-I t H)`. -/
 noncomputable def timeEvolutionMatrix {n : ℕ} (H : FiniteHamiltonian n)
     (t : ℝ) : Matrix (Fin n) (Fin n) ℂ :=
@@ -93,7 +116,7 @@ noncomputable def timeEvolutionMatrix {n : ℕ} (H : FiniteHamiltonian n)
 noncomputable def timeEvolution {n : ℕ} (H : FiniteHamiltonian n) (t : ℝ) :
     Matrix.unitaryGroup (Fin n) ℂ :=
   ⟨timeEvolutionMatrix H t,
-    exp_mem_unitary_of_mem_skewAdjoint
+    matrix_exp_mem_unitary_of_mem_skewAdjoint _
       (schrodingerGenerator_mem_skewAdjoint H t)⟩
 
 /-- Forgetting the unitary certificate exposes the matrix exponential. -/
@@ -120,7 +143,7 @@ theorem timeEvolution_add {n : ℕ} (H : FiniteHamiltonian n) (s t : ℝ) :
 /-- Opposite time gives the inverse unitary evolution. -/
 @[simp] theorem timeEvolution_neg {n : ℕ} (H : FiniteHamiltonian n) (t : ℝ) :
     timeEvolution H (-t) = (timeEvolution H t)⁻¹ := by
-  apply eq_inv_of_mul_eq_one_right
+  apply eq_inv_of_mul_eq_one_right (a := timeEvolution H t)
   rw [← timeEvolution_add]
   simp
 
@@ -144,9 +167,10 @@ theorem normalizedTrace_unitary_conjugation {n : ℕ}
   congr 1
   calc
     Matrix.trace ((U : Matrix (Fin n) (Fin n) ℂ) * A * Uᴴ) =
-        Matrix.trace (Uᴴ * (U : Matrix (Fin n) (Fin n) ℂ) * A) :=
+      Matrix.trace (Uᴴ * (U : Matrix (Fin n) (Fin n) ℂ) * A) :=
       Matrix.trace_mul_cycle _ _ _
-    _ = Matrix.trace A := by rw [U.2.1, one_mul]
+    _ = Matrix.trace A := by
+      rw [← Matrix.star_eq_conjTranspose, U.2.1, one_mul]
 
 /-- For a finite Hamiltonian, normalized trace is the first complex moment of
 the existing zero-aware empirical spectral measure. -/

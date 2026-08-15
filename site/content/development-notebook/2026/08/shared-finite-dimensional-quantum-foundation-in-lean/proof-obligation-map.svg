@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
   <title id="title">Proof obligations for evolution and normalized trace</title>
-  <desc id="desc">The evolution path starts with a Hermitian Hamiltonian, derives a skew-adjoint minus-i-time generator, applies the exponential unitary theorem, and uses commutation for time addition. The observable path uses trace cyclicity and the imported empirical spectral moment identity. Both stop before a quantum-chaos conclusion.</desc>
+  <desc id="desc">The evolution path starts with a Hermitian Hamiltonian, derives a skew-adjoint minus-i-time generator, checks the two unitary identities with conjugate transpose and commuting exponentials, and uses commutation for time addition. The observable path uses trace cyclicity and the imported empirical spectral moment identity. Both stop before a quantum-chaos conclusion.</desc>
   <rect width="1120" height="620" rx="24" fill="#f7f2e8"/>
   <text x="52" y="58" font-family="system-ui,sans-serif" font-size="28" font-weight="750" fill="#16324f">Two finite proof paths, no chaos shortcut</text>
   <rect x="52" y="92" width="1016" height="74" rx="18" fill="#e4eef4" stroke="#315f63" stroke-width="3"/>

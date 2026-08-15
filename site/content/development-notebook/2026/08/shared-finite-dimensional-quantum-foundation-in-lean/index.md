@@ -16,7 +16,7 @@ tags:
 lean_module: "NonlinearDynamics.QuantumChaos.FiniteSystems"
 lean_source: "formalization/NonlinearDynamics/QuantumChaos/FiniteSystems.lean"
 lean_snapshot: "/lean/NonlinearDynamics/QuantumChaos/FiniteSystems.lean"
-lean_source_sha256: "022207ae5643acc87fc125f98974b20a8e56a24db14247f027f5547edaa1ff79"
+lean_source_sha256: "f178704b75afdb20a5bbde658d20007ec3de755e5bbe416e86c5d9b4bf8563dd"
 toc: true
 og_image: "shared-finite-dimensional-quantum-foundation-in-lean-card.png"
 og_image_alt: "One Hermitian Hamiltonian feeds unitary evolution, normalized trace, and reused finite spectral data, with a boundary before quantum-chaos diagnostics."
@@ -33,8 +33,9 @@ sources and any released artifacts before relying on them.
 
 {{< panel "warning" >}}
 **Editorial status.** This is a private AI-assisted working draft.
-Professional review and pinned-toolchain validation remain pending, so
-`pro_reviewed` remains false. The interface below is a source-only candidate.
+The warning-fatal pinned-toolchain leaf passes, while the exact-commit full
+repository gate and professional review remain pending. `pro_reviewed` remains
+false.
 {{< /panel >}}
 
 ## Abstract
@@ -152,8 +153,9 @@ The candidate has eighteen documented public declarations.
 | `normalizedTrace_hamiltonian_eq_empiricalSpectralMoment_one` | Spectral first-moment bridge |
 
 Five `#print axioms` commands audit the main carrier, generator, evolution,
-inverse, and spectral-trace endpoints. Their output remains pending the
-pinned-toolchain Linux leaf check.
+inverse, and spectral-trace endpoints. The warning-fatal pinned-toolchain leaf
+reports only `propext`, `Classical.choice`, and `Quot.sound`; it reports no
+`sorryAx` dependency.
 
 ## Proof architecture
 
@@ -162,8 +164,10 @@ The central proof has four steps.
 1. The carrier provides \(H^*=H\).
 2. Since complex conjugation sends \(i\) to \(-i\), the matrix
    \(-t(iH)\) is skew-adjoint.
-3. Mathlib's `exp_mem_unitary_of_mem_skewAdjoint` bundles its exponential as a
-   unitary matrix.
+3. The private matrix-specific bridge rewrites conjugate transpose through
+   `Matrix.exp_conjTranspose`, substitutes the skew-adjoint identity, and uses
+   `Matrix.exp_add_of_commute` at (-A+A=0) and (A-A=0) to establish both
+   unitary identities.
 4. The two generators \(G_H(s)\) and \(G_H(t)\) commute because both are
    scalar multiples of \(iH\). `Matrix.exp_add_of_commute` then gives the
    addition law.
@@ -186,27 +190,29 @@ expression.
 {{< reference-figure
   wide="true"
   src="proof-obligation-map.svg"
-  alt="A proof map starts with Hermitian H, turns iH into a skew-adjoint generator, applies the exponential theorem to get a unitary, uses same-Hamiltonian commutation for the addition law, and separately uses trace cyclicity plus the existing empirical moment theorem."
+  alt="A proof map starts with Hermitian H, turns iH into a skew-adjoint generator, checks both unitary identities through conjugate transpose and commuting exponentials, uses same-Hamiltonian commutation for the addition law, and separately uses trace cyclicity plus the existing empirical moment theorem."
   caption="**Two proof paths:** skew-adjointness controls evolution, while trace cyclicity and an imported spectral theorem control normalized observables. Neither path supplies a chaos diagnostic."
 >}}
 
-## Source-level risk before validation
+## Pinned-toolchain validation result
 
-The candidate intentionally uses Mathlib's scoped operator norm for the
-matrix exponential. The public matrix-exponential lemmas hide that otherwise
-noncanonical matrix-norm choice, but elaboration against the pinned revision
-must still confirm the selected instances and coercions.
+The first warning-fatal leaf rejected one parse seam and four
+statement-preserving API assumptions. The namespace abbreviation syntax was
+not valid; real closure of `skewAdjoint` is a namespace theorem rather than an
+`AddSubgroup` field; the empirical-moment declaration needs its defining
+module imported; and the group-inverse and conjugate-transpose rewrites needed
+explicit orientations.
 
-The most likely proof seams are statement-preserving:
+The remaining issue was mathematical infrastructure rather than a changed
+statement. The generic `exp_mem_unitary_of_mem_skewAdjoint` route requests a
+`ContinuousStar` instance for the selected matrix operator-norm topology. The
+pinned library does not synthesize that instance. The checked repair instead
+uses Mathlib's matrix-specific `exp_conjTranspose` and
+`exp_add_of_commute` lemmas to establish the two defining unitary equalities
+directly.
 
-- coercion between the bundled unitary and its ambient matrix;
-- scalar tower normalization in \(-t(iH)\);
-- orientation of the group inverse lemma; and
-- trace-cycle reassociation around \(U^*U=1\).
-
-The exact candidate still requires a warning-fatal check with the repository's
-pinned Lean and Mathlib versions. The public status remains source-only
-candidate until that reproducible check passes.
+The repaired warning-fatal leaf passes in four seconds. The deterministic
+aggregator and exact-commit full repository gate remain the release boundary.
 
 ## In Lean
 
@@ -215,8 +221,8 @@ candidate until that reproducible check passes.
   math="\(H^*=H\Longrightarrow(-itH)^*=-(-itH).\)"
   lean="theorem schrodingerGenerator_mem_skewAdjoint {n : ℕ}\n    (H : FiniteHamiltonian n) (t : ℝ) :\n    schrodingerGenerator H t ∈\n      skewAdjoint (Matrix (Fin n) (Fin n) ℂ)"
 >}}
-Membership in `skewAdjoint` is the exact premise consumed by Mathlib's
-unitary-exponential theorem.
+Membership in `skewAdjoint` is the exact premise consumed by the private
+matrix-exponential unitarity bridge.
 {{< /lean-bridge >}}
 
 {{< lean-bridge
@@ -250,7 +256,7 @@ pinned Lean and Mathlib dependencies and may require substantial disk space or
 build time.
 
 {{< repo-check >}}
-The warning-fatal leaf check will ask Lean's elaborator to construct candidate
+The warning-fatal leaf check asks Lean's elaborator to construct candidate
 proof terms and its kernel to check them against all eighteen declarations.
 It does not audit whether a physical Hamiltonian is an adequate model, and it
 does not turn finite spectral data into evidence of chaos.
@@ -264,7 +270,7 @@ lake env lean -DwarningAsError=true \
 
 ## Scope ledger
 
-Established by the candidate statements, once compiled:
+Established by the warning-fatal compiled leaf:
 
 - reuse of the checked finite Hermitian carrier;
 - the \(e^{-itH}\), \(\hbar=1\) convention;
@@ -302,7 +308,7 @@ Not established:
   spectral-form-factor interface, not a theorem in this candidate.
 - Mathlib contributors,
   [`Analysis.Normed.Algebra.MatrixExponential`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Normed/Algebra/MatrixExponential.lean),
-  [`Analysis.Normed.Algebra.Exponential`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Normed/Algebra/Exponential.lean),
+  [`Algebra.Star.SelfAdjoint`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Algebra/Star/SelfAdjoint.lean),
   [`LinearAlgebra.Matrix.Hermitian`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/LinearAlgebra/Matrix/Hermitian.lean), and
   [`LinearAlgebra.UnitaryGroup`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/LinearAlgebra/UnitaryGroup.lean),
   pinned revision `81a5d257` used by Mathlib 4.32.0.

@@ -3,17 +3,17 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-13
+Last updated: 2026-08-15
 
 Audited baseline: `main` at `4c43d6d`; its guarded leaf, deterministic
 aggregator, and complete repository gate pass on approved Linux compute.
 
-Active direction: **validate and proof-repair the source-and-teaching candidate
-for the shared finite-dimensional quantum-chaos foundation before opening any
-spectral-statistics, spectral-form-factor, out-of-time-order-correlator, or
-k-invariance theorem branch.**
+Active direction: **commit the warning-fatal proof repair for the shared
+finite-dimensional quantum-chaos foundation, then run its deterministic
+aggregators and exact-commit full gate before opening any diagnostic branch.**
 
-`NonlinearDynamics.QuantumChaos.FiniteSystems` is now a source-only candidate.
+`NonlinearDynamics.QuantumChaos.FiniteSystems` is now a warning-fatal
+leaf-validated candidate.
 Its eighteen documented declarations reuse
 `NonlinearDynamics.Random.RandomMatrix.HermitianEuclidean` as the transparent
 `FiniteHamiltonian` carrier, expose the stored ambient Hermitian matrix, and
@@ -32,9 +32,22 @@ zero-aware empirical spectral measure. Ordered eigenvalues, their continuity
 and measurability, and empirical spectral measures remain the checked
 random-matrix definitions; the quantum layer introduces no duplicate spectrum
 or measure carrier. The source SHA-256 is
-`022207ae5643acc87fc125f98974b20a8e56a24db14247f027f5547edaa1ff79`.
-Five endpoint axiom prints are present but have not yet been evaluated against
-the pinned project toolchain.
+`f178704b75afdb20a5bbde658d20007ec3de755e5bbe416e86c5d9b4bf8563dd`.
+All five endpoint axiom prints report only `propext`, `Classical.choice`, and
+`Quot.sound`; none reports `sorryAx`.
+
+The first pinned-toolchain leaf exposed only statement-preserving seams: an
+invalid namespace-abbreviation syntax, the namespace location of real-scalar
+closure for `skewAdjoint`, the missing defining import for the generic
+empirical spectral moment, explicit orientations for inverse-time and
+conjugate-transpose rewrites, and the absence of a synthesized
+`ContinuousStar` instance for the selected matrix operator-norm topology. The
+checked repair proves exponential unitarity directly with
+`Matrix.exp_conjTranspose`, `skewAdjoint.mem_iff`, and the two commuting sums
+`-A + A = 0` and `A + -A = 0`. No public statement, sign, trace convention, or
+dimension-zero policy changed. The repaired warning-fatal leaf passes in four
+seconds on approved Linux compute. Deterministic aggregators and the complete
+exact-commit gate remain pending.
 
 The paired private-draft Research Note, Deep Dive, and finite-quantum-
 Hamiltonian glossary chapter remain `pro_reviewed: false`. They begin with the
@@ -3102,16 +3115,13 @@ and
 
 ### Validate the shared finite-dimensional quantum-chaos foundation
 
-Complete workstation-safe QA for the source-and-teaching candidate, commit and
-push it as an exact source checkpoint, then propose a fresh approved Linux
-builder. On that builder, restore the verified Lorenz Lake archive onto fast
-ephemeral storage, run the warning-fatal
-`NonlinearDynamics/QuantumChaos/FiniteSystems.lean` leaf, and repair only
-statement-preserving pinned-API seams. Check the `QuantumChaos` aggregator and
-the root aggregator, inspect all five axiom reports for `sorryAx`, run the
-complete exact-commit gate, preserve a verified successor cache sequentially
-on the retained volume, document the receipts and validation result, push the
-closure, terminate the exact task pod, and retain the project network volume.
+Commit and push the warning-fatal repair as an exact source checkpoint. On the
+active approved Linux builder, synchronize that exact commit, check the
+`QuantumChaos` aggregator and root aggregator, rerun all five axiom reports,
+and run the complete exact-commit gate with Hugo Extended 0.160.1. Preserve a
+verified successor cache sequentially on the retained volume, document the
+receipts and validation result, push the closure, terminate the exact task
+pod, and retain the project network volume.
 
 The validated interface must retain all candidate decisions unless a compiled
 counterexample or pinned API forces a documented revision: reuse
@@ -3980,13 +3990,14 @@ The ODE infrastructure and all six concrete-model slices are validated:
 
 ### Quantum chaos
 
-The shared foundation is a source-and-teaching candidate; diagnostic branches
-remain placeholders:
+The shared foundation is a warning-fatal leaf-validated candidate; diagnostic
+branches remain placeholders:
 
 - [ ] `QuantumChaos/FiniteSystems.lean`: the eighteen-declaration candidate
   reuses the Hermitian carrier and spectral data, fixes `exp (-I t H)`, bundles
   unitary evolution, and aligns zero-aware normalized trace with the first
-  empirical spectral moment. Pinned-toolchain validation remains pending.
+  empirical spectral moment. The repaired leaf and axiom audit pass;
+  deterministic aggregators and the exact-commit full gate remain pending.
 - [ ] `QuantumChaos/SpectralStatistics`
 - [ ] `QuantumChaos/GUE`
 - [ ] `QuantumChaos/SpectralFormFactor`

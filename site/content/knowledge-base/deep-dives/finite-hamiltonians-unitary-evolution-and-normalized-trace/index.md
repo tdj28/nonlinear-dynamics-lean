@@ -11,7 +11,7 @@ reading_time: "30 to 40 minutes"
 prerequisites: "Two-by-two matrices, complex conjugation, and eigenvalues are introduced through the worked example"
 lean_module: "NonlinearDynamics.QuantumChaos.FiniteSystems"
 lean_snapshot: "/lean/NonlinearDynamics/QuantumChaos/FiniteSystems.lean"
-lean_source_sha256: "022207ae5643acc87fc125f98974b20a8e56a24db14247f027f5547edaa1ff79"
+lean_source_sha256: "f178704b75afdb20a5bbde658d20007ec3de755e5bbe416e86c5d9b4bf8563dd"
 toc: true
 og_image: "finite-hamiltonians-unitary-evolution-and-normalized-trace-card.png"
 og_image_alt: "A two-level Hamiltonian with energies one and minus one generates opposite phase rotations, while normalized trace and claim boundaries remain visible."
@@ -26,8 +26,9 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial and validation status.** This is a private AI-assisted working
-draft. Professional review and pinned-toolchain validation remain pending;
-`pro_reviewed` remains false. The Lean interface is a source-only candidate.
+draft. The warning-fatal pinned-toolchain leaf passes; the exact-commit full
+repository gate and professional review remain pending. `pro_reviewed` remains
+false.
 {{< /panel >}}
 
 ## Start with a two-level Hamiltonian
@@ -144,10 +145,13 @@ Hermiticity says \(H^*=H\). Complex conjugation sends \(i\) to \(-i\), so
 (-itH)^*=itH=-(-itH).
 \]
 
-The exponent is therefore **skew-adjoint**. Mathlib's exponential theorem says
-that the exponential of a skew-adjoint element is unitary. The candidate uses
-that theorem to return an element of `Matrix.unitaryGroup (Fin n) ℂ`, rather
-than returning a matrix plus an unrelated later proof.
+The exponent is therefore **skew-adjoint**. The checked source rewrites the
+conjugate transpose of the exponential with `Matrix.exp_conjTranspose`, then
+combines the pairs (-A+A) and (A-A) with
+`Matrix.exp_add_of_commute`. Both products reduce to the identity, so the
+exponential is returned as an element of
+`Matrix.unitaryGroup (Fin n) ℂ`, rather than as a matrix plus an unrelated
+later proof.
 
 For one fixed \(H\), the generators at times \(s\) and \(t\) are scalar
 multiples of the same matrix and commute. Therefore
@@ -329,7 +333,7 @@ lake env lean -DwarningAsError=true \
   spectral form factor is defined in this foundation.
 - Mathlib contributors,
   [`Analysis.Normed.Algebra.MatrixExponential`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Normed/Algebra/MatrixExponential.lean),
-  [`Analysis.Normed.Algebra.Exponential`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Normed/Algebra/Exponential.lean), and
+  [`Algebra.Star.SelfAdjoint`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Algebra/Star/SelfAdjoint.lean), and
   [`LinearAlgebra.UnitaryGroup`](https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/LinearAlgebra/UnitaryGroup.lean),
   pinned revision `81a5d257` used by Mathlib 4.32.0.
 
