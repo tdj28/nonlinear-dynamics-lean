@@ -5,9 +5,9 @@
 
 Last updated: 2026-08-15
 
-Audited baseline: `main` at `3e9cb91`; its guarded leaf, deterministic
-`QuantumChaos` aggregator, guarded project build, and complete repository gate
-pass on approved Linux compute.
+Audited baseline: `main` at `55674eb`. Its exact formal source commit is
+`3e9cb91`; the guarded leaf, deterministic `QuantumChaos` aggregator, guarded
+project build, and complete repository gate pass on approved Linux compute.
 
 Active direction: **freeze the finite spectral-statistics interface before any
 GUE specialization, spectral-form-factor, out-of-time-order-correlator, or
@@ -61,10 +61,12 @@ entries and 2,645,325,610 bytes from an 8,104,796,160-byte tar stream. Its
 SHA-256 is
 `752730bbaa4aa3d286bf988e9a368902bd5130c58e73bd4b9aac57bd8b5f0155`.
 `zstd -t`, a complete tar listing, and the atomic checksum ledger
-`SHA256SUMS-quantum-foundation-20260815` all pass on retained storage. At
-receipt capture, paid compute spend was below $0.16 of the approved $5 ceiling;
-the exact task resource remains active only for the validation-record push and
-termination.
+`SHA256SUMS-quantum-foundation-20260815` all pass on retained storage. The
+exact task pod was terminated after approximately 31 minutes and $0.17 of
+compute, well below the approved $5 ceiling. Direct lookup is absent and final
+inventory reports zero pods and zero active hourly compute rate. The retained
+100-GB project network volume remains; its estimated storage rate is $7 per
+month.
 
 The paired private-draft Research Note, Deep Dive, and finite-quantum-
 Hamiltonian glossary chapter remain `pro_reviewed: false`. They begin with the
@@ -3161,7 +3163,8 @@ The 2,645,325,610-byte successor Lake cache and its 8,104,796,160-byte tar
 stream pass `zstd`, complete-listing, SHA-256, and checksum-ledger verification
 on retained storage. The paired Research Note, Deep Dive, and glossary chapter
 remain private drafts with `pro_reviewed: false`; the exact task resource is
-active only through validation-record publication and termination.
+terminated, final inventory reports zero pods and zero active compute rate,
+and the retained 100-GB project network volume remains.
 
 ### ODE stability interface decision and validated release
 
@@ -4838,7 +4841,10 @@ Checkpoint/skill milestone QA:
   its `zstd`, complete-listing, and atomic-ledger checks pass on retained
   storage. Sanitized leaf, build, aggregator, and full-gate logs were retrieved
   and independently checksummed. No project Lean, Lake, Mathlib build, proof
-  probe, or cache restoration ran on macOS.
+  probe, or cache restoration ran on macOS. Validation record `55674eb` is on
+  `main`; the exact task pod was terminated after approximately 31 minutes and
+  $0.17 of compute. Direct lookup is absent, final inventory reports zero pods
+  and zero active hourly rate, and the retained 100-GB project volume remains.
 - Lorenz release QA on 2026-08-12: the bounded Lean 4.32.0 `Std`
   worksheet prints the exact five-vector ledger
   `[(0, 0, 0), (0, 0, 0), (0, 0, 0), (1, -2, -4), (-1, 2, -4)]`.
@@ -5977,6 +5983,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `55674eb`: record the passing exact-commit finite-quantum leaf, deterministic
+  aggregator, guarded project build, complete repository gate, verified
+  successor cache, validated teaching status, and finite-spectral-statistics
+  handoff.
 - `3e9cb91`: repair the shared finite-quantum foundation for pinned Mathlib by
   replacing an invalid namespace abbreviation, importing the defining
   spectral-moment module, orienting inverse and conjugate-transpose rewrites,
