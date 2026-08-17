@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="500" viewBox="0 0 1120 500" role="img" aria-labelledby="title desc">
+  <title id="title">Raw level spacing map</title>
+  <desc id="desc">Decreasing ordered levels two, two, and minus one map to raw gaps zero and three and then to an empirical measure with equal weights. Unfolding and ensemble laws remain later operations.</desc>
+  <rect width="1120" height="500" rx="24" fill="#f7f2e8"/>
+  <text x="48" y="55" font-family="system-ui,sans-serif" font-size="29" font-weight="750" fill="#17324d">Raw means before density rescaling</text>
+  <rect x="48" y="96" width="272" height="302" rx="20" fill="#e6eef4" stroke="#376780" stroke-width="3"/>
+  <text x="184" y="137" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="750" fill="#17324d">LEVELS</text>
+  <text x="184" y="215" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="#17324d">(2, 2, −1)</text>
+  <text x="184" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">decreasing, with multiplicity</text>
+  <text x="184" y="338" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#17324d">λ₀ ≥ λ₁ ≥ λ₂</text>
+  <path d="M322 248 H386" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/>
+  <rect x="398" y="96" width="272" height="302" rx="20" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="534" y="137" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="750" fill="#70442d">RAW GAPS</text>
+  <text x="534" y="215" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="#70442d">(0, 3)</text>
+  <text x="534" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#70442d">current minus next</text>
+  <text x="534" y="338" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#70442d">Δᵢ = λᵢ − λᵢ₊₁</text>
+  <path d="M672 248 H736" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/>
+  <rect x="748" y="96" width="324" height="302" rx="20" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="910" y="137" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="750" fill="#285448">EMPIRICAL RAW MEASURE</text>
+  <text x="910" y="215" text-anchor="middle" font-family="Georgia,serif" font-size="31" fill="#285448">½δ₀ + ½δ₃</text>
+  <text x="910" y="270" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#285448">mass 1 · mean 3/2</text>
+  <text x="910" y="338" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="750" fill="#8a3333">NOT YET UNFOLDED</text>
+  <text x="560" y="460" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#17324d">UNFOLDING · ENSEMBLE LAW · ASYMPTOTICS ARE SEPARATE DOWNSTREAM CHOICES</text>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker></defs>
+</svg>

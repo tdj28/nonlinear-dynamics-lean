@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Repeated three-level raw spacing ledger</title>
+  <desc id="desc">Two coincident energy levels at two and one level at minus one give rank-adjacent gaps zero and three. Both gaps become atoms with weight one half.</desc>
+  <rect width="1120" height="620" rx="24" fill="#f7f2e8"/>
+  <text x="48" y="55" font-family="system-ui,sans-serif" font-size="29" font-weight="750" fill="#17324d">The zero gap is data, not an empty case</text>
+  <rect x="48" y="90" width="475" height="470" rx="22" fill="#e6eef4" stroke="#376780" stroke-width="3"/>
+  <text x="285" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#17324d">ORDERED ENERGY AXIS</text>
+  <line x1="138" y1="172" x2="138" y2="496" stroke="#17324d" stroke-width="3"/>
+  <path d="M132 180 L138 165 L144 180" fill="none" stroke="#17324d" stroke-width="3"/>
+  <line x1="176" y1="222" x2="392" y2="222" stroke="#2d7f73" stroke-width="7"/>
+  <line x1="176" y1="236" x2="392" y2="236" stroke="#2d7f73" stroke-width="7"/>
+  <line x1="176" y1="430" x2="392" y2="430" stroke="#8a5b3d" stroke-width="7"/>
+  <text x="112" y="232" text-anchor="end" font-family="Georgia,serif" font-size="24" fill="#17324d">2</text>
+  <text x="112" y="438" text-anchor="end" font-family="Georgia,serif" font-size="24" fill="#17324d">−1</text>
+  <text x="284" y="209" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#285448">rank 0</text>
+  <text x="284" y="264" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#285448">rank 1</text>
+  <text x="284" y="461" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#70442d">rank 2</text>
+  <path d="M420 222 V236" stroke="#8a3333" stroke-width="4" marker-start="url(#dot)" marker-end="url(#dot)"/>
+  <text x="442" y="235" font-family="Georgia,serif" font-size="22" fill="#8a3333">Δ₀ = 0</text>
+  <path d="M420 236 V430" stroke="#8a3333" stroke-width="4" marker-start="url(#dot)" marker-end="url(#dot)"/>
+  <text x="442" y="340" font-family="Georgia,serif" font-size="22" fill="#8a3333">Δ₁ = 3</text>
+  <path d="M525 320 H585" stroke="#315f63" stroke-width="5" marker-end="url(#a)"/>
+  <rect x="596" y="90" width="476" height="470" rx="22" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="834" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#285448">MEASURE LEDGER</text>
+  <line x1="672" y1="248" x2="997" y2="248" stroke="#17324d" stroke-width="3"/>
+  <circle cx="714" cy="248" r="12" fill="#8a3333"/>
+  <circle cx="946" cy="248" r="12" fill="#8a5b3d"/>
+  <text x="714" y="282" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#17324d">0</text>
+  <text x="946" y="282" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#17324d">3</text>
+  <text x="834" y="190" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#285448">C = δ₀ + δ₃</text>
+  <text x="834" y="330" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#285448">L = ½δ₀ + ½δ₃</text>
+  <text x="834" y="374" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#285448">total mass = 1</text>
+  <text x="834" y="420" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#8a3333">mean = 3/2</text>
+  <text x="834" y="468" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="750" fill="#8a3333">NO UNIT-MEAN RESCALING</text>
+  <text x="560" y="595" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#17324d">SAME TWO RANK SLOTS · SAME TWO ATOMS · MULTIPLICITY PRESERVED</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#315f63"/></marker>
+    <marker id="dot" markerWidth="6" markerHeight="6" refX="3" refY="3"><circle cx="3" cy="3" r="2.4" fill="#8a3333"/></marker>
+  </defs>
+</svg>

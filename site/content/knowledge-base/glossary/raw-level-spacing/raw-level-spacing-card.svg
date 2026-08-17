@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Raw level spacing</title>
+  <desc id="desc">A glossary card maps decreasing ordered levels two, two, and minus one to raw adjacent differences zero and three before unfolding.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#8a5b3d" stroke-width="4"/>
+  <text x="78" y="105" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#8a5b3d">KNOWLEDGE BASE · GLOSSARY</text>
+  <text x="78" y="184" font-family="system-ui,sans-serif" font-size="54" font-weight="800" fill="#17324d">RAW LEVEL SPACING</text>
+  <rect x="78" y="235" width="1044" height="190" rx="22" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="#70442d">λ₀ ≥ λ₁ ≥ λ₂</text>
+  <text x="600" y="355" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#70442d">(2, 2, −1)  →  (0, 3)</text>
+  <text x="600" y="397" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#70442d">Δᵢ = λᵢ − λᵢ₊₁</text>
+  <rect x="78" y="461" width="1044" height="73" rx="18" fill="#e1eee6"/>
+  <text x="600" y="508" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#285448">BEFORE UNFOLDING · ZERO GAPS RETAINED · MASS NORMALIZATION ONLY</text>
+  <text x="600" y="565" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#17324d">ADJACENT MEANS ADJACENT SPECTRAL RANK</text>
+</svg>

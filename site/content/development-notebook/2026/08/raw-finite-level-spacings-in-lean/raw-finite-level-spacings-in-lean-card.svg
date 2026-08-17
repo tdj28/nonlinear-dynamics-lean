@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Raw finite level spacings in Lean</title>
+  <desc id="desc">A Research Note card maps decreasing levels two, two, and minus one to raw gaps zero and three, a counting measure, and an empirical probability measure before unfolding.</desc>
+  <rect width="1200" height="630" fill="#f1e9da"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#fffaf1" stroke="#315f63" stroke-width="4"/>
+  <text x="78" y="102" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2d7f73">DEVELOPMENT NOTEBOOK · RESEARCH NOTE</text>
+  <text x="78" y="169" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#17324d">RAW FINITE LEVEL</text>
+  <text x="78" y="222" font-family="system-ui,sans-serif" font-size="45" font-weight="780" fill="#17324d">SPACINGS IN LEAN</text>
+  <rect x="78" y="258" width="1044" height="117" rx="20" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="600" y="302" text-anchor="middle" font-family="Georgia,serif" font-size="32" fill="#285448">(2, 2, −1)  →  (0, 3)</text>
+  <text x="600" y="344" text-anchor="middle" font-family="Georgia,serif" font-size="27" fill="#285448">C = δ₀ + δ₃  ·  L = ½δ₀ + ½δ₃</text>
+  <rect x="80" y="409" width="302" height="95" rx="18" fill="#e6eef4"/>
+  <rect x="449" y="409" width="302" height="95" rx="18" fill="#f4e4d2"/>
+  <rect x="818" y="409" width="302" height="95" rx="18" fill="#f5dddd"/>
+  <text x="231" y="448" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="750" fill="#17324d">23 DECLARATIONS</text>
+  <text x="231" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#17324d">gaps, measures, regularity</text>
+  <text x="600" y="448" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="750" fill="#70442d">ZERO-AWARE</text>
+  <text x="600" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#70442d">no gap in dimensions 0 or 1</text>
+  <text x="969" y="448" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" font-weight="750" fill="#8a3333">DEFERRED</text>
+  <text x="969" y="480" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#8a3333">unfolding, GUE, asymptotics</text>
+  <text x="600" y="555" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#17324d">MASS ONE DOES NOT MEAN MEAN SPACING ONE</text>
+</svg>

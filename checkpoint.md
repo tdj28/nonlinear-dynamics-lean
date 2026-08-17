@@ -3,7 +3,7 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-15
+Last updated: 2026-08-17
 
 Audited baseline: `main` at `55674eb`. Its exact formal source commit is
 `3e9cb91`; the guarded leaf, deterministic `QuantumChaos` aggregator, guarded
@@ -12,6 +12,66 @@ project build, and complete repository gate pass on approved Linux compute.
 Active direction: **freeze the finite spectral-statistics interface before any
 GUE specialization, spectral-form-factor, out-of-time-order-correlator, or
 quantum-chaos criterion branch.**
+
+`NonlinearDynamics.QuantumChaos.SpectralStatistics` now has a source-and-
+teaching candidate awaiting pinned-toolchain Linux validation. Its 23 public
+declarations reuse the decreasing `orderedHermitianEigenvalues` vector and
+define the raw adjacent spacing as
+`lambda_i - lambda_(i+1)` on `Fin n.pred`. This orientation makes every gap
+nonnegative without claiming strict positivity. Equal neighboring eigenvalues
+contribute a zero gap and remain present with multiplicity.
+
+The candidate's `rawSpacingCountingMeasure` places one Dirac atom at every
+available gap slot and has exact mass `n.pred`.
+`empiricalRawSpacingMeasure` scales it by `(n.pred : ℝ≥0∞)⁻¹`: it is the zero
+measure in dimensions zero and one and a probability measure from dimension
+two onward. `empiricalRawSpacingProbability` is therefore exposed only for
+`FiniteHamiltonian (n + 2)`, avoiding an arbitrary probability fallback in
+empty dimensions. Unitary congruence invariance, pointwise 2-Lipschitz
+regularity, coordinate and vector continuity, and Giry measurability of the
+gap and measure maps are included. No unfolding, unit-mean spacing,
+ensemble-level law, GUE specialization, repulsion, universality, asymptotic
+limit, or quantum-chaos inference is included. The source SHA-256 is
+`d4f085b1045b269a0ca81b0863c03004e6d977cdef36d7b0dbe1e892163aa9ab`.
+
+The paired private-draft Research Note, Deep Dive, and raw-level-spacing
+glossary chapter remain `pro_reviewed: false` and explicitly identify the
+candidate as not yet pinned-toolchain validated. Their worked spectrum
+`(2, 2, -1)` gives raw gaps `(0, 3)`, counting measure `delta_0 + delta_3`,
+and empirical measure `1/2 delta_0 + 1/2 delta_3`. Its mean `3/2` makes the
+mass-normalization-versus-unfolding boundary concrete. Five conceptual SVGs,
+three deterministic 1200-by-630 cards, and a bounded Lean 4.32.0 `Std`
+worksheet accompany the pages. The worksheet prints `[2, 2, -1]`, `[0, 3]`,
+`2`, `3`, and `2`, and checks the empty zero- and one-level cases. It does not
+compute Mathlib's noncomputable eigenvalues or construct measures.
+
+The source decisions are grounded in Schubert and Venker's adjacent-spacing
+counting measure and normalization by the number of included gaps, Guhr,
+Müller-Groeling, and Weidenmüller's separate unfolding and unit-mean-spacing
+convention, and Kriecherbauer and Schubert's full-spectrum `1/(N-1)`
+normalization. The project's empty-boundary choice is explicit: those sources
+permit or use an arbitrary probability fallback when no gap is present, while
+this candidate preserves the zero measure and makes the positive gap count a
+type-level premise for `ProbabilityMeasure`.
+
+The complete workstation-safe candidate gate passes. All 61 substantive Lean
+modules map to 61 comprehensive Notebook pages; all 23 coverage and seven
+teaching-hygiene regression tests pass; 214 Markdown files and 1,031
+reader-facing surfaces pass their source and language audits. Hugo Extended
+0.160.1 renders 493 production pages and 634 draft-inclusive pages with
+warnings fatal. The standalone `Std` worksheet passes under Lean 4.32.0, all
+eight new SVG sources parse as XML, ShellCheck passes for the three card
+generators, and all three 1200-by-630 PNGs reproduce byte-for-byte.
+
+Literal browser inspection at 1280 by 720 and 390 by 844 passes for the
+Research Note, Deep Dive, and glossary routes. Each route has one H1, exact
+viewport and document widths, no raw TeX outside code, no KaTeX error, no
+console warning or error, and no missing image alternative. Scrolling each
+conceptual figure into view loads all eight page images. At the mobile
+breakpoint the page itself has no horizontal overflow and each wide conceptual
+SVG remains contained in its intentional local scroll frame. No project Lean,
+Lake, Mathlib build, proof probe, or cache restoration ran on macOS for this
+candidate.
 
 `NonlinearDynamics.QuantumChaos.FiniteSystems` is now a validated shared
 foundation.
@@ -3132,23 +3192,25 @@ and
 
 ## Exact Next Milestone
 
-### Specify finite spectral statistics before GUE specialization
+### Validate and repair the raw finite spectral-statistics candidate
 
-Research and freeze the first `QuantumChaos/SpectralStatistics.lean` candidate
-on top of `FiniteSystems`. Start from the reused decreasing ordered Hermitian
-spectrum and make the raw nearest-neighbor-spacing orientation explicit. Decide
-the dimension-zero and dimension-one totalization, whether an empirical spacing
-measure is normalized by the number of available gaps, and which statements
-require a positive-dimension or positive-gap-count hypothesis. Keep raw finite
-spacings separate from unfolding, ensemble averaging, and asymptotic spacing
-laws.
+Finish the workstation-safe gate and browser inspection for exact source hash
+`d4f085b1045b269a0ca81b0863c03004e6d977cdef36d7b0dbe1e892163aa9ab`, then
+commit and push the source-and-teaching candidate to `main`. Request separately
+scoped approved Linux compute only after that exact commit exists. Restore the
+verified cache to fast ephemeral storage, run the warning-fatal
+`QuantumChaos/SpectralStatistics.lean` leaf and deterministic `QuantumChaos`
+aggregator, repair only evidence-backed proof seams, and run the exact-commit
+complete repository gate. Preserve a verified successor cache, record the
+validated source commit and checksum, terminate the exact task compute, and
+retain the project network volume.
 
-The source-and-teaching candidate must begin with a fully computed two- or
-three-level spectrum, state the exact ordering/sign convention, expose every
-normalization boundary, and add no GUE, universality, level-repulsion, spectral-
-form-factor, OTOC, or chaos conclusion. Complete workstation-safe QA first;
-request separately scoped Linux compute only when a pinned-toolchain proof
-check is ready.
+Do not change the decreasing-order orientation, zero-gap multiplicity policy,
+`Fin n.pred` all-dimensional index, zero measure in dimensions zero and one,
+normalization by the available gap count, or dimension-`n + 2` probability
+wrapper merely to ease a proof. No GUE, unfolding, universality,
+level-repulsion, spectral-form-factor, OTOC, asymptotic, or chaos claim belongs
+in this validation milestone.
 
 ## Earlier Milestone Records
 
@@ -4029,7 +4091,11 @@ The shared foundation is validated; diagnostic branches remain placeholders:
   empirical spectral moment. The repaired warning-fatal leaf, axiom audit,
   deterministic aggregator, guarded project build, exact-commit full gate,
   paired teaching bundle, and verified retained cache all pass.
-- [ ] `QuantumChaos/SpectralStatistics`
+- [ ] `QuantumChaos/SpectralStatistics.lean`: the 23-declaration source-and-
+  teaching candidate fixes decreasing-order raw gaps, exact empty-dimension
+  measures, normalization by `n.pred`, positive-gap probability packaging,
+  deterministic invariance, continuity, and measurability. Workstation-safe
+  QA passes; pinned-toolchain Linux validation remains to be closed.
 - [ ] `QuantumChaos/GUE`
 - [ ] `QuantumChaos/SpectralFormFactor`
 - [ ] `QuantumChaos/OTOC`

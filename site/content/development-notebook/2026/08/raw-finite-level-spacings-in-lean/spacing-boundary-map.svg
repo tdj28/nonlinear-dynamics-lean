@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="580" viewBox="0 0 1120 580" role="img" aria-labelledby="title desc">
+  <title id="title">Dimension and claim boundaries for raw spacing measures</title>
+  <desc id="desc">Dimensions zero and one have no gap slots and zero measures. Dimensions at least two have one fewer gap than levels and admit a probability wrapper. Unfolding, ensemble laws, repulsion, and chaos claims remain outside the module.</desc>
+  <rect width="1120" height="580" rx="24" fill="#f7f2e8"/>
+  <text x="48" y="55" font-family="system-ui,sans-serif" font-size="29" font-weight="750" fill="#17324d">One total measure, one honest probability boundary</text>
+  <rect x="48" y="92" width="680" height="400" rx="22" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="388" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#285448">INSIDE SPECTRALSTATISTICS</text>
+  <rect x="82" y="161" width="188" height="266" rx="16" fill="#fffaf1"/>
+  <text x="176" y="199" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#17324d">n = 0</text>
+  <text x="176" y="248" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">0 levels</text>
+  <text x="176" y="285" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">Fin 0 gaps</text>
+  <text x="176" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#8a3333">zero measure</text>
+  <text x="176" y="380" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">no probability wrapper</text>
+  <rect x="294" y="161" width="188" height="266" rx="16" fill="#fffaf1"/>
+  <text x="388" y="199" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#17324d">n = 1</text>
+  <text x="388" y="248" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">1 level</text>
+  <text x="388" y="285" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">Fin 0 gaps</text>
+  <text x="388" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#8a3333">zero measure</text>
+  <text x="388" y="380" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442d">no probability wrapper</text>
+  <rect x="506" y="161" width="188" height="266" rx="16" fill="#fffaf1"/>
+  <text x="600" y="199" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#17324d">n ≥ 2</text>
+  <text x="600" y="248" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">n levels</text>
+  <text x="600" y="285" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" fill="#17324d">Fin (n−1) gaps</text>
+  <text x="600" y="335" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#2d7f73">mass-one measure</text>
+  <text x="600" y="380" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">probability wrapper exists</text>
+  <line x1="762" y1="104" x2="762" y2="480" stroke="#8a3333" stroke-width="5" stroke-dasharray="12 9"/>
+  <text x="762" y="520" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="750" fill="#8a3333">MODULE BOUNDARY</text>
+  <rect x="796" y="92" width="276" height="400" rx="22" fill="#f5dddd" stroke="#a14a4a" stroke-width="3"/>
+  <text x="934" y="130" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#8a3333">DEFERRED</text>
+  <text x="934" y="194" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#8a3333">unfolding map</text>
+  <text x="934" y="244" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#8a3333">unit mean spacing</text>
+  <text x="934" y="294" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#8a3333">GUE spacing law</text>
+  <text x="934" y="344" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#8a3333">repulsion / universality</text>
+  <text x="934" y="394" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#8a3333">large-n limit</text>
+  <text x="934" y="444" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#8a3333">chaos inference</text>
+  <text x="560" y="558" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#17324d">ZERO-AWARE IN EVERY DIMENSION · PROBABILITY ONLY WHEN A GAP EXISTS</text>
+</svg>

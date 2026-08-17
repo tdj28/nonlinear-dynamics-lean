@@ -75,6 +75,10 @@
     "module": "NonlinearDynamics.QuantumChaos.FiniteSystems",
     "notebook": "site/content/development-notebook/2026/08/shared-finite-dimensional-quantum-foundation-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/QuantumChaos/SpectralStatistics.lean": {
+    "module": "NonlinearDynamics.QuantumChaos.SpectralStatistics",
+    "notebook": "site/content/development-notebook/2026/08/raw-finite-level-spacings-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean": {
     "module": "NonlinearDynamics.Random.ComplexGaussianFamilies",
     "notebook": "site/content/development-notebook/2026/07/independent-complex-gaussian-families/index.md"

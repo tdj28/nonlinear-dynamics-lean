@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-labelledby="title desc">
+  <title id="title">Zero, one, and two dimensional gap boundary</title>
+  <desc id="desc">Zero levels and one level both have no adjacent gap and return zero measures. Two levels have one adjacent gap and a probability measure after normalization.</desc>
+  <rect width="1120" height="520" rx="24" fill="#f7f2e8"/>
+  <text x="48" y="55" font-family="system-ui,sans-serif" font-size="29" font-weight="750" fill="#17324d">A zero gap and no gap are different states</text>
+  <rect x="48" y="92" width="312" height="350" rx="22" fill="#f5dddd" stroke="#a14a4a" stroke-width="3"/>
+  <text x="204" y="134" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#8a3333">DIMENSION 0</text>
+  <text x="204" y="205" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#8a3333">no level</text>
+  <text x="204" y="258" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#8a3333">no adjacent pair</text>
+  <text x="204" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#8a3333">C = L = 0</text>
+  <text x="204" y="383" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#8a3333">NO FABRICATED ATOM</text>
+  <rect x="404" y="92" width="312" height="350" rx="22" fill="#f4e4d2" stroke="#8a5b3d" stroke-width="3"/>
+  <text x="560" y="134" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#70442d">DIMENSION 1</text>
+  <line x1="474" y1="205" x2="646" y2="205" stroke="#8a5b3d" stroke-width="7"/>
+  <text x="560" y="246" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#70442d">one level, no pair</text>
+  <text x="560" y="320" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#70442d">C = L = 0</text>
+  <text x="560" y="383" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#70442d">NO FABRICATED ATOM</text>
+  <rect x="760" y="92" width="312" height="350" rx="22" fill="#e1eee6" stroke="#2d7f73" stroke-width="3"/>
+  <text x="916" y="134" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="750" fill="#285448">DIMENSION 2</text>
+  <line x1="830" y1="190" x2="1002" y2="190" stroke="#2d7f73" stroke-width="7"/>
+  <line x1="830" y1="256" x2="1002" y2="256" stroke="#8a5b3d" stroke-width="7"/>
+  <path d="M1022 190 V256" stroke="#8a3333" stroke-width="4"/>
+  <text x="916" y="305" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#285448">one adjacent gap Δ</text>
+  <text x="916" y="350" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#285448">C = L = δΔ</text>
+  <text x="916" y="397" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#285448">PROBABILITY WRAPPER</text>
+  <text x="560" y="490" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#17324d">Fin n.pred HAS EXACTLY THE AVAILABLE ADJACENT SLOTS</text>
+</svg>
