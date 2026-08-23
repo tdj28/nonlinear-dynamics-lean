@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="deepCardTitle deepCardDesc">
+  <title id="deepCardTitle">Finite GUE laws of raw spacing measures</title>
+  <desc id="deepCardDesc">A Deep Dive card shows two toy spectra becoming two whole raw-spacing measures, then an outer law with one-half weight on each measure.</desc>
+  <rect width="1200" height="630" fill="#F1E9DA"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFAF1" stroke="#315F63" stroke-width="4"/>
+  <text x="78" y="102" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2D7F73">KNOWLEDGE BASE · DEEP DIVE</text>
+  <text x="78" y="166" font-family="system-ui,sans-serif" font-size="42" font-weight="780" fill="#17324D">A LAW WHOSE OUTCOMES</text>
+  <text x="78" y="216" font-family="system-ui,sans-serif" font-size="42" font-weight="780" fill="#17324D">ARE WHOLE MEASURES</text>
+  <rect x="78" y="257" width="470" height="124" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <text x="313" y="298" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#17324D">OUTCOME A · probability 1/2</text>
+  <text x="313" y="337" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#17324D">levels 2, 2, -1  ->  gaps 0, 3</text>
+  <text x="313" y="365" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#17324D">sample measure: half at 0, half at 3</text>
+  <rect x="652" y="257" width="470" height="124" rx="18" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/>
+  <text x="887" y="298" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="700" fill="#70442D">OUTCOME B · probability 1/2</text>
+  <text x="887" y="337" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" fill="#70442D">levels 3, 1, 1  ->  gaps 2, 0</text>
+  <text x="887" y="365" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442D">sample measure: half at 2, half at 0</text>
+  <path d="M548 319 H642" stroke="#A67C52" stroke-width="4"/>
+  <rect x="180" y="420" width="840" height="84" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="3"/>
+  <text x="600" y="454" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" font-weight="750" fill="#285448">OUTER LAW: one half on each entire sample measure</text>
+  <text x="600" y="484" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#285448">outer mass survives even when an inner boundary outcome is zero</text>
+  <text x="600" y="554" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#17324D">INNER MASS AND OUTER MASS ARE DIFFERENT LEDGERS</text>
+</svg>

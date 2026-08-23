@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="glossaryCardTitle glossaryCardDesc">
+  <title id="glossaryCardTitle">Empirical raw-spacing law</title>
+  <desc id="glossaryCardDesc">A glossary card maps a probability law on finite Hamiltonians through a raw-spacing observable to a probability law on whole measures.</desc>
+  <rect width="1200" height="630" fill="#F1E9DA"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFAF1" stroke="#315F63" stroke-width="4"/>
+  <text x="78" y="102" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2D7F73">KNOWLEDGE BASE · GLOSSARY</text>
+  <text x="78" y="178" font-family="system-ui,sans-serif" font-size="48" font-weight="780" fill="#17324D">EMPIRICAL RAW-SPACING LAW</text>
+  <rect x="78" y="239" width="278" height="132" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <text x="217" y="282" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#17324D">INPUT LAW</text>
+  <text x="217" y="319" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#17324D">random finite</text>
+  <text x="217" y="344" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#17324D">Hamiltonian</text>
+  <path d="M358 305 H454" stroke="#A67C52" stroke-width="5" marker-end="url(#cardArrow)"/>
+  <rect x="466" y="239" width="278" height="132" rx="18" fill="#F3E8E0" stroke="#A67C52" stroke-width="3"/>
+  <text x="605" y="282" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#70442D">SAMPLE MEASURE</text>
+  <text x="605" y="319" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#70442D">empirical measure</text>
+  <text x="605" y="344" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#70442D">of raw gaps</text>
+  <path d="M746 305 H842" stroke="#A67C52" stroke-width="5" marker-end="url(#cardArrow)"/>
+  <rect x="854" y="239" width="268" height="132" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="3"/>
+  <text x="988" y="282" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="750" fill="#285448">OUTER LAW</text>
+  <text x="988" y="319" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#285448">probability law</text>
+  <text x="988" y="344" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#285448">on measures</text>
+  <rect x="174" y="422" width="852" height="82" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="3"/>
+  <text x="600" y="456" text-anchor="middle" font-family="system-ui,sans-serif" font-size="21" font-weight="750" fill="#285448">THE OUTER ATOMS ARE WHOLE MEASURES</text>
+  <text x="600" y="484" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#285448">not individual gap locations and not an averaged measure</text>
+  <text x="600" y="554" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#17324D">OUTER MASS AND INNER MASS STAY SEPARATE</text>
+  <defs><marker id="cardArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#A67C52"/></marker></defs>
+</svg>

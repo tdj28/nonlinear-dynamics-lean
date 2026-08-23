@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="610" viewBox="0 0 1120 610" role="img" aria-labelledby="ladderTitle ladderDesc">
+  <title id="ladderTitle">Pushforward type ladder for finite GUE raw spacings</title>
+  <desc id="ladderDesc">The finite GUE probability law maps Hermitian matrices to raw-spacing measures and then to an outer law on measures. Dimensions zero and one have a zero inner measure, while dimensions two and above admit an inner probability wrapper.</desc>
+  <rect width="1120" height="610" rx="24" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:25px;font-weight:700}.h{font-size:17px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}.arrow{stroke:#A67C52;stroke-width:4;fill:none}
+  </style>
+  <text x="48" y="50" class="t title">Measurability creates the outer law; gap count controls the inner type</text>
+  <text x="48" y="75" class="t m">The construction reuses both input law and observable.</text>
+  <rect x="48" y="111" width="280" height="150" rx="16" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="188" y="149" text-anchor="middle" class="t h">FINITE GUE INPUT</text>
+  <text x="188" y="187" text-anchor="middle" class="t s">probability law on</text>
+  <text x="188" y="215" text-anchor="middle" class="t s">intrinsic Hermitian matrices</text>
+  <text x="188" y="244" text-anchor="middle" class="t m">outer mass = 1</text>
+  <path d="M330 186 H414" class="arrow" marker-end="url(#ladderArrow)"/>
+  <text x="372" y="169" text-anchor="middle" class="t m">map</text>
+  <rect x="426" y="111" width="280" height="150" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="566" y="149" text-anchor="middle" class="t h">SAMPLE OBSERVABLE</text>
+  <text x="566" y="187" text-anchor="middle" class="t s">one Hamiltonian maps to</text>
+  <text x="566" y="215" text-anchor="middle" class="t s">one raw-spacing measure</text>
+  <text x="566" y="244" text-anchor="middle" class="t m">measurable in every dimension</text>
+  <path d="M708 186 H792" class="arrow" marker-end="url(#ladderArrow)"/>
+  <text x="750" y="169" text-anchor="middle" class="t m">push</text>
+  <rect x="804" y="111" width="268" height="150" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="938" y="149" text-anchor="middle" class="t h">OUTER LAW</text>
+  <text x="938" y="187" text-anchor="middle" class="t s">probability law whose</text>
+  <text x="938" y="215" text-anchor="middle" class="t s">outcomes are measures</text>
+  <text x="938" y="244" text-anchor="middle" class="t m">outer mass = 1</text>
+  <path d="M566 265 V329" class="arrow" marker-end="url(#ladderArrow)"/>
+  <rect x="48" y="342" width="486" height="184" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="291" y="380" text-anchor="middle" class="t h">DIMENSION 0 OR 1</text>
+  <text x="291" y="419" text-anchor="middle" class="t s">sample outcome is the zero measure</text>
+  <text x="291" y="451" text-anchor="middle" class="t s">outer law is Dirac at that outcome</text>
+  <text x="291" y="492" text-anchor="middle" class="t m">no inner probability wrapper</text>
+  <rect x="586" y="342" width="486" height="184" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="829" y="380" text-anchor="middle" class="t h">DIMENSION 2 OR MORE</text>
+  <text x="829" y="419" text-anchor="middle" class="t s">sample outcome has inner mass one</text>
+  <text x="829" y="451" text-anchor="middle" class="t s">probability-measure wrapper is available</text>
+  <text x="829" y="492" text-anchor="middle" class="t m">forgetting it returns the raw outer law</text>
+  <rect x="48" y="551" width="1024" height="38" rx="11" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="560" y="576" text-anchor="middle" class="t h">No unfolding, averaging, density, or large-dimension limit enters this ladder.</text>
+  <defs><marker id="ladderArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#A67C52"/></marker></defs>
+</svg>

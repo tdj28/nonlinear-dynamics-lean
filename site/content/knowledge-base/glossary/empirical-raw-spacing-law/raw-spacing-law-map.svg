@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" role="img" aria-labelledby="glossaryMapTitle glossaryMapDesc">
+  <title id="glossaryMapTitle">From a random Hamiltonian to a law on raw-spacing measures</title>
+  <desc id="glossaryMapDesc">A three-stage map sends an input probability law on Hamiltonians through the empirical raw-spacing observable to an outer probability law on measures. A boundary note distinguishes empty inner measures from outer probability mass.</desc>
+  <rect width="1120" height="540" rx="24" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:25px;font-weight:700}.h{font-size:17px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}.arrow{stroke:#A67C52;stroke-width:4;fill:none}
+  </style>
+  <text x="48" y="50" class="t title">The output point is a whole empirical measure</text>
+  <text x="48" y="75" class="t m">Do not collapse the input law, sample measure, and outer law into one object.</text>
+  <rect x="48" y="112" width="286" height="190" rx="18" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="191" y="151" text-anchor="middle" class="t h">1. RANDOM INPUT</text>
+  <text x="191" y="194" text-anchor="middle" class="t s">probability law on</text>
+  <text x="191" y="222" text-anchor="middle" class="t s">finite Hamiltonians</text>
+  <text x="191" y="268" text-anchor="middle" class="t m">one draw selects one matrix</text>
+  <path d="M336 207 H408" class="arrow" marker-end="url(#glossaryArrow)"/>
+  <rect x="420" y="112" width="286" height="190" rx="18" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="563" y="151" text-anchor="middle" class="t h">2. SAMPLE STATISTIC</text>
+  <text x="563" y="194" text-anchor="middle" class="t s">one empirical measure</text>
+  <text x="563" y="222" text-anchor="middle" class="t s">of adjacent raw gaps</text>
+  <text x="563" y="268" text-anchor="middle" class="t m">one point in the space of measures</text>
+  <path d="M708 207 H780" class="arrow" marker-end="url(#glossaryArrow)"/>
+  <rect x="792" y="112" width="280" height="190" rx="18" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="932" y="151" text-anchor="middle" class="t h">3. OUTER LAW</text>
+  <text x="932" y="194" text-anchor="middle" class="t s">probability law whose</text>
+  <text x="932" y="222" text-anchor="middle" class="t s">outcomes are measures</text>
+  <text x="932" y="268" text-anchor="middle" class="t m">variation across Hamiltonians remains</text>
+  <rect x="48" y="342" width="486" height="122" rx="16" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="291" y="379" text-anchor="middle" class="t h">DIMENSIONS 0 AND 1</text>
+  <text x="291" y="411" text-anchor="middle" class="t s">inner outcome is the zero measure</text>
+  <text x="291" y="440" text-anchor="middle" class="t m">outer law is Dirac at that outcome</text>
+  <rect x="586" y="342" width="486" height="122" rx="16" fill="#EAF1E5" stroke="#6F8D5E" stroke-width="2"/>
+  <text x="829" y="379" text-anchor="middle" class="t h">DIMENSION 2 AND ABOVE</text>
+  <text x="829" y="411" text-anchor="middle" class="t s">inner outcome has probability mass one</text>
+  <text x="829" y="440" text-anchor="middle" class="t m">wrapper records the certificate only</text>
+  <rect x="48" y="490" width="1024" height="32" rx="10" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="560" y="512" text-anchor="middle" class="t h">Outer mass one does not manufacture an inner gap.</text>
+  <defs><marker id="glossaryArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#A67C52"/></marker></defs>
+</svg>

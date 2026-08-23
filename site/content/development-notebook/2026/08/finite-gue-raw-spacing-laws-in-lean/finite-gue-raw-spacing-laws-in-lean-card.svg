@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="noteCardTitle noteCardDesc">
+  <title id="noteCardTitle">Finite GUE raw-spacing laws in Lean</title>
+  <desc id="noteCardDesc">A Research Note card shows finite GUE mapping to a probability law on raw-spacing measures, with a boundary between zero-measure outcomes and probability-measure outcomes.</desc>
+  <rect width="1200" height="630" fill="#F1E9DA"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFAF1" stroke="#315F63" stroke-width="4"/>
+  <text x="78" y="102" font-family="system-ui,sans-serif" font-size="25" font-weight="750" fill="#2D7F73">DEVELOPMENT NOTEBOOK · RESEARCH NOTE</text>
+  <text x="78" y="169" font-family="system-ui,sans-serif" font-size="44" font-weight="780" fill="#17324D">FINITE GUE LAWS OF</text>
+  <text x="78" y="222" font-family="system-ui,sans-serif" font-size="44" font-weight="780" fill="#17324D">RAW SPACING MEASURES</text>
+  <rect x="78" y="258" width="1044" height="112" rx="20" fill="#E8F0F7" stroke="#4B6787" stroke-width="3"/>
+  <text x="600" y="300" text-anchor="middle" font-family="system-ui,sans-serif" font-size="25" font-weight="700" fill="#17324D">finite GUE law  ->  raw-spacing observable</text>
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui,sans-serif" font-size="29" fill="#285448">outer probability law on whole measures</text>
+  <rect x="80" y="407" width="302" height="98" rx="18" fill="#EAF1E5"/>
+  <rect x="449" y="407" width="302" height="98" rx="18" fill="#F3E8E0"/>
+  <rect x="818" y="407" width="302" height="98" rx="18" fill="#E8F0F7"/>
+  <text x="231" y="447" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="750" fill="#285448">OUTER MASS ONE</text>
+  <text x="231" y="479" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#285448">in every dimension</text>
+  <text x="600" y="447" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="750" fill="#70442D">INNER ZERO MEASURE</text>
+  <text x="600" y="479" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#70442D">dimensions 0 and 1</text>
+  <text x="969" y="447" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="750" fill="#17324D">INNER PROBABILITY</text>
+  <text x="969" y="479" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" fill="#17324D">dimension 2 and above</text>
+  <text x="600" y="554" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#17324D">PUSHFORWARD ONLY · NO UNFOLDING · NO UNIVERSALITY CLAIM</text>
+</svg>

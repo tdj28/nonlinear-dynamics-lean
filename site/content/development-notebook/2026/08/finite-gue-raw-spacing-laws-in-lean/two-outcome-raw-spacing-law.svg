@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-labelledby="twoLawTitle twoLawDesc">
+  <title id="twoLawTitle">Two-outcome law of empirical raw-spacing measures</title>
+  <desc id="twoLawDesc">Two equally weighted spectra map to gap lists and then to two whole empirical measures. The outer law places probability one half on each measure-valued outcome.</desc>
+  <rect width="1120" height="600" rx="24" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:25px;font-weight:700}.h{font-size:17px;font-weight:700}.s{font-size:15px}.m{font-size:13px;fill:#5A544C}.card{stroke-width:2}.arrow{stroke:#A67C52;stroke-width:4;fill:none}
+  </style>
+  <text x="48" y="50" class="t title">One spectrum gives one measure; the ensemble gives a law on measures</text>
+  <text x="48" y="75" class="t m">Toy probabilities expose the nested type before finite GUE replaces the input law.</text>
+  <rect x="48" y="104" width="470" height="176" rx="16" fill="#E8F0F7" stroke="#4B6787" class="card"/>
+  <text x="76" y="137" class="t h">OUTCOME A  |  outer weight 1/2</text>
+  <text x="76" y="174" class="t s">decreasing levels: 2, 2, -1</text>
+  <text x="76" y="205" class="t s">adjacent gaps: 0, 3</text>
+  <rect x="286" y="151" width="198" height="86" rx="12" fill="#FBF9F6" stroke="#C4B8A8"/>
+  <text x="385" y="181" text-anchor="middle" class="t s">sample measure A</text>
+  <text x="385" y="211" text-anchor="middle" class="t h">half at 0, half at 3</text>
+  <rect x="48" y="306" width="470" height="176" rx="16" fill="#F3E8E0" stroke="#A67C52" class="card"/>
+  <text x="76" y="339" class="t h">OUTCOME B  |  outer weight 1/2</text>
+  <text x="76" y="376" class="t s">decreasing levels: 3, 1, 1</text>
+  <text x="76" y="407" class="t s">adjacent gaps: 2, 0</text>
+  <rect x="286" y="353" width="198" height="86" rx="12" fill="#FBF9F6" stroke="#C4B8A8"/>
+  <text x="385" y="383" text-anchor="middle" class="t s">sample measure B</text>
+  <text x="385" y="413" text-anchor="middle" class="t h">half at 2, half at 0</text>
+  <path d="M520 192 C585 192 588 247 648 247" class="arrow" marker-end="url(#twoLawArrow)"/>
+  <path d="M520 394 C585 394 588 339 648 339" class="arrow" marker-end="url(#twoLawArrow)"/>
+  <rect x="660" y="147" width="412" height="286" rx="18" fill="#EAF1E5" stroke="#6F8D5E" class="card"/>
+  <text x="866" y="187" text-anchor="middle" class="t h">OUTER PROBABILITY LAW</text>
+  <rect x="704" y="218" width="324" height="70" rx="12" fill="#FBF9F6" stroke="#C4B8A8"/>
+  <text x="866" y="248" text-anchor="middle" class="t s">measure A is one atom</text>
+  <text x="866" y="273" text-anchor="middle" class="t h">outer probability 1/2</text>
+  <rect x="704" y="311" width="324" height="70" rx="12" fill="#FBF9F6" stroke="#C4B8A8"/>
+  <text x="866" y="341" text-anchor="middle" class="t s">measure B is one atom</text>
+  <text x="866" y="366" text-anchor="middle" class="t h">outer probability 1/2</text>
+  <text x="866" y="410" text-anchor="middle" class="t m">output type: probability law on measures</text>
+  <rect x="48" y="522" width="1024" height="50" rx="14" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="560" y="553" text-anchor="middle" class="t h">Inner weights count gap slots; outer weights count Hamiltonian outcomes.</text>
+  <defs><marker id="twoLawArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#A67C52"/></marker></defs>
+</svg>

@@ -75,6 +75,10 @@
     "module": "NonlinearDynamics.QuantumChaos.FiniteSystems",
     "notebook": "site/content/development-notebook/2026/08/shared-finite-dimensional-quantum-foundation-in-lean/index.md"
   },
+  "formalization/NonlinearDynamics/QuantumChaos/GUE.lean": {
+    "module": "NonlinearDynamics.QuantumChaos.GUE",
+    "notebook": "site/content/development-notebook/2026/08/finite-gue-raw-spacing-laws-in-lean/index.md"
+  },
   "formalization/NonlinearDynamics/QuantumChaos/SpectralStatistics.lean": {
     "module": "NonlinearDynamics.QuantumChaos.SpectralStatistics",
     "notebook": "site/content/development-notebook/2026/08/raw-finite-level-spacings-in-lean/index.md"

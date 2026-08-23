@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="ledgerTitle ledgerDesc">
+  <title id="ledgerTitle">Two-spectrum raw-spacing law ledger</title>
+  <desc id="ledgerDesc">A four-column ledger tracks each toy outcome from decreasing levels through adjacent gaps to one empirical measure, then combines the two measures as atoms of an outer law.</desc>
+  <rect width="1120" height="620" rx="24" fill="#F7F4F0"/>
+  <style>
+    .t{font-family:Inter,Arial,Helvetica,sans-serif;fill:#2C2924}.title{font-size:25px;font-weight:700}.h{font-size:16px;font-weight:700}.s{font-size:14px}.m{font-size:12px;fill:#5A544C}.line{stroke:#C4B8A8;stroke-width:2}
+  </style>
+  <text x="48" y="50" class="t title">Track the two probability layers without merging them</text>
+  <text x="48" y="75" class="t m">Every row produces one inner measure; the final column assigns outer weight to the whole row output.</text>
+  <rect x="48" y="104" width="1024" height="54" rx="12" fill="#EDE8E1" stroke="#7F786D"/>
+  <text x="120" y="137" text-anchor="middle" class="t h">OUTCOME</text>
+  <text x="330" y="137" text-anchor="middle" class="t h">DECREASING LEVELS</text>
+  <text x="554" y="137" text-anchor="middle" class="t h">ADJACENT GAPS</text>
+  <text x="788" y="137" text-anchor="middle" class="t h">INNER MEASURE</text>
+  <text x="1000" y="137" text-anchor="middle" class="t h">OUTER WEIGHT</text>
+  <rect x="48" y="176" width="1024" height="150" rx="14" fill="#E8F0F7" stroke="#4B6787" stroke-width="2"/>
+  <text x="120" y="236" text-anchor="middle" class="t h">A</text>
+  <text x="120" y="268" text-anchor="middle" class="t s">probability 1/2</text>
+  <text x="330" y="250" text-anchor="middle" class="t h">2, 2, -1</text>
+  <text x="554" y="236" text-anchor="middle" class="t h">0, 3</text>
+  <text x="554" y="268" text-anchor="middle" class="t m">zero gap retained</text>
+  <text x="788" y="236" text-anchor="middle" class="t s">half at 0</text>
+  <text x="788" y="268" text-anchor="middle" class="t s">half at 3</text>
+  <text x="1000" y="250" text-anchor="middle" class="t h">1/2 on measure A</text>
+  <rect x="48" y="344" width="1024" height="150" rx="14" fill="#F3E8E0" stroke="#A67C52" stroke-width="2"/>
+  <text x="120" y="404" text-anchor="middle" class="t h">B</text>
+  <text x="120" y="436" text-anchor="middle" class="t s">probability 1/2</text>
+  <text x="330" y="418" text-anchor="middle" class="t h">3, 1, 1</text>
+  <text x="554" y="404" text-anchor="middle" class="t h">2, 0</text>
+  <text x="554" y="436" text-anchor="middle" class="t m">zero gap retained</text>
+  <text x="788" y="404" text-anchor="middle" class="t s">half at 2</text>
+  <text x="788" y="436" text-anchor="middle" class="t s">half at 0</text>
+  <text x="1000" y="418" text-anchor="middle" class="t h">1/2 on measure B</text>
+  <line x1="206" y1="113" x2="206" y2="485" class="line"/>
+  <line x1="448" y1="113" x2="448" y2="485" class="line"/>
+  <line x1="662" y1="113" x2="662" y2="485" class="line"/>
+  <line x1="914" y1="113" x2="914" y2="485" class="line"/>
+  <rect x="48" y="526" width="1024" height="58" rx="14" fill="#EAF1E5" stroke="#6F8D5E"/>
+  <text x="560" y="550" text-anchor="middle" class="t h">Outer law: one half at measure A, one half at measure B</text>
+  <text x="560" y="572" text-anchor="middle" class="t m">Its atoms are measures, not the real gap locations 0, 2, and 3.</text>
+</svg>

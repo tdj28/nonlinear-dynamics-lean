@@ -15,6 +15,34 @@ raw spectral-statistics interface before any unfolding,
 spectral-form-factor, out-of-time-order-correlator, or quantum-chaos criterion
 branch.**
 
+`NonlinearDynamics.QuantumChaos.GUE` now has a source-and-teaching candidate
+that passes the complete workstation-safe gate and awaits pinned-toolchain
+validation. Its seven public
+declarations push the existing `Random.GUE.intrinsicLaw` through the validated
+`empiricalRawSpacingMeasure`, prove the outer law is a probability measure in
+every dimension, and bundle it as a probability law on whole measures. The
+dimension-zero and dimension-one laws are both Dirac masses at the inner zero
+measure. From dimension two onward, a separate law takes values in
+`ProbabilityMeasure ℝ`, and mapping away that inner certificate recovers the
+raw measure-valued law. The candidate source SHA-256 is
+`d55058cd72aa6c59ff331293a3a8396f6d2bdf04befce978ca7de3b2d30fc454`.
+
+The paired private-draft Research Note, Deep Dive, and empirical-raw-spacing-
+law glossary chapter remain `pro_reviewed: false` and identify pinned-
+toolchain validation as pending. Their two-outcome teaching model uses the
+decreasing spectra `(2, 2, -1)` and `(3, 1, 1)`, raw gaps `(0, 3)` and
+`(2, 0)`, and two distinct measure-valued atoms with outer weights `1/2`.
+Five conceptual SVGs, three deterministic 1200-by-630 cards, and a standalone
+Lean 4.32.0 `Std` worksheet accompany the pages. The worksheet prints
+`[[0, 3], [2, 0]]`, `0`, `0`, and `1`; it does not construct GUE, Mathlib
+measures, or noncomputable eigenvalues.
+
+The design reuses the exact finite GUE and raw-gap normalization conventions.
+It does not redefine the ensemble, discard zero gaps, divide by matrix
+dimension, replace an empty inner measure by a probability fallback, unfold
+or unit-normalize the gaps, define a mean measure or moment, or claim density,
+repulsion, universality, asymptotics, or quantum chaos.
+
 `NonlinearDynamics.QuantumChaos.SpectralStatistics` now has a validated,
 statement-preserving proof repair. Its 23 public declarations reuse the
 decreasing `orderedHermitianEigenvalues` vector and define the raw adjacent
@@ -73,11 +101,11 @@ gate replay without further source changes. Its 25,972,555-byte source-only
 archive has SHA-256
 `2c80f124705ee32f6422dcec6dc175a14822d81827af07470592f5c99b15f691`.
 
-The complete workstation-safe gate also passes. All 61 substantive Lean
-modules map to 61 comprehensive Notebook pages; all 23 coverage and seven
-teaching-hygiene regression tests pass; 214 Markdown files and 1,031
+The complete workstation-safe gate also passes. All 62 substantive Lean
+modules map to 62 comprehensive Notebook pages; all 23 coverage and seven
+teaching-hygiene regression tests pass; 217 Markdown files and 1,047
 reader-facing surfaces pass their source and language audits. Hugo Extended
-0.160.1 renders 493 production pages and 634 draft-inclusive pages with
+0.160.1 renders 493 production pages and 637 draft-inclusive pages with
 warnings fatal. The standalone `Std` worksheet passes under Lean 4.32.0, all
 eight new SVG sources parse as XML, ShellCheck passes for the three card
 generators, and all three 1200-by-630 PNGs reproduce byte-for-byte.
@@ -3228,27 +3256,20 @@ and
 
 ### Define the finite-GUE raw-spacing law boundary
 
-Research and implement a bounded `QuantumChaos/GUE.lean` bridge that consumes
-the existing `GUE.intrinsicLaw` and validated spectral-statistics API. Define
-the outer law obtained by pushing finite GUE through
-`empiricalRawSpacingMeasure`, prove that outer law is a probability measure in
-every dimension, and bundle it as a `ProbabilityMeasure (Measure ℝ)`. Record
-the exact dimension-zero and dimension-one outcomes as Dirac masses at the
-zero measure. From dimension two onward, separately push through
-`empiricalRawSpacingProbability` to obtain a law on
-`ProbabilityMeasure ℝ`, and prove that forgetting the inner wrapper recovers
-the raw measure-valued law.
+Commit and push the exact workstation-validated candidate recorded above to
+`main`, keeping every page a private draft with `pro_reviewed: false`.
 
-Pair every public declaration with an example-first private-draft Research
-Note, Deep Dive, glossary integration, exact source links, accessible concept
-figures, and a bounded standalone worksheet. Preserve `pro_reviewed: false`.
-Do not redefine GUE, delete zero gaps, divide by matrix dimension, introduce
-an arbitrary empty-dimension probability outcome, unfold or unit-normalize the
+Only after that exact commit exists, request freshly approved and costed Linux
+compute. Restore the verified cache to fast ephemeral storage, run the
+warning-fatal `QuantumChaos/GUE.lean` leaf and `QuantumChaos` aggregator,
+repair only evidence-backed proof seams, run the complete exact-commit gate,
+preserve a verified successor cache, push the validation closure, terminate
+the exact task builder, and retain the project network volume. Do not redefine
+GUE, delete zero gaps, divide by matrix dimension, introduce an arbitrary
+empty-dimension inner probability outcome, unfold or unit-normalize the
 spacings, assert integrability or ensemble moments without proof, or claim
-level repulsion, universality, asymptotics, or quantum chaos. Prepare and push
-the source-and-teaching candidate on the workstation-safe gate; request fresh,
-exactly costed Linux compute only when that immutable candidate is ready for
-pinned-toolchain validation.
+level repulsion, universality, asymptotics, or quantum chaos merely to ease a
+proof.
 
 ## Earlier Milestone Records
 
@@ -4136,7 +4157,12 @@ The shared foundation is validated; diagnostic branches remain placeholders:
   aggregator, guarded build, full gate, paired private-draft teaching bundle,
   exact-commit replay, verified retained successor cache, closure push, and
   task-builder shutdown all pass.
-- [ ] `QuantumChaos/GUE`
+- [ ] `QuantumChaos/GUE.lean`: the seven-declaration source-and-teaching
+  candidate pushes intrinsic finite GUE through the zero-aware raw-spacing
+  observable, preserves exact zero- and one-dimensional Dirac boundaries, and
+  relates the positive-gap probability-valued law to the all-dimensional raw
+  law. Workstation-safe QA passes; pinned-toolchain validation remains to be
+  closed.
 - [ ] `QuantumChaos/SpectralFormFactor`
 - [ ] `QuantumChaos/OTOC`
 - [ ] `QuantumChaos/KInvariance`
