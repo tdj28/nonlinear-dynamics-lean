@@ -11,7 +11,7 @@ reading_time: "30 to 40 minutes"
 prerequisites: "Finite ordered lists, eigenvalues, and point masses are introduced through the worked example"
 lean_module: "NonlinearDynamics.QuantumChaos.SpectralStatistics"
 lean_snapshot: "/lean/NonlinearDynamics/QuantumChaos/SpectralStatistics.lean"
-lean_source_sha256: "d4f085b1045b269a0ca81b0863c03004e6d977cdef36d7b0dbe1e892163aa9ab"
+lean_source_sha256: "62a54be4b21c8b68c211ce88244a48418b7d33b99fc36c615f786216bd488941"
 toc: true
 og_image: "raw-adjacent-level-spacings-counting-measures-and-normalization-card.png"
 og_image_alt: "Three decreasing levels two, two, and minus one yield adjacent raw gaps zero and three, an atom at each gap, and a mass-normalized empirical measure."
@@ -26,9 +26,9 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial and validation status.** This is a private AI-assisted source
-candidate. Professional review and pinned-toolchain Lean validation remain
-pending, so `pro_reviewed` remains false. The SHA-256 field identifies the
-exact candidate discussed below.
+candidate. The exact source identified by the SHA-256 field has passed the
+repository's pinned Lean 4.32.0 checks. Professional review remains pending,
+so `pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Start with all three levels

@@ -3,20 +3,24 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-17
+Last updated: 2026-08-23
 
-Audited baseline: `main` at `55674eb`. Its exact formal source commit is
-`3e9cb91`; the guarded leaf, deterministic `QuantumChaos` aggregator, guarded
-project build, and complete repository gate pass on approved Linux compute.
+Audited baseline: `main` at `c09bb53`. Its source-and-teaching candidate is the
+input to the statement-preserving validation repair in the current closure
+tree. The repaired tree passes the guarded warning-fatal leaf, deterministic
+`QuantumChaos` aggregator, guarded project build, and complete repository gate
+on approved Linux compute. A final exact-commit replay, closure push, and
+builder shutdown remain before advancing the audited baseline.
 
-Active direction: **freeze the finite spectral-statistics interface before any
-GUE specialization, spectral-form-factor, out-of-time-order-correlator, or
-quantum-chaos criterion branch.**
+Active direction: **close the validated finite spectral-statistics interface,
+then define only its finite-GUE pushforward law before any unfolding,
+spectral-form-factor, out-of-time-order-correlator, or quantum-chaos criterion
+branch.**
 
-`NonlinearDynamics.QuantumChaos.SpectralStatistics` now has a source-and-
-teaching candidate awaiting pinned-toolchain Linux validation. Its 23 public
-declarations reuse the decreasing `orderedHermitianEigenvalues` vector and
-define the raw adjacent spacing as
+`NonlinearDynamics.QuantumChaos.SpectralStatistics` now has a validated,
+statement-preserving proof repair. Its 23 public declarations reuse the
+decreasing `orderedHermitianEigenvalues` vector and define the raw adjacent
+spacing as
 `lambda_i - lambda_(i+1)` on `Fin n.pred`. This orientation makes every gap
 nonnegative without claiming strict positivity. Equal neighboring eigenvalues
 contribute a zero gap and remain present with multiplicity.
@@ -31,12 +35,13 @@ empty dimensions. Unitary congruence invariance, pointwise 2-Lipschitz
 regularity, coordinate and vector continuity, and Giry measurability of the
 gap and measure maps are included. No unfolding, unit-mean spacing,
 ensemble-level law, GUE specialization, repulsion, universality, asymptotic
-limit, or quantum-chaos inference is included. The source SHA-256 is
-`d4f085b1045b269a0ca81b0863c03004e6d977cdef36d7b0dbe1e892163aa9ab`.
+limit, or quantum-chaos inference is included. The repaired source SHA-256 is
+`62a54be4b21c8b68c211ce88244a48418b7d33b99fc36c615f786216bd488941`.
 
 The paired private-draft Research Note, Deep Dive, and raw-level-spacing
 glossary chapter remain `pro_reviewed: false` and explicitly identify the
-candidate as not yet pinned-toolchain validated. Their worked spectrum
+exact source as pinned-toolchain validated while professional review remains
+pending. Their worked spectrum
 `(2, 2, -1)` gives raw gaps `(0, 3)`, counting measure `delta_0 + delta_3`,
 and empirical measure `1/2 delta_0 + 1/2 delta_3`. Its mean `3/2` makes the
 mass-normalization-versus-unfolding boundary concrete. Five conceptual SVGs,
@@ -54,7 +59,19 @@ permit or use an arbitrary probability fallback when no gap is present, while
 this candidate preserves the zero measure and makes the positive gap count a
 type-level premise for `ProbabilityMeasure`.
 
-The complete workstation-safe candidate gate passes. All 61 substantive Lean
+The first pinned-toolchain leaf exposed only four statement-preserving proof
+seams: explicit `Fin n.pred` bounds for the left and right adjacent indices,
+normalization of the Lipschitz constant `1 + 1` to `2`, simplification of the
+empty finite sums in dimensions zero and one, and explicit nonzero evidence
+for the positive ENNReal gap count. No public definition, theorem statement,
+orientation, multiplicity rule, boundary convention, or normalization
+changed. The warning-fatal leaf passes in 3.478 seconds with axiom reports
+limited to `propext`, `Classical.choice`, and `Quot.sound`; none reports
+`sorryAx`. The guarded build completes all 3,276 jobs in 8.489 seconds, the
+warning-fatal `QuantumChaos` aggregator passes in 3.133 seconds, and the
+complete gate passes in 13.874 seconds.
+
+The complete workstation-safe gate also passes. All 61 substantive Lean
 modules map to 61 comprehensive Notebook pages; all 23 coverage and seven
 teaching-hygiene regression tests pass; 214 Markdown files and 1,031
 reader-facing surfaces pass their source and language audits. Hugo Extended
@@ -71,7 +88,17 @@ conceptual figure into view loads all eight page images. At the mobile
 breakpoint the page itself has no horizontal overflow and each wide conceptual
 SVG remains contained in its intentional local scroll frame. No project Lean,
 Lake, Mathlib build, proof probe, or cache restoration ran on macOS for this
-candidate.
+milestone.
+
+The verified successor cache
+`lake-manifest-pinned-spectral-statistics-20260823.tar.zst` contains 127,460
+entries and 2,672,306,339 compressed bytes from an 8,137,799,680-byte tar
+stream. Its SHA-256 is
+`78f0f0c4957d19aa4857203cffbaa184841094fe812c10e5e59797f1d5f33aa1`.
+`zstd -t`, a complete tar listing, the post-copy checksum, and the atomic
+ledger `SHA256SUMS-spectral-statistics-20260823` all pass on retained storage.
+The retained volume remains a sequential archive store rather than a live
+Lake tree.
 
 `NonlinearDynamics.QuantumChaos.FiniteSystems` is now a validated shared
 foundation.
@@ -3192,25 +3219,23 @@ and
 
 ## Exact Next Milestone
 
-### Validate and repair the raw finite spectral-statistics candidate
+### Close the exact finite spectral-statistics validation commit
 
-Finish the workstation-safe gate and browser inspection for exact source hash
-`d4f085b1045b269a0ca81b0863c03004e6d977cdef36d7b0dbe1e892163aa9ab`, then
-commit and push the source-and-teaching candidate to `main`. Request separately
-scoped approved Linux compute only after that exact commit exists. Restore the
-verified cache to fast ephemeral storage, run the warning-fatal
-`QuantumChaos/SpectralStatistics.lean` leaf and deterministic `QuantumChaos`
-aggregator, repair only evidence-backed proof seams, and run the exact-commit
-complete repository gate. Preserve a verified successor cache, record the
-validated source commit and checksum, terminate the exact task compute, and
-retain the project network volume.
+Commit the statement-preserving proof repair, exact teaching-source hashes,
+validated-but-not-professionally-reviewed status, and this receipt. Replay the
+complete gate on that exact closure tree with pinned Lean 4.32.0 and Hugo
+Extended 0.160.1. Push the green closure to `main`, terminate the exact task
+builder, verify that no task pod or active compute rate remains, and retain the
+project network volume.
 
-Do not change the decreasing-order orientation, zero-gap multiplicity policy,
-`Fin n.pred` all-dimensional index, zero measure in dimensions zero and one,
-normalization by the available gap count, or dimension-`n + 2` probability
-wrapper merely to ease a proof. No GUE, unfolding, universality,
-level-repulsion, spectral-form-factor, OTOC, asymptotic, or chaos claim belongs
-in this validation milestone.
+After that closure, the next source milestone is a finite-GUE raw-spacing-law
+bridge. It may push the existing intrinsic GUE law through
+`empiricalRawSpacingMeasure`, preserve the zero-measure outcomes in dimensions
+zero and one, and expose a probability-measure-valued outcome law only from
+dimension two onward. It must consume the existing GUE and raw-spacing APIs;
+it must not redefine the ensemble, delete zero gaps, divide by dimension,
+unfold or unit-normalize the spacings, assert integrability without proof, or
+claim level repulsion, universality, asymptotics, or quantum chaos.
 
 ## Earlier Milestone Records
 
@@ -4091,11 +4116,13 @@ The shared foundation is validated; diagnostic branches remain placeholders:
   empirical spectral moment. The repaired warning-fatal leaf, axiom audit,
   deterministic aggregator, guarded project build, exact-commit full gate,
   paired teaching bundle, and verified retained cache all pass.
-- [ ] `QuantumChaos/SpectralStatistics.lean`: the 23-declaration source-and-
-  teaching candidate fixes decreasing-order raw gaps, exact empty-dimension
-  measures, normalization by `n.pred`, positive-gap probability packaging,
-  deterministic invariance, continuity, and measurability. Workstation-safe
-  QA passes; pinned-toolchain Linux validation remains to be closed.
+- [x] `QuantumChaos/SpectralStatistics.lean`: the 23-declaration source fixes
+  decreasing-order raw gaps, exact empty-dimension measures, normalization by
+  `n.pred`, positive-gap probability packaging, deterministic invariance,
+  continuity, and measurability. The statement-preserving warning-fatal repair,
+  aggregator, guarded build, full gate, paired private-draft teaching bundle,
+  and verified retained successor cache pass; the final exact-commit replay and
+  builder shutdown are the only remaining closure actions.
 - [ ] `QuantumChaos/GUE`
 - [ ] `QuantumChaos/SpectralFormFactor`
 - [ ] `QuantumChaos/OTOC`
@@ -6049,6 +6076,10 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `c09bb53`: prepare the 23-declaration raw finite spectral-statistics
+  candidate, private-draft cited teaching bundle, deterministic assets,
+  bounded worksheet, and the explicit decreasing-order, zero-gap,
+  available-slot normalization, empty-dimension, and no-unfolding decisions.
 - `55674eb`: record the passing exact-commit finite-quantum leaf, deterministic
   aggregator, guarded project build, complete repository gate, verified
   successor cache, validated teaching status, and finite-spectral-statistics

@@ -15,7 +15,7 @@ tags:
 lean_module: "NonlinearDynamics.QuantumChaos.SpectralStatistics"
 lean_source: "formalization/NonlinearDynamics/QuantumChaos/SpectralStatistics.lean"
 lean_snapshot: "/lean/NonlinearDynamics/QuantumChaos/SpectralStatistics.lean"
-lean_source_sha256: "d4f085b1045b269a0ca81b0863c03004e6d977cdef36d7b0dbe1e892163aa9ab"
+lean_source_sha256: "62a54be4b21c8b68c211ce88244a48418b7d33b99fc36c615f786216bd488941"
 toc: true
 og_image: "raw-finite-level-spacings-in-lean-card.png"
 og_image_alt: "A decreasing three-level spectrum two, two, minus one becomes raw adjacent gaps zero and three, then a counting measure and a mass-normalized empirical measure."
@@ -32,9 +32,9 @@ sources and any released artifacts before relying on them.
 
 {{< panel "warning" >}}
 **Editorial status.** This is a private AI-assisted source
-candidate. Professional review and pinned-toolchain Lean validation remain
-pending, so `pro_reviewed` remains false. The SHA-256 field identifies the
-exact source candidate documented by this note.
+candidate. The exact source identified by the SHA-256 field has passed the
+repository's pinned Lean 4.32.0 checks. Professional review remains pending,
+so `pro_reviewed` remains false.
 {{< /panel >}}
 
 ## Abstract

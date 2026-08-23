@@ -26,8 +26,9 @@ sources and any released artifacts before relying on them.
 
 {{< panel "warning" >}}
 **Editorial and validation status.** This is a private AI-assisted source
-candidate. Professional review and pinned-toolchain Lean validation remain
-pending, so `pro_reviewed` remains false.
+candidate. Its paired Lean module has passed the repository's pinned Lean
+4.32.0 checks. Professional review remains pending, so `pro_reviewed` remains
+false.
 {{< /panel >}}
 
 A **raw level spacing** is the difference between adjacent entries of a

@@ -33,11 +33,11 @@ noncomputable section
 
 /-- The left spectral rank of an adjacent gap. Its value is `i`. -/
 private def rawSpacingLeftIndex {n : ℕ} (i : Fin n.pred) : Fin n :=
-  ⟨i.1, by omega⟩
+  ⟨i.1, Nat.lt_of_succ_lt (Nat.succ_lt_of_lt_pred i.isLt)⟩
 
 /-- The right spectral rank of an adjacent gap. Its value is `i + 1`. -/
 private def rawSpacingRightIndex {n : ℕ} (i : Fin n.pred) : Fin n :=
-  ⟨i.1 + 1, by omega⟩
+  ⟨i.1 + 1, Nat.succ_lt_of_lt_pred i.isLt⟩
 
 private theorem rawSpacingLeftIndex_le_rightIndex {n : ℕ}
     (i : Fin n.pred) :
@@ -75,7 +75,7 @@ theorem rawLevelSpacing_nonneg {n : ℕ} (H : FiniteHamiltonian n)
 metric. The constant is the sum of the two 1-Lipschitz eigenvalue bounds. -/
 theorem lipschitzWith_rawLevelSpacing {n : ℕ} (i : Fin n.pred) :
     LipschitzWith 2 (fun H : FiniteHamiltonian n => rawLevelSpacing H i) := by
-  simpa [rawLevelSpacing] using
+  simpa only [rawLevelSpacing, one_add_one_eq_two] using
     ((RandomMatrix.lipschitzWith_orderedHermitianEigenvalues_apply
       (rawSpacingLeftIndex i)).sub
       (RandomMatrix.lipschitzWith_orderedHermitianEigenvalues_apply
@@ -121,14 +121,12 @@ def rawSpacingCountingMeasure {n : ℕ}
 /-- A zero-dimensional Hamiltonian has no adjacent spectral gaps. -/
 @[simp] theorem rawSpacingCountingMeasure_zero
     (H : FiniteHamiltonian 0) : rawSpacingCountingMeasure H = 0 := by
-  rw [rawSpacingCountingMeasure]
-  exact Fintype.sum_empty _
+  simp [rawSpacingCountingMeasure]
 
 /-- A one-dimensional Hamiltonian has no adjacent spectral gaps. -/
 @[simp] theorem rawSpacingCountingMeasure_one
     (H : FiniteHamiltonian 1) : rawSpacingCountingMeasure H = 0 := by
-  rw [rawSpacingCountingMeasure]
-  exact Fintype.sum_empty _
+  simp [rawSpacingCountingMeasure]
 
 /-- The total mass of the raw-spacing counting measure is the number of
 available adjacent slots, `n.pred`. -/
@@ -188,7 +186,7 @@ theorem empiricalRawSpacingMeasure_succ_succ_isProbability (n : ℕ)
   rw [isProbabilityMeasure_iff]
   rw [empiricalRawSpacingMeasure, Measure.smul_apply,
     rawSpacingCountingMeasure_univ]
-  exact ENNReal.inv_mul_cancel (by positivity) (by simp)
+  exact ENNReal.inv_mul_cancel (by simp) (by simp)
 
 /-- The empirical raw-spacing measure bundled as a genuine probability
 measure in dimension `n + 2`. -/
