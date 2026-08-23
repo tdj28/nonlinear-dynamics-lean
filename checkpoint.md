@@ -5,15 +5,13 @@
 
 Last updated: 2026-08-23
 
-Audited baseline: `main` at `c09bb53`. Its source-and-teaching candidate is the
-input to the statement-preserving validation repair in the current closure
-tree. The repaired tree passes the guarded warning-fatal leaf, deterministic
-`QuantumChaos` aggregator, guarded project build, and complete repository gate
-on approved Linux compute. A final exact-commit replay, closure push, and
-builder shutdown remain before advancing the audited baseline.
+Audited baseline: `main` at `de78075`. Its statement-preserving spectral-
+statistics repair passes the guarded warning-fatal leaf, deterministic
+`QuantumChaos` aggregator, all 3,276 guarded project-build jobs, and the
+complete exact-commit repository gate on approved Linux compute.
 
-Active direction: **close the validated finite spectral-statistics interface,
-then define only its finite-GUE pushforward law before any unfolding,
+Active direction: **define only the finite-GUE pushforward law of the validated
+raw spectral-statistics interface before any unfolding,
 spectral-form-factor, out-of-time-order-correlator, or quantum-chaos criterion
 branch.**
 
@@ -69,7 +67,11 @@ changed. The warning-fatal leaf passes in 3.478 seconds with axiom reports
 limited to `propext`, `Classical.choice`, and `Quot.sound`; none reports
 `sorryAx`. The guarded build completes all 3,276 jobs in 8.489 seconds, the
 warning-fatal `QuantumChaos` aggregator passes in 3.133 seconds, and the
-complete gate passes in 13.874 seconds.
+complete gate passes in 13.874 seconds. Exact pushed commit `de78075` then
+passes a second warning-fatal leaf, aggregator, 3,276-job build, and complete
+gate replay without further source changes. Its 25,972,555-byte source-only
+archive has SHA-256
+`2c80f124705ee32f6422dcec6dc175a14822d81827af07470592f5c99b15f691`.
 
 The complete workstation-safe gate also passes. All 61 substantive Lean
 modules map to 61 comprehensive Notebook pages; all 23 coverage and seven
@@ -98,7 +100,12 @@ stream. Its SHA-256 is
 `zstd -t`, a complete tar listing, the post-copy checksum, and the atomic
 ledger `SHA256SUMS-spectral-statistics-20260823` all pass on retained storage.
 The retained volume remains a sequential archive store rather than a live
-Lake tree.
+Lake tree. The exact task builder was terminated after 1,754 seconds,
+approximately 29.2 minutes and $0.16 of compute, below the approved $5 ceiling.
+Direct lookup is absent. The retained 100-GB project volume remains attached
+to no live task from this milestone. Post-action account inventory found one
+separate active pod at $1.59 per hour; it was not the recorded task and was
+left untouched.
 
 `NonlinearDynamics.QuantumChaos.FiniteSystems` is now a validated shared
 foundation.
@@ -3219,23 +3226,29 @@ and
 
 ## Exact Next Milestone
 
-### Close the exact finite spectral-statistics validation commit
+### Define the finite-GUE raw-spacing law boundary
 
-Commit the statement-preserving proof repair, exact teaching-source hashes,
-validated-but-not-professionally-reviewed status, and this receipt. Replay the
-complete gate on that exact closure tree with pinned Lean 4.32.0 and Hugo
-Extended 0.160.1. Push the green closure to `main`, terminate the exact task
-builder, verify that no task pod or active compute rate remains, and retain the
-project network volume.
+Research and implement a bounded `QuantumChaos/GUE.lean` bridge that consumes
+the existing `GUE.intrinsicLaw` and validated spectral-statistics API. Define
+the outer law obtained by pushing finite GUE through
+`empiricalRawSpacingMeasure`, prove that outer law is a probability measure in
+every dimension, and bundle it as a `ProbabilityMeasure (Measure ℝ)`. Record
+the exact dimension-zero and dimension-one outcomes as Dirac masses at the
+zero measure. From dimension two onward, separately push through
+`empiricalRawSpacingProbability` to obtain a law on
+`ProbabilityMeasure ℝ`, and prove that forgetting the inner wrapper recovers
+the raw measure-valued law.
 
-After that closure, the next source milestone is a finite-GUE raw-spacing-law
-bridge. It may push the existing intrinsic GUE law through
-`empiricalRawSpacingMeasure`, preserve the zero-measure outcomes in dimensions
-zero and one, and expose a probability-measure-valued outcome law only from
-dimension two onward. It must consume the existing GUE and raw-spacing APIs;
-it must not redefine the ensemble, delete zero gaps, divide by dimension,
-unfold or unit-normalize the spacings, assert integrability without proof, or
-claim level repulsion, universality, asymptotics, or quantum chaos.
+Pair every public declaration with an example-first private-draft Research
+Note, Deep Dive, glossary integration, exact source links, accessible concept
+figures, and a bounded standalone worksheet. Preserve `pro_reviewed: false`.
+Do not redefine GUE, delete zero gaps, divide by matrix dimension, introduce
+an arbitrary empty-dimension probability outcome, unfold or unit-normalize the
+spacings, assert integrability or ensemble moments without proof, or claim
+level repulsion, universality, asymptotics, or quantum chaos. Prepare and push
+the source-and-teaching candidate on the workstation-safe gate; request fresh,
+exactly costed Linux compute only when that immutable candidate is ready for
+pinned-toolchain validation.
 
 ## Earlier Milestone Records
 
@@ -4121,8 +4134,8 @@ The shared foundation is validated; diagnostic branches remain placeholders:
   `n.pred`, positive-gap probability packaging, deterministic invariance,
   continuity, and measurability. The statement-preserving warning-fatal repair,
   aggregator, guarded build, full gate, paired private-draft teaching bundle,
-  and verified retained successor cache pass; the final exact-commit replay and
-  builder shutdown are the only remaining closure actions.
+  exact-commit replay, verified retained successor cache, closure push, and
+  task-builder shutdown all pass.
 - [ ] `QuantumChaos/GUE`
 - [ ] `QuantumChaos/SpectralFormFactor`
 - [ ] `QuantumChaos/OTOC`
@@ -6076,6 +6089,11 @@ Checkpoint/skill milestone QA:
 
 ## Recent Pushes
 
+- `de78075`: repair only pinned-toolchain proof seams in the raw finite
+  spectral-statistics leaf, update the exact teaching-source hashes and
+  validation status, pass the warning-fatal leaf and aggregator plus the
+  3,276-job complete gate, preserve the verified successor cache, and record
+  the finite-GUE raw-spacing-law handoff.
 - `c09bb53`: prepare the 23-declaration raw finite spectral-statistics
   candidate, private-draft cited teaching bundle, deterministic assets,
   bounded worksheet, and the explicit decreasing-order, zero-gap,
