@@ -25,7 +25,7 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
+**Editorial and validation status.** This is an AI-assisted working
 draft. The warning-fatal pinned-toolchain leaf, deterministic aggregator, and
 exact-commit full repository gate pass. Professional review remains pending,
 so `pro_reviewed` remains false.

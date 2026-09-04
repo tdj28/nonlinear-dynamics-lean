@@ -1,8 +1,10 @@
 # Nonlinear Dynamics in Lean
 
-This repository develops a machine-checked account of nonlinear dynamics and a
-public teaching record alongside it. The two parts share one history but remain
-separate build targets:
+This repository formalizes selected results in nonlinear dynamics in Lean 4
+and develops a teaching record alongside them. Read the
+[public learning site](https://tdj28.github.io/nonlinear-dynamics-lean/) or
+explore the source and draft lessons here. The formalization and site share
+one history but remain separate build targets:
 
 ```text
 .
@@ -20,6 +22,25 @@ The site has two main collections:
   reproducible commands.
 - **Knowledge Base:** stable glossary entries and longer deep dives that can be
   reused across notebook entries.
+
+## Validation and review status
+
+The latest complete project validation recorded in
+[`checkpoint.md`](checkpoint.md) is commit
+[`de78075`](https://github.com/tdj28/nonlinear-dynamics-lean/commit/de78075),
+checked on 2026-08-23 with Lean 4.32.0 and the committed Mathlib manifest.
+The current `main` branch also contains a finite-GUE raw-spacing-law candidate
+whose project Lean validation is still pending. Passing the website checks or
+a standalone `Std` exercise does not validate that candidate.
+
+The proof and teaching work is AI-assisted. The teaching pages retain
+`pro_reviewed: false`: publication is permission to read working notes, not a
+record of external specialist review. A checked Lean proof establishes its
+formal statement; agreement with the intended mathematics and the exposition
+requires a separate audit.
+
+The [September 2026 public audit](docs/public-audit-2026-09-04.md) records
+the latest corrections, validation limits, and recommended next steps.
 
 ## Project memory and research workflow
 
@@ -44,18 +65,21 @@ make checkpoint-check
 
 ## Requirements and disk space
 
-On either macOS or Linux, install Git, `curl`, Make, Python 3, and
-[Hugo Extended](https://gohugo.io/installation/) 0.153.0 or newer. Lean
-versions are managed by [`elan`](https://github.com/leanprover/elan), and the
-formalization pins Lean and Mathlib to version 4.32.0.
+For site work on macOS or Linux, install Git, `curl`, Make, Python 3, and
+[Hugo Extended](https://gohugo.io/installation/). The recorded site validation
+and deployment use Hugo 0.160.1; use that release when reproducing them. Lean
+versions are managed by [`elan`](https://github.com/leanprover/elan). The
+formalization pins Lean to 4.32.0 and records the exact Mathlib and transitive
+dependency commits in [`lake-manifest.json`](formalization/lake-manifest.json).
 
 There are two useful ways to follow the teaching material:
 
 - A **standalone tutorial** imports only Lean core or `Std`. It needs the pinned
   Lean compiler but does not download Mathlib.
-- A **full project check** imports the repository and Mathlib. Allow at least
-  12 GB of free disk space; 15 GB gives comfortable setup and rebuild
-  headroom.
+- A **full project check** imports the repository and Mathlib. The instructions
+  below target Linux. Plan for at least 20 GB of free disk space, including
+  temporary downloads and build output, and substantial memory for rebuilding
+  dependencies. On macOS, follow the site and standalone-tutorial routes.
 
 For scale, the Lean 4.32.0 compiler occupies roughly 2.6 GB on Apple Silicon,
 and a downloaded Mathlib dependency and compiled-cache tree can add roughly
@@ -172,19 +196,30 @@ The last command downloads only the exact compiler named by
 [`formalization/lean-toolchain`](formalization/lean-toolchain). Elan stores it
 under `~/.elan/toolchains/`; it does not download Mathlib.
 
-For the full formalization, download the pinned dependencies and Mathlib's
-precompiled cache:
+For the full formalization on Linux, download the committed dependencies and
+Mathlib's precompiled cache. Contributors should first read the repository's
+[operating instructions](AGENTS.md). To reproduce the last fully validated
+source in a fresh clone, select its exact commit before entering the project:
+
+```sh
+git switch --detach de78075
+```
+
+Omit that checkout only if you intend to test current development, including
+the candidate described above. Then run:
 
 ```sh
 cd formalization
-lake update
+sha256sum --check lake-manifest.sha256
 lake exe cache get
+sha256sum --check lake-manifest.sha256
 ```
 
-`lake update` downloads the dependency revisions recorded in
-[`lake-manifest.json`](formalization/lake-manifest.json). `lake exe cache get`
-then downloads precompiled Mathlib artifacts so you do not have to compile the
-whole library from source.
+Lake uses the resolved revisions in the committed manifest, and
+`lake exe cache get` downloads the matching precompiled Mathlib artifacts.
+The checksum checks detect a changed manifest. Do not run `lake update` as
+part of reproducing this snapshot: that command resolves dependencies again
+and can change the manifest. Stop and investigate any checksum mismatch.
 
 Verify that the repository selected the intended compiler:
 
@@ -205,10 +240,10 @@ Check one source file while following a chapter:
 lake env lean -DwarningAsError=true NonlinearDynamics/path/to/Module.lean
 ```
 
-Build only the site:
+Build only the site from the repository root. If you entered `formalization`
+for the Linux commands above, return with `cd ..` first:
 
 ```sh
-cd ..
 make site
 ```
 
@@ -226,7 +261,8 @@ Site builds also mount the repository's `.lean` files beneath
 `lean_snapshot`, and `lean_source_sha256` links to this site-hosted source;
 `make content-coverage` reads those keys only from YAML front matter on every
 content page, derives the exact URL from the module name, and verifies that the
-recorded SHA-256 still matches the checked source. No `.env`, build cache, Git
+recorded SHA-256 still matches the current source. This is a source-identity
+check, not evidence that the file compiles. No `.env`, build cache, Git
 metadata, or other formalization artifact is published by this mount.
 
 ## Publish with GitHub Pages
@@ -249,20 +285,23 @@ the configuration step. After selecting **GitHub Actions**, rerun that failed
 workflow from the **Actions** tab or choose **Run workflow**; the workflow also
 supports manual dispatch for exactly this case.
 
-The deployment intentionally omits Hugo drafts, but the complete existing
-corpus is now opted into publication: 39 Development Notebook entries, 36
-Knowledge Base Deep Dives, and 62 glossary chapters have `draft: false`. They
-are public working notes, not a claim that every editorial or technical review
-is complete. Their `pro_reviewed: false` metadata and visible pending-review
-status language remain unchanged. Future pages can still begin as drafts, and
-local preview targets continue to include them.
+The deployment omits pages marked `draft: true`. Published pages marked
+`draft: false` are public working notes; their `pro_reviewed: false` metadata
+and visible pending-review language remain in place. Some later teaching
+bundles, including the current GUE candidate, are still drafts and appear only
+in draft-inclusive previews of the site. Their Markdown, Lean files, and
+assets are nevertheless publicly readable in this public repository.
+
+**A Hugo draft flag controls site inclusion, not confidentiality.** Do not
+store confidential review material in any tracked file, even if the page is
+a draft or absent from the production site.
 
 The mounted `.lean` sources are static publication assets and are also public
 under the Pages URL. Publishing an article does not change the mathematical
 scope, axiom ledger, proof status, or explicit nonclaims recorded in it.
 
-GitHub Pages sites are publicly accessible even when their source repository is
-private. Never put `.env`, API keys, credentials, infrastructure identifiers, private
+This repository and its GitHub Pages site are public. Never put `.env`, API
+keys, credentials, infrastructure identifiers, private
 review material, or generated build caches beneath `site/` or
 `formalization/NonlinearDynamics/`. Keep future unfinished pages draft-gated
 unless the owner explicitly chooses to publish them as open working notes;
@@ -287,416 +326,39 @@ formalization/NonlinearDynamics/
 See [`formalization/NonlinearDynamics.lean`](formalization/NonlinearDynamics.lean)
 for the current root import graph.
 
-## Where the formalization starts
+## Mathematical scope
 
-The first active sequence is:
+The module names below link to source and import graphs; the
+[checkpoint](checkpoint.md) and
+[notebook coverage map](site/data/lean_notebook_coverage.json) provide the
+declaration-level release history and teaching companions.
 
-1. [`RandomMatrices/Basic.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/Basic.lean)
-   defines the underlying matrix-valued maps, equips matrices with their
-   entrywise measurable structure, and proves that the basic matrix operations
-   needed later preserve measurability. It also introduces unnormalized
-   Hermitian symmetrization.
-2. [`RandomMatrices/Hermitian.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/Hermitian.lean)
-   distinguishes measurable, pointwise-Hermitian, and almost-surely Hermitian
-   matrices; bundles the strongest finite interface; and proves conjugate-entry,
-   real-diagonal, trace, and congruence-transform consequences.
-3. [`RandomMatrices/Laws.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/Laws.lean)
-   defines measurable matrix congruence, pushforward matrix laws, probability
-   preservation, Dirac sanity checks, and unitary-conjugation invariance as a
-   property of measures. It proves the exact bridge from samplewise
-   `conjugateBy` to pushforward law, without claiming that an ensemble is
-   invariant.
-4. [`RandomMatrices/Observables.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/Observables.lean)
-   defines trace powers, proves their measurability, and proves that they are
-   real-valued for Hermitian realizations. It deliberately stops before
-   expectation and integrability.
-5. [`GaussianPrimitives.lean`](formalization/NonlinearDynamics/Random/GaussianPrimitives.lean)
-   gives real Gaussian variables exact mean and variance parameters, preserves
-   the zero-variance Dirac case, proves finite-exponent `MemLp` and
-   integrability, bundles measurable mutually independent families, and
-   identifies their finite joint law with a Gaussian product measure.
-6. [`ComplexGaussian.lean`](formalization/NonlinearDynamics/Random/ComplexGaussian.lean)
-   transports a product of exact real Gaussian laws to `ℂ`, keeps the real
-   and imaginary coordinate variances explicit, recovers both marginals and
-   their independence, and proves integrability, the exact mean, and the
-   double-zero Dirac boundary. "Cartesian" does not imply circularity or
-   properness.
-7. [`ComplexGaussianFamilies.lean`](formalization/NonlinearDynamics/Random/ComplexGaussianFamilies.lean)
-   bundles ordinarily measurable, mutually independent complex coordinates,
-   proves their exact finite product law and qualitative joint Gaussianity,
-   supports coordinatewise real scaling, and realizes the interface on a
-   canonical product sample space, including its empty-index Dirac boundary.
-8. [`RandomMatrices/HermitianCoordinates.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/HermitianCoordinates.lean)
-   defines the real-diagonal and complex-strict-upper coordinate space,
-   assembles it directly into a Hermitian matrix without doubling the
-   diagonal, proves the entry formulas and measurability of the assembly map,
-   bundles coordinate processes as Hermitian random matrices, and makes the
-   zero-dimensional result explicitly equal to the empty zero matrix.
-9. [`RandomMatrices/GaussianUnitaryEnsemble.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsemble.lean)
-   fixes the Wigner-scaled GUE convention, constructs the independent real
-   diagonal and Cartesian complex strict-upper coordinate law, pushes it
-   through measurable Hermitian assembly, proves exact entry marginals and
-   the relevant independence interfaces, and reduces dimension zero to Dirac
-   laws on the unique empty coordinate point and matrix.
-10. [`RandomMatrices/GaussianUnitaryEnsembleGeometry.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleGeometry.lean)
-    flattens matrices into Frobenius Euclidean space, cuts out the Hermitian
-    matrices as an intrinsic real subspace, packages unitary congruence as an
-    isometry, proves invariance of Mathlib's standard Gaussian on that
-    intrinsic space, and proves the coordinate-built ambient GUE law gives the
-    measurable Hermitian locus mass one. It deliberately keeps that intrinsic
-    Gaussian distinct from `GUE.matrixLaw` until their normalized coordinate
-    presentations are proved equal.
-11. [`RandomMatrices/GaussianUnitaryEnsembleInvariance.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleInvariance.lean)
-    builds an explicit normalized real coordinate system for Hermitian
-    matrices, proves that its assembly map is a Frobenius linear isometry,
-    transports the full independent Gaussian product law to a scaled intrinsic
-    standard Gaussian, and then pushes intrinsic congruence symmetry through
-    the Hermitian inclusion to prove unitary-conjugation invariance of the
-    ambient finite GUE law in every dimension, including zero.
-12. [`RandomMatrices/GaussianUnitaryEnsembleMoments.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleMoments.lean)
-    proves that the first two trace-power observables are complex Bochner
-    integrable under the finite GUE law and evaluates their exact expectations:
-    `E[Tr H] = 0` and `E[Tr(H^2)] = n`. The second identity is obtained from the
-    normalized Frobenius coordinates, so it holds uniformly at dimension zero
-    and requires neither a density nor eigenvalue machinery.
-13. [`RandomMatrices/HermitianSpectrum.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrum.lean)
-    packages decreasingly ordered real Hermitian eigenvalues with multiplicity,
-    proves the exact trace and trace-square sums and unitary-congruence
-    invariance, and builds spectral counting and zero-aware empirical measures.
-    It exposes a genuine probability-measure wrapper only in positive
-    dimension and keeps its measure-valued measurability theorems conditional
-    on the coordinatewise hypothesis discharged by the next module.
-14. [`RandomMatrices/HermitianSpectrumContinuity.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/HermitianSpectrumContinuity.lean)
-    proves the coordinatewise Frobenius Weyl bound through ordered spectral
-    subspaces and a dimension-intersection argument. It packages each ordered
-    eigenvalue and the full finite vector as 1-Lipschitz, derives continuity and
-    measurability, and turns the earlier conditional counting-measure,
-    empirical-measure, and intrinsic/ambient GUE bridges into unconditional
-    theorems. The whole-vector target uses the finite sup metric; this is not a
-    Hoffman-Wielandt Euclidean eigenvalue-vector theorem.
-15. [`RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean`](formalization/NonlinearDynamics/Random/RandomMatrices/GaussianUnitaryEnsembleSpectrum.lean)
-    names the finite-GUE law of zero-aware empirical spectral measures, proves
-    its intrinsic and ambient presentations agree, packages both the raw law
-    and its positive-dimensional probability-measure-valued form, and builds
-    the mean empirical measure by Giry join. It connects the first two sample
-    spectral moments to normalized trace powers and proves their exact GUE
-    expectations, with second moment zero at dimension zero and one in every
-    positive dimension.
-16. [`MatrixProducts/FiniteProducts.lean`](formalization/NonlinearDynamics/Random/MatrixProducts/FiniteProducts.lean)
-    fixes the forward-time product `A (k - 1) * ... * A 0`, with the newest
-    factor on the left so vectors evolve chronologically. Its algebraic layer
-    works over any semiring and proves splitting, constant-system powers, and
-    vector-action recursions. Over real or complex scalars in positive finite
-    dimension, it proves product, geometric, and vector-orbit bounds in
-    Mathlib's maximum-row-sum norm induced by the vector supremum norm.
-17. [`MatrixProducts/MeasurableFiniteProducts.lean`](formalization/NonlinearDynamics/Random/MatrixProducts/MeasurableFiniteProducts.lean)
-    lifts that ordered product pointwise to time-indexed matrix-valued sample
-    maps. The semiring algebra remains general; the complex measurable layer
-    derives product measurability from exactly the finite prefix in use and
-    exposes only proof-carrying pushforward laws. Probability sources give both
-    a raw mass-one theorem and a bundled probability law, including empty
-    matrix dimension and the zero-horizon Dirac boundary.
-18. [`RandomCocycles/Discrete.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/Discrete.lean)
-    samples a matrix generator along natural-number iterates of a base map and
-    proves the one-sided cocycle identity with the shifted later block on the
-    left. Its measurable bundle records a measure-preserving base and an
-    ordinarily measurable complex generator, then exposes measurable finite
-    cocycle values and preservation of every base iterate without requiring a
-    probability measure or a positive matrix dimension.
-19. [`RandomCocycles/NormObservables.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/NormObservables.lean)
-    selects the maximum absolute row-sum operator norm, proves finite-time
-    norm measurability and cocycle submultiplicativity, and defines an
-    extended-real log norm whose value is exactly bottom at a zero cocycle
-    matrix. Positive dimension is required only for the normalized time-zero
-    identities; explicit theorems record norm zero and log bottom for the
-    empty matrix dimension.
-20. [`RandomCocycles/LogPlusIntegrability.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/LogPlusIntegrability.lean)
-    defines the real log-positive finite-time norm as a nonnegative
-    integrability envelope, proves its measurability and subadditivity, and
-    bounds it by the finite sum of one-step values along the base orbit. An
-    explicit one-step integrability hypothesis propagates through every base
-    iterate, orbit sum, and finite horizon under measure preservation, without
-    requiring a probability measure. The envelope deliberately forgets
-    contraction and exact collapse, so it is not the extended log norm or a
-    Lyapunov exponent.
-21. [`RandomCocycles/IntegratedLogPlusGrowth.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/IntegratedLogPlusGrowth.lean)
-    integrates every finite-horizon log-positive envelope against the preserved
-    raw measure and proves invariance of those totalized integrals under every
-    base iterate. Under RMT-15's explicit one-step integrability hypothesis, it
-    evaluates the finite orbit-sum integral, obtains a linear one-step bound
-    and a subadditive real sequence, and proves that the normalized sequence
-    converges to Mathlib's deterministic Fekete limit. The integral is not
-    called an expectation without a probability measure, and the result is
-    neither almost-sure nor a Lyapunov limit.
-22. [`RandomCocycles/ProbabilityErgodicBase.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/ProbabilityErgodicBase.lean)
-    keeps probability normalization, ergodicity, and finite-horizon
-    integrability as separate interfaces. It packages the log-positive family
-    as an integrable subadditive-process candidate, exposes the deterministic
-    Fekete rate's nonnegativity, positive-index infimum, and finite-horizon
-    upper bounds, and gives probability-specialized expectation terminology.
-    Native ergodic results provide a zero-one law for strictly invariant
-    measurable events and almost-everywhere constancy for almost-everywhere
-    invariant real observables. None of these declarations constructs a
-    samplewise limit or a Lyapunov exponent.
-23. [`RandomCocycles/SubadditiveFiniteBlocks.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveFiniteBlocks.lean)
-    proves both terminal-remainder and remainder-first finite block bounds,
-    their exact quotient-and-remainder forms, and finite Birkhoff-sum
-    integrability under preservation of the fixed block map. It isolates the
-    exact time-zero normalization needed only for the uniform exact-block
-    statement, then specializes the useful pointwise and integrability
-    interfaces to cocycle log-positive growth. The pointwise cocycle bounds
-    require no integrability premise; the entire layer requires neither
-    probability nor ergodicity and makes no convergence claim.
-24. [`RandomCocycles/SubadditiveCentering.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveCentering.lean)
-    subtracts the one-step Birkhoff orbit sum from a finite subadditive
-    process. The residual is nonpositive at every positive horizon without a
-    time-zero premise, and uniformly nonpositive under exactly `X 0 = 0`.
-    Raw finite algebra preserves shifted subadditivity; one-step measure
-    preservation transports integrability and repackages the residual as a
-    new candidate. An exact normalized identity then separates the original
-    value into a normalized residual plus a finite Birkhoff average. The
-    cocycle pointwise layer needs no generator-integrability witness; only its
-    candidate packaging does. This is orbit-majorant compensation, not
-    expectation centering, mean zero, or an ergodic limit theorem.
-25. [`RandomCocycles/SubadditivePhaseAveraging.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditivePhaseAveraging.lean)
-    reindexes all residue-phase block sums as one finite sliding Birkhoff sum,
-    retains the exact prefix and terminal gaps, and discards those gaps under
-    positive-horizon nonpositivity. Summing the phase bounds proves a
-    zero-block-safe multiplication inequality at the corrected horizon
-    `b * q + b + r`; division requires `b ≠ 0`, while `r` is unrestricted.
-    Centered-process specializations add no time-zero or preservation premise,
-    and the cocycle theorem takes the cocycle directly without the
-    generator-integrability witness. The public wrappers retain their bundled
-    fields, but the proofs consume only finite algebra and nonpositivity. This
-    is a finite phase estimate, not a Birkhoff or Kingman convergence theorem.
-26. [`RandomCocycles/SubadditiveIntervalPacking.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveIntervalPacking.lean)
-    encodes positive-length half-open natural intervals by successive gaps, so
-    chronological order, disjointness, abutment, containment, and exact
-    covered cardinality are structural. A leftmost greedy selector produces a
-    disjoint cover of marked starts inside the enlarged horizon `H + m` and
-    records both coverage and the exact origin and length of every selected
-    interval. Weak and strict favorable-cost estimates then give finite bounds
-    by the number of marked starts; the weak result handles empty marks when
-    the enlarged horizon is positive, while the strict result requires a
-    nonempty marked set and derives that positivity. The process proof uses
-    only shifted subadditivity and positive-horizon nonpositivity and makes no
-    density, maximal, ergodic, convergence, or Lyapunov claim.
-27. [`RandomCocycles/BirkhoffConvergence.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/BirkhoffConvergence.lean)
-    proves finite-horizon measurability and integrability for real Birkhoff
-    sums and averages, then names the points where those averages converge.
-    Ordinary measurability gives a measurable event; an almost-everywhere
-    measurable representative and quasi-measure preservation give a
-    null-measurable event. Two positive-index prefix identities prove that
-    convergence and its limit are unchanged by applying the base map once,
-    hence the event is exactly preimage-invariant without invertibility or
-    even measurability of the map. Pre-ergodic and quasi-ergodic rigidity then
-    yield conditional null-or-conull conclusions, and probability
-    normalization turns those into zero-one laws. Thin process and cocycle
-    wrappers assert neither membership nor convergence existence.
-28. [`RandomCocycles/FiniteHopfMaximal.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/FiniteHopfMaximal.lean)
-    takes the running maximum of real Birkhoff sums through a fixed horizon,
-    including the zero sum, and isolates its strict positivity event. A
-    positive maximizing index yields the pointwise indicator inequality;
-    measure preservation then cancels the two shifted maximal-function
-    integrals and proves that the observable has nonnegative integral over the
-    event. Centering by a real threshold gives finite average-exceedance
-    bounds, a horizon-uniform positive-part estimate, and a weak measure
-    bound whose division exposes exactly the premise that the threshold is
-    positive. The core theorem needs neither finite total mass, probability,
-    sigma-finiteness, ergodicity, nor invertibility. The average-threshold
-    layer uses a finite measure only to make the constant centering observable
-    integrable.
-29. [`RandomCocycles/InfiniteHopfMaximal.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/InfiniteHopfMaximal.lean)
-    defines the positive-time infinite Birkhoff-average exceedance event and
-    identifies it exactly with the increasing union of the finite events.
-    Ordinary measurability and integrable/null-measurable routes remain
-    separate. Continuity from below is first stated without a finiteness gate
-    for extended nonnegative real measure, then passes the horizon-uniform
-    positive-part estimate to the infinite event under finite total mass.
-    Division by a positive threshold gives the weak maximal bound. The
-    real-measure convergence corollary uses an explicit local finiteness
-    premise because `Measure.real` maps infinite extended mass to zero. A
-    paired boundary probe records that this premise is a clean sufficient
-    route, not a necessary condition for every particular sequence: no
-    ungated general conversion theorem is valid, although some infinite-mass
-    families do converge after totalization. The result requires neither
-    probability, ergodicity, nor invertibility and makes no pointwise
-    convergence claim.
-30. [`RandomCocycles/KoopmanL2Mean.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/KoopmanL2Mean.lean)
-    defines the real square-integrable Koopman contraction, its fixed
-    subspace and orthogonal projection, and fixed-plus-simple-coboundary
-    approximants. Raw forward coboundaries telescope at every horizon,
-    including the totalized zero horizon. Hilbert-space geometry gives norm
-    convergence of Koopman averages to the fixed-space projection and density
-    of the fixed-plus-simple-coboundary core. Representative bookkeeping then
-    proves almost-everywhere full-sequence convergence on that core, while a
-    general square-integrable observable receives only an almost-everywhere
-    convergent subsequence. The module assumes measure preservation only for
-    its square-integrable geometry and makes no probability, ergodicity,
-    invertibility, full pointwise-Birkhoff, or limit-identification claim.
-31. [`RandomCocycles/PointwiseBirkhoff.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoff.lean)
-    closes the finite-measure real pointwise Birkhoff theorem. It defines
-    absolute positive-time maximal-error events and fixed-scale Cauchy
-    exceptional events, proves their measurable-representative interfaces,
-    and confines each Cauchy failure to a maximal approximation-error event
-    plus the approximant's null bad set. Arbitrarily close pointwise-good
-    approximants make every positive reciprocal-scale failure event null.
-    Completeness of the reals then gives full-sequence almost-everywhere
-    convergence. A continuous finite-measure inclusion with dense range sends
-    the RMT-25 fixed-plus-simple-coboundary core from real `L²` into a dense
-    real `L¹` core, supplying the required approximants. The final theorem
-    assumes finite total mass, measure preservation, and integrability, but
-    no probability normalization, ergodicity, injectivity, surjectivity, or
-    invertibility. It proves convergence-event membership without identifying
-    the limit.
-32. [`RandomCocycles/PointwiseBirkhoffLimit.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/PointwiseBirkhoffLimit.lean)
-    identifies that full-sequence limit with conditional expectation onto
-    Mathlib's exact invariant sigma algebra. One total `limUnder`
-    representative is literally invariant even on its divergent fallback
-    branch. Measure-preserving orbit translates have identical laws, which
-    yields uniform integrability of their Cesaro averages; finite-measure
-    Vitali convergence then supplies integrability and real `L¹` convergence
-    of the chosen limit. Restricted-measure preimage transport proves the
-    required integral identity on every exactly invariant measurable set
-    without an inverse map, and conditional-expectation uniqueness completes
-    the identification for the original integrable representative. The final
-    theorem assumes neither probability normalization nor ergodicity and
-    accepts zero mass, noninjective, nonsurjective, and noninvertible dynamics.
-33. [`RandomCocycles/ErgodicBirkhoffLimit.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/ErgodicBirkhoffLimit.lean)
-    specializes the identified invariant target to a constant. Exact
-    invariant measurability makes the selected conditional expectation
-    literally fixed by composition with the base map. The weaker
-    `PreErgodic` rigidity interface already makes it almost everywhere
-    constant; finite nonzero mass and integrability identify the constant as
-    Mathlib's integral average, equivalently the total-mass-normalized
-    integral. Full `Ergodic` enters only when this identification is combined
-    with the RMT-27 measure-preserving Birkhoff theorem. Probability
-    normalization then reduces the target to the ordinary integral. The
-    module adds no injectivity, surjectivity, invertibility, mixing, rate, or
-    powered-map ergodicity assumption.
-34. [`RandomCocycles/SubadditiveUpperLimsup.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveUpperLimsup.lean)
-    proves the upper half of a Kingman-style pointwise estimate. Exact finite
-    Birkhoff-sum integration and centered-process cancellation connect the
-    finite phase-average inequality to the ergodic Birkhoff limit under the
-    original map. Every positive block then bounds the almost-everywhere
-    normalized upper limsup of a nonnegative integrable shifted-subadditive
-    process. The cocycle specialization intersects all block events and uses
-    the deterministic Fekete infimum to reach the integrated log-positive
-    growth rate. A formal two-cycle counterexample shows that ergodicity of the
-    original map does not imply ergodicity of the powered map used for blocks.
-    This remains one-sided: it proves no
-    lower liminf bound, samplewise convergence, signed Lyapunov exponent, or
-    Oseledets splitting.
-35. [`RandomCocycles/SubadditiveBadBlockMeasure.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveBadBlockMeasure.lean)
-    builds the finite measure-theoretic bridge needed by the complementary
-    Kingman argument. It counts visits to a set before a finite horizon,
-    identifies the real count with a Birkhoff sum of an indicator, and
-    integrates that count exactly under finite measure and preservation. A
-    finite strict centered bad-block set supplies one bounded witness length
-    at every marked orbit start; the RMT-21 greedy packing then bounds the
-    enlarged-horizon centered process by the marked visit count. A lower bound
-    on all positive normalized centered integrals yields the bad-set estimate
-    `μ.real badSet ≤ δ / c`, with the negative-threshold reversal explicit.
-    The cocycle specialization uses the integrated log-positive Fekete rate
-    minus its one-step integral. Probability and ergodicity are absent, and
-    the module still claims no lower liminf or samplewise convergence.
-36. [`RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveAllLengthBadBlockMeasure.lean)
-    removes the finite witness cap by taking the increasing union over all
-    natural caps. Membership means that one strict centered bad block occurs
-    at some positive finite length, not that failures occur infinitely often.
-    Countable null measurability and extended-measure continuity need no
-    finite-mass premise; the real-measure convergence theorem exposes the
-    finite-target gate forced by `Measure.real`. On a finite measure space the
-    uniform RMT-30 ratio passes unchanged to the union, including the
-    log-positive cocycle specialization. A preserving two-state counterexample
-    shows that the raw once-bad event need not be invariant.
-37. [`RandomCocycles/SubadditiveLowerDeviation.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveLowerDeviation.lean)
-    replaces one finite witness by positive witnesses beyond every cutoff at
-    one rational slope below the target. Centered shifted subadditivity gives
-    a threshold-relaxed preimage inclusion, and rational density closes it at
-    the countably generated target event. Preservation and finite mass turn
-    that one-sided inclusion into almost invariance; finite-measure
-    ergodicity supplies the null-or-conull fork, while probability
-    normalization and the strict RMT-31 ratio select the null branch. The
-    cocycle endpoint reuses a named centered Fekete-offset lower bound and
-    remains valid for an empty matrix index. The exact bridge to a real
-    `liminf` and the full samplewise convergence theorem for the log-positive
-    envelope are supplied only by the following module.
-38. [`RandomCocycles/SubadditiveKingman.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/SubadditiveKingman.lean)
-    completes the log-positive Kingman endpoint. It defines total normalized
-    original and centered processes, proves that time zero does not affect the
-    lower limit, and identifies rational lower-deviation membership with
-    frequent strict threshold crossings under the exact real-boundedness gates
-    required by Mathlib's conditionally complete `liminf`. A two-level rational
-    exhaustion turns every strict lower-liminf failure into a countable union
-    of RMT-32 null events and simultaneously supplies the eventual lower bound
-    needed to justify the real lower-limit calculation. The exact normalized
-    centering identity and the ergodic Birkhoff limit then lift the centered
-    estimate to the original process. For matrix cocycles, this lower bound
-    meets RMT-29's upper-limsup bound and yields almost-everywhere convergence
-    of the normalized finite real `log+` norm observable to its integrated
-    Fekete rate, including an empty matrix index. The theorem does not concern
-    the signed logarithm, `L¹` convergence, interchange of limit and integral,
-    inverse cocycles, Lyapunov exponents, or Oseledets splittings.
-39. [`RandomCocycles/RealLogNormIntegrability.lean`](formalization/NonlinearDynamics/Random/RandomCocycles/RealLogNormIntegrability.lean)
-    begins the signed finite-time layer without disguising Lean's total
-    convention `Real.log 0 = 0`. Pointwise generator units propagate to every
-    cocycle value and give real-log subadditivity, while a measurable
-    log-positive norm of Mathlib's total nonsingular inverse supplies a
-    forward-orbit lower-tail majorant. An explicit package of generator units,
-    forward log-positive integrability, and inverse-generator log-positive
-    integrability sandwiches every finite-time real log between integrable
-    lower and upper rails and packages the family as an integrable
-    shifted-subadditive candidate. A checked geometric-probability example
-    with an identity base and invertible one-dimensional contractions furnishes
-    a counterexample: the forward moment alone need not control either the
-    inverse tail or signed-log integrability. Separately, a strictly positive
-    RMT-33 rate makes
-    the real log and log-positive observable eventually agree almost
-    everywhere, without invertibility or an inverse-tail hypothesis. The
-    empty-dimensional specialization of that endpoint is syntactically valid
-    but vacuous because its rate is zero. The module proves neither a general
-    signed Kingman theorem nor an inverse-cocycle exponent identity,
-    singular-value limit, Lyapunov spectrum, or Oseledets splitting.
+| Area | Validated contribution | Main boundary |
+|---|---|---|
+| [Random matrices](formalization/NonlinearDynamics/Random/RandomMatrices.lean) | Finite Gaussian unitary ensemble (GUE) construction and unitary invariance, first two trace moments, ordered Hermitian spectral continuity, and empirical spectral laws | No limiting spectral distribution or universality theorem |
+| [Random cocycles](formalization/NonlinearDynamics/Random/RandomCocycles.lean) | Ordered finite products; finite-measure pointwise Birkhoff theory; log-positive and signed real-log Kingman endpoints under their stated hypotheses | No Lyapunov spectrum, invariant splitting, or Oseledets theorem |
+| [Discrete dynamics and chaos](formalization/NonlinearDynamics/Deterministic.lean) | Stability, attraction, Lyapunov certificates, conjugacy, bifurcation interfaces, sensitivity, the Devaney implication, and the one-sided full shift | Concrete model files do not automatically inherit every abstract chaos theorem |
+| [Ordinary differential equations and models](formalization/NonlinearDynamics/Deterministic/ODE/GlobalExistence.lean) | Global-solution and flow interfaces with explicit existence, uniqueness, and continuity gates; stability and Lyapunov results; six concrete model slices | No general theorem of Lorenz chaos or global existence for every displayed model |
+| [Finite quantum systems](formalization/NonlinearDynamics/QuantumChaos/FiniteSystems.lean) and [raw spectral statistics](formalization/NonlinearDynamics/QuantumChaos/SpectralStatistics.lean) | Hermitian Hamiltonians, unitary time evolution, normalized traces, nonnegative raw adjacent gaps, and measurable empirical gap measures | No unfolding, level repulsion, spectral form factor, out-of-time-order correlator, or quantum-chaos criterion |
 
-This finite-dimensional foundation is deliberately earlier than asymptotic
-spectral laws or quantum-chaos observables. The current asymptotic route has
-passed from the infinite-horizon weak maximal inequality through Koopman
-square-integrable mean convergence, a dense pointwise-good core, and the
-maximal-closure proof of full-sequence almost-everywhere convergence for every
-real integrable observable on a finite measure-preserving base. The next
-identification stage first found the general conditional-expectation target,
-then isolated pre-ergodic rigidity from measure preservation, positive total
-mass, and probability normalization. The additive finite-measure Birkhoff
-track is therefore complete at the correctly normalized ergodic constant.
-The first subadditive asymptotic stage now connects finite phase averaging to
-the additive ergodic theorem and proves the normalized upper-limsup estimate.
-The finite bad-block layer converts centered short-block failures into an
-exact real-measure ratio through visit counting and ordered interval packing.
-The next checked layer passes that uniform estimate through the increasing
-union of every finite cap, while keeping the resulting once-bad event separate
-from an asymptotic lower-deviation event. The countably generated layer then
-uses arbitrarily-late witnesses and one durable rational margin to build that
-strict event, proves its one-sided shift law and almost invariance, and selects
-the null branch on an ergodic probability base.
-The guarded real-`liminf` layer now converts those null events into the
-complementary lower estimate, restores the one-step Birkhoff majorant, and
-combines the result with the upper `limsup` theorem. The pinned Mathlib release
-supplies finite Birkhoff algebra and ergodic primitives, but no ready-made
-pointwise Birkhoff or Kingman theorem; the repository closes that gap for the
-cocycle's finite real log-positive norm observable. RMT-34 adds the missing
-finite-time signed interface. It keeps collapse semantics,
-pointwise units, inverse-tail domination, and positive-rate unclipping as
-separate obligations, then constructs an integrable signed subadditive
-candidate. The source-only RMT-35 milestone now defines the corresponding
-finite signed Fekete rate and proves almost-everywhere convergence of normalized
-real-log cocycle growth under its stated probability, ergodicity,
-pointwise-invertibility, and two-sided generator-tail integrability hypotheses.
-Its proof-to-prose release remains unfinished. A Lyapunov spectrum and
-Oseledets splitting remain later milestones.
+The signed real-log Kingman milestone is complete, including its teaching
+bundle and recorded full validation. Its hypotheses include a probability
+preserving ergodic base, pointwise invertible generators, and integrability of
+both forward and inverse log-positive generator norms.
 
-That route gives the Random and Quantum Chaos programs a shared foundation,
-then reconnects them to nonlinear stability through random Jacobians.
+The project's selected **stochastic stability** result is
+[upper semicontinuity of the integrated signed growth rate](formalization/NonlinearDynamics/Random/RandomCocycles/GrowthRateStability.lean)
+under uniform generator convergence with common forward and inverse norm
+bounds over a fixed probability-preserving base. It does not assert full
+continuity or stability of stationary measures or random attractors.
+
+The next candidate,
+[`QuantumChaos/GUE.lean`](formalization/NonlinearDynamics/QuantumChaos/GUE.lean),
+pushes the finite GUE law through the raw-spacing measure map. The law is a
+probability distribution on whole measures; in dimensions zero and one its
+single atom is the zero measure. Its source and teaching artifacts are
+available, but its project Lean validation is pending. Do not treat this
+candidate as part of the validated results in the table.
 
 ## The proof-to-prose contract
 
@@ -712,7 +374,8 @@ and `make content-coverage` checks that:
 - each entry includes references, exact run instructions, and a substantial
   teaching treatment;
 - when an entry freezes a site-hosted Lean snapshot, its module, snapshot path,
-  and SHA-256 agree and still identify the checked source byte for byte.
+  and SHA-256 agree and identify the current source byte for byte. Compilation
+  and source identity are separate checks.
 
 The repository checks include this coverage gate, its snapshot-contract
 regression tests, `make content-hygiene-test`, and `make content-hygiene`. The

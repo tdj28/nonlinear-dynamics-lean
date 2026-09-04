@@ -25,9 +25,12 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
-draft. Professional review and pinned-toolchain validation remain pending;
-`pro_reviewed` remains false.
+**Editorial and validation status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Start with five exact states

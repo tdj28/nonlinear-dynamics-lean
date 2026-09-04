@@ -3,17 +3,68 @@
 > Living handoff for the formalization. Read this first, update it before every
 > coherent milestone commit, and push the green milestone to `main`.
 
-Last updated: 2026-08-23
+Last updated: 2026-09-04
 
-Audited baseline: `main` at `de78075`. Its statement-preserving spectral-
-statistics repair passes the guarded warning-fatal leaf, deterministic
-`QuantumChaos` aggregator, all 3,276 guarded project-build jobs, and the
-complete exact-commit repository gate on approved Linux compute.
+Audited baseline: `main` at `e90ab23` for the 2026-09-04 source review.
+The last recorded complete Lean validation is `de78075`. Its statement-
+preserving spectral-statistics repair passes the guarded warning-fatal leaf,
+deterministic `QuantumChaos` aggregator, all 3,276 guarded project-build jobs,
+and the complete exact-commit repository gate on approved Linux compute.
 
-Active direction: **define only the finite-GUE pushforward law of the validated
-raw spectral-statistics interface before any unfolding,
-spectral-form-factor, out-of-time-order-correlator, or quantum-chaos criterion
-branch.**
+Active direction: **validate the existing finite-GUE candidate before
+extending the quantum-statistics interface. The public-repository status,
+rendering, and CI cleanup has passed its non-Lean release checks.**
+
+The reviewed source baseline is `e90ab23`, already pushed to `main`. Its GUE
+candidate has not passed the project Lean gate. The last recorded complete
+Lean validation remains `de78075`; website builds and source hashes do not
+extend that evidence to a later Lean file. No Lean source is changed in this
+documentation and validation-tooling audit.
+
+The 2026-09-04 audit corrects stale pending-validation statements where the
+page's source hash matches a recorded successful validation, replaces the
+template's universal "checked source" label with "source snapshot", and
+clarifies that Hugo drafts are publicly readable in this repository.
+Historical references below to "private drafts" described exclusion from
+the production website; they never constituted a confidentiality control.
+The README now identifies the actual checked baseline and completed signed
+Kingman and growth-rate stability work. The deployment workflow previously
+ran the coverage checker's tests without executing the checker itself; it
+now runs the complete workstation-safe gate, also provided for pull requests.
+The pinned Hugo binary is verified against its official release SHA-256.
+
+A representative parallel AI-assisted source audit found no definite
+theorem-statement, sign, normalization, or boundary-case defect in the sampled
+quantum, random, and deterministic modules. This is not a fresh Lean
+compilation or an exhaustive mathematical review. A targeted credential-pattern scan of 2,716
+reachable Git blobs (124,425,267 bytes) and the tracked HEAD tree found no
+recognizable API token or private key. Pattern scans cannot establish the
+absence of every secret. No paid resource was created during this audit.
+
+Audit validation passes with Hugo Extended with Deploy 0.160.1: the complete
+`make workstation-check`, 23 coverage tests, seven hygiene tests, and 12
+rendered-site tests, including real-template native/legacy TeX fixtures.
+The rendered production subpath has 326 HTML pages and 14,635 local references;
+the draft-root graph has 423 HTML pages and 17,157 local references. Both have
+zero missing targets, fragments, or assets. Workflow Actionlint and
+`git diff --check` pass. Representative GUE, Lorenz, and Birkhoff browser
+checks at desktop and 390-pixel widths confirm the corrected statuses and
+navigation, no page-level overflow, and no KaTeX or console errors. All seven
+Birkhoff paper-to-Lean formulas render as mathematics, including the
+conditional-expectation expression previously parsed as a link.
+
+The user requested the audit and fixes; parallel AI-assisted reviews covered
+mathematical scope and selected primary references, README accuracy, site
+status and rendering, and the new CI/checker implementation. No expert-review
+or publication flag was changed. The findings, limits, and recommended
+sequence are recorded in `docs/public-audit-2026-09-04.md`.
+
+The 2026-08-25 attempt to validate GUE stopped at CPU capacity failures; no
+task pod was created and no task compute spend accrued. Automatic approval
+review rejected both an account-level SSH-key addition and a GPU-backed
+substitution. Neither action ran. The retained-volume and CPU-only approval
+remain recorded in the conversation; a later GPU substitution requires the
+specific approval that was requested but not received.
 
 `NonlinearDynamics.QuantumChaos.GUE` now has a source-and-teaching candidate
 that passes the complete workstation-safe gate and awaits pinned-toolchain
@@ -27,7 +78,7 @@ measure. From dimension two onward, a separate law takes values in
 raw measure-valued law. The candidate source SHA-256 is
 `d55058cd72aa6c59ff331293a3a8396f6d2bdf04befce978ca7de3b2d30fc454`.
 
-The paired private-draft Research Note, Deep Dive, and empirical-raw-spacing-
+The paired draft Research Note, Deep Dive, and empirical-raw-spacing-
 law glossary chapter remain `pro_reviewed: false` and identify pinned-
 toolchain validation as pending. Their two-outcome teaching model uses the
 decreasing spectra `(2, 2, -1)` and `(3, 1, 1)`, raw gaps `(0, 3)` and
@@ -64,7 +115,7 @@ ensemble-level law, GUE specialization, repulsion, universality, asymptotic
 limit, or quantum-chaos inference is included. The repaired source SHA-256 is
 `62a54be4b21c8b68c211ce88244a48418b7d33b99fc36c615f786216bd488941`.
 
-The paired private-draft Research Note, Deep Dive, and raw-level-spacing
+The paired draft Research Note, Deep Dive, and raw-level-spacing
 glossary chapter remain `pro_reviewed: false` and explicitly identify the
 exact source as pinned-toolchain validated while professional review remains
 pending. Their worked spectrum
@@ -2534,30 +2585,21 @@ bridge, or stable-manifold theorem.
 - Full build validation command: `CLOUD_LEAN_BUILD=1 make check`, on an
   approved Linux cloud builder only. Workstation validation uses
   `make workstation-check` and never invokes Lean or Lake.
-- Last fully green repository build: 3,272 Lean jobs at Lorenz repair commit
-  `4c43d6d` on the approved Linux builder. The warning-fatal leaf,
-  deterministic aggregator, project root, 59/59 proof-to-prose coverage, 23
-  coverage regression tests, seven hygiene regression tests, the 208-file
-  teaching scan, the 998-surface reader-language scan, and warning-fatal Hugo
-  Extended with Deploy 0.160.1 renders of 493 production pages and 610 pages
-  with drafts pass.
-- Lean inventory: fifty-nine substantive modules are cloud-validated and all
-  fifty-nine have comprehensive Notebook pages. The `.gitkeep`-only Quantum
-  Chaos branches remain roadmap work.
+- Last recorded complete Lean build: 3,276 jobs at spectral-statistics repair
+  commit `de78075` on 2026-08-23. That commit passed the warning-fatal changed
+  leaf, `QuantumChaos` aggregator, and full repository gate. Current `main`
+  includes the additional, unvalidated GUE source candidate from `e90ab23`.
+- Lean inventory: 61 substantive modules have recorded Linux validation;
+  the GUE candidate brings source coverage to 62 comprehensive Notebook
+  pages. The quantum foundation and raw spectral statistics are complete;
+  spectral form factors, out-of-time-order correlators, and k-invariance
+  remain roadmap work.
 - Proof holes: none (`sorry` and `admit` absent).
-- Teaching snapshot before the Pendulum candidate, by the deterministic body-
-  only regex `\b[\w'-]+\b`: 259,256 tokens across thirty-nine Notebook
-  companions, 308,426 tokens across thirty-six Deep Dives, and 178,822 tokens
-  across sixty-two glossary chapters. Pendulum adds one page in each section,
-  so the corpus now has 140 teaching bundles, 140 social cards, and 321
-  conceptual SVGs. Lotka-Volterra and Lorenz add one page to each teaching
-  section, three cards, and five conceptual figures apiece, so the corpus now
-  has 146 teaching bundles, 146 social cards, and 331 conceptual SVGs; refresh
-  the aggregate token ledger before the next publication decision.
-- Publication status: 137 teaching pages are owner-authorized public working
-  notes with `draft: false` and `pro_reviewed: false`. The nine Pendulum,
-  Lotka-Volterra, and Lorenz pages remain private with `draft: true` and
-  `pro_reviewed: false` pending a separate publication decision.
+- Teaching inventory on 2026-09-04: 62 Notebook chapters, 59 Deep Dives, and
+  90 glossary chapters. Of these, 47 Notebook chapters, 44 Deep Dives, and
+  70 glossary chapters have `draft: false`; the remaining 50 bundles are
+  excluded from production site navigation but publicly readable in Git.
+  Publication and `pro_reviewed` flags are unchanged by this audit.
 - Preview: `make blog-serve` locally or `make blog-serve-tailscale` privately on
   port 1333.
 
@@ -2614,11 +2656,14 @@ bridge, or stable-manifold theorem.
 | `NonlinearDynamics.Deterministic.Chaos.Devaney` | Positive-time transitivity, dense positive-period points, historical/reduced interfaces, and the Banks sensitivity implication | `devaney-chaos-and-the-banks-implication-in-lean` |
 | `NonlinearDynamics.Deterministic.Chaos.SymbolicCoding` | One-sided full shift, prefix cylinders, splicing, periodic completion, Devaney chaos, and itinerary factor-map gates | `one-sided-symbolic-coding-and-the-full-shift-in-lean` |
 
-The root aggregator imports all forty-nine substantive modules. The proof-to-prose manifest and
-`scripts/check_lean_notebook_coverage.py` enforce paired coverage and named
-declaration visibility.
+This table is a historical declaration summary. The current complete module
+inventory and paired chapter paths are in `site/data/lean_notebook_coverage.json`;
+`scripts/check_lean_notebook_coverage.py` enforces their coverage and named
+declaration visibility. Current validation totals are in Verified State above.
 
 ## Completed Teaching Layer
+
+The list below is historical; use Verified State above for current counts.
 
 - Forty-nine comprehensive Development Notebook chapters in an explicit
   dependency-ordered previous/next sequence.
@@ -3254,13 +3299,15 @@ and
 
 ## Exact Next Milestone
 
-### Define the finite-GUE raw-spacing law boundary
+### Validate the existing finite-GUE raw-spacing law candidate
 
-Commit and push the exact workstation-validated candidate recorded above to
-`main`, keeping every page a private draft with `pro_reviewed: false`.
+Candidate `e90ab23` is already pushed. Finish its pinned-toolchain validation
+with the approved CPU resource when capacity is available, keeping the
+teaching pages draft-gated with `pro_reviewed: false`.
 
-Only after that exact commit exists, request freshly approved and costed Linux
-compute. Restore the verified cache to fast ephemeral storage, run the
+Reuse the recorded approval for the same resource and task; obtain specific
+approval for any materially different configuration. Restore the verified
+cache to fast ephemeral storage, run the
 warning-fatal `QuantumChaos/GUE.lean` leaf and `QuantumChaos` aggregator,
 repair only evidence-backed proof seams, run the complete exact-commit gate,
 preserve a verified successor cache, push the validation closure, terminate
@@ -3270,6 +3317,12 @@ empty-dimension inner probability outcome, unfold or unit-normalize the
 spacings, assert integrability or ensemble moments without proof, or claim
 level repulsion, universality, asymptotics, or quantum chaos merely to ease a
 proof.
+
+After closure, prioritize a finite telescoping identity relating mean raw
+spacing to spectral span, followed by integrability and the mean spacing
+measure. Publish compact, commit-bound validation receipts and seek targeted
+independent review of reusable Birkhoff/Kingman lemmas before broadening the
+claims. A project license still requires the owner's choice.
 
 ## Earlier Milestone Records
 
@@ -6114,6 +6167,12 @@ Checkpoint/skill milestone QA:
   context-minimal fresh-agent forward test pass.
 
 ## Recent Pushes
+
+- `e90ab23`: prepare the seven-declaration finite-GUE raw-spacing-law
+  candidate and complete its source/teaching checks. Project Lean validation
+  remains pending; the later capacity failures did not validate this commit.
+- `1f32ae5`: record the verified spectral-statistics builder shutdown and
+  retained cache without changing Lean source.
 
 - `de78075`: repair only pinned-toolchain proof seams in the raw finite
   spectral-statistics leaf, update the exact teaching-source hashes and

@@ -25,9 +25,12 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
-draft. Professional review and pinned-toolchain validation remain pending;
-`pro_reviewed` remains false.
+**Editorial and validation status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Start with five exact phase-plane states
@@ -114,7 +117,7 @@ second is the rate of change of angular velocity. A solution curve
 \(\gamma(t)=(\theta(t),\omega(t))\) must have tangent vector
 \(\gamma'(t)=F_\kappa(\gamma(t))\) at every time in its domain.
 
-The Lean candidate uses \(\mathbb R\times\mathbb R\), not a circle times a
+The Lean module uses \(\mathbb R\times\mathbb R\), not a circle times a
 line. Thus \(0\), \(2\pi\), and \(-2\pi\) are different coordinates even
 though they represent the same direction. This is why the source separately
 proves
@@ -213,7 +216,7 @@ Substitute the two ODE values:
 +\kappa\sin(\theta(t))\omega(t)=0.
 \]
 
-This cancellation is the candidate theorem
+This cancellation is the theorem
 `hasDerivAt_pendulumEnergy_along`. It is a general real-algebra and calculus
 statement, unlike the finite worksheet. Its conclusion is still local: the
 energy derivative is zero at the time where the hypotheses hold.

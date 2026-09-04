@@ -97,7 +97,7 @@ Reusable vocabulary is indexed under
 | First encounter | [Why half a matrix is enough](#why-half-a-matrix-is-enough) | See why a real diagonal plus one complex triangle determines a Hermitian matrix |
 | Geometry route | [The coordinate count](#the-real-geometry-hidden-in-the-entry-pattern) | Recover the \(n^2\) real degrees of freedom without duplicating entries |
 | Lean route | [The strict-upper subtype](#camp-one-an-index-that-carries-its-own-proof) | Follow all seventeen public declarations and their proof engines |
-| Measure-theory route | [Measurability](#high-camp-measurability-is-entrywise) | See why static index branches preserve measurable coordinate processes |
+| Measure-theory route | [Measurability](#high-camp-two-measurability-is-entrywise) | See why static index branches preserve measurable coordinate processes |
 | Edge-case route | [Dimension zero](#the-zero-dimensional-boundary-is-a-theorem) | Understand why the empty matrix needs no exceptional division or probability convention |
 | Ensemble route | [What comes next](#the-next-ridge-push-a-law-through-the-map) | Separate this deterministic constructor from the future GUE law |
 

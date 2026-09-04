@@ -31,7 +31,7 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
+**Editorial status.** This is an AI-assisted working draft.
 Professional review and the warning-fatal Lean release gate remain pending, so
 `pro_reviewed` remains false. The source interface described below is a
 candidate until the exact commit passes the repository's pinned checks.

@@ -32,7 +32,7 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
+**Editorial status.** This is an AI-assisted working draft.
 The warning-fatal pinned-toolchain leaf, deterministic aggregator, and
 exact-commit full repository gate pass. Professional review remains pending,
 so `pro_reviewed` remains false.

@@ -32,10 +32,12 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
-Professional review and pinned-toolchain validation remain pending, so
-`pro_reviewed` remains false. The Lean interface below is a source-only
-candidate until that validation is complete.
+**Editorial status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Abstract
@@ -50,7 +52,7 @@ z'&=xy-\beta z.
 \end{aligned}
 \]
 
-The candidate defines this polynomial
+The module defines this polynomial
 {{< refterm "vector-field" "vector field" >}} on the right-associated Lean product
 \(\mathbb R\times(\mathbb R\times\mathbb R)\). It proves continuity,
 records the origin and two axis formulas, checks the classical field value at
@@ -74,7 +76,7 @@ numerical solutions. Tucker's later computer-assisted work establishes a
 strange-attractor result for the classical equations with a much larger
 analytic and validated-numerical argument.
 
-**Contribution.** This candidate freezes the source convention as parameter
+**Contribution.** This module freezes the source convention as parameter
 order \((\sigma,\rho,\beta)\), coordinate order \((x,y,z)\), and Lean carrier
 `ℝ × ℝ × ℝ`. It isolates reusable algebraic facts that precede trajectory
 analysis: exact field values, continuity, symmetry, equilibrium construction,
@@ -265,7 +267,7 @@ first equation, while `hBeta` and `hRho` control the remaining algebra and the
 square-root radicand.
 {{< /lean-bridge >}}
 
-## Reproduce the candidate checks
+## Reproduce the project check
 
 ~~~lean
 import NonlinearDynamics.Deterministic.Models.Lorenz
@@ -301,7 +303,7 @@ build time.
 
 {{< repo-check >}}
 Lean's elaborator constructs proof terms for the exact source statements, and
-its kernel checks those terms once the module passes the pinned toolchain. That
+its kernel checks those terms against the formal statements. That
 does not establish any omitted trajectory, attractor, or chaos statement, and
 it does not by itself audit the match between Lorenz's notation and this
 formal interface.

@@ -84,7 +84,7 @@ Useful compact entries include
 | Lean route | [Declaration map](#the-entire-lean-file-as-a-declaration-map) | Match every theorem to its upstream proof engine |
 | Geometry route | [What Cartesian structure entails](#what-cartesian-structure-entails-and-what-it-does-not) | Separate an axis-aligned ellipse from circular or proper symmetry |
 | Physics route | [Quadratures and matrix entries](#why-physicists-care-about-the-variance-split) | Connect coordinate variances to complex amplitudes and future GUE entries |
-| Edge-case route | [Degenerate laws](#camp-four-the-degenerate-cases-are-part-of-the-space) | Understand line-supported and point-supported Gaussians |
+| Edge-case route | [Degenerate laws](#camp-five-the-degenerate-cases-are-part-of-the-space) | Understand line-supported and point-supported Gaussians |
 
 ### Learning objectives
 

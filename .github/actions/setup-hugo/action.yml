@@ -1,0 +1,22 @@
+name: Install pinned Hugo
+description: Verify and install the Linux Hugo release used by this repository.
+runs:
+  using: composite
+  steps:
+    - name: Download and verify Hugo Extended with Deploy
+      shell: bash
+      env:
+        HUGO_VERSION: "0.160.1"
+        # Official release asset digest, checked on 2026-09-04.
+        HUGO_SHA256: "d332458589ee34c3722eb4efca9d6e8d664668474a39245b58df0d140f6f05e2"
+      run: |
+        set -euo pipefail
+        install_dir="$(mktemp -d "${RUNNER_TEMP}/hugo.XXXXXX")"
+        archive="${install_dir}/hugo.tar.gz"
+        curl --fail --silent --show-error --location \
+          "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_withdeploy_${HUGO_VERSION}_linux-amd64.tar.gz" \
+          --output "${archive}"
+        printf '%s  %s\n' "${HUGO_SHA256}" "${archive}" | sha256sum --check --strict
+        tar -xzf "${archive}" -C "${install_dir}"
+        echo "${install_dir}" >> "${GITHUB_PATH}"
+        "${install_dir}/hugo" version

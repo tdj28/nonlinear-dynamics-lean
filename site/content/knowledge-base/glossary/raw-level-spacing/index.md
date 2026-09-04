@@ -25,7 +25,7 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted source
+**Editorial and validation status.** This is an AI-assisted source
 candidate. Its paired Lean module has passed the repository's pinned Lean
 4.32.0 checks. Professional review remains pending, so `pro_reviewed` remains
 false.

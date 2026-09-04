@@ -26,9 +26,12 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
-chapter. Professional review and pinned-toolchain validation remain pending,
-so <code>pro_reviewed</code> remains false.
+**Editorial and validation status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 The **Lorenz system** is the three-coordinate autonomous ordinary differential
@@ -151,8 +154,8 @@ Mathlib dependencies and may require substantial disk space or build time.
 
 {{< repo-check >}}
 Lean's elaborator constructs candidate proof terms and its kernel checks them
-against the exact source statements. This checks the encoded field algebra
-once the pinned module passes. It does not establish the existence or chaotic
+against the exact source statements. This checks the encoded field algebra.
+It does not establish the existence or chaotic
 properties of a Lorenz attractor.
 {{< /repo-check >}}
 

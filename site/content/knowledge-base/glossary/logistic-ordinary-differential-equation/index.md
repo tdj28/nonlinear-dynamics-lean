@@ -26,9 +26,12 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
-chapter. Professional review and pinned-toolchain validation remain pending,
-so <code>pro_reviewed</code> remains false.
+**Editorial and validation status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 The **logistic ordinary differential equation** in carrying-capacity-one form

@@ -26,7 +26,7 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
+**Editorial and validation status.** This is an AI-assisted working
 chapter. Professional review and the warning-fatal Lean release gate remain
 pending, so <code>pro_reviewed</code> remains false.
 {{< /panel >}}

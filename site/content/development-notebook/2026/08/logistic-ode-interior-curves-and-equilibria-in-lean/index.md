@@ -32,10 +32,12 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
-Professional review and pinned-toolchain validation remain pending, so
-`pro_reviewed` remains false. The source interface described below remains a
-candidate until that validation is complete.
+**Editorial status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Abstract
@@ -48,7 +50,7 @@ x'(t)=r x(t)(1-x(t)).
 \]
 
 The carrying capacity is one and the real parameter \(r\) controls the time
-scale and direction. This candidate formalizes the vector field
+scale and direction. This module formalizes the vector field
 
 \[
 F_r(x)=r x(1-x),
@@ -76,14 +78,14 @@ relative growth rate decreases with population and uses the term
 normalization. Mathlib 4.32.0 supplies both the scalar `IsIntegralCurve`
 predicate and a fully developed real sigmoid API.
 
-**Contribution.** The candidate connects that pinned analytic API to the
+**Contribution.** The module connects that pinned analytic API to the
 repository's first concrete continuous-time model. It gives a division-free
 equilibrium classification, exact phase-line signs, endpoint constant
 solutions, an explicit global solution through every interior state, its two
 time limits for positive \(r\), and a restart identity for the phase
 parameter.
 
-**Non-claims.** The candidate does not prove global existence through every
+**Non-claims.** The module does not prove global existence through every
 real state, does not construct `Flow ℝ ℝ` or a flow on a subtype of
 \([0,1]\), and does not feed its curvewise limits into the repository's
 Lyapunov-stability or basin-of-attraction predicates. It makes no empirical
@@ -119,7 +121,7 @@ limit.
 ## Use a denominator-safe parameterization
 
 Writing an explicit solution directly in terms of an initial state often
-introduces a quotient whose denominator needs a domain proof. This candidate
+introduces a quotient whose denominator needs a domain proof. This module
 instead chooses a real phase \(c\) and uses Mathlib's sigmoid:
 
 \[
@@ -197,13 +199,13 @@ proofs on a specified state space.
 {{< reference-figure
   wide="true"
   src="claim-boundary.svg"
-  alt="A four-step ladder marks vector field, explicit curve, curve limits, and state-space flow. The first three are checked in the candidate, while the flow box is labeled as a later construction requiring a state space and flow laws."
+  alt="A four-step ladder marks vector field, explicit curve, curve limits, and state-space flow. The first three are checked in the module, while the flow box is labeled as a later construction requiring a state space and flow laws."
   caption="**Claim boundary:** a derivative identity checks an integral curve, and limit composition checks its endpoints at infinite time. Neither statement alone constructs a flow or proves the project's flow-level stability predicates."
 >}}
 
 The distinction also guards against a whole-real-line overclaim. The familiar
 initial-value quotient can have a zero denominator for states outside the
-unit interval. The candidate therefore proves global curves through the two
+unit interval. The module therefore proves global curves through the two
 endpoints and every interior state, but does not assert global completeness
 through all of \(\mathbb R\).
 
@@ -246,7 +248,7 @@ time-dependent vector fields; `logisticODEField` ignores that argument.
 `nhds 1` is the neighborhood filter that encodes convergence to one.
 {{< /lean-bridge >}}
 
-## Reproduce the candidate checks
+## Reproduce the project check
 
 ~~~lean
 import NonlinearDynamics.Deterministic.Models.LogisticODE
@@ -280,7 +282,7 @@ lake env lean -DwarningAsError=true \
   NonlinearDynamics/Deterministic/Models/LogisticODE.lean
 ```
 
-The first candidate contains the following declaration groups:
+The module contains the following declaration groups:
 
 - `logisticODEVectorField`, `logisticODEField`, and
   `logisticODEField_apply` define the autonomous scalar field.
@@ -319,9 +321,9 @@ and prove the flow laws and continuity needed by the repository's ODE
 stability interfaces. The present restart theorem is useful input, but it is
 not relabeled as that endpoint.
 
-The source is still an unvalidated candidate. Until the pinned project check
-passes, the prose above describes intended theorem statements rather than a
-validated formal milestone.
+The pinned project check has passed for the linked Lean source snapshot.
+The formal statements are validated; professional review of their mathematical
+interpretation and this exposition remains pending.
 
 ## References
 
@@ -337,7 +339,7 @@ validated formal milestone.
   pinned revision `81a5d257` used by Mathlib 4.32.0.
 - Repository source,
   [`LogisticODE.lean`](/lean/NonlinearDynamics/Deterministic/Models/LogisticODE.lean),
-  candidate SHA-256
+  validated source SHA-256
   `ab2eaa5b0af808e19e2d21131c00124dede5ef7262fca8bb7fa7b7440180d326`.
 
 Continue with the [Logistic ODE Deep Dive]({{< relref

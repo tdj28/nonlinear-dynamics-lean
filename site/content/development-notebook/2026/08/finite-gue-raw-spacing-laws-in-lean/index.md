@@ -31,7 +31,7 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted source candidate.
+**Editorial status.** This is an AI-assisted source candidate.
 Professional review and pinned-toolchain validation of the exact source hash
 remain pending, so `pro_reviewed` remains false.
 {{< /panel >}}
@@ -310,7 +310,7 @@ gaps. Those works motivate the spacing object and its later probabilistic
 study; this finite Lean module does not formalize their unfolding or
 large-dimension theorems.
 
-This candidate contributes only a checked interface layer:
+This candidate proposes the following interface layer:
 
 - it reuses the project's exact finite GUE and raw-spacing conventions;
 - it makes the nested measure type explicit;

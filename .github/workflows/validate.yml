@@ -1,0 +1,30 @@
+name: Validate repository and site
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Los_Angeles
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install pinned Hugo
+        uses: ./.github/actions/setup-hugo
+
+      # This checks source/prose consistency and rendered output, not Lean proofs.
+      - name: Validate repository and site
+        run: make workstation-check

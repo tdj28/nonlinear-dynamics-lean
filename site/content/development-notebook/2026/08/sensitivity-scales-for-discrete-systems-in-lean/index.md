@@ -11,7 +11,7 @@ key_result: |
   The source defines sensitivity on a nonempty pseudo-metric space, proves its ball and neighborhood forms equivalent under the fixed metric, rules it out on isolated and finite metric spaces, connects it to failure of forward stability at every point, and checks the real doubling map at scale one.
 draft: true
 pro_reviewed: false
-status: "Source and teaching candidate; warning-fatal formal validation and owner publication inspection pending"
+status: "Warning-fatal formal validation passed; professional review and publication inspection pending"
 level: "Intermediate metric topology, filters, iterates, and Lean 4"
 reading_time: "40 to 55 minutes"
 prerequisites:
@@ -42,11 +42,12 @@ cited primary sources and released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This draft records a source candidate.
+**Editorial status.** This draft explains a validated Lean module.
 Professional review has not been performed, so `pro_reviewed` remains false.
-The Mathlib-backed module still requires its warning-fatal leaf, deterministic
-aggregator, and complete repository validation before this page can report a
-checked milestone.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed the warning-fatal leaf, deterministic aggregator, and complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Begin with two real numbers
@@ -278,7 +279,7 @@ statement, or topological-conjugacy invariance on arbitrary noncompact spaces.
 | `not_isSensitive_of_lipschitzWith_one` | nonexpansive non-example |
 | `not_isSensitive_id` | identity-map nonexample |
 | `doublingMap_iterate` | closed form for every doubling-map iterate |
-| `doublingMap_isSensitiveWith_one` | checked scale-one real example candidate |
+| `doublingMap_isSensitiveWith_one` | checked scale-one real example |
 
 ## Discussion
 
@@ -292,10 +293,9 @@ module can interact cleanly with the project's pseudo-metric forward-stability
 theory now. A uniform or compact-topological layer should arrive with explicit
 hypotheses and equivalence theorems, not with a renamed metric definition.
 
-The remaining release work is mechanical but necessary: warning-fatal
-Mathlib-backed checking, full repository validation, source-hash insertion,
-browser inspection, owner inspection of sources and artifacts, and an explicit
-publication decision. Until those finish, this page remains a draft candidate.
+The warning-fatal Mathlib-backed check and complete repository validation
+have passed for the linked Lean source snapshot. Professional review and
+publication inspection remain pending, so this page remains a working draft.
 
 ## Reproduce the project check
 

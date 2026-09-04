@@ -11,7 +11,7 @@ BLOG_PORT ?= 1333
 
 .DEFAULT_GOAL := help
 
-.PHONY: help setup lean lean-file lean-clean checkpoint checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site site-drafts site-production-check site-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale workstation-check check clean
+.PHONY: help setup lean lean-file lean-clean checkpoint checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site site-drafts site-production-check site-check site-rendered-test site-rendered-check blog-serve site-serve blog-serve-tailscale site-serve-tailscale workstation-check check clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "; printf "Usage: make <target>\n\nTargets:\n"} /^[a-zA-Z0-9_-]+:.*## / {printf "  %-24s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -59,6 +59,12 @@ site-production-check: ## Validate the publication-only Hugo graph without writi
 site-check: site-production-check ## Validate production and draft-inclusive Hugo content without writing public/
 	$(HUGO) --source site --config hugo.yaml --buildDrafts --panicOnWarning --noBuildLock --renderToMemory
 
+site-rendered-test: ## Test the rendered-link and asset checker
+	$(PYTHON) -m unittest discover -s scripts -p 'test_check_rendered_site.py'
+
+site-rendered-check: site-rendered-test ## Check rendered links, fragments, and assets in temporary root/subpath builds
+	$(PYTHON) scripts/check_rendered_site.py --hugo "$(HUGO)"
+
 blog-serve: ## Serve drafts locally at http://127.0.0.1:1333/
 	@echo "Serving the blog locally: http://127.0.0.1:$(BLOG_PORT)/"
 	$(HUGO) server \
@@ -99,9 +105,9 @@ blog-serve-tailscale: ## Serve drafts privately on Tailscale port 1333
 
 site-serve-tailscale: blog-serve-tailscale ## Alias for blog-serve-tailscale
 
-workstation-check: checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check ## Validate all non-Lean repository gates
+workstation-check: checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check site-rendered-check ## Validate all non-Lean repository gates
 
-check: lean checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check ## Cloud/Linux only: run the complete repository gate
+check: lean checkpoint-check content-coverage content-coverage-test content-hygiene-test content-hygiene site-check site-rendered-check ## Cloud/Linux only: run the complete repository gate
 
 clean: ## Remove generated Hugo output without invoking Lean or Lake
 	rm -rf public site/resources/_gen

@@ -13,7 +13,7 @@ og_image_alt: "A scalar value is pulled back along a flow orbit and differentiat
 ---
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
+**Editorial status.** This is an AI-assisted working draft.
 Professional review and the warning-fatal Lean release gate remain pending;
 `pro_reviewed` remains false.
 {{< /panel >}}

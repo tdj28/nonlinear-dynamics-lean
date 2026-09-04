@@ -25,9 +25,12 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted working
-draft. Professional review and pinned-toolchain validation remain pending;
-`pro_reviewed` remains false.
+**Editorial and validation status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Start with five exact states
@@ -77,7 +80,7 @@ exponential solution curve.
   wide="true"
   src="vector-field-to-sigmoid.svg"
   alt="Five quarter-grid columns show scaled vector-field values zero, three, four, three, zero. An arrow leads to a smooth sigmoid curve, whose tangent is labeled r times x times one minus x."
-  caption="**From cases to a general candidate:** the finite ledger anchors the signs at five states. The source's real-algebra theorem covers the whole open interval, and the derivative theorem checks the displayed sigmoid curve."
+  caption="**From cases to a general theorem:** the finite ledger anchors the signs at five states. The source's real-algebra theorem covers the whole open interval, and the derivative theorem checks the displayed sigmoid curve."
 >}}
 
 ## Classify every equilibrium before dividing
@@ -100,7 +103,7 @@ x=0
 x=1.
 \]
 
-This is the candidate's complete theorem. It retains the degenerate parameter
+This is the module's complete theorem. It retains the degenerate parameter
 \(r=0\), where the vector field vanishes everywhere. Only after assuming
 \(r\ne0\) may the conclusion be shortened to \(x=0\lor x=1\).
 
@@ -151,7 +154,7 @@ x_{r,c}'(t)
 \end{aligned}
 \]
 
-The candidate theorem `hasDerivAt_logisticInteriorCurve` states this equality
+The theorem `hasDerivAt_logisticInteriorCurve` states this equality
 at one arbitrary time. `logisticInteriorCurve_isIntegralCurve` then exposes
 the same proof as Mathlib's universally quantified scalar
 `IsIntegralCurve` predicate.

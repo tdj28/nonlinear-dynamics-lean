@@ -32,10 +32,12 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
-Professional review and pinned-toolchain validation remain pending, so
-`pro_reviewed` remains false. The Lean interface described below is a
-source-only candidate until that validation is complete.
+**Editorial status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Abstract
@@ -66,7 +68,7 @@ E_\kappa(\theta,\omega)
 =\frac{\omega^2}{2}+\kappa(1-\cos\theta).
 \]
 
-The candidate proves continuity, classifies all field zeros when
+The module proves continuity, classifies all field zeros when
 \(\kappa\ne0\), records full-turn periodicity, evaluates exact benchmark
 states, establishes energy nonnegativity for \(\kappa\ge0\), checks the
 pointwise derivative cancellation behind energy conservation, and exhibits
@@ -84,7 +86,7 @@ one real parameter \(\kappa\). Mathlib 4.32.0 supplies real sine and cosine,
 their exact special values and periodicity, their derivative rules, and the
 `IsIntegralCurve` predicate used here.
 
-**Contribution.** The candidate turns those ingredients into a small,
+**Contribution.** The module turns those ingredients into a small,
 auditable bridge between a physical model and the repository's continuous
 dynamics layer. Its most important design decision is the logical stopping
 point: energy conservation is stated conditionally on component derivatives
@@ -209,7 +211,7 @@ at the downward and upright states are recorded by `pendulumEnergy_down` and
 
 ## Constant curves are genuine solutions
 
-The candidate does prove two global {{< refterm "integral-curve" "integral curves" >}}.
+The module does prove two global {{< refterm "integral-curve" "integral curves" >}}.
 At \((0,0)\) and \((\pi,0)\), the vector field is zero. A
 constant curve has zero derivative at every real time, so the downward and
 upright constant curves satisfy Mathlib's `IsIntegralCurve` definition.
@@ -260,7 +262,7 @@ The underscore ignores time because the curve is constant.
 returns the same autonomous vector field at every time.
 {{< /lean-bridge >}}
 
-## Reproduce the candidate checks
+## Reproduce the project check
 
 ~~~lean
 import NonlinearDynamics.Deterministic.Models.Pendulum

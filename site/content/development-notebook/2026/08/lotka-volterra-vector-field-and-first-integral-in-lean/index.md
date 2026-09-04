@@ -32,10 +32,12 @@ sources and any released artifacts before relying on them.
 {{< /panel >}}
 
 {{< panel "warning" >}}
-**Editorial status.** This is a private AI-assisted working draft.
-Professional review and pinned-toolchain validation remain pending, so
-`pro_reviewed` remains false. The Lean interface described below is a
-source-only candidate until that validation is complete.
+**Editorial status.** This is an AI-assisted working draft.
+Professional review remains pending, so `pro_reviewed` remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed warning-fatal pinned-toolchain validation and the complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Abstract
@@ -55,7 +57,7 @@ parameters \(\alpha,\beta,\gamma,\delta\) are kept explicit and become
 strictly positive only where the predator-prey interpretation or the complete
 equilibrium classification needs that assumption.
 
-The candidate defines the polynomial {{< refterm "vector-field" "vector field" >}}
+The module defines the polynomial {{< refterm "vector-field" "vector field" >}}
 on the full plane \(\mathbb R^2\), names the strict positive quadrant as a
 separate set, classifies the two field zeros for positive parameters, records
 the exact axis formulas, and evaluates the normalized state \((2,3)\). On
@@ -81,7 +83,7 @@ letter documents the overlap with his 1925 book. The source record matters
 here because parameter letters and coordinate order vary across modern
 presentations.
 
-**Contribution.** This candidate freezes one repository convention:
+**Contribution.** This module freezes one repository convention:
 \((\alpha,\beta,\gamma,\delta)=(A_1,B_1,B_2,A_2)\), prey first and predator
 second. It then separates three mathematical layers that are often merged in
 an informal phase portrait: a full-plane polynomial field, algebraic facts
@@ -125,7 +127,7 @@ the nonnegative quadrant, and the logarithmic expression requires
 \(x\gt0\) and \(y\gt0\) for its intended calculus interpretation. Those are
 separate facts, not reasons to hide the field inside a subtype.
 
-The candidate names
+The module names
 
 \[
 Q_{++}=\{(x,y):x\gt0\text{ and }y\gt0\}
@@ -176,7 +178,7 @@ If \(x=0\), positivity of \(\gamma\) forces \(y=0\). If \(x\ne0\), then
 factor gives \(x=\gamma/\delta\). The reverse direction is checked by direct
 substitution.
 
-The candidate records both the zero classification and the separate fact that
+The module records both the zero classification and the separate fact that
 \(p_*\in Q_{++}\). The latter uses all four positivity hypotheses. The
 constant curve through \(p_*\) needs only \(\beta\ne0\) and
 \(\delta\ne0\), because those are the denominators used in its algebraic
@@ -200,7 +202,7 @@ H_{1,1,1,1}(1,1)=1-\log1+1-\log1=2.
 Lean's `Real.log` is a total function and satisfies `Real.log 0 = 0`. That
 library convention is useful for totalized analysis, but it must not erase
 the mathematical domain of the logarithmic differentiation argument. The
-candidate therefore leaves the scalar definition total while requiring the
+module therefore leaves the scalar definition total while requiring the
 visible hypotheses \(0\lt x(t)\) and \(0\lt y(t)\) in the derivative
 theorem.
 
@@ -285,7 +287,7 @@ conclusion is local at `t`. The positive hypotheses are part of the public
 statement rather than an informal side condition.
 {{< /lean-bridge >}}
 
-## Reproduce the candidate checks
+## Reproduce the project check
 
 ~~~lean
 import NonlinearDynamics.Deterministic.Models.LotkaVolterra
@@ -320,7 +322,7 @@ build time.
 {{< repo-check >}}
 Lean's elaborator constructs proof terms for the exact source statements, and
 its kernel checks those terms. That verifies the formal algebra and calculus
-claims once the module passes the pinned toolchain. It does not independently
+claims in the pinned toolchain. It does not independently
 certify the biological interpretation, construct omitted trajectories, or
 turn a pointwise identity into a periodic-orbit theorem.
 {{< /repo-check >}}

@@ -55,7 +55,7 @@
         <strong>Lean module</strong>
         <code>{{ . }}</code>
         {{ with $.Params.lean_snapshot }}
-          <a class="article-source-link" href="{{ . | relURL }}">Open the checked source <span aria-hidden="true">-&gt;</span></a>
+          <a class="article-source-link" href="{{ . | relURL }}">Open the source snapshot <span aria-hidden="true">-&gt;</span></a>
         {{ else }}
           {{ with $.Params.lean_source }}<a class="article-source-link" href="{{ $.Site.Params.repository }}/blob/main/{{ . }}" rel="noopener">Open the source <span aria-hidden="true">-&gt;</span></a>{{ end }}
         {{ end }}
@@ -116,12 +116,26 @@
         {{ with .File }}<a href="{{ $.Site.Params.repository }}/commits/main/site/content/{{ .Path }}" rel="noopener">View edit history</a>{{ end }}
       </footer>
 
-      {{ if or .PrevInSection .NextInSection }}
+      {{ $previous := .PrevInSection }}
+      {{ $next := .NextInSection }}
+      {{ if eq .Section "development-notebook" }}
+        {{/* Notebook navigation follows its chronological index, not page weights. */}}
+        {{ $previous = false }}
+        {{ $next = false }}
+        {{ $chapters := .CurrentSection.RegularPages.ByDate }}
+        {{ range $index, $chapter := $chapters }}
+          {{ if eq $chapter.RelPermalink $.RelPermalink }}
+            {{ if gt $index 0 }}{{ $previous = index $chapters (sub $index 1) }}{{ end }}
+            {{ if lt $index (sub (len $chapters) 1) }}{{ $next = index $chapters (add $index 1) }}{{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if or $previous $next }}
       <nav class="chapter-nav" aria-label="Adjacent chapters">
-        {{ with .PrevInSection }}
+        {{ with $previous }}
         <a class="chapter-nav-link previous" href="{{ .RelPermalink }}"><span>Previous</span><strong>{{ .Title }}</strong></a>
         {{ end }}
-        {{ with .NextInSection }}
+        {{ with $next }}
         <a class="chapter-nav-link next" href="{{ .RelPermalink }}"><span>Next</span><strong>{{ .Title }}</strong></a>
         {{ end }}
       </nav>

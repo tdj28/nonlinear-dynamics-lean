@@ -35,8 +35,12 @@ ai_disclosure: |
 
 {{< panel "warning" >}}
 **Editorial and validation status.** This AI-assisted draft accompanies a
-source candidate. Professional review and the warning-fatal full project gate
-are pending, so <code>pro_reviewed</code> remains false.
+validated Lean module. Professional review remains pending, so
+<code>pro_reviewed</code> remains false.
+
+**Status correction, 2026-09-04.** The linked Lean source snapshot
+has passed the warning-fatal leaf, deterministic aggregator, and complete
+repository gate. The earlier pending-validation label was stale.
 {{< /panel >}}
 
 ## Learning objectives
@@ -199,7 +203,7 @@ forms coincide
 
 ## A real-line proof with no symbolic topology
 
-The checked source candidate also uses \(D(x)=2x\) on \(\mathbb R\). For a
+The checked source also uses \(D(x)=2x\) on \(\mathbb R\). For a
 requested radius \(\varepsilon\gt0\), choose \(y=x+\varepsilon/2\). Then
 
 \[
@@ -339,8 +343,8 @@ Carvalho
 
 The stream construction establishes the exact finite-prefix witness used by
 the standard symbolic model. The real doubling calculation establishes the
-metric sensitivity predicate for that explicit map once the source passes its
-formal gate. The isolated-point argument establishes a genuine obstruction.
+metric sensitivity predicate for that explicit map. The isolated-point
+argument establishes a genuine obstruction.
 
 The chapter makes no claim of expansivity, transitivity, mixing, dense
 periodic points, Devaney chaos, positive topological or measure entropy,

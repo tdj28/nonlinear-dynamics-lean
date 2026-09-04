@@ -25,7 +25,7 @@ ai_disclosure: |
 ---
 
 {{< panel "warning" >}}
-**Editorial and validation status.** This is a private AI-assisted source
+**Editorial and validation status.** This is an AI-assisted source
 candidate. Professional review and pinned-toolchain validation of the exact
 source hash remain pending, so `pro_reviewed` remains false.
 {{< /panel >}}

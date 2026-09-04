@@ -1,5 +1,10 @@
 {{ $human := .Get "human" }}
 {{ $math := .Get "math" }}
+{{/* Older attributes escaped every slash for Markdown. Normalize that encoding
+     only when its opening delimiter is doubled; preserve native TeX line breaks. */}}
+{{ if or (strings.HasPrefix (strings.TrimSpace $math) "\\\\(") (strings.HasPrefix (strings.TrimSpace $math) "\\\\[") }}
+  {{ $math = replace $math "\\\\" "\\" }}
+{{ end }}
 {{ $lean := .Get "lean" }}
 {{ if not $human }}{{ errorf "lean-bridge requires human in %s" .Page.File.Path }}{{ end }}
 {{ if not $math }}{{ errorf "lean-bridge requires math in %s" .Page.File.Path }}{{ end }}
@@ -16,7 +21,8 @@
     </article>
     <article class="lean-bridge-layer lean-bridge-paper">
       <span class="lean-bridge-kicker">On paper</span>
-      <div>{{ $math | markdownify }}</div>
+      {{/* Math is plain TeX: Markdown can turn bracketed function values into links. */}}
+      <div>{{ $math }}</div>
     </article>
     <article class="lean-bridge-layer lean-bridge-code">
       <span class="lean-bridge-kicker">In Lean</span>
